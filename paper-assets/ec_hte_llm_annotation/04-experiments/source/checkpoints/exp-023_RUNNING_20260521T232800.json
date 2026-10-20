@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp-023",
+  "project": "ec_hte_llm_annotation",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:27:31.475Z",
+    "updated_at": "2026-05-21T23:28:00.527Z",
+    "hypothesis": "Subgroup-heterogeneous misclassification (Δπ>0.05) is a structural property across diverse open-source LLMs (Llama-3.1-8B, Qwen2.5-7B, Gemma2-9B, Mistral-7B), and EC-HTE's coverage advantage over Naive persists under real confusion matrices in semi-synthetic budget sweeps — validating C1 multi-LLM claim",
+    "parent": "exp-008",
+    "spec": {
+      "command": "Multiple Workers: (1) GPU annotation of 500 TweetEval samples x 4 models, (2) CPU semi-synthetic budget sweeps per model",
+      "server": "autodl-rtx6000 + local-cpu",
+      "data_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/",
+      "data_count": 500,
+      "model_name": "Llama-3.1-8B, Qwen2.5-7B, Gemma2-9B, Mistral-7B-v0.3",
+      "seed": "50 MC seeds per budget level",
+      "checkpoint_source": "N/A (semi-synthetic, no checkpoint)",
+      "eval_data": "TweetEval sentiment 500 samples, balanced Z definition (Z=1 if true_label>=1)",
+      "checkpoint_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/",
+      "log_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T23:28:00.580912+00:00",
+  "trigger": "update_registry"
+}

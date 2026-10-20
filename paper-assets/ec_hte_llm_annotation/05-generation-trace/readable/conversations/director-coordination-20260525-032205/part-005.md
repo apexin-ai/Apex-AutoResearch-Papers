@@ -21245,7 +21245,7 @@ session 销毁时之前发的 HTTPS+token URL 会丢，请把它**写到项目�
 - 公开链接：https://github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation
 - Push URL（带 token）：
   ```
-  https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git
+  https://[REDACTED]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git
   ```
 
 **操作（必做）：**
@@ -21254,7 +21254,7 @@ session 销毁时之前发的 HTTPS+token URL 会丢，请把它**写到项目�
    ```json
    {
      "repo_public": "https://github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation",
-     "push_url": "https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git",
+     "push_url": "https://[REDACTED]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git",
      "github_user": "anonymous-nlp-2026-2",
      "repo_name": "ec_hte_llm_annotation"
    }
@@ -21360,7 +21360,7 @@ called Write
 ```json
 {
   "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/_anonymous_repo.json",
-  "content": "{\n  \"repo_public\": \"https://github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation\",\n  \"push_url\": \"https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",\n  \"repo_name\": \"ec_hte_llm_annotation\"\n}\n"
+  "content": "{\n  \"repo_public\": \"https://github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation\",\n  \"push_url\": \"https://[REDACTED]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",\n  \"repo_name\": \"ec_hte_llm_annotation\"\n}\n"
 }
 ```
 
@@ -21375,7 +21375,7 @@ called Write
   "tool": "Write",
   "tool_args": {
     "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/_anonymous_repo.json",
-    "content": "{\n  \"repo_public\": \"https://github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation\",\n  \"push_url\": \"https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",\n  \"repo_name\": \"ec_hte_llm_annotation\"\n}\n"
+    "content": "{\n  \"repo_public\": \"https://github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation\",\n  \"push_url\": \"https://[REDACTED]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",\n  \"repo_name\": \"ec_hte_llm_annotation\"\n}\n"
   }
 }
 ```

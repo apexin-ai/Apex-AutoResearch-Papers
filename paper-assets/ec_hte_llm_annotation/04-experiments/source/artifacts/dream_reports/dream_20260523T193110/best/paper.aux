@@ -1,0 +1,172 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{tornberg2024}
+\citation{kennedy2020}
+\citation{gilardi2023}
+\citation{ziems2024}
+\citation{ashwin2025}
+\citation{angelopoulos2023}
+\citation{egami2024}
+\citation{mozer2026}
+\citation{angelopoulos2023}
+\citation{egami2024}
+\citation{sui2026}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{fuller1987}
+\citation{carroll2006}
+\citation{gustafson2003}
+\citation{hu2008}
+\citation{imai2010}
+\citation{gilardi2023}
+\citation{tornberg2024}
+\citation{ziems2024}
+\citation{wang2023}
+\citation{angelopoulos2023}
+\citation{egami2024}
+\citation{sui2026}
+\citation{bu2023}
+\citation{wager2018}
+\citation{athey2019}
+\citation{chernozhukov2018}
+\citation{kennedy2023}
+\citation{nie2021}
+\citation{kunzel2019}
+\citation{dawid1979}
+\citation{passonneau2014}
+\citation{hovy2013}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Classical measurement error.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM as annotator.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prediction-powered inference and correction.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Heterogeneous treatment effects.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Bayesian annotation models.}{2}{section*.6}\protected@file@percent }
+\citation{james1961}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Bias Decomposition: When Debiasing Hurts}{3}{section.3}\protected@file@percent }
+\newlabel{sec:theory}{{3}{3}{Bias Decomposition: When Debiasing Hurts}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Setup}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}The Bias Identity}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:bias_identity}{{3.2}{3}{The Bias Identity}{subsection.3.2}{}}
+\newlabel{thm:bias}{{1}{3}{Bias Decomposition Identity}{theorem.1}{}}
+\newlabel{eq:bias_identity}{{1}{3}{Bias Decomposition Identity}{equation.1}{}}
+\newlabel{eq:bias_simple}{{2}{3}{Bias Decomposition Identity}{equation.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}When Debiasing Hurts}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{prop:hurts}{{1}{3}{Debiasing Can Hurt}{proposition.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}EC-HTE Framework}{3}{section.4}\protected@file@percent }
+\newlabel{sec:method}{{4}{3}{EC-HTE Framework}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Hierarchical Bayesian Confusion Matrix Estimation}{3}{subsection.4.1}\protected@file@percent }
+\citation{wager2018}
+\citation{sui2026}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Stratified CATE Correction}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Diagnostic Criterion}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:diagnostic}{{4.3}{4}{Diagnostic Criterion}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Composition with PPCI}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:ppci_method}{{4.4}{4}{Composition with PPCI}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Bias amplification under global correction. MC bias closely matches the analytic prediction from Theorem~\ref {thm:bias}. ``Global Hurts?'' indicates whether global correction increases bias relative to the naive estimator.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:bias_amplification}{{1}{4}{Bias amplification under global correction. MC bias closely matches the analytic prediction from Theorem~\ref {thm:bias}. ``Global Hurts?'' indicates whether global correction increases bias relative to the naive estimator}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Global correction failure rates and amplification. ``Hurts Rate'' is the fraction of configurations where global correction increases subgroup bias. CausalForest amplifies the effect due to nonlinear CATE estimation.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:hurts_summary}{{2}{4}{Global correction failure rates and amplification. ``Hurts Rate'' is the fraction of configurations where global correction increases subgroup bias. CausalForest amplifies the effect due to nonlinear CATE estimation}{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{4}{section.5}\protected@file@percent }
+\newlabel{sec:experiments}{{5}{4}{Experiments}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Bias Identity Verification}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:bias_verify}{{5.1}{4}{Bias Identity Verification}{subsection.5.1}{}}
+\citation{athey2019}
+\citation{sui2026}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Semi-synthetic benchmark on TweetEval sentiment with GPT-4.1 annotation ($K\!=\!4$, $\Delta \pi = 0.20$). EC-HTE substantially reduces bias for the high-error subgroup (S3) while maintaining coverage above 93\%.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:semi_synth}{{3}{5}{Semi-synthetic benchmark on TweetEval sentiment with GPT-4.1 annotation ($K\!=\!4$, $\Delta \pi = 0.20$). EC-HTE substantially reduces bias for the high-error subgroup (S3) while maintaining coverage above 93\%}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Semi-Synthetic CSS Benchmark}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:semi_synth}{{5.2}{5}{Semi-Synthetic CSS Benchmark}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces CausalForest integration. EC-HTE achieves 61\% bias reduction vs.\ naive and 43\% vs.\ global. The RMSE tradeoff reflects variance from per-subgroup CM estimation and resolves at higher $n_{\text  {expert}}$.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:cf_results}{{4}{5}{CausalForest integration. EC-HTE achieves 61\% bias reduction vs.\ naive and 43\% vs.\ global. The RMSE tradeoff reflects variance from per-subgroup CM estimation and resolves at higher $n_{\text {expert}}$}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cases where global correction amplifies CausalForest bias. The 5.9$\times $ amplification at $K\!=\!4$/extreme exceeds DIM (2.41$\times $), confirming nonlinear estimators compound the misclassification-induced bias.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:cf_hurts}{{5}{5}{Cases where global correction amplifies CausalForest bias. The 5.9$\times $ amplification at $K\!=\!4$/extreme exceeds DIM (2.41$\times $), confirming nonlinear estimators compound the misclassification-induced bias}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}CausalForest Integration}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:cf_exp}{{5.3}{5}{CausalForest Integration}{subsection.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Method comparison across error types ($K\!=\!2$, extreme, $n_{\text  {expert}}\!=\!250$). EC-HTE handles covariate error; PPCI handles outcome error. Their composition reduces DGP C bias by 35$\times $ relative to EC-HTE alone.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:ppci_comparison}{{6}{6}{Method comparison across error types ($K\!=\!2$, extreme, $n_{\text {expert}}\!=\!250$). EC-HTE handles covariate error; PPCI handles outcome error. Their composition reduces DGP C bias by 35$\times $ relative to EC-HTE alone}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Comparison with PPCI and DSL}{6}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:ppci_exp}{{5.4}{6}{Comparison with PPCI and DSL}{subsection.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Expert budget crossover points: the minimum $n_{\text  {expert}}$ at which EC-HTE RMSE falls below global correction RMSE. ``Never'' indicates global correction maintains lower RMSE at all budgets tested.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:budget}{{7}{6}{Expert budget crossover points: the minimum $n_{\text {expert}}$ at which EC-HTE RMSE falls below global correction RMSE. ``Never'' indicates global correction maintains lower RMSE at all budgets tested}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Expert Budget Analysis}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:budget_exp}{{5.5}{6}{Expert Budget Analysis}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Diagnostic Criterion Validation}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:diagnostic_exp}{{5.6}{6}{Diagnostic Criterion Validation}{subsection.5.6}{}}
+\citation{kennedy2020}
+\bibdata{references}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Diagnostic criterion performance. Subgroup-level AUC = 0.833 indicates the diagnostic reliably identifies which subgroups will be harmed by global correction. Setting-level AUC near 0.5 is expected: the bias identity is a per-subgroup statement.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:diagnostic}{{8}{7}{Diagnostic criterion performance. Subgroup-level AUC = 0.833 indicates the diagnostic reliably identifies which subgroups will be harmed by global correction. Setting-level AUC near 0.5 is expected: the bias identity is a per-subgroup statement}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Misclassification heterogeneity in real LLM annotation (UC Berkeley Hate Speech, GPT-4.1). $\Delta \pi = 0.117$ confirms heterogeneity exists in practice. High FNR (53\%) limits all correction methods.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:real_data}{{9}{7}{Misclassification heterogeneity in real LLM annotation (UC Berkeley Hate Speech, GPT-4.1). $\Delta \pi = 0.117$ confirms heterogeneity exists in practice. High FNR (53\%) limits all correction methods}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Real-Data Case Study}{7}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:real_data}{{5.7}{7}{Real-Data Case Study}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\bibcite{angelopoulos2023}{Angelopoulos et al.(2023)}
+\bibcite{ashwin2025}{Ashwin et al.(2025)}
+\bibcite{athey2016}{Athey and Imbens(2016)}
+\bibcite{athey2019}{Athey et al.(2019)}
+\bibcite{bu2023}{Bu et al.(2023)}
+\bibcite{carroll2006}{Carroll et al.(2006)}
+\bibcite{chernozhukov2018}{Chernozhukov et al.(2018)}
+\bibcite{dawid1979}{Dawid and Skene(1979)}
+\bibcite{egami2024}{Egami et al.(2024)}
+\bibcite{fuller1987}{Fuller(1987)}
+\bibcite{gelman2013}{Gelman et al.(2013)}
+\bibcite{gilardi2023}{Gilardi et al.(2023)}
+\bibcite{gustafson2003}{Gustafson(2003)}
+\bibcite{holland1986}{Holland(1986)}
+\bibcite{hovy2013}{Hovy et al.(2013)}
+\bibcite{hu2008}{Hu and Schennach(2008)}
+\bibcite{imai2010}{Imai and Yamamoto(2010)}
+\bibcite{imbens2015}{Imbens and Rubin(2015)}
+\bibcite{james1961}{James and Stein(1961)}
+\bibcite{kennedy2023}{Kennedy(2023)}
+\bibcite{kennedy2020}{Kennedy et al.(2020)}
+\bibcite{kunzel2019}{K\"unzel et al.(2019)}
+\bibcite{mozer2026}{Mozer(2026)}
+\bibcite{nie2021}{Nie and Wager(2021)}
+\bibcite{passonneau2014}{Passonneau and Carpenter(2014)}
+\bibcite{rosenbaum1983}{Rosenbaum and Rubin(1983)}
+\bibcite{rosenthal2020}{Rosenthal et al.(2020)}
+\bibcite{rubin1974}{Rubin(1974)}
+\bibcite{sui2026}{Sui et al.(2026)}
+\bibcite{tornberg2024}{Tornberg(2024)}
+\bibcite{wager2018}{Wager and Athey(2018)}
+\bibcite{wang2023}{Wang et al.(2023)}
+\bibcite{ziems2024}{Ziems et al.(2024)}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces MCMC diagnostics. All configurations satisfy $\hat  {R} < 1.01$ and ESS $> 200$ (actual ESS $> 1618$). Zero divergences across all runs.}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:mcmc}{{10}{9}{MCMC diagnostics. All configurations satisfy $\hat {R} < 1.01$ and ESS $> 200$ (actual ESS $> 1618$). Zero divergences across all runs}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces HB vs.\ MLE RMSE comparison. HB provides 4--9\% improvement at $K\!=\!2$/$n\!=\!50$ and up to 18.8\% at $K\!=\!4$/extreme/$n\!=\!50$. Coverage median is 0.93 (below nominal 0.95 at small $n$).}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:hb_mle}{{11}{9}{HB vs.\ MLE RMSE comparison. HB provides 4--9\% improvement at $K\!=\!2$/$n\!=\!50$ and up to 18.8\% at $K\!=\!4$/extreme/$n\!=\!50$. Coverage median is 0.93 (below nominal 0.95 at small $n$)}{table.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}HB Estimation Validation}{9}{appendix.A}\protected@file@percent }
+\newlabel{app:hb}{{A}{9}{HB Estimation Validation}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Hyperprior sensitivity. RMSE varies $<1\%$ for $K\!=\!2$ and $\sim $4--5\% for $K\!=\!4$ under 2$\times $ changes in Gamma scale, confirming robustness.}}{10}{table.12}\protected@file@percent }
+\newlabel{tab:hyperprior}{{12}{10}{Hyperprior sensitivity. RMSE varies $<1\%$ for $K\!=\!2$ and $\sim $4--5\% for $K\!=\!4$ under 2$\times $ changes in Gamma scale, confirming robustness}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Cross-model misclassification heterogeneity. All models exhibit $\Delta \pi > 0.05$, confirming heterogeneity is structural across three LLM generations. The worst subgroup (True\_medium) is consistent across 5/6 models.}}{10}{table.13}\protected@file@percent }
+\newlabel{tab:multi_llm}{{13}{10}{Cross-model misclassification heterogeneity. All models exhibit $\Delta \pi > 0.05$, confirming heterogeneity is structural across three LLM generations. The worst subgroup (True\_medium) is consistent across 5/6 models}{table.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Multi-LLM Annotator Comparison}{10}{appendix.B}\protected@file@percent }
+\newlabel{app:multi_llm}{{B}{10}{Multi-LLM Annotator Comparison}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Robustness to subgroup noise. EC-HTE coverage drops only $\sim $1pp from 0\% to 50\% noise, maintaining nominal coverage ($>94.5\%$) at all noise levels. At 50\% noise (random subgroups), HB automatically shrinks toward global correction.}}{10}{table.14}\protected@file@percent }
+\newlabel{tab:robustness}{{14}{10}{Robustness to subgroup noise. EC-HTE coverage drops only $\sim $1pp from 0\% to 50\% noise, maintaining nominal coverage ($>94.5\%$) at all noise levels. At 50\% noise (random subgroups), HB automatically shrinks toward global correction}{table.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Robustness to Subgroup Misspecification}{10}{appendix.C}\protected@file@percent }
+\newlabel{app:robustness}{{C}{10}{Robustness to Subgroup Misspecification}{appendix.C}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Adaptive Expert Allocation}{10}{appendix.D}\protected@file@percent }
+\newlabel{app:allocation}{{D}{10}{Adaptive Expert Allocation}{appendix.D}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Allocation strategy comparison. CATE-weighted allocation achieves 21\% RMSE improvement over uniform and reduces the $K\!=\!4$ budget crossover from $n\!=\!1000$ to $n\!=\!700$.}}{11}{table.15}\protected@file@percent }
+\newlabel{tab:allocation}{{15}{11}{Allocation strategy comparison. CATE-weighted allocation achieves 21\% RMSE improvement over uniform and reduces the $K\!=\!4$ budget crossover from $n\!=\!1000$ to $n\!=\!700$}{table.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Debiasing-hurts in the semi-synthetic setting. Global correction amplifies bias 5.6$\times $ for the lowest-error subgroup (S0) and 1.6$\times $ for the highest-error subgroup (S3, under-corrected).}}{11}{table.16}\protected@file@percent }
+\newlabel{tab:semi_hurts}{{16}{11}{Debiasing-hurts in the semi-synthetic setting. Global correction amplifies bias 5.6$\times $ for the lowest-error subgroup (S0) and 1.6$\times $ for the highest-error subgroup (S3, under-corrected)}{table.16}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Additional Tables}{11}{appendix.E}\protected@file@percent }
+\newlabel{app:cf}{{E}{11}{Additional Tables}{appendix.E}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Real-data CATE comparison (pattern consistency only, no ground-truth). High FNR makes the CM near-singular, explaining wide CIs for EC-HTE.}}{11}{table.17}\protected@file@percent }
+\newlabel{tab:real_cate}{{17}{11}{Real-data CATE comparison (pattern consistency only, no ground-truth). High FNR makes the CM near-singular, explaining wide CIs for EC-HTE}{table.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Diagnostic by subgroup $\Delta \pi $ quartile. Low-$\Delta \pi $ subgroups are harmed by global correction 84.6\% of the time, confirming the asymmetry predicted by the bias identity.}}{11}{table.18}\protected@file@percent }
+\newlabel{tab:diag_quartile}{{18}{11}{Diagnostic by subgroup $\Delta \pi $ quartile. Low-$\Delta \pi $ subgroups are harmed by global correction 84.6\% of the time, confirming the asymmetry predicted by the bias identity}{table.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Full expert budget sweep (selected configurations). ``Both'' means EC-HTE outperforms both MLE and global correction in RMSE.}}{11}{table.19}\protected@file@percent }
+\newlabel{tab:budget_full}{{19}{11}{Full expert budget sweep (selected configurations). ``Both'' means EC-HTE outperforms both MLE and global correction in RMSE}{table.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces DSL per-subgroup baseline. EC-HTE achieves lower bias and RMSE than DSL across all configurations tested, due to cross-subgroup shrinkage.}}{11}{table.20}\protected@file@percent }
+\newlabel{tab:dsl}{{20}{11}{DSL per-subgroup baseline. EC-HTE achieves lower bias and RMSE than DSL across all configurations tested, due to cross-subgroup shrinkage}{table.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces CausalForest bias-RMSE tradeoff by budget. At $n_{\text  {expert}} \geq 500$ ($K\!=\!2$), EC-HTE achieves near-zero bias with RMSE approaching global correction levels.}}{12}{table.21}\protected@file@percent }
+\newlabel{tab:cf_bias_rmse}{{21}{12}{CausalForest bias-RMSE tradeoff by budget. At $n_{\text {expert}} \geq 500$ ($K\!=\!2$), EC-HTE achieves near-zero bias with RMSE approaching global correction levels}{table.21}{}}
+\gdef \@abspage@last{12}

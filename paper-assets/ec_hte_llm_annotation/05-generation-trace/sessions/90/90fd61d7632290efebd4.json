@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_task-j-reversal-sweep_20260523T154009_result.json",
     "occurrence": 1,
-    "bytes": 972,
-    "sha256": "afbe77c20d55909816bffae8d2d7d28609c7066830cb35eba196e8e4a09e1024"
+    "bytes": 971,
+    "sha256": "0396e067b1176ca9d3422bbba49ab52ae2f224b4b8860ff2d0eb6e030a1684d1"
   },
   "statistics": {
     "messages": 1,

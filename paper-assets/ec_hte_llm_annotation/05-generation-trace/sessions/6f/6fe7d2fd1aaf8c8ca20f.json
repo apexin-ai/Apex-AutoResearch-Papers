@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_paper-fixes-mf1-mf2-sf_20260523T205248_result.json",
     "occurrence": 1,
-    "bytes": 845,
-    "sha256": "30679b03ac7fde85995b2faf586bafbb1481d5f7863745d4050499c5c2dd09e3"
+    "bytes": 844,
+    "sha256": "1c9243216d9ec7db3140c9bbc7d544319e333147f2a50050b2d375ee64c93b79"
   },
   "statistics": {
     "messages": 1,

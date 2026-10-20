@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-b-stance-detection_20260523T190153_result.json",
     "occurrence": 1,
-    "bytes": 1280,
-    "sha256": "175dcd32953e3a8e46e901140af4910ca477518152b2a05eee1bc84142147738"
+    "bytes": 1279,
+    "sha256": "dda0b9391c8878bf0a913d02615890a7ee6b0e922db05f670fd44311740cc7ed"
   },
   "statistics": {
     "messages": 1,

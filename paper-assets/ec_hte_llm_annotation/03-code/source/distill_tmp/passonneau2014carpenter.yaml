@@ -1,0 +1,25 @@
+paper_key: "passonneau2014carpenter"
+title: "The Benefits of a Model of Annotation"
+venue: "TACL 2014"
+full_text_available: false
+
+research:
+  baselines: ["majority_voting", "agreement_coefficients", "trained_annotators"]
+  metrics:
+    - {name: "label_certainty", direction: "higher_better"}
+    - {name: "annotation_cost", direction: "lower_better"}
+  datasets:
+    - {name: "word_sense_annotation", size: "crowdsourced via AMT"}
+  ablation_dimensions: []
+  training_recipe: {}
+  method_family: "annotation_model"
+
+positioning:
+  core_claim: "Probabilistic annotation models applied to crowdsourced data provide far more information (including per-label certainty) than conventional agreement measures, at less than half the cost of trained annotators."
+  key_results: "Crowdsourced + model approach achieves comparable quality at <50% cost of conventional trained annotator pipeline"
+  limitations: []
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

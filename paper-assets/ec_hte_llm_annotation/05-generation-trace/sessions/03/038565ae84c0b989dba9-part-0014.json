@@ -2050,7 +2050,7 @@
             "session": "feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "export GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" && source /home/ubuntu/.paperbanana_venv/bin/activate && paperbanana generate \\\n  -i /tmp/panel_a_desc.txt \\\n  -c \"Panel showing why applying a single pooled confusion matrix to all subgroups causes over-correction in low-error groups and under-correction in high-error groups, leading to bias amplification and CATE sign reversal in 14.9 percent of configurations\" \\\n  -o /tmp/fig2_panel_a_new.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 2 2>&1",
+              "command": "export GOOGLE_API_KEY=\"[REDACTED]\" && source /home/ubuntu/.paperbanana_venv/bin/activate && paperbanana generate \\\n  -i /tmp/panel_a_desc.txt \\\n  -c \"Panel showing why applying a single pooled confusion matrix to all subgroups causes over-correction in low-error groups and under-correction in high-error groups, leading to bias amplification and CATE sign reversal in 14.9 percent of configurations\" \\\n  -o /tmp/fig2_panel_a_new.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 2 2>&1",
               "description": "Generate panel (a) \"Why Global Correction Fails\" via PaperBanana",
               "timeout": "300000"
             }
@@ -2167,7 +2167,7 @@
             "session": "feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "export GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" && source /home/ubuntu/.paperbanana_venv/bin/activate && paperbanana generate \\\n  -i /tmp/panel_b_desc.txt \\\n  -c \"Panel comparing standard global correction pipeline (rose, produces biased CATE) versus the proposed per-subgroup correction method with hierarchical Bayes estimation and condition-number guard (teal, produces corrected CATE with uncertainty)\" \\\n  -o /tmp/fig2_panel_b_new.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 2 2>&1",
+              "command": "export GOOGLE_API_KEY=\"[REDACTED]\" && source /home/ubuntu/.paperbanana_venv/bin/activate && paperbanana generate \\\n  -i /tmp/panel_b_desc.txt \\\n  -c \"Panel comparing standard global correction pipeline (rose, produces biased CATE) versus the proposed per-subgroup correction method with hierarchical Bayes estimation and condition-number guard (teal, produces corrected CATE with uncertainty)\" \\\n  -o /tmp/fig2_panel_b_new.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 2 2>&1",
               "description": "Generate panel (b) pipeline comparison via PaperBanana",
               "timeout": "300000"
             }

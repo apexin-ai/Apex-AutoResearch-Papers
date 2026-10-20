@@ -74,7 +74,7 @@ called Bash
 
 ```json
 {
-  "command": "export GOOGLE_API_KEY=$(cat /tmp/.gapi_key) && /tmp/pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_overview_intent.txt \\\n  --caption \"Overview. (a) Global correction over/under-corrects subgroups with heterogeneous error rates, introducing bias that reverses CATE sign in 14.9% of configurations. (b) Standard pipeline applies a pooled confusion matrix uniformly; EC-HTE estimates per-subgroup matrices via hierarchical Bayes, applies stratified inversion with a kappa-guard, and propagates uncertainty.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig_combined_overview_v2.png \\\n  --iterations 5 2>&1 | tail -30",
+  "command": "export GOOGLE_API_KEY=[REDACTED] /tmp/.gapi_key) && /tmp/pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_overview_intent.txt \\\n  --caption \"Overview. (a) Global correction over/under-corrects subgroups with heterogeneous error rates, introducing bias that reverses CATE sign in 14.9% of configurations. (b) Standard pipeline applies a pooled confusion matrix uniformly; EC-HTE estimates per-subgroup matrices via hierarchical Bayes, applies stratified inversion with a kappa-guard, and propagates uncertainty.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig_combined_overview_v2.png \\\n  --iterations 5 2>&1 | tail -30",
   "description": "Generate PaperBanana Figure 1 v2",
   "timeout": "300000",
   "run_in_background": "True"
@@ -91,7 +91,7 @@ called Bash
   "session": "feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "export GOOGLE_API_KEY=$(cat /tmp/.gapi_key) && /tmp/pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_overview_intent.txt \\\n  --caption \"Overview. (a) Global correction over/under-corrects subgroups with heterogeneous error rates, introducing bias that reverses CATE sign in 14.9% of configurations. (b) Standard pipeline applies a pooled confusion matrix uniformly; EC-HTE estimates per-subgroup matrices via hierarchical Bayes, applies stratified inversion with a kappa-guard, and propagates uncertainty.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig_combined_overview_v2.png \\\n  --iterations 5 2>&1 | tail -30",
+    "command": "export GOOGLE_API_KEY=[REDACTED] /tmp/.gapi_key) && /tmp/pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_overview_intent.txt \\\n  --caption \"Overview. (a) Global correction over/under-corrects subgroups with heterogeneous error rates, introducing bias that reverses CATE sign in 14.9% of configurations. (b) Standard pipeline applies a pooled confusion matrix uniformly; EC-HTE estimates per-subgroup matrices via hierarchical Bayes, applies stratified inversion with a kappa-guard, and propagates uncertainty.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig_combined_overview_v2.png \\\n  --iterations 5 2>&1 | tail -30",
     "description": "Generate PaperBanana Figure 1 v2",
     "timeout": "300000",
     "run_in_background": "True"

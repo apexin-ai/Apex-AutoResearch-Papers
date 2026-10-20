@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-005",
+  "project": "ec_hte_llm_annotation",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:12:28.105Z",
+    "updated_at": "2026-05-21T00:12:34.129Z",
+    "hypothesis": "signed product (π̄−π_s)×Δτ 可作为诊断准则预测 global correction 是否在特定子群中反而加偏（debiasing hurts），子群水平 AUC 应显著高于随机（>0.7）"
+  },
+  "timestamp": "2026-05-21T00:12:34.146007+00:00",
+  "trigger": "update_registry"
+}

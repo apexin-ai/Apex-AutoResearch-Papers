@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_lalonde-hangartner-step1_20260524T134750_result.json",
     "occurrence": 1,
-    "bytes": 605,
-    "sha256": "f617d72412d1a6ad0a2dc5a800eb9dfb59f654df324b07dbdc61e58a636f826a"
+    "bytes": 604,
+    "sha256": "2fd417fc8b5e530bb472d9c61cd452559294545084c94f0a3880920340548d33"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp-008",
+  "project": "ec_hte_llm_annotation",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:06:37.084Z",
+    "updated_at": "2026-05-21T10:13:12.323Z",
+    "hypothesis": "Subgroup-specific misclassification heterogeneity (Δπ > 0.05) persists across model generations and scales within the OpenAI family (from GPT-3.5 to GPT-5.5, spanning three generations), demonstrating the bias mechanism is a structural property of LLM annotation rather than an artifact of a specific model version",
+    "conclusion": "success",
+    "spec": {
+      "command": "python3 exp008_multi_llm.py --phase all + exp008_gpt55_annotate.py",
+      "server": "local-cpu",
+      "data_path": "results/pilot_gemini_annotations.csv (500 TweetEval tweets)",
+      "data_count": "500 tweets × 5-6 models",
+      "model_name": "gpt-3.5-turbo, gpt-4.1, gpt-4o, gpt-4o-mini, gpt-4-turbo, (gpt-5.5 pending)",
+      "seed": "N/A (deterministic, temperature=0)",
+      "checkpoint_path": "results/exp008_multi_llm_annotations.csv",
+      "log_path": "results/exp008_multi_llm_analysis.md"
+    },
+    "completed_at": "2026-05-21T10:13:12.323Z"
+  },
+  "timestamp": "2026-05-21T10:13:12.354445+00:00",
+  "trigger": "update_registry"
+}

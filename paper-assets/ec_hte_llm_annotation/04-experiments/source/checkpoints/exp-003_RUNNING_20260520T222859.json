@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp-003",
+  "project": "ec_hte_llm_annotation",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:28:35.035Z",
+    "updated_at": "2026-05-20T22:28:59.744Z",
+    "hypothesis": "在真实文本子群结构（TweetEval sentiment, 基于hashtag和文本长度的4子群）上，当LLM误分类率跨子群异质时，Global correction在低误分类子群反而加偏（debiasing hurts），而Stratified MLE在大子群表现更优但小子群存在variance penalty——验证EC-HTE partial pooling的必要性",
+    "spec": {
+      "command": "python exp003_tweeteval.py 2>&1 | tee results/exp003_run_v2.log",
+      "server": "local-cpu",
+      "data_path": "TweetEval sentiment (cardiffnlp/tweet_eval) + synthetic misclass DGP",
+      "data_count": "5000 sampled from 59899, 200 MC runs x 4 methods x 3 Z-levels",
+      "model_name": "Stratified MLE confusion matrix correction",
+      "seed": "42 (data sample) + 0-199 (MC)",
+      "checkpoint_path": "results/exp003_phase_a_v2.csv",
+      "log_path": "results/exp003_phase_a_v2_raw.csv"
+    }
+  },
+  "timestamp": "2026-05-20T22:28:59.768201+00:00",
+  "trigger": "update_registry"
+}

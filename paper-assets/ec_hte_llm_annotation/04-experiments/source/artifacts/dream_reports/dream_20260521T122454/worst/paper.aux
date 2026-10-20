@@ -1,0 +1,134 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{gilardi2023chatgpt,tornberg2024chatgpt4,ziems2024can}
+\citation{ashwin2025using}
+\citation{ashwin2025using}
+\citation{angelopoulos2023prediction}
+\citation{egami2024using}
+\citation{sui2026ppci}
+\citation{mozer2026bias}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{fuller1987measurement,carroll2006measurement,gustafson2003measurement}
+\citation{imai2010causal}
+\citation{hu2008instrumental}
+\citation{angelopoulos2023prediction}
+\citation{egami2024using}
+\citation{sui2026ppci}
+\citation{bu2023forestly}
+\citation{mozer2026bias}
+\citation{dawid1979maximum}
+\citation{passonneau2014benefits}
+\citation{hovy2013learning}
+\citation{wager2018estimation,athey2019generalized}
+\citation{kennedy2023towards}
+\citation{chernozhukov2018double}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Measurement error in causal inference.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM annotation correction.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Bayesian annotation models.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Heterogeneous treatment effects.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Formal Framework}{2}{section.3}\protected@file@percent }
+\newlabel{sec:theory}{{3}{2}{Formal Framework}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Setup and Notation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Bias Decomposition Identity}{2}{subsection.3.2}\protected@file@percent }
+\newlabel{thm:bias-identity}{{1}{2}{Bias Identity}{theorem.1}{}}
+\newlabel{eq:bias-identity}{{1}{2}{Bias Identity}{equation.1}{}}
+\newlabel{eq:product-form}{{2}{2}{Bias Identity}{equation.2}{}}
+\newlabel{prop:hurts}{{1}{2}{Debiasing Can Hurt}{proposition.1}{}}
+\citation{sui2026ppci}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Bias amplification across $\Delta \pi \times \Delta \tau $ grid ($K{=}2$). Amplification ratio = $|\text  {Bias}^{\text  {global}}_k| / |\text  {Bias}^{\text  {naive}}_k|$. MC SE from 3600 runs.}}{3}{table.caption.5}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:bias-identity}{{1}{3}{Bias amplification across $\Delta \pi \times \Delta \tau $ grid ($K{=}2$). Amplification ratio = $|\text {Bias}^{\text {global}}_k| / |\text {Bias}^{\text {naive}}_k|$. MC SE from 3600 runs}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Debiasing-hurts breakdown by parameter region. ``Hurts'' = global correction increases subgroup $|\text  {bias}|$ relative to naive.}}{3}{table.caption.6}\protected@file@percent }
+\newlabel{tab:hurts-regions}{{2}{3}{Debiasing-hurts breakdown by parameter region. ``Hurts'' = global correction increases subgroup $|\text {bias}|$ relative to naive}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Monte Carlo Verification}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}EC-HTE: A Conditional Mitigation}{3}{section.4}\protected@file@percent }
+\newlabel{sec:method}{{4}{3}{EC-HTE: A Conditional Mitigation}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Hierarchical Bayesian confusion matrix estimation.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{PPCI composition.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Honest limitations.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{3}{section.5}\protected@file@percent }
+\newlabel{sec:experiments}{{5}{3}{Experiments}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Synthetic Validation: HB vs.\ MLE vs.\ Global}{3}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:exp-synthetic}{{5.1}{3}{Synthetic Validation: HB vs.\ MLE vs.\ Global}{subsection.5.1}{}}
+\citation{athey2019generalized}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces RMSE across regime $\times $ $K$ $\times $ $n_{\text  {expert}}$. Bold: best per row. EC-HTE beats global only in extreme regime with large $n_{\text  {expert}}$.}}{4}{table.caption.10}\protected@file@percent }
+\newlabel{tab:hb-synthetic}{{3}{4}{RMSE across regime $\times $ $K$ $\times $ $n_{\text {expert}}$. Bold: best per row. EC-HTE beats global only in extreme regime with large $n_{\text {expert}}$}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Semi-synthetic results by subgroup ($n_{\text  {expert}}{=}250$, $K{=}4$). Global correction over-corrects $S_0$ and $S_1$ (low-error subgroups).}}{4}{table.caption.11}\protected@file@percent }
+\newlabel{tab:semisyn}{{4}{4}{Semi-synthetic results by subgroup ($n_{\text {expert}}{=}250$, $K{=}4$). Global correction over-corrects $S_0$ and $S_1$ (low-error subgroups)}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Semi-Synthetic: TweetEval Sentiment}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:exp-semisyn}{{5.2}{4}{Semi-Synthetic: TweetEval Sentiment}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Bias--RMSE tradeoff: subgroups where EC-HTE wins.}}{4}{table.caption.12}\protected@file@percent }
+\newlabel{tab:semisyn-tradeoff}{{5}{4}{Bias--RMSE tradeoff: subgroups where EC-HTE wins}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Real-data CATE estimates (UC Berkeley Hate Speech). EC-HTE shows wider CIs and higher point-estimate bias than global.}}{4}{table.caption.13}\protected@file@percent }
+\newlabel{tab:real-data}{{6}{4}{Real-data CATE estimates (UC Berkeley Hate Speech). EC-HTE shows wider CIs and higher point-estimate bias than global}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Real Data: UC Berkeley Hate Speech}{4}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:exp-real}{{5.3}{4}{Real Data: UC Berkeley Hate Speech}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Causal Forest Integration}{4}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:exp-causal-forest}{{5.4}{4}{Causal Forest Integration}{subsection.5.4}{}}
+\citation{sui2026ppci}
+\citation{egami2024using}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces CausalForest results. Global correction amplifies bias up to 5.2$\times $. EC-HTE reduces bias but with severe RMSE penalty.}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:causal-forest}{{7}{5}{CausalForest results. Global correction amplifies bias up to 5.2$\times $. EC-HTE reduces bias but with severe RMSE penalty}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Diagnostic ROC analysis. The $\Delta \pi \times \Delta \tau $ product does not generalize as a decision rule.}}{5}{table.caption.15}\protected@file@percent }
+\newlabel{tab:diagnostic}{{8}{5}{Diagnostic ROC analysis. The $\Delta \pi \times \Delta \tau $ product does not generalize as a decision rule}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Diagnostic Criterion Validation}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:exp-diagnostic}{{5.5}{5}{Diagnostic Criterion Validation}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces RMSE crossover: minimum $n_{\text  {expert}}$ for EC-HTE to beat global. ``Never'' = does not cross up to $n{=}2000$.}}{5}{table.caption.16}\protected@file@percent }
+\newlabel{tab:budget}{{9}{5}{RMSE crossover: minimum $n_{\text {expert}}$ for EC-HTE to beat global. ``Never'' = does not cross up to $n{=}2000$}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Expert Label Budget Sensitivity}{5}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:exp-budget}{{5.6}{5}{Expert Label Budget Sensitivity}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Baseline Comparisons: PPCI and DSL}{5}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:exp-baselines}{{5.7}{5}{Baseline Comparisons: PPCI and DSL}{subsection.5.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Method comparison across DGP types ($n{=}250$, $K{=}2$, extreme). EC-HTE + PPCI composition effective but PPCI alone covers much of the gap.}}{6}{table.caption.17}\protected@file@percent }
+\newlabel{tab:baselines}{{10}{6}{Method comparison across DGP types ($n{=}250$, $K{=}2$, extreme). EC-HTE + PPCI composition effective but PPCI alone covers much of the gap}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Misclassification heterogeneity by LLM. $\Delta \pi $ diminishes with model capability.}}{6}{table.caption.18}\protected@file@percent }
+\newlabel{tab:multi-llm}{{11}{6}{Misclassification heterogeneity by LLM. $\Delta \pi $ diminishes with model capability}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Multi-LLM Analysis}{6}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:exp-multi-llm}{{5.8}{6}{Multi-LLM Analysis}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Robustness to Subgroup Misspecification}{6}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:exp-robustness}{{5.9}{6}{Robustness to Subgroup Misspecification}{subsection.5.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Robustness to subgroup misspecification ($K{=}4$, $n{=}250$). EC-HTE degrades sharply; global is invariant.}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:robustness}{{12}{6}{Robustness to subgroup misspecification ($K{=}4$, $n{=}250$). EC-HTE degrades sharply; global is invariant}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Expert allocation strategies ($K{=}4$, extreme, $n{=}250$). Adaptive allocation provides marginal gains.}}{6}{table.caption.20}\protected@file@percent }
+\newlabel{tab:allocation}{{13}{6}{Expert allocation strategies ($K{=}4$, extreme, $n{=}250$). Adaptive allocation provides marginal gains}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Expert Allocation Strategies}{6}{subsection.5.10}\protected@file@percent }
+\newlabel{sec:exp-allocation}{{5.10}{6}{Expert Allocation Strategies}{subsection.5.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{6}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{6}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{The core finding is negative.}{6}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The proposed fix is limited.}{6}{section*.22}\protected@file@percent }
+\bibdata{references}
+\bibcite{angelopoulos2023prediction}{{1}{2023}{{Angelopoulos et~al.}}{{Angelopoulos, Bates, Candès, Jordan, and Lei}}}
+\bibcite{ashwin2025using}{{2}{2025}{{Ashwin et~al.}}{{Ashwin, Carstensen et~al.}}}
+\bibcite{athey2019generalized}{{3}{2019}{{Athey et~al.}}{{Athey, Tibshirani, and Wager}}}
+\bibcite{bu2023forestly}{{4}{2023}{{Bu et~al.}}{{}}}
+\bibcite{carroll2006measurement}{{5}{2006}{{Carroll et~al.}}{{Carroll, Ruppert, Stefanski, and Crainiceanu}}}
+\bibcite{chernozhukov2018double}{{6}{2018}{{Chernozhukov et~al.}}{{Chernozhukov, Chetverikov, Demirer, Duflo, Hansen, Newey, and Robins}}}
+\bibcite{dawid1979maximum}{{7}{1979}{{Dawid and Skene}}{{}}}
+\bibcite{egami2024using}{{8}{2024}{{Egami et~al.}}{{Egami, Hinck, Stewart, and Wei}}}
+\bibcite{fuller1987measurement}{{9}{1987}{{Fuller}}{{}}}
+\bibcite{gilardi2023chatgpt}{{10}{2023}{{Gilardi et~al.}}{{Gilardi, Alizadeh, and Kubli}}}
+\bibcite{gustafson2003measurement}{{11}{2003}{{Gustafson}}{{}}}
+\bibcite{hovy2013learning}{{12}{2013}{{Hovy et~al.}}{{Hovy, Berg-Kirkpatrick, Vaswani, and Hovy}}}
+\bibcite{hu2008instrumental}{{13}{2008}{{Hu and Schennach}}{{}}}
+\bibcite{imai2010causal}{{14}{2010}{{Imai and Yamamoto}}{{}}}
+\bibcite{kennedy2023towards}{{15}{2023}{{Kennedy}}{{}}}
+\bibcite{mozer2026bias}{{16}{2026}{{Mozer}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{7}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Diminishing relevance.}{7}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{7}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{7}{Conclusion}{section.7}{}}
+\bibcite{passonneau2014benefits}{{17}{2014}{{Passonneau and Carpenter}}{{}}}
+\bibcite{sui2026ppci}{{18}{2026}{{Sui et~al.}}{{}}}
+\bibcite{tornberg2024chatgpt4}{{19}{2024}{{Törnberg}}{{}}}
+\bibcite{wager2018estimation}{{20}{2018}{{Wager and Athey}}{{}}}
+\bibcite{ziems2024can}{{21}{2024}{{Ziems et~al.}}{{Ziems, Held, Shaikh, Chen, Zhang, and Yang}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Proof of Theorem~\ref {thm:bias-identity}}{8}{appendix.A}\protected@file@percent }
+\newlabel{app:proof}{{A}{8}{Proof of Theorem~\ref {thm:bias-identity}}{appendix.A}{}}
+\gdef \@abspage@last{8}

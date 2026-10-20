@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-010-misspecified_20260521T095812_result.json",
     "occurrence": 1,
-    "bytes": 1188,
-    "sha256": "8cd3824ad7a451d9ddb76acb598976c232505a04e2819cc44a6fda2f583f6c67"
+    "bytes": 1187,
+    "sha256": "08ab4ceb64cc8e7e3c8b46f3400638b5df31628064a13e7d25f95d323dfb4320"
   },
   "statistics": {
     "messages": 1,

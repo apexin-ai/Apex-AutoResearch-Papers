@@ -1,0 +1,26 @@
+paper_key: "tornberg2024llm"
+title: "ChatGPT-4 Outperforms Experts and Crowd Workers in Annotating Political Twitter Messages with Zero-Shot Learning"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: ["expert_human_annotators", "MTurk_crowd_workers"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "reliability", direction: "higher_better"}
+    - {name: "bias", direction: "lower_better"}
+  datasets:
+    - {name: "US_politician_tweets_2020_election", size: "political affiliation classification"}
+  ablation_dimensions: []
+  training_recipe: {}
+  method_family: "LLM_annotation"
+
+positioning:
+  core_claim: "GPT-4 achieves higher accuracy, higher reliability, and equal or lower bias than both expert and crowd-worker human annotators on political tweet classification, demonstrating LLM capacity for contextual reasoning previously considered uniquely human."
+  key_results: "GPT-4 > experts > crowd workers on accuracy and reliability; equal or lower bias than humans"
+  limitations: []
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

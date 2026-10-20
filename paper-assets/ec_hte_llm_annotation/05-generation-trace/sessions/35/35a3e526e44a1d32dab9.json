@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_ppi-dsl-k2_20260522T045457_result.json",
     "occurrence": 1,
-    "bytes": 1050,
-    "sha256": "f5714d0f09984fdbe0498cc6e3760ff46e783e6789c09a94c2cdac6a3a94e17b"
+    "bytes": 1049,
+    "sha256": "1aa9c868d9cf22cdfe0e35b34a4372f270f227f4e26dc281b43b1cbb178d00e0"
   },
   "statistics": {
     "messages": 1,

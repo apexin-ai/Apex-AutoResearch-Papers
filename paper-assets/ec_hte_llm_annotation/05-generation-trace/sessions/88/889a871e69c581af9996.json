@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_adaptive-shrinkage_20260523T071542_result.json",
     "occurrence": 1,
-    "bytes": 1831,
-    "sha256": "377bf0211c702e8fddb7cf36de04a45fe8518e3d0633b56a65fbe35ab7d26fe9"
+    "bytes": 1830,
+    "sha256": "636677f31695a18bae74c638adcb0108114f80d022e15e4a54ba43f099c7428d"
   },
   "statistics": {
     "messages": 1,

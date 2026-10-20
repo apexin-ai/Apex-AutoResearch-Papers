@@ -1,40 +1,60 @@
-﻿Source archive,Candidate version path in archive,Bytes,Status note
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_12/submitted.pdf,868741,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_17/submitted.pdf,928605,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_8/submitted.pdf,731074,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/_project/paper/main_297877.pdf,624164,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/_project/paper/main.pdf,172924,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_6/submitted.pdf,706104,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_14/submitted.pdf,874675,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_11/submitted.pdf,764885,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_9/submitted.pdf,760748,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_5/submitted.pdf,701865,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/dream_reports/dream_20260521T122454/median/paper.pdf,224576,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/dream_reports/dream_20260521T122454/worst/paper.pdf,244287,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/dream_reports/dream_20260521T122454/best/paper.pdf,259056,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/dream_reports/dream_20260523T193110/median/paper.pdf,181806,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/dream_reports/dream_20260523T193110/worst/paper.pdf,210751,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/dream_reports/dream_20260523T193110/best/paper.pdf,183554,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/dream_reports/dream_20260520T194535/median/paper.pdf,197259,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/dream_reports/dream_20260520T194535/worst/paper.pdf,181021,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/dream_reports/dream_20260520T194535/best/paper.pdf,175331,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/dream_reports/dream_20260521T032758/median/paper.pdf,202416,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/dream_reports/dream_20260521T032758/worst/paper.pdf,256604,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/dream_reports/dream_20260521T032758/best/paper.pdf,273821,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/dream_reports/dream_20260520T185426/median/paper.pdf,225694,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/dream_reports/dream_20260520T185426/worst/paper.pdf,177344,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/dream_reports/dream_20260520T185426/best/paper.pdf,253100,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_7/submitted.pdf,715979,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_10/submitted.pdf,761742,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_3/submitted.pdf,690818,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_19/submitted.pdf,975120,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_16/submitted.pdf,972562,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_4/submitted.pdf,695177,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_18/submitted.pdf,971622,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_22/submitted.pdf,1256556,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_21/submitted.pdf,1253089,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_23/submitted.pdf,1263127,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_20/submitted.pdf,947068,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_13/submitted.pdf,870185,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_24/submitted.pdf,1258881,Archive candidate; official submission/public version not verified
-ec_hte_llm_annotation/workspace.tar.gz,artifacts/review_round_15/submitted.pdf,923228,Archive candidate; official submission/public version not verified
+archive_path,source_bytes,output_path
+docs/paper/figures/treatment_dep_misclass_figure.pdf,37968,01-manuscript/source/docs/paper/figures/treatment_dep_misclass_figure.pdf
+docs/paper/figures/applicability_frontier.pdf,40384,01-manuscript/source/docs/paper/figures/applicability_frontier.pdf
+docs/paper/figures/policy_reversal_zone.pdf,43595,01-manuscript/source/docs/paper/figures/policy_reversal_zone.pdf
+docs/paper/figures/fig_method_overview.pdf,357530,01-manuscript/source/docs/paper/figures/fig_method_overview.pdf
+docs/paper/figures/treatment_dep_misclass.pdf,32730,01-manuscript/source/docs/paper/figures/treatment_dep_misclass.pdf
+docs/paper/figures/fig4_roc.pdf,19392,01-manuscript/source/docs/paper/figures/fig4_roc.pdf
+docs/paper/figures/k_scalability_bars.pdf,13784,01-manuscript/source/docs/paper/figures/k_scalability_bars.pdf
+docs/paper/figures/fig_overview.pdf,383790,01-manuscript/source/docs/paper/figures/fig_overview.pdf
+docs/paper/figures/k_scalability_figure.pdf,22528,01-manuscript/source/docs/paper/figures/k_scalability_figure.pdf
+docs/paper/figures/fig2_heatmap.pdf,37253,01-manuscript/source/docs/paper/figures/fig2_heatmap.pdf
+docs/paper/figures/fig1_sign_reversal.pdf,81654,01-manuscript/source/docs/paper/figures/fig1_sign_reversal.pdf
+docs/paper/figures/fig1_bias_mechanism.pdf,26010,01-manuscript/source/docs/paper/figures/fig1_bias_mechanism.pdf
+docs/paper/figures/fig4_budget_compact.pdf,35596,01-manuscript/source/docs/paper/figures/fig4_budget_compact.pdf
+docs/paper/figures/fig1_overview_v3.pdf,3738697,01-manuscript/source/docs/paper/figures/fig1_overview_v3.pdf
+docs/paper/figures/fig3_budget.pdf,49497,01-manuscript/source/docs/paper/figures/fig3_budget.pdf
+docs/paper/figures/fig_combined_overview.pdf,319314,01-manuscript/source/docs/paper/figures/fig_combined_overview.pdf
+docs/paper/figures/fig_sign_reversal_C.pdf,22254,01-manuscript/source/docs/paper/figures/fig_sign_reversal_C.pdf
+docs/paper/main.pdf,1258786,01-manuscript/source/docs/paper/main.pdf
+artifacts/review_round_12/submitted.pdf,868741,01-manuscript/source/artifacts/review_round_12/submitted.pdf
+artifacts/review_round_17/submitted.pdf,928605,01-manuscript/source/artifacts/review_round_17/submitted.pdf
+artifacts/review_round_8/submitted.pdf,731074,01-manuscript/source/artifacts/review_round_8/submitted.pdf
+artifacts/_project/paper/main_297877.pdf,624164,01-manuscript/source/artifacts/_project/paper/main_297877.pdf
+artifacts/_project/paper/main.pdf,172924,01-manuscript/source/artifacts/_project/paper/main.pdf
+artifacts/review_round_6/submitted.pdf,706104,01-manuscript/source/artifacts/review_round_6/submitted.pdf
+artifacts/review_round_14/submitted.pdf,874675,01-manuscript/source/artifacts/review_round_14/submitted.pdf
+artifacts/review_round_11/submitted.pdf,764885,01-manuscript/source/artifacts/review_round_11/submitted.pdf
+artifacts/review_round_9/submitted.pdf,760748,01-manuscript/source/artifacts/review_round_9/submitted.pdf
+artifacts/review_round_5/submitted.pdf,701865,01-manuscript/source/artifacts/review_round_5/submitted.pdf
+artifacts/dream_reports/dream_20260521T122454/median/paper.pdf,224576,01-manuscript/source/artifacts/dream_reports/dream_20260521T122454/median/paper.pdf
+artifacts/dream_reports/dream_20260521T122454/worst/paper.pdf,244287,01-manuscript/source/artifacts/dream_reports/dream_20260521T122454/worst/paper.pdf
+artifacts/dream_reports/dream_20260521T122454/best/paper.pdf,259056,01-manuscript/source/artifacts/dream_reports/dream_20260521T122454/best/paper.pdf
+artifacts/dream_reports/dream_20260523T193110/median/paper.pdf,181806,01-manuscript/source/artifacts/dream_reports/dream_20260523T193110/median/paper.pdf
+artifacts/dream_reports/dream_20260523T193110/worst/paper.pdf,210751,01-manuscript/source/artifacts/dream_reports/dream_20260523T193110/worst/paper.pdf
+artifacts/dream_reports/dream_20260523T193110/best/paper.pdf,183554,01-manuscript/source/artifacts/dream_reports/dream_20260523T193110/best/paper.pdf
+artifacts/dream_reports/dream_20260520T194535/median/paper.pdf,197259,01-manuscript/source/artifacts/dream_reports/dream_20260520T194535/median/paper.pdf
+artifacts/dream_reports/dream_20260520T194535/worst/paper.pdf,181021,01-manuscript/source/artifacts/dream_reports/dream_20260520T194535/worst/paper.pdf
+artifacts/dream_reports/dream_20260520T194535/best/paper.pdf,175331,01-manuscript/source/artifacts/dream_reports/dream_20260520T194535/best/paper.pdf
+artifacts/dream_reports/dream_20260521T032758/median/paper.pdf,202416,01-manuscript/source/artifacts/dream_reports/dream_20260521T032758/median/paper.pdf
+artifacts/dream_reports/dream_20260521T032758/worst/paper.pdf,256604,01-manuscript/source/artifacts/dream_reports/dream_20260521T032758/worst/paper.pdf
+artifacts/dream_reports/dream_20260521T032758/best/paper.pdf,273821,01-manuscript/source/artifacts/dream_reports/dream_20260521T032758/best/paper.pdf
+artifacts/dream_reports/dream_20260520T185426/median/paper.pdf,225694,01-manuscript/source/artifacts/dream_reports/dream_20260520T185426/median/paper.pdf
+artifacts/dream_reports/dream_20260520T185426/worst/paper.pdf,177344,01-manuscript/source/artifacts/dream_reports/dream_20260520T185426/worst/paper.pdf
+artifacts/dream_reports/dream_20260520T185426/best/paper.pdf,253100,01-manuscript/source/artifacts/dream_reports/dream_20260520T185426/best/paper.pdf
+artifacts/review_round_7/submitted.pdf,715979,01-manuscript/source/artifacts/review_round_7/submitted.pdf
+artifacts/review_round_10/submitted.pdf,761742,01-manuscript/source/artifacts/review_round_10/submitted.pdf
+artifacts/review_round_3/submitted.pdf,690818,01-manuscript/source/artifacts/review_round_3/submitted.pdf
+artifacts/review_round_19/submitted.pdf,975120,01-manuscript/source/artifacts/review_round_19/submitted.pdf
+artifacts/review_round_16/submitted.pdf,972562,01-manuscript/source/artifacts/review_round_16/submitted.pdf
+artifacts/paper_compiled_20260525_v2.pdf,1388870,01-manuscript/source/artifacts/paper_compiled_20260525_v2.pdf
+artifacts/review_round_4/submitted.pdf,695177,01-manuscript/source/artifacts/review_round_4/submitted.pdf
+artifacts/review_round_18/submitted.pdf,971622,01-manuscript/source/artifacts/review_round_18/submitted.pdf
+artifacts/review_round_22/submitted.pdf,1256556,01-manuscript/source/artifacts/review_round_22/submitted.pdf
+artifacts/paper_compiled_20260525.pdf,1388900,01-manuscript/source/artifacts/paper_compiled_20260525.pdf
+artifacts/review_round_21/submitted.pdf,1253089,01-manuscript/source/artifacts/review_round_21/submitted.pdf
+artifacts/review_round_23/submitted.pdf,1263127,01-manuscript/source/artifacts/review_round_23/submitted.pdf
+artifacts/review_round_20/submitted.pdf,947068,01-manuscript/source/artifacts/review_round_20/submitted.pdf
+artifacts/review_round_13/submitted.pdf,870185,01-manuscript/source/artifacts/review_round_13/submitted.pdf
+artifacts/review_round_24/submitted.pdf,1258881,01-manuscript/source/artifacts/review_round_24/submitted.pdf
+artifacts/review_round_15/submitted.pdf,923228,01-manuscript/source/artifacts/review_round_15/submitted.pdf

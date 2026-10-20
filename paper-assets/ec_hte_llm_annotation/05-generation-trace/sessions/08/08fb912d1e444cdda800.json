@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-d-hatespeech-upgrade_20260523T184152_result.json",
     "occurrence": 1,
-    "bytes": 1442,
-    "sha256": "1a17f84a00b8bffd58642dd0a23f17bf0a6f70edfeb9455b79595b26daa5798a"
+    "bytes": 1441,
+    "sha256": "52a9021038a8629d4f1396bfcd90d1b932d98d1043329b79ef832814328811ff"
   },
   "statistics": {
     "messages": 1,

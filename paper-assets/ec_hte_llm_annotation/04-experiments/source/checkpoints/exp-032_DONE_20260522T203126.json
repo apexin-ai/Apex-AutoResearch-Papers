@@ -1,0 +1,46 @@
+{
+  "exp_id": "exp-032",
+  "project": "ec_hte_llm_annotation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:30:10.921Z",
+    "updated_at": "2026-05-22T20:31:26.532Z",
+    "hypothesis": "EC-HTE + IPW-DIM maintains coverage ≥90% across confounding strengths β∈{0.25, 0.5, 1.0, 2.0}, and estimated propensity (logistic regression) yields <3pp coverage difference vs oracle propensity.",
+    "parent": "exp-031",
+    "spec": {
+      "command": "python exp032_confounded_sweep.py",
+      "server": "local",
+      "data_path": "synthetic_dgp_confounded_sweep",
+      "data_count": 5000,
+      "model_name": "IPW-DIM_estimator",
+      "seed": 42,
+      "checkpoint_path": "results/exp_confounded_sweep.csv",
+      "log_path": "results/exp_confounded_sweep_summary.csv",
+      "checkpoint_source": "exp-031",
+      "eval_data": "synthetic_dgp_confounded_sweep_2x4_grid"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "min_hb_coverage": 0.945,
+      "max_oracle_vs_est_gap": 0.01,
+      "hb_cov_b0.25_oracle": 0.9625,
+      "hb_cov_b0.25_estimated": 0.9725,
+      "hb_cov_b0.5_oracle": 0.95,
+      "hb_cov_b0.5_estimated": 0.9575,
+      "hb_cov_b1.0_oracle": 0.9575,
+      "hb_cov_b1.0_estimated": 0.96,
+      "hb_cov_b2.0_oracle": 0.945,
+      "hb_cov_b2.0_estimated": 0.9475,
+      "hb_rmse_b2.0_oracle": 0.1258,
+      "naive_cov_range": "0.845-0.898",
+      "source": "results/exp_confounded_sweep_summary.csv",
+      "note": "All 8 configs HB coverage >=94.5%. Oracle vs estimated gap <=1pp. Hypothesis fully confirmed."
+    },
+    "completed_at": "2026-05-22T20:31:26.532Z"
+  },
+  "timestamp": "2026-05-22T20:31:26.606585+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_task-h-treatment-dep-misclass_20260523T154056_result.json",
     "occurrence": 1,
-    "bytes": 1283,
-    "sha256": "b4e8142e13c83789b09679aaf9a55024d2d542ad4f95d45a245e8bf68a6a2292"
+    "bytes": 1282,
+    "sha256": "a88a75a22a466da853dc07bf856ab8ba2232acd983d70e6c834f460d6ff5f347"
   },
   "statistics": {
     "messages": 1,

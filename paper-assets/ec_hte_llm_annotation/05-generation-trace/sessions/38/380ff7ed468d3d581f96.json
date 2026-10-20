@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-041_20260524T124830_result.json",
     "occurrence": 1,
-    "bytes": 1588,
-    "sha256": "3ce863ea83e820f3cbba4fcaa407c98a6bcfd19ff67fdeadc3017460583088cf"
+    "bytes": 1587,
+    "sha256": "f396571c5a95eb63c1ef6b645efe87836ce5188fd970d31ad756403cd2df0998"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,473 @@
+narrative_guidance: 'Real LLM heterogeneity exists but moderate; bias mechanism confirmed
+  at smaller magnitudes than synthetic; EC-HTE works but requires larger expert budgets
+  than hoped; diagnostic reframed from setting-level threshold to subgroup-level screening
+  tool. Paper framing: lead with exact identity (mathematical, not empirical), soften
+  empirical headline to ''1.3-2x with current SOTA LLMs'', add ''When to Use EC-HTE''
+  subsection with per-K budget recommendations, drop ''computable diagnostic threshold''
+  from contributions and reframe as ''subgroup-level misclassification audit protocol''.
+  Strengthen forward-looking argument: heterogeneity will increase on harder CSS tasks.
+
+  '
+imagined_experiments:
+- name: Real-data case study — UC Berkeley Measuring Hate Speech
+  plan_id: exp-004
+  description: 'Apply EC-HTE to UC Berkeley Measuring Hate Speech corpus. Map corpus
+    structure to causal framework: T = comment contains identity-directed language
+    (binary), Y = annotator severity rating (binarized at median), Z = LLM-classified
+    hate speech type (e.g., dehumanization vs incivility — effect modifier), S = target
+    demographic subgroups (race, gender, sexuality from corpus metadata). Annotate
+    Z with GPT-4.1 API. Compare global-corrected vs EC-HTE CATE estimates across demographic
+    subgroups. Report bootstrap CIs on CATE shift (global − EC-HTE) in SE units. Frame
+    as pattern consistency, NOT ground-truth benchmark.
+
+    '
+  expected_results:
+    n_samples: ~39000
+    n_subgroups_demographic: 4-6
+    n_subgroups_hate_type_z: 3-4
+    gpt41_overall_accuracy_vs_expert: 0.72-0.78
+    gpt41_delta_pi_across_subgroups: 0.06-0.11
+    gpt41_misclass_rate_range:
+    - 0.15
+    - 0.32
+    gpt41_worst_subgroup_error: 0.28-0.32
+    gpt41_best_subgroup_error: 0.15-0.19
+    global_vs_ec_hte_cate_shift_max_se: 1.4
+    global_vs_ec_hte_cate_shift_median_se: 0.8
+    subgroups_with_nonoverlapping_95ci: 1-2 of 4-6
+    subgroups_with_overlapping_95ci: 3-4 of 4-6
+    ec_hte_cate_direction_consistent_with_domain: true
+    bootstrap_iterations: 1000
+    qualitative_difference_detected: true
+    quantitative_significance: partial
+  result_rationale: 'Under median tier, real LLM heterogeneity is moderate (Δπ ~ 0.06-0.11).
+    The UC Berkeley corpus has genuine demographic variation in hate speech perception,
+    but GPT-4.1 is a strong annotator — its error heterogeneity across subgroups is
+    measurable but not extreme. Most subgroups show directional CATE differences between
+    global and EC-HTE corrections, but bootstrap CIs overlap for the majority because
+    (a) the Δπ is moderate so the correction difference is small, and (b) per-subgroup
+    sample sizes for smaller demographic groups (e.g., LGBTQ+ targets) yield wide
+    CIs. 1-2 subgroups with the largest Δπ × Δτ product (likely race-related targets
+    where both misclassification and effect heterogeneity concentrate) show non-overlapping
+    CIs at 95% level. This supports the paper''s pattern- consistency narrative: EC-HTE
+    produces qualitatively different and domain-consistent CATE distributions, but
+    the real-data case study alone does not constitute strong quantitative evidence
+    — it illustrates the method''s applicability and directional correctness. The
+    0.28-0.32 worst-subgroup error rate reflects GPT-4.1''s known weakness on implicit/coded
+    hate speech targeting specific demographics, while explicit hate speech (best
+    subgroup) is classified more reliably at 0.15-0.19 error.
+
+    '
+  tables:
+  - name: 'Table: UC Berkeley Real-Data CATE Estimates by Demographic Subgroup'
+    columns:
+    - subgroup
+    - n
+    - misclass_rate_llm
+    - cate_naive
+    - cate_global
+    - cate_ec_hte
+    - shift_se
+    - ci_95_overlap
+    representative_rows:
+    - - race_target
+      - 8200
+      - 0.28
+      - 0.142
+      - 0.098
+      - 0.131
+      - 1.6
+      - 'no'
+    - - gender_target
+      - 11500
+      - 0.21
+      - 0.105
+      - 0.083
+      - 0.097
+      - 1.1
+      - 'yes'
+    - - sexuality_target
+      - 4800
+      - 0.25
+      - 0.118
+      - 0.089
+      - 0.112
+      - 1.3
+      - marginal
+    - - religion_target
+      - 3200
+      - 0.19
+      - 0.091
+      - 0.078
+      - 0.086
+      - 0.7
+      - 'yes'
+  figures_description:
+  - 'Forest plot: CATE point estimates with 95% bootstrap CIs for each demographic
+    subgroup under naive, global-corrected, and EC-HTE. Visual emphasis on subgroups
+    where global and EC-HTE diverge beyond CI overlap.'
+  - 'Bar chart: Per-subgroup LLM misclassification rates showing heterogeneity pattern.
+    Annotate with Δπ values.'
+  analysis: 'Results support pattern consistency: EC-HTE shifts CATEs toward domain-expected
+    directions (hate speech targeting racial minorities shows larger treatment effects
+    than global correction suggests, consistent with known annotation difficulty gradient).
+    The limited number of non-overlapping CIs (1-2 of 4-6) is expected under median
+    tier — real LLM heterogeneity is moderate, not extreme. This motivates the forward-looking
+    argument: on harder annotation tasks (cross-lingual hate speech, implicit framing),
+    heterogeneity will increase and EC-HTE''s advantage will grow. Frame in paper
+    as ''illustrative application demonstrating practical relevance'' with explicit
+    caveat that no ground-truth CATEs exist for real data. Move to ~1 page in main
+    text with full table in appendix.
+
+    '
+- name: Multiple LLM annotator comparison
+  plan_id: exp-008
+  description: 'Annotate TweetEval sentiment corpus (same as exp-003) with three LLMs:
+    GPT-4.1 (API), Qwen3-235B-A22B (GPU), Claude Sonnet 4.6 (API). Measure per-subgroup
+    misclassification rates for each LLM. Apply EC-HTE with each LLM''s annotations.
+    Compare bias amplification patterns and EC-HTE benefit across LLMs. Show that
+    EC-HTE benefit scales with LLM misclassification heterogeneity.
+
+    '
+  expected_results:
+    gpt41_overall_accuracy: 0.82-0.86
+    gpt41_delta_pi: 0.07-0.10
+    gpt41_bias_amplification_median: 1.4-1.7
+    qwen3_overall_accuracy: 0.74-0.80
+    qwen3_delta_pi: 0.10-0.18
+    qwen3_bias_amplification_median: 1.6-2.2
+    claude_sonnet_overall_accuracy: 0.83-0.87
+    claude_sonnet_delta_pi: 0.05-0.09
+    claude_sonnet_bias_amplification_median: 1.3-1.5
+    ec_hte_bias_reduction_pct_gpt41_n500: 35-50
+    ec_hte_bias_reduction_pct_qwen3_n500: 45-60
+    ec_hte_bias_reduction_pct_claude_n500: 30-45
+    rank_order_heterogeneity: Qwen3 > GPT-4.1 ≥ Claude Sonnet
+    ec_hte_benefit_correlates_with_delta_pi: true
+    correlation_delta_pi_vs_bias_reduction: 0.85-0.95
+  result_rationale: 'Under median tier, real LLM heterogeneity is moderate across
+    all models. Qwen3 as an open-source model has the highest overall error and the
+    most heterogeneous error pattern — it struggles disproportionately on minority
+    subgroups (short texts, hashtag-heavy content) compared to majority subgroups,
+    yielding Δπ ~ 0.10-0.18. GPT-4.1 and Claude Sonnet are both frontier API models
+    with similar overall accuracy (0.82-0.87), but GPT-4.1 shows slightly more heterogeneity
+    (Δπ ~ 0.07-0.10 vs 0.05-0.09) due to different calibration patterns across text
+    styles. The key finding is that EC-HTE benefit scales monotonically with Δπ: Qwen3
+    benefits most (45-60% bias reduction), GPT-4.1 moderately (35-50%), Claude Sonnet
+    least (30-45%). All bias amplification factors are in the 1.3-2.2x range — measurable
+    but below the 2-3x synthetic headline. This confirms the median tier narrative:
+    the bias mechanism is real and present in current SOTA LLMs, but at moderate magnitudes.
+    The forward-looking argument gains support: Qwen3''s higher heterogeneity on this
+    relatively easy task (sentiment) suggests that harder tasks will push all LLMs
+    toward the higher end of the heterogeneity spectrum.
+
+    '
+  tables:
+  - name: 'Table: LLM Annotation Quality and EC-HTE Benefit Comparison'
+    columns:
+    - llm
+    - overall_acc
+    - delta_pi
+    - bias_amp_median
+    - ec_hte_bias_red_pct_n500
+    - ec_hte_rmse_ratio_n500
+    representative_rows:
+    - - GPT-4.1
+      - 0.84
+      - 0.08
+      - 1.55
+      - 42
+      - 1.35
+    - - Qwen3-235B-A22B
+      - 0.77
+      - 0.14
+      - 1.9
+      - 53
+      - 1.22
+    - - Claude_Sonnet_4.6
+      - 0.85
+      - 0.07
+      - 1.4
+      - 37
+      - 1.42
+  - name: 'Table: Per-Subgroup Misclassification Rates by LLM'
+    columns:
+    - subgroup
+    - n_pct
+    - gpt41_misclass
+    - qwen3_misclass
+    - claude_misclass
+    representative_rows:
+    - - S0_long_no_hashtag
+      - 38%
+      - 0.11
+      - 0.16
+      - 0.1
+    - - S1_long_hashtag
+      - 38%
+      - 0.14
+      - 0.2
+      - 0.13
+    - - S2_short_no_hashtag
+      - 12%
+      - 0.19
+      - 0.28
+      - 0.17
+    - - S3_short_hashtag
+      - 12%
+      - 0.22
+      - 0.34
+      - 0.2
+  figures_description:
+  - 'Scatter plot: Δπ (x-axis) vs EC-HTE bias reduction % (y-axis) with one point
+    per LLM. Shows monotonic relationship. Annotate with LLM names. Include regression
+    line with R².'
+  - 'Grouped bar chart: Per-subgroup misclassification rates for each LLM. Shows heterogeneity
+    pattern is qualitatively similar across LLMs but magnitude differs.'
+  analysis: 'This experiment is P1 — likely moves to appendix under median tier to
+    free main-text space. Key takeaway for main text (1-2 sentences): ''EC-HTE benefit
+    scales with LLM misclassification heterogeneity; across three SOTA LLMs, bias
+    amplification ranges from 1.3-2.2x, with open-source models showing higher heterogeneity
+    and correspondingly greater EC-HTE benefit.'' The Qwen3 results provide the forward-looking
+    argument anchor: even at moderate overall accuracy, subgroup-level heterogeneity
+    creates meaningful bias. Full table in appendix. RMSE ratio > 1.0 for all LLMs
+    at n=500 confirms the median-tier finding that EC-HTE requires larger expert budgets
+    than hoped — bias is reduced but RMSE tradeoff is real.
+
+    '
+- name: Adaptive expert annotation allocation
+  plan_id: exp-009
+  description: 'Implement three allocation strategies for expert annotation budget:
+    (a) uniform allocation (baseline), (b) uncertainty-weighted (allocate proportional
+    to posterior variance of CM estimates), (c) CATE-weighted (allocate proportional
+    to estimated |CATE| × misclassification uncertainty — targeting subgroups where
+    correction matters most). Compare on synthetic DGP from exp-001 at n_expert ∈
+    {250, 500, 1000} × K=4 (where budget pressure is highest). Primary metric: RMSE
+    of subgroup CATEs.
+
+    '
+  expected_results:
+    cate_weighted_vs_uniform_rmse_reduction_n250: 8-15%
+    cate_weighted_vs_uniform_rmse_reduction_n500: 5-10%
+    cate_weighted_vs_uniform_rmse_reduction_n1000: 2-5%
+    uncertainty_vs_uniform_rmse_reduction_n250: 5-10%
+    uncertainty_vs_uniform_rmse_reduction_n500: 3-7%
+    cate_weighted_vs_uncertainty_advantage: modest, 3-6% at n250
+    worst_subgroup_rmse_improvement_n250: 15-25%
+    allocation_shift_from_uniform: ~40-60% of budget to 2 highest-error subgroups
+      (S2,S3) vs 25% each under uniform
+    crossover_improvement: K4 extreme crossover moves from n=1000 to n=750-800 with
+      CATE-weighted allocation
+    adaptive_overhead_runtime: <5% additional compute
+  result_rationale: 'Under median tier, the advantage of adaptive allocation over
+    uniform is modest because (a) with moderate LLM heterogeneity (Δπ ~ 0.05-0.12),
+    the per-subgroup CM estimation noise differences are not dramatic enough for targeted
+    allocation to yield large gains, and (b) at K=4, even with optimal allocation,
+    the smallest subgroups (12%) still have limited sample sizes that dominate the
+    variance. The CATE-weighted strategy helps most at n=250 (8-15% RMSE reduction)
+    where budget pressure is highest — it effectively moves the K=4 crossover point
+    from n=1000 to ~n=750-800, but does not achieve the hoped-for halving of required
+    budget. The worst-subgroup improvement (15-25%) is more meaningful than the average
+    because allocation concentrates labels on S3 (highest error, smallest subgroup)
+    where marginal expert labels have the highest impact on CM estimation quality.
+    At n=1000+, all strategies converge because per-subgroup CMs are already well-estimated
+    under any allocation. The modest overall gain reflects the median-tier reality
+    that the problem is fundamentally about total budget, not allocation efficiency.
+
+    '
+  tables:
+  - name: 'Table: Allocation Strategy Comparison — K=4 Extreme Regime'
+    columns:
+    - n_expert
+    - strategy
+    - rmse_mean
+    - rmse_worst_sg
+    - bias_mean
+    - allocation_S0_S1_S2_S3
+    representative_rows:
+    - - 250
+      - uniform
+      - 0.385
+      - 0.62
+      - 0.08
+      - 25/25/25/25%
+    - - 250
+      - uncertainty
+      - 0.358
+      - 0.54
+      - 0.07
+      - 18/22/28/32%
+    - - 250
+      - cate_weighted
+      - 0.34
+      - 0.48
+      - 0.06
+      - 15/20/27/38%
+    - - 500
+      - uniform
+      - 0.245
+      - 0.38
+      - 0.05
+      - 25/25/25/25%
+    - - 500
+      - cate_weighted
+      - 0.225
+      - 0.31
+      - 0.04
+      - 16/21/26/37%
+    - - 1000
+      - uniform
+      - 0.165
+      - 0.22
+      - 0.03
+      - 25/25/25/25%
+    - - 1000
+      - cate_weighted
+      - 0.158
+      - 0.2
+      - 0.03
+      - 18/22/27/33%
+  figures_description:
+  - 'Line plot: RMSE vs n_expert for three allocation strategies at K=4 extreme. Show
+    convergence at large n and divergence at small n. Mark crossover points where
+    EC-HTE beats global.'
+  analysis: 'P2 experiment — moves to appendix. The modest gains (8-15% at best) under
+    median tier mean this is a ''nice to have'' refinement rather than a core contribution.
+    Main text should mention adaptive allocation as a practical extension in 1-2 sentences.
+    The crossover improvement (n=1000 → n=750-800 for K=4) is useful but does not
+    change the headline message that K=4 requires substantial expert budgets. Worth
+    including in appendix to show the method is extensible and to provide practical
+    guidance for practitioners who want to minimize labeling cost.
+
+    '
+- name: Robustness to misspecified subgroup structure
+  plan_id: exp-010
+  description: 'Test EC-HTE under three misspecification scenarios: (a) noisy subgroup
+    assignment — add 10-30% label noise to true subgroup indicators Z, (b) coarsened
+    subgroups — collapse K=4 true subgroups into K=2 observed subgroups (merging heterogeneous
+    pairs), (c) irrelevant subgroup variable — condition on a variable uncorrelated
+    with misclassification heterogeneity. Compare EC-HTE vs global correction under
+    each scenario. DGP from exp-001 (K=4 extreme regime, n_expert=500).
+
+    '
+  expected_results:
+    noisy_10pct_rmse_increase_vs_correct: 5-10%
+    noisy_20pct_rmse_increase_vs_correct: 12-22%
+    noisy_30pct_rmse_increase_vs_correct: 25-40%
+    noisy_10pct_ec_hte_still_beats_global: true
+    noisy_20pct_ec_hte_still_beats_global: true
+    noisy_30pct_ec_hte_vs_global: marginal or global wins on RMSE
+    noisy_crossover_noise_level: ~25-30% noise
+    coarsened_k4_to_k2_bias_residual_pct: 30-50%
+    coarsened_k4_to_k2_rmse_vs_correct_ec_hte: 1.3-1.6x
+    coarsened_k4_to_k2_still_beats_naive: true
+    coarsened_k4_to_k2_vs_global: EC-HTE still better but margin halved
+    irrelevant_ec_hte_rmse_vs_global: 1.05-1.15x
+    irrelevant_ec_hte_bias_vs_global: approximately equal
+    irrelevant_hb_shrinkage_toward_global: '>90% shrinkage weight on global mean'
+    irrelevant_harm_vs_global: minimal — HB partial pooling collapses to near-global
+  result_rationale: 'Under median tier, EC-HTE shows graceful degradation under misspecification
+    due to HB partial pooling, but the degradation is noticeable, not negligible.
+    (A) Noisy subgroup assignment: 10% noise is tolerable because HB smooths over
+    small perturbations — per-subgroup CM estimates are slightly noisier but still
+    capture the main heterogeneity pattern. At 20% noise, the subgroup-specific CMs
+    are substantially contaminated, increasing RMSE by 12-22%. At 30%, subgroup structure
+    is so noisy that per-subgroup CM estimation adds more noise than signal — EC-HTE
+    becomes marginal vs global. The ~25-30% crossover is consistent with James-Stein
+    theory: when the signal-to-noise ratio of subgroup differences drops below ~1,
+    pooling dominates stratification. (B) Coarsened subgroups: merging K=4 into K=2
+    by pairing heterogeneous subgroups retains only partial heterogeneity structure.
+    EC-HTE still beats naive (it captures between-pair heterogeneity) but misses within-pair
+    heterogeneity, leaving 30-50% of the original bias uncorrected. The RMSE penalty
+    (1.3-1.6x) reflects estimating a less informative but lower-variance correction.
+    (C) Irrelevant subgroup: this is the key robustness test — if the subgroup variable
+    has no relationship to misclassification heterogeneity, EC-HTE should not hurt.
+    HB partial pooling correctly shrinks subgroup-specific estimates toward the global
+    mean (>90% shrinkage weight), making EC-HTE approximately equivalent to global
+    correction with only minimal overhead (5-15% RMSE increase from residual subgroup
+    noise). This demonstrates that the HB framework is ''safe to apply'' even when
+    the practitioner is uncertain about subgroup relevance — a key practical selling
+    point.
+
+    '
+  tables:
+  - name: 'Table: Robustness Analysis — RMSE Relative to Correctly-Specified EC-HTE'
+    columns:
+    - scenario
+    - parameter
+    - ec_hte_rmse_ratio
+    - ec_hte_bias_ratio
+    - beats_global
+    - beats_naive
+    representative_rows:
+    - - noisy_10pct
+      - 10% label noise
+      - 1.08
+      - 1.12
+      - 'yes'
+      - 'yes'
+    - - noisy_20pct
+      - 20% label noise
+      - 1.18
+      - 1.3
+      - yes (marginal)
+      - 'yes'
+    - - noisy_30pct
+      - 30% label noise
+      - 1.35
+      - 1.55
+      - 'no'
+      - 'yes'
+    - - coarsened_k4_to_k2
+      - K=4→K=2 merge
+      - 1.45
+      - 1.4
+      - 'yes'
+      - 'yes'
+    - - irrelevant_subgroup
+      - uncorrelated Z
+      - 1.1
+      - 1.02
+      - no (≈equal)
+      - 'yes'
+  - name: 'Table: HB Shrinkage Weights Under Misspecification'
+    columns:
+    - scenario
+    - mean_shrinkage_toward_global
+    - min_shrinkage
+    - max_shrinkage
+    representative_rows:
+    - - correct_specification
+      - 0.35
+      - 0.15
+      - 0.55
+    - - noisy_20pct
+      - 0.55
+      - 0.35
+      - 0.7
+    - - noisy_30pct
+      - 0.68
+      - 0.5
+      - 0.82
+    - - irrelevant_subgroup
+      - 0.92
+      - 0.85
+      - 0.97
+  figures_description:
+  - 'Line plot: RMSE vs noise level (0-30%) for EC-HTE, global, and naive. Show EC-HTE
+    degradation curve and crossover with global at ~25-30% noise.'
+  - 'Bar chart: Shrinkage weight toward global mean for each misspecification scenario.
+    Shows HB automatic adaptation.'
+  analysis: 'P2 experiment — appendix. The key message for main text is a single paragraph
+    in the robustness section: ''EC-HTE degrades gracefully under subgroup misspecification
+    due to hierarchical Bayesian partial pooling. When subgroup assignments are noisy
+    (up to ~20% label error), EC-HTE retains its advantage over global correction.
+    When the subgroup variable is irrelevant, HB shrinkage collapses to near-global
+    correction, incurring minimal RMSE overhead (5-15%). Practitioners can safely
+    apply EC-HTE without certainty that the chosen subgroup variable captures the
+    full misclassification heterogeneity structure.'' The coarsened-subgroups result
+    also motivates the practical recommendation to use fine-grained subgroups when
+    available, since coarsening sacrifices 30-50% of the bias reduction. Under median
+    tier, the crossover at ~25-30% noise is a meaningful boundary condition — it says
+    EC-HTE is robust to moderate misspecification but not to severe misspecification,
+    which is an honest and credible claim.'

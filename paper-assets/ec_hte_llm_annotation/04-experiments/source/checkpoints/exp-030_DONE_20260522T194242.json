@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp-030",
+  "project": "ec_hte_llm_annotation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:39:34.900Z",
+    "updated_at": "2026-05-22T19:42:42.807Z",
+    "hypothesis": "EC-HTE HB partial pooling at K=8 (per-subgroup ~31 expert labels) maintains coverage ≥90% and RMSE advantage over Global, demonstrating scalability beyond K=4.",
+    "spec": {
+      "command": "python exp030_k8_subgroups.py",
+      "server": "local",
+      "data_path": "synthetic_dgp",
+      "data_count": 5000,
+      "model_name": "DIM_estimator",
+      "seed": 42,
+      "checkpoint_path": "results/exp_k8_subgroups.csv",
+      "log_path": "results/exp_k8_subgroups_summary.csv"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "hb_echte_coverage": 0.956,
+      "hb_echte_rmse": 0.34,
+      "hb_echte_mean_abs_bias": 0.154,
+      "oracle_coverage": 0.95,
+      "oracle_rmse": 0.125,
+      "global_coverage": 0.953,
+      "global_rmse": 0.168,
+      "strat_mle_coverage": 0.903,
+      "strat_mle_rmse": 0.638,
+      "naive_coverage": 0.867,
+      "naive_rmse": 0.138,
+      "hb_vs_mle_rmse_improvement_pct": 47,
+      "per_subgroup_expert_labels": 31,
+      "note": "Coverage ≥90% confirmed but RMSE 0.340 >> Global 0.168. HB 47% better than MLE but worse than Global. High-pi subgroups (s5-s7) show RMSE explosion."
+    },
+    "completed_at": "2026-05-22T19:42:42.807Z"
+  },
+  "timestamp": "2026-05-22T19:42:42.882044+00:00",
+  "trigger": "update_registry"
+}

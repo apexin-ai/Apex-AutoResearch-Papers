@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-029-a1-sensitivity_20260522T161509_result.json",
     "occurrence": 1,
-    "bytes": 33,
-    "sha256": "e7b677a01a6ce92aeff610569d80053450a8e9d4af23ccdd6234f0b116b8f218"
+    "bytes": 32,
+    "sha256": "52540a2a5f3754f2a7862997c15f81e9e0f8df1c4f74f0f85885277c0fcbe380"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_llama-echte-analysis_20260521T203818_result.json",
     "occurrence": 1,
-    "bytes": 979,
-    "sha256": "5730ed4fc63024f7d7f2f432c3457c13011bb7ee4f1f367ba70780111bc4eefe"
+    "bytes": 978,
+    "sha256": "f073a66275c70609cf814f2b97954e67c7d0123182cb5093cdc2130e04280102"
   },
   "statistics": {
     "messages": 1,

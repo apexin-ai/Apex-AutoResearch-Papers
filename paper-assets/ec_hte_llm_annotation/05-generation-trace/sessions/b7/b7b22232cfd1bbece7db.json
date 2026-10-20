@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_mvp_simulation_20260520T175313_result.json",
     "occurrence": 1,
-    "bytes": 1232,
-    "sha256": "9f7d23ef23817756326119c13583b925a89b7b79836f4f5477e0d69d418060d2"
+    "bytes": 1231,
+    "sha256": "aa82b8a8430b5139acfc539082e209a15b15b4127f31d2d49a6066508c352934"
   },
   "statistics": {
     "messages": 1,

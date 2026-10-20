@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_data-integrity-audit_20260523T192201_result.json",
     "occurrence": 1,
-    "bytes": 2217178,
-    "sha256": "992756e94a8a898614289466fabc083d95b314b2dd070635d8d1e366150de79d"
+    "bytes": 2217177,
+    "sha256": "145a8e24970955a02d15ed8d3760acdf59965c1c0f5f11366ff236d1313c7cf6"
   },
   "statistics": {
     "messages": 1,

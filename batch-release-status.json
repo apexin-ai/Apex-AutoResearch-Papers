@@ -387,6 +387,29 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39357442666"
+    },
+    "ec_hte_llm_annotation/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 319846905,
+        "etag": "\"072f39326264e3f99ad387476e391e23-39\"",
+        "modified": "2026-05-31T17:31:27+00:00"
+      },
+      "archive_sha256": "1e0277df83fbbe495139ea6fac290058879d8f1a59a948cf31472197871972a2",
+      "projects": [
+        "ec_hte_llm_annotation"
+      ],
+      "counts": [
+        {
+          "project": "ec_hte_llm_annotation",
+          "title": "When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects",
+          "paper_pdf": "paper.pdf",
+          "code_count": 161,
+          "data_count": 423,
+          "trace_count": 434
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39357442666"
     }
   }
 }

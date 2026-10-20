@@ -1607,7 +1607,7 @@ _source line 31 · 2026-05-24T06:58:49.559Z_
 ```text
 1	{
 2	  "repo_public": "https://github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation",
-3	  "push_url": "https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git",
+3	  "push_url": "https://[REDACTED]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git",
 4	  "github_user": "anonymous-nlp-2026-2",
 5	  "repo_name": "ec_hte_llm_annotation"
 6	}
@@ -1629,7 +1629,7 @@ _source line 31 · 2026-05-24T06:58:49.559Z_
     "type": "text",
     "file": {
       "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/_anonymous_repo.json",
-      "content": "{\n  \"repo_public\": \"https://github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation\",\n  \"push_url\": \"https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",\n  \"repo_name\": \"ec_hte_llm_annotation\"\n}\n",
+      "content": "{\n  \"repo_public\": \"https://github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation\",\n  \"push_url\": \"https://[REDACTED]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",\n  \"repo_name\": \"ec_hte_llm_annotation\"\n}\n",
       "numLines": 7,
       "startLine": 1,
       "totalLines": 7

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-003-phase-a_20260520T220635_result.json",
     "occurrence": 1,
-    "bytes": 1171,
-    "sha256": "75e1321677ce3dc4bc150ff3eed6e091363964866a0d12691461b47e4b23c0b6"
+    "bytes": 1170,
+    "sha256": "4b0eccae5aec784f9860022410068bc3951b53d0a6077ef96738553813a15952"
   },
   "statistics": {
     "messages": 1,

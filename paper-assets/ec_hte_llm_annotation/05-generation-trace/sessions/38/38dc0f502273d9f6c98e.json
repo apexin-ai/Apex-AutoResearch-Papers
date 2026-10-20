@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_demo-subgroup-codebase-discovery_20260524T040730_result.json",
     "occurrence": 1,
-    "bytes": 1621,
-    "sha256": "d53ced536ad99d7406c966b0792284808fae88fefefff62ea983d6b77808f340"
+    "bytes": 1620,
+    "sha256": "03727af5cf74e82f9495ff6d3503d93f0214c50ce6551875806094ef6b576604"
   },
   "statistics": {
     "messages": 1,

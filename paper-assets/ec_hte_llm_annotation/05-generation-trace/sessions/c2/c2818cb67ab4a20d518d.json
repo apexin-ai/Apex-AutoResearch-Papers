@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-018-multiplicative-dgp_20260521T134318_result.json",
     "occurrence": 1,
-    "bytes": 684,
-    "sha256": "8a814c46c8ab2c4993491a296f02fff3c61f5c8d765475d2019ac0a4eee502b3"
+    "bytes": 683,
+    "sha256": "44735e3e44a02eb67073f1de866126bdf8f55313ddef350f32f95d9fbdc8b277"
   },
   "statistics": {
     "messages": 1,

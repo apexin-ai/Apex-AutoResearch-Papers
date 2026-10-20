@@ -704,7 +704,7 @@ git remote -v
 **如果显示 `git@github.com:...` (SSH)，必须改成 HTTPS+token：**
 
 ```bash
-git remote set-url origin 'https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git'
+git remote set-url origin 'https://[REDACTED]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git'
 ```
 
 确认显示 `https://...` 之后，正常 push：
@@ -1781,7 +1781,7 @@ _source line 1823 · 2026-05-23T18:57:42.265825+00:00_
 
    **正确的 HTTPS+token URL：**
    ```
-   https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git
+   https://[REDACTED]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git
    ```
 
 4. **完成后向我汇报**：

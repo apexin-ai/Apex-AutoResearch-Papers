@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-039",
+  "project": "ec_hte_llm_annotation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T15:54:20.391Z",
+    "updated_at": "2026-05-23T15:54:30.649Z",
+    "hypothesis": "EC-HTE dominates at K=2/4 (bias reduction 5-7×) but degrades at K=8 with fixed n_expert=250 (~31 labels/subgroup), establishing K=8 as a scalability boundary where per-subgroup CM estimation variance exceeds bias correction gains."
+  },
+  "timestamp": "2026-05-23T15:54:30.733306+00:00",
+  "trigger": "update_registry"
+}

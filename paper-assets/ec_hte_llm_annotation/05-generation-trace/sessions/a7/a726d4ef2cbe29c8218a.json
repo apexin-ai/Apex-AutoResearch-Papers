@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-016-semi-real-better-cm_20260521T132011_result.json",
     "occurrence": 1,
-    "bytes": 1609,
-    "sha256": "fa4d3910f363df3287b8dce4273ffcd408c9731777f430fb994a587bd37d8150"
+    "bytes": 1608,
+    "sha256": "f02cf5ab2a0c96718141b00bfefeced2d6779ee15c783f3e5b2ae6f327eb408c"
   },
   "statistics": {
     "messages": 1,

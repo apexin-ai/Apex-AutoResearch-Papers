@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_gpu-speed-fix_20260521T194005_result.json",
     "occurrence": 1,
-    "bytes": 1893,
-    "sha256": "c75451c249d6627d1774c5e90c850ff4a2a21eba7b9e5804f6b994f1433b5586"
+    "bytes": 1892,
+    "sha256": "55f8940e0633441169b9e8f315344f4290f1f383f9c3e1b6af706ca9f26e227f"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_run_exp-007-baseline_20260520T213819_result.json",
     "occurrence": 1,
-    "bytes": 1807,
-    "sha256": "7b91ed7e8b226d56b67c417d9d9427f8baa56355918da9d9472ae92fb494f368"
+    "bytes": 1806,
+    "sha256": "734160862b7f4fa63f2cc437f1160aa88d40ad2cbb4415be5732afcec6056bfb"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,183 @@
+\section{Experiments}
+
+\subsection{Experimental Setup and Data Generation}
+
+\subsubsection{Synthetic DGP}
+
+We generate data from a controlled data-generating process (DGP) that separates the effect of subgroup-level misclassification heterogeneity from other confounders.
+For each observation $i$, the potential outcome under treatment $t$ is
+\begin{equation}
+Y_i(t) = \alpha + \tau(Z_i) \cdot t + \beta X_i + \varepsilon_i, \quad \varepsilon_i \sim \mathcal{N}(0,1),
+\end{equation}
+where $T_i \sim \text{Bernoulli}(0.5)$ simulates a randomized controlled trial, and $Z_i \in \{0, \ldots, K{-}1\}$ is the true effect modifier with $K \in \{2, 4\}$ subgroups.
+The conditional average treatment effect (CATE) $\tau(Z{=}z)$ varies across subgroups with controlled heterogeneity $\Delta\tau = \max_z \tau(z) - \min_z \tau(z)$.
+Misclassification is injected through subgroup-specific symmetric confusion matrices $C_s$: the observed label $\hat{Z}_i$ is drawn as $\hat{Z}_i \sim \text{Multinomial}(C_{S_i})$, where each subgroup $s$ has error rate $\pi_s$ and $\Delta\pi = \max_s \pi_s - \min_s \pi_s$ controls heterogeneity.
+We fix $N{=}5000$ observations and vary $n_{\text{expert}} \in \{50, 100, 250, 500, 1000, 2000\}$ (the number of expert-labeled observations used to estimate confusion matrices).
+Each configuration is repeated for 100 Monte Carlo runs.
+
+\subsubsection{Semi-synthetic DGP (TweetEval)}
+
+To test EC-HTE under realistic conditions, we construct a semi-synthetic DGP from the TweetEval sentiment corpus~\cite{barbieri2020tweeteval}, sampling $N{=}5000$ tweets per run from a pool of 57{,}899.
+Four subgroups are defined by crossing two binary text features: presence of hashtags (\texttt{has\_hashtag}) and text length relative to the median (\texttt{text\_length\_bin}).
+This yields unbalanced subgroup proportions (S0: 39\%, S1: 38\%, S2: 12\%, S3: 11\%).
+The effect modifier is $Z{=}1$ if the true sentiment is positive ($P(Z{=}1) \approx 35\%$), and $Z{=}0$ otherwise.
+We set subgroup-specific misclassification rates $\pi_{S0}{=}0.05$, $\pi_{S1}{=}0.10$, $\pi_{S2}{=}0.15$, $\pi_{S3}{=}0.25$ in the extreme regime, reflecting empirical evidence that hashtag-heavy text degrades LLM classifier accuracy~\cite{ashwin2025bias}.
+The outcome model is
+\begin{equation}
+Y_i = 1.0 + \tau(Z_i, S_i) \cdot T_i + 0.3 \cdot \text{len}_i + 0.2 \cdot \text{mention}_i + \varepsilon_i,
+\end{equation}
+where $\tau(Z{=}1, S) \in \{0.5, 0.4, 0.3, 0.2\}$ for S0--S3 and $\tau(Z{=}0) = 0.1$ is the baseline effect.
+
+\paragraph{Baselines and metrics.}
+We compare: (1) \textit{Naive} (no correction), (2) \textit{Global} (pooled confusion matrix), (3) \textit{Stratified MLE} (per-subgroup MLE without pooling), (4) \textit{HB EC-HTE} (our hierarchical Bayes estimator), (5) \textit{PPCI}~\cite{angelopoulos2023ppi}, and (6) \textit{EC-HTE+PPCI} (our combined method).
+For the CausalForest estimator~\cite{wager2018causal}, we also compare naive, global, and EC-HTE variants.
+Primary metrics are absolute bias $|\text{bias}|$, root mean squared error (RMSE), and 95\% confidence interval coverage, all averaged across subgroups and 100 MC runs.
+
+\subsection{Bias Mechanism Verification}
+\label{sec:bias_mechanism}
+
+The bias decomposition identity (Theorem~1) predicts that global correction introduces bias proportional to $\Delta\pi \times \Delta\tau$ at the subgroup level.
+We verify this identity empirically across 520 configurations spanning $K \in \{2,4\}$, two misclassification regimes, and six expert budget levels.
+Regressing observed subgroup bias on the predicted $\Delta\pi \times \Delta\tau$ product yields $R^2 = 0.994$ for $K{=}2$ and $R^2 = 0.974$ for $K{=}4$; the residual variance reflects MC sampling noise rather than model misspecification, since Theorem~1 is an exact identity at the population level.
+In 50\% of configurations (260/520, excluding $\Delta_c{=}0$ rows where bias is zero by construction), global correction produces larger absolute bias than the naive estimator.
+The damage concentrates in low-$\pi$ subgroups: among subgroups where $\pi_s < \bar{\pi}$, global correction increases bias in 84.6\% of cases.
+Maximum observed amplification reaches 2.86$\times$ (K=2) and 2.41$\times$ (K=4) relative to the naive estimator.
+Figure~\ref{fig:heatmap} visualizes the $\Delta\pi \times \Delta\tau$ amplification surface across the parameter grid.
+
+\subsection{EC-HTE Evaluation}
+\label{sec:ec_hte_eval}
+
+Table~\ref{tab:main_results} presents the main results across representative configurations.
+In the synthetic DGP with $K{=}2$ subgroups and extreme misclassification heterogeneity, HB EC-HTE reduces $|\text{bias}|$ from 0.059 (global) to 0.011 (a 5.4$\times$ reduction) while maintaining nominal coverage (0.95) and comparable RMSE (0.093 vs.\ 0.099).
+The advantage persists at $K{=}4$: EC-HTE achieves $|\text{bias}|{=}0.009$ versus 0.056 for global (6.2$\times$ reduction), though with a small RMSE penalty (0.127 vs.\ 0.125).
+Under moderate heterogeneity ($K{=}2$), global correction already achieves low bias (0.009), and EC-HTE provides negligible improvement (0.005) at the cost of slightly higher RMSE (0.075 vs.\ 0.074).
+This illustrates the conditional nature of EC-HTE's advantage: when $\Delta\pi$ is small, the variance cost of stratification is not offset by bias reduction.
+
+In the semi-synthetic TweetEval experiment, the pattern shifts.
+Global correction achieves the lowest $|\text{bias}|$ (0.023) among non-oracle methods, while HB EC-HTE attains 0.027 with substantially higher RMSE (0.225 vs.\ 0.124).
+The RMSE penalty arises from the small subgroups S2 and S3 (12\% and 11\% of data), where per-subgroup confusion matrix estimation is noisy even with partial pooling.
+HB EC-HTE does improve over stratified MLE (RMSE 0.225 vs.\ 0.248), confirming that partial pooling helps, but the improvement is insufficient to overcome the structural variance from unbalanced subgroup sizes.
+At $n_{\text{expert}} \geq 250$, HB and MLE converge to within 5\% on all metrics.
+
+\paragraph{CausalForest K-dependence.}
+When the downstream estimator is a CausalForest~\cite{wager2018causal} rather than difference-in-means, the bias mechanism operates with amplified magnitude.
+At $K{=}4$/extreme/$n{=}500$, EC-HTE Forest reduces $|\text{bias}|$ from 0.191 (global) to 0.040, a 4.8$\times$ improvement with lower RMSE (0.224 vs.\ 0.244) and dramatically better coverage (0.91 vs.\ 0.58).
+The debiasing-hurts phenomenon intensifies: global correction amplifies naive bias by up to 5.9$\times$ in the worst subgroup (compared to 2.41$\times$ for difference-in-means), because the forest's sensitivity to covariate noise magnifies the effect of label errors.
+At $K{=}2$/$n{=}500$, EC-HTE Forest achieves near-zero bias (0.008), confirming that the correction transfers to nonparametric CATE estimators when sufficient expert labels are available.
+
+\begin{table*}[t]
+\centering
+\caption{Main results across synthetic (difference-in-means and CausalForest) and semi-synthetic configurations. $|\text{Bias}|$ and RMSE are averaged over subgroups, $z$-levels, and 100 MC runs. Bold marks lowest $|\text{bias}|$ per block. $^\dagger$RMSE exceeds Global in this configuration, reflecting the variance cost of stratification.}
+\label{tab:main_results}
+\small
+\begin{tabular}{ll ccc}
+\toprule
+Configuration & Method & $|\text{Bias}| \downarrow$ & RMSE $\downarrow$ & Coverage \\
+\midrule
+\multirow{4}{*}{\shortstack[l]{Synthetic DIM\\$K{=}2$, extreme, $n{=}250$}}
+ & Naive & 0.058 & 0.090 & 0.82 \\
+ & Global & 0.059 & 0.099 & 0.87 \\
+ & Strat.\ MLE & 0.012 & 0.094 & 0.95 \\
+ & HB EC-HTE & \textbf{0.011} & 0.093 & 0.95 \\
+\midrule
+\multirow{4}{*}{\shortstack[l]{Synthetic DIM\\$K{=}2$, moderate, $n{=}250$}}
+ & Naive & 0.018 & 0.064 & 0.95 \\
+ & Global & 0.009 & 0.074 & 0.96 \\
+ & Strat.\ MLE & \textbf{0.005} & 0.075$^\dagger$ & 0.97 \\
+ & HB EC-HTE & \textbf{0.005} & 0.075$^\dagger$ & 0.97 \\
+\midrule
+\multirow{4}{*}{\shortstack[l]{Synthetic DIM\\$K{=}4$, extreme, $n{=}500$}}
+ & Naive & 0.062 & 0.113 & 0.88 \\
+ & Global & 0.056 & 0.125 & 0.91 \\
+ & Strat.\ MLE & 0.010 & 0.127$^\dagger$ & 0.95 \\
+ & HB EC-HTE & \textbf{0.009} & 0.127$^\dagger$ & 0.95 \\
+\midrule
+\multirow{3}{*}{\shortstack[l]{Synthetic CausalForest\\$K{=}4$, extreme, $n{=}500$}}
+ & Naive & 0.208 & 0.231 & 0.44 \\
+ & Global & 0.191 & 0.244 & 0.58 \\
+ & EC-HTE Forest & \textbf{0.040} & 0.224 & 0.91 \\
+\midrule
+\multirow{4}{*}{\shortstack[l]{Semi-synthetic\\TweetEval, extreme, $n{=}250$}}
+ & Naive & 0.027 & 0.103 & 0.93 \\
+ & Global & \textbf{0.023} & 0.124 & 0.92 \\
+ & Strat.\ MLE & 0.032 & 0.248$^\dagger$ & 0.91 \\
+ & HB EC-HTE & 0.027 & 0.225$^\dagger$ & 0.91 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Diagnostic Criterion}
+\label{sec:diagnostic}
+
+The $\Delta\pi \times \Delta\tau$ product provides a practical diagnostic for predicting when global correction will fail.
+Using leave-one-out cross-validation at the subgroup level, a threshold classifier on $|\Delta\pi \times \Delta\tau|$ achieves AUC = 0.833 for predicting whether global correction increases bias relative to the naive estimator.
+The Pearson correlation between the signed product and the observed bias ratio is $r = 0.86$.
+At the setting level (averaging across subgroups within a configuration), the diagnostic has AUC = 0.49, which is no better than random.
+This asymmetry arises because global correction redistributes bias across subgroups (benefiting high-$\pi$ subgroups at the expense of low-$\pi$ ones) rather than increasing total bias uniformly.
+In practice, the diagnostic enables researchers to identify vulnerable subgroups before committing to a correction strategy: if any subgroup has $\pi_s \ll \bar{\pi}$ and $\tau(z)$ varies across $z$-levels, global correction should be avoided.
+Figure~\ref{fig:roc} shows the ROC curve and the correlation scatter plot.
+
+\subsection{Expert Budget Analysis}
+\label{sec:budget}
+
+The crossover point at which EC-HTE achieves lower RMSE than global correction depends on $K$ and $\Delta\pi$.
+For $K{=}2$/extreme, the crossover occurs at $n_{\text{expert}} = 250$: below this threshold, the variance cost of estimating per-subgroup confusion matrices exceeds the bias reduction.
+For $K{=}4$/extreme, the crossover shifts to $n_{\text{expert}} = 1000$ because four subgroups require more expert labels to achieve precise confusion matrix estimates.
+Under moderate heterogeneity ($K{=}2$), EC-HTE never achieves lower RMSE than global at any budget, because global correction already produces low bias ($|\text{bias}|{<}0.01$) in this regime.
+Within the EC-HTE family, HB partial pooling improves over stratified MLE in 22/24 configurations at $n_{\text{expert}}{=}50$, with the largest gains occurring in $K{=}4$ settings (+42.4\% RMSE improvement for the hardest subgroup).
+The two estimators converge by $n_{\text{expert}} \geq 1000$ ($<$0.5\% difference).
+Figure~\ref{fig:budget} shows the crossover curves across the full budget range.
+
+\subsection{PPCI Complementarity}
+\label{sec:ppci}
+
+EC-HTE corrects structured covariate misclassification by inverting estimated confusion matrices, but cannot address treatment-differential outcome measurement error.
+Prediction-Powered Confidence Intervals~\cite{angelopoulos2023ppi} (PPCI) correct outcome-level prediction error using a small gold-standard sample but assume correct covariate labels.
+We test their combination across four DGP variants: (A) covariate error only, (B) outcome error only, (C) both errors, and (D) no error.
+Table~\ref{tab:ppci} reports results for $K{=}2$, $n_{\text{expert}}{=}250$, extreme misclassification.
+
+Under DGP~C (both errors), EC-HTE+PPCI reduces $|\text{bias}|$ to 0.007/0.008 (z=0/z=1), compared to 0.179/0.216 for EC-HTE alone, representing a 25$\times$ improvement.
+PPCI alone achieves comparable bias (0.017/0.007) but at higher RMSE (0.241 vs.\ 0.209 for z=0).
+Under DGP~A (covariate error only), EC-HTE+PPCI produces identical results to EC-HTE, confirming that PPCI adds no correction when outcome labels are unbiased.
+Under DGP~D (no error), all methods perform similarly, with naive and PPCI equivalent as expected.
+The two corrections are complementary rather than redundant: EC-HTE handles the structured $M^{-1}$ inversion for covariate error, while PPCI handles residual outcome-level bias through its debiasing estimator~\cite{sui2026ppci}.
+
+\begin{table*}[t]
+\centering
+\caption{PPCI complementarity experiment ($K{=}2$, extreme, $n_{\text{expert}}{=}250$). DGP~A: covariate error only; B: outcome error only ($\sigma{=}0.5$); C: both errors; D: no error. Values are $|\text{bias}|$ and RMSE averaged over two subgroups. $^\star$EC-HTE+PPCI achieves near-zero bias when both error types are present.}
+\label{tab:ppci}
+\small
+\begin{tabular}{ll cccc}
+\toprule
+DGP & Method & $|\text{Bias}|_{z=0}$ & $|\text{Bias}|_{z=1}$ & RMSE$_{z=0}$ & RMSE$_{z=1}$ \\
+\midrule
+\multirow{5}{*}{A: Covariate}
+ & Naive & 0.053 & 0.063 & 0.087 & 0.093 \\
+ & Global & 0.063 & 0.055 & 0.101 & 0.102 \\
+ & EC-HTE & 0.017 & \textbf{0.013} & 0.097 & 0.108 \\
+ & PPCI & \textbf{0.015} & 0.020 & 0.162 & 0.168 \\
+ & EC-HTE+PPCI & 0.017 & \textbf{0.013} & 0.097 & 0.108 \\
+\midrule
+\multirow{5}{*}{B: Outcome}
+ & Naive & 0.189 & 0.197 & 0.206 & 0.212 \\
+ & Global & 0.185 & 0.208 & 0.204 & 0.228 \\
+ & EC-HTE & 0.181 & 0.215 & 0.202 & 0.237 \\
+ & PPCI & \textbf{0.015} & \textbf{0.020} & 0.171 & 0.176 \\
+ & EC-HTE+PPCI & \textbf{0.012} & 0.023 & 0.171 & 0.186 \\
+\midrule
+\multirow{5}{*}{C: Both}
+ & Naive & 0.251 & 0.135 & 0.267 & 0.155 \\
+ & Global & 0.182 & 0.209 & 0.233 & 0.235 \\
+ & EC-HTE & 0.179 & 0.216 & 0.224 & 0.262 \\
+ & PPCI & 0.017 & 0.007 & 0.241 & 0.232 \\
+ & EC-HTE+PPCI$^\star$ & \textbf{0.007} & \textbf{0.008} & 0.209 & 0.223 \\
+\midrule
+\multirow{5}{*}{D: None}
+ & Naive & \textbf{0.007} & \textbf{0.003} & 0.060 & 0.065 \\
+ & Global & 0.010 & 0.002 & 0.061 & 0.071 \\
+ & EC-HTE & 0.013 & 0.007 & 0.062 & 0.079 \\
+ & PPCI & \textbf{0.007} & \textbf{0.003} & 0.060 & 0.065 \\
+ & EC-HTE+PPCI & 0.013 & 0.007 & 0.062 & 0.079 \\
+\bottomrule
+\end{tabular}
+\end{table*}

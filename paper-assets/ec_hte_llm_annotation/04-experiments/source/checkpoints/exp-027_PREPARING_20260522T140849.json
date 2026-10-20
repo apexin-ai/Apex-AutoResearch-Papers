@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp-027",
+  "project": "ec_hte_llm_annotation",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:00:37.085Z",
+    "updated_at": "2026-05-22T14:08:49.701Z",
+    "hypothesis": "CausalForest coverage gap (83-85% vs nominal 95%) is attributable to CF's inherent SE calibration, not CM estimation error: using true C_s (oracle CM) will produce similar ~83-85% coverage as estimated Ĉ_s, while the DIM estimator with true C_s achieves ~95% — isolating the source of under-coverage",
+    "parent": "exp-011",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T14:08:49.821563+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-002",
+  "project": "ec_hte_llm_annotation",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T19:44:56.556Z",
+    "updated_at": "2026-05-20T20:44:28.419Z",
+    "hypothesis": "Global correction 的子群内 bias 遵循解析公式 bias ∝ Δ_misclass × Δ_CATE，且存在参数区域使 |bias_global| > |bias_naive|（去偏反而加偏），该区域在 K=4 子群时比 K=2 更大",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T20:44:28.526861+00:00",
+  "trigger": "update_registry"
+}

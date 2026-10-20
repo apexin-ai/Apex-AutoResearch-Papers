@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-001",
+  "project": "ec_hte_llm_annotation",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T19:44:54.310Z",
+    "updated_at": "2026-05-20T21:32:34.756Z",
+    "hypothesis": "Hierarchical Bayesian Dirichlet-prior confusion matrix estimator 通过 partial pooling 在 n_expert 小（50-100）时比 MLE/Laplace 实现更低 RMSE 和更好的 coverage 校准，因为它能跨子群借力减少估计方差"
+  },
+  "timestamp": "2026-05-20T21:32:34.772820+00:00",
+  "trigger": "update_registry"
+}

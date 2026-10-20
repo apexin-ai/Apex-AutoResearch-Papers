@@ -1,0 +1,27 @@
+paper_key: "paun2018bayesian"
+title: "Comparing Bayesian Models of Annotation"
+venue: "TACL 2018"
+full_text_available: false
+
+research:
+  baselines: ["majority_voting", "Dawid-Skene", "MACE", "item-difficulty_models"]
+  metrics:
+    - {name: "accuracy_vs_gold", direction: "higher_better"}
+    - {name: "predictive_accuracy_new_annotations", direction: "higher_better"}
+    - {name: "annotator_characterization", direction: "qualitative"}
+    - {name: "item_difficulty_estimation", direction: "qualitative"}
+  datasets:
+    - {name: "four_crowdsourced_datasets", size: "varying noise levels"}
+  ablation_dimensions: ["annotator_ability_model", "item_difficulty_model", "parameter_pooling"]
+  training_recipe: {}
+  method_family: "annotation_model"
+
+positioning:
+  core_claim: "Systematic comparison of six Bayesian annotation models across four evaluation dimensions, showing that models incorporating both annotator ability and item difficulty outperform simpler alternatives, especially under high noise."
+  key_results: "Models with item difficulty and annotator ability jointly modeled perform best across all four evaluation aspects"
+  limitations: []
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

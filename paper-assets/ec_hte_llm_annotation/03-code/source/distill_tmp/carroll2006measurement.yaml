@@ -1,0 +1,24 @@
+paper_key: "carroll2006measurement"
+title: "Measurement Error in Nonlinear Models: A Modern Perspective"
+venue: "Chapman & Hall/CRC 2006"
+full_text_available: false
+
+research:
+  baselines: ["naive_estimators_ignoring_error"]
+  metrics:
+    - {name: "bias_reduction", direction: "qualitative"}
+    - {name: "estimation_efficiency", direction: "qualitative"}
+  datasets: []
+  ablation_dimensions: []
+  training_recipe: {}
+  method_family: "measurement_error"
+
+positioning:
+  core_claim: "Comprehensive modern treatment of measurement error correction in nonlinear models, covering regression calibration, SIMEX, score function methods, Bayesian MCMC, and survival analysis with measurement error."
+  key_results: "Unified framework for measurement error correction across nonlinear model families; practical methods (regression calibration, SIMEX) alongside theoretical foundations"
+  limitations: []
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,47 @@
+{
+  "exp_id": "exp-037",
+  "project": "ec_hte_llm_annotation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T01:39:22.761Z",
+    "updated_at": "2026-05-23T01:42:03.462Z",
+    "hypothesis": "Temperature scaling reduces per-subgroup misclassification rates but does NOT eliminate heterogeneity (Δπ shrinks from 0.20 to 0.07 but remains nonzero), so EC-HTE is still necessary post-calibration. Calibrated+EC-HTE should achieve the best coverage.",
+    "spec": {
+      "command": "python3 exp037_calibration.py",
+      "server": "local-cpu",
+      "data_path": "synthetic DGP K=2 N=5000",
+      "data_count": 5000,
+      "model_name": "DIM",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "results/exp037_log.txt"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "source": "results/exp_calibration_summary.csv",
+      "calibrated_echte_abs_bias": 0.0554,
+      "calibrated_echte_coverage": 0.965,
+      "calibrated_global_abs_bias": 0.055,
+      "calibrated_global_coverage": 0.963,
+      "calibrated_naive_abs_bias": 0.051,
+      "calibrated_naive_coverage": 0.912,
+      "uncalibrated_echte_abs_bias": 0.0641,
+      "uncalibrated_echte_coverage": 0.938,
+      "uncalibrated_global_abs_bias": 0.0695,
+      "uncalibrated_global_coverage": 0.92,
+      "uncalibrated_naive_abs_bias": 0.0634,
+      "uncalibrated_naive_coverage": 0.84,
+      "oracle_abs_bias": 0.0431,
+      "oracle_coverage": 0.963,
+      "delta_pi_uncalibrated": 0.2,
+      "delta_pi_calibrated": 0.07,
+      "key_finding": "Calibration reduces Δπ from 0.20 to 0.07 and improves naive coverage (84.0%→91.2%) but doesn't reach nominal 95%. Calibrated+EC-HTE achieves best coverage (96.5%) — EC-HTE corrects residual heterogeneity post-calibration. Calibrated+Naive still under-covers by 3.8pp. EC-HTE and calibration are complementary, not substitutes."
+    },
+    "completed_at": "2026-05-23T01:42:03.462Z"
+  },
+  "timestamp": "2026-05-23T01:42:03.669782+00:00",
+  "trigger": "update_registry"
+}

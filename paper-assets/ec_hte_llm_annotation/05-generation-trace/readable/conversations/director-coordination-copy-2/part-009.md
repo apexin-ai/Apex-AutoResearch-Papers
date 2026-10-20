@@ -8548,22 +8548,22 @@ _source line 5554 · 2026-05-26T07:06:06.507524+00:00_
 _source line 5555 · 2026-05-26T07:06:06.508086+00:00_
 
 1	autodl_ec_hte_password:
-2	  created_at: '2026-05-24T15:20:48.515634+00:00'
+[REDACTED]	  created_at: '2026-05-24T15:20:48.515634+00:00'
 3	  provider: AutoDL
 4	  purpose: SSH password for autodl-ec-hte server (RTX PRO 6000 x2)
 5	  updated_at: '2026-05-24T15:20:48.515655+00:00'
 6	autodl_rtx6000_password:
-7	  created_at: '2026-05-21T16:26:35.340899+00:00'
+[REDACTED]	  created_at: '2026-05-21T16:26:35.340899+00:00'
 8	  provider: AutoDL
 9	  purpose: SSH password for autodl-rtx6000 (4x RTX 6000 48GB)
 10	  updated_at: '2026-05-21T16:26:35.340915+00:00'
 11	google_api_key:
-12	  created_at: '2026-05-24T22:08:30.485618+00:00'
+[REDACTED]	  created_at: '2026-05-24T22:08:30.485618+00:00'
 13	  provider: Google
 14	  purpose: PaperBanana 概念图生成（Gemini API for VLM Critic）
 15	  updated_at: '2026-05-24T22:08:30.485639+00:00'
 16	openrouter_api_key:
-17	  created_at: '2026-05-21T04:29:18.561906+00:00'
+[REDACTED]	  created_at: '2026-05-21T04:29:18.561906+00:00'
 18	  provider: OpenRouter (via proxy)
 19	  purpose: LLM annotation pilot (Gemini Flash via OpenRouter format, base_url=http://47.94.22.126/v1).
 20	    用于 TweetEval 500 条情感分类标注 + exp-004 真实数据标注。
@@ -9247,7 +9247,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520 && \\\nexport GOOGLE_API_KEY=$(.venv/bin/python3 -c \"\nimport sys; sys.path.insert(0, '/home/ubuntu/agent-ml-research')\nfrom core.crypto import load_secret\nfrom pathlib import Path\nprint(load_secret(Path('config/secrets/ec_hte_llm_annotation/google_api_key.enc')), end='')\n\") && \\\nsource /tmp/pb_venv/bin/activate && \\\npaperbanana generate \\\n  --input /tmp/fig1_intent.txt \\\n  --caption \"Pipeline comparison: standard global correction (left) applies a pooled confusion matrix uniformly across subgroups, risking bias amplification; EC-HTE (right) estimates per-subgroup matrices via hierarchical Bayes with stratified inversion and uncertainty propagation\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig1_overview_v2.png \\\n  --iterations 5 \\\n  2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520 && \\\nexport GOOGLE_API_KEY=[REDACTED] -c \"\nimport sys; sys.path.insert(0, '/home/ubuntu/agent-ml-research')\nfrom core.crypto import load_secret\nfrom pathlib import Path\nprint(load_secret(Path('config/secrets/ec_hte_llm_annotation/google_api_key.enc')), end='')\n\") && \\\nsource /tmp/pb_venv/bin/activate && \\\npaperbanana generate \\\n  --input /tmp/fig1_intent.txt \\\n  --caption \"Pipeline comparison: standard global correction (left) applies a pooled confusion matrix uniformly across subgroups, risking bias amplification; EC-HTE (right) estimates per-subgroup matrices via hierarchical Bayes with stratified inversion and uncertainty propagation\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig1_overview_v2.png \\\n  --iterations 5 \\\n  2>&1",
   "description": "Run PaperBanana to generate Figure 1",
   "timeout": "300000"
 }
@@ -9263,7 +9263,7 @@ called Bash
   "session": "feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520 && \\\nexport GOOGLE_API_KEY=$(.venv/bin/python3 -c \"\nimport sys; sys.path.insert(0, '/home/ubuntu/agent-ml-research')\nfrom core.crypto import load_secret\nfrom pathlib import Path\nprint(load_secret(Path('config/secrets/ec_hte_llm_annotation/google_api_key.enc')), end='')\n\") && \\\nsource /tmp/pb_venv/bin/activate && \\\npaperbanana generate \\\n  --input /tmp/fig1_intent.txt \\\n  --caption \"Pipeline comparison: standard global correction (left) applies a pooled confusion matrix uniformly across subgroups, risking bias amplification; EC-HTE (right) estimates per-subgroup matrices via hierarchical Bayes with stratified inversion and uncertainty propagation\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig1_overview_v2.png \\\n  --iterations 5 \\\n  2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520 && \\\nexport GOOGLE_API_KEY=[REDACTED] -c \"\nimport sys; sys.path.insert(0, '/home/ubuntu/agent-ml-research')\nfrom core.crypto import load_secret\nfrom pathlib import Path\nprint(load_secret(Path('config/secrets/ec_hte_llm_annotation/google_api_key.enc')), end='')\n\") && \\\nsource /tmp/pb_venv/bin/activate && \\\npaperbanana generate \\\n  --input /tmp/fig1_intent.txt \\\n  --caption \"Pipeline comparison: standard global correction (left) applies a pooled confusion matrix uniformly across subgroups, risking bias amplification; EC-HTE (right) estimates per-subgroup matrices via hierarchical Bayes with stratified inversion and uncertainty propagation\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig1_overview_v2.png \\\n  --iterations 5 \\\n  2>&1",
     "description": "Run PaperBanana to generate Figure 1",
     "timeout": "300000"
   }
@@ -9517,7 +9517,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520 && \\\nexport GOOGLE_API_KEY=$(.venv/bin/python3 -c \"\nimport sys; sys.path.insert(0, '/home/ubuntu/agent-ml-research')\nfrom core.crypto import load_secret\nfrom pathlib import Path\nprint(load_secret(Path('config/secrets/ec_hte_llm_annotation/google_api_key.enc')), end='')\n\") && \\\nsource /tmp/pb_venv/bin/activate && \\\npaperbanana generate \\\n  --input /tmp/fig1_intent_v2.txt \\\n  --caption \"Pipeline comparison: standard global correction applies a pooled confusion matrix uniformly, risking bias amplification; EC-HTE estimates per-subgroup matrices via hierarchical Bayes with stratified inversion and uncertainty propagation\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig1_overview_v2.png \\\n  --iterations 1 \\\n  2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520 && \\\nexport GOOGLE_API_KEY=[REDACTED] -c \"\nimport sys; sys.path.insert(0, '/home/ubuntu/agent-ml-research')\nfrom core.crypto import load_secret\nfrom pathlib import Path\nprint(load_secret(Path('config/secrets/ec_hte_llm_annotation/google_api_key.enc')), end='')\n\") && \\\nsource /tmp/pb_venv/bin/activate && \\\npaperbanana generate \\\n  --input /tmp/fig1_intent_v2.txt \\\n  --caption \"Pipeline comparison: standard global correction applies a pooled confusion matrix uniformly, risking bias amplification; EC-HTE estimates per-subgroup matrices via hierarchical Bayes with stratified inversion and uncertainty propagation\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig1_overview_v2.png \\\n  --iterations 1 \\\n  2>&1",
   "description": "Run PaperBanana v2 with 1 iteration to avoid critic crash",
   "timeout": "300000"
 }
@@ -9533,7 +9533,7 @@ called Bash
   "session": "feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520 && \\\nexport GOOGLE_API_KEY=$(.venv/bin/python3 -c \"\nimport sys; sys.path.insert(0, '/home/ubuntu/agent-ml-research')\nfrom core.crypto import load_secret\nfrom pathlib import Path\nprint(load_secret(Path('config/secrets/ec_hte_llm_annotation/google_api_key.enc')), end='')\n\") && \\\nsource /tmp/pb_venv/bin/activate && \\\npaperbanana generate \\\n  --input /tmp/fig1_intent_v2.txt \\\n  --caption \"Pipeline comparison: standard global correction applies a pooled confusion matrix uniformly, risking bias amplification; EC-HTE estimates per-subgroup matrices via hierarchical Bayes with stratified inversion and uncertainty propagation\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig1_overview_v2.png \\\n  --iterations 1 \\\n  2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520 && \\\nexport GOOGLE_API_KEY=[REDACTED] -c \"\nimport sys; sys.path.insert(0, '/home/ubuntu/agent-ml-research')\nfrom core.crypto import load_secret\nfrom pathlib import Path\nprint(load_secret(Path('config/secrets/ec_hte_llm_annotation/google_api_key.enc')), end='')\n\") && \\\nsource /tmp/pb_venv/bin/activate && \\\npaperbanana generate \\\n  --input /tmp/fig1_intent_v2.txt \\\n  --caption \"Pipeline comparison: standard global correction applies a pooled confusion matrix uniformly, risking bias amplification; EC-HTE estimates per-subgroup matrices via hierarchical Bayes with stratified inversion and uncertainty propagation\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig1_overview_v2.png \\\n  --iterations 1 \\\n  2>&1",
     "description": "Run PaperBanana v2 with 1 iteration to avoid critic crash",
     "timeout": "300000"
   }
@@ -9724,7 +9724,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520 && \\\nexport GOOGLE_API_KEY=$(.venv/bin/python3 -c \"\nimport sys; sys.path.insert(0, '/home/ubuntu/agent-ml-research')\nfrom core.crypto import load_secret\nfrom pathlib import Path\nprint(load_secret(Path('config/secrets/ec_hte_llm_annotation/google_api_key.enc')), end='')\n\") && \\\nsource /tmp/pb_venv/bin/activate && \\\npaperbanana generate \\\n  --input /tmp/fig1_intent_v3.txt \\\n  --caption \"Pipeline comparison: standard global correction applies a pooled confusion matrix uniformly across subgroups, risking bias amplification; EC-HTE estimates per-subgroup confusion matrices via hierarchical Bayes, applies stratified inversion with kappa-guard, and propagates uncertainty into corrected CATE estimates with confidence intervals\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig1_overview_v3.png \\\n  --iterations 1 \\\n  2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520 && \\\nexport GOOGLE_API_KEY=[REDACTED] -c \"\nimport sys; sys.path.insert(0, '/home/ubuntu/agent-ml-research')\nfrom core.crypto import load_secret\nfrom pathlib import Path\nprint(load_secret(Path('config/secrets/ec_hte_llm_annotation/google_api_key.enc')), end='')\n\") && \\\nsource /tmp/pb_venv/bin/activate && \\\npaperbanana generate \\\n  --input /tmp/fig1_intent_v3.txt \\\n  --caption \"Pipeline comparison: standard global correction applies a pooled confusion matrix uniformly across subgroups, risking bias amplification; EC-HTE estimates per-subgroup confusion matrices via hierarchical Bayes, applies stratified inversion with kappa-guard, and propagates uncertainty into corrected CATE estimates with confidence intervals\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig1_overview_v3.png \\\n  --iterations 1 \\\n  2>&1",
   "description": "Run PaperBanana v3 with refined intent",
   "timeout": "300000"
 }
@@ -9740,7 +9740,7 @@ called Bash
   "session": "feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520 && \\\nexport GOOGLE_API_KEY=$(.venv/bin/python3 -c \"\nimport sys; sys.path.insert(0, '/home/ubuntu/agent-ml-research')\nfrom core.crypto import load_secret\nfrom pathlib import Path\nprint(load_secret(Path('config/secrets/ec_hte_llm_annotation/google_api_key.enc')), end='')\n\") && \\\nsource /tmp/pb_venv/bin/activate && \\\npaperbanana generate \\\n  --input /tmp/fig1_intent_v3.txt \\\n  --caption \"Pipeline comparison: standard global correction applies a pooled confusion matrix uniformly across subgroups, risking bias amplification; EC-HTE estimates per-subgroup confusion matrices via hierarchical Bayes, applies stratified inversion with kappa-guard, and propagates uncertainty into corrected CATE estimates with confidence intervals\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig1_overview_v3.png \\\n  --iterations 1 \\\n  2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520 && \\\nexport GOOGLE_API_KEY=[REDACTED] -c \"\nimport sys; sys.path.insert(0, '/home/ubuntu/agent-ml-research')\nfrom core.crypto import load_secret\nfrom pathlib import Path\nprint(load_secret(Path('config/secrets/ec_hte_llm_annotation/google_api_key.enc')), end='')\n\") && \\\nsource /tmp/pb_venv/bin/activate && \\\npaperbanana generate \\\n  --input /tmp/fig1_intent_v3.txt \\\n  --caption \"Pipeline comparison: standard global correction applies a pooled confusion matrix uniformly across subgroups, risking bias amplification; EC-HTE estimates per-subgroup confusion matrices via hierarchical Bayes, applies stratified inversion with kappa-guard, and propagates uncertainty into corrected CATE estimates with confidence intervals\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig1_overview_v3.png \\\n  --iterations 1 \\\n  2>&1",
     "description": "Run PaperBanana v3 with refined intent",
     "timeout": "300000"
   }

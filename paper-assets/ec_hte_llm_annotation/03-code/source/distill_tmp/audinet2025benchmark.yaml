@@ -1,0 +1,99 @@
+paper_key: "audinet2025benchmark"
+title: "Benchmarking Debiasing Methods for LLM-based Parameter Estimates"
+venue: "EMNLP 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Reference Model (full expert annotation, θ*)"
+    - "Classical Estimator (limited expert only, θ†)"
+    - "Imputation Estimator (LLM only, θ̃)"
+    - "Prediction-Powered Inference (PPI)"
+    - "Design-based Supervised Learning (DSL)"
+  metrics:
+    - {name: "Standardized RMSE (sRMSE)", direction: "lower_better"}
+    - {name: "Standardized Bias", direction: "lower_better"}
+  datasets:
+    - {name: "Multi-domain Sentiment (Amazon reviews)", size: "11,914"}
+    - {name: "Misinfo-general (British newspapers)", size: "10,000"}
+    - {name: "Bias in Biographies (online biographies)", size: "10,000"}
+    - {name: "Germeval18 (German tweets)", size: "5,676"}
+  ablation_dimensions:
+    - "expert annotation count (n)"
+    - "total sample size (N)"
+    - "LLM/model type (BERT+LR, DeepSeek v3, Phi-4, Claude 3.7 Sonnet)"
+    - "collinearity in feature set"
+  training_recipe:
+    optimizer: "N/A (statistical estimation, not neural training)"
+    lr: "N/A"
+    hardware: "N/A (LLM inference via API for Claude/DeepSeek; local for BERT/Phi-4)"
+  method_family: "Benchmark comparison of semi-parametric debiasing estimators for LLM annotations"
+
+positioning:
+  core_claim: "DSL 和 PPI 两种去偏方法在有限样本中的首次系统性实证对比——DSL 平均表现更优但稳定性更差，且对特征共线性敏感；实践者应同时报告两种方法的结果"
+  key_results: "DSL 在大多数数据集上 sRMSE 比 PPI 低 15-30%；但在 Misinfo-general 数据集上 DSL 表现劣于 PPI 和 classical estimator；最少 200 个 expert 标注即可实现有效去偏（sRMSE < 0.2）"
+  limitations:
+    - "仅对比 DSL 和 PPI，未涵盖新兴方法如 predict-then-debias"
+    - "限于二分类任务"
+    - "仅覆盖英语和德语短文本"
+    - "假设 expert 标注为 ground truth，未考虑 expert 噪声"
+    - "下游评估仅限于 logistic regression"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "以 LLM 正在变革计算社会科学各学科为背景开篇，强调 LLM 标注的广泛应用（政治意识形态、写作风格、礼貌度、流行病预测等），然后指出标注不一致性会导致误导性结论"
+  tension: "去偏方法（PPI 和 DSL）理论上能保证无偏估计，但实践者缺乏有限样本下的性能指导——理论保证是渐近的，实际应用中样本有限，不存在闭式表达式来连接方法效力与标注预算分配"
+  key_insight: "在 intro 第四段通过两个研究问题揭示：(RQ1) 何时去偏后的大规模 LLM 标注优于小规模纯 expert 标注？(RQ2) 两种去偏方法在不同数据集和标注器上的性能差异如何？关键发现是 DSL 平均更优但不稳定，与特征共线性相关"
+  argument_chain: "LLM 标注广泛应用 → 标注偏差导致下游推断误导 → 去偏方法理论有效但缺乏有限样本指导 → 提出两个研究问题 → 系统性 benchmark 实验 → 发现 DSL 平均更优但不稳定 → 建议同时报告两种方法"
+  contribution_framing: "两个贡献，措辞为 'We make two contributions'：(1) 研究各方法性能如何随 expert 标注数量扩展 (2) 跨任务对比 DSL 和 PPI。强调实践导向——为应用研究者提供指导"
+  intro_structure: "4 段：Para1 LLM 变革 CSS 的大背景 → Para2 核心问题（标注偏差导致误导） → Para3 去偏方法存在但缺乏实践指导 → Para4 研究问题和主要发现预览"
+  notable_technique: "将论文定位为'bridge between theory and practice'——不提出新方法，而是为已有方法提供缺失的实证指导。这种 benchmark 论文的叙事策略是：承认理论的价值，但指出理论到实践的 gap，然后用系统实验填补。成本-收益分析（将 expert 标注成本换算为 LLM 调用等价数）是很有实践价值的分析角度"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "method_overview"
+    description: "2×2 网格图，展示四种估计策略：(左上) reference model 用全部 N 个 expert 标注（橙色点）；(右上) classical model 仅用 n 个 expert 标注；(左下) imputation model 用 N 个 LLM 标注（蓝色点）；(右下) debiased models 结合两种标注来源"
+    narrative_role: "在方法背景部分提供直观的四种方案对比视图，帮助读者快速理解去偏方法的核心思想——结合小量 expert 和大量 LLM 标注"
+    design_elements: ["颜色编码（橙色=expert, 蓝色=LLM）", "2×2 对比布局", "样本量标注 (N vs n)", "简洁示意图风格"]
+    visual_style: "2×2 网格，每格用彩色圆点表示样本，橙蓝双色区分标注来源；白底简洁风格，无多余装饰；标题标注每种方案名称"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Experiment 1：DSL、PPI、classical estimator 的 sRMSE 随 expert 标注比例变化（跨数据集和标注方法平均）"
+      how_gain_highlighted: "DSL 曲线在大部分区间低于 PPI 和 classical，直观展示优势；但在高标注比例时出现交叉，暴露不稳定性"
+      design_note: "使用 2σ 置信区间带展示不确定性；曲线交叉点是论文核心发现之一，图表设计自然引导读者发现这一现象"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Experiment 2：三种方法的 sRMSE 随总样本量 N 变化（固定 expert 标注数）"
+      how_gain_highlighted: "classical estimator 保持水平线（不使用 LLM 标注），DSL 和 PPI 随 N 增加而下降，展示增加 LLM 标注的边际价值"
+      design_note: "水平参考线（classical）对比下降曲线（DSL/PPI）的视觉对比非常清晰；分面展示三个固定 n 水平（200/1000/5000）"
+  ablation_figures:
+    - figure_id: "Figure 10 (appendix)"
+      viz_type: "line_plot"
+      dimensions_varied: ["collinearity removal threshold (r²>0.9)", "dataset"]
+      design_note: "展示去除共线性特征后 DSL 性能改善，支持'DSL 对共线性敏感'的核心发现"
+  figure_narrative_role: "Figure 1 (背景: 四种估计策略概览) → Figure 2 (方法: 两个实验设计示意) → Figure 3 (结果: Exp1 主结果) → Figure 4 (结果: Exp2 主结果) → Appendix Figures (深入: 分数据集、去共线性等细节)"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "methods (PPI vs DSL)"
+    col_axis: "comparison dimensions (bias correction mechanism, guarantees, variance components)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dimension"
+    highlight_strategy: "无数值加粗，而是以文本描述形式对比两种方法的理论性质"
+    statistical_reporting: "定性对比而非定量数值"
+    num_baselines: 2
+    design_note: "这是一个方法论对比表而非实验结果表——用结构化文本描述两种方法在偏差修正机制、理论保证、方差成分上的差异，帮助读者理解为何 DSL 对共线性敏感"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["dataset", "LLM/model type"]
+      variation_style: "full_numbers"
+      design_note: "展示各数据集-模型组合的特征间 Pearson r² 相关性，定量支持共线性分析"
+  supplementary_tables:
+    in_appendix: true
+    content: "系统提示词（Table 1）、分数据集详细结果图（Figures 5-15）、标准化偏差图、去共线性后结果"
+    reason: "主文仅展示跨数据集平均结果以保持简洁，附录提供分数据集和分模型的完整分解，供需要细节的读者参考"

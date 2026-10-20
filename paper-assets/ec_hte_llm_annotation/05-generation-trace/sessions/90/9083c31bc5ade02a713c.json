@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-005-diagnostic_20260520T232612_result.json",
     "occurrence": 1,
-    "bytes": 1255,
-    "sha256": "f9deb8d18055b212d1cdaa59b91a406932c390313a4b696ca17609ba96ae6a55"
+    "bytes": 1254,
+    "sha256": "89d6c66b0f51580703ac0ece9fd7ccd0a0188295c3f3f20a1138cd34267cc370"
   },
   "statistics": {
     "messages": 1,

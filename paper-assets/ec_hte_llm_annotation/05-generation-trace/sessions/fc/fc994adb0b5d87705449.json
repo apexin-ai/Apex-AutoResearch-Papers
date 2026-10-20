@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_qwen-hetero-tau_20260522T000224_result.json",
     "occurrence": 1,
-    "bytes": 1189,
-    "sha256": "dedffa036c1fe6a4bec5bd6776d36c3eb89967d2d1e9eea4bb5f7e4525242ef5"
+    "bytes": 1188,
+    "sha256": "3df7ce1c8716f38cf6c64d7f18309a8a478ef4b904a3890b8abbdaaefbc4b518"
   },
   "statistics": {
     "messages": 1,

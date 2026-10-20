@@ -725,7 +725,7 @@ _source line 12_
 
 ```json
 {
-  "command": "source /home/ubuntu/.paperbanana_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig_combined_overview_intent_v2.txt \\\n  --caption \"Overview. (a) LLM classifiers exhibit heterogeneous error rates across subgroups. (b) Global correction introduces bias that can reverse CATE sign. (c) Standard vs EC-HTE pipeline comparison. (d) Key results across 8 LLMs and 4 NLP tasks.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig_combined_overview.png \\\n  --iterations 5 2>&1",
+  "command": "source /home/ubuntu/.paperbanana_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig_combined_overview_intent_v2.txt \\\n  --caption \"Overview. (a) LLM classifiers exhibit heterogeneous error rates across subgroups. (b) Global correction introduces bias that can reverse CATE sign. (c) Standard vs EC-HTE pipeline comparison. (d) Key results across 8 LLMs and 4 NLP tasks.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig_combined_overview.png \\\n  --iterations 5 2>&1",
   "description": "Run PaperBanana to generate figure",
   "timeout": 600000
 }
@@ -1327,7 +1327,7 @@ _source line 24_
 
 ```json
 {
-  "command": "source /home/ubuntu/.paperbanana_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig_combined_overview_intent_v2.txt \\\n  --caption \"Overview. (a) LLM classifiers exhibit heterogeneous error rates across subgroups. (b) Global correction introduces bias that can reverse CATE sign. (c) Standard vs EC-HTE pipeline comparison. (d) Key results across 8 LLMs and 4 NLP tasks.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig_combined_overview_attempt2.png \\\n  --iterations 5 2>&1",
+  "command": "source /home/ubuntu/.paperbanana_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig_combined_overview_intent_v2.txt \\\n  --caption \"Overview. (a) LLM classifiers exhibit heterogeneous error rates across subgroups. (b) Global correction introduces bias that can reverse CATE sign. (c) Standard vs EC-HTE pipeline comparison. (d) Key results across 8 LLMs and 4 NLP tasks.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig_combined_overview_attempt2.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana attempt 2",
   "timeout": 600000
 }

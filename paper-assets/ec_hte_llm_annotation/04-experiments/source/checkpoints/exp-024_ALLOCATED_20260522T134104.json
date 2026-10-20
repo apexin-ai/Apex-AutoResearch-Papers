@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp-024",
+  "project": "ec_hte_llm_annotation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T12:25:11.234Z",
+    "updated_at": "2026-05-22T13:41:04.398Z",
+    "hypothesis": "Theorem 1 bias decomposition identity (asymmetric version: bias(z,s) = Δτ·[M_global⁻¹ M_s - I]_{z,1}) achieves R²>0.95 when evaluated with real per-subgroup FPR/FNR from 7 LLMs (GPT-3.5-turbo, GPT-4o, GPT-4o-mini, GPT-4-turbo, GPT-4.1, GPT-5.4 on Civil Comments; Llama-3.1-8B, Qwen-2.5-7B, Mistral-7B, Gemma-2-9B on TweetEval), demonstrating the bias mechanism holds under empirically-observed asymmetric confusion matrices",
+    "parent": "exp-002,exp-014",
+    "conclusion": "success",
+    "metrics": {
+      "R2_overall": 0.975,
+      "data_sources": [
+        "exp023_confusion_matrices.json",
+        "c1_multi_llm/*_cm_profile.md"
+      ],
+      "n_llm_dataset_combos": 11,
+      "output_files": [
+        "results/exp_realcm_bias_identity.csv",
+        "results/exp_realcm_summary.csv"
+      ]
+    }
+  },
+  "timestamp": "2026-05-22T13:41:04.456085+00:00",
+  "trigger": "update_registry"
+}

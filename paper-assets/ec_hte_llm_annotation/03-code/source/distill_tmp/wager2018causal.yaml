@@ -1,0 +1,26 @@
+paper_key: "wager2018causal"
+title: "Estimation and Inference of Heterogeneous Treatment Effects using Random Forests"
+venue: "JASA 2018"
+full_text_available: false
+
+research:
+  baselines: ["nearest_neighbor_matching", "k-NN_methods"]
+  metrics:
+    - {name: "MSE", direction: "lower_better"}
+    - {name: "coverage_of_CIs", direction: "higher_better"}
+  datasets:
+    - {name: "simulated_data", size: "N/A"}
+    - {name: "observational_studies", size: "N/A"}
+  ablation_dimensions: ["number_of_irrelevant_covariates", "sample_size"]
+  training_recipe: {}
+  method_family: "causal_forest"
+
+positioning:
+  core_claim: "Causal forests extend random forests to estimate heterogeneous treatment effects with pointwise consistency, asymptotically Gaussian sampling distribution, and valid confidence intervals -- the first provably valid statistical inference method based on random forests."
+  key_results: "Pointwise consistent; asymptotically normal; substantially outperforms k-NN matching especially with irrelevant covariates"
+  limitations: []
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

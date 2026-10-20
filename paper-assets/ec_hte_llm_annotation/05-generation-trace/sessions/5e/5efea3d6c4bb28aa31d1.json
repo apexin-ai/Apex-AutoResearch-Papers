@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_appendix-forward-refs-and-tables_20260524T051427_result.json",
     "occurrence": 1,
-    "bytes": 1966,
-    "sha256": "5bed9c03d9f044dc225e3043811f210dbd7ba84047452efefe86b9d17dc378d4"
+    "bytes": 1965,
+    "sha256": "833260a9b67017a9482eb13d1d626032012ebc112fb04bd5d937b38a54cfb010"
   },
   "statistics": {
     "messages": 1,

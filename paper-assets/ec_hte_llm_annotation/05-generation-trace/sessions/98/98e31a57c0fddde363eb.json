@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-a-civilcomments_20260523T190133_result.json",
     "occurrence": 1,
-    "bytes": 1191,
-    "sha256": "212ce99c2baa3575abe723ef3d15c15a01323a63f627278f16dd4a0e33eb97b8"
+    "bytes": 1190,
+    "sha256": "6f4398e1b601622f8f67d28d2c3459239b367dcf44578c1aaadd2c0b2c480976"
   },
   "statistics": {
     "messages": 1,

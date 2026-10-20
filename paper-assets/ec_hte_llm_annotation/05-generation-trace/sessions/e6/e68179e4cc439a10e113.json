@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-008-local-inference-scripts_20260521T115154_result.json",
     "occurrence": 1,
-    "bytes": 916,
-    "sha256": "008e40fff2851607f21e8f099a228232ee45df3b3c7763c9da530139dcd8c324"
+    "bytes": 915,
+    "sha256": "4155c73fa4e53b5adb5e7823443889ad06d4e8b371774ab74e74ccaf27a6c872"
   },
   "statistics": {
     "messages": 1,

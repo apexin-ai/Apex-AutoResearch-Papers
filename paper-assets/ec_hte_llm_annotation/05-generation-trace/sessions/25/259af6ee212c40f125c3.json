@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_sf7-timing-benchmark_20260523T182038_result.json",
     "occurrence": 1,
-    "bytes": 905,
-    "sha256": "5ebe0abcc025bb75f611206cadf94a478348b38a8f4ff397f88d725b21692e5b"
+    "bytes": 904,
+    "sha256": "aa55a12be7500a7827f673815e291c942a71dd91edf6d7915bf0411c3e963670"
   },
   "statistics": {
     "messages": 1,

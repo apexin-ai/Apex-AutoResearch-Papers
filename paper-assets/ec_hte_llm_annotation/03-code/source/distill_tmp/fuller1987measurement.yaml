@@ -1,0 +1,24 @@
+paper_key: "fuller1987measurement"
+title: "Measurement Error Models"
+venue: "Wiley 1987"
+full_text_available: false
+
+research:
+  baselines: ["OLS_naive_regression"]
+  metrics:
+    - {name: "bias_correction", direction: "qualitative"}
+    - {name: "estimation_consistency", direction: "qualitative"}
+  datasets: []
+  ablation_dimensions: []
+  training_recipe: {}
+  method_family: "measurement_error"
+
+positioning:
+  core_claim: "Foundational monograph establishing the statistical theory of measurement error models, covering errors-in-variables regression, latent variable models, factor models, MLE, and instrumental variable approaches for consistent estimation under measurement error."
+  key_results: "Comprehensive theory: attenuation bias characterization, MLE and IV corrections for linear and nonlinear models"
+  limitations: []
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

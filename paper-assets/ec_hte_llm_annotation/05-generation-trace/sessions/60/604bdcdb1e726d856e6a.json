@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_mistral-hetero-tau_20260522T001452_result.json",
     "occurrence": 1,
-    "bytes": 840,
-    "sha256": "4cdcec11f15b212537d3d5c6472770daf4bb669778897dcdc0536cf763c69796"
+    "bytes": 839,
+    "sha256": "9b7e1c6b5f34208b46fc778190aeea7df86029ad71792e14e900f7e3531337ef"
   },
   "statistics": {
     "messages": 1,

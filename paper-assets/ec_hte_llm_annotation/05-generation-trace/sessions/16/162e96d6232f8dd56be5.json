@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-w8-a5-violation_20260522T101532_result.json",
     "occurrence": 1,
-    "bytes": 986,
-    "sha256": "53f6449f4f33410739107e907280f5f561a78da7dc88568ddb4d5a6448fe4577"
+    "bytes": 985,
+    "sha256": "9aa058bd95af5a794b1f311b58c29f8c89cdb14bae0af5ff331a223d942ffd81"
   },
   "statistics": {
     "messages": 1,

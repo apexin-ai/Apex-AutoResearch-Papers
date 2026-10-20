@@ -1,0 +1,117 @@
+% =============================================================================
+% C1 Multi-LLM Validation — Integration Template
+% Insert into experiments.tex (after Section 5.6 PPCI) and appendix.tex
+% Replace [TBD] placeholders with GPU experiment results
+% =============================================================================
+
+% ─────────────────────────────────────────────────────────────────────────────
+% PART 1: Main text subsection (experiments.tex, after \subsection{PPCI...})
+% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{Multi-LLM Validation}
+\label{sec:multi_llm}
+
+To validate EC-HTE beyond a single annotator model, we apply four open-source LLMs---Llama-3.1-8B-Instruct, Qwen2.5-7B-Instruct, Mistral-7B-Instruct-v0.3, and Gemma-2-9B-IT---to the TweetEval sentiment task with a balanced subgroup definition ($P(Z{=}1) \approx \text{[TBD]}$).
+Table~\ref{tab:multi_llm} summarizes the per-model misclassification profiles and correction performance.
+
+% [TBD: 1-2 sentences on key finding — e.g., EC-HTE improves over global in X/4 models where kappa(M_hat) < threshold]
+
+% [TBD: 1 sentence on which models satisfy the Prop 2 diagnostic condition]
+
+% [TBD: 1 sentence connecting to applicability conditions from Section~\ref{sec:budget}]
+
+\begin{table}[t]
+\centering
+\caption{Multi-LLM validation on TweetEval sentiment ($N{=}500$, balanced $Z$). $\kappa(\hat{M})$: worst-subgroup confusion matrix condition number. Bold marks lowest RMSE per row. [TBD: complete caption with key takeaway]}
+\label{tab:multi_llm}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Model & $P(Z{=}1)$ & $\kappa(\hat{M})$ & eff.\ $n$ & RMSE\textsubscript{naive} & RMSE\textsubscript{global} & RMSE\textsubscript{EC-HTE} \\
+\midrule
+Llama-3.1-8B & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] \\
+Qwen2.5-7B   & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] \\
+Mistral-7B   & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] \\
+Gemma-2-9B   & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ─────────────────────────────────────────────────────────────────────────────
+% PART 2: Appendix detailed results (appendix.tex, new section)
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section{Multi-LLM Detailed Results}
+\label{app:multi_llm}
+
+Table~\ref{tab:multi_llm_detail} reports per-subgroup misclassification profiles for four open-source LLMs.
+% [TBD: 1 sentence on cross-model consistency of subgroup error structure]
+% [TBD: 1 sentence on which subgroup(s) exhibit the highest/lowest error rates across models]
+
+\begin{table*}[t]
+\centering
+\caption{Per-subgroup misclassification profiles for four open-source LLMs on TweetEval sentiment ($Z{=}0$: negative, $Z{=}1$: neutral+positive). $\pi_s$: symmetric misclassification rate; $\kappa(\hat{M}_s)$: per-subgroup condition number.}
+\label{tab:multi_llm_detail}
+\small
+\begin{tabular}{llcccccc}
+\toprule
+Model & $Z$ & $n$ & Accuracy & FPR & FNR & $\pi_s$ & $\kappa(\hat{M}_s)$ \\
+\midrule
+\multirow{2}{*}{Llama-3.1-8B}
+ & $Z{=}0$ & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] \\
+ & $Z{=}1$ & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] \\
+\midrule
+\multirow{2}{*}{Qwen2.5-7B}
+ & $Z{=}0$ & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] \\
+ & $Z{=}1$ & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] \\
+\midrule
+\multirow{2}{*}{Mistral-7B}
+ & $Z{=}0$ & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] \\
+ & $Z{=}1$ & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] \\
+\midrule
+\multirow{2}{*}{Gemma-2-9B}
+ & $Z{=}0$ & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] \\
+ & $Z{=}1$ & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] & [TBD] \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% --- Optional: per-model correction results (full breakdown) ---
+
+\begin{table*}[t]
+\centering
+\caption{Per-model correction performance on TweetEval ($N{=}500$, balanced $Z$, [TBD] MC seeds). $|\text{Bias}|$ and RMSE averaged over subgroups and $z$-levels. Bold marks lowest $|\text{bias}|$ per model.}
+\label{tab:multi_llm_correction}
+\small
+\begin{tabular}{ll ccc}
+\toprule
+Model & Method & $|\text{Bias}|$ & RMSE & Cov. \\
+\midrule
+\multirow{3}{*}{Llama-3.1-8B}
+ & Naive  & [TBD] & [TBD] & [TBD] \\
+ & Global & [TBD] & [TBD] & [TBD] \\
+ & HB EC-HTE & [TBD] & [TBD] & [TBD] \\
+\midrule
+\multirow{3}{*}{Qwen2.5-7B}
+ & Naive  & [TBD] & [TBD] & [TBD] \\
+ & Global & [TBD] & [TBD] & [TBD] \\
+ & HB EC-HTE & [TBD] & [TBD] & [TBD] \\
+\midrule
+\multirow{3}{*}{Mistral-7B}
+ & Naive  & [TBD] & [TBD] & [TBD] \\
+ & Global & [TBD] & [TBD] & [TBD] \\
+ & HB EC-HTE & [TBD] & [TBD] & [TBD] \\
+\midrule
+\multirow{3}{*}{Gemma-2-9B}
+ & Naive  & [TBD] & [TBD] & [TBD] \\
+ & Global & [TBD] & [TBD] & [TBD] \\
+ & HB EC-HTE & [TBD] & [TBD] & [TBD] \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% --- Optional: Diagnostic condition summary ---
+
+\paragraph{Diagnostic criterion.}
+% [TBD: For each model, report whether the Prop 2 condition is satisfied and for which subgroups]
+% [TBD: Connect to applicability frontier (Figure~\ref{fig:applicability})]

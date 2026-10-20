@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_writing_limitations_20260521T054219_result.json",
     "occurrence": 1,
-    "bytes": 614,
-    "sha256": "7bbff4f1b23b881e1e413dcccf4781becc264545b803a9cc2e81d4ae5f64ab13"
+    "bytes": 613,
+    "sha256": "f548043cf74ceba99345a4f2a8d427e889c7fc0f62d93a7cbf433a6bfa0602a0"
   },
   "statistics": {
     "messages": 1,

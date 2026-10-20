@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-024-realcm-bias-identity_20260522T122608_result.json",
     "occurrence": 1,
-    "bytes": 1210,
-    "sha256": "391b59c969161b1e8e5467ff754fb105f70d26830a24c44b7a80b98fd46b3193"
+    "bytes": 1209,
+    "sha256": "a76a53e4ad70b8e90d44aebe97e0c33afffa312b264cd0a171e19f178b20d84b"
   },
   "statistics": {
     "messages": 1,

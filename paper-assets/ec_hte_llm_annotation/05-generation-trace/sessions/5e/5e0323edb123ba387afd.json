@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-011-causal-forest_20260521T013156_result.json",
     "occurrence": 1,
-    "bytes": 1403,
-    "sha256": "631d72abf409b959a9cc80da9d67a3d88cdea822a0b9c3dfe4886bff1c75286e"
+    "bytes": 1402,
+    "sha256": "f1241795a720220595ca2cb86d4b03b7ebbdbb858f25752100f3db95a6eb8cb6"
   },
   "statistics": {
     "messages": 1,

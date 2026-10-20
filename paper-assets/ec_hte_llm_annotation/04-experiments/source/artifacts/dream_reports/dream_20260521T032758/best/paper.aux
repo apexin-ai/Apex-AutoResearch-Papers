@@ -1,0 +1,145 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{gilardi2023chatgpt}
+\citation{tornberg2024chatgpt}
+\citation{ziems2024can}
+\citation{ashwin2025using}
+\citation{angelopoulos2023prediction}
+\citation{egami2024using}
+\citation{sui2026ppci}
+\citation{mozer2026}
+\citation{bu2023treatment}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{james1961estimation}
+\citation{efron1975data}
+\citation{stan2023}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Problem Formulation}{2}{section.2}\protected@file@percent }
+\newlabel{sec:theory}{{2}{2}{Problem Formulation}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Setup and Notation}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Bias Decomposition Identity}{2}{subsection.2.2}\protected@file@percent }
+\newlabel{thm:bias}{{1}{2}{Bias Identity}{theorem.1}{}}
+\newlabel{eq:bias_identity}{{2}{2}{Bias Identity}{equation.2}{}}
+\newlabel{prop:hurt}{{2}{2}{Debiasing Can Hurt}{theorem.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}EC-HTE Framework}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{EC-HTE Framework}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Hierarchical Bayesian Confusion Matrix Estimation}{2}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:hb}{{3.1}{2}{Hierarchical Bayesian Confusion Matrix Estimation}{subsection.3.1}{}}
+\citation{athey2019generalized}
+\citation{chernozhukov2018double}
+\citation{sui2026ppci}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Bias mechanism of global misclassification correction. When a pooled confusion matrix is applied uniformly, low-error subgroups ($S_1, S_2$) are over-corrected and high-error subgroups ($S_3, S_4$) are under-corrected, producing bias proportional to $\Delta \pi \times \Delta \tau $. Error rates from our GPT-4.1 semi-synthetic benchmark (\S  \ref {sec:semisynthetic}).}}{3}{figure.caption.2}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:mechanism}{{1}{3}{Bias mechanism of global misclassification correction. When a pooled confusion matrix is applied uniformly, low-error subgroups ($S_1, S_2$) are over-corrected and high-error subgroups ($S_3, S_4$) are under-corrected, producing bias proportional to $\Delta \pi \times \Delta \tau $. Error rates from our GPT-4.1 semi-synthetic benchmark (\S \ref {sec:semisynthetic})}{figure.caption.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Subgroup-Stratified CATE Correction}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Causal Forest Integration}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Complementarity with PPCI}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:ppci}{{3.4}{3}{Complementarity with PPCI}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Bias Identity Verification}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:bias_verify}{{4.2}{3}{Bias Identity Verification}{subsection.4.2}{}}
+\citation{barbieri2020tweeteval}
+\citation{egami2024using}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Bias identity verification across 3{,}600 MC runs.}}{4}{table.caption.3}\protected@file@percent }
+\newlabel{tab:bias_identity}{{1}{4}{Bias identity verification across 3{,}600 MC runs}{table.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Bias amplification factor (ratio of globally-corrected bias to naive bias) as a function of misclassification heterogeneity $\Delta \pi $. Above the dotted line (factor${>}1$), global correction \emph  {increases} bias. More subgroups ($K{=}4$) amplify the effect. Vertical dashed line: empirical threshold $\Delta \pi \approx 0.12$.}}{4}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:heatmap}{{2}{4}{Bias amplification factor (ratio of globally-corrected bias to naive bias) as a function of misclassification heterogeneity $\Delta \pi $. Above the dotted line (factor${>}1$), global correction \emph {increases} bias. More subgroups ($K{=}4$) amplify the effect. Vertical dashed line: empirical threshold $\Delta \pi \approx 0.12$}{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Semi-Synthetic CSS Benchmark}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:semisynthetic}{{4.3}{4}{Semi-Synthetic CSS Benchmark}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Semi-synthetic benchmark: GPT-4.1 on TweetEval sentiment. $n_{\mathrm  {expert}}{=}500$, $K{=}4$, 100 MC runs.}}{4}{table.caption.5}\protected@file@percent }
+\newlabel{tab:semisynthetic}{{2}{4}{Semi-synthetic benchmark: GPT-4.1 on TweetEval sentiment. $n_{\mathrm {expert}}{=}500$, $K{=}4$, 100 MC runs}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Comparison with Existing Methods}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:baselines}{{4.4}{4}{Comparison with Existing Methods}{subsection.4.4}{}}
+\citation{athey2019generalized}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Bias ($\lvert \cdot  \rvert $) by method and DGP. $K{=}4$, extreme regime, $n_{\mathrm  {expert}}{=}250$, 100 MC runs.}}{5}{table.caption.6}\protected@file@percent }
+\newlabel{tab:dgp}{{3}{5}{Bias ($\abs {\cdot }$) by method and DGP. $K{=}4$, extreme regime, $n_{\mathrm {expert}}{=}250$, 100 MC runs}{table.caption.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces CausalForestDML: mean $\lvert \text  {bias} \rvert $ and RMSE across 8 configurations, 100 MC runs.}}{5}{table.caption.7}\protected@file@percent }
+\newlabel{tab:forest}{{4}{5}{CausalForestDML: mean $\abs {\text {bias}}$ and RMSE across 8 configurations, 100 MC runs}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Diagnostic Criterion and Budget Analysis}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:diagnostic}{{4.5}{5}{Diagnostic Criterion and Budget Analysis}{subsection.4.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces ROC curves for the $\Delta \pi \times \Delta \tau $ diagnostic criterion. Subgroup-level: AUC\,=\,0.88 (predicting whether global correction hurts a specific subgroup). Setting-level: AUC\,=\,0.75 (predicting whether \emph  {any} subgroup is hurt). Operating point: threshold $\theta ^*{=}0.015$, sensitivity\,=\,0.82, specificity\,=\,0.78.}}{5}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:roc}{{3}{5}{ROC curves for the $\Delta \pi \times \Delta \tau $ diagnostic criterion. Subgroup-level: AUC\,=\,0.88 (predicting whether global correction hurts a specific subgroup). Setting-level: AUC\,=\,0.75 (predicting whether \emph {any} subgroup is hurt). Operating point: threshold $\theta ^*{=}0.015$, sensitivity\,=\,0.82, specificity\,=\,0.78}{figure.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Diagnostic criterion evaluation. Leave-one-setting-out CV.}}{5}{table.caption.9}\protected@file@percent }
+\newlabel{tab:diagnostic}{{5}{5}{Diagnostic criterion evaluation. Leave-one-setting-out CV}{table.caption.9}{}}
+\citation{kennedy2020constructing}
+\citation{fuller1987measurement}
+\citation{carroll2006measurement}
+\citation{gustafson2003measurement}
+\citation{hu2008instrumental}
+\citation{imai2010causal}
+\citation{angelopoulos2023prediction}
+\citation{egami2024using}
+\citation{sui2026ppci}
+\citation{mozer2026}
+\citation{dawid1979maximum}
+\citation{passonneau2014benefits}
+\citation{hovy2013learning}
+\citation{wager2018estimation}
+\citation{athey2019generalized}
+\citation{kennedy2023towards}
+\citation{nie2021quasi}
+\citation{kunzel2019metalearners}
+\citation{chernozhukov2018double}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces RMSE ratio (EC-HTE / global correction) vs.\ expert label budget. Below the dotted line, EC-HTE has lower RMSE. Crossover: $K{=}2$/extreme at $n{=}250$; $K{=}4$/extreme at $n{=}1{,}000$. In moderate regimes, global correction remains competitive---use the diagnostic criterion to decide.}}{6}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:budget}{{4}{6}{RMSE ratio (EC-HTE / global correction) vs.\ expert label budget. Below the dotted line, EC-HTE has lower RMSE. Crossover: $K{=}2$/extreme at $n{=}250$; $K{=}4$/extreme at $n{=}1{,}000$. In moderate regimes, global correction remains competitive---use the diagnostic criterion to decide}{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Real-Data Case Study}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:realdata}{{4.6}{6}{Real-Data Case Study}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Related Work}{6}{section.5}\protected@file@percent }
+\citation{gilardi2023chatgpt}
+\citation{tornberg2024chatgpt}
+\citation{ziems2024can}
+\citation{ashwin2025using}
+\citation{bu2023treatment}
+\bibcite{angelopoulos2023prediction}{Angelopoulos et al.(2023)}
+\bibcite{ashwin2025using}{Ashwin et al.(2025)}
+\bibcite{athey2016recursive}{Athey and Imbens(2016)}
+\bibcite{athey2019generalized}{Athey et al.(2019)}
+\bibcite{barbieri2020tweeteval}{Barbieri et al.(2020)}
+\bibcite{bu2023treatment}{Bu et al.(2023)}
+\bibcite{carroll2006measurement}{Carroll et al.(2006)}
+\bibcite{chernozhukov2018double}{Chernozhukov et al.(2018)}
+\bibcite{dawid1979maximum}{Dawid and Skene(1979)}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\bibcite{efron1975data}{Efron and Morris(1975)}
+\bibcite{egami2024using}{Egami et al.(2024)}
+\bibcite{fuller1987measurement}{Fuller(1987)}
+\bibcite{gelman2013bayesian}{Gelman et al.(2013)}
+\bibcite{gilardi2023chatgpt}{Gilardi et al.(2023)}
+\bibcite{gustafson2003measurement}{Gustafson(2003)}
+\bibcite{holland1986statistics}{Holland(1986)}
+\bibcite{hovy2013learning}{Hovy et al.(2013)}
+\bibcite{hu2008instrumental}{Hu and Schennach(2008)}
+\bibcite{imai2010causal}{Imai and Yamamoto(2010)}
+\bibcite{imbens2015causal}{Imbens and Rubin(2015)}
+\bibcite{james1961estimation}{James and Stein(1961)}
+\bibcite{kennedy2023towards}{Kennedy(2023)}
+\bibcite{kennedy2020constructing}{Kennedy et al.(2020)}
+\bibcite{kunzel2019metalearners}{K\"{u}nzel et al.(2019)}
+\bibcite{mozer2026}{Mozer(2026)}
+\bibcite{nie2021quasi}{Nie and Wager(2021)}
+\bibcite{passonneau2014benefits}{Passonneau and Carpenter(2014)}
+\bibcite{rubin1974estimating}{Rubin(1974)}
+\bibcite{stan2023}{{Stan Development Team}(2023)}
+\bibcite{sui2026ppci}{Sui et al.(2026)}
+\bibcite{tornberg2024chatgpt}{Tornberg(2024)}
+\bibcite{wager2018estimation}{Wager and Athey(2018)}
+\bibcite{ziems2024can}{Ziems et al.(2024)}
+\bibcite{battocchi2019econml}{Battocchi et al.(2019)}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Multiple LLM Annotator Comparison}{10}{appendix.A}\protected@file@percent }
+\newlabel{app:multi_llm}{{A}{10}{Multiple LLM Annotator Comparison}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Per-LLM annotation quality and EC-HTE benefit on TweetEval sentiment.}}{10}{table.caption.14}\protected@file@percent }
+\newlabel{tab:multi_llm}{{6}{10}{Per-LLM annotation quality and EC-HTE benefit on TweetEval sentiment}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Adaptive Expert Annotation Allocation}{10}{appendix.B}\protected@file@percent }
+\newlabel{app:allocation}{{B}{10}{Adaptive Expert Annotation Allocation}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces RMSE improvement of CATE-weighted allocation vs.\ baselines, $K{=}4$.}}{10}{table.caption.15}\protected@file@percent }
+\newlabel{tab:allocation}{{7}{10}{RMSE improvement of CATE-weighted allocation vs.\ baselines, $K{=}4$}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Robustness to Misspecified Subgroup Structure}{10}{appendix.C}\protected@file@percent }
+\newlabel{app:robustness}{{C}{10}{Robustness to Misspecified Subgroup Structure}{appendix.C}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Robustness analysis: EC-HTE performance under subgroup misspecification.}}{10}{table.caption.16}\protected@file@percent }
+\newlabel{tab:robustness}{{8}{10}{Robustness analysis: EC-HTE performance under subgroup misspecification}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Full MCMC Diagnostics}{11}{appendix.D}\protected@file@percent }
+\newlabel{app:mcmc}{{D}{11}{Full MCMC Diagnostics}{appendix.D}{}}
+\gdef \@abspage@last{11}

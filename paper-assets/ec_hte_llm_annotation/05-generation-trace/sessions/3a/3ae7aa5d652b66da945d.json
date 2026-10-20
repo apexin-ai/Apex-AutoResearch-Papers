@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_viz_applicability-frontier_20260521T131949_result.json",
     "occurrence": 1,
-    "bytes": 769,
-    "sha256": "c8f951f6f4dd0a034b709bbafbc93fd84d9af78b4fff5c0eb65c4bafe13d495d"
+    "bytes": 768,
+    "sha256": "f4d30bd98bbdfc0db431da3e1516e30d2fedc8234f9c95162b0c5a51d6a05ecd"
   },
   "statistics": {
     "messages": 1,

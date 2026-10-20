@@ -1,0 +1,123 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{tornberg2024chatgpt,gilardi2023chatgpt,ziems2024can}
+\citation{ashwin2025using}
+\citation{angelopoulos2023prediction}
+\citation{egami2024using}
+\citation{mozer2026adjusting}
+\citation{fuller1987measurement}
+\citation{carroll2006measurement}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{1}{section*.2}\protected@file@percent }
+\citation{sui2026prediction}
+\citation{fuller1987measurement,carroll2006measurement,gustafson2003measurement}
+\citation{imai2010causal}
+\citation{hu2008instrumental}
+\citation{angelopoulos2023prediction}
+\citation{egami2024using}
+\citation{sui2026prediction}
+\citation{mozer2026adjusting}
+\citation{bu2023treatment}
+\citation{dawid1979maximum}
+\citation{passonneau2014benefits}
+\citation{hovy2013learning}
+\citation{wager2018estimation,athey2019generalized}
+\citation{kennedy2023towards}
+\citation{chernozhukov2018double}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Measurement error in causal inference.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-annotator corrections.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Bayesian annotation models.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Heterogeneous treatment effects.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Bias Decomposition Identity}{2}{subsection.3.2}\protected@file@percent }
+\newlabel{eq:bias_identity}{{1}{2}{Bias Decomposition}{equation.1}{}}
+\citation{sui2026prediction}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}EC-HTE: Hierarchical Bayesian Correction}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{HB Dirichlet-Multinomial model.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Corrected CATE.}{3}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Bias identity verification. Tightness ratio$=$empirical bias / predicted bias; ratio$=$1.0 indicates perfect agreement.}}{3}{table.caption.9}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:identity}{{1}{3}{Bias identity verification. Tightness ratio$=$empirical bias / predicted bias; ratio$=$1.0 indicates perfect agreement}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Diagnostic Criterion}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}PPCI Composition}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Bias Identity Verification}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:identity}{{4.1}{3}{Bias Identity Verification}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces ``Debiasing hurts'' analysis. DIM $=$ bias amplification via global correction; $\Delta \pi $ threshold $=$ minimum heterogeneity for global correction to backfire.}}{4}{table.caption.10}\protected@file@percent }
+\newlabel{tab:hurts}{{2}{4}{``Debiasing hurts'' analysis. DIM $=$ bias amplification via global correction; $\Delta \pi $ threshold $=$ minimum heterogeneity for global correction to backfire}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces HB vs.\ MLE RMSE comparison ($K{=}2$). $\Delta \%$ is relative improvement (negative $=$ HB better).}}{4}{table.caption.11}\protected@file@percent }
+\newlabel{tab:hb_k2}{{3}{4}{HB vs.\ MLE RMSE comparison ($K{=}2$). $\Delta \%$ is relative improvement (negative $=$ HB better)}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}HB EC-HTE Synthetic Validation}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:synthetic}{{4.2}{4}{HB EC-HTE Synthetic Validation}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces HB vs.\ MLE RMSE comparison ($K{=}4$, worst subgroup).}}{4}{table.caption.12}\protected@file@percent }
+\newlabel{tab:hb_k4}{{4}{4}{HB vs.\ MLE RMSE comparison ($K{=}4$, worst subgroup)}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces RMSE crossover points: minimum $n_{\text  {expert}}$ for EC-HTE to outperform global correction.}}{4}{table.caption.13}\protected@file@percent }
+\newlabel{tab:crossover}{{5}{4}{RMSE crossover points: minimum $n_{\text {expert}}$ for EC-HTE to outperform global correction}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Expert Label Budget Sensitivity}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:budget}{{4.3}{4}{Expert Label Budget Sensitivity}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces RMSE penalty at small $n_{\text  {expert}}$: ratio of EC-HTE RMSE to global RMSE.}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:penalty}{{6}{5}{RMSE penalty at small $n_{\text {expert}}$: ratio of EC-HTE RMSE to global RMSE}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces DGP~C (both covariate and outcome error). $n{=}250$, $K{=}2$, extreme.}}{5}{table.caption.15}\protected@file@percent }
+\newlabel{tab:dgpc}{{7}{5}{DGP~C (both covariate and outcome error). $n{=}250$, $K{=}2$, extreme}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}PPCI + DSL Baseline Comparison}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:ppci}{{4.4}{5}{PPCI + DSL Baseline Comparison}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Semi-Synthetic CSS Benchmark}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:semisyn}{{4.5}{5}{Semi-Synthetic CSS Benchmark}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cross-DGP comparison ($n{=}250$, $K{=}2$, extreme). DGP~A$=$covariate error only; B$=$outcome only; C$=$both; D$=$no error.}}{5}{table.caption.16}\protected@file@percent }
+\newlabel{tab:crossdgp}{{8}{5}{Cross-DGP comparison ($n{=}250$, $K{=}2$, extreme). DGP~A$=$covariate error only; B$=$outcome only; C$=$both; D$=$no error}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Semi-synthetic EC-HTE performance ($K{=}4$, extreme, subgroup $S_3$ with $\pi {=}0.25$).}}{5}{table.caption.17}\protected@file@percent }
+\newlabel{tab:semisyn}{{9}{5}{Semi-synthetic EC-HTE performance ($K{=}4$, extreme, subgroup $S_3$ with $\pi {=}0.25$)}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}CausalForest Integration}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:causal_forest}{{4.6}{5}{CausalForest Integration}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces CausalForest integration results.}}{6}{table.caption.18}\protected@file@percent }
+\newlabel{tab:cf}{{10}{6}{CausalForest integration results}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Diagnostic criterion performance. Setting-level AUC evaluated via leave-one-setting-out cross-validation.}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:diagnostic}{{11}{6}{Diagnostic criterion performance. Setting-level AUC evaluated via leave-one-setting-out cross-validation}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Diagnostic Criterion Validation}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:diagnostic}{{4.7}{6}{Diagnostic Criterion Validation}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Real-data case study (UC Berkeley Hate Speech). EC-HTE does not outperform global correction due to high FNR.}}{6}{table.caption.20}\protected@file@percent }
+\newlabel{tab:realdata}{{12}{6}{Real-data case study (UC Berkeley Hate Speech). EC-HTE does not outperform global correction due to high FNR}{table.caption.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Subgroup misclassification rates for hate speech data. High FNR ($>$46\%) across all subgroups limits CM invertibility.}}{6}{table.caption.21}\protected@file@percent }
+\newlabel{tab:realdata_cm}{{13}{6}{Subgroup misclassification rates for hate speech data. High FNR ($>$46\%) across all subgroups limits CM invertibility}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Real-Data Case Study}{6}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:realdata}{{4.8}{6}{Real-Data Case Study}{subsection.4.8}{}}
+\bibstyle{plainnat}
+\bibcite{angelopoulos2023prediction}{{1}{2023}{{Angelopoulos et~al.}}{{}}}
+\bibcite{ashwin2025using}{{2}{2025}{{Ashwin et~al.}}{{}}}
+\bibcite{athey2016recursive}{{3}{2016}{{Athey and Imbens}}{{}}}
+\bibcite{athey2019generalized}{{4}{2019}{{Athey et~al.}}{{}}}
+\bibcite{bu2023treatment}{{5}{2023}{{Bu et~al.}}{{}}}
+\bibcite{carroll2006measurement}{{6}{2006}{{Carroll et~al.}}{{}}}
+\bibcite{chernozhukov2018double}{{7}{2018}{{Chernozhukov et~al.}}{{}}}
+\bibcite{dawid1979maximum}{{8}{1979}{{Dawid and Skene}}{{}}}
+\bibcite{egami2024using}{{9}{2024}{{Egami et~al.}}{{}}}
+\bibcite{fuller1987measurement}{{10}{1987}{{Fuller}}{{}}}
+\bibcite{gelman2013bayesian}{{11}{2013}{{Gelman et~al.}}{{}}}
+\bibcite{gilardi2023chatgpt}{{12}{2023}{{Gilardi et~al.}}{{}}}
+\bibcite{gustafson2003measurement}{{13}{2003}{{Gustafson}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{7}{section.5}\protected@file@percent }
+\bibcite{hovy2013learning}{{14}{2013}{{Hovy et~al.}}{{}}}
+\bibcite{hu2008instrumental}{{15}{2008}{{Hu and Schennach}}{{}}}
+\bibcite{imai2010causal}{{16}{2010}{{Imai and Yamamoto}}{{}}}
+\bibcite{kennedy2023towards}{{17}{2023}{{Kennedy}}{{}}}
+\bibcite{mozer2026adjusting}{{18}{2026}{{Mozer}}{{}}}
+\bibcite{passonneau2014benefits}{{19}{2014}{{Passonneau and Carpenter}}{{}}}
+\bibcite{sui2026prediction}{{20}{2026}{{Sui et~al.}}{{}}}
+\bibcite{tornberg2024chatgpt}{{21}{2024}{{Tornberg}}{{}}}
+\bibcite{wager2018estimation}{{22}{2018}{{Wager and Athey}}{{}}}
+\bibcite{ziems2024can}{{23}{2024}{{Ziems et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Multiple LLM Annotator Comparison}{8}{appendix.A}\protected@file@percent }
+\newlabel{sec:multilm}{{A}{8}{Multiple LLM Annotator Comparison}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Effective $\Delta \pi $ across LLM generations. All models exhibit $\Delta \pi > 0.05$; 5/6 share the same worst subgroup.}}{8}{table.caption.24}\protected@file@percent }
+\newlabel{tab:multilm}{{14}{8}{Effective $\Delta \pi $ across LLM generations. All models exhibit $\Delta \pi > 0.05$; 5/6 share the same worst subgroup}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Adaptive Expert Annotation Allocation}{8}{appendix.B}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Allocation strategy comparison ($n_{\text  {expert}}{=}500$, $K{=}4$).}}{8}{table.caption.25}\protected@file@percent }
+\newlabel{tab:alloc}{{15}{8}{Allocation strategy comparison ($n_{\text {expert}}{=}500$, $K{=}4$)}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Robustness to Misspecified Subgroup Structure}{8}{appendix.C}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Coverage under subgroup noise. HB maintains $>$94.5\% across all noise levels.}}{9}{table.caption.26}\protected@file@percent }
+\newlabel{tab:robust}{{16}{9}{Coverage under subgroup noise. HB maintains $>$94.5\% across all noise levels}{table.caption.26}{}}
+\gdef \@abspage@last{9}

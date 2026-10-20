@@ -1241,7 +1241,7 @@ _source line 22_
 
 ```json
 {
-  "command": "OPENROUTER_API_KEY=\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\" python3 -c \"\nfrom openai import OpenAI\nclient = OpenAI(api_key='[REDACTED]', base_url='http://47.94.22.126/v1')\nr = client.chat.completions.create(\n    model='gemini-2.0-flash',\n    messages=[{'role':'user','content':'Classify the sentiment: I love this movie. Reply with ONLY one word: positive, neutral, or negative.'}],\n    max_tokens=10,\n    temperature=0\n)\nprint('Response:', r.choices[0].message.content)\nprint('Model:', r.model)\n\" 2>&1",
+  "command": "OPENROUTER_API_KEY=\"[REDACTED]\" python3 -c \"\nfrom openai import OpenAI\nclient = OpenAI(api_key='[REDACTED]', base_url='http://47.94.22.126/v1')\nr = client.chat.completions.create(\n    model='gemini-2.0-flash',\n    messages=[{'role':'user','content':'Classify the sentiment: I love this movie. Reply with ONLY one word: positive, neutral, or negative.'}],\n    max_tokens=10,\n    temperature=0\n)\nprint('Response:', r.choices[0].message.content)\nprint('Model:', r.model)\n\" 2>&1",
   "description": "Test API connectivity with gemini-2.0-flash",
   "timeout": 30000
 }
@@ -2539,7 +2539,7 @@ _source line 51_
 {
   "server": "local-cpu",
   "gpu_ids": [],
-  "command": "bash -c \"cd /home/ubuntu/ec_hte_llm_annotation && OPENROUTER_API_KEY='tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8' python3 -u pilot_gemini_annotation.py --n-samples 500 2>&1 | tee results/pilot_gemini_run.log\"",
+  "command": "bash -c \"cd /home/ubuntu/ec_hte_llm_annotation && OPENROUTER_API_KEY='[REDACTED]' python3 -u pilot_gemini_annotation.py --n-samples 500 2>&1 | tee results/pilot_gemini_run.log\"",
   "exp_id": "pilot_gemini_500",
   "account": "ubuntu"
 }
@@ -2721,7 +2721,7 @@ _source line 55_
 
 ```json
 {
-  "command": "OPENROUTER_API_KEY='tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8' python3 -u pilot_gemini_annotation.py --n-samples 500 2>&1 | tee results/pilot_gemini_run.log",
+  "command": "OPENROUTER_API_KEY='[REDACTED]' python3 -u pilot_gemini_annotation.py --n-samples 500 2>&1 | tee results/pilot_gemini_run.log",
   "description": "Run full 500-sample annotation job",
   "timeout": 600000
 }

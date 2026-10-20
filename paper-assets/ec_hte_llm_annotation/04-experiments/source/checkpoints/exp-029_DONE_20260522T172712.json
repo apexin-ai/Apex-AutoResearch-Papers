@@ -1,0 +1,79 @@
+{
+  "exp_id": "exp-029",
+  "project": "ec_hte_llm_annotation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:03:08.860Z",
+    "updated_at": "2026-05-22T17:27:12.389Z",
+    "hypothesis": "Under controlled violation of Assumption A1 (outcome-independent misclassification), EC-HTE coverage degrades gracefully as sensitivity parameter γ increases from 0 to 0.2, with the degradation curve quantifying the method's robustness boundary. At moderate violation (γ≤0.1), coverage remains above 90%.",
+    "spec": {
+      "command": "python exp029_a1_sensitivity.py",
+      "server": "local-cpu",
+      "data_path": "synthetic K=2 extreme DGP with A1 violation",
+      "data_count": 5000,
+      "model_name": "DIM estimator",
+      "seed": "42-141 (100 MC)",
+      "checkpoint_source": "N/A",
+      "eval_data": "synthetic with gamma-controlled misclassification",
+      "checkpoint_path": "N/A (CPU simulation)",
+      "log_path": "results/exp_a1_sensitivity.csv"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "dgp": "K=2, pi=[0.05,0.25], tau(0)=0, tau(1)=0.3, N=5000, n_expert=250, 100 MC",
+      "gamma_sweep": [
+        0,
+        0.05,
+        0.1,
+        0.15,
+        0.2
+      ],
+      "echte_coverage": {
+        "g0.00": 0.955,
+        "g0.05": 0.955,
+        "g0.10": 0.953,
+        "g0.15": 0.948,
+        "g0.20": 0.935
+      },
+      "echte_abs_bias": {
+        "g0.00": 0.0596,
+        "g0.05": 0.0593,
+        "g0.10": 0.063,
+        "g0.15": 0.0652,
+        "g0.20": 0.0677
+      },
+      "global_coverage": {
+        "g0.00": 0.927,
+        "g0.05": 0.935,
+        "g0.10": 0.938,
+        "g0.15": 0.943,
+        "g0.20": 0.94
+      },
+      "naive_coverage": {
+        "g0.00": 0.877,
+        "g0.05": 0.838,
+        "g0.10": 0.835,
+        "g0.15": 0.792,
+        "g0.20": 0.795
+      },
+      "key_finding": "EC-HTE coverage degrades gracefully: 95.5%→93.5% over gamma 0→0.2 (−2.0pp). ALL correction methods maintain ≥90% coverage across all gamma. Naive degrades fastest (87.7%→79.5%, −8.2pp). At moderate violation gamma=0.1, EC-HTE coverage=95.3% (−0.2pp from baseline). EC-HTE |bias| increases 13.7% at gamma=0.2 but remains comparable to Global.",
+      "coverage_below_90_threshold": {
+        "Naive": 0,
+        "Global": "never",
+        "Strat_MLE": "never",
+        "HB_ECHTE": "never"
+      },
+      "output_files": [
+        "results/exp_a1_sensitivity.csv",
+        "results/exp_a1_sensitivity_summary.csv",
+        "results/exp_a1_sensitivity_subgroup.csv"
+      ]
+    },
+    "completed_at": "2026-05-22T17:27:12.389Z"
+  },
+  "timestamp": "2026-05-22T17:27:12.458036+00:00",
+  "trigger": "update_registry"
+}

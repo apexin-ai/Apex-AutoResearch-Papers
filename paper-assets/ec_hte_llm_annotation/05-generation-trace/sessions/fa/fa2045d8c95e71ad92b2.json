@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_appendix-stance-tex_20260523T220554_result.json",
     "occurrence": 1,
-    "bytes": 474,
-    "sha256": "2b526d911451781e2c713d066aab023faab300fa34380b13a41911894bf3fdf4"
+    "bytes": 473,
+    "sha256": "e562bd7927df05925e9613275ba96dabe72c5ba9d7254d6bc98c54907b939693"
   },
   "statistics": {
     "messages": 1,

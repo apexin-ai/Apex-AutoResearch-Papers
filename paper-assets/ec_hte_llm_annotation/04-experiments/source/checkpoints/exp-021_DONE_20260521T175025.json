@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp-021",
+  "project": "ec_hte_llm_annotation",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T17:50:05.855Z",
+    "updated_at": "2026-05-21T17:50:25.344Z",
+    "hypothesis": "Table 1 RMSE results are stable under doubling of MC seeds (50→100); median cell change <5% confirms 50-seed results are not artifacts of sampling variance",
+    "parent": "exp-001",
+    "conclusion": "success",
+    "spec": {
+      "command": "python3 exp021_seeds_supplement.py",
+      "server": "local-cpu",
+      "data_path": "synthetic DGP (N=5000, 3 configs × 6 n_expert × 50 seeds)",
+      "data_count": "12800 rows supplement + 25600 combined",
+      "model_name": "Empirical Bayes (EB) estimator",
+      "seed": "50-99",
+      "checkpoint_path": "artifacts/seeds_100/combined_100_seeds.csv",
+      "log_path": "artifacts/seeds_100/table1_100seeds.md"
+    },
+    "completed_at": "2026-05-21T17:50:25.344Z"
+  },
+  "timestamp": "2026-05-21T17:50:25.401481+00:00",
+  "trigger": "update_registry"
+}

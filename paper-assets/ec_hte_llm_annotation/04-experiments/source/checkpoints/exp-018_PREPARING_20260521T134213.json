@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp-018",
+  "project": "ec_hte_llm_annotation",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:42:13.498Z",
+    "updated_at": "2026-05-21T13:42:13.498Z"
+  },
+  "timestamp": "2026-05-21T13:42:13.559899+00:00",
+  "trigger": "update_registry"
+}

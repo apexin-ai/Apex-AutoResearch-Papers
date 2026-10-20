@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2025/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: paper.aux
+The style file: plainnat.bst
+Database file #1: references.bib
+Warning--can't use both volume and number fields in angelopoulos2023prediction
+You've used 24 entries,
+            2773 wiz_defined-function locations,
+            727 strings with 9043 characters,
+and the built_in function-call counts, 11457 in all, are:
+= -- 993
+> -- 710
+< -- 16
++ -- 240
+- -- 216
+* -- 925
+:= -- 1760
+add.period$ -- 72
+call.type$ -- 24
+change.case$ -- 142
+chr.to.int$ -- 24
+cite$ -- 49
+duplicate$ -- 535
+empty$ -- 912
+format.name$ -- 250
+if$ -- 2394
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 27
+newline$ -- 128
+num.names$ -- 96
+pop$ -- 293
+preamble$ -- 1
+purify$ -- 120
+quote$ -- 0
+skip$ -- 426
+stack$ -- 0
+substring$ -- 368
+swap$ -- 69
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 249
+warning$ -- 1
+while$ -- 98
+width$ -- 0
+write$ -- 311
+(There was 1 warning)

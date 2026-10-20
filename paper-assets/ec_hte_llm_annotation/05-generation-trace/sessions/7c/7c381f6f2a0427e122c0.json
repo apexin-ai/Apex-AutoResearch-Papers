@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_m3-limitations-patch_20260522T024958_result.json",
     "occurrence": 1,
-    "bytes": 799,
-    "sha256": "33d74a4fe222cc9dda59d9f81a2137890425acbee9e45fa382a136e150ef6e76"
+    "bytes": 798,
+    "sha256": "9e20e438a456aeaa6cfdeb72c21462b1e94784d616f1731ee912dc78c6e23afe"
   },
   "statistics": {
     "messages": 1,

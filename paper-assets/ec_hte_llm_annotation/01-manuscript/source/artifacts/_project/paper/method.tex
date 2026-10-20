@@ -1,0 +1,58 @@
+\section{EC-HTE: Error-Corrected Heterogeneous Treatment Effects}
+\label{sec:method}
+
+EC-HTE corrects subgroup-level misclassification bias in three stages: estimate per-subgroup confusion matrices via hierarchical Bayes, invert them to correct observed outcome moments, and propagate correction uncertainty into downstream causal estimators.
+
+\subsection{Hierarchical Bayes Confusion Matrix Estimation}
+
+We place a Dirichlet-Multinomial hierarchical model over the confusion matrices $\{C_s\}_{s=1}^K$.
+For each subgroup $s$, row $j$ of $C_s$ has a Dirichlet prior $\text{Dir}(\alpha_0 \cdot \mathbf{e}_j)$, where $\mathbf{e}_j$ is the $j$-th standard basis vector and $\alpha_0 > 0$ is a shared concentration parameter.
+A $\text{Gamma}(2, 1)$ hyperprior on $\alpha_0$ controls the strength of partial pooling across subgroups: large $\alpha_0$ pulls subgroup estimates toward the identity matrix (low error), while small $\alpha_0$ allows subgroup-specific rates to dominate.
+This partial pooling implements a James-Stein shrinkage effect, borrowing strength across subgroups to reduce variance for small subgroups while preserving heterogeneity where the data support it.
+
+Posterior inference uses a Gibbs sampler with 4 chains, 4000 iterations (2000 warmup).
+We require convergence diagnostics $\hat{R} < 1.01$ and effective sample size $\text{ESS} > 845$ for all parameters before accepting estimates.
+In practice, all runs achieve $\hat{R} < 1.0034$ and $\text{ESS} > 1618$, well within these thresholds.
+HB estimation outperforms stratified MLE in 91.7\% of configurations across the experimental grid (Section~\ref{sec:ec_hte_eval}), with the largest gains when $n_{\text{expert}} / K < 100$.
+The advantage requires at least $n_{\text{expert}} / K \geq 25$ per subgroup; below this threshold, stratified MLE is preferred because the hierarchical model lacks sufficient observations for stable shrinkage.
+At $n_{\text{expert}} \geq 1000$, HB and stratified MLE converge to within 0.5\% on all metrics.
+Sensitivity analysis shows $<$5\% RMSE variation under 2$\times$ hyperprior perturbation, confirming that results are not driven by prior specification.
+
+\subsection{Subgroup-Stratified Correction}
+
+Given posterior mean confusion matrices $\hat{C}_s$, we correct observed outcome moments per subgroup by matrix inversion:
+\begin{equation}
+\tilde{\boldsymbol{\mu}}_s = \hat{C}_s^{-1} \cdot \hat{\boldsymbol{\mu}}_s,
+\end{equation}
+where $\hat{\boldsymbol{\mu}}_s = [\hat{\tau}_{\text{obs}}(0, s),\, \hat{\tau}_{\text{obs}}(1, s)]^\top$ collects the observed conditional outcome moments in subgroup $s$.
+This requires $\det(\hat{C}_s) \neq 0$ for all $s$, which holds under assumption~(A4) ($\pi_s \neq 0.5$) but may fail in finite samples when error rates approach degeneracy.
+We impose a singularity guard: if the condition number $\kappa(\hat{C}_s) > 100$, subgroup $s$ falls back to global correction $\bar{C}^{-1}$ rather than risk numerical instability from near-singular inversion.
+
+The contrast with global correction is direct.
+Global correction applies $\bar{C}^{-1}$ uniformly to all subgroups, introducing the $\delta_s \cdot \Delta\tau$ bias identified in Proposition~\ref{prop:bias_identity}.
+Subgroup-stratified correction eliminates this bias by matching each subgroup's correction to its own misclassification structure, at the cost of higher variance from estimating $K$ separate confusion matrices (Section~\ref{sec:budget}).
+
+\subsection{Variance-Adjusted CausalForest}
+
+For heterogeneous treatment effect estimation, we feed corrected covariates into CausalForestDML~\cite{wager2018causal} with honest splitting.
+The forest produces per-observation standard error estimates $\text{se}_i$.
+To account for confusion matrix correction, we propagate uncertainty through the inverse mapping:
+\begin{equation}
+\text{se}_{\text{corrected},i} = \sqrt{\text{diag}\!\left(\hat{C}_{S_i}^{-1}\, \text{diag}(\text{se}_i^2)\, \hat{C}_{S_i}^{-\top}\right)}.
+\end{equation}
+This is a plug-in approach: the standard errors reflect outcome variance conditional on $\hat{C}_s$ but do not propagate uncertainty from the confusion matrix estimation itself.
+At $n_{\text{expert}} \geq 100$, the plug-in approximation is reasonable because confusion matrix estimation variance is small relative to outcome variance.
+Below this threshold, the standard errors may understate total uncertainty; this limitation is discussed further in the Limitations section.
+
+\paragraph{Diagnostic criterion.}
+As a practical corollary of Proposition~\ref{prop:bias_identity}, the product $|\Delta\pi \times \Delta\tau|$ serves as a computable diagnostic for whether global correction will harm specific subgroups.
+The bias decomposition identity predicts that bias is proportional to this product, and both quantities can be estimated from a small pilot sample ($n_{\text{expert}} \geq 50$ suffices).
+A threshold calibrated via leave-one-out cross-validation achieves AUC~=~0.833 at the subgroup level (Section~\ref{sec:diagnostic}).
+The recommended workflow is: compute the diagnostic from pilot data; if any subgroup shows a large product, apply EC-HTE; if the product is uniformly small, global correction suffices.
+
+\paragraph{Composition with PPCI.}
+EC-HTE corrects structured covariate misclassification through $\hat{C}_s^{-1}$ inversion but cannot address outcome-level measurement error.
+PPCI~\cite{sui2026ppci} corrects residual outcome bias using a debiasing estimator but assumes correct covariate labels.
+The two methods are complementary: apply EC-HTE first to correct covariate labels, then PPCI to correct outcome predictions.
+Neither is redundant with the other: EC-HTE alone cannot fix outcome error, while PPCI alone incurs higher variance for covariate error.
+Under both error types simultaneously, the composition reduces $|\text{bias}|$ from 0.179 to below 0.01 (Section~\ref{sec:ppci}).

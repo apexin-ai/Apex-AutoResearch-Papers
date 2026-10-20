@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_ddl-final-edits_20260524T031039_result.json",
     "occurrence": 1,
-    "bytes": 1387,
-    "sha256": "3ac95688924e12c290ac49d2febe30bfeae00bf63c452175c53eeaefc4db0738"
+    "bytes": 1386,
+    "sha256": "ec271ec09b40cf7d4643a46b76d58b6ff4530d94fc84d6b484deab61768bd141"
   },
   "statistics": {
     "messages": 1,

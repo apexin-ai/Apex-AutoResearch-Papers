@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_audit_anonymization-check_20260524T065752_result.json",
     "occurrence": 1,
-    "bytes": 1198,
-    "sha256": "e6131c4e42b890c873bcc20b7bea1a038d6a5ebf64be135501ec3fddede8ec8c"
+    "bytes": 1197,
+    "sha256": "5ca5d23abef2dfc340afec411a56d1157991c48518c63a3c1dd2cb076426cd39"
   },
   "statistics": {
     "messages": 1,

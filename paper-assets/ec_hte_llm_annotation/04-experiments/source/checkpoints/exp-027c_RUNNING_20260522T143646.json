@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp-027c",
+  "project": "ec_hte_llm_annotation",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:21:15.764Z",
+    "updated_at": "2026-05-22T14:36:46.777Z",
+    "hypothesis": "Under MF2's exact DGP (K=2, π=[0.05,0.25], τ(0)=0.10, τ(1)=0.40, n_expert=250), Oracle CF coverage will reveal whether the 83% vs 92.5% discrepancy between MF2 and exp-027b is due to the harder CATE specification (τ shift) causing CF SE under-calibration, or due to other implementation differences",
+    "parent": "exp-027b",
+    "spec": {
+      "command": "python exp027c_cf_oracle_mf2dgp.py",
+      "server": "local-cpu",
+      "data_path": "synthetic (MF2 DGP)",
+      "data_count": 5000,
+      "model_name": "CausalForest",
+      "seed": "0-99 (100 MC)",
+      "checkpoint_source": "N/A",
+      "eval_data": "synthetic K=2 extreme MF2 DGP"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T14:36:46.842707+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_p0a-fl-table1_20260523T135821_result.json",
     "occurrence": 1,
-    "bytes": 1529,
-    "sha256": "bedc4caeb633137e48d33fd7010887c19630b72477d674b53ae9ce934371f007"
+    "bytes": 1528,
+    "sha256": "7080b42f162fa97988f973dc8d51991c13c2e658f07ffaac27231b7f8f07ec6c"
   },
   "statistics": {
     "messages": 1,

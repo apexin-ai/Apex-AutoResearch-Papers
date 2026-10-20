@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_r20-fixes-full_20260524T120136_result.json",
     "occurrence": 1,
-    "bytes": 973,
-    "sha256": "08687a1a2a07891053f03298c5c6801378fd591711ccbac452d6e82ff91e216b"
+    "bytes": 972,
+    "sha256": "50ce1072b7d55f87a82a5f83e8a3e617a9c9c1922b4da1eb78e01d50a1789610"
   },
   "statistics": {
     "messages": 1,

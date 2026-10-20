@@ -1,0 +1,97 @@
+paper_key: "bu2023forestiv"
+title: "Achieving Reliable Causal Inference with Data-Mined Variables: A Random Forest Approach to the Measurement Error Problem"
+venue: "INFORMS Journal on Data Science 2023"
+full_text_available: true
+
+research:
+  baselines:
+    - "Biased regression (directly using ML-predicted covariate, ignoring measurement error)"
+    - "Unbiased regression (OLS on labeled data D_label only)"
+    - "SIMEX (Simulation-Extrapolation, Cook and Stefanski 1994)"
+    - "LatentIV (Latent Instrumental Variables, Ebbes et al. 2005)"
+    - "Generated regressors adjustment (Meng et al. 2016)"
+  metrics:
+    - {name: "Coefficient bias (deviation from true beta)", direction: "lower_better"}
+    - {name: "Standard error of coefficient estimates", direction: "lower_better"}
+    - {name: "Empirical MSE (bias^2 + variance)", direction: "lower_better"}
+    - {name: "Hotelling T^2 test statistic (instrument validity check)", direction: "below_critical_value"}
+  datasets:
+    - {name: "Bike Sharing Data (Fanaee-T and Gama 2014)", size: "17,379 instances, 12 features; split: 1000 train, 200 test, 16,179 unlabel"}
+    - {name: "Bank Marketing Data (Moro et al. 2014)", size: "45,211 records; split: 1500 train, 500 test, 43,211 unlabel"}
+  ablation_dimensions:
+    - "Continuous vs binary endogenous covariate"
+    - "Size of unlabeled dataset"
+    - "Amount of noise in econometric model"
+    - "Number of trees in random forest"
+    - "Alternative design choices (sample splitting, subset-of-trees IV, averaging)"
+  training_recipe:
+    optimizer: "N/A (random forest, no gradient optimization)"
+    lr: "N/A"
+    hardware: "N/A"
+  method_family: "Instrumental variable regression with random-forest-generated instruments for measurement error correction"
+
+positioning:
+  core_claim: "Random forest中各个tree的预测可以自然地作为彼此的instrumental variables来解决ML预测作为协变量时的measurement error问题——一棵树做endogenous covariate，其他树做它的instruments——因为好的random forest天然满足IV的relevance和exclusion条件。"
+  key_results: "Continuous case: ForestIV的coefficient分布centered在true value(0.5)附近，biased regression严重高估(~0.6+)；ForestIV比unbiased regression有更窄的分布(更小标准误)。Binary case: 类似pattern，biased regression低估coefficient。ForestIV outperforms all 3 benchmarks (SIMEX, LatentIV, generated regressors adjustment)。"
+  limitations:
+    - "理论结果是渐近的(Theorem 1基于n->infinity)，有限样本中instruments只是candidate"
+    - "需要reasonably large random forest才能有效(sensitivity analysis E.3.3)"
+    - "Binary covariate case的exclusion restriction不严格满足，只是plausibly exogenous"
+    - "仅考虑线性econometric model(虽然提到可推广到GLM)"
+    - "Bootstrap variance estimation计算成本较高"
+    - "未在实证数据(非模拟)中验证"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "第一段从ML在社会科学中的广泛应用开场(Google Street View推断社区特征、药物属性检测不良事件)，建立'ML prediction已经成为研究变量来源'的前提"
+  tension: "第二段急转：使用ML预测作为econometric model中的变量会引入measurement error，导致biased和inconsistent的参数估计。measurement error可能导致高估或低估，即使ML模型预测性能不错也难以避免。这个问题威胁到所有使用data-mined variables的因果推断。"
+  key_insight: "核心洞察在Section 2.3提出并由Theorem 1形式化：random forest的两个核心性质(individual trees accurate + weakly correlated errors)恰好对应IV的两个核心条件(relevance + exclusion)。这是一个精妙的cross-domain analogy——把ML ensemble的统计性质映射到计量经济学的IV框架。"
+  argument_chain: "ML predictions used as covariates -> measurement error -> biased causal estimates -> IV is standard fix but hard to find valid instruments -> random forest trees have (1) accurate individual predictions (relevance) and (2) weakly correlated errors (exclusion) -> Theorem 1 formalizes asymptotic instrument validity -> 3-step selection procedure (remove invalid, select strong, estimate with validity checks) -> continuous simulation validates bias correction -> binary case extends theory (Theorems 2-4) -> binary simulation confirms -> outperforms SIMEX/LatentIV/generated regressors"
+  contribution_framing: "三点式贡献(intro末段)：(1) theoretically and empirically show ForestIV addresses measurement error bias; (2) data-driven procedures to select best instruments from labeled data; (3) novel method to automatically obtain candidate instruments from random forest output. 递进式——从效果到方法到自动化。"
+  intro_structure: "5段(较长intro)：P1=ML在社科中的应用场景；P2=measurement error问题及其严重性；P3=提出ForestIV方法+核心直觉(IV from RF)；P4=实验概述(continuous+binary, benchmarks)；P5=贡献声明(3点)+通用性说明"
+  notable_technique: "将random forest的已知统计性质(tree accuracy + error decorrelation)重新诠释为IV的relevance和exclusion条件，这种'旧知识新角度'的叙事策略非常有效——读者不需要接受全新假设，只需要接受一个类比。Section 2.3中的counter-intuitive observation(用单棵tree而非整个forest虽然predictive performance更差，但开启了IV correction的可能)也是很好的叙事hook。"
+
+figures:
+  figure_count: 2
+  figure1:
+    type: "teaser_result"
+    description: "Bike Sharing数据上100次模拟的coefficient on lnCnt的采样分布：三条密度曲线分别对应Biased(黑)、Unbiased(红)、ForestIV(蓝)。Biased明显右偏(高估)，ForestIV centered在true value附近且比Unbiased更窄。"
+    narrative_role: "直观展示ForestIV的两个核心优势：(1)相比biased regression大幅减少bias，(2)相比unbiased regression有更小的variance(更窄分布)。一张图概括了整个方法的价值主张。"
+    design_elements: ["三条密度曲线叠加", "颜色区分三种方法(黑红蓝)", "true value位置隐含在unbiased分布中心"]
+    visual_style: "简洁的单面板密度图，白色背景，三条曲线用颜色和图例区分。x轴是coefficient value，y轴是density。没有多余装饰，focus在分布形状和位置的对比。"
+  result_figures:
+    - figure_id: "Figure 1"
+      viz_type: "density_plot"
+      what_compared: "Biased vs Unbiased vs ForestIV coefficient distributions on continuous covariate (Bike Sharing, lnCnt)"
+      how_gain_highlighted: "ForestIV曲线既比Biased更接近true value(less bias)又比Unbiased更窄(less variance)，同时胜出两个baseline"
+      design_note: "密度图比箱线图或bar chart更适合展示采样分布的形状，能同时传达bias和variance信息"
+    - figure_id: "Figure 2"
+      viz_type: "density_plot"
+      what_compared: "Biased vs Unbiased vs ForestIV coefficient distributions on binary covariate (Bank Marketing, Deposit)"
+      how_gain_highlighted: "与Figure 1相同的visual language，binary case中biased是左偏(低估)，ForestIV同样纠正bias且降低variance"
+      design_note: "保持与Figure 1完全一致的视觉格式，方便cross-figure比较；binary case的bias方向(低估)与continuous case(高估)不同，暗示measurement error的复杂性"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1(continuous covariate, Bike Sharing) -> Figure 2(binary covariate, Bank Marketing): 两图展示ForestIV在两种不同类型的measurement error下都有效，形成'连续->离散'的递进验证"
+
+tables:
+  table_count: 0
+  main_result_table:
+    table_id: "N/A (detailed results in appendix tables E.2, F.1)"
+    row_axis: "methods"
+    col_axis: "coefficients (beta_X, beta_Z1, beta_Z2, beta_0)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_coefficient"
+    highlight_strategy: "N/A (results primarily in appendix)"
+    statistical_reporting: "Mean coefficient + standard deviation across 100 simulation runs"
+    num_baselines: 5
+    design_note: "主文仅用图表展示核心结果(density plots)，详细数值放在appendix的表格中。这种策略在理论导向的论文中常见——主文讲故事，appendix提供完整数据。"
+  ablation_tables:
+    - table_id: "Appendix E.3 (sensitivity analyses)"
+      what_varied: ["unlabeled dataset size", "noise level", "number of trees in RF"]
+      variation_style: "full_numbers"
+      design_note: "每个sensitivity dimension单独展示，逐个验证方法的鲁棒性"
+  supplementary_tables:
+    in_appendix: true
+    content: "Appendix A: relevant literature review; Appendix B: theoretical setup (formal); Appendix C: instrument selection details; Appendix D: ForestIV pseudocode; Appendix E: continuous case full results + sensitivity; Appendix F: binary case full results + sensitivity; Appendix G: benchmark comparisons (SIMEX, LatentIV, generated regressors); Appendix H: proofs; Appendix I: practical guidelines"
+    reason: "主文15页(正文)+大量appendix的结构。主文只保留核心理论(Theorems 1-4)、直觉解释和summary figures；所有详细数值结果、sensitivity analyses、benchmark comparisons、proofs、practical guidelines全部放appendix。这样主文保持清晰的叙事线(problem -> insight -> theory -> validation)，不被技术细节打断。"

@@ -781,7 +781,7 @@ _source line 14_
 
 ```json
 {
-  "command": "source /home/ubuntu/.paperbanana_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig_method_overview_intent.txt \\\n  --caption \"Method overview: Standard global correction (top) vs EC-HTE per-subgroup pipeline (bottom), showing how hierarchical Bayesian CM estimation eliminates sign reversal\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig_method_overview.png \\\n  --iterations 5 2>&1",
+  "command": "source /home/ubuntu/.paperbanana_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig_method_overview_intent.txt \\\n  --caption \"Method overview: Standard global correction (top) vs EC-HTE per-subgroup pipeline (bottom), showing how hierarchical Bayesian CM estimation eliminates sign reversal\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/figures/fig_method_overview.png \\\n  --iterations 5 2>&1",
   "description": "Run PaperBanana generate for fig_method_overview (round 1)",
   "timeout": 600000
 }

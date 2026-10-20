@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-007b",
+  "project": "ec_hte_llm_annotation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:53:49.325Z",
+    "updated_at": "2026-05-21T04:54:05.047Z",
+    "hypothesis": "exp-007 HB 回填：将 ec_hte 方法从 stratified_mle placeholder 替换为真正的 HB Gibbs sampler（Dirichlet-Multinomial partial pooling），验证在 4-DGP matrix 下 HB 版本的 ec_hte 和 ec_hte_ppci 是否保持或改善原 MLE 版本的结果",
+    "parent": "exp-007"
+  },
+  "timestamp": "2026-05-21T04:54:05.119338+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,63 @@
+{
+  "exp_id": "exp-016",
+  "project": "ec_hte_llm_annotation",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:19:22.463Z",
+    "updated_at": "2026-05-21T13:40:37.757Z",
+    "hypothesis": "EC-HTE succeeds under realistic asymmetric CMs when worst-subgroup FNR is well below 0.5 — using gpt-4o (or best-FNR model from exp-008) real per-subgroup FPR/FNR on TweetEval, HB correction outperforms global at n_expert≥250",
+    "parent": "exp-015",
+    "conclusion": "negative",
+    "spec": {
+      "command": "python3 exp016_semi_real_better_cm.py --n-mc 100",
+      "server": "local-cpu",
+      "data_path": "results/exp008_multi_llm_annotations.csv (gpt-3.5-turbo per-subgroup FPR/FNR)",
+      "data_count": "9600 rows (100 MC × 3 n_expert × 4 subgroups × 2 z × 4 methods)",
+      "model_name": "HB Gibbs sampler (4 chains, 1000 iter, 500 warmup)",
+      "seed": "0-99",
+      "checkpoint_path": "results/exp016_semi_real_raw.csv",
+      "log_path": "results/exp016_semi_real_analysis.md",
+      "mc_config": {
+        "n_seeds": 100,
+        "n_expert_grid": [
+          100,
+          250,
+          500
+        ],
+        "N": 5000,
+        "K": 4,
+        "P_Z1": 0.18
+      },
+      "cm_params": {
+        "S0_False_medium": {
+          "FPR": 0.143,
+          "FNR": 0.211,
+          "weight": 0.38
+        },
+        "S1_False_short": {
+          "FPR": 0.18,
+          "FNR": 0.15,
+          "weight": 0.22
+        },
+        "S2_True_short": {
+          "FPR": 0.393,
+          "FNR": 0.154,
+          "weight": 0.14
+        },
+        "S3_True_medium": {
+          "FPR": 0.378,
+          "FNR": 0.148,
+          "weight": 0.25
+        }
+      },
+      "model_selected": "gpt-3.5-turbo (lowest worst-subgroup FNR=0.211)",
+      "delta_pi_effective": "FPR range 0.143-0.393, FNR range 0.148-0.211"
+    },
+    "completed_at": "2026-05-21T13:40:37.757Z"
+  },
+  "timestamp": "2026-05-21T13:40:37.796760+00:00",
+  "trigger": "update_registry"
+}

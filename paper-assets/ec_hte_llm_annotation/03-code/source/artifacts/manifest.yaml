@@ -1,0 +1,2188 @@
+- id: art_20260520_0a8437
+  name: mvp_results_v2_summary
+  type: data
+  description: MVP v2 模拟汇总结果：3 regime × 3 budget × 4 method，差分估计 + 混淆矩阵逆变换
+  path: projects/ec_hte_llm_annotation/artifacts/_project/data/mvp_results_v2.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T18:47:48.766329+00:00'
+  tags:
+  - mvp
+  - simulation
+  - v2
+- id: art_20260520_6f102d
+  name: mvp_results_v2_raw
+  type: data
+  description: MVP v2 per-run 原始数据：100 MC × 9 组合 × 4 方法，含 CI 边界
+  path: projects/ec_hte_llm_annotation/artifacts/_project/data/mvp_results_v2_raw.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T18:47:50.757090+00:00'
+  tags:
+  - mvp
+  - simulation
+  - v2
+  - raw
+- id: art_20260520_7b1c52
+  name: mvp_results_v1_subgroup
+  type: data
+  description: MVP v1 按子群分析结果：CausalForestDML per-subgroup CATE，清晰展示 Global 在低误差子群
+    B 过校正加偏
+  path: projects/ec_hte_llm_annotation/artifacts/_project/data/mvp_results.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T18:49:29.566077+00:00'
+  tags:
+  - mvp
+  - simulation
+  - v1
+  - subgroup
+- id: art_20260520_94227c
+  name: mvp_results_v3_summary
+  type: data
+  description: MVP v3 汇总：子群内+边际 CATE，3 regime × 3 budget × 4 method × 3 level。核心验证：Global
+    在子群内加偏，EC-HTE 近乎无偏
+  path: projects/ec_hte_llm_annotation/artifacts/_project/data/mvp_results_v3.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T19:12:30.639109+00:00'
+  tags:
+  - mvp
+  - simulation
+  - v3
+  - subgroup
+- id: art_20260520_febafe
+  name: mvp_results_v3_raw
+  type: data
+  description: MVP v3 per-run 原始数据：100 MC × 9 组合 × 4 方法 × 3 level，含 CI 边界
+  path: projects/ec_hte_llm_annotation/artifacts/_project/data/mvp_results_v3_raw.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T19:12:32.547494+00:00'
+  tags:
+  - mvp
+  - simulation
+  - v3
+  - raw
+- id: art_20260520_df0793
+  name: exp002_bias_derivation
+  type: report
+  description: Formal bias bound 解析推导：bias_global(z,s) = δ_s·Δτ/(1-2π̄)，含 K≥2 推广和
+    debiasing-hurts 条件
+  path: projects/ec_hte_llm_annotation/artifacts/exp-002/report/exp002_derivation.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-002
+  skill: ''
+  created_at: '2026-05-20T20:44:45.771977+00:00'
+  tags:
+  - theory
+  - bias-bound
+  - derivation
+- id: art_20260520_da0cfc
+  name: exp002_bias_bound_validation
+  type: data
+  description: K=2 解析 vs MC bias 验证（R²=0.994），1000 MC × 参数网格
+  path: projects/ec_hte_llm_annotation/artifacts/exp-002/data/exp002_bias_bound.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-002
+  skill: ''
+  created_at: '2026-05-20T20:44:48.688103+00:00'
+  tags:
+  - validation
+  - K2
+- id: art_20260520_e48b10
+  name: exp002_k4_validation
+  type: data
+  description: K=4 解析 vs MC bias 验证（R²=0.975），确认公式推广到多子群
+  path: projects/ec_hte_llm_annotation/artifacts/exp-002/data/exp002_k4_validation.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-002
+  skill: ''
+  created_at: '2026-05-20T20:44:50.551309+00:00'
+  tags:
+  - validation
+  - K4
+- id: art_20260520_579880
+  name: exp002_debiasing_hurts
+  type: data
+  description: Debiasing-hurts 参数区域：47.6% 参数空间中 Global 比 Naive 更差，含构造性 examples
+  path: projects/ec_hte_llm_annotation/artifacts/exp-002/data/exp002_debiasing_hurts.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-002
+  skill: ''
+  created_at: '2026-05-20T20:44:53.315376+00:00'
+  tags:
+  - debiasing-hurts
+  - examples
+- id: art_20260520_cd88b9
+  name: exp001_hb_results
+  type: data
+  description: 'exp-001 HB synthetic sweep results: 540 rows, 36 cells x 5 methods,
+    bias/RMSE/coverage per z-level'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-001/data/exp001_hb_results.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-001
+  skill: ''
+  created_at: '2026-05-20T21:33:06.491505+00:00'
+  tags: []
+- id: art_20260520_26ad31
+  name: exp001_hb_diagnostics
+  type: data
+  description: 'exp-001 MCMC diagnostics: 3600 rows, R-hat/ESS/divergent per MC run'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-001/data/exp001_hb_diagnostics.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-001
+  skill: ''
+  created_at: '2026-05-20T21:33:08.523612+00:00'
+  tags: []
+- id: art_20260520_bf8ee3
+  name: dataset_survey
+  type: report
+  description: 'Dataset survey: Ashwin dataset accessibility + 6 alternative CSS datasets
+    with demographic subgroup metadata'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/dataset_survey.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T21:33:10.454842+00:00'
+  tags: []
+- id: art_20260520_803aab
+  name: exp007_ppci_dsl_skeleton
+  type: intermediate
+  description: 'exp-007 skeleton: PPCI+DSL baseline comparison code, dry-run passed,
+    HB placeholder pending exp-001 integration'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/intermediate/exp007_ppci_dsl.py
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T21:33:12.614249+00:00'
+  tags: []
+- id: art_20260520_eb0684
+  name: tweeteval_exploration
+  type: report
+  description: TweetEval 数据集探索：10 子任务的样本量/标签分布/子群结构/HTE 可行性评估。推荐 sentiment(N=45K)
+    > hate/offensive(N=9-12K)，stance 子任务样本量不足。
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/tweeteval_exploration.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T22:02:29.842610+00:00'
+  tags: []
+- id: art_20260520_250310
+  name: exp001_hyperprior_sensitivity_script
+  type: intermediate
+  description: exp-001 hyperprior sensitivity sweep script. Gamma(a0/s, b0/s) with
+    s∈{0.5,1.0,2.0}, K=2/moderate/n=250, 100MC. Dry-run passed.
+  path: projects/ec_hte_llm_annotation/artifacts/_project/intermediate/exp001_hyperprior_sensitivity.py
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T22:10:12.068546+00:00'
+  tags: []
+- id: art_20260520_b438c7
+  name: exp007_ppci_refactored
+  type: intermediate
+  description: 'exp-007 refactored: DSL→stratified_mle, PPCI via MI (M=20, Rubin''s
+    rules), outcome error DGP (σ∈{0,0.5,1.0}), HB placeholder. Dry-run passed.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/intermediate/exp007_ppci_dsl_b438c7.py
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T22:11:10.363110+00:00'
+  tags: []
+- id: art_20260520_e29a2c
+  name: exp003_phase_a_results
+  type: data
+  description: 'exp-003 Phase A: TweetEval sentiment semi-synthetic, 240 aggregated
+    rows. Stratified MLE has low bias but high variance at small n_expert, confirming
+    HB motivation.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/data/exp003_phase_a.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T22:11:46.879236+00:00'
+  tags: []
+- id: art_20260520_a35cc7
+  name: exp003_dgp_spec
+  type: report
+  description: 'exp-003 DGP specification: TweetEval sentiment sampling, subgroup
+    definition (hashtag × text_length), misclass rates, outcome model parameters.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/exp003_dgp_spec.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T22:11:49.244976+00:00'
+  tags: []
+- id: art_20260520_0bdcba
+  name: exp003_phase_a_v2_results
+  type: data
+  description: 'exp-003 Phase A v2: Fixed mixing matrix (Bayes rule with empirical
+    P(Z)) + invert_mixing_safe. Replaces v1 which assumed P(Z)=0.5.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/data/exp003_phase_a_v2.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T22:21:45.975585+00:00'
+  tags: []
+- id: art_20260520_3d6839
+  name: exp007_ppci_4dgp
+  type: intermediate
+  description: exp-007 with true PPI rectifier, 4 DGP matrix (A:covariate/B:outcome/C:both/D:none),
+    MI_rubin baseline, EC-HTE+PPCI combo, treatment-differential outcome error. Dry-run
+    passed.
+  path: projects/ec_hte_llm_annotation/artifacts/_project/intermediate/exp007_ppci_dsl_3d6839.py
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T22:24:23.179535+00:00'
+  tags: []
+- id: art_20260520_eae1bb
+  name: exp001_hb_results_v2
+  type: data
+  description: 'exp-001 HB results with 4-chain MCMC fix: 540 original + 48 regularized
+    rows. K=4 extreme blowup fixed (RMSE 510→0.27).'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-001/data/exp001_hb_results_v2.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-001
+  skill: ''
+  created_at: '2026-05-20T22:52:18.252629+00:00'
+  tags:
+  - mcmc-fix
+  - 4-chain
+  - singularity-guard
+- id: art_20260520_d46a04
+  name: ucb_hate_speech_exploration
+  type: report
+  description: 'UC Berkeley Measuring Hate Speech dataset exploration for exp-004.
+    135K annotations, 39K comments, 7.9K annotators. Recommended mapping: T=target_race_black,
+    Y=hatespeech ordinal, Z=LLM dehumanization, S=annotator_race.'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-004/report/ucb_hate_speech_exploration.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-004
+  skill: ''
+  created_at: '2026-05-20T23:31:53.271389+00:00'
+  tags:
+  - dataset
+  - ucb-hate-speech
+  - exploration
+- id: art_20260520_401486
+  name: exp005_diagnostic_script
+  type: data
+  description: 'exp-005 diagnostic criterion: subgroup-level AUC=0.833 for predicting
+    debiasing-hurts via signed product (π̄−π_s)×Δτ. Setting-level AUC=0.49 (averaging
+    masks subgroup damage). ROC plot + CSV outputs.'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-005/data/exp005_roc.png
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-005
+  skill: ''
+  created_at: '2026-05-20T23:40:22.793078+00:00'
+  tags:
+  - diagnostic
+  - roc
+  - debiasing-hurts
+- id: art_20260520_9b7fdd
+  name: exp001_hyperprior_sensitivity
+  type: data
+  description: 'exp-001 hyperprior sensitivity: HB robust to scale 0.5-2.0. RMSE variation
+    <1% (K=2) and ~4-5% (K=4). Coverage invariant. 600 runs, 62 min.'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-001/data/exp001_hyperprior_sensitivity.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-001
+  skill: ''
+  created_at: '2026-05-20T23:55:49.219478+00:00'
+  tags:
+  - hyperprior
+  - sensitivity
+  - robustness
+- id: art_20260521_8141db
+  name: exp007_full_results
+  type: data
+  description: 'exp-007 full run: 4 DGP × 8 methods × 100 MC. EC-HTE+PPCI near-zero
+    bias in DGP C. 6912 aggregated rows.'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-007/data/exp007_ppci_dsl.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-007
+  skill: ''
+  created_at: '2026-05-21T00:05:14.695126+00:00'
+  tags:
+  - ppci
+  - 4dgp
+  - combination-method
+- id: art_20260521_f6ccff
+  name: llm_alternatives_assessment
+  type: report
+  description: API key替代方案评估：推荐Qwen2.5-72B-Instruct-AWQ单卡A100推理，1.5h完成5K标注，费用<¥20。建议不等API
+    key直接走本地。
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/llm_alternatives_assessment.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T00:51:20.065886+00:00'
+  tags:
+  - api-alternative
+  - local-llm
+  - qwen
+- id: art_20260521_6082cf
+  name: pilot_llm_annotation_script
+  type: intermediate
+  description: Pilot LLM annotation script for TweetEval sentiment. Supports vLLM/transformers,
+    Qwen 72B-AWQ/7B, zero/few-shot. Dry-run validated. GPU-ready.
+  path: projects/ec_hte_llm_annotation/artifacts/_project/intermediate/pilot_llm_annotation.py
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T02:09:50.218287+00:00'
+  tags:
+  - pilot
+  - llm-annotation
+  - gpu-ready
+- id: art_20260521_1f5ed0
+  name: exp003_phase_a_v3_hb
+  type: data
+  description: 'exp-003 Phase A v3: HB partial pooling integrated. 5 methods × 3 regimes
+    × 4 n_expert × 5 levels = 300 rows. Key finding: HB helps S2 at small n_expert
+    but blows up in S3 at n=50.'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-003/data/exp003_phase_a_v3.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-003
+  skill: ''
+  created_at: '2026-05-21T02:15:04.613414+00:00'
+  tags:
+  - hb
+  - partial-pooling
+  - tweeteval
+  - claim2
+- id: art_20260521_d84601
+  name: exp011_causal_forest_results
+  type: data
+  description: 'exp-011 CausalForestDML results: 100 MC × 8 configs × 3 methods. EC-HTE
+    correction works with CausalForest — debiasing hurts pattern replicated (global
+    5.9x worse in extreme), ec_hte bias near zero at n=500.'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-011/data/exp011_causal_forest.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-011
+  skill: ''
+  created_at: '2026-05-21T02:32:37.443636+00:00'
+  tags:
+  - causal-forest
+  - econml
+  - claim2
+  - debiasing-hurts
+- id: art_20260521_b8ed46
+  name: exp006_budget_sensitivity
+  type: data
+  description: 'exp-006 budget sensitivity sweep: 6 n_expert × 2 K × 2 regime × 4
+    methods × 100 MC. Crossover analysis: HB beats Global at K=2/n≥250, K=4/n≥1000.
+    HB ≥ MLE in 22/24 configs.'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-006/data/exp006_budget_sensitivity.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-006
+  skill: ''
+  created_at: '2026-05-21T03:02:28.698295+00:00'
+  tags:
+  - budget-sensitivity
+  - crossover
+  - partial-pooling
+- id: art_20260521_0f37fd
+  name: exp006_crossover_analysis
+  type: data
+  description: 'exp-006 crossover summary: per (K, regime), the n_expert where HB
+    first beats Global/MLE in avg RMSE.'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-006/data/exp006_crossover.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-006
+  skill: ''
+  created_at: '2026-05-21T03:02:30.879770+00:00'
+  tags:
+  - crossover
+  - budget-sensitivity
+- id: art_20260521_9db962
+  name: exp003_phase_a_v3_100mc
+  type: data
+  description: 'exp-003 v3 full 100 MC: HB integrated. S3 blowup at n=50 confirmed
+    but moderate (-57% not -345%). n>=100: HB dramatically better in S3 (+60%). 300
+    agg + 30000 raw rows.'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-003/data/exp003_phase_a_v3_9db962.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-003
+  skill: ''
+  created_at: '2026-05-21T04:08:10.661687+00:00'
+  tags:
+  - hb
+  - 100mc
+  - partial-pooling
+  - tweeteval
+  - claim2
+  - definitive
+- id: art_20260521_dad269
+  name: acl_latex_template
+  type: paper
+  description: 'ACL 2026 LaTeX template: main.tex + acl.sty + acl_natbib.bst. Compiled
+    main.pdf verified (4 pages, 169K).'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/paper/main.pdf
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T04:27:49.685796+00:00'
+  tags:
+  - latex
+  - template
+  - emnlp2026
+- id: art_20260521_599332
+  name: experiments_section_v1
+  type: paper
+  description: 论文 Experiments 章节完整草稿（~1520 有效词）。包含 synthetic DGP、semi-synthetic TweetEval、bias
+    mechanism verification、EC-HTE evaluation、CausalForest、diagnostic criterion、budget
+    analysis、PPCI complementarity。两个表格（tab:main_results, tab:ppci），三个图引用（fig:heatmap,
+    fig:roc, fig:budget）。
+  path: projects/ec_hte_llm_annotation/artifacts/_project/paper/experiments.tex
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: write-paper-section
+  created_at: '2026-05-21T04:33:39.381255+00:00'
+  tags:
+  - paper
+  - experiments
+  - v1
+- id: art_20260521_755792
+  name: theory_section_v1
+  type: paper
+  description: 论文 Theory 章节（~770 词 + 方程）。包含 Proposition 1 (Bias Decomposition Identity)
+    和 Proposition 2 (Debiasing Can Increase Bias)，proof sketch，K>2 remark，(A1)-(A4)
+    假设。
+  path: projects/ec_hte_llm_annotation/artifacts/_project/paper/theory.tex
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: write-paper-section
+  created_at: '2026-05-21T04:44:05.763546+00:00'
+  tags:
+  - paper
+  - theory
+  - v1
+- id: art_20260521_18accc
+  name: method_section_v1
+  type: paper
+  description: 论文 Method 章节（~700 词）。EC-HTE 三阶段框架：HB confusion matrix estimation、subgroup-stratified
+    correction、variance-adjusted CausalForest。含 diagnostic criterion 和 PPCI composition。
+  path: projects/ec_hte_llm_annotation/artifacts/_project/paper/method.tex
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: write-paper-section
+  created_at: '2026-05-21T05:05:55.192122+00:00'
+  tags:
+  - paper
+  - method
+  - v1
+- id: art_20260521_d6ce33
+  name: introduction.tex
+  type: paper
+  description: 'Introduction section for EC-HTE EMNLP 2026 paper: 5-paragraph structure
+    + contribution list, ~800 prose words'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/paper/introduction.tex
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T05:20:18.167900+00:00'
+  tags:
+  - paper
+  - introduction
+  - latex
+- id: art_20260521_0b23d3
+  name: introduction_section_v1
+  type: paper
+  description: 论文 Introduction 章节（~800 词）。Hook（LLM annotation heterogeneous error）→
+    Importance（HTE guides policy）→ Gap（PPI/DSL/PPCI/ForestIV 无法处理 effect modifier
+    misclassification）→ Insight（bias identity + debiasing hurts + EC-HTE + diagnostic）→
+    5 Contributions。
+  path: projects/ec_hte_llm_annotation/artifacts/_project/paper/introduction_0b23d3.tex
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: write-paper-section
+  created_at: '2026-05-21T05:21:02.937557+00:00'
+  tags:
+  - paper
+  - introduction
+  - v1
+- id: art_20260521_1268b8
+  name: related_work_section_v1
+  type: paper
+  description: '论文 Related Work 章节（~600 词）。5 clusters: measurement error in causal
+    models, Bayesian annotation models, HTE estimation, LLMs as annotators, PPI/DSL
+    correction。含 Imai & Yamamoto 区分段。'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/paper/related_work.tex
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: write-paper-section
+  created_at: '2026-05-21T05:22:02.270597+00:00'
+  tags:
+  - paper
+  - related_work
+  - v1
+- id: art_20260521_2ae081
+  name: pilot_gpt41_annotations
+  type: data
+  description: 'GPT-4.1 pilot: 500 条 TweetEval sentiment 标注结果 CSV + 分析报告。Binary Δπ=0.200，异质性显著。'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-012/data/pilot_gemini_annotations.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-012
+  skill: ''
+  created_at: '2026-05-21T05:24:20.632482+00:00'
+  tags:
+  - pilot
+  - gpt-4.1
+  - annotation
+  - heterogeneity
+- id: art_20260521_3de53d
+  name: limitations-section
+  type: paper
+  description: 'Limitations section for EC-HTE EMNLP 2026 paper: 5 limitations covering
+    expert budget threshold, RMSE tradeoff, plug-in SEs, symmetric misclassification
+    assumption, and subgroup structure assumption.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/paper/limitations.tex
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T05:43:07.396123+00:00'
+  tags:
+  - paper
+  - limitations
+  - emnlp2026
+- id: art_20260521_08bb6e
+  name: fig1_bias_mechanism
+  type: chart
+  description: 'Fig 1: Bias mechanism schematic showing global correction over-corrects
+    low-error subgroups and under-corrects high-error subgroups. Two-panel scatter
+    plot with Oracle/Naive/Global/EC-HTE estimates for τ(z=0) and τ(z=1).'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/chart/fig1_bias_mechanism.pdf
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T05:56:38.067651+00:00'
+  tags:
+  - figure
+  - paper
+  - bias-mechanism
+- id: art_20260521_297877
+  name: paper_compiled_v1
+  type: paper
+  description: 'Full paper compiled PDF v1: 13 pages (10 main + limitations + references
+    + appendix). All 8 chapters, 4 figures, 2 tables, 28 references. NOTE: 2 pages
+    over EMNLP 8-page limit.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/paper/main_297877.pdf
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T05:56:41.372543+00:00'
+  tags:
+  - paper
+  - draft
+  - over-page-limit
+- id: art_20260521_e258f1
+  name: exp013_boundary_results
+  type: data
+  description: 'Boundary condition experiment: K=4/extreme/n_expert=50. Confirms EC-HTE
+    degrades when n_expert/K < 25. Avg RMSE: naive 0.109, global 0.14, MLE 0.28, EB
+    0.29. Worst: subgroup A(π=0.30) EB RMSE=0.62 (4.4x global).'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-013/data/exp013_boundary_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-013
+  skill: ''
+  created_at: '2026-05-21T07:29:26.020228+00:00'
+  tags:
+  - boundary
+  - limitations
+  - n_expert_threshold
+- id: art_20260521_e387db
+  name: exp014_asymmetric_analysis
+  type: report
+  description: 'Asymmetric misclassification verification: proves product structure
+    holds without A2 assumption, R²=0.992, EC-HTE 4.2x bias reduction'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-014/report/exp014_asymmetric_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-014
+  skill: ''
+  created_at: '2026-05-21T07:45:17.330892+00:00'
+  tags:
+  - asymmetric
+  - bias-decomposition
+  - product-structure
+  - reviewer-defense
+- id: art_20260521_497651
+  name: exp010_misspecified_analysis
+  type: report
+  description: 'Misspecified subgroup robustness: EC-HTE maintains 95-96% coverage
+    across all noise levels (0-50%), graceful degradation via HB shrinkage, no catastrophic
+    failure'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-010/report/exp010_misspecified_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-010
+  skill: ''
+  created_at: '2026-05-21T10:10:43.837746+00:00'
+  tags:
+  - robustness
+  - misspecification
+  - coverage
+  - reviewer-concern-4
+- id: art_20260521_d5bf10
+  name: exp008_multi_llm_analysis
+  type: report
+  description: 'Multi-LLM misclassification comparison: 5 models all show Δπ>0.05,
+    rank correlation ρ=0.82-1.00, same subgroups consistently harder across models'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-008/report/exp008_multi_llm_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-008
+  skill: ''
+  created_at: '2026-05-21T10:13:27.496405+00:00'
+  tags:
+  - multi-llm
+  - delta-pi
+  - cross-model
+  - tweeteval
+- id: art_20260521_9b73d5
+  name: mc_se_analysis
+  type: report
+  description: 'MC Standard Error analysis for 100-run experiments: SE tables, paired
+    t-tests, significance of method differences. Answers R3 question about moderate
+    regime CI overlap.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/mc_se_summary.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T11:56:10.215747+00:00'
+  tags:
+  - mc-se
+  - appendix
+  - R3
+  - significance
+- id: art_20260521_1bdabf
+  name: exp008_local_inference_scripts
+  type: intermediate
+  description: Llama-3.1-8B and Qwen2.5-7B local inference scripts for exp-008 multi-LLM
+    comparison. Ready to run when GPU available.
+  path: projects/ec_hte_llm_annotation/artifacts/exp-008/intermediate/llama31_8b_annotate.py
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-008
+  skill: ''
+  created_at: '2026-05-21T11:56:13.085720+00:00'
+  tags:
+  - local-inference
+  - llama
+  - qwen
+  - gpu-pending
+- id: art_20260521_c6c8fe
+  name: applicability_frontier_figure
+  type: chart
+  description: 'Applicability Frontier: When Does EC-HTE Help? 综合 exp-001/003/013/015
+    数据，X=n_expert/K, Y=worst-subgroup misclass rate, 绿/黄/红三区域标注 EC-HTE 适用条件'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/chart/applicability_frontier.png
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T13:39:36.329439+00:00'
+  tags:
+  - figure
+  - applicability
+  - paper
+- id: art_20260521_2899a9
+  name: exp015_016_failure_deep_dive
+  type: report
+  description: exp-015/016 failure case 深度复盘：error pattern 分析、improvement regression（368
+    obs, 5 experiments）、CM quality diagnostic 阈值校准、方法改进方向（hierarchical CM pooling,
+    sigmoid shrinkage）
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/exp015_016_deep_dive.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T14:44:53.199212+00:00'
+  tags:
+  - analysis
+  - failure-case
+  - applicability
+  - paper
+- id: art_20260521_3f4b15
+  name: diagnostic_revision_auc
+  type: report
+  description: M1 诊断修复：Δπ-only AUC=0.889 (setting) / 0.865 (subgroup)，匹配或超越 Δπ×Δτ
+    diagnostic，完全消除循环依赖。π CV metric AUC=0.968 为最佳单变量预测器。
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/delta_pi_only_auc.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T15:31:26.572178+00:00'
+  tags:
+  - diagnostic
+  - reviewer-response
+  - M1
+  - paper
+- id: art_20260521_8b988f
+  name: pz1_sweep_analysis
+  type: report
+  description: 'exp-019 P(Z=1) sweep: Theorem 1 R²=0.976-0.998 universally, K=2 HB
+    wins all P(Z=1), K=4 HB loses at n=250. 4 figures + 30k-row CSV.'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-019/report/exp019_pz1_sweep_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-019
+  skill: ''
+  created_at: '2026-05-21T15:39:42.553872+00:00'
+  tags:
+  - M2
+  - reviewer-response
+  - theorem1
+  - class-balance
+- id: art_20260521_f31e1a
+  name: kappa_sweep_analysis
+  type: report
+  description: 'κ threshold sweep results: 7 κ values × 50 MC, guard never triggers
+    in moderate regime, κ=100 validated with 53× safety margin, stress test shows
+    guard only activates near-random labeling'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-020/report/kappa_sweep_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-020
+  skill: ''
+  created_at: '2026-05-21T16:15:20.047972+00:00'
+  tags:
+  - kappa
+  - RD2-W4
+  - condition-number
+  - sweep
+- id: art_20260521_65c570
+  name: seeds_100_table1
+  type: report
+  description: 100-seed Table 1 RMSE ± SE for 3 main configs (K=2 extreme/moderate,
+    K=4 extreme). 84% cells <5% change from 50 seeds. Addresses RD2-M4.
+  path: projects/ec_hte_llm_annotation/artifacts/exp-021/report/table1_100seeds.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-021
+  skill: ''
+  created_at: '2026-05-21T17:50:09.812406+00:00'
+  tags:
+  - seeds
+  - stability
+  - RD2-M4
+  - table1
+- id: art_20260521_651d5f
+  name: c1_integration_template
+  type: intermediate
+  description: Multi-LLM Validation LaTeX template with [TBD] placeholders for 4-model
+    balanced-Z results. Includes main text subsection, summary table, appendix detail
+    tables.
+  path: projects/ec_hte_llm_annotation/artifacts/_project/intermediate/c1_integration_template.tex
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T19:04:38.544636+00:00'
+  tags:
+  - paper
+  - template
+  - multi-llm
+  - C1
+- id: art_20260521_e330bf
+  name: gamma_sensitivity_results
+  type: data
+  description: 'Gamma prior sensitivity sweep: 15 configs (shape×scale) × 20 seeds
+    × 3 methods, K=2 moderate DGP'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-022/data/results.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-022
+  skill: ''
+  created_at: '2026-05-21T19:44:18.357759+00:00'
+  tags: []
+- id: art_20260521_6cbdff
+  name: gamma_sensitivity_analysis
+  type: report
+  description: 'Gamma prior sensitivity analysis: RMSE varies 6% across reasonable
+    priors, Gamma(3,1) default within 1.9% of best'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-022/report/analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-022
+  skill: ''
+  created_at: '2026-05-21T19:44:20.629272+00:00'
+  tags: []
+- id: art_20260521_6132ed
+  name: llama_echte_analysis
+  type: report
+  description: 'Llama-3.1-8B EC-HTE misclassification analysis: Δπ=0.137, K=4 subgroups,
+    Prop2 triggered 1/4'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/llama_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T20:41:59.247979+00:00'
+  tags:
+  - c1
+  - multi-llm
+  - llama
+- id: art_20260521_2f649a
+  name: llama_metrics_csv
+  type: data
+  description: Llama + Gemini pilot summary metrics CSV for C1 multi-LLM validation
+  path: projects/ec_hte_llm_annotation/artifacts/_project/data/llama_metrics.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T20:42:01.133071+00:00'
+  tags:
+  - c1
+  - multi-llm
+- id: art_20260521_3d6b3f
+  name: budget_sweep_k4_analysis
+  type: report
+  description: 'Llama real CM budget sweep K=4: |Bias| crossover at n=100, RMSE crossover
+    beyond n=2000'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/budget_sweep_k4_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T21:48:28.599957+00:00'
+  tags:
+  - c1
+  - budget-sweep
+  - llama
+- id: art_20260521_c0d9cb
+  name: budget_sweep_k4_results
+  type: data
+  description: 'Llama K=4 budget sweep raw results: 5 budgets × 50 seeds × 4 methods
+    × 8 cells = 8000 rows'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/data/budget_sweep_k4_results.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T21:48:30.558109+00:00'
+  tags:
+  - c1
+  - budget-sweep
+- id: art_20260521_b6a937
+  name: budget_sweep_k2_analysis
+  type: report
+  description: 'Llama real CM budget sweep K=2: RMSE crossover at n=1000, Δπ=0.051
+    too small for HB advantage over Global'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/budget_sweep_k2_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T21:48:48.124581+00:00'
+  tags:
+  - c1
+  - budget-sweep
+  - llama
+- id: art_20260521_d7e05f
+  name: budget_sweep_k2_results
+  type: data
+  description: 'Llama K=2 budget sweep raw results: 5 budgets × 50 seeds × 4 methods
+    × 4 cells'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/data/budget_sweep_k2_results.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T21:48:53.064352+00:00'
+  tags:
+  - c1
+  - budget-sweep
+- id: art_20260521_197d20
+  name: qwen_sweep_analysis
+  type: report
+  description: 'Qwen2.5-7B budget sweep: K=4 |Bias| crossover n=100, K=2 RMSE crossover
+    n=1000'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/qwen_sweep_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T22:30:32.582522+00:00'
+  tags:
+  - c1
+  - budget-sweep
+  - qwen
+- id: art_20260521_655d8d
+  name: gemma_sweep_analysis
+  type: report
+  description: 'Gemma-2-9B budget sweep: K=4 |Bias| crossover n=200, K=2 RMSE crossover
+    n=1000'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/gemma_sweep_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T22:30:34.034371+00:00'
+  tags:
+  - c1
+  - budget-sweep
+  - gemma
+- id: art_20260521_f4af95
+  name: mistral_sweep_analysis
+  type: report
+  description: 'Mistral-7B budget sweep: K=4 |Bias| crossover n=200, K=2 RMSE crossover
+    n=1000'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/mistral_sweep_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T22:30:35.656309+00:00'
+  tags:
+  - c1
+  - budget-sweep
+  - mistral
+- id: art_20260521_fddb97
+  name: hetero_tau_script
+  type: data
+  description: 'Heterogeneous-τ DGP simulation script: Llama real CM + varying Δτ
+    across subgroups'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/data/run_hetero_tau.py
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-21T23:29:51.425636+00:00'
+  tags:
+  - heterogeneous-tau
+  - dgp
+  - semi-synthetic
+  - C1
+- id: art_20260521_7e629c
+  name: hetero_tau_results
+  type: data
+  description: 'Raw CSV results: 50 seeds × 3 budgets × 4 methods × 8 cells, heterogeneous-τ
+    DGP'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/data/hetero_tau_results.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-21T23:29:54.524765+00:00'
+  tags:
+  - heterogeneous-tau
+  - results
+  - C1
+- id: art_20260521_a1eb33
+  name: hetero_tau_analysis
+  type: report
+  description: 'Full analysis: summary tables, per-subgroup breakdown, bias-variance
+    decomposition, EC-HTE vs Global comparison'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/report/hetero_tau_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-21T23:29:56.800159+00:00'
+  tags:
+  - heterogeneous-tau
+  - analysis
+  - C1
+- id: art_20260522_dd2e7f
+  name: qwen_hetero_tau_script
+  type: data
+  description: Qwen heterogeneous-τ DGP simulation script
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/data/run_qwen_hetero_tau.py
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T00:07:19.260916+00:00'
+  tags:
+  - heterogeneous-tau
+  - qwen
+  - C1
+- id: art_20260522_39f37d
+  name: qwen_hetero_tau_results
+  type: data
+  description: 'Qwen hetero-τ raw CSV: 4800 rows (50 seeds × 3 budgets × 4 methods
+    × 8 cells)'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/data/qwen_hetero_tau_results.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T00:07:19.918576+00:00'
+  tags:
+  - heterogeneous-tau
+  - qwen
+  - results
+  - C1
+- id: art_20260522_10a400
+  name: qwen_hetero_tau_analysis
+  type: report
+  description: Qwen hetero-τ analysis with cross-model (Llama vs Qwen) comparison
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/report/qwen_hetero_tau_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T00:07:21.547253+00:00'
+  tags:
+  - heterogeneous-tau
+  - qwen
+  - analysis
+  - C1
+- id: art_20260522_fc3404
+  name: number_consistency_check
+  type: report
+  description: 'Full paper number consistency audit: 28 consistent, 7 inconsistent,
+    8 missing source'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/number_consistency_check.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T00:11:29.575319+00:00'
+  tags:
+  - audit
+  - consistency
+  - paper
+- id: art_20260522_6e1b5c
+  name: mistral_hetero_tau_script
+  type: data
+  description: Mistral-7B heterogeneous-τ DGP simulation script
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/data/run_mistral_hetero_tau.py
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T00:18:54.858425+00:00'
+  tags:
+  - heterogeneous-tau
+  - mistral
+  - C1
+- id: art_20260522_c962a6
+  name: mistral_hetero_tau_results
+  type: data
+  description: 'Mistral hetero-τ raw CSV: 4800 rows'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/data/mistral_hetero_tau_results.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T00:18:57.292506+00:00'
+  tags:
+  - heterogeneous-tau
+  - mistral
+  - results
+  - C1
+- id: art_20260522_0d5bf7
+  name: mistral_hetero_tau_analysis
+  type: report
+  description: Mistral hetero-τ analysis with cross-model comparison
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/report/mistral_hetero_tau_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T00:18:58.738294+00:00'
+  tags:
+  - heterogeneous-tau
+  - mistral
+  - analysis
+  - C1
+- id: art_20260522_6bf9b2
+  name: gemma_hetero_tau_script
+  type: data
+  description: Gemma-2-9B heterogeneous-τ DGP simulation script
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/data/run_gemma_hetero_tau.py
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T00:19:59.484287+00:00'
+  tags:
+  - heterogeneous-tau
+  - gemma
+  - C1
+- id: art_20260522_ab789a
+  name: gemma_hetero_tau_results
+  type: data
+  description: 'Gemma hetero-τ raw CSV: 4800 rows'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/data/gemma_hetero_tau_results.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T00:20:04.850701+00:00'
+  tags:
+  - heterogeneous-tau
+  - gemma
+  - results
+  - C1
+- id: art_20260522_de0034
+  name: gemma_hetero_tau_analysis
+  type: report
+  description: Gemma hetero-τ analysis with cross-model comparison
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/report/gemma_hetero_tau_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T00:20:05.772615+00:00'
+  tags:
+  - heterogeneous-tau
+  - gemma
+  - analysis
+  - C1
+- id: art_20260522_4b8f51
+  name: CausalForest K=2 Results Table
+  type: report
+  description: 'CausalForestDML K=2 results extracted from exp-011: aggregated table,
+    per-subgroup detail, LaTeX snippet, and key findings. 100 MC runs, 3 methods (Naive/Global/EC-HTE),
+    2 regimes × 2 n_expert settings.'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-011/report/causalforest_k2_results.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-011
+  skill: ''
+  created_at: '2026-05-22T03:40:54.801484+00:00'
+  tags:
+  - causalforest
+  - k2
+  - table
+  - paper
+- id: art_20260522_f4d8bc
+  name: exp023_ppi_dsl_comparison
+  type: data
+  description: 'PPI/DSL baseline comparison results: aggregated metrics (315 rows)
+    and raw MC runs (15750 rows) comparing 7 methods across 3 regimes × 3 n_expert
+    levels × 50 MC iterations on TweetEval semi-synthetic DGP'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/data/exp023_ppi_dsl.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T04:41:21.282183+00:00'
+  tags:
+  - ppi
+  - dsl
+  - baseline
+  - cate
+  - simulation
+- id: art_20260522_94a831
+  name: exp023_equivalence_analysis
+  type: report
+  description: 'Mathematical equivalence analysis: DSL-global ≡ Global Correction,
+    DSL-subgroup ≡ Stratified MLE, PPI-subgroup ≈ Stratified MLE (different estimator,
+    similar performance). Includes bias-variance positioning of all methods.'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/report/exp023_equivalence_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T04:41:24.143599+00:00'
+  tags:
+  - ppi
+  - dsl
+  - equivalence
+  - mathematical-analysis
+- id: art_20260522_f3dd22
+  name: PPI/DSL 实验完整分析报告
+  type: report
+  description: exp023 PPI/DSL 全子群完整分析：3张表（全子群平均、per-subgroup bias、per-subgroup RMSE）+
+    诚实结论。核心发现：EC-HTE 在所有条件下 RMSE 均不如 Global，Naive 击败所有纠偏方法。
+  path: projects/ec_hte_llm_annotation/artifacts/exp023/report/ppi_dsl_full_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp023
+  skill: ''
+  created_at: '2026-05-22T04:52:01.466098+00:00'
+  tags:
+  - ppi
+  - dsl
+  - ec-hte
+  - rmse
+  - bias
+  - analysis
+- id: art_20260522_84cbd0
+  name: exp023_ppi_dsl_k2_results
+  type: data
+  description: 'K=2 extreme PPI/DSL baseline comparison: aggregated metrics (Bias,
+    RMSE, Coverage) for 7 methods × 3 expert budgets × 2 subgroups'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/data/exp023_ppi_dsl_k2.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T05:28:26.398373+00:00'
+  tags:
+  - ppi
+  - dsl
+  - k2
+  - extreme
+  - baseline
+- id: art_20260522_457be0
+  name: exp023_ppi_dsl_k2_analysis
+  type: report
+  description: 'Analysis report for K=2 extreme PPI/DSL experiment: EC-HTE vs Global
+    crossover analysis'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/report/exp023_k2_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T05:29:04.832464+00:00'
+  tags:
+  - ppi
+  - dsl
+  - k2
+  - analysis
+- id: art_20260522_4c43b7
+  name: civil_comments_confusion_matrices
+  type: data
+  description: Per-subgroup confusion matrices from 3 LLMs (gpt-4o, gpt-4o-mini, gpt-3.5-turbo)
+    on Civil Comments toxicity detection. Shows Δπ > 0.05 for all models, confirming
+    cross-subgroup misclassification heterogeneity on a second NLP dataset.
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/data/exp023_confusion_matrices.json
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T05:32:37.878736+00:00'
+  tags:
+  - civil-comments
+  - confusion-matrix
+  - delta-pi
+  - rebuttal-C1
+- id: art_20260522_413fc9
+  name: civil_comments_symmetric_semisynthetic
+  type: data
+  description: 'Semi-synthetic DGP results on Civil Comments with symmetric misclassification
+    (4 configs: gpt-4o/gpt-4o-mini/gpt-3.5-turbo rates + extreme). Shows RMSE ordering
+    Naive < Global < EC-HTE across all settings, but EC-HTE maintains calibrated coverage
+    while naive degrades to 0.72-0.84.'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/data/exp023_symmetric_summary.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T05:32:42.785433+00:00'
+  tags:
+  - civil-comments
+  - semi-synthetic
+  - symmetric
+  - rebuttal-C1
+- id: art_20260522_bf93e4
+  name: civil_comments_analysis_report
+  type: report
+  description: Comprehensive analysis of Civil Comments semi-synthetic validation.
+    Covers CM profiles, Δπ confirmation, both asymmetric and symmetric DGP results,
+    and honest assessment of EC-HTE's coverage advantage vs RMSE limitation.
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/report/exp023_civil_comments_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T05:32:44.785005+00:00'
+  tags:
+  - civil-comments
+  - analysis
+  - rebuttal-C1
+- id: art_20260522_7287eb
+  name: civil_comments_v2_semisynthetic
+  type: data
+  description: Semi-synthetic v2 results with 5 regimes (moderate, extreme, real_gpt-4o,
+    real_gpt-4o-mini, real_gpt-3.5-turbo). Includes oracle_corrected ceiling showing
+    RMSE penalty is inherent to matrix inversion, not CM estimation.
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/data/exp023_semisynthetic_v2_summary.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T05:38:46.621936+00:00'
+  tags:
+  - civil-comments
+  - semi-synthetic
+  - v2
+  - oracle-corrected
+  - rebuttal-C1
+- id: art_20260522_85b014
+  name: exp023_civil_comments_v3_analysis
+  type: report
+  description: 'Civil Comments semi-synthetic validation v3: K=2 subgroups, symmetric
+    misclassification, N=10000. EC-HTE clearly outperforms Naive and Global on RMSE,
+    bias, and coverage.'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/report/exp023_semisynthetic_v3_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T05:55:50.050279+00:00'
+  tags:
+  - civil_comments
+  - semi-synthetic
+  - ec-hte
+  - validation
+  - claim2
+- id: art_20260522_9576bc
+  name: exp023_civil_comments_v3_summary_csv
+  type: data
+  description: Summary statistics (bias, RMSE, coverage) for all methods × regimes
+    × n_expert levels in v3 semi-synthetic experiment
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/data/exp023_semisynthetic_v3_summary.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T05:55:52.881590+00:00'
+  tags:
+  - civil_comments
+  - semi-synthetic
+  - data
+- id: art_20260522_b113b7
+  name: exp023_confusion_matrices
+  type: data
+  description: Per-subgroup confusion matrices for 3 LLM models on Civil Comments
+    toxicity. Shows heterogeneous misclassification (Delta_FPR > 0.10).
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/data/exp023_confusion_matrices_b113b7.json
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T05:55:55.018370+00:00'
+  tags:
+  - civil_comments
+  - confusion_matrix
+  - llm_annotation
+  - claim1
+- id: art_20260522_d49f1a
+  name: exp023_civil_comments_final_summary
+  type: report
+  description: 'Final summary report for exp-023: Civil Comments semi-synthetic validation.
+    Confirms Claim 1 (heterogeneous misclassification) and Claim 2 (EC-HTE outperforms
+    Naive/Global on RMSE 18-31% and coverage 0.87 vs 0.56).'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-023/report/exp023_final_summary.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-023
+  skill: ''
+  created_at: '2026-05-22T05:56:42.737290+00:00'
+  tags:
+  - civil_comments
+  - final_summary
+  - claim1
+  - claim2
+  - reviewer_c1
+- id: art_20260522_c9b29b
+  name: W4 Bootstrap SE vs Plug-in SE Coverage
+  type: data
+  description: 'Monte Carlo coverage comparison: plug-in SE (delta method) vs bootstrap
+    SE vs combined SE. Key finding: plug-in SE achieves 95-97% coverage across n_expert=50-500,
+    confirming adequate uncertainty quantification. For rebuttal R5-N3.'
+  path: projects/ec_hte_llm_annotation/artifacts/w4/data/exp_w4_bootstrap_se.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: w4
+  skill: ''
+  created_at: '2026-05-22T10:04:56.397479+00:00'
+  tags:
+  - rebuttal
+  - R5-N3
+  - bootstrap
+  - coverage
+  - standard-error
+- id: art_20260522_ff8283
+  name: W4 Bootstrap SE Experiment Script
+  type: intermediate
+  description: 'Self-contained experiment script for W4: bootstrap SE vs plug-in SE
+    coverage comparison. DGP K=2, extreme heterogeneity, 50 MC runs × 100 bootstrap
+    resamples × 4 expert budgets.'
+  path: projects/ec_hte_llm_annotation/artifacts/w4/intermediate/exp_w4_bootstrap_se.py
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: w4
+  skill: ''
+  created_at: '2026-05-22T10:04:58.958532+00:00'
+  tags:
+  - rebuttal
+  - R5-N3
+  - bootstrap
+- id: art_20260522_b54d0f
+  name: W8 A5 Violation Results
+  type: data
+  description: 'Aggregated results for A5 violation test: correlated Δτ and δ (aligned
+    + adversarial configs, K=2, n_expert={250,500}, 50 MC runs)'
+  path: projects/ec_hte_llm_annotation/artifacts/w8/data/exp_w8_a5_violation.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: w8
+  skill: ''
+  created_at: '2026-05-22T10:20:02.887972+00:00'
+  tags:
+  - a5-violation
+  - robustness
+  - rebuttal
+- id: art_20260522_d0854f
+  name: W8 A5 Violation Raw
+  type: data
+  description: 'Raw MC-level results for A5 violation test (4000 rows: 2 configs ×
+    2 n_expert × 50 seeds × 5 methods × 2 subgroups × 2 z-levels)'
+  path: projects/ec_hte_llm_annotation/artifacts/w8/data/exp_w8_a5_violation_raw.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: w8
+  skill: ''
+  created_at: '2026-05-22T10:20:05.429471+00:00'
+  tags:
+  - a5-violation
+  - robustness
+  - rebuttal
+  - raw
+- id: art_20260522_ac3484
+  name: exp_w8_a5_violation_results
+  type: data
+  description: 'W8 A5 violation experiment: EC-HTE robustness under correlated δ×Δτ
+    (aligned/adversarial configs, K=2, n=250/500, 50 MC). EC-HTE maintains 93-99%
+    coverage in both configs.'
+  path: projects/ec_hte_llm_annotation/artifacts/w8/data/exp_w8_a5_violation_ac3484.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: w8
+  skill: ''
+  created_at: '2026-05-22T10:22:10.193535+00:00'
+  tags:
+  - rebuttal
+  - a5-violation
+  - robustness
+  - coverage
+- id: art_20260522_36c3c4
+  name: exp_mf2_cf_bootstrap_se
+  type: data
+  description: CausalForestDML plug-in SE vs CM-bootstrap SE coverage comparison.
+    50 MC runs × 3 budgets (100/250/500) × 100 bootstrap. Plug-in coverage ~84%, CM-bootstrap
+    ~1-22%, combined ~84-86%.
+  path: projects/ec_hte_llm_annotation/artifacts/mf2/data/exp_mf2_cf_bootstrap_se_36c3c4.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: mf2
+  skill: ''
+  created_at: '2026-05-22T11:11:58.478982+00:00'
+  tags:
+  - bootstrap
+  - causal_forest
+  - coverage
+  - standard_error
+- id: art_20260522_7b3803
+  name: exp_mf2_cf_bootstrap_se
+  type: data
+  description: 'MF2 CausalForest Bootstrap SE experiment: plug-in coverage ~84%, CM-bootstrap
+    adds negligible improvement. CF''s own SE under-calibration is the root cause,
+    not CM estimation uncertainty.'
+  path: projects/ec_hte_llm_annotation/artifacts/mf2/data/exp_mf2_cf_bootstrap_se_7b3803.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: mf2
+  skill: ''
+  created_at: '2026-05-22T11:13:50.045917+00:00'
+  tags:
+  - rebuttal
+  - bootstrap-se
+  - causalforest
+  - coverage
+- id: art_20260523_7e70bf
+  name: exp_asym_diag_v2_analysis
+  type: report
+  description: 'Asymmetric diagnostic analysis: proves symmetric ≡ asymmetric for
+    K_Z=2, AUC=1.0 when tau>0'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/exp_asym_diag_v2_analysis.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T07:24:21.464409+00:00'
+  tags:
+  - diagnostic
+  - asymmetric
+  - AUC
+  - theory
+- id: art_20260523_02f878
+  name: exp_asym_diag_v2_results
+  type: data
+  description: Detailed per-subgroup scores and AUC for symmetric vs asymmetric diagnostics
+    on 16 real LLM CMs
+  path: projects/ec_hte_llm_annotation/artifacts/_project/data/exp_asym_diag_v2.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T07:24:23.310479+00:00'
+  tags:
+  - diagnostic
+  - asymmetric
+  - AUC
+- id: art_20260523_66c6f7
+  name: exp_adaptive_shrinkage_results
+  type: data
+  description: 'Adaptive shrinkage experiment: centered EB vs original HB vs Global
+    across 4 configs (K2/K4 × moderate/extreme). Centered EB matches Global in moderate,
+    beats both in extreme.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/data/exp_adaptive_shrinkage.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T07:25:36.970347+00:00'
+  tags:
+  - adaptive-shrinkage
+  - centered-eb
+  - simulation
+- id: art_20260523_f44a61
+  name: rebuttal_talking_points
+  type: report
+  description: R16 审稿 6 个 Questions 的回应草稿。Q1 为 placeholder 待 Task G 数据补充。
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/rebuttal_talking_points.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T10:08:08.650176+00:00'
+  tags:
+  - rebuttal
+  - R16
+  - writing
+- id: art_20260523_a016ac
+  name: data_audit_report
+  type: report
+  description: 'Data audit report: traces all quantitative claims in the paper main
+    text to source CSVs and experiment registry IDs. 52 numbers audited, 40 exact
+    matches, 8 flagged issues.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/data_audit_report.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T11:16:55.065787+00:00'
+  tags:
+  - audit
+  - paper
+  - data-provenance
+- id: art_20260523_33f2c7
+  name: data_audit_report
+  type: report
+  description: 论文主文数据审计：52个数字追溯，40个精确匹配。发现AUC=0.86可能误报（源数据=0.833）等3个问题。
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/data_audit_report_33f2c7.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T11:17:47.288112+00:00'
+  tags:
+  - audit
+  - data-integrity
+  - pre-submission
+- id: art_20260523_4bd3ec
+  name: data_integrity_fixes
+  type: report
+  description: 数据完整性修复报告：AUC=0.86确认正确（来自Δπ-only诊断AUC=0.865），AUC=0.82修正为0.66（来自exp_asym_diag_v2），74-82%
+    coverage确认正确（受影响子组覆盖率范围）
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/data_integrity_fixes.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T11:33:10.645417+00:00'
+  tags:
+  - data-audit
+  - paper-fix
+  - integrity
+- id: art_20260523_3df8c6
+  name: submission_checklist
+  type: report
+  description: EMNLP 2026 ARR submission checklist — format compliance, anonymity,
+    references, compilation, NLP checklist draft answers, pre-submission actions
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/submission_checklist.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T12:18:29.101775+00:00'
+  tags:
+  - submission
+  - emnlp2026
+  - checklist
+- id: art_20260523_a4c06e
+  name: sign_reversal_figure
+  type: chart
+  description: '3-panel figure showing sign reversal under global correction: (A)
+    scatter of naive vs global-corrected bias with 50% sign-flip rate, (B) top 3 extreme
+    cases bar chart, (C) summary stats. 92% synthetic configs affected, 49% real LLM
+    subgroup-rows, 0% under EC-HTE.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/chart/sign_reversal_figure.pdf
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T14:55:36.068511+00:00'
+  tags:
+  - excitement
+  - sign-reversal
+  - R17
+- id: art_20260523_7999c5
+  name: sign_reversal_summary
+  type: data
+  description: '1215-row CSV of all sign-reversal cases from synthetic (1000 rows)
+    and real LLM (215 rows) data. Columns: source, delta_misclass, delta_cate, subgroup,
+    z_value, pi_s, true_cate, bias_naive, bias_global, sign_flip_magnitude, llm, dataset.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/data/sign_reversal_summary.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T14:55:39.653239+00:00'
+  tags:
+  - excitement
+  - sign-reversal
+  - R17
+- id: art_20260523_9ecbed
+  name: cross_llm_heatmap
+  type: chart
+  description: 'Side-by-side heatmaps of per-subgroup error rates for 9 LLMs on TweetEval
+    and 3 LLMs on CivilComments. Shows dramatic heterogeneity: GPT-3.5-turbo Hash_Medium=0.49,
+    open-source models uniformly lower (0.12-0.28).'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/chart/cross_llm_heatmap.pdf
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T14:56:52.341091+00:00'
+  tags:
+  - excitement
+  - cross-llm
+  - R17
+- id: art_20260523_af6913
+  name: cross_llm_rank_correlation
+  type: chart
+  description: Pairwise Spearman rank correlation heatmaps. TweetEval mean ρ=0.244
+    (61% pairs ρ&lt;0.5), GPT-3.5 vs Gemma/Mistral ρ=-0.80. Clear GPT-family vs open-source
+    split. Supports "one-size-fits-all is dangerous" narrative.
+  path: projects/ec_hte_llm_annotation/artifacts/_project/chart/cross_llm_rank_corr_heatmap.pdf
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T14:56:55.867141+00:00'
+  tags:
+  - excitement
+  - cross-llm
+  - R17
+- id: art_20260523_8a4e8a
+  name: bias_anatomy_heatmap
+  type: chart
+  description: 'Bias Anatomy Heatmap: Panel A shows global-correction bias magnitude
+    (δ_s × Δτ / 0.7) with Theorem 1 contour lines (R²=0.994). Panel B shows bias ratio
+    (global/naive) identifying where debiasing hurts (52% of grid). 520+ synthetic
+    configs from exp002.'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-002/chart/bias_anatomy_heatmap.png
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-002
+  skill: ''
+  created_at: '2026-05-23T15:03:42.079327+00:00'
+  tags:
+  - bias
+  - theorem1
+  - heatmap
+  - debiasing
+  - misclassification
+- id: art_20260523_ba1eae
+  name: debiasing_hurts_summary
+  type: chart
+  description: 'Panoramic summary of when global correction worsens bias across all
+    data sources (synthetic grid, extreme examples, real LLM validation, F-L comparison).
+    Stacked bar chart showing helps/hurts/severely-hurts proportions. Grand total:
+    26.5% hurts, 15.2% severely hurts across 2132 pairs.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/chart/debiasing_hurts_summary.png
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T15:04:14.811450+00:00'
+  tags:
+  - debiasing
+  - bias
+  - global-correction
+  - summary
+- id: art_20260523_65cede
+  name: debiasing_hurts_summary_csv
+  type: data
+  description: 'Per-source breakdown of debiasing hurts statistics: total pairs, helps/hurts/severe
+    counts and percentages, worst ratio. 4 data sources.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/data/debiasing_hurts_summary.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T15:04:17.640050+00:00'
+  tags:
+  - debiasing
+  - bias
+  - global-correction
+  - summary
+- id: art_20260523_70b7cb
+  name: bias_anatomy_heatmap
+  type: chart
+  description: '2-panel heatmap: (A) |bias_global| vs δ_misclass × Δτ with Theorem
+    1 contour overlay, R²=0.9938; (B) bias ratio showing debiasing hurts when δ_misclass≥0.13
+    (52% of grid). Reviewer PASS.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/chart/bias_anatomy_heatmap.pdf
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T15:18:29.428939+00:00'
+  tags:
+  - excitement
+  - theorem1
+  - R17
+- id: art_20260523_52bfc4
+  name: debiasing_hurts_summary
+  type: chart
+  description: 'Debiasing hurts panorama: 26.5% of 2132 subgroup-config pairs hurt
+    by global correction, 15.2% severely (>2×). Real LLM: 100% of 39 configs hurt.
+    Worst synthetic ratio 7.14×.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/chart/debiasing_hurts_summary.pdf
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T15:18:31.761353+00:00'
+  tags:
+  - excitement
+  - debiasing-hurts
+  - R17
+- id: art_20260523_c81e98
+  name: K-Scalability Comparison Table
+  type: data
+  description: 'Unified comparison of EC-HTE across K=2, K=4, K=8: |Bias|, RMSE, Coverage
+    for Oracle/Naive/Global/EC-HTE methods'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/data/k_scalability_comparison.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T15:43:11.507261+00:00'
+  tags:
+  - k-scalability
+  - K=8
+  - MC-simulation
+  - table
+- id: art_20260523_920fb6
+  name: K-Scalability Line Plot
+  type: chart
+  description: Line plot showing |Bias|, RMSE, Coverage trends across K=2/4/8 for
+    Naive/Global/EC-HTE
+  path: projects/ec_hte_llm_annotation/artifacts/_project/chart/k_scalability_figure.png
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T15:43:13.863658+00:00'
+  tags:
+  - k-scalability
+  - K=8
+  - visualization
+- id: art_20260523_ddf84f
+  name: policy_reversal_zone
+  type: chart
+  description: '2-panel figure: (A) reversal probability vs τ(0) curve showing danger
+    zone at small CATE, (B) heatmap of reversal % by τ(0) × δ_misclass. At τ(0)=0.01:
+    31% global reversal; τ(0)=0.03: 14.9%. Naive: 0% always.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/chart/policy_reversal_zone.pdf
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T15:43:14.272306+00:00'
+  tags:
+  - excitement
+  - policy-reversal
+  - R17
+- id: art_20260523_72eacf
+  name: K-Scalability Bar Chart
+  type: chart
+  description: Grouped bar chart comparing |Bias| and RMSE across K=2/4/8 for Naive/Global/EC-HTE
+  path: projects/ec_hte_llm_annotation/artifacts/_project/chart/k_scalability_bars.png
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T15:43:15.327051+00:00'
+  tags:
+  - k-scalability
+  - K=8
+  - visualization
+- id: art_20260523_6e75db
+  name: k_scalability_comparison
+  type: chart
+  description: 'K=2/4/8 scalability bar chart. EC-HTE dominates K=2 (RMSE 0.089) and
+    K=4 (0.120), but degrades at K=8 (RMSE 0.340 vs Global 0.168). Coverage ≥95.6%
+    at all K. Root cause: 250/8=31 expert labels per subgroup insufficient.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/chart/k_scalability_bars.pdf
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T15:44:17.891752+00:00'
+  tags:
+  - K8
+  - scalability
+  - R17-SF7
+- id: art_20260523_7c149f
+  name: treatment_dep_misclass_figure
+  type: chart
+  description: 'Treatment-dependent misclassification sensitivity: 3-panel (Bias/RMSE/Coverage)
+    vs γ_T. EC-HTE coverage 94.5% at γ_T=0, drops to 52.5% at γ_T=0.15. Breakeven
+    RMSE at γ_T≈0.10.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/chart/treatment_dep_misclass_figure.pdf
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T15:44:20.952537+00:00'
+  tags:
+  - treatment-dep
+  - A1-sensitivity
+  - R17-SF3
+- id: art_20260523_6ae240
+  name: hatespeech_analysis
+  type: data
+  description: 'CivilComments per-subgroup analysis: 3 LLMs × 4 subgroups. R²=0.944
+    pooled, 55% debiasing hurts, κ range 1.64-2.99. S3 (long+question) worst-conditioned
+    across all LLMs.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/data/hatespeech_analysis.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T19:22:37.952639+00:00'
+  tags:
+  - civilcomments
+  - hatespeech
+  - R17
+- id: art_20260523_e56e96
+  name: civilcomments_demographic_analysis
+  type: data
+  description: 'Civil Comments demographic subgroup analysis: 3 LLMs × 4 subgroups
+    (gender, no_identity, race_lgbtq, religion). κ range 1.95-3.13. race_lgbtq has
+    highest FPR (0.38-0.63). 2% sign reversal rate. Bias amplification up to 3.32×.'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/data/civilcomments_analysis.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T19:23:08.011347+00:00'
+  tags:
+  - civilcomments
+  - demographic
+  - real-data
+  - R17
+- id: art_20260523_6892f4
+  name: data_integrity_audit
+  type: report
+  description: 论文数据完整性审计：185个数字核对，175一致，7个不一致。高优先级：abstract中"14 real combinations"实际为11或13；R²≥0.97
+    claim需精确化。
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/data_integrity_audit.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T19:51:26.762203+00:00'
+  tags:
+  - audit
+  - data-integrity
+  - DDL
+- id: art_20260523_cddd12
+  name: data_integrity_audit_v2
+  type: report
+  description: 论文数据完整性审计V2：59项核对，54一致，5个问题。关键：R²=0.974实为0.965（可能混淆K=4 synthetic与real-CM
+    pooled），"10 of 11"实为9/11，LLM数量表述不一致(seven/eight/9)。
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/data_integrity_audit_v2.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T20:19:29.346343+00:00'
+  tags:
+  - audit
+  - data-integrity
+  - DDL
+- id: art_20260523_5a00d4
+  name: stance_analysis_report
+  type: report
+  description: 'Stance detection (TweetEval) EC-HTE validation: 3 LLMs × 5 targets,
+    sign reversal 13.3% global vs 3.3% EC-HTE, κ range [1.55, 15.01]'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/stance_analysis_report.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T21:31:13.547626+00:00'
+  tags:
+  - exp-b
+  - stance-detection
+  - real-css
+  - sign-reversal
+- id: art_20260523_0046c4
+  name: stance_analysis_csv
+  type: data
+  description: 'Stance detection per-LLM × per-target × per-z stats: bias, RMSE, sign
+    reversal, κ (30 rows)'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/data/stance_analysis.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T21:31:15.544258+00:00'
+  tags:
+  - exp-b
+  - stance-detection
+  - real-css
+- id: art_20260523_3cdd55
+  name: rebuttal_talking_points
+  type: report
+  description: 'Rebuttal talking points: 6 Q&A (real data, semi-synthetic justification,
+    identity value, K>4, Simpson''s paradox, sign reversal conditions) + Quick Reference
+    Numbers'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/rebuttal_talking_points_3cdd55.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T22:59:24.318663+00:00'
+  tags:
+  - rebuttal
+  - talking-points
+  - emnlp-2026
+- id: art_20260524_33dec4
+  name: number_audit_report
+  type: report
+  description: 论文数字追溯性与跨位置一致性核查报告 (2026-05-24)，覆盖~80个关键数字，发现3个CRITICAL和5个WARNING
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/number_audit_report_33dec4.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T04:45:39.144945+00:00'
+  tags:
+  - audit
+  - submission
+  - numbers
+  - traceability
+- id: art_20260524_e489b5
+  name: demo_subgroup_discovery
+  type: report
+  description: 'Codebase discovery for demographic subgroup analysis: UCB Hate Speech
+    (135K rows, 40+ annotator demographics), CivilComments (3 LLM annotations, missing
+    identity join), EC-HTE pipeline reuse points'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/demo_subgroup_discovery.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T04:48:00.678551+00:00'
+  tags:
+  - discovery
+  - real-data
+  - subgroup
+  - demographics
+- id: art_20260524_daeadf
+  name: number_audit_report
+  type: report
+  description: DDL前数字核查报告：~80个关键数字审计，3 CRITICAL (method.tex L61) + 5 WARNING，其余全部通过
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/number_audit_report_daeadf.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T04:50:39.510149+00:00'
+  tags:
+  - audit
+  - ddl
+  - numbers
+- id: art_20260524_442668
+  name: ucb_demographic_analysis
+  type: report
+  description: UCB Hate Speech annotator demographic subgroup分析：7个demographic features
+    + 交互特征的Δπ汇总，最大Δπ=0.117 (race×ideology) < 0.15阈值，semi-synthetic验证negative（高FNR=0.55导致correction放大噪声）
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/ucb_demographic_delta_pi_summary.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T05:11:57.605520+00:00'
+  tags:
+  - ucb
+  - demographic
+  - negative
+  - delta-pi
+  - real-data
+- id: art_20260524_f8ec5d
+  name: rebuttal_talking_points_r19
+  type: report
+  description: Rebuttal talking points based on R19 review issues. 8 core topics (novelty,
+    AUC三级, semi-synthetic, A1 violation, operating window, HB vs MLE, K scalability,
+    debiasing terminology) + 8 pre-emptive topics. All numbers sourced from registry/paper.
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/rebuttal_talking_points_f8ec5d.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T06:08:15.850838+00:00'
+  tags:
+  - rebuttal
+  - R19
+  - EMNLP2026
+- id: art_20260524_676b98
+  name: rebuttal_talking_points
+  type: report
+  description: Rebuttal talking points：4 Must-Address (新颖性/AUC三级/real data/A1违反) +
+    4 Should-Address (operating window/HB vs MLE/K scalability/debiasing术语) + 8 Pre-emptive，所有数字标注registry来源
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/rebuttal_talking_points_676b98.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T06:09:55.884548+00:00'
+  tags:
+  - rebuttal
+  - ddl
+  - talking-points
+- id: art_20260524_6a912c
+  name: exp041_asymmetric_grid
+  type: data
+  description: 'exp-041 raw MC results: 48 configs (6 FPR/FNR ratios × 2 K × 4 Δπ)
+    × 100 MC runs, asymmetric misclassification grid'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-041/data/exp041_asymmetric_grid.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-041
+  skill: ''
+  created_at: '2026-05-24T12:56:08.163451+00:00'
+  tags:
+  - mc-simulation
+  - asymmetric
+  - misclassification
+- id: art_20260524_b81650
+  name: exp041_asymmetric_summary
+  type: data
+  description: 'exp-041 summary: per-config per-method aggregated bias/RMSE/coverage/R²/AUC
+    for asymmetric misclassification MC'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-041/data/exp041_asymmetric_summary.csv
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-041
+  skill: ''
+  created_at: '2026-05-24T12:56:10.751712+00:00'
+  tags:
+  - mc-simulation
+  - asymmetric
+  - summary
+- id: art_20260524_2d3884
+  name: exp041_asymmetric_mc_script
+  type: intermediate
+  description: 'exp-041 simulation script: asymmetric FPR≠FNR MC with bias identity
+    R², diagnostic AUC, EC-HTE correction'
+  path: projects/ec_hte_llm_annotation/artifacts/exp-041/intermediate/run_exp041_asymmetric_mc.py
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: exp-041
+  skill: ''
+  created_at: '2026-05-24T12:56:13.494134+00:00'
+  tags:
+  - mc-simulation
+  - asymmetric
+  - script
+- id: art_20260525_7c4d27
+  name: asymmetric_auc_report
+  type: report
+  description: 'Task 8: Asymmetric Diagnostic AUC analysis — scalar (Prop 5) vs matrix
+    (B_s) diagnostic comparison across 48 synthetic + 8 semi-real LLM configs'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/report/asymmetric_auc_report.md
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T05:25:37.022065+00:00'
+  tags:
+  - task-8
+  - diagnostic
+  - auc
+  - asymmetric
+  - proposition-5
+- id: art_20260525_e8117d
+  name: task8_asymmetric_diagnostic_auc
+  type: intermediate
+  description: 'Task 8 analysis script: computes scalar vs matrix diagnostic AUC on
+    synthetic (exp-041) and semi-real LLM confusion matrices'
+  path: projects/ec_hte_llm_annotation/artifacts/_project/intermediate/task8_asymmetric_diagnostic_auc.py
+  url: null
+  project: ec_hte_llm_annotation
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T05:25:39.663751+00:00'
+  tags:
+  - task-8
+  - diagnostic
+  - script

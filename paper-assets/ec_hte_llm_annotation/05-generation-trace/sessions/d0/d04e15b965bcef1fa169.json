@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_fl-comparison-data-conflict_20260525T095915_result.json",
     "occurrence": 1,
-    "bytes": 865,
-    "sha256": "77cce7a361731ac5ad89664f4e26a0d4a0e00224c0d4c62ae83ed957bfb14187"
+    "bytes": 864,
+    "sha256": "087f28ed48cd26d22849f032ed0524ec7d5e8045c7536720835ee745727e385e"
   },
   "statistics": {
     "messages": 1,

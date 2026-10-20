@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-019-pz1-sweep_20260521T153115_result.json",
     "occurrence": 1,
-    "bytes": 978,
-    "sha256": "ba11faf96df4da8e4b46f687ed61205b08675bf261e02fcc111945d457ba299d"
+    "bytes": 977,
+    "sha256": "6f61c83296dcbdd8824e64e664469559dd14e59d37946d4472127d0279d5410c"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_seeds-100-supplement_20260521T172838_result.json",
     "occurrence": 1,
-    "bytes": 1016,
-    "sha256": "3403bf04072ceb2611fb604ae00843ee29b492301398653d15ed48066b9fffcb"
+    "bytes": 1015,
+    "sha256": "23576b7bad4729486a50a975127bbcad8a28d12211c526ea938675881c25a784"
   },
   "statistics": {
     "messages": 1,

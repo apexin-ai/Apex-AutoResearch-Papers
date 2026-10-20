@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_asymmetric-diagnostic_20260523T071457_result.json",
     "occurrence": 1,
-    "bytes": 1559,
-    "sha256": "9359cf6146ab24cae2fd76071916311648efc82fd717e8f3e3b35fe06518fd8b"
+    "bytes": 1558,
+    "sha256": "76ccbeed993e6fba2aff0f569b7a9a7ca1509c365e5be2f24e0ddf6e7c76ef60"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_sign-reversal-fix-tau003_20260523T151911_result.json",
     "occurrence": 1,
-    "bytes": 1139,
-    "sha256": "09dbcddbadea513a78728697b9f360270060aebb759c2417e83bb78ba4edc2e3"
+    "bytes": 1138,
+    "sha256": "96ddacc253c2b133cd563dae2ef08c549b6f11820f8af3cb06b5e724d502c569"
   },
   "statistics": {
     "messages": 1,

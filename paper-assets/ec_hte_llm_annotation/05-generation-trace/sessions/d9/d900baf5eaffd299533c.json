@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_lalonde-dataset-screening_20260524T123858_result.json",
     "occurrence": 1,
-    "bytes": 807,
-    "sha256": "f58a2d8f64c740a88620ea2ad0a343a91c38edabaa50ab459b31b4befb135452"
+    "bytes": 806,
+    "sha256": "a8a276ea7d77c279abe07965ae9bc4dad61dd75268c0611ea858ae39fcb12f76"
   },
   "statistics": {
     "messages": 1,

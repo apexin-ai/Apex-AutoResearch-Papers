@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-037",
+  "project": "ec_hte_llm_annotation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T01:39:22.761Z",
+    "updated_at": "2026-05-23T01:40:45.599Z",
+    "hypothesis": "Temperature scaling reduces per-subgroup misclassification rates but does NOT eliminate heterogeneity (Δπ shrinks from 0.20 to 0.07 but remains nonzero), so EC-HTE is still necessary post-calibration. Calibrated+EC-HTE should achieve the best coverage."
+  },
+  "timestamp": "2026-05-23T01:40:45.738167+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp-019",
+  "project": "ec_hte_llm_annotation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:38:56.994Z",
+    "updated_at": "2026-05-21T15:39:16.343Z",
+    "hypothesis": "Theorem 1 bias decomposition R² remains high (>0.95) across P(Z=1) range [0.1, 0.5], and EC-HTE RMSE advantage over global persists but degrades at low P(Z=1) due to insufficient minority-class expert labels",
+    "parent": "exp-001",
+    "conclusion": "success",
+    "spec": {
+      "command": "python3 exp019_pz1_sweep.py",
+      "server": "local-cpu",
+      "data_path": "synthetic DGP (N=5000, K=2/4, extreme, symmetric CM)",
+      "data_count": "30000 rows (100 MC × 5 P(Z=1) × 2 K × variable subgroups × 2 z × 4 methods)",
+      "model_name": "HB Gibbs sampler (4 chains, 1000 iter, 500 warmup)",
+      "seed": "0-99",
+      "checkpoint_path": "results/exp019_pz1_sweep_results.csv",
+      "log_path": "results/exp019_pz1_sweep_analysis.md",
+      "pz1_grid": [
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5
+      ],
+      "K_grid": [
+        2,
+        4
+      ],
+      "n_expert": 250
+    }
+  },
+  "timestamp": "2026-05-21T15:39:16.391962+00:00",
+  "trigger": "update_registry"
+}

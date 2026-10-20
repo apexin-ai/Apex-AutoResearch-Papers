@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-003-mixing-fix_20260520T221750_result.json",
     "occurrence": 1,
-    "bytes": 916,
-    "sha256": "1e0a02f9c5406d3959a12f011d729ef3c508dfc168e814eef1abed1152dc1351"
+    "bytes": 915,
+    "sha256": "d732ec1f27dc20a3867dfaa9210a6d8cffec98fca1f8dd42c2c8de03b00f7bb0"
   },
   "statistics": {
     "messages": 1,

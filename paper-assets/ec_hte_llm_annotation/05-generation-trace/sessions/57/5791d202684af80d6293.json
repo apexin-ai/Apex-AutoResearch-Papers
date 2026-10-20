@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-007-skeleton_20260520T212851_result.json",
     "occurrence": 1,
-    "bytes": 734,
-    "sha256": "c594d10f7b360dfa4c0521f14c549b24fb8ce4c3850ae23f53eb59649d4cbd1f"
+    "bytes": 733,
+    "sha256": "49e9c34d4bdacb6286a1f7ad2b1e1922bc6c1732f7191bd8a3dd6d96b99235ee"
   },
   "statistics": {
     "messages": 1,

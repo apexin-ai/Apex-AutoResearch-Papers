@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_p0b-kappa-analysis_20260523T135842_result.json",
     "occurrence": 1,
-    "bytes": 992,
-    "sha256": "6e8af3ec4ebafe3e83cee49fc4a8a3f51e52b5eb2bcd4ccbe481cc7b00cb6c0f"
+    "bytes": 991,
+    "sha256": "6cd273726f5bf3b084fb84692a7bbd76476243f3af49be4a04bbf4a539ffd5c5"
   },
   "statistics": {
     "messages": 1,

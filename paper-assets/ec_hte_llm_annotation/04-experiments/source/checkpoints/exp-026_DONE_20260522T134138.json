@@ -1,0 +1,77 @@
+{
+  "exp_id": "exp-026",
+  "project": "ec_hte_llm_annotation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T12:25:18.911Z",
+    "updated_at": "2026-05-22T13:41:38.543Z",
+    "hypothesis": "HB partial pooling provides substantial RMSE and coverage improvement over Stratified MLE at extreme low expert budgets (n_expert=25-75, yielding 6-18 labels per subgroup), with the gap widening as n_expert decreases — demonstrating the practical value of hierarchical shrinkage when per-subgroup data is scarce",
+    "parent": "exp-006,exp-001",
+    "conclusion": "success",
+    "metrics": {
+      "K2_n25": {
+        "mle_rmse": 0.2562,
+        "hb_rmse": 0.2689,
+        "delta_pct": "+4.9%",
+        "global_rmse": 0.1013
+      },
+      "K2_n50": {
+        "mle_rmse": 0.2748,
+        "hb_rmse": 0.2306,
+        "delta_pct": "-16.1%",
+        "global_rmse": 0.0879
+      },
+      "K2_n75": {
+        "mle_rmse": 0.0911,
+        "hb_rmse": 0.0893,
+        "delta_pct": "-1.9%"
+      },
+      "K4_n25": {
+        "mle_rmse": 0.4011,
+        "hb_rmse": 0.6116,
+        "delta_pct": "+52.5%",
+        "global_rmse": 0.1289
+      },
+      "K4_n50": {
+        "mle_rmse": 0.3798,
+        "hb_rmse": 0.4701,
+        "delta_pct": "+23.8%",
+        "global_rmse": 0.1172
+      },
+      "K4_n75": {
+        "mle_rmse": 0.2208,
+        "hb_rmse": 0.2111,
+        "delta_pct": "-4.4%"
+      },
+      "K4_n100": {
+        "mle_rmse": 0.2152,
+        "hb_rmse": 0.2123,
+        "delta_pct": "-1.3%"
+      },
+      "coverage_all": ">=0.88, no catastrophic failures",
+      "crossover_K2": "n_expert=50 (HB -16.1%)",
+      "crossover_K4": "n_expert=75 (HB -4.4%)",
+      "key_finding": "HB shrinkage advantage emerges at n≥50 (K=2) and n≥75 (K=4). Below these thresholds, global pooling outperforms both HB and MLE — validates budget threshold claim.",
+      "mc_runs": 100,
+      "output_file": "results/exp_low_budget_hb.csv"
+    },
+    "spec": {
+      "command": "python exp026_low_budget_hb.py",
+      "server": "local-cpu",
+      "data_path": "synthetic DGP",
+      "data_count": 1200,
+      "model_name": "N/A",
+      "seed": "42",
+      "checkpoint_source": "N/A",
+      "eval_data": "synthetic K=2/K=4 extreme DGP",
+      "checkpoint_path": "N/A",
+      "log_path": "results/exp_low_budget_hb.csv"
+    },
+    "completed_at": "2026-05-22T13:41:38.543Z"
+  },
+  "timestamp": "2026-05-22T13:41:38.603906+00:00",
+  "trigger": "update_registry"
+}

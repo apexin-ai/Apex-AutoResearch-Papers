@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_ashwin-dataset_20260520T212716_result.json",
     "occurrence": 1,
-    "bytes": 1030,
-    "sha256": "7afd9c1bed56f1549df6aa2d84f7692792e030a37f3800387c309bcf21a17193"
+    "bytes": 1029,
+    "sha256": "a0f71ed61be58870852e182ba86f043953ebd0d65fdad04d4da313ee534b7987"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_arr-checklist-v2_20260522T025104_result.json",
     "occurrence": 1,
-    "bytes": 4017,
-    "sha256": "1755413ad32f17e7b65bf95e34c1c807bebd132913a1c5ec8d36ce6f9af0cb19"
+    "bytes": 4016,
+    "sha256": "b04c100dbbfb9427650712a5ddebfe885771615346caa54290e180e9691de7c3"
   },
   "statistics": {
     "messages": 1,

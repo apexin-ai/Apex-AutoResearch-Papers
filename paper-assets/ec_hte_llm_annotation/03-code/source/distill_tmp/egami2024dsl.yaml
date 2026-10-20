@@ -1,0 +1,85 @@
+paper_key: "egami2024dsl"
+title: "Using Imperfect Surrogates for Downstream Inference: Design-based Supervised Learning for Social Science Applications of Large Language Models"
+venue: "NeurIPS 2023"
+full_text_available: true
+
+research:
+  baselines:
+    - "Surrogate Only (SO)"
+    - "Gold-Standard Only (GSO)"
+    - "Supervised Learning (SL)"
+  metrics:
+    - {name: "Standardized Root Mean Squared Bias", direction: "lower_better"}
+    - {name: "Coverage (95% CI)", direction: "higher_better"}
+    - {name: "RMSE", direction: "lower_better"}
+  datasets:
+    - {name: "Congressional Bills Project (CBP)", size: "10,000 documents"}
+    - {name: "17 CSS benchmark datasets (Ziems et al. 2023)", size: "varies per task"}
+  ablation_dimensions:
+    - "gold-standard sample size (n)"
+    - "surrogate quality (0-shot vs 5-shot)"
+    - "surrogate accuracy level"
+  training_recipe:
+    optimizer: "N/A (statistical estimator, not neural training)"
+    lr: "N/A"
+    hardware: "N/A"
+  method_family: "Doubly-robust semi-parametric estimation with inverse probability weighting"
+
+positioning:
+  core_claim: "即使 surrogate 准确率高达 90%，直接用 LLM 标注做下游回归分析也会导致严重偏差和无效置信区间；DSL 通过 design-based 伪结果构造，在不依赖 surrogate 准确性或 ML 模型正确性的前提下保证一致性和有效推断"
+  key_results: "90% 准确率的 surrogate 直接使用时 95% CI 覆盖率仅 40%；DSL 在 18 个数据集上实现近 nominal 覆盖率（~95%），同时 RMSE 比 GSO 降低 14-31%"
+  limitations:
+    - "需要预先确定语料库，不适用于流式数据场景"
+    - "需要可靠的 gold-standard 标注（并非所有任务都可获得）"
+    - "优先保证无偏性和覆盖率而非预测精度，如果目标是纯预测则 SL 可能更优"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "以 text-as-data 在社科领域的日益流行开篇，引出 LLM 作为廉价标注工具的趋势，然后用一个震撼性的模拟结果（90% 准确率 → 40% 覆盖率）打破读者对高准确率的安全假设"
+  tension: "三层递进：(1) 社科研究需要的是下游统计推断而非分类准确率本身；(2) 即使准确率极高的 surrogate 也会导致严重的 measurement error 偏差；(3) 现有方法各有致命缺陷——SO 忽略误差、GSO 浪费数据、SL 依赖模型正确设定"
+  key_insight: "在第四段通过提出 DSL 方法揭示核心洞察：通过 design-based sampling 框架构造伪结果（pseudo-outcome），利用逆概率加权的偏差修正项，无需假设 surrogate 准确性或 ML 模型正确性即可获得有效推断。关键公式是 Y_tilde = g_hat + (R/pi) * (Y - g_hat)"
+  argument_chain: "LLM 标注日益流行 → 社科需要下游推断而非分类 → 即使高准确率也导致偏差（模拟证明） → 现有三种方法各有缺陷 → DSL 通过 design-based 伪结果解决 → 理论保证（一致性+渐近正态性） → 18 个数据集实证验证"
+  contribution_framing: "四个贡献，用编号列表明确呈现：(1) 新估计量 (2) 强理论保证 (3) 矩估计扩展 (4) 实证验证。措辞强调'guarantee'和'without requiring'来突出无条件性"
+  intro_structure: "5 段：Para1 领域背景（text-as-data 趋势）→ Para2 核心问题（社科需要回归推断）→ Para3 现有方法失败的震撼证据（模拟 Figure 1a）→ Para4 提出 DSL 及其保证 → Para5 论文结构和命名理由"
+  notable_technique: "用 Figure 1(a) 的模拟结果作为'震撼弹'：在 intro 第三段就展示 90% 准确率导致 40% 覆盖率的反直觉结果，迫使读者接受问题的严重性。这种'先打破安全假设再提出方案'的叙事手法非常有效"
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "motivation"
+    description: "双面板图。Panel (a) 是模拟实验线图，展示 SO 和 DSL 在不同 surrogate 准确率下的偏差、覆盖率和 RMSE 对比；Panel (b) 是 DSL 方法流程示意图，展示从 Y/Q/X 输入到伪结果构造再到下游回归的完整 pipeline"
+    narrative_role: "在 intro 中作为震撼性证据使用——Panel (a) 证明问题严重性（高准确率仍导致低覆盖率），Panel (b) 直观展示解决方案的核心机制"
+    design_elements: ["双面板对比布局（问题 vs 方案）", "线图展示趋势变化", "流程图配合数学符号标注", "通过覆盖率急剧下降制造视觉冲击"]
+    visual_style: "左右双面板，Panel (a) 使用标准学术线图风格展示 bias/coverage/RMSE 三个指标随样本量变化；Panel (b) 使用方框+箭头流程图，标注变量符号和维度，简洁清晰"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "四种估计量（SO/GSO/SL/DSL）在 Congressional Bills 数据上的 bias、coverage、RMSE 随 gold-standard 样本量变化"
+      how_gain_highlighted: "DSL 和 GSO 的覆盖率线稳定在 95% nominal 水平，而 SO 显著偏离；DSL 的 RMSE 线低于 GSO"
+      design_note: "三个指标分面展示，横轴统一为样本量，便于跨指标对比；覆盖率面板有 95% 参考线"
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "DSL 相对 GSO 的效率增益在不同 surrogate 质量（0-shot 到 5-shot）下的变化"
+      how_gain_highlighted: "展示 surrogate 质量提升时效率增益单调递增的趋势"
+      design_note: "专注于方法间的相对比较而非绝对性能，突出 surrogate 质量和效率增益的正相关关系"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (intro motivation: 问题严重性 + 方案概览) → Figure 2 (主实验: CBP 数据上四种方法全面对比) → Figure 3 (深入分析: surrogate 质量对效率的影响)"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "datasets (17 CSS benchmark tasks)"
+    col_axis: "methods × metrics (bias, coverage, RMSE)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "颜色编码：绿色=最低偏差，蓝色=覆盖率>94.5%，橙色=最优 RMSE"
+    statistical_reporting: "点估计值（基于多次重复实验）"
+    num_baselines: 3
+    design_note: "用颜色而非加粗来区分不同指标的最优，避免视觉混乱；17 个数据集的大规模验证增强说服力；将任务按类别（emotion/hate speech/misinformation 等）分组展示"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "理论证明、额外实验细节、CBP 数据集详细结果"
+    reason: "主文聚焦方法和核心实证，将数学证明和细节数据放入在线补充材料以保持主文简洁"

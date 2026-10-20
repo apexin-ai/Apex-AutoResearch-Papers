@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_task-d-auc-attribution-fix_20260523T080901_result.json",
     "occurrence": 1,
-    "bytes": 562,
-    "sha256": "aacb29ce95e2c549bf039a69aa557322ff412efbd24b63d6be81fd91267111ba"
+    "bytes": 561,
+    "sha256": "d21db827c7d13ccba23371bf906d34d00d672e344855fd71fff497b208d7cbad"
   },
   "statistics": {
     "messages": 1,

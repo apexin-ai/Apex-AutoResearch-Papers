@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_agnews-mc-simulation_20260524T153816_result.json",
     "occurrence": 1,
-    "bytes": 1152,
-    "sha256": "ab0f80d75576e259e6b527aafbb668a265f32a7abb8be413e683094a3433496b"
+    "bytes": 1151,
+    "sha256": "1238523e25a81f042bf17a2fb7be3c13badc99014a6eede60018d85e48bc17a3"
   },
   "statistics": {
     "messages": 1,

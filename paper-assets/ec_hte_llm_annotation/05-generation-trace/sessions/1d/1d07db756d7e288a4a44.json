@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_figure_fig3-budget_20260521T052656_result.json",
     "occurrence": 1,
-    "bytes": 445,
-    "sha256": "5b210630f61dfa6f916eecd9abae98eec3a369ba114b71837adac22ee1a54127"
+    "bytes": 444,
+    "sha256": "f4823204a0b0352b855ddb2254840b110e31bca3801e1dce43d1e6f6dda3dc2d"
   },
   "statistics": {
     "messages": 1,

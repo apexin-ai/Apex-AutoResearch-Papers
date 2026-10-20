@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp-022",
+  "project": "ec_hte_llm_annotation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T19:43:54.613Z",
+    "updated_at": "2026-05-21T19:44:26.454Z",
+    "hypothesis": "EC-HTE's hierarchical Bayes confusion matrix estimation is insensitive to Gamma hyperprior specification: varying shape∈{1,2,3,5,10} and scale∈{0.5,1,2} produces <10% RMSE variation, confirming the method is not driven by prior choice",
+    "parent": "exp-001",
+    "conclusion": "success",
+    "metrics": {
+      "rmse_range_reasonable": "6.0%",
+      "rmse_range_all": "17.3%",
+      "gamma31_rmse": 0.0841,
+      "gamma31_rank": "8/15",
+      "coverage_range": "0.925-0.938",
+      "hb_beats_mle": "9/15",
+      "best_config": "Gamma(1,0.5)",
+      "best_rmse": 0.0825
+    }
+  },
+  "timestamp": "2026-05-21T19:44:26.518269+00:00",
+  "trigger": "update_registry"
+}

@@ -970,7 +970,7 @@ _source line 26 · 2026-05-24T07:01:01.299522+00:00_
 
 1	{
 2	  "repo_public": "https://github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation",
-3	  "push_url": "https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git",
+3	  "push_url": "https://[REDACTED]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git",
 4	  "github_user": "anonymous-nlp-2026-2",
 5	  "repo_name": "ec_hte_llm_annotation"
 6	}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_exp041-appendix-update_20260524T131222_result.json",
     "occurrence": 1,
-    "bytes": 1065,
-    "sha256": "bb676824f75dd699445408948e82a69dbb6b908260d5c2a72deafff81681615d"
+    "bytes": 1064,
+    "sha256": "cb428d627a5f4c818f7d71f5661dc6effa65213ccb24a4a4642f6e46cb065c53"
   },
   "statistics": {
     "messages": 1,

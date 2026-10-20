@@ -1,0 +1,25 @@
+paper_key: "hu2008nonclassical"
+title: "Instrumental Variable Treatment of Nonclassical Measurement Error Models"
+venue: "Econometrica 2008"
+full_text_available: false
+
+research:
+  baselines: ["classical_measurement_error_models", "standard_IV_approaches"]
+  metrics:
+    - {name: "identification_generality", direction: "qualitative"}
+    - {name: "estimation_consistency", direction: "qualitative"}
+  datasets:
+    - {name: "Monte_Carlo_simulations", size: "N/A"}
+  ablation_dimensions: []
+  training_recipe: {}
+  method_family: "measurement_error"
+
+positioning:
+  core_claim: "Instrumental variables enable identification of nonclassical nonlinear errors-in-variables models under a weak 'location normalization' assumption (e.g., zero conditional mean/mode/median of error), using eigenvalue-eigenfunction decomposition and sieve estimation."
+  key_results: "Identification of broad class of nonclassical measurement error models; sieve estimator with established asymptotic properties"
+  limitations: []
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

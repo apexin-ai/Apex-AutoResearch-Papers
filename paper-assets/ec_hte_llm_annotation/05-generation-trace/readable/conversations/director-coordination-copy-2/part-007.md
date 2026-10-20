@@ -11205,8 +11205,8 @@ AWS 凭证已在 BE 的 ~/.agent-ml-be-backup.yaml 文件里。命令模板（�
 
 如果从远程 GPU 服务器上跑，需要先把凭证 scp 过去 + export：
 
-  export AWS_ACCESS_KEY_ID=...
-  export AWS_SECRET_ACCESS_KEY=...
+  export AWS_ACCESS_KEY_ID=[REDACTED]
+  export AWS_SECRET_ACCESS_KEY=[REDACTED]
   export AWS_DEFAULT_REGION=ap-northeast-1
 
 完成后汇报：

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_acl-latex-template_20260521T040556_result.json",
     "occurrence": 1,
-    "bytes": 444,
-    "sha256": "4f8b46927c09d92dd799f44d0be0306242fe7688d776ae0cd12af1a40710675e"
+    "bytes": 443,
+    "sha256": "ce47a6910271e1f8fd54962031568d02bdc7cf1cb4663f71a579433e4f6e5477"
   },
   "statistics": {
     "messages": 1,

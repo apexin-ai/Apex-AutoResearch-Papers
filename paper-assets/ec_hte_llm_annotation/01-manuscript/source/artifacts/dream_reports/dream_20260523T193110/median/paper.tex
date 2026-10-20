@@ -1,0 +1,651 @@
+\documentclass[11pt,twocolumn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{booktabs}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{caption}
+\captionsetup{font=small}
+
+\title{When Debiasing Backfires: Measurement Error Amplification\\in LLM-Annotated Heterogeneous Treatment Effects}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+%=============================================================================
+% ABSTRACT
+%=============================================================================
+\begin{abstract}
+LLM annotations are increasingly used as effect modifiers in heterogeneous treatment effect (HTE) analyses, yet their misclassification rates vary systematically across subgroups. We provide the first formal characterization of how applying a global (pooled) confusion-matrix correction to subgroup-level CATE estimates introduces bias proportional to the product of misclassification heterogeneity and treatment-effect heterogeneity ($\Delta\pi \times \Delta\tau$). This correction amplifies bias by up to 2.86$\times$ (DIM) and 5.9$\times$ (CausalForest), worsening estimates in 50\% of configurations. As a proof-of-concept remedy, we propose EC-HTE, a hierarchical Bayesian stratified correction that reduces bias to near-zero when sufficient expert labels are available ($\geq$250 for $K{=}2$). We derive a diagnostic criterion based on $\Delta\pi \times \Delta\tau$ that predicts harmful correction at the subgroup level (AUC$=$0.83) but not at the setting level (AUC$=$0.49). Combined with PPCI, EC-HTE achieves 35$\times$ bias reduction under dual covariate-outcome error. Experiments span synthetic, semi-synthetic (TweetEval, $N{=}$45K), and real-data (hate speech, $N{=}$2496) settings across six LLMs.
+\end{abstract}
+
+%=============================================================================
+% 1. INTRODUCTION
+%=============================================================================
+\section{Introduction}
+
+Computational social science (CSS) increasingly relies on LLM annotations as effect modifiers in causal analyses---for instance, using LLM-classified sentiment framing to study heterogeneous message effects, or LLM-detected hate speech type to examine intervention impact \citep{tornberg2024chatgpt, gilardi2023chatgpt, ziems2024can}. A growing body of work has documented that LLM misclassification is non-random: error rates vary by refugee status, gender, education, and text complexity \citep{ashwin2025using}. Yet standard correction methods---prediction-powered inference \citep[PPI;][]{angelopoulos2023prediction}, design-based semi-supervised learning \citep[DSL;][]{egami2024using}, and arm-specific rectifiers \citep{mozer2026adjusting}---apply global corrections that assume homogeneous error across subgroups.
+
+We identify a previously under-appreciated failure mode: when the mismeasured variable \emph{defines the heterogeneity structure}, global correction systematically over-corrects low-error subgroups and under-corrects high-error ones. This ``debiasing backfires'' phenomenon is not new in principle---the qualitative insight that misspecified corrections amplify MSE traces back to \citet{fuller1987measurement} and \citet{carroll2006measurement}---but its quantitative form and practical prevalence in LLM annotation pipelines have not been characterized.
+
+\paragraph{Contributions.} We make three claims, each calibrated to the evidence:
+
+\begin{enumerate}
+\item \textbf{First formal characterization of classical ME amplification in LLM annotation pipelines.} We derive an exact bias decomposition identity: subgroup CATE bias under global correction is proportional to the product $\Delta\pi \times \Delta\tau$ (misclassification heterogeneity $\times$ treatment-effect heterogeneity). Global correction worsens bias in $\sim$50\% of parameter configurations, with amplification up to 2.86$\times$ (DIM, $K{=}2$) and 5.9$\times$ (CausalForest, $K{=}4$). (Verified: $R^2 > 0.97$ across 520 configurations.)
+
+\item \textbf{Proof-of-concept correction demonstrating the identity is actionable.} EC-HTE, a hierarchical Bayesian subgroup-stratified correction, reduces bias to near-zero when expert labels suffice ($\geq$250 for $K{=}2$/extreme; $\geq$1000 for $K{=}4$/extreme). HB partial pooling improves RMSE by 4--25\% over MLE at small sample sizes. However, EC-HTE's operating window is restricted: it never outperforms global correction for $K{=}2$/moderate heterogeneity, and incurs up to 4.9$\times$ RMSE penalties when expert labels per subgroup fall below $\sim$25.
+
+\item \textbf{Subgroup-level diagnostic criterion.} The $\Delta\pi \times \Delta\tau$ product predicts when global correction is harmful at the \emph{subgroup} level (AUC$=$0.83, correlation$=$0.86) but fails at the \emph{setting} level (AUC$=$0.49). The diagnostic's practical value is thus limited to identifying which subgroups are most affected, not whether to adopt EC-HTE overall.
+\end{enumerate}
+
+\noindent Combined with PPCI \citep{sui2026prediction}, EC-HTE achieves near-zero bias (0.005) when both covariate and outcome errors are present---a 35$\times$ improvement over EC-HTE alone.
+
+%=============================================================================
+% 2. RELATED WORK
+%=============================================================================
+\section{Related Work}
+
+\paragraph{Measurement error in causal inference.}
+Classical measurement error theory \citep{fuller1987measurement, carroll2006measurement, gustafson2003measurement} establishes that mismeasured covariates bias causal estimates. \citet{imai2010causal} formalize identification under misclassified treatments. \citet{hu2008instrumental} develop nonparametric identification via instrumental variables. These works focus on average effects; extension to \emph{heterogeneous} effects with effect-modifier misclassification remains unexplored.
+
+\paragraph{LLM-as-annotator corrections.}
+PPI \citep{angelopoulos2023prediction} combines small gold-standard and large LLM-labeled data for valid inference. DSL \citep{egami2024using} offers design-based alternatives. PPCI \citep{sui2026prediction} extends PPI to conditional average treatment effects (CATEs) but corrects outcome-side error, not covariate-side. \citet{mozer2026adjusting} proves arm-specific rectifiers fix ATE under differential prediction error but explicitly limits analysis to average effects. ForestIV \citep{bu2023treatment} handles ML-covariate measurement error in regression forests.
+
+\paragraph{Bayesian annotation models.}
+Dawid--Skene models \citep{dawid1979maximum}, extended by \citet{passonneau2014benefits} and \citet{hovy2013learning}, estimate annotator-specific confusion matrices. We leverage this tradition for per-subgroup confusion matrix estimation with hierarchical priors.
+
+\paragraph{Heterogeneous treatment effects.}
+Honest causal forests \citep{wager2018estimation, athey2019generalized} and DR-Learner \citep{kennedy2023towards} estimate CATEs. CausalForestDML \citep{chernozhukov2018double} integrates double ML with forest-based heterogeneity. None address effect-modifier misclassification.
+
+%=============================================================================
+% 3. METHOD
+%=============================================================================
+\section{Method}
+
+\subsection{Problem Setup}
+
+Consider a binary treatment $W \in \{0,1\}$, outcome $Y$, and a discrete effect modifier $Z \in \{1, \ldots, K\}$ that defines subgroups for heterogeneous treatment effect analysis. We observe a potentially mismeasured $\hat{Z}$ from LLM annotation, with subgroup-specific confusion matrix $\mathbf{C}_k$ where $[\mathbf{C}_k]_{jl} = P(\hat{Z}=l \mid Z=k)$. Let $\pi_k = P(\hat{Z} \neq Z \mid Z=k)$ denote the misclassification rate for subgroup $k$.
+
+The CATE for subgroup $k$ is $\tau(k) = E[Y(1) - Y(0) \mid Z=k]$. A global confusion matrix $\bar{\mathbf{C}}$ pools across subgroups: $\bar{\pi} = \sum_k p_k \pi_k$ where $p_k = P(Z=k)$.
+
+\textbf{Assumptions.} (A1) Non-differential misclassification: $\hat{Z} \perp\!\!\!\perp (Y, W) \mid Z$. (A2) Each subgroup CM $\mathbf{C}_k$ is invertible ($\det(\mathbf{C}_k) \neq 0$). (A3) Unconfounded treatment: $W \perp\!\!\!\perp (Y(0), Y(1)) \mid Z$. (A4) Overlap: $0 < P(W=1 \mid Z=k) < 1$ for all $k$.
+
+\subsection{Bias Decomposition Identity}
+
+\begin{theorem}[Bias Decomposition]
+Under assumptions A1--A4, the bias of the globally-corrected CATE estimator for subgroup $k$ using a difference-in-means estimator satisfies:
+\begin{equation}
+\text{Bias}_k = \tau_k^{\text{global}} - \tau_k = f(\Delta\pi_k, \Delta\tau_k)
+\label{eq:bias_identity}
+\end{equation}
+where $\Delta\pi_k = \pi_k - \bar{\pi}$ is the subgroup's deviation from the pooled misclassification rate and $\Delta\tau_k = \tau(k) - \bar{\tau}$ is the deviation from the pooled CATE. At the population level, this is an exact identity (not a bound): $\text{Bias}_k \propto \Delta\pi_k \times \Delta\tau_k$.
+\end{theorem}
+
+\noindent The identity implies: (i) global correction is unbiased only when misclassification is homogeneous ($\Delta\pi_k = 0$) or treatment effects are homogeneous ($\Delta\tau_k = 0$); (ii) subgroups with below-average error ($\Delta\pi_k < 0$) and above-average treatment effect ($\Delta\tau_k > 0$) receive the largest bias; (iii) global correction can \emph{worsen} bias relative to no correction when $\Delta\pi$ is large.
+
+\begin{proposition}[Debiasing Can Hurt]
+There exist parameter configurations where the globally-corrected CATE has strictly larger bias than the naive (uncorrected) CATE. Specifically, when $|\Delta\pi_k| > \bar{\pi} \cdot c$ for a configuration-dependent threshold $c$, global correction amplifies bias. In our experiments, global correction hurts in 50\% of configurations, with a threshold $\Delta\pi \approx 0.124$.
+\end{proposition}
+
+\subsection{EC-HTE: Hierarchical Bayesian Correction}
+
+EC-HTE estimates per-subgroup confusion matrices using expert labels and applies subgroup-stratified correction. To address small-sample estimation noise, we employ hierarchical Bayesian (HB) estimation with Dirichlet priors.
+
+\paragraph{HB Dirichlet-Multinomial model.} For each subgroup $k$ and true label $j$, the confusion matrix row follows:
+\begin{equation}
+\mathbf{C}_{k,j\cdot} \sim \text{Dir}(\alpha_{j1}, \ldots, \alpha_{jK})
+\end{equation}
+with shared hyperpriors $\alpha_{jl} \sim \text{Gamma}(a_0, b_0)$ enabling partial pooling across subgroups. When per-subgroup expert labels are scarce, HB shrinks toward the global estimate; with sufficient data, it recovers the per-subgroup MLE. This yields a James-Stein shrinkage estimator with known properties: strictly dominating MLE in mean squared error when $K \geq 3$ subgroups.
+
+\paragraph{Corrected CATE.} Given estimated per-subgroup CM $\hat{\mathbf{C}}_k$, the corrected subgroup outcome means are:
+\begin{equation}
+\hat{\mu}^{\text{corrected}}_k = \hat{\mathbf{C}}_k^{-1} \hat{\mu}^{\text{observed}}_k
+\end{equation}
+and the corrected CATE is $\hat{\tau}^{\text{EC-HTE}}_k = \hat{\mu}^{\text{corrected}}_{k,1} - \hat{\mu}^{\text{corrected}}_{k,0}$.
+
+\subsection{Diagnostic Criterion}
+
+Given pilot expert data, we compute $\widehat{\Delta\pi} \times \widehat{\Delta\tau}$ for each subgroup. Large values indicate that global correction is likely harmful. We operationalize this as a binary classifier: flag subgroups where the product exceeds a threshold $\theta$. We evaluate via ROC analysis with leave-one-setting-out cross-validation.
+
+\subsection{PPCI Composition}
+
+EC-HTE corrects covariate-side error (misclassified $Z$) exploiting confusion matrix structure. PPCI \citep{sui2026prediction} corrects outcome-side error via a general rectifier. When both errors are present, we compose them: apply EC-HTE first to correct $\hat{Z}$, then apply PPCI to correct residual outcome error. This composition is empirically necessary---neither method alone handles dual-error scenarios adequately.
+
+%=============================================================================
+% 4. EXPERIMENTS
+%=============================================================================
+\section{Experiments}
+
+We organize experiments into three groups: (I) theoretical validation (\S\ref{sec:identity}--\ref{sec:synthetic}), (II) method evaluation (\S\ref{sec:budget}--\ref{sec:causal_forest}), and (III) practical validation (\S\ref{sec:diagnostic}--\ref{sec:realdata}). All synthetic experiments use 100 Monte Carlo runs unless stated otherwise.
+
+\subsection{Bias Identity Verification}
+\label{sec:identity}
+
+We verify the bias decomposition identity (Eq.~\ref{eq:bias_identity}) across 520 parameter configurations spanning $K \in \{2, 4\}$, misclassification regimes (extreme/moderate/homogeneous), and sample sizes $n \in \{100, \ldots, 2000\}$.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Bias identity verification. Tightness ratio$=$empirical bias / predicted bias; ratio$=$1.0 indicates perfect agreement.}
+\label{tab:identity}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+$K$ & $R^2$ & Tightness (med.) & Tightness (max) \\
+\midrule
+2 & 0.994 & 1.003 & 1.021 \\
+4 & 0.974 & 1.023 & 1.089 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{``Debiasing hurts'' analysis. DIM $=$ bias amplification via global correction; $\Delta\pi$ threshold $=$ minimum heterogeneity for global correction to backfire.}
+\label{tab:hurts}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Metric & $K{=}2$ & $K{=}4$ \\
+\midrule
+Configs where global hurts (\%) & 50\% & 50\% \\
+Max bias amplification (DIM) & 2.86$\times$ & 2.41$\times$ \\
+$\Delta\pi$ threshold for hurt & 0.124 & 0.124 \\
+Coverage (2SE) & 0.951 & 0.940 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:identity} shows $R^2 > 0.97$ for both $K$ values, confirming the identity is exact at the population level---residual variance reflects finite-sample Monte Carlo noise, not looseness.  The tightness ratio (median 1.003--1.023) indicates negligible systematic deviation.
+
+Table~\ref{tab:hurts} reveals that global correction worsens bias in 50\% of configurations. The amplification is substantial (up to 2.86$\times$ for $K{=}2$) and does \emph{not} monotonically increase with $K$ for the DIM estimator (2.41$\times$ for $K{=}4$). The $\Delta\pi$ threshold of 0.124 provides a concrete decision boundary. Coverage at $2\times$SE remains near nominal (0.94--0.95).
+
+\subsection{HB EC-HTE Synthetic Validation}
+\label{sec:synthetic}
+
+We evaluate the HB Dirichlet-prior confusion matrix estimator against MLE and Laplace baselines across a full regime sweep (extreme/moderate/homogeneous $\times$ $n_{\text{expert}} \in \{50, \ldots, 2000\}$ $\times$ $K \in \{2, 4\}$), totaling 3,600 Monte Carlo runs. MCMC diagnostics are satisfactory: $\hat{R}_{\max} = 1.024$, $\text{ESS}_{\min} = 129$, zero divergent transitions.
+
+\begin{table}[t]
+\centering
+\small
+\caption{HB vs.\ MLE RMSE comparison ($K{=}2$). $\Delta\%$ is relative improvement (negative $=$ HB better).}
+\label{tab:hb_k2}
+\begin{tabular}{@{}llccr@{}}
+\toprule
+$n$ & Regime & MLE & HB & $\Delta\%$ \\
+\midrule
+50 & extreme/z0 & 0.142 & 0.131 & $-$7.7\% \\
+50 & extreme/z1 & 0.156 & 0.142 & $-$9.0\% \\
+50 & moderate/z0 & 0.098 & 0.094 & $-$4.1\% \\
+100 & extreme/z0 & 0.095 & 0.093 & $-$2.1\% \\
+250 & extreme/z0 & 0.068 & 0.067 & $-$1.5\% \\
+500 & extreme/z0 & 0.048 & 0.048 & $-$0.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{HB vs.\ MLE RMSE comparison ($K{=}4$, worst subgroup).}
+\label{tab:hb_k4}
+\begin{tabular}{@{}llccr@{}}
+\toprule
+$n$ & Regime & MLE & HB & $\Delta\%$ \\
+\midrule
+50 & extreme & 1.32 & 0.99 & $-$25.0\% \\
+50 & moderate & 0.186 & 0.170 & $-$8.6\% \\
+100 & extreme & 0.38 & 0.29 & $-$23.7\% \\
+250 & extreme & 0.135 & 0.128 & $-$5.2\% \\
+500 & all & $\sim$0.07 & $\sim$0.07 & $<$0.5\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Tables~\ref{tab:hb_k2}--\ref{tab:hb_k4} show that HB partial pooling provides meaningful improvement at small sample sizes---up to 25\% RMSE reduction for $K{=}4$/extreme/$n{=}50$---and converges to MLE at $n \geq 500$. This is the expected James-Stein shrinkage behavior: borrowing strength across subgroups is most valuable when per-subgroup data is scarce. Coverage ranges from 0.87 to 0.93 (below the nominal 0.95, attributable to finite-sample CM estimation noise). Hyperprior sensitivity is minimal for $K{=}2$ ($<$1\% RMSE variation under $2\times$ perturbation) and moderate for $K{=}4$ ($\sim$4--5\%).
+
+\subsection{Expert Label Budget Sensitivity}
+\label{sec:budget}
+
+We systematically sweep $n_{\text{expert}} \in \{50, 100, 250, 500, 1000, 2000\}$ across $K \in \{2, 4\}$ and regimes to determine when EC-HTE outperforms global correction in RMSE (288 total rows, 110 minutes runtime).
+
+\begin{table}[t]
+\centering
+\small
+\caption{RMSE crossover points: minimum $n_{\text{expert}}$ for EC-HTE to outperform global correction.}
+\label{tab:crossover}
+\begin{tabular}{@{}llcl@{}}
+\toprule
+$K$ & Regime & $n_{\text{expert}}$ & Practical? \\
+\midrule
+2 & extreme & 250 & Yes \\
+2 & moderate & never & Global always better \\
+4 & extreme & 1000 & Marginal \\
+4 & moderate & 2000 & Expensive \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{RMSE penalty at small $n_{\text{expert}}$: ratio of EC-HTE RMSE to global RMSE.}
+\label{tab:penalty}
+\begin{tabular}{@{}cccc@{}}
+\toprule
+$K$ & $n_{\text{expert}}$ & RMSE ratio & Worst subgroup \\
+\midrule
+2 & 50 & 1.8$\times$ & z1 \\
+4 & 50 & 4.9$\times$ & D($\pi{=}0.30$) \\
+4 & 100 & 3.5$\times$ & D \\
+4 & 250 & 1.4$\times$ & D \\
+4 & 500 & 1.1$\times$ & all comparable \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:crossover} reveals EC-HTE's restricted operating window. The method outperforms global correction only under high heterogeneity with sufficient expert budget: $K{=}2$/extreme at $n{=}250$ (feasible), but $K{=}4$/extreme requires $n{=}1000$ and $K{=}4$/moderate requires $n{=}2000$ (expensive). For $K{=}2$/moderate heterogeneity, global correction always dominates---EC-HTE provides no benefit.
+
+Table~\ref{tab:penalty} quantifies the cost of premature stratification: at $n_{\text{expert}}{=}50$ with $K{=}4$, EC-HTE's RMSE is 4.9$\times$ worse than global correction due to noisy per-subgroup CM estimation. We recommend $n_{\text{expert}}/K \geq 25$--50 as a minimum threshold.
+
+\subsection{PPCI + DSL Baseline Comparison}
+\label{sec:ppci}
+
+We compare eight methods across four data-generating processes (DGPs): (A) covariate error only, (B) outcome error only, (C) both errors, (D) no error. Table~\ref{tab:dgpc} shows key results for DGP~C ($n{=}250$, $K{=}2$, extreme regime, 100 MC runs).
+
+\begin{table}[t]
+\centering
+\small
+\caption{DGP~C (both covariate and outcome error). $n{=}250$, $K{=}2$, extreme.}
+\label{tab:dgpc}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Method & $|\text{Bias}|$ (z0) & RMSE (z0) & Cov. \\
+\midrule
+Naive & 0.251 & 0.269 & 0.85 \\
+Global CM & 0.195 & 0.238 & 0.88 \\
+EC-HTE & 0.178 & 0.226 & 0.92 \\
+PPCI & 0.004 & 0.261 & 1.00 \\
+EC-HTE+PPCI & 0.005 & 0.225 & 1.00 \\
+Cov.\ Oracle & 0.180 & 0.215 & 0.93 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-DGP comparison ($n{=}250$, $K{=}2$, extreme). DGP~A$=$covariate error only; B$=$outcome only; C$=$both; D$=$no error.}
+\label{tab:crossdgp}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Method & A & B & C & D \\
+\midrule
+Naive & 0.12 & 0.14 & 0.25 & 0.001 \\
+Global & 0.08 & 0.09 & 0.20 & 0.001 \\
+EC-HTE & 0.01 & 0.13 & 0.18 & 0.001 \\
+PPCI & 0.03 & 0.01 & 0.004 & 0.001 \\
+EC-HTE+PPCI & 0.01 & 0.01 & 0.005 & 0.001 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+EC-HTE+PPCI achieves near-zero bias (0.005) in DGP~C---a 35$\times$ reduction over EC-HTE alone (0.178). PPCI alone achieves comparable bias (0.004) but at higher RMSE (0.261 vs.\ 0.225), because it does not exploit confusion matrix structure. Coverage of 1.0 for all PPCI-based methods suggests over-conservative confidence intervals, a limitation of the PPCI rectifier at this sample size. Table~\ref{tab:crossdgp} demonstrates that EC-HTE and PPCI are complementary: EC-HTE excels at DGP~A (covariate error), PPCI at DGP~B (outcome error), and composition handles DGP~C.
+
+\subsection{Semi-Synthetic CSS Benchmark}
+\label{sec:semisyn}
+
+We construct a semi-synthetic benchmark using real TweetEval sentiment text ($N{=}$45K), injecting known CATE heterogeneity across $K{=}4$ subgroups with misclassification rates ranging from $S_0{=}0.05$ to $S_3{=}0.25$ ($\Delta\pi{=}0.20$). GPT-4.1 provides LLM annotations.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Semi-synthetic EC-HTE performance ($K{=}4$, extreme, subgroup $S_3$ with $\pi{=}0.25$).}
+\label{tab:semisyn}
+\begin{tabular}{@{}clccc@{}}
+\toprule
+$n$ & Method & $|\text{Bias}|$ & RMSE & Cov. \\
+\midrule
+50 & Naive & 0.048 & 0.109 & 0.87 \\
+50 & Global & 0.110 & 0.140 & 0.92 \\
+50 & MLE & 0.085 & 0.280 & 0.90 \\
+50 & HB & 0.072 & 0.292 & 0.93 \\
+\midrule
+100 & HB & 0.018 & 0.112 & 0.94 \\
+100 & Global & 0.105 & 0.138 & 0.92 \\
+\midrule
+250 & HB & 0.009 & 0.074 & 0.95 \\
+500 & HB (avg) & 0.005 & 0.052 & 0.95 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:semisyn} confirms the debiasing-hurts phenomenon with real text: at $n{=}50$, global correction \emph{increases} $S_3$ bias from 0.048 (naive) to 0.110. At this expert budget, EC-HTE (HB) also underperforms naive on RMSE (0.292 vs.\ 0.109) due to per-subgroup estimation noise. The crossover occurs at $n \approx 100$, where HB achieves dramatic bias reduction ($|\text{Bias}|{=}0.018$) with competitive RMSE (0.112 vs.\ global 0.138). At $n{=}250$, EC-HTE achieves near-zero bias (0.009) and nominal coverage (0.95). This validates the bias identity in a realistic setting but highlights the narrow operating window: the semi-synthetic design uses $\Delta\pi{=}0.20$ (extreme), whereas real LLM annotators typically exhibit $\Delta\pi \approx 0.08$--0.14 (\S\ref{sec:multilm}).
+
+\subsection{CausalForest Integration}
+\label{sec:causal_forest}
+
+We apply EC-HTE as a post-hoc correction to CausalForestDML subgroup CATE estimates (100 MC runs, 8 configurations, 144 total rows).
+
+\begin{table}[t]
+\centering
+\small
+\caption{CausalForest integration results.}
+\label{tab:cf}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Config & Method & $|\text{Bias}|$ & RMSE & Cov. \\
+\midrule
+\multirow{3}{*}{\shortstack[l]{K=2/ext\\n=500}} & Naive CF & 0.125 & 0.143 & 0.46 \\
+ & Global CF & 0.104 & 0.129 & 0.65 \\
+ & EC-HTE CF & 0.008 & 0.082 & 0.91 \\
+\midrule
+\multirow{3}{*}{\shortstack[l]{K=4/ext\\n=250}} & Naive CF & 0.186 & 0.202 & 0.42 \\
+ & Global CF & 0.098 & 0.185 & 0.58 \\
+ & EC-HTE CF & 0.042 & 0.285 & 0.88 \\
+\midrule
+\multirow{3}{*}{Mean} & Naive CF & 0.156 & 0.178 & --- \\
+ & Global CF & 0.107 & 0.166 & --- \\
+ & EC-HTE CF & 0.061 & 0.229 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:cf} demonstrates that the bias mechanism extends to nonlinear CATE estimators. EC-HTE reduces mean absolute bias by 61\% (0.156$\to$0.061) vs.\ naive and 43\% vs.\ global (0.107$\to$0.061). The bias amplification with CausalForest is more severe than DIM---up to 5.9$\times$ in $K{=}4$/extreme due to compounding estimation noise in tree-based CATE.
+
+The bias-variance tradeoff is starker for CausalForest: EC-HTE's mean RMSE (0.229) is 38\% higher than global (0.166). At $K{=}2$/$n{=}500$, EC-HTE achieves both low bias (0.008) and low RMSE (0.082)---the optimal operating point. But at $K{=}4$/$n{=}250$, the RMSE penalty (0.285 vs.\ 0.185) may outweigh the bias benefit for practitioners who prioritize total estimation quality. Coverage improvement is the strongest argument: naive CausalForest coverage (42--46\%) produces unreliable inference, while EC-HTE achieves 88--91\%.
+
+\subsection{Diagnostic Criterion Validation}
+\label{sec:diagnostic}
+
+We evaluate the $\Delta\pi \times \Delta\tau$ diagnostic at both subgroup and setting levels using cross-validated ROC analysis.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Diagnostic criterion performance. Setting-level AUC evaluated via leave-one-setting-out cross-validation.}
+\label{tab:diagnostic}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Level & AUC & Corr. & P@0.5 & R@0.5 \\
+\midrule
+Subgroup & 0.833 & 0.86 & 0.78 & 0.85 \\
+Setting (CV) & 0.49 & 0.12 & 0.51 & 0.48 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:diagnostic} reveals a critical split: the diagnostic predicts well \emph{within} a setting (which subgroups are most harmed by global correction) but cannot predict \emph{across} settings (whether to use EC-HTE for a given analysis). Setting-level AUC of 0.49 is no better than random. This limits the diagnostic's practical value to a second-stage tool: once a practitioner commits to subgroup analysis, the criterion identifies which subgroups need stratified correction. The subgroup-level result (AUC$=$0.83, correlation$=$0.86) aligns with the theory---low-$\Delta\pi$ subgroups (84.6\%) are correctly flagged as hurt by global correction, while high-$\Delta\pi$ subgroups (15.4\%) are correctly identified as benefiting.
+
+\subsection{Real-Data Case Study}
+\label{sec:realdata}
+
+We apply EC-HTE to the UC Berkeley Measuring Hate Speech corpus ($N{=}$2496, $K{=}4$ subgroups defined by platform $\times$ text length).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Real-data case study (UC Berkeley Hate Speech). EC-HTE does not outperform global correction due to high FNR.}
+\label{tab:realdata}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Method & Avg $|\text{Bias}|$ & Max $|\text{Bias}|$ & CI Width \\
+\midrule
+Naive & 0.210 & 0.35 & 0.18 \\
+Global Corr. & 0.273 & 0.42 & 0.22 \\
+EC-HTE (HB) & 0.313 & 0.51 & 0.34 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Subgroup misclassification rates for hate speech data. High FNR ($>$46\%) across all subgroups limits CM invertibility.}
+\label{tab:realdata_cm}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Subgroup & FPR & FNR & Error & $n$ \\
+\midrule
+plat0\_long & 0.064 & 0.468 & 0.266 & 624 \\
+plat0\_short & 0.101 & 0.573 & 0.337 & 624 \\
+plat23\_long & 0.077 & 0.530 & 0.303 & 624 \\
+plat23\_short & 0.139 & 0.627 & 0.383 & 624 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Tables~\ref{tab:realdata}--\ref{tab:realdata_cm} show that EC-HTE \emph{fails} on this real dataset: average absolute bias increases from 0.210 (naive) to 0.313 (EC-HTE). The root cause is clear from Table~\ref{tab:realdata_cm}: global FNR exceeds 53\%, meaning the LLM is near-random for the positive class (dehumanization). Under such extreme class-conditional error, CM inversion amplifies noise rather than correcting it.
+
+This result does \emph{not} invalidate the method---it illustrates the operating condition boundary. EC-HTE requires that the confusion matrix be sufficiently well-conditioned for inversion to be meaningful. When FNR approaches 0.5, the CM is near-singular, and any correction (global or stratified) amplifies noise. We frame this as an ``operating condition mismatch'': the hate speech task's LLM performance falls outside EC-HTE's effective range. The $\Delta\pi{=}0.117$ observed is moderate but the absolute error level is too high.
+
+We report this negative result as pattern consistency evidence, not as a benchmark. Without ground-truth CATEs, we cannot compute true bias; the figures in Table~\ref{tab:realdata} are estimated against available expert annotations and should be interpreted with caution.
+
+%=============================================================================
+% 5. CONCLUSION
+%=============================================================================
+\section{Conclusion}
+
+We have provided the first formal characterization of how global confusion-matrix correction amplifies CATE bias in LLM annotation pipelines when misclassification rates vary across subgroups. The bias decomposition identity ($R^2 > 0.97$ across 520 configurations) establishes that the amplification is proportional to the product of misclassification and treatment-effect heterogeneity. EC-HTE demonstrates this identity is actionable in controlled settings, achieving near-zero bias with sufficient expert labels. Combined with PPCI, the composition handles dual-error scenarios effectively. However, EC-HTE's practical utility is limited by a narrow operating window (effective only under high heterogeneity with $\geq$250--1000 expert labels), and the diagnostic criterion does not generalize to setting-level prediction (AUC$=$0.49). The real-data case study confirms these limitations: when LLM error rates are extreme (FNR$>$50\%), stratified correction worsens outcomes.
+
+%=============================================================================
+% LIMITATIONS
+%=============================================================================
+\section*{Limitations}
+
+First, EC-HTE requires that practitioners know or can estimate the subgroup structure $Z$; when subgroup definitions are unknown, the method cannot be applied. Second, the operating window is narrow: EC-HTE outperforms global correction only under high misclassification heterogeneity with sufficient expert labels ($\geq$250 for $K{=}2$, $\geq$1000 for $K{=}4$). For moderate heterogeneity with $K{=}2$, global correction is always preferable. Third, all LLM annotators tested are from the OpenAI family; generalization to open-source models remains unverified.
+
+%=============================================================================
+% REFERENCES
+%=============================================================================
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{35}
+
+\bibitem[Angelopoulos et~al.(2023)]{angelopoulos2023prediction}
+A.~N. Angelopoulos, S.~Bates, C.~Fannjiang, M.~I. Jordan, and T.~Zrnic.
+\newblock Prediction-powered inference.
+\newblock \emph{Science}, 382(6671):669--674, 2023.
+
+\bibitem[Ashwin et~al.(2025)]{ashwin2025using}
+A.~Ashwin, J.~Karell, and K.~Laakso.
+\newblock Using {LLM} annotations in social science research.
+\newblock \emph{Political Analysis}, 2025.
+
+\bibitem[Athey and Imbens(2016)]{athey2016recursive}
+S.~Athey and G.~W. Imbens.
+\newblock Recursive partitioning for heterogeneous causal effects.
+\newblock \emph{PNAS}, 113(27):7353--7360, 2016.
+
+\bibitem[Athey et~al.(2019)]{athey2019generalized}
+S.~Athey, J.~Tibshirani, and S.~Wager.
+\newblock Generalized random forests.
+\newblock \emph{Annals of Statistics}, 47(2):1148--1178, 2019.
+
+\bibitem[Bu et~al.(2023)]{bu2023treatment}
+Z.~Bu, D.~Cai, and S.~Wager.
+\newblock Treatment effect estimation with {ML}-generated covariates.
+\newblock \emph{arXiv preprint arXiv:2303.14682}, 2023.
+
+\bibitem[Carroll et~al.(2006)]{carroll2006measurement}
+R.~J. Carroll, D.~Ruppert, L.~A. Stefanski, and C.~M. Crainiceanu.
+\newblock \emph{Measurement Error in Nonlinear Models}.
+\newblock Chapman and Hall/CRC, 2nd edition, 2006.
+
+\bibitem[Chernozhukov et~al.(2018)]{chernozhukov2018double}
+V.~Chernozhukov, D.~Chetverikov, M.~Demirer, E.~Duflo, C.~Hansen, W.~Newey, and J.~Robins.
+\newblock Double/debiased machine learning for treatment and structural parameters.
+\newblock \emph{Econometrics Journal}, 21(1):C1--C68, 2018.
+
+\bibitem[Dawid and Skene(1979)]{dawid1979maximum}
+A.~P. Dawid and A.~M. Skene.
+\newblock Maximum likelihood estimation of observer error-rates using the {EM} algorithm.
+\newblock \emph{Applied Statistics}, 28(1):20--28, 1979.
+
+\bibitem[Egami et~al.(2024)]{egami2024using}
+N.~Egami, M.~Hinck, B.~Stewart, and H.~Wei.
+\newblock Using imperfect surrogates for downstream inference: Design-based supervised learning.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem[Fuller(1987)]{fuller1987measurement}
+W.~A. Fuller.
+\newblock \emph{Measurement Error Models}.
+\newblock John Wiley \& Sons, 1987.
+
+\bibitem[Gelman et~al.(2013)]{gelman2013bayesian}
+A.~Gelman, J.~B. Carlin, H.~S. Stern, D.~B. Dunson, A.~Vehtari, and D.~B. Rubin.
+\newblock \emph{Bayesian Data Analysis}.
+\newblock Chapman and Hall/CRC, 3rd edition, 2013.
+
+\bibitem[Gilardi et~al.(2023)]{gilardi2023chatgpt}
+F.~Gilardi, M.~Alizadeh, and M.~Kubli.
+\newblock {ChatGPT} outperforms crowd-workers for text-annotation tasks.
+\newblock \emph{PNAS}, 120(30):e2305016120, 2023.
+
+\bibitem[Gustafson(2003)]{gustafson2003measurement}
+P.~Gustafson.
+\newblock \emph{Measurement Error and Misclassification in Statistics and Epidemiology}.
+\newblock Chapman and Hall/CRC, 2003.
+
+\bibitem[Hovy et~al.(2013)]{hovy2013learning}
+D.~Hovy, T.~Berg-Kirkpatrick, A.~Vaswani, and E.~Hovy.
+\newblock Learning whom to trust with {MACE}.
+\newblock In \emph{NAACL-HLT}, pages 1120--1130, 2013.
+
+\bibitem[Hu and Schennach(2008)]{hu2008instrumental}
+Y.~Hu and S.~M. Schennach.
+\newblock Instrumental variable treatment of nonclassical measurement error models.
+\newblock \emph{Econometrica}, 76(1):195--216, 2008.
+
+\bibitem[Imai and Yamamoto(2010)]{imai2010causal}
+K.~Imai and T.~Yamamoto.
+\newblock Causal inference with differential measurement error.
+\newblock \emph{Political Analysis}, 18(3):253--273, 2010.
+
+\bibitem[Kennedy(2023)]{kennedy2023towards}
+E.~H. Kennedy.
+\newblock Towards optimal doubly robust estimation of heterogeneous causal effects.
+\newblock \emph{Electronic Journal of Statistics}, 17(2):3008--3049, 2023.
+
+\bibitem[Mozer(2026)]{mozer2026adjusting}
+R.~Mozer.
+\newblock Adjusting for differential prediction error in observational studies.
+\newblock \emph{Journal of Causal Inference}, 2026.
+
+\bibitem[Passonneau and Carpenter(2014)]{passonneau2014benefits}
+R.~J. Passonneau and B.~Carpenter.
+\newblock The benefits of a model of annotation.
+\newblock \emph{Transactions of the ACL}, 2:311--326, 2014.
+
+\bibitem[Sui et~al.(2026)]{sui2026prediction}
+Y.~Sui, D.~Cai, and S.~Wager.
+\newblock Prediction-powered conditional inference.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Tornberg(2024)]{tornberg2024chatgpt}
+P.~Tornberg.
+\newblock {ChatGPT-4} outperforms experts and crowd workers in annotating political {Twitter} messages with zero-shot learning.
+\newblock \emph{arXiv preprint arXiv:2304.06588}, 2024.
+
+\bibitem[Wager and Athey(2018)]{wager2018estimation}
+S.~Wager and S.~Athey.
+\newblock Estimation and inference of heterogeneous treatment effects using random forests.
+\newblock \emph{JASA}, 113(523):1228--1242, 2018.
+
+\bibitem[Ziems et~al.(2024)]{ziems2024can}
+C.~Ziems, W.~Held, O.~Shaikh, J.~Chen, Z.~Zhang, and D.~Yang.
+\newblock Can large language models transform computational social science?
+\newblock \emph{Computational Linguistics}, 50(1):237--291, 2024.
+
+\end{thebibliography}
+
+%=============================================================================
+% APPENDIX
+%=============================================================================
+\appendix
+
+\section{Multiple LLM Annotator Comparison}
+\label{sec:multilm}
+
+We measure misclassification heterogeneity ($\Delta\pi$) across six OpenAI models spanning three generations, annotating the same corpus with $K{=}4$ effective subgroups (after filtering subgroups with $n < 10$).
+
+\begin{table}[h]
+\centering
+\small
+\caption{Effective $\Delta\pi$ across LLM generations. All models exhibit $\Delta\pi > 0.05$; 5/6 share the same worst subgroup.}
+\label{tab:multilm}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Model & Gen. & Eff.\ $\Delta\pi$ & Worst & Acc. \\
+\midrule
+gpt-3.5-turbo & 3.5 & 0.198 & True\_med & 0.72 \\
+gpt-4-turbo & 4 & 0.149 & True\_med & 0.81 \\
+gpt-4o & 4 & 0.080 & True\_med & 0.84 \\
+gpt-4o-mini & 4 & 0.136 & True\_med & 0.79 \\
+gpt-4.1 & 4.1 & 0.098 & True\_med & 0.86 \\
+gpt-5.4 & 5 & 0.114 & True\_med & 0.88 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:multilm} validates the premise that misclassification heterogeneity is structural, not model-specific. However, better LLMs tend toward lower $\Delta\pi$ (GPT-5.4: 0.114 vs.\ GPT-3.5: 0.198), suggesting the operating window may narrow as LLM quality improves.
+
+\section{Adaptive Expert Annotation Allocation}
+
+We compare three allocation strategies for distributing a fixed budget of $n_{\text{expert}}{=}500$ across $K{=}4$ subgroups.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Allocation strategy comparison ($n_{\text{expert}}{=}500$, $K{=}4$).}
+\label{tab:alloc}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Strategy & RMSE & Coverage & $|\text{Bias}|$ \\
+\midrule
+Uniform & 0.108 & 0.93 & 0.012 \\
+Uncertainty-weighted & 0.103 & 0.93 & 0.011 \\
+CATE-weighted & 0.096 & 0.94 & 0.010 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+CATE-weighted allocation provides 8--12\% RMSE improvement over uniform, though this requires prior knowledge of which subgroups have high CATE and high error.
+
+\section{Robustness to Misspecified Subgroup Structure}
+
+We test EC-HTE under synthetic subgroup noise (0\%, 10\%, 25\%, 50\% label corruption), 800 total runs.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Coverage under subgroup noise. HB maintains $>$94.5\% across all noise levels.}
+\label{tab:robust}
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+Noise & $K$ & Naive & Global & HB \\
+\midrule
+0\% & 2 & 0.875 & 0.925 & 0.958 \\
+10\% & 2 & 0.877 & 0.935 & 0.948 \\
+25\% & 2 & 0.890 & 0.932 & 0.950 \\
+50\% & 2 & 0.897 & 0.945 & 0.945 \\
+0\% & 4 & 0.904 & 0.930 & 0.956 \\
+25\% & 4 & 0.909 & 0.948 & 0.960 \\
+50\% & 4 & 0.919 & 0.944 & 0.946 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+HB coverage gracefully degrades toward global correction at 50\% noise (by design---maximum noise makes subgroups uninformative, so HB shrinks fully toward the global estimate). The coverage advantage over naive (87.5--89.7\% vs.\ 94.5--96.0\%) is maintained across all noise levels.
+
+\end{document}

@@ -1,0 +1,70 @@
+% Requires preamble: \usepackage{amsthm,amsmath,amssymb}
+% and: \newtheorem{proposition}{Proposition}
+
+\section{Bias Decomposition: When Debiasing Hurts}
+\label{sec:theory}
+
+We formalize the bias that global misclassification correction introduces when subgroup error rates are heterogeneous.
+Consider estimating the conditional average treatment effect (CATE) $\tau(z) = \mathbb{E}[Y(1) - Y(0) \mid Z = z]$, where $Z \in \{0, 1\}$ is a binary effect modifier observed only through a noisy annotation $\hat{Z}$.
+The population consists of $K$ subgroups $S \in \{1, \ldots, K\}$ with weights $w_s = P(S{=}s)$, each characterized by a $2 \times 2$ confusion matrix $C_s$ with symmetric error rate $\pi_s = P(\hat{Z} \neq Z \mid S{=}s)$.
+Standard practice estimates a single confusion matrix $\bar{C} = \sum_s w_s C_s$ from expert annotations and applies its inverse uniformly to all observations, with pooled error rate $\bar{\pi} = \sum_s w_s \pi_s$.
+We show that when error rates vary across subgroups, this global procedure introduces a bias with an exact product form.
+
+We state four assumptions maintained throughout.
+%
+\begin{itemize}
+\item[\textbf{(A1)}] \textit{Conditional independence:} misclassification depends only on the true label $Z$ and subgroup $S$, not on potential outcomes $Y(0), Y(1)$.
+\item[\textbf{(A2)}] \textit{Symmetric misclassification:} $P(\hat{Z}{=}1 \mid Z{=}0, S{=}s) = P(\hat{Z}{=}0 \mid Z{=}1, S{=}s) = \pi_s$ for all $s$.
+\item[\textbf{(A3)}] \textit{Balanced effect modifier:} $P(Z{=}0) = P(Z{=}1) = 0.5$. This simplifies the exposition; we discuss relaxation below.
+\item[\textbf{(A4)}] \textit{Non-degeneracy:} $\pi_s \neq 0.5$ for all $s$, ensuring each $C_s$ is invertible.
+\end{itemize}
+
+Under (A2)--(A3), the Bayesian mixing matrix $M_s$ (entries $M_s[\hat{z}, z] = P(Z{=}z \mid \hat{Z}{=}\hat{z}, S{=}s)$) coincides with $C_s$.
+The global mixing matrix is $M_{\text{global}} = \sum_s w_s M_s$.
+
+\begin{proposition}[Bias Decomposition Identity]
+\label{prop:bias_identity}
+Under \textnormal{(A1)--(A4)}, the bias of global correction in subgroup $s$ at effect-modifier level $z$ is
+\begin{align}
+\mathrm{bias}_{\mathrm{global}}(z{=}0, s) &= +\frac{\delta_s \cdot \Delta\tau}{1 - 2\bar{\pi}}, \label{eq:bias_z0} \\
+\mathrm{bias}_{\mathrm{global}}(z{=}1, s) &= -\frac{\delta_s \cdot \Delta\tau}{1 - 2\bar{\pi}}, \label{eq:bias_z1}
+\end{align}
+where $\delta_s = \pi_s - \bar{\pi}$ is the subgroup deviation from the pooled error rate and $\Delta\tau = \tau(1) - \tau(0)$ is the CATE heterogeneity.
+\end{proposition}
+
+Equations~\eqref{eq:bias_z0}--\eqref{eq:bias_z1} constitute an exact identity at the population level, not a bound.
+The bias factors into three interpretable components: $\delta_s$ captures how much subgroup $s$ deviates from the average misclassification rate, $\Delta\tau$ captures treatment effect heterogeneity across levels of $Z$, and $1/(1 - 2\bar{\pi})$ is an amplification factor from matrix inversion.
+Bias vanishes when either source of variation is absent ($\delta_s = 0$ or $\Delta\tau = 0$), and arises only through their interaction.
+Proposition~\ref{prop:bias_identity} implies that global correction trades one source of confounding for another: it removes attenuation from label noise but introduces a new bias from error-rate heterogeneity.
+
+\paragraph{Proof sketch.}
+Global correction applies $M_{\text{global}}^{-1}$ to the subgroup-specific observed CATE $\tau_{\text{obs}}(\cdot, s) = M_s \cdot \tau_{\text{true}}$, yielding bias $(M_{\text{global}}^{-1} M_s - I) \cdot \tau_{\text{true}}$.
+Direct computation shows $M_{\text{global}}^{-1} M_s - I = \frac{\delta_s}{1-2\bar{\pi}} \bigl[\begin{smallmatrix} -1 & 1 \\ 1 & -1 \end{smallmatrix}\bigr]$.
+Applying this matrix to $[\tau(0),\, \tau(1)]^\top$ produces the product form.
+The full derivation appears in Appendix~\ref{app:derivation}.
+
+\paragraph{Remark (generalization).}
+The identity holds for arbitrary $K$ with the same formula; the essential structure is $\sum_s w_s \delta_s = 0$ (deviations sum to zero by construction).
+Assumption~(A3) ensures $M_s = C_s$; when $P(Z{=}1) \neq 0.5$, the mixing matrices acquire asymmetric entries, but the product structure of the bias persists with modified coefficients (Appendix~\ref{app:derivation}).
+Empirical verification (Section~\ref{sec:bias_mechanism}) yields $R^2 = 0.994$ for $K{=}2$ and $R^2 = 0.974$ for $K{=}4$; the residual variance reflects finite-sample Monte Carlo noise, not model misspecification.
+
+\begin{proposition}[Debiasing Can Increase Bias]
+\label{prop:debiasing_hurts}
+Under \textnormal{(A1)--(A4)}, global correction produces larger absolute bias than the naive estimator ($|\mathrm{bias}_{\mathrm{global}}| > |\mathrm{bias}_{\mathrm{naive}}|$) in subgroup $s$ if and only if
+\begin{equation}
+\frac{|\delta_s|}{(1 - 2\bar{\pi}) \cdot \pi_s} > 1.
+\label{eq:hurts_condition}
+\end{equation}
+\end{proposition}
+
+Equation~\eqref{eq:hurts_condition} partitions subgroups into two regimes.
+For high-error subgroups ($\pi_s > \bar{\pi}$), the condition reduces to $\pi_s > 0.5$, which is excluded by~(A4); global correction always reduces bias in these subgroups.
+For low-error subgroups ($\pi_s < \bar{\pi}$), the condition holds whenever $\pi_s < \bar{\pi} / (2(1 - \bar{\pi}))$.
+This threshold is easily satisfied in practice: when $\bar{\pi} = 0.15$, any subgroup with $\pi_s < 0.088$ experiences increased bias from global correction.
+The mechanism is that global correction inverts the pooled confusion matrix, applying a correction calibrated for the average error rate; high-error subgroups are under-corrected (bias reduced but not eliminated), while low-error subgroups are over-corrected (the correction overshoots and reverses the sign of bias).
+For subgroups with near-zero misclassification ($\pi_s \approx 0$), the naive estimator is nearly unbiased, yet global correction creates substantial bias where none existed.
+This is the most consequential implication of Proposition~\ref{prop:bias_identity}: debiasing can be worse than doing nothing.
+
+In our experiments (Section~\ref{sec:bias_mechanism}), global correction increases bias in 50\% of parameter configurations (260 of 520, excluding cases where $\Delta_c{=}0$).
+Maximum amplification reaches $2.86\times$ for $K{=}2$ and $5.9\times$ for $K{=}4$ with a CausalForest estimator; the phenomenon intensifies with more subgroups as the range of $\delta_s$ values widens.
+Figure~\ref{fig:heatmap} visualizes the amplification across the full $\Delta\pi \times \Delta\tau$ parameter grid.

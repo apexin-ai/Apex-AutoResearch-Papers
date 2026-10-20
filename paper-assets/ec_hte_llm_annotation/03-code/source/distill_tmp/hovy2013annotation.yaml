@@ -1,0 +1,25 @@
+paper_key: "hovy2013annotation"
+title: "Learning Whom to Trust with MACE"
+venue: "NAACL 2013"
+full_text_available: false
+
+research:
+  baselines: ["majority_voting", "Dawid-Skene_EM"]
+  metrics:
+    - {name: "accuracy_vs_gold", direction: "higher_better"}
+    - {name: "annotator_competence_estimation", direction: "higher_better"}
+  datasets:
+    - {name: "AMT_crowdsourced_annotations", size: "multiple NLP tasks"}
+  ablation_dimensions: []
+  training_recipe: {}
+  method_family: "annotation_model"
+
+positioning:
+  core_claim: "MACE uses an item-response model with EM to jointly estimate annotator trustworthiness and recover true labels from noisy crowdsourced annotations, outperforming majority voting."
+  key_results: "Higher accuracy than majority voting on recovering gold labels from noisy crowdsourced data"
+  limitations: []
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

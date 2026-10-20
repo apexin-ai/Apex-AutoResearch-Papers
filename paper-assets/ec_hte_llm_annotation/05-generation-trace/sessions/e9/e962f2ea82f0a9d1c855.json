@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-001-regularize_20260520T213804_result.json",
     "occurrence": 1,
-    "bytes": 629,
-    "sha256": "4212c391a93b10403a1af23a838e6070321b24d40e21edb3d39a1d4089bb360f"
+    "bytes": 628,
+    "sha256": "60869ba4e780fd6463764414af66db5353a0cb6d094e007cf4430cfe437962d1"
   },
   "statistics": {
     "messages": 1,

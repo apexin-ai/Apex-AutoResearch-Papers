@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-025-positive-scenario_20260522T124553_result.json",
     "occurrence": 1,
-    "bytes": 1336,
-    "sha256": "1ae64db5ff86f153553ff4a531f14fdcf27701a69d0ec2b4ad88902a8bd9f1fe"
+    "bytes": 1335,
+    "sha256": "8430f9710102cac0c6b4e2ed260ad49316e75276e7182e07c5fc1969f49b8632"
   },
   "statistics": {
     "messages": 1,

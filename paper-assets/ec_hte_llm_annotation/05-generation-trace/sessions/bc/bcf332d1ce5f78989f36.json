@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_agnews-cm-literature_20260524T152852_result.json",
     "occurrence": 1,
-    "bytes": 728,
-    "sha256": "cf33825f5a4c8f98e59f9e0a513667e00d665edf76df1d96482f53207d9a2eee"
+    "bytes": 727,
+    "sha256": "7bbcc247446791b6214cdcb0b960cb7cd9d5c4f1873f95070f41041baaaa56dc"
   },
   "statistics": {
     "messages": 1,

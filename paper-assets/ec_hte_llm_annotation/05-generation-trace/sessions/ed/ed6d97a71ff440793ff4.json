@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_balanced-z-scripts_20260521T154417_result.json",
     "occurrence": 1,
-    "bytes": 1287,
-    "sha256": "59a02a7e73a28cd049337fbf77fe2538710b62dd1942382fe9c0319b8356543b"
+    "bytes": 1286,
+    "sha256": "385d5ae215eb92ec7259f0bca934c712348f4fd41378ab698705df2daf5d0e62"
   },
   "statistics": {
     "messages": 1,

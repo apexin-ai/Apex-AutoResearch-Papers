@@ -1,0 +1,98 @@
+paper_key: "zrnic2024active"
+title: "Active Statistical Inference"
+venue: "ICML 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "Classical inference (uniform random labeling, no ML)"
+    - "Prediction-powered inference (PPI, uniform sampling with ML predictions)"
+  metrics:
+    - {name: "Confidence interval width", direction: "lower_better"}
+    - {name: "Coverage (nominal vs actual)", direction: "closer_to_nominal_better"}
+    - {name: "Sample budget savings (%)", direction: "higher_better"}
+    - {name: "Statistical power", direction: "higher_better"}
+  datasets:
+    - {name: "Post-election survey (2020 US presidential)", size: "not specified"}
+    - {name: "US Census microdata (age-income relationship)", size: "not specified"}
+    - {name: "AlphaFold-assisted proteomics (phosphorylation-IDR odds ratio)", size: "not specified"}
+  ablation_dimensions:
+    - "Batch vs sequential active inference"
+    - "With vs without model fine-tuning"
+    - "Budget size (number of labels)"
+    - "Uncertainty measure choice"
+  training_recipe:
+    optimizer: "N/A (not a training paper)"
+    lr: "N/A"
+    hardware: "N/A"
+  method_family: "Semiparametric inference with adaptive data collection (extends prediction-powered inference)"
+
+positioning:
+  core_claim: "Active (uncertainty-based) label acquisition for statistical inference can save >80% of the sample budget compared to classical methods while maintaining provably valid confidence intervals and hypothesis tests."
+  key_results: "Biden approval: >85% budget savings over classical, ~25% over PPI uniform. Census: ~80% over classical, >60% over uniform. Interval widths nearly double when switching from active to uniform sampling."
+  limitations:
+    - "Requires a reasonably accurate ML model to estimate uncertainty; poor models yield limited gains"
+    - "Oracle sampling rule depends on unobserved |Y - f(X)|, practical rule uses proxy u(x)"
+    - "Asymptotic validity; finite-sample guarantees only in appendix (non-asymptotic results)"
+    - "No explicit conclusion/limitations section in the paper"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "第一段以具体应用场景(remote sensing, proteomics, vote counting)开场，强调标注数据昂贵但ML预测不够可靠的现实矛盾"
+  tension: "现有PPI方法假设标签是i.i.d.均匀采集的，浪费了大量预算在模型已经很确定的样本上；能否通过策略性采集来大幅提升推断效率？"
+  key_insight: "核心洞察在Section 4 warm-up中通过方差分解公式揭示：Var(active) = (1/n)[Var(Y) + E[(Y-f(X))^2(1/pi(X)-1)]]，当f(X)接近Y时方差从1/n_b降至接近1/n，这个乘法级别的改善是整篇论文的驱动力"
+  argument_chain: "costly labeling + imperfect ML predictions -> existing PPI uses uniform sampling (wasteful) -> active sampling prioritizes uncertain points -> IPW estimator maintains validity -> oracle rule reveals optimal allocation proportional to |Y-f(X)| -> practical uncertainty proxy + budget normalization -> batch CLT (Prop 5.1, Thm 5.1) -> sequential martingale CLT (Prop 6.1, Thm 6.1) -> 3 domains validate >80% savings"
+  contribution_framing: "两点式贡献声明：(1) designing strategic data collection approaches that enable more powerful inferences than i.i.d. labeling, (2) showing how to perform valid inference with strategically collected data. 措辞简洁，不罗列技术细节。"
+  intro_structure: "4段：P1=应用场景+问题(labeling costly)；P2=核心张力(ML predictions can't replace gold-standard)；P3=提出方案+核心claim(>80% savings)；P4=与PPI的关系+贡献声明"
+  notable_technique: "用一个极强的数字hook(save over 80% of sample budget)在intro第三段就抛出，让读者立刻感受到方法的实际价值；然后在warm-up section用简单的均值估计case把核心直觉讲透，再推广到一般M-estimation"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "teaser_result"
+    description: "Post-election survey结果：三列布局——左列5个随机trial的置信区间对比，中列平均CI宽度随budget变化，右列coverage验证。上下两行分别对应Biden和Trump的approval estimation。"
+    narrative_role: "作为第一个实验结果图，直接展示active inference相比baseline在CI宽度和coverage上的优势，用视觉证据支撑intro中>80% savings的claim"
+    design_elements: ["三列并排布局(examples/width/coverage)", "上下双行对比两个estimation target", "置信区间可视化用线段表示"]
+    visual_style: "紧凑的grid布局，每个subplot展示不同维度的比较，颜色区分methods"
+  result_figures:
+    - figure_id: "Figure 1"
+      viz_type: "line_plot + interval_plot"
+      what_compared: "Active inference vs classical vs uniform PPI on post-election survey"
+      how_gain_highlighted: "CI宽度曲线的间距直接展示active的优势；coverage图验证方法的validity"
+      design_note: "三列布局同时展示效果(width)和可靠性(coverage)，避免只看一个维度"
+    - figure_id: "Figure 2"
+      viz_type: "line_plot + interval_plot"
+      what_compared: "Same comparison on Census data (age-income linear regression coefficient)"
+      how_gain_highlighted: "与Figure 1相同的布局，强化cross-domain一致性"
+      design_note: "保持与Figure 1完全一致的视觉结构，方便读者cross-figure比较"
+    - figure_id: "Figure 3"
+      viz_type: "line_plot + interval_plot"
+      what_compared: "Same comparison on AlphaFold proteomics (phosphorylation-IDR odds ratio)"
+      how_gain_highlighted: "第三个domain进一步强化方法的通用性"
+      design_note: "三个figures使用统一模板，展示方法在不同领域的一致表现"
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      what_compared: "Sample budget reduction (%) across all three applications, active vs classical (top) and active vs uniform (bottom)"
+      how_gain_highlighted: "直接用百分比展示budget savings，是全文最有冲击力的总结图"
+      design_note: "汇总图放在最后，用百分比savings直接量化优势，与intro中>80%的claim呼应"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1(survey) -> Figure 2(census) -> Figure 3(proteomics): 三个domain依次展示CI宽度和coverage -> Figure 4: 汇总所有domain的budget savings百分比，形成'分domain详细展示 -> 全局汇总'的叙事节奏"
+
+tables:
+  table_count: 0
+  main_result_table:
+    table_id: "N/A"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "N/A"
+    num_baselines: 2
+    design_note: "全文不用表格，所有结果通过图表展示。这在理论+应用型论文中不常见但有效——因为主要比较的是CI宽度随budget变化的趋势，线图比表格更直观"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Appendix A: proofs of all propositions and theorems; Appendix B: experimental details; Appendix C: non-asymptotic results"
+    reason: "主文聚焦直觉和核心结果，所有证明和技术细节放appendix"

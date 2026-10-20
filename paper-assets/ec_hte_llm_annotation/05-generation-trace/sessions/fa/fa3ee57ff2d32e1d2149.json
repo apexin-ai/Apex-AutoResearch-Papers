@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_exp-004-data-design_20260521T072602_result.json",
     "occurrence": 1,
-    "bytes": 120,
-    "sha256": "f1b4a908e008ab7ad8e4e328e22d9fbb2b174820895b213963f25af25877dc0e"
+    "bytes": 119,
+    "sha256": "39c8e2d0e8ade8b3276431e593e5464db03fd268c772ae4d60b474e2918b6ca9"
   },
   "statistics": {
     "messages": 1,

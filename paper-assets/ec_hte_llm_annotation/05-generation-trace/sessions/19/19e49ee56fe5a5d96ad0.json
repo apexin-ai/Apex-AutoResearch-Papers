@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-027-cf-oracle-coverage_20260522T140148_result.json",
     "occurrence": 1,
-    "bytes": 997,
-    "sha256": "4ab08ae3fd7704d75da512570e86f8f1393e90d8c585d31c00b519efb2e6b688"
+    "bytes": 996,
+    "sha256": "4b14e2fcc5554a00397ecb78a56c7e65be4483d82868a1d951585a503cf0eb1b"
   },
   "statistics": {
     "messages": 1,

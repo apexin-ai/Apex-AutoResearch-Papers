@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-007-hb-backfill_20260521T043502_result.json",
     "occurrence": 1,
-    "bytes": 756878,
-    "sha256": "4079462a1394063229c13ddece2ae72dfb8c833182f6b7683bd41def2de9604f"
+    "bytes": 756877,
+    "sha256": "b2f460b64692c7d0a3201957472c8025a3931d054802a29c5289cfbaf95ae837"
   },
   "statistics": {
     "messages": 1,

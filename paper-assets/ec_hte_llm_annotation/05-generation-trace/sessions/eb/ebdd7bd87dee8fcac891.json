@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_ucb-demographic-subgroup-analysis_20260524T045225_result.json",
     "occurrence": 1,
-    "bytes": 1686,
-    "sha256": "fdaa98d1b8ed24748ef7d70998bddbbf0079a8df0436a3917e988943be370b70"
+    "bytes": 1685,
+    "sha256": "cf812e0f63d3a284f4245748c87e4c996c9bf4d61afb37b53e82fbb38fbd8aaf"
   },
   "statistics": {
     "messages": 1,

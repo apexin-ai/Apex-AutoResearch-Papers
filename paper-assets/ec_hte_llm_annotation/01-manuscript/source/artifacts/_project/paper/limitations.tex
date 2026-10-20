@@ -1,0 +1,26 @@
+\section*{Limitations}
+
+\paragraph{Expert budget threshold.}
+EC-HTE requires at least $n_{\text{expert}} / K \geq 25$ per subgroup for the hierarchical Bayesian shrinkage estimates to stabilize.
+Below this threshold, per-subgroup confusion matrix estimates are too noisy for reliable inversion, and stratified MLE is preferred.
+At $n_{\text{expert}} \geq 1000$, HB and stratified MLE converge to within 0.5\% on all metrics, making the hierarchical model unnecessary at large expert budgets.
+
+\paragraph{RMSE tradeoff at small $n$.}
+EC-HTE achieves lower bias than global correction but incurs higher variance when the expert budget is small relative to the number of subgroups.
+In the most unfavorable configuration ($K{=}4$, extreme, $n_{\text{expert}} \leq 100$), EC-HTE CausalForest RMSE reaches 3.5$\times$ that of the naive estimator.
+Practitioners should weigh whether bias or variance is more consequential for their application before adopting subgroup-stratified correction at small sample sizes.
+
+\paragraph{Plug-in standard errors.}
+The variance-adjusted CausalForest propagates outcome uncertainty through the inverse confusion matrix $\hat{C}_s^{-1}$ but does not propagate uncertainty from the confusion matrix estimation itself.
+This plug-in approximation is reasonable at $n_{\text{expert}} \geq 100$, where confusion matrix estimation variance is small relative to outcome variance, but may understate total uncertainty below this threshold.
+Full Bayesian propagation of confusion matrix posterior uncertainty through the causal forest splitting procedure is computationally prohibitive and left to future work.
+
+\paragraph{Symmetric misclassification assumption.}
+All experiments use symmetric error rates ($P(\hat{Z}{=}1 \mid Z{=}0) = P(\hat{Z}{=}0 \mid Z{=}1)$).
+Real LLM annotators may exhibit asymmetric confusion patterns, such as higher false positive than false negative rates for certain label categories.
+The bias decomposition identity (Theorem~\ref{thm:bias_identity}) generalizes to asymmetric matrices, but empirical validation under asymmetric misclassification is left to future work.
+
+\paragraph{Subgroup structure assumed known.}
+EC-HTE requires discrete, pre-defined subgroups as input.
+Continuous effect modifiers or latent subgroup discovery settings require fundamentally different approaches.
+The hierarchical prior provides partial robustness to noisy subgroup definitions through automatic shrinkage toward the global mean, but intersectional subgroups with many levels may exceed the $n_{\text{expert}} / K \geq 25$ budget threshold, limiting practical applicability to settings with moderate $K$.

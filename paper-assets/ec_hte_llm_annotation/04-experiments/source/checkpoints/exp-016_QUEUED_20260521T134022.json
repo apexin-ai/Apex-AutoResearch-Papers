@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp-016",
+  "project": "ec_hte_llm_annotation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:19:22.463Z",
+    "updated_at": "2026-05-21T13:40:22.661Z",
+    "hypothesis": "EC-HTE succeeds under realistic asymmetric CMs when worst-subgroup FNR is well below 0.5 — using gpt-4o (or best-FNR model from exp-008) real per-subgroup FPR/FNR on TweetEval, HB correction outperforms global at n_expert≥250",
+    "parent": "exp-015",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-21T13:40:22.698627+00:00",
+  "trigger": "update_registry"
+}

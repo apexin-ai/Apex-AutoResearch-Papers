@@ -1,0 +1,595 @@
+{
+  "figures_found": [
+    {
+      "number": "1",
+      "env_type": "figure*",
+      "image_path": "figures/fig1_sign_reversal.pdf",
+      "caption": "CATE sign reversal under global correction ($K{=}2$, $\\tau(0) = 0.03$). (A) Naive vs.\\ global-corrected CATE; red triangles mark sign reversals (7.5\\% of subgroup estimates). (B) Extreme case: true $\\",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": true,
+      "source_file": "introduction.tex"
+    },
+    {
+      "number": "2",
+      "env_type": "figure*",
+      "image_path": "figures/fig_method_overview.pdf",
+      "caption": "EC-HTE pipeline. \\textit{Top (red):} global correction applies a pooled confusion matrix uniformly, risking sign reversal. \\textit{Bottom (blue-green):} EC-HTE estimates per-subgroup matrices via hier",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "method.tex"
+    },
+    {
+      "number": "A.1",
+      "env_type": "figure*",
+      "image_path": "figures/fig2_heatmap.pdf",
+      "caption": "Bias amplification under global correction ($K{=}2$). (a) Low-error subgroup: correction always helps. (b) High-error subgroup: correction \\emph{increases} bias when $\\Delta\\pi > 0.12$ (hatched), reac",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.2",
+      "env_type": "figure",
+      "image_path": "figures/fig4_roc.png",
+      "caption": "ROC curves for the $\\Delta\\tau$-free diagnostic (Proposition~\\ref{prop:debiasing_hurts}): $|\\delta_s|/((1{-}2\\bar\\pi)\\cdot\\pi_s)>1$. (A)~Setting-level ROC (AUC $= 0.89$), compared with the $|\\Delta\\pi",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.3",
+      "env_type": "figure*",
+      "image_path": "figures/fig3_budget.pdf",
+      "caption": "RMSE vs.\\ expert budget ($n_{\\text{expert}}$) across four regime$\\times K$ combinations. Dashed vertical lines mark crossover points where EC-HTE achieves lower RMSE than global correction: $n{=}250$ ",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.4",
+      "env_type": "figure",
+      "image_path": "figures/applicability_frontier.pdf",
+      "caption": "Applicability frontier of EC-HTE. Green region: EC-HTE reduces bias vs.\\ global correction. Yellow: comparable performance. Red: EC-HTE underperforms. Dashed lines mark the expert budget threshold ($n",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.5",
+      "env_type": "figure",
+      "image_path": "figures/treatment_dep_misclass.pdf",
+      "caption": "EC-HTE coverage and RMSE under treatment-dependent misclassification. Dashed line: 90\\% coverage threshold. Breakeven at $\\gamma_T \\approx 0.10$.",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.6",
+      "env_type": "figure",
+      "image_path": "figures/policy_reversal_zone.pdf",
+      "caption": "Policy reversal zone: sign-reversal rate as a function of $\\tau(0)$ and $\\Delta\\pi$. Shaded region marks configurations where global correction reverses the CATE sign, directing policy toward the wron",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    }
+  ],
+  "results": [
+    {
+      "number": "1",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "2",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.1",
+      "status": "failed",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": "Agent 超时退出，优化未完成。请重试。"
+    },
+    {
+      "number": "A.2",
+      "status": "failed",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": "Agent 超时退出，优化未完成。请重试。"
+    },
+    {
+      "number": "A.3",
+      "status": "failed",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": "Agent 超时退出，优化未完成。请重试。"
+    },
+    {
+      "number": "A.4",
+      "status": "failed",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": "Agent 超时退出，优化未完成。请重试。"
+    },
+    {
+      "number": "A.5",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.6",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    }
+  ],
+  "post_review": {
+    "compile": {
+      "success": true,
+      "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/_latex_iso_qd2eqhwe/main.pdf"
+    },
+    "figure_check": {
+      "passed": true,
+      "critical": [],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:calibration} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:asymmetric_endtoend} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:multiclass} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:hetero_z0} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:policy_reversal} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:fl_comparison} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:treatment_dep} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{cor:aggregate_bias} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:roc} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:kappa_ablation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:hurts_condition} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{prop:a5_relaxation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:hetero_z1} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:asymmetric_endtoend} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:limitations} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:bias_z1} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:roc} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:budget} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:conclusion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:a5_violation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:confounded_dgp} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:budget_sensitivity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:applicability} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:cf_oracle} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:hyperprior_sweep} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:intro} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:debiasing_hurts} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ppci} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{cor:a5_relaxation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:bias_z0} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:realcm_bias} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:civilcomments} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:main_supp} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:k8_subgroups} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:37"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "0 critical, 37 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 6,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_stance.tex",
+          "role": "other",
+          "num_numbers": 27,
+          "num_cites": 1
+        },
+        {
+          "file": "checklist.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 0
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 2,
+          "num_cites": 0
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 104,
+          "num_cites": 6
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 22,
+          "num_cites": 11
+        },
+        {
+          "file": "limitations.tex",
+          "role": "other",
+          "num_numbers": 12,
+          "num_cites": 0
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 8,
+          "num_cites": 3
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 48
+        },
+        {
+          "file": "theory.tex",
+          "role": "other",
+          "num_numbers": 20,
+          "num_cites": 4
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'black2000racial' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'borkan2019nuanced' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'bound2001measurement' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'grimmer2022text' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'kennedy2020constructing' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'lewbel2007estimation' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'mahajan2006identification' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'stewart1990matrix' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zrnic2024active' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "abstract": [
+              "\\Delta",
+              "\\bar",
+              "\\cdot",
+              "\\delta",
+              "\\geq",
+              "\\leq",
+              "\\pi",
+              "\\tau",
+              "\\times"
+            ],
+            "appendix_stance": [
+              "\\geq",
+              "\\gg",
+              "\\kappa",
+              "\\sim",
+              "\\tau",
+              "\\times"
+            ],
+            "checklist": [
+              "\\cdot",
+              "\\times"
+            ],
+            "conclusion": [
+              "\\Delta",
+              "\\geq",
+              "\\pi"
+            ],
+            "experiments": [
+              "\\Delta",
+              "\\approx",
+              "\\bar",
+              "\\cdot",
+              "\\dagger",
+              "\\delta",
+              "\\gamma",
+              "\\geq",
+              "\\hat",
+              "\\in",
+              "\\kappa",
+              "\\leq",
+              "\\max",
+              "\\midrule",
+              "\\multirow",
+              "\\neq",
+              "\\pi",
+              "\\shortstack",
+              "\\tau",
+              "\\textbf",
+              "\\times",
+              "\\to"
+            ],
+            "introduction": [
+              "\\Delta",
+              "\\bar",
+              "\\cdot",
+              "\\delta",
+              "\\geq",
+              "\\hat",
+              "\\leq",
+              "\\pi",
+              "\\tau",
+              "\\times"
+            ],
+            "limitations": [
+              "\\Delta",
+              "\\approx",
+              "\\gamma",
+              "\\geq",
+              "\\leq",
+              "\\pi",
+              "\\times"
+            ],
+            "method": [
+              "\\Delta",
+              "\\alpha",
+              "\\bar",
+              "\\boldsymbol",
+              "\\cdot",
+              "\\delta",
+              "\\geq",
+              "\\hat",
+              "\\in",
+              "\\kappa",
+              "\\mu",
+              "\\neq",
+              "\\pi",
+              "\\tau",
+              "\\times",
+              "\\to",
+              "\\top"
+            ],
+            "related_work": [
+              "\\Delta",
+              "\\bar",
+              "\\cdot",
+              "\\delta",
+              "\\hat",
+              "\\lambda",
+              "\\pi",
+              "\\tau",
+              "\\times"
+            ],
+            "theory": [
+              "\\Delta",
+              "\\approx",
+              "\\bar",
+              "\\bigl",
+              "\\bigr",
+              "\\cdot",
+              "\\delta",
+              "\\gamma",
+              "\\geq",
+              "\\hat",
+              "\\in",
+              "\\kappa",
+              "\\ldots",
+              "\\mid",
+              "\\neq",
+              "\\pi",
+              "\\pm",
+              "\\tau",
+              "\\times",
+              "\\top"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 9,
+        "info": 1
+      }
+    }
+  },
+  "backup_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/_figure_backups/20260524_150623",
+  "error": "",
+  "timestamp": "2026-05-24T15:36:41.780727+00:00"
+}

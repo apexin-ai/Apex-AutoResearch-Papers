@@ -1,0 +1,122 @@
+paper_key: "mehrotra2026perspective"
+title: "Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks"
+venue: "arXiv 2026"
+full_text_available: true
+
+research:
+  baselines:
+    - "LLM zero-shot"
+    - "LLM few-shot"
+    - "LLM persona prompting"
+    - "PPI (prediction-powered inference, uniform sampling)"
+  metrics:
+    - {name: "Coverage rate (nominal 95%)", direction: "closer_to_nominal_better"}
+    - {name: "Delta (Δ, estimation error in percentage points)", direction: "lower_better"}
+  datasets:
+    - {name: "POPQUORN (politeness task)", size: "多人标注的礼貌度评分数据集，按 age/gender/race/education 分层"}
+    - {name: "POPQUORN (offensiveness task)", size: "同一数据集的冒犯性评分任务"}
+    - {name: "Synthetic binary data", size: "可控的二元标注合成数据，用于灵敏度分析"}
+  ablation_dimensions:
+    - "Human annotation budget (% of N)"
+    - "Burn-in size (uniform sampling phase)"
+    - "LLM error discrepancy between demographic groups"
+    - "Group size skew (minority group %)"
+    - "LLM model choice (8 models tested)"
+    - "Prompting strategy (zero-shot / few-shot / persona)"
+  training_recipe:
+    optimizer: "XGBoost for error predictor"
+    lr: "N/A (not a deep learning method)"
+    hardware: "N/A (API-based LLM calls + lightweight prediction)"
+  method_family: "Prediction-powered inference with adaptive sampling / demographic-aware annotation correction"
+
+positioning:
+  core_claim: "将 corpus-level LLM 标注推断从假设单一 ground truth 推广到多人群视角推断，通过自适应采样集中标注预算在 LLM 误差最大的人群上，保证所有人口学群体的统计有效性"
+  key_results: "Politeness 任务 Age 50+ 群体：PDI 覆盖率 95%、Δ=11.23%，而 PPI Δ=13.63%、LLM few-shot 覆盖率仅 75%；Offensiveness 任务：LLM-only 方法覆盖率灾难性失败（11.7-53.3%），PDI 在所有群体维持 95% 覆盖率；PDI 对 Age 50+ 群体多分配 33% 的标注预算"
+  limitations:
+    - "仅按单一人口学维度独立分层（未处理交叉分层 intersectionality）"
+    - "评估限于一个数据集（POPQUORN）的两个任务"
+    - "误差预测器仅使用人口学特征（未利用文本信号）"
+    - "需要均匀采样的 burn-in 阶段才能启动自适应"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "LLM 被越来越多地用于文本标注，但它们的输出对不同人口学群体的代表性存在系统性差异——直接指出一个被广泛实践但缺乏方法论保障的问题"
+  tension: "现有校正方法（如 PPI）假设存在单一 ground truth，但在主观任务中人群间的分歧本身就是有意义的信号而非噪声；Persona prompting 试图模拟不同视角但实证显示它恰恰在目标群体上失败"
+  key_insight: "核心洞察在 Section 3 明确：将推断目标从单一标量 θ* 重新定义为群体特定向量 (θ*_{g1}, ..., θ*_{gK})，然后通过自适应采样将有限的人工标注预算集中在 LLM 预测误差最大的群体上"
+  argument_chain: "LLM 标注的人群偏差问题 → 单一 ground truth 假设的不合理性 → persona prompting 的实证失败 → 重新定义为多群体推断问题 → 自适应采样 + IPW 校正 → 真实数据验证（覆盖率 + 预算分配效果）"
+  contribution_framing: "三个显式贡献：(1) 形式化多视角语料推断框架 (2) 自适应采样策略 (3) 跨数据集评估。措辞强调'valid analyses'——有效性而非准确性是核心卖点"
+  intro_structure: "6 段：(1) 问题陈述——LLM 标注的人群偏差 (2) 现有方法局限——假设单一 ground truth (3) 核心洞察——分歧是信号不是噪声 (4) Persona prompting 的失败 (5) PDI 框架概述 (6) 贡献列表"
+  notable_technique: "用 persona prompting 的实证失败作为'反面教材'来铺垫自己方法的必要性——先证明直觉上最自然的解决方案行不通，再引出更系统的框架。这种'否定直觉解 → 引出正确解'的叙事模式非常有效"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "method_overview"
+    description: "PDI 框架流程图：从左至右展示三个阶段——(1) 收集 LLM 标注 Ĥᵢ (2) Burn-in 均匀采样收集初始人工标注 Hᵢ (3) 自适应循环：从人口学特征预测 LLM 误差 (Ĥᵢ-Hᵢ)²，按预测误差分配下一批标注；最终通过 IPW 校正生成群体估计 θ*"
+    narrative_role: "在 intro 结尾提供方法全景，让读者在进入技术细节前理解完整的三阶段流程"
+    design_elements:
+      - "水平流向（左→右）从语料库到最终估计"
+      - "三个编号步骤清晰分离各阶段"
+      - "虚线箭头表示自适应循环的迭代"
+      - "关键公式直接嵌入图中（如 (Ĥᵢ-Hᵢ)²、IPW correction）"
+      - "粗体强调关键词（demographic features, across groups）"
+    visual_style: "浅色方框（黄色输入、蓝色处理步骤、粉色输出）+ 箭头连接的流程图。简洁扁平设计，无多余装饰。水平布局约 3:1 宽高比"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "histogram"
+      what_compared: "标注分布在不同人口学群体（age groups: 18-34, 35-49, 50+）间的差异，分别展示 politeness 和 offensiveness 两个任务"
+      how_gain_highlighted: "直观展示不同年龄段的标注分布存在实质性差异，验证'分歧是信号'的核心论点"
+      design_note: "作为动机图放在方法之前——用数据驱动的可视化证明多群体推断的必要性，比纯文字论证更有说服力"
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      dimensions_varied: ["human annotation budget (% of N)"]
+      design_note: "展示 PDI 在不同预算下的覆盖率和 Delta；按多数群体和少数群体分面展示，揭示 PDI 在少数群体上的优势在 20% 预算以上开始显现"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      dimensions_varied: ["burn-in size"]
+      design_note: "展示 burn-in 阶段大小对 PDI/PPI 的影响；收益在 ~100 个样本后递减"
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      dimensions_varied: ["LLM error discrepancy between groups"]
+      design_note: "展示 PDI 的优势随群体间误差差距增大而增大——验证自适应采样的理论动机"
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      dimensions_varied: ["group skew (minority group %)"]
+      design_note: "展示当少数群体占比 <10% 时 PDI 优势最大——覆盖了实践中最需要保护的场景"
+  figure_narrative_role: "Figure 1 (方法概览) → Figure 2 (动机：标注分布的人群差异) → Tables 1-4 (主结果：真实数据) → Figures 3-6 (灵敏度分析：合成数据)"
+
+tables:
+  table_count: 10
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "demographic groups × metrics"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "覆盖率 <90% 高亮标注；最佳 Age 50+ 性能加粗"
+    statistical_reporting: "20 trials 的平均覆盖率和 Delta 百分比"
+    num_baselines: 4
+    design_note: "按人口学群体分列（Avg Age, Age 18-34, Age 35-49, Age 50+），每列展示 Coverage 和 Delta 两个指标。这种'群体×方法'矩阵设计直观展示了哪些方法在哪些群体上失败——突出不均匀性是核心设计意图"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["sampling strategy (PDI vs PPI)", "demographic groups"]
+      variation_style: "full_numbers"
+      design_note: "展示标注预算分配——PDI 如何将更多标注集中在高误差群体（如 Age 50+ 从 9.2 增到 12.2）。数字本身就是论证：自适应采样'做了什么'"
+    - table_id: "Table 3"
+      what_varied: ["methods on offensiveness task"]
+      variation_style: "full_numbers"
+      design_note: "与 Table 1 结构相同但展示 offensiveness 任务；LLM-only 方法覆盖率灾难性失败（11.7%）使得校正方法的必要性不言而喻"
+    - table_id: "Table 4"
+      what_varied: ["sampling strategy on offensiveness task"]
+      variation_style: "full_numbers"
+      design_note: "offensiveness 任务的标注分配表，与 Table 2 结构相同"
+    - table_id: "Table 5"
+      what_varied: ["LLM model (8 models)", "prompting strategy (3 strategies)"]
+      variation_style: "full_numbers"
+      design_note: "8 模型 × 3 策略的全面评估矩阵；核心发现是 few-shot 一致最优，persona 高方差且经常失败。这张表是论文'persona prompting 失败'论点的核心证据"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 6: 完整 prompt 模板；Tables 7-8: 人群间分歧的具体标注实例（含内容警告）；Tables 9-10: 主题分析（年龄依赖主题 + 模型-人类分歧主题，含 prevalence/match count/meaning/example）"
+    reason: "主文表格聚焦方法对比和预算分配结果；附录放 prompt 细节、定性分析和主题挖掘——将'做了什么'和'为什么'分开，主文 focused 在可量化的性能比较"

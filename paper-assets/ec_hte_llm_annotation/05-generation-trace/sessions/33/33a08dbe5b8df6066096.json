@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_task-h-writing-fixes_20260523T092318_result.json",
     "occurrence": 1,
-    "bytes": 1608,
-    "sha256": "64c2d32ddbf0ccbc52c76b749c6ccc6fcca8923c4f89f1b1b29ddd7226b39b78"
+    "bytes": 1607,
+    "sha256": "eb8cd758003141e305af5af8a4af724e0e4d5de0d7e099925dee5eeadbf73dd4"
   },
   "statistics": {
     "messages": 1,

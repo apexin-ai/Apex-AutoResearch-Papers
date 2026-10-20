@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-035",
+  "project": "ec_hte_llm_annotation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T01:39:21.071Z",
+    "updated_at": "2026-05-23T01:41:04.407Z",
+    "hypothesis": "EC-HTE with asymmetric CM estimation (full 2x2 FPR/FNR) maintains coverage >=93% under realistic 7:1 FPR/FNR ratios (simulating GPT-4.1 on Civil Comments), and outperforms the symmetric assumption (FPR=FNR) in both RMSE and coverage."
+  },
+  "timestamp": "2026-05-23T01:41:04.547655+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,76 @@
+{
+  "exp_id": "exp-027c",
+  "project": "ec_hte_llm_annotation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:21:15.764Z",
+    "updated_at": "2026-05-22T14:37:04.432Z",
+    "hypothesis": "Under MF2's exact DGP (K=2, π=[0.05,0.25], τ(0)=0.10, τ(1)=0.40, n_expert=250), Oracle CF coverage will reveal whether the 83% vs 92.5% discrepancy between MF2 and exp-027b is due to the harder CATE specification (τ shift) causing CF SE under-calibration, or due to other implementation differences",
+    "parent": "exp-027b",
+    "spec": {
+      "command": "python exp027c_cf_oracle_mf2dgp.py",
+      "server": "local-cpu",
+      "data_path": "synthetic (MF2 DGP)",
+      "data_count": 5000,
+      "model_name": "CausalForest",
+      "seed": "0-99 (100 MC)",
+      "checkpoint_source": "N/A",
+      "eval_data": "synthetic K=2 extreme MF2 DGP",
+      "checkpoint_path": "N/A (CPU simulation)",
+      "log_path": "results/exp_cf_oracle_coverage_mf2dgp.csv"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "dgp": "MF2 exact DGP: K=2, π=[0.05,0.25], τ(0)=0.10, τ(1)=0.40, N=5000, n_expert=250, 100 MC",
+      "oracle_true_Z": {
+        "coverage": 0.96,
+        "bias": 0.077,
+        "rmse": 0.091,
+        "mean_se": 0.09
+      },
+      "echte_true_CM": {
+        "coverage": 0.913,
+        "bias": 0.103,
+        "rmse": 0.112,
+        "mean_se": 0.114
+      },
+      "echte_estimated_CM": {
+        "coverage": 0.923,
+        "bias": 0.1,
+        "rmse": 0.111,
+        "mean_se": 0.119
+      },
+      "global_true_CM": {
+        "coverage": 0.95,
+        "bias": 0.107,
+        "rmse": 0.114,
+        "mean_se": 0.107
+      },
+      "global_estimated_CM": {
+        "coverage": 0.943,
+        "bias": 0.105,
+        "rmse": 0.114,
+        "mean_se": 0.109
+      },
+      "naive": {
+        "coverage": 0.773,
+        "bias": 0.12,
+        "rmse": 0.125,
+        "mean_se": 0.087
+      },
+      "key_finding": "DGP difference NOT the source of 83% vs 92.5% gap. Per-subgroup EC-HTE coverage ~92.25% in both 027b and 027c. The 83% in MF2 is an aggregate mixing effect: low-misclass subgroup (π=0.05) has 83% coverage while high-misclass subgroup (π=0.25) has 99%. M⁻¹ creates asymmetric SE amplification across subgroups.",
+      "comparison_027b": {
+        "oracle": "94.0% → 96.0%",
+        "echte_est": "92.5% → 92.25%",
+        "conclusion": "Nearly identical per-subgroup coverage despite different τ values"
+      },
+      "output_file": "results/exp_cf_oracle_coverage_mf2dgp.csv"
+    },
+    "completed_at": "2026-05-22T14:37:04.432Z"
+  },
+  "timestamp": "2026-05-22T14:37:04.497673+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,27 @@
+paper_key: "zrnic2024crossppi"
+title: "Cross-Prediction-Powered Inference"
+venue: "PNAS 2024"
+full_text_available: false
+
+research:
+  baselines: ["PPI_with_data_splitting", "classical_inference_labeled_only"]
+  metrics:
+    - {name: "confidence_interval_width", direction: "lower_better"}
+    - {name: "coverage_probability", direction: "higher_better"}
+    - {name: "CI_variability", direction: "lower_better"}
+  datasets:
+    - {name: "protein_structure_prediction", size: "N/A"}
+    - {name: "satellite_socioeconomic_estimation", size: "N/A"}
+  ablation_dimensions: []
+  training_recipe: {}
+  method_family: "PPI"
+
+positioning:
+  core_claim: "Cross-prediction eliminates the need for data splitting in PPI by using cross-fitting to train the ML model and debias predictions simultaneously, yielding more powerful and stable inferences than split-sample PPI."
+  key_results: "Consistently more powerful than split-sample PPI adaptation; significantly lower CI variability"
+  limitations: []
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

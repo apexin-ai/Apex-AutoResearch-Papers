@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp-001",
+  "project": "ec_hte_llm_annotation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T19:44:54.310Z",
+    "updated_at": "2026-05-20T21:32:51.348Z",
+    "hypothesis": "Hierarchical Bayesian Dirichlet-prior confusion matrix estimator 通过 partial pooling 在 n_expert 小（50-100）时比 MLE/Laplace 实现更低 RMSE 和更好的 coverage 校准，因为它能跨子群借力减少估计方差",
+    "spec": {
+      "command": "python exp001_hb_synthetic.py 2>&1 | tee results/exp001_run.log",
+      "server": "local-cpu",
+      "data_path": "synthetic DGP (N=5000, symmetric misclass)",
+      "data_count": "3600 MC runs (36 cells × 100 MC)",
+      "model_name": "Gibbs sampler Dirichlet-Multinomial HB",
+      "seed": "0-99 per cell",
+      "checkpoint_path": "results/exp001_hb_results.csv",
+      "log_path": "results/exp001_hb_diagnostics.csv"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T21:32:51.348Z"
+  },
+  "timestamp": "2026-05-20T21:32:51.357919+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-mf2-cf-bootstrap-se_20260522T105229_result.json",
     "occurrence": 1,
-    "bytes": 1281,
-    "sha256": "80d944ecec26ad185e218d239a09b039c344dc8e2a523ee206fad392801acbc9"
+    "bytes": 1280,
+    "sha256": "34a68266f7d949c04403a93e5a3b973e2bb075e55b1f2d88d5fcbb821ce02edb"
   },
   "statistics": {
     "messages": 1,

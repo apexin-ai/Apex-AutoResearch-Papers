@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_gemma-budget-sweep_20260521T221030_result.json",
     "occurrence": 1,
-    "bytes": 1298,
-    "sha256": "82577f4c451fcabe4fefc43da8856d5c17c2c03f881c05864185f4c869a60852"
+    "bytes": 1297,
+    "sha256": "6b9800c1b990817d37325b00a038ebf473b360a6f0791121ce37dcd8758615d8"
   },
   "statistics": {
     "messages": 1,

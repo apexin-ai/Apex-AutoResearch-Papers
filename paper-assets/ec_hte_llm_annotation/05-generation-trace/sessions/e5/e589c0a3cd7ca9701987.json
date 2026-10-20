@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_sign-reversal-analysis_20260523T144810_result.json",
     "occurrence": 1,
-    "bytes": 1136,
-    "sha256": "9f578381e34205896737e2aa895af8bda73d23e45fffe1dd485d8bc36e6a6456"
+    "bytes": 1135,
+    "sha256": "b269f444be72bb60d70594fba5d6b1821160733b517388a498064d3e33f720ad"
   },
   "statistics": {
     "messages": 1,

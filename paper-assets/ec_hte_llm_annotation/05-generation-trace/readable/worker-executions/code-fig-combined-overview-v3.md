@@ -916,7 +916,7 @@ _source line 16_
 
 ```json
 {
-  "command": "cat > /tmp/test_simple.txt << 'EOF'\nA single white rounded rectangle on a white background, centered, with \"Test\" written inside in 12pt serif font. Size 4x3 inches, 300 DPI. Drop shadow. No other elements.\nEOF\n\nsource /home/ubuntu/.paperbanana_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/test_simple.txt \\\n  --caption \"Test figure\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/test_paperbanana.png \\\n  --iterations 2 2>&1",
+  "command": "cat > /tmp/test_simple.txt << 'EOF'\nA single white rounded rectangle on a white background, centered, with \"Test\" written inside in 12pt serif font. Size 4x3 inches, 300 DPI. Drop shadow. No other elements.\nEOF\n\nsource /home/ubuntu/.paperbanana_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/test_simple.txt \\\n  --caption \"Test figure\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/test_paperbanana.png \\\n  --iterations 2 2>&1",
   "description": "Simple PaperBanana test with gemini-2.5-pro",
   "timeout": 300000
 }
@@ -1319,7 +1319,7 @@ _source line 24_
 
 ```json
 {
-  "command": "source /home/ubuntu/.paperbanana_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig_combined_top_intent.txt \\\n  --caption \"Problem and theory: heterogeneous LLM error and why global correction fails\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/fig_combined_top.png \\\n  --iterations 5 2>&1",
+  "command": "source /home/ubuntu/.paperbanana_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig_combined_top_intent.txt \\\n  --caption \"Problem and theory: heterogeneous LLM error and why global correction fails\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/fig_combined_top.png \\\n  --iterations 5 2>&1",
   "description": "Generate top half (Panel a+b) with PaperBanana",
   "timeout": 600000
 }
@@ -1935,7 +1935,7 @@ _source line 36_
 
 ```json
 {
-  "command": "source /home/ubuntu/.paperbanana_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig_combined_bottom_intent.txt \\\n  --caption \"Pipeline comparison and key results across 8 LLMs\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/fig_combined_bottom.png \\\n  --iterations 5 2>&1",
+  "command": "source /home/ubuntu/.paperbanana_venv/bin/activate && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig_combined_bottom_intent.txt \\\n  --caption \"Pipeline comparison and key results across 8 LLMs\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/fig_combined_bottom.png \\\n  --iterations 5 2>&1",
   "description": "Generate bottom half (Panel c+d) with PaperBanana",
   "timeout": 600000
 }

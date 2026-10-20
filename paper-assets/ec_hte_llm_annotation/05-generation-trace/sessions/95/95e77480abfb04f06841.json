@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-w4-bootstrap-se_20260522T095508_result.json",
     "occurrence": 1,
-    "bytes": 1237,
-    "sha256": "b6aea828f23196b5bd5ff0d026e211000d7e292b04fd03c45667c3288997c0b8"
+    "bytes": 1236,
+    "sha256": "1b61cf6bc9efb7d1f7f01fde084735be1ce8c93c07e4fc24e842ccff4fbf53be"
   },
   "statistics": {
     "messages": 1,

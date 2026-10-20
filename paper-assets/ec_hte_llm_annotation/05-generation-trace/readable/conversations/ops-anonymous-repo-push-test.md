@@ -115,7 +115,7 @@ _source line 4 · 2026-05-24T06:59:09.136452+00:00_
 
 1	{
 2	  "repo_public": "https://github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation",
-3	  "push_url": "https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git",
+3	  "push_url": "https://[REDACTED]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git",
 4	  "github_user": "anonymous-nlp-2026-2",
 5	  "repo_name": "ec_hte_llm_annotation"
 6	}
@@ -146,7 +146,7 @@ called Bash
 
 ```json
 {
-  "command": "rm -rf /tmp/anon_repo_test && mkdir -p /tmp/anon_repo_test && git clone https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git /tmp/anon_repo_test/ec_hte_llm_annotation 2>&1",
+  "command": "rm -rf /tmp/anon_repo_test && mkdir -p /tmp/anon_repo_test && git clone https://[REDACTED]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git /tmp/anon_repo_test/ec_hte_llm_annotation 2>&1",
   "description": "Clone anonymous repo to /tmp for testing",
   "timeout": "60000"
 }
@@ -162,7 +162,7 @@ called Bash
   "session": "worker_ops_anonymous-repo-push-test_20260524T065803",
   "tool": "Bash",
   "tool_args": {
-    "command": "rm -rf /tmp/anon_repo_test && mkdir -p /tmp/anon_repo_test && git clone https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git /tmp/anon_repo_test/ec_hte_llm_annotation 2>&1",
+    "command": "rm -rf /tmp/anon_repo_test && mkdir -p /tmp/anon_repo_test && git clone https://[REDACTED]@github.com/anonymous-nlp-2026-2/ec_hte_llm_annotation.git /tmp/anon_repo_test/ec_hte_llm_annotation 2>&1",
     "description": "Clone anonymous repo to /tmp for testing",
     "timeout": "60000"
   }

@@ -1,0 +1,24 @@
+paper_key: "imai2010causal"
+title: "Causal Inference with Differential Measurement Error: Nonparametric Identification and Sensitivity Analysis"
+venue: "AJPS 2010"
+full_text_available: false
+
+research:
+  baselines: ["classical_measurement_error_correction", "naive_estimator_ignoring_error"]
+  metrics:
+    - {name: "identification_conditions", direction: "qualitative"}
+    - {name: "sensitivity_to_error_magnitude", direction: "qualitative"}
+  datasets: []
+  ablation_dimensions: []
+  training_recipe: {}
+  method_family: "measurement_error"
+
+positioning:
+  core_claim: "Nonparametric identification and sensitivity analysis framework for causal inference under differential measurement error (where error correlates with outcome), avoiding arbitrary parametric assumptions and formally characterizing the roles of different identification assumptions."
+  key_results: "Formal identification conditions for causal effects under differential measurement error; practical sensitivity analysis tools"
+  limitations: []
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_gemma-hetero-tau_20260522T001443_result.json",
     "occurrence": 1,
-    "bytes": 952,
-    "sha256": "31bfd69cca2601c5d9d5c214b596d8caa931e519392f81169a67ecc4b9069d27"
+    "bytes": 951,
+    "sha256": "04287118e9e384a43491e0dd06532a2fac74514eae9e618b86643dab36edcc2d"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,129 @@
+dreams:
+  dream_20260520T185426:
+    dream_id: dream_20260520T185426
+    project: ec_hte_llm_annotation
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 核心关注：(1) "debiasing can hurt" 的 surprise value 是否足够撑起 EMNLP main；(2) 层级贝叶斯
+      partial pooling 作为方法核心是否有足够技术贡献；(3) 仅有合成+半合成实验时论文是否可接受（Ashwin 数据集可能拿不到）；(4)
+      与 PPCI (Sui 2026) 的差异化是否清晰
+    what_if: []
+    pid: 41506
+    chat_id: oc_6b114d432b35fe7a1c2143457ae85b08
+    card_message_id: om_x100b6fd4789798a0c42f2dc416ca9eb
+    started_at: '2026-05-20T18:54:26+00:00'
+    updated_at: '2026-05-20T19:38:15+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 7000df65405c7b98dd25d21b7b6f253e993addc5aaf161d45d19768f3f0adbfa
+    review_quality:
+      median: simulated
+  dream_20260520T194535:
+    dream_id: dream_20260520T194535
+    project: ec_hte_llm_annotation
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Round 2 after addressing Round 1 feedback: (1) novelty now positioned
+      as problem-discovery not new technique, (2) exp-001 includes full MCMC diagnostics,
+      (3) exp-002 extends to K>2, (4) exp-007 promoted to P0 with PPCI composition
+      discussion, (5) bibliography expansion noted as requirement. Check whether these
+      changes resolve the structural issues from Round 1 (thin bibliography, MCMC
+      details, K=2 gap, novelty positioning).'
+    what_if: []
+    pid: 47963
+    chat_id: oc_6b114d432b35fe7a1c2143457ae85b08
+    card_message_id: om_x100b6fd4bb3320a0c2d621594c9373f
+    started_at: '2026-05-20T19:45:35+00:00'
+    updated_at: '2026-05-20T20:37:00+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 303f045c5b26cde2d8b85efe798f61b3134ef84ceb3ed4099091f450f8882366
+    review_quality:
+      best: simulated
+      median: simulated
+  dream_20260521T032758:
+    dream_id: dream_20260521T032758
+    project: ec_hte_llm_annotation
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: ''
+    what_if: []
+    pid: 140022
+    chat_id: oc_6b114d432b35fe7a1c2143457ae85b08
+    card_message_id: om_x100b6fd3f5214888c365c8ef0a6b1f9
+    started_at: '2026-05-21T03:27:58+00:00'
+    updated_at: '2026-05-21T04:17:27+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 81990bf07030025897fd6aeb4d34e2cd0153fffb61a7a76b73cbd21c68655130
+    review_quality:
+      worst: simulated
+  dream_20260521T122454:
+    dream_id: dream_20260521T122454
+    project: ec_hte_llm_annotation
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: ''
+    what_if: []
+    pid: 193211
+    chat_id: oc_6b114d432b35fe7a1c2143457ae85b08
+    card_message_id: om_x100b6fdbd7a11900c384a0cdd207139
+    started_at: '2026-05-21T12:24:54+00:00'
+    updated_at: '2026-05-21T13:11:19+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: a382573f79037eb3aac74ff685bdcb835b1269a5ff1aaefea0fbc394caa238b9
+    review_quality:
+      best: simulated
+      worst: simulated
+  dream_20260523T193110:
+    dream_id: dream_20260523T193110
+    project: ec_hte_llm_annotation
+    status: reviewing
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 'Reframed paper: title changed to "When Debiasing Hurts", core contributions
+      shifted from EC-HTE method to (1) exact bias identity + (2) actionable diagnostic.
+      EC-HTE de-emphasized as "the correction prescribed by the identity." New real-data
+      validation on CivilComments (R²=0.944, 14 LLM-dataset combinations). Evaluate
+      whether this framing shift improves Excitement scores vs previous 3/3.5 baseline.'
+    what_if: []
+    pid: 1316330
+    chat_id: oc_6b114d432b35fe7a1c2143457ae85b08
+    card_message_id: om_x100b6e1446dc24a0c2955678b5730af
+    started_at: '2026-05-23T19:31:10+00:00'
+    updated_at: '2026-05-23T20:36:30+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 2d574592467299bc994857704946f09347aed7129e384a557fe7bc470dfe0e28
+    review_quality:
+      best: simulated

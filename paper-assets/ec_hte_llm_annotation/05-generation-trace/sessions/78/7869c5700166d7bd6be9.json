@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-007-double-correction-fix_20260520T223135_result.json",
     "occurrence": 1,
-    "bytes": 809,
-    "sha256": "3e1d43167ae9bbb05930c82cc939420bc877ff21b12b9aff6f535f68dff78155"
+    "bytes": 808,
+    "sha256": "bff3ce305a8426c0659f29843a1587d3347e67672693b2ab3decef2d1b1cc7fa"
   },
   "statistics": {
     "messages": 1,

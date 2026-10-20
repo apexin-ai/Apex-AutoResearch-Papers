@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp-031",
+  "project": "ec_hte_llm_annotation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:39:36.830Z",
+    "updated_at": "2026-05-22T19:42:43.362Z",
+    "hypothesis": "EC-HTE under confounded treatment assignment (T depends on covariates via logistic model, not Bernoulli(0.5)) maintains coverage ≥93% when paired with IPW-DIM estimator, demonstrating compatibility with observational study designs.",
+    "spec": {
+      "command": "python exp031_confounded_dgp.py",
+      "server": "local",
+      "data_path": "synthetic_dgp_confounded",
+      "data_count": 5000,
+      "model_name": "IPW-DIM_estimator",
+      "seed": 42,
+      "checkpoint_path": "results/exp_confounded_dgp.csv",
+      "log_path": "results/exp_confounded_dgp_summary.csv"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "hb_echte_coverage": 0.95,
+      "hb_echte_rmse": 0.239,
+      "hb_echte_mean_abs_bias": 0.088,
+      "oracle_coverage": 0.943,
+      "oracle_rmse": 0.173,
+      "global_coverage": 0.94,
+      "global_rmse": 0.198,
+      "naive_coverage": 0.863,
+      "naive_rmse": 0.149,
+      "strat_mle_coverage": 0.938,
+      "strat_mle_rmse": 0.241,
+      "beta_confound": 0.5,
+      "propensity_range": "0.38-0.62",
+      "per_subgroup_s1_naive_cov": 0.785,
+      "per_subgroup_s1_hb_cov": 0.96,
+      "note": "EC-HTE + IPW-DIM maintains 95.0% coverage under moderate confounding. Naive drops to 86.3% (s1 high-pi: 78.5%). Confirms observational study compatibility."
+    },
+    "completed_at": "2026-05-22T19:42:43.362Z"
+  },
+  "timestamp": "2026-05-22T19:42:43.433446+00:00",
+  "trigger": "update_registry"
+}

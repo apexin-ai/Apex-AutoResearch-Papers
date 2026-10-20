@@ -1,0 +1,23 @@
+paper_key: "mozer2026ppi"
+title: "PPI is the Difference Estimator: Recognizing the Survey Sampling Roots of Prediction-Powered Inference"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: ["PPI", "PPI++", "difference_estimator_Cassel1976", "GREG_estimator"]
+  metrics:
+    - {name: "estimator_equivalence", direction: "qualitative"}
+  datasets: []
+  ablation_dimensions: []
+  training_recipe: {}
+  method_family: "PPI"
+
+positioning:
+  core_claim: "PPI estimator for population means is algebraically equivalent to the classical difference estimator (Cassel et al. 1976), and PPI++ corresponds to the GREG estimator; both fields can benefit from cross-pollination, especially as LLMs become measurement instruments."
+  key_results: "Algebraic equivalence between PPI and difference estimator; PPI++ and GREG estimator"
+  limitations: []
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

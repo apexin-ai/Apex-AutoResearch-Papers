@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_kappa-sweep_20260521T155209_result.json",
     "occurrence": 1,
-    "bytes": 850,
-    "sha256": "e7cb52a6fa059023dbb3eb3e32133cc7c5e295c853bc88fc11705417e5331d73"
+    "bytes": 849,
+    "sha256": "d2dae5b1fdf52820353246b66e7b13ea1270943bf35d538c923ea45ee917e303"
   },
   "statistics": {
     "messages": 1,

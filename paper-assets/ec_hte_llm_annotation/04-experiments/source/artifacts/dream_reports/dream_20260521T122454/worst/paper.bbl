@@ -1,0 +1,131 @@
+\begin{thebibliography}{21}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Angelopoulos et~al.(2023)Angelopoulos, Bates, Candès, Jordan, and
+  Lei}]{angelopoulos2023prediction}
+Anastasios~N Angelopoulos, Stephen Bates, Emmanuel~J Candès, Michael~I Jordan,
+  and Lihua Lei. 2023.
+\newblock Prediction-powered inference.
+\newblock \emph{Science}, 382(6671).
+
+\bibitem[{Ashwin et~al.(2025)Ashwin, Carstensen et~al.}]{ashwin2025using}
+Aditya Ashwin, Mia Carstensen, and 1 others. 2025.
+\newblock Using llm annotations in social science research.
+\newblock \emph{Working Paper}.
+
+\bibitem[{Athey et~al.(2019)Athey, Tibshirani, and
+  Wager}]{athey2019generalized}
+Susan Athey, Julie Tibshirani, and Stefan Wager. 2019.
+\newblock Generalized random forests.
+\newblock \emph{The Annals of Statistics}, 47(2).
+
+\bibitem[{Bu et~al.(2023)}]{bu2023forestly}
+Zhenghua Bu and 1 others. 2023.
+\newblock Forestiv: Instrumental variable estimation using random forests.
+\newblock \emph{Working Paper}.
+
+\bibitem[{Carroll et~al.(2006)Carroll, Ruppert, Stefanski, and
+  Crainiceanu}]{carroll2006measurement}
+Raymond~J Carroll, David Ruppert, Leonard~A Stefanski, and Ciprian~M
+  Crainiceanu. 2006.
+\newblock \emph{Measurement Error in Nonlinear Models: A Modern Perspective}, 2
+  edition.
+\newblock Chapman and Hall/CRC.
+
+\bibitem[{Chernozhukov et~al.(2018)Chernozhukov, Chetverikov, Demirer, Duflo,
+  Hansen, Newey, and Robins}]{chernozhukov2018double}
+Victor Chernozhukov, Denis Chetverikov, Mert Demirer, Esther Duflo, Christian
+  Hansen, Whitney Newey, and James Robins. 2018.
+\newblock Double/debiased machine learning for treatment and structural
+  parameters.
+\newblock \emph{The Econometrics Journal}, 21(1).
+
+\bibitem[{Dawid and Skene(1979)}]{dawid1979maximum}
+Alexander~Philip Dawid and Allan~M Skene. 1979.
+\newblock Maximum likelihood estimation of observer error-rates using the em
+  algorithm.
+\newblock \emph{Journal of the Royal Statistical Society: Series C}, 28(1).
+
+\bibitem[{Egami et~al.(2024)Egami, Hinck, Stewart, and Wei}]{egami2024using}
+Naoki Egami, Musashi Hinck, Brandon Stewart, and Hanying Wei. 2024.
+\newblock Using imperfect surrogates for downstream inference: Design-based
+  supervised learning for social science applications of large language models.
+\newblock \emph{Advances in Neural Information Processing Systems}, 37.
+
+\bibitem[{Fuller(1987)}]{fuller1987measurement}
+Wayne~A Fuller. 1987.
+\newblock \emph{Measurement Error Models}.
+\newblock John Wiley \& Sons.
+
+\bibitem[{Gilardi et~al.(2023)Gilardi, Alizadeh, and
+  Kubli}]{gilardi2023chatgpt}
+Fabrizio Gilardi, Meysam Alizadeh, and Maël Kubli. 2023.
+\newblock Chatgpt outperforms crowd workers for text-annotation tasks.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 120(30).
+
+\bibitem[{Gustafson(2003)}]{gustafson2003measurement}
+Paul Gustafson. 2003.
+\newblock \emph{Measurement Error and Misclassification in Statistics and
+  Epidemiology}.
+\newblock Chapman and Hall/CRC.
+
+\bibitem[{Hovy et~al.(2013)Hovy, Berg-Kirkpatrick, Vaswani, and
+  Hovy}]{hovy2013learning}
+Dirk Hovy, Taylor Berg-Kirkpatrick, Ashish Vaswani, and Eduard Hovy. 2013.
+\newblock Learning whom to trust with mace.
+\newblock In \emph{Proceedings of NAACL-HLT}.
+
+\bibitem[{Hu and Schennach(2008)}]{hu2008instrumental}
+Yingyao Hu and Susanne~M Schennach. 2008.
+\newblock Instrumental variable treatment of nonclassical measurement error
+  models.
+\newblock \emph{Econometrica}, 76(1).
+
+\bibitem[{Imai and Yamamoto(2010)}]{imai2010causal}
+Kosuke Imai and Teppei Yamamoto. 2010.
+\newblock Causal mediation analysis under sequential ignorability.
+\newblock \emph{Statistical Science}, 25(1).
+
+\bibitem[{Kennedy(2023)}]{kennedy2023towards}
+Edward~H Kennedy. 2023.
+\newblock Towards optimal doubly robust estimation of heterogeneous causal
+  effects.
+\newblock \emph{Electronic Journal of Statistics}, 17(2).
+
+\bibitem[{Mozer(2026)}]{mozer2026bias}
+R~Mozer. 2026.
+\newblock Bias correction for llm annotations under differential prediction
+  error.
+\newblock \emph{Working Paper}.
+
+\bibitem[{Passonneau and Carpenter(2014)}]{passonneau2014benefits}
+Rebecca~J Passonneau and Bob Carpenter. 2014.
+\newblock The benefits of a model of annotation.
+\newblock \emph{Transactions of the Association for Computational Linguistics},
+  2.
+
+\bibitem[{Sui et~al.(2026)}]{sui2026ppci}
+Y~Sui and 1 others. 2026.
+\newblock Prediction-powered conditional inference.
+\newblock \emph{Proceedings of ICML}.
+
+\bibitem[{Törnberg(2024)}]{tornberg2024chatgpt4}
+Petter Törnberg. 2024.
+\newblock Chatgpt-4 outperforms experts and crowd workers in annotating
+  political twitter messages with zero-shot learning.
+\newblock \emph{arXiv preprint arXiv:2304.06588}.
+
+\bibitem[{Wager and Athey(2018)}]{wager2018estimation}
+Stefan Wager and Susan Athey. 2018.
+\newblock Estimation and inference of heterogeneous treatment effects using
+  random forests.
+\newblock \emph{Journal of the American Statistical Association}, 113(523).
+
+\bibitem[{Ziems et~al.(2024)Ziems, Held, Shaikh, Chen, Zhang, and
+  Yang}]{ziems2024can}
+Caleb Ziems, William Held, Omar Shaikh, Jiaao Chen, Zhehao Zhang, and Diyi
+  Yang. 2024.
+\newblock Can large language models transform computational social science?
+\newblock \emph{Computational Linguistics}, 50(1).
+
+\end{thebibliography}

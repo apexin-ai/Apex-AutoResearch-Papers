@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_number-consistency-check_20260522T000249_result.json",
     "occurrence": 1,
-    "bytes": 775,
-    "sha256": "e2f21910a6db15cc62b7babfa12f862d7babdb7902b0433a811af67f080b5716"
+    "bytes": 774,
+    "sha256": "c935261317fe0e147fe9dfa4e364d1bfc3e8be85822c8c3894ad8379eeaa8b9a"
   },
   "statistics": {
     "messages": 1,

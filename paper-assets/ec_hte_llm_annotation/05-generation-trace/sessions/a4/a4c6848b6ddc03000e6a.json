@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-003-hb-rerun_20260521T023504_result.json",
     "occurrence": 1,
-    "bytes": 1218,
-    "sha256": "f7a58950ce3b33a76ddbb4ed30e5aea477f2370935ca96317487c92621ec8694"
+    "bytes": 1217,
+    "sha256": "cc4f8489718fb5588bde2d0602d9c61c5e47504cc70ca47756f53ad9df0fa2f0"
   },
   "statistics": {
     "messages": 1,

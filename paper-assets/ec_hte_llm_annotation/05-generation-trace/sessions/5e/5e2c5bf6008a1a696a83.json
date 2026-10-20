@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_audit_negative-experiment-framing_20260524T075928_result.json",
     "occurrence": 1,
-    "bytes": 809,
-    "sha256": "3897e4723a1425a5d9f1c51097e56ce9d78815bd8c9e9a629128733a15d43036"
+    "bytes": 808,
+    "sha256": "cf40caedacc06a3b41733383b4435aab76bf6b416b5dd0504f2942aabbe19348"
   },
   "statistics": {
     "messages": 1,

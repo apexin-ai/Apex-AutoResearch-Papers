@@ -1,0 +1,48 @@
+{
+  "exp_id": "exp-034",
+  "project": "ec_hte_llm_annotation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T01:39:16.724Z",
+    "updated_at": "2026-05-23T01:41:40.218Z",
+    "hypothesis": "F-L scalar correction (tau_obs/(1-2*pi_bar)) predicts bias direction incorrectly under subgroup heterogeneity because it uses a single global scaling factor that over-corrects low-error subgroups and under-corrects high-error subgroups. EC-HTE's CM inversion handles the sign-reversal correctly.",
+    "spec": {
+      "command": "python3 exp034_fl_comparison.py",
+      "server": "local-cpu",
+      "data_path": "synthetic DGP K=2 N=5000",
+      "data_count": 5000,
+      "model_name": "DIM",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "results/exp034_log.txt"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "source": "results/exp_fl_comparison_summary.csv",
+      "fl_scalar_abs_bias": 0.0909,
+      "fl_scalar_rmse": 0.1161,
+      "fl_scalar_coverage": 0.85,
+      "fl_per_subgroup_abs_bias": 0.112,
+      "fl_per_subgroup_rmse": 0.1582,
+      "fl_per_subgroup_coverage": 0.838,
+      "echte_abs_bias": 0.0643,
+      "echte_rmse": 0.0858,
+      "echte_coverage": 0.953,
+      "global_cm_abs_bias": 0.0643,
+      "global_cm_rmse": 0.0806,
+      "global_cm_coverage": 0.938,
+      "naive_abs_bias": 0.0621,
+      "naive_coverage": 0.858,
+      "oracle_abs_bias": 0.0454,
+      "oracle_coverage": 0.943,
+      "sign_reversal": "F-L Scalar: s0=+0.073 s1=+0.068, both positive (no sign-reversal). F-L Per-Subgroup: s0=+0.024 s1=+0.160. EC-HTE: s0=+0.006 s1=+0.001 (near-zero bias both subgroups)",
+      "key_finding": "F-L scalar and F-L per-subgroup both WORSE than naive on aggregate |bias|. F-L scalar over-corrects s0 (bias +0.073 vs naive +0.005). F-L per-subgroup dramatically over-corrects s1 (bias +0.160). EC-HTE achieves near-zero per-subgroup bias with nominal coverage (95.3%). CM inversion fundamentally different from F-L scalar rescaling."
+    },
+    "completed_at": "2026-05-23T01:41:40.218Z"
+  },
+  "timestamp": "2026-05-23T01:41:40.390400+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_task-f-adaptive-routing_20260523T080949_result.json",
     "occurrence": 1,
-    "bytes": 1575,
-    "sha256": "90ddc3bd60bb88aa35f6dce8679f9c04a9918c8f19d834a68697b2452934cc50"
+    "bytes": 1574,
+    "sha256": "4059fde31fd0eea8204c5eb3fe3d7d7ac8bf5f8d8cf188e6ff82b654c7473a7e"
   },
   "statistics": {
     "messages": 1,

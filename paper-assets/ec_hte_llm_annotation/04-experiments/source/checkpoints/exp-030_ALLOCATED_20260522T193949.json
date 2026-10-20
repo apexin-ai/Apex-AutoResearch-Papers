@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-030",
+  "project": "ec_hte_llm_annotation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:39:34.900Z",
+    "updated_at": "2026-05-22T19:39:48.934Z",
+    "hypothesis": "EC-HTE HB partial pooling at K=8 (per-subgroup ~31 expert labels) maintains coverage ≥90% and RMSE advantage over Global, demonstrating scalability beyond K=4."
+  },
+  "timestamp": "2026-05-22T19:39:49.003061+00:00",
+  "trigger": "update_registry"
+}

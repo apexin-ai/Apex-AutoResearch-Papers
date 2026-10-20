@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-013-boundary_20260521T072541_result.json",
     "occurrence": 1,
-    "bytes": 1239,
-    "sha256": "ca5b5fba4c5c2b6b85b2342263f9923adb39846de8abb8c4ea369eeb3bb44a9f"
+    "bytes": 1238,
+    "sha256": "67d05858f1332ec829a72346b5d4e5555a6c809f85de083e5c2848ae25309943"
   },
   "statistics": {
     "messages": 1,

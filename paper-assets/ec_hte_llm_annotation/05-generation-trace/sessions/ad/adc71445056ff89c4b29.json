@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_mc-se-analysis_20260521T115138_result.json",
     "occurrence": 1,
-    "bytes": 1742,
-    "sha256": "49f1d6f5f4baa9a55a4443a6f0938ea01550c00d88d81138ab782c3feb748090"
+    "bytes": 1741,
+    "sha256": "8c348b559ab07ccf2338ddfafdc2c1c4f59b5b6b219f2d49bd1220af69d2de7f"
   },
   "statistics": {
     "messages": 1,

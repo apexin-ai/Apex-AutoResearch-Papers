@@ -1,0 +1,138 @@
+paper_key: "ziems2024css"
+title: "Can Large Language Models Transform Computational Social Science?"
+venue: "Computational Linguistics 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "GPT-4"
+    - "GPT-3.5 Turbo"
+    - "Text-davinci-003 (InstructGPT)"
+    - "Text-davinci-002"
+    - "Text-davinci-001 (InstructGPT)"
+    - "Flan-T5-Base (223M)"
+    - "Flan-T5-Large (780M)"
+    - "Flan-T5-XL (3B)"
+    - "Flan-T5-XXL (11B)"
+    - "UL2-Base (223M)"
+    - "UL2-Large (780M)"
+    - "UL2-XL (3B)"
+    - "UL2-20B (20B)"
+    - "Fine-tuned task-specific classifiers (as upper bound)"
+    - "Crowdworker gold references (for generation)"
+  metrics:
+    - {name: "F1 score (classification)", direction: "higher_better"}
+    - {name: "Accuracy (classification)", direction: "higher_better"}
+    - {name: "Krippendorff's alpha (agreement with humans)", direction: "higher_better"}
+    - {name: "Human scoring (relevance, coherence, faithfulness, fluency for generation)", direction: "higher_better"}
+    - {name: "Human ranking (pairwise preference vs crowdworker references)", direction: "higher_better"}
+  datasets:
+    - {name: "Dialect features (Indian English)", size: "22 grammatical features"}
+    - {name: "GoEmotions (Emotions)", size: "8 Plutchik categories"}
+    - {name: "Figurative language (sarcasm, simile, metaphor, idiom)", size: "multi-dataset"}
+    - {name: "Implicit Hate Corpus (6-class)", size: "multi-class"}
+    - {name: "Humor detection", size: "binary"}
+    - {name: "Ideology (3-class)", size: "liberal/conservative/neutral"}
+    - {name: "Misinformation detection (headlines)", size: "binary"}
+    - {name: "Persuasion strategies (6-class)", size: "Evidence/Impact/Politeness/Reciprocity/Scarcity/Emotion"}
+    - {name: "Stance detection (3-class)", size: "favor/against/none"}
+    - {name: "Semantic change (word-sense)", size: "binary"}
+    - {name: "Discourse acts (9-class)", size: "online conversations"}
+    - {name: "Empathy classification (3-class)", size: "mental health contexts"}
+    - {name: "Conversational persuasion", size: "binary"}
+    - {name: "Power/status detection", size: "binary"}
+    - {name: "Toxicity prediction", size: "binary"}
+    - {name: "Politeness (3-class)", size: "polite/neutral/impolite"}
+    - {name: "Event detection (sentence-level)", size: "binary"}
+    - {name: "Event argument extraction", size: "67 event types"}
+    - {name: "Document ideology (media bias, 3-class)", size: "Left/Right/Centrist"}
+    - {name: "Character roles/tropes", size: "72 trope classes"}
+    - {name: "CovidET (emotion summarization)", size: "1,883 Reddit posts"}
+    - {name: "FLUTE (figurative language explanation)", size: "9k sentence pairs"}
+    - {name: "Misinfo Reaction Frames", size: "25k headlines"}
+    - {name: "SBIC (social bias inference)", size: "34k inferences"}
+    - {name: "Positive Reframing (CBT-based)", size: "style transfer"}
+  ablation_dimensions:
+    - "Model size (223M to 20B+ parameters)"
+    - "Pretraining approach (standard LM vs instruction fine-tuning)"
+    - "RLHF vs non-RLHF"
+    - "Open-source vs proprietary"
+    - "Task discourse level (utterance vs conversation vs document)"
+    - "Task type (classification vs generation)"
+    - "Zero-shot vs few-shot"
+    - "Scientific discipline domain"
+  training_recipe:
+    optimizer: "N/A (zero-shot prompting evaluation, no training)"
+    lr: "N/A"
+    hardware: "N/A (API-based for OpenAI; local inference for open-source models)"
+  method_family: "Comprehensive benchmark evaluation of LLMs for CSS (survey + empirical evaluation)"
+
+positioning:
+  core_claim: "LLMs can augment but not replace human annotation in CSS: they achieve fair agreement with humans on classification tasks (though below fine-tuned models) and match/exceed crowdworker quality on generation tasks -- the path forward is human-AI partnership, not full automation."
+  key_results: "Classification: LLMs achieve 'fair levels of agreement' with humans but fail to outperform fine-tuned models on most of 20 classification tasks. Generation: humans prefer LLM outputs ~50% of the time vs crowdworker gold references. Model size correlates with performance. Instruction fine-tuning and RLHF substantially improve zero-shot CSS capability. Specific failure modes: figurative language, implicit hate speech, politeness, emotion recognition."
+  limitations:
+    - "Task selection may not fully represent CSS scope; benchmark overlap with pretraining data (data leakage) inflates estimates"
+    - "LLMs cannot establish causal mechanisms underlying social phenomena"
+    - "Temporal grounding limitations -- social constructs are time-sensitive"
+    - "Expert taxonomies, large label spaces, and domain-specific parsing remain challenging"
+    - "Proprietary model opacity undermines reproducibility"
+    - "Bias and fairness concerns -- models perpetuate training biases"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "Opens with a Kuhn quote about paradigm shifts from new tools/methodologies. Frames CSS as having emerged from abundant web data, then positions LLMs as the next potential paradigm shift -- can they eliminate the annotation bottleneck that constrains what theories CSS can investigate?"
+  tension: "CSS currently relies on two unsatisfying options: (1) supervised classification requiring expensive human annotation, limiting what topics can be studied, or (2) unsupervised methods that are free but produce uninterpretable outputs. LLMs promise a third way via zero-shot classification, but is this promise real?"
+  key_insight: "The bifurcation between classification and generation is the key structural insight. For classification, LLMs augment but don't replace (fair agreement, below fine-tuned models). For generation, LLMs are genuinely transformative (matching crowdworker quality). This asymmetric finding is more nuanced and useful than a simple yes/no answer. Revealed through separate evaluation sections (5 vs 6) with different evaluation methodologies."
+  argument_chain: "CSS needs annotation tools → survey 6 disciplines to map CSS landscape → select 25 representative tasks across levels and types → evaluate 13 models zero-shot → classification: augment but not replace → generation: match/exceed crowdworkers → practical recommendations for human-AI partnership → identify CSS-specific challenges for future LLM development"
+  contribution_framing: "Four research questions structure the contributions: RQ1 (Viability) = can LLMs achieve human-level agreement? RQ2 (Model-Selection) = what model properties matter? RQ3 (Domain-Utility) = which CSS fields benefit most? RQ4 (Functionality) = classification vs generation? Framing is question-driven rather than claim-driven, appropriate for survey/benchmark work."
+  intro_structure: "~5 paragraphs: P1 = Kuhn quote + CSS origins + LLM potential; P2 = current CSS bottleneck (annotation cost constrains theory); P3 = what we do (assess LLMs for CSS with 4 RQs); P4 = key findings preview (fair agreement on classification, match crowdworkers on generation); P5 = paper structure roadmap"
+  notable_technique: "The disciplinary survey (Section 2) spanning history, literature, linguistics, political science, psychology, and sociology creates legitimacy for the benchmark selection. Rather than just picking convenient datasets, they first map the intellectual landscape, then justify task selection as representative. This survey-then-evaluate structure makes the benchmark more authoritative than a pure engineering evaluation."
+
+figures:
+  figure_count: 8
+  figure1:
+    type: "method_overview"
+    description: "Two-part overview: (top) identifies 6 core CSS subject areas (history, literature, linguistics, political science, psychology, sociology) and maps 24 representative tasks across these fields; (bottom) shows the evaluation pipeline -- segmenting tasks by discourse type (utterance/conversation/document/generation) and evaluating open and closed-source LLMs via zero-shot prompting."
+    narrative_role: "Sets up the entire paper's scope and methodology in one figure. Establishes comprehensiveness by showing the disciplinary breadth and evaluation framework. Serves as a roadmap for readers."
+    design_elements: ["Two-panel layout (survey scope + evaluation pipeline)", "Disciplinary mapping with color coding", "Task categorization by discourse level", "Model family indication"]
+    visual_style: "Clean schematic/overview figure with hierarchical organization. Top panel shows discipline-to-task mapping, bottom panel shows task-to-model evaluation flow. Uses color to distinguish disciplines. Architectural/pipeline diagram style rather than data visualization."
+  result_figures:
+    - figure_id: "Figures in Section 5"
+      viz_type: "multi-panel performance comparison"
+      what_compared: "Zero-shot LLM performance across 20 classification tasks vs fine-tuned baselines, broken down by discourse level (utterance, conversation, document)"
+      how_gain_highlighted: "Fine-tuned models shown as upper bound; LLM performance gaps highlighted. Error analysis for specific failure modes (figurative language, emotion, politeness, implicit hate)."
+      design_note: "Results organized by RQ structure (viability → model selection → domain utility), making findings easy to navigate."
+    - figure_id: "Figures in Section 6"
+      viz_type: "human evaluation comparison"
+      what_compared: "LLM generation quality vs crowdworker gold references on 5 generation tasks"
+      how_gain_highlighted: "50% preference rate for LLMs establishes parity claim. Human scoring on relevance/coherence/faithfulness/fluency dimensions."
+      design_note: "Separating human scoring (absolute quality) from human ranking (relative preference) provides complementary evidence."
+  ablation_figures:
+    - figure_id: "Section 5.2 figures"
+      viz_type: "scaling analysis"
+      dimensions_varied: ["model size (223M to 20B+)", "instruction fine-tuning (UL2 vs Flan-T5)", "RLHF (base vs chat)"]
+      design_note: "Model selection analysis structured as controlled comparisons: size effect (same architecture, different params), instruction effect (same size, different pretraining), RLHF effect (same model, with/without alignment)."
+  figure_narrative_role: "Figure 1 (framework overview) → Classification results (Sec 5: viability → model factors → domain analysis) → Generation results (Sec 6: human scoring → human ranking) → Discussion recommendations. Progression from 'what we evaluate' → 'how LLMs perform on classification' → 'how LLMs perform on generation' → 'what this means for CSS'."
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Tables in Section 5"
+    row_axis: "methods (13 LLMs + fine-tuned baselines)"
+    col_axis: "tasks × metrics"
+    row_organization: "by_category (open-source small → open-source large → proprietary)"
+    col_organization: "grouped_by_discourse_level (utterance / conversation / document)"
+    highlight_strategy: "best model per task highlighted; fine-tuned upper bound distinguished"
+    statistical_reporting: "F1 scores and accuracy; Krippendorff's alpha for agreement"
+    num_baselines: 13
+    design_note: "Large multi-model comparison table organized by discourse level. Model families (Flan-T5 variants, UL2 variants, GPT variants) implicitly create controlled comparisons within the table. The table structure makes scaling patterns visible."
+  ablation_tables:
+    - table_id: "Task-level breakdown tables"
+      what_varied: ["model", "task", "discourse level"]
+      variation_style: "full_numbers"
+      design_note: "Per-task granularity allows readers to find relevant CSS domain performance without reading entire paper."
+  supplementary_tables:
+    in_appendix: true
+    content: "Detailed per-task results, prompt templates for all 25 tasks, dataset statistics, human evaluation guidelines and inter-rater reliability"
+    reason: "Main text reports aggregate patterns and representative results; appendix provides complete per-task numbers and reproducibility materials."

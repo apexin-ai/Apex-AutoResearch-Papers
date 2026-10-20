@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_rebuttal-talking-points_20260523T225059_result.json",
     "occurrence": 1,
-    "bytes": 559,
-    "sha256": "1779fcfa21b33ea13d15a13f76494784319211441b2fce3b0bd7e60ac014101a"
+    "bytes": 558,
+    "sha256": "5dc5524ef11bf24230283c95dcc3d5962c48662829c51a65f4818defcda8f1d0"
   },
   "statistics": {
     "messages": 1,

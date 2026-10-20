@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_llama-budget-sweep-k2_20260521T212758_result.json",
     "occurrence": 1,
-    "bytes": 1247,
-    "sha256": "ef2d6f1b7864758934d87d087f0ceaf6a993e89e4588460ead485cbdd6f1f748"
+    "bytes": 1246,
+    "sha256": "bd03dddd8c49a5da2fc5db8be23b2c3e1f16f40f795c0eeb52703ddb9c7809fc"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_debiasing-hurts-summary_20260523T145836_result.json",
     "occurrence": 1,
-    "bytes": 1196,
-    "sha256": "54a47f84949c49f02181e71264f829464fef0e331c4e76106687e915aa0d85c1"
+    "bytes": 1195,
+    "sha256": "b3d56601fa3bffbbf49dc76471bdda743b98d870d0a578eed626e62b8ebe7135"
   },
   "statistics": {
     "messages": 1,

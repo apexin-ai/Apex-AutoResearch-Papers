@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp-017",
+  "project": "ec_hte_llm_annotation",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:42:12.809Z",
+    "updated_at": "2026-05-21T13:52:41.553Z",
+    "hypothesis": "EC-HTE corrected pseudo-outcomes are compatible with R-learner, achieving similar bias reduction as with CausalForest",
+    "parent": "exp-011",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T13:52:41.669359+00:00",
+  "trigger": "update_registry"
+}

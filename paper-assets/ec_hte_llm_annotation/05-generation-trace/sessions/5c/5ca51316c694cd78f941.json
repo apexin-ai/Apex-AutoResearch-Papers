@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_gamma-sensitivity-rd2m5_20260521T193704_result.json",
     "occurrence": 1,
-    "bytes": 834,
-    "sha256": "7ee82c078096227e82385e73aef0847a47058dfe7c3f3e1f25e50069ce07d74d"
+    "bytes": 833,
+    "sha256": "87bb614833f08a65af26af6c3731521a40eb439b1105ba4a4e7d12eb73fc1a6c"
   },
   "statistics": {
     "messages": 1,

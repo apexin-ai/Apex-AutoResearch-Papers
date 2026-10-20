@@ -1,0 +1,25 @@
+paper_key: "dawid1979skene"
+title: "Maximum Likelihood Estimation of Observer Error-Rates Using the EM Algorithm"
+venue: "Applied Statistics 1979"
+full_text_available: false
+
+research:
+  baselines: ["majority_voting", "simple_averaging"]
+  metrics:
+    - {name: "error_rate_estimation", direction: "qualitative"}
+    - {name: "label_recovery_accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "clinical_patient_records", size: "polytomous facets"}
+  ablation_dimensions: []
+  training_recipe: {}
+  method_family: "annotation_model"
+
+positioning:
+  core_claim: "Foundational EM algorithm for jointly estimating individual observer error-rates and true labels from multiply-annotated data without access to ground truth, treating true labels as latent variables."
+  key_results: "MLE via EM converges reliably; enables per-annotator error-rate estimation without gold labels"
+  limitations: []
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

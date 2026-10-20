@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_verify-520-configs_20260522T095244_result.json",
     "occurrence": 1,
-    "bytes": 2223,
-    "sha256": "61d418ec3187a06b199376860d01f9af9c6449ff1f7db0135852077bd1566782"
+    "bytes": 2222,
+    "sha256": "620c5e3c625b7ceaaecafae80ef29f9373dd0d4fcf26353e07a20f578c501fe6"
   },
   "statistics": {
     "messages": 1,

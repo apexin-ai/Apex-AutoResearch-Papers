@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-020",
+  "project": "ec_hte_llm_annotation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T16:14:37.738Z",
+    "updated_at": "2026-05-21T16:14:44.656Z",
+    "hypothesis": "κ=100 condition number guard provides sufficient safety margin for EC-HTE; empirical sweep will show guard rarely triggers under moderate misclassification and the exact threshold is not critical for well-conditioned problems",
+    "parent": "exp-001"
+  },
+  "timestamp": "2026-05-21T16:14:44.766222+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp-039",
+  "project": "ec_hte_llm_annotation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T15:54:20.391Z",
+    "updated_at": "2026-05-23T15:55:15.899Z",
+    "hypothesis": "EC-HTE dominates at K=2/4 (bias reduction 5-7×) but degrades at K=8 with fixed n_expert=250 (~31 labels/subgroup), establishing K=8 as a scalability boundary where per-subgroup CM estimation variance exceeds bias correction gains.",
+    "spec": {
+      "command": "python exp030_k8_subgroups.py",
+      "server": "local-cpu",
+      "data_path": "synthetic DGP K=8",
+      "data_count": 5000,
+      "model_name": "DIM+HB",
+      "seed": 0,
+      "checkpoint_path": "artifacts/k_scalability_bars.pdf",
+      "log_path": "artifacts/k_scalability_comparison.csv"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "K2_echte_bias": 0.008,
+      "K2_echte_rmse": 0.089,
+      "K2_echte_cov": 0.938,
+      "K4_echte_bias": 0.012,
+      "K4_echte_rmse": 0.12,
+      "K4_echte_cov": 0.956,
+      "K8_echte_bias": 0.183,
+      "K8_echte_rmse": 0.34,
+      "K8_echte_cov": 0.956,
+      "K8_global_rmse": 0.168
+    },
+    "completed_at": "2026-05-23T15:55:15.899Z"
+  },
+  "timestamp": "2026-05-23T15:55:15.997953+00:00",
+  "trigger": "update_registry"
+}

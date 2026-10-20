@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp-018",
+  "project": "ec_hte_llm_annotation",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:42:13.498Z",
+    "updated_at": "2026-05-21T13:54:26.489Z",
+    "hypothesis": "EC-HTE bias reduction persists under multiplicative CATE DGP (Y(1)=Y(0)*exp(tau(Z))), demonstrating robustness beyond additive treatment effect models",
+    "parent": "exp-001",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T13:54:26.582410+00:00",
+  "trigger": "update_registry"
+}

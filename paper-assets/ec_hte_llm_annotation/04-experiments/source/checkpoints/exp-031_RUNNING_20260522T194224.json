@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp-031",
+  "project": "ec_hte_llm_annotation",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:39:36.830Z",
+    "updated_at": "2026-05-22T19:42:24.603Z",
+    "hypothesis": "EC-HTE under confounded treatment assignment (T depends on covariates via logistic model, not Bernoulli(0.5)) maintains coverage ≥93% when paired with IPW-DIM estimator, demonstrating compatibility with observational study designs.",
+    "spec": {
+      "command": "python exp031_confounded_dgp.py",
+      "server": "local",
+      "data_path": "synthetic_dgp_confounded",
+      "data_count": 5000,
+      "model_name": "IPW-DIM_estimator",
+      "seed": 42,
+      "checkpoint_path": "results/exp_confounded_dgp.csv",
+      "log_path": "results/exp_confounded_dgp_summary.csv"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T19:42:24.672599+00:00",
+  "trigger": "update_registry"
+}

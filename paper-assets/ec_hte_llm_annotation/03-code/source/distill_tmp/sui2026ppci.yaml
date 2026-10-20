@@ -1,0 +1,116 @@
+paper_key: "sui2026ppci"
+title: "Prediction-Powered Conditional Inference"
+venue: "arXiv 2026"
+full_text_available: true
+
+research:
+  baselines:
+    - "Labeled-Only (LO) kernel smoothing"
+    - "Global PPI (Angelopoulos et al. 2023)"
+    - "Split conformal prediction"
+    - "Synthetic-surrogate methods (McCaw et al. 2024)"
+  metrics:
+    - {name: "RMSE", direction: "lower_better"}
+    - {name: "Coverage rate (nominal 95%)", direction: "closer_to_nominal_better"}
+    - {name: "Average CI width", direction: "lower_better"}
+  datasets:
+    - {name: "Census Income (ACS)", size: "187,471 male + 192,620 female records; ages 70-100 subpopulation"}
+    - {name: "BlogFeedback", size: "14,526 posts, d=280 features"}
+    - {name: "Synthetic simulation", size: "n=200 labeled, N=10,000 unlabeled, 1000 test points in [0.70,0.85]^3"}
+  ablation_dimensions:
+    - "Unlabeled sample size N (500 to 10,500)"
+    - "Test point location x_0 (age 70-100)"
+    - "Predictor quality (residual variance σ²_{Y-f})"
+    - "Tuning parameter ω (predictor down-weighting)"
+    - "Budget allocation (labeled cost c_l vs unlabeled cost c_u)"
+  training_recipe:
+    optimizer: "N/A (no model training; uses pre-trained black-box predictor)"
+    lr: "N/A"
+    hardware: "N/A (inference-time method, 1000 replications per experiment)"
+  method_family: "Prediction-powered inference / semi-supervised causal inference"
+
+positioning:
+  core_claim: "将 prediction-powered inference 从全局参数推广到逐点条件推断，通过 RKHS 局部化结合预测残差分解，在不依赖预测器正确性的前提下实现条件推断的效率增益"
+  key_results: "模拟数据：PPCI 相比 LO 置信区间宽度缩短 40-50%；Census Income：宽度缩短 20-35%，覆盖率稳定在 ~95%；BlogFeedback (d=280)：宽度缩短 25-40%；全局 PPI 在所有条件推断场景中出现显著欠覆盖"
+  limitations:
+    - "要求估计函数（estimating function）足够光滑"
+    - "没有自动适应预测器质量的机制（需要手动调节 ω 参数）"
+    - "条件分位数推断需要平滑近似处理（附录 B 讨论）"
+    - "RKHS 核选择和带宽参数 λ 的调优依赖 L-curve 启发式方法"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "开篇铺设三源信息结构（稀缺标注数据 + 丰富无标签协变量 + 黑盒 ML 预测器），直接对接当前数据科学中标注昂贵但预测模型廉价的现实痛点"
+  tension: "现有 PPI 方法只能做全局推断（population-level），而科学问题往往需要条件推断（如个体化风险评估、亚群体异质性）；朴素地将 PPI 扩展到条件推断会导致方差被标注样本量 n 主导，效率增益消失"
+  key_insight: "核心洞察在 Section 3 揭示：通过 RKHS 权重将条件矩转化为加权无条件矩，然后对加权矩做预测残差分解，使得方差 V(x₀) = (1/n)σ²_{Y-f} + (1/N)σ²_f，当预测器质量好（σ²_{Y-f} 远小于 σ²_Y）且 N>>n 时实现显著效率增益"
+  argument_chain: "三源信息结构 → 条件推断的科学需求 → 朴素 PPI 扩展失败的方差分析 → RKHS 局部化 + 预测残差分解 → 理论保证（最优速率 + 渐近正态 + 覆盖率） → 三个数据集验证"
+  contribution_framing: "四维贡献声明：方法论（RKHS+PPI 结合）、理论（最优速率+渐近正态）、实用（预算分配策略+L-curve 调优）、实证（三个数据集验证）"
+  intro_structure: "5 段：(1) 三源信息结构动机 + 应用场景列举 (2) 形式化问题定义 (3) 为什么条件推断比全局推断更有科学价值 (4) 方法概述（局部化+分解） (5) 贡献声明和路线图"
+  notable_technique: "用方差分解公式 V(x₀) = (1/n)σ²_{Y-f} + (1/N)σ²_f 作为核心直觉传递工具——这个公式同时解释了为什么方法有效、什么时候效果最好、以及如何做预算分配，是一个极其高效的'一个公式讲完全部故事'的叙事技巧"
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "method_overview"
+    description: "PPCI 流程图：展示从三个输入源（标注数据、无标签协变量、ML 预测器）到最终置信区间 C(x₀) 的完整处理流程。上方路径处理标注数据的偏差校正项，下方路径处理无标签数据的插入项，两条路径通过 RKHS 局部化权重连接"
+    narrative_role: "作为方法总览图，在读者进入技术细节前建立全局理解；清晰展示三源信息如何分工协作"
+    design_elements:
+      - "双路径并行结构（标注数据 vs 无标签数据）"
+      - "显式标注中间量（权重 w、预测 f(X)、残差）"
+      - "输入-处理-输出的清晰流向"
+    visual_style: "流程图/框图风格，水平双通道布局，标注输入源和中间计算量"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "bar_chart"
+      what_compared: "三个方差分量（σ²_{Y-f}, σ²_Y, σ²_f）在不同 (age, sex) 测试点的经验值"
+      how_gain_highlighted: "直观展示 σ²_{Y-f} << σ²_Y，证明预测残差方差远小于原始响应方差，从而验证效率增益的来源"
+      design_note: "将方差分解的理论结果具象化为可视图表，让读者直观看到效率增益的'原材料'——非常有效的theory-to-evidence桥接"
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "覆盖率和区间宽度随无标签样本量 N 的变化（N=500 到 10,500）"
+      how_gain_highlighted: "红色水平参考线标注 95% 名义覆盖率；覆盖率稳定而宽度持续下降"
+      design_note: "双指标同图展示（覆盖率+宽度 vs N），一张图同时验证有效性和效率"
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "PPCI vs LO vs PPI 在 1000 个模拟测试点上的 RMSE、覆盖率、区间宽度"
+      how_gain_highlighted: "三面板并列，PPCI 在宽度面板上一致低于 LO，PPI 在覆盖率面板上显示欠覆盖"
+      design_note: "三面板横排（RMSE/Coverage/Width）是条件推断论文的标准结果展示模式"
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      what_compared: "Census Income 数据上 PPCI vs LO vs PPI 在不同 (age, sex) 测试点的三指标"
+      how_gain_highlighted: "同上三面板模式；PPI 覆盖率波动明显，PPCI 和 LO 稳定在 95%"
+      design_note: "按 sex 分组展示，体现条件推断对亚群体的适应性"
+    - figure_id: "Figure 7"
+      viz_type: "line_plot"
+      what_compared: "BlogFeedback 高维数据（d=280）上 PPCI vs LO vs PPI 在 50 个测试点的三指标"
+      how_gain_highlighted: "高维场景下 PPCI 仍保持显著的宽度优势"
+      design_note: "box/scatter 点分布展示 50 个测试点的变异性"
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      dimensions_varied: ["unlabeled sample size N"]
+      design_note: "展示 N 从 500 到 10,500 的效率增益曲线，类似剂量-响应关系"
+    - figure_id: "Figure 4"
+      viz_type: "scatter_with_bands"
+      dimensions_varied: ["conformal vs conditional inference targets"]
+      design_note: "并列展示两种推断目标的区间宽度差异，用同一数据集做对比消除混杂"
+  figure_narrative_role: "Figure 1 (方法流程) → Figure 2 (方差分解验证效率增益来源) → Figure 3 (N 的效果) → Figure 4 (与 conformal 的概念对比) → Figures 5-7 (三个数据集的完整结果)"
+
+tables:
+  table_count: 0
+  main_result_table:
+    table_id: "N/A"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "1000 replications per test point; results shown as curves over test points"
+    num_baselines: 3
+    design_note: "该论文不使用传统结果表格，而是全部用图表展示——因为条件推断的结果是关于 x₀ 的函数而非单一数字，用折线图比表格更自然。这是一个值得注意的呈现选择"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "附录包含条件分位数推断的扩展（Appendix B）、所有定理的完整证明（Appendices C-G）、额外实验细节"
+    reason: "主文聚焦条件均值推断的核心结果，分位数扩展和证明放入附录以控制页面长度"

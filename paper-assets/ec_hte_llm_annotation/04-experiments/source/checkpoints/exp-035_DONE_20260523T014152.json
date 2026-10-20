@@ -1,0 +1,49 @@
+{
+  "exp_id": "exp-035",
+  "project": "ec_hte_llm_annotation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T01:39:21.071Z",
+    "updated_at": "2026-05-23T01:41:52.292Z",
+    "hypothesis": "EC-HTE with asymmetric CM estimation (full 2x2 FPR/FNR) maintains coverage >=93% under realistic 7:1 FPR/FNR ratios (simulating GPT-4.1 on Civil Comments), and outperforms the symmetric assumption (FPR=FNR) in both RMSE and coverage.",
+    "spec": {
+      "command": "python3 exp035_asymmetric_cm.py",
+      "server": "local-cpu",
+      "data_path": "synthetic DGP K=2 N=5000 asymmetric CM",
+      "data_count": 5000,
+      "model_name": "DIM",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "results/exp035_log.txt"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "source": "results/exp_asymmetric_cm_summary.csv",
+      "echte_asym_abs_bias": 0.057,
+      "echte_asym_rmse": 0.0735,
+      "echte_asym_coverage": 0.945,
+      "echte_sym_abs_bias": 0.0618,
+      "echte_sym_rmse": 0.0831,
+      "echte_sym_coverage": 0.93,
+      "global_asym_abs_bias": 0.0609,
+      "global_asym_coverage": 0.915,
+      "global_sym_abs_bias": 0.0629,
+      "global_sym_coverage": 0.915,
+      "naive_abs_bias": 0.0592,
+      "naive_coverage": 0.87,
+      "oracle_abs_bias": 0.0454,
+      "oracle_coverage": 0.943,
+      "asym_vs_sym_echte_rmse_delta": -0.0096,
+      "asym_vs_sym_echte_cov_delta": 0.015,
+      "s1_echte_asym_cov": 0.93,
+      "s1_echte_sym_cov": 0.91,
+      "key_finding": "EC-HTE asymmetric achieves 94.5% coverage (vs 93.0% symmetric) under 7:1 FPR/FNR ratio. RMSE improved 11.5% (0.0831→0.0735). Asymmetric formula essential for high FPR/FNR ratios. s1 (high-error) coverage: 93.0% asymmetric vs 91.0% symmetric."
+    },
+    "completed_at": "2026-05-23T01:41:52.292Z"
+  },
+  "timestamp": "2026-05-23T01:41:52.499928+00:00",
+  "trigger": "update_registry"
+}

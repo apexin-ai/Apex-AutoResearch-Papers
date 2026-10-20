@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_hetero-tau-dgp_20260521T230410_result.json",
     "occurrence": 1,
-    "bytes": 1063,
-    "sha256": "d3db343623cd760238dad3ab4ba2f3fd56b777899c400c40cd7b0e65f6a92433"
+    "bytes": 1062,
+    "sha256": "ef402ac27735eb1a6969d183acefe48f160e56b03ebbd605eafde83473051d86"
   },
   "statistics": {
     "messages": 1,

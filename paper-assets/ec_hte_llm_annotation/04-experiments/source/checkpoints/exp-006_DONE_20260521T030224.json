@@ -1,0 +1,47 @@
+{
+  "exp_id": "exp-006",
+  "project": "ec_hte_llm_annotation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T01:32:19.181Z",
+    "updated_at": "2026-05-21T03:02:24.771Z",
+    "hypothesis": "HB partial pooling 的 RMSE 优势在小 n_expert 时最明显，存在一个 crossover point（预计 n_expert ∈ [100, 500]）使得 HB 开始系统性优于 Global correction",
+    "spec": {
+      "command": "python exp006_budget_sensitivity.py 2>&1 | tee results/exp006_run.log",
+      "server": "local-cpu",
+      "data_path": "synthetic DGP (N=5000, K=2/4, symmetric misclass)",
+      "data_count": "288 aggregated rows (100 MC × 24 configs × 4 methods × K subgroups)",
+      "model_name": "Gibbs sampler + MLE + Global correction",
+      "seed": "0-99",
+      "checkpoint_path": "results/exp006_budget_sensitivity.csv",
+      "log_path": "results/exp006_run.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "n_mc": 100,
+      "total_rows": 288,
+      "runtime_min": 110,
+      "grid": "n_expert=[50,100,250,500,1000,2000] × K=[2,4] × regime=[extreme,moderate]",
+      "crossover_hb_beats_global": {
+        "K2_extreme": 250,
+        "K2_moderate": "never",
+        "K4_extreme": 1000,
+        "K4_moderate": 2000
+      },
+      "hb_vs_mle": "HB ≥ MLE in 22/24 configs (partial pooling never significantly hurts in symmetric DGP)",
+      "hb_best_improvement_over_mle": {
+        "K4_moderate_n50_sgC": "+42.4% RMSE",
+        "K4_extreme_n50_sgC": "+23.4% RMSE",
+        "K4_moderate_n50_sgB": "+24.0% RMSE"
+      },
+      "convergence": "HB ≈ MLE at n≥1000 (<0.5% difference)",
+      "key_finding": "Crossover depends strongly on K and regime. K=2: crossover at n=250 (practical). K=4: crossover at n=1000 (higher). HB provides consistent modest improvement over MLE via partial pooling."
+    },
+    "completed_at": "2026-05-21T03:02:24.771Z"
+  },
+  "timestamp": "2026-05-21T03:02:24.809905+00:00",
+  "trigger": "update_registry"
+}

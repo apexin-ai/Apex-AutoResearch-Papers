@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-007",
+  "project": "ec_hte_llm_annotation",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:28:25.658Z",
+    "updated_at": "2026-05-21T00:04:44.343Z",
+    "hypothesis": "在同时存在covariate misclassification和treatment-differential outcome error的DGP下，EC-HTE单独处理covariate error、PPCI单独处理outcome error，二者组合(EC-HTE+PPCI)能同时校正两类错误，实现最低bias和RMSE"
+  },
+  "timestamp": "2026-05-21T00:04:44.358314+00:00",
+  "trigger": "update_registry"
+}

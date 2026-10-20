@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_task-e-centered-eb-upgrade_20260523T080928_result.json",
     "occurrence": 1,
-    "bytes": 444,
-    "sha256": "f33fa1292c6ae55f5d3ba6cf117ffe81007e66652a2fad1144b9883ce7bd03a0"
+    "bytes": 443,
+    "sha256": "11cee8967cb6f3d1bb029f5fdfc2675122494fbac046d2c0ce7fd895a384f8a6"
   },
   "statistics": {
     "messages": 1,

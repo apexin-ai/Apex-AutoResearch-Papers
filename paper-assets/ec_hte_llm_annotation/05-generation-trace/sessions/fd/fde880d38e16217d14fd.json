@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_data-integrity-fix_20260523T112330_result.json",
     "occurrence": 1,
-    "bytes": 700,
-    "sha256": "4bddf98a04e171e40d5422ce0536cfadac97d2e77f7f86b3187c45e24c980c83"
+    "bytes": 699,
+    "sha256": "e6024cc54f20bd7277d8e9d0dd388ca8720e1cfcbed297d894b50fd1ff382d65"
   },
   "statistics": {
     "messages": 1,

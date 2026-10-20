@@ -1869,7 +1869,7 @@ called Bash
 
 ```json
 {
-  "command": "export GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\"\nsource /home/ubuntu/.paperbanana_venv/bin/activate\npaperbanana generate \\\n  --input /tmp/fig2_panel_c_intent.txt \\\n  --caption \"Pipeline comparison: standard global correction vs per-subgroup correction method\" \\\n  --vlm-model gemini-2.5-flash \\\n  --output /tmp/fig2_panel_c.png \\\n  --iterations 5 2>&1",
+  "command": "export GOOGLE_API_KEY=\"[REDACTED]\"\nsource /home/ubuntu/.paperbanana_venv/bin/activate\npaperbanana generate \\\n  --input /tmp/fig2_panel_c_intent.txt \\\n  --caption \"Pipeline comparison: standard global correction vs per-subgroup correction method\" \\\n  --vlm-model gemini-2.5-flash \\\n  --output /tmp/fig2_panel_c.png \\\n  --iterations 5 2>&1",
   "description": "Generate panel (c) with PaperBanana",
   "timeout": "300000"
 }
@@ -1885,7 +1885,7 @@ called Bash
   "session": "feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "export GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\"\nsource /home/ubuntu/.paperbanana_venv/bin/activate\npaperbanana generate \\\n  --input /tmp/fig2_panel_c_intent.txt \\\n  --caption \"Pipeline comparison: standard global correction vs per-subgroup correction method\" \\\n  --vlm-model gemini-2.5-flash \\\n  --output /tmp/fig2_panel_c.png \\\n  --iterations 5 2>&1",
+    "command": "export GOOGLE_API_KEY=\"[REDACTED]\"\nsource /home/ubuntu/.paperbanana_venv/bin/activate\npaperbanana generate \\\n  --input /tmp/fig2_panel_c_intent.txt \\\n  --caption \"Pipeline comparison: standard global correction vs per-subgroup correction method\" \\\n  --vlm-model gemini-2.5-flash \\\n  --output /tmp/fig2_panel_c.png \\\n  --iterations 5 2>&1",
     "description": "Generate panel (c) with PaperBanana",
     "timeout": "300000"
   }
@@ -1907,7 +1907,7 @@ called Bash
 
 ```json
 {
-  "command": "export GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\"\nsource /home/ubuntu/.paperbanana_venv/bin/activate\npaperbanana generate \\\n  --input /tmp/fig2_panel_d_intent.txt \\\n  --caption \"Key experimental results: bias reduction, sign reversal elimination, CI coverage, and diagnostic proposition\" \\\n  --vlm-model gemini-2.5-flash \\\n  --output /tmp/fig2_panel_d.png \\\n  --iterations 5 2>&1",
+  "command": "export GOOGLE_API_KEY=\"[REDACTED]\"\nsource /home/ubuntu/.paperbanana_venv/bin/activate\npaperbanana generate \\\n  --input /tmp/fig2_panel_d_intent.txt \\\n  --caption \"Key experimental results: bias reduction, sign reversal elimination, CI coverage, and diagnostic proposition\" \\\n  --vlm-model gemini-2.5-flash \\\n  --output /tmp/fig2_panel_d.png \\\n  --iterations 5 2>&1",
   "description": "Generate panel (d) with PaperBanana",
   "timeout": "300000"
 }
@@ -1923,7 +1923,7 @@ called Bash
   "session": "feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "export GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\"\nsource /home/ubuntu/.paperbanana_venv/bin/activate\npaperbanana generate \\\n  --input /tmp/fig2_panel_d_intent.txt \\\n  --caption \"Key experimental results: bias reduction, sign reversal elimination, CI coverage, and diagnostic proposition\" \\\n  --vlm-model gemini-2.5-flash \\\n  --output /tmp/fig2_panel_d.png \\\n  --iterations 5 2>&1",
+    "command": "export GOOGLE_API_KEY=\"[REDACTED]\"\nsource /home/ubuntu/.paperbanana_venv/bin/activate\npaperbanana generate \\\n  --input /tmp/fig2_panel_d_intent.txt \\\n  --caption \"Key experimental results: bias reduction, sign reversal elimination, CI coverage, and diagnostic proposition\" \\\n  --vlm-model gemini-2.5-flash \\\n  --output /tmp/fig2_panel_d.png \\\n  --iterations 5 2>&1",
     "description": "Generate panel (d) with PaperBanana",
     "timeout": "300000"
   }
@@ -2577,7 +2577,7 @@ called Bash
 
 ```json
 {
-  "command": "export GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\"\nsource /home/ubuntu/.paperbanana_venv/bin/activate\npaperbanana generate \\\n  --input /tmp/fig2_panel_c2_intent.txt \\\n  --caption \"Pipeline comparison: standard global correction vs per-subgroup correction\" \\\n  --vlm-model gemini-2.5-flash \\\n  --output /tmp/fig2_panel_c2.png \\\n  --iterations 5 2>&1 | tail -5",
+  "command": "export GOOGLE_API_KEY=\"[REDACTED]\"\nsource /home/ubuntu/.paperbanana_venv/bin/activate\npaperbanana generate \\\n  --input /tmp/fig2_panel_c2_intent.txt \\\n  --caption \"Pipeline comparison: standard global correction vs per-subgroup correction\" \\\n  --vlm-model gemini-2.5-flash \\\n  --output /tmp/fig2_panel_c2.png \\\n  --iterations 5 2>&1 | tail -5",
   "description": "Generate portrait panel (c)",
   "timeout": "300000"
 }
@@ -2593,7 +2593,7 @@ called Bash
   "session": "feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "export GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\"\nsource /home/ubuntu/.paperbanana_venv/bin/activate\npaperbanana generate \\\n  --input /tmp/fig2_panel_c2_intent.txt \\\n  --caption \"Pipeline comparison: standard global correction vs per-subgroup correction\" \\\n  --vlm-model gemini-2.5-flash \\\n  --output /tmp/fig2_panel_c2.png \\\n  --iterations 5 2>&1 | tail -5",
+    "command": "export GOOGLE_API_KEY=\"[REDACTED]\"\nsource /home/ubuntu/.paperbanana_venv/bin/activate\npaperbanana generate \\\n  --input /tmp/fig2_panel_c2_intent.txt \\\n  --caption \"Pipeline comparison: standard global correction vs per-subgroup correction\" \\\n  --vlm-model gemini-2.5-flash \\\n  --output /tmp/fig2_panel_c2.png \\\n  --iterations 5 2>&1 | tail -5",
     "description": "Generate portrait panel (c)",
     "timeout": "300000"
   }
@@ -2615,7 +2615,7 @@ called Bash
 
 ```json
 {
-  "command": "export GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\"\nsource /home/ubuntu/.paperbanana_venv/bin/activate\npaperbanana generate \\\n  --input /tmp/fig2_panel_d2_intent.txt \\\n  --caption \"Key experimental results: bias reduction, sign reversal, CI coverage, diagnostic\" \\\n  --vlm-model gemini-2.5-flash \\\n  --output /tmp/fig2_panel_d2.png \\\n  --iterations 5 2>&1 | tail -5",
+  "command": "export GOOGLE_API_KEY=\"[REDACTED]\"\nsource /home/ubuntu/.paperbanana_venv/bin/activate\npaperbanana generate \\\n  --input /tmp/fig2_panel_d2_intent.txt \\\n  --caption \"Key experimental results: bias reduction, sign reversal, CI coverage, diagnostic\" \\\n  --vlm-model gemini-2.5-flash \\\n  --output /tmp/fig2_panel_d2.png \\\n  --iterations 5 2>&1 | tail -5",
   "description": "Generate portrait panel (d)",
   "timeout": "300000"
 }
@@ -2631,7 +2631,7 @@ called Bash
   "session": "feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "export GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\"\nsource /home/ubuntu/.paperbanana_venv/bin/activate\npaperbanana generate \\\n  --input /tmp/fig2_panel_d2_intent.txt \\\n  --caption \"Key experimental results: bias reduction, sign reversal, CI coverage, diagnostic\" \\\n  --vlm-model gemini-2.5-flash \\\n  --output /tmp/fig2_panel_d2.png \\\n  --iterations 5 2>&1 | tail -5",
+    "command": "export GOOGLE_API_KEY=\"[REDACTED]\"\nsource /home/ubuntu/.paperbanana_venv/bin/activate\npaperbanana generate \\\n  --input /tmp/fig2_panel_d2_intent.txt \\\n  --caption \"Key experimental results: bias reduction, sign reversal, CI coverage, diagnostic\" \\\n  --vlm-model gemini-2.5-flash \\\n  --output /tmp/fig2_panel_d2.png \\\n  --iterations 5 2>&1 | tail -5",
     "description": "Generate portrait panel (d)",
     "timeout": "300000"
   }
@@ -16811,7 +16811,7 @@ called Bash
 
 ```json
 {
-  "command": "export GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" && source /home/ubuntu/.paperbanana_venv/bin/activate && paperbanana generate \\\n  -i /tmp/panel_a_desc.txt \\\n  -c \"Panel showing why applying a single pooled confusion matrix to all subgroups causes over-correction in low-error groups and under-correction in high-error groups, leading to bias amplification and CATE sign reversal in 14.9 percent of configurations\" \\\n  -o /tmp/fig2_panel_a_new.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 2 2>&1",
+  "command": "export GOOGLE_API_KEY=\"[REDACTED]\" && source /home/ubuntu/.paperbanana_venv/bin/activate && paperbanana generate \\\n  -i /tmp/panel_a_desc.txt \\\n  -c \"Panel showing why applying a single pooled confusion matrix to all subgroups causes over-correction in low-error groups and under-correction in high-error groups, leading to bias amplification and CATE sign reversal in 14.9 percent of configurations\" \\\n  -o /tmp/fig2_panel_a_new.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 2 2>&1",
   "description": "Generate panel (a) \"Why Global Correction Fails\" via PaperBanana",
   "timeout": "300000"
 }
@@ -16827,7 +16827,7 @@ called Bash
   "session": "feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "export GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" && source /home/ubuntu/.paperbanana_venv/bin/activate && paperbanana generate \\\n  -i /tmp/panel_a_desc.txt \\\n  -c \"Panel showing why applying a single pooled confusion matrix to all subgroups causes over-correction in low-error groups and under-correction in high-error groups, leading to bias amplification and CATE sign reversal in 14.9 percent of configurations\" \\\n  -o /tmp/fig2_panel_a_new.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 2 2>&1",
+    "command": "export GOOGLE_API_KEY=\"[REDACTED]\" && source /home/ubuntu/.paperbanana_venv/bin/activate && paperbanana generate \\\n  -i /tmp/panel_a_desc.txt \\\n  -c \"Panel showing why applying a single pooled confusion matrix to all subgroups causes over-correction in low-error groups and under-correction in high-error groups, leading to bias amplification and CATE sign reversal in 14.9 percent of configurations\" \\\n  -o /tmp/fig2_panel_a_new.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 2 2>&1",
     "description": "Generate panel (a) \"Why Global Correction Fails\" via PaperBanana",
     "timeout": "300000"
   }
@@ -17018,7 +17018,7 @@ called Bash
 
 ```json
 {
-  "command": "export GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" && source /home/ubuntu/.paperbanana_venv/bin/activate && paperbanana generate \\\n  -i /tmp/panel_b_desc.txt \\\n  -c \"Panel comparing standard global correction pipeline (rose, produces biased CATE) versus the proposed per-subgroup correction method with hierarchical Bayes estimation and condition-number guard (teal, produces corrected CATE with uncertainty)\" \\\n  -o /tmp/fig2_panel_b_new.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 2 2>&1",
+  "command": "export GOOGLE_API_KEY=\"[REDACTED]\" && source /home/ubuntu/.paperbanana_venv/bin/activate && paperbanana generate \\\n  -i /tmp/panel_b_desc.txt \\\n  -c \"Panel comparing standard global correction pipeline (rose, produces biased CATE) versus the proposed per-subgroup correction method with hierarchical Bayes estimation and condition-number guard (teal, produces corrected CATE with uncertainty)\" \\\n  -o /tmp/fig2_panel_b_new.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 2 2>&1",
   "description": "Generate panel (b) pipeline comparison via PaperBanana",
   "timeout": "300000"
 }
@@ -17034,7 +17034,7 @@ called Bash
   "session": "feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "export GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" && source /home/ubuntu/.paperbanana_venv/bin/activate && paperbanana generate \\\n  -i /tmp/panel_b_desc.txt \\\n  -c \"Panel comparing standard global correction pipeline (rose, produces biased CATE) versus the proposed per-subgroup correction method with hierarchical Bayes estimation and condition-number guard (teal, produces corrected CATE with uncertainty)\" \\\n  -o /tmp/fig2_panel_b_new.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 2 2>&1",
+    "command": "export GOOGLE_API_KEY=\"[REDACTED]\" && source /home/ubuntu/.paperbanana_venv/bin/activate && paperbanana generate \\\n  -i /tmp/panel_b_desc.txt \\\n  -c \"Panel comparing standard global correction pipeline (rose, produces biased CATE) versus the proposed per-subgroup correction method with hierarchical Bayes estimation and condition-number guard (teal, produces corrected CATE with uncertainty)\" \\\n  -o /tmp/fig2_panel_b_new.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 2 2>&1",
     "description": "Generate panel (b) pipeline comparison via PaperBanana",
     "timeout": "300000"
   }

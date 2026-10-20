@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-038",
+  "project": "ec_hte_llm_annotation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T15:54:13.229Z",
+    "updated_at": "2026-05-23T15:54:17.147Z",
+    "hypothesis": "When true CATE is small (τ(0)<0.05), global correction's over-correction bias exceeds the true effect magnitude, causing sign reversal in CATE estimates — converting beneficial treatments into apparently harmful ones. EC-HTE's per-subgroup correction never causes sign reversal."
+  },
+  "timestamp": "2026-05-23T15:54:17.258542+00:00",
+  "trigger": "update_registry"
+}

@@ -27571,22 +27571,22 @@ called Read
 _source line 3496 · 2026-05-25T19:17:58.350576+00:00_
 
 1	autodl_ec_hte_password:
-2	  created_at: '2026-05-24T15:20:48.515634+00:00'
+[REDACTED]	  created_at: '2026-05-24T15:20:48.515634+00:00'
 3	  provider: AutoDL
 4	  purpose: SSH password for autodl-ec-hte server (RTX PRO 6000 x2)
 5	  updated_at: '2026-05-24T15:20:48.515655+00:00'
 6	autodl_rtx6000_password:
-7	  created_at: '2026-05-21T16:26:35.340899+00:00'
+[REDACTED]	  created_at: '2026-05-21T16:26:35.340899+00:00'
 8	  provider: AutoDL
 9	  purpose: SSH password for autodl-rtx6000 (4x RTX 6000 48GB)
 10	  updated_at: '2026-05-21T16:26:35.340915+00:00'
 11	google_api_key:
-12	  created_at: '2026-05-24T22:08:30.485618+00:00'
+[REDACTED]	  created_at: '2026-05-24T22:08:30.485618+00:00'
 13	  provider: Google
 14	  purpose: PaperBanana 概念图生成（Gemini API for VLM Critic）
 15	  updated_at: '2026-05-24T22:08:30.485639+00:00'
 16	openrouter_api_key:
-17	  created_at: '2026-05-21T04:29:18.561906+00:00'
+[REDACTED]	  created_at: '2026-05-21T04:29:18.561906+00:00'
 18	  provider: OpenRouter (via proxy)
 19	  purpose: LLM annotation pilot (Gemini Flash via OpenRouter format, base_url=http://47.94.22.126/v1).
 20	    用于 TweetEval 500 条情感分类标注 + exp-004 真实数据标注。

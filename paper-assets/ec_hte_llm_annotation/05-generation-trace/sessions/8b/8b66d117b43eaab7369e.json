@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_download-all-annotations_20260521T214803_result.json",
     "occurrence": 1,
-    "bytes": 1219,
-    "sha256": "a2d5cb76cf19668491b75353cfb158a8cc65228bde763bc5708d69b9103df231"
+    "bytes": 1218,
+    "sha256": "a37435c84d756d4808b8684246699e50f62082ee0bf2200e66a86ba2a7b890c7"
   },
   "statistics": {
     "messages": 1,

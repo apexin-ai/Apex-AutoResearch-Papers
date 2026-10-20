@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_agnews-mc-v2_20260524T154635_result.json",
     "occurrence": 1,
-    "bytes": 669,
-    "sha256": "2cbd5df561ce0e549a8d629d5548a7318018c44a4a714c764317110442277c0a"
+    "bytes": 668,
+    "sha256": "912728649f9246b31604682f9ed0454bc74743e36a03d6ed791fee1fbdc6ba25"
   },
   "statistics": {
     "messages": 1,

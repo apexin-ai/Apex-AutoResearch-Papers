@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-014-asymmetric_20260521T072959_result.json",
     "occurrence": 1,
-    "bytes": 990,
-    "sha256": "3df0b19ae11272dde286e3768a704cf0b6066919e47d8f9f04fb2a78a51529ee"
+    "bytes": 989,
+    "sha256": "01252997f5abf1d8bb374467bb4d3882bc76e0b7bc768271613eea11fcc16edf"
   },
   "statistics": {
     "messages": 1,

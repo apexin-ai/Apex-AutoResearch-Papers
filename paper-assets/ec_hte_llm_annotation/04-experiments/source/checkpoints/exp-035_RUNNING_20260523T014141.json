@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp-035",
+  "project": "ec_hte_llm_annotation",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T01:39:21.071Z",
+    "updated_at": "2026-05-23T01:41:41.443Z",
+    "hypothesis": "EC-HTE with asymmetric CM estimation (full 2x2 FPR/FNR) maintains coverage >=93% under realistic 7:1 FPR/FNR ratios (simulating GPT-4.1 on Civil Comments), and outperforms the symmetric assumption (FPR=FNR) in both RMSE and coverage.",
+    "spec": {
+      "command": "python3 exp035_asymmetric_cm.py",
+      "server": "local-cpu",
+      "data_path": "synthetic DGP K=2 N=5000 asymmetric CM",
+      "data_count": 5000,
+      "model_name": "DIM",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "results/exp035_log.txt"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T01:41:41.646708+00:00",
+  "trigger": "update_registry"
+}

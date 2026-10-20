@@ -1,0 +1,2621 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{gilardi2023chatgpt,tornberg2024chatgpt,ziems2024nlp,tan2024llm}
+\citation{ashwin2025bias}
+\citation{angelopoulos2023ppi}
+\citation{egami2023dsl}
+\citation{sui2026ppci}
+\citation{bu2023forestiv}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN@col{2}
+\@LN{38}{0}
+\@LN{39}{0}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\citation{fuller1987measurement,carroll2006measurement}
+\citation{frazis2003estimating}
+\citation{knox2020administrative}
+\citation{bound2001measurement}
+\citation{angelopoulos2023ppi}
+\citation{egami2023dsl}
+\citation{sui2026ppci}
+\citation{bu2023forestiv}
+\citation{audinet2025benchmarking}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Overview. (a)~Global correction over/under-corrects subgroups with heterogeneous error rates, introducing bias $\delta _s \cdot \Delta \tau / (1{-}2\bar  {\pi })$ (where $\delta _s$ is subgroup error-rate deviation, $\Delta \tau $ is effect heterogeneity, $\bar  {\pi }$ is pooled error rate; formally defined in Theorem~\ref {thm:bias_identity}) that reverses conditional average treatment effect (CATE) sign in 14.9\% of configurations. (b)~\textit  {Top (rose):} standard pipeline applies a pooled confusion matrix uniformly; \textit  {bottom (teal):} EC-HTE estimates per-subgroup matrices via hierarchical Bayes, applies stratified inversion with a condition-number ($\kappa $) guard, and propagates uncertainty.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:method_overview}{{1}{2}{Overview. (a)~Global correction over/under-corrects subgroups with heterogeneous error rates, introducing bias $\delta _s \cdot \Delta \tau / (1{-}2\bar {\pi })$ (where $\delta _s$ is subgroup error-rate deviation, $\Delta \tau $ is effect heterogeneity, $\bar {\pi }$ is pooled error rate; formally defined in Theorem~\ref {thm:bias_identity}) that reverses conditional average treatment effect (CATE) sign in 14.9\% of configurations. (b)~\textit {Top (rose):} standard pipeline applies a pooled confusion matrix uniformly; \textit {bottom (teal):} EC-HTE estimates per-subgroup matrices via hierarchical Bayes, applies stratified inversion with a condition-number ($\kappa $) guard, and propagates uncertainty}{figure.caption.1}{}}
+\@LN@col{1}
+\@LN{79}{1}
+\@LN{80}{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@LN{96}{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Measurement Error in Causal Inference}{2}{subsection.2.1}\protected@file@percent }
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN@col{2}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Post-Prediction Causal Inference}{2}{subsection.2.2}\protected@file@percent }
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\citation{wager2018causal}
+\citation{chernozhukov2018dml}
+\citation{athey2016recursive}
+\citation{ashwin2025bias}
+\citation{imai2010causal}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces CATE sign reversal under global correction ($K{=}2$, $\tau (0) = 0.03$). (A) Naive vs.\ global-corrected CATE; red triangles mark sign reversals (7.5\% of subgroup estimates). (B) Extreme case: true $\tau = +0.03$, estimated $\hat  {\tau } = -0.059$.}}{3}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:sign_reversal}{{2}{3}{CATE sign reversal under global correction ($K{=}2$, $\tau (0) = 0.03$). (A) Naive vs.\ global-corrected CATE; red triangles mark sign reversals (7.5\% of subgroup estimates). (B) Extreme case: true $\tau = +0.03$, estimated $\hat {\tau } = -0.059$}{figure.caption.2}{}}
+\@LN@col{1}
+\@LN{127}{2}
+\@LN{128}{2}
+\@LN{129}{2}
+\@LN{130}{2}
+\@LN{131}{2}
+\@LN{132}{2}
+\@LN{133}{2}
+\@LN{134}{2}
+\@LN{135}{2}
+\@LN{136}{2}
+\@LN{137}{2}
+\@LN{138}{2}
+\@LN{139}{2}
+\@LN{140}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Heterogeneous Treatment Effects}{3}{subsection.2.3}\protected@file@percent }
+\@LN{141}{2}
+\@LN{142}{2}
+\@LN{143}{2}
+\@LN{144}{2}
+\@LN{145}{2}
+\@LN{146}{2}
+\@LN{147}{2}
+\@LN{148}{2}
+\@LN{149}{2}
+\@LN{150}{2}
+\@LN{151}{2}
+\@LN{152}{2}
+\@LN{153}{2}
+\@LN{154}{2}
+\@LN{155}{2}
+\@LN{156}{2}
+\@LN@col{2}
+\@LN{157}{2}
+\@LN{158}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Bias Decomposition: When Debiasing Hurts}{3}{section.3}\protected@file@percent }
+\newlabel{sec:theory}{{3}{3}{Bias Decomposition: When Debiasing Hurts}{section.3}{}}
+\@LN{159}{2}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@LN{182}{2}
+\@LN{183}{2}
+\@LN{184}{2}
+\@LN{185}{2}
+\@LN{186}{2}
+\@LN{187}{2}
+\@LN{188}{2}
+\@LN{189}{2}
+\@LN{190}{2}
+\citation{frazis2003estimating}
+\@LN@col{1}
+\@LN{191}{3}
+\@LN{192}{3}
+\@LN{193}{3}
+\@LN{194}{3}
+\@LN{195}{3}
+\@LN{196}{3}
+\@LN{197}{3}
+\@LN{198}{3}
+\@LN{199}{3}
+\@LN{200}{3}
+\newlabel{thm:bias_identity}{{1}{4}{Bias Decomposition Identity}{theorem.1}{}}
+\@LN{201}{3}
+\@LN{202}{3}
+\@LN{203}{3}
+\newlabel{eq:bias_z0}{{1}{4}{Bias Decomposition Identity}{equation.1}{}}
+\@LN{204}{3}
+\newlabel{eq:bias_z1}{{2}{4}{Bias Decomposition Identity}{equation.2}{}}
+\@LN{205}{3}
+\@LN{206}{3}
+\@LN{207}{3}
+\@LN{208}{3}
+\@LN{209}{3}
+\@LN{210}{3}
+\@LN{211}{3}
+\@LN{212}{3}
+\@LN{213}{3}
+\@LN{214}{3}
+\@LN{215}{3}
+\@LN{216}{3}
+\@LN{217}{3}
+\@writefile{toc}{\contentsline {paragraph}{Numerical example ($K{=}2$).}{4}{section*.3}\protected@file@percent }
+\@LN{218}{3}
+\@LN{219}{3}
+\@LN{220}{3}
+\@LN{221}{3}
+\@LN{222}{3}
+\@LN{223}{3}
+\@LN{224}{3}
+\@LN{225}{3}
+\@LN{226}{3}
+\@LN{227}{3}
+\@LN{228}{3}
+\@writefile{toc}{\contentsline {paragraph}{Proof sketch.}{4}{section*.4}\protected@file@percent }
+\@LN{229}{3}
+\@LN{230}{3}
+\@LN{231}{3}
+\@LN{232}{3}
+\@LN{233}{3}
+\@LN{234}{3}
+\@LN{235}{3}
+\@LN@col{2}
+\@LN{236}{3}
+\@LN{237}{3}
+\@LN{238}{3}
+\@LN{239}{3}
+\@LN{240}{3}
+\@LN{241}{3}
+\@LN{242}{3}
+\@LN{243}{3}
+\@LN{244}{3}
+\newlabel{rem:asymmetric}{{2}{4}{}{theorem.2}{}}
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@LN{250}{3}
+\@LN{251}{3}
+\@LN{252}{3}
+\@LN{253}{3}
+\@LN{254}{3}
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN{257}{3}
+\newlabel{prop:a5_relaxation}{{3}{4}{Exact Identity under Heterogeneous Treatment Effects}{theorem.3}{}}
+\@LN{258}{3}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\newlabel{eq:hetero_z0}{{3}{4}{Exact Identity under Heterogeneous Treatment Effects}{equation.3}{}}
+\@LN{262}{3}
+\newlabel{eq:hetero_z1}{{4}{4}{Exact Identity under Heterogeneous Treatment Effects}{equation.4}{}}
+\@LN{263}{3}
+\@LN{264}{3}
+\@LN{265}{3}
+\newlabel{cor:aggregate_bias}{{4}{4}{Aggregate Bias}{theorem.4}{}}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@LN{273}{3}
+\@LN{274}{3}
+\@LN{275}{3}
+\@LN{276}{3}
+\@LN{277}{3}
+\@LN{278}{3}
+\@LN{279}{3}
+\@LN{280}{3}
+\@LN{281}{3}
+\@LN{282}{3}
+\@LN{283}{3}
+\@LN{284}{3}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Bias amplification under global correction ($K{=}2$, low-error subgroup $\pi _s < \bar  {\pi }$). Correction \emph  {increases} bias when $\Delta \pi > 0.12$ (hatched), reaching $2.86\times $. High-error subgroups ($\pi _s > \bar  {\pi }$) always have ratio $< 1$ (correction helps); see Appendix~\ref {app:dgp}.}}{5}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:heatmap}{{3}{5}{Bias amplification under global correction ($K{=}2$, low-error subgroup $\pi _s < \bar {\pi }$). Correction \emph {increases} bias when $\Delta \pi > 0.12$ (hatched), reaching $2.86\times $. High-error subgroups ($\pi _s > \bar {\pi }$) always have ratio $< 1$ (correction helps); see Appendix~\ref {app:dgp}}{figure.caption.5}{}}
+\newlabel{prop:debiasing_hurts}{{5}{5}{Debiasing Can Increase Bias}{theorem.5}{}}
+\@LN{285}{4}
+\@LN{286}{4}
+\@LN{287}{4}
+\@LN{288}{4}
+\@LN{289}{4}
+\newlabel{eq:hurts_condition}{{5}{5}{Debiasing Can Increase Bias}{equation.5}{}}
+\@LN{290}{4}
+\@LN{291}{4}
+\@LN{292}{4}
+\@LN{293}{4}
+\@LN{294}{4}
+\@LN{295}{4}
+\@LN{296}{4}
+\@LN{297}{4}
+\@LN{298}{4}
+\@LN{299}{4}
+\@LN{300}{4}
+\@LN{301}{4}
+\@LN{302}{4}
+\@LN{303}{4}
+\@LN{304}{4}
+\@LN{305}{4}
+\@LN{306}{4}
+\@LN{307}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Correction Prescribed by the Identity}{5}{section.4}\protected@file@percent }
+\newlabel{sec:method}{{4}{5}{Correction Prescribed by the Identity}{section.4}{}}
+\@LN{308}{4}
+\@LN{309}{4}
+\@LN{310}{4}
+\@LN{311}{4}
+\@LN{312}{4}
+\@LN{313}{4}
+\@LN@col{2}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces EC-HTE: Error-Corrected HTE}}{5}{algorithm.1}\protected@file@percent }
+\newlabel{alg:echte}{{1}{5}{EC-HTE: Error-Corrected HTE}{algorithm.1}{}}
+\@LN{314}{4}
+\@LN{315}{4}
+\@LN{316}{4}
+\@LN{317}{4}
+\@LN{318}{4}
+\@LN{319}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Hierarchical Bayes Confusion Matrix Estimation}{5}{subsection.4.1}\protected@file@percent }
+\@LN{320}{4}
+\@LN{321}{4}
+\@LN{322}{4}
+\@LN{323}{4}
+\@LN{324}{4}
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN{327}{4}
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN{333}{4}
+\@LN{334}{4}
+\@LN{335}{4}
+\citation{wager2018causal}
+\citation{sui2026ppci}
+\citation{barbieri2020tweeteval}
+\citation{angelopoulos2023ppi,egami2023dsl}
+\citation{sui2026ppci}
+\citation{wager2018causal}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces RMSE vs.\ expert budget under extreme heterogeneity. Crossover at $n{=}250$ ($K{=}2$) and $n{=}1000$ ($K{=}4$, $\Delta \tau {=}0.3$); under the Table~\ref {tab:main_results} DGP, $K{=}4$ crossover is lower ($n{\approx }500$). Shaded bands: $\pm 1$ SD. Full grid in Appendix~\ref {app:budget}.}}{6}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:budget_compact}{{4}{6}{RMSE vs.\ expert budget under extreme heterogeneity. Crossover at $n{=}250$ ($K{=}2$) and $n{=}1000$ ($K{=}4$, $\Delta \tau {=}0.3$); under the Table~\ref {tab:main_results} DGP, $K{=}4$ crossover is lower ($n{\approx }500$). Shaded bands: $\pm 1$ SD. Full grid in Appendix~\ref {app:budget}}{figure.caption.6}{}}
+\@LN@col{1}
+\@LN{336}{5}
+\@LN{337}{5}
+\@LN{338}{5}
+\@LN{339}{5}
+\@LN{340}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Subgroup-Stratified Correction}{6}{subsection.4.2}\protected@file@percent }
+\@LN{341}{5}
+\@LN{342}{5}
+\@LN{343}{5}
+\@LN{344}{5}
+\@LN{345}{5}
+\@LN{346}{5}
+\@LN{347}{5}
+\@LN{348}{5}
+\@LN{349}{5}
+\@LN{350}{5}
+\@LN{351}{5}
+\@LN{352}{5}
+\@LN{353}{5}
+\@LN{354}{5}
+\@LN{355}{5}
+\@LN{356}{5}
+\@LN{357}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Downstream Integration}{6}{subsection.4.3}\protected@file@percent }
+\@LN{358}{5}
+\@LN{359}{5}
+\@LN{360}{5}
+\@LN{361}{5}
+\@LN{362}{5}
+\@LN{363}{5}
+\@LN{364}{5}
+\@LN{365}{5}
+\@LN{366}{5}
+\@writefile{toc}{\contentsline {paragraph}{PPCI composition.}{6}{section*.7}\protected@file@percent }
+\@LN{367}{5}
+\@LN{368}{5}
+\@LN@col{2}
+\@LN{369}{5}
+\@LN{370}{5}
+\@LN{371}{5}
+\@LN{372}{5}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{6}{section.5}\protected@file@percent }
+\@LN{373}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Setup}{6}{subsection.5.1}\protected@file@percent }
+\@LN{374}{5}
+\@LN{375}{5}
+\@LN{376}{5}
+\@LN{377}{5}
+\@LN{378}{5}
+\@LN{379}{5}
+\@LN{380}{5}
+\@LN{381}{5}
+\@LN{382}{5}
+\@LN{383}{5}
+\@LN{384}{5}
+\@LN{385}{5}
+\@LN{386}{5}
+\@LN{387}{5}
+\@LN{388}{5}
+\@LN{389}{5}
+\@LN{390}{5}
+\@LN{391}{5}
+\@LN{392}{5}
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN{398}{5}
+\@LN{399}{5}
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\citation{borkan2019nuanced}
+\citation{wager2018causal}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Results under moderate heterogeneity and semi-synthetic data. Moderate: $\Delta \pi \leq 0.10$; TweetEval: empirical subgroup structure ($K{=}4$). Metrics averaged over subgroups, $z$-levels, 100 MC runs. $^\dagger $RMSE exceeds Global.}}{7}{table.caption.8}\protected@file@percent }
+\newlabel{tab:main_supp}{{1}{7}{Results under moderate heterogeneity and semi-synthetic data. Moderate: $\Delta \pi \leq 0.10$; TweetEval: empirical subgroup structure ($K{=}4$). Metrics averaged over subgroups, $z$-levels, 100 MC runs. $^\dagger $RMSE exceeds Global}{table.caption.8}{}}
+\@LN{404}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Empirical Validation of the Bias Identity}{7}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:bias_mechanism}{{5.2}{7}{Empirical Validation of the Bias Identity}{subsection.5.2}{}}
+\@LN{405}{6}
+\@LN{406}{6}
+\@LN{407}{6}
+\@LN{408}{6}
+\@LN{409}{6}
+\@LN{410}{6}
+\@LN{411}{6}
+\@LN{412}{6}
+\@LN{413}{6}
+\@LN{414}{6}
+\@LN{415}{6}
+\@LN{416}{6}
+\@LN{417}{6}
+\@LN{418}{6}
+\@LN{419}{6}
+\@LN{420}{6}
+\@LN{421}{6}
+\@LN{422}{6}
+\@LN{423}{6}
+\@writefile{toc}{\contentsline {paragraph}{Real-world case study.}{7}{section*.9}\protected@file@percent }
+\@LN{424}{6}
+\@LN{425}{6}
+\@LN{426}{6}
+\@LN{427}{6}
+\@LN{428}{6}
+\@LN{429}{6}
+\@LN{430}{6}
+\@LN{431}{6}
+\@LN{432}{6}
+\@LN{433}{6}
+\@LN{434}{6}
+\@LN{435}{6}
+\@LN{436}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Correction Evaluation}{7}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:ec_hte_eval}{{5.3}{7}{Correction Evaluation}{subsection.5.3}{}}
+\@LN{437}{6}
+\@LN{438}{6}
+\@LN{439}{6}
+\@LN{440}{6}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Sign reversal rate increases as true CATE $\tau (0) \to 0$: at $\tau (0) = 0.03$, 14.9\% of configurations exhibit sign reversal; all nine real LLMs amplify bias; EC-HTE eliminates reversal in the $K{=}2$ setting.}}{7}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:sign_reversal_rate}{{5}{7}{Sign reversal rate increases as true CATE $\tau (0) \to 0$: at $\tau (0) = 0.03$, 14.9\% of configurations exhibit sign reversal; all nine real LLMs amplify bias; EC-HTE eliminates reversal in the $K{=}2$ setting}{figure.caption.10}{}}
+\@LN{441}{6}
+\@LN{442}{6}
+\@LN{443}{6}
+\@LN{444}{6}
+\@LN{445}{6}
+\@LN{446}{6}
+\@LN{447}{6}
+\@LN{448}{6}
+\@LN{449}{6}
+\@LN{450}{6}
+\@LN{451}{6}
+\@LN{452}{6}
+\@LN{453}{6}
+\@LN{454}{6}
+\@LN{455}{6}
+\@LN{456}{6}
+\@LN{457}{6}
+\@LN{458}{6}
+\@LN{459}{6}
+\@LN{460}{6}
+\@LN{461}{6}
+\@LN{462}{6}
+\@LN{463}{6}
+\@writefile{toc}{\contentsline {paragraph}{CausalForest.}{7}{section*.11}\protected@file@percent }
+\@LN{464}{6}
+\@LN{465}{6}
+\@LN{466}{6}
+\@LN{467}{6}
+\@LN{468}{6}
+\@LN{469}{6}
+\@LN{470}{6}
+\@LN{471}{6}
+\@LN{472}{6}
+\citation{frazis2003estimating}
+\citation{frazis2003estimating}
+\citation{borkan2019nuanced}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Main results (extreme heterogeneity). Metrics averaged over subgroups, $z$-levels, 100 MC runs. Bold: lowest $|\text  {bias}|$. $^\dagger $RMSE exceeds Global. F-L Scalar/Per-sub.: \citet  {frazis2003estimating}. Moderate and semi-synthetic results in Table~\ref {tab:main_supp}; MC SEs $\leq 0.005$ (Appendix~\ref {app:mcse}). CausalForest plug-in SE achieves 93.8\% aggregate coverage; a bootstrap procedure ($B{=}100$) recovers $\geq $95\% at all budgets (Appendix~\ref {app:bootstrap_se}).}}{8}{table.caption.13}\protected@file@percent }
+\newlabel{tab:main_results}{{2}{8}{Main results (extreme heterogeneity). Metrics averaged over subgroups, $z$-levels, 100 MC runs. Bold: lowest $|\text {bias}|$. $^\dagger $RMSE exceeds Global. F-L Scalar/Per-sub.: \citet {frazis2003estimating}. Moderate and semi-synthetic results in Table~\ref {tab:main_supp}; MC SEs $\leq 0.005$ (Appendix~\ref {app:mcse}). CausalForest plug-in SE achieves 93.8\% aggregate coverage; a bootstrap procedure ($B{=}100$) recovers $\geq $95\% at all budgets (Appendix~\ref {app:bootstrap_se})}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{PPCI composition.}{8}{section*.12}\protected@file@percent }
+\@LN{473}{7}
+\@LN{474}{7}
+\@LN{475}{7}
+\@LN{476}{7}
+\@LN{477}{7}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Diagnostic and Operating Conditions}{8}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:diagnostic}{{5.4}{8}{Diagnostic and Operating Conditions}{subsection.5.4}{}}
+\@LN{478}{7}
+\@LN{479}{7}
+\@LN{480}{7}
+\@LN{481}{7}
+\@LN{482}{7}
+\@LN{483}{7}
+\@LN{484}{7}
+\@LN{485}{7}
+\@LN{486}{7}
+\@LN{487}{7}
+\@writefile{toc}{\contentsline {paragraph}{Operating conditions.}{8}{section*.14}\protected@file@percent }
+\@LN{488}{7}
+\@LN{489}{7}
+\@LN{490}{7}
+\@LN{491}{7}
+\@LN{492}{7}
+\@LN{493}{7}
+\@LN{494}{7}
+\@LN{495}{7}
+\@LN{496}{7}
+\@LN{497}{7}
+\@LN{498}{7}
+\@LN{499}{7}
+\@LN{500}{7}
+\@LN{501}{7}
+\@LN@col{2}
+\@LN{502}{7}
+\@LN{503}{7}
+\@LN{504}{7}
+\@LN{505}{7}
+\@LN{506}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
+\@LN{507}{7}
+\@LN{508}{7}
+\@LN{509}{7}
+\@LN{510}{7}
+\@LN{511}{7}
+\@LN{512}{7}
+\@LN{513}{7}
+\@LN{514}{7}
+\@LN{515}{7}
+\@LN{516}{7}
+\@LN{517}{7}
+\@LN{518}{7}
+\@LN{519}{7}
+\@LN{520}{7}
+\@LN{521}{7}
+\@LN{522}{7}
+\@LN{523}{7}
+\newlabel{sec:limitations}{{6}{8}{Limitations}{section*.15}{}}
+\@LN{524}{7}
+\@LN{525}{7}
+\@LN{526}{7}
+\@LN{527}{7}
+\@LN{528}{7}
+\@LN{529}{7}
+\@LN{530}{7}
+\@LN{531}{7}
+\@LN{532}{7}
+\@LN{533}{7}
+\@LN{534}{7}
+\@LN{535}{7}
+\@LN{536}{7}
+\@LN{537}{7}
+\@LN{538}{7}
+\@LN{539}{7}
+\@LN{540}{7}
+\@LN{541}{7}
+\@LN{542}{7}
+\@LN{543}{7}
+\@LN{544}{7}
+\@LN{545}{7}
+\@LN{546}{7}
+\@LN{547}{7}
+\@LN{548}{7}
+\@LN{549}{7}
+\bibdata{references}
+\bibcite{angelopoulos2023ppi}{{1}{2023}{{Angelopoulos et~al.}}{{Angelopoulos, Bates, Fannjiang, Jordan, and Zrnic}}}
+\bibcite{ashwin2025bias}{{2}{2025}{{Ashwin et~al.}}{{Ashwin, Chhabra, and Rao}}}
+\bibcite{athey2016recursive}{{3}{2016}{{Athey and Imbens}}{{}}}
+\bibcite{audinet2025benchmarking}{{4}{2025}{{Audinet~de Pieuchon et~al.}}{{Audinet~de Pieuchon, Daoud, Jerzak, Johansson, and Johansson}}}
+\bibcite{barbieri2020tweeteval}{{5}{2020}{{Barbieri et~al.}}{{Barbieri, Camacho-Collados, Espinosa-Anke, and Neves}}}
+\bibcite{blette2024assessing}{{6}{2024}{{Blette et~al.}}{{Blette, Halpern, Li, and Harhay}}}
+\bibcite{borkan2019nuanced}{{7}{2019}{{Borkan et~al.}}{{Borkan, Dixon, Sorensen, Thain, and Vasserman}}}
+\bibcite{bound2001measurement}{{8}{2001}{{Bound et~al.}}{{Bound, Brown, and Mathiowetz}}}
+\bibcite{carroll2006measurement}{{9}{2006}{{Carroll et~al.}}{{Carroll, Ruppert, Stefanski, and Crainiceanu}}}
+\bibcite{chernozhukov2018dml}{{10}{2018}{{Chernozhukov et~al.}}{{Chernozhukov, Chetverikov, Demirer, Duflo, Hansen, Newey, and Robins}}}
+\bibcite{dawid1979maximum}{{11}{1979}{{Dawid and Skene}}{{}}}
+\bibcite{egami2023dsl}{{12}{2023}{{Egami et~al.}}{{Egami, Hinck, Stewart, and Wei}}}
+\bibcite{etaiwi2025comparative}{{13}{2025}{{Etaiwi and Alhijawi}}{{}}}
+\bibcite{frazis2003estimating}{{14}{2003}{{Frazis and Loewenstein}}{{}}}
+\bibcite{fuller1987measurement}{{15}{1987}{{Fuller}}{{}}}
+\bibcite{gilardi2023chatgpt}{{16}{2023}{{Gilardi et~al.}}{{Gilardi, Alizadeh, and Kubli}}}
+\bibcite{grimmer2022text}{{17}{2022}{{Grimmer et~al.}}{{Grimmer, Roberts, and Stewart}}}
+\bibcite{guo2017calibration}{{18}{2017}{{Guo et~al.}}{{Guo, Pleiss, Sun, and Weinberger}}}
+\bibcite{gustafson2003measurement}{{19}{2003}{{Gustafson}}{{}}}
+\bibcite{hovy2013learning}{{20}{2013}{{Hovy et~al.}}{{Hovy, Berg-Kirkpatrick, Vaswani, and Hovy}}}
+\bibcite{hu2008nonparametric}{{21}{2008}{{Hu and Schennach}}{{}}}
+\bibcite{imai2010causal}{{22}{2010}{{Imai and Yamamoto}}{{}}}
+\bibcite{kennedy2020constructing}{{23}{2020}{{Kennedy et~al.}}{{Kennedy, Bacon, Sahn, and von Vacano}}}
+\bibcite{knox2020administrative}{{24}{2020}{{Knox et~al.}}{{Knox, Lowe, and Mummolo}}}
+\bibcite{lewbel2007estimation}{{25}{2007}{{Lewbel}}{{}}}
+\@LN@col{1}
+\@LN{550}{8}
+\@LN{551}{8}
+\@LN{552}{8}
+\@LN{553}{8}
+\@LN{554}{8}
+\@LN{555}{8}
+\@LN{556}{8}
+\@LN{557}{8}
+\@LN{558}{8}
+\@LN{559}{8}
+\@LN{560}{8}
+\@LN{561}{8}
+\@LN{562}{8}
+\@LN{563}{8}
+\@LN{564}{8}
+\@LN{565}{8}
+\@LN{566}{8}
+\@LN{567}{8}
+\@LN{568}{8}
+\@LN{569}{8}
+\@LN{570}{8}
+\@LN{571}{8}
+\@LN{572}{8}
+\@LN{573}{8}
+\@LN{574}{8}
+\@LN{575}{8}
+\@LN{576}{8}
+\@LN{577}{8}
+\@LN{578}{8}
+\@LN{579}{8}
+\@LN{580}{8}
+\@LN{581}{8}
+\@LN{582}{8}
+\@LN{583}{8}
+\@LN{584}{8}
+\@LN{585}{8}
+\@LN{586}{8}
+\@LN{587}{8}
+\@LN{588}{8}
+\@LN{589}{8}
+\@LN{590}{8}
+\@LN{591}{8}
+\@LN{592}{8}
+\@LN{593}{8}
+\@LN{594}{8}
+\@LN{595}{8}
+\@LN{596}{8}
+\@LN{597}{8}
+\@LN{598}{8}
+\@LN{599}{8}
+\@LN{600}{8}
+\@LN{601}{8}
+\@LN{602}{8}
+\@LN@col{2}
+\@LN{603}{8}
+\@LN{604}{8}
+\@LN{605}{8}
+\@LN{606}{8}
+\@LN{607}{8}
+\@LN{608}{8}
+\@LN{609}{8}
+\@LN{610}{8}
+\@LN{611}{8}
+\@LN{612}{8}
+\@LN{613}{8}
+\@LN{614}{8}
+\@LN{615}{8}
+\@LN{616}{8}
+\@LN{617}{8}
+\@LN{618}{8}
+\@LN{619}{8}
+\@LN{620}{8}
+\@LN{621}{8}
+\@LN{622}{8}
+\@LN{623}{8}
+\@LN{624}{8}
+\@LN{625}{8}
+\@LN{626}{8}
+\@LN{627}{8}
+\@LN{628}{8}
+\@LN{629}{8}
+\@LN{630}{8}
+\@LN{631}{8}
+\@LN{632}{8}
+\@LN{633}{8}
+\@LN{634}{8}
+\@LN{635}{8}
+\@LN{636}{8}
+\@LN{637}{8}
+\@LN{638}{8}
+\@LN{639}{8}
+\@LN{640}{8}
+\@LN{641}{8}
+\@LN{642}{8}
+\@LN{643}{8}
+\@LN{644}{8}
+\@LN{645}{8}
+\@LN{646}{8}
+\@LN{647}{8}
+\@LN{648}{8}
+\@LN{649}{8}
+\@LN{650}{8}
+\@LN{651}{8}
+\@LN{652}{8}
+\@LN{653}{8}
+\@LN{654}{8}
+\@LN{655}{8}
+\@LN{656}{8}
+\bibcite{mahajan2006identification}{{26}{2006}{{Mahajan}}{{}}}
+\bibcite{nie2021quasi}{{27}{2021}{{Nie and Wager}}{{}}}
+\bibcite{passonneau2014benefits}{{28}{2014}{{Passonneau and Carpenter}}{{}}}
+\bibcite{paun2018comparing}{{29}{2018}{{Paun et~al.}}{{Paun, Carpenter, Chamberlain, Hovy, Kruschwitz, and Poesio}}}
+\bibcite{stewart1990matrix}{{30}{1990}{{Stewart and Sun}}{{}}}
+\bibcite{sui2026ppci}{{31}{2026}{{Sui et~al.}}{{Sui, Zhou, Zhou, and Dai}}}
+\bibcite{tan2024llm}{{32}{2024}{{Tan et~al.}}{{Tan, Li, Wang, Beigi, Jiang, Bhattacharjee, Karami, Li, Cheng, and Liu}}}
+\bibcite{tornberg2024chatgpt}{{33}{2025}{{T{\"o}rnberg}}{{}}}
+\bibcite{wager2018causal}{{34}{2018}{{Wager and Athey}}{{}}}
+\bibcite{bu2023forestiv}{{35}{2022}{{Yang et~al.}}{{Yang, McFowland~III, Burtch, and Adomavicius}}}
+\bibcite{zhang2015character}{{36}{2015}{{Zhang et~al.}}{{Zhang, Zhao, and LeCun}}}
+\bibcite{ziems2024nlp}{{37}{2024}{{Ziems et~al.}}{{Ziems, Held, Shaikh, Chen, Zhang, and Yang}}}
+\bibcite{zrnic2024active}{{38}{2024{a}}{{Zrnic and Cand{\`e}s}}{{}}}
+\bibcite{zrnic2024cross}{{39}{2024{b}}{{Zrnic and Cand{\`e}s}}{{}}}
+\@LN@col{1}
+\@LN{657}{9}
+\@LN{658}{9}
+\@LN{659}{9}
+\@LN{660}{9}
+\@LN{661}{9}
+\@LN{662}{9}
+\@LN{663}{9}
+\@LN{664}{9}
+\@LN{665}{9}
+\@LN{666}{9}
+\@LN{667}{9}
+\@LN{668}{9}
+\@LN{669}{9}
+\@LN{670}{9}
+\@LN{671}{9}
+\@LN{672}{9}
+\@LN{673}{9}
+\@LN{674}{9}
+\@LN{675}{9}
+\@LN{676}{9}
+\@LN{677}{9}
+\@LN{678}{9}
+\@LN{679}{9}
+\@LN{680}{9}
+\@LN{681}{9}
+\@LN{682}{9}
+\@LN{683}{9}
+\@LN{684}{9}
+\@LN{685}{9}
+\@LN{686}{9}
+\@LN{687}{9}
+\@LN{688}{9}
+\@LN{689}{9}
+\@LN{690}{9}
+\@LN{691}{9}
+\@LN{692}{9}
+\@LN{693}{9}
+\@LN{694}{9}
+\@LN{695}{9}
+\@LN{696}{9}
+\@LN{697}{9}
+\@LN{698}{9}
+\@LN{699}{9}
+\@LN{700}{9}
+\@LN{701}{9}
+\@LN{702}{9}
+\@LN{703}{9}
+\@LN{704}{9}
+\@LN{705}{9}
+\@LN{706}{9}
+\@LN{707}{9}
+\@LN{708}{9}
+\@LN@col{2}
+\@LN{709}{9}
+\@LN{710}{9}
+\@LN{711}{9}
+\@LN{712}{9}
+\@LN{713}{9}
+\@LN{714}{9}
+\@LN{715}{9}
+\@LN{716}{9}
+\@writefile{toc}{\contentsline {section}{\numberline {A}EC-HTE Procedure}{10}{appendix.A}\protected@file@percent }
+\newlabel{app:algorithm}{{A}{10}{EC-HTE Procedure}{appendix.A}{}}
+\@LN{717}{9}
+\@LN{718}{9}
+\@LN{719}{9}
+\@LN{720}{9}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Condition Number Guard Ablation}{10}{subsection.A.1}\protected@file@percent }
+\newlabel{app:kappa_ablation}{{A.1}{10}{Condition Number Guard Ablation}{subsection.A.1}{}}
+\@LN{721}{9}
+\@LN{722}{9}
+\@LN{723}{9}
+\@LN{724}{9}
+\@LN{725}{9}
+\@LN{726}{9}
+\@LN{727}{9}
+\@LN{728}{9}
+\@LN{729}{9}
+\@LN{730}{9}
+\@LN{731}{9}
+\@LN{732}{9}
+\@LN{733}{9}
+\@LN{734}{9}
+\@LN{735}{9}
+\@LN{736}{9}
+\@LN{737}{9}
+\@LN{738}{9}
+\@LN{739}{9}
+\@LN{740}{9}
+\@LN{741}{9}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Full Proof of Theorem~\ref {thm:bias_identity}}{10}{appendix.B}\protected@file@percent }
+\newlabel{app:derivation}{{B}{10}{Full Proof of Theorem~\ref {thm:bias_identity}}{appendix.B}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{10}{section*.18}\protected@file@percent }
+\@LN{742}{9}
+\@LN{743}{9}
+\@LN{744}{9}
+\@LN{745}{9}
+\@LN{746}{9}
+\@LN{747}{9}
+\@LN{748}{9}
+\@writefile{toc}{\contentsline {paragraph}{Global correction.}{10}{section*.19}\protected@file@percent }
+\@LN{749}{9}
+\@LN{750}{9}
+\@LN{751}{9}
+\@LN{752}{9}
+\@LN{753}{9}
+\@LN{754}{9}
+\citation{stewart1990matrix}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Bias computation.}{11}{section*.20}\protected@file@percent }
+\@LN{755}{10}
+\@LN{756}{10}
+\@LN{757}{10}
+\@LN{758}{10}
+\@LN{759}{10}
+\@LN{760}{10}
+\@LN{761}{10}
+\@LN{762}{10}
+\@LN{763}{10}
+\@LN{764}{10}
+\@LN{765}{10}
+\@LN{766}{10}
+\@LN{767}{10}
+\@LN{768}{10}
+\@LN{769}{10}
+\@LN{770}{10}
+\@writefile{toc}{\contentsline {paragraph}{Finite-sample remainder.}{11}{section*.21}\protected@file@percent }
+\@LN{771}{10}
+\@LN{772}{10}
+\@LN{773}{10}
+\@LN{774}{10}
+\@LN{775}{10}
+\@LN{776}{10}
+\@LN{777}{10}
+\@LN{778}{10}
+\@LN{779}{10}
+\@LN{780}{10}
+\@LN{781}{10}
+\@LN{782}{10}
+\@LN{783}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Multi-class Extension and Proof}{11}{appendix.C}\protected@file@percent }
+\newlabel{app:multiclass}{{C}{11}{Multi-class Extension and Proof}{appendix.C}{}}
+\newlabel{cor:multiclass}{{6}{11}{Multi-class Extension}{theorem.6}{}}
+\@LN{784}{10}
+\@LN{785}{10}
+\@LN{786}{10}
+\@LN{787}{10}
+\@LN{788}{10}
+\@LN{789}{10}
+\newlabel{eq:multiclass}{{15}{11}{Multi-class Extension}{equation.15}{}}
+\@LN{790}{10}
+\@LN@col{2}
+\@LN{791}{10}
+\@LN{792}{10}
+\@LN{793}{10}
+\@LN{794}{10}
+\@writefile{toc}{\contentsline {paragraph}{Proof.}{11}{section*.22}\protected@file@percent }
+\@LN{795}{10}
+\@LN{796}{10}
+\@LN{797}{10}
+\@LN{798}{10}
+\@LN{799}{10}
+\@LN{800}{10}
+\@LN{801}{10}
+\@LN{802}{10}
+\@LN{803}{10}
+\@LN{804}{10}
+\@LN{805}{10}
+\@LN{806}{10}
+\@LN{807}{10}
+\@LN{808}{10}
+\@LN{809}{10}
+\@LN{810}{10}
+\@LN{811}{10}
+\@LN{812}{10}
+\@LN{813}{10}
+\@LN{814}{10}
+\@LN{815}{10}
+\@LN{816}{10}
+\@LN{817}{10}
+\@LN{818}{10}
+\@LN{819}{10}
+\@LN{820}{10}
+\@LN{821}{10}
+\@LN{822}{10}
+\@LN{823}{10}
+\@LN{824}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Proof of Proposition~\ref {prop:debiasing_hurts}}{11}{appendix.D}\protected@file@percent }
+\newlabel{app:debiasing_hurts}{{D}{11}{Proof of Proposition~\ref {prop:debiasing_hurts}}{appendix.D}{}}
+\@LN{825}{10}
+\@LN{826}{10}
+\@LN{827}{10}
+\@LN{828}{10}
+\@LN{829}{10}
+\@LN{830}{10}
+\@LN@col{1}
+\@LN{831}{11}
+\@LN{832}{11}
+\@LN{833}{11}
+\@LN{834}{11}
+\@LN{835}{11}
+\@LN{836}{11}
+\@LN{837}{11}
+\@LN{838}{11}
+\@LN{839}{11}
+\@LN{840}{11}
+\@LN{841}{11}
+\@LN{842}{11}
+\@LN{843}{11}
+\@LN{844}{11}
+\@LN{845}{11}
+\@LN{846}{11}
+\@writefile{toc}{\contentsline {paragraph}{Extension to asymmetric misclassification.}{12}{section*.23}\protected@file@percent }
+\@LN{847}{11}
+\@LN{848}{11}
+\@LN{849}{11}
+\@LN{850}{11}
+\@LN{851}{11}
+\@LN{852}{11}
+\@LN{853}{11}
+\@LN{854}{11}
+\@LN{855}{11}
+\@LN{856}{11}
+\@LN{857}{11}
+\@LN{858}{11}
+\@LN{859}{11}
+\@LN{860}{11}
+\@LN{861}{11}
+\@LN{862}{11}
+\@LN{863}{11}
+\@LN{864}{11}
+\@LN{865}{11}
+\@LN{866}{11}
+\@LN{867}{11}
+\@LN{868}{11}
+\@LN{869}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Semi-Synthetic Data Generating Process}{12}{appendix.E}\protected@file@percent }
+\newlabel{app:dgp}{{E}{12}{Semi-Synthetic Data Generating Process}{appendix.E}{}}
+\@LN{870}{11}
+\@writefile{toc}{\contentsline {paragraph}{Synthetic DGP (Sections~\ref {sec:bias_mechanism}--\ref {sec:diagnostic} and Appendix~\ref {sec:budget}).}{12}{section*.24}\protected@file@percent }
+\@LN{871}{11}
+\@LN{872}{11}
+\@LN{873}{11}
+\@LN{874}{11}
+\@LN{875}{11}
+\@LN{876}{11}
+\@LN{877}{11}
+\@LN@col{2}
+\@LN{878}{11}
+\@LN{879}{11}
+\@LN{880}{11}
+\@LN{881}{11}
+\@LN{882}{11}
+\@LN{883}{11}
+\@writefile{toc}{\contentsline {paragraph}{Bias identity verification grid (Section~\ref {sec:bias_mechanism}).}{12}{section*.25}\protected@file@percent }
+\@LN{884}{11}
+\@LN{885}{11}
+\@LN{886}{11}
+\@LN{887}{11}
+\@LN{888}{11}
+\@LN{889}{11}
+\@LN{890}{11}
+\@LN{891}{11}
+\@LN{892}{11}
+\@LN{893}{11}
+\@LN{894}{11}
+\@LN{895}{11}
+\@LN{896}{11}
+\@LN{897}{11}
+\@LN{898}{11}
+\@LN{899}{11}
+\@LN{900}{11}
+\@LN{901}{11}
+\@LN{902}{11}
+\@LN{903}{11}
+\@LN{904}{11}
+\@LN{905}{11}
+\@LN{906}{11}
+\@writefile{toc}{\contentsline {paragraph}{Semi-synthetic DGP (Section~\ref {sec:ec_hte_eval}).}{12}{section*.26}\protected@file@percent }
+\@LN{907}{11}
+\@LN{908}{11}
+\@LN{909}{11}
+\@LN{910}{11}
+\@LN{911}{11}
+\@LN{912}{11}
+\@LN{913}{11}
+\@LN{914}{11}
+\@LN{915}{11}
+\@LN{916}{11}
+\@LN{917}{11}
+\@LN{918}{11}
+\@LN{919}{11}
+\@writefile{toc}{\contentsline {paragraph}{PPCI DGPs (Appendix~\ref {sec:ppci}).}{12}{section*.27}\protected@file@percent }
+\@LN{920}{11}
+\@LN{921}{11}
+\@LN{922}{11}
+\@LN{923}{11}
+\@LN{924}{11}
+\@LN{925}{11}
+\citation{fuller1987measurement}
+\citation{carroll2006measurement}
+\citation{gustafson2003measurement}
+\citation{hu2008nonparametric}
+\citation{dawid1979maximum}
+\citation{passonneau2014benefits}
+\citation{hovy2013learning}
+\citation{paun2018comparing}
+\citation{zrnic2024cross}
+\citation{zrnic2024active}
+\citation{grimmer2022text}
+\citation{audinet2025benchmarking}
+\citation{imai2010causal}
+\citation{knox2020administrative}
+\citation{blette2024assessing}
+\citation{bound2001measurement}
+\citation{frazis2003estimating}
+\citation{knox2020administrative}
+\citation{mahajan2006identification}
+\citation{lewbel2007estimation}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{CausalForestDML setup.}{13}{section*.28}\protected@file@percent }
+\@LN{926}{12}
+\@LN{927}{12}
+\@LN{928}{12}
+\@LN{929}{12}
+\@LN{930}{12}
+\@LN{931}{12}
+\@LN{932}{12}
+\@LN{933}{12}
+\@LN{934}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Extended Related Work}{13}{appendix.F}\protected@file@percent }
+\newlabel{app:related}{{F}{13}{Extended Related Work}{appendix.F}{}}
+\@writefile{toc}{\contentsline {paragraph}{Measurement error details.}{13}{section*.29}\protected@file@percent }
+\@LN{935}{12}
+\@LN{936}{12}
+\@LN{937}{12}
+\@LN{938}{12}
+\@LN{939}{12}
+\@LN{940}{12}
+\@LN{941}{12}
+\@LN{942}{12}
+\@LN{943}{12}
+\@writefile{toc}{\contentsline {paragraph}{Annotation model extensions.}{13}{section*.30}\protected@file@percent }
+\@LN{944}{12}
+\@LN{945}{12}
+\@LN{946}{12}
+\@LN{947}{12}
+\@LN{948}{12}
+\@LN{949}{12}
+\@LN{950}{12}
+\@writefile{toc}{\contentsline {paragraph}{PPI extensions and text-as-data methods.}{13}{section*.31}\protected@file@percent }
+\@LN{951}{12}
+\@LN{952}{12}
+\@LN{953}{12}
+\@LN{954}{12}
+\@LN{955}{12}
+\@LN{956}{12}
+\@LN{957}{12}
+\@LN{958}{12}
+\@LN{959}{12}
+\@LN{960}{12}
+\@LN{961}{12}
+\@LN{962}{12}
+\@LN{963}{12}
+\@LN{964}{12}
+\@writefile{toc}{\contentsline {paragraph}{Treatment vs.\ effect-modifier misclassification.}{13}{section*.32}\protected@file@percent }
+\@LN{965}{12}
+\@LN{966}{12}
+\@LN{967}{12}
+\@LN{968}{12}
+\@LN{969}{12}
+\@LN{970}{12}
+\@LN{971}{12}
+\@LN{972}{12}
+\@LN{973}{12}
+\@LN{974}{12}
+\@LN@col{2}
+\@LN{975}{12}
+\@LN{976}{12}
+\@LN{977}{12}
+\@LN{978}{12}
+\@LN{979}{12}
+\@LN{980}{12}
+\@LN{981}{12}
+\@writefile{toc}{\contentsline {paragraph}{Econometrics of binary misclassification.}{13}{section*.33}\protected@file@percent }
+\@LN{982}{12}
+\@LN{983}{12}
+\@LN{984}{12}
+\@LN{985}{12}
+\@LN{986}{12}
+\@LN{987}{12}
+\@LN{988}{12}
+\@LN{989}{12}
+\@LN{990}{12}
+\@LN{991}{12}
+\@LN{992}{12}
+\@LN{993}{12}
+\@LN{994}{12}
+\@LN{995}{12}
+\@LN{996}{12}
+\@LN{997}{12}
+\@LN{998}{12}
+\@LN{999}{12}
+\@LN{1000}{12}
+\@LN{1001}{12}
+\@LN{1002}{12}
+\@LN{1003}{12}
+\@LN{1004}{12}
+\@LN{1005}{12}
+\@LN{1006}{12}
+\@LN{1007}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {G}MCMC Convergence Diagnostics}{13}{appendix.G}\protected@file@percent }
+\newlabel{app:mcmc}{{G}{13}{MCMC Convergence Diagnostics}{appendix.G}{}}
+\@LN{1008}{12}
+\@LN{1009}{12}
+\@LN{1010}{12}
+\@LN{1011}{12}
+\@LN{1012}{12}
+\@LN{1013}{12}
+\@LN{1014}{12}
+\@LN{1015}{12}
+\@LN{1016}{12}
+\@LN{1017}{12}
+\@LN{1018}{12}
+\@LN{1019}{12}
+\@LN{1020}{12}
+\@LN{1021}{12}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces MCMC convergence diagnostics for the hierarchical Bayesian estimator. All configurations satisfy convergence criteria with substantial margin.}}{14}{table.caption.34}\protected@file@percent }
+\newlabel{tab:mcmc}{{3}{14}{MCMC convergence diagnostics for the hierarchical Bayesian estimator. All configurations satisfy convergence criteria with substantial margin}{table.caption.34}{}}
+\@LN{1022}{13}
+\@writefile{toc}{\contentsline {subsection}{\numberline {G.1}Hyperprior Sensitivity}{14}{subsection.G.1}\protected@file@percent }
+\newlabel{app:hyperprior}{{G.1}{14}{Hyperprior Sensitivity}{subsection.G.1}{}}
+\@LN{1023}{13}
+\@LN{1024}{13}
+\@LN{1025}{13}
+\@LN{1026}{13}
+\@LN{1027}{13}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Hyperprior sensitivity summary. RMSE and coverage across 15 $(a_0, b_0)$ configurations. The default $\text  {Gamma}(3, 1)$ ranks 8th of 15 by RMSE; the best configuration $\text  {Gamma}(1, 0.5)$ yields only 1.9\% improvement. Excluding extreme configurations ($a_0 \cdot b_0 > 8$), RMSE varies by $<$6\%.}}{14}{table.caption.35}\protected@file@percent }
+\newlabel{tab:hyperprior_sweep}{{4}{14}{Hyperprior sensitivity summary. RMSE and coverage across 15 $(a_0, b_0)$ configurations. The default $\text {Gamma}(3, 1)$ ranks 8th of 15 by RMSE; the best configuration $\text {Gamma}(1, 0.5)$ yields only 1.9\% improvement. Excluding extreme configurations ($a_0 \cdot b_0 > 8$), RMSE varies by $<$6\%}{table.caption.35}{}}
+\@LN{1028}{13}
+\@LN{1029}{13}
+\@LN{1030}{13}
+\@LN{1031}{13}
+\@LN{1032}{13}
+\@LN{1033}{13}
+\@LN{1034}{13}
+\@LN{1035}{13}
+\@LN{1036}{13}
+\@LN{1037}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Diagnostic ROC Curves}{14}{appendix.H}\protected@file@percent }
+\newlabel{app:roc}{{H}{14}{Diagnostic ROC Curves}{appendix.H}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cost-asymmetric diagnostic thresholds.}{14}{section*.37}\protected@file@percent }
+\@LN{1038}{13}
+\@LN{1039}{13}
+\@LN{1040}{13}
+\@LN{1041}{13}
+\@LN{1042}{13}
+\@LN{1043}{13}
+\@LN{1044}{13}
+\@LN{1045}{13}
+\@LN{1046}{13}
+\@LN{1047}{13}
+\@LN{1048}{13}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces ROC curves for the $\Delta \tau $-free diagnostic (Proposition~\ref {prop:debiasing_hurts}): $|\delta _s|/((1{-}2\bar  \pi )\cdot \pi _s)>1$. (A)~Setting-level ROC (AUC $= 0.89$), compared with the $|\Delta \pi \times \Delta \tau |$ product (AUC $= 0.89$) and $\mathrm  {CV}(\pi _s)$ (AUC $= 0.97$). (B)~Subgroup-level ROC: the $\Delta \pi $-only condition (AUC $= 0.86$) substantially outperforms the $|\Delta \pi \times \Delta \tau |$ product (AUC $= 0.73$). The $\Delta \tau $-free diagnostic depends only on estimable misclassification rates, breaking the circular dependency that would arise if CATE heterogeneity were required.}}{14}{figure.caption.36}\protected@file@percent }
+\newlabel{fig:roc}{{6}{14}{ROC curves for the $\Delta \tau $-free diagnostic (Proposition~\ref {prop:debiasing_hurts}): $|\delta _s|/((1{-}2\bar \pi )\cdot \pi _s)>1$. (A)~Setting-level ROC (AUC $= 0.89$), compared with the $|\Delta \pi \times \Delta \tau |$ product (AUC $= 0.89$) and $\mathrm {CV}(\pi _s)$ (AUC $= 0.97$). (B)~Subgroup-level ROC: the $\Delta \pi $-only condition (AUC $= 0.86$) substantially outperforms the $|\Delta \pi \times \Delta \tau |$ product (AUC $= 0.73$). The $\Delta \tau $-free diagnostic depends only on estimable misclassification rates, breaking the circular dependency that would arise if CATE heterogeneity were required}{figure.caption.36}{}}
+\@LN{1049}{13}
+\@LN{1050}{13}
+\@LN{1051}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Expert Budget Crossover Curves}{14}{appendix.I}\protected@file@percent }
+\newlabel{app:budget}{{I}{14}{Expert Budget Crossover Curves}{appendix.I}{}}
+\newlabel{sec:budget}{{I}{14}{Expert Budget Crossover Curves}{appendix.I}{}}
+\@LN{1052}{13}
+\@LN{1053}{13}
+\@LN{1054}{13}
+\@LN{1055}{13}
+\@LN{1056}{13}
+\@LN{1057}{13}
+\@LN{1058}{13}
+\@LN{1059}{13}
+\@LN{1060}{13}
+\@LN{1061}{13}
+\@LN{1062}{13}
+\@LN{1063}{13}
+\@writefile{toc}{\contentsline {subsection}{\numberline {I.1}Budget Sensitivity: HB vs.\ Stratified MLE}{14}{subsection.I.1}\protected@file@percent }
+\newlabel{app:budget_sensitivity}{{I.1}{14}{Budget Sensitivity: HB vs.\ Stratified MLE}{subsection.I.1}{}}
+\@LN{1064}{13}
+\@LN{1065}{13}
+\@LN{1066}{13}
+\@LN{1067}{13}
+\@LN{1068}{13}
+\@LN{1069}{13}
+\@LN{1070}{13}
+\@LN{1071}{13}
+\@LN{1072}{13}
+\@LN{1073}{13}
+\@LN{1074}{13}
+\@LN{1075}{13}
+\@LN{1076}{13}
+\@LN{1077}{13}
+\@LN{1078}{13}
+\@LN{1079}{13}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces RMSE vs.\ expert budget ($n_{\text  {expert}}$) across four regime$\times K$ combinations. Dashed vertical lines mark crossover points where EC-HTE achieves lower RMSE than global correction: $n{=}250$ ($K{=}2$, extreme), $n{=}1000$ ($K{=}4$, extreme). Under moderate heterogeneity ($K{=}2$), global correction dominates at all budgets. Shaded bands show $\pm 1$ SD across subgroups within each configuration.}}{15}{figure.caption.38}\protected@file@percent }
+\newlabel{fig:budget}{{7}{15}{RMSE vs.\ expert budget ($n_{\text {expert}}$) across four regime$\times K$ combinations. Dashed vertical lines mark crossover points where EC-HTE achieves lower RMSE than global correction: $n{=}250$ ($K{=}2$, extreme), $n{=}1000$ ($K{=}4$, extreme). Under moderate heterogeneity ($K{=}2$), global correction dominates at all budgets. Shaded bands show $\pm 1$ SD across subgroups within each configuration}{figure.caption.38}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces RMSE across expert budgets under extreme heterogeneity. HB crossover (first budget where HB $<$ MLE) occurs at approximately 10 expert labels per subgroup-cell: $n_{\text  {expert}}{=}50$ for $K{=}2$ and $n_{\text  {expert}}{=}75$ for $K{=}4$.}}{15}{table.caption.39}\protected@file@percent }
+\newlabel{tab:budget_sensitivity}{{5}{15}{RMSE across expert budgets under extreme heterogeneity. HB crossover (first budget where HB $<$ MLE) occurs at approximately 10 expert labels per subgroup-cell: $n_{\text {expert}}{=}50$ for $K{=}2$ and $n_{\text {expert}}{=}75$ for $K{=}4$}{table.caption.39}{}}
+\@LN{1080}{14}
+\@LN{1081}{14}
+\@LN{1082}{14}
+\@LN{1083}{14}
+\@LN{1084}{14}
+\@LN{1085}{14}
+\@LN{1086}{14}
+\@LN@col{2}
+\@LN{1087}{14}
+\@LN{1088}{14}
+\@LN{1089}{14}
+\@LN{1090}{14}
+\@LN{1091}{14}
+\@writefile{toc}{\contentsline {subsection}{\numberline {I.2}Scalability to $K{=}8$ Subgroups}{15}{subsection.I.2}\protected@file@percent }
+\newlabel{app:k8_subgroups}{{I.2}{15}{Scalability to $K{=}8$ Subgroups}{subsection.I.2}{}}
+\@LN{1092}{14}
+\@LN{1093}{14}
+\@LN{1094}{14}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{15}{section*.40}\protected@file@percent }
+\@LN{1095}{14}
+\@LN{1096}{14}
+\@LN{1097}{14}
+\@LN{1098}{14}
+\@LN{1099}{14}
+\@LN{1100}{14}
+\@LN{1101}{14}
+\@LN{1102}{14}
+\@LN{1103}{14}
+\@LN{1104}{14}
+\@LN{1105}{14}
+\@LN{1106}{14}
+\@LN{1107}{14}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces EC-HTE at $K{=}8$ ($n_{\text  {expert}}{=}250$, ${\approx }31$ labels/subgroup, 100 MC).}}{16}{table.caption.41}\protected@file@percent }
+\newlabel{tab:k8_subgroups}{{6}{16}{EC-HTE at $K{=}8$ ($n_{\text {expert}}{=}250$, ${\approx }31$ labels/subgroup, 100 MC)}{table.caption.41}{}}
+\@LN{1108}{15}
+\@LN{1109}{15}
+\@LN{1110}{15}
+\@LN{1111}{15}
+\@writefile{toc}{\contentsline {paragraph}{Per-subgroup breakdown.}{16}{section*.42}\protected@file@percent }
+\@LN{1112}{15}
+\@LN{1113}{15}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Per-subgroup RMSE at $K{=}8$. HB improvement over MLE is largest in high-$\pi $ subgroups but does not close the gap with Global.}}{16}{table.caption.43}\protected@file@percent }
+\newlabel{tab:k8_per_subgroup}{{7}{16}{Per-subgroup RMSE at $K{=}8$. HB improvement over MLE is largest in high-$\pi $ subgroups but does not close the gap with Global}{table.caption.43}{}}
+\@LN{1114}{15}
+\@LN{1115}{15}
+\@LN{1116}{15}
+\@LN{1117}{15}
+\@LN{1118}{15}
+\@LN{1119}{15}
+\@LN{1120}{15}
+\@LN{1121}{15}
+\@LN{1122}{15}
+\@LN{1123}{15}
+\@LN{1124}{15}
+\@LN{1125}{15}
+\@LN{1126}{15}
+\@LN{1127}{15}
+\@LN{1128}{15}
+\@LN{1129}{15}
+\@LN{1130}{15}
+\@LN{1131}{15}
+\@LN{1132}{15}
+\@LN{1133}{15}
+\@LN{1134}{15}
+\@LN{1135}{15}
+\@LN{1136}{15}
+\@LN{1137}{15}
+\@LN{1138}{15}
+\@LN@col{2}
+\@LN{1139}{15}
+\@LN{1140}{15}
+\@LN{1141}{15}
+\@LN{1142}{15}
+\@LN{1143}{15}
+\@LN{1144}{15}
+\@LN{1145}{15}
+\@LN{1146}{15}
+\@LN{1147}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {J}Diagnostic ROC Curves}{16}{appendix.J}\protected@file@percent }
+\newlabel{app:diagnostic_roc}{{J}{16}{Diagnostic ROC Curves}{appendix.J}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Diagnostic ROC curves under symmetric misclassification. (A)~Setting-level ROC (AUC $= 0.89$). (B)~Subgroup-level ROC: the $\Delta \pi $-only diagnostic (AUC $= 0.86$) outperforms the $|\Delta \pi \times \Delta \tau |$ product (AUC $= 0.73$), requiring only estimable misclassification rates.}}{16}{figure.caption.44}\protected@file@percent }
+\newlabel{fig:diagnostic_roc}{{8}{16}{Diagnostic ROC curves under symmetric misclassification. (A)~Setting-level ROC (AUC $= 0.89$). (B)~Subgroup-level ROC: the $\Delta \pi $-only diagnostic (AUC $= 0.86$) outperforms the $|\Delta \pi \times \Delta \tau |$ product (AUC $= 0.73$), requiring only estimable misclassification rates}{figure.caption.44}{}}
+\@LN{1148}{15}
+\@LN{1149}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {K}Asymmetric Misclassification Extension}{16}{appendix.K}\protected@file@percent }
+\newlabel{app:asymmetric}{{K}{16}{Asymmetric Misclassification Extension}{appendix.K}{}}
+\@LN{1150}{15}
+\@LN{1151}{15}
+\@LN{1152}{15}
+\@LN{1153}{15}
+\@LN{1154}{15}
+\@LN{1155}{15}
+\@writefile{toc}{\contentsline {paragraph}{General bias formula.}{16}{section*.45}\protected@file@percent }
+\@LN{1156}{15}
+\@LN{1157}{15}
+\@LN{1158}{15}
+\@LN{1159}{15}
+\@LN{1160}{15}
+\@LN{1161}{15}
+\@LN{1162}{15}
+\@LN{1163}{15}
+\@LN{1164}{15}
+\@LN{1165}{15}
+\@writefile{toc}{\contentsline {paragraph}{Empirical validation.}{16}{section*.46}\protected@file@percent }
+\@LN{1166}{15}
+\@LN{1167}{15}
+\@LN{1168}{15}
+\citation{sui2026ppci}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Asymmetric misclassification results ($K{=}2$, $n_{\text  {expert}}{=}250$, 100 MC runs). Values averaged over subgroups, $z$-levels, and $\Delta \tau $.}}{17}{table.caption.47}\protected@file@percent }
+\newlabel{tab:asymmetric}{{8}{17}{Asymmetric misclassification results ($K{=}2$, $n_{\text {expert}}{=}250$, 100 MC runs). Values averaged over subgroups, $z$-levels, and $\Delta \tau $}{table.caption.47}{}}
+\@LN{1169}{16}
+\@LN{1170}{16}
+\@LN{1171}{16}
+\@LN{1172}{16}
+\@LN{1173}{16}
+\@LN{1174}{16}
+\@LN{1175}{16}
+\@LN{1176}{16}
+\@LN{1177}{16}
+\@LN{1178}{16}
+\@LN{1179}{16}
+\@LN{1180}{16}
+\@LN{1181}{16}
+\@LN{1182}{16}
+\@writefile{toc}{\contentsline {paragraph}{Comprehensive grid evaluation (48 configurations).}{17}{section*.48}\protected@file@percent }
+\@LN{1183}{16}
+\@LN{1184}{16}
+\@LN{1185}{16}
+\@LN{1186}{16}
+\@LN{1187}{16}
+\@LN{1188}{16}
+\@LN{1189}{16}
+\@LN{1190}{16}
+\@LN{1191}{16}
+\@LN{1192}{16}
+\@LN{1193}{16}
+\@LN{1194}{16}
+\@LN{1195}{16}
+\@LN{1196}{16}
+\@LN{1197}{16}
+\@LN{1198}{16}
+\@LN{1199}{16}
+\@LN{1200}{16}
+\@LN{1201}{16}
+\@LN{1202}{16}
+\@LN{1203}{16}
+\@LN{1204}{16}
+\@LN{1205}{16}
+\@LN{1206}{16}
+\@LN{1207}{16}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces $R^2$ of bias identity predictions under asymmetric misclassification (100 MC runs per cell). Product structure holds at $\Delta \pi \geq 0.10$; low $R^2$ at $\Delta \pi = 0.05$ reflects near-zero bias magnitudes.}}{17}{table.caption.49}\protected@file@percent }
+\newlabel{tab:asym_r2_grid}{{9}{17}{$R^2$ of bias identity predictions under asymmetric misclassification (100 MC runs per cell). Product structure holds at $\Delta \pi \geq 0.10$; low $R^2$ at $\Delta \pi = 0.05$ reflects near-zero bias magnitudes}{table.caption.49}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Method comparison under asymmetric misclassification (48 configurations, 100 MC runs). EC-HTE does not outperform global correction at $n_{\text  {expert}}{=}250$ due to increased parameter estimation variance.}}{17}{table.caption.50}\protected@file@percent }
+\newlabel{tab:asym_method_grid}{{10}{17}{Method comparison under asymmetric misclassification (48 configurations, 100 MC runs). EC-HTE does not outperform global correction at $n_{\text {expert}}{=}250$ due to increased parameter estimation variance}{table.caption.50}{}}
+\@LN{1208}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {L}PPCI Complementarity Results}{17}{appendix.L}\protected@file@percent }
+\newlabel{app:ppci}{{L}{17}{PPCI Complementarity Results}{appendix.L}{}}
+\newlabel{sec:ppci}{{L}{17}{PPCI Complementarity Results}{appendix.L}{}}
+\@LN{1209}{16}
+\@LN{1210}{16}
+\@LN{1211}{16}
+\@LN{1212}{16}
+\@LN{1213}{16}
+\@LN{1214}{16}
+\@LN{1215}{16}
+\@LN{1216}{16}
+\@LN{1217}{16}
+\@LN{1218}{16}
+\@LN{1219}{16}
+\@LN{1220}{16}
+\@LN{1221}{16}
+\@LN{1222}{16}
+\@LN{1223}{16}
+\@LN{1224}{16}
+\@LN{1225}{16}
+\@LN{1226}{16}
+\@LN{1227}{16}
+\@LN{1228}{16}
+\citation{kennedy2020constructing}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces PPCI complementarity experiment ($K{=}2$, extreme, $n_{\text  {expert}}{=}250$). DGP~A: covariate error only; B: outcome error only ($\sigma {=}0.5$); C: both errors; D: no error. Values are $|\text  {bias}|$ and RMSE averaged over two subgroups. $^\star $EC-HTE+PPCI achieves near-zero bias when both error types are present.}}{18}{table.caption.51}\protected@file@percent }
+\newlabel{tab:ppci}{{11}{18}{PPCI complementarity experiment ($K{=}2$, extreme, $n_{\text {expert}}{=}250$). DGP~A: covariate error only; B: outcome error only ($\sigma {=}0.5$); C: both errors; D: no error. Values are $|\text {bias}|$ and RMSE averaged over two subgroups. $^\star $EC-HTE+PPCI achieves near-zero bias when both error types are present}{table.caption.51}{}}
+\@LN@col{1}
+\@LN{1229}{17}
+\@LN{1230}{17}
+\@LN{1231}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {M}Real-Data Case Study: Hate Speech Detection}{18}{appendix.M}\protected@file@percent }
+\newlabel{app:hatespeech}{{M}{18}{Real-Data Case Study: Hate Speech Detection}{appendix.M}{}}
+\@LN{1232}{17}
+\@LN{1233}{17}
+\@LN{1234}{17}
+\@LN{1235}{17}
+\@LN{1236}{17}
+\@LN{1237}{17}
+\@LN{1238}{17}
+\@writefile{toc}{\contentsline {paragraph}{Positive finding: real-world heterogeneity.}{18}{section*.52}\protected@file@percent }
+\@LN{1239}{17}
+\@LN{1240}{17}
+\@LN{1241}{17}
+\@LN{1242}{17}
+\@LN{1243}{17}
+\@LN{1244}{17}
+\@LN{1245}{17}
+\@LN{1246}{17}
+\@LN{1247}{17}
+\@LN{1248}{17}
+\@writefile{toc}{\contentsline {paragraph}{Boundary condition: statistical power at extreme FNR.}{18}{section*.53}\protected@file@percent }
+\@LN{1249}{17}
+\@LN{1250}{17}
+\@LN{1251}{17}
+\@LN{1252}{17}
+\@LN{1253}{17}
+\@LN{1254}{17}
+\@LN{1255}{17}
+\@LN@col{2}
+\@LN{1256}{17}
+\@LN{1257}{17}
+\@LN{1258}{17}
+\@LN{1259}{17}
+\@LN{1260}{17}
+\@LN{1261}{17}
+\@LN{1262}{17}
+\@writefile{toc}{\contentsline {paragraph}{Diagnostic connection.}{18}{section*.54}\protected@file@percent }
+\@LN{1263}{17}
+\@LN{1264}{17}
+\@LN{1265}{17}
+\@LN{1266}{17}
+\@LN{1267}{17}
+\@LN{1268}{17}
+\@LN{1269}{17}
+\@LN{1270}{17}
+\@LN{1271}{17}
+\@LN{1272}{17}
+\@LN{1273}{17}
+\@LN{1274}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {N}Cross-Model Consistency}{18}{appendix.N}\protected@file@percent }
+\newlabel{app:multilm}{{N}{18}{Cross-Model Consistency}{appendix.N}{}}
+\@LN{1275}{17}
+\@LN{1276}{17}
+\@LN{1277}{17}
+\@LN{1278}{17}
+\@LN{1279}{17}
+\@LN{1280}{17}
+\@LN{1281}{17}
+\@LN{1282}{17}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Effective misclassification heterogeneity ($\Delta \pi $) across five OpenAI models on TweetEval sentiment (500 tweets, filtered to 4 subgroups with $n \geq 10$).}}{19}{table.caption.55}\protected@file@percent }
+\newlabel{tab:multilm}{{12}{19}{Effective misclassification heterogeneity ($\Delta \pi $) across five OpenAI models on TweetEval sentiment (500 tweets, filtered to 4 subgroups with $n \geq 10$)}{table.caption.55}{}}
+\@LN{1283}{18}
+\@LN{1284}{18}
+\@LN{1285}{18}
+\@LN{1286}{18}
+\@LN{1287}{18}
+\@LN{1288}{18}
+\@LN{1289}{18}
+\@LN{1290}{18}
+\@LN{1291}{18}
+\@LN{1292}{18}
+\@LN{1293}{18}
+\@LN{1294}{18}
+\@LN{1295}{18}
+\@LN{1296}{18}
+\@LN{1297}{18}
+\@LN{1298}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {O}Open-Source Multi-LLM Validation}{19}{appendix.O}\protected@file@percent }
+\newlabel{app:multilm_opensource}{{O}{19}{Open-Source Multi-LLM Validation}{appendix.O}{}}
+\@LN{1299}{18}
+\@LN{1300}{18}
+\@LN{1301}{18}
+\@LN{1302}{18}
+\@LN{1303}{18}
+\@LN{1304}{18}
+\@LN{1305}{18}
+\@LN{1306}{18}
+\@LN{1307}{18}
+\@LN{1308}{18}
+\@LN{1309}{18}
+\@LN{1310}{18}
+\@writefile{toc}{\contentsline {paragraph}{Semi-synthetic budget sweep.}{19}{section*.57}\protected@file@percent }
+\@LN{1311}{18}
+\@LN{1312}{18}
+\@LN{1313}{18}
+\@LN{1314}{18}
+\@LN{1315}{18}
+\@LN{1316}{18}
+\@LN{1317}{18}
+\@LN{1318}{18}
+\@LN{1319}{18}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Confusion matrix heterogeneity across four open-source LLMs ($K{=}4$, $N{=}490$ TweetEval tweets). $\Delta \pi $: max--min per-subgroup misclassification rate. Prop.~5: number of subgroups where the $\Delta \tau $-free diagnostic (Proposition~\ref {prop:debiasing_hurts}) triggers.}}{19}{table.caption.56}\protected@file@percent }
+\newlabel{tab:multilm_cm}{{13}{19}{Confusion matrix heterogeneity across four open-source LLMs ($K{=}4$, $N{=}490$ TweetEval tweets). $\Delta \pi $: max--min per-subgroup misclassification rate. Prop.~5: number of subgroups where the $\Delta \tau $-free diagnostic (Proposition~\ref {prop:debiasing_hurts}) triggers}{table.caption.56}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Semi-synthetic budget sweep ($K{=}2$, $\Delta \tau {=}0.3$, 50 MC runs; see Appendix~\ref {app:mcse} for MC tier justification). Coverage at selected expert budgets; RMSE crossover denotes the minimum expert budget at which HB EC-HTE achieves lower RMSE than the naive (uncorrected) estimator.}}{19}{table.caption.58}\protected@file@percent }
+\newlabel{tab:multilm_budget}{{14}{19}{Semi-synthetic budget sweep ($K{=}2$, $\Delta \tau {=}0.3$, 50 MC runs; see Appendix~\ref {app:mcse} for MC tier justification). Coverage at selected expert budgets; RMSE crossover denotes the minimum expert budget at which HB EC-HTE achieves lower RMSE than the naive (uncorrected) estimator}{table.caption.58}{}}
+\@LN{1320}{18}
+\@LN{1321}{18}
+\@LN{1322}{18}
+\@writefile{toc}{\contentsline {paragraph}{Gemma boundary case.}{19}{section*.59}\protected@file@percent }
+\@LN{1323}{18}
+\@LN{1324}{18}
+\@LN{1325}{18}
+\@LN{1326}{18}
+\@LN{1327}{18}
+\@LN{1328}{18}
+\@LN{1329}{18}
+\@LN{1330}{18}
+\@LN{1331}{18}
+\@LN{1332}{18}
+\@LN{1333}{18}
+\@writefile{toc}{\contentsline {paragraph}{Heterogeneous-$\tau $ DGP.}{19}{section*.60}\protected@file@percent }
+\@LN{1334}{18}
+\@LN{1335}{18}
+\@LN{1336}{18}
+\@LN{1337}{18}
+\@LN{1338}{18}
+\@LN{1339}{18}
+\@LN{1340}{18}
+\@LN{1341}{18}
+\@LN{1342}{18}
+\@LN{1343}{18}
+\@LN{1344}{18}
+\@LN{1345}{18}
+\@LN{1346}{18}
+\@LN{1347}{18}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces 95\% CI coverage under subgroup misspecification noise. EC-HTE maintains near-nominal coverage across all noise levels.}}{20}{table.caption.61}\protected@file@percent }
+\newlabel{tab:robustness}{{15}{20}{95\% CI coverage under subgroup misspecification noise. EC-HTE maintains near-nominal coverage across all noise levels}{table.caption.61}{}}
+\@LN{1348}{19}
+\@LN{1349}{19}
+\@LN{1350}{19}
+\@LN{1351}{19}
+\@LN{1352}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {P}Robustness to Subgroup Misspecification}{20}{appendix.P}\protected@file@percent }
+\newlabel{app:robustness}{{P}{20}{Robustness to Subgroup Misspecification}{appendix.P}{}}
+\@LN{1353}{19}
+\@LN{1354}{19}
+\@LN{1355}{19}
+\@LN{1356}{19}
+\@LN{1357}{19}
+\@LN{1358}{19}
+\@LN{1359}{19}
+\@LN{1360}{19}
+\@LN{1361}{19}
+\@LN{1362}{19}
+\@LN{1363}{19}
+\@LN{1364}{19}
+\@LN{1365}{19}
+\@LN{1366}{19}
+\@LN{1367}{19}
+\@LN{1368}{19}
+\@LN{1369}{19}
+\@LN{1370}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {Q}Monte Carlo Standard Errors}{20}{appendix.Q}\protected@file@percent }
+\newlabel{app:mcse}{{Q}{20}{Monte Carlo Standard Errors}{appendix.Q}{}}
+\@LN{1371}{19}
+\@LN{1372}{19}
+\@LN{1373}{19}
+\@LN{1374}{19}
+\@LN{1375}{19}
+\@LN{1376}{19}
+\@LN{1377}{19}
+\@LN{1378}{19}
+\@LN{1379}{19}
+\@LN{1380}{19}
+\@LN{1381}{19}
+\@LN{1382}{19}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Paired comparisons for representative configurations. $\Delta $ = method A $-$ method B (negative favors A for $|\text  {bias}|$). Two-sample $z$-tests for synthetic DGP; paired $t$-tests for semi-synthetic TweetEval. Bold $p$-values indicate significance at $\alpha = 0.05$.}}{20}{table.caption.62}\protected@file@percent }
+\newlabel{tab:mcse}{{16}{20}{Paired comparisons for representative configurations. $\Delta $ = method A $-$ method B (negative favors A for $|\text {bias}|$). Two-sample $z$-tests for synthetic DGP; paired $t$-tests for semi-synthetic TweetEval. Bold $p$-values indicate significance at $\alpha = 0.05$}{table.caption.62}{}}
+\@LN{1383}{19}
+\@LN{1384}{19}
+\@LN{1385}{19}
+\@LN{1386}{19}
+\@LN{1387}{19}
+\@LN{1388}{19}
+\@LN{1389}{19}
+\@LN{1390}{19}
+\@LN{1391}{19}
+\@LN{1392}{19}
+\@LN{1393}{19}
+\@LN{1394}{19}
+\@LN{1395}{19}
+\@LN{1396}{19}
+\@LN{1397}{19}
+\@LN{1398}{19}
+\@LN{1399}{19}
+\@LN{1400}{19}
+\@LN{1401}{19}
+\@LN{1402}{19}
+\@LN{1403}{19}
+\@LN{1404}{19}
+\@LN{1405}{19}
+\@LN{1406}{19}
+\@LN{1407}{19}
+\@LN{1408}{19}
+\@LN{1409}{19}
+\@LN{1410}{19}
+\@LN{1411}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {R}Semi-Real Confusion Matrix Validation}{20}{appendix.R}\protected@file@percent }
+\newlabel{app:semireal}{{R}{20}{Semi-Real Confusion Matrix Validation}{appendix.R}{}}
+\@LN{1412}{19}
+\@LN{1413}{19}
+\@LN{1414}{19}
+\@LN{1415}{19}
+\citation{nie2021quasi}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Empirical confusion matrices from GPT-4.1 TweetEval pilot. S0 exhibits FNR $= 0.526$, approaching chance-level classification.}}{21}{table.caption.63}\protected@file@percent }
+\newlabel{tab:semireal_cm}{{17}{21}{Empirical confusion matrices from GPT-4.1 TweetEval pilot. S0 exhibits FNR $= 0.526$, approaching chance-level classification}{table.caption.63}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Semi-real confusion matrix results. RMSE and coverage averaged over subgroups and $z$-levels (100 MC runs). HB EC-HTE underperforms global at all budgets; S0's near-chance FNR drives the failure.}}{21}{table.caption.64}\protected@file@percent }
+\newlabel{tab:semireal}{{18}{21}{Semi-real confusion matrix results. RMSE and coverage averaged over subgroups and $z$-levels (100 MC runs). HB EC-HTE underperforms global at all budgets; S0's near-chance FNR drives the failure}{table.caption.64}{}}
+\@LN{1416}{20}
+\@LN{1417}{20}
+\@LN{1418}{20}
+\@LN{1419}{20}
+\@LN{1420}{20}
+\@LN{1421}{20}
+\@LN{1422}{20}
+\@LN{1423}{20}
+\@LN{1424}{20}
+\@LN{1425}{20}
+\@LN{1426}{20}
+\@LN{1427}{20}
+\@LN{1428}{20}
+\@LN{1429}{20}
+\@LN{1430}{20}
+\@LN{1431}{20}
+\@LN{1432}{20}
+\@LN{1433}{20}
+\@LN{1434}{20}
+\@LN{1435}{20}
+\@LN{1436}{20}
+\@LN{1437}{20}
+\@LN{1438}{20}
+\@LN{1439}{20}
+\@LN{1440}{20}
+\@LN@col{2}
+\@LN{1441}{20}
+\@LN{1442}{20}
+\@LN{1443}{20}
+\@LN{1444}{20}
+\@LN{1445}{20}
+\@LN{1446}{20}
+\@LN{1447}{20}
+\@LN{1448}{20}
+\@LN{1449}{20}
+\@LN{1450}{20}
+\@LN{1451}{20}
+\@LN{1452}{20}
+\@LN{1453}{20}
+\@LN{1454}{20}
+\@LN{1455}{20}
+\@LN{1456}{20}
+\@LN{1457}{20}
+\@writefile{toc}{\contentsline {paragraph}{Diagnostic rule.}{21}{section*.65}\protected@file@percent }
+\@LN{1458}{20}
+\@LN{1459}{20}
+\@LN{1460}{20}
+\@LN{1461}{20}
+\@LN{1462}{20}
+\@LN{1463}{20}
+\@LN{1464}{20}
+\@LN{1465}{20}
+\@LN{1466}{20}
+\@LN{1467}{20}
+\@LN{1468}{20}
+\@LN{1469}{20}
+\@LN{1470}{20}
+\@LN{1471}{20}
+\@LN{1472}{20}
+\@LN{1473}{20}
+\@LN{1474}{20}
+\@LN{1475}{20}
+\@LN{1476}{20}
+\@LN{1477}{20}
+\@LN{1478}{20}
+\@LN{1479}{20}
+\@writefile{toc}{\contentsline {section}{\numberline {S}Robustness: Estimator Choice and Treatment Effect Specification}{21}{appendix.S}\protected@file@percent }
+\newlabel{app:rlearner}{{S}{21}{Robustness: Estimator Choice and Treatment Effect Specification}{appendix.S}{}}
+\@LN{1480}{20}
+\@LN{1481}{20}
+\@LN{1482}{20}
+\@LN{1483}{20}
+\@LN{1484}{20}
+\@LN{1485}{20}
+\@LN{1486}{20}
+\@LN{1487}{20}
+\@LN{1488}{20}
+\@LN{1489}{20}
+\@LN{1490}{20}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Applicability frontier of EC-HTE. Green region: EC-HTE reduces bias vs.\ global correction. Yellow: comparable performance. Red: EC-HTE underperforms. Dashed lines mark the expert budget threshold ($n_{\text  {expert}}/K = 25$) and classifier quality threshold (worst-subgroup error rate $= 0.5$). Red diamonds show semi-real experiments with actual GPT-4.1 and GPT-3.5-Turbo confusion matrices.}}{22}{figure.caption.66}\protected@file@percent }
+\newlabel{fig:applicability}{{9}{22}{Applicability frontier of EC-HTE. Green region: EC-HTE reduces bias vs.\ global correction. Yellow: comparable performance. Red: EC-HTE underperforms. Dashed lines mark the expert budget threshold ($n_{\text {expert}}/K = 25$) and classifier quality threshold (worst-subgroup error rate $= 0.5$). Red diamonds show semi-real experiments with actual GPT-4.1 and GPT-3.5-Turbo confusion matrices}{figure.caption.66}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces R-learner vs.\ CausalForest with EC-HTE correction ($K{=}2$, extreme, $n{=}500$). $|\text  {Bias}|$ and RMSE averaged over subgroups, $z$-levels, and seeds.}}{22}{table.caption.67}\protected@file@percent }
+\newlabel{tab:rlearner}{{19}{22}{R-learner vs.\ CausalForest with EC-HTE correction ($K{=}2$, extreme, $n{=}500$). $|\text {Bias}|$ and RMSE averaged over subgroups, $z$-levels, and seeds}{table.caption.67}{}}
+\@LN{1491}{21}
+\@LN{1492}{21}
+\@LN{1493}{21}
+\@writefile{toc}{\contentsline {paragraph}{Multiplicative treatment effects.}{22}{section*.68}\protected@file@percent }
+\@LN{1494}{21}
+\@LN{1495}{21}
+\@LN{1496}{21}
+\@LN{1497}{21}
+\@LN{1498}{21}
+\@LN{1499}{21}
+\@LN{1500}{21}
+\@LN{1501}{21}
+\@LN{1502}{21}
+\@LN{1503}{21}
+\@LN{1504}{21}
+\@LN{1505}{21}
+\@LN{1506}{21}
+\@writefile{toc}{\contentsline {section}{\numberline {T}Robustness to Class Imbalance}{22}{appendix.T}\protected@file@percent }
+\newlabel{app:classimbalance}{{T}{22}{Robustness to Class Imbalance}{appendix.T}{}}
+\@LN{1507}{21}
+\@LN{1508}{21}
+\@LN{1509}{21}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Multiplicative DGP results ($K{=}2$, extreme, $n{=}500$, 50 seeds). EC-HTE achieves comparable bias reduction and nominal coverage under non-additive treatment effects.}}{22}{table.caption.69}\protected@file@percent }
+\newlabel{tab:multiplicative}{{20}{22}{Multiplicative DGP results ($K{=}2$, extreme, $n{=}500$, 50 seeds). EC-HTE achieves comparable bias reduction and nominal coverage under non-additive treatment effects}{table.caption.69}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Robustness to class imbalance ($n_{\text  {expert}}{=}250$, extreme heterogeneity). R$^2$: Theorem~\ref {thm:bias_identity} fit. Ratio: HB/Global RMSE ($<1$ = HB wins). Cov.: HB EC-HTE 95\% CI coverage.}}{22}{table.caption.70}\protected@file@percent }
+\newlabel{tab:pz1_sweep}{{21}{22}{Robustness to class imbalance ($n_{\text {expert}}{=}250$, extreme heterogeneity). R$^2$: Theorem~\ref {thm:bias_identity} fit. Ratio: HB/Global RMSE ($<1$ = HB wins). Cov.: HB EC-HTE 95\% CI coverage}{table.caption.70}{}}
+\@LN{1510}{21}
+\@LN{1511}{21}
+\@LN{1512}{21}
+\@LN{1513}{21}
+\@LN{1514}{21}
+\@LN{1515}{21}
+\@LN{1516}{21}
+\@LN{1517}{21}
+\@LN{1518}{21}
+\@LN{1519}{21}
+\@LN{1520}{21}
+\@LN{1521}{21}
+\@LN{1522}{21}
+\@LN{1523}{21}
+\@LN{1524}{21}
+\@LN{1525}{21}
+\@LN{1526}{21}
+\@writefile{toc}{\contentsline {paragraph}{Explicit form under relaxed (A3).}{22}{section*.71}\protected@file@percent }
+\@LN{1527}{21}
+\@LN{1528}{21}
+\@LN{1529}{21}
+\@LN{1530}{21}
+\newlabel{eq:ms_imbalanced}{{24}{22}{Explicit form under relaxed (A3)}{equation.24}{}}
+\@LN{1531}{21}
+\citation{angelopoulos2023ppi}
+\citation{borkan2019nuanced}
+\@LN@col{1}
+\@LN{1532}{22}
+\@LN{1533}{22}
+\@LN{1534}{22}
+\@LN{1535}{22}
+\@LN{1536}{22}
+\@LN{1537}{22}
+\@LN{1538}{22}
+\@LN{1539}{22}
+\@LN{1540}{22}
+\@LN{1541}{22}
+\@writefile{toc}{\contentsline {section}{\numberline {U}Comparison with PPI Correction}{23}{appendix.U}\protected@file@percent }
+\newlabel{app:ppi_comparison}{{U}{23}{Comparison with PPI Correction}{appendix.U}{}}
+\@LN{1542}{22}
+\@LN{1543}{22}
+\@LN{1544}{22}
+\@LN{1545}{22}
+\@LN{1546}{22}
+\@LN{1547}{22}
+\@LN{1548}{22}
+\@LN{1549}{22}
+\@LN{1550}{22}
+\@LN{1551}{22}
+\@LN{1552}{22}
+\@LN{1553}{22}
+\@LN{1554}{22}
+\@LN{1555}{22}
+\@LN{1556}{22}
+\@LN{1557}{22}
+\@LN{1558}{22}
+\@LN{1559}{22}
+\@LN{1560}{22}
+\@LN{1561}{22}
+\@LN{1562}{22}
+\@LN{1563}{22}
+\@LN{1564}{22}
+\@LN{1565}{22}
+\@LN{1566}{22}
+\@LN{1567}{22}
+\@LN{1568}{22}
+\@LN{1569}{22}
+\@LN{1570}{22}
+\@LN{1571}{22}
+\@LN{1572}{22}
+\@LN{1573}{22}
+\@LN{1574}{22}
+\@LN{1575}{22}
+\@LN{1576}{22}
+\@LN{1577}{22}
+\@LN{1578}{22}
+\@LN{1579}{22}
+\@LN{1580}{22}
+\@LN@col{2}
+\@LN{1581}{22}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Civil Comments Validation}{23}{appendix.V}\protected@file@percent }
+\newlabel{app:civilcomments}{{V}{23}{Civil Comments Validation}{appendix.V}{}}
+\@LN{1582}{22}
+\@LN{1583}{22}
+\@LN{1584}{22}
+\@LN{1585}{22}
+\@LN{1586}{22}
+\@LN{1587}{22}
+\@LN{1588}{22}
+\@LN{1589}{22}
+\@LN{1590}{22}
+\@LN{1591}{22}
+\@LN{1592}{22}
+\@LN{1593}{22}
+\@LN{1594}{22}
+\@LN{1595}{22}
+\@LN{1596}{22}
+\@LN{1597}{22}
+\@LN{1598}{22}
+\@LN{1599}{22}
+\@LN{1600}{22}
+\@LN{1601}{22}
+\@LN{1602}{22}
+\@LN{1603}{22}
+\@LN{1604}{22}
+\@LN{1605}{22}
+\@LN{1606}{22}
+\@LN{1607}{22}
+\@LN{1608}{22}
+\@LN{1609}{22}
+\@LN{1610}{22}
+\@LN{1611}{22}
+\@LN{1612}{22}
+\@LN{1613}{22}
+\@LN{1614}{22}
+\@LN{1615}{22}
+\@LN{1616}{22}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Per-subgroup misclassification rates on Civil Comments ($K{=}4$). $\Delta $ denotes max $-$ min across subgroups.}}{23}{table.caption.72}\protected@file@percent }
+\newlabel{tab:civil_cm}{{22}{23}{Per-subgroup misclassification rates on Civil Comments ($K{=}4$). $\Delta $ denotes max $-$ min across subgroups}{table.caption.72}{}}
+\@LN@col{1}
+\@LN{1617}{23}
+\@LN{1618}{23}
+\@writefile{toc}{\contentsline {section}{\numberline {W}Bias Identity Validation with Real Confusion Matrices}{24}{appendix.W}\protected@file@percent }
+\newlabel{app:realcm_bias}{{W}{24}{Bias Identity Validation with Real Confusion Matrices}{appendix.W}{}}
+\@LN{1619}{23}
+\@LN{1620}{23}
+\@LN{1621}{23}
+\@LN{1622}{23}
+\@LN{1623}{23}
+\@LN{1624}{23}
+\@LN{1625}{23}
+\@LN{1626}{23}
+\@LN{1627}{23}
+\@LN{1628}{23}
+\@LN{1629}{23}
+\@LN{1630}{23}
+\@LN{1631}{23}
+\@LN{1632}{23}
+\@LN{1633}{23}
+\@LN{1634}{23}
+\@LN{1635}{23}
+\@LN{1636}{23}
+\@LN{1637}{23}
+\@LN{1638}{23}
+\@LN{1639}{23}
+\@LN{1640}{23}
+\@LN{1641}{23}
+\@LN{1642}{23}
+\@LN{1643}{23}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces Bias identity $R^2$ with real LLM confusion matrices ($K{=}4$, 100 MC runs).}}{24}{table.caption.73}\protected@file@percent }
+\newlabel{tab:realcm_r2}{{23}{24}{Bias identity $R^2$ with real LLM confusion matrices ($K{=}4$, 100 MC runs)}{table.caption.73}{}}
+\@LN{1644}{23}
+\@LN{1645}{23}
+\@writefile{toc}{\contentsline {section}{\numberline {X}Applicability Screening with Real LLM Confusion Matrices}{24}{appendix.X}\protected@file@percent }
+\newlabel{app:screening}{{X}{24}{Applicability Screening with Real LLM Confusion Matrices}{appendix.X}{}}
+\@LN{1646}{23}
+\@LN{1647}{23}
+\@LN{1648}{23}
+\@LN{1649}{23}
+\@LN{1650}{23}
+\@LN{1651}{23}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces Diagnostic screening of 16 LLM--dataset--$K$ combinations. Columns report whether all subgroups satisfy each condition. Budget assumes $n_{\text  {expert}}{=}500$.}}{24}{table.caption.74}\protected@file@percent }
+\newlabel{tab:screening}{{24}{24}{Diagnostic screening of 16 LLM--dataset--$K$ combinations. Columns report whether all subgroups satisfy each condition. Budget assumes $n_{\text {expert}}{=}500$}{table.caption.74}{}}
+\@LN{1652}{23}
+\@LN{1653}{23}
+\@LN{1654}{23}
+\@LN{1655}{23}
+\@LN{1656}{23}
+\@LN{1657}{23}
+\@LN{1658}{23}
+\@LN{1659}{23}
+\@LN{1660}{23}
+\@LN{1661}{23}
+\@LN{1662}{23}
+\@LN{1663}{23}
+\@LN{1664}{23}
+\@LN{1665}{23}
+\@LN{1666}{23}
+\@LN{1667}{23}
+\@LN{1668}{23}
+\@LN{1669}{23}
+\@LN{1670}{23}
+\@LN{1671}{23}
+\@LN{1672}{23}
+\@LN{1673}{23}
+\@LN{1674}{23}
+\@LN{1675}{23}
+\@LN{1676}{23}
+\@LN{1677}{23}
+\@writefile{toc}{\contentsline {paragraph}{Diagnostic Applicability Analysis.}{24}{section*.75}\protected@file@percent }
+\@LN{1678}{23}
+\@LN{1679}{23}
+\@LN{1680}{23}
+\@LN{1681}{23}
+\@LN{1682}{23}
+\@LN{1683}{23}
+\@LN{1684}{23}
+\@LN{1685}{23}
+\@LN{1686}{23}
+\@LN{1687}{23}
+\@LN{1688}{23}
+\@LN@col{1}
+\@LN{1689}{24}
+\@LN{1690}{24}
+\@LN{1691}{24}
+\@LN{1692}{24}
+\@LN{1693}{24}
+\@LN{1694}{24}
+\@LN{1695}{24}
+\@LN{1696}{24}
+\@LN{1697}{24}
+\@LN{1698}{24}
+\@LN{1699}{24}
+\@LN{1700}{24}
+\@LN{1701}{24}
+\@LN{1702}{24}
+\@LN{1703}{24}
+\@LN{1704}{24}
+\@LN{1705}{24}
+\@LN{1706}{24}
+\@LN{1707}{24}
+\@LN{1708}{24}
+\@LN{1709}{24}
+\@LN{1710}{24}
+\@LN{1711}{24}
+\@writefile{toc}{\contentsline {subsection}{\numberline {X.1}$\kappa $ Stratification Analysis}{25}{subsection.X.1}\protected@file@percent }
+\newlabel{app:kappa_analysis}{{X.1}{25}{$\kappa $ Stratification Analysis}{subsection.X.1}{}}
+\@LN{1712}{24}
+\@LN{1713}{24}
+\@LN{1714}{24}
+\@LN{1715}{24}
+\@LN{1716}{24}
+\@LN{1717}{24}
+\@LN{1718}{24}
+\@LN{1719}{24}
+\@writefile{toc}{\contentsline {paragraph}{Synthetic data.}{25}{section*.76}\protected@file@percent }
+\@LN{1720}{24}
+\@LN{1721}{24}
+\@LN{1722}{24}
+\@LN{1723}{24}
+\@LN{1724}{24}
+\@LN{1725}{24}
+\@LN{1726}{24}
+\@LN{1727}{24}
+\@LN{1728}{24}
+\@LN{1729}{24}
+\@LN{1730}{24}
+\@LN{1731}{24}
+\@writefile{lot}{\contentsline {table}{\numberline {25}{\ignorespaces Synthetic $\kappa $ stratification ($K{=}2$, 520 configs). ``Debiasing hurts'' = global correction increases $|\text  {bias}|$ for $\geq $1 subgroup.}}{25}{table.caption.77}\protected@file@percent }
+\newlabel{tab:kappa_synth}{{25}{25}{Synthetic $\kappa $ stratification ($K{=}2$, 520 configs). ``Debiasing hurts'' = global correction increases $|\text {bias}|$ for $\geq $1 subgroup}{table.caption.77}{}}
+\@LN@col{2}
+\@writefile{toc}{\contentsline {paragraph}{Real LLM confusion matrices.}{25}{section*.78}\protected@file@percent }
+\@LN{1732}{24}
+\@LN{1733}{24}
+\@LN{1734}{24}
+\@LN{1735}{24}
+\@LN{1736}{24}
+\@LN{1737}{24}
+\@LN{1738}{24}
+\@LN{1739}{24}
+\@LN{1740}{24}
+\@LN{1741}{24}
+\@LN{1742}{24}
+\@LN{1743}{24}
+\@LN{1744}{24}
+\@LN{1745}{24}
+\@LN{1746}{24}
+\@writefile{lot}{\contentsline {table}{\numberline {26}{\ignorespaces Real LLM $\kappa $ stratification ($K{=}4$, MC validation). Ratios = EC-HTE / Global; values $<1$ favor EC-HTE. Coverage is EC-HTE absolute; Global coverage ranges 0.86--0.91 across bins.}}{25}{table.caption.79}\protected@file@percent }
+\newlabel{tab:kappa_real}{{26}{25}{Real LLM $\kappa $ stratification ($K{=}4$, MC validation). Ratios = EC-HTE / Global; values $<1$ favor EC-HTE. Coverage is EC-HTE absolute; Global coverage ranges 0.86--0.91 across bins}{table.caption.79}{}}
+\@LN{1747}{24}
+\@LN{1748}{24}
+\@LN{1749}{24}
+\@LN{1750}{24}
+\@LN{1751}{24}
+\@LN{1752}{24}
+\@LN{1753}{24}
+\@LN{1754}{24}
+\@LN{1755}{24}
+\@LN{1756}{24}
+\@writefile{toc}{\contentsline {section}{\numberline {Y}Plug-in Standard Error Validation}{25}{appendix.Y}\protected@file@percent }
+\newlabel{app:bootstrap_se}{{Y}{25}{Plug-in Standard Error Validation}{appendix.Y}{}}
+\@LN{1757}{24}
+\@LN{1758}{24}
+\@LN{1759}{24}
+\@LN{1760}{24}
+\@LN{1761}{24}
+\@LN{1762}{24}
+\@LN{1763}{24}
+\@LN{1764}{24}
+\@LN{1765}{24}
+\@LN{1766}{24}
+\@LN{1767}{24}
+\@LN{1768}{24}
+\@LN{1769}{24}
+\@LN{1770}{24}
+\@LN{1771}{24}
+\@LN{1772}{24}
+\@LN@col{1}
+\@LN{1773}{25}
+\@LN{1774}{25}
+\@writefile{toc}{\contentsline {paragraph}{CausalForestDML.}{26}{section*.80}\protected@file@percent }
+\@LN{1775}{25}
+\@LN{1776}{25}
+\@LN{1777}{25}
+\@LN{1778}{25}
+\@LN{1779}{25}
+\@LN{1780}{25}
+\@LN{1781}{25}
+\@LN{1782}{25}
+\@LN{1783}{25}
+\@LN{1784}{25}
+\@LN{1785}{25}
+\@LN{1786}{25}
+\@LN{1787}{25}
+\@LN{1788}{25}
+\@writefile{toc}{\contentsline {paragraph}{Full bootstrap SE.}{26}{section*.81}\protected@file@percent }
+\@LN{1789}{25}
+\@LN{1790}{25}
+\@LN{1791}{25}
+\@LN{1792}{25}
+\@LN{1793}{25}
+\@LN{1794}{25}
+\@LN{1795}{25}
+\@LN{1796}{25}
+\@LN{1797}{25}
+\@LN{1798}{25}
+\@writefile{lot}{\contentsline {table}{\numberline {27}{\ignorespaces CausalForest coverage: plug-in SE vs.\ full bootstrap SE ($B{=}100$, $n_{\text  {estimators}}{=}200$, 20 MC runs). Bootstrap SE is ${\sim }1.15\times $ plug-in.}}{26}{table.caption.82}\protected@file@percent }
+\newlabel{tab:bootstrap_se}{{27}{26}{CausalForest coverage: plug-in SE vs.\ full bootstrap SE ($B{=}100$, $n_{\text {estimators}}{=}200$, 20 MC runs). Bootstrap SE is ${\sim }1.15\times $ plug-in}{table.caption.82}{}}
+\@LN{1799}{25}
+\@LN{1800}{25}
+\@LN{1801}{25}
+\@LN{1802}{25}
+\@LN{1803}{25}
+\@LN{1804}{25}
+\@LN{1805}{25}
+\@LN{1806}{25}
+\@LN{1807}{25}
+\@LN{1808}{25}
+\@writefile{toc}{\contentsline {paragraph}{Bootstrap coverage across expert budgets.}{26}{section*.83}\protected@file@percent }
+\@LN{1809}{25}
+\@LN{1810}{25}
+\@LN{1811}{25}
+\@LN{1812}{25}
+\@LN{1813}{25}
+\@LN{1814}{25}
+\@LN@col{2}
+\@LN{1815}{25}
+\@LN{1816}{25}
+\@LN{1817}{25}
+\@writefile{lot}{\contentsline {table}{\numberline {28}{\ignorespaces HB EC-HTE coverage across expert budgets: plug-in vs.\ bootstrap SE (DIM, $K{=}2$ extreme, 20 MC, $B{=}100$).}}{26}{table.caption.84}\protected@file@percent }
+\newlabel{tab:bootstrap_small_n}{{28}{26}{HB EC-HTE coverage across expert budgets: plug-in vs.\ bootstrap SE (DIM, $K{=}2$ extreme, 20 MC, $B{=}100$)}{table.caption.84}{}}
+\@LN{1818}{25}
+\@LN{1819}{25}
+\@LN{1820}{25}
+\@LN{1821}{25}
+\@LN{1822}{25}
+\@LN{1823}{25}
+\@LN{1824}{25}
+\@LN{1825}{25}
+\@LN{1826}{25}
+\@LN{1827}{25}
+\@writefile{toc}{\contentsline {paragraph}{Finite-sample remainder.}{26}{section*.85}\protected@file@percent }
+\@LN{1828}{25}
+\@LN{1829}{25}
+\@LN{1830}{25}
+\@LN{1831}{25}
+\@LN{1832}{25}
+\@LN{1833}{25}
+\@LN{1834}{25}
+\@LN{1835}{25}
+\@LN{1836}{25}
+\@LN{1837}{25}
+\@writefile{toc}{\contentsline {subsection}{\numberline {Y.1}CausalForest Oracle Coverage Decomposition}{26}{subsection.Y.1}\protected@file@percent }
+\newlabel{app:cf_oracle}{{Y.1}{26}{CausalForest Oracle Coverage Decomposition}{subsection.Y.1}{}}
+\@LN{1838}{25}
+\@LN{1839}{25}
+\@LN{1840}{25}
+\@LN{1841}{25}
+\@LN{1842}{25}
+\@LN{1843}{25}
+\@LN{1844}{25}
+\@LN{1845}{25}
+\@LN{1846}{25}
+\@LN{1847}{25}
+\@LN{1848}{25}
+\@LN{1849}{25}
+\@LN{1850}{25}
+\@LN{1851}{25}
+\@LN{1852}{25}
+\@LN{1853}{25}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {29}{\ignorespaces CausalForest oracle coverage decomposition. Coverage averaged over subgroups and $z$-levels.}}{27}{table.caption.86}\protected@file@percent }
+\newlabel{tab:cf_oracle}{{29}{27}{CausalForest oracle coverage decomposition. Coverage averaged over subgroups and $z$-levels}{table.caption.86}{}}
+\@LN{1854}{26}
+\@LN{1855}{26}
+\@LN{1856}{26}
+\@LN{1857}{26}
+\@LN{1858}{26}
+\@writefile{toc}{\contentsline {section}{\numberline {Z}Robustness to Assumption Violations}{27}{appendix.Z}\protected@file@percent }
+\newlabel{app:a5_violation}{{Z}{27}{Robustness to Assumption Violations}{appendix.Z}{}}
+\@LN{1859}{26}
+\@LN{1860}{26}
+\@writefile{toc}{\contentsline {subsection}{\numberline {Z.1}Assumption (A5): Subgroup-Specific Treatment Effects}{27}{subsection.Z.1}\protected@file@percent }
+\newlabel{cor:a5_relaxation}{{7}{27}{Subgroup-Specific Treatment Effect Heterogeneity}{theorem.7}{}}
+\@LN{1861}{26}
+\@LN{1862}{26}
+\@LN{1863}{26}
+\@LN{1864}{26}
+\@LN{1865}{26}
+\@LN{1866}{26}
+\@LN{1867}{26}
+\@LN{1868}{26}
+\@LN{1869}{26}
+\@LN{1870}{26}
+\@LN{1871}{26}
+\@LN{1872}{26}
+\@LN{1873}{26}
+\@LN{1874}{26}
+\@LN{1875}{26}
+\@LN{1876}{26}
+\@LN{1877}{26}
+\@LN{1878}{26}
+\@LN{1879}{26}
+\@LN{1880}{26}
+\@LN{1881}{26}
+\@LN{1882}{26}
+\@LN{1883}{26}
+\@LN{1884}{26}
+\@LN{1885}{26}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {30}{\ignorespaces Coverage and $|\text  {bias}|$ under A5 violation ($K{=}2$, $n_{\text  {expert}}{=}250$, 50 MC). Target coverage: 0.95.}}{27}{table.caption.87}\protected@file@percent }
+\newlabel{tab:a5_violation}{{30}{27}{Coverage and $|\text {bias}|$ under A5 violation ($K{=}2$, $n_{\text {expert}}{=}250$, 50 MC). Target coverage: 0.95}{table.caption.87}{}}
+\@LN{1886}{26}
+\@LN{1887}{26}
+\@LN{1888}{26}
+\@LN{1889}{26}
+\@LN{1890}{26}
+\@writefile{toc}{\contentsline {paragraph}{Empirical validation of Corollary~\ref {cor:aggregate_bias}.}{27}{section*.88}\protected@file@percent }
+\@LN{1891}{26}
+\@LN{1892}{26}
+\@LN{1893}{26}
+\@LN{1894}{26}
+\@LN{1895}{26}
+\@LN{1896}{26}
+\@LN{1897}{26}
+\@LN{1898}{26}
+\@LN{1899}{26}
+\@LN{1900}{26}
+\@LN{1901}{26}
+\@LN{1902}{26}
+\@LN{1903}{26}
+\@LN{1904}{26}
+\@LN{1905}{26}
+\@LN{1906}{26}
+\@LN{1907}{26}
+\@LN{1908}{26}
+\@LN{1909}{26}
+\@writefile{toc}{\contentsline {subsection}{\numberline {Z.2}Assumption (A1): Sensitivity to Outcome-Dependent Misclassification}{27}{subsection.Z.2}\protected@file@percent }
+\newlabel{app:a1_sensitivity}{{Z.2}{27}{Assumption (A1): Sensitivity to Outcome-Dependent Misclassification}{subsection.Z.2}{}}
+\@LN{1910}{26}
+\@LN{1911}{26}
+\@LN{1912}{26}
+\@LN{1913}{26}
+\@LN{1914}{26}
+\@LN{1915}{26}
+\@LN{1916}{26}
+\@LN{1917}{26}
+\@LN{1918}{26}
+\@LN{1919}{26}
+\@LN{1920}{26}
+\@LN{1921}{26}
+\@LN{1922}{26}
+\@LN{1923}{26}
+\@LN{1924}{26}
+\@LN{1925}{26}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {31}{\ignorespaces Sensitivity to Assumption~(A1) violation. Coverage and $|\text  {bias}|$ under outcome-dependent misclassification ($\gamma > 0$).}}{28}{table.caption.89}\protected@file@percent }
+\newlabel{tab:a1_sensitivity}{{31}{28}{Sensitivity to Assumption~(A1) violation. Coverage and $|\text {bias}|$ under outcome-dependent misclassification ($\gamma > 0$)}{table.caption.89}{}}
+\@LN{1926}{27}
+\@LN{1927}{27}
+\@LN{1928}{27}
+\@LN{1929}{27}
+\@LN{1930}{27}
+\@LN{1931}{27}
+\@writefile{toc}{\contentsline {subsection}{\numberline {Z.3}Assumption (A1): Treatment-Dependent Misclassification}{28}{subsection.Z.3}\protected@file@percent }
+\newlabel{app:treatment_dep}{{Z.3}{28}{Assumption (A1): Treatment-Dependent Misclassification}{subsection.Z.3}{}}
+\@LN{1932}{27}
+\@LN{1933}{27}
+\@LN{1934}{27}
+\@LN{1935}{27}
+\@LN{1936}{27}
+\@LN{1937}{27}
+\@LN{1938}{27}
+\@LN{1939}{27}
+\@LN{1940}{27}
+\@LN{1941}{27}
+\@writefile{lot}{\contentsline {table}{\numberline {32}{\ignorespaces Sensitivity to treatment-dependent misclassification ($\gamma _T$). EC-HTE maintains $\geq $89.7\% coverage at $\gamma _T \leq 0.05$.}}{28}{table.caption.90}\protected@file@percent }
+\newlabel{tab:treatment_dep}{{32}{28}{Sensitivity to treatment-dependent misclassification ($\gamma _T$). EC-HTE maintains $\geq $89.7\% coverage at $\gamma _T \leq 0.05$}{table.caption.90}{}}
+\@LN{1942}{27}
+\@LN{1943}{27}
+\@LN{1944}{27}
+\@LN{1945}{27}
+\@LN{1946}{27}
+\@LN{1947}{27}
+\@LN{1948}{27}
+\@LN{1949}{27}
+\@LN{1950}{27}
+\@LN{1951}{27}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces EC-HTE coverage and RMSE under treatment-dependent misclassification. Dashed line: 90\% coverage threshold. Breakeven at $\gamma _T \approx 0.10$.}}{28}{figure.caption.91}\protected@file@percent }
+\newlabel{fig:treatment_dep}{{10}{28}{EC-HTE coverage and RMSE under treatment-dependent misclassification. Dashed line: 90\% coverage threshold. Breakeven at $\gamma _T \approx 0.10$}{figure.caption.91}{}}
+\@LN{1952}{27}
+\@LN{1953}{27}
+\@writefile{toc}{\contentsline {subsection}{\numberline {Z.4}Extension to Confounded Treatment Assignment}{28}{subsection.Z.4}\protected@file@percent }
+\newlabel{app:confounded_dgp}{{Z.4}{28}{Extension to Confounded Treatment Assignment}{subsection.Z.4}{}}
+\@LN{1954}{27}
+\@LN{1955}{27}
+\@LN{1956}{27}
+\@LN{1957}{27}
+\@LN{1958}{27}
+\@LN{1959}{27}
+\@LN{1960}{27}
+\@writefile{toc}{\contentsline {paragraph}{DGP.}{28}{section*.92}\protected@file@percent }
+\@LN{1961}{27}
+\@LN{1962}{27}
+\@LN{1963}{27}
+\@LN{1964}{27}
+\@LN{1965}{27}
+\@LN{1966}{27}
+\@LN{1967}{27}
+\@LN{1968}{27}
+\@LN{1969}{27}
+\@LN{1970}{27}
+\@writefile{lot}{\contentsline {table}{\numberline {33}{\ignorespaces EC-HTE under confounded treatment assignment (IPW-DIM with oracle propensity, $\beta {=}0.5$, 100 MC).}}{28}{table.caption.93}\protected@file@percent }
+\newlabel{tab:confounded_dgp}{{33}{28}{EC-HTE under confounded treatment assignment (IPW-DIM with oracle propensity, $\beta {=}0.5$, 100 MC)}{table.caption.93}{}}
+\@LN{1971}{27}
+\@LN{1972}{27}
+\@LN{1973}{27}
+\@LN{1974}{27}
+\@LN{1975}{27}
+\@LN{1976}{27}
+\@LN{1977}{27}
+\@LN{1978}{27}
+\@LN{1979}{27}
+\@LN{1980}{27}
+\citation{frazis2003estimating}
+\@LN@col{1}
+\@LN{1981}{28}
+\@writefile{toc}{\contentsline {paragraph}{Sensitivity to confounding strength and propensity estimation.}{29}{section*.94}\protected@file@percent }
+\@LN{1982}{28}
+\@LN{1983}{28}
+\@LN{1984}{28}
+\@LN{1985}{28}
+\@LN{1986}{28}
+\@LN{1987}{28}
+\@writefile{lot}{\contentsline {table}{\numberline {34}{\ignorespaces EC-HTE coverage across confounding strengths and propensity sources. The logistic regression propensity model is correctly specified; propensity misspecification is a complementary concern addressed by the IPW literature.}}{29}{table.caption.95}\protected@file@percent }
+\newlabel{tab:confounded_sweep}{{34}{29}{EC-HTE coverage across confounding strengths and propensity sources. The logistic regression propensity model is correctly specified; propensity misspecification is a complementary concern addressed by the IPW literature}{table.caption.95}{}}
+\@LN{1988}{28}
+\@LN{1989}{28}
+\@LN{1990}{28}
+\@LN{1991}{28}
+\@LN{1992}{28}
+\@LN{1993}{28}
+\@LN{1994}{28}
+\@LN{1995}{28}
+\@LN{1996}{28}
+\@LN{1997}{28}
+\@LN{1998}{28}
+\@writefile{toc}{\contentsline {subsection}{\numberline {Z.5}Empirical Comparison with Frazis--Loewenstein Correction}{29}{subsection.Z.5}\protected@file@percent }
+\newlabel{app:fl_comparison}{{Z.5}{29}{Empirical Comparison with Frazis--Loewenstein Correction}{subsection.Z.5}{}}
+\@LN{1999}{28}
+\@LN{2000}{28}
+\@LN{2001}{28}
+\@LN{2002}{28}
+\@LN{2003}{28}
+\@LN{2004}{28}
+\@LN{2005}{28}
+\@LN{2006}{28}
+\@LN{2007}{28}
+\@LN{2008}{28}
+\@LN{2009}{28}
+\@LN{2010}{28}
+\@LN{2011}{28}
+\@LN{2012}{28}
+\@LN{2013}{28}
+\@LN{2014}{28}
+\@LN{2015}{28}
+\@LN{2016}{28}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {35}{\ignorespaces F-L correction vs.\ EC-HTE under heterogeneous misclassification ($\Delta \pi {=}0.20$, $\bar  {\tau }{=}0.15$). $|\text  {Bias}|$ is unsigned and averaged across subgroups and $z$-levels; the Oracle floor (0.045) reflects finite-sample estimation noise. Both F-L variants produce \emph  {higher} aggregate bias than the uncorrected estimator.}}{29}{table.caption.96}\protected@file@percent }
+\newlabel{tab:fl_comparison}{{35}{29}{F-L correction vs.\ EC-HTE under heterogeneous misclassification ($\Delta \pi {=}0.20$, $\bar {\tau }{=}0.15$). $|\text {Bias}|$ is unsigned and averaged across subgroups and $z$-levels; the Oracle floor (0.045) reflects finite-sample estimation noise. Both F-L variants produce \emph {higher} aggregate bias than the uncorrected estimator}{table.caption.96}{}}
+\@LN{2017}{28}
+\@LN{2018}{28}
+\@LN{2019}{28}
+\@LN{2020}{28}
+\@LN{2021}{28}
+\@LN{2022}{28}
+\@LN{2023}{28}
+\@LN{2024}{28}
+\@LN{2025}{28}
+\@LN{2026}{28}
+\@LN{2027}{28}
+\@LN{2028}{28}
+\@LN{2029}{28}
+\@LN{2030}{28}
+\@LN{2031}{28}
+\@LN{2032}{28}
+\@LN{2033}{28}
+\@LN{2034}{28}
+\@LN{2035}{28}
+\@LN{2036}{28}
+\@writefile{toc}{\contentsline {subsection}{\numberline {Z.6}End-to-End Validation with Asymmetric Confusion Matrices}{29}{subsection.Z.6}\protected@file@percent }
+\newlabel{app:asymmetric_endtoend}{{Z.6}{29}{End-to-End Validation with Asymmetric Confusion Matrices}{subsection.Z.6}{}}
+\@LN{2037}{28}
+\@LN{2038}{28}
+\@LN{2039}{28}
+\@LN{2040}{28}
+\@LN{2041}{28}
+\@LN{2042}{28}
+\@LN{2043}{28}
+\@LN{2044}{28}
+\@LN{2045}{28}
+\@LN{2046}{28}
+\@LN{2047}{28}
+\@LN{2048}{28}
+\@LN{2049}{28}
+\@LN{2050}{28}
+\@LN{2051}{28}
+\@LN{2052}{28}
+\@LN{2053}{28}
+\citation{guo2017calibration}
+\citation{barbieri2020tweeteval}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {36}{\ignorespaces EC-HTE under asymmetric misclassification ($\mathrm  {FPR}/\mathrm  {FNR}$ up to $7{:}1$). The asymmetric formula improves coverage by $+1.5$pp and RMSE by $11.5\%$.}}{30}{table.caption.97}\protected@file@percent }
+\newlabel{tab:asymmetric_endtoend}{{36}{30}{EC-HTE under asymmetric misclassification ($\mathrm {FPR}/\mathrm {FNR}$ up to $7{:}1$). The asymmetric formula improves coverage by $+1.5$pp and RMSE by $11.5\%$}{table.caption.97}{}}
+\@LN{2054}{29}
+\@LN{2055}{29}
+\@LN{2056}{29}
+\@writefile{toc}{\contentsline {subsection}{\numberline {Z.7}Complementarity with LLM Calibration}{30}{subsection.Z.7}\protected@file@percent }
+\newlabel{app:calibration}{{Z.7}{30}{Complementarity with LLM Calibration}{subsection.Z.7}{}}
+\@LN{2057}{29}
+\@LN{2058}{29}
+\@LN{2059}{29}
+\@LN{2060}{29}
+\@LN{2061}{29}
+\@LN{2062}{29}
+\@LN{2063}{29}
+\@LN{2064}{29}
+\@writefile{lot}{\contentsline {table}{\numberline {37}{\ignorespaces Calibration reduces $\Delta \pi $ but does not eliminate it; EC-HTE corrects the residual bias. Best coverage is achieved by combining both.}}{30}{table.caption.98}\protected@file@percent }
+\newlabel{tab:calibration}{{37}{30}{Calibration reduces $\Delta \pi $ but does not eliminate it; EC-HTE corrects the residual bias. Best coverage is achieved by combining both}{table.caption.98}{}}
+\@LN{2065}{29}
+\@LN{2066}{29}
+\@LN{2067}{29}
+\@LN{2068}{29}
+\@LN{2069}{29}
+\@LN{2070}{29}
+\@LN{2071}{29}
+\@LN{2072}{29}
+\@LN{2073}{29}
+\@LN{2074}{29}
+\@LN{2075}{29}
+\@LN{2076}{29}
+\@LN{2077}{29}
+\@writefile{toc}{\contentsline {subsection}{\numberline {Z.8}Policy Reversal Zone Analysis}{30}{subsection.Z.8}\protected@file@percent }
+\newlabel{app:policy_reversal}{{Z.8}{30}{Policy Reversal Zone Analysis}{subsection.Z.8}{}}
+\@LN{2078}{29}
+\@LN{2079}{29}
+\@LN{2080}{29}
+\@LN@col{2}
+\@LN{2081}{29}
+\@LN{2082}{29}
+\@LN{2083}{29}
+\@LN{2084}{29}
+\@writefile{lot}{\contentsline {table}{\numberline {38}{\ignorespaces Policy reversal zone: fraction of configurations where global correction reverses the sign of estimated CATE. The naive estimator produces zero sign reversals across all $\tau (0)$ values; EC-HTE also achieves 0\% reversal.}}{30}{table.caption.99}\protected@file@percent }
+\newlabel{tab:policy_reversal}{{38}{30}{Policy reversal zone: fraction of configurations where global correction reverses the sign of estimated CATE. The naive estimator produces zero sign reversals across all $\tau (0)$ values; EC-HTE also achieves 0\% reversal}{table.caption.99}{}}
+\@LN{2085}{29}
+\@LN{2086}{29}
+\@LN{2087}{29}
+\@LN{2088}{29}
+\@LN{2089}{29}
+\@LN{2090}{29}
+\@LN{2091}{29}
+\@LN{2092}{29}
+\@LN{2093}{29}
+\@LN{2094}{29}
+\@LN{2095}{29}
+\@LN{2096}{29}
+\@LN{2097}{29}
+\@LN{2098}{29}
+\@LN{2099}{29}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Policy reversal zone: sign-reversal rate as a function of $\tau (0)$ and $\Delta \pi $. Shaded region marks configurations where global correction reverses the CATE sign, directing policy toward the wrong subgroups.}}{30}{figure.caption.100}\protected@file@percent }
+\newlabel{fig:policy_reversal}{{11}{30}{Policy reversal zone: sign-reversal rate as a function of $\tau (0)$ and $\Delta \pi $. Shaded region marks configurations where global correction reverses the CATE sign, directing policy toward the wrong subgroups}{figure.caption.100}{}}
+\@LN{2100}{29}
+\@LN{2101}{29}
+\@writefile{toc}{\contentsline {subsection}{\numberline {Z.9}Stance Detection: Cross-Task Sign Reversal Validation}{30}{subsection.Z.9}\protected@file@percent }
+\newlabel{app:stance}{{Z.9}{30}{Stance Detection: Cross-Task Sign Reversal Validation}{subsection.Z.9}{}}
+\@LN{2102}{29}
+\@LN{2103}{29}
+\@LN{2104}{29}
+\@LN{2105}{29}
+\citation{zhang2015character}
+\citation{etaiwi2025comparative}
+\@LN@col{1}
+\@LN{2106}{30}
+\@LN{2107}{30}
+\@LN{2108}{30}
+\@LN{2109}{30}
+\@LN{2110}{30}
+\@LN{2111}{30}
+\@LN{2112}{30}
+\@LN{2113}{30}
+\@LN{2114}{30}
+\@LN{2115}{30}
+\@LN{2116}{30}
+\@LN{2117}{30}
+\@LN{2118}{30}
+\@LN{2119}{30}
+\@LN{2120}{30}
+\@LN{2121}{30}
+\@LN{2122}{30}
+\@LN{2123}{30}
+\@LN{2124}{30}
+\@LN{2125}{30}
+\@LN{2126}{30}
+\@LN{2127}{30}
+\@LN{2128}{30}
+\@LN{2129}{30}
+\@LN{2130}{30}
+\@LN{2131}{30}
+\@LN{2132}{30}
+\@LN{2133}{30}
+\@LN{2134}{30}
+\@LN{2135}{30}
+\@LN{2136}{30}
+\@LN{2137}{30}
+\@LN{2138}{30}
+\@writefile{lot}{\contentsline {table}{\numberline {39}{\ignorespaces Stance detection: subgroups with sign reversal or $\kappa > 3$. \text  {$\mathsurround \z@ \mathchar "558$}\ indicates at least one $z$-level affected. GPT-4o-mini and GPT-3.5-Turbo use simulated error profiles.}}{31}{table.caption.101}\protected@file@percent }
+\newlabel{tab:stance_signrev}{{39}{31}{Stance detection: subgroups with sign reversal or $\kappa > 3$. \checkmark \ indicates at least one $z$-level affected. GPT-4o-mini and GPT-3.5-Turbo use simulated error profiles}{table.caption.101}{}}
+\@LN{2139}{30}
+\@LN{2140}{30}
+\@writefile{toc}{\contentsline {subsection}{\numberline {Z.10}Topic Classification: AG News Cross-Task Validation}{31}{subsection.Z.10}\protected@file@percent }
+\newlabel{app:agnews}{{Z.10}{31}{Topic Classification: AG News Cross-Task Validation}{subsection.Z.10}{}}
+\@LN{2141}{30}
+\@LN{2142}{30}
+\@LN{2143}{30}
+\@LN{2144}{30}
+\@LN{2145}{30}
+\@LN@col{2}
+\@LN{2146}{30}
+\@LN{2147}{30}
+\@LN{2148}{30}
+\@LN{2149}{30}
+\@LN{2150}{30}
+\@LN{2151}{30}
+\@LN{2152}{30}
+\@LN{2153}{30}
+\@LN{2154}{30}
+\@LN{2155}{30}
+\@LN{2156}{30}
+\@LN{2157}{30}
+\@LN{2158}{30}
+\@LN{2159}{30}
+\@LN{2160}{30}
+\@LN{2161}{30}
+\@LN{2162}{30}
+\@LN{2163}{30}
+\@LN{2164}{30}
+\@LN{2165}{30}
+\@LN{2166}{30}
+\@LN{2167}{30}
+\@LN{2168}{30}
+\@LN{2169}{30}
+\@writefile{lot}{\contentsline {table}{\numberline {40}{\ignorespaces AG News topic classification ($K{=}4$, $\Delta \pi {=}0.19$). Metrics averaged over subgroups, $z$-levels, 100 MC runs. Bold: lowest $|\text  {bias}|$.}}{31}{table.caption.102}\protected@file@percent }
+\newlabel{tab:agnews_results}{{40}{31}{AG News topic classification ($K{=}4$, $\Delta \pi {=}0.19$). Metrics averaged over subgroups, $z$-levels, 100 MC runs. Bold: lowest $|\text {bias}|$}{table.caption.102}{}}
+\@writefile{toc}{\contentsline {paragraph}{Use of AI assistance.}{31}{section*.103}\protected@file@percent }
+\@LN{2170}{30}
+\@LN{2171}{30}
+\gdef \@abspage@last{31}

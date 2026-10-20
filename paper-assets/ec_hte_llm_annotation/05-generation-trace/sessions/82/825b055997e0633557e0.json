@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_pilot-llm-annotation_20260521T020651_result.json",
     "occurrence": 1,
-    "bytes": 596,
-    "sha256": "041442a7bea22cbaaf28d32fb3a09206b5ecacd5f57105240832c974024957c9"
+    "bytes": 595,
+    "sha256": "09bb3dcb47779e7b970ecfc289212522b83748976a5bc0455f6635f5c3d1e8ec"
   },
   "statistics": {
     "messages": 1,

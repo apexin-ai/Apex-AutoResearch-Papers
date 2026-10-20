@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-007-ppci-fix_20260520T221446_result.json",
     "occurrence": 1,
-    "bytes": 938,
-    "sha256": "bb451b75bdcc80d375154eb298ff36c55317535abad032924932123e5ab647a4"
+    "bytes": 937,
+    "sha256": "4a3d348b521a9e8479d2a74dbe86a77baeb6bb7e672dccb7f485e0f1f745855c"
   },
   "statistics": {
     "messages": 1,

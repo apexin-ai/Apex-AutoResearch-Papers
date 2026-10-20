@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-027c-cf-oracle-mf2dgp_20260522T142157_result.json",
     "occurrence": 1,
-    "bytes": 1269,
-    "sha256": "59708dd5a84f2e3e20ff82c839c8e28115b6d13f1783c4ddaa1111d849b0b020"
+    "bytes": 1268,
+    "sha256": "c81f176ef5311b67c65d91a01161c80bb2ec6f8a5a120f4b3aac17b16bb7543f"
   },
   "statistics": {
     "messages": 1,

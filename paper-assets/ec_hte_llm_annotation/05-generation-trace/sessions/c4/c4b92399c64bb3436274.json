@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-001-mcmc-fix_20260520T220148_result.json",
     "occurrence": 1,
-    "bytes": 1519,
-    "sha256": "b705c441f6860e7ced677a5889e1d66229655a641ca66d558aa806c1434ebeda"
+    "bytes": 1518,
+    "sha256": "0f0bd554171cb5e72e8d2d91a0ac219c2d4b88e0c02085c893cf72dd5baeb801"
   },
   "statistics": {
     "messages": 1,

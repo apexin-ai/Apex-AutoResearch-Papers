@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp-017",
+  "project": "ec_hte_llm_annotation",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:42:12.809Z",
+    "updated_at": "2026-05-21T13:52:52.889Z",
+    "hypothesis": "EC-HTE corrected pseudo-outcomes are compatible with R-learner, achieving similar bias reduction as with CausalForest",
+    "parent": "exp-011",
+    "conclusion": "success",
+    "spec": {
+      "command": "python3 exp017_rlearner.py --n-mc 50",
+      "server": "local-cpu",
+      "data_path": "synthetic DGP (N=5000, K=2, extreme)",
+      "data_count": "800 rows (50 MC × 2 subgroups × 2 z × 4 methods)",
+      "model_name": "R-learner (LassoCV) + HB Gibbs CM correction",
+      "seed": "0-49",
+      "checkpoint_path": "results/exp017_rlearner_results.csv",
+      "log_path": "results/exp017_rlearner_analysis.md"
+    },
+    "completed_at": "2026-05-21T13:52:52.889Z"
+  },
+  "timestamp": "2026-05-21T13:52:52.972787+00:00",
+  "trigger": "update_registry"
+}

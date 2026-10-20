@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-028",
+  "project": "ec_hte_llm_annotation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:03:05.932Z",
+    "updated_at": "2026-05-22T16:13:14.330Z",
+    "hypothesis": "The Proposition 3 symmetric diagnostic (|δ_s|/((1-2π̄)·π_s) > 1) fails on real asymmetric LLM CMs (AUC=0.21-0.38) because it assumes FPR=FNR. An asymmetric diagnostic using B_s = M_global⁻¹·M_s - I will recover predictive power (AUC≥0.75) by correctly capturing the directional bias structure of asymmetric confusion matrices."
+  },
+  "timestamp": "2026-05-22T16:13:14.465712+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,26 @@
+paper_key: "chernozhukov2018dml"
+title: "Double/Debiased Machine Learning for Treatment and Structural Parameters"
+venue: "Econometrics Journal 2018"
+full_text_available: false
+
+research:
+  baselines: ["naive_ML_plugin", "classical_semiparametric_estimators"]
+  metrics:
+    - {name: "root_n_consistency", direction: "qualitative"}
+    - {name: "coverage_probability", direction: "higher_better"}
+  datasets:
+    - {name: "401k_savings_data", size: "N/A"}
+    - {name: "simulated_data", size: "N/A"}
+  ablation_dimensions: ["ML_method_choice", "cross_fitting_folds"]
+  training_recipe: {}
+  method_family: "DML"
+
+positioning:
+  core_claim: "Double/debiased ML achieves root-n consistent inference on low-dimensional treatment parameters in the presence of high-dimensional nuisance parameters by combining Neyman-orthogonal score functions with cross-fitting, allowing arbitrary ML methods for nuisance estimation."
+  key_results: "Root-n consistency and asymptotic normality for treatment effects; works with Lasso, random forests, neural nets, etc. for nuisance estimation"
+  limitations: []
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

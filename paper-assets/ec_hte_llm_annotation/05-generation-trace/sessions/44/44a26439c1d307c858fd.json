@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_fig_combined_overview_paperbanana_20260525T120440_result.json",
     "occurrence": 1,
-    "bytes": 893,
-    "sha256": "f077519a6e93ae5eb375fa528a15fbea8332829632de48b93f13b5023f959b4c"
+    "bytes": 892,
+    "sha256": "fc872f465d7aca62253e2198cffa40a1c19afffc4dfd78b01de78c17c8f9030d"
   },
   "statistics": {
     "messages": 1,

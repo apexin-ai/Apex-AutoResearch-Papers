@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-031",
+  "project": "ec_hte_llm_annotation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:39:36.830Z",
+    "updated_at": "2026-05-22T19:39:45.277Z",
+    "hypothesis": "EC-HTE under confounded treatment assignment (T depends on covariates via logistic model, not Bernoulli(0.5)) maintains coverage ≥93% when paired with IPW-DIM estimator, demonstrating compatibility with observational study designs."
+  },
+  "timestamp": "2026-05-22T19:39:45.346615+00:00",
+  "trigger": "update_registry"
+}

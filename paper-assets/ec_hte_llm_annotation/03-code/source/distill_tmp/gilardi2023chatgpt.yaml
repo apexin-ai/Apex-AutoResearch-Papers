@@ -1,0 +1,25 @@
+paper_key: "gilardi2023chatgpt"
+title: "ChatGPT Outperforms Crowd-Workers for Text-Annotation Tasks"
+venue: "PNAS 2023"
+full_text_available: false
+
+research:
+  baselines: ["MTurk_crowd_workers"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "intercoder_agreement", direction: "higher_better"}
+  datasets:
+    - {name: "tweets_and_news_articles", size: "n=6183, four samples"}
+  ablation_dimensions: []
+  training_recipe: {}
+  method_family: "LLM_annotation"
+
+positioning:
+  core_claim: "ChatGPT outperforms MTurk crowd workers by ~25 percentage points on average across multiple annotation tasks (relevance, stance, topics, frame detection) using zero-shot prompting."
+  key_results: "ChatGPT accuracy exceeds MTurk by ~25pp on average; relevance accuracy 59-83% depending on dataset"
+  limitations: []
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-026-low-budget-hb-v2_20260522T132122_result.json",
     "occurrence": 1,
-    "bytes": 991,
-    "sha256": "f8cc14877f4fd7b82d7d59c565065045917d697b5644d1e118afe5cfe7bfe0de"
+    "bytes": 990,
+    "sha256": "d0dc23302526087f85886895447a4cb2905d501dd3a9285993de7da3de2e3185"
   },
   "statistics": {
     "messages": 1,

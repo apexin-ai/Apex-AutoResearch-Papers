@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-004",
+  "project": "ec_hte_llm_annotation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:06:35.407Z",
+    "updated_at": "2026-05-21T10:59:32.014Z",
+    "hypothesis": "On real hate speech data (UC Berkeley), LLM annotation of dehumanization level exhibits text-feature-based misclassification heterogeneity (e.g., by target group type, text length, presence of explicit language), and EC-HTE subgroup-stratified correction produces qualitatively different CATE distributions compared to global correction — demonstrating the practical relevance of the bias mechanism with text-feature subgroups consistent with the TweetEval experiment design"
+  },
+  "timestamp": "2026-05-21T10:59:32.069519+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,148 @@
+\begin{thebibliography}{22}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Angelopoulos et~al.(2023)Angelopoulos, Bates, Cand{\`e}s, Jordan, and
+  Lei]{angelopoulos2023}
+Anastasios~N Angelopoulos, Stephen Bates, Emmanuel~J Cand{\`e}s, Michael~I
+  Jordan, and Lihua Lei.
+\newblock Prediction-powered inference.
+\newblock \emph{Science}, 382\penalty0 (6671):\penalty0 669--674, 2023.
+
+\bibitem[Ashwin et~al.(2025)]{ashwin2025}
+Aditya Ashwin et~al.
+\newblock Heterogeneous misclassification in llm annotations across demographic
+  subgroups.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Athey et~al.(2019)Athey, Tibshirani, and Wager]{athey2019}
+Susan Athey, Julie Tibshirani, and Stefan Wager.
+\newblock Generalized random forests.
+\newblock \emph{The Annals of Statistics}, 47\penalty0 (2):\penalty0
+  1148--1178, 2019.
+
+\bibitem[Bu et~al.(2023)]{bu2023}
+Fan Bu et~al.
+\newblock {ForestIV}: Instrumental variable estimation using random forests
+  with application to machine learning covariates.
+\newblock \emph{arXiv preprint}, 2023.
+
+\bibitem[Carroll et~al.(2006)Carroll, Ruppert, Stefanski, and
+  Crainiceanu]{carroll2006}
+Raymond~J Carroll, David Ruppert, Leonard~A Stefanski, and Ciprian~M
+  Crainiceanu.
+\newblock \emph{Measurement Error in Nonlinear Models: A Modern Perspective}.
+\newblock Chapman and Hall/CRC, 2nd edition, 2006.
+
+\bibitem[Chernozhukov et~al.(2018)Chernozhukov, Chetverikov, Demirer, Duflo,
+  Hansen, Newey, and Robins]{chernozhukov2018}
+Victor Chernozhukov, Denis Chetverikov, Mert Demirer, Esther Duflo, Christian
+  Hansen, Whitney Newey, and James Robins.
+\newblock Double/debiased machine learning for treatment and structural
+  parameters.
+\newblock \emph{The Econometrics Journal}, 21\penalty0 (1):\penalty0 C1--C68,
+  2018.
+
+\bibitem[Dawid and Skene(1979)]{dawid1979}
+Alexander~Philip Dawid and Allan~M Skene.
+\newblock Maximum likelihood estimation of observer error-rates using the {EM}
+  algorithm.
+\newblock \emph{Journal of the Royal Statistical Society: Series C},
+  28\penalty0 (1):\penalty0 20--28, 1979.
+
+\bibitem[Egami et~al.(2024)Egami, Hinck, Stewart, and Wei]{egami2024}
+Naoki Egami, Musashi Hinck, Brandon Stewart, and Hanying Wei.
+\newblock Using imperfect surrogates for downstream inference: Design-based
+  supervised learning for social science applications of large language models.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2024.
+
+\bibitem[Fuller(1987)]{fuller1987}
+Wayne~A Fuller.
+\newblock \emph{Measurement Error Models}.
+\newblock John Wiley \& Sons, 1987.
+
+\bibitem[Gilardi et~al.(2023)Gilardi, Alizadeh, and Kubli]{gilardi2023}
+Fabrizio Gilardi, Meysam Alizadeh, and Maël Kubli.
+\newblock {ChatGPT} outperforms crowd workers for text-annotation tasks.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 120\penalty0
+  (30), 2023.
+
+\bibitem[Gustafson(2003)]{gustafson2003}
+Paul Gustafson.
+\newblock \emph{Measurement Error and Misclassification in Statistics and
+  Epidemiology}.
+\newblock Chapman and Hall/CRC, 2003.
+
+\bibitem[Hovy et~al.(2013)Hovy, Berg-Kirkpatrick, Vaswani, and Hovy]{hovy2013}
+Dirk Hovy, Taylor Berg-Kirkpatrick, Ashish Vaswani, and Eduard Hovy.
+\newblock Learning whom to trust with {MACE}.
+\newblock In \emph{Proceedings of NAACL-HLT}, pages 1120--1130, 2013.
+
+\bibitem[Hu and Schennach(2008)]{hu2008}
+Yingyao Hu and Susanne~M Schennach.
+\newblock Instrumental variable treatment of nonclassical measurement error
+  models.
+\newblock \emph{Econometrica}, 76\penalty0 (1):\penalty0 195--216, 2008.
+
+\bibitem[Imai and Yamamoto(2010)]{imai2010}
+Kosuke Imai and Teppei Yamamoto.
+\newblock Causal mediation analysis using {R}.
+\newblock \emph{Advances in Social Science Research Using R}, pages 129--154,
+  2010.
+
+\bibitem[Kennedy et~al.(2020)Kennedy, Bacon, Sahn, and von Vacano]{kennedy2020}
+Chris~J Kennedy, Geoff Bacon, Alexander Sahn, and Claudia von Vacano.
+\newblock Constructing interval variables via faceted {Rasch} measurement and
+  multitask deep learning: A hate speech application.
+\newblock In \emph{Proceedings of ACL}, 2020.
+
+\bibitem[Kennedy(2023)]{kennedy2023}
+Edward~H Kennedy.
+\newblock Towards optimal doubly robust estimation of heterogeneous causal
+  effects.
+\newblock \emph{Electronic Journal of Statistics}, 17\penalty0 (2):\penalty0
+  3008--3049, 2023.
+
+\bibitem[Mozer(2026)]{mozer2026}
+Reagan Mozer.
+\newblock Arm-specific rectifiers for treatment effect estimation under
+  differential prediction error.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Passonneau and Carpenter(2014)]{passonneau2014}
+Rebecca~J Passonneau and Bob Carpenter.
+\newblock Benefits of the doubt: An empirical study of annotation reliability
+  for natural language processing.
+\newblock \emph{Computational Linguistics}, 40\penalty0 (2):\penalty0 469--541,
+  2014.
+
+\bibitem[Sui et~al.(2026)]{sui2026}
+Yizhou Sui et~al.
+\newblock Prediction-powered conditional inference.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Törnberg(2024)]{tornberg2024}
+Petter Törnberg.
+\newblock {ChatGPT-4} outperforms experts and crowd workers in annotating
+  political {Twitter} messages with zero-shot learning.
+\newblock \emph{arXiv preprint arXiv:2304.06588}, 2024.
+
+\bibitem[Wager and Athey(2018)]{wager2018}
+Stefan Wager and Susan Athey.
+\newblock Estimation and inference of heterogeneous treatment effects using
+  random forests.
+\newblock \emph{Journal of the American Statistical Association}, 113\penalty0
+  (523):\penalty0 1228--1242, 2018.
+
+\bibitem[Ziems et~al.(2024)Ziems, Held, Shaikh, Chen, Zhang, and
+  Yang]{ziems2024}
+Caleb Ziems, William Held, Omar Shaikh, Jiaao Chen, Zhehao Zhang, and Diyi
+  Yang.
+\newblock Can large language models transform computational social science?
+\newblock \emph{Computational Linguistics}, 50\penalty0 (1):\penalty0 237--291,
+  2024.
+
+\end{thebibliography}

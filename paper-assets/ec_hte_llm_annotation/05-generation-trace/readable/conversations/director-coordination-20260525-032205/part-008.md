@@ -14146,7 +14146,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/pb_env/bin/paperbanana generate \\\n  --input /tmp/fig2_intent.txt \\\n  --caption \"EC-HTE method overview comparing standard global correction (top, rose) with per-subgroup hierarchical Bayesian correction (bottom, teal). Standard practice applies a single pooled confusion matrix uniformly, risking CATE sign reversal. EC-HTE estimates per-subgroup confusion matrices via hierarchical Bayes, applies stratified inversion with a condition-number guard, and propagates uncertainty into CausalForestDML.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_method_overview_pb.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/pb_env/bin/paperbanana generate \\\n  --input /tmp/fig2_intent.txt \\\n  --caption \"EC-HTE method overview comparing standard global correction (top, rose) with per-subgroup hierarchical Bayesian correction (bottom, teal). Standard practice applies a single pooled confusion matrix uniformly, risking CATE sign reversal. EC-HTE estimates per-subgroup confusion matrices via hierarchical Bayes, applies stratified inversion with a condition-number guard, and propagates uncertainty into CausalForestDML.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_method_overview_pb.png \\\n  --iterations 5 2>&1",
   "description": "Run PaperBanana to generate method overview figure",
   "timeout": "600000"
 }
@@ -14162,7 +14162,7 @@ called Bash
   "session": "feishu:group:oc_6b114d432b35fe7a1c2143457ae85b08:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/pb_env/bin/paperbanana generate \\\n  --input /tmp/fig2_intent.txt \\\n  --caption \"EC-HTE method overview comparing standard global correction (top, rose) with per-subgroup hierarchical Bayesian correction (bottom, teal). Standard practice applies a single pooled confusion matrix uniformly, risking CATE sign reversal. EC-HTE estimates per-subgroup confusion matrices via hierarchical Bayes, applies stratified inversion with a condition-number guard, and propagates uncertainty into CausalForestDML.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_method_overview_pb.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/pb_env/bin/paperbanana generate \\\n  --input /tmp/fig2_intent.txt \\\n  --caption \"EC-HTE method overview comparing standard global correction (top, rose) with per-subgroup hierarchical Bayesian correction (bottom, teal). Standard practice applies a single pooled confusion matrix uniformly, risking CATE sign reversal. EC-HTE estimates per-subgroup confusion matrices via hierarchical Bayes, applies stratified inversion with a condition-number guard, and propagates uncertainty into CausalForestDML.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/fig_method_overview_pb.png \\\n  --iterations 5 2>&1",
     "description": "Run PaperBanana to generate method overview figure",
     "timeout": "600000"
   }

@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp-013",
+  "project": "ec_hte_llm_annotation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:25:13.287Z",
+    "updated_at": "2026-05-21T07:29:11.814Z",
+    "hypothesis": "EC-HTE (especially HB) degrades significantly at n_expert=50/K=4 because per-subgroup CM estimation with ~12 expert labels per subgroup is too noisy, causing RMSE to substantially exceed global correction — validating the budget threshold claim in the paper",
+    "conclusion": "success",
+    "metrics": {
+      "config": "K=4/extreme/n_expert=50",
+      "n_expert_per_K": 12.5,
+      "avg_rmse_naive": 0.109,
+      "avg_rmse_global": 0.14,
+      "avg_rmse_mle": 0.28,
+      "avg_rmse_eb": 0.292,
+      "worst_subgroup": "A(pi=0.30) EB RMSE=0.62",
+      "amplification_max": "4.4x (A/EB vs global)",
+      "threshold_confirmed": "n_expert/K=12.5 < 25"
+    }
+  },
+  "timestamp": "2026-05-21T07:29:11.865090+00:00",
+  "trigger": "update_registry"
+}

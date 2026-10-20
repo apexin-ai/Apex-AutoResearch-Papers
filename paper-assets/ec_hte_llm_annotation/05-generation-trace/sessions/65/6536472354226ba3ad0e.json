@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_task-g-k8-scalability_20260523T154030_result.json",
     "occurrence": 1,
-    "bytes": 1698,
-    "sha256": "f3e8d87d808c9f08594b2f94ecfff0abdafac832299b633c0c23d45a2eac6be4"
+    "bytes": 1697,
+    "sha256": "0b8441d74a3a57dd9074e1bd215da71b7d6bc60cf26713d567fb19152bfc55b4"
   },
   "statistics": {
     "messages": 1,

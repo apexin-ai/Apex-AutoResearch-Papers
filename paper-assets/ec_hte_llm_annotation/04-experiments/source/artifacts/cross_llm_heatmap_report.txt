@@ -1,0 +1,82 @@
+CROSS-LLM MISCLASSIFICATION ANALYSIS
+============================================================
+
+============================================================
+  TweetEval
+============================================================
+
+Per-LLM error-rate heterogeneity (max − min across subgroups):
+  GPT-3.5-turbo         range=0.194  (min=0.294, max=0.488)
+  GPT-4o                range=0.135  (min=0.232, max=0.367)
+  GPT-4o-mini           range=0.122  (min=0.217, max=0.339)
+  Mistral-7B            range=0.119  (min=0.116, max=0.235)
+  Qwen2.5-7B            range=0.115  (min=0.116, max=0.231)
+  GPT-4-turbo           range=0.106  (min=0.262, max=0.368)
+  Llama-3.1-8B          range=0.101  (min=0.174, max=0.275)
+  Gemma-2-9B            range=0.076  (min=0.189, max=0.264)
+  GPT-4.1               range=0.063  (min=0.305, max=0.368)
+
+  → Most heterogeneous: GPT-3.5-turbo (range=0.194)
+
+============================================================
+  CivilComments
+============================================================
+
+Per-LLM error-rate heterogeneity (max − min across subgroups):
+  GPT-4o                range=0.103  (min=0.217, max=0.320)
+  GPT-4o-mini           range=0.084  (min=0.350, max=0.434)
+  GPT-3.5-turbo         range=0.079  (min=0.301, max=0.380)
+
+  → Most heterogeneous: GPT-4o (range=0.103)
+
+============================================================
+  PAIRWISE SPEARMAN RANK CORRELATION
+============================================================
+
+  TweetEval:
+    ρ range: [-0.800, 1.000]
+    ρ mean:  0.244
+    ρ median: 0.300
+
+    Most dissimilar pairs (lowest ρ):
+      GPT-3.5-turbo vs Gemma-2-9B: ρ = -0.800
+      GPT-3.5-turbo vs Mistral-7B: ρ = -0.800
+      GPT-4.1 vs Gemma-2-9B: ρ = -0.400
+      GPT-4.1 vs Mistral-7B: ρ = -0.400
+      GPT-4-turbo vs Gemma-2-9B: ρ = -0.400
+
+    Most similar pairs (highest ρ, excl. diagonal):
+      GPT-4.1 vs GPT-4-turbo: ρ = 1.000
+      Gemma-2-9B vs Mistral-7B: ρ = 1.000
+      Qwen2.5-7B vs Llama-3.1-8B: ρ = 1.000
+
+  CivilComments:
+    ρ range: [-0.400, 0.600]
+    ρ mean:  0.200
+    ρ median: 0.400
+
+    Most dissimilar pairs (lowest ρ):
+      GPT-4o vs GPT-4o-mini: ρ = -0.400
+      GPT-4o vs GPT-3.5-turbo: ρ = 0.400
+      GPT-4o-mini vs GPT-3.5-turbo: ρ = 0.600
+
+    Most similar pairs (highest ρ, excl. diagonal):
+      GPT-4o vs GPT-4o-mini: ρ = -0.400
+      GPT-4o vs GPT-3.5-turbo: ρ = 0.400
+      GPT-4o-mini vs GPT-3.5-turbo: ρ = 0.600
+
+============================================================
+  IMPLICATIONS FOR GLOBAL CORRECTION
+============================================================
+
+  The mean pairwise Spearman ρ across TweetEval LLMs is 0.244.
+  61% of LLM pairs have ρ < 0.5, indicating substantially
+  different error patterns across subgroups.
+
+  Key finding: Different LLMs make systematically different errors on
+  different subgroups. A global correction calibrated on one LLM's error
+  profile will be miscalibrated for other LLMs — and within any single LLM,
+  the error pattern varies across subgroups.
+
+  This strongly supports the thesis that one-size-fits-all correction is
+  dangerous: both across LLMs and across subgroups within an LLM.

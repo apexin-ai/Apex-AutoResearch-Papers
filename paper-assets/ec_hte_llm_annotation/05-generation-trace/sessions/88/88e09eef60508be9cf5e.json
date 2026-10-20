@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_causalforest-k2-extract_20260522T033916_result.json",
     "occurrence": 1,
-    "bytes": 974,
-    "sha256": "d653d1c60abf35738051f6fef97b6375ffc80b03431ff671e2e114a65fa2e172"
+    "bytes": 973,
+    "sha256": "4bfd0a6850d4bad444501b234482d4b3c8fe7f8de751e5a9590efd073af25c07"
   },
   "statistics": {
     "messages": 1,

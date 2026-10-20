@@ -1,0 +1,45 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Measurement error in regression and causal models.}
+The classical measurement error literature establishes that naive regression with mismeasured covariates yields attenuated coefficient estimates, and that correction via estimated error models can amplify mean squared error when the error structure is misspecified~\cite{fuller1987measurement,carroll2006measurement}.
+Bayesian treatments model the measurement process jointly with the outcome, requiring informative priors when identification is weak~\cite{gustafson2003measurement}.
+Nonparametric identification results show that repeated measurements or instrumental variables can recover the true distribution without parametric assumptions on the error mechanism~\cite{hu2008nonparametric}.
+A recurring theme is that correction helps only when the error model is well-specified; misspecified correction can perform worse than ignoring the error entirely.
+We formalize this principle for a specific causal estimand: Theorem~\ref{thm:bias_identity} gives an exact identity for CATE bias under global correction with heterogeneous misclassification rates, and derives the condition under which global correction amplifies rather than reduces bias.
+
+\paragraph{Bayesian annotation models.}
+\citet{dawid1979maximum} introduced confusion matrix estimation for multiple annotators via EM, enabling label aggregation that accounts for annotator reliability.
+Extensions incorporate item difficulty~\cite{passonneau2014benefits}, learned annotator competence~\cite{hovy2013learning}, and hierarchical priors that share information across annotators with varying expertise~\cite{paun2018comparing}.
+These models target label quality for classification tasks.
+Our hierarchical confusion matrix estimator (Section~\ref{sec:method}) adapts this architecture to causal inference: the estimated subgroup-stratified matrices feed into CATE correction rather than label aggregation, and the prior structure is tied to the subgroup dimension that defines treatment effect heterogeneity.
+
+\paragraph{Heterogeneous treatment effect estimation.}
+Causal forests recursively partition the covariate space to estimate conditional treatment effects with valid confidence intervals~\cite{athey2016recursive,wager2018causal}.
+Double/debiased machine learning provides Neyman-orthogonal moment conditions that yield root-$n$ consistent estimates robust to slow first-stage convergence~\cite{chernozhukov2018dml}.
+Doubly-robust CATE estimators achieve minimax rates under flexible nuisance estimation~\cite{kennedy2023dr}, and meta-learners unify several approaches within a common framework~\cite{kunzel2019metalearners}.
+These methods all assume that the covariates defining heterogeneity are observed without error.
+When the effect modifier is misclassified, the heterogeneity structure itself is distorted: observations are assigned to wrong subgroups, and the resulting CATE estimates conflate effects across groups.
+EC-HTE provides upstream correction that restores valid inputs to any of these downstream estimators (Section~\ref{sec:method}).
+
+\paragraph{LLMs as annotators.}
+LLMs now match or exceed crowd-worker accuracy on many text classification tasks~\cite{gilardi2023chatgpt,tornberg2024chatgpt}, and surveys document their expanding role across computational social science~\cite{ziems2024nlp,pangakis2023automated}.
+However, error rates are not uniform.
+\citet{ashwin2025bias} show that misclassification varies by up to $5\times$ across demographic subgroups defined by refugee status, gender, and education.
+This heterogeneity is precisely the failure mode we address: when subgroup-varying LLM errors feed into HTE analysis, they distort the very contrasts that define the research question.
+Prior work documents these error patterns but provides no correction mechanism for downstream causal estimands.
+
+\paragraph{Prediction-powered and design-based correction.}
+Prediction-Powered Inference (PPI) constructs valid confidence intervals for population parameters by combining a large set of ML predictions with a small gold-standard sample~\cite{angelopoulos2023ppi}, with extensions to cross-prediction and active sampling~\cite{zrnic2024cross}.
+Design-based Supervised Learning (DSL) achieves similar goals through a survey-sampling framework~\cite{egami2024dsl}.
+\citet{mozer2026ppi} extend PPI to arm-specific correction for average treatment effects under differential prediction error.
+PPCI~\cite{sui2026ppci} targets conditional estimands but corrects outcome-side prediction error ($\hat{Y}$ given true $Z$), not covariate-side misclassification.
+ForestIV~\cite{bu2023forestiv} instruments for ML-predicted covariates in regression forests but targets the outcome model rather than the heterogeneity structure.
+\citet{grimmer2022text} and \citet{audinet2025benchmarking} provide broader methodological guidance for text-as-data pipelines without specific correction for causal heterogeneity.
+All of these methods address either population-level correction or outcome-side error; none corrects the case where the mismeasured variable is the effect modifier whose levels index the CATE function.
+
+\citet{imai2010causal} study misclassification of the \textit{treatment variable}, where errors change which arm a unit is assigned to.
+Their setting requires instrumental variables or partial identification bounds because treatment misclassification directly compromises the identification of average effects.
+Our problem is structurally distinct: the treatment is observed correctly, but the \textit{effect modifier} that defines subgroups is misclassified.
+This does not threaten ATE identification but distorts the heterogeneity structure, a bias that admits exact correction through subgroup-stratified confusion matrices rather than bounds.
+The two problems share surface similarity (both involve misclassification in causal inference) but differ in which dimension is corrupted, what estimand is affected, and what correction is feasible.

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_gitignore-fix_20260524T062353_result.json",
     "occurrence": 1,
-    "bytes": 378,
-    "sha256": "5847367fc1a00d8a168f55b576057eadeca31063e07a3cd64aae13e5830a7b8d"
+    "bytes": 377,
+    "sha256": "e6e4346f1480a347048715f79eb53abd84b658411667a5dcb77865901f98144d"
   },
   "statistics": {
     "messages": 1,

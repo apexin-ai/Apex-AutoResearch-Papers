@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-014",
+  "project": "ec_hte_llm_annotation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:27:32.305Z",
+    "updated_at": "2026-05-21T07:44:44.739Z",
+    "hypothesis": "The bias decomposition product structure (delta_s * delta_tau) persists under asymmetric misclassification (FPR != FNR), and EC-HTE subgroup-stratified correction remains effective — the symmetric assumption A2 is sufficient for the qualitative insight but not necessary for EC-HTE to work"
+  },
+  "timestamp": "2026-05-21T07:44:44.933535+00:00",
+  "trigger": "update_registry"
+}

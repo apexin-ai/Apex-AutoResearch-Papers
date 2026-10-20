@@ -1,0 +1,52 @@
+{
+  "exp_id": "exp-028",
+  "project": "ec_hte_llm_annotation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:03:05.932Z",
+    "updated_at": "2026-05-22T16:13:50.285Z",
+    "hypothesis": "The Proposition 3 symmetric diagnostic (|δ_s|/((1-2π̄)·π_s) > 1) fails on real asymmetric LLM CMs (AUC=0.21-0.38) because it assumes FPR=FNR. An asymmetric diagnostic using B_s = M_global⁻¹·M_s - I will recover predictive power (AUC≥0.75) by correctly capturing the directional bias structure of asymmetric confusion matrices.",
+    "spec": {
+      "command": "python exp028_asymmetric_diagnostic_auc.py",
+      "server": "local-cpu",
+      "data_path": "real LLM CMs from exp025 COMBOS",
+      "data_count": "11 LLM×dataset combos, 16 (model,dataset,K) configs",
+      "model_name": "DIM estimator",
+      "seed": "0-99 (100 MC)",
+      "checkpoint_source": "N/A",
+      "eval_data": "semi-synthetic CATE with real CMs",
+      "checkpoint_path": "N/A (CPU simulation)",
+      "log_path": "results/exp_asymmetric_diagnostic_auc.csv"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "overall_symmetric_auc": 0.626,
+      "overall_asymmetric_auc": 0.611,
+      "k4_only": {
+        "symmetric_auc_range": "0.0-1.0",
+        "asymmetric_auc_range": "0.0-1.0",
+        "perfect_auc_combos": [
+          "Llama/TweetEval",
+          "Qwen/TweetEval",
+          "Mistral/TweetEval",
+          "gpt-4o/TweetEval",
+          "gpt-3.5-turbo/TweetEval(asym only)",
+          "gpt-4.1/TweetEval(asym only)"
+        ]
+      },
+      "k2_all_auc_zero": true,
+      "z0_z1_identical": true,
+      "theoretical_insight": "For DIM, |B_s[0,1]|=|B_s[1,1]| (column-stochastic M). Asymmetric diagnostic degenerates to symmetric because DIM CATE bias depends on δ_s = (FPR_s+FNR_s)/2 - π̄, not on FPR/FNR individually.",
+      "output_files": [
+        "results/exp_asymmetric_diagnostic_auc.csv",
+        "results/exp_asymmetric_diagnostic_auc_summary.csv"
+      ]
+    },
+    "completed_at": "2026-05-22T16:13:50.285Z"
+  },
+  "timestamp": "2026-05-22T16:13:50.352754+00:00",
+  "trigger": "update_registry"
+}

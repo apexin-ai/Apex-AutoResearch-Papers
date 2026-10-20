@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_rebuttal-polish_20260524T080019_result.json",
     "occurrence": 1,
-    "bytes": 801,
-    "sha256": "0c476e5d75fbc894109738dac20e5bfb003dc58fd19528cfd106c4dbf364a5ee"
+    "bytes": 800,
+    "sha256": "13a22154f05eff444cfd4685c09e849d1ceb0cd847983e498d404f986a2f91d3"
   },
   "statistics": {
     "messages": 1,

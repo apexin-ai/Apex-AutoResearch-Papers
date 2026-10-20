@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_run_exp-001-hyperprior_20260520T225155_result.json",
     "occurrence": 1,
-    "bytes": 1616,
-    "sha256": "6de667a93eaedbf38a46fe241284c79c4c12167cdcd067c185613f8683e2a191"
+    "bytes": 1615,
+    "sha256": "975edbc8a498b202081ad841c6d98fd1a1b8bf128e3f76276633a3be44db32dc"
   },
   "statistics": {
     "messages": 1,

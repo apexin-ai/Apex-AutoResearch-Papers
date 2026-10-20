@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp-038",
+  "project": "ec_hte_llm_annotation",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T15:54:13.229Z",
+    "updated_at": "2026-05-23T15:54:44.973Z",
+    "hypothesis": "When true CATE is small (τ(0)<0.05), global correction's over-correction bias exceeds the true effect magnitude, causing sign reversal in CATE estimates — converting beneficial treatments into apparently harmful ones. EC-HTE's per-subgroup correction never causes sign reversal.",
+    "spec": {
+      "command": "python policy_reversal_sweep.py",
+      "server": "local-cpu",
+      "data_path": "results/exp002_bias_bound.csv",
+      "data_count": 520,
+      "model_name": "analytic",
+      "seed": 0,
+      "checkpoint_path": "artifacts/policy_reversal_zone.pdf",
+      "log_path": "artifacts/policy_reversal_zone.csv"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "reversal_pct_tau001": 31,
+      "reversal_pct_tau003": 14.9,
+      "reversal_pct_tau005": 6.1,
+      "reversal_pct_tau010": 0,
+      "ec_hte_reversal_pct": 0,
+      "worst_combo": "tau=0.01, delta_misclass=0.19 → 42.9%"
+    },
+    "completed_at": "2026-05-23T15:54:44.973Z"
+  },
+  "timestamp": "2026-05-23T15:54:45.070713+00:00",
+  "trigger": "update_registry"
+}

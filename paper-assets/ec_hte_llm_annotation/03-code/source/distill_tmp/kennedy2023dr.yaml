@@ -1,0 +1,25 @@
+paper_key: "kennedy2023dr"
+title: "Towards Optimal Doubly Robust Estimation of Heterogeneous Causal Effects"
+venue: "EJS 2023"
+full_text_available: false
+
+research:
+  baselines: ["nearest_neighbor_matching", "kernel_estimators", "series_estimators"]
+  metrics:
+    - {name: "MSE_convergence_rate", direction: "lower_better"}
+    - {name: "oracle_efficiency", direction: "qualitative"}
+  datasets:
+    - {name: "simulated_data", size: "Monte Carlo"}
+  ablation_dimensions: ["smoothness_assumptions", "sparsity_assumptions", "nuisance_estimation_quality"]
+  training_recipe: {}
+  method_family: "doubly_robust_CATE"
+
+positioning:
+  core_claim: "Two-stage doubly robust CATE estimator achieves faster convergence rates than prior literature via a generic error bound; a local polynomial adaptation achieves oracle efficiency under weaker conditions than previously required."
+  key_results: "Faster-than-literature convergence rates; oracle efficiency under minimal conditions; general oracle inequality for regression with imputed outcomes"
+  limitations: []
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

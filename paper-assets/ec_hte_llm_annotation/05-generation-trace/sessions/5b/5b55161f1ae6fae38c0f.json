@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_exp015-016-failure-deep-dive_20260521T143406_result.json",
     "occurrence": 1,
-    "bytes": 1166,
-    "sha256": "2e2298f18dab89c6f4fbec5e8a6b1ad1021ab2f153173530d378e0c6dde788c6"
+    "bytes": 1165,
+    "sha256": "2df86648fb99d02b7a2391210a8ffa69ea529310a95ca9f83b666b76169b76b5"
   },
   "statistics": {
     "messages": 1,

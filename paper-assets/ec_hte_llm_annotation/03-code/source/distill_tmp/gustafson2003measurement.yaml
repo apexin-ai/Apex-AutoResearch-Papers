@@ -1,0 +1,24 @@
+paper_key: "gustafson2003measurement"
+title: "Measurement Error and Misclassification in Statistics and Epidemiology: Impacts and Bayesian Adjustments"
+venue: "Chapman & Hall/CRC 2003"
+full_text_available: false
+
+research:
+  baselines: ["naive_analysis_ignoring_error"]
+  metrics:
+    - {name: "bias_characterization", direction: "qualitative"}
+    - {name: "posterior_uncertainty", direction: "qualitative"}
+  datasets: []
+  ablation_dimensions: []
+  training_recipe: {}
+  method_family: "measurement_error"
+
+positioning:
+  core_claim: "Comprehensive treatment of measurement error and misclassification from a Bayesian perspective, covering both continuous measurement error and discrete misclassification with practical adjustment methods for epidemiological and statistical applications."
+  key_results: "Unified Bayesian framework for both measurement error (continuous) and misclassification (discrete); practical adjustment methods"
+  limitations: []
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

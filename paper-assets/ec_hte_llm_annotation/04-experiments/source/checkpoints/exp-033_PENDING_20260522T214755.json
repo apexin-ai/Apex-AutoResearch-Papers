@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-033",
+  "project": "ec_hte_llm_annotation",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T21:47:48.539Z",
+    "updated_at": "2026-05-22T21:47:55.606Z",
+    "hypothesis": "Adaptive shrinkage (stronger alpha for high-pi subgroups) and/or kappa-threshold fallback can reduce K=8 HB RMSE from 0.340 toward Global's 0.168, narrowing the scalability gap.",
+    "parent": "exp-030"
+  },
+  "timestamp": "2026-05-22T21:47:55.701087+00:00",
+  "trigger": "update_registry"
+}

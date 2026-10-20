@@ -1,0 +1,42 @@
+\section{Introduction}
+\label{sec:intro}
+
+Large language models (LLMs) now routinely replace human annotators in computational social science (CSS), producing labels for sentiment, hate speech, stance, and political discourse at costs orders of magnitude below manual coding~\cite{gilardi2023chatgpt,tornberg2024chatgpt,ziems2024nlp}.
+Yet these annotations are not uniformly accurate.
+\citet{ashwin2025bias} document that LLM misclassification rates vary by up to 5$\times$ across demographic subgroups defined by refugee status, gender, and education level.
+When such annotations serve as effect modifiers in heterogeneous treatment effect (HTE) analysis, subgroup-specific errors propagate directly into conditional average treatment effect (CATE) estimates.
+The resulting bias is not random noise that averages out; it is structured by the same demographic axes that define the research question.
+Standard correction procedures, which estimate a single confusion matrix and apply its inverse uniformly, cannot account for this heterogeneity.
+
+This problem matters because HTE analysis is the primary tool for understanding how treatment effects vary across populations.
+Subgroup CATEs inform resource allocation decisions: which communities benefit most from policy interventions, where health programs should be targeted, and how educational reforms affect different student groups.
+Biased CATE estimates can reverse the sign of apparent treatment heterogeneity, leading practitioners to conclude that an intervention harms a subgroup it actually helps, or to allocate resources away from the communities that benefit most.
+The failure mode is subtle: a researcher who responsibly corrects for annotation noise using a pooled confusion matrix may introduce more bias than doing nothing, precisely in the low-error subgroups where the original labels were most trustworthy.
+The problem grows in proportion to LLM adoption.
+As automated annotation pipelines replace manual coding across the social sciences, heterogeneous classification errors will propagate to an increasing share of causal analyses.
+Correction is necessary because LLM annotation is not a transitional technology but the emerging default for large-scale text measurement.
+
+Several methods address measurement error in downstream statistical analyses, but none handles the specific failure mode we identify.
+Prediction-Powered Inference (PPI;~\citealt{angelopoulos2023ppi}) and Design-based Supervised Learning~\cite{egami2024dsl} correct population-level aggregates by combining predicted and gold-standard labels, assuming homogeneous prediction error across subgroups.
+These methods produce valid confidence intervals for marginal quantities but do not extend to subgroup-conditional estimands.
+Prediction-Powered Conditional Inference (PPCI;~\citealt{sui2026ppci}) extends PPI to conditional means but targets outcome-side prediction error rather than covariate-side misclassification; it corrects $\hat{Y}$ given true $Z$, not the reverse.
+\citet{mozer2026ppi} prove that arm-specific rectifiers fix average treatment effect bias under differential prediction error, but their analysis is limited to population averages and does not address heterogeneity estimation.
+ForestIV~\cite{bu2023forestiv} handles ML-covariate measurement error in regression forests but targets the outcome model rather than the treatment effect heterogeneity structure.
+The gap is specific: no existing method corrects bias when the mismeasured variable is the one that defines the heterogeneity structure itself, i.e., the effect modifier whose levels index the CATE function.
+
+We formalize this gap and discover a previously unrecognized bias mechanism.
+When a pooled confusion matrix is applied to correct subgroup CATEs, it misattributes error across subgroups with an exact product form: the bias in subgroup $s$ equals $\delta_s \cdot \Delta\tau / (1 - 2\bar{\pi})$, where $\delta_s$ is the deviation from the pooled error rate and $\Delta\tau$ is the CATE heterogeneity (Theorem~\ref{thm:bias_identity}).
+This is not a bound but an exact population-level identity, verified empirically with $R^2 = 0.994$ ($K{=}2$) and $R^2 = 0.974$ ($K{=}4$).
+A direct consequence is that global correction can be worse than no correction at all: in 50\% of our experimental configurations, global debiasing increases absolute bias relative to the naive estimator, with amplification reaching 2.86$\times$ ($K{=}2$) and 5.9$\times$ ($K{=}4$ with CausalForest).
+Error-Corrected Heterogeneous Treatment Effects (EC-HTE) addresses this through hierarchical Bayesian estimation of subgroup-stratified confusion matrices combined with CausalForestDML, reducing $|\text{bias}|$ from 0.059 to 0.011 under extreme heterogeneity ($K{=}2$).
+The bias decomposition identity also yields a computable diagnostic: the $\Delta\pi \times \Delta\tau$ product predicts when global correction will fail at the subgroup level (AUC = 0.833), so practitioners can decide whether stratified correction is warranted before committing to the additional expert annotation it requires.
+EC-HTE's advantage is conditional on sufficient error heterogeneity and expert budget; when $\Delta\pi$ is small, global correction suffices and EC-HTE's variance cost is not justified (Figure~\ref{fig:bias_mechanism}).
+
+Our contributions are:
+\begin{itemize}
+    \item A bias decomposition identity (Theorem~\ref{thm:bias_identity}) showing that global confusion-matrix correction introduces bias exactly proportional to the product of error-rate heterogeneity and CATE heterogeneity, including a formal condition under which debiasing increases bias (Section~\ref{sec:theory}).
+    \item The EC-HTE framework: hierarchical Bayesian subgroup-stratified confusion matrix estimation combined with CausalForestDML and plug-in standard error propagation, with a singularity guard for near-degenerate subgroups (Section~\ref{sec:method}).
+    \item A computable diagnostic criterion derived from Theorem~\ref{thm:bias_identity}: the $\Delta\pi \times \Delta\tau$ product predicts at the subgroup level whether global correction will fail, achieving AUC = 0.833 in cross-validated evaluation (Section~\ref{sec:diagnostic}).
+    \item A composition of EC-HTE with PPCI for dual covariate/outcome error settings, reducing $|\text{bias}|$ from 0.179 to 0.007 when both error types are present (Section~\ref{sec:ppci}).
+    \item Comprehensive validation across 520 synthetic configurations (100 Monte Carlo runs each) and a semi-synthetic TweetEval experiment ($N{=}5000$), with crossover analysis ($n_{\text{expert}}{=}250$ for $K{=}2$, $n_{\text{expert}}{=}1000$ for $K{=}4$) establishing the conditions under which EC-HTE improves over global correction and where it does not (Section~\ref{sec:bias_mechanism}, Section~\ref{sec:ec_hte_eval}).
+\end{itemize}
