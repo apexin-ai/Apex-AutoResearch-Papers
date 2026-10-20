@@ -1,0 +1,303 @@
+# Research conversation: [Director 指令] [Full Draft] 启动 Steps 2-5 流水线。 **投稿目标**: EMNLP 2026 Main (ARR May cycle)，DDL 2026-05-25 **Core narrative**
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 6
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-3/18f8ee16-2e83-4d76-8a8e-deedbc9567ac.jsonl`
+- **Structured JSON:** [`bed73e66870c17d006b7.json`](../../sessions/be/bed73e66870c17d006b7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T15:47:55.463Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T15:47:55.463Z",
+  "sessionId": "18f8ee16-2e83-4d76-8a8e-deedbc9567ac",
+  "content": "[Director 指令] [Full Draft] 启动 Steps 2-5 流水线。\n\n**投稿目标**: EMNLP 2026 Main (ARR May cycle)，DDL 2026-05-25\n\n**Core narrative** (详见 paper_framing.md):\n论文核心贡献是系统性对比 5 类无监督置信信号（SJ, FK, logprob, exact-match, entity voting）在 IE 任务上的质量估计 vs best-of-N selection 能力，揭示 correlation-selection gap：\n- Claim 1: 结构一致性信号（voting_conf AUROC 0.73, ρ=0.50; SJ AUROC 0.67, ρ=0.36）远优于 logprob（AUROC 0.56, ρ=0.14）做质量估计\n- Claim 2: 但质量估计能力 ≠ selection 能力——NER 上没有信号 beat greedy，RE 上仅 logprob +2.4pp。Oracle gap 巨大（NER +16pp, RE +18pp）但不可利用。这是论文最重要的发现\n- Claim 3: 任务结构复杂度决定信号有效性边界——RE compound error propagation 降低 consistency-accuracy correlation\n\n**实验完成度**: 14/17 实验完成（82%）。缺 exp-003 (WNUT-17, 排队中) 和 exp-017 (LLaMA-CoNLL, 运行中)。先用现有数据起草，完成后 Patch 补入。\n\n**数据源优先级**:\n- SciERC 数据统一用 exp_015 的数值（N=8, T=1.0, seed=42, qwen3-8b-scierc-merged-v2）\n- N=16 数据用 exp_001（全集 551 instances）\n- CoNLL 数据用 exp_002\n- LLaMA 数据用 exp_007\n- Selection 数据用 exp_016 + exp_006_v2 + exp_010\n- RE diagnostic 用 exp_004\n- Temperature 用 exp_005\n- Stratification 用 exp_009\n\n**特别注意**:\n1. NER 上 voting > SJ 是事实（ρ=0.50 vs 0.36），FORBIDDEN \"SJ ≈ voting\"。SJ 定位为互补鲁棒信号（温度稳定、泛化性、条件过滤）\n2. CoNLL 上所有 signal 显著 worse 于 greedy（p≤0.001），oracle gap 仅 3.2%——Discussion 需讨论 \"when NOT to use SC\"\n3. RE 44% zero-F1 instances 是 limitation，需明确标注\n4. 引用需要验证——paper_framing.md 的 R10 列出了必引文献清单，包括 2025-2026 新颖性自查补充\n5. 相关工作必须 35+ 引用，特别要区分与 Nédellec & Xia (2026) 的差异"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T15:47:55.466Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T15:47:55.466Z",
+  "sessionId": "18f8ee16-2e83-4d76-8a8e-deedbc9567ac"
+}
+```
+
+---
+
+## Round 1
+
+4 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T15:47:55.502Z_
+
+[Director 指令] [Full Draft] 启动 Steps 2-5 流水线。
+
+**投稿目标**: EMNLP 2026 Main (ARR May cycle)，DDL 2026-05-25
+
+**Core narrative** (详见 paper_framing.md):
+论文核心贡献是系统性对比 5 类无监督置信信号（SJ, FK, logprob, exact-match, entity voting）在 IE 任务上的质量估计 vs best-of-N selection 能力，揭示 correlation-selection gap：
+- Claim 1: 结构一致性信号（voting_conf AUROC 0.73, ρ=0.50; SJ AUROC 0.67, ρ=0.36）远优于 logprob（AUROC 0.56, ρ=0.14）做质量估计
+- Claim 2: 但质量估计能力 ≠ selection 能力——NER 上没有信号 beat greedy，RE 上仅 logprob +2.4pp。Oracle gap 巨大（NER +16pp, RE +18pp）但不可利用。这是论文最重要的发现
+- Claim 3: 任务结构复杂度决定信号有效性边界——RE compound error propagation 降低 consistency-accuracy correlation
+
+**实验完成度**: 14/17 实验完成（82%）。缺 exp-003 (WNUT-17, 排队中) 和 exp-017 (LLaMA-CoNLL, 运行中)。先用现有数据起草，完成后 Patch 补入。
+
+**数据源优先级**:
+- SciERC 数据统一用 exp_015 的数值（N=8, T=1.0, seed=42, qwen3-8b-scierc-merged-v2）
+- N=16 数据用 exp_001（全集 551 instances）
+- CoNLL 数据用 exp_002
+- LLaMA 数据用 exp_007
+- Selection 数据用 exp_016 + exp_006_v2 + exp_010
+- RE diagnostic 用 exp_004
+- Temperature 用 exp_005
+- Stratification 用 exp_009
+
+**特别注意**:
+1. NER 上 voting > SJ 是事实（ρ=0.50 vs 0.36），FORBIDDEN "SJ ≈ voting"。SJ 定位为互补鲁棒信号（温度稳定、泛化性、条件过滤）
+2. CoNLL 上所有 signal 显著 worse 于 greedy（p≤0.001），oracle gap 仅 3.2%——Discussion 需讨论 "when NOT to use SC"
+3. RE 44% zero-F1 instances 是 limitation，需明确标注
+4. 引用需要验证——paper_framing.md 的 R10 列出了必引文献清单，包括 2025-2026 新颖性自查补充
+5. 相关工作必须 35+ 引用，特别要区分与 Nédellec & Xia (2026) 的差异
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "cf1bd3c7-4524-40de-857c-b3a60d8819c8",
+  "type": "user",
+  "uuid": "b712d92c-0802-407f-b204-9a8e1f0faae9",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+  "sessionId": "18f8ee16-2e83-4d76-8a8e-deedbc9567ac",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T15:47:55.501Z_
+
+```json
+{
+  "parentUuid": "b712d92c-0802-407f-b204-9a8e1f0faae9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__bootstrap_provenance",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__overleaf_init",
+      "mcp__agent-ml-research__overleaf_pull",
+      "mcp__agent-ml-research__overleaf_push",
+      "mcp__agent-ml-research__overleaf_status",
+      "mcp__agent-ml-research__overleaf_sync",
+      "mcp__agent-ml-research__paper_agent_post_to_director",
+      "mcp__agent-ml-research__paper_agent_request_review",
+      "mcp__agent-ml-research__paper_compile_and_check",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__bootstrap_provenance",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__overleaf_init",
+      "mcp__agent-ml-research__overleaf_pull",
+      "mcp__agent-ml-research__overleaf_push",
+      "mcp__agent-ml-research__overleaf_status",
+      "mcp__agent-ml-research__overleaf_sync",
+      "mcp__agent-ml-research__paper_agent_post_to_director",
+      "mcp__agent-ml-research__paper_agent_request_review",
+      "mcp__agent-ml-research__paper_compile_and_check",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "2f03de46-6c9f-4dcc-8f74-9d1a4a7ac431",
+  "timestamp": "2026-05-14T15:47:55.501Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+  "sessionId": "18f8ee16-2e83-4d76-8a8e-deedbc9567ac",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T15:47:55.501Z_
+
+```json
+{
+  "parentUuid": "2f03de46-6c9f-4dcc-8f74-9d1a4a7ac431",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "257e2454-339d-440b-86d0-ef17070aa684",
+  "timestamp": "2026-05-14T15:47:55.501Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+  "sessionId": "18f8ee16-2e83-4d76-8a8e-deedbc9567ac",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-14T15:47:55.502Z_
+
+```json
+{
+  "parentUuid": "257e2454-339d-440b-86d0-ef17070aa684",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "9d7888f1-12d8-4354-a1ec-d519df4c8be7",
+  "timestamp": "2026-05-14T15:47:55.502Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+  "sessionId": "18f8ee16-2e83-4d76-8a8e-deedbc9567ac",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---

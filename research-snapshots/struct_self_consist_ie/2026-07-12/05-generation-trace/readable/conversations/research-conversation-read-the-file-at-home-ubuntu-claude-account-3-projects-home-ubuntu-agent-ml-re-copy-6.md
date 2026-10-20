@@ -1,0 +1,3943 @@
+# Research conversation: Read the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 1
+- **Tool calls:** 14
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-a7a20428baf062e1e.jsonl`
+- **Structured JSON:** [`b05c1b7ce0679ebd43d3.json`](../../sessions/b0/b05c1b7ce0679ebd43d3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+35 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T04:37:07.801Z_
+
+Read the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/36cf417f-07d2-401a-833f-9ccfb82efc3c/tool-results/mcp-agent-ml-research-read_registry-1778906214749.txt
+
+This is JSON with schema: {result: string}. The result string contains YAML content of experiment registry entries.
+
+Extract and report:
+1. ALL experiments related to RE (relation extraction) - their exp_id, status, conclusion, key metrics
+2. ALL experiments related to free-form / freeform decoding - their exp_id, status, conclusion, key metrics
+3. ALL experiments with "verbalized" or "verbaliz" in their name/description
+4. ALL experiments with "llama" in their name
+5. ALL experiments with "4b" or "4B" in their name
+6. The most recent 5 experiments by updated_at date
+7. Any experiments related to TACRED or ACE05
+
+Be thorough - report exact metric values, not summaries.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "b5ea1357-f0e7-49b6-9296-8205b7ccdf92",
+  "agentId": "a7a20428baf062e1e",
+  "type": "user",
+  "uuid": "5ccbeb19-0859-4767-87e5-51cf70b3f849",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T04:37:07.807Z_
+
+```json
+{
+  "parentUuid": "5ccbeb19-0859-4767-87e5-51cf70b3f849",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "e4fc6d9a-e281-4d9c-b074-34b471cd7de7",
+  "timestamp": "2026-05-16T04:37:07.807Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T04:37:11.015Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01BagX1AS2yAyn7tFjTJmWFb`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/36cf417f-07d2-401a-833f-9ccfb82efc3c/tool-results/mcp-agent-ml-research-read_registry-1778906214749.txt",
+  "limit": 500
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4fc6d9a-e281-4d9c-b074-34b471cd7de7",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dPUeDTopZ15TgyqgfR",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "275548ff-5b2f-4860-ab83-2d614d3a2c5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015dt8e11DMrQ8h4mwt9vC2F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22667,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 172,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 22667
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 172,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 22667,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 22667,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-16T04:37:11.386Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01BagX1AS2yAyn7tFjTJmWFb`</summary>
+
+```text
+File content (77415 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "275548ff-5b2f-4860-ab83-2d614d3a2c5c",
+  "isSidechain": true,
+  "promptId": "b5ea1357-f0e7-49b6-9296-8205b7ccdf92",
+  "agentId": "a7a20428baf062e1e",
+  "type": "user",
+  "uuid": "0aceebfd-fe98-4c66-98e8-b164d752a1ae",
+  "toolUseResult": "Error: File content (77415 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "275548ff-5b2f-4860-ab83-2d614d3a2c5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T04:37:14.707Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QncXQyJLBWguyGXAYRCQRA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/36cf417f-07d2-401a-833f-9ccfb82efc3c/tool-results/mcp-agent-ml-research-read_registry-1778906214749.txt",
+  "limit": 400,
+  "offset": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0aceebfd-fe98-4c66-98e8-b164d752a1ae",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dPjtzdocooLRywAfpK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d920b444-0bac-43f8-ba7c-b8b0ba394ae0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QNqaW9VPbrkdEsreZcKNJ2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1073,
+      "cache_read_input_tokens": 22667,
+      "output_tokens": 188,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1073
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 188,
+          "cache_read_input_tokens": 22667,
+          "cache_creation_input_tokens": 1073,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1073,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T04:37:14.947Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01QncXQyJLBWguyGXAYRCQRA`</summary>
+
+```text
+File content (77415 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d920b444-0bac-43f8-ba7c-b8b0ba394ae0",
+  "isSidechain": true,
+  "promptId": "b5ea1357-f0e7-49b6-9296-8205b7ccdf92",
+  "agentId": "a7a20428baf062e1e",
+  "type": "user",
+  "uuid": "3271145e-aa2b-4ec9-ae93-1827cd7fac9c",
+  "toolUseResult": "Error: File content (77415 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "d920b444-0bac-43f8-ba7c-b8b0ba394ae0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-16T04:37:17.010Z_
+
+The file is very large. Let me search for the relevant patterns systematically.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3271145e-aa2b-4ec9-ae93-1827cd7fac9c",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dQ19Gocoiz6UzPpHEc",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2674dcea-d986-49b0-9bf0-067e160bab64",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H6W7yZ1XxAmuvuVQA4Ba9E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 249,
+      "cache_read_input_tokens": 23740,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 249,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T04:37:19.527Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01M71cuWoSHKrgfPad2svehU`</summary>
+
+```json
+{
+  "pattern": "exp_id:|status:|conclusion:|updated_at:|re_|_re_|relation.extraction|tacred|ace05|freeform|free.form|verbaliz|llama|4[bB]",
+  "path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/36cf417f-07d2-401a-833f-9ccfb82efc3c/tool-results/mcp-agent-ml-research-read_registry-1778906214749.txt",
+  "output_mode": "content",
+  "head_limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2674dcea-d986-49b0-9bf0-067e160bab64",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dQ19Gocoiz6UzPpHEc",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1b65b67d-1e08-467a-b408-e10c5ea6a202",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H6W7yZ1XxAmuvuVQA4Ba9E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 249,
+      "cache_read_input_tokens": 23740,
+      "output_tokens": 273,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 249
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 273,
+          "cache_read_input_tokens": 23740,
+          "cache_creation_input_tokens": 249,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 249,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T04:37:19.549Z_
+
+<details><summary>↩ Tool result · `toolu_01M71cuWoSHKrgfPad2svehU`</summary>
+
+```text
+1:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1b65b67d-1e08-467a-b408-e10c5ea6a202",
+  "isSidechain": true,
+  "promptId": "b5ea1357-f0e7-49b6-9296-8205b7ccdf92",
+  "agentId": "a7a20428baf062e1e",
+  "type": "user",
+  "uuid": "272b14a7-abdc-4fd6-bee5-cc01d0ef7c4f",
+  "sourceToolAssistantUUID": "1b65b67d-1e08-467a-b408-e10c5ea6a202",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-16T04:37:22.214Z_
+
+The file is a single-line JSON. Let me extract it differently.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "272b14a7-abdc-4fd6-bee5-cc01d0ef7c4f",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dQLyskAWwnUbmCaRhx",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "19b31aba-cd67-4c48-9e63-99fade8eeb66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A5eXvRTePaxTEgpZmTzpnW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 294,
+      "cache_read_input_tokens": 23989,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 294,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T04:37:23.755Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Vbn2uYA7EuSZcWaM2Qt2eu`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/36cf417f-07d2-401a-833f-9ccfb82efc3c/tool-results/mcp-agent-ml-research-read_registry-1778906214749.txt') as f:\n    data = json.load(f)\n# The result field contains YAML\nprint(data['result'][:500])\n\"",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "19b31aba-cd67-4c48-9e63-99fade8eeb66",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dQLyskAWwnUbmCaRhx",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5f43f765-5872-4f86-955f-138c35b3ef8d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A5eXvRTePaxTEgpZmTzpnW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 294,
+      "cache_read_input_tokens": 23989,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 294
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 23989,
+          "cache_creation_input_tokens": 294,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 294,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T04:37:23.841Z_
+
+<details><summary>↩ Tool result · `toolu_01Vbn2uYA7EuSZcWaM2Qt2eu`</summary>
+
+```text
+{"success": true, "data": {"experiments": {"exp_llama3b_scierc_ablation": {"status": "DONE", "retry_count": 0, "created_at": "2026-05-16T02:45:23.638Z", "updated_at": "2026-05-16T03:59:26.005Z", "hypothesis": "Cross-family scale ablation: LLaMA 3.2-3B on SciERC NER. Verify correlation-selection gap generalizes across model families AND scales. Compare with LLaMA 8B results.", "spec": {"command": "CUDA_VISIBLE_DEVICES=3 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5f43f765-5872-4f86-955f-138c35b3ef8d",
+  "isSidechain": true,
+  "promptId": "b5ea1357-f0e7-49b6-9296-8205b7ccdf92",
+  "agentId": "a7a20428baf062e1e",
+  "type": "user",
+  "uuid": "429a3cd6-62a3-4917-a550-05e12d2fe231",
+  "sourceToolAssistantUUID": "5f43f765-5872-4f86-955f-138c35b3ef8d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T04:37:28.538Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01HbuTKWYgZ7s87SViP7kF56`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/36cf417f-07d2-401a-833f-9ccfb82efc3c/tool-results/mcp-agent-ml-research-read_registry-1778906214749.txt') as f:\n    data = json.load(f)\n\nresult_str = data['result']\n# This is a JSON string containing experiments\nresult = json.loads(result_str)\n\nexperiments = result['data']['experiments']\nprint(f\"Total experiments: {len(experiments)}\")\nprint(\"\\n=== ALL EXPERIMENT IDs ===\")\nfor eid in sorted(experiments.keys()):\n    print(f\"  {eid}\")\nPYEOF",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "429a3cd6-62a3-4917-a550-05e12d2fe231",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dQf9mfr3VbAGRRnvuP",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b991d513-c553-4473-aa60-59d3bc0195d1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HGvgdg2gjXq7DscRhcvCiD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 430,
+      "cache_read_input_tokens": 24283,
+      "output_tokens": 294,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 430
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 294,
+          "cache_read_input_tokens": 24283,
+          "cache_creation_input_tokens": 430,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 430,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T04:37:28.624Z_
+
+<details><summary>↩ Tool result · `toolu_01HbuTKWYgZ7s87SViP7kF56`</summary>
+
+```text
+Total experiments: 107
+
+=== ALL EXPERIMENT IDs ===
+  e1_component_wise_re_sj
+  exp001_seed123
+  exp001_seed456
+  exp008_re_n16
+  exp_001_n16_seed123
+  exp_001_n16_seed123_full
+  exp_001_n16_seed456
+  exp_001_n16_seed456_full
+  exp_001_ner_n16_scierc
+  exp_001_ner_n16_seed123
+  exp_001_seed123_t10_full
+  exp_001_seed123_v2
+  exp_001_seed123_v2_r1024
+  exp_001_seed42_v2
+  exp_001_seed42_v2_r1024
+  exp_001_seed456_t10_full
+  exp_001_seed456_v2
+  exp_001_seed456_v2_ner
+  exp_001_seed456_v2_ner_r1024
+  exp_002
+  exp_002_conll_n16
+  exp_002_conll_n16_r1024
+  exp_002_merge_conll2003
+  exp_002_ner_conll2003
+  exp_003_ner_wnut17
+  exp_003_wnut17_eval
+  exp_003_wnut17_v2
+  exp_004_re_diagnostic
+  exp_004_v2
+  exp_005
+  exp_005_v2
+  exp_006_v2
+  exp_007_llama_inference
+  exp_007_llama_n16
+  exp_007_llama_n16_r1024
+  exp_007_llama_seed123
+  exp_007_llama_seed456
+  exp_007_ner_llama
+  exp_007_ner_multi_model
+  exp_008_re_n16
+  exp_008_re_n16_full
+  exp_008_re_n16_t10_full
+  exp_008_re_n16_v2
+  exp_008_re_seed123
+  exp_009_capability_stratification
+  exp_009_v2
+  exp_009_v2_re_rerun
+  exp_010_selection_curves
+  exp_011_ood_conll_to_scierc
+  exp_011_ood_scierc_to_conll
+  exp_012_logprob_baseline
+  exp_012_rerun_1024
+  exp_013_exact_match_voting
+  exp_014_entity_majority_voting
+  exp_015_metrics_expansion
+  exp_015_v2
+  exp_016_rerun_1024_bootstrap
+  exp_016_signal_ensemble
+  exp_016_v2
+  exp_017_llama_conll
+  exp_017_llama_conll_infer
+  exp_017_llama_conll_n16
+  exp_017_llama_conll_n16_r1024
+  exp_017_llama_conll_n16_s123
+  exp_017_llama_conll_n16_s123_r1024
+  exp_017_llama_conll_n16_s456
+  exp_017_llama_conll_n16_s456_r1024
+  exp_017_llama_conll_n8_t07
+  exp_018_llama_scierc_seed123
+  exp_018_llama_scierc_seed42_r1024
+  exp_018_llama_scierc_seed456
+  exp_018_llama_scierc_seed456_r1024
+  exp_018_qwen_scierc_seed123
+  exp_018_qwen_scierc_seed456
+  exp_019_supervised_verifier
+  exp_freeform_ablation
+  exp_freeform_conll_4seed
+  exp_freeform_seed123
+  exp_freeform_seed456
+  exp_freeform_seed789
+  exp_freeform_seed789_v2
+  exp_freeform_seed789_v3
+  exp_llama3b_scierc_ablation
+  exp_lp_scierc_t07
+  exp_lp_t07_scierc
+  exp_qwen3_4b_conll_finetune
+  exp_qwen3_4b_conll_finetune_resume
+  exp_qwen3_4b_conll_merge_inference_v2
+  exp_qwen3_4b_conll_scs_inference
+  exp_qwen3_4b_conll_scs_inference_v2
+  exp_qwen3_4b_scierc_finetune
+  exp_qwen3_4b_scierc_finetune_v2
+  exp_qwen3_4b_scierc_finetune_v3
+  exp_qwen3_4b_scierc_finetune_v4
+  exp_qwen3_4b_scierc_merge_inference
+  exp_qwen3_4b_scierc_scs_inference
+  exp_re_scierc_seed123
+  exp_re_scierc_seed456
+  exp_verbalized_confidence
+  ft_001
+  ft_002
+  ft_002_v2
+  mvp_pilot_001
+  mvp_pilot_002
+  mvp_pilot_003
+  mvp_pilot_004
+  mvp_pilot_005
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b991d513-c553-4473-aa60-59d3bc0195d1",
+  "isSidechain": true,
+  "promptId": "b5ea1357-f0e7-49b6-9296-8205b7ccdf92",
+  "agentId": "a7a20428baf062e1e",
+  "type": "user",
+  "uuid": "7e5d7926-783f-4db4-a6a1-fe61f94ab740",
+  "sourceToolAssistantUUID": "b991d513-c553-4473-aa60-59d3bc0195d1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-16T04:37:30.915Z_
+
+Now let me extract detailed info for each category.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e5d7926-783f-4db4-a6a1-fe61f94ab740",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dR1bq72aDwo6qzzpMN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d3f07e19-a2dd-4f77-ba06-7fb890e0cca2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JSAkepfidFBTYraoXp1oUT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1671,
+      "cache_read_input_tokens": 24713,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1671,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T04:37:39.105Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01V2orVXk1tYxG4UquHxv3F3`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/36cf417f-07d2-401a-833f-9ccfb82efc3c/tool-results/mcp-agent-ml-research-read_registry-1778906214749.txt') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Category 1: RE (relation extraction) experiments\nre_exps = {}\nfor eid, exp in experiments.items():\n    eid_lower = eid.lower()\n    hyp = (exp.get('hypothesis') or '').lower()\n    conc = ''\n    if isinstance(exp.get('conclusion'), dict):\n        conc = json.dumps(exp.get('conclusion',{})).lower()\n    elif isinstance(exp.get('conclusion'), str):\n        conc = exp.get('conclusion','').lower()\n    \n    is_re = False\n    # Check for RE in id\n    if '_re_' in eid_lower or eid_lower.startswith('re_') or eid_lower.endswith('_re'):\n        is_re = True\n    if 'relation extraction' in hyp or 'relation extraction' in conc:\n        is_re = True\n    if 'e1_component_wise_re' in eid_lower:\n        is_re = True\n    if 'exp_004_re' in eid_lower or 'exp_008_re' in eid_lower or 'exp_009_v2_re' in eid_lower:\n        is_re = True\n    if 'exp_re_' in eid_lower:\n        is_re = True\n    \n    if is_re:\n        re_exps[eid] = exp\n\nprint(f\"=== CATEGORY 1: RE (Relation Extraction) Experiments ({len(re_exps)}) ===\\n\")\nfor eid in sorted(re_exps.keys()):\n    exp = re_exps[eid]\n    print(f\"--- {eid} ---\")\n    print(f\"  status: {exp.get('status')}\")\n    print(f\"  updated_at: {exp.get('updated_at')}\")\n    print(f\"  hypothesis: {exp.get('hypothesis','')[:200]}\")\n    conclusion = exp.get('conclusion')\n    if isinstance(conclusion, dict):\n        print(f\"  conclusion: {json.dumps(conclusion, indent=4)[:600]}\")\n    else:\n        print(f\"  conclusion: {str(conclusion)[:600]}\")\n    metrics = exp.get('metrics')\n    if metrics:\n        print(f\"  metrics: {json.dumps(metrics, indent=4)[:600]}\")\n    print()\n\nPYEOF",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d3f07e19-a2dd-4f77-ba06-7fb890e0cca2",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dR1bq72aDwo6qzzpMN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "aec6ddcc-18ee-408b-b630-d645deec6d5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JSAkepfidFBTYraoXp1oUT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1671,
+      "cache_read_input_tokens": 24713,
+      "output_tokens": 816,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1671
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 816,
+          "cache_read_input_tokens": 24713,
+          "cache_creation_input_tokens": 1671,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1671,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T04:37:39.195Z_
+
+<details><summary>↩ Tool result · `toolu_01V2orVXk1tYxG4UquHxv3F3`</summary>
+
+```text
+=== CATEGORY 1: RE (Relation Extraction) Experiments (11) ===
+
+--- e1_component_wise_re_sj ---
+  status: DONE
+  updated_at: 2026-05-14T09:23:38.818Z
+  hypothesis: 
+  conclusion: negative
+  metrics: {
+    "full_head_sj_rho": 0.21,
+    "full_tail_sj_rho": 0.201,
+    "full_type_match_rho": 0.201,
+    "full_multiplicative_rho": 0.244,
+    "full_additive_rho": 0.243,
+    "full_fleiss_kappa_rho": 0.278,
+    "cond_head_sj_rho": 0.27,
+    "cond_tail_sj_rho": 0.259,
+    "cond_type_match_rho": 0.252,
+    "cond_multiplicative_rho": 0.316,
+    "cond_additive_rho": 0.306,
+    "cond_fleiss_kappa_rho": 0.307,
+    "n_full": 397,
+    "n_conditional": 313,
+    "diagnosis": "head_sj rho=0.210 FAR from NER rho=0.383. Multiplicative penalty hypothesis REJECTED. Problem is fundamental: span-level SJ lacks dis
+
+--- exp008_re_n16 ---
+  status: DONE
+  updated_at: 2026-05-15T12:41:39.774Z
+  hypothesis: 
+  conclusion: killed
+
+--- exp_004_re_diagnostic ---
+  status: DONE
+  updated_at: 2026-05-14T11:50:24.620Z
+  hypothesis: 
+  conclusion: success
+  metrics: {
+    "per_relation_type": {
+        "HYPONYM-OF": {
+            "n": 36,
+            "rho_sj": 0.545,
+            "rho_fk": 0.646,
+            "rho_vc": 0.628,
+            "mean_f1": 0.513
+        },
+        "CONJUNCTION": {
+            "n": 86,
+            "rho_sj": 0.383,
+            "rho_fk": 0.35,
+            "rho_vc": 0.484,
+            "mean_f1": 0.48
+        },
+        "USED-FOR": {
+            "n": 299,
+            "rho_sj": 0.236,
+            "rho_fk": 0.255,
+            "rho_vc": 0.286,
+            "mean_f1": 0.422
+        },
+        "PART-OF": {
+            "n": 44,
+            "rh
+
+--- exp_008_re_n16 ---
+  status: DONE
+  updated_at: 2026-05-14T12:43:01.073Z
+  hypothesis: 
+  conclusion: success
+  metrics: {
+    "ner": {
+        "greedy_f1": 0.6635,
+        "oracle_f1": 0.8208,
+        "headroom": 0.1572,
+        "rho_sj_full": 0.377,
+        "rho_fk_full": 0.2508,
+        "rho_logprob_full": 0.3153,
+        "rho_sj_cond": 0.3598,
+        "rho_fk_cond": 0.2251,
+        "rho_logprob_cond": 0.2927,
+        "sj_beats_fk": true,
+        "rho_advantage": 0.1262
+    },
+    "re": {
+        "greedy_f1": 0.4339,
+        "oracle_f1": 0.6658,
+        "headroom": 0.2319,
+        "rho_sj_full": 0.2966,
+        "rho_fk_full": 0.2871,
+        "rho_logprob_full": 0.2986,
+        "rho_sj_cond": 0.3975,
+        "
+
+--- exp_008_re_n16_full ---
+  status: DONE
+  updated_at: 2026-05-14T17:51:43.957Z
+  hypothesis: 
+  conclusion: killed
+
+--- exp_008_re_n16_t10_full ---
+  status: DONE
+  updated_at: 2026-05-14T14:05:49.091Z
+  hypothesis: 
+  conclusion: negative
+  metrics: {
+    "ner": {
+        "rho_sj": 0.444
+    },
+    "re": {
+        "rho_sj": 0.248
+    },
+    "n_instances": 551,
+    "N": 16,
+    "T": 1,
+    "seed": 42,
+    "mode": "RE-only",
+    "source": "director_corrected"
+}
+
+--- exp_008_re_n16_v2 ---
+  status: DONE
+  updated_at: 2026-05-14T15:23:59.395Z
+  hypothesis: 
+  conclusion: negative
+  metrics: {
+    "sj_rho_full": 0.281,
+    "sj_rho_cond": 0.308,
+    "f1_zero_pct": 44.3,
+    "conclusion_note": "RE N=16 v2 negative: SJ weak, 44.3% F1=0"
+}
+
+--- exp_008_re_seed123 ---
+  status: DONE
+  updated_at: 2026-05-14T15:21:39.591Z
+  hypothesis: 
+  conclusion: negative
+  metrics: {
+    "greedy_f1": 0.4229,
+    "oracle_f1": 0.6244,
+    "oracle_headroom": 0.2015,
+    "fleiss_kappa_mean": 0.3455,
+    "soft_jaccard_mean": 0.6126,
+    "sample_f1_mean": 0.3594,
+    "sample_f1_std": 0.3793,
+    "sample_f1_zero_pct": 44.1,
+    "structural_gt_surface": false,
+    "rho_kappa_f1_full": 0.3174,
+    "rho_sj_f1_full": 0.2835,
+    "rho_kappa_f1_cond": 0.0766,
+    "rho_sj_f1_cond": 0.2877,
+    "logprob_auroc_full": 0.6499,
+    "logprob_auroc_cond": 0.5265,
+    "verdict": "FAIL"
+}
+
+--- exp_009_v2_re_rerun ---
+  status: DONE
+  updated_at: 2026-05-14T18:56:58.168Z
+  hypothesis: 
+  conclusion: success
+
+--- exp_re_scierc_seed123 ---
+  status: DONE
+  updated_at: 2026-05-15T15:55:40.000Z
+  hypothesis: SciERC RE 多种子验证 (seed123): 解决 R4-W1/R7-C1 single-seed RE 弱点。与 seed42 (exp_012_rerun_1024) 对齐，joint subtask N=8 T=1.0。目标: 3-seed RE selection F1 mean±σ。
+  conclusion: negative
+  metrics: {
+    "ner_greedy_f1": 0.663,
+    "ner_oracle_f1": 0.786,
+    "ner_headroom_pp": 12.3,
+    "ner_rho_sj_cond": 0.404,
+    "ner_rho_fk_cond": 0.182,
+    "re_greedy_f1": 0.42,
+    "re_oracle_f1": 0.593,
+    "re_headroom_pp": 17.3,
+    "re_rho_sj_cond": 0.277,
+    "re_rho_fk_cond": 0.063,
+    "re_zero_f1_pct": 43.6,
+    "verdict": "FAIL_re_rho_sj_below_040"
+}
+
+--- exp_re_scierc_seed456 ---
+  status: DONE
+  updated_at: 2026-05-15T15:55:41.890Z
+  hypothesis: SciERC RE 多种子验证 (seed456): 解决 R4-W1/R7-C1 single-seed RE 弱点。与 seed42 (exp_012_rerun_1024) 对齐，joint subtask N=8 T=1.0。目标: 3-seed RE selection F1 mean±σ。
+  conclusion: negative
+  metrics: {
+    "ner_greedy_f1": 0.664,
+    "ner_oracle_f1": 0.775,
+    "ner_headroom_pp": 11.1,
+    "ner_rho_sj_cond": 0.283,
+    "ner_rho_fk_cond": 0.145,
+    "re_greedy_f1": 0.417,
+    "re_oracle_f1": 0.581,
+    "re_headroom_pp": 16.3,
+    "re_rho_sj_cond": 0.315,
+    "re_rho_fk_cond": 0.123,
+    "re_zero_f1_pct": 45.3,
+    "verdict": "FAIL_re_rho_sj_below_040"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aec6ddcc-18ee-408b-b630-d645deec6d5d",
+  "isSidechain": true,
+  "promptId": "b5ea1357-f0e7-49b6-9296-8205b7ccdf92",
+  "agentId": "a7a20428baf062e1e",
+  "type": "user",
+  "uuid": "10aa1514-5e31-44d1-b2c8-e8560de0d0b7",
+  "sourceToolAssistantUUID": "aec6ddcc-18ee-408b-b630-d645deec6d5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T04:37:48.758Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01RuURyNJMApGg8XWbwpCp3M`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/36cf417f-07d2-401a-833f-9ccfb82efc3c/tool-results/mcp-agent-ml-research-read_registry-1778906214749.txt') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Category 2: freeform experiments\nprint(\"=== CATEGORY 2: Free-form / Freeform Decoding Experiments ===\\n\")\nfor eid in sorted(experiments.keys()):\n    if 'freeform' in eid.lower() or 'free_form' in eid.lower():\n        exp = experiments[eid]\n        print(f\"--- {eid} ---\")\n        print(f\"  status: {exp.get('status')}\")\n        print(f\"  updated_at: {exp.get('updated_at')}\")\n        print(f\"  hypothesis: {str(exp.get('hypothesis',''))[:300]}\")\n        conclusion = exp.get('conclusion')\n        if isinstance(conclusion, dict):\n            print(f\"  conclusion: {json.dumps(conclusion, indent=4)[:800]}\")\n        else:\n            print(f\"  conclusion: {str(conclusion)[:800]}\")\n        metrics = exp.get('metrics')\n        if metrics:\n            print(f\"  metrics: {json.dumps(metrics, indent=4)[:800]}\")\n        print()\n\n# Also search hypothesis/conclusion for freeform\nprint(\"\\n=== Experiments mentioning 'freeform' or 'free-form' in hypothesis/conclusion (not already listed) ===\\n\")\nfreeform_ids = set(eid for eid in experiments if 'freeform' in eid.lower() or 'free_form' in eid.lower())\nfor eid, exp in sorted(experiments.items()):\n    if eid in freeform_ids:\n        continue\n    hyp = str(exp.get('hypothesis',''))\n    conc = str(exp.get('conclusion',''))\n    if 'freeform' in hyp.lower() or 'free-form' in hyp.lower() or 'free form' in hyp.lower() or 'freeform' in conc.lower() or 'free-form' in conc.lower():\n        print(f\"  {eid}: status={exp.get('status')}, hyp={hyp[:200]}\")\n\nPYEOF",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10aa1514-5e31-44d1-b2c8-e8560de0d0b7",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dRnu8AwUcTkyGAciiH",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "00cfadd4-883e-4b75-8f22-dff0b09baff3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WbDnBAvgaziQh8NaFUnCUU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3350,
+      "cache_read_input_tokens": 26384,
+      "output_tokens": 736,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3350
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 736,
+          "cache_read_input_tokens": 26384,
+          "cache_creation_input_tokens": 3350,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3350,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T04:37:48.847Z_
+
+<details><summary>↩ Tool result · `toolu_01RuURyNJMApGg8XWbwpCp3M`</summary>
+
+```text
+=== CATEGORY 2: Free-form / Freeform Decoding Experiments ===
+
+--- exp_freeform_ablation ---
+  status: DONE
+  updated_at: 2026-05-15T10:00:09.238Z
+  hypothesis: 
+  conclusion: negative
+  metrics: {
+    "lp_std_ratio_free_vs_constrained": 0.97,
+    "lp_range_ratio": 0.96,
+    "tied_fraction_constrained": 0.597,
+    "tied_fraction_freeform": 0.577,
+    "ner_selection_gap_constrained": 0.0059,
+    "ner_selection_gap_freeform": 0.0018,
+    "re_selection_gap_constrained": -0.0068,
+    "re_selection_gap_freeform": 0.0169,
+    "parse_rate": 0.9995,
+    "ner_vc_rho_constrained": 0.3792,
+    "ner_vc_rho_freeform": 0.4089
+}
+
+--- exp_freeform_conll_4seed ---
+  status: DONE
+  updated_at: 2026-05-16T03:04:49.550Z
+  hypothesis: Free-form CoNLL NER 4-seed ablation: verify LP compression is cross-dataset intrinsic (not SciERC-specific). 4 seeds × N=8, T=1.0 on CoNLL, compare LP range distribution with constrained decoding.
+  conclusion: success
+  metrics: {
+    "greedy_f1": "0.9035\u00b10.0004",
+    "oracle_f1": "0.9460\u00b10.0023",
+    "lp_range_median": "0.0581\u00b10.0072",
+    "rho_sj": "0.4606\u00b10.0188",
+    "rho_fk": "0.4372\u00b10.0209",
+    "rho_em": "0.4714\u00b10.0168",
+    "rho_vc": "0.4606\u00b10.0138",
+    "rho_lp": "0.3262\u00b10.0120",
+    "sel_f1_sj": "0.8994\u00b10.0014",
+    "sel_f1_vc": "0.9006\u00b10.0026",
+    "sel_f1_lp": "0.8958\u00b10.0009",
+    "seeds": [
+        42,
+        123,
+        456,
+        789
+    ],
+    "n_samples": 8,
+    "temperature": 1,
+    "instances": 2756,
+    "gold_empty_filtered": 697
+}
+
+--- exp_freeform_seed123 ---
+  status: DONE
+  updated_at: 2026-05-15T19:29:48.939Z
+  hypothesis: 
+  conclusion: success
+  metrics: {
+    "inference": {
+        "n_instances": 551,
+        "n_samples": 8,
+        "total_samples": 4408,
+        "total_parsed": 4406,
+        "parse_rate_pct": 99.95,
+        "elapsed_seconds": 228.1
+    },
+    "freeform": {
+        "selection_ner": {
+            "greedy": 0.6194,
+            "selected": 0.6222,
+            "gap": 0.0028
+        },
+        "selection_re": {
+            "greedy": 0.2874,
+            "selected": 0.305,
+            "gap": 0.0176
+        },
+        "logprob_variance": {
+            "mean_std": 0.019881,
+            "mean_range": 0.059864,
+            "tied_pct": 57.7
+        },
+        "qe_ner": {
+            "n": 529,
+            "SJ": {
+                "rho": 0.384214,
+                "auroc": 0.748728
+            },
+            "FK": {
+                "rho"
+
+--- exp_freeform_seed456 ---
+  status: DONE
+  updated_at: 2026-05-15T19:12:29.413Z
+  hypothesis: 
+  conclusion: success
+  metrics: {
+    "inference": {
+        "n_instances": 551,
+        "n_samples": 8,
+        "total_samples": 4408,
+        "total_parsed": 4407,
+        "parse_rate_pct": 99.98,
+        "elapsed_seconds": 232.4
+    },
+    "freeform": {
+        "selection_ner": {
+            "greedy": 0.6198,
+            "selected": 0.6205,
+            "gap": 0.0007
+        },
+        "selection_re": {
+            "greedy": 0.2908,
+            "selected": 0.3108,
+            "gap": 0.02
+        },
+        "logprob_variance": {
+            "mean_std": 0.018631,
+            "mean_range": 0.056792,
+            "tied_pct": 58.4
+        },
+        "qe_ner": {
+            "n": 529,
+            "SJ": {
+                "rho": 0.378498,
+                "auroc": 0.707769
+            },
+            "FK": {
+                "rho":
+
+--- exp_freeform_seed789 ---
+  status: DONE
+  updated_at: 2026-05-15T19:16:29.902Z
+  hypothesis: 
+  conclusion: success
+  metrics: {
+    "inference": {
+        "n_instances": 551,
+        "n_samples": 8,
+        "total_samples": 4408,
+        "total_parsed": 4408,
+        "parse_rate_pct": 100,
+        "elapsed_seconds": 227.5
+    },
+    "freeform": {
+        "selection_ner": {
+            "greedy": 0.6205,
+            "selected": 0.6232,
+            "gap": 0.0027
+        },
+        "selection_re": {
+            "greedy": 0.2909,
+            "selected": 0.31,
+            "gap": 0.0191
+        },
+        "logprob_variance": {
+            "mean_std": 0.0183,
+            "mean_range": 0.054908,
+            "tied_pct": 59
+        },
+        "qe_ner": {
+            "n": 529,
+            "SJ": {
+                "rho": 0.393995,
+                "auroc": 0.734474
+            },
+            "FK": {
+                "rho": 0.312
+
+--- exp_freeform_seed789_v2 ---
+  status: DONE
+  updated_at: 2026-05-15T19:06:44.537Z
+  hypothesis: 
+  conclusion: failed
+
+--- exp_freeform_seed789_v3 ---
+  status: DONE
+  updated_at: 2026-05-15T19:36:21.604Z
+  hypothesis: 
+  conclusion: success
+  metrics: {
+    "n_instances": 551,
+    "n_samples": 8,
+    "parse_rate_pct": 100,
+    "elapsed_seconds": 229.7,
+    "freeform_ner_selection_gap": 0.0028,
+    "freeform_re_selection_gap": 0.0219,
+    "freeform_lp_std": 0.0183,
+    "freeform_lp_range": 0.054908,
+    "freeform_tied_pct": 59,
+    "re_lp_flip_positive": true,
+    "variance_ratio_std": 0.89,
+    "variance_ratio_range": 0.88
+}
+
+
+=== Experiments mentioning 'freeform' or 'free-form' in hypothesis/conclusion (not already listed) ===
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "00cfadd4-883e-4b75-8f22-dff0b09baff3",
+  "isSidechain": true,
+  "promptId": "b5ea1357-f0e7-49b6-9296-8205b7ccdf92",
+  "agentId": "a7a20428baf062e1e",
+  "type": "user",
+  "uuid": "5f7ab0f0-6e03-4246-99f5-3b004744b7d3",
+  "sourceToolAssistantUUID": "00cfadd4-883e-4b75-8f22-dff0b09baff3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T04:37:56.188Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01XVzgGUa9NrqTQUrm3rxiXq`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/36cf417f-07d2-401a-833f-9ccfb82efc3c/tool-results/mcp-agent-ml-research-read_registry-1778906214749.txt') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Category 3: verbalized experiments\nprint(\"=== CATEGORY 3: 'verbalized' / 'verbaliz' Experiments ===\\n\")\nfor eid in sorted(experiments.keys()):\n    if 'verbaliz' in eid.lower():\n        exp = experiments[eid]\n        print(f\"--- {eid} ---\")\n        print(f\"  status: {exp.get('status')}\")\n        print(f\"  updated_at: {exp.get('updated_at')}\")\n        print(f\"  hypothesis: {str(exp.get('hypothesis',''))[:300]}\")\n        conclusion = exp.get('conclusion')\n        if isinstance(conclusion, dict):\n            print(f\"  conclusion: {json.dumps(conclusion, indent=4)[:800]}\")\n        else:\n            print(f\"  conclusion: {str(conclusion)[:800]}\")\n        metrics = exp.get('metrics')\n        if metrics:\n            print(f\"  metrics: {json.dumps(metrics, indent=4)[:800]}\")\n        print()\n\n# Also search hypothesis/conclusion\nprint(\"\\n=== Other experiments mentioning 'verbaliz' in hypothesis/conclusion ===\\n\")\nverb_ids = set(eid for eid in experiments if 'verbaliz' in eid.lower())\nfor eid, exp in sorted(experiments.items()):\n    if eid in verb_ids:\n        continue\n    hyp = str(exp.get('hypothesis',''))\n    conc = json.dumps(exp.get('conclusion','')) if isinstance(exp.get('conclusion'), dict) else str(exp.get('conclusion',''))\n    if 'verbaliz' in hyp.lower() or 'verbaliz' in conc.lower():\n        print(f\"  {eid}: status={exp.get('status')}, hyp={hyp[:200]}\")\n\nPYEOF",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f7ab0f0-6e03-4246-99f5-3b004744b7d3",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dSW67rf7QW7JLnotXs",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a1204e96-ae29-4662-a978-d5d1aaa8bcac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ENckhnxG9hb1W3L9mPyMh2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2915,
+      "cache_read_input_tokens": 29734,
+      "output_tokens": 675,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2915
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 675,
+          "cache_read_input_tokens": 29734,
+          "cache_creation_input_tokens": 2915,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2915,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T04:37:56.273Z_
+
+<details><summary>↩ Tool result · `toolu_01XVzgGUa9NrqTQUrm3rxiXq`</summary>
+
+```text
+=== CATEGORY 3: 'verbalized' / 'verbaliz' Experiments ===
+
+--- exp_verbalized_confidence ---
+  status: DONE
+  updated_at: 2026-05-16T03:09:53.789Z
+  hypothesis: Verbalized confidence baseline: let model self-rate extraction confidence. If also compressed → strengthens "score compression is general" claim. If effective → important positive finding requiring narrative adjustment.
+  conclusion: negative
+  metrics: {
+    "scierc": {
+        "VerbConf_rho": 0.2965,
+        "VerbConf_auroc": 0.6811,
+        "VerbConf_sel_f1": 0.6195,
+        "VerbConf_delta": -0.0245,
+        "best_existing_rho": 0.3792,
+        "VerbConf_mean": 8.58,
+        "VerbConf_std": 1.15,
+        "parse_fail_rate": 0.0026
+    },
+    "conll": {
+        "VerbConf_rho": 0.3366,
+        "VerbConf_auroc": 0.7469,
+        "VerbConf_sel_f1": 0.8886,
+        "VerbConf_delta": -0.0193,
+        "best_existing_rho": 0.4507,
+        "VerbConf_mean": 9.24,
+        "VerbConf_std": 1.32,
+        "parse_fail_rate": 0
+    }
+}
+
+
+=== Other experiments mentioning 'verbaliz' in hypothesis/conclusion ===
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a1204e96-ae29-4662-a978-d5d1aaa8bcac",
+  "isSidechain": true,
+  "promptId": "b5ea1357-f0e7-49b6-9296-8205b7ccdf92",
+  "agentId": "a7a20428baf062e1e",
+  "type": "user",
+  "uuid": "f9f75c50-2459-4011-aa5f-41ef2e33dba2",
+  "sourceToolAssistantUUID": "a1204e96-ae29-4662-a978-d5d1aaa8bcac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T04:38:01.799Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014wz5iHQow1C7THxgS7iFrq`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/36cf417f-07d2-401a-833f-9ccfb82efc3c/tool-results/mcp-agent-ml-research-read_registry-1778906214749.txt') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Category 4: llama experiments\nprint(\"=== CATEGORY 4: 'llama' Experiments ===\\n\")\nfor eid in sorted(experiments.keys()):\n    if 'llama' in eid.lower():\n        exp = experiments[eid]\n        print(f\"--- {eid} ---\")\n        print(f\"  status: {exp.get('status')}\")\n        print(f\"  updated_at: {exp.get('updated_at')}\")\n        print(f\"  hypothesis: {str(exp.get('hypothesis',''))[:300]}\")\n        conclusion = exp.get('conclusion')\n        if isinstance(conclusion, dict):\n            print(f\"  conclusion: {json.dumps(conclusion, indent=4)[:800]}\")\n        else:\n            print(f\"  conclusion: {str(conclusion)[:800]}\")\n        metrics = exp.get('metrics')\n        if metrics:\n            print(f\"  metrics: {json.dumps(metrics, indent=4)[:800]}\")\n        print()\n\nPYEOF",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f9f75c50-2459-4011-aa5f-41ef2e33dba2",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dT3qL8jWPtoinfCZMj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "65b84080-eb91-46a0-a7cc-a27048107338",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013VThBdUwPs8BrzCEDPCidp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1095,
+      "cache_read_input_tokens": 32649,
+      "output_tokens": 473,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1095
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 473,
+          "cache_read_input_tokens": 32649,
+          "cache_creation_input_tokens": 1095,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1095,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T04:38:01.893Z_
+
+<details><summary>↩ Tool result · `toolu_014wz5iHQow1C7THxgS7iFrq`</summary>
+
+```text
+=== CATEGORY 4: 'llama' Experiments ===
+
+--- exp_007_llama_inference ---
+  status: DONE
+  updated_at: 2026-05-14T14:28:32.909Z
+  hypothesis: 
+  conclusion: success
+  metrics: {
+    "ner": {
+        "greedy_f1": 0.66,
+        "oracle_f1": 0.781,
+        "headroom": 0.121,
+        "rho_fk": 0.327,
+        "rho_sj": 0.363,
+        "rho_fk_cond": 0.226,
+        "rho_sj_cond": 0.311,
+        "rho_logprob": 0.183,
+        "rho_logprob_cond": 0.109,
+        "structural_beats_surface": true,
+        "sample_f1_pct_zero": 11.6
+    },
+    "re": {
+        "greedy_f1": 0.434,
+        "oracle_f1": 0.568,
+        "headroom": 0.135,
+        "rho_fk": 0.305,
+        "rho_sj": 0.299,
+        "rho_fk_cond": 0.259,
+        "rho_sj_cond": 0.405,
+        "rho_logprob": 0.288,
+        "rho_logprob_cond": 0.092,
+        "structural_beats_surface": false,
+        "sample_f1_pct_zero": 41.2
+    },
+    "n_instances": 551,
+    "N": 8,
+    "T": 1,
+    "seed": 42,
+    "model": "LLaMA-3.1-8
+
+--- exp_007_llama_n16 ---
+  status: DONE
+  updated_at: 2026-05-14T19:03:50.284Z
+  hypothesis: 
+  conclusion: success
+  metrics: {
+    "N": 16,
+    "dataset": "scierc",
+    "subtask": "ner",
+    "n_instances": 551,
+    "n_valid": 529,
+    "n_conditional": 478,
+    "greedy_f1": 0.645,
+    "full": {
+        "SJ_rho": 0.3791,
+        "FK_rho": 0.3081,
+        "logprob_rho": 0.2041,
+        "EM_rho": 0.3159,
+        "voting_conf_rho": 0.4515,
+        "SJ_AUROC": 0.717,
+        "FK_AUROC": 0.6581,
+        "logprob_AUROC": 0.5656,
+        "EM_AUROC": 0.7686,
+        "voting_conf_AUROC": 0.7266,
+        "SJ_ECE": 0.1019,
+        "FK_ECE": 0.1556,
+        "logprob_ECE": 0.084,
+        "EM_ECE": 0.1761,
+        "voting_conf_ECE": 0.1365
+    },
+    "conditional": {
+        "SJ_rho": 0.3222,
+        "FK_rho": 0.2182,
+        "logprob_rho": 0.1286,
+        "EM_rho": 0.3563,
+        "voting_conf_rho": 0.3356,
+        "SJ_AUROC":
+
+--- exp_007_llama_n16_r1024 ---
+  status: DONE
+  updated_at: 2026-05-15T01:20:52.194Z
+  hypothesis: 
+  conclusion: killed
+
+--- exp_007_llama_seed123 ---
+  status: DONE
+  updated_at: 2026-05-14T15:19:47.267Z
+  hypothesis: 
+  conclusion: negative
+  metrics: {
+    "verdict": "FAIL",
+    "ner": {
+        "greedy_f1": 0.6605,
+        "oracle_f1": 0.7703,
+        "headroom": 0.1098,
+        "fleiss_kappa": 0.4553,
+        "soft_jaccard": 0.7525,
+        "rho_kappa_f1": 0.2143,
+        "rho_sj_f1": 0.3371,
+        "structural_gt_surface": true
+    },
+    "re": {
+        "greedy_f1": 0.433,
+        "oracle_f1": 0.5719,
+        "headroom": 0.1389,
+        "fleiss_kappa": 0.3851,
+        "soft_jaccard": 0.6911,
+        "rho_kappa_f1": 0.2844,
+        "rho_sj_f1": 0.268,
+        "structural_gt_surface": false
+    },
+    "fail_reasons": [
+        "RE rho_sj=0.2680 < 0.40 threshold",
+        ">30% samples F1=0 (RE: 41.0%)",
+        "RE structural not > surface (delta=-0.0165)"
+    ]
+}
+
+--- exp_007_llama_seed456 ---
+  status: DONE
+  updated_at: 2026-05-14T15:19:27.040Z
+  hypothesis: 
+  conclusion: negative
+  metrics: {
+    "verdict": "FAIL",
+    "ner": {
+        "greedy_f1": 0.6597,
+        "oracle_f1": 0.7575,
+        "oracle_headroom": 0.0978,
+        "fleiss_kappa": 0.4543,
+        "soft_jaccard": 0.7491,
+        "rho_kappa_f1": 0.3115,
+        "rho_sj_f1": 0.3663,
+        "structural_gt_surface": true
+    },
+    "re": {
+        "greedy_f1": 0.4334,
+        "oracle_f1": 0.5789,
+        "oracle_headroom": 0.1455,
+        "fleiss_kappa": 0.3791,
+        "soft_jaccard": 0.6782,
+        "rho_kappa_f1": 0.3013,
+        "rho_sj_f1": 0.287,
+        "structural_gt_surface": false
+    },
+    "logprob_ner": {
+        "rho": 0.1911,
+        "auroc": 0.5989
+    },
+    "logprob_re": {
+        "rho": 0.3246,
+        "auroc": 0.6678
+    },
+    "fail_reason": "RE rho_sj=0.2870 < 0.40 threshold; >30% samples F1=0"
+}
+
+--- exp_007_ner_llama ---
+  status: DONE
+  updated_at: 2026-05-15T12:41:27.410Z
+  hypothesis: 
+  conclusion: killed
+
+--- exp_017_llama_conll ---
+  status: DONE
+  updated_at: 2026-05-14T17:30:26.798Z
+  hypothesis: 
+  conclusion: success
+
+--- exp_017_llama_conll_infer ---
+  status: DONE
+  updated_at: 2026-05-14T17:55:35.572Z
+  hypothesis: 
+  conclusion: success
+  metrics: {
+    "greedy_f1": 0.9266,
+    "oracle_f1": 0.9443,
+    "oracle_headroom": 0.0177,
+    "n_instances": 3453,
+    "n_valid": 2756,
+    "n_conditional": 2642,
+    "N": 8,
+    "full": {
+        "SJ_rho": 0.4314,
+        "FK_rho": 0.4277,
+        "logprob_rho": 0.3072,
+        "EM_rho": 0.4306,
+        "voting_conf_rho": 0.4256,
+        "SJ_AUROC": 0.7039,
+        "FK_AUROC": 0.7026,
+        "logprob_AUROC": 0.761,
+        "EM_AUROC": 0.7046,
+        "voting_conf_AUROC": 0.7088,
+        "SJ_ECE": 0.1137,
+        "FK_ECE": 0.1053,
+        "logprob_ECE": 0.129,
+        "EM_ECE": 0.1094,
+        "voting_conf_ECE": 0.0949
+    },
+    "conditional": {
+        "SJ_rho": 0.4356,
+        "FK_rho": 0.431,
+        "logprob_rho": 0.3282,
+        "EM_rho": 0.4403,
+        "voting_conf_rho": 0.3743,
+        
+
+--- exp_017_llama_conll_n16 ---
+  status: DONE
+  updated_at: 2026-05-14T19:45:16.265Z
+  hypothesis: 
+  conclusion: success
+  metrics: {
+    "greedy_f1": 0.9243,
+    "oracle_f1": 0.9487,
+    "oracle_headroom": 0.0244,
+    "n_instances": 3453,
+    "n_valid": 2756,
+    "n_conditional": 2642,
+    "structural_beats_surface": true,
+    "full": {
+        "SJ_rho": 0.4642,
+        "SJ_AUROC": 0.7391,
+        "SJ_ECE": 0.1131,
+        "FK_rho": 0.4566,
+        "FK_AUROC": 0.736,
+        "FK_ECE": 0.1071,
+        "logprob_rho": 0.3058,
+        "logprob_AUROC": 0.7594,
+        "logprob_ECE": 0.1288,
+        "EM_rho": 0.4613,
+        "EM_AUROC": 0.7391,
+        "EM_ECE": 0.1084,
+        "voting_conf_rho": 0.4554,
+        "voting_conf_AUROC": 0.7406,
+        "voting_conf_ECE": 0.0844
+    },
+    "conditional": {
+        "SJ_rho": 0.4597,
+        "SJ_AUROC": 0.7565,
+        "SJ_ECE": 0.0846,
+        "FK_rho": 0.4515,
+        "FK_AUROC"
+
+--- exp_017_llama_conll_n16_r1024 ---
+  status: DONE
+  updated_at: 2026-05-15T13:24:47.878Z
+  hypothesis: 
+  conclusion: success
+  metrics: {
+    "instance_count": 3453,
+    "n_valid": 2756,
+    "n_gold_empty": 697,
+    "parse_rate": 1,
+    "ner_greedy_f1": 0.9265,
+    "ner_oracle_f1": 0.9499,
+    "rho_fk_ner": 0.4752,
+    "rho_sj_ner": 0.4836,
+    "rho_vc_ner": 0.4746,
+    "rho_em_ner": 0.4818,
+    "rho_lp_ner": 0.3136,
+    "auroc_fk_ner": 0.7467,
+    "auroc_sj_ner": 0.7496,
+    "auroc_vc_ner": 0.7529,
+    "auroc_em_ner": 0.7508,
+    "auroc_lp_ner": 0.7661,
+    "auroc_note": "median F1=1.0, AUROC uses >=median threshold",
+    "rho_note": "CORRECTED 2026-05-15: old values (rho_fk=0.8095,rho_sj=0.1815) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756)."
+}
+
+--- exp_017_llama_conll_n16_s123 ---
+  status: DONE
+  updated_at: 2026-05-14T19:43:06.607Z
+  hypothesis: LLaMA CoNLL N=16 seed=123: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol
+  conclusion: success
+  metrics: {
+    "greedy_f1": 0.9266,
+    "oracle_f1": 0.9497,
+    "oracle_headroom": 0.0231,
+    "n_instances": 3453,
+    "n_valid": 2756,
+    "n_conditional": 2642,
+    "structural_beats_surface": true,
+    "full": {
+        "SJ_rho": 0.4698,
+        "SJ_AUROC": 0.7402,
+        "SJ_ECE": 0.1135,
+        "FK_rho": 0.4594,
+        "FK_AUROC": 0.7351,
+        "FK_ECE": 0.1114,
+        "logprob_rho": 0.3161,
+        "logprob_AUROC": 0.768,
+        "logprob_ECE": 0.129,
+        "EM_rho": 0.4676,
+        "EM_AUROC": 0.7399,
+        "EM_ECE": 0.1082,
+        "voting_conf_rho": 0.4612,
+        "voting_conf_AUROC": 0.7429,
+        "voting_conf_ECE": 0.0832
+    },
+    "conditional": {
+        "SJ_rho": 0.4712,
+        "SJ_AUROC": 0.7609,
+        "SJ_ECE": 0.0828,
+        "FK_rho": 0.4595,
+        "FK_AUROC":
+
+--- exp_017_llama_conll_n16_s123_r1024 ---
+  status: DONE
+  updated_at: 2026-05-15T10:38:43.623Z
+  hypothesis: 
+  conclusion: success
+
+--- exp_017_llama_conll_n16_s456 ---
+  status: DONE
+  updated_at: 2026-05-14T20:24:45.875Z
+  hypothesis: LLaMA CoNLL N=16 seed=456: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol
+  conclusion: success
+  metrics: {
+    "greedy_f1": 0.9243,
+    "oracle_f1": 0.9488,
+    "oracle_headroom": 0.0245,
+    "n_instances": 3453,
+    "n_valid": 2756,
+    "n_conditional": 2642,
+    "structural_beats_surface": true,
+    "full": {
+        "SJ_rho": 0.4552,
+        "SJ_AUROC": 0.7288,
+        "SJ_ECE": 0.1134,
+        "FK_rho": 0.4478,
+        "FK_AUROC": 0.7248,
+        "FK_ECE": 0.109,
+        "logprob_rho": 0.3078,
+        "logprob_AUROC": 0.7612,
+        "logprob_ECE": 0.1289,
+        "EM_rho": 0.452,
+        "EM_AUROC": 0.7275,
+        "EM_ECE": 0.1082,
+        "voting_conf_rho": 0.4571,
+        "voting_conf_AUROC": 0.7348,
+        "voting_conf_ECE": 0.0863
+    },
+    "conditional": {
+        "SJ_rho": 0.4505,
+        "SJ_AUROC": 0.7449,
+        "SJ_ECE": 0.0826,
+        "FK_rho": 0.4422,
+        "FK_AUROC":
+
+--- exp_017_llama_conll_n16_s456_r1024 ---
+  status: DONE
+  updated_at: 2026-05-15T13:24:52.004Z
+  hypothesis: 
+  conclusion: success
+  metrics: {
+    "instance_count": 3453,
+    "n_valid": 2756,
+    "n_gold_empty": 697,
+    "parse_rate": 1,
+    "ner_greedy_f1": 0.9265,
+    "ner_oracle_f1": 0.9499,
+    "rho_fk_ner": 0.469,
+    "rho_sj_ner": 0.4734,
+    "rho_vc_ner": 0.4722,
+    "rho_em_ner": 0.4752,
+    "rho_lp_ner": 0.3099,
+    "auroc_fk_ner": 0.7408,
+    "auroc_sj_ner": 0.7428,
+    "auroc_vc_ner": 0.7495,
+    "auroc_em_ner": 0.7444,
+    "auroc_lp_ner": 0.7628,
+    "auroc_note": "median F1=1.0, AUROC uses >=median threshold",
+    "rho_note": "CORRECTED 2026-05-15: old values (rho_fk=0.8085,rho_sj=0.1895) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756)."
+}
+
+--- exp_017_llama_conll_n8_t07 ---
+  status: DONE
+  updated_at: 2026-05-15T15:46:22.722Z
+  hypothesis: LLaMA CoNLL N=8 T=0.7 防御性实验：填补"LLaMA 仅在 SciERC 上测过"的弱点，验证 cross-model consistency（vs Qwen CoNLL）。T=0.7 低温下 confidence signals 的 correlation-selection gap 是否依然存在。
+  conclusion: success
+  metrics: {
+    "n_valid": 2756,
+    "greedy_f1": 0.9242,
+    "oracle_f1": 0.9391,
+    "lp_range_median": 1.1e-05,
+    "lp_tied_fraction_005": 0.9579,
+    "signals": {
+        "SJ": {
+            "rho": 0.3934,
+            "auroc": 0.6506
+        },
+        "FK": {
+            "rho": 0.3879,
+            "auroc": 0.6488
+        },
+        "VC": {
+            "rho": 0.375,
+            "auroc": 0.6551
+        },
+        "EM": {
+            "rho": 0.3888,
+            "auroc": 0.6494
+        },
+        "LP": {
+            "rho": 0.2951,
+            "auroc": 0.7509
+        }
+    },
+    "selection_f1": {
+        "SJ": 0.9247,
+        "FK": 0.9254,
+        "VC": 0.9264,
+        "EM": 0.9255,
+        "LP": 0.9248
+    }
+}
+
+--- exp_018_llama_scierc_seed123 ---
+  status: DONE
+  updated_at: 2026-05-15T06:08:04.855Z
+  hypothesis: 
+  conclusion: success
+
+--- exp_018_llama_scierc_seed42_r1024 ---
+  status: DONE
+  updated_at: 2026-05-15T06:21:59.257Z
+  hypothesis: 
+  conclusion: success
+  metrics: {
+    "ner": {
+        "full": {
+            "SJ": {
+                "rho": 0.3096,
+                "tau": 0.2288,
+                "auroc": 0.6683
+            },
+            "FK": {
+                "rho": 0.2352,
+                "tau": 0.1759,
+                "auroc": 0.6069
+            },
+            "logprob": {
+                "rho": 0.1503,
+                "tau": 0.1087,
+                "auroc": 0.5318
+            },
+            "EM": {
+                "rho": 0.2587,
+                "tau": 0.1966,
+                "auroc": 0.7174
+            },
+            "voting_conf": {
+                "rho": 0.4053,
+                "tau": 0.3042,
+                "auroc": 0.6967
+            }
+        },
+        "conditional": {
+            "SJ": {
+                "rho": 0.2718,
+                "tau":
+
+--- exp_018_llama_scierc_seed456 ---
+  status: DONE
+  updated_at: 2026-05-15T06:22:40.868Z
+  hypothesis: 
+  conclusion: killed
+
+--- exp_018_llama_scierc_seed456_r1024 ---
+  status: DONE
+  updated_at: 2026-05-15T06:21:49.320Z
+  hypothesis: 
+  conclusion: success
+  metrics: {
+    "ner_greedy_f1": 0.6597,
+    "ner_oracle_f1": 0.7683,
+    "ner_oracle_headroom": 0.1086,
+    "ner_cond_rho_fk": 0.1472,
+    "ner_cond_rho_sj": 0.2718,
+    "ner_cond_rho_logprob": 0.083,
+    "ner_logprob_auroc_cond": 0.5485,
+    "re_greedy_f1": 0.4338,
+    "re_oracle_f1": 0.5834,
+    "re_oracle_headroom": 0.1496,
+    "re_cond_rho_fk": 0.2107,
+    "re_cond_rho_sj": 0.3898,
+    "re_cond_rho_logprob": 0.1252,
+    "re_logprob_auroc_cond": 0.6119,
+    "ner_structural_beats_logprob": true,
+    "re_structural_beats_logprob": true
+}
+
+--- exp_llama3b_scierc_ablation ---
+  status: DONE
+  updated_at: 2026-05-16T03:59:26.005Z
+  hypothesis: Cross-family scale ablation: LLaMA 3.2-3B on SciERC NER. Verify correlation-selection gap generalizes across model families AND scales. Compare with LLaMA 8B results.
+  conclusion: success
+  metrics: {
+    "ner_full": {
+        "SJ_rho": 0.3754,
+        "FK_rho": 0.2676,
+        "LP_rho": 0.2662,
+        "EM_rho": 0.3341,
+        "VC_rho": 0.4602,
+        "SJ_auroc": 0.7383,
+        "FK_auroc": 0.6714,
+        "LP_auroc": 0.633,
+        "EM_auroc": 0.7763,
+        "VC_auroc": 0.7429,
+        "n": 529
+    },
+    "ner_cond": {
+        "SJ_rho": 0.3445,
+        "FK_rho": 0.2125,
+        "LP_rho": 0.2099,
+        "EM_rho": 0.3952,
+        "VC_rho": 0.3815,
+        "SJ_auroc": 0.7292,
+        "FK_auroc": 0.66,
+        "LP_auroc": 0.6156,
+        "EM_auroc": 0.7822,
+        "VC_auroc": 0.7222,
+        "n": 476
+    },
+    "greedy_f1": 0.6267,
+    "oracle_f1": 0.763,
+    "oracle_headroom": 0.1363,
+    "selection_f1_SJ": 0.6328,
+    "selection_f1_VC": 0.6113,
+    "selection_f1_FK": 0.6295,
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "65b84080-eb91-46a0-a7cc-a27048107338",
+  "isSidechain": true,
+  "promptId": "b5ea1357-f0e7-49b6-9296-8205b7ccdf92",
+  "agentId": "a7a20428baf062e1e",
+  "type": "user",
+  "uuid": "b5c5ee6f-555e-4ef0-a69e-2c08a3f3d865",
+  "sourceToolAssistantUUID": "65b84080-eb91-46a0-a7cc-a27048107338",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T04:38:11.828Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DjDcTruh6SYT2ErGBzzGfj`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/36cf417f-07d2-401a-833f-9ccfb82efc3c/tool-results/mcp-agent-ml-research-read_registry-1778906214749.txt') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Category 5: 4b/4B experiments\nprint(\"=== CATEGORY 5: '4b' / '4B' Experiments ===\\n\")\nfor eid in sorted(experiments.keys()):\n    if '4b' in eid.lower():\n        exp = experiments[eid]\n        print(f\"--- {eid} ---\")\n        print(f\"  status: {exp.get('status')}\")\n        print(f\"  updated_at: {exp.get('updated_at')}\")\n        print(f\"  hypothesis: {str(exp.get('hypothesis',''))[:300]}\")\n        conclusion = exp.get('conclusion')\n        if isinstance(conclusion, dict):\n            print(f\"  conclusion: {json.dumps(conclusion, indent=4)[:800]}\")\n        else:\n            print(f\"  conclusion: {str(conclusion)[:800]}\")\n        metrics = exp.get('metrics')\n        if metrics:\n            print(f\"  metrics: {json.dumps(metrics, indent=4)[:800]}\")\n        print()\n\nPYEOF",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5c5ee6f-555e-4ef0-a69e-2c08a3f3d865",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dTTswYPVT2NzsdXjBD",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "29bee6e0-0a34-40a3-b21b-fdeea8945047",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SXAxgmEBBFSTEYjqV1VvGK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7012,
+      "cache_read_input_tokens": 33744,
+      "output_tokens": 480,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 7012
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 480,
+          "cache_read_input_tokens": 33744,
+          "cache_creation_input_tokens": 7012,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 7012,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T04:38:11.924Z_
+
+<details><summary>↩ Tool result · `toolu_01DjDcTruh6SYT2ErGBzzGfj`</summary>
+
+```text
+=== CATEGORY 5: '4b' / '4B' Experiments ===
+
+--- exp_qwen3_4b_conll_finetune ---
+  status: DONE
+  updated_at: 2026-05-15T19:10:24.822Z
+  hypothesis: Scale ablation: Qwen3-4B CoNLL NER LoRA fine-tune to provide cross-scale evidence (vs 8B). Verify correlation-selection gap, SJ>FK ordering, and LP compression generalize across model scale.
+  conclusion: success
+  metrics: {
+    "final_loss": 0.0086,
+    "total_steps_completed": 3920,
+    "total_steps_target": 4390,
+    "epochs_completed": 4.46,
+    "epochs_target": 5,
+    "best_checkpoint": "checkpoint-3800",
+    "note": "Training stopped at 89.3% completion (no error log found). Using checkpoint-3800 (loss ~0.01) for merge."
+}
+
+--- exp_qwen3_4b_conll_finetune_resume ---
+  status: DONE
+  updated_at: 2026-05-15T19:38:43.468Z
+  hypothesis: CoNLL 4B NER LoRA fine-tune resume from checkpoint-3800. Cross-scale evidence for correlation-selection gap.
+  conclusion: success
+  metrics: {
+    "train_loss": 0.001136,
+    "eval_loss": 0.0225,
+    "best_global_step": 4200,
+    "best_metric_eval_loss": 0.0225,
+    "total_steps": 4390,
+    "epochs": 5,
+    "train_runtime_sec": 1185.8,
+    "train_samples_per_second": 59.2,
+    "resumed_from_step": 3800
+}
+
+--- exp_qwen3_4b_conll_merge_inference_v2 ---
+  status: DONE
+  updated_at: 2026-05-15T20:07:12.593Z
+  hypothesis: CoNLL 4B checkpoint-4200 (best from resume training) merge + SCS inference. Replaces v1 which used checkpoint-3800 merged model. Cross-scale evidence for correlation-selection gap.
+  conclusion: killed
+
+--- exp_qwen3_4b_conll_scs_inference ---
+  status: DONE
+  updated_at: 2026-05-15T19:19:08.138Z
+  hypothesis: 
+  conclusion: success
+  metrics: {
+    "greedy_f1": 0.9251,
+    "oracle_f1": 0.9408,
+    "oracle_headroom_pp": 1.57,
+    "SJ_rho_full": 0.4045,
+    "SJ_rho_cond": 0.4306,
+    "FK_rho_full": 0.3961,
+    "FK_rho_cond": 0.42,
+    "LP_rho_full": 0.3186,
+    "LP_rho_cond": 0.3378,
+    "LP_auroc_full": 0.7689,
+    "LP_auroc_cond": 0.8153,
+    "fleiss_kappa_mean": 0.9349,
+    "soft_jaccard_mean": 0.9754,
+    "structural_beats_surface": true,
+    "rho_advantage_pp": 0.84,
+    "n_instances": 3453,
+    "n_gold_empty_filtered": 697,
+    "n_greedy_f1_zero_filtered": 112,
+    "verdict": "MARGINAL"
+}
+
+--- exp_qwen3_4b_conll_scs_inference_v2 ---
+  status: DONE
+  updated_at: 2026-05-16T03:35:13.590Z
+  hypothesis: CoNLL 4B SCS inference with best checkpoint-4200 (from resume training). Scale ablation: cross-scale evidence for correlation-selection gap. Compare vs v1 (ckpt-3800 baseline: greedy_f1=0.9251, SJ_rho=0.4045).
+  conclusion: success
+  metrics: {
+    "greedy_f1": 0.9234,
+    "oracle_f1": 0.9404,
+    "oracle_headroom_pp": 1.7,
+    "SJ_rho_full": 0.4217,
+    "SJ_rho_cond": 0.459,
+    "FK_rho_full": 0.4181,
+    "FK_rho_cond": 0.4538,
+    "LP_rho_full": 0.3313,
+    "LP_rho_cond": 0.3487,
+    "LP_auroc_full": 0.7761,
+    "LP_auroc_cond": 0.8209,
+    "n_instances": 3453,
+    "verdict": "MARGINAL"
+}
+
+--- exp_qwen3_4b_scierc_finetune ---
+  status: DONE
+  updated_at: 2026-05-15T19:03:05.505Z
+  hypothesis: 
+  conclusion: killed
+
+--- exp_qwen3_4b_scierc_finetune_v2 ---
+  status: DONE
+  updated_at: 2026-05-15T19:24:32.466Z
+  hypothesis: 
+  conclusion: failed
+
+--- exp_qwen3_4b_scierc_finetune_v3 ---
+  status: DONE
+  updated_at: 2026-05-15T19:39:04.438Z
+  hypothesis: 
+  conclusion: failed
+
+--- exp_qwen3_4b_scierc_finetune_v4 ---
+  status: DONE
+  updated_at: 2026-05-15T19:54:20.255Z
+  hypothesis: 
+  conclusion: success
+  metrics: {
+    "total_steps": 585,
+    "completed_steps": 585,
+    "best_checkpoint": "checkpoint-400",
+    "best_eval_loss": 0.0898,
+    "epochs": 5
+}
+
+--- exp_qwen3_4b_scierc_merge_inference ---
+  status: DONE
+  updated_at: 2026-05-15T20:04:15.433Z
+  hypothesis: SciERC 4B best checkpoint merge + SCS inference. Complete 2x2 scale matrix (4B SciERC cell). Cross-scale + cross-task evidence for correlation-selection gap.
+  conclusion: killed
+
+--- exp_qwen3_4b_scierc_scs_inference ---
+  status: DONE
+  updated_at: 2026-05-15T20:06:38.949Z
+  hypothesis: SciERC 4B SCS inference after v4 finetune merge. Complete 2x2 scale matrix (4B SciERC cell). Cross-scale + cross-task evidence for correlation-selection gap.
+  conclusion: success
+  metrics: {
+    "ner_greedy_f1": 0.6612,
+    "ner_oracle_f1": 0.7839,
+    "ner_headroom_pp": 12.28,
+    "ner_SJ_rho": 0.4221,
+    "ner_FK_rho": 0.3258,
+    "ner_LP_rho": 0.28,
+    "re_greedy_f1": 0.4136,
+    "re_oracle_f1": 0.5846,
+    "re_headroom_pp": 17.1,
+    "re_SJ_rho": 0.2673,
+    "re_FK_rho": 0.3593,
+    "re_LP_rho": 0.3512,
+    "re_sample_f1_pct_zero": 0.476,
+    "re_LP_rho_cond": 0.1135,
+    "re_LP_rho_cond_p": 0.074
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "29bee6e0-0a34-40a3-b21b-fdeea8945047",
+  "isSidechain": true,
+  "promptId": "b5ea1357-f0e7-49b6-9296-8205b7ccdf92",
+  "agentId": "a7a20428baf062e1e",
+  "type": "user",
+  "uuid": "f41770dc-5a08-4682-b6cc-65c175ee5bdb",
+  "sourceToolAssistantUUID": "29bee6e0-0a34-40a3-b21b-fdeea8945047",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T04:38:17.888Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01WYQWEQJLXfJtDMMUctG6ix`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/36cf417f-07d2-401a-833f-9ccfb82efc3c/tool-results/mcp-agent-ml-research-read_registry-1778906214749.txt') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Category 6: Most recent 5 by updated_at\nprint(\"=== CATEGORY 6: Most Recent 5 Experiments by updated_at ===\\n\")\nsorted_exps = sorted(experiments.items(), key=lambda x: x[1].get('updated_at',''), reverse=True)\nfor eid, exp in sorted_exps[:5]:\n    print(f\"--- {eid} ---\")\n    print(f\"  status: {exp.get('status')}\")\n    print(f\"  updated_at: {exp.get('updated_at')}\")\n    print(f\"  hypothesis: {str(exp.get('hypothesis',''))[:300]}\")\n    conclusion = exp.get('conclusion')\n    if isinstance(conclusion, dict):\n        print(f\"  conclusion: {json.dumps(conclusion, indent=4)[:800]}\")\n    else:\n        print(f\"  conclusion: {str(conclusion)[:800]}\")\n    metrics = exp.get('metrics')\n    if metrics:\n        print(f\"  metrics: {json.dumps(metrics, indent=4)[:800]}\")\n    print()\n\nPYEOF",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f41770dc-5a08-4682-b6cc-65c175ee5bdb",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dUCzmU12TS1nsYNRGE",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "679d35fe-0883-4571-8f00-e0d230b6332f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5dbXxZdbaNMhKKukc1TED",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2524,
+      "cache_read_input_tokens": 40756,
+      "output_tokens": 494,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2524
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 494,
+          "cache_read_input_tokens": 40756,
+          "cache_creation_input_tokens": 2524,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2524,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T04:38:18.000Z_
+
+<details><summary>↩ Tool result · `toolu_01WYQWEQJLXfJtDMMUctG6ix`</summary>
+
+```text
+=== CATEGORY 6: Most Recent 5 Experiments by updated_at ===
+
+--- exp_llama3b_scierc_ablation ---
+  status: DONE
+  updated_at: 2026-05-16T03:59:26.005Z
+  hypothesis: Cross-family scale ablation: LLaMA 3.2-3B on SciERC NER. Verify correlation-selection gap generalizes across model families AND scales. Compare with LLaMA 8B results.
+  conclusion: success
+  metrics: {
+    "ner_full": {
+        "SJ_rho": 0.3754,
+        "FK_rho": 0.2676,
+        "LP_rho": 0.2662,
+        "EM_rho": 0.3341,
+        "VC_rho": 0.4602,
+        "SJ_auroc": 0.7383,
+        "FK_auroc": 0.6714,
+        "LP_auroc": 0.633,
+        "EM_auroc": 0.7763,
+        "VC_auroc": 0.7429,
+        "n": 529
+    },
+    "ner_cond": {
+        "SJ_rho": 0.3445,
+        "FK_rho": 0.2125,
+        "LP_rho": 0.2099,
+        "EM_rho": 0.3952,
+        "VC_rho": 0.3815,
+        "SJ_auroc": 0.7292,
+        "FK_auroc": 0.66,
+        "LP_auroc": 0.6156,
+        "EM_auroc": 0.7822,
+        "VC_auroc": 0.7222,
+        "n": 476
+    },
+    "greedy_f1": 0.6267,
+    "oracle_f1": 0.763,
+    "oracle_headroom": 0.1363,
+    "selection_f1_SJ": 0.6328,
+    "selection_f1_VC": 0.6113,
+    "selection_f1_FK": 0.6295,
+    
+
+--- exp_qwen3_4b_conll_scs_inference_v2 ---
+  status: DONE
+  updated_at: 2026-05-16T03:35:13.590Z
+  hypothesis: CoNLL 4B SCS inference with best checkpoint-4200 (from resume training). Scale ablation: cross-scale evidence for correlation-selection gap. Compare vs v1 (ckpt-3800 baseline: greedy_f1=0.9251, SJ_rho=0.4045).
+  conclusion: success
+  metrics: {
+    "greedy_f1": 0.9234,
+    "oracle_f1": 0.9404,
+    "oracle_headroom_pp": 1.7,
+    "SJ_rho_full": 0.4217,
+    "SJ_rho_cond": 0.459,
+    "FK_rho_full": 0.4181,
+    "FK_rho_cond": 0.4538,
+    "LP_rho_full": 0.3313,
+    "LP_rho_cond": 0.3487,
+    "LP_auroc_full": 0.7761,
+    "LP_auroc_cond": 0.8209,
+    "n_instances": 3453,
+    "verdict": "MARGINAL"
+}
+
+--- exp_verbalized_confidence ---
+  status: DONE
+  updated_at: 2026-05-16T03:09:53.789Z
+  hypothesis: Verbalized confidence baseline: let model self-rate extraction confidence. If also compressed → strengthens "score compression is general" claim. If effective → important positive finding requiring narrative adjustment.
+  conclusion: negative
+  metrics: {
+    "scierc": {
+        "VerbConf_rho": 0.2965,
+        "VerbConf_auroc": 0.6811,
+        "VerbConf_sel_f1": 0.6195,
+        "VerbConf_delta": -0.0245,
+        "best_existing_rho": 0.3792,
+        "VerbConf_mean": 8.58,
+        "VerbConf_std": 1.15,
+        "parse_fail_rate": 0.0026
+    },
+    "conll": {
+        "VerbConf_rho": 0.3366,
+        "VerbConf_auroc": 0.7469,
+        "VerbConf_sel_f1": 0.8886,
+        "VerbConf_delta": -0.0193,
+        "best_existing_rho": 0.4507,
+        "VerbConf_mean": 9.24,
+        "VerbConf_std": 1.32,
+        "parse_fail_rate": 0
+    }
+}
+
+--- exp_freeform_conll_4seed ---
+  status: DONE
+  updated_at: 2026-05-16T03:04:49.550Z
+  hypothesis: Free-form CoNLL NER 4-seed ablation: verify LP compression is cross-dataset intrinsic (not SciERC-specific). 4 seeds × N=8, T=1.0 on CoNLL, compare LP range distribution with constrained decoding.
+  conclusion: success
+  metrics: {
+    "greedy_f1": "0.9035\u00b10.0004",
+    "oracle_f1": "0.9460\u00b10.0023",
+    "lp_range_median": "0.0581\u00b10.0072",
+    "rho_sj": "0.4606\u00b10.0188",
+    "rho_fk": "0.4372\u00b10.0209",
+    "rho_em": "0.4714\u00b10.0168",
+    "rho_vc": "0.4606\u00b10.0138",
+    "rho_lp": "0.3262\u00b10.0120",
+    "sel_f1_sj": "0.8994\u00b10.0014",
+    "sel_f1_vc": "0.9006\u00b10.0026",
+    "sel_f1_lp": "0.8958\u00b10.0009",
+    "seeds": [
+        42,
+        123,
+        456,
+        789
+    ],
+    "n_samples": 8,
+    "temperature": 1,
+    "instances": 2756,
+    "gold_empty_filtered": 697
+}
+
+--- exp_qwen3_4b_conll_merge_inference_v2 ---
+  status: DONE
+  updated_at: 2026-05-15T20:07:12.593Z
+  hypothesis: CoNLL 4B checkpoint-4200 (best from resume training) merge + SCS inference. Replaces v1 which used checkpoint-3800 merged model. Cross-scale evidence for correlation-selection gap.
+  conclusion: killed
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "679d35fe-0883-4571-8f00-e0d230b6332f",
+  "isSidechain": true,
+  "promptId": "b5ea1357-f0e7-49b6-9296-8205b7ccdf92",
+  "agentId": "a7a20428baf062e1e",
+  "type": "user",
+  "uuid": "15794875-ffe7-4ba7-817e-3e69020d8dfe",
+  "sourceToolAssistantUUID": "679d35fe-0883-4571-8f00-e0d230b6332f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T04:38:26.400Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019Y4qNUm7vnUypNaoBeKcpf`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/36cf417f-07d2-401a-833f-9ccfb82efc3c/tool-results/mcp-agent-ml-research-read_registry-1778906214749.txt') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Category 7: TACRED or ACE05\nprint(\"=== CATEGORY 7: TACRED or ACE05 Experiments ===\\n\")\nfound = False\nfor eid, exp in sorted(experiments.items()):\n    eid_lower = eid.lower()\n    hyp = str(exp.get('hypothesis','')).lower()\n    conc_str = json.dumps(exp.get('conclusion','')).lower() if isinstance(exp.get('conclusion'), dict) else str(exp.get('conclusion','')).lower()\n    metrics_str = json.dumps(exp.get('metrics',{})).lower()\n    spec_str = json.dumps(exp.get('spec',{})).lower()\n    \n    if any(kw in text for kw in ['tacred', 'ace05', 'ace-05', 'ace 05'] for text in [eid_lower, hyp, conc_str, metrics_str, spec_str]):\n        found = True\n        print(f\"--- {eid} ---\")\n        print(f\"  status: {exp.get('status')}\")\n        print(f\"  updated_at: {exp.get('updated_at')}\")\n        print(f\"  hypothesis: {str(exp.get('hypothesis',''))[:300]}\")\n        conclusion = exp.get('conclusion')\n        if isinstance(conclusion, dict):\n            print(f\"  conclusion: {json.dumps(conclusion, indent=4)[:400]}\")\n        else:\n            print(f\"  conclusion: {str(conclusion)[:400]}\")\n        print()\n\nif not found:\n    print(\"  NO experiments found mentioning TACRED or ACE05.\")\n\nPYEOF",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "15794875-ffe7-4ba7-817e-3e69020d8dfe",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dUemZiPaauiv9E4rRP",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d8389fb4-2daa-4b6b-9b98-4706ddb4fa88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019uBds2GP4QDxqmMRpbkS1L",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2311,
+      "cache_read_input_tokens": 43280,
+      "output_tokens": 627,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2311
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 627,
+          "cache_read_input_tokens": 43280,
+          "cache_creation_input_tokens": 2311,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2311,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T04:38:26.538Z_
+
+<details><summary>↩ Tool result · `toolu_019Y4qNUm7vnUypNaoBeKcpf`</summary>
+
+```text
+=== CATEGORY 7: TACRED or ACE05 Experiments ===
+
+  NO experiments found mentioning TACRED or ACE05.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d8389fb4-2daa-4b6b-9b98-4706ddb4fa88",
+  "isSidechain": true,
+  "promptId": "b5ea1357-f0e7-49b6-9296-8205b7ccdf92",
+  "agentId": "a7a20428baf062e1e",
+  "type": "user",
+  "uuid": "9e5fe794-1416-4770-a02a-63d2857a10c1",
+  "sourceToolAssistantUUID": "d8389fb4-2daa-4b6b-9b98-4706ddb4fa88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-16T04:38:29.170Z_
+
+Now let me get the full metrics for the freeform seed experiments that were truncated.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e5fe794-1416-4770-a02a-63d2857a10c1",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dVHFn94sHrLKczGjUj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "87649059-1f4b-4009-8301-94d40ccaf442",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UM3XcxqkrGnCpbUd93rkDu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 671,
+      "cache_read_input_tokens": 45591,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 671,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T04:38:33.461Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01XJ7hMf5tmjAYzEu8ZEFWW9`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/36cf417f-07d2-401a-833f-9ccfb82efc3c/tool-results/mcp-agent-ml-research-read_registry-1778906214749.txt') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Get full metrics for freeform seed123, seed456, seed789\nfor eid in ['exp_freeform_seed123', 'exp_freeform_seed456', 'exp_freeform_seed789']:\n    exp = experiments[eid]\n    print(f\"--- {eid} FULL METRICS ---\")\n    print(json.dumps(exp.get('metrics',{}), indent=2))\n    print()\n\n# Get full metrics for exp_009_v2_re_rerun\nprint(\"--- exp_009_v2_re_rerun FULL ---\")\nexp = experiments['exp_009_v2_re_rerun']\nprint(json.dumps(exp.get('metrics',{}), indent=2))\nprint(f\"  conclusion: {exp.get('conclusion')}\")\nprint()\n\n# Get full metrics for exp_004_re_diagnostic\nprint(\"--- exp_004_re_diagnostic FULL METRICS ---\")\nexp = experiments['exp_004_re_diagnostic']\nprint(json.dumps(exp.get('metrics',{}), indent=2))\n\nPYEOF",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "87649059-1f4b-4009-8301-94d40ccaf442",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dVHFn94sHrLKczGjUj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8a399ed2-3d13-4198-aa8b-d5b021d156fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UM3XcxqkrGnCpbUd93rkDu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 671,
+      "cache_read_input_tokens": 45591,
+      "output_tokens": 502,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 671
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 502,
+          "cache_read_input_tokens": 45591,
+          "cache_creation_input_tokens": 671,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 671,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T04:38:33.550Z_
+
+<details><summary>↩ Tool result · `toolu_01XJ7hMf5tmjAYzEu8ZEFWW9`</summary>
+
+```text
+--- exp_freeform_seed123 FULL METRICS ---
+{
+  "inference": {
+    "n_instances": 551,
+    "n_samples": 8,
+    "total_samples": 4408,
+    "total_parsed": 4406,
+    "parse_rate_pct": 99.95,
+    "elapsed_seconds": 228.1
+  },
+  "freeform": {
+    "selection_ner": {
+      "greedy": 0.6194,
+      "selected": 0.6222,
+      "gap": 0.0028
+    },
+    "selection_re": {
+      "greedy": 0.2874,
+      "selected": 0.305,
+      "gap": 0.0176
+    },
+    "logprob_variance": {
+      "mean_std": 0.019881,
+      "mean_range": 0.059864,
+      "tied_pct": 57.7
+    },
+    "qe_ner": {
+      "n": 529,
+      "SJ": {
+        "rho": 0.384214,
+        "auroc": 0.748728
+      },
+      "FK": {
+        "rho": 0.323956,
+        "auroc": 0.766039
+      },
+      "logprob": {
+        "rho": 0.217297,
+        "auroc": 0.701657
+      },
+      "EM": {
+        "rho": 0.326887,
+        "auroc": 0.52533
+      },
+      "voting_conf": {
+        "rho": 0.407893,
+        "auroc": 0.799676
+      }
+    },
+    "qe_re": {
+      "n": 397,
+      "SJ": {
+        "rho": 0.272776,
+        "auroc": 0.614056
+      },
+      "FK": {
+        "rho": 0.314429,
+        "auroc": 0.678534
+      },
+      "logprob": {
+        "rho": 0.309673,
+        "auroc": 0.70414
+      },
+      "EM": {
+        "rho": 0.137216,
+        "auroc": 0.487342
+      },
+      "voting_conf": {
+        "rho": 0.316667,
+        "auroc": 0.647442
+      }
+    }
+  },
+  "constrained_ref": {
+    "selection_ner": {
+      "greedy": 0.6182,
+      "selected": 0.6241,
+      "gap": 0.0059
+    },
+    "selection_re": {
+      "greedy": 0.2913,
+      "selected": 0.2845,
+      "gap": -0.0068
+    }
+  },
+  "comparison": {
+    "variance_ratio_std": 0.97,
+    "variance_ratio_range": 0.96,
+    "tied_reduction_pp": 2
+  }
+}
+
+--- exp_freeform_seed456 FULL METRICS ---
+{
+  "inference": {
+    "n_instances": 551,
+    "n_samples": 8,
+    "total_samples": 4408,
+    "total_parsed": 4407,
+    "parse_rate_pct": 99.98,
+    "elapsed_seconds": 232.4
+  },
+  "freeform": {
+    "selection_ner": {
+      "greedy": 0.6198,
+      "selected": 0.6205,
+      "gap": 0.0007
+    },
+    "selection_re": {
+      "greedy": 0.2908,
+      "selected": 0.3108,
+      "gap": 0.02
+    },
+    "logprob_variance": {
+      "mean_std": 0.018631,
+      "mean_range": 0.056792,
+      "tied_pct": 58.4
+    },
+    "qe_ner": {
+      "n": 529,
+      "SJ": {
+        "rho": 0.378498,
+        "auroc": 0.707769
+      },
+      "FK": {
+        "rho": 0.286163,
+        "auroc": 0.754779
+      },
+      "LP": {
+        "rho": 0.227089,
+        "auroc": 0.672081
+      },
+      "EM": {
+        "rho": 0.319997,
+        "auroc": 0.47789
+      },
+      "VC": {
+        "rho": 0.416853,
+        "auroc": 0.756543
+      }
+    },
+    "qe_re": {
+      "n": 397,
+      "SJ": {
+        "rho": 0.211331,
+        "auroc": 0.572335
+      },
+      "FK": {
+        "rho": 0.259074,
+        "auroc": 0.652998
+      },
+      "LP": {
+        "rho": 0.306382,
+        "auroc": 0.70134
+      },
+      "EM": {
+        "rho": 0.1043,
+        "auroc": 0.461641
+      },
+      "VC": {
+        "rho": 0.301507,
+        "auroc": 0.628873
+      }
+    }
+  },
+  "constrained_ref": {
+    "selection_ner": {
+      "greedy": 0.6182,
+      "selected": 0.6241,
+      "gap": 0.0059
+    },
+    "selection_re": {
+      "greedy": 0.2913,
+      "selected": 0.2845,
+      "gap": -0.0068
+    },
+    "logprob_variance": {
+      "mean_std": 0.020589,
+      "mean_range": 0.062305,
+      "tied_pct": 59.7
+    }
+  },
+  "comparison": {
+    "variance_ratio_std": 0.9,
+    "variance_ratio_range": 0.91,
+    "tied_reduction_pp": 1.3
+  }
+}
+
+--- exp_freeform_seed789 FULL METRICS ---
+{
+  "inference": {
+    "n_instances": 551,
+    "n_samples": 8,
+    "total_samples": 4408,
+    "total_parsed": 4408,
+    "parse_rate_pct": 100,
+    "elapsed_seconds": 227.5
+  },
+  "freeform": {
+    "selection_ner": {
+      "greedy": 0.6205,
+      "selected": 0.6232,
+      "gap": 0.0027
+    },
+    "selection_re": {
+      "greedy": 0.2909,
+      "selected": 0.31,
+      "gap": 0.0191
+    },
+    "logprob_variance": {
+      "mean_std": 0.0183,
+      "mean_range": 0.054908,
+      "tied_pct": 59
+    },
+    "qe_ner": {
+      "n": 529,
+      "SJ": {
+        "rho": 0.393995,
+        "auroc": 0.734474
+      },
+      "FK": {
+        "rho": 0.312292,
+        "auroc": 0.794384
+      },
+      "LP": {
+        "rho": 0.247096,
+        "auroc": 0.677824
+      },
+      "EM": {
+        "rho": 0.320383,
+        "auroc": 0.527033
+      },
+      "VC": {
+        "rho": 0.420625,
+        "auroc": 0.768111
+      }
+    },
+    "qe_re": {
+      "n": 397,
+      "SJ": {
+        "rho": 0.201746,
+        "auroc": 0.574388
+      },
+      "FK": {
+        "rho": 0.2202,
+        "auroc": 0.633014
+      },
+      "LP": {
+        "rho": 0.295765,
+        "auroc": 0.687067
+      },
+      "EM": {
+        "rho": 0.103633,
+        "auroc": 0.474737
+      },
+      "VC": {
+        "rho": 0.306868,
+        "auroc": 0.642197
+      }
+    }
+  },
+  "constrained_ref": {
+    "selection_ner": {
+      "greedy": 0.6182,
+      "selected": 0.6241,
+      "gap": 0.0059
+    },
+    "selection_re": {
+      "greedy": 0.2913,
+      "selected": 0.2845,
+      "gap": -0.0068
+    },
+    "logprob_variance": {
+      "mean_std": 0.020589,
+      "mean_range": 0.062305,
+      "tied_pct": 59.7
+    }
+  },
+  "comparison": {
+    "variance_ratio_std": 0.89,
+    "variance_ratio_range": 0.88,
+    "tied_reduction_pp": 0.7
+  }
+}
+
+--- exp_009_v2_re_rerun FULL ---
+{}
+  conclusion: success
+
+--- exp_004_re_diagnostic FULL METRICS ---
+{
+  "per_relation_type": {
+    "HYPONYM-OF": {
+      "n": 36,
+      "rho_sj": 0.545,
+      "rho_fk": 0.646,
+      "rho_vc": 0.628,
+      "mean_f1": 0.513
+    },
+    "CONJUNCTION": {
+      "n": 86,
+      "rho_sj": 0.383,
+      "rho_fk": 0.35,
+      "rho_vc": 0.484,
+      "mean_f1": 0.48
+    },
+    "USED-FOR": {
+      "n": 299,
+      "rho_sj": 0.236,
+      "rho_fk": 0.255,
+      "rho_vc": 0.286,
+      "mean_f1": 0.422
+    },
+    "PART-OF": {
+      "n": 44,
+      "rho_sj": 0.239,
+      "rho_fk": 0.348,
+      "rho_vc": 0.283,
+      "mean_f1": 0.297
+    },
+    "EVALUATE-FOR": {
+      "n": 62,
+      "rho_sj": 0.172,
+      "rho_fk": 0.255,
+      "rho_vc": 0.226,
+      "mean_f1": 0.365
+    },
+    "COMPARE": {
+      "n": 35,
+      "rho_sj": 0.168,
+      "rho_fk": 0.184,
+      "rho_vc": 0.18,
+      "mean_f1": 0.453
+    },
+    "FEATURE-OF": {
+      "n": 50,
+      "rho_sj": 0.004,
+      "rho_fk": 0.052,
+      "rho_vc": 0.014,
+      "mean_f1": 0.254
+    }
+  },
+  "error_propagation": {
+    "total_fn": 553,
+    "tail_error_pct": 21.9,
+    "full_error_pct": 21.7,
+    "head_error_pct": 17.7,
+    "head_tail_error_pct": 15.9,
+    "type_error_pct": 8.3,
+    "worst_consistency": "head_type_error (sj=0.411)",
+    "best_consistency": "head_error (sj=0.613)"
+  },
+  "threshold_sensitivity": {
+    "thr_0.00_rho_sj": 0.3161,
+    "thr_0.00_rho_vc": 0.3841,
+    "thr_0.00_n": 313,
+    "thr_0.05_rho_sj": 0.2682,
+    "thr_0.05_rho_vc": 0.2364,
+    "thr_0.05_n": 239
+  },
+  "bootstrap_ci_95": {
+    "ner_sj": [
+      0.2946,
+      0.4586
+    ],
+    "ner_voting_conf": [
+      0.3048,
+      0.4656
+    ],
+    "re_sj": [
+      0.1422,
+      0.3391
+    ],
+    "re_voting_conf": [
+      0.1818,
+      0.3721
+    ],
+    "re_cond_sj": [
+      0.2161,
+      0.4102
+    ],
+    "re_cond_voting_conf": [
+      0.2825,
+      0.474
+    ]
+  },
+  "fisher_z_ner_vs_re": {
+    "sj_z": 2.31,
+    "sj_p": 0.0209,
+    "sj_significant": true,
+    "fk_z": -0.31,
+    "fk_p": 0.756,
+    "fk_significant": false,
+    "voting_z": 1.914,
+    "voting_p": 0.0556,
+    "voting_significant": false
+  },
+  "diagnosis": "FEATURE-OF is near-zero rho across all signals (n=50, F1=0.254). HYPONYM-OF strongest (rho_fk=0.646). Entity span errors (head+tail) account for 55.5% of RE FN. NER rho_sj significantly > RE rho_sj (p=0.021). Voting_conf is best RE signal in conditional set (rho=0.384)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a399ed2-3d13-4198-aa8b-d5b021d156fd",
+  "isSidechain": true,
+  "promptId": "b5ea1357-f0e7-49b6-9296-8205b7ccdf92",
+  "agentId": "a7a20428baf062e1e",
+  "type": "user",
+  "uuid": "642c991b-956e-47f4-ab08-e00bc91e3f50",
+  "sourceToolAssistantUUID": "8a399ed2-3d13-4198-aa8b-d5b021d156fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-16T04:38:38.101Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QCb3GPMmVL6orXnqbpUVsr`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/36cf417f-07d2-401a-833f-9ccfb82efc3c/tool-results/mcp-agent-ml-research-read_registry-1778906214749.txt') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Get full metrics for exp_llama3b_scierc_ablation (it was truncated)\nprint(\"--- exp_llama3b_scierc_ablation FULL METRICS ---\")\nexp = experiments['exp_llama3b_scierc_ablation']\nprint(json.dumps(exp.get('metrics',{}), indent=2))\n\nPYEOF",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "642c991b-956e-47f4-ab08-e00bc91e3f50",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dVoCqfEZ4DNzZhMKED",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "25006ffa-19c6-40b8-a666-955f68b77bdf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WBGEJVf9YuoKq6nfRUFfSC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4152,
+      "cache_read_input_tokens": 46262,
+      "output_tokens": 311,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4152
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 311,
+          "cache_read_input_tokens": 46262,
+          "cache_creation_input_tokens": 4152,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4152,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T04:38:38.201Z_
+
+<details><summary>↩ Tool result · `toolu_01QCb3GPMmVL6orXnqbpUVsr`</summary>
+
+```text
+--- exp_llama3b_scierc_ablation FULL METRICS ---
+{
+  "ner_full": {
+    "SJ_rho": 0.3754,
+    "FK_rho": 0.2676,
+    "LP_rho": 0.2662,
+    "EM_rho": 0.3341,
+    "VC_rho": 0.4602,
+    "SJ_auroc": 0.7383,
+    "FK_auroc": 0.6714,
+    "LP_auroc": 0.633,
+    "EM_auroc": 0.7763,
+    "VC_auroc": 0.7429,
+    "n": 529
+  },
+  "ner_cond": {
+    "SJ_rho": 0.3445,
+    "FK_rho": 0.2125,
+    "LP_rho": 0.2099,
+    "EM_rho": 0.3952,
+    "VC_rho": 0.3815,
+    "SJ_auroc": 0.7292,
+    "FK_auroc": 0.66,
+    "LP_auroc": 0.6156,
+    "EM_auroc": 0.7822,
+    "VC_auroc": 0.7222,
+    "n": 476
+  },
+  "greedy_f1": 0.6267,
+  "oracle_f1": 0.763,
+  "oracle_headroom": 0.1363,
+  "selection_f1_SJ": 0.6328,
+  "selection_f1_VC": 0.6113,
+  "selection_f1_FK": 0.6295,
+  "selection_f1_EM": 0.6174,
+  "selection_f1_LP": 0.6279,
+  "n_gold_empty": 22,
+  "structural_beats_surface": true,
+  "rho_advantage_SJ_over_FK": 0.1078
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "25006ffa-19c6-40b8-a666-955f68b77bdf",
+  "isSidechain": true,
+  "promptId": "b5ea1357-f0e7-49b6-9296-8205b7ccdf92",
+  "agentId": "a7a20428baf062e1e",
+  "type": "user",
+  "uuid": "e4fab691-6108-48af-9a33-a7f547594007",
+  "sourceToolAssistantUUID": "25006ffa-19c6-40b8-a666-955f68b77bdf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-16T04:39:56.180Z_
+
+Here is the complete extraction:
+
+---
+
+## 1. RE (Relation Extraction) Experiments (11 total)
+
+| exp_id | status | conclusion | key metrics |
+|--------|--------|-----------|-------------|
+| **e1_component_wise_re_sj** | DONE | negative | full_head_sj_rho=0.21, full_multiplicative_rho=0.244, cond_multiplicative_rho=0.316, cond_fleiss_kappa_rho=0.307. Diagnosis: "head_sj rho=0.210 FAR from NER rho=0.383. Multiplicative penalty hypothesis REJECTED." |
+| **exp008_re_n16** | DONE | killed | (no metrics) |
+| **exp_004_re_diagnostic** | DONE | success | Per-relation-type: HYPONYM-OF rho_fk=0.646 (n=36), CONJUNCTION rho_vc=0.484 (n=86), USED-FOR rho_vc=0.286 (n=299), FEATURE-OF rho_sj=0.004 (near-zero, n=50). Entity span errors (head+tail) = 55.5% of RE FN. Fisher z: NER rho_sj significantly > RE rho_sj (p=0.021). |
+| **exp_008_re_n16** | DONE | success | NER: greedy_f1=0.6635, oracle_f1=0.8208, rho_sj_full=0.377, rho_sj_cond=0.3598. RE: greedy_f1=0.4339, oracle_f1=0.6658, rho_sj_full=0.2966, rho_sj_cond=0.3975. |
+| **exp_008_re_n16_full** | DONE | killed | (no metrics) |
+| **exp_008_re_n16_t10_full** | DONE | negative | NER rho_sj=0.444, RE rho_sj=0.248. N=16, T=1, seed=42. |
+| **exp_008_re_n16_v2** | DONE | negative | sj_rho_full=0.281, sj_rho_cond=0.308, f1_zero_pct=44.3. |
+| **exp_008_re_seed123** | DONE | negative | greedy_f1=0.4229, oracle_f1=0.6244, rho_sj_f1_full=0.2835, rho_sj_f1_cond=0.2877, sample_f1_zero_pct=44.1. Verdict: FAIL. |
+| **exp_009_v2_re_rerun** | DONE | success | (no metrics recorded) |
+| **exp_re_scierc_seed123** | DONE | negative | NER: greedy_f1=0.663, oracle_f1=0.786, rho_sj_cond=0.404. RE: greedy_f1=0.42, oracle_f1=0.593, rho_sj_cond=0.277, re_zero_f1_pct=43.6. Verdict: FAIL_re_rho_sj_below_040. |
+| **exp_re_scierc_seed456** | DONE | negative | NER: greedy_f1=0.664, oracle_f1=0.775, rho_sj_cond=0.283. RE: greedy_f1=0.417, oracle_f1=0.581, rho_sj_cond=0.315, re_zero_f1_pct=45.3. Verdict: FAIL_re_rho_sj_below_040. |
+
+**Summary pattern**: RE consistently underperforms NER. RE rho_sj values typically 0.21-0.32 (below 0.40 threshold). RE F1=0 percentage consistently ~43-45%. NER rho_sj significantly > RE rho_sj (p=0.021). Only HYPONYM-OF relation type shows strong correlation (rho_fk=0.646).
+
+---
+
+## 2. Free-form / Freeform Decoding Experiments (7 total)
+
+| exp_id | status | conclusion | key metrics |
+|--------|--------|-----------|-------------|
+| **exp_freeform_ablation** | DONE | negative | lp_std_ratio_free_vs_constrained=0.97, lp_range_ratio=0.96, ner_selection_gap_constrained=0.0059, ner_selection_gap_freeform=0.0018, ner_vc_rho_constrained=0.3792, ner_vc_rho_freeform=0.4089, re_selection_gap_freeform=0.0169. |
+| **exp_freeform_conll_4seed** | DONE | success | greedy_f1=0.9035+/-0.0004, oracle_f1=0.9460+/-0.0023, rho_sj=0.4606+/-0.0188, rho_fk=0.4372+/-0.0209, rho_em=0.4714+/-0.0168, rho_vc=0.4606+/-0.0138, rho_lp=0.3262+/-0.0120, sel_f1_sj=0.8994+/-0.0014, lp_range_median=0.0581+/-0.0072. 4 seeds (42,123,456,789), N=8, T=1.0, 2756 instances. |
+| **exp_freeform_seed123** | DONE | success | NER: SJ rho=0.384, VC rho=0.408, FK rho=0.324. RE: FK rho=0.314, VC rho=0.317, LP rho=0.310. LP tied_pct=57.7, lp_range=0.0599. NER selection gap=+0.0028, RE selection gap=+0.0176. |
+| **exp_freeform_seed456** | DONE | success | NER: SJ rho=0.378, VC rho=0.417, FK rho=0.286. RE: LP rho=0.306, VC rho=0.302, FK rho=0.259. LP tied_pct=58.4, lp_range=0.0568. NER selection gap=+0.0007, RE selection gap=+0.0200. |
+| **exp_freeform_seed789** | DONE | success | NER: SJ rho=0.394, VC rho=0.421, FK rho=0.312. RE: VC rho=0.307, LP rho=0.296, FK rho=0.220. LP tied_pct=59.0, lp_range=0.0549. NER selection gap=+0.0027, RE selection gap=+0.0191. |
+| **exp_freeform_seed789_v2** | DONE | failed | (no metrics) |
+| **exp_freeform_seed789_v3** | DONE | success | freeform_ner_selection_gap=0.0028, freeform_re_selection_gap=0.0219, freeform_lp_std=0.0183, freeform_lp_range=0.0549, freeform_tied_pct=59, variance_ratio_std=0.89, variance_ratio_range=0.88. |
+
+**Summary pattern**: Free-form decoding shows LP compression persists (variance ratio ~0.88-0.97 vs constrained). Parse rates are near 100%. NER structural signals (SJ/VC) maintain rho ~0.38-0.42. RE selection gaps are positive in freeform (0.017-0.022) vs negative in constrained (-0.0068).
+
+---
+
+## 3. Verbalized Experiments (1 total)
+
+| exp_id | status | conclusion | key metrics |
+|--------|--------|-----------|-------------|
+| **exp_verbalized_confidence** | DONE | negative | SciERC: VerbConf_rho=0.2965, auroc=0.6811, sel_f1=0.6195, delta=-0.0245, best_existing_rho=0.3792, mean_score=8.58, std=1.15, parse_fail_rate=0.0026. CoNLL: VerbConf_rho=0.3366, auroc=0.7469, sel_f1=0.8886, delta=-0.0193, best_existing_rho=0.4507, mean_score=9.24, std=1.32, parse_fail_rate=0. |
+
+Verbalized confidence underperforms existing structural signals on both datasets. Negative delta on selection F1 vs best existing method.
+
+---
+
+## 4. LLaMA Experiments (19 total)
+
+| exp_id | status | conclusion | key metrics |
+|--------|--------|-----------|-------------|
+| **exp_007_llama_inference** | DONE | success | NER: greedy_f1=0.66, oracle=0.781, rho_sj=0.363, rho_sj_cond=0.311. RE: greedy_f1=0.434, oracle=0.568, rho_sj_cond=0.405. Model=LLaMA-3.1-8B, N=8, T=1. |
+| **exp_007_llama_n16** | DONE | success | N=16, SciERC NER. SJ_rho_full=0.3791, voting_conf_rho_full=0.4515. EM_rho_cond=0.3563. |
+| **exp_007_llama_n16_r1024** | DONE | killed | (no metrics) |
+| **exp_007_llama_seed123** | DONE | negative | NER: rho_sj=0.3371. RE: rho_sj=0.268. Verdict: FAIL (RE rho_sj < 0.40, >30% F1=0). |
+| **exp_007_llama_seed456** | DONE | negative | NER: rho_sj=0.3663. RE: rho_sj=0.287. Verdict: FAIL (RE rho_sj < 0.40). |
+| **exp_007_ner_llama** | DONE | killed | (no metrics) |
+| **exp_017_llama_conll** | DONE | success | (no metrics stored) |
+| **exp_017_llama_conll_infer** | DONE | success | greedy_f1=0.9266, oracle=0.9443. SJ_rho_full=0.4314, FK_rho_full=0.4277, logprob_rho=0.3072, EM_rho=0.4306. N=8, 2756 valid instances. |
+| **exp_017_llama_conll_n16** | DONE | success | greedy_f1=0.9243, oracle=0.9487. SJ_rho_full=0.4642, FK_rho=0.4566, EM_rho=0.4613, logprob_rho=0.3058. structural_beats_surface=true. |
+| **exp_017_llama_conll_n16_r1024** | DONE | success | ner_greedy_f1=0.9265, oracle=0.9499. rho_sj=0.4836, rho_fk=0.4752, rho_vc=0.4746, rho_em=0.4818, rho_lp=0.3136. Corrected gold-filtered (n=2756). |
+| **exp_017_llama_conll_n16_s123** | DONE | success | greedy_f1=0.9266, oracle=0.9497. SJ_rho_full=0.4698, FK_rho=0.4594, EM_rho=0.4676. structural_beats_surface=true. |
+| **exp_017_llama_conll_n16_s123_r1024** | DONE | success | (metrics not printed but conclusion=success) |
+| **exp_017_llama_conll_n16_s456** | DONE | success | greedy_f1=0.9243, oracle=0.9488. SJ_rho_full=0.4552, FK_rho=0.4478, EM_rho=0.4520. structural_beats_surface=true. |
+| **exp_017_llama_conll_n16_s456_r1024** | DONE | success | rho_sj=0.4734, rho_fk=0.4690, rho_vc=0.4722, rho_em=0.4752, rho_lp=0.3099. Corrected gold-filtered (n=2756). |
+| **exp_017_llama_conll_n8_t07** | DONE | success | N=8, T=0.7. greedy_f1=0.9242, oracle=0.9391. SJ rho=0.3934, FK rho=0.3879, LP rho=0.2951. lp_tied_fraction=0.9579. |
+| **exp_018_llama_scierc_seed123** | DONE | success | (metrics not printed in detail) |
+| **exp_018_llama_scierc_seed42_r1024** | DONE | success | NER: SJ rho=0.3096, voting_conf rho=0.4053. RE: not detailed. ner_structural_beats_logprob=true. |
+| **exp_018_llama_scierc_seed456** | DONE | killed | (no metrics) |
+| **exp_018_llama_scierc_seed456_r1024** | DONE | success | ner_greedy_f1=0.6597, ner_cond_rho_sj=0.2718, ner_cond_rho_fk=0.1472. re_greedy_f1=0.4338, re_cond_rho_sj=0.3898, re_cond_rho_fk=0.2107. Both structural_beats_logprob=true. |
+| **exp_llama3b_scierc_ablation** | DONE | success | LLaMA 3.2-3B. greedy_f1=0.6267, oracle=0.763. NER full: SJ_rho=0.3754, VC_rho=0.4602. NER cond: SJ_rho=0.3445, EM_rho=0.3952. selection_f1_SJ=0.6328. structural_beats_surface=true, rho_advantage_SJ_over_FK=0.1078. |
+
+---
+
+## 5. 4B (Qwen3-4B) Experiments (11 total)
+
+| exp_id | status | conclusion | key metrics |
+|--------|--------|-----------|-------------|
+| **exp_qwen3_4b_conll_finetune** | DONE | success | final_loss=0.0086, 3920/4390 steps (89.3%), best ckpt=checkpoint-3800. |
+| **exp_qwen3_4b_conll_finetune_resume** | DONE | success | train_loss=0.001136, eval_loss=0.0225, best_step=4200, 5 epochs completed. |
+| **exp_qwen3_4b_conll_merge_inference_v2** | DONE | killed | (no metrics) |
+| **exp_qwen3_4b_conll_scs_inference** | DONE | success | greedy_f1=0.9251, oracle=0.9408. SJ_rho_full=0.4045, SJ_rho_cond=0.4306. FK_rho_cond=0.4200. LP_rho=0.3186, LP_auroc_cond=0.8153. structural_beats_surface=true. Verdict: MARGINAL. |
+| **exp_qwen3_4b_conll_scs_inference_v2** | DONE | success | greedy_f1=0.9234, oracle=0.9404. SJ_rho_full=0.4217, SJ_rho_cond=0.459, FK_rho_cond=0.4538. LP_rho_cond=0.3487, LP_auroc_cond=0.8209. Verdict: MARGINAL. |
+| **exp_qwen3_4b_scierc_finetune** | DONE | killed | |
+| **exp_qwen3_4b_scierc_finetune_v2** | DONE | failed | |
+| **exp_qwen3_4b_scierc_finetune_v3** | DONE | failed | |
+| **exp_qwen3_4b_scierc_finetune_v4** | DONE | success | 585 steps, best ckpt=checkpoint-400, best_eval_loss=0.0898, 5 epochs. |
+| **exp_qwen3_4b_scierc_merge_inference** | DONE | killed | |
+| **exp_qwen3_4b_scierc_scs_inference** | DONE | success | NER: greedy_f1=0.6612, oracle=0.7839, SJ_rho=0.4221, FK_rho=0.3258. RE: greedy_f1=0.4136, oracle=0.5846, SJ_rho=0.2673, FK_rho=0.3593, LP_rho=0.3512, re_sample_f1_pct_zero=47.6%. |
+
+---
+
+## 6. Most Recent 5 Experiments by updated_at
+
+1. **exp_llama3b_scierc_ablation** (2026-05-16T03:59:26) -- success, LLaMA 3.2-3B SciERC NER scale ablation
+2. **exp_qwen3_4b_conll_scs_inference_v2** (2026-05-16T03:35:13) -- success, CoNLL 4B ckpt-4200 inference, verdict MARGINAL
+3. **exp_verbalized_confidence** (2026-05-16T03:09:53) -- negative, verbalized confidence underperforms structural signals
+4. **exp_freeform_conll_4seed** (2026-05-16T03:04:49) -- success, CoNLL freeform 4-seed ablation confirming LP compression cross-dataset
+5. **exp_qwen3_4b_conll_merge_inference_v2** (2026-05-15T20:07:12) -- killed
+
+---
+
+## 7. TACRED or ACE05 Experiments
+
+**None found.** No experiments in the registry mention TACRED or ACE05 in any field (id, hypothesis, conclusion, metrics, or spec). The project uses SciERC and CoNLL as its datasets.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4fab691-6108-48af-9a33-a7f547594007",
+  "isSidechain": true,
+  "agentId": "a7a20428baf062e1e",
+  "requestId": "req_011Cb5dW99eVnLY962HiXtwu",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "cd928218-584d-4f9c-8e56-e5d9ca4e5003",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "36cf417f-07d2-401a-833f-9ccfb82efc3c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MVEimRfHtaZY9NuQS8tA9W",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 842,
+      "cache_read_input_tokens": 50414,
+      "output_tokens": 4890,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 842
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4890,
+          "cache_read_input_tokens": 50414,
+          "cache_creation_input_tokens": 842,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 842,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

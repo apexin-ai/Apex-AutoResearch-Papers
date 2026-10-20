@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "2008d4d04c40813a2e7c",
+  "project": "struct_self_consist_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [System 触发审查]: 收到你的 critical 审查报告，6 个数据一致性问题全部确认。已派 Agent 紧急调查修复。 请你重点关注 P0-1 SciERC AUROC 问题：如果 EM AUROC 确实是 0.749 而非 0",
+  "task_key": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/a6ae7e35-390a-442a-93d4-9958c82c9e3b.jsonl",
+    "occurrence": 1,
+    "bytes": 720498,
+    "sha256": "395321dfe0c35b09163c2dffbfcad2faef484c5be2c4bf3fb030a604c3d7de42"
+  },
+  "statistics": {
+    "messages": 59,
+    "user_turns": 1,
+    "tool_calls": 13,
+    "roles": {
+      "record": 19,
+      "user": 1,
+      "assistant": 13,
+      "tool_call": 13,
+      "tool_result": 13
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2008d4d04c40813a2e7c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 57,
+      "chunks": [
+        {
+          "path": "2008d4d04c40813a2e7c-part-0001.json",
+          "message_count": 42
+        },
+        {
+          "path": "2008d4d04c40813a2e7c-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-system-critical-6-agent-p0-1-scierc-auroc-em-auroc-0-749-0.md"
+}

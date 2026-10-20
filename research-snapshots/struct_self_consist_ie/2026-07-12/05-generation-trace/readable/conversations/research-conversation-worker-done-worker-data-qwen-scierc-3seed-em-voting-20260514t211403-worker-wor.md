@@ -1,0 +1,3989 @@
+# Research conversation: [系统通知 — worker_done:worker_data_qwen_scierc_3seed_em_voting_20260514T211403]: Worker worker_data_qwen_scierc_3seed_em_vo
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 73
+- **Recorded user turns:** 1
+- **Tool calls:** 19
+- **Original source:** `logs/chats/exported-trajectories/account-3/7f351864-1277-4f97-b973-fafc7db3552e.jsonl`
+- **Structured JSON:** [`515969a069216d2f1607.json`](../../sessions/51/515969a069216d2f1607.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T21:17:10.026Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T21:17:10.026Z",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "content": "[系统通知 — worker_done:worker_data_qwen_scierc_3seed_em_voting_20260514T211403]:\nWorker worker_data_qwen_scierc_3seed_em_voting_20260514T211403 已完成（status=done），请审查 Agent 的处理结果。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T21:17:10.031Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T21:17:10.031Z",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e"
+}
+```
+
+---
+
+## Round 1
+
+71 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T21:17:10.081Z_
+
+[系统通知 — worker_done:worker_data_qwen_scierc_3seed_em_voting_20260514T211403]:
+Worker worker_data_qwen_scierc_3seed_em_voting_20260514T211403 已完成（status=done），请审查 Agent 的处理结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "58238f58-ab96-49b9-8e3c-a25963f114d0",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T21:17:10.080Z_
+
+```json
+{
+  "parentUuid": "58238f58-ab96-49b9-8e3c-a25963f114d0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "37925c94-e21b-4f2e-af82-ea025f4cc4aa",
+  "timestamp": "2026-05-14T21:17:10.080Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T21:17:10.080Z_
+
+```json
+{
+  "parentUuid": "37925c94-e21b-4f2e-af82-ea025f4cc4aa",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "509c267f-153b-449d-b044-9496568371e1",
+  "timestamp": "2026-05-14T21:17:10.080Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-14T21:17:10.080Z_
+
+```json
+{
+  "parentUuid": "509c267f-153b-449d-b044-9496568371e1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "5b75a5a1-54d6-4c41-bae6-1ad45d0bd01e",
+  "timestamp": "2026-05-14T21:17:10.080Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review worker completion status for Qwen ScIERC task",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T21:17:13.523Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Worker完成通知，我需要审查实验结果。先读取registry和相关信息。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b75a5a1-54d6-4c41-bae6-1ad45d0bd01e",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A2gQuMuADjAG8ypKby",
+  "type": "assistant",
+  "uuid": "42e1968b-0f13-48f1-b27d-5832fe8047bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uz79FD9FVBx2q41YDQ8pXq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18906,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 279,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18906,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 279,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 18906,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18906
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-14T21:17:14.146Z_
+
+开始审查 worker 完成的实验。先读取 registry 和相关信息。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42e1968b-0f13-48f1-b27d-5832fe8047bd",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A2gQuMuADjAG8ypKby",
+  "type": "assistant",
+  "uuid": "f76273bc-85fd-432d-a4ac-89f6c313043d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uz79FD9FVBx2q41YDQ8pXq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18906,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 279,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18906,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 279,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 18906,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18906
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T21:17:16.446Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CAu9HJtjKT2iht31kwEC7Z`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__reviewer_post_to_director,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__compute_coverage_matrix",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f76273bc-85fd-432d-a4ac-89f6c313043d",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A2gQuMuADjAG8ypKby",
+  "type": "assistant",
+  "uuid": "2373dff3-fe1b-4ffb-abc9-3a850ff87b30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uz79FD9FVBx2q41YDQ8pXq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18906,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 279,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18906,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 279,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 18906,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18906
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T21:17:16.454Z_
+
+<details><summary>↩ Tool result · `toolu_01CAu9HJtjKT2iht31kwEC7Z`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__fetch_wandb_metrics"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reviewer_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__tail_training_logs"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_experiment_plan_with_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__compute_coverage_matrix"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2373dff3-fe1b-4ffb-abc9-3a850ff87b30",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "2fcf58ab-b0b2-48ed-8b8a-e20e3257712b",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__compute_coverage_matrix"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__reviewer_post_to_director,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__compute_coverage_matrix",
+    "total_deferred_tools": 34
+  },
+  "sourceToolAssistantUUID": "2373dff3-fe1b-4ffb-abc9-3a850ff87b30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T21:17:19.705Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Y8kJQK73tf7tfw2UNJxqXQ`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "limit": 10,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2fcf58ab-b0b2-48ed-8b8a-e20e3257712b",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A39NtKUHFmVvgE93Wv",
+  "type": "assistant",
+  "uuid": "acce2810-3142-4913-900c-8575c475251c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AdLahwhzotNEHc1WSVSokK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2633,
+      "cache_read_input_tokens": 30747,
+      "output_tokens": 157,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2633,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 157,
+          "cache_read_input_tokens": 30747,
+          "cache_creation_input_tokens": 2633,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2633
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T21:17:19.873Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01HdY264dYbZET3ZyzkeWimz`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "acce2810-3142-4913-900c-8575c475251c",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A39NtKUHFmVvgE93Wv",
+  "type": "assistant",
+  "uuid": "9979b483-74ea-4857-8b55-1354023bb307",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AdLahwhzotNEHc1WSVSokK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2633,
+      "cache_read_input_tokens": 30747,
+      "output_tokens": 157,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2633,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 157,
+          "cache_read_input_tokens": 30747,
+          "cache_creation_input_tokens": 2633,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2633
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T21:17:20.027Z_
+
+<details><summary>↩ Tool result · `toolu_01Y8kJQK73tf7tfw2UNJxqXQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_017_llama_conll_n16_s456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:23:21.987Z\", \"updated_at\": \"2026-05-14T20:24:45.875Z\", \"hypothesis\": \"LLaMA CoNLL N=16 seed=456: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --num_test 9999 --output_dir output/exp_017_llama_conll_n16_s456\", \"server\": \"autodl-5090\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"model_name\": \"llama3.1-8b-conll2003-merged\", \"seed\": 456}, \"metrics\": {\"greedy_f1\": 0.9243, \"oracle_f1\": 0.9488, \"oracle_headroom\": 0.0245, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"structural_beats_surface\": true, \"full\": {\"SJ_rho\": 0.4552, \"SJ_AUROC\": 0.7288, \"SJ_ECE\": 0.1134, \"FK_rho\": 0.4478, \"FK_AUROC\": 0.7248, \"FK_ECE\": 0.109, \"logprob_rho\": 0.3078, \"logprob_AUROC\": 0.7612, \"logprob_ECE\": 0.1289, \"EM_rho\": 0.452, \"EM_AUROC\": 0.7275, \"EM_ECE\": 0.1082, \"voting_conf_rho\": 0.4571, \"voting_conf_AUROC\": 0.7348, \"voting_conf_ECE\": 0.0863}, \"conditional\": {\"SJ_rho\": 0.4505, \"SJ_AUROC\": 0.7449, \"SJ_ECE\": 0.0826, \"FK_rho\": 0.4422, \"FK_AUROC\": 0.7401, \"FK_ECE\": 0.0835, \"logprob_rho\": 0.3242, \"logprob_AUROC\": 0.8067, \"logprob_ECE\": 0.0921, \"EM_rho\": 0.451, \"EM_AUROC\": 0.745, \"EM_ECE\": 0.0756, \"voting_conf_rho\": 0.3962, \"voting_conf_AUROC\": 0.7202, \"voting_conf_ECE\": 0.0746}, \"best_of_n\": {\"greedy\": 0.9243, \"random_avg\": 0.9215, \"sj_best\": 0.9243, \"logprob_best\": 0.9243, \"voting_conf_best\": 0.9243, \"oracle\": 0.9488}, \"n8_vs_n16_delta\": {\"full_SJ_rho_delta\": 0.0238, \"full_FK_rho_delta\": 0.0201, \"full_logprob_rho_delta\": 0.0006, \"full_EM_rho_delta\": 0.0214, \"full_voting_conf_rho_delta\": 0.0315, \"cond_SJ_rho_delta\": 0.0149, \"cond_FK_rho_delta\": 0.0112, \"cond_logprob_rho_delta\": -0.004, \"cond_EM_rho_delta\": 0.0107, \"cond_voting_conf_rho_delta\": 0.0219}}, \"checkpoint_path\": \"output/exp_017_llama_conll_n16_s456/samples.jsonl\", \"log_path\": \"output/exp_017_llama_conll_n16_s456/all_signals_report.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T20:24:45.875Z\"}, \"exp_017_llama_conll_n16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:19:35.318Z\", \"updated_at\": \"2026-05-14T19:45:16.265Z\", \"spec\": {\"hypothesis\": \"LLaMA CoNLL N=16: complete the 2x2 matrix (model x dataset x N). If SJ N-scaling holds for LLaMA on CoNLL, the finding is fully cross-model cross-dataset.\", \"plan_id\": \"exp-017\", \"parent\": \"exp_017_llama_conll_infer\", \"model_name\": \"llama3.1-8b-conll2003-merged\", \"dataset\": \"CoNLL-2003\", \"data_count\": 3453, \"seed\": 42, \"server\": \"autodl-5090\", \"command\": \"CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_017_llama_conll_n16\", \"data_path\": \"data/conll2003\", \"pid\": 106997, \"n_samples\": 16, \"temperature\": 1, \"checkpoint_source\": \"checkpoints/llama3.1-8b-conll2003-merged\", \"eval_data\": \"conll2003 test set\", \"checkpoint_path\": \"output/exp_017_llama_conll_n16/samples.jsonl\", \"log_path\": \"output/exp_017_llama_conll_n16/all_signals_report.json\"}, \"metrics\": {\"greedy_f1\": 0.9243, \"oracle_f1\": 0.9487, \"oracle_headroom\": 0.0244, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"structural_beats_surface\": true, \"full\": {\"SJ_rho\": 0.4642, \"SJ_AUROC\": 0.7391, \"SJ_ECE\": 0.1131, \"FK_rho\": 0.4566, \"FK_AUROC\": 0.736, \"FK_ECE\": 0.1071, \"logprob_rho\": 0.3058, \"logprob_AUROC\": 0.7594, \"logprob_ECE\": 0.1288, \"EM_rho\": 0.4613, \"EM_AUROC\": 0.7391, \"EM_ECE\": 0.1084, \"voting_conf_rho\": 0.4554, \"voting_conf_AUROC\": 0.7406, \"voting_conf_ECE\": 0.0844}, \"conditional\": {\"SJ_rho\": 0.4597, \"SJ_AUROC\": 0.7565, \"SJ_ECE\": 0.0846, \"FK_rho\": 0.4515, \"FK_AUROC\": 0.753, \"FK_ECE\": 0.0813, \"logprob_rho\": 0.3193, \"logprob_AUROC\": 0.8023, \"logprob_ECE\": 0.0921, \"EM_rho\": 0.4618, \"EM_AUROC\": 0.7589, \"EM_ECE\": 0.0757, \"voting_conf_rho\": 0.3978, \"voting_conf_AUROC\": 0.7287, \"voting_conf_ECE\": 0.0742}, \"best_of_n\": {\"greedy\": 0.9243, \"random_avg\": 0.9213, \"sj_best\": 0.9259, \"logprob_best\": 0.925, \"voting_conf_best\": 0.9268, \"oracle\": 0.9487}, \"n8_vs_n16_delta\": {\"full_SJ_rho_delta\": 0.0328, \"full_FK_rho_delta\": 0.0289, \"full_logprob_rho_delta\": -0.0014, \"full_EM_rho_delta\": 0.0307, \"full_voting_conf_rho_delta\": 0.0298, \"cond_SJ_rho_delta\": 0.0241, \"cond_FK_rho_delta\": 0.0205, \"cond_logprob_rho_delta\": -0.0089, \"cond_EM_rho_delta\": 0.0215, \"cond_voting_conf_rho_delta\": 0.0235}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T19:45:16.265Z\"}, \"exp_017_llama_conll_n16_s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:23:21.084Z\", \"updated_at\": \"2026-05-14T19:43:06.607Z\", \"hypothesis\": \"LLaMA CoNLL N=16 seed=123: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol\", \"spec\": {\"hypothesis\": \"LLaMA CoNLL-2003 NER N=16 seed=123: cross-seed robustness check against N=8 seed=42 baseline (exp_017_llama_conll_infer)\", \"command\": \"CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --num_test 9999 --output_dir output/exp_017_llama_conll_n16_s123\", \"server\": \"autodl-5090\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/conll2003\", \"data_count\": 3453, \"model_name\": \"llama3.1-8b-conll2003-merged\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/llama3.1-8b-conll2003-merged\", \"eval_data\": \"data/conll2003\", \"checkpoint_path\": \"output/exp_017_llama_conll_n16_s123/samples.jsonl\", \"log_path\": \"output/exp_017_llama_conll_n16_s123.log\"}, \"metrics\": {\"greedy_f1\": 0.9266, \"oracle_f1\": 0.9497, \"oracle_headroom\": 0.0231, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"structural_beats_surface\": true, \"full\": {\"SJ_rho\": 0.4698, \"SJ_AUROC\": 0.7402, \"SJ_ECE\": 0.1135, \"FK_rho\": 0.4594, \"FK_AUROC\": 0.7351, \"FK_ECE\": 0.1114, \"logprob_rho\": 0.3161, \"logprob_AUROC\": 0.768, \"logprob_ECE\": 0.129, \"EM_rho\": 0.4676, \"EM_AUROC\": 0.7399, \"EM_ECE\": 0.1082, \"voting_conf_rho\": 0.4612, \"voting_conf_AUROC\": 0.7429, \"voting_conf_ECE\": 0.0832}, \"conditional\": {\"SJ_rho\": 0.4712, \"SJ_AUROC\": 0.7609, \"SJ_ECE\": 0.0828, \"FK_rho\": 0.4595, \"FK_AUROC\": 0.7547, \"FK_ECE\": 0.0858, \"logprob_rho\": 0.3314, \"logprob_AUROC\": 0.8134, \"logprob_ECE\": 0.0922, \"EM_rho\": 0.4732, \"EM_AUROC\": 0.7626, \"EM_ECE\": 0.075, \"voting_conf_rho\": 0.4086, \"voting_conf_AUROC\": 0.7338, \"voting_conf_ECE\": 0.0706}, \"best_of_n\": {\"greedy\": 0.9242, \"random_avg\": 0.9216, \"sj_best\": 0.9247, \"logprob_best\": 0.9253, \"voting_conf_best\": 0.9255, \"oracle\": 0.9486}, \"n8_vs_n16_delta\": {\"full_SJ_rho_delta\": 0.0384, \"full_FK_rho_delta\": 0.0317, \"full_logprob_rho_delta\": 0.0089, \"full_SJ_AUROC_delta\": 0.0363, \"full_FK_AUROC_delta\": 0.0325, \"full_logprob_AUROC_delta\": 0.007, \"cond_SJ_rho_delta\": 0.0356, \"cond_FK_rho_delta\": 0.0285, \"cond_logprob_rho_delta\": 0.0032}}, \"log_path\": \"output/exp_017_llama_conll_n16_s123.log\", \"checkpoint_path\": \"output/exp_017_llama_conll_n16_s123/samples.jsonl\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T19:43:06.607Z\"}, \"exp_007_llama_n16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:31:44.366Z\", \"updated_at\": \"2026-05-14T19:03:50.284Z\", \"spec\": {\"hypothesis\": \"LLaMA SciERC N=16: cross-model N-scaling validation. If SJ rho increases from N=8 (0.363) to N=16, N-scaling is model-agnostic.\", \"plan_id\": \"exp-007\", \"parent\": \"exp_007_llama_inference\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=1 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_007_llama_n16\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"llama3.1-8b-scierc-merged\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/llama3.1-8b-scierc-merged\", \"eval_data\": \"data/scierc/processed_data\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"output/exp_007_llama_n16/samples.jsonl\", \"log_path\": \"output/exp_007_llama_n16.log\", \"completed_at\": \"2026-05-14T19:03:39.163Z\", \"metrics\": {\"N\": 16, \"dataset\": \"scierc\", \"subtask\": \"ner\", \"n_instances\": 551, \"n_valid\": 529, \"n_conditional\": 478, \"greedy_f1\": 0.645, \"full\": {\"SJ_rho\": 0.3791, \"FK_rho\": 0.3081, \"logprob_rho\": 0.2041, \"EM_rho\": 0.3159, \"voting_conf_rho\": 0.4515, \"SJ_AUROC\": 0.717, \"FK_AUROC\": 0.6581, \"logprob_AUROC\": 0.5656, \"EM_AUROC\": 0.7686, \"voting_conf_AUROC\": 0.7266, \"SJ_ECE\": 0.1019, \"FK_ECE\": 0.1556, \"logprob_ECE\": 0.084, \"EM_ECE\": 0.1761, \"voting_conf_ECE\": 0.1365}, \"conditional\": {\"SJ_rho\": 0.3222, \"FK_rho\": 0.2182, \"logprob_rho\": 0.1286, \"EM_rho\": 0.3563, \"voting_conf_rho\": 0.3356, \"SJ_AUROC\": 0.7014, \"FK_AUROC\": 0.6392, \"logprob_AUROC\": 0.545, \"EM_AUROC\": 0.7708, \"voting_conf_AUROC\": 0.6988, \"SJ_ECE\": 0.1466, \"FK_ECE\": 0.1853, \"logprob_ECE\": 0.1141, \"EM_ECE\": 0.1887, \"voting_conf_ECE\": 0.2634}, \"n8_vs_n16_delta_rho_full\": {\"SJ\": 0.0161, \"FK\": -0.0185, \"logprob\": 0.0214, \"EM\": 0.0007, \"voting_conf\": 0.0184}}}, \"exp_002_conll_n16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:12:16.041Z\", \"updated_at\": \"2026-05-14T19:03:19.801Z\", \"spec\": {\"hypothesis\": \"Qwen CoNLL-2003 N=16: cross-dataset N-scaling comparison with SciERC N=16\", \"plan_id\": \"exp-002\", \"parent\": \"exp_002_ner_conll2003\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_002_conll_n16\", \"server\": \"autodl-5090\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"model_name\": \"qwen3-8b-conll2003-merged\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"N\": 16, \"dataset\": \"conll2003\", \"subtask\": \"ner\", \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2614, \"greedy_f1\": 0.907, \"full\": {\"SJ_rho\": 0.4496, \"FK_rho\": 0.3928, \"logprob_rho\": 0.3146, \"EM_rho\": 0.4627, \"voting_conf_rho\": 0.4286, \"SJ_AUROC\": 0.8264, \"FK_AUROC\": 0.7821, \"logprob_AUROC\": 0.7531, \"EM_AUROC\": 0.8409, \"voting_conf_AUROC\": 0.8071, \"SJ_ECE\": 0.0747, \"FK_ECE\": 0.1786, \"logprob_ECE\": 0.2031, \"EM_ECE\": 0.0786, \"voting_conf_ECE\": 0.529}, \"conditional\": {\"SJ_rho\": 0.4208, \"FK_rho\": 0.3494, \"logprob_rho\": 0.3756, \"EM_rho\": 0.4658, \"voting_conf_rho\": 0.3654, \"SJ_AUROC\": 0.8405, \"FK_AUROC\": 0.7819, \"logprob_AUROC\": 0.8259, \"EM_AUROC\": 0.8781, \"voting_conf_AUROC\": 0.7951, \"SJ_ECE\": 0.0982, \"FK_ECE\": 0.1899, \"logprob_ECE\": 0.2504, \"EM_ECE\": 0.0997, \"voting_conf_ECE\": 0.6096}, \"n8_vs_n16_delta_rho_full\": {\"SJ\": 0.0139, \"FK\": -0.007, \"logprob\": -0.0011, \"EM\": 0.012, \"voting_conf\": 0.0049}}, \"checkpoint_path\": \"output/exp_002_conll_n16/samples.jsonl\", \"log_path\": \"output/exp_002_conll_n16.log\", \"completed_at\": \"2026-05-14T18:58:40.473Z\"}, \"exp_009_v2_re_rerun\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:56:31.535Z\", \"updated_at\": \"2026-05-14T18:56:58.168Z\", \"spec\": {\"command\": \"python code/exp_009_v2_re_rerun.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp_008_re_n16_v2/samples.jsonl\", \"data_count\": 397, \"model_name\": \"cpu_analysis\", \"seed\": 42, \"checkpoint_source\": \"exp_008_re_n16_v2\", \"checkpoint_path\": \"output/exp_009_v2_re_rerun/results.json\", \"log_path\": \"/tmp/re_rerun.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T18:56:58.168Z\"}, \"exp_001_seed456_v2_ner\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:13:00.414Z\", \"updated_at\": \"2026-05-14T18:55:18.772Z\", \"spec\": {\"hypothesis\": \"NER N=16 seed=456 robustness test (NER-only rerun, fixing subtask mismatch from exp_001_seed456_v2)\", \"plan_id\": \"exp-001\", \"parent\": \"exp_001_seed456_v2\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=2 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --num_test 9999 --collect_logprobs --output_dir output/exp_001_seed456_v2_ner\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 456, \"checkpoint_source\": \"checkpoints/qwen3-8b-scierc-merged-v2\", \"eval_data\": \"data/scierc/processed_data\", \"metrics\": {\"sj_rho\": 0.384, \"structural_gt_surface\": true, \"structural_surface_delta\": 0.16}, \"log_path\": \"output/exp_001_seed456_v2_ner.log\", \"checkpoint_path\": \"output/exp_001_seed456_v2_ner/\"}, \"log_path\": \"output/exp_001_seed456_v2_ner.log\", \"pid\": 96161, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T17:52:01.372Z\", \"metrics\": {\"full\": {\"SJ\": {\"rho\": 0.384, \"auroc\": 0.711}, \"FK\": {\"rho\": 0.223, \"auroc\": 0.577}, \"logprob\": {\"rho\": 0.232, \"auroc\": 0.594}, \"EM\": {\"rho\": 0.316, \"auroc\": 0.768}, \"voting_conf\": {\"rho\": 0.411, \"auroc\": 0.712}}, \"conditional\": {\"SJ\": {\"rho\": 0.349, \"auroc\": 0.699}, \"FK\": {\"rho\": 0.157, \"auroc\": 0.561}, \"logprob\": {\"rho\": 0.171, \"auroc\": 0.576}, \"EM\": {\"rho\": 0.406, \"auroc\": 0.78}, \"voting_conf\": {\"rho\": 0.346, \"auroc\": 0.694}}, \"3seed_mean_SJ_rho_full\": 0.412, \"3seed_sd_SJ_rho_full\": 0.025, \"structural_beats_surface\": true, \"verdict\": \"MARGINAL\"}}, \"exp_003_wnut17_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:32:56.415Z\", \"updated_at\": \"2026-05-14T18:11:36.559Z\", \"spec\": {\"description\": \"WNUT-17 retrain: downsample gold-empty instances to ≤25%, fine-tune Qwen3-8B, inference N=16 T=1.0 with log-probs\", \"hypothesis\": \"After removing excess empty instances, structural consistency signals (SJ) will show stronger correlation on social media NER\", \"plan_id\": \"exp-003\", \"claim\": 1, \"model_name\": \"Qwen3-8B\", \"dataset\": \"WNUT-17 (downsampled)\", \"priority\": \"P0\", \"parent\": \"exp_003_ner_wnut17\", \"command\": \"CUDA_VISIBLE_DEVICES=1 llamafactory-cli train train_config_wnut17.yaml\", \"server\": \"autodl-5090\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/wnut17/llmfactory_train_downsampled.json\", \"data_count\": 1637, \"seed\": 42, \"pid\": 92215, \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/logs/train_wnut17.log\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora\", \"downsampling\": \"empty instances 63.8% -> 25.0%, total 3394 -> 1637\", \"metrics\": {\"train_loss\": 0.105, \"eval_loss\": 0.0836, \"epochs\": 5, \"train_time_min\": 16.37, \"train_samples_per_sec\": 8.33}, \"note\": \"D045: Training succeeded (train_loss=0.105) but inference FAIL: 54% F1=0, SJ rho=0.062 (p=0.106). WNUT-17 abandoned — model capability insufficient on social media NER. Paper reports as Claim 3 (capability boundary) evidence.\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T18:11:36.559Z\"}, \"exp_017_llama_conll_infer\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:33:23.653Z\", \"updated_at\": \"2026-05-14T17:55:35.572Z\", \"spec\": {\"hypothesis\": \"LLaMA-3.1-8B CoNLL-2003 inference: cross-model cross-dataset validation of structural consistency signals\", \"plan_id\": \"exp-017\", \"parent\": \"exp_017_llama_conll\", \"command\": \"python code/run_llama_conll_infer.py\", \"server\": \"autodl-5090\", \"data_path\": \"conll2003 test\", \"data_count\": 3453, \"model_name\": \"LLaMA-3.1-8B-Instruct\", \"seed\": 42, \"n_samples\": 8, \"temperature\": 1, \"description\": \"LLaMA CoNLL-2003 NER inference N=8 (cross-model + cross-dataset validation)\"}, \"metrics\": {\"greedy_f1\": 0.9266, \"oracle_f1\": 0.9443, \"oracle_headroom\": 0.0177, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"N\": 8, \"full\": {\"SJ_rho\": 0.4314, \"FK_rho\": 0.4277, \"logprob_rho\": 0.3072, \"EM_rho\": 0.4306, \"voting_conf_rho\": 0.4256, \"SJ_AUROC\": 0.7039, \"FK_AUROC\": 0.7026, \"logprob_AUROC\": 0.761, \"EM_AUROC\": 0.7046, \"voting_conf_AUROC\": 0.7088, \"SJ_ECE\": 0.1137, \"FK_ECE\": 0.1053, \"logprob_ECE\": 0.129, \"EM_ECE\": 0.1094, \"voting_conf_ECE\": 0.0949}, \"conditional\": {\"SJ_rho\": 0.4356, \"FK_rho\": 0.431, \"logprob_rho\": 0.3282, \"EM_rho\": 0.4403, \"voting_conf_rho\": 0.3743, \"SJ_AUROC\": 0.7225, \"FK_AUROC\": 0.7208, \"logprob_AUROC\": 0.8102, \"EM_AUROC\": 0.7257, \"voting_conf_AUROC\": 0.6989, \"SJ_ECE\": 0.0829, \"FK_ECE\": 0.0796, \"logprob_ECE\": 0.0922, \"EM_ECE\": 0.0754, \"voting_conf_ECE\": 0.0784}}, \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T17:55:33.476Z\", \"notes\": \"LLaMA CoNLL-2003 NER N=8 (not N=16, cost constraint: 3453 test instances). SJ ρ=0.431 > logprob ρ=0.307 (Δ=+0.124). ρ-AUROC dissociation: logprob AUROC=0.761 > SJ AUROC=0.704. All 4 structural signals ρ>0.42 vs logprob 0.31. Directly comparable to exp_002 (Qwen CoNLL N=8) and exp_007 (LLaMA SciERC N=8).\"}, \"exp008_re_n16\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:09:50.987Z\", \"updated_at\": \"2026-05-14T17:52:00.624Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && mkdir -p output/exp008_re_n16 && CUDA_VISIBLE_DEVICES=2 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 42 --output_dir output/exp008_re_n16 --collect_logprobs 2>&1 | tee output/exp008_re_n16/run.log\\\"\", \"server\": \"gpu-5090-4x-2\", \"gpu\": [\"cuda:2\"], \"pid\": \"53600\", \"log_path\": \"~/runs/struct_self_consist_ie/exp008_re_n16.log\", \"submitted_at\": \"2026-05-14T12:15:14.917Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"failure_reason\": \"Superseded by exp_008_re_n16_v2 (full 551-instance run on autodl-5090)\"}, \"conclusion\": \"killed\"}}, \"count\": 10, \"total\": 63, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3054}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "acce2810-3142-4913-900c-8575c475251c",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "81e3d295-2ab1-40b1-be07-f72c6cd3d141",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_017_llama_conll_n16_s456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:23:21.987Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:24:45.875Z\\\", \\\"hypothesis\\\": \\\"LLaMA CoNLL N=16 seed=456: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --num_test 9999 --output_dir output/exp_017_llama_conll_n16_s456\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/conll2003\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"llama3.1-8b-conll2003-merged\\\", \\\"seed\\\": 456}, \\\"metrics\\\": {\\\"greedy_f1\\\": 0.9243, \\\"oracle_f1\\\": 0.9488, \\\"oracle_headroom\\\": 0.0245, \\\"n_instances\\\": 3453, \\\"n_valid\\\": 2756, \\\"n_conditional\\\": 2642, \\\"structural_beats_surface\\\": true, \\\"full\\\": {\\\"SJ_rho\\\": 0.4552, \\\"SJ_AUROC\\\": 0.7288, \\\"SJ_ECE\\\": 0.1134, \\\"FK_rho\\\": 0.4478, \\\"FK_AUROC\\\": 0.7248, \\\"FK_ECE\\\": 0.109, \\\"logprob_rho\\\": 0.3078, \\\"logprob_AUROC\\\": 0.7612, \\\"logprob_ECE\\\": 0.1289, \\\"EM_rho\\\": 0.452, \\\"EM_AUROC\\\": 0.7275, \\\"EM_ECE\\\": 0.1082, \\\"voting_conf_rho\\\": 0.4571, \\\"voting_conf_AUROC\\\": 0.7348, \\\"voting_conf_ECE\\\": 0.0863}, \\\"conditional\\\": {\\\"SJ_rho\\\": 0.4505, \\\"SJ_AUROC\\\": 0.7449, \\\"SJ_ECE\\\": 0.0826, \\\"FK_rho\\\": 0.4422, \\\"FK_AUROC\\\": 0.7401, \\\"FK_ECE\\\": 0.0835, \\\"logprob_rho\\\": 0.3242, \\\"logprob_AUROC\\\": 0.8067, \\\"logprob_ECE\\\": 0.0921, \\\"EM_rho\\\": 0.451, \\\"EM_AUROC\\\": 0.745, \\\"EM_ECE\\\": 0.0756, \\\"voting_conf_rho\\\": 0.3962, \\\"voting_conf_AUROC\\\": 0.7202, \\\"voting_conf_ECE\\\": 0.0746}, \\\"best_of_n\\\": {\\\"greedy\\\": 0.9243, \\\"random_avg\\\": 0.9215, \\\"sj_best\\\": 0.9243, \\\"logprob_best\\\": 0.9243, \\\"voting_conf_best\\\": 0.9243, \\\"oracle\\\": 0.9488}, \\\"n8_vs_n16_delta\\\": {\\\"full_SJ_rho_delta\\\": 0.0238, \\\"full_FK_rho_delta\\\": 0.0201, \\\"full_logprob_rho_delta\\\": 0.0006, \\\"full_EM_rho_delta\\\": 0.0214, \\\"full_voting_conf_rho_delta\\\": 0.0315, \\\"cond_SJ_rho_delta\\\": 0.0149, \\\"cond_FK_rho_delta\\\": 0.0112, \\\"cond_logprob_rho_delta\\\": -0.004, \\\"cond_EM_rho_delta\\\": 0.0107, \\\"cond_voting_conf_rho_delta\\\": 0.0219}}, \\\"checkpoint_path\\\": \\\"output/exp_017_llama_conll_n16_s456/samples.jsonl\\\", \\\"log_path\\\": \\\"output/exp_017_llama_conll_n16_s456/all_signals_report.json\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T20:24:45.875Z\\\"}, \\\"exp_017_llama_conll_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:19:35.318Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:45:16.265Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"LLaMA CoNLL N=16: complete the 2x2 matrix (model x dataset x N). If SJ N-scaling holds for LLaMA on CoNLL, the finding is fully cross-model cross-dataset.\\\", \\\"plan_id\\\": \\\"exp-017\\\", \\\"parent\\\": \\\"exp_017_llama_conll_infer\\\", \\\"model_name\\\": \\\"llama3.1-8b-conll2003-merged\\\", \\\"dataset\\\": \\\"CoNLL-2003\\\", \\\"data_count\\\": 3453, \\\"seed\\\": 42, \\\"server\\\": \\\"autodl-5090\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_017_llama_conll_n16\\\", \\\"data_path\\\": \\\"data/conll2003\\\", \\\"pid\\\": 106997, \\\"n_samples\\\": 16, \\\"temperature\\\": 1, \\\"checkpoint_source\\\": \\\"checkpoints/llama3.1-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set\\\", \\\"checkpoint_path\\\": \\\"output/exp_017_llama_conll_n16/samples.jsonl\\\", \\\"log_path\\\": \\\"output/exp_017_llama_conll_n16/all_signals_report.json\\\"}, \\\"metrics\\\": {\\\"greedy_f1\\\": 0.9243, \\\"oracle_f1\\\": 0.9487, \\\"oracle_headroom\\\": 0.0244, \\\"n_instances\\\": 3453, \\\"n_valid\\\": 2756, \\\"n_conditional\\\": 2642, \\\"structural_beats_surface\\\": true, \\\"full\\\": {\\\"SJ_rho\\\": 0.4642, \\\"SJ_AUROC\\\": 0.7391, \\\"SJ_ECE\\\": 0.1131, \\\"FK_rho\\\": 0.4566, \\\"FK_AUROC\\\": 0.736, \\\"FK_ECE\\\": 0.1071, \\\"logprob_rho\\\": 0.3058, \\\"logprob_AUROC\\\": 0.7594, \\\"logprob_ECE\\\": 0.1288, \\\"EM_rho\\\": 0.4613, \\\"EM_AUROC\\\": 0.7391, \\\"EM_ECE\\\": 0.1084, \\\"voting_conf_rho\\\": 0.4554, \\\"voting_conf_AUROC\\\": 0.7406, \\\"voting_conf_ECE\\\": 0.0844}, \\\"conditional\\\": {\\\"SJ_rho\\\": 0.4597, \\\"SJ_AUROC\\\": 0.7565, \\\"SJ_ECE\\\": 0.0846, \\\"FK_rho\\\": 0.4515, \\\"FK_AUROC\\\": 0.753, \\\"FK_ECE\\\": 0.0813, \\\"logprob_rho\\\": 0.3193, \\\"logprob_AUROC\\\": 0.8023, \\\"logprob_ECE\\\": 0.0921, \\\"EM_rho\\\": 0.4618, \\\"EM_AUROC\\\": 0.7589, \\\"EM_ECE\\\": 0.0757, \\\"voting_conf_rho\\\": 0.3978, \\\"voting_conf_AUROC\\\": 0.7287, \\\"voting_conf_ECE\\\": 0.0742}, \\\"best_of_n\\\": {\\\"greedy\\\": 0.9243, \\\"random_avg\\\": 0.9213, \\\"sj_best\\\": 0.9259, \\\"logprob_best\\\": 0.925, \\\"voting_conf_best\\\": 0.9268, \\\"oracle\\\": 0.9487}, \\\"n8_vs_n16_delta\\\": {\\\"full_SJ_rho_delta\\\": 0.0328, \\\"full_FK_rho_delta\\\": 0.0289, \\\"full_logprob_rho_delta\\\": -0.0014, \\\"full_EM_rho_delta\\\": 0.0307, \\\"full_voting_conf_rho_delta\\\": 0.0298, \\\"cond_SJ_rho_delta\\\": 0.0241, \\\"cond_FK_rho_delta\\\": 0.0205, \\\"cond_logprob_rho_delta\\\": -0.0089, \\\"cond_EM_rho_delta\\\": 0.0215, \\\"cond_voting_conf_rho_delta\\\": 0.0235}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T19:45:16.265Z\\\"}, \\\"exp_017_llama_conll_n16_s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:23:21.084Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:43:06.607Z\\\", \\\"hypothesis\\\": \\\"LLaMA CoNLL N=16 seed=123: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"LLaMA CoNLL-2003 NER N=16 seed=123: cross-seed robustness check against N=8 seed=42 baseline (exp_017_llama_conll_infer)\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --num_test 9999 --output_dir output/exp_017_llama_conll_n16_s123\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/conll2003\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"llama3.1-8b-conll2003-merged\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"checkpoints/llama3.1-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"data/conll2003\\\", \\\"checkpoint_path\\\": \\\"output/exp_017_llama_conll_n16_s123/samples.jsonl\\\", \\\"log_path\\\": \\\"output/exp_017_llama_conll_n16_s123.log\\\"}, \\\"metrics\\\": {\\\"greedy_f1\\\": 0.9266, \\\"oracle_f1\\\": 0.9497, \\\"oracle_headroom\\\": 0.0231, \\\"n_instances\\\": 3453, \\\"n_valid\\\": 2756, \\\"n_conditional\\\": 2642, \\\"structural_beats_surface\\\": true, \\\"full\\\": {\\\"SJ_rho\\\": 0.4698, \\\"SJ_AUROC\\\": 0.7402, \\\"SJ_ECE\\\": 0.1135, \\\"FK_rho\\\": 0.4594, \\\"FK_AUROC\\\": 0.7351, \\\"FK_ECE\\\": 0.1114, \\\"logprob_rho\\\": 0.3161, \\\"logprob_AUROC\\\": 0.768, \\\"logprob_ECE\\\": 0.129, \\\"EM_rho\\\": 0.4676, \\\"EM_AUROC\\\": 0.7399, \\\"EM_ECE\\\": 0.1082, \\\"voting_conf_rho\\\": 0.4612, \\\"voting_conf_AUROC\\\": 0.7429, \\\"voting_conf_ECE\\\": 0.0832}, \\\"conditional\\\": {\\\"SJ_rho\\\": 0.4712, \\\"SJ_AUROC\\\": 0.7609, \\\"SJ_ECE\\\": 0.0828, \\\"FK_rho\\\": 0.4595, \\\"FK_AUROC\\\": 0.7547, \\\"FK_ECE\\\": 0.0858, \\\"logprob_rho\\\": 0.3314, \\\"logprob_AUROC\\\": 0.8134, \\\"logprob_ECE\\\": 0.0922, \\\"EM_rho\\\": 0.4732, \\\"EM_AUROC\\\": 0.7626, \\\"EM_ECE\\\": 0.075, \\\"voting_conf_rho\\\": 0.4086, \\\"voting_conf_AUROC\\\": 0.7338, \\\"voting_conf_ECE\\\": 0.0706}, \\\"best_of_n\\\": {\\\"greedy\\\": 0.9242, \\\"random_avg\\\": 0.9216, \\\"sj_best\\\": 0.9247, \\\"logprob_best\\\": 0.9253, \\\"voting_conf_best\\\": 0.9255, \\\"oracle\\\": 0.9486}, \\\"n8_vs_n16_delta\\\": {\\\"full_SJ_rho_delta\\\": 0.0384, \\\"full_FK_rho_delta\\\": 0.0317, \\\"full_logprob_rho_delta\\\": 0.0089, \\\"full_SJ_AUROC_delta\\\": 0.0363, \\\"full_FK_AUROC_delta\\\": 0.0325, \\\"full_logprob_AUROC_delta\\\": 0.007, \\\"cond_SJ_rho_delta\\\": 0.0356, \\\"cond_FK_rho_delta\\\": 0.0285, \\\"cond_logprob_rho_delta\\\": 0.0032}}, \\\"log_path\\\": \\\"output/exp_017_llama_conll_n16_s123.log\\\", \\\"checkpoint_path\\\": \\\"output/exp_017_llama_conll_n16_s123/samples.jsonl\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T19:43:06.607Z\\\"}, \\\"exp_007_llama_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:31:44.366Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:03:50.284Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"LLaMA SciERC N=16: cross-model N-scaling validation. If SJ rho increases from N=8 (0.363) to N=16, N-scaling is model-agnostic.\\\", \\\"plan_id\\\": \\\"exp-007\\\", \\\"parent\\\": \\\"exp_007_llama_inference\\\", \\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=1 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_007_llama_n16\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"llama3.1-8b-scierc-merged\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/llama3.1-8b-scierc-merged\\\", \\\"eval_data\\\": \\\"data/scierc/processed_data\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"output/exp_007_llama_n16/samples.jsonl\\\", \\\"log_path\\\": \\\"output/exp_007_llama_n16.log\\\", \\\"completed_at\\\": \\\"2026-05-14T19:03:39.163Z\\\", \\\"metrics\\\": {\\\"N\\\": 16, \\\"dataset\\\": \\\"scierc\\\", \\\"subtask\\\": \\\"ner\\\", \\\"n_instances\\\": 551, \\\"n_valid\\\": 529, \\\"n_conditional\\\": 478, \\\"greedy_f1\\\": 0.645, \\\"full\\\": {\\\"SJ_rho\\\": 0.3791, \\\"FK_rho\\\": 0.3081, \\\"logprob_rho\\\": 0.2041, \\\"EM_rho\\\": 0.3159, \\\"voting_conf_rho\\\": 0.4515, \\\"SJ_AUROC\\\": 0.717, \\\"FK_AUROC\\\": 0.6581, \\\"logprob_AUROC\\\": 0.5656, \\\"EM_AUROC\\\": 0.7686, \\\"voting_conf_AUROC\\\": 0.7266, \\\"SJ_ECE\\\": 0.1019, \\\"FK_ECE\\\": 0.1556, \\\"logprob_ECE\\\": 0.084, \\\"EM_ECE\\\": 0.1761, \\\"voting_conf_ECE\\\": 0.1365}, \\\"conditional\\\": {\\\"SJ_rho\\\": 0.3222, \\\"FK_rho\\\": 0.2182, \\\"logprob_rho\\\": 0.1286, \\\"EM_rho\\\": 0.3563, \\\"voting_conf_rho\\\": 0.3356, \\\"SJ_AUROC\\\": 0.7014, \\\"FK_AUROC\\\": 0.6392, \\\"logprob_AUROC\\\": 0.545, \\\"EM_AUROC\\\": 0.7708, \\\"voting_conf_AUROC\\\": 0.6988, \\\"SJ_ECE\\\": 0.1466, \\\"FK_ECE\\\": 0.1853, \\\"logprob_ECE\\\": 0.1141, \\\"EM_ECE\\\": 0.1887, \\\"voting_conf_ECE\\\": 0.2634}, \\\"n8_vs_n16_delta_rho_full\\\": {\\\"SJ\\\": 0.0161, \\\"FK\\\": -0.0185, \\\"logprob\\\": 0.0214, \\\"EM\\\": 0.0007, \\\"voting_conf\\\": 0.0184}}}, \\\"exp_002_conll_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:12:16.041Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:03:19.801Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Qwen CoNLL-2003 N=16: cross-dataset N-scaling comparison with SciERC N=16\\\", \\\"plan_id\\\": \\\"exp-002\\\", \\\"parent\\\": \\\"exp_002_ner_conll2003\\\", \\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_002_conll_n16\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/conll2003\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"N\\\": 16, \\\"dataset\\\": \\\"conll2003\\\", \\\"subtask\\\": \\\"ner\\\", \\\"n_instances\\\": 3453, \\\"n_valid\\\": 2756, \\\"n_conditional\\\": 2614, \\\"greedy_f1\\\": 0.907, \\\"full\\\": {\\\"SJ_rho\\\": 0.4496, \\\"FK_rho\\\": 0.3928, \\\"logprob_rho\\\": 0.3146, \\\"EM_rho\\\": 0.4627, \\\"voting_conf_rho\\\": 0.4286, \\\"SJ_AUROC\\\": 0.8264, \\\"FK_AUROC\\\": 0.7821, \\\"logprob_AUROC\\\": 0.7531, \\\"EM_AUROC\\\": 0.8409, \\\"voting_conf_AUROC\\\": 0.8071, \\\"SJ_ECE\\\": 0.0747, \\\"FK_ECE\\\": 0.1786, \\\"logprob_ECE\\\": 0.2031, \\\"EM_ECE\\\": 0.0786, \\\"voting_conf_ECE\\\": 0.529}, \\\"conditional\\\": {\\\"SJ_rho\\\": 0.4208, \\\"FK_rho\\\": 0.3494, \\\"logprob_rho\\\": 0.3756, \\\"EM_rho\\\": 0.4658, \\\"voting_conf_rho\\\": 0.3654, \\\"SJ_AUROC\\\": 0.8405, \\\"FK_AUROC\\\": 0.7819, \\\"logprob_AUROC\\\": 0.8259, \\\"EM_AUROC\\\": 0.8781, \\\"voting_conf_AUROC\\\": 0.7951, \\\"SJ_ECE\\\": 0.0982, \\\"FK_ECE\\\": 0.1899, \\\"logprob_ECE\\\": 0.2504, \\\"EM_ECE\\\": 0.0997, \\\"voting_conf_ECE\\\": 0.6096}, \\\"n8_vs_n16_delta_rho_full\\\": {\\\"SJ\\\": 0.0139, \\\"FK\\\": -0.007, \\\"logprob\\\": -0.0011, \\\"EM\\\": 0.012, \\\"voting_conf\\\": 0.0049}}, \\\"checkpoint_path\\\": \\\"output/exp_002_conll_n16/samples.jsonl\\\", \\\"log_path\\\": \\\"output/exp_002_conll_n16.log\\\", \\\"completed_at\\\": \\\"2026-05-14T18:58:40.473Z\\\"}, \\\"exp_009_v2_re_rerun\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:56:31.535Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:56:58.168Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python code/exp_009_v2_re_rerun.py\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"output/exp_008_re_n16_v2/samples.jsonl\\\", \\\"data_count\\\": 397, \\\"model_name\\\": \\\"cpu_analysis\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp_008_re_n16_v2\\\", \\\"checkpoint_path\\\": \\\"output/exp_009_v2_re_rerun/results.json\\\", \\\"log_path\\\": \\\"/tmp/re_rerun.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T18:56:58.168Z\\\"}, \\\"exp_001_seed456_v2_ner\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:13:00.414Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:55:18.772Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"NER N=16 seed=456 robustness test (NER-only rerun, fixing subtask mismatch from exp_001_seed456_v2)\\\", \\\"plan_id\\\": \\\"exp-001\\\", \\\"parent\\\": \\\"exp_001_seed456_v2\\\", \\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=2 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --num_test 9999 --collect_logprobs --output_dir output/exp_001_seed456_v2_ner\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"qwen3-8b-scierc-merged-v2\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"checkpoints/qwen3-8b-scierc-merged-v2\\\", \\\"eval_data\\\": \\\"data/scierc/processed_data\\\", \\\"metrics\\\": {\\\"sj_rho\\\": 0.384, \\\"structural_gt_surface\\\": true, \\\"structural_surface_delta\\\": 0.16}, \\\"log_path\\\": \\\"output/exp_001_seed456_v2_ner.log\\\", \\\"checkpoint_path\\\": \\\"output/exp_001_seed456_v2_ner/\\\"}, \\\"log_path\\\": \\\"output/exp_001_seed456_v2_ner.log\\\", \\\"pid\\\": 96161, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T17:52:01.372Z\\\", \\\"metrics\\\": {\\\"full\\\": {\\\"SJ\\\": {\\\"rho\\\": 0.384, \\\"auroc\\\": 0.711}, \\\"FK\\\": {\\\"rho\\\": 0.223, \\\"auroc\\\": 0.577}, \\\"logprob\\\": {\\\"rho\\\": 0.232, \\\"auroc\\\": 0.594}, \\\"EM\\\": {\\\"rho\\\": 0.316, \\\"auroc\\\": 0.768}, \\\"voting_conf\\\": {\\\"rho\\\": 0.411, \\\"auroc\\\": 0.712}}, \\\"conditional\\\": {\\\"SJ\\\": {\\\"rho\\\": 0.349, \\\"auroc\\\": 0.699}, \\\"FK\\\": {\\\"rho\\\": 0.157, \\\"auroc\\\": 0.561}, \\\"logprob\\\": {\\\"rho\\\": 0.171, \\\"auroc\\\": 0.576}, \\\"EM\\\": {\\\"rho\\\": 0.406, \\\"auroc\\\": 0.78}, \\\"voting_conf\\\": {\\\"rho\\\": 0.346, \\\"auroc\\\": 0.694}}, \\\"3seed_mean_SJ_rho_full\\\": 0.412, \\\"3seed_sd_SJ_rho_full\\\": 0.025, \\\"structural_beats_surface\\\": true, \\\"verdict\\\": \\\"MARGINAL\\\"}}, \\\"exp_003_wnut17_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T15:32:56.415Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:11:36.559Z\\\", \\\"spec\\\": {\\\"description\\\": \\\"WNUT-17 retrain: downsample gold-empty instances to ≤25%, fine-tune Qwen3-8B, inference N=16 T=1.0 with log-probs\\\", \\\"hypothesis\\\": \\\"After removing excess empty instances, structural consistency signals (SJ) will show stronger correlation on social media NER\\\", \\\"plan_id\\\": \\\"exp-003\\\", \\\"claim\\\": 1, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"dataset\\\": \\\"WNUT-17 (downsampled)\\\", \\\"priority\\\": \\\"P0\\\", \\\"parent\\\": \\\"exp_003_ner_wnut17\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 llamafactory-cli train train_config_wnut17.yaml\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/wnut17/llmfactory_train_downsampled.json\\\", \\\"data_count\\\": 1637, \\\"seed\\\": 42, \\\"pid\\\": 92215, \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/logs/train_wnut17.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora\\\", \\\"downsampling\\\": \\\"empty instances 63.8% -> 25.0%, total 3394 -> 1637\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.105, \\\"eval_loss\\\": 0.0836, \\\"epochs\\\": 5, \\\"train_time_min\\\": 16.37, \\\"train_samples_per_sec\\\": 8.33}, \\\"note\\\": \\\"D045: Training succeeded (train_loss=0.105) but inference FAIL: 54% F1=0, SJ rho=0.062 (p=0.106). WNUT-17 abandoned — model capability insufficient on social media NER. Paper reports as Claim 3 (capability boundary) evidence.\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-14T18:11:36.559Z\\\"}, \\\"exp_017_llama_conll_infer\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:33:23.653Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:55:35.572Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"LLaMA-3.1-8B CoNLL-2003 inference: cross-model cross-dataset validation of structural consistency signals\\\", \\\"plan_id\\\": \\\"exp-017\\\", \\\"parent\\\": \\\"exp_017_llama_conll\\\", \\\"command\\\": \\\"python code/run_llama_conll_infer.py\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"conll2003 test\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"seed\\\": 42, \\\"n_samples\\\": 8, \\\"temperature\\\": 1, \\\"description\\\": \\\"LLaMA CoNLL-2003 NER inference N=8 (cross-model + cross-dataset validation)\\\"}, \\\"metrics\\\": {\\\"greedy_f1\\\": 0.9266, \\\"oracle_f1\\\": 0.9443, \\\"oracle_headroom\\\": 0.0177, \\\"n_instances\\\": 3453, \\\"n_valid\\\": 2756, \\\"n_conditional\\\": 2642, \\\"N\\\": 8, \\\"full\\\": {\\\"SJ_rho\\\": 0.4314, \\\"FK_rho\\\": 0.4277, \\\"logprob_rho\\\": 0.3072, \\\"EM_rho\\\": 0.4306, \\\"voting_conf_rho\\\": 0.4256, \\\"SJ_AUROC\\\": 0.7039, \\\"FK_AUROC\\\": 0.7026, \\\"logprob_AUROC\\\": 0.761, \\\"EM_AUROC\\\": 0.7046, \\\"voting_conf_AUROC\\\": 0.7088, \\\"SJ_ECE\\\": 0.1137, \\\"FK_ECE\\\": 0.1053, \\\"logprob_ECE\\\": 0.129, \\\"EM_ECE\\\": 0.1094, \\\"voting_conf_ECE\\\": 0.0949}, \\\"conditional\\\": {\\\"SJ_rho\\\": 0.4356, \\\"FK_rho\\\": 0.431, \\\"logprob_rho\\\": 0.3282, \\\"EM_rho\\\": 0.4403, \\\"voting_conf_rho\\\": 0.3743, \\\"SJ_AUROC\\\": 0.7225, \\\"FK_AUROC\\\": 0.7208, \\\"logprob_AUROC\\\": 0.8102, \\\"EM_AUROC\\\": 0.7257, \\\"voting_conf_AUROC\\\": 0.6989, \\\"SJ_ECE\\\": 0.0829, \\\"FK_ECE\\\": 0.0796, \\\"logprob_ECE\\\": 0.0922, \\\"EM_ECE\\\": 0.0754, \\\"voting_conf_ECE\\\": 0.0784}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T17:55:33.476Z\\\", \\\"notes\\\": \\\"LLaMA CoNLL-2003 NER N=8 (not N=16, cost constraint: 3453 test instances). SJ ρ=0.431 > logprob ρ=0.307 (Δ=+0.124). ρ-AUROC dissociation: logprob AUROC=0.761 > SJ AUROC=0.704. All 4 structural signals ρ>0.42 vs logprob 0.31. Directly comparable to exp_002 (Qwen CoNLL N=8) and exp_007 (LLaMA SciERC N=8).\\\"}, \\\"exp008_re_n16\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T12:09:50.987Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:52:00.624Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && mkdir -p output/exp008_re_n16 && CUDA_VISIBLE_DEVICES=2 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 42 --output_dir output/exp008_re_n16 --collect_logprobs 2>&1 | tee output/exp008_re_n16/run.log\\\\\\\"\\\", \\\"server\\\": \\\"gpu-5090-4x-2\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"53600\\\", \\\"log_path\\\": \\\"~/runs/struct_self_consist_ie/exp008_re_n16.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T12:15:14.917Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"failure_reason\\\": \\\"Superseded by exp_008_re_n16_v2 (full 551-instance run on autodl-5090)\\\"}, \\\"conclusion\\\": \\\"killed\\\"}}, \\\"count\\\": 10, \\\"total\\\": 63, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3054}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_017_llama_conll_n16_s456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:23:21.987Z\", \"updated_at\": \"2026-05-14T20:24:45.875Z\", \"hypothesis\": \"LLaMA CoNLL N=16 seed=456: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --num_test 9999 --output_dir output/exp_017_llama_conll_n16_s456\", \"server\": \"autodl-5090\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"model_name\": \"llama3.1-8b-conll2003-merged\", \"seed\": 456}, \"metrics\": {\"greedy_f1\": 0.9243, \"oracle_f1\": 0.9488, \"oracle_headroom\": 0.0245, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"structural_beats_surface\": true, \"full\": {\"SJ_rho\": 0.4552, \"SJ_AUROC\": 0.7288, \"SJ_ECE\": 0.1134, \"FK_rho\": 0.4478, \"FK_AUROC\": 0.7248, \"FK_ECE\": 0.109, \"logprob_rho\": 0.3078, \"logprob_AUROC\": 0.7612, \"logprob_ECE\": 0.1289, \"EM_rho\": 0.452, \"EM_AUROC\": 0.7275, \"EM_ECE\": 0.1082, \"voting_conf_rho\": 0.4571, \"voting_conf_AUROC\": 0.7348, \"voting_conf_ECE\": 0.0863}, \"conditional\": {\"SJ_rho\": 0.4505, \"SJ_AUROC\": 0.7449, \"SJ_ECE\": 0.0826, \"FK_rho\": 0.4422, \"FK_AUROC\": 0.7401, \"FK_ECE\": 0.0835, \"logprob_rho\": 0.3242, \"logprob_AUROC\": 0.8067, \"logprob_ECE\": 0.0921, \"EM_rho\": 0.451, \"EM_AUROC\": 0.745, \"EM_ECE\": 0.0756, \"voting_conf_rho\": 0.3962, \"voting_conf_AUROC\": 0.7202, \"voting_conf_ECE\": 0.0746}, \"best_of_n\": {\"greedy\": 0.9243, \"random_avg\": 0.9215, \"sj_best\": 0.9243, \"logprob_best\": 0.9243, \"voting_conf_best\": 0.9243, \"oracle\": 0.9488}, \"n8_vs_n16_delta\": {\"full_SJ_rho_delta\": 0.0238, \"full_FK_rho_delta\": 0.0201, \"full_logprob_rho_delta\": 0.0006, \"full_EM_rho_delta\": 0.0214, \"full_voting_conf_rho_delta\": 0.0315, \"cond_SJ_rho_delta\": 0.0149, \"cond_FK_rho_delta\": 0.0112, \"cond_logprob_rho_delta\": -0.004, \"cond_EM_rho_delta\": 0.0107, \"cond_voting_conf_rho_delta\": 0.0219}}, \"checkpoint_path\": \"output/exp_017_llama_conll_n16_s456/samples.jsonl\", \"log_path\": \"output/exp_017_llama_conll_n16_s456/all_signals_report.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T20:24:45.875Z\"}, \"exp_017_llama_conll_n16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:19:35.318Z\", \"updated_at\": \"2026-05-14T19:45:16.265Z\", \"spec\": {\"hypothesis\": \"LLaMA CoNLL N=16: complete the 2x2 matrix (model x dataset x N). If SJ N-scaling holds for LLaMA on CoNLL, the finding is fully cross-model cross-dataset.\", \"plan_id\": \"exp-017\", \"parent\": \"exp_017_llama_conll_infer\", \"model_name\": \"llama3.1-8b-conll2003-merged\", \"dataset\": \"CoNLL-2003\", \"data_count\": 3453, \"seed\": 42, \"server\": \"autodl-5090\", \"command\": \"CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_017_llama_conll_n16\", \"data_path\": \"data/conll2003\", \"pid\": 106997, \"n_samples\": 16, \"temperature\": 1, \"checkpoint_source\": \"checkpoints/llama3.1-8b-conll2003-merged\", \"eval_data\": \"conll2003 test set\", \"checkpoint_path\": \"output/exp_017_llama_conll_n16/samples.jsonl\", \"log_path\": \"output/exp_017_llama_conll_n16/all_signals_report.json\"}, \"metrics\": {\"greedy_f1\": 0.9243, \"oracle_f1\": 0.9487, \"oracle_headroom\": 0.0244, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"structural_beats_surface\": true, \"full\": {\"SJ_rho\": 0.4642, \"SJ_AUROC\": 0.7391, \"SJ_ECE\": 0.1131, \"FK_rho\": 0.4566, \"FK_AUROC\": 0.736, \"FK_ECE\": 0.1071, \"logprob_rho\": 0.3058, \"logprob_AUROC\": 0.7594, \"logprob_ECE\": 0.1288, \"EM_rho\": 0.4613, \"EM_AUROC\": 0.7391, \"EM_ECE\": 0.1084, \"voting_conf_rho\": 0.4554, \"voting_conf_AUROC\": 0.7406, \"voting_conf_ECE\": 0.0844}, \"conditional\": {\"SJ_rho\": 0.4597, \"SJ_AUROC\": 0.7565, \"SJ_ECE\": 0.0846, \"FK_rho\": 0.4515, \"FK_AUROC\": 0.753, \"FK_ECE\": 0.0813, \"logprob_rho\": 0.3193, \"logprob_AUROC\": 0.8023, \"logprob_ECE\": 0.0921, \"EM_rho\": 0.4618, \"EM_AUROC\": 0.7589, \"EM_ECE\": 0.0757, \"voting_conf_rho\": 0.3978, \"voting_conf_AUROC\": 0.7287, \"voting_conf_ECE\": 0.0742}, \"best_of_n\": {\"greedy\": 0.9243, \"random_avg\": 0.9213, \"sj_best\": 0.9259, \"logprob_best\": 0.925, \"voting_conf_best\": 0.9268, \"oracle\": 0.9487}, \"n8_vs_n16_delta\": {\"full_SJ_rho_delta\": 0.0328, \"full_FK_rho_delta\": 0.0289, \"full_logprob_rho_delta\": -0.0014, \"full_EM_rho_delta\": 0.0307, \"full_voting_conf_rho_delta\": 0.0298, \"cond_SJ_rho_delta\": 0.0241, \"cond_FK_rho_delta\": 0.0205, \"cond_logprob_rho_delta\": -0.0089, \"cond_EM_rho_delta\": 0.0215, \"cond_voting_conf_rho_delta\": 0.0235}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T19:45:16.265Z\"}, \"exp_017_llama_conll_n16_s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:23:21.084Z\", \"updated_at\": \"2026-05-14T19:43:06.607Z\", \"hypothesis\": \"LLaMA CoNLL N=16 seed=123: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol\", \"spec\": {\"hypothesis\": \"LLaMA CoNLL-2003 NER N=16 seed=123: cross-seed robustness check against N=8 seed=42 baseline (exp_017_llama_conll_infer)\", \"command\": \"CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --num_test 9999 --output_dir output/exp_017_llama_conll_n16_s123\", \"server\": \"autodl-5090\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/conll2003\", \"data_count\": 3453, \"model_name\": \"llama3.1-8b-conll2003-merged\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/llama3.1-8b-conll2003-merged\", \"eval_data\": \"data/conll2003\", \"checkpoint_path\": \"output/exp_017_llama_conll_n16_s123/samples.jsonl\", \"log_path\": \"output/exp_017_llama_conll_n16_s123.log\"}, \"metrics\": {\"greedy_f1\": 0.9266, \"oracle_f1\": 0.9497, \"oracle_headroom\": 0.0231, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"structural_beats_surface\": true, \"full\": {\"SJ_rho\": 0.4698, \"SJ_AUROC\": 0.7402, \"SJ_ECE\": 0.1135, \"FK_rho\": 0.4594, \"FK_AUROC\": 0.7351, \"FK_ECE\": 0.1114, \"logprob_rho\": 0.3161, \"logprob_AUROC\": 0.768, \"logprob_ECE\": 0.129, \"EM_rho\": 0.4676, \"EM_AUROC\": 0.7399, \"EM_ECE\": 0.1082, \"voting_conf_rho\": 0.4612, \"voting_conf_AUROC\": 0.7429, \"voting_conf_ECE\": 0.0832}, \"conditional\": {\"SJ_rho\": 0.4712, \"SJ_AUROC\": 0.7609, \"SJ_ECE\": 0.0828, \"FK_rho\": 0.4595, \"FK_AUROC\": 0.7547, \"FK_ECE\": 0.0858, \"logprob_rho\": 0.3314, \"logprob_AUROC\": 0.8134, \"logprob_ECE\": 0.0922, \"EM_rho\": 0.4732, \"EM_AUROC\": 0.7626, \"EM_ECE\": 0.075, \"voting_conf_rho\": 0.4086, \"voting_conf_AUROC\": 0.7338, \"voting_conf_ECE\": 0.0706}, \"best_of_n\": {\"greedy\": 0.9242, \"random_avg\": 0.9216, \"sj_best\": 0.9247, \"logprob_best\": 0.9253, \"voting_conf_best\": 0.9255, \"oracle\": 0.9486}, \"n8_vs_n16_delta\": {\"full_SJ_rho_delta\": 0.0384, \"full_FK_rho_delta\": 0.0317, \"full_logprob_rho_delta\": 0.0089, \"full_SJ_AUROC_delta\": 0.0363, \"full_FK_AUROC_delta\": 0.0325, \"full_logprob_AUROC_delta\": 0.007, \"cond_SJ_rho_delta\": 0.0356, \"cond_FK_rho_delta\": 0.0285, \"cond_logprob_rho_delta\": 0.0032}}, \"log_path\": \"output/exp_017_llama_conll_n16_s123.log\", \"checkpoint_path\": \"output/exp_017_llama_conll_n16_s123/samples.jsonl\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T19:43:06.607Z\"}, \"exp_007_llama_n16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:31:44.366Z\", \"updated_at\": \"2026-05-14T19:03:50.284Z\", \"spec\": {\"hypothesis\": \"LLaMA SciERC N=16: cross-model N-scaling validation. If SJ rho increases from N=8 (0.363) to N=16, N-scaling is model-agnostic.\", \"plan_id\": \"exp-007\", \"parent\": \"exp_007_llama_inference\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=1 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_007_llama_n16\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"llama3.1-8b-scierc-merged\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/llama3.1-8b-scierc-merged\", \"eval_data\": \"data/scierc/processed_data\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"output/exp_007_llama_n16/samples.jsonl\", \"log_path\": \"output/exp_007_llama_n16.log\", \"completed_at\": \"2026-05-14T19:03:39.163Z\", \"metrics\": {\"N\": 16, \"dataset\": \"scierc\", \"subtask\": \"ner\", \"n_instances\": 551, \"n_valid\": 529, \"n_conditional\": 478, \"greedy_f1\": 0.645, \"full\": {\"SJ_rho\": 0.3791, \"FK_rho\": 0.3081, \"logprob_rho\": 0.2041, \"EM_rho\": 0.3159, \"voting_conf_rho\": 0.4515, \"SJ_AUROC\": 0.717, \"FK_AUROC\": 0.6581, \"logprob_AUROC\": 0.5656, \"EM_AUROC\": 0.7686, \"voting_conf_AUROC\": 0.7266, \"SJ_ECE\": 0.1019, \"FK_ECE\": 0.1556, \"logprob_ECE\": 0.084, \"EM_ECE\": 0.1761, \"voting_conf_ECE\": 0.1365}, \"conditional\": {\"SJ_rho\": 0.3222, \"FK_rho\": 0.2182, \"logprob_rho\": 0.1286, \"EM_rho\": 0.3563, \"voting_conf_rho\": 0.3356, \"SJ_AUROC\": 0.7014, \"FK_AUROC\": 0.6392, \"logprob_AUROC\": 0.545, \"EM_AUROC\": 0.7708, \"voting_conf_AUROC\": 0.6988, \"SJ_ECE\": 0.1466, \"FK_ECE\": 0.1853, \"logprob_ECE\": 0.1141, \"EM_ECE\": 0.1887, \"voting_conf_ECE\": 0.2634}, \"n8_vs_n16_delta_rho_full\": {\"SJ\": 0.0161, \"FK\": -0.0185, \"logprob\": 0.0214, \"EM\": 0.0007, \"voting_conf\": 0.0184}}}, \"exp_002_conll_n16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:12:16.041Z\", \"updated_at\": \"2026-05-14T19:03:19.801Z\", \"spec\": {\"hypothesis\": \"Qwen CoNLL-2003 N=16: cross-dataset N-scaling comparison with SciERC N=16\", \"plan_id\": \"exp-002\", \"parent\": \"exp_002_ner_conll2003\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_002_conll_n16\", \"server\": \"autodl-5090\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"model_name\": \"qwen3-8b-conll2003-merged\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"N\": 16, \"dataset\": \"conll2003\", \"subtask\": \"ner\", \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2614, \"greedy_f1\": 0.907, \"full\": {\"SJ_rho\": 0.4496, \"FK_rho\": 0.3928, \"logprob_rho\": 0.3146, \"EM_rho\": 0.4627, \"voting_conf_rho\": 0.4286, \"SJ_AUROC\": 0.8264, \"FK_AUROC\": 0.7821, \"logprob_AUROC\": 0.7531, \"EM_AUROC\": 0.8409, \"voting_conf_AUROC\": 0.8071, \"SJ_ECE\": 0.0747, \"FK_ECE\": 0.1786, \"logprob_ECE\": 0.2031, \"EM_ECE\": 0.0786, \"voting_conf_ECE\": 0.529}, \"conditional\": {\"SJ_rho\": 0.4208, \"FK_rho\": 0.3494, \"logprob_rho\": 0.3756, \"EM_rho\": 0.4658, \"voting_conf_rho\": 0.3654, \"SJ_AUROC\": 0.8405, \"FK_AUROC\": 0.7819, \"logprob_AUROC\": 0.8259, \"EM_AUROC\": 0.8781, \"voting_conf_AUROC\": 0.7951, \"SJ_ECE\": 0.0982, \"FK_ECE\": 0.1899, \"logprob_ECE\": 0.2504, \"EM_ECE\": 0.0997, \"voting_conf_ECE\": 0.6096}, \"n8_vs_n16_delta_rho_full\": {\"SJ\": 0.0139, \"FK\": -0.007, \"logprob\": -0.0011, \"EM\": 0.012, \"voting_conf\": 0.0049}}, \"checkpoint_path\": \"output/exp_002_conll_n16/samples.jsonl\", \"log_path\": \"output/exp_002_conll_n16.log\", \"completed_at\": \"2026-05-14T18:58:40.473Z\"}, \"exp_009_v2_re_rerun\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:56:31.535Z\", \"updated_at\": \"2026-05-14T18:56:58.168Z\", \"spec\": {\"command\": \"python code/exp_009_v2_re_rerun.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp_008_re_n16_v2/samples.jsonl\", \"data_count\": 397, \"model_name\": \"cpu_analysis\", \"seed\": 42, \"checkpoint_source\": \"exp_008_re_n16_v2\", \"checkpoint_path\": \"output/exp_009_v2_re_rerun/results.json\", \"log_path\": \"/tmp/re_rerun.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T18:56:58.168Z\"}, \"exp_001_seed456_v2_ner\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:13:00.414Z\", \"updated_at\": \"2026-05-14T18:55:18.772Z\", \"spec\": {\"hypothesis\": \"NER N=16 seed=456 robustness test (NER-only rerun, fixing subtask mismatch from exp_001_seed456_v2)\", \"plan_id\": \"exp-001\", \"parent\": \"exp_001_seed456_v2\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=2 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --num_test 9999 --collect_logprobs --output_dir output/exp_001_seed456_v2_ner\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 456, \"checkpoint_source\": \"checkpoints/qwen3-8b-scierc-merged-v2\", \"eval_data\": \"data/scierc/processed_data\", \"metrics\": {\"sj_rho\": 0.384, \"structural_gt_surface\": true, \"structural_surface_delta\": 0.16}, \"log_path\": \"output/exp_001_seed456_v2_ner.log\", \"checkpoint_path\": \"output/exp_001_seed456_v2_ner/\"}, \"log_path\": \"output/exp_001_seed456_v2_ner.log\", \"pid\": 96161, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T17:52:01.372Z\", \"metrics\": {\"full\": {\"SJ\": {\"rho\": 0.384, \"auroc\": 0.711}, \"FK\": {\"rho\": 0.223, \"auroc\": 0.577}, \"logprob\": {\"rho\": 0.232, \"auroc\": 0.594}, \"EM\": {\"rho\": 0.316, \"auroc\": 0.768}, \"voting_conf\": {\"rho\": 0.411, \"auroc\": 0.712}}, \"conditional\": {\"SJ\": {\"rho\": 0.349, \"auroc\": 0.699}, \"FK\": {\"rho\": 0.157, \"auroc\": 0.561}, \"logprob\": {\"rho\": 0.171, \"auroc\": 0.576}, \"EM\": {\"rho\": 0.406, \"auroc\": 0.78}, \"voting_conf\": {\"rho\": 0.346, \"auroc\": 0.694}}, \"3seed_mean_SJ_rho_full\": 0.412, \"3seed_sd_SJ_rho_full\": 0.025, \"structural_beats_surface\": true, \"verdict\": \"MARGINAL\"}}, \"exp_003_wnut17_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:32:56.415Z\", \"updated_at\": \"2026-05-14T18:11:36.559Z\", \"spec\": {\"description\": \"WNUT-17 retrain: downsample gold-empty instances to ≤25%, fine-tune Qwen3-8B, inference N=16 T=1.0 with log-probs\", \"hypothesis\": \"After removing excess empty instances, structural consistency signals (SJ) will show stronger correlation on social media NER\", \"plan_id\": \"exp-003\", \"claim\": 1, \"model_name\": \"Qwen3-8B\", \"dataset\": \"WNUT-17 (downsampled)\", \"priority\": \"P0\", \"parent\": \"exp_003_ner_wnut17\", \"command\": \"CUDA_VISIBLE_DEVICES=1 llamafactory-cli train train_config_wnut17.yaml\", \"server\": \"autodl-5090\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/wnut17/llmfactory_train_downsampled.json\", \"data_count\": 1637, \"seed\": 42, \"pid\": 92215, \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/logs/train_wnut17.log\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora\", \"downsampling\": \"empty instances 63.8% -> 25.0%, total 3394 -> 1637\", \"metrics\": {\"train_loss\": 0.105, \"eval_loss\": 0.0836, \"epochs\": 5, \"train_time_min\": 16.37, \"train_samples_per_sec\": 8.33}, \"note\": \"D045: Training succeeded (train_loss=0.105) but inference FAIL: 54% F1=0, SJ rho=0.062 (p=0.106). WNUT-17 abandoned — model capability insufficient on social media NER. Paper reports as Claim 3 (capability boundary) evidence.\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T18:11:36.559Z\"}, \"exp_017_llama_conll_infer\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:33:23.653Z\", \"updated_at\": \"2026-05-14T17:55:35.572Z\", \"spec\": {\"hypothesis\": \"LLaMA-3.1-8B CoNLL-2003 inference: cross-model cross-dataset validation of structural consistency signals\", \"plan_id\": \"exp-017\", \"parent\": \"exp_017_llama_conll\", \"command\": \"python code/run_llama_conll_infer.py\", \"server\": \"autodl-5090\", \"data_path\": \"conll2003 test\", \"data_count\": 3453, \"model_name\": \"LLaMA-3.1-8B-Instruct\", \"seed\": 42, \"n_samples\": 8, \"temperature\": 1, \"description\": \"LLaMA CoNLL-2003 NER inference N=8 (cross-model + cross-dataset validation)\"}, \"metrics\": {\"greedy_f1\": 0.9266, \"oracle_f1\": 0.9443, \"oracle_headroom\": 0.0177, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"N\": 8, \"full\": {\"SJ_rho\": 0.4314, \"FK_rho\": 0.4277, \"logprob_rho\": 0.3072, \"EM_rho\": 0.4306, \"voting_conf_rho\": 0.4256, \"SJ_AUROC\": 0.7039, \"FK_AUROC\": 0.7026, \"logprob_AUROC\": 0.761, \"EM_AUROC\": 0.7046, \"voting_conf_AUROC\": 0.7088, \"SJ_ECE\": 0.1137, \"FK_ECE\": 0.1053, \"logprob_ECE\": 0.129, \"EM_ECE\": 0.1094, \"voting_conf_ECE\": 0.0949}, \"conditional\": {\"SJ_rho\": 0.4356, \"FK_rho\": 0.431, \"logprob_rho\": 0.3282, \"EM_rho\": 0.4403, \"voting_conf_rho\": 0.3743, \"SJ_AUROC\": 0.7225, \"FK_AUROC\": 0.7208, \"logprob_AUROC\": 0.8102, \"EM_AUROC\": 0.7257, \"voting_conf_AUROC\": 0.6989, \"SJ_ECE\": 0.0829, \"FK_ECE\": 0.0796, \"logprob_ECE\": 0.0922, \"EM_ECE\": 0.0754, \"voting_conf_ECE\": 0.0784}}, \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/samples.jsonl\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T17:55:33.476Z\", \"notes\": \"LLaMA CoNLL-2003 NER N=8 (not N=16, cost constraint: 3453 test instances). SJ ρ=0.431 > logprob ρ=0.307 (Δ=+0.124). ρ-AUROC dissociation: logprob AUROC=0.761 > SJ AUROC=0.704. All 4 structural signals ρ>0.42 vs logprob 0.31. Directly comparable to exp_002 (Qwen CoNLL N=8) and exp_007 (LLaMA SciERC N=8).\"}, \"exp008_re_n16\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:09:50.987Z\", \"updated_at\": \"2026-05-14T17:52:00.624Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && mkdir -p output/exp008_re_n16 && CUDA_VISIBLE_DEVICES=2 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 42 --output_dir output/exp008_re_n16 --collect_logprobs 2>&1 | tee output/exp008_re_n16/run.log\\\"\", \"server\": \"gpu-5090-4x-2\", \"gpu\": [\"cuda:2\"], \"pid\": \"53600\", \"log_path\": \"~/runs/struct_self_consist_ie/exp008_re_n16.log\", \"submitted_at\": \"2026-05-14T12:15:14.917Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"failure_reason\": \"Superseded by exp_008_re_n16_v2 (full 551-instance run on autodl-5090)\"}, \"conclusion\": \"killed\"}}, \"count\": 10, \"total\": 63, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3054}}"
+    }
+  },
+  "sourceToolAssistantUUID": "acce2810-3142-4913-900c-8575c475251c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_data_qwen_scierc_3seed_em_voting_20260514T211403]: Worker worker_data_qwen_scierc_3seed_em_voting_20260514T211403 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "a00e7868-237d-4e54-a890-173e01d185f4",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review worker completion status for Qwen ScIERC task",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T21:17:20.042Z_
+
+<details><summary>↩ Tool result · `toolu_01HdY264dYbZET3ZyzkeWimz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md\", \"content\": \"# struct_self_consist_ie — Research Dashboard\\n\\n> 最后更新: 2026-05-14 21:11 UTC | 更新原因: abstract/conclusion/limitations 写作完成。Figures + Bootstrap CI Worker 进行中。\\n\\n## 核心方向\\n系统比较 5 类置信信号（log-prob / exact-match / FK / SJ / voting_conf）在 IE test-time scaling 中的有效性。核心发现：structural consistency family (SJ + voting_conf) 是最强质量估计器，但存在 correlation-selection gap。详见 paper_framing.md。\\n\\n## 当前阶段\\n**Writing 阶段** — 全部 GPU 实验完成。Paper Agent Full Draft 进行中（Step 4 章节写作）。审稿进行中（Group C）。\\n\\n### 实验覆盖率\\n- **2×2 矩阵**: Qwen×{SciERC,CoNLL} + LLaMA×{SciERC,CoNLL}，全部 N=8 + N=16 完成\\n- **3-seed 鲁棒性**: Qwen SciERC (CV=6%) + LLaMA CoNLL (CV<2%) 均确认\\n- **Claim 1 覆盖**: ~85% (12/17 done, remaining: WNUT OOD blocked/abandoned)\\n- **Claim 2 覆盖**: 100% (4/4 done)\\n- **Core claim \\\"structural > logprob\\\"**: 4/4 设置全部成立，跨模型×跨数据集×跨 N×跨 seed\\n\\n### 确认发现\\n| 发现 | 来源 | 状态 |\\n|------|------|------|\\n| SJ >> logprob NER (ρ 0.383 vs 0.140, AUROC 0.689 vs 0.591) | exp-012/015 | ✅ |\\n| voting_conf ≈ SJ NER (ρ 0.502 vs 0.357) | exp-014/015 | ✅ |\\n| Correlation-selection gap: NER 无信号 beat greedy | exp-016 | ✅ |\\n| Ensemble AUROC 0.735 (+3.5pp) | exp-016 | ✅ |\\n| RE structural signals 系统性偏弱 | exp-008 | ✅ negative |\\n| RE SJ 按 sent_len 单调递增（非 inverted-U）| D047 | ✅ |\\n| FK N-scaling model-dependent（非 consistently degrading）| D050 | ✅ |\\n| LLaMA CoNLL 3-seed: structural mean ρ≈0.46, CV<2% | exp-017 | ✅ |\\n| Qwen SciERC 3-seed: SJ mean ρ=0.412, CV=6% | exp-001 | ✅ |\\n| ρ-AUROC 分离: logprob AUROC 高但 ρ 低 | 跨设置一致 | ✅ |\\n\\n### Paper Agent 进度\\n| 章节 | 状态 |\\n|------|------|\\n| experiments.tex | ✅ 完成（待 CRITICAL 修正） |\\n| method.tex | ✅ 完成（待 CRITICAL 修正：FK/EM/SJ 公式） |\\n| introduction.tex | ✅ 完成（2 WARNING 待修正） |\\n| related_work | 写作中 |\\n| discussion | 待写 |\\n| abstract.tex | ✅ 完成（~195 words, 3 key numbers） |\\n| conclusion.tex | ✅ 完成（~290 words, C1/C2/C3 + 4 future work） |\\n| limitations.tex | ✅ 完成（~210 words, 6 limitations） |\\n\\n**待修正 CRITICAL**:\\n1. method.tex FK 描述与代码不符（token-level → entity-level binary）\\n2. method.tex EM \\\"等价\\\"声称数学错误\\n3. method.tex SJ 公式过度简化（count → soft similarity sum）\\n4. experiments.tex proxy 独立性声称数据矛盾（|r|<0.15 混淆概念）\\n\\n## 近期任务\\n- [ ] Paper Agent 修正 method.tex 3 个 CRITICAL\\n- [ ] Paper Agent 修正 experiments.tex proxy 独立性 CRITICAL\\n- [x] Paper Agent 完成 abstract + conclusion + limitations\\n- [ ] Paper Agent 完成剩余章节（related_work → discussion）\\n- [ ] Paper Agent Step 5 Reviewer 循环\\n- [ ] Bootstrap CI 修复后数据整合到论文（Worker 进行中）\\n- [ ] 3+ figures 创建（Worker 进行中）\\n\\n## GPU 预算\\nautodl-5090: 4× RTX 5090 32GB — **4/4 空闲，全部实验完成**\\n**建议**：保留至论文提交前（可能需要补充实验），DDL 后释放。\\n\\n## 时间线\\n- **目标**: EMNLP 2026 via ARR May, DDL **2026-05-25**（距今 11 天）\\n- GPU 实验: ✅ 全部完成 | Paper Agent: 写作中（Step 4） | 论文迭代: 3-5 天\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D050 | 2026-05-14 | D048 修正：FK N-scaling 非一致退化，而是 setting-dependent（3/ | exp_017_llama_conll_n16, exp_002_conll_n16, exp_007_llama_n16 |\\n| D049 | 2026-05-14 | 实验端进入收尾：N=16 跨模型跨数据集确认 SJ N-scaling、FK N-degradati | exp_002_conll_n16, exp_007_llama_n16, exp_001_seed456_v2_ner, exp_009_v2_re_rerun |\\n| D048 | 2026-05-14 | FK N-scaling 退化跨设置确认：CoNLL Δ=-0.007, LLaMA SciERC  | exp_002_conll_n16, exp_007_llama_n16 |\\n| D047 | 2026-05-14 | Inverted-U 被否定：RE SJ 按 sent_len 单调递增 (Q1:0.110→Q4: | exp_009_v2_re_rerun, exp_009_capability_stratification |\\n| D046 | 2026-05-14 | seed456 NER 3-seed 确认：SJ rho=0.384, structural>sur | exp_001_seed456_v2_ner, exp_001_seed42_v2, exp_001_seed123_v2 |\\n| D045 | 2026-05-14 | WNUT-17 放弃深入：54% F1=0 + SJ rho 不显著，报告为 Claim 3 支撑证 | exp_003_wnut17_v2_infer, exp_003_wnut17_v2 |\\n| D044 | 2026-05-14 | 3-seed NER 协议完成：seed42 ρ=0.428, seed123 ρ=0.424, s | exp_001_seed456_v2_ner, exp_001_seed42_v2, exp_001_seed123_v2 |\\n| D043 | 2026-05-14 | 放弃 WNUT-17 benchmark，聚焦 SciERC + CoNLL 双数据集；取消 LLa | exp_003_wnut17_v2_infer |\\n| D042 | 2026-05-14 | exp_009_v2 RE 重跑：过滤无 gold relation 实例 + proxy 独立性修 | exp_009_v2, exp_006_v2, exp_008_re_n16 |\\n| D041 | 2026-05-14 | 关闭 RE seed 测试线——两 seed 确认 RE 结构一致性弱是 task 本质属性 | exp_008_re_seed123, exp_008_re_n16 |\\n\\n\\n\", \"lines\": 83}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9979b483-74ea-4857-8b55-1354023bb307",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "a00e7868-237d-4e54-a890-173e01d185f4",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md\\\", \\\"content\\\": \\\"# struct_self_consist_ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 21:11 UTC | 更新原因: abstract/conclusion/limitations 写作完成。Figures + Bootstrap CI Worker 进行中。\\\\n\\\\n## 核心方向\\\\n系统比较 5 类置信信号（log-prob / exact-match / FK / SJ / voting_conf）在 IE test-time scaling 中的有效性。核心发现：structural consistency family (SJ + voting_conf) 是最强质量估计器，但存在 correlation-selection gap。详见 paper_framing.md。\\\\n\\\\n## 当前阶段\\\\n**Writing 阶段** — 全部 GPU 实验完成。Paper Agent Full Draft 进行中（Step 4 章节写作）。审稿进行中（Group C）。\\\\n\\\\n### 实验覆盖率\\\\n- **2×2 矩阵**: Qwen×{SciERC,CoNLL} + LLaMA×{SciERC,CoNLL}，全部 N=8 + N=16 完成\\\\n- **3-seed 鲁棒性**: Qwen SciERC (CV=6%) + LLaMA CoNLL (CV<2%) 均确认\\\\n- **Claim 1 覆盖**: ~85% (12/17 done, remaining: WNUT OOD blocked/abandoned)\\\\n- **Claim 2 覆盖**: 100% (4/4 done)\\\\n- **Core claim \\\\\\\"structural > logprob\\\\\\\"**: 4/4 设置全部成立，跨模型×跨数据集×跨 N×跨 seed\\\\n\\\\n### 确认发现\\\\n| 发现 | 来源 | 状态 |\\\\n|------|------|------|\\\\n| SJ >> logprob NER (ρ 0.383 vs 0.140, AUROC 0.689 vs 0.591) | exp-012/015 | ✅ |\\\\n| voting_conf ≈ SJ NER (ρ 0.502 vs 0.357) | exp-014/015 | ✅ |\\\\n| Correlation-selection gap: NER 无信号 beat greedy | exp-016 | ✅ |\\\\n| Ensemble AUROC 0.735 (+3.5pp) | exp-016 | ✅ |\\\\n| RE structural signals 系统性偏弱 | exp-008 | ✅ negative |\\\\n| RE SJ 按 sent_len 单调递增（非 inverted-U）| D047 | ✅ |\\\\n| FK N-scaling model-dependent（非 consistently degrading）| D050 | ✅ |\\\\n| LLaMA CoNLL 3-seed: structural mean ρ≈0.46, CV<2% | exp-017 | ✅ |\\\\n| Qwen SciERC 3-seed: SJ mean ρ=0.412, CV=6% | exp-001 | ✅ |\\\\n| ρ-AUROC 分离: logprob AUROC 高但 ρ 低 | 跨设置一致 | ✅ |\\\\n\\\\n### Paper Agent 进度\\\\n| 章节 | 状态 |\\\\n|------|------|\\\\n| experiments.tex | ✅ 完成（待 CRITICAL 修正） |\\\\n| method.tex | ✅ 完成（待 CRITICAL 修正：FK/EM/SJ 公式） |\\\\n| introduction.tex | ✅ 完成（2 WARNING 待修正） |\\\\n| related_work | 写作中 |\\\\n| discussion | 待写 |\\\\n| abstract.tex | ✅ 完成（~195 words, 3 key numbers） |\\\\n| conclusion.tex | ✅ 完成（~290 words, C1/C2/C3 + 4 future work） |\\\\n| limitations.tex | ✅ 完成（~210 words, 6 limitations） |\\\\n\\\\n**待修正 CRITICAL**:\\\\n1. method.tex FK 描述与代码不符（token-level → entity-level binary）\\\\n2. method.tex EM \\\\\\\"等价\\\\\\\"声称数学错误\\\\n3. method.tex SJ 公式过度简化（count → soft similarity sum）\\\\n4. experiments.tex proxy 独立性声称数据矛盾（|r|<0.15 混淆概念）\\\\n\\\\n## 近期任务\\\\n- [ ] Paper Agent 修正 method.tex 3 个 CRITICAL\\\\n- [ ] Paper Agent 修正 experiments.tex proxy 独立性 CRITICAL\\\\n- [x] Paper Agent 完成 abstract + conclusion + limitations\\\\n- [ ] Paper Agent 完成剩余章节（related_work → discussion）\\\\n- [ ] Paper Agent Step 5 Reviewer 循环\\\\n- [ ] Bootstrap CI 修复后数据整合到论文（Worker 进行中）\\\\n- [ ] 3+ figures 创建（Worker 进行中）\\\\n\\\\n## GPU 预算\\\\nautodl-5090: 4× RTX 5090 32GB — **4/4 空闲，全部实验完成**\\\\n**建议**：保留至论文提交前（可能需要补充实验），DDL 后释放。\\\\n\\\\n## 时间线\\\\n- **目标**: EMNLP 2026 via ARR May, DDL **2026-05-25**（距今 11 天）\\\\n- GPU 实验: ✅ 全部完成 | Paper Agent: 写作中（Step 4） | 论文迭代: 3-5 天\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D050 | 2026-05-14 | D048 修正：FK N-scaling 非一致退化，而是 setting-dependent（3/ | exp_017_llama_conll_n16, exp_002_conll_n16, exp_007_llama_n16 |\\\\n| D049 | 2026-05-14 | 实验端进入收尾：N=16 跨模型跨数据集确认 SJ N-scaling、FK N-degradati | exp_002_conll_n16, exp_007_llama_n16, exp_001_seed456_v2_ner, exp_009_v2_re_rerun |\\\\n| D048 | 2026-05-14 | FK N-scaling 退化跨设置确认：CoNLL Δ=-0.007, LLaMA SciERC  | exp_002_conll_n16, exp_007_llama_n16 |\\\\n| D047 | 2026-05-14 | Inverted-U 被否定：RE SJ 按 sent_len 单调递增 (Q1:0.110→Q4: | exp_009_v2_re_rerun, exp_009_capability_stratification |\\\\n| D046 | 2026-05-14 | seed456 NER 3-seed 确认：SJ rho=0.384, structural>sur | exp_001_seed456_v2_ner, exp_001_seed42_v2, exp_001_seed123_v2 |\\\\n| D045 | 2026-05-14 | WNUT-17 放弃深入：54% F1=0 + SJ rho 不显著，报告为 Claim 3 支撑证 | exp_003_wnut17_v2_infer, exp_003_wnut17_v2 |\\\\n| D044 | 2026-05-14 | 3-seed NER 协议完成：seed42 ρ=0.428, seed123 ρ=0.424, s | exp_001_seed456_v2_ner, exp_001_seed42_v2, exp_001_seed123_v2 |\\\\n| D043 | 2026-05-14 | 放弃 WNUT-17 benchmark，聚焦 SciERC + CoNLL 双数据集；取消 LLa | exp_003_wnut17_v2_infer |\\\\n| D042 | 2026-05-14 | exp_009_v2 RE 重跑：过滤无 gold relation 实例 + proxy 独立性修 | exp_009_v2, exp_006_v2, exp_008_re_n16 |\\\\n| D041 | 2026-05-14 | 关闭 RE seed 测试线——两 seed 确认 RE 结构一致性弱是 task 本质属性 | exp_008_re_seed123, exp_008_re_n16 |\\\\n\\\\n\\\\n\\\", \\\"lines\\\": 83}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/ROADMAP.md\", \"content\": \"# struct_self_consist_ie — Research Dashboard\\n\\n> 最后更新: 2026-05-14 21:11 UTC | 更新原因: abstract/conclusion/limitations 写作完成。Figures + Bootstrap CI Worker 进行中。\\n\\n## 核心方向\\n系统比较 5 类置信信号（log-prob / exact-match / FK / SJ / voting_conf）在 IE test-time scaling 中的有效性。核心发现：structural consistency family (SJ + voting_conf) 是最强质量估计器，但存在 correlation-selection gap。详见 paper_framing.md。\\n\\n## 当前阶段\\n**Writing 阶段** — 全部 GPU 实验完成。Paper Agent Full Draft 进行中（Step 4 章节写作）。审稿进行中（Group C）。\\n\\n### 实验覆盖率\\n- **2×2 矩阵**: Qwen×{SciERC,CoNLL} + LLaMA×{SciERC,CoNLL}，全部 N=8 + N=16 完成\\n- **3-seed 鲁棒性**: Qwen SciERC (CV=6%) + LLaMA CoNLL (CV<2%) 均确认\\n- **Claim 1 覆盖**: ~85% (12/17 done, remaining: WNUT OOD blocked/abandoned)\\n- **Claim 2 覆盖**: 100% (4/4 done)\\n- **Core claim \\\"structural > logprob\\\"**: 4/4 设置全部成立，跨模型×跨数据集×跨 N×跨 seed\\n\\n### 确认发现\\n| 发现 | 来源 | 状态 |\\n|------|------|------|\\n| SJ >> logprob NER (ρ 0.383 vs 0.140, AUROC 0.689 vs 0.591) | exp-012/015 | ✅ |\\n| voting_conf ≈ SJ NER (ρ 0.502 vs 0.357) | exp-014/015 | ✅ |\\n| Correlation-selection gap: NER 无信号 beat greedy | exp-016 | ✅ |\\n| Ensemble AUROC 0.735 (+3.5pp) | exp-016 | ✅ |\\n| RE structural signals 系统性偏弱 | exp-008 | ✅ negative |\\n| RE SJ 按 sent_len 单调递增（非 inverted-U）| D047 | ✅ |\\n| FK N-scaling model-dependent（非 consistently degrading）| D050 | ✅ |\\n| LLaMA CoNLL 3-seed: structural mean ρ≈0.46, CV<2% | exp-017 | ✅ |\\n| Qwen SciERC 3-seed: SJ mean ρ=0.412, CV=6% | exp-001 | ✅ |\\n| ρ-AUROC 分离: logprob AUROC 高但 ρ 低 | 跨设置一致 | ✅ |\\n\\n### Paper Agent 进度\\n| 章节 | 状态 |\\n|------|------|\\n| experiments.tex | ✅ 完成（待 CRITICAL 修正） |\\n| method.tex | ✅ 完成（待 CRITICAL 修正：FK/EM/SJ 公式） |\\n| introduction.tex | ✅ 完成（2 WARNING 待修正） |\\n| related_work | 写作中 |\\n| discussion | 待写 |\\n| abstract.tex | ✅ 完成（~195 words, 3 key numbers） |\\n| conclusion.tex | ✅ 完成（~290 words, C1/C2/C3 + 4 future work） |\\n| limitations.tex | ✅ 完成（~210 words, 6 limitations） |\\n\\n**待修正 CRITICAL**:\\n1. method.tex FK 描述与代码不符（token-level → entity-level binary）\\n2. method.tex EM \\\"等价\\\"声称数学错误\\n3. method.tex SJ 公式过度简化（count → soft similarity sum）\\n4. experiments.tex proxy 独立性声称数据矛盾（|r|<0.15 混淆概念）\\n\\n## 近期任务\\n- [ ] Paper Agent 修正 method.tex 3 个 CRITICAL\\n- [ ] Paper Agent 修正 experiments.tex proxy 独立性 CRITICAL\\n- [x] Paper Agent 完成 abstract + conclusion + limitations\\n- [ ] Paper Agent 完成剩余章节（related_work → discussion）\\n- [ ] Paper Agent Step 5 Reviewer 循环\\n- [ ] Bootstrap CI 修复后数据整合到论文（Worker 进行中）\\n- [ ] 3+ figures 创建（Worker 进行中）\\n\\n## GPU 预算\\nautodl-5090: 4× RTX 5090 32GB — **4/4 空闲，全部实验完成**\\n**建议**：保留至论文提交前（可能需要补充实验），DDL 后释放。\\n\\n## 时间线\\n- **目标**: EMNLP 2026 via ARR May, DDL **2026-05-25**（距今 11 天）\\n- GPU 实验: ✅ 全部完成 | Paper Agent: 写作中（Step 4） | 论文迭代: 3-5 天\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D050 | 2026-05-14 | D048 修正：FK N-scaling 非一致退化，而是 setting-dependent（3/ | exp_017_llama_conll_n16, exp_002_conll_n16, exp_007_llama_n16 |\\n| D049 | 2026-05-14 | 实验端进入收尾：N=16 跨模型跨数据集确认 SJ N-scaling、FK N-degradati | exp_002_conll_n16, exp_007_llama_n16, exp_001_seed456_v2_ner, exp_009_v2_re_rerun |\\n| D048 | 2026-05-14 | FK N-scaling 退化跨设置确认：CoNLL Δ=-0.007, LLaMA SciERC  | exp_002_conll_n16, exp_007_llama_n16 |\\n| D047 | 2026-05-14 | Inverted-U 被否定：RE SJ 按 sent_len 单调递增 (Q1:0.110→Q4: | exp_009_v2_re_rerun, exp_009_capability_stratification |\\n| D046 | 2026-05-14 | seed456 NER 3-seed 确认：SJ rho=0.384, structural>sur | exp_001_seed456_v2_ner, exp_001_seed42_v2, exp_001_seed123_v2 |\\n| D045 | 2026-05-14 | WNUT-17 放弃深入：54% F1=0 + SJ rho 不显著，报告为 Claim 3 支撑证 | exp_003_wnut17_v2_infer, exp_003_wnut17_v2 |\\n| D044 | 2026-05-14 | 3-seed NER 协议完成：seed42 ρ=0.428, seed123 ρ=0.424, s | exp_001_seed456_v2_ner, exp_001_seed42_v2, exp_001_seed123_v2 |\\n| D043 | 2026-05-14 | 放弃 WNUT-17 benchmark，聚焦 SciERC + CoNLL 双数据集；取消 LLa | exp_003_wnut17_v2_infer |\\n| D042 | 2026-05-14 | exp_009_v2 RE 重跑：过滤无 gold relation 实例 + proxy 独立性修 | exp_009_v2, exp_006_v2, exp_008_re_n16 |\\n| D041 | 2026-05-14 | 关闭 RE seed 测试线——两 seed 确认 RE 结构一致性弱是 task 本质属性 | exp_008_re_seed123, exp_008_re_n16 |\\n\\n\\n\", \"lines\": 83}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9979b483-74ea-4857-8b55-1354023bb307",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-14T21:17:28.195Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The worker name is `worker_data_qwen_scierc_3seed_em_voting_20260514T211403`. This seems to relate to Qwen SciERC 3-seed EM voting data. Let me look at the registry more carefully. The most recent experiments visible are from earlier today. Let me search for more recent experiments that might match this worker name. The worker name suggests it's about Qwen SciERC 3-seed EM voting analysis. Let me search the registry for recent experiments or look at report.md for what this worker was doing.
+
+Let me check the registry for experiments related to this worker. 
+
+I should look through the registry and report.md to understand what this EM voting experiment for Qwen SciERC was actually doing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a00e7868-237d-4e54-a890-173e01d185f4",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A3QWxjBBbdJeJP62bH",
+  "type": "assistant",
+  "uuid": "2582c48a-67f3-4236-9049-1bfa3f80abe5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FLVtizfAtGQmL8Q1nG4w6W",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12318,
+      "cache_read_input_tokens": 33380,
+      "output_tokens": 484,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12318,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 484,
+          "cache_read_input_tokens": 33380,
+          "cache_creation_input_tokens": 12318,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12318
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-14T21:17:28.300Z_
+
+Worker 名字包含 "qwen_scierc_3seed_em_voting"，需要找到对应的实验记录。让我查更多 registry 条目和 report。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2582c48a-67f3-4236-9049-1bfa3f80abe5",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A3QWxjBBbdJeJP62bH",
+  "type": "assistant",
+  "uuid": "f8307993-79b6-47f7-a828-b78038102fb9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FLVtizfAtGQmL8Q1nG4w6W",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12318,
+      "cache_read_input_tokens": 33380,
+      "output_tokens": 484,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12318,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 484,
+          "cache_read_input_tokens": 33380,
+          "cache_creation_input_tokens": 12318,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12318
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T21:17:30.017Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_018Y71uT7nUdFsKFVyYx3wVz`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "limit": 0,
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "status",
+    "conclusion",
+    "hypothesis",
+    "metrics",
+    "spec",
+    "completed_at",
+    "updated_at"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8307993-79b6-47f7-a828-b78038102fb9",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A3QWxjBBbdJeJP62bH",
+  "type": "assistant",
+  "uuid": "0701eaf2-bcb4-44d5-badb-31fa42c34c10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FLVtizfAtGQmL8Q1nG4w6W",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12318,
+      "cache_read_input_tokens": 33380,
+      "output_tokens": 484,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12318,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 484,
+          "cache_read_input_tokens": 33380,
+          "cache_creation_input_tokens": 12318,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12318
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T21:17:30.457Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_0174HxBhh2rCtf3G27L51H6g`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "file": "report.md",
+  "max_chars": 20000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0701eaf2-bcb4-44d5-badb-31fa42c34c10",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A3QWxjBBbdJeJP62bH",
+  "type": "assistant",
+  "uuid": "0a41dfb0-5522-483e-bf24-c4502bb41dc0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FLVtizfAtGQmL8Q1nG4w6W",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12318,
+      "cache_read_input_tokens": 33380,
+      "output_tokens": 484,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12318,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 484,
+          "cache_read_input_tokens": 33380,
+          "cache_creation_input_tokens": 12318,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12318
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T21:17:30.681Z_
+
+<details><summary>↩ Tool result · `toolu_018Y71uT7nUdFsKFVyYx3wVz`</summary>
+
+```text
+Error: result (85,315 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/7f351864-1277-4f97-b973-fafc7db3552e/tool-results/mcp-agent-ml-research-read_registry-1778793450662.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/7f351864-1277-4f97-b973-fafc7db3552e/tool-results/mcp-agent-ml-research-read_registry-1778793450662.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/7f351864-1277-4f97-b973-fafc7db3552e/tool-results/mcp-agent-ml-research-read_registry-1778793450662.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0701eaf2-bcb4-44d5-badb-31fa42c34c10",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "38227caf-c1d6-4e27-af48-dad29afab9de",
+  "toolUseResult": "Error: result (85,315 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/7f351864-1277-4f97-b973-fafc7db3552e/tool-results/mcp-agent-ml-research-read_registry-1778793450662.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/7f351864-1277-4f97-b973-fafc7db3552e/tool-results/mcp-agent-ml-research-read_registry-1778793450662.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/7f351864-1277-4f97-b973-fafc7db3552e/tool-results/mcp-agent-ml-research-read_registry-1778793450662.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_017_llama_conll_n16_s456\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T20:24:45.875Z\", \"hypothesis\": \"LLaMA CoNLL N=16 seed=456: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --num_test 9999 --output_dir output/exp_017_llama_conll_n16_s456\", \"server\": \"autodl-5090\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"model_name\": \"llama3.1-8b-conll2003-merged\", \"seed\": 456}, \"metrics\": {\"greedy_f1\": 0.9243, \"oracle_f1\": 0.9488, \"oracle_headroom\": 0.0245, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"structural_beats_surface\": true, \"full\": {\"SJ_rho\": 0.4552, \"SJ_AUROC\": 0.7288, \"SJ_ECE\": 0.1134, \"FK_rho\": 0.4478, \"FK_AUROC\": 0.7248, \"FK_ECE\": 0.109, \"logprob_rho\": 0.3078, \"logprob_AUROC\": 0.7612, \"logprob_ECE\": 0.1289, \"EM_rho\": 0.452, \"EM_AUROC\": 0.7275, \"EM_ECE\": 0.1082, \"voting_conf_rho\": 0.4571, \"voting_conf_AUROC\": 0.7348, \"voting_conf_ECE\": 0.0863}, \"conditional\": {\"SJ_rho\": 0.4505, \"SJ_AUROC\": 0.7449, \"SJ_ECE\": 0.0826, \"FK_rho\": 0.4422, \"FK_AUROC\": 0.7401, \"FK_ECE\": 0.0835, \"logprob_rho\": 0.3242, \"logprob_AUROC\": 0.8067, \"logprob_ECE\": 0.0921, \"EM_rho\": 0.451, \"EM_AUROC\": 0.745, \"EM_ECE\": 0.0756, \"voting_conf_rho\": 0.3962, \"voting_conf_AUROC\": 0.7202, \"voting_conf_ECE\": 0.0746}, \"best_of_n\": {\"greedy\": 0.9243, \"random_avg\": 0.9215, \"sj_best\": 0.9243, \"logprob_best\": 0.9243, \"voting_conf_best\": 0.9243, \"oracle\": 0.9488}, \"n8_vs_n16_delta\": {\"full_SJ_rho_delta\": 0.0238, \"full_FK_rho_delta\": 0.0201, \"full_logprob_rho_delta\": 0.0006, \"full_EM_rho_delta\": 0.0214, \"full_voting_conf_rho_delta\": 0.0315, \"cond_SJ_rho_delta\": 0.0149, \"cond_FK_rho_delta\": 0.0112, \"cond_logprob_rho_delta\": -0.004, \"cond_EM_rho_delta\": 0.0107, \"cond_voting_conf_rho_delta\": 0.0219}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T20:24:45.875Z\"}, \"exp_017_llama_conll_n16\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T19:45:16.265Z\", \"spec\": {\"hypothesis\": \"LLaMA CoNLL N=16: complete the 2x2 matrix (model x dataset x N). If SJ N-scaling holds for LLaMA on CoNLL, the finding is fully cross-model cross-dataset.\", \"plan_id\": \"exp-017\", \"parent\": \"exp_017_llama_conll_infer\", \"model_name\": \"llama3.1-8b-conll2003-merged\", \"dataset\": \"CoNLL-2003\", \"data_count\": 3453, \"seed\": 42, \"server\": \"autodl-5090\", \"command\": \"CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_017_llama_conll_n16\", \"data_path\": \"data/conll2003\", \"pid\": 106997, \"n_samples\": 16, \"temperature\": 1, \"checkpoint_source\": \"checkpoints/llama3.1-8b-conll2003-merged\", \"eval_data\": \"conll2003 test set\", \"checkpoint_path\": \"output/exp_017_llama_conll_n16/samples.jsonl\", \"log_path\": \"output/exp_017_llama_conll_n16/all_signals_report.json\"}, \"metrics\": {\"greedy_f1\": 0.9243, \"oracle_f1\": 0.9487, \"oracle_headroom\": 0.0244, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"structural_beats_surface\": true, \"full\": {\"SJ_rho\": 0.4642, \"SJ_AUROC\": 0.7391, \"SJ_ECE\": 0.1131, \"FK_rho\": 0.4566, \"FK_AUROC\": 0.736, \"FK_ECE\": 0.1071, \"logprob_rho\": 0.3058, \"logprob_AUROC\": 0.7594, \"logprob_ECE\": 0.1288, \"EM_rho\": 0.4613, \"EM_AUROC\": 0.7391, \"EM_ECE\": 0.1084, \"voting_conf_rho\": 0.4554, \"voting_conf_AUROC\": 0.7406, \"voting_conf_ECE\": 0.0844}, \"conditional\": {\"SJ_rho\": 0.4597, \"SJ_AUROC\": 0.7565, \"SJ_ECE\": 0.0846, \"FK_rho\": 0.4515, \"FK_AUROC\": 0.753, \"FK_ECE\": 0.0813, \"logprob_rho\": 0.3193, \"logprob_AUROC\": 0.8023, \"logprob_ECE\": 0.0921, \"EM_rho\": 0.4618, \"EM_AUROC\": 0.7589, \"EM_ECE\": 0.0757, \"voting_conf_rho\": 0.3978, \"voting_conf_AUROC\": 0.7287, \"voting_conf_ECE\": 0.0742}, \"best_of_n\": {\"greedy\": 0.9243, \"random_avg\": 0.9213, \"sj_best\": 0.9259, \"logprob_best\": 0.925, \"voting_conf_best\": 0.9268, \"oracle\": 0.9487}, \"n8_vs_n16_delta\": {\"full_SJ_rho_delta\": 0.0328, \"full_FK_rho_delta\": 0.0289, \"full_logprob_rho_delta\": -0.0014, \"full_EM_rho_delta\": 0.0307, \"full_voting_conf_rho_delta\": 0.0298, \"cond_SJ_rho_delta\": 0.0241, \"cond_FK_rho_delta\": 0.0205, \"cond_logprob_rho_delta\": -0.0089, \"cond_EM_rho_delta\": 0.0215, \"cond_voting_conf_rho_delta\": 0.0235}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T19:45:16.265Z\"}, \"exp_017_llama_conll_n16_s123\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T19:43:06.607Z\", \"hypothesis\": \"LLaMA CoNLL N=16 seed=123: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol\", \"spec\": {\"hypothesis\": \"LLaMA CoNLL-2003 NER N=16 seed=123: cross-seed robustness check against N=8 seed=42 baseline (exp_017_llama_conll_infer)\", \"command\": \"CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --num_test 9999 --output_dir output/exp_017_llama_conll_n16_s123\", \"server\": \"autodl-5090\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/conll2003\", \"data_count\": 3453, \"model_name\": \"llama3.1-8b-conll2003-merged\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/llama3.1-8b-conll2003-merged\", \"eval_data\": \"data/conll2003\", \"checkpoint_path\": \"output/exp_017_llama_conll_n16_s123/samples.jsonl\", \"log_path\": \"output/exp_017_llama_conll_n16_s123.log\"}, \"metrics\": {\"greedy_f1\": 0.9266, \"oracle_f1\": 0.9497, \"oracle_headroom\": 0.0231, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"structural_beats_surface\": true, \"full\": {\"SJ_rho\": 0.4698, \"SJ_AUROC\": 0.7402, \"SJ_ECE\": 0.1135, \"FK_rho\": 0.4594, \"FK_AUROC\": 0.7351, \"FK_ECE\": 0.1114, \"logprob_rho\": 0.3161, \"logprob_AUROC\": 0.768, \"logprob_ECE\": 0.129, \"EM_rho\": 0.4676, \"EM_AUROC\": 0.7399, \"EM_ECE\": 0.1082, \"voting_conf_rho\": 0.4612, \"voting_conf_AUROC\": 0.7429, \"voting_conf_ECE\": 0.0832}, \"conditional\": {\"SJ_rho\": 0.4712, \"SJ_AUROC\": 0.7609, \"SJ_ECE\": 0.0828, \"FK_rho\": 0.4595, \"FK_AUROC\": 0.7547, \"FK_ECE\": 0.0858, \"logprob_rho\": 0.3314, \"logprob_AUROC\": 0.8134, \"logprob_ECE\": 0.0922, \"EM_rho\": 0.4732, \"EM_AUROC\": 0.7626, \"EM_ECE\": 0.075, \"voting_conf_rho\": 0.4086, \"voting_conf_AUROC\": 0.7338, \"voting_conf_ECE\": 0.0706}, \"best_of_n\": {\"greedy\": 0.9242, \"random_avg\": 0.9216, \"sj_best\": 0.9247, \"logprob_best\": 0.9253, \"voting_conf_best\": 0.9255, \"oracle\": 0.9486}, \"n8_vs_n16_delta\": {\"full_SJ_rho_delta\": 0.0384, \"full_FK_rho_delta\": 0.0317, \"full_logprob_rho_delta\": 0.0089, \"full_SJ_AUROC_delta\": 0.0363, \"full_FK_AUROC_delta\": 0.0325, \"full_logprob_AUROC_delta\": 0.007, \"cond_SJ_rho_delta\": 0.0356, \"cond_FK_rho_delta\": 0.0285, \"cond_logprob_rho_delta\": 0.0032}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T19:43:06.607Z\"}, \"exp_007_llama_n16\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T19:03:50.284Z\", \"spec\": {\"hypothesis\": \"LLaMA SciERC N=16: cross-model N-scaling validation. If SJ rho increases from N=8 (0.363) to N=16, N-scaling is model-agnostic.\", \"plan_id\": \"exp-007\", \"parent\": \"exp_007_llama_inference\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=1 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_007_llama_n16\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"llama3.1-8b-scierc-merged\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/llama3.1-8b-scierc-merged\", \"eval_data\": \"data/scierc/processed_data\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T19:03:39.163Z\", \"metrics\": {\"N\": 16, \"dataset\": \"scierc\", \"subtask\": \"ner\", \"n_instances\": 551, \"n_valid\": 529, \"n_conditional\": 478, \"greedy_f1\": 0.645, \"full\": {\"SJ_rho\": 0.3791, \"FK_rho\": 0.3081, \"logprob_rho\": 0.2041, \"EM_rho\": 0.3159, \"voting_conf_rho\": 0.4515, \"SJ_AUROC\": 0.717, \"FK_AUROC\": 0.6581, \"logprob_AUROC\": 0.5656, \"EM_AUROC\": 0.7686, \"voting_conf_AUROC\": 0.7266, \"SJ_ECE\": 0.1019, \"FK_ECE\": 0.1556, \"logprob_ECE\": 0.084, \"EM_ECE\": 0.1761, \"voting_conf_ECE\": 0.1365}, \"conditional\": {\"SJ_rho\": 0.3222, \"FK_rho\": 0.2182, \"logprob_rho\": 0.1286, \"EM_rho\": 0.3563, \"voting_conf_rho\": 0.3356, \"SJ_AUROC\": 0.7014, \"FK_AUROC\": 0.6392, \"logprob_AUROC\": 0.545, \"EM_AUROC\": 0.7708, \"voting_conf_AUROC\": 0.6988, \"SJ_ECE\": 0.1466, \"FK_ECE\": 0.1853, \"logprob_ECE\": 0.1141, \"EM_ECE\": 0.1887, \"voting_conf_ECE\": 0.2634}, \"n8_vs_n16_delta_rho_full\": {\"SJ\": 0.0161, \"FK\": -0.0185, \"logprob\": 0.0214, \"EM\": 0.0007, \"voting_conf\": 0.0184}}}, \"exp_002_conll_n16\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T19:03:19.801Z\", \"spec\": {\"hypothesis\": \"Qwen CoNLL-2003 N=16: cross-dataset N-scaling comparison with SciERC N=16\", \"plan_id\": \"exp-002\", \"parent\": \"exp_002_ner_conll2003\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_002_conll_n16\", \"server\": \"autodl-5090\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"model_name\": \"qwen3-8b-conll2003-merged\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"N\": 16, \"dataset\": \"conll2003\", \"subtask\": \"ner\", \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2614, \"greedy_f1\": 0.907, \"full\": {\"SJ_rho\": 0.4496, \"FK_rho\": 0.3928, \"logprob_rho\": 0.3146, \"EM_rho\": 0.4627, \"voting_conf_rho\": 0.4286, \"SJ_AUROC\": 0.8264, \"FK_AUROC\": 0.7821, \"logprob_AUROC\": 0.7531, \"EM_AUROC\": 0.8409, \"voting_conf_AUROC\": 0.8071, \"SJ_ECE\": 0.0747, \"FK_ECE\": 0.1786, \"logprob_ECE\": 0.2031, \"EM_ECE\": 0.0786, \"voting_conf_ECE\": 0.529}, \"conditional\": {\"SJ_rho\": 0.4208, \"FK_rho\": 0.3494, \"logprob_rho\": 0.3756, \"EM_rho\": 0.4658, \"voting_conf_rho\": 0.3654, \"SJ_AUROC\": 0.8405, \"FK_AUROC\": 0.7819, \"logprob_AUROC\": 0.8259, \"EM_AUROC\": 0.8781, \"voting_conf_AUROC\": 0.7951, \"SJ_ECE\": 0.0982, \"FK_ECE\": 0.1899, \"logprob_ECE\": 0.2504, \"EM_ECE\": 0.0997, \"voting_conf_ECE\": 0.6096}, \"n8_vs_n16_delta_rho_full\": {\"SJ\": 0.0139, \"FK\": -0.007, \"logprob\": -0.0011, \"EM\": 0.012, \"voting_conf\": 0.0049}}, \"completed_at\": \"2026-05-14T18:58:40.473Z\"}, \"exp_009_v2_re_rerun\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T18:56:58.168Z\", \"spec\": {\"command\": \"python code/exp_009_v2_re_rerun.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp_008_re_n16_v2/samples.jsonl\", \"data_count\": 397, \"model_name\": \"cpu_analysis\", \"seed\": 42, \"checkpoint_source\": \"exp_008_re_n16_v2\", \"checkpoint_path\": \"output/exp_009_v2_re_rerun/results.json\", \"log_path\": \"/tmp/re_rerun.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T18:56:58.168Z\"}, \"exp_001_seed456_v2_ner\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T18:55:18.772Z\", \"spec\": {\"hypothesis\": \"NER N=16 seed=456 robustness test (NER-only rerun, fixing subtask mismatch from exp_001_seed456_v2)\", \"plan_id\": \"exp-001\", \"parent\": \"exp_001_seed456_v2\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=2 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --num_test 9999 --collect_logprobs --output_dir output/exp_001_seed456_v2_ner\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 456, \"checkpoint_source\": \"checkpoints/qwen3-8b-scierc-merged-v2\", \"eval_data\": \"data/scierc/processed_data\", \"metrics\": {\"sj_rho\": 0.384, \"structural_gt_surface\": true, \"structural_surface_delta\": 0.16}, \"log_path\": \"output/exp_001_seed456_v2_ner.log\", \"checkpoint_path\": \"output/exp_001_seed456_v2_ner/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T17:52:01.372Z\", \"metrics\": {\"full\": {\"SJ\": {\"rho\": 0.384, \"auroc\": 0.711}, \"FK\": {\"rho\": 0.223, \"auroc\": 0.577}, \"logprob\": {\"rho\": 0.232, \"auroc\": 0.594}, \"EM\": {\"rho\": 0.316, \"auroc\": 0.768}, \"voting_conf\": {\"rho\": 0.411, \"auroc\": 0.712}}, \"conditional\": {\"SJ\": {\"rho\": 0.349, \"auroc\": 0.699}, \"FK\": {\"rho\": 0.157, \"auroc\": 0.561}, \"logprob\": {\"rho\": 0.171, \"auroc\": 0.576}, \"EM\": {\"rho\": 0.406, \"auroc\": 0.78}, \"voting_conf\": {\"rho\": 0.346, \"auroc\": 0.694}}, \"3seed_mean_SJ_rho_full\": 0.412, \"3seed_sd_SJ_rho_full\": 0.025, \"structural_beats_surface\": true, \"verdict\": \"MARGINAL\"}}, \"exp_003_wnut17_v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T18:11:36.559Z\", \"spec\": {\"description\": \"WNUT-17 retrain: downsample gold-empty instances to ≤25%, fine-tune Qwen3-8B, inference N=16 T=1.0 with log-probs\", \"hypothesis\": \"After removing excess empty instances, structural consistency signals (SJ) will show stronger correlation on social media NER\", \"plan_id\": \"exp-003\", \"claim\": 1, \"model_name\": \"Qwen3-8B\", \"dataset\": \"WNUT-17 (downsampled)\", \"priority\": \"P0\", \"parent\": \"exp_003_ner_wnut17\", \"command\": \"CUDA_VISIBLE_DEVICES=1 llamafactory-cli train train_config_wnut17.yaml\", \"server\": \"autodl-5090\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/wnut17/llmfactory_train_downsampled.json\", \"data_count\": 1637, \"seed\": 42, \"pid\": 92215, \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/logs/train_wnut17.log\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-lora\", \"downsampling\": \"empty instances 63.8% -> 25.0%, total 3394 -> 1637\", \"metrics\": {\"train_loss\": 0.105, \"eval_loss\": 0.0836, \"epochs\": 5, \"train_time_min\": 16.37, \"train_samples_per_sec\": 8.33}, \"note\": \"D045: Training succeeded (train_loss=0.105) but inference FAIL: 54% F1=0, SJ rho=0.062 (p=0.106). WNUT-17 abandoned — model capability insufficient on social media NER. Paper reports as Claim 3 (capability boundary) evidence.\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T18:11:36.559Z\"}, \"exp_017_llama_conll_infer\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T17:55:35.572Z\", \"spec\": {\"hypothesis\": \"LLaMA-3.1-8B CoNLL-2003 inference: cross-model cross-dataset validation of structural consistency signals\", \"plan_id\": \"exp-017\", \"parent\": \"exp_017_llama_conll\", \"command\": \"python code/run_llama_conll_infer.py\", \"server\": \"autodl-5090\", \"data_path\": \"conll2003 test\", \"data_count\": 3453, \"model_name\": \"LLaMA-3.1-8B-Instruct\", \"seed\": 42, \"n_samples\": 8, \"temperature\": 1, \"description\": \"LLaMA CoNLL-2003 NER inference N=8 (cross-model + cross-dataset validation)\"}, \"metrics\": {\"greedy_f1\": 0.9266, \"oracle_f1\": 0.9443, \"oracle_headroom\": 0.0177, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"N\": 8, \"full\": {\"SJ_rho\": 0.4314, \"FK_rho\": 0.4277, \"logprob_rho\": 0.3072, \"EM_rho\": 0.4306, \"voting_conf_rho\": 0.4256, \"SJ_AUROC\": 0.7039, \"FK_AUROC\": 0.7026, \"logprob_AUROC\": 0.761, \"EM_AUROC\": 0.7046, \"voting_conf_AUROC\": 0.7088, \"SJ_ECE\": 0.1137, \"FK_ECE\": 0.1053, \"logprob_ECE\": 0.129, \"EM_ECE\": 0.1094, \"voting_conf_ECE\": 0.0949}, \"conditional\": {\"SJ_rho\": 0.4356, \"FK_rho\": 0.431, \"logprob_rho\": 0.3282, \"EM_rho\": 0.4403, \"voting_conf_rho\": 0.3743, \"SJ_AUROC\": 0.7225, \"FK_AUROC\": 0.7208, \"logprob_AUROC\": 0.8102, \"EM_AUROC\": 0.7257, \"voting_conf_AUROC\": 0.6989, \"SJ_ECE\": 0.0829, \"FK_ECE\": 0.0796, \"logprob_ECE\": 0.0922, \"EM_ECE\": 0.0754, \"voting_conf_ECE\": 0.0784}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T17:55:33.476Z\"}, \"exp_008_re_n16_full\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T17:51:43.957Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask re --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --num_test 9999 --output_dir output/exp008_re_n16/\\\"\", \"server\": \"gpu-5090-4x-2\", \"gpu\": [\"cuda:2\"], \"pid\": \"62585\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_008_re_n16_full.log\", \"submitted_at\": \"2026-05-14T12:45:10.764Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 18393.2, \"gpu_hours\": 5.11}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T17:51:43.957Z\"}, \"exp_017_llama_conll\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T17:30:26.798Z\", \"spec\": {\"command\": \"llamafactory-cli train train_config_llama_conll2003.yaml\", \"server\": \"autodl-5090\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/conll2003\", \"data_count\": 14041, \"model_name\": \"Meta-Llama-3.1-8B-Instruct\", \"seed\": 42, \"failure_reason\": null, \"metrics\": {\"train_loss\": 0.039, \"eval_loss\": 0.023, \"epochs\": 5, \"train_time\": \"2h22m\"}, \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/exp017_train.log\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora/\", \"note\": \"Training completed successfully. Checkpoint includes adapter_model.safetensors + intermediate checkpoints (200/400/515). Previously misclassified as failed due to narrow log search path.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T17:12:15.687Z\"}, \"exp_001_seed456_v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T17:12:14.682Z\", \"spec\": {\"hypothesis\": \"NER/RE N=16 seed=456 robustness test, third seed for 3-seed stability\", \"plan_id\": \"exp-001\", \"command\": \"CUDA_VISIBLE_DEVICES=2 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --num_test 9999 --collect_logprobs --output_dir output/exp_001_seed456_v2\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 456, \"metrics\": {\"full_rho_kappa_f1\": 0.3383, \"full_rho_sj_f1\": 0.2988, \"cond_rho_kappa_f1\": 0.233, \"cond_rho_sj_f1\": 0.3245, \"logprob_full_rho\": 0.3405, \"logprob_full_auroc\": 0.6694, \"logprob_cond_rho\": 0.0501, \"structural_gt_surface\": false}, \"note\": \"CRITICAL: Ran with --subtask joint instead of --subtask ner. seed42/seed123 v2 used --subtask ner. Results valid for joint-mode analysis but NOT comparable for NER 3-seed protocol. Need NER-only rerun.\", \"log_path\": \"output/exp_001_seed456_v2/run.log\", \"checkpoint_path\": \"output/exp_001_seed456_v2/\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T17:12:14.682Z\"}, \"exp_016_v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T15:39:39.950Z\", \"spec\": {\"command\": \"python code/exp_016_v2_ensemble.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp_001_seed42_v2 + exp_001_seed123_v2 + exp_008_re_n16_v2\", \"data_count\": 551, \"model_name\": \"analysis_only\", \"seed\": 42, \"checkpoint_path\": \"output/exp_016_v2/\", \"log_path\": \"/tmp/exp016v2.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T15:39:34.478Z\", \"metrics\": {\"ner_conditional\": {\"n\": 529, \"best_single_signal_rho\": {\"soft_jaccard\": 0.4412}, \"best_combo_rho\": {\"sj+vc_a0.55\": 0.4552}, \"ensemble_auroc\": 0.7141, \"best_single_auroc\": {\"soft_jaccard\": 0.7166}, \"selection_f1\": {\"greedy\": 0.6442, \"logprob_best\": 0.6505, \"ensemble_best\": 0.6475, \"sj_best\": 0.6471, \"oracle\": 0.8442}}, \"re_conditional\": {\"n\": 397, \"best_single_signal_rho\": {\"voting_confidence\": 0.3849}, \"best_combo_rho\": {\"logprob+vc_a0.25\": 0.3936}, \"ensemble_auroc\": 0.6916, \"best_single_auroc\": {\"voting_confidence\": 0.7023}, \"selection_f1\": {\"greedy\": 0.403, \"logprob_best\": 0.4097, \"ensemble_best\": 0.4227, \"oracle\": 0.6306}}, \"re_full\": {\"ensemble_auroc\": 0.8608, \"best_single_auroc\": {\"voting_confidence\": 0.8248}}}}, \"exp_009_v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T15:37:27.960Z\", \"spec\": {\"command\": \"python3 code/exp_009_v2_stratification.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp_001_seed42_v2 + exp_001_seed123_v2 + exp_008_re_n16_v2\", \"data_count\": 551, \"model_name\": \"analysis\", \"seed\": 42}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T15:37:18.311Z\", \"metrics\": {\"ner_seed42_global\": {\"sj_rho\": 0.431, \"fk_rho\": 0.325, \"logprob_rho\": 0.203, \"voting_conf_rho\": 0.475, \"em_rho\": 0.292}, \"ner_seed123_global\": {\"sj_rho\": 0.422, \"fk_rho\": 0.315, \"logprob_rho\": 0.226, \"voting_conf_rho\": 0.438, \"em_rho\": 0.299}, \"re_seed42_global\": {\"sj_rho\": 0.063, \"fk_rho\": 0.226, \"logprob_rho\": 0.4, \"voting_conf_rho\": 0.22, \"em_rho\": -0.132}, \"ner_seed_stability_max_delta\": 0.037, \"independent_proxies\": [\"sent_len\", \"ent_count\", \"type_diversity\"], \"inverted_u_ner\": \"not confirmed (ρ stable across independent proxies)\", \"inverted_u_re\": \"monotonic increase with complexity, not inverted-U\"}}, \"exp_015_v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T15:35:07.815Z\", \"spec\": {\"command\": \"python code/analyze_exp015_v2_metrics.py\", \"server\": \"autodl-5090\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/ (10 datasets)\", \"data_count\": 9148, \"model_name\": \"Qwen3-8B + LLaMA (multi-model)\", \"seed\": \"42,123,456 (multi-seed)\", \"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"/tmp/exp015_v2.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T15:34:56.741Z\", \"metrics\": {\"auroc_best\": {\"SJ\": {\"conll_ner\": 0.8008, \"scierc_ner_avg\": 0.7328, \"scierc_re_avg\": 0.6788, \"llama_ner_avg\": 0.7029, \"llama_re_avg\": 0.7144, \"wnut_ner\": 0.5844}, \"FK\": {\"conll_ner\": 0.7741, \"scierc_ner_avg\": 0.6172, \"scierc_re_avg\": 0.5939, \"llama_ner_avg\": 0.6484, \"llama_re_avg\": 0.6778, \"wnut_ner\": 0.5752}, \"logprob\": {\"conll_ner\": 0.7532, \"scierc_ner_avg\": 0.5918, \"scierc_re_avg\": 0.5849, \"llama_ner_avg\": 0.5584, \"llama_re_avg\": 0.654, \"wnut_ner\": 0.358}, \"EM\": {\"conll_ner\": 0.8156, \"scierc_ner_avg\": 0.7873, \"scierc_re_avg\": 0.715, \"llama_ner_avg\": 0.7533, \"llama_re_avg\": 0.7557, \"wnut_ner\": 0.5745}, \"voting_conf\": {\"conll_ner\": 0.7889, \"scierc_ner_avg\": 0.7367, \"scierc_re_avg\": 0.7195, \"llama_ner_avg\": 0.7232, \"llama_re_avg\": 0.7509, \"wnut_ner\": 0.8692}}, \"loo_sj\": {\"max_delta_rho\": 0.000305, \"all_no_circularity\": true}, \"n_datasets\": 10, \"n_subtask_combos\": 18}}, \"exp_004_v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T15:32:04.966Z\", \"conclusion\": \"success\", \"spec\": {\"command\": \"python code/analyze_exp004_v2_re_diagnostic.py\", \"server\": \"autodl-5090\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\", \"data_count\": 551, \"model_name\": \"Qwen2.5-7B-Instruct (SFT)\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp004v2_re_diagnostic/\"}, \"completed_at\": \"2026-05-14T15:32:04.966Z\"}, \"exp_006_v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T15:30:41.053Z\", \"spec\": {\"command\": \"python3 code/exp_006_v2_selection.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp_{001_seed42,001_seed123,002_conll,008_re}_v2/\", \"data_count\": 4952, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T15:30:32.474Z\", \"metrics\": {\"NER_SciERC_s42\": {\"greedy\": 0.618, \"oracle\": 0.787, \"SJ\": 0.62, \"logprob\": 0.621, \"FK\": 0.621, \"EM\": 0.606, \"voting_conf\": 0.585, \"random\": 0.586}, \"NER_SciERC_s123\": {\"greedy\": 0.618, \"oracle\": 0.785, \"SJ\": 0.617, \"logprob\": 0.618, \"FK\": 0.621, \"EM\": 0.613, \"voting_conf\": 0.584, \"random\": 0.583}, \"NER_CoNLL\": {\"greedy\": 0.725, \"oracle\": 0.757, \"SJ\": 0.718, \"logprob\": 0.716, \"FK\": 0.717, \"EM\": 0.716, \"voting_conf\": 0.714, \"random\": 0.692}, \"RE_SciERC\": {\"greedy\": 0.403, \"oracle\": 0.631, \"SJ\": 0.397, \"logprob\": 0.41, \"FK\": 0.396, \"EM\": 0.381, \"voting_conf\": 0.408, \"random\": 0.364}}}, \"exp_005_v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T15:28:35.949Z\", \"spec\": {\"description\": \"Temperature sensitivity analysis: T=0.7 vs T=1.0 across 5 signals (SJ, FK, logprob, EM, voting_conf)\", \"command\": \"python code/analyze_exp005_v2_temperature.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/mvp_pilot_004 + output/mvp_pilot_005 + output/exp_012_logprob\", \"data_count\": 551, \"model_name\": \"Qwen3-8B-SciERC-LoRA\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"output/exp_005_v2_temperature/temperature_sensitivity_report.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T15:28:35.949Z\"}, \"exp_008_re_n16_v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T15:23:59.395Z\", \"spec\": {\"description\": \"RE N=16 on SciERC full set confirmation, ft_002_v2, with logprobs\", \"hypothesis\": \"Structural consistency correlates with per-instance RE F1 on SciERC full dataset\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"ft_002_v2\", \"seed\": 42, \"command\": \"CUDA_VISIBLE_DEVICES=3 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask re --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_008_re_n16_v2\", \"gpu\": [\"cuda:3\"], \"pid\": \"78737\", \"backend\": \"tmux\", \"account\": \"root\", \"log_path\": \"output/exp_008_re_n16_v2/run.log\"}, \"conclusion\": \"negative\", \"metrics\": {\"sj_rho_full\": 0.281, \"sj_rho_cond\": 0.308, \"f1_zero_pct\": 44.3, \"conclusion_note\": \"RE N=16 v2 negative: SJ weak, 44.3% F1=0\"}, \"completed_at\": \"2026-05-14T15:23:35.598Z\"}, \"exp_001_seed123_v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T15:23:56.155Z\", \"spec\": {\"description\": \"NER N=16 on SciERC, seed=123, ft_002_v2, with logprobs\", \"hypothesis\": \"Structural consistency (Fleiss kappa, Soft Jaccard) correlates with per-instance NER F1 on SciERC (seed robustness check)\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"ft_002_v2\", \"seed\": 123, \"command\": \"CUDA_VISIBLE_DEVICES=2 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --num_test 9999 --collect_logprobs --output_dir output/exp_001_seed123_v2\", \"gpu\": [\"cuda:2\"], \"pid\": \"78733\", \"backend\": \"tmux\", \"account\": \"root\", \"log_path\": \"output/exp_001_seed123_v2/run.log\"}, \"conclusion\": \"success\", \"metrics\": {\"sj_rho_full\": 0.424, \"sj_rho_cond\": 0.376, \"structural_minus_surface\": 0.149, \"conclusion_note\": \"NER seed123 robustness confirmed, structural>surface +0.149\"}, \"completed_at\": \"2026-05-14T15:23:35.076Z\"}, \"exp_001_seed42_v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T15:23:52.846Z\", \"spec\": {\"description\": \"NER N=16 on SciERC, seed=42, ft_002_v2, with logprobs\", \"hypothesis\": \"Structural consistency (Fleiss kappa, Soft Jaccard) correlates with per-instance NER F1 on SciERC\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"ft_002_v2\", \"seed\": 42, \"command\": \"CUDA_VISIBLE_DEVICES=1 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_001_seed42_v2\", \"gpu\": [\"cuda:1\"], \"pid\": \"78728\", \"backend\": \"tmux\", \"account\": \"root\", \"log_path\": \"output/exp_001_seed42_v2/run.log\"}, \"conclusion\": \"success\", \"metrics\": {\"sj_rho_full\": 0.428, \"sj_rho_cond\": 0.369, \"structural_minus_surface\": 0.147, \"conclusion_note\": \"NER seed42 robustness confirmed, structural>surface +0.147\"}, \"completed_at\": \"2026-05-14T15:23:34.091Z\"}, \"exp_008_re_seed123\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T15:21:39.591Z\", \"spec\": {\"description\": \"RE N=16 on SciERC, seed=123, seed robustness test for relation extraction\", \"hypothesis\": \"Structural consistency correlates with per-instance RE F1, robust across seeds\", \"command\": \"CUDA_VISIBLE_DEVICES=3 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask re --n_samples 16 --temperature 1.0 --seed 123 --num_test 9999 --collect_logprobs --output_dir output/exp_008_re_seed123\", \"server\": \"bjb1-21071\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 123, \"gpu\": [\"cuda:3\"], \"backend\": \"tmux\", \"tmux_session\": \"exp008_rs123\", \"account\": \"root\", \"log_path\": \"output/exp_008_re_seed123/run.log\"}, \"conclusion\": \"negative\", \"metrics\": {\"greedy_f1\": 0.4229, \"oracle_f1\": 0.6244, \"oracle_headroom\": 0.2015, \"fleiss_kappa_mean\": 0.3455, \"soft_jaccard_mean\": 0.6126, \"sample_f1_mean\": 0.3594, \"sample_f1_std\": 0.3793, \"sample_f1_zero_pct\": 44.1, \"structural_gt_surface\": false, \"rho_kappa_f1_full\": 0.3174, \"rho_sj_f1_full\": 0.2835, \"rho_kappa_f1_cond\": 0.0766, \"rho_sj_f1_cond\": 0.2877, \"logprob_auroc_full\": 0.6499, \"logprob_auroc_cond\": 0.5265, \"verdict\": \"FAIL\"}, \"completed_at\": \"2026-05-14T15:21:39.591Z\"}, \"exp_007_llama_seed123\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T15:19:47.267Z\", \"spec\": {\"description\": \"LLaMA 3.1-8B SciERC joint extraction, seed=123, cross-model robustness test\", \"hypothesis\": \"Structural consistency generalizes across model architectures (LLaMA vs Qwen)\", \"command\": \"CUDA_VISIBLE_DEVICES=1 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 123 --num_test 9999 --collect_logprobs --output_dir output/exp_007_llama_seed123\", \"server\": \"bjb1-21071\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"llama3.1-8b-scierc-merged\", \"seed\": 123, \"gpu\": [\"cuda:1\"], \"backend\": \"tmux\", \"tmux_session\": \"exp007_s123\", \"account\": \"root\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/run.log\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T15:19:43.424Z\", \"metrics\": {\"verdict\": \"FAIL\", \"ner\": {\"greedy_f1\": 0.6605, \"oracle_f1\": 0.7703, \"headroom\": 0.1098, \"fleiss_kappa\": 0.4553, \"soft_jaccard\": 0.7525, \"rho_kappa_f1\": 0.2143, \"rho_sj_f1\": 0.3371, \"structural_gt_surface\": true}, \"re\": {\"greedy_f1\": 0.433, \"oracle_f1\": 0.5719, \"headroom\": 0.1389, \"fleiss_kappa\": 0.3851, \"soft_jaccard\": 0.6911, \"rho_kappa_f1\": 0.2844, \"rho_sj_f1\": 0.268, \"structural_gt_surface\": false}, \"fail_reasons\": [\"RE rho_sj=0.2680 < 0.40 threshold\", \">30% samples F1=0 (RE: 41.0%)\", \"RE structural not > surface (delta=-0.0165)\"]}}, \"exp_007_llama_seed456\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T15:19:27.040Z\", \"spec\": {\"description\": \"LLaMA 3.1-8B SciERC joint extraction, seed=456, cross-model robustness test\", \"hypothesis\": \"Structural consistency generalizes across model architectures (LLaMA vs Qwen)\", \"command\": \"CUDA_VISIBLE_DEVICES=2 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 456 --num_test 9999 --collect_logprobs --output_dir output/exp_007_llama_seed456\", \"server\": \"bjb1-21071\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"llama3.1-8b-scierc-merged\", \"seed\": 456, \"gpu\": [\"cuda:2\"], \"backend\": \"tmux\", \"tmux_session\": \"exp007_s456\", \"account\": \"root\", \"log_path\": \"output/exp_007_llama_seed456/run.log\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T15:19:20.693Z\", \"metrics\": {\"verdict\": \"FAIL\", \"ner\": {\"greedy_f1\": 0.6597, \"oracle_f1\": 0.7575, \"oracle_headroom\": 0.0978, \"fleiss_kappa\": 0.4543, \"soft_jaccard\": 0.7491, \"rho_kappa_f1\": 0.3115, \"rho_sj_f1\": 0.3663, \"structural_gt_surface\": true}, \"re\": {\"greedy_f1\": 0.4334, \"oracle_f1\": 0.5789, \"oracle_headroom\": 0.1455, \"fleiss_kappa\": 0.3791, \"soft_jaccard\": 0.6782, \"rho_kappa_f1\": 0.3013, \"rho_sj_f1\": 0.287, \"structural_gt_surface\": false}, \"logprob_ner\": {\"rho\": 0.1911, \"auroc\": 0.5989}, \"logprob_re\": {\"rho\": 0.3246, \"auroc\": 0.6678}, \"fail_reason\": \"RE rho_sj=0.2870 < 0.40 threshold; >30% samples F1=0\"}}, \"exp_015_metrics_expansion\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T15:16:34.851Z\", \"spec\": {\"hypothesis\": \"Comprehensive evaluation of all 5 confidence signals with extended metrics\", \"model_name\": \"N/A (reuse pilot_004 samples)\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\", \"data_count\": 551, \"server\": \"autodl-5090\", \"seed\": 42, \"parent\": \"exp_012_logprob_baseline\", \"method\": \"CPU-only analysis: 6 metrics x 5 signals x 2 subtasks (NER+RE)\", \"command\": \"python code/analyze_exp015_metrics_expansion.py\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp015_metrics_expansion\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T12:22:32.661Z\", \"metrics\": {\"data_source\": \"exp_012_logprob/samples_with_logprobs.jsonl\", \"config\": \"N=8, T=1.0, seed=42, model=qwen3-8b-scierc-merged-v2\", \"ner\": {\"n_valid\": 529, \"n_cond\": 501, \"voting_rho_full\": 0.5018, \"voting_rho_cond\": 0.4497, \"voting_auroc\": 0.7279, \"voting_tau\": 0.3766, \"sj_rho_full\": 0.3565, \"sj_rho_cond\": 0.412, \"sj_auroc\": 0.6656, \"sj_tau\": 0.2658, \"em_rho_full\": 0.2566, \"em_rho_cond\": 0.3427, \"em_auroc\": 0.623, \"em_tau\": 0.1924, \"fk_rho_full\": 0.2651, \"fk_rho_cond\": 0.306, \"fk_auroc\": 0.6243, \"fk_tau\": 0.2027, \"logprob_rho_full\": 0.1396, \"logprob_rho_cond\": 0.1627, \"logprob_auroc\": 0.5585, \"logprob_tau\": 0.1006}, \"re\": {\"n_valid\": 397, \"n_cond\": 296, \"voting_rho_full\": 0.4217, \"voting_rho_cond\": 0.463, \"voting_auroc\": 0.7162, \"voting_tau\": 0.327, \"sj_rho_full\": 0.2112, \"sj_rho_cond\": 0.3683, \"sj_auroc\": 0.5816, \"sj_tau\": 0.1619, \"em_rho_full\": 0.1002, \"em_rho_cond\": 0.3607, \"em_auroc\": 0.5036, \"em_tau\": 0.0839, \"fk_rho_full\": 0.2528, \"fk_rho_cond\": 0.3168, \"fk_auroc\": 0.6308, \"fk_tau\": 0.1967, \"logprob_rho_full\": 0.2467, \"logprob_rho_cond\": 0.1457, \"logprob_auroc\": 0.6354, \"logprob_tau\": 0.1808}, \"diagnosis\": \"Unified 5-signal evaluation on single data source. Voting leads NER full (ρ=0.502), SJ retains strength in NER cond (ρ=0.412). All structural signals beat logprob on NER. RE: voting leads both full and cond.\"}}, \"exp_010_selection_curves\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T15:02:34.760Z\", \"spec\": {\"command\": \"python3 code/exp010_selection_curves.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp_001_seed42_v2, output/exp_008_re_n16_v2, output/exp002_conll2003\", \"data_count\": \"551+397+3453 instances\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 42, \"description\": \"Best-of-N selection curves: F1 vs N for 7 signals across 3 datasets\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T15:02:22.638Z\", \"metrics\": {\"scierc_ner\": {\"n_instances\": 551, \"greedy_f1\": 0.618, \"N16\": {\"oracle\": 0.787, \"SJ\": 0.62, \"FK\": 0.621, \"logprob\": 0.621, \"voting_conf\": 0.585, \"EM\": 0.606, \"random\": 0.595}, \"N8\": {\"oracle\": 0.752, \"SJ\": 0.614, \"FK\": 0.614, \"logprob\": 0.619, \"voting_conf\": 0.591, \"EM\": 0.603, \"random\": 0.589}, \"N4\": {\"oracle\": 0.714, \"SJ\": 0.607, \"FK\": 0.608, \"logprob\": 0.616, \"voting_conf\": 0.594, \"EM\": 0.6, \"random\": 0.587}}, \"scierc_re\": {\"n_instances\": 397, \"greedy_f1\": 0.403, \"N16\": {\"oracle\": 0.631, \"SJ\": 0.397, \"FK\": 0.396, \"logprob\": 0.41, \"voting_conf\": 0.408, \"EM\": 0.381, \"random\": 0.364}, \"N8\": {\"oracle\": 0.583, \"SJ\": 0.393, \"FK\": 0.394, \"logprob\": 0.413, \"voting_conf\": 0.398, \"EM\": 0.381, \"random\": 0.363}}, \"conll_ner\": {\"n_instances\": 3453, \"greedy_f1\": 0.725, \"N8\": {\"oracle\": 0.757, \"SJ\": 0.718, \"FK\": 0.717, \"logprob\": 0.716, \"voting_conf\": 0.714, \"EM\": 0.716, \"random\": 0.69}, \"N4\": {\"oracle\": 0.746, \"SJ\": 0.714, \"FK\": 0.714, \"logprob\": 0.715, \"voting_conf\": 0.714, \"EM\": 0.712, \"random\": 0.692}}}}, \"exp_009_capability_stratification\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T14:59:53.951Z\", \"spec\": {\"command\": \"python code/exp009_stratification_analysis.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp001_n16_seed42 + output/exp008_re_n16 + output/exp002_conll2003\", \"data_count\": 4555, \"model_name\": \"analysis_only\", \"seed\": 42}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T14:59:46.463Z\", \"metrics\": {\"scierc_ner\": {\"n\": 551, \"sj_rho_overall\": 0.398, \"by_greedy_f1\": {\"hard_0_25_sj_rho\": 0.159, \"med_low_sj_rho\": 0.139, \"med_high_sj_rho\": 0.09, \"easy_sj_rho\": 0.23}, \"by_sent_len\": {\"Q1_sj_rho\": 0.461, \"Q2_sj_rho\": 0.401, \"Q3_sj_rho\": 0.296, \"Q4_sj_rho\": 0.382}, \"by_ent_count\": {\"0_sj_rho\": 0.689, \"1_2_sj_rho\": 0.415, \"3_5_sj_rho\": 0.353, \"6plus_sj_rho\": 0.547}}, \"scierc_re\": {\"n\": 551, \"by_greedy_f1\": {\"hard_0_25_sj_rho\": -0.043, \"easy_sj_rho\": 0.21}, \"by_sent_len\": {\"Q1_sj_rho\": 0.447, \"Q4_sj_rho\": 0.54}, \"by_rel_count\": {\"0_sj_rho\": 0.62, \"1_2_sj_rho\": 0.275, \"6plus_sj_rho\": 0.527}}, \"conll_ner\": {\"n\": 3453, \"by_sent_len\": {\"Q1_sj_rho\": 0.334, \"Q3_sj_rho\": 0.518}}, \"proxy_independence\": {\"scierc_ner_f1_vs_slen\": -0.021, \"scierc_ner_f1_vs_ecnt\": 0.007, \"scierc_re_f1_vs_slen\": -0.147}}}, \"exp_003_wnut17_eval\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T14:28:43.864Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-wnut17-merged --data_dir data/wnut17 --dataset wnut17 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --output_dir output/exp003_wnut17_eval --num_test 9999 --collect_logprobs\", \"server\": \"autodl-5090\", \"data_path\": \"data/wnut17\", \"data_count\": 1287, \"model_name\": \"qwen3-8b-wnut17-merged\", \"seed\": 42}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T14:08:17.429Z\", \"metrics\": {\"greedy_f1\": 0.523, \"oracle_f1\": 0.664, \"headroom\": 0.141, \"rho_fk\": 0.125, \"rho_sj\": 0.089, \"rho_fk_cond\": 0.169, \"rho_sj_cond\": 0.288, \"rho_logprob_full\": -0.409, \"rho_logprob_cond\": 0.35, \"structural_beats_surface\": false, \"sample_f1_pct_zero\": 53.7, \"n_instances\": 1287, \"N\": 16, \"T\": 1, \"seed\": 42, \"model\": \"Qwen3-8B\", \"n_gold_empty_filtered\": 598, \"verdict\": \"FAIL\", \"verdict_note\": \"structural_beats_surface=false; >50% samples F1=0\"}}, \"exp_007_llama_inference\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T14:28:32.909Z\", \"spec\": {\"command\": \"python run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp007_llama_inference/\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"75172\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_007_llama_inference.log\", \"submitted_at\": \"2026-05-14T13:54:47.962Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"Meta-Llama-3.1-8B-Instruct (LoRA fine-tuned on SciERC)\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/llama3.1-8b-scierc-merged\", \"description\": \"LLaMA-3.1-8B SciERC joint inference (NER+RE) with 8 samples, T=1.0, logprobs collected.\", \"wall_clock_seconds\": 1038.5, \"gpu_hours\": 0.29}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.66, \"oracle_f1\": 0.781, \"headroom\": 0.121, \"rho_fk\": 0.327, \"rho_sj\": 0.363, \"rho_fk_cond\": 0.226, \"rho_sj_cond\": 0.311, \"rho_logprob\": 0.183, \"rho_logprob_cond\": 0.109, \"structural_beats_surface\": true, \"sample_f1_pct_zero\": 11.6}, \"re\": {\"greedy_f1\": 0.434, \"oracle_f1\": 0.568, \"headroom\": 0.135, \"rho_fk\": 0.305, \"rho_sj\": 0.299, \"rho_fk_cond\": 0.259, \"rho_sj_cond\": 0.405, \"rho_logprob\": 0.288, \"rho_logprob_cond\": 0.092, \"structural_beats_surface\": false, \"sample_f1_pct_zero\": 41.2}, \"n_instances\": 551, \"N\": 8, \"T\": 1, \"seed\": 42, \"model\": \"LLaMA-3.1-8B-Instruct\", \"verdict\": \"FAIL\", \"verdict_note\": \"RE rho_sj_full=0.299 < 0.40; >30% RE samples F1=0\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T14:12:06.442Z\"}, \"exp_008_re_n16_t10_full\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T14:05:49.091Z\", \"spec\": {\"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 42}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T13:44:19.577Z\", \"metrics\": {\"ner\": {\"rho_sj\": 0.444}, \"re\": {\"rho_sj\": 0.248}, \"n_instances\": 551, \"N\": 16, \"T\": 1, \"seed\": 42, \"mode\": \"RE-only\", \"source\": \"director_corrected\"}}, \"exp_001_seed123_t10_full\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T14:05:38.817Z\", \"spec\": {\"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 123 --num_test 9999 --collect_logprobs\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 123}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T13:44:13.213Z\", \"metrics\": {\"ner\": {\"rho_sj\": 0.417, \"rho_fk\": 0.283}, \"re\": {\"rho_sj\": 0.265, \"rho_fk\": 0.315}, \"n_instances\": 551, \"N\": 16, \"T\": 1, \"seed\": 123, \"source\": \"reviewer_verified_report_json\"}}, \"exp_001_seed456_t10_full\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T14:05:37.904Z\", \"spec\": {\"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --num_test 9999 --collect_logprobs\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 456}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T13:44:05.021Z\", \"metrics\": {\"ner\": {\"rho_sj\": 0.414, \"rho_fk\": 0.298}, \"re\": {\"rho_sj\": 0.268, \"rho_fk\": 0.26}, \"n_instances\": 551, \"N\": 16, \"T\": 1, \"seed\": 456, \"source\": \"reviewer_verified_report_json\"}}, \"exp_003_ner_wnut17\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T13:40:20.979Z\", \"spec\": {\"merged_model_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-wnut17-merged\", \"pilot_command\": \"CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-wnut17-merged --data_dir data/wnut17 --dataset wnut17 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --output_dir output/exp003_wnut17_pilot --num_test 9999 --collect_logprobs\", \"pilot_pid\": 71498, \"pilot_server\": \"autodl-5090\", \"pilot_started_at\": \"2026-05-14T21:36:00Z\", \"test_samples\": 1287}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.525, \"oracle_f1\": 0.664, \"headroom\": 0.139, \"rho_sj_full\": 0.082, \"rho_fk_full\": 0.124, \"rho_logprob_full\": -0.414, \"rho_sj_cond\": 0.275, \"rho_fk_cond\": 0.164, \"rho_logprob_cond\": 0.352, \"sj_beats_logprob_cond\": false}, \"n_instances\": 1287, \"n_gold_empty\": 598, \"sample_f1_mean\": 0.401, \"sample_f1_pct_zero\": 53.7, \"N\": 16, \"T\": 1, \"seed\": 42, \"verdict\": \"FAIL\", \"verdict_note\": \">30% samples F1=0; structural rho weak; logprob baseline stronger\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T13:40:20.979Z\"}, \"exp_007_ner_multi_model\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T13:35:43.251Z\", \"spec\": {\"command\": \"bash -c 'source env.sh && cd /root/autodl-tmp/struct_self_consist_ie && llamafactory-cli train train_config_llama.yaml'\", \"server\": \"gpu-5090-4x-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"60970\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_007_ner_multi_model.log\", \"submitted_at\": \"2026-05-14T12:43:09.108Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data\", \"data_count\": 1861, \"model_name\": \"LLaMA-3.1-8B-Instruct\", \"seed\": 42, \"log_file\": \"~/runs/struct_self_consist_ie/exp_007_ner_multi_model.log\", \"wall_clock_seconds\": 165.8, \"gpu_hours\": 0.05}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T12:45:54.952Z\", \"metrics\": {\"epoch\": 5, \"train_loss\": 0.0767, \"eval_loss\": 0.1049, \"train_runtime_sec\": 1494.5, \"train_samples_per_second\": 6.226, \"checkpoints\": [\"checkpoint-400\", \"checkpoint-500\", \"checkpoint-585\"], \"base_model\": \"Meta-Llama-3.1-8B-Instruct\", \"lora_r\": 32, \"lora_alpha\": 64, \"note\": \"EXIT_CODE=129 (SIGHUP) but training completed all 5 epochs before signal. Checkpoint fully intact.\"}}, \"exp_001_ner_n16_seed123\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T13:33:40.719Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=3 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 123 --output_dir output/exp001_n16_seed123 --num_test 9999 --collect_logprobs 2>&1 | tee output/exp001_n16_seed123_run.log\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"63407\", \"log_path\": \"output/exp001_n16_seed123_run.log\", \"submitted_at\": \"2026-05-14T12:46:06.234Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_count\": 551, \"data_path\": \"data/scierc/processed_data\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 123, \"checkpoint_path\": \"output/exp001_n16_seed123/\", \"wall_clock_seconds\": 2748.0, \"gpu_hours\": 0.76}, \"conclusion\": \"success\", \"metrics\": {\"ner\": {\"greedy_f1\": 0.663, \"oracle_f1\": 0.809, \"headroom\": 0.146, \"rho_sj\": 0.423, \"rho_fk\": 0.29, \"rho_logprob\": 0.239, \"rho_sj_cond\": 0.423, \"rho_fk_cond\": 0.26}, \"re\": {\"greedy_f1\": 0.419, \"oracle_f1\": 0.625, \"headroom\": 0.206, \"rho_sj\": 0.267, \"rho_fk\": 0.315, \"rho_sj_cond\": 0.364, \"rho_fk_cond\": 0.331}, \"verdict\": \"FAIL\", \"verdict_note\": \"RE rho_sj=0.267 < 0.40; RE >30% samples F1=0\", \"n_instances\": 551, \"seed\": 123, \"N\": 16, \"T\": 1}, \"completed_at\": \"2026-05-14T13:31:54.232Z\"}, \"exp_008_re_n16\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T12:43:01.073Z\", \"spec\": {\"hypothesis\": \"RE N=16 confirms negative finding with higher statistical power. If rho still <0.30, task-complexity boundary is robust.\", \"plan_id\": \"exp-008\", \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"dataset\": \"SciERC\", \"gpu\": \"cuda:2\", \"server\": \"gpu-5090-4x-2\", \"gpu_budget_hours\": 12, \"description\": \"RE N=16 on SciERC to confirm negative finding. Inference with log-prob capture.\", \"priority\": \"P1\", \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"seed\": 42, \"num_instances\": 200, \"partial\": true, \"note\": \"Only 200/551 instances due to --num_test default bug. Needs full rerun.\"}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.6635, \"oracle_f1\": 0.8208, \"headroom\": 0.1572, \"rho_sj_full\": 0.377, \"rho_fk_full\": 0.2508, \"rho_logprob_full\": 0.3153, \"rho_sj_cond\": 0.3598, \"rho_fk_cond\": 0.2251, \"rho_logprob_cond\": 0.2927, \"sj_beats_fk\": true, \"rho_advantage\": 0.1262}, \"re\": {\"greedy_f1\": 0.4339, \"oracle_f1\": 0.6658, \"headroom\": 0.2319, \"rho_sj_full\": 0.2966, \"rho_fk_full\": 0.2871, \"rho_logprob_full\": 0.2986, \"rho_sj_cond\": 0.3975, \"rho_fk_cond\": 0.3774, \"rho_logprob_cond\": 0.2745, \"sj_beats_fk\": true, \"rho_advantage\": 0.0095}, \"verdict\": \"FAIL\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T12:28:39.268Z\"}, \"exp_001_n16_seed456\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T12:42:59.663Z\", \"spec\": {\"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs\", \"server\": \"gpu-5090-4x-2\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 456, \"num_instances\": 200, \"partial\": true, \"note\": \"Only 200/551 instances due to --num_test default bug. Needs full rerun.\"}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.6577, \"oracle_f1\": 0.8129, \"headroom\": 0.1553, \"rho_sj_full\": 0.3297, \"rho_fk_full\": 0.2578, \"rho_logprob_full\": 0.2866, \"rho_sj_cond\": 0.3394, \"rho_fk_cond\": 0.2721, \"rho_logprob_cond\": 0.2567, \"sj_beats_fk\": true, \"rho_advantage\": 0.0719}, \"re\": {\"greedy_f1\": 0.4312, \"oracle_f1\": 0.6737, \"headroom\": 0.2425, \"rho_sj_full\": 0.285, \"rho_fk_full\": 0.2372, \"rho_logprob_full\": 0.2626, \"rho_sj_cond\": 0.3525, \"rho_fk_cond\": 0.2614, \"rho_logprob_cond\": 0.1927, \"sj_beats_fk\": true, \"rho_advantage\": 0.0478}, \"verdict\": \"FAIL\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T12:28:38.721Z\"}, \"exp_001_n16_seed123\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T12:42:58.393Z\", \"spec\": {\"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs\", \"server\": \"gpu-5090-4x-2\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged-v2\", \"seed\": 123, \"num_instances\": 200, \"partial\": true, \"note\": \"Only 200/551 instances due to --num_test default bug. Needs full rerun.\"}, \"metrics\": {\"ner\": {\"greedy_f1\": 0.655, \"oracle_f1\": 0.8028, \"headroom\": 0.1478, \"rho_sj_full\": 0.4076, \"rho_fk_full\": 0.2799, \"rho_logprob_full\": 0.3189, \"rho_sj_cond\": 0.4271, \"rho_fk_cond\": 0.2743, \"rho_logprob_cond\": 0.2835, \"sj_beats_fk\": true, \"rho_advantage\": 0.1277}, \"re\": {\"greedy_f1\": 0.4243, \"oracle_f1\": 0.6771, \"headroom\": 0.2528, \"rho_sj_full\": 0.2943, \"rho_fk_full\": 0.2657, \"rho_logprob_full\": 0.3005, \"rho_sj_cond\": 0.4003, \"rho_fk_cond\": 0.313, \"rho_logprob_cond\": 0.2317, \"sj_beats_fk\": true, \"rho_advantage\": 0.0286}, \"verdict\": \"FAIL\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T12:28:38.104Z\"}, \"exp_016_signal_ensemble\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T12:42:55.931Z\", \"spec\": {\"command\": \"python code/analyze_exp016_ensemble.py\", \"server\": \"autodl-5090\", \"data_path\": \"output/exp_012_logprob/samples_with_logprobs.jsonl\", \"data_count\": 551, \"model_name\": \"N/A (CPU-only analysis)\", \"seed\": 42, \"checkpoint_source\": \"N/A\", \"eval_data\": \"pilot_004\", \"checkpoint_path\": \"N/A\", \"log_path\": \"output/exp016_signal_ensemble/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T12:15:53.341Z\", \"metrics\": {\"sj_logprob_pearson_ner\": 0.57, \"sj_logprob_pearson_re\": 0.42, \"best_linear_ner\": {\"combo\": \"SJ+voting_conf\", \"alpha\": 0.3, \"rho\": 0.489}, \"best_linear_re\": {\"combo\": \"voting_conf+logprob\", \"alpha\": 0.6, \"rho\": 0.429}, \"ensemble_ner_auroc\": 0.735, \"ensemble_re_auroc\": 0.719, \"best_single_ner_auroc\": 0.7, \"best_single_re_auroc\": 0.721, \"ensemble_ner_delta\": 0.035, \"selection_f1_ner\": {\"greedy\": 0.609, \"logprob\": 0.609, \"sj\": 0.604, \"ensemble\": 0.604, \"voting\": 0.596, \"random\": 0.58, \"oracle\": 0.769}, \"selection_f1_re\": {\"logprob\": 0.397, \"greedy\": 0.374, \"sj\": 0.368, \"ensemble\": 0.367, \"voting\": 0.338, \"random\": 0.338, \"oracle\": 0.561}, \"diagnosis\": \"SJ+voting_conf linear combo boosts NER ρ to 0.489 (+23%). RE: logprob-best is ONLY method beating greedy (0.397 vs 0.374). Ensemble AUROC +0.035 on NER. Oracle gap still huge.\"}}, \"exp_001_ner_n16_scierc\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T12:42:49.592Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 42 --output_dir output/exp001_n16_seed42 --num_test 9999 --collect_logprobs 2>&1 | tee output/exp001_n16_seed42_run.log\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"54357\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_001_ner_n16_scierc.log\", \"submitted_at\": \"2026-05-14T12:15:46.646Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T11:55:45.664Z\", \"metrics\": {\"n_instances\": 551, \"ner_n\": 529, \"re_n\": 397, \"N\": 16, \"T\": 1, \"seed\": 42, \"full_test_set\": true, \"ner_voting_conf_rho\": 0.399, \"ner_sj_rho\": 0.398, \"ner_em_rho\": 0.339, \"ner_fk_rho\": 0.288, \"ner_logprob_rho\": 0.237, \"ner_voting_conf_auroc\": 0.704, \"ner_sj_auroc\": 0.697, \"ner_cond_em_rho\": 0.414, \"ner_cond_sj_rho\": 0.349, \"ner_cond_vc_rho\": 0.34, \"re_voting_conf_rho\": 0.38, \"re_logprob_rho\": 0.293, \"re_fk_rho\": 0.281, \"re_sj_rho\": 0.277, \"re_em_rho\": 0.148, \"re_voting_conf_auroc\": 0.699, \"re_cond_em_rho\": 0.475, \"re_cond_sj_rho\": 0.318, \"re_cond_vc_rho\": 0.35, \"re_cond_em_auroc\": 0.742, \"diagnosis\": \"551 instances T=1.0: voting_conf best on full set (NER 0.399, RE 0.380). EM SURPRISE best on conditional set (NER cond 0.414, RE cond 0.475). RE full FAIL (SJ 0.277 < 0.40). Previous N-scaling 'breakthrough' was artifact of 200 instances + T=0.7.\"}}, \"exp_002\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T12:40:17.202Z\", \"spec\": {\"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --collect_logprobs --num_test 99999\", \"server\": \"autodl-5090\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"model_name\": \"qwen3-8b-conll2003-lora-merged\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged\", \"log_path\": \"/tmp/pilot_conll2003.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T12:40:08.402Z\", \"metrics\": {\"sj_rho_full\": 0.4357, \"sj_tau_full\": 0.3851, \"sj_auroc_full\": 0.8008, \"sj_rho_cond\": 0.4511, \"fk_rho_full\": 0.3998, \"fk_tau_full\": 0.3568, \"fk_auroc_full\": 0.7741, \"fk_rho_cond\": 0.4064, \"logprob_rho_full\": 0.3157, \"logprob_tau_full\": 0.2469, \"logprob_auroc_full\": 0.7532, \"logprob_rho_cond\": 0.3562, \"em_rho_full\": 0.4507, \"em_tau_full\": 0.4002, \"em_auroc_full\": 0.8156, \"em_rho_cond\": 0.4799, \"ev_rho_full\": 0.4237, \"ev_tau_full\": 0.3777, \"ev_auroc_full\": 0.7889, \"ev_rho_cond\": 0.4127, \"greedy_f1\": 0.9123, \"oracle_f1\": 0.9543, \"voting_f1\": 0.9141, \"oracle_headroom\": 0.042, \"sj_vs_logprob_delta_rho\": 0.12, \"sj_vs_logprob_ci_low\": 0.0881, \"sj_vs_logprob_ci_high\": 0.154, \"sj_vs_logprob_significant\": true, \"n_instances\": 3453, \"n_valid\": 2756, \"n_samples\": 8, \"temperature\": 1}}, \"exp_002_ner_conll2003\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T12:27:35.413Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp002_conll2003 --num_test 99999 --seed 42 --collect_logprobs 2>&1 | tee /tmp/pilot_conll2003.log\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"58208\", \"log_path\": \"~/runs/struct_self_consist_ie/exp_002_ner_conll2003.log\", \"submitted_at\": \"2026-05-14T12:27:35.337Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T12:18:04.097Z\"}, \"exp_004_re_diagnostic\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T11:50:24.620Z\", \"spec\": {\"hypothesis\": \"RE diagnostic: per-relation-type breakdown reveals which types drive low RE rho; error propagation and threshold sensitivity clarify the gap between NER and RE consistency signals\", \"model_name\": \"N/A (reuse pilot_004 samples)\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004\", \"data_count\": 551, \"server\": \"autodl-5090\", \"seed\": 42, \"parent\": \"mvp_pilot_004\", \"method\": \"Per-relation-type SJ/FK/voting rho, error propagation classification, threshold sensitivity, bootstrap CI, Fisher z-test NER vs RE\", \"command\": \"python3 code/analyze_exp004_re_diagnostic.py\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp004_re_diagnostic/\", \"checkpoint_source\": \"mvp_pilot_004\", \"eval_data\": \"scierc_test_551\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T11:50:04.662Z\", \"metrics\": {\"per_relation_type\": {\"HYPONYM-OF\": {\"n\": 36, \"rho_sj\": 0.545, \"rho_fk\": 0.646, \"rho_vc\": 0.628, \"mean_f1\": 0.513}, \"CONJUNCTION\": {\"n\": 86, \"rho_sj\": 0.383, \"rho_fk\": 0.35, \"rho_vc\": 0.484, \"mean_f1\": 0.48}, \"USED-FOR\": {\"n\": 299, \"rho_sj\": 0.236, \"rho_fk\": 0.255, \"rho_vc\": 0.286, \"mean_f1\": 0.422}, \"PART-OF\": {\"n\": 44, \"rho_sj\": 0.239, \"rho_fk\": 0.348, \"rho_vc\": 0.283, \"mean_f1\": 0.297}, \"EVALUATE-FOR\": {\"n\": 62, \"rho_sj\": 0.172, \"rho_fk\": 0.255, \"rho_vc\": 0.226, \"mean_f1\": 0.365}, \"COMPARE\": {\"n\": 35, \"rho_sj\": 0.168, \"rho_fk\": 0.184, \"rho_vc\": 0.18, \"mean_f1\": 0.453}, \"FEATURE-OF\": {\"n\": 50, \"rho_sj\": 0.004, \"rho_fk\": 0.052, \"rho_vc\": 0.014, \"mean_f1\": 0.254}}, \"error_propagation\": {\"total_fn\": 553, \"tail_error_pct\": 21.9, \"full_error_pct\": 21.7, \"head_error_pct\": 17.7, \"head_tail_error_pct\": 15.9, \"type_error_pct\": 8.3, \"worst_consistency\": \"head_type_error (sj=0.411)\", \"best_consistency\": \"head_error (sj=0.613)\"}, \"threshold_sensitivity\": {\"thr_0.00_rho_sj\": 0.3161, \"thr_0.00_rho_vc\": 0.3841, \"thr_0.00_n\": 313, \"thr_0.05_rho_sj\": 0.2682, \"thr_0.05_rho_vc\": 0.2364, \"thr_0.05_n\": 239}, \"bootstrap_ci_95\": {\"ner_sj\": [0.2946, 0.4586], \"ner_voting_conf\": [0.3048, 0.4656], \"re_sj\": [0.1422, 0.3391], \"re_voting_conf\": [0.1818, 0.3721], \"re_cond_sj\": [0.2161, 0.4102], \"re_cond_voting_conf\": [0.2825, 0.474]}, \"fisher_z_ner_vs_re\": {\"sj_z\": 2.31, \"sj_p\": 0.0209, \"sj_significant\": true, \"fk_z\": -0.31, \"fk_p\": 0.756, \"fk_significant\": false, \"voting_z\": 1.914, \"voting_p\": 0.0556, \"voting_significant\": false}, \"diagnosis\": \"FEATURE-OF is near-zero rho across all signals (n=50, F1=0.254). HYPONYM-OF strongest (rho_fk=0.646). Entity span errors (head+tail) account for 55.5% of RE FN. NER rho_sj significantly > RE rho_sj (p=0.021). Voting_conf is best RE signal in conditional set (rho=0.384).\"}}, \"exp_005\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T11:45:38.570Z\", \"spec\": {\"hypothesis\": \"Temperature sensitivity: systematic comparison of T=0.7 vs T=1.0 on all 5 confidence signals\", \"method\": \"CPU-only analysis from checkpoint metrics (pilot_004 T=1.0, pilot_005 T=0.7, exp_012/013/014)\", \"data_count\": 551, \"model_name\": \"Qwen3-8B-SciERC-LoRA-v2\", \"data_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp005_temperature/\", \"server\": \"local\", \"seed\": 42, \"parent\": \"mvp_pilot_004,mvp_pilot_005\", \"command\": \"python3 analyze_exp005_temperature.py\", \"checkpoint_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp005_temperature/\", \"log_path\": \"N/A\", \"checkpoint_source\": \"pilot_004+pilot_005 checkpoint metrics\", \"eval_data\": \"SciERC test set (n=551)\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T11:45:38.570Z\"}, \"exp_014_entity_majority_voting\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T11:33:30.085Z\", \"spec\": {\"hypothesis\": \"Entity-level majority voting confidence beats SJ as correlation signal\", \"model_name\": \"N/A (reuse pilot_004 samples)\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004\", \"data_count\": 551, \"server\": \"autodl-5090\", \"seed\": 42, \"parent\": \"mvp_pilot_004\", \"method\": \"Per-entity voting across N=8 samples, consensus construction, confidence = mean voting rate\", \"command\": \"python code/analyze_entity_voting.py\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/exp014_entity_voting_report.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T11:18:09.468Z\", \"metrics\": {\"ner_full_rho\": 0.3915, \"ner_full_p\": 8.1e-21, \"ner_full_tau\": 0.2906, \"ner_full_auroc\": 0.7039, \"re_full_rho\": 0.3403, \"re_full_p\": 3.21e-12, \"re_full_tau\": 0.256, \"re_full_auroc\": 0.6668, \"ner_voting_f1\": 0.6246, \"ner_greedy_f1\": 0.6483, \"ner_oracle_f1\": 0.7793, \"re_voting_f1\": 0.3577, \"re_greedy_f1\": 0.4022, \"re_oracle_f1\": 0.5886, \"diagnosis\": \"Voting confidence BEATS SJ on both NER (rho 0.392 vs 0.383) and RE (0.340 vs 0.244). But voting as selection strategy LOSES to greedy.\"}}, \"exp_013_exact_match_voting\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T11:33:22.644Z\", \"spec\": {\"hypothesis\": \"Exact-match voting rate correlates with F1\", \"model_name\": \"N/A (reuse pilot_004 samples)\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004\", \"data_count\": 551, \"server\": \"autodl-5090\", \"seed\": 42, \"parent\": \"mvp_pilot_004\", \"method\": \"Count exact-match duplicates across N=8 samples\", \"command\": \"python code/analyze_exact_match_voting.py\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/exp013_exact_match_report.json\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T11:18:09.026Z\", \"metrics\": {\"ner_full_rho\": 0.2941, \"ner_full_p\": 5.12e-12, \"ner_full_tau\": 0.2181, \"ner_full_auroc\": 0.6398, \"re_full_rho\": 0.1562, \"re_full_p\": 0.0018, \"re_full_tau\": 0.1185, \"re_full_auroc\": 0.5863, \"diagnosis\": \"EM between SJ and FK on NER, weakest on RE. Too coarse-grained.\"}}, \"exp_012_logprob_baseline\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T11:13:30.240Z\", \"spec\": {\"hypothesis\": \"Log-probability baseline: mean sequence log-prob correlates with F1 as well as or better than SJ\", \"model_name\": \"ft_002_v2 (qwen3-8b-scierc-merged-v2)\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004\", \"data_count\": 551, \"server\": \"autodl-5090\", \"seed\": 42, \"parent\": \"mvp_pilot_004\", \"method\": \"vLLM forward pass for log-probs + Spearman rho + AUROC + Kendall tau\", \"command\": \"python3 code/extract_logprobs.py\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/logprob_analysis.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T11:06:42.542Z\", \"metrics\": {\"ner_full_rho_sj\": 0.3565, \"ner_full_rho_fk\": 0.2651, \"ner_full_rho_logprob\": 0.1396, \"ner_full_rho_greedy_logprob\": 0.1615, \"ner_full_tau_sj\": 0.2658, \"ner_full_tau_logprob\": 0.1006, \"ner_full_auroc_sj\": 0.6892, \"ner_full_auroc_fk\": 0.6292, \"ner_full_auroc_logprob\": 0.5907, \"ner_full_n\": 529, \"ner_sj_vs_logprob_delta\": 0.2169, \"re_full_rho_sj\": 0.2112, \"re_full_rho_fk\": 0.2528, \"re_full_rho_logprob\": 0.2467, \"re_full_auroc_sj\": 0.5916, \"re_full_auroc_fk\": 0.6262, \"re_full_auroc_logprob\": 0.6186, \"re_full_n\": 397, \"re_cond_rho_sj\": 0.3683, \"re_cond_rho_fk\": 0.3168, \"re_cond_rho_logprob\": 0.1457, \"re_cond_auroc_sj\": 0.6839, \"re_cond_auroc_logprob\": 0.5487, \"re_cond_n\": 296, \"diagnosis\": \"NER: SJ crushes logprob (rho +0.217). RE full: logprob slightly ahead. RE cond: SJ crushes logprob (rho +0.223). SJ unique value CONFIRMED.\"}}, \"mvp_pilot_005\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T09:47:06.597Z\", \"spec\": {\"hypothesis\": \"T=0.7 降低 RE zero rate，恢复 SJ>FK，rho_sj 可能 ≥ 0.30 (MARGINAL threshold)\", \"model_name\": \"Qwen3-8B-SciERC-LoRA-v2 (ft_002_v2 final)\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/scierc/processed_data\", \"data_count\": 551, \"server\": \"autodl-5090\", \"seed\": 42, \"parent\": \"ft_002_v2\", \"method\": \"N=8 sampling T=0.7 + XGrammar + span realignment + max_tokens=1024 + gold-empty filter + conditional rho\", \"command\": \"CUDA_VISIBLE_DEVICES=0 python3 code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 0.7 --max_tokens 1024 --output_dir output/mvp_pilot_005 --num_test 551 --seed 42 --tensor_parallel 1\", \"gpu\": \"cuda:0\", \"pid\": 32456, \"tmux_session\": \"mvp_pilot_005\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/train.log\"}, \"metrics\": {\"ner_greedy_f1\": 0.6619, \"ner_oracle_f1\": 0.7585, \"ner_headroom\": 0.0966, \"ner_fleiss_kappa_mean\": 0.4722, \"ner_soft_jaccard_mean\": 0.7757, \"ner_full_rho_sj\": 0.3875, \"ner_full_rho_fk\": 0.3211, \"ner_full_n\": 529, \"ner_cond_rho_sj\": 0.3868, \"ner_cond_rho_fk\": 0.305, \"ner_cond_n\": 504, \"ner_sj_beats_fk_full\": true, \"ner_sj_beats_fk_cond\": true, \"ner_rho_advantage\": 0.0664, \"ner_sample_f1_mean\": 0.6243, \"ner_sample_f1_std\": 0.3131, \"ner_sample_f1_pct_zero\": 11.2, \"ner_gold_empty_filtered\": 22, \"ner_all_zero_filtered\": 25, \"re_greedy_f1\": 0.4219, \"re_oracle_f1\": 0.5532, \"re_headroom\": 0.1313, \"re_fleiss_kappa_mean\": 0.3829, \"re_soft_jaccard_mean\": 0.687, \"re_full_rho_sj\": 0.2343, \"re_full_rho_fk\": 0.1835, \"re_full_n\": 397, \"re_cond_rho_sj\": 0.3716, \"re_cond_rho_fk\": 0.2533, \"re_cond_n\": 301, \"re_sj_beats_fk_full\": true, \"re_sj_beats_fk_cond\": true, \"re_rho_advantage\": 0.0508, \"re_sample_f1_mean\": 0.3782, \"re_sample_f1_std\": 0.3845, \"re_sample_f1_pct_zero\": 42.4, \"re_gold_empty_filtered\": 154, \"re_all_zero_filtered\": 96, \"parse_failures\": 0, \"verdict\": \"FAIL\", \"verdict_note\": \"RE full rho_sj=0.234 < 0.40; RE cond rho_sj=0.372 passes conditional but not full threshold\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T09:47:06.597Z\"}, \"e1_component_wise_re_sj\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T09:23:38.818Z\", \"spec\": {\"hypothesis\": \"RE SJ 乘性惩罚是 root cause：分解后 head_sj ρ ≈ NER ρ (~0.38)，tail_sj 和乘性组合拖低整体 ρ\", \"model_name\": \"N/A (reuse pilot_004 samples)\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004\", \"data_count\": 397, \"server\": \"autodl-5090\", \"seed\": 42, \"parent\": \"mvp_pilot_004\", \"method\": \"Component-wise decomposition: head_sj, tail_sj, type_match 分别计算 Spearman ρ vs per-instance RE F1\", \"command\": \"python3 code/analyze_component_wise_re.py\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/e1_component_analysis.log\"}, \"conclusion\": \"negative\", \"metrics\": {\"full_head_sj_rho\": 0.21, \"full_tail_sj_rho\": 0.201, \"full_type_match_rho\": 0.201, \"full_multiplicative_rho\": 0.244, \"full_additive_rho\": 0.243, \"full_fleiss_kappa_rho\": 0.278, \"cond_head_sj_rho\": 0.27, \"cond_tail_sj_rho\": 0.259, \"cond_type_match_rho\": 0.252, \"cond_multiplicative_rho\": 0.316, \"cond_additive_rho\": 0.306, \"cond_fleiss_kappa_rho\": 0.307, \"n_full\": 397, \"n_conditional\": 313, \"diagnosis\": \"head_sj rho=0.210 FAR from NER rho=0.383. Multiplicative penalty hypothesis REJECTED. Problem is fundamental: span-level SJ lacks discriminative power for RE.\"}, \"completed_at\": \"2026-05-14T09:22:26.155Z\"}, \"mvp_pilot_004\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T09:10:40.918Z\", \"spec\": {\"hypothesis\": \"With improved RE quality (F1=41.8%), structural self-consistency (soft Jaccard) correlates with per-instance F1 better than surface Fleiss Kappa, reaching rho_sj >= 0.40 on RE\", \"model_name\": \"Qwen3-8B-SciERC-LoRA-v2 (ft_002_v2 final)\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/scierc/processed_data\", \"data_count\": 551, \"server\": \"autodl-5090\", \"seed\": 42, \"parent\": \"ft_002_v2\", \"method\": \"N=8 sampling T=1.0 + XGrammar + span realignment + max_tokens=1024 + gold-empty filter + conditional rho\", \"command\": \"CUDA_VISIBLE_DEVICES=0 python3 code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/mvp_pilot_004 --num_test 551 --seed 42 --tensor_parallel 1\", \"gpu\": \"cuda:0\", \"pid\": 31041, \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/mvp_pilot_004.log\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004\"}, \"metrics\": {\"ner_greedy_f1\": 0.6671, \"ner_oracle_f1\": 0.7756, \"ner_headroom\": 0.1085, \"ner_fleiss_kappa_mean\": 0.4048, \"ner_soft_jaccard_mean\": 0.7008, \"ner_full_rho_fk\": 0.259, \"ner_full_rho_sj\": 0.3825, \"ner_full_n\": 529, \"ner_cond_rho_fk\": 0.2352, \"ner_cond_rho_sj\": 0.3762, \"ner_cond_n\": 508, \"ner_sj_beats_fk_full\": true, \"ner_sj_beats_fk_cond\": true, \"ner_sample_f1_mean\": 0.6084, \"ner_sample_f1_std\": 0.3174, \"ner_sample_f1_pct_zero\": 12.19, \"ner_gold_empty_filtered\": 22, \"ner_all_zero_filtered\": 21, \"re_greedy_f1\": 0.4208, \"re_oracle_f1\": 0.5882, \"re_headroom\": 0.1674, \"re_fleiss_kappa_mean\": 0.2996, \"re_soft_jaccard_mean\": 0.6114, \"re_full_rho_fk\": 0.2782, \"re_full_rho_sj\": 0.2441, \"re_full_n\": 397, \"re_cond_rho_fk\": 0.3067, \"re_cond_rho_sj\": 0.3161, \"re_cond_n\": 313, \"re_sj_beats_fk_full\": false, \"re_sj_beats_fk_cond\": true, \"re_sample_f1_mean\": 0.3612, \"re_sample_f1_std\": 0.383, \"re_sample_f1_pct_zero\": 44.3, \"re_gold_empty_filtered\": 154, \"re_all_zero_filtered\": 84, \"parse_failures\": 0, \"verdict\": \"FAIL\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T09:10:40.918Z\"}, \"ft_002_v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T08:51:32.405Z\", \"spec\": {\"hypothesis\": \"Extended training (5 epochs, LoRA r=32) with OOM fix improves RE F1 above 40% threshold\", \"model_name\": \"Qwen/Qwen3-8B\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/llmfactory_train.json\", \"data_count\": 1861, \"server\": \"autodl-5090\", \"seed\": 42, \"parent\": \"ft_001\", \"method\": \"LoRA r=32 alpha=64, 5 epochs, batch=2 grad_accum=8 gradient_checkpointing=true\", \"gpu\": \"cuda:1\", \"pid\": 24947, \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/ft_002v2_train.log\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2\", \"command\": \"CUDA_VISIBLE_DEVICES=1 llamafactory-cli train train_config_v2.yaml\"}, \"conclusion\": \"success\", \"metrics\": {\"epoch\": 5, \"train_loss\": 0.0806, \"eval_loss\": 0.089, \"train_runtime\": \"28m41s\", \"train_samples_per_second\": 5.407, \"train_steps_per_second\": 0.34, \"total_steps\": 585, \"checkpoints\": [\"checkpoint-400\", \"checkpoint-500\", \"checkpoint-585\"], \"gate0_final_ner_f1\": 0.6615, \"gate0_final_re_f1\": 0.4177, \"gate0_final_parse_failures\": 0, \"gate0_final_ner_pass\": true, \"gate0_final_re_pass\": true, \"gate0_final_pass\": true, \"gate0_ckpt400_ner_f1\": 0.6475, \"gate0_ckpt400_re_f1\": 0.3793, \"gate0_ckpt400_parse_failures\": 0, \"gate0_ckpt400_verdict\": \"FAIL\", \"gate0_ckpt400_re_sample_f1_pct_zero\": 58.8, \"gate0_ckpt400_warning\": \">30% samples F1=0\"}, \"completed_at\": \"2026-05-14T08:51:32.405Z\"}, \"mvp_pilot_002\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T08:48:14.040Z\", \"spec\": {\"hypothesis\": \"Structural self-consistency (soft Jaccard) correlates with per-instance F1 better than surface Fleiss Kappa on fine-tuned Qwen3-8B SciERC\", \"model_name\": \"Qwen3-8B-SciERC-LoRA (ft_001)\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/scierc\", \"data_count\": 551, \"server\": \"autodl-5090\", \"seed\": 42, \"parent\": \"ft_001\", \"method\": \"N=8 sampling T=1.0 + XGrammar + span realignment + gold-empty filter + conditional rho\", \"gpu\": \"cuda:0\", \"note\": \"Rerun of mvp_pilot_001 which crashed silently\", \"command\": \"CUDA_VISIBLE_DEVICES=0 python3 code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-lora --data_dir data/scierc --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --max_tokens 512 --output_dir output/mvp_pilot_001 --num_test 551 --seed 42 --tensor_parallel 1\", \"failure_reason\": \"Worker used LoRA adapter path instead of merged model path; vLLM cannot load LoRA adapter directly\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T08:48:14.040Z\"}, \"ft_002\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T08:28:00.590Z\", \"spec\": {\"hypothesis\": \"Extended training (5 epochs, LoRA r=32) improves RE F1 above 40% threshold\", \"model_name\": \"Qwen/Qwen3-8B\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/llmfactory_train.json\", \"data_count\": 1861, \"server\": \"autodl-5090\", \"seed\": 42, \"parent\": \"ft_001\", \"method\": \"LoRA r=32 alpha=64, 5 epochs, relation direction hint\", \"command\": \"llamafactory-cli train /root/autodl-tmp/struct_self_consist_ie/train_config_v2.yaml\", \"gpu\": \"cuda:1\", \"pid\": 19666, \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/ft_002_train.log\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora-v2\", \"total_steps\": 585, \"trainable_params\": \"87.3M\", \"estimated_runtime\": \"29min\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T08:02:30.390Z\", \"metrics\": {\"last_step\": 70, \"total_steps\": 585, \"progress_pct\": 11.97, \"last_loss\": 0.1134, \"last_lr\": 0.00019982, \"elapsed\": \"3m32s\", \"failure_reason\": \"OOM at step 73, batch_size=4 too large for 32GB RTX 5090\"}}, \"ft_001\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T08:27:58.182Z\", \"spec\": {\"hypothesis\": \"Fine-tuned Qwen3-8B on SciERC UIE can achieve NER F1 >= 73 and serve as base model for structural consistency MVP\", \"model_name\": \"Qwen/Qwen3-8B\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/scierc\", \"data_count\": 1861, \"server\": \"autodl-5090\", \"seed\": 42, \"method\": \"LoRA r=16 alpha=32\", \"framework\": \"LLaMA Factory 0.9.4\", \"command\": \"sft training qwen3-8b on scierc with lora\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora/\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/ft_001_train.log\", \"train_loss\": 0.1099, \"eval_loss\": 0.0771, \"epoch\": 3, \"train_runtime\": \"0:17:49\", \"note\": \"gate0: NER PASS 60.4% / RE FAIL 33.8%\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T06:30:32.889Z\", \"metrics\": {\"train_loss\": 0.1099, \"eval_loss\": 0.0771, \"gate0_ner_f1_strict\": 0.1143, \"gate0_re_f1_strict\": 0.0125, \"gate0_ner_f1_text\": 0.606, \"gate0_re_f1_text\": 0.3392, \"gate0_offset_accuracy\": 0.1665, \"gate0_parse_failures\": 43, \"gate0_pass\": false, \"gate0_realigned_ner_f1\": 0.6045, \"gate0_realigned_re_f1\": 0.338, \"gate0_realigned_entity_offset_accuracy\": 1, \"gate0_realigned_relation_offset_accuracy\": 1, \"gate0_realigned_ner_pass\": true, \"gate0_realigned_re_pass\": false, \"gate0_realigned_pass\": false, \"gate0_ner_f1_delta_realign\": 0.4901, \"gate0_re_f1_delta_realign\": 0.3255, \"verdict_note\": \"partial: NER PASS (60.4%) / RE FAIL (33.8% < 40%)\"}}, \"mvp_pilot_003\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T08:21:44.983Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python code/run_mvp_pilot.py --model_path /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged --data_dir /root/autodl-tmp/struct_self_consist_ie/data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003 --num_test 551 --seed 42 --tensor_parallel 1\", \"server\": \"autodl-5090\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"qwen3-8b-scierc-merged\", \"seed\": 42}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T08:21:30.319Z\", \"metrics\": {\"ner_greedy_f1\": 0.6362, \"ner_oracle_f1\": 0.792, \"ner_headroom\": 0.1559, \"ner_fleiss_kappa_mean\": 0.2488, \"ner_soft_jaccard_mean\": 0.5066, \"ner_full_rho_sj\": 0.3808, \"ner_full_rho_fk\": 0.3362, \"ner_full_p_sj\": 1.07e-19, \"ner_full_p_fk\": 1.93e-15, \"ner_full_n\": 529, \"ner_cond_rho_sj\": 0.3836, \"ner_cond_rho_fk\": 0.3187, \"ner_cond_p_sj\": 1.83e-19, \"ner_cond_p_fk\": 1.33e-13, \"ner_cond_n\": 514, \"ner_sj_beats_fk_full\": true, \"ner_sj_beats_fk_cond\": true, \"ner_rho_advantage\": 0.0446, \"ner_sample_f1_mean\": 0.5153, \"ner_sample_f1_std\": 0.3334, \"ner_sample_f1_pct_zero\": 19.9, \"ner_gold_empty_filtered\": 22, \"ner_all_zero_filtered\": 15, \"re_greedy_f1\": 0.3774, \"re_oracle_f1\": 0.5939, \"re_headroom\": 0.2165, \"re_fleiss_kappa_mean\": 0.0879, \"re_soft_jaccard_mean\": 0.3958, \"re_full_rho_sj\": 0.2367, \"re_full_rho_fk\": 0.2221, \"re_full_p_sj\": 1.85e-06, \"re_full_p_fk\": 7.92e-06, \"re_full_n\": 397, \"re_cond_rho_sj\": 0.3004, \"re_cond_rho_fk\": 0.2374, \"re_cond_p_sj\": 2.25e-08, \"re_cond_p_fk\": 1.19e-05, \"re_cond_n\": 333, \"re_sj_beats_fk_full\": true, \"re_sj_beats_fk_cond\": true, \"re_rho_advantage\": 0.0146, \"re_sample_f1_mean\": 0.1977, \"re_sample_f1_std\": 0.3251, \"re_sample_f1_pct_zero\": 67.6, \"re_gold_empty_filtered\": 154, \"re_all_zero_filtered\": 64, \"parse_failures_stochastic\": 0, \"parse_failures_greedy\": 0, \"total_stochastic_samples\": 4408, \"total_greedy\": 551, \"verdict\": \"FAIL\", \"verdict_reason\": \"RE full rho_sj=0.2367 < 0.40 threshold; strong signal exists but below PASS bar\"}}, \"mvp_pilot_001\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T08:05:34.348Z\", \"spec\": {\"hypothesis\": \"Structural self-consistency (soft Jaccard) correlates with per-instance F1 better than surface Fleiss Kappa on fine-tuned Qwen3-8B SciERC\", \"model_name\": \"qwen3-8b-scierc-merged\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/test.jsonl\", \"data_count\": 551, \"server\": \"autodl-5090\", \"seed\": 42, \"parent\": \"ft_001\", \"method\": \"N=8 sampling T=1.0 + XGrammar + span realignment\", \"command\": \"CUDA_VISIBLE_DEVICES=0 python3 code/mvp_pilot.py\", \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-merged\", \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001.log\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T07:52:47.006Z\", \"metrics\": {\"ner_greedy_f1\": 0.611, \"ner_oracle_f1\": 0.78, \"ner_headroom\": 0.169, \"ner_fleiss_kappa_mean\": 0.2449, \"ner_soft_jaccard_mean\": 0.5041, \"ner_full_rho_sj\": 0.3616, \"ner_full_rho_fk\": 0.3515, \"ner_full_n\": 529, \"ner_cond_rho_sj\": 0.3688, \"ner_cond_rho_fk\": 0.3569, \"ner_cond_n\": 510, \"ner_sj_beats_fk_full\": true, \"ner_sj_beats_fk_cond\": true, \"ner_sample_f1_pct_zero\": 20.4, \"ner_gold_empty_filtered\": 22, \"ner_all_zero_filtered\": 19, \"re_greedy_f1\": 0.355, \"re_oracle_f1\": 0.572, \"re_headroom\": 0.217, \"re_fleiss_kappa_mean\": 0.0681, \"re_soft_jaccard_mean\": 0.3635, \"re_full_rho_sj\": 0.2535, \"re_full_rho_fk\": 0.2885, \"re_full_n\": 397, \"re_cond_rho_sj\": 0.3515, \"re_cond_rho_fk\": 0.3107, \"re_cond_n\": 320, \"re_sj_beats_fk_full\": false, \"re_sj_beats_fk_cond\": true, \"re_sample_f1_pct_zero\": 58.3, \"re_gold_empty_filtered\": 154, \"re_all_zero_filtered\": 77, \"parse_failures_stochastic\": 164, \"parse_failures_greedy\": 29, \"total_stochastic_samples\": 4408, \"total_greedy\": 551, \"verdict\": \"FAIL\", \"verdict_reason\": \"RE full rho_sj=0.2535 < 0.40; SJ does not beat FK on RE full set\"}}}, \"count\": 56, \"total\": 56, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2633}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0701eaf2-bcb4-44d5-badb-31fa42c34c10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T21:17:30.705Z_
+
+<details><summary>↩ Tool result · `toolu_0174HxBhh2rCtf3G27L51H6g`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md\", \"content\": \"# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp008_re_n16（准备中）\\n- exp_002_merge_conll2003（准备中）\\n- exp_007_ner_llama（准备中）\\n- exp001_seed456（准备中）\\n- exp001_seed123（准备中）\\n- exp_001_n16_seed456_full（准备中）\\n- exp_001_n16_seed123_full（准备中）\\n\\n## 近期结论\\n- **exp_017_llama_conll_n16_s456** (success): LLaMA CoNLL N=16 seed=456: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol\\n- **exp_017_llama_conll_n16** (success): —\\n- **exp_017_llama_conll_n16_s123** (success): LLaMA CoNLL N=16 seed=123: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol\\n  [exp_017_llama_conll_n16_s123_5signal_report](autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/all_signals_report.json)\\n\\n## 趋势\\n成功 36 / 负向 17 / 失败 1 / 共 56\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nautodl-5090: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\n\\n## 告警\\n- ft_002: 已被终止 — unknown\\n- mvp_pilot_002: 训练失败 — unknown\\n- exp_008_re_n16_full: 已被终止 — unknown\\n\", \"total_chars\": 1038, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a41dfb0-5522-483e-bf24-c4502bb41dc0",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "df6df832-8557-4446-844a-5268b04eeaf2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- exp008_re_n16（准备中）\\\\n- exp_002_merge_conll2003（准备中）\\\\n- exp_007_ner_llama（准备中）\\\\n- exp001_seed456（准备中）\\\\n- exp001_seed123（准备中）\\\\n- exp_001_n16_seed456_full（准备中）\\\\n- exp_001_n16_seed123_full（准备中）\\\\n\\\\n## 近期结论\\\\n- **exp_017_llama_conll_n16_s456** (success): LLaMA CoNLL N=16 seed=456: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol\\\\n- **exp_017_llama_conll_n16** (success): —\\\\n- **exp_017_llama_conll_n16_s123** (success): LLaMA CoNLL N=16 seed=123: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol\\\\n  [exp_017_llama_conll_n16_s123_5signal_report](autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/all_signals_report.json)\\\\n\\\\n## 趋势\\\\n成功 36 / 负向 17 / 失败 1 / 共 56\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nautodl-5090: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\\\n\\\\n## 告警\\\\n- ft_002: 已被终止 — unknown\\\\n- mvp_pilot_002: 训练失败 — unknown\\\\n- exp_008_re_n16_full: 已被终止 — unknown\\\\n\\\", \\\"total_chars\\\": 1038, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/report.md\", \"content\": \"# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp008_re_n16（准备中）\\n- exp_002_merge_conll2003（准备中）\\n- exp_007_ner_llama（准备中）\\n- exp001_seed456（准备中）\\n- exp001_seed123（准备中）\\n- exp_001_n16_seed456_full（准备中）\\n- exp_001_n16_seed123_full（准备中）\\n\\n## 近期结论\\n- **exp_017_llama_conll_n16_s456** (success): LLaMA CoNLL N=16 seed=456: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol\\n- **exp_017_llama_conll_n16** (success): —\\n- **exp_017_llama_conll_n16_s123** (success): LLaMA CoNLL N=16 seed=123: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol\\n  [exp_017_llama_conll_n16_s123_5signal_report](autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/all_signals_report.json)\\n\\n## 趋势\\n成功 36 / 负向 17 / 失败 1 / 共 56\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nautodl-5090: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\n\\n## 告警\\n- ft_002: 已被终止 — unknown\\n- mvp_pilot_002: 训练失败 — unknown\\n- exp_008_re_n16_full: 已被终止 — unknown\\n\", \"total_chars\": 1038, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0a41dfb0-5522-483e-bf24-c4502bb41dc0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_data_qwen_scierc_3seed_em_voting_20260514T211403]: Worker worker_data_qwen_scierc_3seed_em_voting_20260514T211403 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "df6df832-8557-4446-844a-5268b04eeaf2",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review worker completion status for Qwen ScIERC task",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-14T21:17:35.453Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The worker name is `worker_data_qwen_scierc_3seed_em_voting_20260514T211403`. This doesn't directly match a registry experiment. Let me search the registry for experiments related to EM voting or Qwen SciERC 3-seed. The worker seems to be about data processing/analysis rather than a specific GPU experiment. Let me look at the full registry to find what this worker did. Let me use jq to search the saved file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "df6df832-8557-4446-844a-5268b04eeaf2",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A4C7NLZVdJ3Dv29PDK",
+  "type": "assistant",
+  "uuid": "6f1b766a-e789-4180-a44d-f8ca8a208042",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018CcKRwHB1LNcSmue4Rm19F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1757,
+      "cache_read_input_tokens": 45698,
+      "output_tokens": 777,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 777,
+          "cache_read_input_tokens": 45698,
+          "cache_creation_input_tokens": 1757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-14T21:17:35.949Z_
+
+让我找到这个 worker 具体做了什么。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f1b766a-e789-4180-a44d-f8ca8a208042",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A4C7NLZVdJ3Dv29PDK",
+  "type": "assistant",
+  "uuid": "abe77529-6d8b-4b04-9df9-51ce190d0496",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018CcKRwHB1LNcSmue4Rm19F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1757,
+      "cache_read_input_tokens": 45698,
+      "output_tokens": 777,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 777,
+          "cache_read_input_tokens": 45698,
+          "cache_creation_input_tokens": 1757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T21:17:42.547Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01AzpKL6mR25dg6bgB71WgNT`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/7f351864-1277-4f97-b973-fafc7db3552e/tool-results/mcp-agent-ml-research-read_registry-1778793450662.txt | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n# Search for experiments related to em_voting, 3seed, qwen, scierc\nfor k, v in exps.items():\n    h = v.get('hypothesis', '') or ''\n    spec_h = (v.get('spec') or {}).get('hypothesis', '') or ''\n    combined = (k + ' ' + h + ' ' + spec_h).lower()\n    if any(term in combined for term in ['em_voting', '3seed', '3-seed', 'voting', 'bootstrap']):\n        print(f'=== {k} ===')\n        print(f'  status: {v.get(\\\"status\\\")}')\n        print(f'  conclusion: {v.get(\\\"conclusion\\\")}')\n        print(f'  hypothesis: {h[:200]}')\n        print(f'  updated_at: {v.get(\\\"updated_at\\\")}')\n        metrics = v.get('metrics', {})\n        if metrics:\n            # Print key metric fields\n            for mk in ['3seed_mean_SJ_rho_full', '3seed_sd_SJ_rho_full', 'verdict', 'structural_beats_surface']:\n                if mk in metrics:\n                    print(f'  {mk}: {metrics[mk]}')\n        print()\n\" 2>&1 | head -100",
+  "description": "Search registry for EM voting / 3-seed experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "abe77529-6d8b-4b04-9df9-51ce190d0496",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A4C7NLZVdJ3Dv29PDK",
+  "type": "assistant",
+  "uuid": "037c9f9a-5a3a-474c-87b5-ff52782307cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018CcKRwHB1LNcSmue4Rm19F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1757,
+      "cache_read_input_tokens": 45698,
+      "output_tokens": 777,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 777,
+          "cache_read_input_tokens": 45698,
+          "cache_creation_input_tokens": 1757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T21:17:42.781Z_
+
+<details><summary>↩ Tool result · `toolu_01AzpKL6mR25dg6bgB71WgNT`</summary>
+
+```text
+=== exp_017_llama_conll_n16_s456 ===
+  status: DONE
+  conclusion: success
+  hypothesis: LLaMA CoNLL N=16 seed=456: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol
+  updated_at: 2026-05-14T20:24:45.875Z
+  structural_beats_surface: True
+
+=== exp_017_llama_conll_n16_s123 ===
+  status: DONE
+  conclusion: success
+  hypothesis: LLaMA CoNLL N=16 seed=123: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol
+  updated_at: 2026-05-14T19:43:06.607Z
+  structural_beats_surface: True
+
+=== exp_001_seed456_v2 ===
+  status: DONE
+  conclusion: negative
+  hypothesis: 
+  updated_at: 2026-05-14T17:12:14.682Z
+
+=== exp_014_entity_majority_voting ===
+  status: DONE
+  conclusion: success
+  hypothesis: 
+  updated_at: 2026-05-14T11:33:30.085Z
+
+=== exp_013_exact_match_voting ===
+  status: DONE
+  conclusion: negative
+  hypothesis: 
+  updated_at: 2026-05-14T11:33:22.644Z
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "037c9f9a-5a3a-474c-87b5-ff52782307cc",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "d96053a3-cd52-4107-b3d9-af66bf5079ee",
+  "toolUseResult": {
+    "stdout": "=== exp_017_llama_conll_n16_s456 ===\n  status: DONE\n  conclusion: success\n  hypothesis: LLaMA CoNLL N=16 seed=456: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol\n  updated_at: 2026-05-14T20:24:45.875Z\n  structural_beats_surface: True\n\n=== exp_017_llama_conll_n16_s123 ===\n  status: DONE\n  conclusion: success\n  hypothesis: LLaMA CoNLL N=16 seed=123: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol\n  updated_at: 2026-05-14T19:43:06.607Z\n  structural_beats_surface: True\n\n=== exp_001_seed456_v2 ===\n  status: DONE\n  conclusion: negative\n  hypothesis: \n  updated_at: 2026-05-14T17:12:14.682Z\n\n=== exp_014_entity_majority_voting ===\n  status: DONE\n  conclusion: success\n  hypothesis: \n  updated_at: 2026-05-14T11:33:30.085Z\n\n=== exp_013_exact_match_voting ===\n  status: DONE\n  conclusion: negative\n  hypothesis: \n  updated_at: 2026-05-14T11:33:22.644Z",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "037c9f9a-5a3a-474c-87b5-ff52782307cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-14T21:17:42.946Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011Qxu4kUEThLVHw53md5gtj`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d96053a3-cd52-4107-b3d9-af66bf5079ee",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A4C7NLZVdJ3Dv29PDK",
+  "type": "assistant",
+  "uuid": "ea0e50eb-adc4-4c22-9417-d02b485fb7c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018CcKRwHB1LNcSmue4Rm19F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1757,
+      "cache_read_input_tokens": 45698,
+      "output_tokens": 777,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 777,
+          "cache_read_input_tokens": 45698,
+          "cache_creation_input_tokens": 1757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T21:17:42.960Z_
+
+<details><summary>↩ Tool result · `toolu_011Qxu4kUEThLVHw53md5gtj`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ea0e50eb-adc4-4c22-9417-d02b485fb7c3",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "61e29dd1-4614-4bd6-86e8-e6fa9b387f84",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ea0e50eb-adc4-4c22-9417-d02b485fb7c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-14T21:17:43.011Z_
+
+```json
+{
+  "parentUuid": "61e29dd1-4614-4bd6-86e8-e6fa9b387f84",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "91b35533-be88-4670-b527-b90b43d36d5f",
+  "timestamp": "2026-05-14T21:17:43.011Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T21:17:45.712Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SCPkUUSCGT3nAmjDEKqmKL`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "91b35533-be88-4670-b527-b90b43d36d5f",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A56iwuKVKha1RGeLqL",
+  "type": "assistant",
+  "uuid": "76194d2b-18fd-4fca-bd49-380eac685401",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CTyRrApGVJNwZ5TYiPDHBP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1397,
+      "cache_read_input_tokens": 47455,
+      "output_tokens": 420,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1397,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 420,
+          "cache_read_input_tokens": 47455,
+          "cache_creation_input_tokens": 1397,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1397
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T21:17:46.613Z_
+
+<details><summary>↩ Tool result · `toolu_01SCPkUUSCGT3nAmjDEKqmKL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4816\\ndrwxr-xr-x 57 root root    4096 May 15 05:09 .\\ndrwxr-xr-x 10 root root    4096 May 15 05:15 ..\\ndrwxr-xr-x  2 root root      34 May 15 03:31 bootstrap_ci_nscaling\\n-rw-r--r--  1 root root   22006 May 15 05:09 bootstrap_ci_summary.json\\n-rw-r--r--  1 root root    2098 May 14 20:48 conditional_filter_diagnosis.json\\ndrwxr-xr-x  2 root root      58 May 14 20:54 exp001_n16_seed123\\ndrwxr-xr-x  2 root root      77 May 14 20:13 exp001_n16_seed123_200only\\ndrwxr-xr-x  2 root root      10 May 14 20:43 exp001_n16_seed123_200only_backup\\ndrwxr-xr-x  2 root root      10 May 14 20:44 exp001_n16_seed123_full\\n-rw-r--r--  1 root root  108646 May 14 20:54 exp001_n16_seed123_run.log\\ndrwxr-xr-x  2 root root     146 May 14 20:49 exp001_n16_seed42\\ndrwxr-xr-x  2 root root     119 May 14 19:55 exp001_n16_seed42_200only_backup\\n-rw-r--r--  1 root root  107674 May 14 20:24 exp001_n16_seed42_run.log\\ndrwxr-xr-x  2 root root      10 May 14 20:44 exp001_n16_seed456\\ndrwxr-xr-x  2 root root      77 May 14 20:16 exp001_n16_seed456_200only\\ndrwxr-xr-x  2 root root      58 May 14 21:35 exp001_seed123_t10_full\\n-rw-r--r--  1 root root  108350 May 14 21:35 exp001_seed123_t10_full.log\\ndrwxr-xr-x  2 root root      58 May 14 21:35 exp001_seed456_t10_full\\n-rw-r--r--  1 root root  107921 May 14 21:35 exp001_seed456_t10_full.log\\ndrwxr-xr-x  2 root root      96 May 14 20:39 exp002_conll2003\\ndrwxr-xr-x  2 root root      58 May 14 21:35 exp003_wnut17_dryrun\\ndrwxr-xr-x  2 root root      58 May 14 21:50 exp003_wnut17_eval\\n-rw-r--r--  1 root root  117772 May 14 21:50 exp003_wnut17_eval.log\\ndrwxr-xr-x  2 root root      58 May 14 21:39 exp003_wnut17_pilot\\n-rw-r--r--  1 root root  117114 May 14 21:39 exp003_wnut17_pilot.log\\ndrwxr-xr-x  2 root root     182 May 14 19:48 exp004_re_diagnostic\\ndrwxr-xr-x  2 root root     148 May 14 23:29 exp004v2_re_diagnostic\\ndrwxr-xr-x  2 root root      58 May 14 21:54 exp007_llama_dryrun\\ndrwxr-xr-x  2 root root      58 May 14 21:58 exp007_llama_inference\\ndrwxr-xr-x  2 root root      58 May 14 20:53 exp008_re_n16\\ndrwxr-xr-x  2 root root      77 May 14 20:18 exp008_re_n16_200only\\ndrwxr-xr-x  2 root root      58 May 14 21:35 exp008_re_n16_t10_full\\n-rw-r--r--  1 root root  108319 May 14 21:35 exp008_re_n16_t10_full.log\\n-rw-r--r--  1 root root   64331 May 14 22:57 exp009_stratification_results.json\\ndrwxr-xr-x  3 root root      96 May 14 23:00 exp010_selection_curves\\ndrwxr-xr-x  2 root root    4096 May 14 20:12 exp016_signal_ensemble\\ndrwxr-xr-x  2 root root     112 May 15 05:15 exp_001_seed123_v2\\ndrwxr-xr-x  2 root root     112 May 15 05:15 exp_001_seed42_v2\\ndrwxr-xr-x  2 root root      77 May 14 23:48 exp_001_seed456_v2\\ndrwxr-xr-x  2 root root      93 May 15 05:16 exp_001_seed456_v2_ner\\n-rw-r--r--  1 root root  107581 May 15 01:21 exp_001_seed456_v2_ner.log\\ndrwxr-xr-x  2 root root      58 May 15 02:28 exp_002_conll_n16\\n-rw-r--r--  1 root root  407751 May 15 02:28 exp_002_conll_n16.log\\ndrwxr-xr-x  2 root root      77 May 15 01:16 exp_003_wnut17_v2_infer\\ndrwxr-xr-x  2 root root      57 May 14 23:25 exp_005_v2_temperature\\ndrwxr-xr-x  2 root root      45 May 14 23:29 exp_006_v2\\n-rw-r--r--  1 root root    4229 May 14 23:29 exp_006_v2_run.log\\ndrwxr-xr-x  2 root root      58 May 15 02:39 exp_007_llama_n16\\n-rw-r--r--  1 root root  102414 May 15 02:59 exp_007_llama_n16.log\\ndrwxr-xr-x  2 root root      77 May 14 23:12 exp_007_llama_seed123\\ndrwxr-xr-x  2 root root      77 May 14 23:12 exp_007_llama_seed456\\ndrwxr-xr-x  2 root root      77 May 14 22:43 exp_008_re_n16_v2\\ndrwxr-xr-x  2 root root      77 May 14 23:16 exp_008_re_seed123\\ndrwxr-xr-x  2 root root     180 May 14 23:35 exp_009_v2\\ndrwxr-xr-x  2 root root      57 May 15 02:56 exp_009_v2_re_rerun\\n-rw-r--r--  1 root root   23037 May 14 23:35 exp_009_v2_run.log\\ndrwxr-xr-x  2 root root      81 May 14 19:06 exp_012_logprob\\ndrwxr-xr-x  2 root root      77 May 14 19:47 exp_015_unified\\ndrwxr-xr-x  2 root root      44 May 14 23:33 exp_015_v2\\ndrwxr-xr-x  2 root root     176 May 14 23:36 exp_016_v2\\ndrwxr-xr-x  2 root root      93 May 15 01:54 exp_017_llama_conll_infer\\n-rw-r--r--  1 root root  286982 May 15 01:41 exp_017_llama_conll_infer.log\\ndrwxr-xr-x  2 root root      93 May 15 03:44 exp_017_llama_conll_n16\\ndrwxr-xr-x  2 root root      93 May 15 03:42 exp_017_llama_conll_n16_s123\\n-rw-r--r--  1 root root  386024 May 15 03:41 exp_017_llama_conll_n16_s123.log\\ndrwxr-xr-x  2 root root      93 May 15 04:23 exp_017_llama_conll_n16_s456\\n-rw-r--r--  1 root root  385658 May 15 03:58 exp_017_llama_conll_n16_s456.log\\n-rw-r--r--  1 root root 1118105 May 14 14:55 gate0_all_predictions.jsonl\\ndrwxr-xr-x  2 root root      58 May 14 16:47 gate0_ft002v2\\ndrwxr-xr-x  2 root root      58 May 14 16:51 gate0_ft002v2_ckpt400\\n-rw-r--r--  1 root root 1036079 May 14 15:30 gate0_realigned_predictions.jsonl\\n-rw-r--r--  1 root root     898 May 14 15:30 gate0_realigned_results.json\\n-rw-r--r--  1 root root     747 May 14 14:55 gate0_results.json\\n-rw-r--r--  1 root root   12691 May 14 14:52 gate0_samples.json\\n-rw-r--r--  1 root root    4054 May 15 04:26 llama_conll_n16_3seed_5signal_summary.json\\ndrwxr-xr-x  2 root root      36 May 14 20:25 logprob_diagnosis\\ndrwxr-xr-x  2 root root      34 May 15 03:31 loo_sj_cross_dataset\\ndrwxr-xr-x  2 root root      58 May 14 15:51 mvp_pilot_001\\n-rw-r--r--  1 root root  104190 May 14 15:51 mvp_pilot_001.log\\ndrwxr-xr-x  2 root root      58 May 14 16:20 mvp_pilot_003\\ndrwxr-xr-x  2 root root     187 May 14 19:17 mvp_pilot_004\\ndrwxr-xr-x  2 root root      58 May 14 17:19 mvp_pilot_005\\n-rw-r--r--  1 root root    3256 May 15 03:00 n16_5signal_results.json\\n-rw-r--r--  1 root root    3258 May 15 03:02 n8_5signal_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "76194d2b-18fd-4fca-bd49-380eac685401",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "7dd580ed-c56e-40f1-b092-eec5e65e08c8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4816\\\\ndrwxr-xr-x 57 root root    4096 May 15 05:09 .\\\\ndrwxr-xr-x 10 root root    4096 May 15 05:15 ..\\\\ndrwxr-xr-x  2 root root      34 May 15 03:31 bootstrap_ci_nscaling\\\\n-rw-r--r--  1 root root   22006 May 15 05:09 bootstrap_ci_summary.json\\\\n-rw-r--r--  1 root root    2098 May 14 20:48 conditional_filter_diagnosis.json\\\\ndrwxr-xr-x  2 root root      58 May 14 20:54 exp001_n16_seed123\\\\ndrwxr-xr-x  2 root root      77 May 14 20:13 exp001_n16_seed123_200only\\\\ndrwxr-xr-x  2 root root      10 May 14 20:43 exp001_n16_seed123_200only_backup\\\\ndrwxr-xr-x  2 root root      10 May 14 20:44 exp001_n16_seed123_full\\\\n-rw-r--r--  1 root root  108646 May 14 20:54 exp001_n16_seed123_run.log\\\\ndrwxr-xr-x  2 root root     146 May 14 20:49 exp001_n16_seed42\\\\ndrwxr-xr-x  2 root root     119 May 14 19:55 exp001_n16_seed42_200only_backup\\\\n-rw-r--r--  1 root root  107674 May 14 20:24 exp001_n16_seed42_run.log\\\\ndrwxr-xr-x  2 root root      10 May 14 20:44 exp001_n16_seed456\\\\ndrwxr-xr-x  2 root root      77 May 14 20:16 exp001_n16_seed456_200only\\\\ndrwxr-xr-x  2 root root      58 May 14 21:35 exp001_seed123_t10_full\\\\n-rw-r--r--  1 root root  108350 May 14 21:35 exp001_seed123_t10_full.log\\\\ndrwxr-xr-x  2 root root      58 May 14 21:35 exp001_seed456_t10_full\\\\n-rw-r--r--  1 root root  107921 May 14 21:35 exp001_seed456_t10_full.log\\\\ndrwxr-xr-x  2 root root      96 May 14 20:39 exp002_conll2003\\\\ndrwxr-xr-x  2 root root      58 May 14 21:35 exp003_wnut17_dryrun\\\\ndrwxr-xr-x  2 root root      58 May 14 21:50 exp003_wnut17_eval\\\\n-rw-r--r--  1 root root  117772 May 14 21:50 exp003_wnut17_eval.log\\\\ndrwxr-xr-x  2 root root      58 May 14 21:39 exp003_wnut17_pilot\\\\n-rw-r--r--  1 root root  117114 May 14 21:39 exp003_wnut17_pilot.log\\\\ndrwxr-xr-x  2 root root     182 May 14 19:48 exp004_re_diagnostic\\\\ndrwxr-xr-x  2 root root     148 May 14 23:29 exp004v2_re_diagnostic\\\\ndrwxr-xr-x  2 root root      58 May 14 21:54 exp007_llama_dryrun\\\\ndrwxr-xr-x  2 root root      58 May 14 21:58 exp007_llama_inference\\\\ndrwxr-xr-x  2 root root      58 May 14 20:53 exp008_re_n16\\\\ndrwxr-xr-x  2 root root      77 May 14 20:18 exp008_re_n16_200only\\\\ndrwxr-xr-x  2 root root      58 May 14 21:35 exp008_re_n16_t10_full\\\\n-rw-r--r--  1 root root  108319 May 14 21:35 exp008_re_n16_t10_full.log\\\\n-rw-r--r--  1 root root   64331 May 14 22:57 exp009_stratification_results.json\\\\ndrwxr-xr-x  3 root root      96 May 14 23:00 exp010_selection_curves\\\\ndrwxr-xr-x  2 root root    4096 May 14 20:12 exp016_signal_ensemble\\\\ndrwxr-xr-x  2 root root     112 May 15 05:15 exp_001_seed123_v2\\\\ndrwxr-xr-x  2 root root     112 May 15 05:15 exp_001_seed42_v2\\\\ndrwxr-xr-x  2 root root      77 May 14 23:48 exp_001_seed456_v2\\\\ndrwxr-xr-x  2 root root      93 May 15 05:16 exp_001_seed456_v2_ner\\\\n-rw-r--r--  1 root root  107581 May 15 01:21 exp_001_seed456_v2_ner.log\\\\ndrwxr-xr-x  2 root root      58 May 15 02:28 exp_002_conll_n16\\\\n-rw-r--r--  1 root root  407751 May 15 02:28 exp_002_conll_n16.log\\\\ndrwxr-xr-x  2 root root      77 May 15 01:16 exp_003_wnut17_v2_infer\\\\ndrwxr-xr-x  2 root root      57 May 14 23:25 exp_005_v2_temperature\\\\ndrwxr-xr-x  2 root root      45 May 14 23:29 exp_006_v2\\\\n-rw-r--r--  1 root root    4229 May 14 23:29 exp_006_v2_run.log\\\\ndrwxr-xr-x  2 root root      58 May 15 02:39 exp_007_llama_n16\\\\n-rw-r--r--  1 root root  102414 May 15 02:59 exp_007_llama_n16.log\\\\ndrwxr-xr-x  2 root root      77 May 14 23:12 exp_007_llama_seed123\\\\ndrwxr-xr-x  2 root root      77 May 14 23:12 exp_007_llama_seed456\\\\ndrwxr-xr-x  2 root root      77 May 14 22:43 exp_008_re_n16_v2\\\\ndrwxr-xr-x  2 root root      77 May 14 23:16 exp_008_re_seed123\\\\ndrwxr-xr-x  2 root root     180 May 14 23:35 exp_009_v2\\\\ndrwxr-xr-x  2 root root      57 May 15 02:56 exp_009_v2_re_rerun\\\\n-rw-r--r--  1 root root   23037 May 14 23:35 exp_009_v2_run.log\\\\ndrwxr-xr-x  2 root root      81 May 14 19:06 exp_012_logprob\\\\ndrwxr-xr-x  2 root root      77 May 14 19:47 exp_015_unified\\\\ndrwxr-xr-x  2 root root      44 May 14 23:33 exp_015_v2\\\\ndrwxr-xr-x  2 root root     176 May 14 23:36 exp_016_v2\\\\ndrwxr-xr-x  2 root root      93 May 15 01:54 exp_017_llama_conll_infer\\\\n-rw-r--r--  1 root root  286982 May 15 01:41 exp_017_llama_conll_infer.log\\\\ndrwxr-xr-x  2 root root      93 May 15 03:44 exp_017_llama_conll_n16\\\\ndrwxr-xr-x  2 root root      93 May 15 03:42 exp_017_llama_conll_n16_s123\\\\n-rw-r--r--  1 root root  386024 May 15 03:41 exp_017_llama_conll_n16_s123.log\\\\ndrwxr-xr-x  2 root root      93 May 15 04:23 exp_017_llama_conll_n16_s456\\\\n-rw-r--r--  1 root root  385658 May 15 03:58 exp_017_llama_conll_n16_s456.log\\\\n-rw-r--r--  1 root root 1118105 May 14 14:55 gate0_all_predictions.jsonl\\\\ndrwxr-xr-x  2 root root      58 May 14 16:47 gate0_ft002v2\\\\ndrwxr-xr-x  2 root root      58 May 14 16:51 gate0_ft002v2_ckpt400\\\\n-rw-r--r--  1 root root 1036079 May 14 15:30 gate0_realigned_predictions.jsonl\\\\n-rw-r--r--  1 root root     898 May 14 15:30 gate0_realigned_results.json\\\\n-rw-r--r--  1 root root     747 May 14 14:55 gate0_results.json\\\\n-rw-r--r--  1 root root   12691 May 14 14:52 gate0_samples.json\\\\n-rw-r--r--  1 root root    4054 May 15 04:26 llama_conll_n16_3seed_5signal_summary.json\\\\ndrwxr-xr-x  2 root root      36 May 14 20:25 logprob_diagnosis\\\\ndrwxr-xr-x  2 root root      34 May 15 03:31 loo_sj_cross_dataset\\\\ndrwxr-xr-x  2 root root      58 May 14 15:51 mvp_pilot_001\\\\n-rw-r--r--  1 root root  104190 May 14 15:51 mvp_pilot_001.log\\\\ndrwxr-xr-x  2 root root      58 May 14 16:20 mvp_pilot_003\\\\ndrwxr-xr-x  2 root root     187 May 14 19:17 mvp_pilot_004\\\\ndrwxr-xr-x  2 root root      58 May 14 17:19 mvp_pilot_005\\\\n-rw-r--r--  1 root root    3256 May 15 03:00 n16_5signal_results.json\\\\n-rw-r--r--  1 root root    3258 May 15 03:02 n8_5signal_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4816\\ndrwxr-xr-x 57 root root    4096 May 15 05:09 .\\ndrwxr-xr-x 10 root root    4096 May 15 05:15 ..\\ndrwxr-xr-x  2 root root      34 May 15 03:31 bootstrap_ci_nscaling\\n-rw-r--r--  1 root root   22006 May 15 05:09 bootstrap_ci_summary.json\\n-rw-r--r--  1 root root    2098 May 14 20:48 conditional_filter_diagnosis.json\\ndrwxr-xr-x  2 root root      58 May 14 20:54 exp001_n16_seed123\\ndrwxr-xr-x  2 root root      77 May 14 20:13 exp001_n16_seed123_200only\\ndrwxr-xr-x  2 root root      10 May 14 20:43 exp001_n16_seed123_200only_backup\\ndrwxr-xr-x  2 root root      10 May 14 20:44 exp001_n16_seed123_full\\n-rw-r--r--  1 root root  108646 May 14 20:54 exp001_n16_seed123_run.log\\ndrwxr-xr-x  2 root root     146 May 14 20:49 exp001_n16_seed42\\ndrwxr-xr-x  2 root root     119 May 14 19:55 exp001_n16_seed42_200only_backup\\n-rw-r--r--  1 root root  107674 May 14 20:24 exp001_n16_seed42_run.log\\ndrwxr-xr-x  2 root root      10 May 14 20:44 exp001_n16_seed456\\ndrwxr-xr-x  2 root root      77 May 14 20:16 exp001_n16_seed456_200only\\ndrwxr-xr-x  2 root root      58 May 14 21:35 exp001_seed123_t10_full\\n-rw-r--r--  1 root root  108350 May 14 21:35 exp001_seed123_t10_full.log\\ndrwxr-xr-x  2 root root      58 May 14 21:35 exp001_seed456_t10_full\\n-rw-r--r--  1 root root  107921 May 14 21:35 exp001_seed456_t10_full.log\\ndrwxr-xr-x  2 root root      96 May 14 20:39 exp002_conll2003\\ndrwxr-xr-x  2 root root      58 May 14 21:35 exp003_wnut17_dryrun\\ndrwxr-xr-x  2 root root      58 May 14 21:50 exp003_wnut17_eval\\n-rw-r--r--  1 root root  117772 May 14 21:50 exp003_wnut17_eval.log\\ndrwxr-xr-x  2 root root      58 May 14 21:39 exp003_wnut17_pilot\\n-rw-r--r--  1 root root  117114 May 14 21:39 exp003_wnut17_pilot.log\\ndrwxr-xr-x  2 root root     182 May 14 19:48 exp004_re_diagnostic\\ndrwxr-xr-x  2 root root     148 May 14 23:29 exp004v2_re_diagnostic\\ndrwxr-xr-x  2 root root      58 May 14 21:54 exp007_llama_dryrun\\ndrwxr-xr-x  2 root root      58 May 14 21:58 exp007_llama_inference\\ndrwxr-xr-x  2 root root      58 May 14 20:53 exp008_re_n16\\ndrwxr-xr-x  2 root root      77 May 14 20:18 exp008_re_n16_200only\\ndrwxr-xr-x  2 root root      58 May 14 21:35 exp008_re_n16_t10_full\\n-rw-r--r--  1 root root  108319 May 14 21:35 exp008_re_n16_t10_full.log\\n-rw-r--r--  1 root root   64331 May 14 22:57 exp009_stratification_results.json\\ndrwxr-xr-x  3 root root      96 May 14 23:00 exp010_selection_curves\\ndrwxr-xr-x  2 root root    4096 May 14 20:12 exp016_signal_ensemble\\ndrwxr-xr-x  2 root root     112 May 15 05:15 exp_001_seed123_v2\\ndrwxr-xr-x  2 root root     112 May 15 05:15 exp_001_seed42_v2\\ndrwxr-xr-x  2 root root      77 May 14 23:48 exp_001_seed456_v2\\ndrwxr-xr-x  2 root root      93 May 15 05:16 exp_001_seed456_v2_ner\\n-rw-r--r--  1 root root  107581 May 15 01:21 exp_001_seed456_v2_ner.log\\ndrwxr-xr-x  2 root root      58 May 15 02:28 exp_002_conll_n16\\n-rw-r--r--  1 root root  407751 May 15 02:28 exp_002_conll_n16.log\\ndrwxr-xr-x  2 root root      77 May 15 01:16 exp_003_wnut17_v2_infer\\ndrwxr-xr-x  2 root root      57 May 14 23:25 exp_005_v2_temperature\\ndrwxr-xr-x  2 root root      45 May 14 23:29 exp_006_v2\\n-rw-r--r--  1 root root    4229 May 14 23:29 exp_006_v2_run.log\\ndrwxr-xr-x  2 root root      58 May 15 02:39 exp_007_llama_n16\\n-rw-r--r--  1 root root  102414 May 15 02:59 exp_007_llama_n16.log\\ndrwxr-xr-x  2 root root      77 May 14 23:12 exp_007_llama_seed123\\ndrwxr-xr-x  2 root root      77 May 14 23:12 exp_007_llama_seed456\\ndrwxr-xr-x  2 root root      77 May 14 22:43 exp_008_re_n16_v2\\ndrwxr-xr-x  2 root root      77 May 14 23:16 exp_008_re_seed123\\ndrwxr-xr-x  2 root root     180 May 14 23:35 exp_009_v2\\ndrwxr-xr-x  2 root root      57 May 15 02:56 exp_009_v2_re_rerun\\n-rw-r--r--  1 root root   23037 May 14 23:35 exp_009_v2_run.log\\ndrwxr-xr-x  2 root root      81 May 14 19:06 exp_012_logprob\\ndrwxr-xr-x  2 root root      77 May 14 19:47 exp_015_unified\\ndrwxr-xr-x  2 root root      44 May 14 23:33 exp_015_v2\\ndrwxr-xr-x  2 root root     176 May 14 23:36 exp_016_v2\\ndrwxr-xr-x  2 root root      93 May 15 01:54 exp_017_llama_conll_infer\\n-rw-r--r--  1 root root  286982 May 15 01:41 exp_017_llama_conll_infer.log\\ndrwxr-xr-x  2 root root      93 May 15 03:44 exp_017_llama_conll_n16\\ndrwxr-xr-x  2 root root      93 May 15 03:42 exp_017_llama_conll_n16_s123\\n-rw-r--r--  1 root root  386024 May 15 03:41 exp_017_llama_conll_n16_s123.log\\ndrwxr-xr-x  2 root root      93 May 15 04:23 exp_017_llama_conll_n16_s456\\n-rw-r--r--  1 root root  385658 May 15 03:58 exp_017_llama_conll_n16_s456.log\\n-rw-r--r--  1 root root 1118105 May 14 14:55 gate0_all_predictions.jsonl\\ndrwxr-xr-x  2 root root      58 May 14 16:47 gate0_ft002v2\\ndrwxr-xr-x  2 root root      58 May 14 16:51 gate0_ft002v2_ckpt400\\n-rw-r--r--  1 root root 1036079 May 14 15:30 gate0_realigned_predictions.jsonl\\n-rw-r--r--  1 root root     898 May 14 15:30 gate0_realigned_results.json\\n-rw-r--r--  1 root root     747 May 14 14:55 gate0_results.json\\n-rw-r--r--  1 root root   12691 May 14 14:52 gate0_samples.json\\n-rw-r--r--  1 root root    4054 May 15 04:26 llama_conll_n16_3seed_5signal_summary.json\\ndrwxr-xr-x  2 root root      36 May 14 20:25 logprob_diagnosis\\ndrwxr-xr-x  2 root root      34 May 15 03:31 loo_sj_cross_dataset\\ndrwxr-xr-x  2 root root      58 May 14 15:51 mvp_pilot_001\\n-rw-r--r--  1 root root  104190 May 14 15:51 mvp_pilot_001.log\\ndrwxr-xr-x  2 root root      58 May 14 16:20 mvp_pilot_003\\ndrwxr-xr-x  2 root root     187 May 14 19:17 mvp_pilot_004\\ndrwxr-xr-x  2 root root      58 May 14 17:19 mvp_pilot_005\\n-rw-r--r--  1 root root    3256 May 15 03:00 n16_5signal_results.json\\n-rw-r--r--  1 root root    3258 May 15 03:02 n8_5signal_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  },
+  "sourceToolAssistantUUID": "76194d2b-18fd-4fca-bd49-380eac685401",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T21:17:48.912Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LqBYzeqHADUKpjosGCHbsC`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/7f351864-1277-4f97-b973-fafc7db3552e/tool-results/mcp-agent-ml-research-read_registry-1778793450662.txt | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n# Show most recent 15 by updated_at\nsorted_exps = sorted(exps.items(), key=lambda x: x[1].get('updated_at',''), reverse=True)\nfor k, v in sorted_exps[:20]:\n    print(f'{k}: status={v.get(\\\"status\\\")}, conclusion={v.get(\\\"conclusion\\\")}, updated={v.get(\\\"updated_at\\\",\\\"\\\")[:19]}')\n\"",
+  "description": "List 20 most recent experiments by updated_at"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7dd580ed-c56e-40f1-b092-eec5e65e08c8",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A56iwuKVKha1RGeLqL",
+  "type": "assistant",
+  "uuid": "4e79dc64-b0e5-4fd1-a981-3459b9a3ec8b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CTyRrApGVJNwZ5TYiPDHBP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1397,
+      "cache_read_input_tokens": 47455,
+      "output_tokens": 420,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1397,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 420,
+          "cache_read_input_tokens": 47455,
+          "cache_creation_input_tokens": 1397,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1397
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T21:17:49.056Z_
+
+<details><summary>↩ Tool result · `toolu_01LqBYzeqHADUKpjosGCHbsC`</summary>
+
+```text
+exp_017_llama_conll_n16_s456: status=DONE, conclusion=success, updated=2026-05-14T20:24:45
+exp_017_llama_conll_n16: status=DONE, conclusion=success, updated=2026-05-14T19:45:16
+exp_017_llama_conll_n16_s123: status=DONE, conclusion=success, updated=2026-05-14T19:43:06
+exp_007_llama_n16: status=DONE, conclusion=success, updated=2026-05-14T19:03:50
+exp_002_conll_n16: status=DONE, conclusion=success, updated=2026-05-14T19:03:19
+exp_009_v2_re_rerun: status=DONE, conclusion=success, updated=2026-05-14T18:56:58
+exp_001_seed456_v2_ner: status=DONE, conclusion=success, updated=2026-05-14T18:55:18
+exp_003_wnut17_v2: status=DONE, conclusion=negative, updated=2026-05-14T18:11:36
+exp_017_llama_conll_infer: status=DONE, conclusion=success, updated=2026-05-14T17:55:35
+exp_008_re_n16_full: status=DONE, conclusion=killed, updated=2026-05-14T17:51:43
+exp_017_llama_conll: status=DONE, conclusion=success, updated=2026-05-14T17:30:26
+exp_001_seed456_v2: status=DONE, conclusion=negative, updated=2026-05-14T17:12:14
+exp_016_v2: status=DONE, conclusion=success, updated=2026-05-14T15:39:39
+exp_009_v2: status=DONE, conclusion=success, updated=2026-05-14T15:37:27
+exp_015_v2: status=DONE, conclusion=success, updated=2026-05-14T15:35:07
+exp_004_v2: status=DONE, conclusion=success, updated=2026-05-14T15:32:04
+exp_006_v2: status=DONE, conclusion=negative, updated=2026-05-14T15:30:41
+exp_005_v2: status=DONE, conclusion=success, updated=2026-05-14T15:28:35
+exp_008_re_n16_v2: status=DONE, conclusion=negative, updated=2026-05-14T15:23:59
+exp_001_seed123_v2: status=DONE, conclusion=success, updated=2026-05-14T15:23:56
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4e79dc64-b0e5-4fd1-a981-3459b9a3ec8b",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "0d9f923a-a948-438e-9c12-f5ebe6afa3f2",
+  "toolUseResult": {
+    "stdout": "exp_017_llama_conll_n16_s456: status=DONE, conclusion=success, updated=2026-05-14T20:24:45\nexp_017_llama_conll_n16: status=DONE, conclusion=success, updated=2026-05-14T19:45:16\nexp_017_llama_conll_n16_s123: status=DONE, conclusion=success, updated=2026-05-14T19:43:06\nexp_007_llama_n16: status=DONE, conclusion=success, updated=2026-05-14T19:03:50\nexp_002_conll_n16: status=DONE, conclusion=success, updated=2026-05-14T19:03:19\nexp_009_v2_re_rerun: status=DONE, conclusion=success, updated=2026-05-14T18:56:58\nexp_001_seed456_v2_ner: status=DONE, conclusion=success, updated=2026-05-14T18:55:18\nexp_003_wnut17_v2: status=DONE, conclusion=negative, updated=2026-05-14T18:11:36\nexp_017_llama_conll_infer: status=DONE, conclusion=success, updated=2026-05-14T17:55:35\nexp_008_re_n16_full: status=DONE, conclusion=killed, updated=2026-05-14T17:51:43\nexp_017_llama_conll: status=DONE, conclusion=success, updated=2026-05-14T17:30:26\nexp_001_seed456_v2: status=DONE, conclusion=negative, updated=2026-05-14T17:12:14\nexp_016_v2: status=DONE, conclusion=success, updated=2026-05-14T15:39:39\nexp_009_v2: status=DONE, conclusion=success, updated=2026-05-14T15:37:27\nexp_015_v2: status=DONE, conclusion=success, updated=2026-05-14T15:35:07\nexp_004_v2: status=DONE, conclusion=success, updated=2026-05-14T15:32:04\nexp_006_v2: status=DONE, conclusion=negative, updated=2026-05-14T15:30:41\nexp_005_v2: status=DONE, conclusion=success, updated=2026-05-14T15:28:35\nexp_008_re_n16_v2: status=DONE, conclusion=negative, updated=2026-05-14T15:23:59\nexp_001_seed123_v2: status=DONE, conclusion=success, updated=2026-05-14T15:23:56",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "4e79dc64-b0e5-4fd1-a981-3459b9a3ec8b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_data_qwen_scierc_3seed_em_voting_20260514T211403]: Worker worker_data_qwen_scierc_3seed_em_voting_20260514T211403 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "0d9f923a-a948-438e-9c12-f5ebe6afa3f2",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review worker completion status for Qwen ScIERC task",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-14T21:17:59.396Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The worker name `worker_data_qwen_scierc_3seed_em_voting_20260514T211403` doesn't directly correspond to a registry experiment. It seems like this might be a data processing or analysis worker rather than a training experiment. Let me look at what the worker might have produced - perhaps it was working on bootstrap CI, figure generation, or some other data processing task.
+
+Looking at the output directory, I see:
+- `bootstrap_ci_summary.json` (updated May 15 05:09)
+- `bootstrap_ci_nscaling/` (May 15 03:31)
+
+
+- `loo_sj_cross_dataset/` (May 15 03:31)
+- Updated `exp_001_seed42_v2/` and `exp_001_seed123_v2/` (May 15 05:15)
+- `exp_001_seed456_v2_ner/` (May 15 05:16)
+
+The worker name mentions "qwen_scierc_3seed_em_voting", and I can see the three seed experiments it's referencing: seed 42, seed 123, and seed 456. This worker appears to be aggregating results across these three runs, likely performing some kind of ensemble voting or analysis.
+
+Let me check what was actually computed in those recent updates, particularly looking at the bootstrap confidence interval summaries and other output files to understand what metrics were generated.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d9f923a-a948-438e-9c12-f5ebe6afa3f2",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A5YjNjg4k2Hc4zZoVN",
+  "type": "assistant",
+  "uuid": "54f2b0ad-eada-4b8a-961a-9c5c8ba2bc9b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXHYA7EdiSymyw3ftAF1hF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4300,
+      "cache_read_input_tokens": 48852,
+      "output_tokens": 752,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4300,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 752,
+          "cache_read_input_tokens": 48852,
+          "cache_creation_input_tokens": 4300,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4300
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-14T21:17:59.448Z_
+
+Worker 是数据分析类型，不是训练实验。让我检查它的产出。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "54f2b0ad-eada-4b8a-961a-9c5c8ba2bc9b",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A5YjNjg4k2Hc4zZoVN",
+  "type": "assistant",
+  "uuid": "4aaac259-dfea-4277-90c8-69354a7123d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXHYA7EdiSymyw3ftAF1hF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4300,
+      "cache_read_input_tokens": 48852,
+      "output_tokens": 752,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4300,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 752,
+          "cache_read_input_tokens": 48852,
+          "cache_creation_input_tokens": 4300,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4300
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T21:18:00.939Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VSSdQszbN1rQUkBBCWnedb`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_summary.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4aaac259-dfea-4277-90c8-69354a7123d7",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A5YjNjg4k2Hc4zZoVN",
+  "type": "assistant",
+  "uuid": "574f1dce-eb84-462a-906b-8a927e5d8329",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXHYA7EdiSymyw3ftAF1hF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4300,
+      "cache_read_input_tokens": 48852,
+      "output_tokens": 752,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4300,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 752,
+          "cache_read_input_tokens": 48852,
+          "cache_creation_input_tokens": 4300,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4300
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T21:18:01.362Z_
+
+<details><summary>↩ Tool result · `toolu_01VSSdQszbN1rQUkBBCWnedb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"_metadata\\\": {\\n    \\\"generated\\\": \\\"2026-05-14\\\",\\n    \\\"description\\\": \\\"Unified bootstrap CI and 3-seed summary for struct_self_consist_ie paper tables\\\",\\n    \\\"sources\\\": {\\n      \\\"qwen_scierc_3seed\\\": [\\n        \\\"output/exp_001_seed42_v2/report.json\\\",\\n        \\\"output/exp_001_seed123_v2/report.json\\\",\\n        \\\"output/exp_001_seed456_v2_ner/report.json\\\"\\n      ],\\n      \\\"llama_conll_3seed\\\": [\\n        \\\"output/exp_017_llama_conll_n16/all_signals_report.json\\\",\\n        \\\"output/exp_017_llama_conll_n16_s123/all_signals_report.json\\\",\\n        \\\"output/exp_017_llama_conll_n16_s456/all_signals_report.json\\\"\\n      ],\\n      \\\"bootstrap_nscaling\\\": \\\"output/bootstrap_ci_nscaling/results.json\\\",\\n      \\\"bootstrap_single\\\": \\\"output/exp004_re_diagnostic/bootstrap_ci.json\\\"\\n    },\\n    \\\"notes\\\": {\\n      \\\"qwen_scierc_EM_voting_conf\\\": \\\"exp_001 seeds only produced report.json with SJ/FK/logprob. EM and voting_conf were not computed per-seed.\\\",\\n      \\\"nscaling_llama_conll\\\": \\\"LLaMA CoNLL N-scaling bootstrap was not run (only Qwen_CoNLL, Qwen_SciERC, LLaMA_SciERC in bootstrap_ci_nscaling).\\\",\\n      \\\"gold_empty_filter\\\": \\\"CoNLL: 3453 total → 2756 valid (697 gold_empty). SciERC: 551 total → 529 valid (22 gold_empty).\\\"\\n    }\\n  },\\n  \\\"qwen_scierc_3seed\\\": {\\n    \\\"ner\\\": {\\n      \\\"full\\\": {\\n        \\\"SJ\\\": {\\n          \\\"seeds\\\": [\\n            0.428,\\n            0.4244,\\n            0.3838\\n          ],\\n          \\\"mean\\\": 0.4121,\\n          \\\"sd\\\": 0.0246,\\n          \\\"cv_pct\\\": 6.0\\n        },\\n        \\\"FK\\\": {\\n          \\\"seeds\\\": [\\n            0.2809,\\n            0.2752,\\n            0.2234\\n          ],\\n          \\\"mean\\\": 0.2598,\\n          \\\"sd\\\": 0.0317,\\n          \\\"cv_pct\\\": 12.2\\n        },\\n        \\\"logprob\\\": {\\n          \\\"seeds\\\": [\\n            0.2194,\\n            0.2513,\\n            0.2322\\n          ],\\n          \\\"mean\\\": 0.2343,\\n          \\\"sd\\\": 0.0161,\\n          \\\"cv_pct\\\": 6.9\\n        },\\n        \\\"EM\\\": \\\"missing_no_all_signals_report_for_exp001\\\",\\n        \\\"voting_conf\\\": \\\"missing_no_all_signals_report_for_exp001\\\"\\n      },\\n      \\\"conditional\\\": {\\n        \\\"SJ\\\": {\\n          \\\"seeds\\\": [\\n            0.3688,\\n            0.3757,\\n            0.3494\\n          ],\\n          \\\"mean\\\": 0.3646,\\n          \\\"sd\\\": 0.0137,\\n          \\\"cv_pct\\\": 3.7\\n        },\\n        \\\"FK\\\": {\\n          \\\"seeds\\\": [\\n            0.1934,\\n            0.1785,\\n            0.1565\\n          ],\\n          \\\"mean\\\": 0.1761,\\n          \\\"sd\\\": 0.0186,\\n          \\\"cv_pct\\\": 10.5\\n        },\\n        \\\"logprob\\\": {\\n          \\\"seeds\\\": [\\n            0.156,\\n            0.1727,\\n            0.1707\\n          ],\\n          \\\"mean\\\": 0.1664,\\n          \\\"sd\\\": 0.0091,\\n          \\\"cv_pct\\\": 5.5\\n        },\\n        \\\"EM\\\": \\\"missing_no_all_signals_report_for_exp001\\\",\\n        \\\"voting_conf\\\": \\\"missing_no_all_signals_report_for_exp001\\\"\\n      }\\n    }\\n  },\\n  \\\"llama_conll_3seed\\\": {\\n    \\\"ner\\\": {\\n      \\\"full\\\": {\\n        \\\"SJ\\\": {\\n          \\\"seeds\\\": [\\n            0.4642,\\n            0.4698,\\n            0.4552\\n          ],\\n          \\\"mean\\\": 0.4631,\\n          \\\"sd\\\": 0.0074,\\n          \\\"cv_pct\\\": 1.6\\n        },\\n        \\\"FK\\\": {\\n          \\\"seeds\\\": [\\n            0.4566,\\n            0.4594,\\n            0.4478\\n          ],\\n          \\\"mean\\\": 0.4546,\\n          \\\"sd\\\": 0.0061,\\n          \\\"cv_pct\\\": 1.3\\n        },\\n        \\\"EM\\\": {\\n          \\\"seeds\\\": [\\n            0.4613,\\n            0.4676,\\n            0.452\\n          ],\\n          \\\"mean\\\": 0.4603,\\n          \\\"sd\\\": 0.0078,\\n          \\\"cv_pct\\\": 1.7\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"seeds\\\": [\\n            0.4554,\\n            0.4612,\\n            0.4571\\n          ],\\n          \\\"mean\\\": 0.4579,\\n          \\\"sd\\\": 0.003,\\n          \\\"cv_pct\\\": 0.7\\n        },\\n        \\\"logprob\\\": {\\n          \\\"seeds\\\": [\\n            0.3058,\\n            0.3161,\\n            0.3078\\n          ],\\n          \\\"mean\\\": 0.3099,\\n          \\\"sd\\\": 0.0055,\\n          \\\"cv_pct\\\": 1.8\\n        }\\n      },\\n      \\\"conditional\\\": {\\n        \\\"SJ\\\": {\\n          \\\"seeds\\\": [\\n            0.4597,\\n            0.4712,\\n            0.4505\\n          ],\\n          \\\"mean\\\": 0.4605,\\n          \\\"sd\\\": 0.0104,\\n          \\\"cv_pct\\\": 2.3\\n        },\\n        \\\"FK\\\"\\n\\n... [截断: 输出过长，省略 14002 字符] ...\\n\\n47\\n          ],\\n          \\\"p_positive\\\": 0.6649,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho_n8\\\": 0.3332,\\n          \\\"rho_n16\\\": 0.3081,\\n          \\\"delta\\\": -0.0251,\\n          \\\"delta_mean\\\": -0.0246,\\n          \\\"ci_95\\\": [\\n            -0.1027,\\n            0.0524\\n          ],\\n          \\\"p_positive\\\": 0.2673,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho_n8\\\": 0.3224,\\n          \\\"rho_n16\\\": 0.3281,\\n          \\\"delta\\\": 0.0057,\\n          \\\"delta_mean\\\": 0.0056,\\n          \\\"ci_95\\\": [\\n            -0.045,\\n            0.0575\\n          ],\\n          \\\"p_positive\\\": 0.5854,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho_n8\\\": 0.3411,\\n          \\\"rho_n16\\\": 0.3467,\\n          \\\"delta\\\": 0.0055,\\n          \\\"delta_mean\\\": 0.0051,\\n          \\\"ci_95\\\": [\\n            -0.0597,\\n            0.0713\\n          ],\\n          \\\"p_positive\\\": 0.5588,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho_n8\\\": 0.1798,\\n          \\\"rho_n16\\\": 0.2041,\\n          \\\"delta\\\": 0.0243,\\n          \\\"delta_mean\\\": 0.024,\\n          \\\"ci_95\\\": [\\n            -0.0199,\\n            0.0684\\n          ],\\n          \\\"p_positive\\\": 0.858,\\n          \\\"n_bootstrap\\\": 10000\\n        }\\n      },\\n      \\\"paired_first8_vs_full16\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho_n8\\\": 0.3472,\\n          \\\"rho_n16\\\": 0.3791,\\n          \\\"delta\\\": 0.0318,\\n          \\\"delta_mean\\\": 0.0317,\\n          \\\"ci_95\\\": [\\n            -0.0035,\\n            0.0691\\n          ],\\n          \\\"p_positive\\\": 0.9603,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho_n8\\\": 0.2516,\\n          \\\"rho_n16\\\": 0.3081,\\n          \\\"delta\\\": 0.0565,\\n          \\\"delta_mean\\\": 0.0566,\\n          \\\"ci_95\\\": [\\n            0.0008,\\n            0.1135\\n          ],\\n          \\\"p_positive\\\": 0.9764,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho_n8\\\": 0.3,\\n          \\\"rho_n16\\\": 0.3281,\\n          \\\"delta\\\": 0.0281,\\n          \\\"delta_mean\\\": 0.0279,\\n          \\\"ci_95\\\": [\\n            -0.0004,\\n            0.0572\\n          ],\\n          \\\"p_positive\\\": 0.973,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho_n8\\\": 0.3417,\\n          \\\"rho_n16\\\": 0.3467,\\n          \\\"delta\\\": 0.005,\\n          \\\"delta_mean\\\": 0.0048,\\n          \\\"ci_95\\\": [\\n            -0.0423,\\n            0.0538\\n          ],\\n          \\\"p_positive\\\": 0.5701,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho_n8\\\": 0.1646,\\n          \\\"rho_n16\\\": 0.2041,\\n          \\\"delta\\\": 0.0395,\\n          \\\"delta_mean\\\": 0.0394,\\n          \\\"ci_95\\\": [\\n            0.0147,\\n            0.0655\\n          ],\\n          \\\"p_positive\\\": 0.9987,\\n          \\\"n_bootstrap\\\": 10000\\n        }\\n      }\\n    }\\n  },\\n  \\\"bootstrap_ci_single\\\": {\\n    \\\"qwen_scierc_exp004\\\": {\\n      \\\"n_boot\\\": 1000,\\n      \\\"ner_sj\\\": {\\n        \\\"rho\\\": 0.3825,\\n        \\\"ci_95\\\": [\\n          0.2946,\\n          0.4586\\n        ],\\n        \\\"n\\\": 529\\n      },\\n      \\\"ner_fk\\\": {\\n        \\\"rho\\\": 0.259,\\n        \\\"ci_95\\\": [\\n          0.1699,\\n          0.3444\\n        ],\\n        \\\"n\\\": 529\\n      },\\n      \\\"ner_voting_conf\\\": {\\n        \\\"rho\\\": 0.3928,\\n        \\\"ci_95\\\": [\\n          0.3048,\\n          0.4656\\n        ],\\n        \\\"n\\\": 529\\n      },\\n      \\\"re_sj\\\": {\\n        \\\"rho\\\": 0.2441,\\n        \\\"ci_95\\\": [\\n          0.1422,\\n          0.3391\\n        ],\\n        \\\"n\\\": 397\\n      },\\n      \\\"re_fk\\\": {\\n        \\\"rho\\\": 0.2782,\\n        \\\"ci_95\\\": [\\n          0.1785,\\n          0.3692\\n        ],\\n        \\\"n\\\": 397\\n      },\\n      \\\"re_voting_conf\\\": {\\n        \\\"rho\\\": 0.2799,\\n        \\\"ci_95\\\": [\\n          0.1818,\\n          0.3721\\n        ],\\n        \\\"n\\\": 397\\n      },\\n      \\\"re_cond_sj\\\": {\\n        \\\"rho\\\": 0.3161,\\n        \\\"ci_95\\\": [\\n          0.2161,\\n          0.4102\\n        ],\\n        \\\"n\\\": 313\\n      },\\n      \\\"re_cond_fk\\\": {\\n        \\\"rho\\\": 0.3067,\\n        \\\"ci_95\\\": [\\n          0.1971,\\n          0.4173\\n        ],\\n        \\\"n\\\": 313\\n      },\\n      \\\"re_cond_voting_conf\\\": {\\n        \\\"rho\\\": 0.3841,\\n        \\\"ci_95\\\": [\\n          0.2825,\\n          0.474\\n        ],\\n        \\\"n\\\": 313\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "574f1dce-eb84-462a-906b-8a927e5d8329",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "cb83273c-822b-4d06-a02e-d89816d21064",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"_metadata\\\\\\\": {\\\\n    \\\\\\\"generated\\\\\\\": \\\\\\\"2026-05-14\\\\\\\",\\\\n    \\\\\\\"description\\\\\\\": \\\\\\\"Unified bootstrap CI and 3-seed summary for struct_self_consist_ie paper tables\\\\\\\",\\\\n    \\\\\\\"sources\\\\\\\": {\\\\n      \\\\\\\"qwen_scierc_3seed\\\\\\\": [\\\\n        \\\\\\\"output/exp_001_seed42_v2/report.json\\\\\\\",\\\\n        \\\\\\\"output/exp_001_seed123_v2/report.json\\\\\\\",\\\\n        \\\\\\\"output/exp_001_seed456_v2_ner/report.json\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"llama_conll_3seed\\\\\\\": [\\\\n        \\\\\\\"output/exp_017_llama_conll_n16/all_signals_report.json\\\\\\\",\\\\n        \\\\\\\"output/exp_017_llama_conll_n16_s123/all_signals_report.json\\\\\\\",\\\\n        \\\\\\\"output/exp_017_llama_conll_n16_s456/all_signals_report.json\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bootstrap_nscaling\\\\\\\": \\\\\\\"output/bootstrap_ci_nscaling/results.json\\\\\\\",\\\\n      \\\\\\\"bootstrap_single\\\\\\\": \\\\\\\"output/exp004_re_diagnostic/bootstrap_ci.json\\\\\\\"\\\\n    },\\\\n    \\\\\\\"notes\\\\\\\": {\\\\n      \\\\\\\"qwen_scierc_EM_voting_conf\\\\\\\": \\\\\\\"exp_001 seeds only produced report.json with SJ/FK/logprob. EM and voting_conf were not computed per-seed.\\\\\\\",\\\\n      \\\\\\\"nscaling_llama_conll\\\\\\\": \\\\\\\"LLaMA CoNLL N-scaling bootstrap was not run (only Qwen_CoNLL, Qwen_SciERC, LLaMA_SciERC in bootstrap_ci_nscaling).\\\\\\\",\\\\n      \\\\\\\"gold_empty_filter\\\\\\\": \\\\\\\"CoNLL: 3453 total → 2756 valid (697 gold_empty). SciERC: 551 total → 529 valid (22 gold_empty).\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"qwen_scierc_3seed\\\\\\\": {\\\\n    \\\\\\\"ner\\\\\\\": {\\\\n      \\\\\\\"full\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"seeds\\\\\\\": [\\\\n            0.428,\\\\n            0.4244,\\\\n            0.3838\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.4121,\\\\n          \\\\\\\"sd\\\\\\\": 0.0246,\\\\n          \\\\\\\"cv_pct\\\\\\\": 6.0\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"seeds\\\\\\\": [\\\\n            0.2809,\\\\n            0.2752,\\\\n            0.2234\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.2598,\\\\n          \\\\\\\"sd\\\\\\\": 0.0317,\\\\n          \\\\\\\"cv_pct\\\\\\\": 12.2\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"seeds\\\\\\\": [\\\\n            0.2194,\\\\n            0.2513,\\\\n            0.2322\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.2343,\\\\n          \\\\\\\"sd\\\\\\\": 0.0161,\\\\n          \\\\\\\"cv_pct\\\\\\\": 6.9\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": \\\\\\\"missing_no_all_signals_report_for_exp001\\\\\\\",\\\\n        \\\\\\\"voting_conf\\\\\\\": \\\\\\\"missing_no_all_signals_report_for_exp001\\\\\\\"\\\\n      },\\\\n      \\\\\\\"conditional\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"seeds\\\\\\\": [\\\\n            0.3688,\\\\n            0.3757,\\\\n            0.3494\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.3646,\\\\n          \\\\\\\"sd\\\\\\\": 0.0137,\\\\n          \\\\\\\"cv_pct\\\\\\\": 3.7\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"seeds\\\\\\\": [\\\\n            0.1934,\\\\n            0.1785,\\\\n            0.1565\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.1761,\\\\n          \\\\\\\"sd\\\\\\\": 0.0186,\\\\n          \\\\\\\"cv_pct\\\\\\\": 10.5\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"seeds\\\\\\\": [\\\\n            0.156,\\\\n            0.1727,\\\\n            0.1707\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.1664,\\\\n          \\\\\\\"sd\\\\\\\": 0.0091,\\\\n          \\\\\\\"cv_pct\\\\\\\": 5.5\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": \\\\\\\"missing_no_all_signals_report_for_exp001\\\\\\\",\\\\n        \\\\\\\"voting_conf\\\\\\\": \\\\\\\"missing_no_all_signals_report_for_exp001\\\\\\\"\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"llama_conll_3seed\\\\\\\": {\\\\n    \\\\\\\"ner\\\\\\\": {\\\\n      \\\\\\\"full\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"seeds\\\\\\\": [\\\\n            0.4642,\\\\n            0.4698,\\\\n            0.4552\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.4631,\\\\n          \\\\\\\"sd\\\\\\\": 0.0074,\\\\n          \\\\\\\"cv_pct\\\\\\\": 1.6\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"seeds\\\\\\\": [\\\\n            0.4566,\\\\n            0.4594,\\\\n            0.4478\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.4546,\\\\n          \\\\\\\"sd\\\\\\\": 0.0061,\\\\n          \\\\\\\"cv_pct\\\\\\\": 1.3\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"seeds\\\\\\\": [\\\\n            0.4613,\\\\n            0.4676,\\\\n            0.452\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.4603,\\\\n          \\\\\\\"sd\\\\\\\": 0.0078,\\\\n          \\\\\\\"cv_pct\\\\\\\": 1.7\\\\n        },\\\\n        \\\\\\\"voting_conf\\\\\\\": {\\\\n          \\\\\\\"seeds\\\\\\\": [\\\\n            0.4554,\\\\n            0.4612,\\\\n            0.4571\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.4579,\\\\n          \\\\\\\"sd\\\\\\\": 0.003,\\\\n          \\\\\\\"cv_pct\\\\\\\": 0.7\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"seeds\\\\\\\": [\\\\n            0.3058,\\\\n            0.3161,\\\\n            0.3078\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.3099,\\\\n          \\\\\\\"sd\\\\\\\": 0.0055,\\\\n          \\\\\\\"cv_pct\\\\\\\": 1.8\\\\n        }\\\\n      },\\\\n      \\\\\\\"conditional\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"seeds\\\\\\\": [\\\\n            0.4597,\\\\n            0.4712,\\\\n            0.4505\\\\n          ],\\\\n          \\\\\\\"mean\\\\\\\": 0.4605,\\\\n          \\\\\\\"sd\\\\\\\": 0.0104,\\\\n          \\\\\\\"cv_pct\\\\\\\": 2.3\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 14002 字符] ...\\\\n\\\\n47\\\\n          ],\\\\n          \\\\\\\"p_positive\\\\\\\": 0.6649,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"rho_n8\\\\\\\": 0.3332,\\\\n          \\\\\\\"rho_n16\\\\\\\": 0.3081,\\\\n          \\\\\\\"delta\\\\\\\": -0.0251,\\\\n          \\\\\\\"delta_mean\\\\\\\": -0.0246,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            -0.1027,\\\\n            0.0524\\\\n          ],\\\\n          \\\\\\\"p_positive\\\\\\\": 0.2673,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"rho_n8\\\\\\\": 0.3224,\\\\n          \\\\\\\"rho_n16\\\\\\\": 0.3281,\\\\n          \\\\\\\"delta\\\\\\\": 0.0057,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.0056,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            -0.045,\\\\n            0.0575\\\\n          ],\\\\n          \\\\\\\"p_positive\\\\\\\": 0.5854,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        \\\\\\\"voting_conf\\\\\\\": {\\\\n          \\\\\\\"rho_n8\\\\\\\": 0.3411,\\\\n          \\\\\\\"rho_n16\\\\\\\": 0.3467,\\\\n          \\\\\\\"delta\\\\\\\": 0.0055,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.0051,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            -0.0597,\\\\n            0.0713\\\\n          ],\\\\n          \\\\\\\"p_positive\\\\\\\": 0.5588,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"rho_n8\\\\\\\": 0.1798,\\\\n          \\\\\\\"rho_n16\\\\\\\": 0.2041,\\\\n          \\\\\\\"delta\\\\\\\": 0.0243,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.024,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            -0.0199,\\\\n            0.0684\\\\n          ],\\\\n          \\\\\\\"p_positive\\\\\\\": 0.858,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        }\\\\n      },\\\\n      \\\\\\\"paired_first8_vs_full16\\\\\\\": {\\\\n        \\\\\\\"SJ\\\\\\\": {\\\\n          \\\\\\\"rho_n8\\\\\\\": 0.3472,\\\\n          \\\\\\\"rho_n16\\\\\\\": 0.3791,\\\\n          \\\\\\\"delta\\\\\\\": 0.0318,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.0317,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            -0.0035,\\\\n            0.0691\\\\n          ],\\\\n          \\\\\\\"p_positive\\\\\\\": 0.9603,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        \\\\\\\"FK\\\\\\\": {\\\\n          \\\\\\\"rho_n8\\\\\\\": 0.2516,\\\\n          \\\\\\\"rho_n16\\\\\\\": 0.3081,\\\\n          \\\\\\\"delta\\\\\\\": 0.0565,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.0566,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.0008,\\\\n            0.1135\\\\n          ],\\\\n          \\\\\\\"p_positive\\\\\\\": 0.9764,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        \\\\\\\"EM\\\\\\\": {\\\\n          \\\\\\\"rho_n8\\\\\\\": 0.3,\\\\n          \\\\\\\"rho_n16\\\\\\\": 0.3281,\\\\n          \\\\\\\"delta\\\\\\\": 0.0281,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.0279,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            -0.0004,\\\\n            0.0572\\\\n          ],\\\\n          \\\\\\\"p_positive\\\\\\\": 0.973,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        \\\\\\\"voting_conf\\\\\\\": {\\\\n          \\\\\\\"rho_n8\\\\\\\": 0.3417,\\\\n          \\\\\\\"rho_n16\\\\\\\": 0.3467,\\\\n          \\\\\\\"delta\\\\\\\": 0.005,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.0048,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            -0.0423,\\\\n            0.0538\\\\n          ],\\\\n          \\\\\\\"p_positive\\\\\\\": 0.5701,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        \\\\\\\"logprob\\\\\\\": {\\\\n          \\\\\\\"rho_n8\\\\\\\": 0.1646,\\\\n          \\\\\\\"rho_n16\\\\\\\": 0.2041,\\\\n          \\\\\\\"delta\\\\\\\": 0.0395,\\\\n          \\\\\\\"delta_mean\\\\\\\": 0.0394,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.0147,\\\\n            0.0655\\\\n          ],\\\\n          \\\\\\\"p_positive\\\\\\\": 0.9987,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"bootstrap_ci_single\\\\\\\": {\\\\n    \\\\\\\"qwen_scierc_exp004\\\\\\\": {\\\\n      \\\\\\\"n_boot\\\\\\\": 1000,\\\\n      \\\\\\\"ner_sj\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3825,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.2946,\\\\n          0.4586\\\\n        ],\\\\n        \\\\\\\"n\\\\\\\": 529\\\\n      },\\\\n      \\\\\\\"ner_fk\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.259,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.1699,\\\\n          0.3444\\\\n        ],\\\\n        \\\\\\\"n\\\\\\\": 529\\\\n      },\\\\n      \\\\\\\"ner_voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3928,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.3048,\\\\n          0.4656\\\\n        ],\\\\n        \\\\\\\"n\\\\\\\": 529\\\\n      },\\\\n      \\\\\\\"re_sj\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2441,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.1422,\\\\n          0.3391\\\\n        ],\\\\n        \\\\\\\"n\\\\\\\": 397\\\\n      },\\\\n      \\\\\\\"re_fk\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2782,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.1785,\\\\n          0.3692\\\\n        ],\\\\n        \\\\\\\"n\\\\\\\": 397\\\\n      },\\\\n      \\\\\\\"re_voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2799,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.1818,\\\\n          0.3721\\\\n        ],\\\\n        \\\\\\\"n\\\\\\\": 397\\\\n      },\\\\n      \\\\\\\"re_cond_sj\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3161,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.2161,\\\\n          0.4102\\\\n        ],\\\\n        \\\\\\\"n\\\\\\\": 313\\\\n      },\\\\n      \\\\\\\"re_cond_fk\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3067,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.1971,\\\\n          0.4173\\\\n        ],\\\\n        \\\\\\\"n\\\\\\\": 313\\\\n      },\\\\n      \\\\\\\"re_cond_voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3841,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.2825,\\\\n          0.474\\\\n        ],\\\\n        \\\\\\\"n\\\\\\\": 313\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"_metadata\\\": {\\n    \\\"generated\\\": \\\"2026-05-14\\\",\\n    \\\"description\\\": \\\"Unified bootstrap CI and 3-seed summary for struct_self_consist_ie paper tables\\\",\\n    \\\"sources\\\": {\\n      \\\"qwen_scierc_3seed\\\": [\\n        \\\"output/exp_001_seed42_v2/report.json\\\",\\n        \\\"output/exp_001_seed123_v2/report.json\\\",\\n        \\\"output/exp_001_seed456_v2_ner/report.json\\\"\\n      ],\\n      \\\"llama_conll_3seed\\\": [\\n        \\\"output/exp_017_llama_conll_n16/all_signals_report.json\\\",\\n        \\\"output/exp_017_llama_conll_n16_s123/all_signals_report.json\\\",\\n        \\\"output/exp_017_llama_conll_n16_s456/all_signals_report.json\\\"\\n      ],\\n      \\\"bootstrap_nscaling\\\": \\\"output/bootstrap_ci_nscaling/results.json\\\",\\n      \\\"bootstrap_single\\\": \\\"output/exp004_re_diagnostic/bootstrap_ci.json\\\"\\n    },\\n    \\\"notes\\\": {\\n      \\\"qwen_scierc_EM_voting_conf\\\": \\\"exp_001 seeds only produced report.json with SJ/FK/logprob. EM and voting_conf were not computed per-seed.\\\",\\n      \\\"nscaling_llama_conll\\\": \\\"LLaMA CoNLL N-scaling bootstrap was not run (only Qwen_CoNLL, Qwen_SciERC, LLaMA_SciERC in bootstrap_ci_nscaling).\\\",\\n      \\\"gold_empty_filter\\\": \\\"CoNLL: 3453 total → 2756 valid (697 gold_empty). SciERC: 551 total → 529 valid (22 gold_empty).\\\"\\n    }\\n  },\\n  \\\"qwen_scierc_3seed\\\": {\\n    \\\"ner\\\": {\\n      \\\"full\\\": {\\n        \\\"SJ\\\": {\\n          \\\"seeds\\\": [\\n            0.428,\\n            0.4244,\\n            0.3838\\n          ],\\n          \\\"mean\\\": 0.4121,\\n          \\\"sd\\\": 0.0246,\\n          \\\"cv_pct\\\": 6.0\\n        },\\n        \\\"FK\\\": {\\n          \\\"seeds\\\": [\\n            0.2809,\\n            0.2752,\\n            0.2234\\n          ],\\n          \\\"mean\\\": 0.2598,\\n          \\\"sd\\\": 0.0317,\\n          \\\"cv_pct\\\": 12.2\\n        },\\n        \\\"logprob\\\": {\\n          \\\"seeds\\\": [\\n            0.2194,\\n            0.2513,\\n            0.2322\\n          ],\\n          \\\"mean\\\": 0.2343,\\n          \\\"sd\\\": 0.0161,\\n          \\\"cv_pct\\\": 6.9\\n        },\\n        \\\"EM\\\": \\\"missing_no_all_signals_report_for_exp001\\\",\\n        \\\"voting_conf\\\": \\\"missing_no_all_signals_report_for_exp001\\\"\\n      },\\n      \\\"conditional\\\": {\\n        \\\"SJ\\\": {\\n          \\\"seeds\\\": [\\n            0.3688,\\n            0.3757,\\n            0.3494\\n          ],\\n          \\\"mean\\\": 0.3646,\\n          \\\"sd\\\": 0.0137,\\n          \\\"cv_pct\\\": 3.7\\n        },\\n        \\\"FK\\\": {\\n          \\\"seeds\\\": [\\n            0.1934,\\n            0.1785,\\n            0.1565\\n          ],\\n          \\\"mean\\\": 0.1761,\\n          \\\"sd\\\": 0.0186,\\n          \\\"cv_pct\\\": 10.5\\n        },\\n        \\\"logprob\\\": {\\n          \\\"seeds\\\": [\\n            0.156,\\n            0.1727,\\n            0.1707\\n          ],\\n          \\\"mean\\\": 0.1664,\\n          \\\"sd\\\": 0.0091,\\n          \\\"cv_pct\\\": 5.5\\n        },\\n        \\\"EM\\\": \\\"missing_no_all_signals_report_for_exp001\\\",\\n        \\\"voting_conf\\\": \\\"missing_no_all_signals_report_for_exp001\\\"\\n      }\\n    }\\n  },\\n  \\\"llama_conll_3seed\\\": {\\n    \\\"ner\\\": {\\n      \\\"full\\\": {\\n        \\\"SJ\\\": {\\n          \\\"seeds\\\": [\\n            0.4642,\\n            0.4698,\\n            0.4552\\n          ],\\n          \\\"mean\\\": 0.4631,\\n          \\\"sd\\\": 0.0074,\\n          \\\"cv_pct\\\": 1.6\\n        },\\n        \\\"FK\\\": {\\n          \\\"seeds\\\": [\\n            0.4566,\\n            0.4594,\\n            0.4478\\n          ],\\n          \\\"mean\\\": 0.4546,\\n          \\\"sd\\\": 0.0061,\\n          \\\"cv_pct\\\": 1.3\\n        },\\n        \\\"EM\\\": {\\n          \\\"seeds\\\": [\\n            0.4613,\\n            0.4676,\\n            0.452\\n          ],\\n          \\\"mean\\\": 0.4603,\\n          \\\"sd\\\": 0.0078,\\n          \\\"cv_pct\\\": 1.7\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"seeds\\\": [\\n            0.4554,\\n            0.4612,\\n            0.4571\\n          ],\\n          \\\"mean\\\": 0.4579,\\n          \\\"sd\\\": 0.003,\\n          \\\"cv_pct\\\": 0.7\\n        },\\n        \\\"logprob\\\": {\\n          \\\"seeds\\\": [\\n            0.3058,\\n            0.3161,\\n            0.3078\\n          ],\\n          \\\"mean\\\": 0.3099,\\n          \\\"sd\\\": 0.0055,\\n          \\\"cv_pct\\\": 1.8\\n        }\\n      },\\n      \\\"conditional\\\": {\\n        \\\"SJ\\\": {\\n          \\\"seeds\\\": [\\n            0.4597,\\n            0.4712,\\n            0.4505\\n          ],\\n          \\\"mean\\\": 0.4605,\\n          \\\"sd\\\": 0.0104,\\n          \\\"cv_pct\\\": 2.3\\n        },\\n        \\\"FK\\\"\\n\\n... [截断: 输出过长，省略 14002 字符] ...\\n\\n47\\n          ],\\n          \\\"p_positive\\\": 0.6649,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho_n8\\\": 0.3332,\\n          \\\"rho_n16\\\": 0.3081,\\n          \\\"delta\\\": -0.0251,\\n          \\\"delta_mean\\\": -0.0246,\\n          \\\"ci_95\\\": [\\n            -0.1027,\\n            0.0524\\n          ],\\n          \\\"p_positive\\\": 0.2673,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho_n8\\\": 0.3224,\\n          \\\"rho_n16\\\": 0.3281,\\n          \\\"delta\\\": 0.0057,\\n          \\\"delta_mean\\\": 0.0056,\\n          \\\"ci_95\\\": [\\n            -0.045,\\n            0.0575\\n          ],\\n          \\\"p_positive\\\": 0.5854,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho_n8\\\": 0.3411,\\n          \\\"rho_n16\\\": 0.3467,\\n          \\\"delta\\\": 0.0055,\\n          \\\"delta_mean\\\": 0.0051,\\n          \\\"ci_95\\\": [\\n            -0.0597,\\n            0.0713\\n          ],\\n          \\\"p_positive\\\": 0.5588,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho_n8\\\": 0.1798,\\n          \\\"rho_n16\\\": 0.2041,\\n          \\\"delta\\\": 0.0243,\\n          \\\"delta_mean\\\": 0.024,\\n          \\\"ci_95\\\": [\\n            -0.0199,\\n            0.0684\\n          ],\\n          \\\"p_positive\\\": 0.858,\\n          \\\"n_bootstrap\\\": 10000\\n        }\\n      },\\n      \\\"paired_first8_vs_full16\\\": {\\n        \\\"SJ\\\": {\\n          \\\"rho_n8\\\": 0.3472,\\n          \\\"rho_n16\\\": 0.3791,\\n          \\\"delta\\\": 0.0318,\\n          \\\"delta_mean\\\": 0.0317,\\n          \\\"ci_95\\\": [\\n            -0.0035,\\n            0.0691\\n          ],\\n          \\\"p_positive\\\": 0.9603,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        \\\"FK\\\": {\\n          \\\"rho_n8\\\": 0.2516,\\n          \\\"rho_n16\\\": 0.3081,\\n          \\\"delta\\\": 0.0565,\\n          \\\"delta_mean\\\": 0.0566,\\n          \\\"ci_95\\\": [\\n            0.0008,\\n            0.1135\\n          ],\\n          \\\"p_positive\\\": 0.9764,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        \\\"EM\\\": {\\n          \\\"rho_n8\\\": 0.3,\\n          \\\"rho_n16\\\": 0.3281,\\n          \\\"delta\\\": 0.0281,\\n          \\\"delta_mean\\\": 0.0279,\\n          \\\"ci_95\\\": [\\n            -0.0004,\\n            0.0572\\n          ],\\n          \\\"p_positive\\\": 0.973,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        \\\"voting_conf\\\": {\\n          \\\"rho_n8\\\": 0.3417,\\n          \\\"rho_n16\\\": 0.3467,\\n          \\\"delta\\\": 0.005,\\n          \\\"delta_mean\\\": 0.0048,\\n          \\\"ci_95\\\": [\\n            -0.0423,\\n            0.0538\\n          ],\\n          \\\"p_positive\\\": 0.5701,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        \\\"logprob\\\": {\\n          \\\"rho_n8\\\": 0.1646,\\n          \\\"rho_n16\\\": 0.2041,\\n          \\\"delta\\\": 0.0395,\\n          \\\"delta_mean\\\": 0.0394,\\n          \\\"ci_95\\\": [\\n            0.0147,\\n            0.0655\\n          ],\\n          \\\"p_positive\\\": 0.9987,\\n          \\\"n_bootstrap\\\": 10000\\n        }\\n      }\\n    }\\n  },\\n  \\\"bootstrap_ci_single\\\": {\\n    \\\"qwen_scierc_exp004\\\": {\\n      \\\"n_boot\\\": 1000,\\n      \\\"ner_sj\\\": {\\n        \\\"rho\\\": 0.3825,\\n        \\\"ci_95\\\": [\\n          0.2946,\\n          0.4586\\n        ],\\n        \\\"n\\\": 529\\n      },\\n      \\\"ner_fk\\\": {\\n        \\\"rho\\\": 0.259,\\n        \\\"ci_95\\\": [\\n          0.1699,\\n          0.3444\\n        ],\\n        \\\"n\\\": 529\\n      },\\n      \\\"ner_voting_conf\\\": {\\n        \\\"rho\\\": 0.3928,\\n        \\\"ci_95\\\": [\\n          0.3048,\\n          0.4656\\n        ],\\n        \\\"n\\\": 529\\n      },\\n      \\\"re_sj\\\": {\\n        \\\"rho\\\": 0.2441,\\n        \\\"ci_95\\\": [\\n          0.1422,\\n          0.3391\\n        ],\\n        \\\"n\\\": 397\\n      },\\n      \\\"re_fk\\\": {\\n        \\\"rho\\\": 0.2782,\\n        \\\"ci_95\\\": [\\n          0.1785,\\n          0.3692\\n        ],\\n        \\\"n\\\": 397\\n      },\\n      \\\"re_voting_conf\\\": {\\n        \\\"rho\\\": 0.2799,\\n        \\\"ci_95\\\": [\\n          0.1818,\\n          0.3721\\n        ],\\n        \\\"n\\\": 397\\n      },\\n      \\\"re_cond_sj\\\": {\\n        \\\"rho\\\": 0.3161,\\n        \\\"ci_95\\\": [\\n          0.2161,\\n          0.4102\\n        ],\\n        \\\"n\\\": 313\\n      },\\n      \\\"re_cond_fk\\\": {\\n        \\\"rho\\\": 0.3067,\\n        \\\"ci_95\\\": [\\n          0.1971,\\n          0.4173\\n        ],\\n        \\\"n\\\": 313\\n      },\\n      \\\"re_cond_voting_conf\\\": {\\n        \\\"rho\\\": 0.3841,\\n        \\\"ci_95\\\": [\\n          0.2825,\\n          0.474\\n        ],\\n        \\\"n\\\": 313\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  },
+  "sourceToolAssistantUUID": "574f1dce-eb84-462a-906b-8a927e5d8329",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-14T21:18:02.418Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012gUeMLpKbsPqv7cueM7fZ9`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/output/ -name \"*.json\" -newer /root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456 -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb83273c-822b-4d06-a02e-d89816d21064",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A5YjNjg4k2Hc4zZoVN",
+  "type": "assistant",
+  "uuid": "177042fa-76a9-414d-b9dc-3241cc2f5ae4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXHYA7EdiSymyw3ftAF1hF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4300,
+      "cache_read_input_tokens": 48852,
+      "output_tokens": 752,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4300,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 752,
+          "cache_read_input_tokens": 48852,
+          "cache_creation_input_tokens": 4300,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4300
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-14T21:18:02.679Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F7L8yaDewcH13nQuMkD8th`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "177042fa-76a9-414d-b9dc-3241cc2f5ae4",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A5YjNjg4k2Hc4zZoVN",
+  "type": "assistant",
+  "uuid": "c73711a6-dba1-49f2-985e-62001185374e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXHYA7EdiSymyw3ftAF1hF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4300,
+      "cache_read_input_tokens": 48852,
+      "output_tokens": 752,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4300,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 752,
+          "cache_read_input_tokens": 48852,
+          "cache_creation_input_tokens": 4300,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4300
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-14T21:18:02.777Z_
+
+<details><summary>↩ Tool result · `toolu_012gUeMLpKbsPqv7cueM7fZ9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_nscaling/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_nscaling/llama_conll_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_conll_n16_3seed_5signal_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "177042fa-76a9-414d-b9dc-3241cc2f5ae4",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "da9ab662-728e-44f1-b5f1-e17911a7c508",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/all_signals_report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_nscaling/results.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_nscaling/llama_conll_result.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_conll_n16_3seed_5signal_summary.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/all_signals_report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_nscaling/results.json\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_nscaling/llama_conll_result.json\\n/root/autodl-tmp/struct_self_consist_ie/output/llama_conll_n16_3seed_5signal_summary.json\\n/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "177042fa-76a9-414d-b9dc-3241cc2f5ae4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_data_qwen_scierc_3seed_em_voting_20260514T211403]: Worker worker_data_qwen_scierc_3seed_em_voting_20260514T211403 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "da9ab662-728e-44f1-b5f1-e17911a7c508",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review worker completion status for Qwen ScIERC task",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T21:18:03.195Z_
+
+<details><summary>↩ Tool result · `toolu_01F7L8yaDewcH13nQuMkD8th`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 6748\\ndrwxr-xr-x  2 root root     112 May 15 05:15 .\\ndrwxr-xr-x 57 root root    4096 May 15 05:09 ..\\n-rw-r--r--  1 root root    2983 May 15 05:15 all_signals_report.json\\n-rw-r--r--  1 root root    1728 May 14 22:43 report.json\\n-rw-r--r--  1 root root  107203 May 14 22:43 run.log\\n-rw-r--r--  1 root root 6785784 May 14 22:43 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c73711a6-dba1-49f2-985e-62001185374e",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "9b3ea492-f6de-4ed4-baa5-023f33caa0e8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 6748\\\\ndrwxr-xr-x  2 root root     112 May 15 05:15 .\\\\ndrwxr-xr-x 57 root root    4096 May 15 05:09 ..\\\\n-rw-r--r--  1 root root    2983 May 15 05:15 all_signals_report.json\\\\n-rw-r--r--  1 root root    1728 May 14 22:43 report.json\\\\n-rw-r--r--  1 root root  107203 May 14 22:43 run.log\\\\n-rw-r--r--  1 root root 6785784 May 14 22:43 samples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 6748\\ndrwxr-xr-x  2 root root     112 May 15 05:15 .\\ndrwxr-xr-x 57 root root    4096 May 15 05:09 ..\\n-rw-r--r--  1 root root    2983 May 15 05:15 all_signals_report.json\\n-rw-r--r--  1 root root    1728 May 14 22:43 report.json\\n-rw-r--r--  1 root root  107203 May 14 22:43 run.log\\n-rw-r--r--  1 root root 6785784 May 14 22:43 samples.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c73711a6-dba1-49f2-985e-62001185374e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-14T21:18:14.198Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see what happened. The worker `worker_data_qwen_scierc_3seed_em_voting_20260514T211403` seems to have:
+
+1. Generated `all_signals_report.json` files for the 3 Qwen SciERC seeds (exp_001_seed42_v2, exp_001_seed123_v2, exp_001_seed456_v2_ner) - these now include EM and voting_conf which were previously missing
+2. Generated `bootstrap_ci_summary.json` which is a unified summary for paper tables
+
+
+3. Created some additional supporting files
+
+I'm noticing a timing issue though - the `bootstrap_ci_summary.json` was last modified May 15 05:09, but the `all_signals_report.json` files were created May 15 05:15, which means the summary was generated before those report files existed and is now stale.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b3ea492-f6de-4ed4-baa5-023f33caa0e8",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A6b2a8oubafnWSnqbE",
+  "type": "assistant",
+  "uuid": "e5d12bc4-7b70-40cf-a415-09b4635a9fac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T4EQ7XRSBuQu3xweMUwxy5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5852,
+      "cache_read_input_tokens": 53152,
+      "output_tokens": 846,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5852,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 846,
+          "cache_read_input_tokens": 53152,
+          "cache_creation_input_tokens": 5852,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5852
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-14T21:18:15.080Z_
+
+发现关键问题：`bootstrap_ci_summary.json`（05:09）标记 Qwen SciERC EM/voting_conf 为 missing，但 `all_signals_report.json`（05:15）后来才生成。需要核实数据一致性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5d12bc4-7b70-40cf-a415-09b4635a9fac",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A6b2a8oubafnWSnqbE",
+  "type": "assistant",
+  "uuid": "20494b4f-2ba8-40fd-9916-25ccd4353c4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T4EQ7XRSBuQu3xweMUwxy5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5852,
+      "cache_read_input_tokens": 53152,
+      "output_tokens": 846,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5852,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 846,
+          "cache_read_input_tokens": 53152,
+          "cache_creation_input_tokens": 5852,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5852
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-14T21:18:16.047Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KAuf1K6HBakFqYsFtUT58y`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/all_signals_report.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "20494b4f-2ba8-40fd-9916-25ccd4353c4d",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A6b2a8oubafnWSnqbE",
+  "type": "assistant",
+  "uuid": "1d9000f6-5836-4470-a445-cb785918577b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T4EQ7XRSBuQu3xweMUwxy5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5852,
+      "cache_read_input_tokens": 53152,
+      "output_tokens": 846,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5852,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 846,
+          "cache_read_input_tokens": 53152,
+          "cache_creation_input_tokens": 5852,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5852
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T21:18:16.408Z_
+
+<details><summary>↩ Tool result · `toolu_01KAuf1K6HBakFqYsFtUT58y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"full\\\": {\\n    \\\"n\\\": 529,\\n    \\\"pct_perfect\\\": 0.2495274102079395,\\n    \\\"greedy_f1_mean\\\": 0.6442,\\n    \\\"metrics\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.428,\\n        \\\"rho_ci95\\\": [\\n          0.3426,\\n          0.5029\\n        ],\\n        \\\"p_rho\\\": 5.59950452013284e-25,\\n        \\\"auroc\\\": 0.7368,\\n        \\\"auroc_ci95\\\": [\\n          0.681,\\n          0.7886\\n        ],\\n        \\\"ece\\\": 0.4575\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2809,\\n        \\\"rho_ci95\\\": [\\n          0.1856,\\n          0.3746\\n        ],\\n        \\\"p_rho\\\": 4.7946512827215673e-11,\\n        \\\"auroc\\\": 0.6099,\\n        \\\"auroc_ci95\\\": [\\n          0.5436,\\n          0.6809\\n        ],\\n        \\\"ece\\\": 0.4822\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.2194,\\n        \\\"rho_ci95\\\": [\\n          0.131,\\n          0.2999\\n        ],\\n        \\\"p_rho\\\": 3.4800443839281296e-07,\\n        \\\"auroc\\\": 0.587,\\n        \\\"auroc_ci95\\\": [\\n          0.526,\\n          0.6448\\n        ],\\n        \\\"ece\\\": 0.7073\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3347,\\n        \\\"rho_ci95\\\": [\\n          0.2505,\\n          0.4154\\n        ],\\n        \\\"p_rho\\\": 2.6160621283755218e-15,\\n        \\\"auroc\\\": 0.7902,\\n        \\\"auroc_ci95\\\": [\\n          0.7404,\\n          0.8354\\n        ],\\n        \\\"ece\\\": 0.332\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4408,\\n        \\\"rho_ci95\\\": [\\n          0.3588,\\n          0.5154\\n        ],\\n        \\\"p_rho\\\": 1.490794408703245e-26,\\n        \\\"auroc\\\": 0.734,\\n        \\\"auroc_ci95\\\": [\\n          0.6795,\\n          0.7848\\n        ],\\n        \\\"ece\\\": 0.32\\n      }\\n    }\\n  },\\n  \\\"conditional\\\": {\\n    \\\"n\\\": 477,\\n    \\\"pct_perfect\\\": 0.27672955974842767,\\n    \\\"greedy_f1_mean\\\": 0.7144,\\n    \\\"metrics\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3688,\\n        \\\"rho_ci95\\\": [\\n          0.2789,\\n          0.4435\\n        ],\\n        \\\"p_rho\\\": 8.110501492620769e-17,\\n        \\\"auroc\\\": 0.7193,\\n        \\\"auroc_ci95\\\": [\\n          0.6634,\\n          0.7725\\n        ],\\n        \\\"ece\\\": 0.4504\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.1934,\\n        \\\"rho_ci95\\\": [\\n          0.099,\\n          0.2839\\n        ],\\n        \\\"p_rho\\\": 2.1046876446764995e-05,\\n        \\\"auroc\\\": 0.5893,\\n        \\\"auroc_ci95\\\": [\\n          0.5212,\\n          0.6538\\n        ],\\n        \\\"ece\\\": 0.4845\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.156,\\n        \\\"rho_ci95\\\": [\\n          0.0669,\\n          0.249\\n        ],\\n        \\\"p_rho\\\": 0.0006305921267473631,\\n        \\\"auroc\\\": 0.5694,\\n        \\\"auroc_ci95\\\": [\\n          0.5089,\\n          0.6292\\n        ],\\n        \\\"ece\\\": 0.6817\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4151,\\n        \\\"rho_ci95\\\": [\\n          0.3349,\\n          0.4924\\n        ],\\n        \\\"p_rho\\\": 2.7317506994437523e-21,\\n        \\\"auroc\\\": 0.7972,\\n        \\\"auroc_ci95\\\": [\\n          0.7482,\\n          0.8406\\n        ],\\n        \\\"ece\\\": 0.3041\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3531,\\n        \\\"rho_ci95\\\": [\\n          0.2698,\\n          0.4348\\n        ],\\n        \\\"p_rho\\\": 1.886263246068294e-15,\\n        \\\"auroc\\\": 0.7122,\\n        \\\"auroc_ci95\\\": [\\n          0.657,\\n          0.7705\\n        ],\\n        \\\"ece\\\": 0.3206\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1d9000f6-5836-4470-a445-cb785918577b",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "6159425d-8862-4642-8149-ee216cb30ebf",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"full\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 529,\\\\n    \\\\\\\"pct_perfect\\\\\\\": 0.2495274102079395,\\\\n    \\\\\\\"greedy_f1_mean\\\\\\\": 0.6442,\\\\n    \\\\\\\"metrics\\\\\\\": {\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.428,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.3426,\\\\n          0.5029\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 5.59950452013284e-25,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7368,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.681,\\\\n          0.7886\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.4575\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2809,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.1856,\\\\n          0.3746\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 4.7946512827215673e-11,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6099,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.5436,\\\\n          0.6809\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.4822\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2194,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.131,\\\\n          0.2999\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 3.4800443839281296e-07,\\\\n        \\\\\\\"auroc\\\\\\\": 0.587,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.526,\\\\n          0.6448\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.7073\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3347,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.2505,\\\\n          0.4154\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 2.6160621283755218e-15,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7902,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.7404,\\\\n          0.8354\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.332\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4408,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.3588,\\\\n          0.5154\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 1.490794408703245e-26,\\\\n        \\\\\\\"auroc\\\\\\\": 0.734,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.6795,\\\\n          0.7848\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.32\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"conditional\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 477,\\\\n    \\\\\\\"pct_perfect\\\\\\\": 0.27672955974842767,\\\\n    \\\\\\\"greedy_f1_mean\\\\\\\": 0.7144,\\\\n    \\\\\\\"metrics\\\\\\\": {\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3688,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.2789,\\\\n          0.4435\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 8.110501492620769e-17,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7193,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.6634,\\\\n          0.7725\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.4504\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1934,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.099,\\\\n          0.2839\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 2.1046876446764995e-05,\\\\n        \\\\\\\"auroc\\\\\\\": 0.5893,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.5212,\\\\n          0.6538\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.4845\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.156,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.0669,\\\\n          0.249\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 0.0006305921267473631,\\\\n        \\\\\\\"auroc\\\\\\\": 0.5694,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.5089,\\\\n          0.6292\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.6817\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4151,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.3349,\\\\n          0.4924\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 2.7317506994437523e-21,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7972,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.7482,\\\\n          0.8406\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.3041\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3531,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.2698,\\\\n          0.4348\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 1.886263246068294e-15,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7122,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.657,\\\\n          0.7705\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.3206\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"full\\\": {\\n    \\\"n\\\": 529,\\n    \\\"pct_perfect\\\": 0.2495274102079395,\\n    \\\"greedy_f1_mean\\\": 0.6442,\\n    \\\"metrics\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.428,\\n        \\\"rho_ci95\\\": [\\n          0.3426,\\n          0.5029\\n        ],\\n        \\\"p_rho\\\": 5.59950452013284e-25,\\n        \\\"auroc\\\": 0.7368,\\n        \\\"auroc_ci95\\\": [\\n          0.681,\\n          0.7886\\n        ],\\n        \\\"ece\\\": 0.4575\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2809,\\n        \\\"rho_ci95\\\": [\\n          0.1856,\\n          0.3746\\n        ],\\n        \\\"p_rho\\\": 4.7946512827215673e-11,\\n        \\\"auroc\\\": 0.6099,\\n        \\\"auroc_ci95\\\": [\\n          0.5436,\\n          0.6809\\n        ],\\n        \\\"ece\\\": 0.4822\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.2194,\\n        \\\"rho_ci95\\\": [\\n          0.131,\\n          0.2999\\n        ],\\n        \\\"p_rho\\\": 3.4800443839281296e-07,\\n        \\\"auroc\\\": 0.587,\\n        \\\"auroc_ci95\\\": [\\n          0.526,\\n          0.6448\\n        ],\\n        \\\"ece\\\": 0.7073\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3347,\\n        \\\"rho_ci95\\\": [\\n          0.2505,\\n          0.4154\\n        ],\\n        \\\"p_rho\\\": 2.6160621283755218e-15,\\n        \\\"auroc\\\": 0.7902,\\n        \\\"auroc_ci95\\\": [\\n          0.7404,\\n          0.8354\\n        ],\\n        \\\"ece\\\": 0.332\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4408,\\n        \\\"rho_ci95\\\": [\\n          0.3588,\\n          0.5154\\n        ],\\n        \\\"p_rho\\\": 1.490794408703245e-26,\\n        \\\"auroc\\\": 0.734,\\n        \\\"auroc_ci95\\\": [\\n          0.6795,\\n          0.7848\\n        ],\\n        \\\"ece\\\": 0.32\\n      }\\n    }\\n  },\\n  \\\"conditional\\\": {\\n    \\\"n\\\": 477,\\n    \\\"pct_perfect\\\": 0.27672955974842767,\\n    \\\"greedy_f1_mean\\\": 0.7144,\\n    \\\"metrics\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3688,\\n        \\\"rho_ci95\\\": [\\n          0.2789,\\n          0.4435\\n        ],\\n        \\\"p_rho\\\": 8.110501492620769e-17,\\n        \\\"auroc\\\": 0.7193,\\n        \\\"auroc_ci95\\\": [\\n          0.6634,\\n          0.7725\\n        ],\\n        \\\"ece\\\": 0.4504\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.1934,\\n        \\\"rho_ci95\\\": [\\n          0.099,\\n          0.2839\\n        ],\\n        \\\"p_rho\\\": 2.1046876446764995e-05,\\n        \\\"auroc\\\": 0.5893,\\n        \\\"auroc_ci95\\\": [\\n          0.5212,\\n          0.6538\\n        ],\\n        \\\"ece\\\": 0.4845\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.156,\\n        \\\"rho_ci95\\\": [\\n          0.0669,\\n          0.249\\n        ],\\n        \\\"p_rho\\\": 0.0006305921267473631,\\n        \\\"auroc\\\": 0.5694,\\n        \\\"auroc_ci95\\\": [\\n          0.5089,\\n          0.6292\\n        ],\\n        \\\"ece\\\": 0.6817\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4151,\\n        \\\"rho_ci95\\\": [\\n          0.3349,\\n          0.4924\\n        ],\\n        \\\"p_rho\\\": 2.7317506994437523e-21,\\n        \\\"auroc\\\": 0.7972,\\n        \\\"auroc_ci95\\\": [\\n          0.7482,\\n          0.8406\\n        ],\\n        \\\"ece\\\": 0.3041\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3531,\\n        \\\"rho_ci95\\\": [\\n          0.2698,\\n          0.4348\\n        ],\\n        \\\"p_rho\\\": 1.886263246068294e-15,\\n        \\\"auroc\\\": 0.7122,\\n        \\\"auroc_ci95\\\": [\\n          0.657,\\n          0.7705\\n        ],\\n        \\\"ece\\\": 0.3206\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1d9000f6-5836-4470-a445-cb785918577b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-14T21:18:16.518Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Wrz4UEdTFsdvjAEm8LhB9H`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/all_signals_report.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6159425d-8862-4642-8149-ee216cb30ebf",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A6b2a8oubafnWSnqbE",
+  "type": "assistant",
+  "uuid": "2d3c85ec-c995-4e43-a531-d604e5dafc8c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T4EQ7XRSBuQu3xweMUwxy5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5852,
+      "cache_read_input_tokens": 53152,
+      "output_tokens": 846,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5852,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 846,
+          "cache_read_input_tokens": 53152,
+          "cache_creation_input_tokens": 5852,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5852
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T21:18:16.883Z_
+
+<details><summary>↩ Tool result · `toolu_01Wrz4UEdTFsdvjAEm8LhB9H`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"full\\\": {\\n    \\\"n\\\": 529,\\n    \\\"pct_perfect\\\": 0.2495274102079395,\\n    \\\"greedy_f1_mean\\\": 0.6442,\\n    \\\"metrics\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.4244,\\n        \\\"rho_ci95\\\": [\\n          0.3427,\\n          0.4978\\n        ],\\n        \\\"p_rho\\\": 1.520597007565091e-24,\\n        \\\"auroc\\\": 0.7363,\\n        \\\"auroc_ci95\\\": [\\n          0.6795,\\n          0.7877\\n        ],\\n        \\\"ece\\\": 0.4544\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2752,\\n        \\\"rho_ci95\\\": [\\n          0.1806,\\n          0.3643\\n        ],\\n        \\\"p_rho\\\": 1.2091436336567141e-10,\\n        \\\"auroc\\\": 0.6268,\\n        \\\"auroc_ci95\\\": [\\n          0.5604,\\n          0.6956\\n        ],\\n        \\\"ece\\\": 0.4841\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.2513,\\n        \\\"rho_ci95\\\": [\\n          0.1646,\\n          0.3267\\n        ],\\n        \\\"p_rho\\\": 4.6374890321372654e-09,\\n        \\\"auroc\\\": 0.6062,\\n        \\\"auroc_ci95\\\": [\\n          0.5481,\\n          0.6607\\n        ],\\n        \\\"ece\\\": 0.7068\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3369,\\n        \\\"rho_ci95\\\": [\\n          0.2493,\\n          0.4157\\n        ],\\n        \\\"p_rho\\\": 1.663329942356157e-15,\\n        \\\"auroc\\\": 0.7807,\\n        \\\"auroc_ci95\\\": [\\n          0.7323,\\n          0.8271\\n        ],\\n        \\\"ece\\\": 0.3355\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4131,\\n        \\\"rho_ci95\\\": [\\n          0.3307,\\n          0.4877\\n        ],\\n        \\\"p_rho\\\": 3.235265169516744e-23,\\n        \\\"auroc\\\": 0.7167,\\n        \\\"auroc_ci95\\\": [\\n          0.6574,\\n          0.7678\\n        ],\\n        \\\"ece\\\": 0.3123\\n      }\\n    }\\n  },\\n  \\\"conditional\\\": {\\n    \\\"n\\\": 477,\\n    \\\"pct_perfect\\\": 0.27672955974842767,\\n    \\\"greedy_f1_mean\\\": 0.7144,\\n    \\\"metrics\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3757,\\n        \\\"rho_ci95\\\": [\\n          0.2913,\\n          0.4542\\n        ],\\n        \\\"p_rho\\\": 1.939751579138098e-17,\\n        \\\"auroc\\\": 0.7213,\\n        \\\"auroc_ci95\\\": [\\n          0.6647,\\n          0.7781\\n        ],\\n        \\\"ece\\\": 0.447\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.1785,\\n        \\\"rho_ci95\\\": [\\n          0.0839,\\n          0.2667\\n        ],\\n        \\\"p_rho\\\": 8.87656019836767e-05,\\n        \\\"auroc\\\": 0.6054,\\n        \\\"auroc_ci95\\\": [\\n          0.54,\\n          0.6733\\n        ],\\n        \\\"ece\\\": 0.477\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1727,\\n        \\\"rho_ci95\\\": [\\n          0.0836,\\n          0.2612\\n        ],\\n        \\\"p_rho\\\": 0.00015059760743900375,\\n        \\\"auroc\\\": 0.5844,\\n        \\\"auroc_ci95\\\": [\\n          0.5233,\\n          0.6436\\n        ],\\n        \\\"ece\\\": 0.6811\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4036,\\n        \\\"rho_ci95\\\": [\\n          0.3239,\\n          0.4831\\n        ],\\n        \\\"p_rho\\\": 4.143496433451064e-20,\\n        \\\"auroc\\\": 0.7869,\\n        \\\"auroc_ci95\\\": [\\n          0.7405,\\n          0.8302\\n        ],\\n        \\\"ece\\\": 0.3096\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3393,\\n        \\\"rho_ci95\\\": [\\n          0.25,\\n          0.4247\\n        ],\\n        \\\"p_rho\\\": 2.5595266031008456e-14,\\n        \\\"auroc\\\": 0.6979,\\n        \\\"auroc_ci95\\\": [\\n          0.6372,\\n          0.7601\\n        ],\\n        \\\"ece\\\": 0.3071\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2d3c85ec-c995-4e43-a531-d604e5dafc8c",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "6898d526-510e-424e-97aa-4a7f076bfe9c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"full\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 529,\\\\n    \\\\\\\"pct_perfect\\\\\\\": 0.2495274102079395,\\\\n    \\\\\\\"greedy_f1_mean\\\\\\\": 0.6442,\\\\n    \\\\\\\"metrics\\\\\\\": {\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4244,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.3427,\\\\n          0.4978\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 1.520597007565091e-24,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7363,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.6795,\\\\n          0.7877\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.4544\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2752,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.1806,\\\\n          0.3643\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 1.2091436336567141e-10,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6268,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.5604,\\\\n          0.6956\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.4841\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2513,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.1646,\\\\n          0.3267\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 4.6374890321372654e-09,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6062,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.5481,\\\\n          0.6607\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.7068\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3369,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.2493,\\\\n          0.4157\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 1.663329942356157e-15,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7807,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.7323,\\\\n          0.8271\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.3355\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4131,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.3307,\\\\n          0.4877\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 3.235265169516744e-23,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7167,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.6574,\\\\n          0.7678\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.3123\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"conditional\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 477,\\\\n    \\\\\\\"pct_perfect\\\\\\\": 0.27672955974842767,\\\\n    \\\\\\\"greedy_f1_mean\\\\\\\": 0.7144,\\\\n    \\\\\\\"metrics\\\\\\\": {\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3757,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.2913,\\\\n          0.4542\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 1.939751579138098e-17,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7213,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.6647,\\\\n          0.7781\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.447\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1785,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.0839,\\\\n          0.2667\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 8.87656019836767e-05,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6054,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.54,\\\\n          0.6733\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.477\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1727,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.0836,\\\\n          0.2612\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 0.00015059760743900375,\\\\n        \\\\\\\"auroc\\\\\\\": 0.5844,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.5233,\\\\n          0.6436\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.6811\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4036,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.3239,\\\\n          0.4831\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 4.143496433451064e-20,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7869,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.7405,\\\\n          0.8302\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.3096\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3393,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.25,\\\\n          0.4247\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 2.5595266031008456e-14,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6979,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.6372,\\\\n          0.7601\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.3071\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"full\\\": {\\n    \\\"n\\\": 529,\\n    \\\"pct_perfect\\\": 0.2495274102079395,\\n    \\\"greedy_f1_mean\\\": 0.6442,\\n    \\\"metrics\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.4244,\\n        \\\"rho_ci95\\\": [\\n          0.3427,\\n          0.4978\\n        ],\\n        \\\"p_rho\\\": 1.520597007565091e-24,\\n        \\\"auroc\\\": 0.7363,\\n        \\\"auroc_ci95\\\": [\\n          0.6795,\\n          0.7877\\n        ],\\n        \\\"ece\\\": 0.4544\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2752,\\n        \\\"rho_ci95\\\": [\\n          0.1806,\\n          0.3643\\n        ],\\n        \\\"p_rho\\\": 1.2091436336567141e-10,\\n        \\\"auroc\\\": 0.6268,\\n        \\\"auroc_ci95\\\": [\\n          0.5604,\\n          0.6956\\n        ],\\n        \\\"ece\\\": 0.4841\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.2513,\\n        \\\"rho_ci95\\\": [\\n          0.1646,\\n          0.3267\\n        ],\\n        \\\"p_rho\\\": 4.6374890321372654e-09,\\n        \\\"auroc\\\": 0.6062,\\n        \\\"auroc_ci95\\\": [\\n          0.5481,\\n          0.6607\\n        ],\\n        \\\"ece\\\": 0.7068\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3369,\\n        \\\"rho_ci95\\\": [\\n          0.2493,\\n          0.4157\\n        ],\\n        \\\"p_rho\\\": 1.663329942356157e-15,\\n        \\\"auroc\\\": 0.7807,\\n        \\\"auroc_ci95\\\": [\\n          0.7323,\\n          0.8271\\n        ],\\n        \\\"ece\\\": 0.3355\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4131,\\n        \\\"rho_ci95\\\": [\\n          0.3307,\\n          0.4877\\n        ],\\n        \\\"p_rho\\\": 3.235265169516744e-23,\\n        \\\"auroc\\\": 0.7167,\\n        \\\"auroc_ci95\\\": [\\n          0.6574,\\n          0.7678\\n        ],\\n        \\\"ece\\\": 0.3123\\n      }\\n    }\\n  },\\n  \\\"conditional\\\": {\\n    \\\"n\\\": 477,\\n    \\\"pct_perfect\\\": 0.27672955974842767,\\n    \\\"greedy_f1_mean\\\": 0.7144,\\n    \\\"metrics\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3757,\\n        \\\"rho_ci95\\\": [\\n          0.2913,\\n          0.4542\\n        ],\\n        \\\"p_rho\\\": 1.939751579138098e-17,\\n        \\\"auroc\\\": 0.7213,\\n        \\\"auroc_ci95\\\": [\\n          0.6647,\\n          0.7781\\n        ],\\n        \\\"ece\\\": 0.447\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.1785,\\n        \\\"rho_ci95\\\": [\\n          0.0839,\\n          0.2667\\n        ],\\n        \\\"p_rho\\\": 8.87656019836767e-05,\\n        \\\"auroc\\\": 0.6054,\\n        \\\"auroc_ci95\\\": [\\n          0.54,\\n          0.6733\\n        ],\\n        \\\"ece\\\": 0.477\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1727,\\n        \\\"rho_ci95\\\": [\\n          0.0836,\\n          0.2612\\n        ],\\n        \\\"p_rho\\\": 0.00015059760743900375,\\n        \\\"auroc\\\": 0.5844,\\n        \\\"auroc_ci95\\\": [\\n          0.5233,\\n          0.6436\\n        ],\\n        \\\"ece\\\": 0.6811\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4036,\\n        \\\"rho_ci95\\\": [\\n          0.3239,\\n          0.4831\\n        ],\\n        \\\"p_rho\\\": 4.143496433451064e-20,\\n        \\\"auroc\\\": 0.7869,\\n        \\\"auroc_ci95\\\": [\\n          0.7405,\\n          0.8302\\n        ],\\n        \\\"ece\\\": 0.3096\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3393,\\n        \\\"rho_ci95\\\": [\\n          0.25,\\n          0.4247\\n        ],\\n        \\\"p_rho\\\": 2.5595266031008456e-14,\\n        \\\"auroc\\\": 0.6979,\\n        \\\"auroc_ci95\\\": [\\n          0.6372,\\n          0.7601\\n        ],\\n        \\\"ece\\\": 0.3071\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2d3c85ec-c995-4e43-a531-d604e5dafc8c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-14T21:18:17.095Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DMbKQkihNoe4f6pqKtU7uf`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/all_signals_report.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6898d526-510e-424e-97aa-4a7f076bfe9c",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A6b2a8oubafnWSnqbE",
+  "type": "assistant",
+  "uuid": "69091503-0a00-4beb-ac29-4ef6e67b2f9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T4EQ7XRSBuQu3xweMUwxy5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5852,
+      "cache_read_input_tokens": 53152,
+      "output_tokens": 846,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5852,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 846,
+          "cache_read_input_tokens": 53152,
+          "cache_creation_input_tokens": 5852,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5852
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_data_qwen_scierc_3seed_em_voting_20260514T211403]: Worker worker_data_qwen_scierc_3seed_em_voting_20260514T211403 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "69091503-0a00-4beb-ac29-4ef6e67b2f9a",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review worker completion status for Qwen ScIERC task",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T21:18:17.455Z_
+
+<details><summary>↩ Tool result · `toolu_01DMbKQkihNoe4f6pqKtU7uf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"full\\\": {\\n    \\\"n\\\": 529,\\n    \\\"pct_perfect\\\": 0.2533081285444234,\\n    \\\"greedy_f1_mean\\\": 0.6486,\\n    \\\"metrics\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3838,\\n        \\\"rho_ci95\\\": [\\n          0.3043,\\n          0.4644\\n        ],\\n        \\\"p_rho\\\": 5.2305573280201007e-20,\\n        \\\"auroc\\\": 0.7107,\\n        \\\"auroc_ci95\\\": [\\n          0.6524,\\n          0.7654\\n        ],\\n        \\\"ece\\\": 0.4583\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2234,\\n        \\\"rho_ci95\\\": [\\n          0.131,\\n          0.3168\\n        ],\\n        \\\"p_rho\\\": 2.0894193013096718e-07,\\n        \\\"auroc\\\": 0.5768,\\n        \\\"auroc_ci95\\\": [\\n          0.5099,\\n          0.6444\\n        ],\\n        \\\"ece\\\": 0.4886\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.2322,\\n        \\\"rho_ci95\\\": [\\n          0.1465,\\n          0.3144\\n        ],\\n        \\\"p_rho\\\": 6.621160623804398e-08,\\n        \\\"auroc\\\": 0.5938,\\n        \\\"auroc_ci95\\\": [\\n          0.5346,\\n          0.6513\\n        ],\\n        \\\"ece\\\": 0.7032\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3162,\\n        \\\"rho_ci95\\\": [\\n          0.228,\\n          0.4012\\n        ],\\n        \\\"p_rho\\\": 9.582619236557022e-14,\\n        \\\"auroc\\\": 0.7683,\\n        \\\"auroc_ci95\\\": [\\n          0.7171,\\n          0.8133\\n        ],\\n        \\\"ece\\\": 0.3346\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4111,\\n        \\\"rho_ci95\\\": [\\n          0.3293,\\n          0.4864\\n        ],\\n        \\\"p_rho\\\": 5.51303484159227e-23,\\n        \\\"auroc\\\": 0.7121,\\n        \\\"auroc_ci95\\\": [\\n          0.6562,\\n          0.7641\\n        ],\\n        \\\"ece\\\": 0.3149\\n      }\\n    }\\n  },\\n  \\\"conditional\\\": {\\n    \\\"n\\\": 479,\\n    \\\"pct_perfect\\\": 0.2797494780793319,\\n    \\\"greedy_f1_mean\\\": 0.7163,\\n    \\\"metrics\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3494,\\n        \\\"rho_ci95\\\": [\\n          0.2665,\\n          0.4286\\n        ],\\n        \\\"p_rho\\\": 3.374128083713529e-15,\\n        \\\"auroc\\\": 0.6985,\\n        \\\"auroc_ci95\\\": [\\n          0.6434,\\n          0.7541\\n        ],\\n        \\\"ece\\\": 0.4486\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.1565,\\n        \\\"rho_ci95\\\": [\\n          0.0637,\\n          0.245\\n        ],\\n        \\\"p_rho\\\": 0.0005858057106667881,\\n        \\\"auroc\\\": 0.561,\\n        \\\"auroc_ci95\\\": [\\n          0.4892,\\n          0.6263\\n        ],\\n        \\\"ece\\\": 0.4942\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1707,\\n        \\\"rho_ci95\\\": [\\n          0.0761,\\n          0.2604\\n        ],\\n        \\\"p_rho\\\": 0.00017431406178347676,\\n        \\\"auroc\\\": 0.5758,\\n        \\\"auroc_ci95\\\": [\\n          0.5107,\\n          0.6322\\n        ],\\n        \\\"ece\\\": 0.678\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4058,\\n        \\\"rho_ci95\\\": [\\n          0.3277,\\n          0.4804\\n        ],\\n        \\\"p_rho\\\": 2.0684383555425423e-20,\\n        \\\"auroc\\\": 0.7801,\\n        \\\"auroc_ci95\\\": [\\n          0.7339,\\n          0.8243\\n        ],\\n        \\\"ece\\\": 0.3057\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3459,\\n        \\\"rho_ci95\\\": [\\n          0.2641,\\n          0.4287\\n        ],\\n        \\\"p_rho\\\": 6.526083032287676e-15,\\n        \\\"auroc\\\": 0.6937,\\n        \\\"auroc_ci95\\\": [\\n          0.6364,\\n          0.7478\\n        ],\\n        \\\"ece\\\": 0.3082\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "69091503-0a00-4beb-ac29-4ef6e67b2f9a",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "31872869-8eac-4783-a1f5-918e6785208c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"full\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 529,\\\\n    \\\\\\\"pct_perfect\\\\\\\": 0.2533081285444234,\\\\n    \\\\\\\"greedy_f1_mean\\\\\\\": 0.6486,\\\\n    \\\\\\\"metrics\\\\\\\": {\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3838,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.3043,\\\\n          0.4644\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 5.2305573280201007e-20,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7107,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.6524,\\\\n          0.7654\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.4583\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2234,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.131,\\\\n          0.3168\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 2.0894193013096718e-07,\\\\n        \\\\\\\"auroc\\\\\\\": 0.5768,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.5099,\\\\n          0.6444\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.4886\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.2322,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.1465,\\\\n          0.3144\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 6.621160623804398e-08,\\\\n        \\\\\\\"auroc\\\\\\\": 0.5938,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.5346,\\\\n          0.6513\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.7032\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3162,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.228,\\\\n          0.4012\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 9.582619236557022e-14,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7683,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.7171,\\\\n          0.8133\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.3346\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4111,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.3293,\\\\n          0.4864\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 5.51303484159227e-23,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7121,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.6562,\\\\n          0.7641\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.3149\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"conditional\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 479,\\\\n    \\\\\\\"pct_perfect\\\\\\\": 0.2797494780793319,\\\\n    \\\\\\\"greedy_f1_mean\\\\\\\": 0.7163,\\\\n    \\\\\\\"metrics\\\\\\\": {\\\\n      \\\\\\\"SJ\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3494,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.2665,\\\\n          0.4286\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 3.374128083713529e-15,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6985,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.6434,\\\\n          0.7541\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.4486\\\\n      },\\\\n      \\\\\\\"FK\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1565,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.0637,\\\\n          0.245\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 0.0005858057106667881,\\\\n        \\\\\\\"auroc\\\\\\\": 0.561,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.4892,\\\\n          0.6263\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.4942\\\\n      },\\\\n      \\\\\\\"logprob\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.1707,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.0761,\\\\n          0.2604\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 0.00017431406178347676,\\\\n        \\\\\\\"auroc\\\\\\\": 0.5758,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.5107,\\\\n          0.6322\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.678\\\\n      },\\\\n      \\\\\\\"EM\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4058,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.3277,\\\\n          0.4804\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 2.0684383555425423e-20,\\\\n        \\\\\\\"auroc\\\\\\\": 0.7801,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.7339,\\\\n          0.8243\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.3057\\\\n      },\\\\n      \\\\\\\"voting_conf\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.3459,\\\\n        \\\\\\\"rho_ci95\\\\\\\": [\\\\n          0.2641,\\\\n          0.4287\\\\n        ],\\\\n        \\\\\\\"p_rho\\\\\\\": 6.526083032287676e-15,\\\\n        \\\\\\\"auroc\\\\\\\": 0.6937,\\\\n        \\\\\\\"auroc_ci95\\\\\\\": [\\\\n          0.6364,\\\\n          0.7478\\\\n        ],\\\\n        \\\\\\\"ece\\\\\\\": 0.3082\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"full\\\": {\\n    \\\"n\\\": 529,\\n    \\\"pct_perfect\\\": 0.2533081285444234,\\n    \\\"greedy_f1_mean\\\": 0.6486,\\n    \\\"metrics\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3838,\\n        \\\"rho_ci95\\\": [\\n          0.3043,\\n          0.4644\\n        ],\\n        \\\"p_rho\\\": 5.2305573280201007e-20,\\n        \\\"auroc\\\": 0.7107,\\n        \\\"auroc_ci95\\\": [\\n          0.6524,\\n          0.7654\\n        ],\\n        \\\"ece\\\": 0.4583\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.2234,\\n        \\\"rho_ci95\\\": [\\n          0.131,\\n          0.3168\\n        ],\\n        \\\"p_rho\\\": 2.0894193013096718e-07,\\n        \\\"auroc\\\": 0.5768,\\n        \\\"auroc_ci95\\\": [\\n          0.5099,\\n          0.6444\\n        ],\\n        \\\"ece\\\": 0.4886\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.2322,\\n        \\\"rho_ci95\\\": [\\n          0.1465,\\n          0.3144\\n        ],\\n        \\\"p_rho\\\": 6.621160623804398e-08,\\n        \\\"auroc\\\": 0.5938,\\n        \\\"auroc_ci95\\\": [\\n          0.5346,\\n          0.6513\\n        ],\\n        \\\"ece\\\": 0.7032\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.3162,\\n        \\\"rho_ci95\\\": [\\n          0.228,\\n          0.4012\\n        ],\\n        \\\"p_rho\\\": 9.582619236557022e-14,\\n        \\\"auroc\\\": 0.7683,\\n        \\\"auroc_ci95\\\": [\\n          0.7171,\\n          0.8133\\n        ],\\n        \\\"ece\\\": 0.3346\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.4111,\\n        \\\"rho_ci95\\\": [\\n          0.3293,\\n          0.4864\\n        ],\\n        \\\"p_rho\\\": 5.51303484159227e-23,\\n        \\\"auroc\\\": 0.7121,\\n        \\\"auroc_ci95\\\": [\\n          0.6562,\\n          0.7641\\n        ],\\n        \\\"ece\\\": 0.3149\\n      }\\n    }\\n  },\\n  \\\"conditional\\\": {\\n    \\\"n\\\": 479,\\n    \\\"pct_perfect\\\": 0.2797494780793319,\\n    \\\"greedy_f1_mean\\\": 0.7163,\\n    \\\"metrics\\\": {\\n      \\\"SJ\\\": {\\n        \\\"rho\\\": 0.3494,\\n        \\\"rho_ci95\\\": [\\n          0.2665,\\n          0.4286\\n        ],\\n        \\\"p_rho\\\": 3.374128083713529e-15,\\n        \\\"auroc\\\": 0.6985,\\n        \\\"auroc_ci95\\\": [\\n          0.6434,\\n          0.7541\\n        ],\\n        \\\"ece\\\": 0.4486\\n      },\\n      \\\"FK\\\": {\\n        \\\"rho\\\": 0.1565,\\n        \\\"rho_ci95\\\": [\\n          0.0637,\\n          0.245\\n        ],\\n        \\\"p_rho\\\": 0.0005858057106667881,\\n        \\\"auroc\\\": 0.561,\\n        \\\"auroc_ci95\\\": [\\n          0.4892,\\n          0.6263\\n        ],\\n        \\\"ece\\\": 0.4942\\n      },\\n      \\\"logprob\\\": {\\n        \\\"rho\\\": 0.1707,\\n        \\\"rho_ci95\\\": [\\n          0.0761,\\n          0.2604\\n        ],\\n        \\\"p_rho\\\": 0.00017431406178347676,\\n        \\\"auroc\\\": 0.5758,\\n        \\\"auroc_ci95\\\": [\\n          0.5107,\\n          0.6322\\n        ],\\n        \\\"ece\\\": 0.678\\n      },\\n      \\\"EM\\\": {\\n        \\\"rho\\\": 0.4058,\\n        \\\"rho_ci95\\\": [\\n          0.3277,\\n          0.4804\\n        ],\\n        \\\"p_rho\\\": 2.0684383555425423e-20,\\n        \\\"auroc\\\": 0.7801,\\n        \\\"auroc_ci95\\\": [\\n          0.7339,\\n          0.8243\\n        ],\\n        \\\"ece\\\": 0.3057\\n      },\\n      \\\"voting_conf\\\": {\\n        \\\"rho\\\": 0.3459,\\n        \\\"rho_ci95\\\": [\\n          0.2641,\\n          0.4287\\n        ],\\n        \\\"p_rho\\\": 6.526083032287676e-15,\\n        \\\"auroc\\\": 0.6937,\\n        \\\"auroc_ci95\\\": [\\n          0.6364,\\n          0.7478\\n        ],\\n        \\\"ece\\\": 0.3082\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "69091503-0a00-4beb-ac29-4ef6e67b2f9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 59 · 2026-05-14T21:18:17.464Z_
+
+```json
+{
+  "parentUuid": "31872869-8eac-4783-a1f5-918e6785208c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "c88dc9b1-1d20-4c55-b7e2-35d0d7c29f24",
+  "timestamp": "2026-05-14T21:18:17.464Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-14T21:19:02.535Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. The worker `worker_data_qwen_scierc_3seed_em_voting` has:
+
+1. Generated `all_signals_report.json` for the 3 Qwen SciERC seeds, which now includes EM and voting_conf metrics that were previously missing
+2. Updated the `bootstrap_ci_summary.json` (though it still shows EM/voting_conf as missing for qwen_scierc_3seed)
+
+Let me compile the data for my audit:
+
+**Qwen SciERC 3-seed EM (full, rho):**
+
+
+- seed42: 0.3347
+- seed123: 0.3369
+- seed456: 0.3162
+- Mean: 0.3293, SD: 0.0114, CV: 3.5%
+
+**Qwen SciERC 3-seed voting_conf (full, rho):**
+- seed42: 0.4408
+- seed123: 0.4131
+- seed456: 0.4111
+- Mean: 0.4217, SD: 0.0165, CV: 3.9%
+
+Now I'm looking at the SciERC 3-seed SJ metrics from the bootstrap summary to complete the comparison.
+
+Checking the data consistency against the registry for exp_001_seed456_v2_ner, and I can see the values align well—the full SJ rho of 0.384 matches the reported 0.3838 when accounting for rounding, the full EM rho of 0.316 matches 0.3162, and the voting_conf rho of 0.411 is consistent with what's recorded.
+
+Now I need to verify the seed42 and seed123 entries in the registry to confirm those values are also accurate.
+
+Looking at the bootstrap CI summary, I notice it's flagging EM and voting_conf as missing for the qwen_scierc_3seed experiment, but the all_signals_report files were actually generated after that summary was created, so the summary is stale and needs to be regenerated with the new data.
+
+Now I'm cross-checking the registry entries for exp_001_seed42_v2 and exp_001_seed123_v2 to see if they've been updated with the EM and voting_conf metrics that the worker just computed.
+
+Generating metrics table...
+
+The ranking shows voting_conf slightly outperforming SJ on this Qwen SciERC dataset, which seems to contradict the paper's emphasis on SJ as the superior structural signal. I'm checking whether the roadmap's comparison between voting_conf and SJ from different experiments might explain this discrepancy.
+
+Now I'm looking at the conditional metrics across the three seeds, where EM actually performs best at 0.408, while voting_conf drops to 0.346 and SJ sits at 0.365.
+
+The ranking shifts to EM > SJ > voting_conf > FK > logprob when filtering for instances with errors, which suggests EM is particularly good at identifying quality issues in imperfect outputs. Looking at the AUROC scores, EM pulls ahead significantly at 0.7902 compared to SJ and voting_conf around 0.73-0.74, though logprob shows an interesting dissociation where its AUROC is relatively higher than its ρ performance would suggest.
+
+I'm noticing a few critical issues: the bootstrap summary file is outdated and needs regeneration since Qwen SciERC now has EM and voting_conf results, the new metrics align well with the registry and show solid cross-seed stability except for FK at 12.2%, and the ranking differences like voting_conf > SJ and EM > SJ in conditional settings need to be accurately reflected in the paper tables.
+
+Since this was primarily CPU-based signal computation from existing samples, I should verify whether the registry was actually updated with these new EM and voting_conf metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c88dc9b1-1d20-4c55-b7e2-35d0d7c29f24",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A7e6tStmayTFqL5hJa",
+  "type": "assistant",
+  "uuid": "cfa30a12-619b-47ed-9770-60d9cd7e5ab4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012X1KgHwinBkxaExQd6kdnS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6552,
+      "cache_read_input_tokens": 59004,
+      "output_tokens": 2703,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6552,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2703,
+          "cache_read_input_tokens": 59004,
+          "cache_creation_input_tokens": 6552,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6552
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-14T21:19:02.545Z_
+
+现在检查 registry 是否同步更新了 EM/voting_conf 数据，以及 GPU 使用情况。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cfa30a12-619b-47ed-9770-60d9cd7e5ab4",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A7e6tStmayTFqL5hJa",
+  "type": "assistant",
+  "uuid": "ff050d7f-877d-45c1-8715-823ea5f3ebb0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012X1KgHwinBkxaExQd6kdnS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6552,
+      "cache_read_input_tokens": 59004,
+      "output_tokens": 2703,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6552,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2703,
+          "cache_read_input_tokens": 59004,
+          "cache_creation_input_tokens": 6552,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6552
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-14T21:19:03.636Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01UZ7XKn87yLk3qUs4es2bCq`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "filters": {
+    "status": "DONE"
+  },
+  "limit": 5,
+  "fields": [
+    "status",
+    "conclusion",
+    "metrics",
+    "updated_at",
+    "spec"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff050d7f-877d-45c1-8715-823ea5f3ebb0",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A7e6tStmayTFqL5hJa",
+  "type": "assistant",
+  "uuid": "7b4eaaf0-e1d7-4126-9465-dc6c560fe91a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012X1KgHwinBkxaExQd6kdnS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6552,
+      "cache_read_input_tokens": 59004,
+      "output_tokens": 2703,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6552,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2703,
+          "cache_read_input_tokens": 59004,
+          "cache_creation_input_tokens": 6552,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6552
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-14T21:19:03.878Z_
+
+<details><summary>↩ Tool result · `toolu_01UZ7XKn87yLk3qUs4es2bCq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_017_llama_conll_n16_s456\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T20:24:45.875Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --num_test 9999 --output_dir output/exp_017_llama_conll_n16_s456\", \"server\": \"autodl-5090\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"model_name\": \"llama3.1-8b-conll2003-merged\", \"seed\": 456}, \"metrics\": {\"greedy_f1\": 0.9243, \"oracle_f1\": 0.9488, \"oracle_headroom\": 0.0245, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"structural_beats_surface\": true, \"full\": {\"SJ_rho\": 0.4552, \"SJ_AUROC\": 0.7288, \"SJ_ECE\": 0.1134, \"FK_rho\": 0.4478, \"FK_AUROC\": 0.7248, \"FK_ECE\": 0.109, \"logprob_rho\": 0.3078, \"logprob_AUROC\": 0.7612, \"logprob_ECE\": 0.1289, \"EM_rho\": 0.452, \"EM_AUROC\": 0.7275, \"EM_ECE\": 0.1082, \"voting_conf_rho\": 0.4571, \"voting_conf_AUROC\": 0.7348, \"voting_conf_ECE\": 0.0863}, \"conditional\": {\"SJ_rho\": 0.4505, \"SJ_AUROC\": 0.7449, \"SJ_ECE\": 0.0826, \"FK_rho\": 0.4422, \"FK_AUROC\": 0.7401, \"FK_ECE\": 0.0835, \"logprob_rho\": 0.3242, \"logprob_AUROC\": 0.8067, \"logprob_ECE\": 0.0921, \"EM_rho\": 0.451, \"EM_AUROC\": 0.745, \"EM_ECE\": 0.0756, \"voting_conf_rho\": 0.3962, \"voting_conf_AUROC\": 0.7202, \"voting_conf_ECE\": 0.0746}, \"best_of_n\": {\"greedy\": 0.9243, \"random_avg\": 0.9215, \"sj_best\": 0.9243, \"logprob_best\": 0.9243, \"voting_conf_best\": 0.9243, \"oracle\": 0.9488}, \"n8_vs_n16_delta\": {\"full_SJ_rho_delta\": 0.0238, \"full_FK_rho_delta\": 0.0201, \"full_logprob_rho_delta\": 0.0006, \"full_EM_rho_delta\": 0.0214, \"full_voting_conf_rho_delta\": 0.0315, \"cond_SJ_rho_delta\": 0.0149, \"cond_FK_rho_delta\": 0.0112, \"cond_logprob_rho_delta\": -0.004, \"cond_EM_rho_delta\": 0.0107, \"cond_voting_conf_rho_delta\": 0.0219}}, \"conclusion\": \"success\"}, \"exp_017_llama_conll_n16\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T19:45:16.265Z\", \"spec\": {\"hypothesis\": \"LLaMA CoNLL N=16: complete the 2x2 matrix (model x dataset x N). If SJ N-scaling holds for LLaMA on CoNLL, the finding is fully cross-model cross-dataset.\", \"plan_id\": \"exp-017\", \"parent\": \"exp_017_llama_conll_infer\", \"model_name\": \"llama3.1-8b-conll2003-merged\", \"dataset\": \"CoNLL-2003\", \"data_count\": 3453, \"seed\": 42, \"server\": \"autodl-5090\", \"command\": \"CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_017_llama_conll_n16\", \"data_path\": \"data/conll2003\", \"pid\": 106997, \"n_samples\": 16, \"temperature\": 1, \"checkpoint_source\": \"checkpoints/llama3.1-8b-conll2003-merged\", \"eval_data\": \"conll2003 test set\", \"checkpoint_path\": \"output/exp_017_llama_conll_n16/samples.jsonl\", \"log_path\": \"output/exp_017_llama_conll_n16/all_signals_report.json\"}, \"metrics\": {\"greedy_f1\": 0.9243, \"oracle_f1\": 0.9487, \"oracle_headroom\": 0.0244, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"structural_beats_surface\": true, \"full\": {\"SJ_rho\": 0.4642, \"SJ_AUROC\": 0.7391, \"SJ_ECE\": 0.1131, \"FK_rho\": 0.4566, \"FK_AUROC\": 0.736, \"FK_ECE\": 0.1071, \"logprob_rho\": 0.3058, \"logprob_AUROC\": 0.7594, \"logprob_ECE\": 0.1288, \"EM_rho\": 0.4613, \"EM_AUROC\": 0.7391, \"EM_ECE\": 0.1084, \"voting_conf_rho\": 0.4554, \"voting_conf_AUROC\": 0.7406, \"voting_conf_ECE\": 0.0844}, \"conditional\": {\"SJ_rho\": 0.4597, \"SJ_AUROC\": 0.7565, \"SJ_ECE\": 0.0846, \"FK_rho\": 0.4515, \"FK_AUROC\": 0.753, \"FK_ECE\": 0.0813, \"logprob_rho\": 0.3193, \"logprob_AUROC\": 0.8023, \"logprob_ECE\": 0.0921, \"EM_rho\": 0.4618, \"EM_AUROC\": 0.7589, \"EM_ECE\": 0.0757, \"voting_conf_rho\": 0.3978, \"voting_conf_AUROC\": 0.7287, \"voting_conf_ECE\": 0.0742}, \"best_of_n\": {\"greedy\": 0.9243, \"random_avg\": 0.9213, \"sj_best\": 0.9259, \"logprob_best\": 0.925, \"voting_conf_best\": 0.9268, \"oracle\": 0.9487}, \"n8_vs_n16_delta\": {\"full_SJ_rho_delta\": 0.0328, \"full_FK_rho_delta\": 0.0289, \"full_logprob_rho_delta\": -0.0014, \"full_EM_rho_delta\": 0.0307, \"full_voting_conf_rho_delta\": 0.0298, \"cond_SJ_rho_delta\": 0.0241, \"cond_FK_rho_delta\": 0.0205, \"cond_logprob_rho_delta\": -0.0089, \"cond_EM_rho_delta\": 0.0215, \"cond_voting_conf_rho_delta\": 0.0235}}, \"conclusion\": \"success\"}, \"exp_017_llama_conll_n16_s123\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T19:43:06.607Z\", \"spec\": {\"hypothesis\": \"LLaMA CoNLL-2003 NER N=16 seed=123: cross-seed robustness check against N=8 seed=42 baseline (exp_017_llama_conll_infer)\", \"command\": \"CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --num_test 9999 --output_dir output/exp_017_llama_conll_n16_s123\", \"server\": \"autodl-5090\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/conll2003\", \"data_count\": 3453, \"model_name\": \"llama3.1-8b-conll2003-merged\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/llama3.1-8b-conll2003-merged\", \"eval_data\": \"data/conll2003\", \"checkpoint_path\": \"output/exp_017_llama_conll_n16_s123/samples.jsonl\", \"log_path\": \"output/exp_017_llama_conll_n16_s123.log\"}, \"metrics\": {\"greedy_f1\": 0.9266, \"oracle_f1\": 0.9497, \"oracle_headroom\": 0.0231, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"structural_beats_surface\": true, \"full\": {\"SJ_rho\": 0.4698, \"SJ_AUROC\": 0.7402, \"SJ_ECE\": 0.1135, \"FK_rho\": 0.4594, \"FK_AUROC\": 0.7351, \"FK_ECE\": 0.1114, \"logprob_rho\": 0.3161, \"logprob_AUROC\": 0.768, \"logprob_ECE\": 0.129, \"EM_rho\": 0.4676, \"EM_AUROC\": 0.7399, \"EM_ECE\": 0.1082, \"voting_conf_rho\": 0.4612, \"voting_conf_AUROC\": 0.7429, \"voting_conf_ECE\": 0.0832}, \"conditional\": {\"SJ_rho\": 0.4712, \"SJ_AUROC\": 0.7609, \"SJ_ECE\": 0.0828, \"FK_rho\": 0.4595, \"FK_AUROC\": 0.7547, \"FK_ECE\": 0.0858, \"logprob_rho\": 0.3314, \"logprob_AUROC\": 0.8134, \"logprob_ECE\": 0.0922, \"EM_rho\": 0.4732, \"EM_AUROC\": 0.7626, \"EM_ECE\": 0.075, \"voting_conf_rho\": 0.4086, \"voting_conf_AUROC\": 0.7338, \"voting_conf_ECE\": 0.0706}, \"best_of_n\": {\"greedy\": 0.9242, \"random_avg\": 0.9216, \"sj_best\": 0.9247, \"logprob_best\": 0.9253, \"voting_conf_best\": 0.9255, \"oracle\": 0.9486}, \"n8_vs_n16_delta\": {\"full_SJ_rho_delta\": 0.0384, \"full_FK_rho_delta\": 0.0317, \"full_logprob_rho_delta\": 0.0089, \"full_SJ_AUROC_delta\": 0.0363, \"full_FK_AUROC_delta\": 0.0325, \"full_logprob_AUROC_delta\": 0.007, \"cond_SJ_rho_delta\": 0.0356, \"cond_FK_rho_delta\": 0.0285, \"cond_logprob_rho_delta\": 0.0032}}, \"conclusion\": \"success\"}, \"exp_007_llama_n16\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T19:03:50.284Z\", \"spec\": {\"hypothesis\": \"LLaMA SciERC N=16: cross-model N-scaling validation. If SJ rho increases from N=8 (0.363) to N=16, N-scaling is model-agnostic.\", \"plan_id\": \"exp-007\", \"parent\": \"exp_007_llama_inference\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=1 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_007_llama_n16\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"llama3.1-8b-scierc-merged\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/llama3.1-8b-scierc-merged\", \"eval_data\": \"data/scierc/processed_data\"}, \"conclusion\": \"success\", \"metrics\": {\"N\": 16, \"dataset\": \"scierc\", \"subtask\": \"ner\", \"n_instances\": 551, \"n_valid\": 529, \"n_conditional\": 478, \"greedy_f1\": 0.645, \"full\": {\"SJ_rho\": 0.3791, \"FK_rho\": 0.3081, \"logprob_rho\": 0.2041, \"EM_rho\": 0.3159, \"voting_conf_rho\": 0.4515, \"SJ_AUROC\": 0.717, \"FK_AUROC\": 0.6581, \"logprob_AUROC\": 0.5656, \"EM_AUROC\": 0.7686, \"voting_conf_AUROC\": 0.7266, \"SJ_ECE\": 0.1019, \"FK_ECE\": 0.1556, \"logprob_ECE\": 0.084, \"EM_ECE\": 0.1761, \"voting_conf_ECE\": 0.1365}, \"conditional\": {\"SJ_rho\": 0.3222, \"FK_rho\": 0.2182, \"logprob_rho\": 0.1286, \"EM_rho\": 0.3563, \"voting_conf_rho\": 0.3356, \"SJ_AUROC\": 0.7014, \"FK_AUROC\": 0.6392, \"logprob_AUROC\": 0.545, \"EM_AUROC\": 0.7708, \"voting_conf_AUROC\": 0.6988, \"SJ_ECE\": 0.1466, \"FK_ECE\": 0.1853, \"logprob_ECE\": 0.1141, \"EM_ECE\": 0.1887, \"voting_conf_ECE\": 0.2634}, \"n8_vs_n16_delta_rho_full\": {\"SJ\": 0.0161, \"FK\": -0.0185, \"logprob\": 0.0214, \"EM\": 0.0007, \"voting_conf\": 0.0184}}}, \"exp_002_conll_n16\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T19:03:19.801Z\", \"spec\": {\"hypothesis\": \"Qwen CoNLL-2003 N=16: cross-dataset N-scaling comparison with SciERC N=16\", \"plan_id\": \"exp-002\", \"parent\": \"exp_002_ner_conll2003\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_002_conll_n16\", \"server\": \"autodl-5090\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"model_name\": \"qwen3-8b-conll2003-merged\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"N\": 16, \"dataset\": \"conll2003\", \"subtask\": \"ner\", \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2614, \"greedy_f1\": 0.907, \"full\": {\"SJ_rho\": 0.4496, \"FK_rho\": 0.3928, \"logprob_rho\": 0.3146, \"EM_rho\": 0.4627, \"voting_conf_rho\": 0.4286, \"SJ_AUROC\": 0.8264, \"FK_AUROC\": 0.7821, \"logprob_AUROC\": 0.7531, \"EM_AUROC\": 0.8409, \"voting_conf_AUROC\": 0.8071, \"SJ_ECE\": 0.0747, \"FK_ECE\": 0.1786, \"logprob_ECE\": 0.2031, \"EM_ECE\": 0.0786, \"voting_conf_ECE\": 0.529}, \"conditional\": {\"SJ_rho\": 0.4208, \"FK_rho\": 0.3494, \"logprob_rho\": 0.3756, \"EM_rho\": 0.4658, \"voting_conf_rho\": 0.3654, \"SJ_AUROC\": 0.8405, \"FK_AUROC\": 0.7819, \"logprob_AUROC\": 0.8259, \"EM_AUROC\": 0.8781, \"voting_conf_AUROC\": 0.7951, \"SJ_ECE\": 0.0982, \"FK_ECE\": 0.1899, \"logprob_ECE\": 0.2504, \"EM_ECE\": 0.0997, \"voting_conf_ECE\": 0.6096}, \"n8_vs_n16_delta_rho_full\": {\"SJ\": 0.0139, \"FK\": -0.007, \"logprob\": -0.0011, \"EM\": 0.012, \"voting_conf\": 0.0049}}}}, \"count\": 5, \"total\": 56, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2215}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7b4eaaf0-e1d7-4126-9465-dc6c560fe91a",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "c1683e2d-003d-4a68-b9ec-db4d8ef9ea7b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_017_llama_conll_n16_s456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T20:24:45.875Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --num_test 9999 --output_dir output/exp_017_llama_conll_n16_s456\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/conll2003\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"llama3.1-8b-conll2003-merged\\\", \\\"seed\\\": 456}, \\\"metrics\\\": {\\\"greedy_f1\\\": 0.9243, \\\"oracle_f1\\\": 0.9488, \\\"oracle_headroom\\\": 0.0245, \\\"n_instances\\\": 3453, \\\"n_valid\\\": 2756, \\\"n_conditional\\\": 2642, \\\"structural_beats_surface\\\": true, \\\"full\\\": {\\\"SJ_rho\\\": 0.4552, \\\"SJ_AUROC\\\": 0.7288, \\\"SJ_ECE\\\": 0.1134, \\\"FK_rho\\\": 0.4478, \\\"FK_AUROC\\\": 0.7248, \\\"FK_ECE\\\": 0.109, \\\"logprob_rho\\\": 0.3078, \\\"logprob_AUROC\\\": 0.7612, \\\"logprob_ECE\\\": 0.1289, \\\"EM_rho\\\": 0.452, \\\"EM_AUROC\\\": 0.7275, \\\"EM_ECE\\\": 0.1082, \\\"voting_conf_rho\\\": 0.4571, \\\"voting_conf_AUROC\\\": 0.7348, \\\"voting_conf_ECE\\\": 0.0863}, \\\"conditional\\\": {\\\"SJ_rho\\\": 0.4505, \\\"SJ_AUROC\\\": 0.7449, \\\"SJ_ECE\\\": 0.0826, \\\"FK_rho\\\": 0.4422, \\\"FK_AUROC\\\": 0.7401, \\\"FK_ECE\\\": 0.0835, \\\"logprob_rho\\\": 0.3242, \\\"logprob_AUROC\\\": 0.8067, \\\"logprob_ECE\\\": 0.0921, \\\"EM_rho\\\": 0.451, \\\"EM_AUROC\\\": 0.745, \\\"EM_ECE\\\": 0.0756, \\\"voting_conf_rho\\\": 0.3962, \\\"voting_conf_AUROC\\\": 0.7202, \\\"voting_conf_ECE\\\": 0.0746}, \\\"best_of_n\\\": {\\\"greedy\\\": 0.9243, \\\"random_avg\\\": 0.9215, \\\"sj_best\\\": 0.9243, \\\"logprob_best\\\": 0.9243, \\\"voting_conf_best\\\": 0.9243, \\\"oracle\\\": 0.9488}, \\\"n8_vs_n16_delta\\\": {\\\"full_SJ_rho_delta\\\": 0.0238, \\\"full_FK_rho_delta\\\": 0.0201, \\\"full_logprob_rho_delta\\\": 0.0006, \\\"full_EM_rho_delta\\\": 0.0214, \\\"full_voting_conf_rho_delta\\\": 0.0315, \\\"cond_SJ_rho_delta\\\": 0.0149, \\\"cond_FK_rho_delta\\\": 0.0112, \\\"cond_logprob_rho_delta\\\": -0.004, \\\"cond_EM_rho_delta\\\": 0.0107, \\\"cond_voting_conf_rho_delta\\\": 0.0219}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_017_llama_conll_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T19:45:16.265Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"LLaMA CoNLL N=16: complete the 2x2 matrix (model x dataset x N). If SJ N-scaling holds for LLaMA on CoNLL, the finding is fully cross-model cross-dataset.\\\", \\\"plan_id\\\": \\\"exp-017\\\", \\\"parent\\\": \\\"exp_017_llama_conll_infer\\\", \\\"model_name\\\": \\\"llama3.1-8b-conll2003-merged\\\", \\\"dataset\\\": \\\"CoNLL-2003\\\", \\\"data_count\\\": 3453, \\\"seed\\\": 42, \\\"server\\\": \\\"autodl-5090\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_017_llama_conll_n16\\\", \\\"data_path\\\": \\\"data/conll2003\\\", \\\"pid\\\": 106997, \\\"n_samples\\\": 16, \\\"temperature\\\": 1, \\\"checkpoint_source\\\": \\\"checkpoints/llama3.1-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"conll2003 test set\\\", \\\"checkpoint_path\\\": \\\"output/exp_017_llama_conll_n16/samples.jsonl\\\", \\\"log_path\\\": \\\"output/exp_017_llama_conll_n16/all_signals_report.json\\\"}, \\\"metrics\\\": {\\\"greedy_f1\\\": 0.9243, \\\"oracle_f1\\\": 0.9487, \\\"oracle_headroom\\\": 0.0244, \\\"n_instances\\\": 3453, \\\"n_valid\\\": 2756, \\\"n_conditional\\\": 2642, \\\"structural_beats_surface\\\": true, \\\"full\\\": {\\\"SJ_rho\\\": 0.4642, \\\"SJ_AUROC\\\": 0.7391, \\\"SJ_ECE\\\": 0.1131, \\\"FK_rho\\\": 0.4566, \\\"FK_AUROC\\\": 0.736, \\\"FK_ECE\\\": 0.1071, \\\"logprob_rho\\\": 0.3058, \\\"logprob_AUROC\\\": 0.7594, \\\"logprob_ECE\\\": 0.1288, \\\"EM_rho\\\": 0.4613, \\\"EM_AUROC\\\": 0.7391, \\\"EM_ECE\\\": 0.1084, \\\"voting_conf_rho\\\": 0.4554, \\\"voting_conf_AUROC\\\": 0.7406, \\\"voting_conf_ECE\\\": 0.0844}, \\\"conditional\\\": {\\\"SJ_rho\\\": 0.4597, \\\"SJ_AUROC\\\": 0.7565, \\\"SJ_ECE\\\": 0.0846, \\\"FK_rho\\\": 0.4515, \\\"FK_AUROC\\\": 0.753, \\\"FK_ECE\\\": 0.0813, \\\"logprob_rho\\\": 0.3193, \\\"logprob_AUROC\\\": 0.8023, \\\"logprob_ECE\\\": 0.0921, \\\"EM_rho\\\": 0.4618, \\\"EM_AUROC\\\": 0.7589, \\\"EM_ECE\\\": 0.0757, \\\"voting_conf_rho\\\": 0.3978, \\\"voting_conf_AUROC\\\": 0.7287, \\\"voting_conf_ECE\\\": 0.0742}, \\\"best_of_n\\\": {\\\"greedy\\\": 0.9243, \\\"random_avg\\\": 0.9213, \\\"sj_best\\\": 0.9259, \\\"logprob_best\\\": 0.925, \\\"voting_conf_best\\\": 0.9268, \\\"oracle\\\": 0.9487}, \\\"n8_vs_n16_delta\\\": {\\\"full_SJ_rho_delta\\\": 0.0328, \\\"full_FK_rho_delta\\\": 0.0289, \\\"full_logprob_rho_delta\\\": -0.0014, \\\"full_EM_rho_delta\\\": 0.0307, \\\"full_voting_conf_rho_delta\\\": 0.0298, \\\"cond_SJ_rho_delta\\\": 0.0241, \\\"cond_FK_rho_delta\\\": 0.0205, \\\"cond_logprob_rho_delta\\\": -0.0089, \\\"cond_EM_rho_delta\\\": 0.0215, \\\"cond_voting_conf_rho_delta\\\": 0.0235}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_017_llama_conll_n16_s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T19:43:06.607Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"LLaMA CoNLL-2003 NER N=16 seed=123: cross-seed robustness check against N=8 seed=42 baseline (exp_017_llama_conll_infer)\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --num_test 9999 --output_dir output/exp_017_llama_conll_n16_s123\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/data/conll2003\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"llama3.1-8b-conll2003-merged\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"checkpoints/llama3.1-8b-conll2003-merged\\\", \\\"eval_data\\\": \\\"data/conll2003\\\", \\\"checkpoint_path\\\": \\\"output/exp_017_llama_conll_n16_s123/samples.jsonl\\\", \\\"log_path\\\": \\\"output/exp_017_llama_conll_n16_s123.log\\\"}, \\\"metrics\\\": {\\\"greedy_f1\\\": 0.9266, \\\"oracle_f1\\\": 0.9497, \\\"oracle_headroom\\\": 0.0231, \\\"n_instances\\\": 3453, \\\"n_valid\\\": 2756, \\\"n_conditional\\\": 2642, \\\"structural_beats_surface\\\": true, \\\"full\\\": {\\\"SJ_rho\\\": 0.4698, \\\"SJ_AUROC\\\": 0.7402, \\\"SJ_ECE\\\": 0.1135, \\\"FK_rho\\\": 0.4594, \\\"FK_AUROC\\\": 0.7351, \\\"FK_ECE\\\": 0.1114, \\\"logprob_rho\\\": 0.3161, \\\"logprob_AUROC\\\": 0.768, \\\"logprob_ECE\\\": 0.129, \\\"EM_rho\\\": 0.4676, \\\"EM_AUROC\\\": 0.7399, \\\"EM_ECE\\\": 0.1082, \\\"voting_conf_rho\\\": 0.4612, \\\"voting_conf_AUROC\\\": 0.7429, \\\"voting_conf_ECE\\\": 0.0832}, \\\"conditional\\\": {\\\"SJ_rho\\\": 0.4712, \\\"SJ_AUROC\\\": 0.7609, \\\"SJ_ECE\\\": 0.0828, \\\"FK_rho\\\": 0.4595, \\\"FK_AUROC\\\": 0.7547, \\\"FK_ECE\\\": 0.0858, \\\"logprob_rho\\\": 0.3314, \\\"logprob_AUROC\\\": 0.8134, \\\"logprob_ECE\\\": 0.0922, \\\"EM_rho\\\": 0.4732, \\\"EM_AUROC\\\": 0.7626, \\\"EM_ECE\\\": 0.075, \\\"voting_conf_rho\\\": 0.4086, \\\"voting_conf_AUROC\\\": 0.7338, \\\"voting_conf_ECE\\\": 0.0706}, \\\"best_of_n\\\": {\\\"greedy\\\": 0.9242, \\\"random_avg\\\": 0.9216, \\\"sj_best\\\": 0.9247, \\\"logprob_best\\\": 0.9253, \\\"voting_conf_best\\\": 0.9255, \\\"oracle\\\": 0.9486}, \\\"n8_vs_n16_delta\\\": {\\\"full_SJ_rho_delta\\\": 0.0384, \\\"full_FK_rho_delta\\\": 0.0317, \\\"full_logprob_rho_delta\\\": 0.0089, \\\"full_SJ_AUROC_delta\\\": 0.0363, \\\"full_FK_AUROC_delta\\\": 0.0325, \\\"full_logprob_AUROC_delta\\\": 0.007, \\\"cond_SJ_rho_delta\\\": 0.0356, \\\"cond_FK_rho_delta\\\": 0.0285, \\\"cond_logprob_rho_delta\\\": 0.0032}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_007_llama_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T19:03:50.284Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"LLaMA SciERC N=16: cross-model N-scaling validation. If SJ rho increases from N=8 (0.363) to N=16, N-scaling is model-agnostic.\\\", \\\"plan_id\\\": \\\"exp-007\\\", \\\"parent\\\": \\\"exp_007_llama_inference\\\", \\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=1 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_007_llama_n16\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/scierc/processed_data\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"llama3.1-8b-scierc-merged\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/llama3.1-8b-scierc-merged\\\", \\\"eval_data\\\": \\\"data/scierc/processed_data\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"N\\\": 16, \\\"dataset\\\": \\\"scierc\\\", \\\"subtask\\\": \\\"ner\\\", \\\"n_instances\\\": 551, \\\"n_valid\\\": 529, \\\"n_conditional\\\": 478, \\\"greedy_f1\\\": 0.645, \\\"full\\\": {\\\"SJ_rho\\\": 0.3791, \\\"FK_rho\\\": 0.3081, \\\"logprob_rho\\\": 0.2041, \\\"EM_rho\\\": 0.3159, \\\"voting_conf_rho\\\": 0.4515, \\\"SJ_AUROC\\\": 0.717, \\\"FK_AUROC\\\": 0.6581, \\\"logprob_AUROC\\\": 0.5656, \\\"EM_AUROC\\\": 0.7686, \\\"voting_conf_AUROC\\\": 0.7266, \\\"SJ_ECE\\\": 0.1019, \\\"FK_ECE\\\": 0.1556, \\\"logprob_ECE\\\": 0.084, \\\"EM_ECE\\\": 0.1761, \\\"voting_conf_ECE\\\": 0.1365}, \\\"conditional\\\": {\\\"SJ_rho\\\": 0.3222, \\\"FK_rho\\\": 0.2182, \\\"logprob_rho\\\": 0.1286, \\\"EM_rho\\\": 0.3563, \\\"voting_conf_rho\\\": 0.3356, \\\"SJ_AUROC\\\": 0.7014, \\\"FK_AUROC\\\": 0.6392, \\\"logprob_AUROC\\\": 0.545, \\\"EM_AUROC\\\": 0.7708, \\\"voting_conf_AUROC\\\": 0.6988, \\\"SJ_ECE\\\": 0.1466, \\\"FK_ECE\\\": 0.1853, \\\"logprob_ECE\\\": 0.1141, \\\"EM_ECE\\\": 0.1887, \\\"voting_conf_ECE\\\": 0.2634}, \\\"n8_vs_n16_delta_rho_full\\\": {\\\"SJ\\\": 0.0161, \\\"FK\\\": -0.0185, \\\"logprob\\\": 0.0214, \\\"EM\\\": 0.0007, \\\"voting_conf\\\": 0.0184}}}, \\\"exp_002_conll_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T19:03:19.801Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Qwen CoNLL-2003 N=16: cross-dataset N-scaling comparison with SciERC N=16\\\", \\\"plan_id\\\": \\\"exp-002\\\", \\\"parent\\\": \\\"exp_002_ner_conll2003\\\", \\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_002_conll_n16\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/conll2003\\\", \\\"data_count\\\": 3453, \\\"model_name\\\": \\\"qwen3-8b-conll2003-merged\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"N\\\": 16, \\\"dataset\\\": \\\"conll2003\\\", \\\"subtask\\\": \\\"ner\\\", \\\"n_instances\\\": 3453, \\\"n_valid\\\": 2756, \\\"n_conditional\\\": 2614, \\\"greedy_f1\\\": 0.907, \\\"full\\\": {\\\"SJ_rho\\\": 0.4496, \\\"FK_rho\\\": 0.3928, \\\"logprob_rho\\\": 0.3146, \\\"EM_rho\\\": 0.4627, \\\"voting_conf_rho\\\": 0.4286, \\\"SJ_AUROC\\\": 0.8264, \\\"FK_AUROC\\\": 0.7821, \\\"logprob_AUROC\\\": 0.7531, \\\"EM_AUROC\\\": 0.8409, \\\"voting_conf_AUROC\\\": 0.8071, \\\"SJ_ECE\\\": 0.0747, \\\"FK_ECE\\\": 0.1786, \\\"logprob_ECE\\\": 0.2031, \\\"EM_ECE\\\": 0.0786, \\\"voting_conf_ECE\\\": 0.529}, \\\"conditional\\\": {\\\"SJ_rho\\\": 0.4208, \\\"FK_rho\\\": 0.3494, \\\"logprob_rho\\\": 0.3756, \\\"EM_rho\\\": 0.4658, \\\"voting_conf_rho\\\": 0.3654, \\\"SJ_AUROC\\\": 0.8405, \\\"FK_AUROC\\\": 0.7819, \\\"logprob_AUROC\\\": 0.8259, \\\"EM_AUROC\\\": 0.8781, \\\"voting_conf_AUROC\\\": 0.7951, \\\"SJ_ECE\\\": 0.0982, \\\"FK_ECE\\\": 0.1899, \\\"logprob_ECE\\\": 0.2504, \\\"EM_ECE\\\": 0.0997, \\\"voting_conf_ECE\\\": 0.6096}, \\\"n8_vs_n16_delta_rho_full\\\": {\\\"SJ\\\": 0.0139, \\\"FK\\\": -0.007, \\\"logprob\\\": -0.0011, \\\"EM\\\": 0.012, \\\"voting_conf\\\": 0.0049}}}}, \\\"count\\\": 5, \\\"total\\\": 56, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2215}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_017_llama_conll_n16_s456\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T20:24:45.875Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --num_test 9999 --output_dir output/exp_017_llama_conll_n16_s456\", \"server\": \"autodl-5090\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"model_name\": \"llama3.1-8b-conll2003-merged\", \"seed\": 456}, \"metrics\": {\"greedy_f1\": 0.9243, \"oracle_f1\": 0.9488, \"oracle_headroom\": 0.0245, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"structural_beats_surface\": true, \"full\": {\"SJ_rho\": 0.4552, \"SJ_AUROC\": 0.7288, \"SJ_ECE\": 0.1134, \"FK_rho\": 0.4478, \"FK_AUROC\": 0.7248, \"FK_ECE\": 0.109, \"logprob_rho\": 0.3078, \"logprob_AUROC\": 0.7612, \"logprob_ECE\": 0.1289, \"EM_rho\": 0.452, \"EM_AUROC\": 0.7275, \"EM_ECE\": 0.1082, \"voting_conf_rho\": 0.4571, \"voting_conf_AUROC\": 0.7348, \"voting_conf_ECE\": 0.0863}, \"conditional\": {\"SJ_rho\": 0.4505, \"SJ_AUROC\": 0.7449, \"SJ_ECE\": 0.0826, \"FK_rho\": 0.4422, \"FK_AUROC\": 0.7401, \"FK_ECE\": 0.0835, \"logprob_rho\": 0.3242, \"logprob_AUROC\": 0.8067, \"logprob_ECE\": 0.0921, \"EM_rho\": 0.451, \"EM_AUROC\": 0.745, \"EM_ECE\": 0.0756, \"voting_conf_rho\": 0.3962, \"voting_conf_AUROC\": 0.7202, \"voting_conf_ECE\": 0.0746}, \"best_of_n\": {\"greedy\": 0.9243, \"random_avg\": 0.9215, \"sj_best\": 0.9243, \"logprob_best\": 0.9243, \"voting_conf_best\": 0.9243, \"oracle\": 0.9488}, \"n8_vs_n16_delta\": {\"full_SJ_rho_delta\": 0.0238, \"full_FK_rho_delta\": 0.0201, \"full_logprob_rho_delta\": 0.0006, \"full_EM_rho_delta\": 0.0214, \"full_voting_conf_rho_delta\": 0.0315, \"cond_SJ_rho_delta\": 0.0149, \"cond_FK_rho_delta\": 0.0112, \"cond_logprob_rho_delta\": -0.004, \"cond_EM_rho_delta\": 0.0107, \"cond_voting_conf_rho_delta\": 0.0219}}, \"conclusion\": \"success\"}, \"exp_017_llama_conll_n16\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T19:45:16.265Z\", \"spec\": {\"hypothesis\": \"LLaMA CoNLL N=16: complete the 2x2 matrix (model x dataset x N). If SJ N-scaling holds for LLaMA on CoNLL, the finding is fully cross-model cross-dataset.\", \"plan_id\": \"exp-017\", \"parent\": \"exp_017_llama_conll_infer\", \"model_name\": \"llama3.1-8b-conll2003-merged\", \"dataset\": \"CoNLL-2003\", \"data_count\": 3453, \"seed\": 42, \"server\": \"autodl-5090\", \"command\": \"CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_017_llama_conll_n16\", \"data_path\": \"data/conll2003\", \"pid\": 106997, \"n_samples\": 16, \"temperature\": 1, \"checkpoint_source\": \"checkpoints/llama3.1-8b-conll2003-merged\", \"eval_data\": \"conll2003 test set\", \"checkpoint_path\": \"output/exp_017_llama_conll_n16/samples.jsonl\", \"log_path\": \"output/exp_017_llama_conll_n16/all_signals_report.json\"}, \"metrics\": {\"greedy_f1\": 0.9243, \"oracle_f1\": 0.9487, \"oracle_headroom\": 0.0244, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"structural_beats_surface\": true, \"full\": {\"SJ_rho\": 0.4642, \"SJ_AUROC\": 0.7391, \"SJ_ECE\": 0.1131, \"FK_rho\": 0.4566, \"FK_AUROC\": 0.736, \"FK_ECE\": 0.1071, \"logprob_rho\": 0.3058, \"logprob_AUROC\": 0.7594, \"logprob_ECE\": 0.1288, \"EM_rho\": 0.4613, \"EM_AUROC\": 0.7391, \"EM_ECE\": 0.1084, \"voting_conf_rho\": 0.4554, \"voting_conf_AUROC\": 0.7406, \"voting_conf_ECE\": 0.0844}, \"conditional\": {\"SJ_rho\": 0.4597, \"SJ_AUROC\": 0.7565, \"SJ_ECE\": 0.0846, \"FK_rho\": 0.4515, \"FK_AUROC\": 0.753, \"FK_ECE\": 0.0813, \"logprob_rho\": 0.3193, \"logprob_AUROC\": 0.8023, \"logprob_ECE\": 0.0921, \"EM_rho\": 0.4618, \"EM_AUROC\": 0.7589, \"EM_ECE\": 0.0757, \"voting_conf_rho\": 0.3978, \"voting_conf_AUROC\": 0.7287, \"voting_conf_ECE\": 0.0742}, \"best_of_n\": {\"greedy\": 0.9243, \"random_avg\": 0.9213, \"sj_best\": 0.9259, \"logprob_best\": 0.925, \"voting_conf_best\": 0.9268, \"oracle\": 0.9487}, \"n8_vs_n16_delta\": {\"full_SJ_rho_delta\": 0.0328, \"full_FK_rho_delta\": 0.0289, \"full_logprob_rho_delta\": -0.0014, \"full_EM_rho_delta\": 0.0307, \"full_voting_conf_rho_delta\": 0.0298, \"cond_SJ_rho_delta\": 0.0241, \"cond_FK_rho_delta\": 0.0205, \"cond_logprob_rho_delta\": -0.0089, \"cond_EM_rho_delta\": 0.0215, \"cond_voting_conf_rho_delta\": 0.0235}}, \"conclusion\": \"success\"}, \"exp_017_llama_conll_n16_s123\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T19:43:06.607Z\", \"spec\": {\"hypothesis\": \"LLaMA CoNLL-2003 NER N=16 seed=123: cross-seed robustness check against N=8 seed=42 baseline (exp_017_llama_conll_infer)\", \"command\": \"CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --num_test 9999 --output_dir output/exp_017_llama_conll_n16_s123\", \"server\": \"autodl-5090\", \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/conll2003\", \"data_count\": 3453, \"model_name\": \"llama3.1-8b-conll2003-merged\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/llama3.1-8b-conll2003-merged\", \"eval_data\": \"data/conll2003\", \"checkpoint_path\": \"output/exp_017_llama_conll_n16_s123/samples.jsonl\", \"log_path\": \"output/exp_017_llama_conll_n16_s123.log\"}, \"metrics\": {\"greedy_f1\": 0.9266, \"oracle_f1\": 0.9497, \"oracle_headroom\": 0.0231, \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2642, \"structural_beats_surface\": true, \"full\": {\"SJ_rho\": 0.4698, \"SJ_AUROC\": 0.7402, \"SJ_ECE\": 0.1135, \"FK_rho\": 0.4594, \"FK_AUROC\": 0.7351, \"FK_ECE\": 0.1114, \"logprob_rho\": 0.3161, \"logprob_AUROC\": 0.768, \"logprob_ECE\": 0.129, \"EM_rho\": 0.4676, \"EM_AUROC\": 0.7399, \"EM_ECE\": 0.1082, \"voting_conf_rho\": 0.4612, \"voting_conf_AUROC\": 0.7429, \"voting_conf_ECE\": 0.0832}, \"conditional\": {\"SJ_rho\": 0.4712, \"SJ_AUROC\": 0.7609, \"SJ_ECE\": 0.0828, \"FK_rho\": 0.4595, \"FK_AUROC\": 0.7547, \"FK_ECE\": 0.0858, \"logprob_rho\": 0.3314, \"logprob_AUROC\": 0.8134, \"logprob_ECE\": 0.0922, \"EM_rho\": 0.4732, \"EM_AUROC\": 0.7626, \"EM_ECE\": 0.075, \"voting_conf_rho\": 0.4086, \"voting_conf_AUROC\": 0.7338, \"voting_conf_ECE\": 0.0706}, \"best_of_n\": {\"greedy\": 0.9242, \"random_avg\": 0.9216, \"sj_best\": 0.9247, \"logprob_best\": 0.9253, \"voting_conf_best\": 0.9255, \"oracle\": 0.9486}, \"n8_vs_n16_delta\": {\"full_SJ_rho_delta\": 0.0384, \"full_FK_rho_delta\": 0.0317, \"full_logprob_rho_delta\": 0.0089, \"full_SJ_AUROC_delta\": 0.0363, \"full_FK_AUROC_delta\": 0.0325, \"full_logprob_AUROC_delta\": 0.007, \"cond_SJ_rho_delta\": 0.0356, \"cond_FK_rho_delta\": 0.0285, \"cond_logprob_rho_delta\": 0.0032}}, \"conclusion\": \"success\"}, \"exp_007_llama_n16\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T19:03:50.284Z\", \"spec\": {\"hypothesis\": \"LLaMA SciERC N=16: cross-model N-scaling validation. If SJ rho increases from N=8 (0.363) to N=16, N-scaling is model-agnostic.\", \"plan_id\": \"exp-007\", \"parent\": \"exp_007_llama_inference\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=1 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_007_llama_n16\", \"server\": \"autodl-5090\", \"data_path\": \"data/scierc/processed_data\", \"data_count\": 551, \"model_name\": \"llama3.1-8b-scierc-merged\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/llama3.1-8b-scierc-merged\", \"eval_data\": \"data/scierc/processed_data\"}, \"conclusion\": \"success\", \"metrics\": {\"N\": 16, \"dataset\": \"scierc\", \"subtask\": \"ner\", \"n_instances\": 551, \"n_valid\": 529, \"n_conditional\": 478, \"greedy_f1\": 0.645, \"full\": {\"SJ_rho\": 0.3791, \"FK_rho\": 0.3081, \"logprob_rho\": 0.2041, \"EM_rho\": 0.3159, \"voting_conf_rho\": 0.4515, \"SJ_AUROC\": 0.717, \"FK_AUROC\": 0.6581, \"logprob_AUROC\": 0.5656, \"EM_AUROC\": 0.7686, \"voting_conf_AUROC\": 0.7266, \"SJ_ECE\": 0.1019, \"FK_ECE\": 0.1556, \"logprob_ECE\": 0.084, \"EM_ECE\": 0.1761, \"voting_conf_ECE\": 0.1365}, \"conditional\": {\"SJ_rho\": 0.3222, \"FK_rho\": 0.2182, \"logprob_rho\": 0.1286, \"EM_rho\": 0.3563, \"voting_conf_rho\": 0.3356, \"SJ_AUROC\": 0.7014, \"FK_AUROC\": 0.6392, \"logprob_AUROC\": 0.545, \"EM_AUROC\": 0.7708, \"voting_conf_AUROC\": 0.6988, \"SJ_ECE\": 0.1466, \"FK_ECE\": 0.1853, \"logprob_ECE\": 0.1141, \"EM_ECE\": 0.1887, \"voting_conf_ECE\": 0.2634}, \"n8_vs_n16_delta_rho_full\": {\"SJ\": 0.0161, \"FK\": -0.0185, \"logprob\": 0.0214, \"EM\": 0.0007, \"voting_conf\": 0.0184}}}, \"exp_002_conll_n16\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-14T19:03:19.801Z\", \"spec\": {\"hypothesis\": \"Qwen CoNLL-2003 N=16: cross-dataset N-scaling comparison with SciERC N=16\", \"plan_id\": \"exp-002\", \"parent\": \"exp_002_ner_conll2003\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_002_conll_n16\", \"server\": \"autodl-5090\", \"data_path\": \"data/conll2003\", \"data_count\": 3453, \"model_name\": \"qwen3-8b-conll2003-merged\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"N\": 16, \"dataset\": \"conll2003\", \"subtask\": \"ner\", \"n_instances\": 3453, \"n_valid\": 2756, \"n_conditional\": 2614, \"greedy_f1\": 0.907, \"full\": {\"SJ_rho\": 0.4496, \"FK_rho\": 0.3928, \"logprob_rho\": 0.3146, \"EM_rho\": 0.4627, \"voting_conf_rho\": 0.4286, \"SJ_AUROC\": 0.8264, \"FK_AUROC\": 0.7821, \"logprob_AUROC\": 0.7531, \"EM_AUROC\": 0.8409, \"voting_conf_AUROC\": 0.8071, \"SJ_ECE\": 0.0747, \"FK_ECE\": 0.1786, \"logprob_ECE\": 0.2031, \"EM_ECE\": 0.0786, \"voting_conf_ECE\": 0.529}, \"conditional\": {\"SJ_rho\": 0.4208, \"FK_rho\": 0.3494, \"logprob_rho\": 0.3756, \"EM_rho\": 0.4658, \"voting_conf_rho\": 0.3654, \"SJ_AUROC\": 0.8405, \"FK_AUROC\": 0.7819, \"logprob_AUROC\": 0.8259, \"EM_AUROC\": 0.8781, \"voting_conf_AUROC\": 0.7951, \"SJ_ECE\": 0.0982, \"FK_ECE\": 0.1899, \"logprob_ECE\": 0.2504, \"EM_ECE\": 0.0997, \"voting_conf_ECE\": 0.6096}, \"n8_vs_n16_delta_rho_full\": {\"SJ\": 0.0139, \"FK\": -0.007, \"logprob\": -0.0011, \"EM\": 0.012, \"voting_conf\": 0.0049}}}}, \"count\": 5, \"total\": 56, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2215}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7b4eaaf0-e1d7-4126-9465-dc6c560fe91a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-14T21:19:04.575Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UeEU5yfuCsGPxPhA9rDxYL`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/report.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c1683e2d-003d-4a68-b9ec-db4d8ef9ea7b",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A7e6tStmayTFqL5hJa",
+  "type": "assistant",
+  "uuid": "1e744171-0e3d-4230-a1de-09b2e02483e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012X1KgHwinBkxaExQd6kdnS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6552,
+      "cache_read_input_tokens": 59004,
+      "output_tokens": 2703,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6552,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2703,
+          "cache_read_input_tokens": 59004,
+          "cache_creation_input_tokens": 6552,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6552
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-14T21:19:04.934Z_
+
+<details><summary>↩ Tool result · `toolu_01UeEU5yfuCsGPxPhA9rDxYL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 16,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.6620895522388061,\\n  \\\"oracle_f1\\\": 0.8149925037481259,\\n  \\\"oracle_headroom\\\": 0.15290295150931987,\\n  \\\"fleiss_kappa_mean\\\": 0.45035770726953367,\\n  \\\"soft_jaccard_mean\\\": 0.7009714842513387,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.28085303519479055,\\n    \\\"p_value\\\": 4.7946512827215673e-11,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.428019720522942,\\n    \\\"p_value\\\": 5.59950452013284e-25,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.1934191020569382,\\n    \\\"p_value\\\": 2.1046876446764995e-05,\\n    \\\"n\\\": 477\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.36882614301404837,\\n    \\\"p_value\\\": 8.110501492620769e-17,\\n    \\\"n\\\": 477\\n  },\\n  \\\"n_gold_empty_filtered\\\": 22,\\n  \\\"n_greedy_f1_zero_filtered\\\": 52,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.14716668532815147,\\n  \\\"sample_f1_mean\\\": 0.610100689959165,\\n  \\\"sample_f1_std\\\": 0.31892127604510556,\\n  \\\"sample_f1_pct_zero\\\": 12.405482041587902,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.21935431366615388,\\n      \\\"p_rho\\\": 3.4800443839281296e-07,\\n      \\\"tau\\\": 0.15768324673581371,\\n      \\\"p_tau\\\": 2.334452673224991e-07,\\n      \\\"auroc\\\": 0.6075987841945288,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.15595474311007804,\\n      \\\"p_rho\\\": 0.0006305921267473631,\\n      \\\"tau\\\": 0.11140886487389363,\\n      \\\"p_tau\\\": 0.0005561679181317822,\\n      \\\"auroc\\\": 0.5851239669421487,\\n      \\\"n\\\": 477\\n    }\\n  },\\n  \\\"verdict\\\": \\\"PASS\\\",\\n  \\\"verdict_note\\\": \\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1e744171-0e3d-4230-a1de-09b2e02483e6",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "97463ced-2296-4a60-a4d6-a83c2f240b7c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 16,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.6620895522388061,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.8149925037481259,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.15290295150931987,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.45035770726953367,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.7009714842513387,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.28085303519479055,\\\\n    \\\\\\\"p_value\\\\\\\": 4.7946512827215673e-11,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.428019720522942,\\\\n    \\\\\\\"p_value\\\\\\\": 5.59950452013284e-25,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.1934191020569382,\\\\n    \\\\\\\"p_value\\\\\\\": 2.1046876446764995e-05,\\\\n    \\\\\\\"n\\\\\\\": 477\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.36882614301404837,\\\\n    \\\\\\\"p_value\\\\\\\": 8.110501492620769e-17,\\\\n    \\\\\\\"n\\\\\\\": 477\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 52,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"rho_advantage\\\\\\\": 0.14716668532815147,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.610100689959165,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.31892127604510556,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 12.405482041587902,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.21935431366615388,\\\\n      \\\\\\\"p_rho\\\\\\\": 3.4800443839281296e-07,\\\\n      \\\\\\\"tau\\\\\\\": 0.15768324673581371,\\\\n      \\\\\\\"p_tau\\\\\\\": 2.334452673224991e-07,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6075987841945288,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.15595474311007804,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.0006305921267473631,\\\\n      \\\\\\\"tau\\\\\\\": 0.11140886487389363,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.0005561679181317822,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5851239669421487,\\\\n      \\\\\\\"n\\\\\\\": 477\\\\n    }\\\\n  },\\\\n  \\\\\\\"verdict\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n  \\\\\\\"verdict_note\\\\\\\": \\\\\\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 16,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.6620895522388061,\\n  \\\"oracle_f1\\\": 0.8149925037481259,\\n  \\\"oracle_headroom\\\": 0.15290295150931987,\\n  \\\"fleiss_kappa_mean\\\": 0.45035770726953367,\\n  \\\"soft_jaccard_mean\\\": 0.7009714842513387,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.28085303519479055,\\n    \\\"p_value\\\": 4.7946512827215673e-11,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.428019720522942,\\n    \\\"p_value\\\": 5.59950452013284e-25,\\n    \\\"n\\\": 529\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.1934191020569382,\\n    \\\"p_value\\\": 2.1046876446764995e-05,\\n    \\\"n\\\": 477\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.36882614301404837,\\n    \\\"p_value\\\": 8.110501492620769e-17,\\n    \\\"n\\\": 477\\n  },\\n  \\\"n_gold_empty_filtered\\\": 22,\\n  \\\"n_greedy_f1_zero_filtered\\\": 52,\\n  \\\"structural_beats_surface\\\": true,\\n  \\\"rho_advantage\\\": 0.14716668532815147,\\n  \\\"sample_f1_mean\\\": 0.610100689959165,\\n  \\\"sample_f1_std\\\": 0.31892127604510556,\\n  \\\"sample_f1_pct_zero\\\": 12.405482041587902,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.21935431366615388,\\n      \\\"p_rho\\\": 3.4800443839281296e-07,\\n      \\\"tau\\\": 0.15768324673581371,\\n      \\\"p_tau\\\": 2.334452673224991e-07,\\n      \\\"auroc\\\": 0.6075987841945288,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.15595474311007804,\\n      \\\"p_rho\\\": 0.0006305921267473631,\\n      \\\"tau\\\": 0.11140886487389363,\\n      \\\"p_tau\\\": 0.0005561679181317822,\\n      \\\"auroc\\\": 0.5851239669421487,\\n      \\\"n\\\": 477\\n    }\\n  },\\n  \\\"verdict\\\": \\\"PASS\\\",\\n  \\\"verdict_note\\\": \\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1e744171-0e3d-4230-a1de-09b2e02483e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-14T21:19:05.239Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019mr2LTMfFpB9FMjXBgdDnX`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97463ced-2296-4a60-a4d6-a83c2f240b7c",
+  "isSidechain": false,
+  "requestId": "req_011Cb3A7e6tStmayTFqL5hJa",
+  "type": "assistant",
+  "uuid": "34191cad-9205-4278-b74f-00acf911f697",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012X1KgHwinBkxaExQd6kdnS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6552,
+      "cache_read_input_tokens": 59004,
+      "output_tokens": 2703,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6552,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2703,
+          "cache_read_input_tokens": 59004,
+          "cache_creation_input_tokens": 6552,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6552
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_data_qwen_scierc_3seed_em_voting_20260514T211403]: Worker worker_data_qwen_scierc_3seed_em_voting_20260514T211403 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "34191cad-9205-4278-b74f-00acf911f697",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review worker completion status for Qwen ScIERC task",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-14T21:19:05.761Z_
+
+<details><summary>↩ Tool result · `toolu_019mr2LTMfFpB9FMjXBgdDnX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 2 MiB, 32607 MiB\\n1, 0 %, 2 MiB, 32607 MiB\\n2, 0 %, 2 MiB, 32607 MiB\\n3, 0 %, 2 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "34191cad-9205-4278-b74f-00acf911f697",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "aacae9ee-9eca-44d0-9b0c-1d655114fdad",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 2 MiB, 32607 MiB\\\\n1, 0 %, 2 MiB, 32607 MiB\\\\n2, 0 %, 2 MiB, 32607 MiB\\\\n3, 0 %, 2 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 2 MiB, 32607 MiB\\n1, 0 %, 2 MiB, 32607 MiB\\n2, 0 %, 2 MiB, 32607 MiB\\n3, 0 %, 2 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  },
+  "sourceToolAssistantUUID": "34191cad-9205-4278-b74f-00acf911f697",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-14T21:19:36.961Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. All GPUs are idle (0% util, 2 MiB used), which makes sense since this was a data analysis worker, not a training job.
+
+Now let me verify the key findings:
+
+**What the worker did:**
+1. Generated `all_signals_report.json` for the 3 Qwen SciERC seeds (exp_001_seed42_v2, exp_001_seed123_v2, exp_001_seed456_v2_ner) — these now include all 5 signals (SJ, FK, logprob, EM, voting_conf) with bootstrap CIs
+
+
+2. Updated/generated `bootstrap_ci_summary.json` as a unified summary for paper tables
+
+**Critical finding: `bootstrap_ci_summary.json` is stale**
+
+The `bootstrap_ci_summary.json` (last modified 05:09) marks Qwen SciERC EM and voting_conf as missing, but the `all_signals_report.json` files for exp_001 seeds were generated at 05:15 — after the summary was created. So the summary doesn't reflect the newly computed data, meaning the paper tables will be missing the Qwen SciERC results.
+
+**Verification: Cross-checking all_signals_report vs registry**
+
+Now I'm comparing the metrics across different sources to ensure consistency. The registry values match the report outputs when accounting for rounding — for instance, the SJ, EM, and voting_conf rho values align between the two sources. I'm also checking whether the older registry format captured all the metrics that appear in the newer report files.
+
+**Examining the Qwen SciERC results across three seeds**
+
+Generating markdown table... Now I'm looking at the Qwen SciERC results with conditional rho across three seeds, and there's a striking shift in the rankings—EM jumps to the top at 0.408, while voting_conf drops significantly to 0.346, suggesting the signal selection strategy's effectiveness varies depending on the evaluation metric.
+
+Looking at the AUROC scores, EM maintains its dominance with 0.7902, outperforming SJ by over 5 percentage points, which reinforces that EM is the most reliable uncertainty signal across different evaluation frameworks.
+
+I'm also noting a data consistency issue: the bootstrap confidence interval summary file was generated before the new Qwen SciERC calculations, so it's missing the updated EM and voting_conf metrics from the three-seed runs—this will need to be regenerated before the paper uses it for tables.
+
+The cross-seed stability looks solid for the new metrics (EM at 3.5% coefficient of variation, voting_conf at 3.9%), and I'm seeing an interesting divergence in how the signals rank depending on whether I'm looking at the full correlation or the conditional correlation—voting_conf leads in the full ranking, but EM takes the top spot when conditioning on other signals, which is an important distinction to capture accurately in the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aacae9ee-9eca-44d0-9b0c-1d655114fdad",
+  "isSidechain": false,
+  "requestId": "req_011Cb3ABCYrLdS7ZER5z9iZy",
+  "type": "assistant",
+  "uuid": "6bb09c11-4f6c-438a-a67e-d679dac10e16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QW8PnyFoytEHLr2C4Pg3KA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9730,
+      "cache_read_input_tokens": 65556,
+      "output_tokens": 2700,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9730,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2700,
+          "cache_read_input_tokens": 65556,
+          "cache_creation_input_tokens": 9730,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9730
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-14T21:19:39.097Z_
+
+数据收集完毕。GPU 全部空闲（数据分析 worker，非训练）。现在整理审查结论。
+
+核心发现：
+1. Worker 为 Qwen SciERC 3 个 seed 生成了包含全部 5 信号的 `all_signals_report.json`（之前只有 SJ/FK/logprob，现在补上了 EM 和 voting_conf）
+2. `bootstrap_ci_summary.json`（05:09）比 `all_signals_report.json`（05:15）早 → 摘要文件仍标记 EM/voting_conf 为 missing
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6bb09c11-4f6c-438a-a67e-d679dac10e16",
+  "isSidechain": false,
+  "requestId": "req_011Cb3ABCYrLdS7ZER5z9iZy",
+  "type": "assistant",
+  "uuid": "33bb3b7d-75fb-48bf-bd2f-2e473b6a90bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QW8PnyFoytEHLr2C4Pg3KA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9730,
+      "cache_read_input_tokens": 65556,
+      "output_tokens": 2700,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9730,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2700,
+          "cache_read_input_tokens": 65556,
+          "cache_creation_input_tokens": 9730,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9730
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-14T21:19:54.545Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director · `toolu_01J76sYejkLuuHmViqKuTuEH`</summary>
+
+```json
+{
+  "text": "## 审查报告 — worker_data_qwen_scierc_3seed_em_voting\n\n**结论**: WARNING\n\n### Worker 产出概述\n\nWorker 为 Qwen SciERC 3-seed（exp_001_seed42_v2 / exp_001_seed123_v2 / exp_001_seed456_v2_ner）生成了完整的 `all_signals_report.json`，补全了之前缺失的 EM 和 voting_conf 信号。同时更新了 `bootstrap_ci_summary.json`。\n\n### 发现\n\n- [severity: warning] **`bootstrap_ci_summary.json` 未同步新数据**：该文件（05:09 UTC）在 `all_signals_report.json`（05:15 UTC）之前生成，因此 `qwen_scierc_3seed` 部分仍标记 `EM: \"missing_no_all_signals_report_for_exp001\"` 和 `voting_conf: \"missing_no_all_signals_report_for_exp001\"`。Paper Agent 依赖此文件填论文表格，将漏掉 Qwen SciERC 的 EM/voting_conf 3-seed 数据。**需要重新生成 bootstrap_ci_summary.json。**\n\n- [severity: info] **数据一致性确认**：新计算的 EM/voting_conf 与 registry 中已有指标匹配（如 seed456 SJ: registry 0.384 vs all_signals 0.3838，EM: 0.316 vs 0.3162，四舍五入一致）。\n\n- [severity: info] **Cross-seed 稳定性良好**：\n  - Qwen SciERC 3-seed full rho：EM CV=3.5%, voting_conf CV=3.9%, SJ CV=6.0%\n  - 所有信号均通过 p < 0.001 显著性检验\n\n- [severity: info] **信号排名值得注意（论文描述需准确）**：\n  - Full rho 排名：voting_conf (0.422) > SJ (0.412) > EM (0.329) > FK (0.260) > logprob (0.234)\n  - Conditional rho 排名：EM (0.408) > SJ (0.365) > voting_conf (0.346) — EM 在 conditional 下最强\n  - AUROC 排名（seed42）：EM (0.790) >> SJ (0.737) > voting_conf (0.734) — EM AUROC 显著领先\n  - 这些排名与 LLaMA CoNLL 设置不同（LLaMA CoNLL 上 SJ/FK/EM/voting_conf 聚集在 ρ≈0.45-0.47），说明信号相对优势是 setting-dependent 的。论文应避免 claim 某单一信号\"universally best\"。\n\n### GPU 状态\nautodl-5090: 4× 5090 全部空闲（0% util, 2 MiB），符合预期（数据分析 worker，非训练）。\n\n### 建议\n- 尽快让 Worker 重跑 `bootstrap_ci_summary.json` 生成脚本，将新的 EM/voting_conf 3-seed 数据纳入",
+  "project": "struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33bb3b7d-75fb-48bf-bd2f-2e473b6a90bb",
+  "isSidechain": false,
+  "requestId": "req_011Cb3ABCYrLdS7ZER5z9iZy",
+  "type": "assistant",
+  "uuid": "1463bae8-5ed3-4d8a-87dc-fa155c18d4af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QW8PnyFoytEHLr2C4Pg3KA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9730,
+      "cache_read_input_tokens": 65556,
+      "output_tokens": 2700,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9730,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2700,
+          "cache_read_input_tokens": 65556,
+          "cache_creation_input_tokens": 9730,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9730
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-14T21:19:58.418Z_
+
+<details><summary>↩ Tool result · `toolu_01J76sYejkLuuHmViqKuTuEH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1463bae8-5ed3-4d8a-87dc-fa155c18d4af",
+  "isSidechain": false,
+  "promptId": "5b46caa9-bcaf-4b3c-ad4d-9d389b590ed5",
+  "type": "user",
+  "uuid": "836da89a-2bc6-4a03-bb88-ccef80cd327e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1b56445332d8ca2b4964b30f300f0e00:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "1463bae8-5ed3-4d8a-87dc-fa155c18d4af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+  "sessionId": "7f351864-1277-4f97-b973-fafc7db3552e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---

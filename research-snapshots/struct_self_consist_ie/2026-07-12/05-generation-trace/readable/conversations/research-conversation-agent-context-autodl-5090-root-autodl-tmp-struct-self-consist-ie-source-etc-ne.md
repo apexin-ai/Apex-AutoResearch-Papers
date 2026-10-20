@@ -1,0 +1,12993 @@
+# Research conversation: <agent_context> 服务器: autodl-5090, 项目路径: /root/autodl-tmp/struct_self_consist_ie/ 环境初始化: source /etc/network_turbo && sou
+
+**When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 216
+- **Recorded user turns:** 1
+- **Tool calls:** 66
+- **Original source:** `logs/chats/exported-trajectories/account-3/c8c7f004-7c20-436d-b822-f78a19ce26dc.jsonl`
+- **Structured JSON:** [`4e70666ae7cedb6df278.json`](../../sessions/4e/4e70666ae7cedb6df278.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T04:53:18.280Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T04:53:18.280Z",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "content": "&lt;agent_context>\n服务器: autodl-5090, 项目路径: /root/autodl-tmp/struct_self_consist_ie/\n环境初始化: source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n&lt;/agent_context>\n\n&lt;project_context>\n# 项目: struct_self_consist_ie\n\n## 运行环境\n- 服务器名: autodl-5090\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh autodl-5090  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/struct_self_consist_ie\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 论文 tex 文件只能修改 docs/paper/sections/ 下的编译版本，禁止直接修改 artifacts/_project/paper/ 下的 tex 文件（原因：两次出现 Worker 修改 artifacts/ 旧版本而非 docs/ 编译版本的系统性错误（patch-narrative worker + patch-experiments worker）。artifacts/_project/paper/ 是旧版残留，不参与编译。）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：Provenance 数值审计 (D105 紧急)\n\n论文中 3 处数值与 registry 真值不一致，需要审计定位。\n\n### 环境\n- 服务器: autodl-5090 (已在 SSH config)\n- 项目路径: /root/autodl-tmp/struct_self_consist_ie/\n- 环境初始化: `source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 论文源文件可能在: docs/paper/sections/ 或 paper/ 目录下（.tex 或 .md 格式）\n\n### 3 处差异\n\n**c032: LP cond RE ρ（72×差异）**\n- Registry 真值 (exp_012_rerun_1024, max_tokens=1024): RE cond logprob rho = **0.0112** (n=238)\n- 错误来源 (exp_015_metrics_expansion, max_tokens=512): RE cond logprob rho = 0.1457\n- 论文中据报写的是 0.002\n- 需要确认: 论文中具体在哪个 .tex/.md 文件哪一行写了这个值？正确值应该是 0.0112\n\n**c023: Q1-Q4 stratification SJ ρ**\n- Registry 真值 (exp_009_capability_stratification): scierc_re.by_sent_len: Q1_sj_rho=**0.447**, Q4_sj_rho=**0.540**\n- 论文中据报写的是 Q1=0.110 → Q4=0.473\n- 需要确认: 论文中在哪个文件哪一行？可能是混淆了 NER vs RE 或 by_greedy_f1 vs by_sent_len 的分层维度\n\n**c021: WNUT SJ ρ**\n- Registry 真值 (exp_003_wnut17_eval): rho_sj=**0.089** (full, n=1287-598=689), rho_sj_cond=0.288\n- 论文中据报写的是 0.062\n- 需要确认: 论文中在哪个文件哪一行？0.062 可能是旧管道值或其他信号\n\n### 你要做的\n\n1. SSH 到 autodl-5090，找到论文源文件目录（搜索 .tex 和 .md 文件）\n2. 在论文中 grep 搜索上述 3 个可疑数值（0.002, 0.110, 0.473, 0.062），定位到具体文件和行号\n3. 对每个差异，记录：\n   - 论文中的确切文本（含上下文）\n   - 文件路径和行号\n   - Registry 正确值\n   - 差异原因推测（比如用了 512 数据、混淆了维度、旧管道值等）\n4. 额外检查：看是否有 TACRED 相关残留进程在运行（`ps aux | grep -i tacred`）\n5. 输出一份审计报告，格式清晰，便于 Director 决策\n\n### 重要：不要修改任何论文文件，只读不写。\n\n### 产出\n将审计报告写到本地: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/provenance_audit_d105/audit_report.md\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T04:53:18.284Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T04:53:18.284Z",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+## Round 1
+
+214 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T04:53:18.319Z_
+
+&lt;agent_context>
+服务器: autodl-5090, 项目路径: /root/autodl-tmp/struct_self_consist_ie/
+环境初始化: source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+&lt;/agent_context>
+
+&lt;project_context>
+# 项目: struct_self_consist_ie
+
+## 运行环境
+- 服务器名: autodl-5090
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh autodl-5090  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/autodl-tmp/struct_self_consist_ie
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C001**: 论文 tex 文件只能修改 docs/paper/sections/ 下的编译版本，禁止直接修改 artifacts/_project/paper/ 下的 tex 文件（原因：两次出现 Worker 修改 artifacts/ 旧版本而非 docs/ 编译版本的系统性错误（patch-narrative worker + patch-experiments worker）。artifacts/_project/paper/ 是旧版残留，不参与编译。）
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：Provenance 数值审计 (D105 紧急)
+
+论文中 3 处数值与 registry 真值不一致，需要审计定位。
+
+### 环境
+- 服务器: autodl-5090 (已在 SSH config)
+- 项目路径: /root/autodl-tmp/struct_self_consist_ie/
+- 环境初始化: `source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 论文源文件可能在: docs/paper/sections/ 或 paper/ 目录下（.tex 或 .md 格式）
+
+### 3 处差异
+
+**c032: LP cond RE ρ（72×差异）**
+- Registry 真值 (exp_012_rerun_1024, max_tokens=1024): RE cond logprob rho = **0.0112** (n=238)
+- 错误来源 (exp_015_metrics_expansion, max_tokens=512): RE cond logprob rho = 0.1457
+- 论文中据报写的是 0.002
+- 需要确认: 论文中具体在哪个 .tex/.md 文件哪一行写了这个值？正确值应该是 0.0112
+
+**c023: Q1-Q4 stratification SJ ρ**
+- Registry 真值 (exp_009_capability_stratification): scierc_re.by_sent_len: Q1_sj_rho=**0.447**, Q4_sj_rho=**0.540**
+- 论文中据报写的是 Q1=0.110 → Q4=0.473
+- 需要确认: 论文中在哪个文件哪一行？可能是混淆了 NER vs RE 或 by_greedy_f1 vs by_sent_len 的分层维度
+
+**c021: WNUT SJ ρ**
+- Registry 真值 (exp_003_wnut17_eval): rho_sj=**0.089** (full, n=1287-598=689), rho_sj_cond=0.288
+- 论文中据报写的是 0.062
+- 需要确认: 论文中在哪个文件哪一行？0.062 可能是旧管道值或其他信号
+
+### 你要做的
+
+1. SSH 到 autodl-5090，找到论文源文件目录（搜索 .tex 和 .md 文件）
+2. 在论文中 grep 搜索上述 3 个可疑数值（0.002, 0.110, 0.473, 0.062），定位到具体文件和行号
+3. 对每个差异，记录：
+   - 论文中的确切文本（含上下文）
+   - 文件路径和行号
+   - Registry 正确值
+   - 差异原因推测（比如用了 512 数据、混淆了维度、旧管道值等）
+4. 额外检查：看是否有 TACRED 相关残留进程在运行（`ps aux | grep -i tacred`）
+5. 输出一份审计报告，格式清晰，便于 Director 决策
+
+### 重要：不要修改任何论文文件，只读不写。
+
+### 产出
+将审计报告写到本地: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/provenance_audit_d105/audit_report.md
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "bd39b74d-65a9-40fc-87b2-62973d21dfc3",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T04:53:18.318Z_
+
+```json
+{
+  "parentUuid": "bd39b74d-65a9-40fc-87b2-62973d21dfc3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "fa89d979-7c1c-489c-9b32-cdead58751fa",
+  "timestamp": "2026-05-16T04:53:18.318Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T04:53:18.318Z_
+
+```json
+{
+  "parentUuid": "fa89d979-7c1c-489c-9b32-cdead58751fa",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "705b3092-bbb6-4c7b-88c2-79842c774247",
+  "timestamp": "2026-05-16T04:53:18.318Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-16T04:53:18.318Z_
+
+```json
+{
+  "parentUuid": "705b3092-bbb6-4c7b-88c2-79842c774247",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "5694b906-092d-462b-b331-7cf5aaf26494",
+  "timestamp": "2026-05-16T04:53:18.318Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit provenance values in paper against registry",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T04:53:22.261Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break this down: I need to SSH to autodl-5090, find paper source files, grep for specific numerical values, and produce an audit report. Let me start by searching for the paper files and grepping for the suspect values.
+
+Let me load the SSH tools first, then execute the searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5694b906-092d-462b-b331-7cf5aaf26494",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ed25ZEkSscZXDhhVjG",
+  "type": "assistant",
+  "uuid": "e870c167-644b-48d7-9df1-25ed2f0980a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N4i1MPt3ygqx6pJxEsSNBw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12008,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T04:53:22.929Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LQV71pEBSiGyeFP6haDnnw`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e870c167-644b-48d7-9df1-25ed2f0980a0",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ed25ZEkSscZXDhhVjG",
+  "type": "assistant",
+  "uuid": "fb980f9f-bfb3-4847-8c06-2bbb3e01683e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N4i1MPt3ygqx6pJxEsSNBw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12008,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T04:53:22.936Z_
+
+<details><summary>↩ Tool result · `toolu_01LQV71pEBSiGyeFP6haDnnw`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb980f9f-bfb3-4847-8c06-2bbb3e01683e",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "d50d7e82-6771-4dc1-a3a4-3bf203aa4fcb",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  },
+  "sourceToolAssistantUUID": "fb980f9f-bfb3-4847-8c06-2bbb3e01683e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-16T04:53:25.694Z_
+
+开始审计。先找论文源文件，然后 grep 可疑数值。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d50d7e82-6771-4dc1-a3a4-3bf203aa4fcb",
+  "isSidechain": false,
+  "requestId": "req_011Cb5edMwQ4UfLqrDcVpF4d",
+  "type": "assistant",
+  "uuid": "f64dbaca-b538-4b63-87b6-19d46c106d50",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FcFEdw6h2Khv3GuzoxoBpX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1363,
+      "cache_read_input_tokens": 23849,
+      "output_tokens": 431,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1363,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 431,
+          "cache_read_input_tokens": 23849,
+          "cache_creation_input_tokens": 1363,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1363
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T04:53:26.665Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YQ7VEeWwnp1dPcrKrbujL6`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/docs/paper/sections/ -type f -name \"*.tex\" -o -name \"*.md\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f64dbaca-b538-4b63-87b6-19d46c106d50",
+  "isSidechain": false,
+  "requestId": "req_011Cb5edMwQ4UfLqrDcVpF4d",
+  "type": "assistant",
+  "uuid": "4edc1b81-e499-429d-bca3-4942393d3330",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FcFEdw6h2Khv3GuzoxoBpX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1363,
+      "cache_read_input_tokens": 23849,
+      "output_tokens": 431,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1363,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 431,
+          "cache_read_input_tokens": 23849,
+          "cache_creation_input_tokens": 1363,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1363
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T04:53:26.678Z_
+
+<details><summary>↩ Tool result · `toolu_01YQ7VEeWwnp1dPcrKrbujL6`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4edc1b81-e499-429d-bca3-4942393d3330",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "036c2f5d-8546-4c79-a833-45d43805a3de",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4edc1b81-e499-429d-bca3-4942393d3330",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T04:53:27.670Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PBovX9oQK6ge6Cquwk13oA`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/paper/ -type f -name \"*.tex\" -o -name \"*.md\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "036c2f5d-8546-4c79-a833-45d43805a3de",
+  "isSidechain": false,
+  "requestId": "req_011Cb5edMwQ4UfLqrDcVpF4d",
+  "type": "assistant",
+  "uuid": "ec3576e4-b6d0-495d-baf4-08f20d36bed1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FcFEdw6h2Khv3GuzoxoBpX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1363,
+      "cache_read_input_tokens": 23849,
+      "output_tokens": 431,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1363,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 431,
+          "cache_read_input_tokens": 23849,
+          "cache_creation_input_tokens": 1363,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1363
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T04:53:27.711Z_
+
+<details><summary>↩ Tool result · `toolu_01PBovX9oQK6ge6Cquwk13oA`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ec3576e4-b6d0-495d-baf4-08f20d36bed1",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "94fbe9e5-6c64-409b-9e64-db6f4cf4a81b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ec3576e4-b6d0-495d-baf4-08f20d36bed1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T04:53:28.633Z_
+
+<details><summary>↩ Tool result · `toolu_01AkqznKcop4quSvj3tuftC3`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e26a4d03-adc6-48f8-95e7-a864f8bd2db3",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "5205242d-cee1-41c5-ab7e-04b1ff9ae529",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e26a4d03-adc6-48f8-95e7-a864f8bd2db3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T04:53:28.619Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AkqznKcop4quSvj3tuftC3`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -maxdepth 3 -type f -name \"*.tex\" -o -name \"*.md\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "94fbe9e5-6c64-409b-9e64-db6f4cf4a81b",
+  "isSidechain": false,
+  "requestId": "req_011Cb5edMwQ4UfLqrDcVpF4d",
+  "type": "assistant",
+  "uuid": "e26a4d03-adc6-48f8-95e7-a864f8bd2db3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FcFEdw6h2Khv3GuzoxoBpX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1363,
+      "cache_read_input_tokens": 23849,
+      "output_tokens": 431,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1363,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 431,
+          "cache_read_input_tokens": 23849,
+          "cache_creation_input_tokens": 1363,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1363
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-16T04:53:31.375Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `-o` flag in find is being interpreted as a shell metacharacter issue. Let me use simpler find commands without `-o`.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5205242d-cee1-41c5-ab7e-04b1ff9ae529",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ednPpGnc9PX1VrtXQ5",
+  "type": "assistant",
+  "uuid": "d7049e3e-793e-4aeb-92a4-75ea134bb2dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UHJ3L3rv6RFKajakux7JiG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 794,
+      "cache_read_input_tokens": 25212,
+      "output_tokens": 533,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 794,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 533,
+          "cache_read_input_tokens": 25212,
+          "cache_creation_input_tokens": 794,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 794
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-16T04:53:31.895Z_
+
+`-o` 被拦截了，换成不带 `-o` 的命令。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7049e3e-793e-4aeb-92a4-75ea134bb2dc",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ednPpGnc9PX1VrtXQ5",
+  "type": "assistant",
+  "uuid": "af0ce7fc-fc53-464e-8462-37214ede6da9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UHJ3L3rv6RFKajakux7JiG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 794,
+      "cache_read_input_tokens": 25212,
+      "output_tokens": 533,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 794,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 533,
+          "cache_read_input_tokens": 25212,
+          "cache_creation_input_tokens": 794,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 794
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T04:53:32.867Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UdZsX5yeyEY8ZPVVEg1cSa`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/docs/paper/sections/ -type f -name \"*.tex\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af0ce7fc-fc53-464e-8462-37214ede6da9",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ednPpGnc9PX1VrtXQ5",
+  "type": "assistant",
+  "uuid": "bc0323cf-24e5-4076-91e5-57ca298e17a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UHJ3L3rv6RFKajakux7JiG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 794,
+      "cache_read_input_tokens": 25212,
+      "output_tokens": 533,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 794,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 533,
+          "cache_read_input_tokens": 25212,
+          "cache_creation_input_tokens": 794,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 794
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T04:53:33.815Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017XLom1b4X2mBkMLRMPYUpN`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/docs/ -type f -name \"*.md\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bc0323cf-24e5-4076-91e5-57ca298e17a9",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ednPpGnc9PX1VrtXQ5",
+  "type": "assistant",
+  "uuid": "9ab0a077-29cf-4765-b13a-01babb2f74fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UHJ3L3rv6RFKajakux7JiG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 794,
+      "cache_read_input_tokens": 25212,
+      "output_tokens": 533,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 794,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 533,
+          "cache_read_input_tokens": 25212,
+          "cache_creation_input_tokens": 794,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 794
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T04:53:33.842Z_
+
+<details><summary>↩ Tool result · `toolu_01UdZsX5yeyEY8ZPVVEg1cSa`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/struct_self_consist_ie/docs/paper/sections/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bc0323cf-24e5-4076-91e5-57ca298e17a9",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "c0933b39-d0a6-4388-8ce8-1996aa01aef2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-tmp/struct_self_consist_ie/docs/paper/sections/': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/struct_self_consist_ie/docs/paper/sections/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.97}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bc0323cf-24e5-4076-91e5-57ca298e17a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T04:53:34.259Z_
+
+<details><summary>↩ Tool result · `toolu_017XLom1b4X2mBkMLRMPYUpN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9ab0a077-29cf-4765-b13a-01babb2f74fb",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "a7c45900-1d7e-405b-b2bf-e212d46056f9",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9ab0a077-29cf-4765-b13a-01babb2f74fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T04:53:34.817Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DBerDpCsUmGysPeeBt5cDH`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -maxdepth 2 -type f -name \"*.tex\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a7c45900-1d7e-405b-b2bf-e212d46056f9",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ednPpGnc9PX1VrtXQ5",
+  "type": "assistant",
+  "uuid": "7e867d30-39b0-4d48-a4f6-ec0de01509dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UHJ3L3rv6RFKajakux7JiG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 794,
+      "cache_read_input_tokens": 25212,
+      "output_tokens": 533,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 794,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 533,
+          "cache_read_input_tokens": 25212,
+          "cache_creation_input_tokens": 794,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 794
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T04:53:35.175Z_
+
+<details><summary>↩ Tool result · `toolu_01DBerDpCsUmGysPeeBt5cDH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_tables.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7e867d30-39b0-4d48-a4f6-ec0de01509dd",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "b2063a27-2d96-4273-9ab8-c36cae38e40d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_tables.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_tables.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7e867d30-39b0-4d48-a4f6-ec0de01509dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T04:53:35.231Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NA7zBZbSkgsDkhNfQsWWjd`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b2063a27-2d96-4273-9ab8-c36cae38e40d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ednPpGnc9PX1VrtXQ5",
+  "type": "assistant",
+  "uuid": "219aaad8-31c7-4f6c-94d5-27198cd74734",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UHJ3L3rv6RFKajakux7JiG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 794,
+      "cache_read_input_tokens": 25212,
+      "output_tokens": 533,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 794,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 533,
+          "cache_read_input_tokens": 25212,
+          "cache_creation_input_tokens": 794,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 794
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "219aaad8-31c7-4f6c-94d5-27198cd74734",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit provenance values in paper against registry",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T04:53:35.598Z_
+
+<details><summary>↩ Tool result · `toolu_01NA7zBZbSkgsDkhNfQsWWjd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nanalysis_rho_unification\\nanalysis_round8\\nanalyze_freeform_ablation.py\\nanalyze_freeform_conll.py\\nartifacts\\nbootstrap_analysis.py\\nbootstrap_analysis2.py\\ncheckpoints\\ncode\\ncompute_fk_excess.py\\ncompute_missing_n8.py\\nconll2003_lora.yaml\\ndata\\ndeep_freeform_analysis.py\\ndocs\\nenv.sh\\nevaluate_verifier.py\\nexport_config_ckpt400.yaml\\nexport_config_conll2003.yaml\\nexport_config_conll2003_4b.yaml\\nexport_config_conll2003_ckpt4200.yaml\\nexport_config_llama.yaml\\nexport_config_llama_conll2003.yaml\\nexport_config_scierc_4b.yaml\\nexport_config_v2.yaml\\nexport_config_wnut17.yaml\\nfigures\\nft_002_train.log\\nft_002v2_train.log\\nlaunch_seeds.sh\\nlogprob_tie_analysis.py\\nlogprob_tie_structural.py\\nlogs\\nmerge_4b.py\\nmerge_4b_ckpt4200.py\\nmerge_lora.py\\nmultiseed_flip_analysis.py\\nmultiseed_flip_analysis_part2.py\\nmvp_pilot.log\\nmvp_pilot_003.log\\nmvp_pilot_004.log\\noutput\\npatch_scripts.py\\nresults\\nrho_audit.py\\nrun_bootstrap_loo.py\\nrun_bootstrap_loo.py.bak\\nrun_bootstrap_loo.py.bak2\\nrun_freeform_conll.py\\nrun_freeform_inference.py\\nrun_llama_conll_bootstrap.py\\nrun_loo_v2.py\\nrun_loo_v2.py.bak\\nscripts\\ntrain_config.yaml\\ntrain_config_conll2003.yaml\\ntrain_config_conll2003_4b.yaml\\ntrain_config_conll2003_4b_resume.yaml\\ntrain_config_llama.yaml\\ntrain_config_llama_conll2003.yaml\\ntrain_config_scierc_4b.yaml\\ntrain_config_scierc_llama3b.yaml\\ntrain_config_v2.yaml\\ntrain_config_wnut17.yaml\\ntrain_supervised_verifier.py\\nwnut17_lora.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "219aaad8-31c7-4f6c-94d5-27198cd74734",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "5fe3258b-d8cf-422a-9f1f-b80a96d0f046",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nanalysis_rho_unification\\\\nanalysis_round8\\\\nanalyze_freeform_ablation.py\\\\nanalyze_freeform_conll.py\\\\nartifacts\\\\nbootstrap_analysis.py\\\\nbootstrap_analysis2.py\\\\ncheckpoints\\\\ncode\\\\ncompute_fk_excess.py\\\\ncompute_missing_n8.py\\\\nconll2003_lora.yaml\\\\ndata\\\\ndeep_freeform_analysis.py\\\\ndocs\\\\nenv.sh\\\\nevaluate_verifier.py\\\\nexport_config_ckpt400.yaml\\\\nexport_config_conll2003.yaml\\\\nexport_config_conll2003_4b.yaml\\\\nexport_config_conll2003_ckpt4200.yaml\\\\nexport_config_llama.yaml\\\\nexport_config_llama_conll2003.yaml\\\\nexport_config_scierc_4b.yaml\\\\nexport_config_v2.yaml\\\\nexport_config_wnut17.yaml\\\\nfigures\\\\nft_002_train.log\\\\nft_002v2_train.log\\\\nlaunch_seeds.sh\\\\nlogprob_tie_analysis.py\\\\nlogprob_tie_structural.py\\\\nlogs\\\\nmerge_4b.py\\\\nmerge_4b_ckpt4200.py\\\\nmerge_lora.py\\\\nmultiseed_flip_analysis.py\\\\nmultiseed_flip_analysis_part2.py\\\\nmvp_pilot.log\\\\nmvp_pilot_003.log\\\\nmvp_pilot_004.log\\\\noutput\\\\npatch_scripts.py\\\\nresults\\\\nrho_audit.py\\\\nrun_bootstrap_loo.py\\\\nrun_bootstrap_loo.py.bak\\\\nrun_bootstrap_loo.py.bak2\\\\nrun_freeform_conll.py\\\\nrun_freeform_inference.py\\\\nrun_llama_conll_bootstrap.py\\\\nrun_loo_v2.py\\\\nrun_loo_v2.py.bak\\\\nscripts\\\\ntrain_config.yaml\\\\ntrain_config_conll2003.yaml\\\\ntrain_config_conll2003_4b.yaml\\\\ntrain_config_conll2003_4b_resume.yaml\\\\ntrain_config_llama.yaml\\\\ntrain_config_llama_conll2003.yaml\\\\ntrain_config_scierc_4b.yaml\\\\ntrain_config_scierc_llama3b.yaml\\\\ntrain_config_v2.yaml\\\\ntrain_config_wnut17.yaml\\\\ntrain_supervised_verifier.py\\\\nwnut17_lora.yaml\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nanalysis_rho_unification\\nanalysis_round8\\nanalyze_freeform_ablation.py\\nanalyze_freeform_conll.py\\nartifacts\\nbootstrap_analysis.py\\nbootstrap_analysis2.py\\ncheckpoints\\ncode\\ncompute_fk_excess.py\\ncompute_missing_n8.py\\nconll2003_lora.yaml\\ndata\\ndeep_freeform_analysis.py\\ndocs\\nenv.sh\\nevaluate_verifier.py\\nexport_config_ckpt400.yaml\\nexport_config_conll2003.yaml\\nexport_config_conll2003_4b.yaml\\nexport_config_conll2003_ckpt4200.yaml\\nexport_config_llama.yaml\\nexport_config_llama_conll2003.yaml\\nexport_config_scierc_4b.yaml\\nexport_config_v2.yaml\\nexport_config_wnut17.yaml\\nfigures\\nft_002_train.log\\nft_002v2_train.log\\nlaunch_seeds.sh\\nlogprob_tie_analysis.py\\nlogprob_tie_structural.py\\nlogs\\nmerge_4b.py\\nmerge_4b_ckpt4200.py\\nmerge_lora.py\\nmultiseed_flip_analysis.py\\nmultiseed_flip_analysis_part2.py\\nmvp_pilot.log\\nmvp_pilot_003.log\\nmvp_pilot_004.log\\noutput\\npatch_scripts.py\\nresults\\nrho_audit.py\\nrun_bootstrap_loo.py\\nrun_bootstrap_loo.py.bak\\nrun_bootstrap_loo.py.bak2\\nrun_freeform_conll.py\\nrun_freeform_inference.py\\nrun_llama_conll_bootstrap.py\\nrun_loo_v2.py\\nrun_loo_v2.py.bak\\nscripts\\ntrain_config.yaml\\ntrain_config_conll2003.yaml\\ntrain_config_conll2003_4b.yaml\\ntrain_config_conll2003_4b_resume.yaml\\ntrain_config_llama.yaml\\ntrain_config_llama_conll2003.yaml\\ntrain_config_scierc_4b.yaml\\ntrain_config_scierc_llama3b.yaml\\ntrain_config_v2.yaml\\ntrain_config_wnut17.yaml\\ntrain_supervised_verifier.py\\nwnut17_lora.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  },
+  "sourceToolAssistantUUID": "219aaad8-31c7-4f6c-94d5-27198cd74734",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-16T04:53:35.601Z_
+
+```json
+{
+  "parentUuid": "5fe3258b-d8cf-422a-9f1f-b80a96d0f046",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "54014354-668b-4ef7-8b42-fc1e534ac0cc",
+  "timestamp": "2026-05-16T04:53:35.601Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-16T04:53:39.206Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The docs directory exists but `docs/paper/sections/` doesn't. Let me explore the docs/ directory and also look for .tex and .md files more broadly, and check the `artifacts` directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "54014354-668b-4ef7-8b42-fc1e534ac0cc",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eeHuayjYTEwZS5m9Mo",
+  "type": "assistant",
+  "uuid": "4ee4829c-bc57-4e9b-a065-7464db2f2213",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Du1bERCg7ssQJKBmUCVve",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1782,
+      "cache_read_input_tokens": 26006,
+      "output_tokens": 551,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 551,
+          "cache_read_input_tokens": 26006,
+          "cache_creation_input_tokens": 1782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-16T04:53:39.675Z_
+
+`docs/paper/sections/` 不存在。继续探索论文文件位置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ee4829c-bc57-4e9b-a065-7464db2f2213",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eeHuayjYTEwZS5m9Mo",
+  "type": "assistant",
+  "uuid": "0fbc08d5-7317-40b1-ae0e-c2d058127e77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Du1bERCg7ssQJKBmUCVve",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1782,
+      "cache_read_input_tokens": 26006,
+      "output_tokens": 551,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 551,
+          "cache_read_input_tokens": 26006,
+          "cache_creation_input_tokens": 1782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-16T04:53:40.629Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018EUMGkaL8EUM5WPtV4CWnT`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/docs/ -type f -name \"*.tex\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0fbc08d5-7317-40b1-ae0e-c2d058127e77",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eeHuayjYTEwZS5m9Mo",
+  "type": "assistant",
+  "uuid": "89075da7-a294-4c5f-850c-5d029b6c7d1f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Du1bERCg7ssQJKBmUCVve",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1782,
+      "cache_read_input_tokens": 26006,
+      "output_tokens": 551,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 551,
+          "cache_read_input_tokens": 26006,
+          "cache_creation_input_tokens": 1782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T04:53:40.987Z_
+
+<details><summary>↩ Tool result · `toolu_018EUMGkaL8EUM5WPtV4CWnT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "89075da7-a294-4c5f-850c-5d029b6c7d1f",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "dfb1d591-cd49-406e-8612-1ed98dd6bee6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "89075da7-a294-4c5f-850c-5d029b6c7d1f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T04:53:41.567Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ACqBJCxazzmz8zepR2Ey99`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/docs/ -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dfb1d591-cd49-406e-8612-1ed98dd6bee6",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eeHuayjYTEwZS5m9Mo",
+  "type": "assistant",
+  "uuid": "90ccc76a-f2ff-4e8e-9049-f0fb2a6ebdd9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Du1bERCg7ssQJKBmUCVve",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1782,
+      "cache_read_input_tokens": 26006,
+      "output_tokens": 551,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 551,
+          "cache_read_input_tokens": 26006,
+          "cache_creation_input_tokens": 1782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T04:53:41.939Z_
+
+<details><summary>↩ Tool result · `toolu_01ACqBJCxazzmz8zepR2Ey99`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_selection_gap.pdf\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_selection_gap.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "90ccc76a-f2ff-4e8e-9049-f0fb2a6ebdd9",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "dcb119ba-069d-4b97-ac4e-67f3dfc55070",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_selection_gap.pdf\\\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_selection_gap.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_selection_gap.pdf\\n/root/autodl-tmp/struct_self_consist_ie/docs/paper/figures/fig_selection_gap.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  },
+  "sourceToolAssistantUUID": "90ccc76a-f2ff-4e8e-9049-f0fb2a6ebdd9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T04:53:42.512Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015rPjuiNivWk6DWaFkJLyt1`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/artifacts/ -maxdepth 2 -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dcb119ba-069d-4b97-ac4e-67f3dfc55070",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eeHuayjYTEwZS5m9Mo",
+  "type": "assistant",
+  "uuid": "76958524-2e68-4034-a421-38d37426db35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Du1bERCg7ssQJKBmUCVve",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1782,
+      "cache_read_input_tokens": 26006,
+      "output_tokens": 551,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 551,
+          "cache_read_input_tokens": 26006,
+          "cache_creation_input_tokens": 1782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T04:53:42.874Z_
+
+<details><summary>↩ Tool result · `toolu_015rPjuiNivWk6DWaFkJLyt1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/artifacts/\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "76958524-2e68-4034-a421-38d37426db35",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "8254accf-0cb7-4e78-8af9-05514fa8c0d4",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/artifacts/\\\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/artifacts/\\n/root/autodl-tmp/struct_self_consist_ie/artifacts/figures\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "76958524-2e68-4034-a421-38d37426db35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T04:53:42.914Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013EdVyMKVX2njjWTcQqWCSt`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -maxdepth 4 -type f -name \"*.tex\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8254accf-0cb7-4e78-8af9-05514fa8c0d4",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eeHuayjYTEwZS5m9Mo",
+  "type": "assistant",
+  "uuid": "8844a94b-c739-4169-a499-a55e3bc8aa74",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Du1bERCg7ssQJKBmUCVve",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1782,
+      "cache_read_input_tokens": 26006,
+      "output_tokens": 551,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 551,
+          "cache_read_input_tokens": 26006,
+          "cache_creation_input_tokens": 1782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T04:53:43.303Z_
+
+<details><summary>↩ Tool result · `toolu_013EdVyMKVX2njjWTcQqWCSt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_tables.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8844a94b-c739-4169-a499-a55e3bc8aa74",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "2286b3bd-8a37-4a40-80c6-d64a2272a4f2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_tables.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_tables.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8844a94b-c739-4169-a499-a55e3bc8aa74",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-16T04:53:48.393Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's only one .tex file in the entire project: `/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_tables.tex`. No paper .tex or .md files in docs/paper/sections/. The docs/paper/ only has figures/.
+
+Let me check for .md files with paper-like content, and also look at the local project files on this machine. The paper might be in the local artifacts directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2286b3bd-8a37-4a40-80c6-d64a2272a4f2",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eerxvvkAvR5RDACN8Q",
+  "type": "assistant",
+  "uuid": "167fcbb5-451b-4e9f-b3bd-8c8e21e090a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NonaQUsEQXp5L4Nc58759a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1082,
+      "cache_read_input_tokens": 27788,
+      "output_tokens": 601,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 601,
+          "cache_read_input_tokens": 27788,
+          "cache_creation_input_tokens": 1082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-16T04:53:49.869Z_
+
+服务器上没有论文 .tex 源文件（只有一个 `output/bootstrap_ci_tables.tex`）。论文可能在本地 artifacts 目录。让我查找本地文件和服务器上可能的其他位置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "167fcbb5-451b-4e9f-b3bd-8c8e21e090a7",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eerxvvkAvR5RDACN8Q",
+  "type": "assistant",
+  "uuid": "6d686e92-2f8b-4bf8-a9c7-33f69bc6e52e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NonaQUsEQXp5L4Nc58759a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1082,
+      "cache_read_input_tokens": 27788,
+      "output_tokens": 601,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 601,
+          "cache_read_input_tokens": 27788,
+          "cache_creation_input_tokens": 1082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-16T04:53:51.461Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01Ya1r565DhsHYDweQkGAPxy`</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d686e92-2f8b-4bf8-a9c7-33f69bc6e52e",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eerxvvkAvR5RDACN8Q",
+  "type": "assistant",
+  "uuid": "764bcf5a-077c-4b95-adcf-aadc66a00f7a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NonaQUsEQXp5L4Nc58759a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1082,
+      "cache_read_input_tokens": 27788,
+      "output_tokens": 601,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 601,
+          "cache_read_input_tokens": 27788,
+          "cache_creation_input_tokens": 1082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T04:53:51.499Z_
+
+<details><summary>↩ Tool result · `toolu_01Ya1r565DhsHYDweQkGAPxy`</summary>
+
+```text
+artifacts/dream_reports/dream_20260514T093336/best/paper.tex
+artifacts/dream_reports/dream_20260514T093336/median/paper.tex
+artifacts/dream_reports/dream_20260514T093336/worst/paper.tex
+artifacts/dream_reports/dream_20260514T105303/best/paper.tex
+artifacts/dream_reports/dream_20260514T105303/median/paper.tex
+artifacts/dream_reports/dream_20260514T105303/worst/paper.tex
+artifacts/_project/paper/related_work.tex
+artifacts/dream_reports/dream_20260514T203201/best/paper.tex
+artifacts/dream_reports/dream_20260514T203201/median/paper.tex
+artifacts/dream_reports/dream_20260514T203201/worst/paper.tex
+artifacts/bootstrap_ci_tables.tex
+artifacts/dream_reports/dream_20260515T092545/best/paper.tex
+artifacts/dream_reports/dream_20260515T092545/median/paper.tex
+artifacts/dream_reports/dream_20260515T092545/worst/paper.tex
+artifacts/_project/paper/freeform_ablation_appendix_table.tex
+artifacts/freeform_ablation_appendix_table.tex
+artifacts/_project/paper/n_scaling_appendix_tables_44b000.tex
+artifacts/n_scaling_appendix_tables.tex
+docs/paper/main.tex
+artifacts/_project/paper/method.tex
+artifacts/_project/paper/n_scaling_appendix_tables.tex
+artifacts/_project/paper/introduction.tex
+artifacts/_project/paper/discussion.tex
+artifacts/_project/paper/limitations.tex
+artifacts/_project/paper/conclusion.tex
+artifacts/_project/paper/abstract.tex
+artifacts/_project/paper/experiments.tex
+docs/paper/sections/abstract.tex
+docs/paper/sections/introduction.tex
+docs/paper/sections/experiments.tex
+docs/paper/sections/discussion.tex
+docs/paper/sections/related_work.tex
+docs/paper/sections/conclusion.tex
+docs/paper/sections/limitations.tex
+docs/paper/sections/method.tex
+docs/paper/sections/appendix.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "764bcf5a-077c-4b95-adcf-aadc66a00f7a",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "848d21e4-cc15-4e6f-8e29-0b763b21bbd9",
+  "toolUseResult": {
+    "filenames": [
+      "artifacts/dream_reports/dream_20260514T093336/best/paper.tex",
+      "artifacts/dream_reports/dream_20260514T093336/median/paper.tex",
+      "artifacts/dream_reports/dream_20260514T093336/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260514T105303/best/paper.tex",
+      "artifacts/dream_reports/dream_20260514T105303/median/paper.tex",
+      "artifacts/dream_reports/dream_20260514T105303/worst/paper.tex",
+      "artifacts/_project/paper/related_work.tex",
+      "artifacts/dream_reports/dream_20260514T203201/best/paper.tex",
+      "artifacts/dream_reports/dream_20260514T203201/median/paper.tex",
+      "artifacts/dream_reports/dream_20260514T203201/worst/paper.tex",
+      "artifacts/bootstrap_ci_tables.tex",
+      "artifacts/dream_reports/dream_20260515T092545/best/paper.tex",
+      "artifacts/dream_reports/dream_20260515T092545/median/paper.tex",
+      "artifacts/dream_reports/dream_20260515T092545/worst/paper.tex",
+      "artifacts/_project/paper/freeform_ablation_appendix_table.tex",
+      "artifacts/freeform_ablation_appendix_table.tex",
+      "artifacts/_project/paper/n_scaling_appendix_tables_44b000.tex",
+      "artifacts/n_scaling_appendix_tables.tex",
+      "docs/paper/main.tex",
+      "artifacts/_project/paper/method.tex",
+      "artifacts/_project/paper/n_scaling_appendix_tables.tex",
+      "artifacts/_project/paper/introduction.tex",
+      "artifacts/_project/paper/discussion.tex",
+      "artifacts/_project/paper/limitations.tex",
+      "artifacts/_project/paper/conclusion.tex",
+      "artifacts/_project/paper/abstract.tex",
+      "artifacts/_project/paper/experiments.tex",
+      "docs/paper/sections/abstract.tex",
+      "docs/paper/sections/introduction.tex",
+      "docs/paper/sections/experiments.tex",
+      "docs/paper/sections/discussion.tex",
+      "docs/paper/sections/related_work.tex",
+      "docs/paper/sections/conclusion.tex",
+      "docs/paper/sections/limitations.tex",
+      "docs/paper/sections/method.tex",
+      "docs/paper/sections/appendix.tex"
+    ],
+    "durationMs": 29,
+    "numFiles": 36,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "764bcf5a-077c-4b95-adcf-aadc66a00f7a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-16T04:53:51.792Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01AuX83KuXcgxtXK2nuDetZc`</summary>
+
+```json
+{
+  "pattern": "**/*.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "848d21e4-cc15-4e6f-8e29-0b763b21bbd9",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eerxvvkAvR5RDACN8Q",
+  "type": "assistant",
+  "uuid": "07093789-6acb-4698-aaf2-9667fba60df9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NonaQUsEQXp5L4Nc58759a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1082,
+      "cache_read_input_tokens": 27788,
+      "output_tokens": 601,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 601,
+          "cache_read_input_tokens": 27788,
+          "cache_creation_input_tokens": 1082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T04:53:51.838Z_
+
+<details><summary>↩ Tool result · `toolu_01AuX83KuXcgxtXK2nuDetZc`</summary>
+
+```text
+artifacts/ft_002/intermediate/ft_002_config_notes.md
+task_context/history/director/loop_1.md
+task_context/history/reviewer/loop_1.md
+artifacts/mvp_pilot_004/report/framing_proposal_post_pilot004.md
+docs/IDEA_BRIEF.md
+artifacts/dream_reports/dream_20260514T093336/best/paper_framing.md
+artifacts/dream_reports/dream_20260514T093336/median/paper_framing.md
+artifacts/dream_reports/dream_20260514T093336/worst/paper_framing.md
+artifacts/dream_reports/dream_20260514T093336/best/review_report.md
+artifacts/dream_reports/dream_20260514T093336/median/review_report.md
+artifacts/dream_reports/dream_20260514T093336/worst/review_report.md
+artifacts/dream_reports/dream_20260514T105303/best/paper_framing.md
+task_context/history/agent/loop_1.md
+artifacts/dream_reports/dream_20260514T105303/median/paper_framing.md
+artifacts/dream_reports/dream_20260514T105303/worst/paper_framing.md
+artifacts/exp005_temperature/summary.md
+artifacts/exp_005/report/summary.md
+artifacts/exp-015/report/exp015_summary.md
+artifacts/dream_reports/dream_20260514T105303/best/review_report.md
+artifacts/dream_reports/dream_20260514T105303/median/review_report.md
+artifacts/dream_reports/dream_20260514T105303/worst/review_report.md
+artifacts/exp_016_signal_ensemble/report/summary.md
+artifacts/exp_016_signal_ensemble/report/summary_cc2f1c.md
+artifacts/review_reports/round_0.md
+artifacts/_project/report/logprob_rho_diagnosis.md
+task_context/history/reviewer/loop_2.md
+task_context/history/director/loop_2.md
+artifacts/wnut17_diagnosis_report.md
+artifacts/exp_003/report/wnut17_diagnosis_report.md
+artifacts/bjb1_status_report.md
+artifacts/_project/report/autodl_process_check.md
+artifacts/autodl_process_check.md
+artifacts/auroc_bug_diagnosis.md
+artifacts/exp_015_metrics_expansion/report/heatmap_data_audit.md
+artifacts/heatmap_data_audit.md
+task_context/history/reviewer/loop_3.md
+task_context/history/agent/loop_2.md
+artifacts/audit_gpu5090_4x2_loop3.md
+artifacts/audit_autodl5090_loop3.md
+artifacts/_project/report/3seed_5signal_tables.md
+artifacts/3seed_summary/3seed_5signal_tables.md
+task_context/history/agent/loop_2_1778792526.md
+artifacts/exp_001_seed456_v2_ner/report/3seed_ner_summary.md
+artifacts/3seed_ner_summary.md
+artifacts/exp_009_v2_re_rerun/report/exp_009_v2_re_rerun_summary.md
+artifacts/_project/report/n16_5signal_comparison.md
+artifacts/n16_5signal_comparison.md
+artifacts/_project/report/llama_conll_n16_3seed_5signal_summary.md
+artifacts/dream_reports/dream_20260514T203201/best/paper_framing.md
+task_context/history/agent/loop_3.md
+artifacts/dream_reports/dream_20260514T203201/median/paper_framing.md
+artifacts/dream_reports/dream_20260514T203201/worst/paper_framing.md
+artifacts/dream_reports/dream_20260514T203201/best/review_report.md
+artifacts/dream_reports/dream_20260514T203201/median/review_report.md
+artifacts/dream_reports/dream_20260514T203201/worst/review_report.md
+task_context/history/reviewer/loop_4.md
+task_context/history/agent/loop_4.md
+task_context/history/agent/loop_3_1778814715.md
+artifacts/review_reports/round_1.md
+.venv/lib/python3.14/site-packages/pyparsing/ai/best_practices.md
+.venv/lib/python3.14/site-packages/numpy/random/LICENSE.md
+.venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/_core/src/npysort/x86-simd-sort/LICENSE.md
+.venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/fft/pocketfft/LICENSE.md
+.venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/LICENSE.md
+.venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/src/distributions/LICENSE.md
+.venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/src/mt19937/LICENSE.md
+.venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/src/pcg64/LICENSE.md
+.venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/src/philox/LICENSE.md
+.venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/src/sfc64/LICENSE.md
+.venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/src/splitmix64/LICENSE.md
+.venv/lib/python3.14/site-packages/scipy/fft/_pocketfft/LICENSE.md
+artifacts/review_reports/round_2.md
+task_context/history/agent/loop_5.md
+.claude/sessions/agent_3e005dff/CLAUDE.md
+.claude/sessions/agent_3e005dff/AGENTS.md
+task_context/history/reviewer/loop_5.md
+artifacts/review_reports/round_3.md
+artifacts/exp_018_provenance_report.md
+artifacts/exp_018/report/exp_018_provenance_report.md
+artifacts/_project/report/multi_seed_stability_table.md
+artifacts/multi_seed_stability_table.md
+artifacts/review_reports/round_4.md
+artifacts/_project/report/re_nonzero_selection_analysis.md
+artifacts/re_nonzero_selection_analysis.md
+artifacts/training_config_appendix.md
+artifacts/_project/report/logprob_tie_analysis.md
+artifacts/logprob_tie_analysis.md
+artifacts/_project/report/re_nonzero_selection_n397.md
+artifacts/_project/report/logprob_tie_analysis_n529.md
+artifacts/review_reports/round_5.md
+artifacts/review_reports/round_6.md
+artifacts/_project/report/qwen3_thinking_confirmation.md
+artifacts/qwen3_thinking_confirmation.md
+task_context/history/agent/loop_6.md
+artifacts/_project/data/tost_breakpoint_delta_star.md
+artifacts/tost_breakpoint_delta_star.md
+artifacts/_project/report/vc_implementation_rho_diff.md
+artifacts/vc_implementation_rho_diff.md
+task_context/history/agent/loop_6_1778848220.md
+artifacts/dream_reports/dream_20260515T092545/best/paper_framing.md
+(Results are truncated. Consider using a more specific path or pattern.)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "07093789-6acb-4698-aaf2-9667fba60df9",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "4dce726c-dea0-4a48-b6c6-38e48568548c",
+  "toolUseResult": {
+    "filenames": [
+      "artifacts/ft_002/intermediate/ft_002_config_notes.md",
+      "task_context/history/director/loop_1.md",
+      "task_context/history/reviewer/loop_1.md",
+      "artifacts/mvp_pilot_004/report/framing_proposal_post_pilot004.md",
+      "docs/IDEA_BRIEF.md",
+      "artifacts/dream_reports/dream_20260514T093336/best/paper_framing.md",
+      "artifacts/dream_reports/dream_20260514T093336/median/paper_framing.md",
+      "artifacts/dream_reports/dream_20260514T093336/worst/paper_framing.md",
+      "artifacts/dream_reports/dream_20260514T093336/best/review_report.md",
+      "artifacts/dream_reports/dream_20260514T093336/median/review_report.md",
+      "artifacts/dream_reports/dream_20260514T093336/worst/review_report.md",
+      "artifacts/dream_reports/dream_20260514T105303/best/paper_framing.md",
+      "task_context/history/agent/loop_1.md",
+      "artifacts/dream_reports/dream_20260514T105303/median/paper_framing.md",
+      "artifacts/dream_reports/dream_20260514T105303/worst/paper_framing.md",
+      "artifacts/exp005_temperature/summary.md",
+      "artifacts/exp_005/report/summary.md",
+      "artifacts/exp-015/report/exp015_summary.md",
+      "artifacts/dream_reports/dream_20260514T105303/best/review_report.md",
+      "artifacts/dream_reports/dream_20260514T105303/median/review_report.md",
+      "artifacts/dream_reports/dream_20260514T105303/worst/review_report.md",
+      "artifacts/exp_016_signal_ensemble/report/summary.md",
+      "artifacts/exp_016_signal_ensemble/report/summary_cc2f1c.md",
+      "artifacts/review_reports/round_0.md",
+      "artifacts/_project/report/logprob_rho_diagnosis.md",
+      "task_context/history/reviewer/loop_2.md",
+      "task_context/history/director/loop_2.md",
+      "artifacts/wnut17_diagnosis_report.md",
+      "artifacts/exp_003/report/wnut17_diagnosis_report.md",
+      "artifacts/bjb1_status_report.md",
+      "artifacts/_project/report/autodl_process_check.md",
+      "artifacts/autodl_process_check.md",
+      "artifacts/auroc_bug_diagnosis.md",
+      "artifacts/exp_015_metrics_expansion/report/heatmap_data_audit.md",
+      "artifacts/heatmap_data_audit.md",
+      "task_context/history/reviewer/loop_3.md",
+      "task_context/history/agent/loop_2.md",
+      "artifacts/audit_gpu5090_4x2_loop3.md",
+      "artifacts/audit_autodl5090_loop3.md",
+      "artifacts/_project/report/3seed_5signal_tables.md",
+      "artifacts/3seed_summary/3seed_5signal_tables.md",
+      "task_context/history/agent/loop_2_1778792526.md",
+      "artifacts/exp_001_seed456_v2_ner/report/3seed_ner_summary.md",
+      "artifacts/3seed_ner_summary.md",
+      "artifacts/exp_009_v2_re_rerun/report/exp_009_v2_re_rerun_summary.md",
+      "artifacts/_project/report/n16_5signal_comparison.md",
+      "artifacts/n16_5signal_comparison.md",
+      "artifacts/_project/report/llama_conll_n16_3seed_5signal_summary.md",
+      "artifacts/dream_reports/dream_20260514T203201/best/paper_framing.md",
+      "task_context/history/agent/loop_3.md",
+      "artifacts/dream_reports/dream_20260514T203201/median/paper_framing.md",
+      "artifacts/dream_reports/dream_20260514T203201/worst/paper_framing.md",
+      "artifacts/dream_reports/dream_20260514T203201/best/review_report.md",
+      "artifacts/dream_reports/dream_20260514T203201/median/review_report.md",
+      "artifacts/dream_reports/dream_20260514T203201/worst/review_report.md",
+      "task_context/history/reviewer/loop_4.md",
+      "task_context/history/agent/loop_4.md",
+      "task_context/history/agent/loop_3_1778814715.md",
+      "artifacts/review_reports/round_1.md",
+      ".venv/lib/python3.14/site-packages/pyparsing/ai/best_practices.md",
+      ".venv/lib/python3.14/site-packages/numpy/random/LICENSE.md",
+      ".venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/_core/src/npysort/x86-simd-sort/LICENSE.md",
+      ".venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/fft/pocketfft/LICENSE.md",
+      ".venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/LICENSE.md",
+      ".venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/src/distributions/LICENSE.md",
+      ".venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/src/mt19937/LICENSE.md",
+      ".venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/src/pcg64/LICENSE.md",
+      ".venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/src/philox/LICENSE.md",
+      ".venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/src/sfc64/LICENSE.md",
+      ".venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/src/splitmix64/LICENSE.md",
+      ".venv/lib/python3.14/site-packages/scipy/fft/_pocketfft/LICENSE.md",
+      "artifacts/review_reports/round_2.md",
+      "task_context/history/agent/loop_5.md",
+      ".claude/sessions/agent_3e005dff/CLAUDE.md",
+      ".claude/sessions/agent_3e005dff/AGENTS.md",
+      "task_context/history/reviewer/loop_5.md",
+      "artifacts/review_reports/round_3.md",
+      "artifacts/exp_018_provenance_report.md",
+      "artifacts/exp_018/report/exp_018_provenance_report.md",
+      "artifacts/_project/report/multi_seed_stability_table.md",
+      "artifacts/multi_seed_stability_table.md",
+      "artifacts/review_reports/round_4.md",
+      "artifacts/_project/report/re_nonzero_selection_analysis.md",
+      "artifacts/re_nonzero_selection_analysis.md",
+      "artifacts/training_config_appendix.md",
+      "artifacts/_project/report/logprob_tie_analysis.md",
+      "artifacts/logprob_tie_analysis.md",
+      "artifacts/_project/report/re_nonzero_selection_n397.md",
+      "artifacts/_project/report/logprob_tie_analysis_n529.md",
+      "artifacts/review_reports/round_5.md",
+      "artifacts/review_reports/round_6.md",
+      "artifacts/_project/report/qwen3_thinking_confirmation.md",
+      "artifacts/qwen3_thinking_confirmation.md",
+      "task_context/history/agent/loop_6.md",
+      "artifacts/_project/data/tost_breakpoint_delta_star.md",
+      "artifacts/tost_breakpoint_delta_star.md",
+      "artifacts/_project/report/vc_implementation_rho_diff.md",
+      "artifacts/vc_implementation_rho_diff.md",
+      "task_context/history/agent/loop_6_1778848220.md",
+      "artifacts/dream_reports/dream_20260515T092545/best/paper_framing.md"
+    ],
+    "durationMs": 32,
+    "numFiles": 100,
+    "truncated": true
+  },
+  "sourceToolAssistantUUID": "07093789-6acb-4698-aaf2-9667fba60df9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-16T04:53:52.954Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014KgBgCgd3MinPyE9u9D7vz`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -maxdepth 5 -name \"*.md\" -path \"*/paper/*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4dce726c-dea0-4a48-b6c6-38e48568548c",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eerxvvkAvR5RDACN8Q",
+  "type": "assistant",
+  "uuid": "20127150-1a55-4cbc-ad7c-afb91625d5a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NonaQUsEQXp5L4Nc58759a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1082,
+      "cache_read_input_tokens": 27788,
+      "output_tokens": 601,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 601,
+          "cache_read_input_tokens": 27788,
+          "cache_creation_input_tokens": 1082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T04:53:53.311Z_
+
+<details><summary>↩ Tool result · `toolu_014KgBgCgd3MinPyE9u9D7vz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "20127150-1a55-4cbc-ad7c-afb91625d5a0",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "58b9ca58-f09e-4196-ba6c-a8aeddfe6d6b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  },
+  "sourceToolAssistantUUID": "20127150-1a55-4cbc-ad7c-afb91625d5a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-16T04:53:53.523Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GxFkurTKf5FBfVitze5HEk`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/struct_self_consist_ie/ -maxdepth 5 -name \"report*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58b9ca58-f09e-4196-ba6c-a8aeddfe6d6b",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eerxvvkAvR5RDACN8Q",
+  "type": "assistant",
+  "uuid": "54978f60-1d71-476c-a25d-99636476cfd4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NonaQUsEQXp5L4Nc58759a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1082,
+      "cache_read_input_tokens": 27788,
+      "output_tokens": 601,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 601,
+          "cache_read_input_tokens": 27788,
+          "cache_creation_input_tokens": 1082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "54978f60-1d71-476c-a25d-99636476cfd4",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit provenance values in paper against registry",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-16T04:53:53.884Z_
+
+<details><summary>↩ Tool result · `toolu_01GxFkurTKf5FBfVitze5HEk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_seed123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_003_wnut17_v2_infer/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_scierc_to_conll/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_conll_to_scierc/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n8_t07/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_lp_scierc_t07/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_re_scierc_seed123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_re_scierc_seed456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "54978f60-1d71-476c-a25d-99636476cfd4",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "b5cc0fcd-eee5-41f4-bd55-e9485ae3129f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_seed123/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_003_wnut17_v2_infer/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16_r1024/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_scierc_to_conll/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_conll_to_scierc/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n8_t07/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_lp_scierc_t07/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_re_scierc_seed123/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_re_scierc_seed456/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/report.json\\\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_001/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_003/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/gate0_ft002v2_ckpt400/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_005/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42_200only_backup/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp002_conll2003/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123_200only/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456_200only/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_200only/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed456_t10_full/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp001_seed123_t10_full/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp008_re_n16_t10_full/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_pilot/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_dryrun/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_dryrun/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp007_llama_inference/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed123_v2/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_n16_v2/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_seed456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_008_re_seed123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed456_v2_ner/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_003_wnut17_v2_infer/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_infer/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s123_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_s456_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_qwen_scierc_seed123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed42_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_018_llama_scierc_seed456_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16_r1024/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_scierc_to_conll/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_011_ood_conll_to_scierc/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n8_t07/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_lp_scierc_t07/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_re_scierc_seed123/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_re_scierc_seed456/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_scale_qwen3_4b_conll/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference_v2/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_scierc_scs_inference/report.json\\n/root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/llama3b_scierc/report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "54978f60-1d71-476c-a25d-99636476cfd4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 53 · 2026-05-16T04:53:53.891Z_
+
+```json
+{
+  "parentUuid": "b5cc0fcd-eee5-41f4-bd55-e9485ae3129f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2858ba14-f6ce-48d7-bc32-d64a1a86a183",
+  "timestamp": "2026-05-16T04:53:53.891Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-16T04:54:04.159Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found the paper .tex files locally at:
+- `docs/paper/sections/` - the compilation versions (these are the ones to check per constraint C001)
+- `artifacts/_project/paper/` - old versions (not to modify)
+
+The key files to search:
+- `docs/paper/sections/experiments.tex` - most likely location for numerical results
+- `docs/paper/sections/discussion.tex`
+- `docs/paper/sections/abstract.tex`
+
+
+- `docs/paper/sections/introduction.tex`
+- `docs/paper/sections/method.tex`
+- `docs/paper/sections/appendix.tex`
+
+Now I'm searching through these files for the suspect values: 0.002, 0.110, 0.473, 0.062.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2858ba14-f6ce-48d7-bc32-d64a1a86a183",
+  "isSidechain": false,
+  "requestId": "req_011Cb5efe8Hqwz5LftMeThNw",
+  "type": "assistant",
+  "uuid": "305e2b13-1ffb-4f76-9d57-4ad01588c61c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UUoz2zyf67bdFXed94KzCw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5676,
+      "cache_read_input_tokens": 28870,
+      "output_tokens": 809,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5676,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 809,
+          "cache_read_input_tokens": 28870,
+          "cache_creation_input_tokens": 5676,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5676
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-16T04:54:04.218Z_
+
+找到了本地论文源文件在 `docs/paper/sections/`。现在 grep 所有可疑数值。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "305e2b13-1ffb-4f76-9d57-4ad01588c61c",
+  "isSidechain": false,
+  "requestId": "req_011Cb5efe8Hqwz5LftMeThNw",
+  "type": "assistant",
+  "uuid": "0542cbaa-033b-493a-b4be-a6ef26f7b41d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UUoz2zyf67bdFXed94KzCw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5676,
+      "cache_read_input_tokens": 28870,
+      "output_tokens": 809,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5676,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 809,
+          "cache_read_input_tokens": 28870,
+          "cache_creation_input_tokens": 5676,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5676
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-16T04:54:04.441Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_016ceM5H4rhBEo9UvAcY8D6r`</summary>
+
+```json
+{
+  "pattern": "0\\.002",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true,
+  "context": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0542cbaa-033b-493a-b4be-a6ef26f7b41d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5efe8Hqwz5LftMeThNw",
+  "type": "assistant",
+  "uuid": "1e713c30-0f85-44c9-bf2a-49be98b99375",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UUoz2zyf67bdFXed94KzCw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5676,
+      "cache_read_input_tokens": 28870,
+      "output_tokens": 809,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5676,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 809,
+          "cache_read_input_tokens": 28870,
+          "cache_creation_input_tokens": 5676,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5676
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-16T04:54:06.338Z_
+
+<details><summary>↩ Tool result · `toolu_01SBMmFCdBcXpoZ6fmByttwP`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-683-Metric & Constrained & Free-form & $\Delta$ \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-684-\midrule
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-685-Mean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\
+docs/paper/sections/appendix.tex:686:Mean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-687-Tied fraction ($\varepsilon{=}0.05$) & 59.7\% & 57.7\% & $-$2.0\,pp \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-688-\bottomrule
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-689-\end{tabular}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3d85752c-8f85-402a-a88c-4d3f09886f60",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "25b4c9ed-4d4c-4084-a1c6-0a6d6d4f1f1d",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-683-Metric & Constrained & Free-form & $\\Delta$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-684-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-685-Mean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\ndocs/paper/sections/appendix.tex:686:Mean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-687-Tied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-688-\\bottomrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-689-\\end{tabular}",
+    "numLines": 7
+  },
+  "sourceToolAssistantUUID": "3d85752c-8f85-402a-a88c-4d3f09886f60",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T04:54:04.461Z_
+
+<details><summary>↩ Tool result · `toolu_016ceM5H4rhBEo9UvAcY8D6r`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-70-LP           & $\mathbf{0.647} \pm 0.005$ & .29 & 0.395 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-71-\midrule
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-72-\multicolumn{4}{l}{\textit{Instance-level signals (consensus-proximity selection)}} \\
+docs/paper/sections/experiments.tex:73:SJ           & $0.646 \pm 0.002$ & .68 & 0.386 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-74-FK           & $0.646 \pm 0.001$ & .79 & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-75-EM           & $0.637 \pm 0.001$ & .45 & 0.372 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-76-VC           & $0.623 \pm 0.004$ & .26 & 0.359 \\
+--
+docs/paper/sections/appendix.tex-84-FK $N$-scaling is seed-dependent: Qwen SciERC gains range from $+0.005$ to $+0.023$ across seeds (mean $+0.016$), while LLaMA CoNLL yields $+0.039$ (3-seed mean); individual seed FK shifts vary substantially under the unified pipeline, so this should not be interpreted as a robust trend.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-85-VC $N$-scaling is consistently positive ($+0.005$ on Qwen CoNLL, $+0.018$ on LLaMA SciERC, $+0.030$ on Qwen SciERC), while LP is approximately $N$-invariant ($\Delta{\leq}0.034$).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-86-SJ, EM, and VC scale consistently across all tested settings; only FK shows seed-dependent variation that does not constitute a reliable trend, suggesting that structural and binary-agreement signals are the most robust to $N$.
+docs/paper/sections/appendix.tex:87:At $N{=}16$, SJ converges to comparable NER performance with VC ($\Delta{=}0.002$) while exhibiting lower cross-seed variance ($\sigma{=}0.010$ vs.\ $0.026$), making it a more stable alternative at higher sample sizes.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-88-
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-89-\paragraph{Transfer across model families.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-90-LLaMA-3.1-8B-Instruct shows a similar SJ--FK ordering on SciERC NER (SJ $\rho{=}0.325{\pm}0.021$, FK $\rho{=}0.256{\pm}0.024$, $\Delta\rho{=}0.069$; permutation $p{=}0.06$, borderline).
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-200-EM ranks first across all four tested conditional configurations---SciERC NER ($\rho{=}0.360$), CoNLL Qwen $N{=}16$ ($\rho{=}0.466$), CoNLL LLaMA 3-seed ($\rho{=}0.462$), and SciERC RE ($\rho{=}0.417$)---despite full-set rankings ranging from \#1 (CoNLL Qwen) to \#5 (SciERC RE).
+docs/paper/sections/appendix.tex-201-On the full set, EM is diluted by trivial agreement: instances where all $N$ samples produce identical (possibly incorrect) outputs receive EM${=}1$ regardless of quality, compressing the signal's dynamic range.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-202-On the conditional set---where the model demonstrably produces varied outputs---exact agreement becomes the strongest quality signal.
+docs/paper/sections/appendix.tex:203:The margin over SJ is largest on RE ($\Delta\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\Delta\rho{=}{+}0.002$), where all signals converge near $\rho{\approx}0.46$.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-204-
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-205-\paragraph{WNUT-17 full signal analysis.}
+docs/paper/sections/appendix.tex-206-Table~\ref{tab:wnut} reports all five signals on WNUT-17.
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-303-\end{table}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-304-
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-305-At $N{=}16$ ($B{=}10{,}000$, permutation test), the structural advantage extends to FK comparisons.
+docs/paper/sections/appendix.tex:306:On SciERC NER ($n{=}529$), SJ--FK ($\Delta\rho{=}0.147$--$0.160$, all $p{\leq}0.002$) and VC--FK ($\Delta\rho{=}0.138$--$0.188$, all $p{\leq}0.003$) are clearly significant across all three seeds; EM--FK is seed-dependent ($\Delta\rho{=}0.054$--$0.093$, $p{=}0.048$--$0.15$).
+docs/paper/sections/appendix.tex-307-On CoNLL ($n{=}2{,}756$), all signals significantly outperform FK: EM $\Delta\rho{=}0.071$ ($p{<}0.001$), SJ $\Delta\rho{=}0.056$ ($p{<}0.001$), VC $\Delta\rho{=}0.022$ ($p{=}0.040$).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-308-
+docs/paper/sections/appendix.tex-309-\section{Diversity and Selection Analysis}\label{app:diversity}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-683-Metric & Constrained & Free-form & $\Delta$ \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-684-\midrule
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-685-Mean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\
+docs/paper/sections/appendix.tex:686:Mean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-687-Tied fraction ($\varepsilon{=}0.05$) & 59.7\% & 57.7\% & $-$2.0\,pp \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-688-\bottomrule
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-689-\end{tabular}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-698-Task & Method & Constrained & Free-form & $\Delta$ \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-699-\midrule
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-700-\multirow{3}{*}{NER}
+docs/paper/sections/appendix.tex:701:  & Single        & 0.6182 & 0.6204 & $+$0.0022 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-702-  & LP-selected   & 0.6241 & 0.6222 & $-$0.0019 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-703-  & Selection gap & $+$0.0059 & $+$0.0018 & $-$0.0041 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-704-\midrule
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-723-SJ & 0.360 & 0.377 & $+$0.018 & 0.250 & 0.273 & $+$0.023 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-724-FK & 0.267 & 0.320 & $+$0.053 & 0.275 & 0.315 & $+$0.039 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-725-LP & 0.205 & 0.213 & $+$0.008 & 0.266 & 0.304 & $+$0.038 \\
+docs/paper/sections/appendix.tex:726:EM & 0.295 & 0.317 & $+$0.023 & 0.134 & 0.137 & $+$0.002 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-727-VC & 0.379 & 0.409 & $+$0.030 & 0.350 & 0.323 & $-$0.026 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-728-\bottomrule
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-729-\end{tabular}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1e713c30-0f85-44c9-bf2a-49be98b99375",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "9ded464f-cee5-4f1b-9ba9-8b4ceedafa41",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-70-LP           & $\\mathbf{0.647} \\pm 0.005$ & .29 & 0.395 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-71-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-72-\\multicolumn{4}{l}{\\textit{Instance-level signals (consensus-proximity selection)}} \\\\\ndocs/paper/sections/experiments.tex:73:SJ           & $0.646 \\pm 0.002$ & .68 & 0.386 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-74-FK           & $0.646 \\pm 0.001$ & .79 & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-75-EM           & $0.637 \\pm 0.001$ & .45 & 0.372 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-76-VC           & $0.623 \\pm 0.004$ & .26 & 0.359 \\\\\n--\ndocs/paper/sections/appendix.tex-84-FK $N$-scaling is seed-dependent: Qwen SciERC gains range from $+0.005$ to $+0.023$ across seeds (mean $+0.016$), while LLaMA CoNLL yields $+0.039$ (3-seed mean); individual seed FK shifts vary substantially under the unified pipeline, so this should not be interpreted as a robust trend.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-85-VC $N$-scaling is consistently positive ($+0.005$ on Qwen CoNLL, $+0.018$ on LLaMA SciERC, $+0.030$ on Qwen SciERC), while LP is approximately $N$-invariant ($\\Delta{\\leq}0.034$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-86-SJ, EM, and VC scale consistently across all tested settings; only FK shows seed-dependent variation that does not constitute a reliable trend, suggesting that structural and binary-agreement signals are the most robust to $N$.\ndocs/paper/sections/appendix.tex:87:At $N{=}16$, SJ converges to comparable NER performance with VC ($\\Delta{=}0.002$) while exhibiting lower cross-seed variance ($\\sigma{=}0.010$ vs.\\ $0.026$), making it a more stable alternative at higher sample sizes.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-88-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-89-\\paragraph{Transfer across model families.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-90-LLaMA-3.1-8B-Instruct shows a similar SJ--FK ordering on SciERC NER (SJ $\\rho{=}0.325{\\pm}0.021$, FK $\\rho{=}0.256{\\pm}0.024$, $\\Delta\\rho{=}0.069$; permutation $p{=}0.06$, borderline).\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-200-EM ranks first across all four tested conditional configurations---SciERC NER ($\\rho{=}0.360$), CoNLL Qwen $N{=}16$ ($\\rho{=}0.466$), CoNLL LLaMA 3-seed ($\\rho{=}0.462$), and SciERC RE ($\\rho{=}0.417$)---despite full-set rankings ranging from \\#1 (CoNLL Qwen) to \\#5 (SciERC RE).\ndocs/paper/sections/appendix.tex-201-On the full set, EM is diluted by trivial agreement: instances where all $N$ samples produce identical (possibly incorrect) outputs receive EM${=}1$ regardless of quality, compressing the signal's dynamic range.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-202-On the conditional set---where the model demonstrably produces varied outputs---exact agreement becomes the strongest quality signal.\ndocs/paper/sections/appendix.tex:203:The margin over SJ is largest on RE ($\\Delta\\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\\Delta\\rho{=}{+}0.002$), where all signals converge near $\\rho{\\approx}0.46$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-204-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-205-\\paragraph{WNUT-17 full signal analysis.}\ndocs/paper/sections/appendix.tex-206-Table~\\ref{tab:wnut} reports all five signals on WNUT-17.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-303-\\end{table}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-304-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-305-At $N{=}16$ ($B{=}10{,}000$, permutation test), the structural advantage extends to FK comparisons.\ndocs/paper/sections/appendix.tex:306:On SciERC NER ($n{=}529$), SJ--FK ($\\Delta\\rho{=}0.147$--$0.160$, all $p{\\leq}0.002$) and VC--FK ($\\Delta\\rho{=}0.138$--$0.188$, all $p{\\leq}0.003$) are clearly significant across all three seeds; EM--FK is seed-dependent ($\\Delta\\rho{=}0.054$--$0.093$, $p{=}0.048$--$0.15$).\ndocs/paper/sections/appendix.tex-307-On CoNLL ($n{=}2{,}756$), all signals significantly outperform FK: EM $\\Delta\\rho{=}0.071$ ($p{<}0.001$), SJ $\\Delta\\rho{=}0.056$ ($p{<}0.001$), VC $\\Delta\\rho{=}0.022$ ($p{=}0.040$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-308-\ndocs/paper/sections/appendix.tex-309-\\section{Diversity and Selection Analysis}\\label{app:diversity}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-683-Metric & Constrained & Free-form & $\\Delta$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-684-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-685-Mean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\ndocs/paper/sections/appendix.tex:686:Mean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-687-Tied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-688-\\bottomrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-689-\\end{tabular}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-698-Task & Method & Constrained & Free-form & $\\Delta$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-699-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-700-\\multirow{3}{*}{NER}\ndocs/paper/sections/appendix.tex:701:  & Single        & 0.6182 & 0.6204 & $+$0.0022 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-702-  & LP-selected   & 0.6241 & 0.6222 & $-$0.0019 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-703-  & Selection gap & $+$0.0059 & $+$0.0018 & $-$0.0041 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-704-\\midrule\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-723-SJ & 0.360 & 0.377 & $+$0.018 & 0.250 & 0.273 & $+$0.023 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-724-FK & 0.267 & 0.320 & $+$0.053 & 0.275 & 0.315 & $+$0.039 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-725-LP & 0.205 & 0.213 & $+$0.008 & 0.266 & 0.304 & $+$0.038 \\\\\ndocs/paper/sections/appendix.tex:726:EM & 0.295 & 0.317 & $+$0.023 & 0.134 & 0.137 & $+$0.002 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-727-VC & 0.379 & 0.409 & $+$0.030 & 0.350 & 0.323 & $-$0.026 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-728-\\bottomrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-729-\\end{tabular}",
+    "numLines": 55
+  },
+  "sourceToolAssistantUUID": "1e713c30-0f85-44c9-bf2a-49be98b99375",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-16T04:54:04.759Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01RkgMF2PdutfvgFpwKjGSru`</summary>
+
+```json
+{
+  "pattern": "0\\.110",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true,
+  "context": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ded464f-cee5-4f1b-9ba9-8b4ceedafa41",
+  "isSidechain": false,
+  "requestId": "req_011Cb5efe8Hqwz5LftMeThNw",
+  "type": "assistant",
+  "uuid": "0887c7a6-98df-4082-bc62-9c4f43577a26",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UUoz2zyf67bdFXed94KzCw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5676,
+      "cache_read_input_tokens": 28870,
+      "output_tokens": 809,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5676,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 809,
+          "cache_read_input_tokens": 28870,
+          "cache_creation_input_tokens": 5676,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5676
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-16T04:54:04.776Z_
+
+<details><summary>↩ Tool result · `toolu_01RkgMF2PdutfvgFpwKjGSru`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-147-\paragraph{Capability stratification.}
+docs/paper/sections/appendix.tex-148-For NER, SJ effectiveness scales with structural complexity: on SciERC instances with 6+ entities, $\rho{=}0.547$, compared to $\rho{=}0.415$ for 1--2 entities.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-149-The SJ advantage over LP remains stable across sentence-length quartiles ($\Delta\rho{\approx}0.08$--$0.20$).
+docs/paper/sections/appendix.tex:150:For RE, SJ $\rho$ increases monotonically with sentence length (Q1: 0.110 $\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$), indicating that longer, more relation-dense sentences provide richer structure for consistency-based estimation.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-151-Both proxies are weakly correlated with F1 ($|r|{<}0.15$), confirming they capture input complexity rather than directly predicting output quality; however, entity count and sentence length are themselves moderately correlated ($\rho{=}0.650$), so they reflect overlapping rather than independent complexity dimensions.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-152-For RE, entity count and relation count are strongly correlated ($\rho{=}0.769$) and thus reflect a single structural complexity dimension rather than independent axes.
+docs/paper/sections/appendix.tex-153-On the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: VC reaches $\rho{=}0.630$, LP $\rho{=}0.554$, and SJ $\rho{=}0.502$---all far above the full-set levels.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0887c7a6-98df-4082-bc62-9c4f43577a26",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "60612913-e887-4fb9-a098-be4dea971f01",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-147-\\paragraph{Capability stratification.}\ndocs/paper/sections/appendix.tex-148-For NER, SJ effectiveness scales with structural complexity: on SciERC instances with 6+ entities, $\\rho{=}0.547$, compared to $\\rho{=}0.415$ for 1--2 entities.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-149-The SJ advantage over LP remains stable across sentence-length quartiles ($\\Delta\\rho{\\approx}0.08$--$0.20$).\ndocs/paper/sections/appendix.tex:150:For RE, SJ $\\rho$ increases monotonically with sentence length (Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$), indicating that longer, more relation-dense sentences provide richer structure for consistency-based estimation.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-151-Both proxies are weakly correlated with F1 ($|r|{<}0.15$), confirming they capture input complexity rather than directly predicting output quality; however, entity count and sentence length are themselves moderately correlated ($\\rho{=}0.650$), so they reflect overlapping rather than independent complexity dimensions.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-152-For RE, entity count and relation count are strongly correlated ($\\rho{=}0.769$) and thus reflect a single structural complexity dimension rather than independent axes.\ndocs/paper/sections/appendix.tex-153-On the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: VC reaches $\\rho{=}0.630$, LP $\\rho{=}0.554$, and SJ $\\rho{=}0.502$---all far above the full-set levels.",
+    "numLines": 7
+  },
+  "sourceToolAssistantUUID": "0887c7a6-98df-4082-bc62-9c4f43577a26",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-16T04:54:05.398Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_012yJgL3Yhby1dgZc4mHyGeb`</summary>
+
+```json
+{
+  "pattern": "0\\.473",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true,
+  "context": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60612913-e887-4fb9-a098-be4dea971f01",
+  "isSidechain": false,
+  "requestId": "req_011Cb5efe8Hqwz5LftMeThNw",
+  "type": "assistant",
+  "uuid": "2b28743d-1021-4bfa-b691-8ae8e5d6a96c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UUoz2zyf67bdFXed94KzCw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5676,
+      "cache_read_input_tokens": 28870,
+      "output_tokens": 809,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5676,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 809,
+          "cache_read_input_tokens": 28870,
+          "cache_creation_input_tokens": 5676,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5676
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-16T04:54:05.413Z_
+
+<details><summary>↩ Tool result · `toolu_012yJgL3Yhby1dgZc4mHyGeb`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-57-\multicolumn{4}{l}{\textit{Across model families} (LLaMA CoNLL, $N{=}16$, 3 seeds)} \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-58-\quad SJ &  & $0.474{\pm}0.009$ & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-59-\quad FK &  & $0.467{\pm}0.009$ & --- \\
+docs/paper/sections/appendix.tex:60:\quad EM &  & $0.473{\pm}0.010$ & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-61-\quad VC &  & $0.470{\pm}0.006$ & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-62-\quad LP &  & $0.311{\pm}0.003$ & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-63-\bottomrule
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-147-\paragraph{Capability stratification.}
+docs/paper/sections/appendix.tex-148-For NER, SJ effectiveness scales with structural complexity: on SciERC instances with 6+ entities, $\rho{=}0.547$, compared to $\rho{=}0.415$ for 1--2 entities.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-149-The SJ advantage over LP remains stable across sentence-length quartiles ($\Delta\rho{\approx}0.08$--$0.20$).
+docs/paper/sections/appendix.tex:150:For RE, SJ $\rho$ increases monotonically with sentence length (Q1: 0.110 $\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$), indicating that longer, more relation-dense sentences provide richer structure for consistency-based estimation.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-151-Both proxies are weakly correlated with F1 ($|r|{<}0.15$), confirming they capture input complexity rather than directly predicting output quality; however, entity count and sentence length are themselves moderately correlated ($\rho{=}0.650$), so they reflect overlapping rather than independent complexity dimensions.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-152-For RE, entity count and relation count are strongly correlated ($\rho{=}0.769$) and thus reflect a single structural complexity dimension rather than independent axes.
+docs/paper/sections/appendix.tex-153-On the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: VC reaches $\rho{=}0.630$, LP $\rho{=}0.554$, and SJ $\rho{=}0.502$---all far above the full-set levels.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2b28743d-1021-4bfa-b691-8ae8e5d6a96c",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "4124571f-5d47-47c5-aa29-e7b76914bbc2",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-57-\\multicolumn{4}{l}{\\textit{Across model families} (LLaMA CoNLL, $N{=}16$, 3 seeds)} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-58-\\quad SJ &  & $0.474{\\pm}0.009$ & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-59-\\quad FK &  & $0.467{\\pm}0.009$ & --- \\\\\ndocs/paper/sections/appendix.tex:60:\\quad EM &  & $0.473{\\pm}0.010$ & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-61-\\quad VC &  & $0.470{\\pm}0.006$ & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-62-\\quad LP &  & $0.311{\\pm}0.003$ & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-63-\\bottomrule\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-147-\\paragraph{Capability stratification.}\ndocs/paper/sections/appendix.tex-148-For NER, SJ effectiveness scales with structural complexity: on SciERC instances with 6+ entities, $\\rho{=}0.547$, compared to $\\rho{=}0.415$ for 1--2 entities.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-149-The SJ advantage over LP remains stable across sentence-length quartiles ($\\Delta\\rho{\\approx}0.08$--$0.20$).\ndocs/paper/sections/appendix.tex:150:For RE, SJ $\\rho$ increases monotonically with sentence length (Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$), indicating that longer, more relation-dense sentences provide richer structure for consistency-based estimation.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-151-Both proxies are weakly correlated with F1 ($|r|{<}0.15$), confirming they capture input complexity rather than directly predicting output quality; however, entity count and sentence length are themselves moderately correlated ($\\rho{=}0.650$), so they reflect overlapping rather than independent complexity dimensions.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-152-For RE, entity count and relation count are strongly correlated ($\\rho{=}0.769$) and thus reflect a single structural complexity dimension rather than independent axes.\ndocs/paper/sections/appendix.tex-153-On the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: VC reaches $\\rho{=}0.630$, LP $\\rho{=}0.554$, and SJ $\\rho{=}0.502$---all far above the full-set levels.",
+    "numLines": 15
+  },
+  "sourceToolAssistantUUID": "2b28743d-1021-4bfa-b691-8ae8e5d6a96c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-16T04:54:06.316Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01SBMmFCdBcXpoZ6fmByttwP`</summary>
+
+```json
+{
+  "pattern": "0\\.062",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true,
+  "context": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4124571f-5d47-47c5-aa29-e7b76914bbc2",
+  "isSidechain": false,
+  "requestId": "req_011Cb5efe8Hqwz5LftMeThNw",
+  "type": "assistant",
+  "uuid": "3d85752c-8f85-402a-a88c-4d3f09886f60",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UUoz2zyf67bdFXed94KzCw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5676,
+      "cache_read_input_tokens": 28870,
+      "output_tokens": 809,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5676,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 809,
+          "cache_read_input_tokens": 28870,
+          "cache_creation_input_tokens": 5676,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5676
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "25b4c9ed-4d4c-4084-a1c6-0a6d6d4f1f1d",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit provenance values in paper against registry",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-16T04:54:23.995Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the findings:
+
+**c032: LP cond RE ρ (0.002)**
+- The grep for 0.002 found several matches but none seem to be the LP cond RE ρ value. The hits are:
+  - Line 73 in experiments.tex: `$0.646 \pm 0.002$` — this is a confidence interval, not the rho value
+  - Line 87 in appendix.tex: `$\Delta{=}0.002$` — this is a delta, not LP RE rho
+  - Line 203 in appendix.tex: `$\Delta\rho{=}{+}0.002$` — also a delta
+  - Line 306 in appendix.tex: `$p{\leq}0.002$` — a p-value
+  - Line 686 in appendix.tex: `0.0024` — LP range delta
+  - Line 701 in appendix.tex: `0.0022` — a performance delta
+  - Line 726 in appendix.tex: `$+$0.002` — an N-scaling delta
+
+None of these match the specific LP and RE rho combination I'm looking for, so I need to try a more targeted search strategy.
+
+Let me look for the exact values mentioned — 0.0112, 0.1457, and 0.062 — and search for "logprob" or "LP" appearing near "RE" in the paper. For the 0.062 value in the WNUT context, my search only turned up line 686 with a different meaning (LP range in free-form ablation), so that specific value doesn't appear to be directly reported. Let me broaden the search for 0.062 without the decimal constraint and check line 150 in appendix.tex where I found something labeled c023.
+
+Found it — line 150 has the exact RE values I was looking for: Q1 shows 0.110 and Q4 shows 0.473 with a Fisher z-test p-value of 0.004. But the registry records Q1_sj_rho as 0.447 and Q4_sj_rho as 0.540, which are substantially different from what's in the paper. Now I need to search more systematically for the WNUT SJ ρ values and the LP conditional RE rho measurements.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25b4c9ed-4d4c-4084-a1c6-0a6d6d4f1f1d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5egZZEGAWpTBCy1Nn8z",
+  "type": "assistant",
+  "uuid": "97da458a-165f-4129-b0be-55c9a65d940c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DwMmgdJLEJJY8mNSfqPrmT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6358,
+      "cache_read_input_tokens": 34546,
+      "output_tokens": 1324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6358,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1324,
+          "cache_read_input_tokens": 34546,
+          "cache_creation_input_tokens": 6358,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6358
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-16T04:54:24.001Z_
+
+c023 已定位：appendix.tex 第150行。继续搜索 c032 和 c021 的具体数值。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97da458a-165f-4129-b0be-55c9a65d940c",
+  "isSidechain": false,
+  "requestId": "req_011Cb5egZZEGAWpTBCy1Nn8z",
+  "type": "assistant",
+  "uuid": "5581febc-5c36-4011-81ea-fff7e8613e4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DwMmgdJLEJJY8mNSfqPrmT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6358,
+      "cache_read_input_tokens": 34546,
+      "output_tokens": 1324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6358,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1324,
+          "cache_read_input_tokens": 34546,
+          "cache_creation_input_tokens": 6358,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6358
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-16T04:54:24.818Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01SofGAa7Moa42V1wV26dfNB`</summary>
+
+```json
+{
+  "pattern": "WNUT|wnut",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true,
+  "context": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5581febc-5c36-4011-81ea-fff7e8613e4d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5egZZEGAWpTBCy1Nn8z",
+  "type": "assistant",
+  "uuid": "c1063e46-2ee5-4690-819d-a5c790ba33b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DwMmgdJLEJJY8mNSfqPrmT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6358,
+      "cache_read_input_tokens": 34546,
+      "output_tokens": 1324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6358,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1324,
+          "cache_read_input_tokens": 34546,
+          "cache_creation_input_tokens": 6358,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6358
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-16T04:54:28.158Z_
+
+<details><summary>↩ Tool result · `toolu_017hve772psYLmtoTkYdAWS5`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8fa04082-72a1-441c-91d4-cffe42ff1481",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "01799e73-4d98-47b5-a522-fffa1c6b13ce",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "8fa04082-72a1-441c-91d4-cffe42ff1481",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-16T04:54:24.837Z_
+
+<details><summary>↩ Tool result · `toolu_01SofGAa7Moa42V1wV26dfNB`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (20.4KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/c8c7f004-7c20-436d-b822-f78a19ce26dc/tool-results/toolu_01SofGAa7Moa42V1wV26dfNB.txt
+
+Preview (first 2KB):
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-8-We evaluate on three English IE benchmarks spanning a difficulty gradient.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-9-\textbf{SciERC} \cite{luan2018scierc} contains 551 test instances annotated for joint NER (6 types) and RE (7 types).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-10-\textbf{CoNLL-2003} \cite{tjongkimsang2003conll} provides 3{,}453 test sentences with 4 entity types, where models achieve ${\approx}$91\% micro F1.
+docs/paper/sections/experiments.tex:11:\textbf{WNUT-17} \cite{derczynski2017wnut} consists of 1{,}287 social media instances with emerging entities, used to probe method boundaries (52\% zero F1).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-12-
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-13-\paragraph{Models and sampling.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-14-Both \textbf{Qwen3-8B} and \textbf{LLaMA-3.1-8B-Instruct} are fine-tuned with LoRA (rank$=$32, $\alpha{=}64$) for 5 epochs using LLaMA Factory \cite{zheng2024llamafactory} under identical training procedures.
+--
+docs/paper/sections/experiments.tex-47-On SciERC NER, structural signals lead (VC $\rho{=}0.379$, SJ $0.360$) over surface ($\rho{\leq}0.295$) and LP ($0.205$); bootstrap CIs confirm the SJ--LP gap ($\Delta\rho{=}{+}0.155$; Appendix~\ref{app:bootstrap_signal}).
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c1063e46-2ee5-4690-819d-a5c790ba33b9",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "b0b5618f-36e0-4680-a6b4-549407b1e05f",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-8-We evaluate on three English IE benchmarks spanning a difficulty gradient.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-9-\\textbf{SciERC} \\cite{luan2018scierc} contains 551 test instances annotated for joint NER (6 types) and RE (7 types).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-10-\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} provides 3{,}453 test sentences with 4 entity types, where models achieve ${\\approx}$91\\% micro F1.\ndocs/paper/sections/experiments.tex:11:\\textbf{WNUT-17} \\cite{derczynski2017wnut} consists of 1{,}287 social media instances with emerging entities, used to probe method boundaries (52\\% zero F1).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-12-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-13-\\paragraph{Models and sampling.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-14-Both \\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are fine-tuned with LoRA (rank$=$32, $\\alpha{=}64$) for 5 epochs using LLaMA Factory \\cite{zheng2024llamafactory} under identical training procedures.\n--\ndocs/paper/sections/experiments.tex-47-On SciERC NER, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over surface ($\\rho{\\leq}0.295$) and LP ($0.205$); bootstrap CIs confirm the SJ--LP gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-48-On CoNLL (single-sample F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$); the $\\rho$--AUROC dissociation across datasets reflects use-case alignment.\ndocs/paper/sections/experiments.tex-49-On $^\\dagger$RE, LP rises above SJ and FK at $N{=}16$ (Table~\\ref{tab:multiseed}).\ndocs/paper/sections/experiments.tex:50:At the capability boundary---WNUT-17 (52\\% zero F1)---all conditional signals collapse (Table~\\ref{tab:wnut}); restricting to non-zero instances reshuffles rankings, with EM strongest on NER ($\\rho{=}0.360$) and $^\\dagger$RE ($\\rho{=}0.417$) while LP $^\\dagger$RE collapses to $\\rho{=}0.011$ (Figure~\\ref{fig:signal_heatmap}, Appendix~\\ref{app:additional}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-51-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-52-%% ============================================================\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-53-\\subsection{The Correlation-Selection Gap}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-87-\\paragraph{No significant improvement over single-sample.}\ndocs/paper/sections/experiments.tex-88-On SciERC NER (2-seed sign tests, $n{=}551$), the oracle (0.778) reveals 13.3~pp of headroom above single-sample (0.645), yet LP achieves only 0.647 ($\\Delta{=}{+}0.2$~pp, $p{=}0.29$); no signal consistently improves selection ($p{>}0.05$; TOST equivalence holds under all external anchors for LLaMA-CoNLL but varies by configuration, Appendix~\\ref{app:tost}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-89-On $^\\dagger$RE, the best signal (LP, 0.395) falls below single-sample (0.404), with 18.1~pp unrealized.\ndocs/paper/sections/experiments.tex:90:The pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\ndocs/paper/sections/experiments.tex-91-Instance-level signals predict \\textit{which inputs} the model handles reliably, not \\textit{which output} is best; closing this gap likely requires trained verifiers \\cite{cobbe2021verifiers}.\\footnote{For negative results (all $p{>}0.05$), uncorrected tests suffice; the sole positive finding (non-tied LP subset, $+2.9$~pp, $p{=}0.004$; \\S\\ref{sec:discussion}) survives Bonferroni correction over 5 comparisons.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-92-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-93-%% ============================================================\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-2-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-3-\\paragraph{Practical recommendations.}\ndocs/paper/sections/discussion.tex-4-VC leads on hard NER ($\\rho{=}0.379$); EM leads easy NER and binary discrimination (AUROC${=}0.816$, CoNLL); on $^\\dagger$RE, LP outperforms structural signals (Table~\\ref{tab:multiseed}).\ndocs/paper/sections/discussion.tex:5:Rankings hold across model families and a 4B ablation (Table~\\ref{tab:scale_ablation}); at the capability boundary (WNUT-17), all signals collapse.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-6-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-7-\\paragraph{Why the gap exists.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-8-Four of five signals are instance-level aggregates that assign a single score per input; they cannot rank candidates by construction.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex-54-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex-55-\\paragraph{Quality estimation.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex-56-Spearman $\\rho$ between the signal and instance-level F1, and AUROC classifying instances as above/below median F1.\ndocs/paper/sections/method.tex:57:Correlation analyses exclude empty gold annotations ($n{=}529$ on SciERC after filtering 22/551; $n{=}2{,}756$ on CoNLL after filtering 697/3{,}453);\\footnote{On CoNLL, full-set ($n{=}3{,}453$) Spearman $\\rho$ values are higher than gold-filtered ($n{=}2{,}756$) by $+0.03$--$0.05$ due to the zero/non-zero boundary inflating correlations, paralleling the effect documented for WNUT-17 in Appendix~\\ref{app:additional}.} selection retains the full set.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex-58-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex-59-\\paragraph{Sample selection.}\ndocs/paper/sections/method.tex-60-Best-of-$N$ F1: per-sample signals (LP) directly rank candidates; instance-level signals select the sample closest to consensus.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-151-Both proxies are weakly correlated with F1 ($|r|{<}0.15$), confirming they capture input complexity rather than directly predicting output quality; however, entity count and sentence length are themselves moderately correlated ($\\rho{=}0.650$), so they reflect overlapping rather than independent complexity dimensions.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-152-For RE, entity count and relation count are strongly correlated ($\\rho{=}0.769$) and thus reflect a single structural complexity dimension rather than independent axes.\ndocs/paper/sections/appendix.tex-153-On the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: VC reaches $\\rho{=}0.630$, LP $\\rho{=}0.554$, and SJ $\\rho{=}0.502$---all far above the full-set levels.\ndocs/paper/sections/appendix.tex:154:Richer relational structure provides more signal for consistency-based estimation, complementing the task-level boundary established by WNUT-17: structural signals are most effective within a ``sweet spot'' of sufficient model capability and sufficient output complexity.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-155-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-156-\\paragraph{Length vs.\\ log-probability.}\ndocs/paper/sections/appendix.tex-157-Figure~\\ref{fig:length_logprob_scatter} shows that mean log-probability is weakly positively correlated with output length (NER: $\\rho{=}0.386$, $n{=}4{,}232$; RE: $\\rho{=}0.326$, $n{=}3{,}176$), ruling out length-penalty confounding as an explanation for LP's selection failure: longer outputs receive \\textit{higher}, not lower, token-averaged log-probability under constrained decoding.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-202-On the conditional set---where the model demonstrably produces varied outputs---exact agreement becomes the strongest quality signal.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-203-The margin over SJ is largest on RE ($\\Delta\\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\\Delta\\rho{=}{+}0.002$), where all signals converge near $\\rho{\\approx}0.46$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-204-\ndocs/paper/sections/appendix.tex:205:\\paragraph{WNUT-17 full signal analysis.}\ndocs/paper/sections/appendix.tex:206:Table~\\ref{tab:wnut} reports all five signals on WNUT-17.\ndocs/paper/sections/appendix.tex-207-VC achieves $\\rho{=}0.724$ (AUROC${=}0.913$) on the full set, but conditional analysis (non-zero F1 instances) reveals this is entirely driven by the zero/non-zero boundary: conditional $\\rho{=}0.038$ ($p{=}0.49$).\ndocs/paper/sections/appendix.tex-208-LP shows the reverse pattern: full-set $\\rho{=}{-}0.410$ but conditional $\\rho{=}0.350$, the highest among all signals on the conditional set.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-209-This inversion confirms that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-211-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-212-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-213-\\small\ndocs/paper/sections/appendix.tex:214:\\caption{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$ after filtering gold-empty instances). Cond: non-zero F1 instances ($n{=}334$). LP exhibits strong negative full-set $\\rho$; its conditional $\\rho$ reverses to the highest among all signals, confirming that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.}\ndocs/paper/sections/appendix.tex:215:\\label{tab:wnut}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-216-\\begin{tabular}{lccccc}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-217-\\toprule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-218-Signal & $\\rho$ & $p$ & AUROC & Cond.\\ $\\rho$ & Cond.\\ $p$ \\\\\n--\ndocs/paper/sections/appendix.tex-320-On SciERC, output diversity is substantial: Qwen produces 43\\% unique outputs per instance (mean 3.5 distinct out of $N{=}8$), with per-sample F1 standard deviation of 0.144 and mean pairwise SJ of 0.703.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-321-LLaMA shows similar diversity (39\\% unique, F1 std 0.11).\ndocs/paper/sections/appendix.tex-322-On CoNLL, diversity collapses: 57\\% (Qwen) to 88\\% (LLaMA) of instances produce identical outputs across all $N$ samples, reflecting a ceiling effect where greedy F1 already exceeds 0.90.\ndocs/paper/sections/appendix.tex:323:WNUT-17 shows 55\\% identical outputs, driven by the 52\\% zero-F1 rate.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-324-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-325-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-326-\\centering\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-335-LLaMA/SciERC & 18\\% & 39\\% \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-336-Qwen/CoNLL & 57\\% & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-337-LLaMA/CoNLL & 88\\% & --- \\\\\ndocs/paper/sections/appendix.tex:338:WNUT-17 & 55\\% & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-339-\\bottomrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-340-\\end{tabular}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-341-\\end{table}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-453-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-454-\\multicolumn{2}{l}{\\textit{Dataset-specific}} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-455-SciERC split & 1861 / 275 / 551 \\\\\ndocs/paper/sections/appendix.tex:456:CoNLL / WNUT & +\\,load\\_best\\_model\\_at\\_end, \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-457-& eval\\_steps${=}$200, save\\_limit${=}$5 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-458-\\bottomrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-459-\\end{tabular}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-472-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-473-\\paragraph{Constrained decoding.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-474-Inference uses vLLM with XGrammar-based JSON schema enforcement \\cite{willard2023guided}, which constrains outputs to valid entity/relation structures matching the target schema.\ndocs/paper/sections/appendix.tex:475:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-476-\ndocs/paper/sections/appendix.tex-477-\\section{Thinking Token Impact Analysis}\\label{app:thinking_token}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-478-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-489-Any LP bias from the training-time thinking prefix is therefore a near-constant additive shift across all candidates within an instance, leaving within-instance LP \\textit{rankings} unchanged.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-490-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-491-\\paragraph{CoNLL control group.}\ndocs/paper/sections/appendix.tex:492:CoNLL and WNUT-17 checkpoints were trained without thinking tokens (\\texttt{enable\\_thinking=False}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-493-If thinking tokens caused LP compression on SciERC, CoNLL should exhibit lower tied fractions.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-494-Instead, CoNLL shows \\textit{higher} tied fractions at both temperatures (86.8\\% at $T{=}1.0$, 95.8\\% at $T{=}0.7$) than SciERC (60.3\\% at $T{=}1.0$), directly contradicting the thinking-token hypothesis.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-495-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-886-The reverse direction is excluded from our conclusions due to catastrophic model failure, not signal failure.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-887-The CoNLL-trained model recognizes only 4 news entity types (PER, ORG, LOC, MISC) and has no relation extraction capability; when applied to SciERC's 6 scientific entity types and 7 relation types, the model cannot produce meaningful structured outputs (greedy NER F1${=}0.009$, RE F1${=}0.001$).\ndocs/paper/sections/appendix.tex-888-Under this regime, most signals flip to negative or near-zero correlations (Table~\\ref{tab:ood}); only VC retains weak positive correlation ($\\rho{=}0.105$, $p{=}0.016$).\ndocs/paper/sections/appendix.tex:889:These negative correlations reflect the model systematically generating confident but incorrect outputs---a capability failure analogous to WNUT-17 (\\S\\ref{sec:qe_results}), not evidence against signal utility.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-890-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-891-\\paragraph{Asymmetry interpretation.}\ndocs/paper/sections/appendix.tex-892-The directional asymmetry is driven by schema coverage: wider$\\to$narrower preserves signal utility because the SciERC model's 6-type schema subsumes CoNLL's 4 types, while narrower$\\to$wider fails because the CoNLL model lacks the entity and relation types required by SciERC.\ndocs/paper/sections/appendix.tex:893:This extends the capability boundary identified on WNUT-17 to the domain-shift setting: confidence signals require sufficient model capability as a prerequisite, and results from the CoNLL$\\to$SciERC direction should not be interpreted as evidence of signal degradation under domain shift.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-894-\ndocs/paper/sections/appendix.tex-895-\\section{Verbalized Confidence}\\label{app:verbalized_confidence}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-896-\n--\ndocs/paper/sections/introduction.tex-17-\\label{fig:overview}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex-18-\\end{figure*}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex-19-\ndocs/paper/sections/introduction.tex:20:We evaluate five signals from three families---structural, surface, and model-internal---across NER and RE on SciERC \\cite{luan2018scierc}, CoNLL-2003 \\cite{tjongkimsang2003conll}, and WNUT-17 \\cite{derczynski2017wnut}, using two 8B models (Qwen3-8B, LLaMA-3.1-8B) with a 4B ablation (Qwen3-4B).\ndocs/paper/sections/introduction.tex-21-Our contributions:\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex-22-\\begin{enumerate}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex-23-    \\item \\textbf{Empirical dissociation of evaluation metrics.}",
+    "numLines": 125
+  },
+  "sourceToolAssistantUUID": "c1063e46-2ee5-4690-819d-a5c790ba33b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-16T04:54:26.274Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01WXHNgaigHKMXNBRsoZBhZT`</summary>
+
+```json
+{
+  "pattern": "logprob.*RE|RE.*logprob|LP.*RE|RE.*LP",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true,
+  "context": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0b5618f-36e0-4680-a6b4-549407b1e05f",
+  "isSidechain": false,
+  "requestId": "req_011Cb5egZZEGAWpTBCy1Nn8z",
+  "type": "assistant",
+  "uuid": "16c2a90d-8ea3-45a8-af02-8ad63c0bc8ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DwMmgdJLEJJY8mNSfqPrmT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6358,
+      "cache_read_input_tokens": 34546,
+      "output_tokens": 1324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6358,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1324,
+          "cache_read_input_tokens": 34546,
+          "cache_creation_input_tokens": 6358,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6358
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-16T04:54:26.300Z_
+
+<details><summary>↩ Tool result · `toolu_01WXHNgaigHKMXNBRsoZBhZT`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (35.3KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/c8c7f004-7c20-436d-b822-f78a19ce26dc/tool-results/toolu_01WXHNgaigHKMXNBRsoZBhZT.txt
+
+Preview (first 2KB):
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex-3-We do not train a verifier, leaving unknown how much oracle headroom a supervised approach could recover.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex-4-
+docs/paper/sections/limitations.tex-5-We evaluate at $N{=}8$ (primary) and $N{=}16$; behavior at larger sample sizes is unknown (Appendix~\ref{app:n_scaling}).
+docs/paper/sections/limitations.tex:6:The free-form ablation covers SciERC NER and CoNLL NER with one model; RE shows a directional LP reversal under free-form decoding.
+docs/paper/sections/limitations.tex-7-Qwen3-8B's SciERC checkpoint used empty \texttt{&lt;think>&lt;/think>} blocks; a three-part analysis rules out this confound (Appendix~\ref{app:thinking_token}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex-8-LP compression worsens on easy datasets at lower temperature (CoNLL tied fractions reach 95.8\% at $T{=}0.7$); whether reduced temperature translates to selection gains remains untested.
+docs/paper/sections/limitations.tex-9-We tested verbalized confidence \cite{tian2023calibration} as a second per-sample signal; it exhibits severe overconfidence (mean 8.58/10 on SciERC, 9.24/10 on CoNLL) and yields the weakest QE and selection among all signals (Appendix~\ref{app:verbalized_confidence}).
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex-3-We evaluate five confidence signals across three NER and one RE benchmark at two model scales (4B and 8B).
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "16c2a90d-8ea3-45a8-af02-8ad63c0bc8ff",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "5c18c897-b313-43ad-ab2f-b696d58b5c94",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex-3-We do not train a verifier, leaving unknown how much oracle headroom a supervised approach could recover.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex-4-\ndocs/paper/sections/limitations.tex-5-We evaluate at $N{=}8$ (primary) and $N{=}16$; behavior at larger sample sizes is unknown (Appendix~\\ref{app:n_scaling}).\ndocs/paper/sections/limitations.tex:6:The free-form ablation covers SciERC NER and CoNLL NER with one model; RE shows a directional LP reversal under free-form decoding.\ndocs/paper/sections/limitations.tex-7-Qwen3-8B's SciERC checkpoint used empty \\texttt{&lt;think>&lt;/think>} blocks; a three-part analysis rules out this confound (Appendix~\\ref{app:thinking_token}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex-8-LP compression worsens on easy datasets at lower temperature (CoNLL tied fractions reach 95.8\\% at $T{=}0.7$); whether reduced temperature translates to selection gains remains untested.\ndocs/paper/sections/limitations.tex-9-We tested verbalized confidence \\cite{tian2023calibration} as a second per-sample signal; it exhibits severe overconfidence (mean 8.58/10 on SciERC, 9.24/10 on CoNLL) and yields the weakest QE and selection among all signals (Appendix~\\ref{app:verbalized_confidence}).\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex-3-We evaluate five confidence signals across three NER and one RE benchmark at two model scales (4B and 8B).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex-4-All signals achieve strong quality estimation (Spearman $\\rho$ up to 0.45), yet none improves best-of-$N$ selection despite substantial oracle headroom---the \\textit{correlation-selection gap}.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex-5-Four instance-level signals fail by construction; the empirical finding is that log-probability---the only per-sample signal---is too compressed within instances to discriminate (median range 0.041 nats, 60\\% tied).\ndocs/paper/sections/abstract.tex:6:A 4-seed free-form decoding ablation confirms NER compression is not an artifact of constrained decoding; on RE, LP selection reverses direction under free-form decoding ($+1.8{\\pm}0.1$~pp), suggesting regime-dependent behavior.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex-7-Consensus-proximity selection (MBR) correlates with F1 across instances but not within them.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex-8-Signal rankings shift with task difficulty and collapse at the capability boundary; closing the gap likely requires learned per-sample scoring.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex-9-\\end{abstract}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-67-\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-68-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-69-\\includegraphics[width=\\columnwidth]{fig_temperature_robustness}\ndocs/paper/sections/appendix.tex:70:\\caption{Temperature robustness on SciERC ($N{=}8$). Top: NER; bottom: RE. SJ maintains stable $\\rho$ across $T{=}0.7$ and $T{=}1.0$, while FK shows mixed sensitivity. LP shows the largest NER temperature effect ($\\Delta\\rho{=}{+}0.044$); RE $T{=}0.7$ LP data unavailable.}\ndocs/paper/sections/appendix.tex-71-\\label{fig:temperature_robustness}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-72-\\end{figure}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-73-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-74-\\paragraph{Temperature sensitivity.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-75-SJ NER $\\rho$ shifts from 0.364 ($T{=}0.7$) to 0.360 ($T{=}1.0$), a difference of 0.004.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-76-FK NER $\\rho$ drops by 0.022, while RE $\\rho$ increases by 0.091, likely reflecting reduced diversity at lower temperature interacting differently across tasks.\ndocs/paper/sections/appendix.tex:77:LP exhibits the largest temperature effect on NER ($\\rho{=}0.249$ at $T{=}0.7$ vs.\\ $0.205$ at $T{=}1.0$, $\\Delta{=}{+}0.044$), consistent with lower temperature concentrating probability mass and improving LP's discriminative power for quality estimation; RE $T{=}0.7$ LP data is not available.\ndocs/paper/sections/appendix.tex-78-Across all comparisons, the signal hierarchy is preserved at both temperatures on NER (SJ${>}$FK${>}$LP at $T{=}0.7$: $0.364{>}0.289{>}0.249$; at $T{=}1.0$: $0.360{>}0.267{>}0.205$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-79-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-80-\\paragraph{Sample size scaling.}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-134-\\begin{figure*}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-135-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-136-\\includegraphics[width=\\textwidth]{fig_signal_heatmap}\ndocs/paper/sections/appendix.tex:137:\\caption{Quality estimation heatmap (Spearman $\\rho$) across five signals and four configurations. Left: full evaluation set; right: conditional set (non-zero F1 instances). On the full set, structural signals dominate on SciERC NER while all signals converge on CoNLL. On the conditional set, EM emerges as the strongest signal on both NER ($\\rho{=}0.360$) and RE ($\\rho{=}0.417$), while LP RE collapses to near-zero ($\\rho{=}0.011$).}\ndocs/paper/sections/appendix.tex-138-\\label{fig:signal_heatmap}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-139-\\end{figure*}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-140-\n--\ndocs/paper/sections/appendix.tex-150-For RE, SJ $\\rho$ increases monotonically with sentence length (Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$), indicating that longer, more relation-dense sentences provide richer structure for consistency-based estimation.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-151-Both proxies are weakly correlated with F1 ($|r|{<}0.15$), confirming they capture input complexity rather than directly predicting output quality; however, entity count and sentence length are themselves moderately correlated ($\\rho{=}0.650$), so they reflect overlapping rather than independent complexity dimensions.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-152-For RE, entity count and relation count are strongly correlated ($\\rho{=}0.769$) and thus reflect a single structural complexity dimension rather than independent axes.\ndocs/paper/sections/appendix.tex:153:On the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: VC reaches $\\rho{=}0.630$, LP $\\rho{=}0.554$, and SJ $\\rho{=}0.502$---all far above the full-set levels.\ndocs/paper/sections/appendix.tex-154-Richer relational structure provides more signal for consistency-based estimation, complementing the task-level boundary established by WNUT-17: structural signals are most effective within a ``sweet spot'' of sufficient model capability and sufficient output complexity.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-155-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-156-\\paragraph{Length vs.\\ log-probability.}\ndocs/paper/sections/appendix.tex:157:Figure~\\ref{fig:length_logprob_scatter} shows that mean log-probability is weakly positively correlated with output length (NER: $\\rho{=}0.386$, $n{=}4{,}232$; RE: $\\rho{=}0.326$, $n{=}3{,}176$), ruling out length-penalty confounding as an explanation for LP's selection failure: longer outputs receive \\textit{higher}, not lower, token-averaged log-probability under constrained decoding.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-158-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-159-\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-160-\\centering\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-196-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-197-\\paragraph{Conditional filtering details.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-198-On LLaMA conditional RE (non-zero F1 instances), SJ recovers to $\\rho{=}0.405$ while FK drops to $\\rho{=}0.259$, consistent with the NER structural advantage; on full-set RE, however, the SJ--FK difference is non-significant ($\\Delta\\rho{=}{-}0.005$, $p{=}0.53$; preliminary).\ndocs/paper/sections/appendix.tex:199:At $N{=}16$, the divergence persists: SJ maintains $\\rho{=}0.308$ on conditional RE while LP drops to $\\rho{=}{-}0.026$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-200-EM ranks first across all four tested conditional configurations---SciERC NER ($\\rho{=}0.360$), CoNLL Qwen $N{=}16$ ($\\rho{=}0.466$), CoNLL LLaMA 3-seed ($\\rho{=}0.462$), and SciERC RE ($\\rho{=}0.417$)---despite full-set rankings ranging from \\#1 (CoNLL Qwen) to \\#5 (SciERC RE).\ndocs/paper/sections/appendix.tex-201-On the full set, EM is diluted by trivial agreement: instances where all $N$ samples produce identical (possibly incorrect) outputs receive EM${=}1$ regardless of quality, compressing the signal's dynamic range.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-202-On the conditional set---where the model demonstrably produces varied outputs---exact agreement becomes the strongest quality signal.\n--\ndocs/paper/sections/appendix.tex-355-The $\\delta$ values are contextualized against oracle headroom (12--18~pp): $\\delta{=}5$~pp corresponds to forgoing 28--38\\% of the available headroom, $\\delta{=}3$~pp forgoing 17--23\\%, and $\\delta{=}2$~pp less than 15\\%.\ndocs/paper/sections/appendix.tex-356-These proportions use the same test data that defines the headroom, introducing circularity: $\\delta$ is anchored to the very quantity it contextualizes.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-357-We address this below with externally anchored equivalence margins.\ndocs/paper/sections/appendix.tex:358:The breakpoint $\\delta^*$---the minimum equivalence margin at which each signal passes TOST---ranges from approximately 1.3~pp (SJ, ${\\sim}$10\\% of oracle headroom) to 3.4~pp (FK, ${\\sim}$26\\%) on NER, and from approximately 2.9~pp (LP, ${\\sim}$16\\%) to 6.5~pp (VC, ${\\sim}$36\\%) on RE.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-359-On NER ($n{=}529$), at $\\delta{=}{\\pm}2$~pp, SJ and LP are confirmed equivalent to single-sample (TOST $p{<}0.05$); at $\\delta{=}{\\pm}3$~pp, four of five signals pass; at $\\delta{=}{\\pm}5$~pp, all five pass.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-360-On RE ($n{=}397$, preliminary), EM and VC fail equivalence even at $\\delta{=}{\\pm}5$~pp due to systematic underperformance ($\\Delta{=}{-}3.2$~pp and $-4.5$~pp respectively).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-361-The effect sizes are negligible ($d{=}0.038$) and confidence intervals span zero, with TOST confirming equivalence at practically meaningful margins.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-397-\ndocs/paper/sections/appendix.tex-398-Table~\\ref{tab:multiseed} reports quality estimation metrics across three random seeds for both model families on SciERC ($N{=}8$, $T{=}1.0$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-399-On NER, the signal ranking VC${>}$SJ${>}$EM${>}$FK${>}$LP is identical across all six model-seed combinations, with $\\sigma{\\leq}0.025$ for all signals (rankings are stable across our 3 seeds, though statistical power with $n{=}3$ is limited).\ndocs/paper/sections/appendix.tex:400:On RE (Qwen only, preliminary), VC remains the top signal ($\\rho{=}0.309{\\pm}0.024$), but LP rises to \\#2 ($\\rho{=}0.297{\\pm}0.022$), above FK, SJ, and EM---a reversal from the NER ranking that reflects RE's higher sensitivity to per-sample scoring.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-401-LLaMA absolute values are systematically lower than Qwen on NER, consistent with the directionally-consistent-but-magnitude-dependent characterization in the main text.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-402-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-403-\\begin{table}[t]\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-618-All four consistency signals underperform single-sample, with EM showing the largest deficit ($\\Delta{=}{-}1.5$~pp, Fisher $p{>}0.99$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-619-LP is the only positive signal ($\\Delta{=}{+}0.7$~pp, Fisher $p{=}0.058$), driven primarily by seed~456 ($\\Delta{=}{+}1.5$~pp, $p{=}0.026$); the remaining seeds show smaller effects ($+0.1$ and $+0.6$~pp, $p{>}0.20$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-620-Even the most favorable seed captures only ${\\sim}9\\%$ of the 17.1~pp oracle headroom.\ndocs/paper/sections/appendix.tex:621:This cross-task consistency---LP as the only viable selection signal on both NER and RE---reinforces the structural limitation of instance-level signals for candidate ranking.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-622-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-623-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-624-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-625-\\small\ndocs/paper/sections/appendix.tex:626:\\caption{RE best-of-$N$ selection F1 (macro, instance-averaged) on SciERC (Qwen3-4B, $N{=}16$, $T{=}1.0$, 3-seed mean${\\pm}\\sigma$, $n{=}551$). Fisher combined $p$ vs.\\ single-sample. LP is the only signal with positive $\\Delta$. $\\sigma$ is population standard deviation over 3 seeds.}\ndocs/paper/sections/appendix.tex-627-\\label{tab:re_n16_selection}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-628-\\begin{tabular}{lccc}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-629-\\toprule\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-652-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-653-\\paragraph{Task-specific decoding interactions.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-654-The free-form ablation reveals divergent behavior across tasks.\ndocs/paper/sections/appendix.tex:655:On RE, LP selection flips from $-0.68$~pp (constrained) to $+1.69$~pp (free-form; preliminary, single RE benchmark), a reversal that spans all 7 relation types and is driven by selective variance reallocation ($p{<}0.0001$).\ndocs/paper/sections/appendix.tex-656-The win/loss ratio shifts from 36:59 (constrained) to 45:45 (free-form), with the gains concentrated on relation-dense instances (mean 3.3 gold relations).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-657-This interaction does not generalize to NER, where selection remains negligible under both regimes.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-658-This ablation uses a single seed (seed${=}42$); whether the RE reversal replicates across seeds and generalizes to other RE benchmarks warrants further investigation.\n--\ndocs/paper/sections/appendix.tex-665-Table~\\ref{tab:freeform_ablation} compares constrained and free-form decoding across four dimensions on SciERC ($N{=}8$, $T{=}1.0$, Qwen3-8B; seed${=}42$ shown, 4-seed RE statistics below).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-666-Free-form decoding removes grammar constraints entirely; outputs are parsed post-hoc (parse rate 99.95\\%, 4406/4408).\ndocs/paper/sections/appendix.tex-667-LP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\\times}$), and NER selection gains remain negligible under both regimes (Panel~B).\ndocs/paper/sections/appendix.tex:668:RE LP selection consistently reverses direction under free-form decoding across 4 seeds: $+1.84{\\pm}0.12$~pp (seeds 42/123/456/789: $+1.69$, $+1.76$, $+2.00$, $+1.91$~pp) vs.\\ $-0.68$~pp constrained.\ndocs/paper/sections/appendix.tex-669-The constrained reference ($-0.68$~pp) uses the ablation-matched baseline; the primary experiment (Table~\\ref{tab:selection}) yields $-0.9$~pp on the same gold-filtered set.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-670-Quality estimation improves modestly for most signals under free-form decoding (Panel~C), with the largest gain for FK ($+0.053$ NER, $+0.039$ RE).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-671-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-753-\ndocs/paper/sections/appendix.tex-754-\\section{LP Selection Failure Stability}\\label{app:lp_failure_stability}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-755-\ndocs/paper/sections/appendix.tex:756:We analyze RE LP selection failures across three random seeds (constrained decoding, $N{=}8$, $T{=}1.0$, Qwen3-8B) to assess whether failures are systematic or stochastic.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-757-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-758-\\paragraph{Pairwise overlap.}\ndocs/paper/sections/appendix.tex-759-LP selection failures (instances where LP-selected F1 $<$ greedy F1) show moderate cross-seed stability: the average pairwise Jaccard similarity is 0.42 (range: 0.38--0.46), indicating that failures are partially systematic---driven by instance complexity---but not fully deterministic.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-767-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-768-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-769-\\small\ndocs/paper/sections/appendix.tex:770:\\caption{RE LP selection failure stability across 3 seeds (SciERC, $N{=}8$). Stable failures concentrate on relation-dense instances with high greedy F1.}\ndocs/paper/sections/appendix.tex-771-\\label{tab:stable_failures}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-772-\\begin{tabular}{lcccc}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-773-\\toprule\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-782-\\end{table}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-783-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-784-\\paragraph{Flip instances.}\ndocs/paper/sections/appendix.tex:785:Only 5 RE instances with gold relations flip from LP failure (constrained) to LP success (free-form), with mean gold relation count 3.67 (well above the population mean of 1.86).\ndocs/paper/sections/appendix.tex:786:These instances show large constrained LP errors ($\\Delta{=}{-}0.430$) that reverse under free-form decoding ($\\Delta{=}{+}0.503$), but their rarity (5/397) confirms that the RE selection flip is driven by aggregate variance reallocation rather than systematic instance-level correction.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-787-\ndocs/paper/sections/appendix.tex-788-\\section{$N$-Scaling Detailed Analysis}\\label{app:n_scaling}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-789-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-822-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-823-Qwen  & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-824-Qwen  & NER & 16 & 0.956 & SJ $\\approx$ VC $>$ EM $>$ FK $>$ LP \\\\\ndocs/paper/sections/appendix.tex:825:Qwen  & RE  & 8  & 0.822 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\\\\ndocs/paper/sections/appendix.tex:826:Qwen  & RE  & 16 & 0.956 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-827-LLaMA & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-828-\\bottomrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-829-\\end{tabular}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-852-\\end{table}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-853-\ndocs/paper/sections/appendix.tex-854-Signal rankings are stable across our 3 seeds (Kendall's $W{=}1.000$ for NER at $N{=}8$, both models), dropping only to $W{=}0.956$ at $N{=}16$ where SJ and VC converge (Table~\\ref{tab:ranking-stability}); however, statistical power with $n{=}3$ seeds is limited, and we cannot rule out that additional seeds would reveal ranking instability.\ndocs/paper/sections/appendix.tex:855:Doubling $N$ reduces cross-seed $\\sigma$ by 32\\% on NER and 24\\% on RE (Table~\\ref{tab:sigma-comparison}), with the largest reductions for SJ ($-43\\%$ NER) and EM ($-59\\%$ NER), confirming that additional samples stabilize structural signals more than LP.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-856-\ndocs/paper/sections/appendix.tex-857-\\section{Cross-Dataset OOD Analysis}\\label{app:ood}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-858-\n--\ndocs/paper/sections/discussion.tex-1-\\section{Discussion}\\label{sec:discussion}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-2-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-3-\\paragraph{Practical recommendations.}\ndocs/paper/sections/discussion.tex:4:VC leads on hard NER ($\\rho{=}0.379$); EM leads easy NER and binary discrimination (AUROC${=}0.816$, CoNLL); on $^\\dagger$RE, LP outperforms structural signals (Table~\\ref{tab:multiseed}).\ndocs/paper/sections/discussion.tex-5-Rankings hold across model families and a 4B ablation (Table~\\ref{tab:scale_ablation}); at the capability boundary (WNUT-17), all signals collapse.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-6-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-7-\\paragraph{Why the gap exists.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-8-Four of five signals are instance-level aggregates that assign a single score per input; they cannot rank candidates by construction.\ndocs/paper/sections/discussion.tex-9-Log-probability, the only per-sample signal, is severely compressed: median LP range is 0.041 nats (IQR [0.024, 0.073]; Table~\\ref{tab:logprob_ties}), with pooled within-instance $\\rho(\\text{LP}, \\text{F1}){=}0.248$ confirming weak but positive signal.\ndocs/paper/sections/discussion.tex-10-Where compression is mitigated ($n{=}210$ instances with above-median spread), LP selection outperforms single-sample ($+2.9$~pp, $p{=}0.004$), confirming compression as the bottleneck; the gap holds even among high-diversity instances (Appendix~\\ref{app:diversity}).\ndocs/paper/sections/discussion.tex:11:Doubling to $N{=}16$ expands oracle headroom by $+4.4$~pp without improving selection; on $^\\dagger$RE at 4B scale, LP is the sole positive signal ($\\Delta{=}{+}0.7$~pp, $p{=}0.058$; Table~\\ref{tab:re_n16_selection}), consistent with LP being the strongest RE selection signal across scales, though still below single-sample at 8B.\ndocs/paper/sections/discussion.tex-12-A verbalized confidence baseline confirms that score compression is not LP-specific: the model's self-rated confidence (mean 8.6/10) is even more compressed and yields the weakest selection despite higher $\\rho$ than LP (Appendix~\\ref{app:verbalized_confidence}; \\citealp{bhattacharyya2026beyond}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-13-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-14-\\paragraph{Hypotheses for LP compression.}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-20-\ndocs/paper/sections/discussion.tex-21-\\paragraph{Ablation: free-form decoding.}\\label{sec:ablation}\ndocs/paper/sections/discussion.tex-22-Removing grammar constraints (SciERC NER, Qwen3-8B, 4 seeds) yields nearly identical LP distributions (std ratio 0.97) and negligible selection changes (Appendix~\\ref{app:freeform_ablation}), ruling out constrained decoding as the cause of NER compression.\ndocs/paper/sections/discussion.tex:23:On $^\\dagger$RE, LP selection consistently reverses direction under free-form decoding ($+1.8{\\pm}0.1$~pp, 4 seeds; Appendix~\\ref{app:freeform_ablation}), while under constrained decoding LP falls below single-sample ($-0.9$~pp at 8B).\ndocs/paper/sections/discussion.tex:24:RE LP selection is thus regime-dependent: constrained decoding suppresses it, free-form decoding recovers it, and at 4B $N{=}16$ it is marginally positive ($+0.7$~pp, $p{=}0.058$).\ndocs/paper/sections/discussion.tex:25:One possible explanation: free-form decoding permits greater structural diversity in RE outputs, where LP variation---though compressed---aligns with extraction quality in ways that constrained decoding's fixed template obscures.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-26-VC becomes per-sample in the selection context (each candidate's overlap with the majority-voted output varies), yet tends to select the most typical rather than the best output---consistent with MBR's known mode-seeking bias \\cite{eikema2022sampling}.\ndocs/paper/sections/discussion.tex-27-More broadly, all consensus-proximity strategies fail because utility correlates with F1 across instances but not within them (Appendix~\\ref{app:mbr_discussion}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-28-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex-2-\ndocs/paper/sections/conclusion.tex-3-We evaluate five confidence signals for quality estimation and sample selection in LLM-based structured IE, revealing the \\textit{correlation-selection gap}: strong quality estimation ($\\rho$ up to 0.45) coexists with selection failure.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex-4-Instance-level signals fail by construction; the core empirical finding is that log-probability---the only per-sample signal---is too compressed within instances to discriminate (median range 0.041 nats, 60\\% tied), and consensus-proximity selection (MBR) fails because utility correlates with F1 across but not within instances.\ndocs/paper/sections/conclusion.tex:5:A 4-seed free-form ablation confirms NER compression is not caused by constrained decoding; on $^\\dagger$RE, LP selection reverses direction.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex-6-Signal rankings shift with difficulty across NER benchmarks and collapse at the capability boundary---consistent across two model families (3B--8B).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex-7-$^\\dagger$RE conclusions rest on SciERC alone (40\\% zero-F1 rate); trained verifiers and scaling to 70B+ are promising directions.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-46-\\paragraph{Signal rankings are difficulty-dependent.}\ndocs/paper/sections/experiments.tex-47-On SciERC NER, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over surface ($\\rho{\\leq}0.295$) and LP ($0.205$); bootstrap CIs confirm the SJ--LP gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-48-On CoNLL (single-sample F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$); the $\\rho$--AUROC dissociation across datasets reflects use-case alignment.\ndocs/paper/sections/experiments.tex:49:On $^\\dagger$RE, LP rises above SJ and FK at $N{=}16$ (Table~\\ref{tab:multiseed}).\ndocs/paper/sections/experiments.tex:50:At the capability boundary---WNUT-17 (52\\% zero F1)---all conditional signals collapse (Table~\\ref{tab:wnut}); restricting to non-zero instances reshuffles rankings, with EM strongest on NER ($\\rho{=}0.360$) and $^\\dagger$RE ($\\rho{=}0.417$) while LP $^\\dagger$RE collapses to $\\rho{=}0.011$ (Figure~\\ref{fig:signal_heatmap}, Appendix~\\ref{app:additional}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-51-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-52-%% ============================================================\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-53-\\subsection{The Correlation-Selection Gap}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-58-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-59-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-60-\\small\ndocs/paper/sections/experiments.tex:61:\\caption{Best-of-$N$ selection F1 on SciERC ($N{=}8$, $T{=}1.0$). LP is per-sample; others are instance-level. NER: 2-seed mean${\\pm}\\sigma$, Fisher $p$ vs.\\ single-sample; $^\\dagger$RE: single seed. Best non-oracle in \\textbf{bold}. $^\\ddagger$Single: one $T{=}1.0$ draw.}\ndocs/paper/sections/experiments.tex-62-\\label{tab:selection}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-63-\\begin{tabular}{lccc}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-64-\\toprule\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-86-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-87-\\paragraph{No significant improvement over single-sample.}\ndocs/paper/sections/experiments.tex-88-On SciERC NER (2-seed sign tests, $n{=}551$), the oracle (0.778) reveals 13.3~pp of headroom above single-sample (0.645), yet LP achieves only 0.647 ($\\Delta{=}{+}0.2$~pp, $p{=}0.29$); no signal consistently improves selection ($p{>}0.05$; TOST equivalence holds under all external anchors for LLaMA-CoNLL but varies by configuration, Appendix~\\ref{app:tost}).\ndocs/paper/sections/experiments.tex:89:On $^\\dagger$RE, the best signal (LP, 0.395) falls below single-sample (0.404), with 18.1~pp unrealized.\ndocs/paper/sections/experiments.tex-90-The pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\ndocs/paper/sections/experiments.tex-91-Instance-level signals predict \\textit{which inputs} the model handles reliably, not \\textit{which output} is best; closing this gap likely requires trained verifiers \\cite{cobbe2021verifiers}.\\footnote{For negative results (all $p{>}0.05$), uncorrected tests suffice; the sole positive finding (non-tied LP subset, $+2.9$~pp, $p{=}0.004$; \\S\\ref{sec:discussion}) survives Bonferroni correction over 5 comparisons.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-92-",
+    "numLines": 202
+  },
+  "sourceToolAssistantUUID": "16c2a90d-8ea3-45a8-af02-8ad63c0bc8ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-16T04:54:27.221Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01GhhsFbQ3Y8SrBJBEfGPf57`</summary>
+
+```json
+{
+  "pattern": "0\\.089|0\\.288",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true,
+  "context": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c18c897-b313-43ad-ab2f-b696d58b5c94",
+  "isSidechain": false,
+  "requestId": "req_011Cb5egZZEGAWpTBCy1Nn8z",
+  "type": "assistant",
+  "uuid": "15d79ec4-d744-4780-a94f-915bd323cf79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DwMmgdJLEJJY8mNSfqPrmT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6358,
+      "cache_read_input_tokens": 34546,
+      "output_tokens": 1324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6358,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1324,
+          "cache_read_input_tokens": 34546,
+          "cache_creation_input_tokens": 6358,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6358
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-16T04:54:27.233Z_
+
+<details><summary>↩ Tool result · `toolu_01GhhsFbQ3Y8SrBJBEfGPf57`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-703-  & Selection gap & $+$0.0059 & $+$0.0018 & $-$0.0041 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-704-\midrule
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-705-\multirow{3}{*}{RE}
+docs/paper/sections/appendix.tex:706:  & Single        & 0.2913 & 0.2880 & $-$0.0033 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-707-  & LP-selected   & 0.2845 & 0.3050 & \textbf{$+$0.0205} \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-708-  & Selection gap & $-$0.0068 & $+$0.0169 & \textbf{$+$0.0237} \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-709-\bottomrule
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "15d79ec4-d744-4780-a94f-915bd323cf79",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "e993d213-94ee-4667-92fc-b7484e833019",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-703-  & Selection gap & $+$0.0059 & $+$0.0018 & $-$0.0041 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-704-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-705-\\multirow{3}{*}{RE}\ndocs/paper/sections/appendix.tex:706:  & Single        & 0.2913 & 0.2880 & $-$0.0033 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-707-  & LP-selected   & 0.2845 & 0.3050 & \\textbf{$+$0.0205} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-708-  & Selection gap & $-$0.0068 & $+$0.0169 & \\textbf{$+$0.0237} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-709-\\bottomrule",
+    "numLines": 7
+  },
+  "sourceToolAssistantUUID": "15d79ec4-d744-4780-a94f-915bd323cf79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-16T04:54:28.143Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_017hve772psYLmtoTkYdAWS5`</summary>
+
+```json
+{
+  "pattern": "0\\.0112|0\\.1457",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true,
+  "context": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e993d213-94ee-4667-92fc-b7484e833019",
+  "isSidechain": false,
+  "requestId": "req_011Cb5egZZEGAWpTBCy1Nn8z",
+  "type": "assistant",
+  "uuid": "8fa04082-72a1-441c-91d4-cffe42ff1481",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DwMmgdJLEJJY8mNSfqPrmT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6358,
+      "cache_read_input_tokens": 34546,
+      "output_tokens": 1324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6358,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1324,
+          "cache_read_input_tokens": 34546,
+          "cache_creation_input_tokens": 6358,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6358
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 76 · 2026-05-16T04:54:28.216Z_
+
+```json
+{
+  "parentUuid": "01799e73-4d98-47b5-a522-fffa1c6b13ce",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f911ecb9-9e0c-43e3-ac8e-c19bd921edb6",
+  "timestamp": "2026-05-16T04:54:28.216Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "f911ecb9-9e0c-43e3-ac8e-c19bd921edb6",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 78_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit provenance values in paper against registry",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-16T04:54:35.875Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the full grep results for WNUT and LP/RE patterns to find the specific values.
+
+For c032 (LP cond RE ρ = 0.002):
+- 0.0112 and 0.1457 are not found in the paper at all. 
+- The task says "论文中据报写的是 0.002" — let me search more specifically. Maybe there's a table with RE LP values.
+
+
+For c021 (WNUT SJ ρ = 0.062), I'm seeing the same issue where 0.089 and 0.288 don't appear in the paper, though the grep found 0.0623 in an LP context. I need to check the actual WNUT table and look for RE-specific results in the persisted output files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f911ecb9-9e0c-43e3-ac8e-c19bd921edb6",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eiAtmVygU1nETCGHpD",
+  "type": "assistant",
+  "uuid": "b1787a01-7776-4c88-8ae8-033a2f9df155",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWGFE7PB6FC9xVAMHFEgQr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3410,
+      "cache_read_input_tokens": 40904,
+      "output_tokens": 545,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3410,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 545,
+          "cache_read_input_tokens": 40904,
+          "cache_creation_input_tokens": 3410,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3410
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-16T04:54:35.970Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01UweJWsV7LBzuQMgRAEDXea`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/c8c7f004-7c20-436d-b822-f78a19ce26dc/tool-results/toolu_01SofGAa7Moa42V1wV26dfNB.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b1787a01-7776-4c88-8ae8-033a2f9df155",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eiAtmVygU1nETCGHpD",
+  "type": "assistant",
+  "uuid": "8701718e-4ad2-482a-a60b-08e6aa778f52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWGFE7PB6FC9xVAMHFEgQr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3410,
+      "cache_read_input_tokens": 40904,
+      "output_tokens": 545,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3410,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 545,
+          "cache_read_input_tokens": 40904,
+          "cache_creation_input_tokens": 3410,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3410
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-16T04:54:35.983Z_
+
+<details><summary>↩ Tool result · `toolu_01UweJWsV7LBzuQMgRAEDXea`</summary>
+
+```text
+1	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-8-We evaluate on three English IE benchmarks spanning a difficulty gradient.
+2	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-9-\textbf{SciERC} \cite{luan2018scierc} contains 551 test instances annotated for joint NER (6 types) and RE (7 types).
+3	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-10-\textbf{CoNLL-2003} \cite{tjongkimsang2003conll} provides 3{,}453 test sentences with 4 entity types, where models achieve ${\approx}$91\% micro F1.
+4	docs/paper/sections/experiments.tex:11:\textbf{WNUT-17} \cite{derczynski2017wnut} consists of 1{,}287 social media instances with emerging entities, used to probe method boundaries (52\% zero F1).
+5	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-12-
+6	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-13-\paragraph{Models and sampling.}
+7	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-14-Both \textbf{Qwen3-8B} and \textbf{LLaMA-3.1-8B-Instruct} are fine-tuned with LoRA (rank$=$32, $\alpha{=}64$) for 5 epochs using LLaMA Factory \cite{zheng2024llamafactory} under identical training procedures.
+8	--
+9	docs/paper/sections/experiments.tex-47-On SciERC NER, structural signals lead (VC $\rho{=}0.379$, SJ $0.360$) over surface ($\rho{\leq}0.295$) and LP ($0.205$); bootstrap CIs confirm the SJ--LP gap ($\Delta\rho{=}{+}0.155$; Appendix~\ref{app:bootstrap_signal}).
+10	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-48-On CoNLL (single-sample F1${\approx}$0.91), EM leads both $\rho$ and AUROC ($0.816$); the $\rho$--AUROC dissociation across datasets reflects use-case alignment.
+11	docs/paper/sections/experiments.tex-49-On $^\dagger$RE, LP rises above SJ and FK at $N{=}16$ (Table~\ref{tab:multiseed}).
+12	docs/paper/sections/experiments.tex:50:At the capability boundary---WNUT-17 (52\% zero F1)---all conditional signals collapse (Table~\ref{tab:wnut}); restricting to non-zero instances reshuffles rankings, with EM strongest on NER ($\rho{=}0.360$) and $^\dagger$RE ($\rho{=}0.417$) while LP $^\dagger$RE collapses to $\rho{=}0.011$ (Figure~\ref{fig:signal_heatmap}, Appendix~\ref{app:additional}).
+13	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-51-
+14	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-52-%% ============================================================
+15	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-53-\subsection{The Correlation-Selection Gap}
+16	--
+17	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-87-\paragraph{No significant improvement over single-sample.}
+18	docs/paper/sections/experiments.tex-88-On SciERC NER (2-seed sign tests, $n{=}551$), the oracle (0.778) reveals 13.3~pp of headroom above single-sample (0.645), yet LP achieves only 0.647 ($\Delta{=}{+}0.2$~pp, $p{=}0.29$); no signal consistently improves selection ($p{>}0.05$; TOST equivalence holds under all external anchors for LLaMA-CoNLL but varies by configuration, Appendix~\ref{app:tost}).
+19	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-89-On $^\dagger$RE, the best signal (LP, 0.395) falls below single-sample (0.404), with 18.1~pp unrealized.
+20	docs/paper/sections/experiments.tex:90:The pattern holds across CoNLL and WNUT-17 (Table~\ref{tab:cross_selection}).
+21	docs/paper/sections/experiments.tex-91-Instance-level signals predict \textit{which inputs} the model handles reliably, not \textit{which output} is best; closing this gap likely requires trained verifiers \cite{cobbe2021verifiers}.\footnote{For negative results (all $p{>}0.05$), uncorrected tests suffice; the sole positive finding (non-tied LP subset, $+2.9$~pp, $p{=}0.004$; \S\ref{sec:discussion}) survives Bonferroni correction over 5 comparisons.}
+22	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-92-
+23	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-93-%% ============================================================
+24	--
+25	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-2-
+26	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-3-\paragraph{Practical recommendations.}
+27	docs/paper/sections/discussion.tex-4-VC leads on hard NER ($\rho{=}0.379$); EM leads easy NER and binary discrimination (AUROC${=}0.816$, CoNLL); on $^\dagger$RE, LP outperforms structural signals (Table~\ref{tab:multiseed}).
+28	docs/paper/sections/discussion.tex:5:Rankings hold across model families and a 4B ablation (Table~\ref{tab:scale_ablation}); at the capability boundary (WNUT-17), all signals collapse.
+29	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-6-
+30	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-7-\paragraph{Why the gap exists.}
+31	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-8-Four of five signals are instance-level aggregates that assign a single score per input; they cannot rank candidates by construction.
+32	--
+33	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex-54-
+34	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex-55-\paragraph{Quality estimation.}
+35	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex-56-Spearman $\rho$ between the signal and instance-level F1, and AUROC classifying instances as above/below median F1.
+36	docs/paper/sections/method.tex:57:Correlation analyses exclude empty gold annotations ($n{=}529$ on SciERC after filtering 22/551; $n{=}2{,}756$ on CoNLL after filtering 697/3{,}453);\footnote{On CoNLL, full-set ($n{=}3{,}453$) Spearman $\rho$ values are higher than gold-filtered ($n{=}2{,}756$) by $+0.03$--$0.05$ due to the zero/non-zero boundary inflating correlations, paralleling the effect documented for WNUT-17 in Appendix~\ref{app:additional}.} selection retains the full set.
+37	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex-58-
+38	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex-59-\paragraph{Sample selection.}
+39	docs/paper/sections/method.tex-60-Best-of-$N$ F1: per-sample signals (LP) directly rank candidates; instance-level signals select the sample closest to consensus.
+40	--
+41	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-151-Both proxies are weakly correlated with F1 ($|r|{<}0.15$), confirming they capture input complexity rather than directly predicting output quality; however, entity count and sentence length are themselves moderately correlated ($\rho{=}0.650$), so they reflect overlapping rather than independent complexity dimensions.
+42	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-152-For RE, entity count and relation count are strongly correlated ($\rho{=}0.769$) and thus reflect a single structural complexity dimension rather than independent axes.
+43	docs/paper/sections/appendix.tex-153-On the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: VC reaches $\rho{=}0.630$, LP $\rho{=}0.554$, and SJ $\rho{=}0.502$---all far above the full-set levels.
+44	docs/paper/sections/appendix.tex:154:Richer relational structure provides more signal for consistency-based estimation, complementing the task-level boundary established by WNUT-17: structural signals are most effective within a ``sweet spot'' of sufficient model capability and sufficient output complexity.
+45	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-155-
+46	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-156-\paragraph{Length vs.\ log-probability.}
+47	docs/paper/sections/appendix.tex-157-Figure~\ref{fig:length_logprob_scatter} shows that mean log-probability is weakly positively correlated with output length (NER: $\rho{=}0.386$, $n{=}4{,}232$; RE: $\rho{=}0.326$, $n{=}3{,}176$), ruling out length-penalty confounding as an explanation for LP's selection failure: longer outputs receive \textit{higher}, not lower, token-averaged log-probability under constrained decoding.
+48	--
+49	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-202-On the conditional set---where the model demonstrably produces varied outputs---exact agreement becomes the strongest quality signal.
+50	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-203-The margin over SJ is largest on RE ($\Delta\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\Delta\rho{=}{+}0.002$), where all signals converge near $\rho{\approx}0.46$.
+51	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-204-
+52	docs/paper/sections/appendix.tex:205:\paragraph{WNUT-17 full signal analysis.}
+53	docs/paper/sections/appendix.tex:206:Table~\ref{tab:wnut} reports all five signals on WNUT-17.
+54	docs/paper/sections/appendix.tex-207-VC achieves $\rho{=}0.724$ (AUROC${=}0.913$) on the full set, but conditional analysis (non-zero F1 instances) reveals this is entirely driven by the zero/non-zero boundary: conditional $\rho{=}0.038$ ($p{=}0.49$).
+55	docs/paper/sections/appendix.tex-208-LP shows the reverse pattern: full-set $\rho{=}{-}0.410$ but conditional $\rho{=}0.350$, the highest among all signals on the conditional set.
+56	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-209-This inversion confirms that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.
+57	--
+58	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-211-\begin{table}[t]
+59	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-212-\centering
+60	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-213-\small
+61	docs/paper/sections/appendix.tex:214:\caption{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$ after filtering gold-empty instances). Cond: non-zero F1 instances ($n{=}334$). LP exhibits strong negative full-set $\rho$; its conditional $\rho$ reverses to the highest among all signals, confirming that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.}
+62	docs/paper/sections/appendix.tex:215:\label{tab:wnut}
+63	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-216-\begin{tabular}{lccccc}
+64	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-217-\toprule
+65	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-218-Signal & $\rho$ & $p$ & AUROC & Cond.\ $\rho$ & Cond.\ $p$ \\
+66	--
+67	docs/paper/sections/appendix.tex-320-On SciERC, output diversity is substantial: Qwen produces 43\% unique outputs per instance (mean 3.5 distinct out of $N{=}8$), with per-sample F1 standard deviation of 0.144 and mean pairwise SJ of 0.703.
+68	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-321-LLaMA shows similar diversity (39\% unique, F1 std 0.11).
+69	docs/paper/sections/appendix.tex-322-On CoNLL, diversity collapses: 57\% (Qwen) to 88\% (LLaMA) of instances produce identical outputs across all $N$ samples, reflecting a ceiling effect where greedy F1 already exceeds 0.90.
+70	docs/paper/sections/appendix.tex:323:WNUT-17 shows 55\% identical outputs, driven by the 52\% zero-F1 rate.
+71	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-324-
+72	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-325-\begin{table}[t]
+73	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-326-\centering
+74	--
+75	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-335-LLaMA/SciERC & 18\% & 39\% \\
+76	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-336-Qwen/CoNLL & 57\% & --- \\
+77	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-337-LLaMA/CoNLL & 88\% & --- \\
+78	docs/paper/sections/appendix.tex:338:WNUT-17 & 55\% & --- \\
+79	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-339-\bottomrule
+80	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-340-\end{tabular}
+81	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-341-\end{table}
+82	--
+83	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-453-\midrule
+84	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-454-\multicolumn{2}{l}{\textit{Dataset-specific}} \\
+85	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-455-SciERC split & 1861 / 275 / 551 \\
+86	docs/paper/sections/appendix.tex:456:CoNLL / WNUT & +\,load\_best\_model\_at\_end, \\
+87	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-457-& eval\_steps${=}$200, save\_limit${=}$5 \\
+88	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-458-\bottomrule
+89	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-459-\end{tabular}
+90	--
+91	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-472-
+92	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-473-\paragraph{Constrained decoding.}
+93	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-474-Inference uses vLLM with XGrammar-based JSON schema enforcement \cite{willard2023guided}, which constrains outputs to valid entity/relation structures matching the target schema.
+94	docs/paper/sections/appendix.tex:475:[Omitted long matching line]
+95	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-476-
+96	docs/paper/sections/appendix.tex-477-\section{Thinking Token Impact Analysis}\label{app:thinking_token}
+97	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-478-
+98	--
+99	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-489-Any LP bias from the training-time thinking prefix is therefore a near-constant additive shift across all candidates within an instance, leaving within-instance LP \textit{rankings} unchanged.
+100	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-490-
+101	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-491-\paragraph{CoNLL control group.}
+102	docs/paper/sections/appendix.tex:492:CoNLL and WNUT-17 checkpoints were trained without thinking tokens (\texttt{enable\_thinking=False}).
+103	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-493-If thinking tokens caused LP compression on SciERC, CoNLL should exhibit lower tied fractions.
+104	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-494-Instead, CoNLL shows \textit{higher} tied fractions at both temperatures (86.8\% at $T{=}1.0$, 95.8\% at $T{=}0.7$) than SciERC (60.3\% at $T{=}1.0$), directly contradicting the thinking-token hypothesis.
+105	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-495-
+106	--
+107	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-886-The reverse direction is excluded from our conclusions due to catastrophic model failure, not signal failure.
+108	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-887-The CoNLL-trained model recognizes only 4 news entity types (PER, ORG, LOC, MISC) and has no relation extraction capability; when applied to SciERC's 6 scientific entity types and 7 relation types, the model cannot produce meaningful structured outputs (greedy NER F1${=}0.009$, RE F1${=}0.001$).
+109	docs/paper/sections/appendix.tex-888-Under this regime, most signals flip to negative or near-zero correlations (Table~\ref{tab:ood}); only VC retains weak positive correlation ($\rho{=}0.105$, $p{=}0.016$).
+110	docs/paper/sections/appendix.tex:889:These negative correlations reflect the model systematically generating confident but incorrect outputs---a capability failure analogous to WNUT-17 (\S\ref{sec:qe_results}), not evidence against signal utility.
+111	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-890-
+112	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-891-\paragraph{Asymmetry interpretation.}
+113	docs/paper/sections/appendix.tex-892-The directional asymmetry is driven by schema coverage: wider$\to$narrower preserves signal utility because the SciERC model's 6-type schema subsumes CoNLL's 4 types, while narrower$\to$wider fails because the CoNLL model lacks the entity and relation types required by SciERC.
+114	docs/paper/sections/appendix.tex:893:This extends the capability boundary identified on WNUT-17 to the domain-shift setting: confidence signals require sufficient model capability as a prerequisite, and results from the CoNLL$\to$SciERC direction should not be interpreted as evidence of signal degradation under domain shift.
+115	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-894-
+116	docs/paper/sections/appendix.tex-895-\section{Verbalized Confidence}\label{app:verbalized_confidence}
+117	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-896-
+118	--
+119	docs/paper/sections/introduction.tex-17-\label{fig:overview}
+120	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex-18-\end{figure*}
+121	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex-19-
+122	docs/paper/sections/introduction.tex:20:We evaluate five signals from three families---structural, surface, and model-internal---across NER and RE on SciERC \cite{luan2018scierc}, CoNLL-2003 \cite{tjongkimsang2003conll}, and WNUT-17 \cite{derczynski2017wnut}, using two 8B models (Qwen3-8B, LLaMA-3.1-8B) with a 4B ablation (Qwen3-4B).
+123	docs/paper/sections/introduction.tex-21-Our contributions:
+124	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex-22-\begin{enumerate}
+125	/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex-23-    \item \textbf{Empirical dissociation of evaluation metrics.}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8701718e-4ad2-482a-a60b-08e6aa778f52",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "39acb5d7-ddcc-4622-946e-9ed0fa93c3a2",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/c8c7f004-7c20-436d-b822-f78a19ce26dc/tool-results/toolu_01SofGAa7Moa42V1wV26dfNB.txt",
+      "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-8-We evaluate on three English IE benchmarks spanning a difficulty gradient.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-9-\\textbf{SciERC} \\cite{luan2018scierc} contains 551 test instances annotated for joint NER (6 types) and RE (7 types).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-10-\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} provides 3{,}453 test sentences with 4 entity types, where models achieve ${\\approx}$91\\% micro F1.\ndocs/paper/sections/experiments.tex:11:\\textbf{WNUT-17} \\cite{derczynski2017wnut} consists of 1{,}287 social media instances with emerging entities, used to probe method boundaries (52\\% zero F1).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-12-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-13-\\paragraph{Models and sampling.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-14-Both \\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are fine-tuned with LoRA (rank$=$32, $\\alpha{=}64$) for 5 epochs using LLaMA Factory \\cite{zheng2024llamafactory} under identical training procedures.\n--\ndocs/paper/sections/experiments.tex-47-On SciERC NER, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over surface ($\\rho{\\leq}0.295$) and LP ($0.205$); bootstrap CIs confirm the SJ--LP gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-48-On CoNLL (single-sample F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$); the $\\rho$--AUROC dissociation across datasets reflects use-case alignment.\ndocs/paper/sections/experiments.tex-49-On $^\\dagger$RE, LP rises above SJ and FK at $N{=}16$ (Table~\\ref{tab:multiseed}).\ndocs/paper/sections/experiments.tex:50:At the capability boundary---WNUT-17 (52\\% zero F1)---all conditional signals collapse (Table~\\ref{tab:wnut}); restricting to non-zero instances reshuffles rankings, with EM strongest on NER ($\\rho{=}0.360$) and $^\\dagger$RE ($\\rho{=}0.417$) while LP $^\\dagger$RE collapses to $\\rho{=}0.011$ (Figure~\\ref{fig:signal_heatmap}, Appendix~\\ref{app:additional}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-51-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-52-%% ============================================================\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-53-\\subsection{The Correlation-Selection Gap}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-87-\\paragraph{No significant improvement over single-sample.}\ndocs/paper/sections/experiments.tex-88-On SciERC NER (2-seed sign tests, $n{=}551$), the oracle (0.778) reveals 13.3~pp of headroom above single-sample (0.645), yet LP achieves only 0.647 ($\\Delta{=}{+}0.2$~pp, $p{=}0.29$); no signal consistently improves selection ($p{>}0.05$; TOST equivalence holds under all external anchors for LLaMA-CoNLL but varies by configuration, Appendix~\\ref{app:tost}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-89-On $^\\dagger$RE, the best signal (LP, 0.395) falls below single-sample (0.404), with 18.1~pp unrealized.\ndocs/paper/sections/experiments.tex:90:The pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\ndocs/paper/sections/experiments.tex-91-Instance-level signals predict \\textit{which inputs} the model handles reliably, not \\textit{which output} is best; closing this gap likely requires trained verifiers \\cite{cobbe2021verifiers}.\\footnote{For negative results (all $p{>}0.05$), uncorrected tests suffice; the sole positive finding (non-tied LP subset, $+2.9$~pp, $p{=}0.004$; \\S\\ref{sec:discussion}) survives Bonferroni correction over 5 comparisons.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-92-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-93-%% ============================================================\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-2-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-3-\\paragraph{Practical recommendations.}\ndocs/paper/sections/discussion.tex-4-VC leads on hard NER ($\\rho{=}0.379$); EM leads easy NER and binary discrimination (AUROC${=}0.816$, CoNLL); on $^\\dagger$RE, LP outperforms structural signals (Table~\\ref{tab:multiseed}).\ndocs/paper/sections/discussion.tex:5:Rankings hold across model families and a 4B ablation (Table~\\ref{tab:scale_ablation}); at the capability boundary (WNUT-17), all signals collapse.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-6-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-7-\\paragraph{Why the gap exists.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-8-Four of five signals are instance-level aggregates that assign a single score per input; they cannot rank candidates by construction.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex-54-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex-55-\\paragraph{Quality estimation.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex-56-Spearman $\\rho$ between the signal and instance-level F1, and AUROC classifying instances as above/below median F1.\ndocs/paper/sections/method.tex:57:Correlation analyses exclude empty gold annotations ($n{=}529$ on SciERC after filtering 22/551; $n{=}2{,}756$ on CoNLL after filtering 697/3{,}453);\\footnote{On CoNLL, full-set ($n{=}3{,}453$) Spearman $\\rho$ values are higher than gold-filtered ($n{=}2{,}756$) by $+0.03$--$0.05$ due to the zero/non-zero boundary inflating correlations, paralleling the effect documented for WNUT-17 in Appendix~\\ref{app:additional}.} selection retains the full set.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex-58-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex-59-\\paragraph{Sample selection.}\ndocs/paper/sections/method.tex-60-Best-of-$N$ F1: per-sample signals (LP) directly rank candidates; instance-level signals select the sample closest to consensus.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-151-Both proxies are weakly correlated with F1 ($|r|{<}0.15$), confirming they capture input complexity rather than directly predicting output quality; however, entity count and sentence length are themselves moderately correlated ($\\rho{=}0.650$), so they reflect overlapping rather than independent complexity dimensions.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-152-For RE, entity count and relation count are strongly correlated ($\\rho{=}0.769$) and thus reflect a single structural complexity dimension rather than independent axes.\ndocs/paper/sections/appendix.tex-153-On the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: VC reaches $\\rho{=}0.630$, LP $\\rho{=}0.554$, and SJ $\\rho{=}0.502$---all far above the full-set levels.\ndocs/paper/sections/appendix.tex:154:Richer relational structure provides more signal for consistency-based estimation, complementing the task-level boundary established by WNUT-17: structural signals are most effective within a ``sweet spot'' of sufficient model capability and sufficient output complexity.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-155-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-156-\\paragraph{Length vs.\\ log-probability.}\ndocs/paper/sections/appendix.tex-157-Figure~\\ref{fig:length_logprob_scatter} shows that mean log-probability is weakly positively correlated with output length (NER: $\\rho{=}0.386$, $n{=}4{,}232$; RE: $\\rho{=}0.326$, $n{=}3{,}176$), ruling out length-penalty confounding as an explanation for LP's selection failure: longer outputs receive \\textit{higher}, not lower, token-averaged log-probability under constrained decoding.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-202-On the conditional set---where the model demonstrably produces varied outputs---exact agreement becomes the strongest quality signal.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-203-The margin over SJ is largest on RE ($\\Delta\\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\\Delta\\rho{=}{+}0.002$), where all signals converge near $\\rho{\\approx}0.46$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-204-\ndocs/paper/sections/appendix.tex:205:\\paragraph{WNUT-17 full signal analysis.}\ndocs/paper/sections/appendix.tex:206:Table~\\ref{tab:wnut} reports all five signals on WNUT-17.\ndocs/paper/sections/appendix.tex-207-VC achieves $\\rho{=}0.724$ (AUROC${=}0.913$) on the full set, but conditional analysis (non-zero F1 instances) reveals this is entirely driven by the zero/non-zero boundary: conditional $\\rho{=}0.038$ ($p{=}0.49$).\ndocs/paper/sections/appendix.tex-208-LP shows the reverse pattern: full-set $\\rho{=}{-}0.410$ but conditional $\\rho{=}0.350$, the highest among all signals on the conditional set.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-209-This inversion confirms that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-211-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-212-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-213-\\small\ndocs/paper/sections/appendix.tex:214:\\caption{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$ after filtering gold-empty instances). Cond: non-zero F1 instances ($n{=}334$). LP exhibits strong negative full-set $\\rho$; its conditional $\\rho$ reverses to the highest among all signals, confirming that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.}\ndocs/paper/sections/appendix.tex:215:\\label{tab:wnut}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-216-\\begin{tabular}{lccccc}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-217-\\toprule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-218-Signal & $\\rho$ & $p$ & AUROC & Cond.\\ $\\rho$ & Cond.\\ $p$ \\\\\n--\ndocs/paper/sections/appendix.tex-320-On SciERC, output diversity is substantial: Qwen produces 43\\% unique outputs per instance (mean 3.5 distinct out of $N{=}8$), with per-sample F1 standard deviation of 0.144 and mean pairwise SJ of 0.703.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-321-LLaMA shows similar diversity (39\\% unique, F1 std 0.11).\ndocs/paper/sections/appendix.tex-322-On CoNLL, diversity collapses: 57\\% (Qwen) to 88\\% (LLaMA) of instances produce identical outputs across all $N$ samples, reflecting a ceiling effect where greedy F1 already exceeds 0.90.\ndocs/paper/sections/appendix.tex:323:WNUT-17 shows 55\\% identical outputs, driven by the 52\\% zero-F1 rate.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-324-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-325-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-326-\\centering\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-335-LLaMA/SciERC & 18\\% & 39\\% \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-336-Qwen/CoNLL & 57\\% & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-337-LLaMA/CoNLL & 88\\% & --- \\\\\ndocs/paper/sections/appendix.tex:338:WNUT-17 & 55\\% & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-339-\\bottomrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-340-\\end{tabular}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-341-\\end{table}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-453-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-454-\\multicolumn{2}{l}{\\textit{Dataset-specific}} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-455-SciERC split & 1861 / 275 / 551 \\\\\ndocs/paper/sections/appendix.tex:456:CoNLL / WNUT & +\\,load\\_best\\_model\\_at\\_end, \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-457-& eval\\_steps${=}$200, save\\_limit${=}$5 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-458-\\bottomrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-459-\\end{tabular}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-472-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-473-\\paragraph{Constrained decoding.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-474-Inference uses vLLM with XGrammar-based JSON schema enforcement \\cite{willard2023guided}, which constrains outputs to valid entity/relation structures matching the target schema.\ndocs/paper/sections/appendix.tex:475:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-476-\ndocs/paper/sections/appendix.tex-477-\\section{Thinking Token Impact Analysis}\\label{app:thinking_token}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-478-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-489-Any LP bias from the training-time thinking prefix is therefore a near-constant additive shift across all candidates within an instance, leaving within-instance LP \\textit{rankings} unchanged.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-490-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-491-\\paragraph{CoNLL control group.}\ndocs/paper/sections/appendix.tex:492:CoNLL and WNUT-17 checkpoints were trained without thinking tokens (\\texttt{enable\\_thinking=False}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-493-If thinking tokens caused LP compression on SciERC, CoNLL should exhibit lower tied fractions.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-494-Instead, CoNLL shows \\textit{higher} tied fractions at both temperatures (86.8\\% at $T{=}1.0$, 95.8\\% at $T{=}0.7$) than SciERC (60.3\\% at $T{=}1.0$), directly contradicting the thinking-token hypothesis.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-495-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-886-The reverse direction is excluded from our conclusions due to catastrophic model failure, not signal failure.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-887-The CoNLL-trained model recognizes only 4 news entity types (PER, ORG, LOC, MISC) and has no relation extraction capability; when applied to SciERC's 6 scientific entity types and 7 relation types, the model cannot produce meaningful structured outputs (greedy NER F1${=}0.009$, RE F1${=}0.001$).\ndocs/paper/sections/appendix.tex-888-Under this regime, most signals flip to negative or near-zero correlations (Table~\\ref{tab:ood}); only VC retains weak positive correlation ($\\rho{=}0.105$, $p{=}0.016$).\ndocs/paper/sections/appendix.tex:889:These negative correlations reflect the model systematically generating confident but incorrect outputs---a capability failure analogous to WNUT-17 (\\S\\ref{sec:qe_results}), not evidence against signal utility.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-890-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-891-\\paragraph{Asymmetry interpretation.}\ndocs/paper/sections/appendix.tex-892-The directional asymmetry is driven by schema coverage: wider$\\to$narrower preserves signal utility because the SciERC model's 6-type schema subsumes CoNLL's 4 types, while narrower$\\to$wider fails because the CoNLL model lacks the entity and relation types required by SciERC.\ndocs/paper/sections/appendix.tex:893:This extends the capability boundary identified on WNUT-17 to the domain-shift setting: confidence signals require sufficient model capability as a prerequisite, and results from the CoNLL$\\to$SciERC direction should not be interpreted as evidence of signal degradation under domain shift.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-894-\ndocs/paper/sections/appendix.tex-895-\\section{Verbalized Confidence}\\label{app:verbalized_confidence}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-896-\n--\ndocs/paper/sections/introduction.tex-17-\\label{fig:overview}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex-18-\\end{figure*}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex-19-\ndocs/paper/sections/introduction.tex:20:We evaluate five signals from three families---structural, surface, and model-internal---across NER and RE on SciERC \\cite{luan2018scierc}, CoNLL-2003 \\cite{tjongkimsang2003conll}, and WNUT-17 \\cite{derczynski2017wnut}, using two 8B models (Qwen3-8B, LLaMA-3.1-8B) with a 4B ablation (Qwen3-4B).\ndocs/paper/sections/introduction.tex-21-Our contributions:\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex-22-\\begin{enumerate}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex-23-    \\item \\textbf{Empirical dissociation of evaluation metrics.}",
+      "numLines": 125,
+      "startLine": 1,
+      "totalLines": 125
+    }
+  },
+  "sourceToolAssistantUUID": "8701718e-4ad2-482a-a60b-08e6aa778f52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-16T04:54:36.716Z_
+
+<details><summary>↩ Tool result · `toolu_014AhVZkFyMtmQ5GzdVhUsCH`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-45-
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-46-\paragraph{Signal rankings are difficulty-dependent.}
+docs/paper/sections/experiments.tex-47-On SciERC NER, structural signals lead (VC $\rho{=}0.379$, SJ $0.360$) over surface ($\rho{\leq}0.295$) and LP ($0.205$); bootstrap CIs confirm the SJ--LP gap ($\Delta\rho{=}{+}0.155$; Appendix~\ref{app:bootstrap_signal}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-48-On CoNLL (single-sample F1${\approx}$0.91), EM leads both $\rho$ and AUROC ($0.816$); the $\rho$--AUROC dissociation across datasets reflects use-case alignment.
+docs/paper/sections/experiments.tex-49-On $^\dagger$RE, LP rises above SJ and FK at $N{=}16$ (Table~\ref{tab:multiseed}).
+docs/paper/sections/experiments.tex:50:At the capability boundary---WNUT-17 (52\% zero F1)---all conditional signals collapse (Table~\ref{tab:wnut}); restricting to non-zero instances reshuffles rankings, with EM strongest on NER ($\rho{=}0.360$) and $^\dagger$RE ($\rho{=}0.417$) while LP $^\dagger$RE collapses to $\rho{=}0.011$ (Figure~\ref{fig:signal_heatmap}, Appendix~\ref{app:additional}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-51-
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-52-%% ============================================================
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-53-\subsection{The Correlation-Selection Gap}
+docs/paper/sections/experiments.tex-54-\label{sec:selection_gap}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-55-
+--
+docs/paper/sections/appendix.tex-201-On the full set, EM is diluted by trivial agreement: instances where all $N$ samples produce identical (possibly incorrect) outputs receive EM${=}1$ regardless of quality, compressing the signal's dynamic range.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-202-On the conditional set---where the model demonstrably produces varied outputs---exact agreement becomes the strongest quality signal.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-203-The margin over SJ is largest on RE ($\Delta\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\Delta\rho{=}{+}0.002$), where all signals converge near $\rho{\approx}0.46$.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-204-
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-205-\paragraph{WNUT-17 full signal analysis.}
+docs/paper/sections/appendix.tex:206:Table~\ref{tab:wnut} reports all five signals on WNUT-17.
+docs/paper/sections/appendix.tex-207-VC achieves $\rho{=}0.724$ (AUROC${=}0.913$) on the full set, but conditional analysis (non-zero F1 instances) reveals this is entirely driven by the zero/non-zero boundary: conditional $\rho{=}0.038$ ($p{=}0.49$).
+docs/paper/sections/appendix.tex-208-LP shows the reverse pattern: full-set $\rho{=}{-}0.410$ but conditional $\rho{=}0.350$, the highest among all signals on the conditional set.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-209-This inversion confirms that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-210-
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-211-\begin{table}[t]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-212-\centering
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-213-\small
+docs/paper/sections/appendix.tex:214:\caption{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$ after filtering gold-empty instances). Cond: non-zero F1 instances ($n{=}334$). LP exhibits strong negative full-set $\rho$; its conditional $\rho$ reverses to the highest among all signals, confirming that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.}
+docs/paper/sections/appendix.tex:215:\label{tab:wnut}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-216-\begin{tabular}{lccccc}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-217-\toprule
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-218-Signal & $\rho$ & $p$ & AUROC & Cond.\ $\rho$ & Cond.\ $p$ \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-219-\midrule
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-220-VC      & .724 & ${<}$1e-112 & .913 & .038 & .487 \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "74adb110-1c58-40c5-ae2b-069d22c75486",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "d2ff0741-c4c6-47a1-9bdb-05cb9abdbeb2",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-45-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-46-\\paragraph{Signal rankings are difficulty-dependent.}\ndocs/paper/sections/experiments.tex-47-On SciERC NER, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over surface ($\\rho{\\leq}0.295$) and LP ($0.205$); bootstrap CIs confirm the SJ--LP gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-48-On CoNLL (single-sample F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$); the $\\rho$--AUROC dissociation across datasets reflects use-case alignment.\ndocs/paper/sections/experiments.tex-49-On $^\\dagger$RE, LP rises above SJ and FK at $N{=}16$ (Table~\\ref{tab:multiseed}).\ndocs/paper/sections/experiments.tex:50:At the capability boundary---WNUT-17 (52\\% zero F1)---all conditional signals collapse (Table~\\ref{tab:wnut}); restricting to non-zero instances reshuffles rankings, with EM strongest on NER ($\\rho{=}0.360$) and $^\\dagger$RE ($\\rho{=}0.417$) while LP $^\\dagger$RE collapses to $\\rho{=}0.011$ (Figure~\\ref{fig:signal_heatmap}, Appendix~\\ref{app:additional}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-51-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-52-%% ============================================================\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-53-\\subsection{The Correlation-Selection Gap}\ndocs/paper/sections/experiments.tex-54-\\label{sec:selection_gap}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-55-\n--\ndocs/paper/sections/appendix.tex-201-On the full set, EM is diluted by trivial agreement: instances where all $N$ samples produce identical (possibly incorrect) outputs receive EM${=}1$ regardless of quality, compressing the signal's dynamic range.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-202-On the conditional set---where the model demonstrably produces varied outputs---exact agreement becomes the strongest quality signal.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-203-The margin over SJ is largest on RE ($\\Delta\\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\\Delta\\rho{=}{+}0.002$), where all signals converge near $\\rho{\\approx}0.46$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-204-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-205-\\paragraph{WNUT-17 full signal analysis.}\ndocs/paper/sections/appendix.tex:206:Table~\\ref{tab:wnut} reports all five signals on WNUT-17.\ndocs/paper/sections/appendix.tex-207-VC achieves $\\rho{=}0.724$ (AUROC${=}0.913$) on the full set, but conditional analysis (non-zero F1 instances) reveals this is entirely driven by the zero/non-zero boundary: conditional $\\rho{=}0.038$ ($p{=}0.49$).\ndocs/paper/sections/appendix.tex-208-LP shows the reverse pattern: full-set $\\rho{=}{-}0.410$ but conditional $\\rho{=}0.350$, the highest among all signals on the conditional set.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-209-This inversion confirms that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-210-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-211-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-212-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-213-\\small\ndocs/paper/sections/appendix.tex:214:\\caption{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$ after filtering gold-empty instances). Cond: non-zero F1 instances ($n{=}334$). LP exhibits strong negative full-set $\\rho$; its conditional $\\rho$ reverses to the highest among all signals, confirming that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.}\ndocs/paper/sections/appendix.tex:215:\\label{tab:wnut}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-216-\\begin{tabular}{lccccc}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-217-\\toprule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-218-Signal & $\\rho$ & $p$ & AUROC & Cond.\\ $\\rho$ & Cond.\\ $p$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-219-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-220-VC      & .724 & ${<}$1e-112 & .913 & .038 & .487 \\\\",
+    "numLines": 32
+  },
+  "sourceToolAssistantUUID": "74adb110-1c58-40c5-ae2b-069d22c75486",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-16T04:54:36.697Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_014AhVZkFyMtmQ5GzdVhUsCH`</summary>
+
+```json
+{
+  "pattern": "tab:wnut|WNUT.*rho|WNUT.*SJ|SJ.*WNUT",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true,
+  "context": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39acb5d7-ddcc-4622-946e-9ed0fa93c3a2",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eiAtmVygU1nETCGHpD",
+  "type": "assistant",
+  "uuid": "74adb110-1c58-40c5-ae2b-069d22c75486",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWGFE7PB6FC9xVAMHFEgQr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3410,
+      "cache_read_input_tokens": 40904,
+      "output_tokens": 545,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3410,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 545,
+          "cache_read_input_tokens": 40904,
+          "cache_creation_input_tokens": 3410,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3410
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "d2ff0741-c4c6-47a1-9bdb-05cb9abdbeb2",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit provenance values in paper against registry",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 86 · 2026-05-16T04:54:45.278Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to see the WNUT table completely. Let me read the appendix.tex around lines 218-230 to see the full WNUT table, and also look for the specific values related to c032 (LP cond RE rho) and c021 (WNUT SJ rho).
+
+The key finding for c021 is that the WNUT table (tab:wnut) starts at line 216. Let me also check the experiments.tex line 50: "LP $^\dagger$RE collapses to $\rho{=}0.011$" - this mentions 0.011, not 0.002 for LP RE.
+
+
+I need to search more carefully for where the 0.002 value appears for LP conditional RE rho, since I haven't located it yet in the WNUT table or the experiments section.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2ff0741-c4c6-47a1-9bdb-05cb9abdbeb2",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eioUCArV45WWiikWhi",
+  "type": "assistant",
+  "uuid": "7c7892f4-5131-4bd6-97a0-86e737ff0d03",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWdc5dc6dLCijgoM5wSU8J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9988,
+      "cache_read_input_tokens": 44314,
+      "output_tokens": 616,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9988,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 616,
+          "cache_read_input_tokens": 44314,
+          "cache_creation_input_tokens": 9988,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9988
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-16T04:54:45.374Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019vRmpiatdqw9vzjtyttsoG`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 216,
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c7892f4-5131-4bd6-97a0-86e737ff0d03",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eioUCArV45WWiikWhi",
+  "type": "assistant",
+  "uuid": "f8620409-9f23-4de8-9c51-cc722c1ad1fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWdc5dc6dLCijgoM5wSU8J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9988,
+      "cache_read_input_tokens": 44314,
+      "output_tokens": 616,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9988,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 616,
+          "cache_read_input_tokens": 44314,
+          "cache_creation_input_tokens": 9988,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9988
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-16T04:54:45.380Z_
+
+<details><summary>↩ Tool result · `toolu_019vRmpiatdqw9vzjtyttsoG`</summary>
+
+```text
+216	\begin{tabular}{lccccc}
+217	\toprule
+218	Signal & $\rho$ & $p$ & AUROC & Cond.\ $\rho$ & Cond.\ $p$ \\
+219	\midrule
+220	VC      & .724 & ${<}$1e-112 & .913 & .038 & .487 \\
+221	FK      & .125 & .001 & .555 & .169 & .002 \\
+222	SJ      & .089 & .020 & .517 & .288 & ${<}$1e-7 \\
+223	EM      & .050 & .194 & .487 & .333 & ${<}$1e-9 \\
+224	LP & $-$.410 & ${<}$1e-28 & .219 & .350 & ${<}$1e-10 \\
+225	\bottomrule
+226	\end{tabular}
+227	\end{table}
+228	
+229	\paragraph{Cross-configuration selection analysis.}
+230	Table~\ref{tab:cross_selection} extends the selection analysis to four additional configurations.
+231	On LLaMA SciERC, where output diversity remains substantial (18\% identical outputs, 39\% unique), LP achieves the highest selection F1 (0.652) at $N{=}8$ but still falls within bootstrap noise of single-sample (0.646), replicating the gap observed on Qwen SciERC (Table~\ref{tab:selection}).
+232	On CoNLL, 57--88\% of instances produce identical outputs across all $N$ samples, reflecting a ceiling effect (single-sample F1 ${\approx}$0.91--0.92) rather than signal failure; selection analysis on these configurations is uninformative because there is little per-sample variance for any signal to exploit.
+233	
+234	\begin{table*}[t]
+235	\centering
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f8620409-9f23-4de8-9c51-cc722c1ad1fb",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "89c808f9-bddf-4449-a842-581bbfbb9eb8",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "\\begin{tabular}{lccccc}\n\\toprule\nSignal & $\\rho$ & $p$ & AUROC & Cond.\\ $\\rho$ & Cond.\\ $p$ \\\\\n\\midrule\nVC      & .724 & ${<}$1e-112 & .913 & .038 & .487 \\\\\nFK      & .125 & .001 & .555 & .169 & .002 \\\\\nSJ      & .089 & .020 & .517 & .288 & ${<}$1e-7 \\\\\nEM      & .050 & .194 & .487 & .333 & ${<}$1e-9 \\\\\nLP & $-$.410 & ${<}$1e-28 & .219 & .350 & ${<}$1e-10 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Cross-configuration selection analysis.}\nTable~\\ref{tab:cross_selection} extends the selection analysis to four additional configurations.\nOn LLaMA SciERC, where output diversity remains substantial (18\\% identical outputs, 39\\% unique), LP achieves the highest selection F1 (0.652) at $N{=}8$ but still falls within bootstrap noise of single-sample (0.646), replicating the gap observed on Qwen SciERC (Table~\\ref{tab:selection}).\nOn CoNLL, 57--88\\% of instances produce identical outputs across all $N$ samples, reflecting a ceiling effect (single-sample F1 ${\\approx}$0.91--0.92) rather than signal failure; selection analysis on these configurations is uninformative because there is little per-sample variance for any signal to exploit.\n\n\\begin{table*}[t]\n\\centering",
+      "numLines": 20,
+      "startLine": 216,
+      "totalLines": 959
+    }
+  },
+  "sourceToolAssistantUUID": "f8620409-9f23-4de8-9c51-cc722c1ad1fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-16T04:54:47.686Z_
+
+<details><summary>↩ Tool result · `toolu_01NKiF6kR2qCyffMqz2JfdKM`</summary>
+
+```text
+docs/paper/sections/experiments.tex-47-On SciERC NER, structural signals lead (VC $\rho{=}0.379$, SJ $0.360$) over surface ($\rho{\leq}0.295$) and LP ($0.205$); bootstrap CIs confirm the SJ--LP gap ($\Delta\rho{=}{+}0.155$; Appendix~\ref{app:bootstrap_signal}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-48-On CoNLL (single-sample F1${\approx}$0.91), EM leads both $\rho$ and AUROC ($0.816$); the $\rho$--AUROC dissociation across datasets reflects use-case alignment.
+docs/paper/sections/experiments.tex-49-On $^\dagger$RE, LP rises above SJ and FK at $N{=}16$ (Table~\ref{tab:multiseed}).
+docs/paper/sections/experiments.tex:50:At the capability boundary---WNUT-17 (52\% zero F1)---all conditional signals collapse (Table~\ref{tab:wnut}); restricting to non-zero instances reshuffles rankings, with EM strongest on NER ($\rho{=}0.360$) and $^\dagger$RE ($\rho{=}0.417$) while LP $^\dagger$RE collapses to $\rho{=}0.011$ (Figure~\ref{fig:signal_heatmap}, Appendix~\ref{app:additional}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-51-
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-52-%% ============================================================
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-53-\subsection{The Correlation-Selection Gap}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-134-\begin{figure*}[t]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-135-\centering
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-136-\includegraphics[width=\textwidth]{fig_signal_heatmap}
+docs/paper/sections/appendix.tex:137:\caption{Quality estimation heatmap (Spearman $\rho$) across five signals and four configurations. Left: full evaluation set; right: conditional set (non-zero F1 instances). On the full set, structural signals dominate on SciERC NER while all signals converge on CoNLL. On the conditional set, EM emerges as the strongest signal on both NER ($\rho{=}0.360$) and RE ($\rho{=}0.417$), while LP RE collapses to near-zero ($\rho{=}0.011$).}
+docs/paper/sections/appendix.tex-138-\label{fig:signal_heatmap}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-139-\end{figure*}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-140-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-846-EM & 0.0076 & 0.0031 & 0.0157 & 0.0049 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-847-LP & 0.0125 & 0.0017 & 0.0218 & 0.0152 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-848-\midrule
+docs/paper/sections/appendix.tex:849:Mean & 0.0145 & 0.0098 & 0.0151 & 0.0114 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-850-\bottomrule
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-851-\end{tabular}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-852-\end{table}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2efb6adf-1cc7-42ab-bcba-212b00edc735",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "9eb33095-906f-4701-96ab-2a793f48a299",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/experiments.tex-47-On SciERC NER, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over surface ($\\rho{\\leq}0.295$) and LP ($0.205$); bootstrap CIs confirm the SJ--LP gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-48-On CoNLL (single-sample F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$); the $\\rho$--AUROC dissociation across datasets reflects use-case alignment.\ndocs/paper/sections/experiments.tex-49-On $^\\dagger$RE, LP rises above SJ and FK at $N{=}16$ (Table~\\ref{tab:multiseed}).\ndocs/paper/sections/experiments.tex:50:At the capability boundary---WNUT-17 (52\\% zero F1)---all conditional signals collapse (Table~\\ref{tab:wnut}); restricting to non-zero instances reshuffles rankings, with EM strongest on NER ($\\rho{=}0.360$) and $^\\dagger$RE ($\\rho{=}0.417$) while LP $^\\dagger$RE collapses to $\\rho{=}0.011$ (Figure~\\ref{fig:signal_heatmap}, Appendix~\\ref{app:additional}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-51-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-52-%% ============================================================\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-53-\\subsection{The Correlation-Selection Gap}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-134-\\begin{figure*}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-135-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-136-\\includegraphics[width=\\textwidth]{fig_signal_heatmap}\ndocs/paper/sections/appendix.tex:137:\\caption{Quality estimation heatmap (Spearman $\\rho$) across five signals and four configurations. Left: full evaluation set; right: conditional set (non-zero F1 instances). On the full set, structural signals dominate on SciERC NER while all signals converge on CoNLL. On the conditional set, EM emerges as the strongest signal on both NER ($\\rho{=}0.360$) and RE ($\\rho{=}0.417$), while LP RE collapses to near-zero ($\\rho{=}0.011$).}\ndocs/paper/sections/appendix.tex-138-\\label{fig:signal_heatmap}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-139-\\end{figure*}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-140-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-846-EM & 0.0076 & 0.0031 & 0.0157 & 0.0049 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-847-LP & 0.0125 & 0.0017 & 0.0218 & 0.0152 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-848-\\midrule\ndocs/paper/sections/appendix.tex:849:Mean & 0.0145 & 0.0098 & 0.0151 & 0.0114 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-850-\\bottomrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-851-\\end{tabular}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-852-\\end{table}",
+    "numLines": 23
+  },
+  "sourceToolAssistantUUID": "2efb6adf-1cc7-42ab-bcba-212b00edc735",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-16T04:54:46.186Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016oNgMh2BRZzZ5YMxTSP95M`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 185,
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89c808f9-bddf-4449-a842-581bbfbb9eb8",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eioUCArV45WWiikWhi",
+  "type": "assistant",
+  "uuid": "d7058d85-95b2-4c33-9e39-0b0c6cd5bddd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWdc5dc6dLCijgoM5wSU8J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9988,
+      "cache_read_input_tokens": 44314,
+      "output_tokens": 616,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9988,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 616,
+          "cache_read_input_tokens": 44314,
+          "cache_creation_input_tokens": 9988,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9988
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-16T04:54:46.197Z_
+
+<details><summary>↩ Tool result · `toolu_016oNgMh2BRZzZ5YMxTSP95M`</summary>
+
+```text
+185	Dataset & Model & $\rho$(max) & $\rho$(union) & $\Delta\rho$ \\
+186	\midrule
+187	CoNLL & Qwen3-8B & .436 & .438 & $-$.002 \\
+188	CoNLL & Qwen3-4B & .422 & .421 & $+$.000 \\
+189	CoNLL & LLaMA-8B & .431 & .432 & $-$.000 \\
+190	SciERC & Qwen3-8B & .360 & .365 & $-$.005 \\
+191	SciERC & Qwen3-4B & .422 & .423 & $-$.001 \\
+192	SciERC & LLaMA-8B & .363 & .372 & $-$.009 \\
+193	\bottomrule
+194	\end{tabular}
+195	\end{table}
+196	
+197	\paragraph{Conditional filtering details.}
+198	On LLaMA conditional RE (non-zero F1 instances), SJ recovers to $\rho{=}0.405$ while FK drops to $\rho{=}0.259$, consistent with the NER structural advantage; on full-set RE, however, the SJ--FK difference is non-significant ($\Delta\rho{=}{-}0.005$, $p{=}0.53$; preliminary).
+199	At $N{=}16$, the divergence persists: SJ maintains $\rho{=}0.308$ on conditional RE while LP drops to $\rho{=}{-}0.026$.
+200	EM ranks first across all four tested conditional configurations---SciERC NER ($\rho{=}0.360$), CoNLL Qwen $N{=}16$ ($\rho{=}0.466$), CoNLL LLaMA 3-seed ($\rho{=}0.462$), and SciERC RE ($\rho{=}0.417$)---despite full-set rankings ranging from \#1 (CoNLL Qwen) to \#5 (SciERC RE).
+201	On the full set, EM is diluted by trivial agreement: instances where all $N$ samples produce identical (possibly incorrect) outputs receive EM${=}1$ regardless of quality, compressing the signal's dynamic range.
+202	On the conditional set---where the model demonstrably produces varied outputs---exact agreement becomes the strongest quality signal.
+203	The margin over SJ is largest on RE ($\Delta\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\Delta\rho{=}{+}0.002$), where all signals converge near $\rho{\approx}0.46$.
+204	
+205	\paragraph{WNUT-17 full signal analysis.}
+206	Table~\ref{tab:wnut} reports all five signals on WNUT-17.
+207	VC achieves $\rho{=}0.724$ (AUROC${=}0.913$) on the full set, but conditional analysis (non-zero F1 instances) reveals this is entirely driven by the zero/non-zero boundary: conditional $\rho{=}0.038$ ($p{=}0.49$).
+208	LP shows the reverse pattern: full-set $\rho{=}{-}0.410$ but conditional $\rho{=}0.350$, the highest among all signals on the conditional set.
+209	This inversion confirms that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.
+210	
+211	\begin{table}[t]
+212	\centering
+213	\small
+214	\caption{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$ after filtering gold-empty instances). Cond: non-zero F1 instances ($n{=}334$). LP exhibits strong negative full-set $\rho$; its conditional $\rho$ reverses to the highest among all signals, confirming that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d7058d85-95b2-4c33-9e39-0b0c6cd5bddd",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "f623102c-5b1c-4dbe-83b3-0afbb6f4c9bb",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "Dataset & Model & $\\rho$(max) & $\\rho$(union) & $\\Delta\\rho$ \\\\\n\\midrule\nCoNLL & Qwen3-8B & .436 & .438 & $-$.002 \\\\\nCoNLL & Qwen3-4B & .422 & .421 & $+$.000 \\\\\nCoNLL & LLaMA-8B & .431 & .432 & $-$.000 \\\\\nSciERC & Qwen3-8B & .360 & .365 & $-$.005 \\\\\nSciERC & Qwen3-4B & .422 & .423 & $-$.001 \\\\\nSciERC & LLaMA-8B & .363 & .372 & $-$.009 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Conditional filtering details.}\nOn LLaMA conditional RE (non-zero F1 instances), SJ recovers to $\\rho{=}0.405$ while FK drops to $\\rho{=}0.259$, consistent with the NER structural advantage; on full-set RE, however, the SJ--FK difference is non-significant ($\\Delta\\rho{=}{-}0.005$, $p{=}0.53$; preliminary).\nAt $N{=}16$, the divergence persists: SJ maintains $\\rho{=}0.308$ on conditional RE while LP drops to $\\rho{=}{-}0.026$.\nEM ranks first across all four tested conditional configurations---SciERC NER ($\\rho{=}0.360$), CoNLL Qwen $N{=}16$ ($\\rho{=}0.466$), CoNLL LLaMA 3-seed ($\\rho{=}0.462$), and SciERC RE ($\\rho{=}0.417$)---despite full-set rankings ranging from \\#1 (CoNLL Qwen) to \\#5 (SciERC RE).\nOn the full set, EM is diluted by trivial agreement: instances where all $N$ samples produce identical (possibly incorrect) outputs receive EM${=}1$ regardless of quality, compressing the signal's dynamic range.\nOn the conditional set---where the model demonstrably produces varied outputs---exact agreement becomes the strongest quality signal.\nThe margin over SJ is largest on RE ($\\Delta\\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\\Delta\\rho{=}{+}0.002$), where all signals converge near $\\rho{\\approx}0.46$.\n\n\\paragraph{WNUT-17 full signal analysis.}\nTable~\\ref{tab:wnut} reports all five signals on WNUT-17.\nVC achieves $\\rho{=}0.724$ (AUROC${=}0.913$) on the full set, but conditional analysis (non-zero F1 instances) reveals this is entirely driven by the zero/non-zero boundary: conditional $\\rho{=}0.038$ ($p{=}0.49$).\nLP shows the reverse pattern: full-set $\\rho{=}{-}0.410$ but conditional $\\rho{=}0.350$, the highest among all signals on the conditional set.\nThis inversion confirms that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$ after filtering gold-empty instances). Cond: non-zero F1 instances ($n{=}334$). LP exhibits strong negative full-set $\\rho$; its conditional $\\rho$ reverses to the highest among all signals, confirming that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.}",
+      "numLines": 30,
+      "startLine": 185,
+      "totalLines": 959
+    }
+  },
+  "sourceToolAssistantUUID": "d7058d85-95b2-4c33-9e39-0b0c6cd5bddd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-16T04:54:47.665Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01NKiF6kR2qCyffMqz2JfdKM`</summary>
+
+```json
+{
+  "pattern": "0\\.011",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true,
+  "context": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f623102c-5b1c-4dbe-83b3-0afbb6f4c9bb",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eioUCArV45WWiikWhi",
+  "type": "assistant",
+  "uuid": "2efb6adf-1cc7-42ab-bcba-212b00edc735",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWdc5dc6dLCijgoM5wSU8J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9988,
+      "cache_read_input_tokens": 44314,
+      "output_tokens": 616,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9988,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 616,
+          "cache_read_input_tokens": 44314,
+          "cache_creation_input_tokens": 9988,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9988
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93 · 2026-05-16T04:55:17.923Z_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I have key findings:
+
+**c021: WNUT SJ ρ**
+Found in `appendix.tex` line 222:
+```
+SJ      & .089 & .020 & .517 & .288 & ${<}$1e-7 \\
+```
+The paper says SJ ρ = 0.089 (full set). The task says the registry truth is 0.089 too, and the paper reportedly writes 0.062. But the paper actually writes 0.089! So either the task description is wrong about what the paper says, or there's another location. Let me search for 0.062 more carefully.
+ 
+Re-reading the task more carefully, it mentions the registry value is 0.089 for the full set, but claims the paper reports 0.062. Since the WNUT table clearly shows 0.089, the 0.062 value must be elsewhere—my earlier grep search only found it in a "Mean LP range" context on line 686, which doesn't seem related to the SJ ρ metric.
+
+For the RE conditional logprob case, the task says the registry has 0.0112 while the paper supposedly reports 0.002, but I'm finding 0.011 in both experiments.tex and appendix.tex. The discrepancy between 0.011 and 0.0112 is just rounding, so the paper's value doesn't match the claimed 0.002 either. None of these match the reported 0.002 value for LP conditional RE rho. The heatmap figure actually shows 0.011, which aligns with the registry value of 0.0112 when rounded. Let me search more systematically for any LP RE rho values around 0.002 or check if I'm looking at the right metric entirely. I've confirmed that the paper's reported value of 0.011 for conditional LP rho in RE matches the registry's 0.0112, so that checks out. But the task mentions 0.002 as the reported value, which doesn't align with what I'm finding — I should search through the experiments.tex main table and multiseed results to see if 0.002 appears elsewhere as an LP rho value for RE, or if there's been a misunderstanding about which metric or condition is being referenced.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9eb33095-906f-4701-96ab-2a793f48a299",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ejci4uNoeywDTfRdYr",
+  "type": "assistant",
+  "uuid": "03e0bac6-2094-4dca-b44e-a9fea20b4ca6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vnpm16Q69EbyyLsZZYmVCR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3629,
+      "cache_read_input_tokens": 54302,
+      "output_tokens": 1708,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3629,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1708,
+          "cache_read_input_tokens": 54302,
+          "cache_creation_input_tokens": 3629,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3629
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94 · 2026-05-16T04:55:17.932Z_
+
+WNUT 表实际上已经写的是 0.089，跟 registry 一致。让我再仔细搜索 c032 和 c021 的具体位置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "03e0bac6-2094-4dca-b44e-a9fea20b4ca6",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ejci4uNoeywDTfRdYr",
+  "type": "assistant",
+  "uuid": "23be12b3-5303-4a5b-aeba-e6bdccee7251",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vnpm16Q69EbyyLsZZYmVCR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3629,
+      "cache_read_input_tokens": 54302,
+      "output_tokens": 1708,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3629,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1708,
+          "cache_read_input_tokens": 54302,
+          "cache_creation_input_tokens": 3629,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3629
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-16T04:55:18.065Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016o8Ua1Th1k2FdK3G5uXeZf`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "23be12b3-5303-4a5b-aeba-e6bdccee7251",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ejci4uNoeywDTfRdYr",
+  "type": "assistant",
+  "uuid": "5fc6c862-9113-4a42-8157-b717712d4623",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vnpm16Q69EbyyLsZZYmVCR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3629,
+      "cache_read_input_tokens": 54302,
+      "output_tokens": 1708,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3629,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1708,
+          "cache_read_input_tokens": 54302,
+          "cache_creation_input_tokens": 3629,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3629
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-16T04:55:19.049Z_
+
+<details><summary>↩ Tool result · `toolu_01WsZ4WszAZ1Dwbt1RdQTk8H`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-24-\centering
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-25-\small
+docs/paper/sections/experiments.tex:26:\caption{Quality estimation ($\rho$ and AUROC; $N{=}8$, seed${=}42$, single-seed; 3-seed stability in Table~\ref{tab:multiseed}). Best in \textbf{bold}. $^\dagger$RE results rest on a single benchmark (SciERC, 40\% zero-F1 rate). $N{=}16$ in Table~\ref{tab:robustness}.}
+docs/paper/sections/experiments.tex-27-\label{tab:quality_estimation}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-28-\begin{tabular}{ll cc cc cc cc}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-48-On CoNLL (single-sample F1${\approx}$0.91), EM leads both $\rho$ and AUROC ($0.816$); the $\rho$--AUROC dissociation across datasets reflects use-case alignment.
+docs/paper/sections/experiments.tex-49-On $^\dagger$RE, LP rises above SJ and FK at $N{=}16$ (Table~\ref{tab:multiseed}).
+docs/paper/sections/experiments.tex:50:At the capability boundary---WNUT-17 (52\% zero F1)---all conditional signals collapse (Table~\ref{tab:wnut}); restricting to non-zero instances reshuffles rankings, with EM strongest on NER ($\rho{=}0.360$) and $^\dagger$RE ($\rho{=}0.417$) while LP $^\dagger$RE collapses to $\rho{=}0.011$ (Figure~\ref{fig:signal_heatmap}, Appendix~\ref{app:additional}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-51-
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-52-%% ============================================================
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-96-
+docs/paper/sections/experiments.tex-97-Consistency signals are robust across $T{\in}\{0.7, 1.0\}$ with sublinear $N$-scaling gains (Table~\ref{tab:robustness}); LP shows the largest temperature sensitivity ($\Delta\rho{=}{+}0.044$).
+docs/paper/sections/experiments.tex:98:NER calibration is reasonable (ECE 0.069--0.096); $^\dagger$RE miscalibration (ECE${\leq}$0.339) caps $\rho$ at ${\approx}0.28$ for $N{=}16$ (Appendix~\ref{app:calibration}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-99-
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-100-\begin{table}[t]
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-2-
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-3-\paragraph{Practical recommendations.}
+docs/paper/sections/discussion.tex:4:VC leads on hard NER ($\rho{=}0.379$); EM leads easy NER and binary discrimination (AUROC${=}0.816$, CoNLL); on $^\dagger$RE, LP outperforms structural signals (Table~\ref{tab:multiseed}).
+docs/paper/sections/discussion.tex-5-Rankings hold across model families and a 4B ablation (Table~\ref{tab:scale_ablation}); at the capability boundary (WNUT-17), all signals collapse.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-6-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-39-\begin{tabular}{llcc}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-40-\toprule
+docs/paper/sections/appendix.tex:41:& & NER $\rho$ & RE $\rho$ \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-42-\midrule
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-43-\multicolumn{4}{l}{\textit{Temperature} (Qwen SciERC, $N{=}8$)} \\
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-68-\centering
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-69-\includegraphics[width=\columnwidth]{fig_temperature_robustness}
+docs/paper/sections/appendix.tex:70:\caption{Temperature robustness on SciERC ($N{=}8$). Top: NER; bottom: RE. SJ maintains stable $\rho$ across $T{=}0.7$ and $T{=}1.0$, while FK shows mixed sensitivity. LP shows the largest NER temperature effect ($\Delta\rho{=}{+}0.044$); RE $T{=}0.7$ LP data unavailable.}
+docs/paper/sections/appendix.tex-71-\label{fig:temperature_robustness}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-72-\end{figure}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-74-\paragraph{Temperature sensitivity.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-75-SJ NER $\rho$ shifts from 0.364 ($T{=}0.7$) to 0.360 ($T{=}1.0$), a difference of 0.004.
+docs/paper/sections/appendix.tex:76:FK NER $\rho$ drops by 0.022, while RE $\rho$ increases by 0.091, likely reflecting reduced diversity at lower temperature interacting differently across tasks.
+docs/paper/sections/appendix.tex:77:LP exhibits the largest temperature effect on NER ($\rho{=}0.249$ at $T{=}0.7$ vs.\ $0.205$ at $T{=}1.0$, $\Delta{=}{+}0.044$), consistent with lower temperature concentrating probability mass and improving LP's discriminative power for quality estimation; RE $T{=}0.7$ LP data is not available.
+docs/paper/sections/appendix.tex-78-Across all comparisons, the signal hierarchy is preserved at both temperatures on NER (SJ${>}$FK${>}$LP at $T{=}0.7$: $0.364{>}0.289{>}0.249$; at $T{=}1.0$: $0.360{>}0.267{>}0.205$).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-79-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-135-\centering
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-136-\includegraphics[width=\textwidth]{fig_signal_heatmap}
+docs/paper/sections/appendix.tex:137:\caption{Quality estimation heatmap (Spearman $\rho$) across five signals and four configurations. Left: full evaluation set; right: conditional set (non-zero F1 instances). On the full set, structural signals dominate on SciERC NER while all signals converge on CoNLL. On the conditional set, EM emerges as the strongest signal on both NER ($\rho{=}0.360$) and RE ($\rho{=}0.417$), while LP RE collapses to near-zero ($\rho{=}0.011$).}
+docs/paper/sections/appendix.tex-138-\label{fig:signal_heatmap}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-139-\end{figure*}
+--
+docs/paper/sections/appendix.tex-148-For NER, SJ effectiveness scales with structural complexity: on SciERC instances with 6+ entities, $\rho{=}0.547$, compared to $\rho{=}0.415$ for 1--2 entities.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-149-The SJ advantage over LP remains stable across sentence-length quartiles ($\Delta\rho{\approx}0.08$--$0.20$).
+docs/paper/sections/appendix.tex:150:For RE, SJ $\rho$ increases monotonically with sentence length (Q1: 0.110 $\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$), indicating that longer, more relation-dense sentences provide richer structure for consistency-based estimation.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-151-Both proxies are weakly correlated with F1 ($|r|{<}0.15$), confirming they capture input complexity rather than directly predicting output quality; however, entity count and sentence length are themselves moderately correlated ($\rho{=}0.650$), so they reflect overlapping rather than independent complexity dimensions.
+docs/paper/sections/appendix.tex:152:For RE, entity count and relation count are strongly correlated ($\rho{=}0.769$) and thus reflect a single structural complexity dimension rather than independent axes.
+docs/paper/sections/appendix.tex:153:On the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: VC reaches $\rho{=}0.630$, LP $\rho{=}0.554$, and SJ $\rho{=}0.502$---all far above the full-set levels.
+docs/paper/sections/appendix.tex-154-Richer relational structure provides more signal for consistency-based estimation, complementing the task-level boundary established by WNUT-17: structural signals are most effective within a ``sweet spot'' of sufficient model capability and sufficient output complexity.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-155-
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-156-\paragraph{Length vs.\ log-probability.}
+docs/paper/sections/appendix.tex:157:Figure~\ref{fig:length_logprob_scatter} shows that mean log-probability is weakly positively correlated with output length (NER: $\rho{=}0.386$, $n{=}4{,}232$; RE: $\rho{=}0.326$, $n{=}3{,}176$), ruling out length-penalty confounding as an explanation for LP's selection failure: longer outputs receive \textit{higher}, not lower, token-averaged log-probability under constrained decoding.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-158-
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-159-\begin{figure}[t]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-160-\centering
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-161-\includegraphics[width=\columnwidth]{fig_length_logprob_scatter}
+docs/paper/sections/appendix.tex:162:\caption{Output length vs.\ mean log-probability on SciERC ($N{=}8$, $T{=}1.0$). Positive correlations (NER: $\rho{=}0.386$; RE: $\rho{=}0.326$) rule out length-penalty confounding.}
+docs/paper/sections/appendix.tex-163-\label{fig:length_logprob_scatter}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-164-\end{figure}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-196-
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-197-\paragraph{Conditional filtering details.}
+docs/paper/sections/appendix.tex:198:On LLaMA conditional RE (non-zero F1 instances), SJ recovers to $\rho{=}0.405$ while FK drops to $\rho{=}0.259$, consistent with the NER structural advantage; on full-set RE, however, the SJ--FK difference is non-significant ($\Delta\rho{=}{-}0.005$, $p{=}0.53$; preliminary).
+docs/paper/sections/appendix.tex:199:At $N{=}16$, the divergence persists: SJ maintains $\rho{=}0.308$ on conditional RE while LP drops to $\rho{=}{-}0.026$.
+docs/paper/sections/appendix.tex:200:EM ranks first across all four tested conditional configurations---SciERC NER ($\rho{=}0.360$), CoNLL Qwen $N{=}16$ ($\rho{=}0.466$), CoNLL LLaMA 3-seed ($\rho{=}0.462$), and SciERC RE ($\rho{=}0.417$)---despite full-set rankings ranging from \#1 (CoNLL Qwen) to \#5 (SciERC RE).
+docs/paper/sections/appendix.tex-201-On the full set, EM is diluted by trivial agreement: instances where all $N$ samples produce identical (possibly incorrect) outputs receive EM${=}1$ regardless of quality, compressing the signal's dynamic range.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-202-On the conditional set---where the model demonstrably produces varied outputs---exact agreement becomes the strongest quality signal.
+docs/paper/sections/appendix.tex:203:The margin over SJ is largest on RE ($\Delta\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\Delta\rho{=}{+}0.002$), where all signals converge near $\rho{\approx}0.46$.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-204-
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-205-\paragraph{WNUT-17 full signal analysis.}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-312-\centering
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-313-\includegraphics[width=\textwidth]{fig_selection_gap}
+docs/paper/sections/appendix.tex:314:\caption{The correlation-selection gap on SciERC NER ($N{=}8$, $T{=}1.0$, 2-seed mean). Bars show best-of-$N$ selection F1; the line marks quality estimation $\rho$. Despite $\rho$ up to 0.40, no signal significantly outperforms single-sample (all $p{>}0.05$; Table~\ref{tab:selection}). Dashed line indicates oracle upper bound. RE selection results in Table~\ref{tab:selection}.}
+docs/paper/sections/appendix.tex-315-\label{fig:selection_gap}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-316-\end{figure*}
+--
+docs/paper/sections/appendix.tex-398-Table~\ref{tab:multiseed} reports quality estimation metrics across three random seeds for both model families on SciERC ($N{=}8$, $T{=}1.0$).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-399-On NER, the signal ranking VC${>}$SJ${>}$EM${>}$FK${>}$LP is identical across all six model-seed combinations, with $\sigma{\leq}0.025$ for all signals (rankings are stable across our 3 seeds, though statistical power with $n{=}3$ is limited).
+docs/paper/sections/appendix.tex:400:On RE (Qwen only, preliminary), VC remains the top signal ($\rho{=}0.309{\pm}0.024$), but LP rises to \#2 ($\rho{=}0.297{\pm}0.022$), above FK, SJ, and EM---a reversal from the NER ranking that reflects RE's higher sensitivity to per-sample scoring.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-401-LLaMA absolute values are systematically lower than Qwen on NER, consistent with the directionally-consistent-but-magnitude-dependent characterization in the main text.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-402-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-414-LLaMA & .162${\pm}$.025 & .256${\pm}$.024 & .325${\pm}$.021 & .384${\pm}$.014 & .279${\pm}$.011 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-415-\midrule
+docs/paper/sections/appendix.tex:416:\multicolumn{6}{l}{\textit{RE Spearman $\rho$ (mean $\pm\sigma$, Qwen)}} \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-417-Qwen & .297${\pm}$.022 & .290${\pm}$.012 & .249${\pm}$.002 & .309${\pm}$.024 & .135${\pm}$.016 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-418-\midrule
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-797-\begin{tabular}{l ccc ccc}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-798-\toprule
+docs/paper/sections/appendix.tex:799: & \multicolumn{3}{c}{\textbf{NER} $\rho$} & \multicolumn{3}{c}{\textbf{RE} $\rho$} \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-800-\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-801-Signal & $N\!=\!8$ & $N\!=\!16$ & $\Delta$ & $N\!=\!8$ & $N\!=\!16$ & $\Delta$ \\
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-837-\begin{tabular}{l cc cc}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-838-\toprule
+docs/paper/sections/appendix.tex:839: & \multicolumn{2}{c}{\textbf{NER} $\sigma_\rho$} & \multicolumn{2}{c}{\textbf{RE} $\sigma_\rho$} \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-840-\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-841-Signal & $N\!=\!8$ & $N\!=\!16$ & $N\!=\!8$ & $N\!=\!16$ \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "54400bb0-d704-4be6-be76-6af8bf30acbb",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "8cce9f2a-59d0-448c-8e98-b70de056661c",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-24-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-25-\\small\ndocs/paper/sections/experiments.tex:26:\\caption{Quality estimation ($\\rho$ and AUROC; $N{=}8$, seed${=}42$, single-seed; 3-seed stability in Table~\\ref{tab:multiseed}). Best in \\textbf{bold}. $^\\dagger$RE results rest on a single benchmark (SciERC, 40\\% zero-F1 rate). $N{=}16$ in Table~\\ref{tab:robustness}.}\ndocs/paper/sections/experiments.tex-27-\\label{tab:quality_estimation}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-28-\\begin{tabular}{ll cc cc cc cc}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-48-On CoNLL (single-sample F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$); the $\\rho$--AUROC dissociation across datasets reflects use-case alignment.\ndocs/paper/sections/experiments.tex-49-On $^\\dagger$RE, LP rises above SJ and FK at $N{=}16$ (Table~\\ref{tab:multiseed}).\ndocs/paper/sections/experiments.tex:50:At the capability boundary---WNUT-17 (52\\% zero F1)---all conditional signals collapse (Table~\\ref{tab:wnut}); restricting to non-zero instances reshuffles rankings, with EM strongest on NER ($\\rho{=}0.360$) and $^\\dagger$RE ($\\rho{=}0.417$) while LP $^\\dagger$RE collapses to $\\rho{=}0.011$ (Figure~\\ref{fig:signal_heatmap}, Appendix~\\ref{app:additional}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-51-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-52-%% ============================================================\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-96-\ndocs/paper/sections/experiments.tex-97-Consistency signals are robust across $T{\\in}\\{0.7, 1.0\\}$ with sublinear $N$-scaling gains (Table~\\ref{tab:robustness}); LP shows the largest temperature sensitivity ($\\Delta\\rho{=}{+}0.044$).\ndocs/paper/sections/experiments.tex:98:NER calibration is reasonable (ECE 0.069--0.096); $^\\dagger$RE miscalibration (ECE${\\leq}$0.339) caps $\\rho$ at ${\\approx}0.28$ for $N{=}16$ (Appendix~\\ref{app:calibration}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-99-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex-100-\\begin{table}[t]\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-2-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-3-\\paragraph{Practical recommendations.}\ndocs/paper/sections/discussion.tex:4:VC leads on hard NER ($\\rho{=}0.379$); EM leads easy NER and binary discrimination (AUROC${=}0.816$, CoNLL); on $^\\dagger$RE, LP outperforms structural signals (Table~\\ref{tab:multiseed}).\ndocs/paper/sections/discussion.tex-5-Rankings hold across model families and a 4B ablation (Table~\\ref{tab:scale_ablation}); at the capability boundary (WNUT-17), all signals collapse.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex-6-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-39-\\begin{tabular}{llcc}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-40-\\toprule\ndocs/paper/sections/appendix.tex:41:& & NER $\\rho$ & RE $\\rho$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-42-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-43-\\multicolumn{4}{l}{\\textit{Temperature} (Qwen SciERC, $N{=}8$)} \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-68-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-69-\\includegraphics[width=\\columnwidth]{fig_temperature_robustness}\ndocs/paper/sections/appendix.tex:70:\\caption{Temperature robustness on SciERC ($N{=}8$). Top: NER; bottom: RE. SJ maintains stable $\\rho$ across $T{=}0.7$ and $T{=}1.0$, while FK shows mixed sensitivity. LP shows the largest NER temperature effect ($\\Delta\\rho{=}{+}0.044$); RE $T{=}0.7$ LP data unavailable.}\ndocs/paper/sections/appendix.tex-71-\\label{fig:temperature_robustness}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-72-\\end{figure}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-74-\\paragraph{Temperature sensitivity.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-75-SJ NER $\\rho$ shifts from 0.364 ($T{=}0.7$) to 0.360 ($T{=}1.0$), a difference of 0.004.\ndocs/paper/sections/appendix.tex:76:FK NER $\\rho$ drops by 0.022, while RE $\\rho$ increases by 0.091, likely reflecting reduced diversity at lower temperature interacting differently across tasks.\ndocs/paper/sections/appendix.tex:77:LP exhibits the largest temperature effect on NER ($\\rho{=}0.249$ at $T{=}0.7$ vs.\\ $0.205$ at $T{=}1.0$, $\\Delta{=}{+}0.044$), consistent with lower temperature concentrating probability mass and improving LP's discriminative power for quality estimation; RE $T{=}0.7$ LP data is not available.\ndocs/paper/sections/appendix.tex-78-Across all comparisons, the signal hierarchy is preserved at both temperatures on NER (SJ${>}$FK${>}$LP at $T{=}0.7$: $0.364{>}0.289{>}0.249$; at $T{=}1.0$: $0.360{>}0.267{>}0.205$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-79-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-135-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-136-\\includegraphics[width=\\textwidth]{fig_signal_heatmap}\ndocs/paper/sections/appendix.tex:137:\\caption{Quality estimation heatmap (Spearman $\\rho$) across five signals and four configurations. Left: full evaluation set; right: conditional set (non-zero F1 instances). On the full set, structural signals dominate on SciERC NER while all signals converge on CoNLL. On the conditional set, EM emerges as the strongest signal on both NER ($\\rho{=}0.360$) and RE ($\\rho{=}0.417$), while LP RE collapses to near-zero ($\\rho{=}0.011$).}\ndocs/paper/sections/appendix.tex-138-\\label{fig:signal_heatmap}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-139-\\end{figure*}\n--\ndocs/paper/sections/appendix.tex-148-For NER, SJ effectiveness scales with structural complexity: on SciERC instances with 6+ entities, $\\rho{=}0.547$, compared to $\\rho{=}0.415$ for 1--2 entities.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-149-The SJ advantage over LP remains stable across sentence-length quartiles ($\\Delta\\rho{\\approx}0.08$--$0.20$).\ndocs/paper/sections/appendix.tex:150:For RE, SJ $\\rho$ increases monotonically with sentence length (Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$), indicating that longer, more relation-dense sentences provide richer structure for consistency-based estimation.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-151-Both proxies are weakly correlated with F1 ($|r|{<}0.15$), confirming they capture input complexity rather than directly predicting output quality; however, entity count and sentence length are themselves moderately correlated ($\\rho{=}0.650$), so they reflect overlapping rather than independent complexity dimensions.\ndocs/paper/sections/appendix.tex:152:For RE, entity count and relation count are strongly correlated ($\\rho{=}0.769$) and thus reflect a single structural complexity dimension rather than independent axes.\ndocs/paper/sections/appendix.tex:153:On the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: VC reaches $\\rho{=}0.630$, LP $\\rho{=}0.554$, and SJ $\\rho{=}0.502$---all far above the full-set levels.\ndocs/paper/sections/appendix.tex-154-Richer relational structure provides more signal for consistency-based estimation, complementing the task-level boundary established by WNUT-17: structural signals are most effective within a ``sweet spot'' of sufficient model capability and sufficient output complexity.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-155-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-156-\\paragraph{Length vs.\\ log-probability.}\ndocs/paper/sections/appendix.tex:157:Figure~\\ref{fig:length_logprob_scatter} shows that mean log-probability is weakly positively correlated with output length (NER: $\\rho{=}0.386$, $n{=}4{,}232$; RE: $\\rho{=}0.326$, $n{=}3{,}176$), ruling out length-penalty confounding as an explanation for LP's selection failure: longer outputs receive \\textit{higher}, not lower, token-averaged log-probability under constrained decoding.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-158-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-159-\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-160-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-161-\\includegraphics[width=\\columnwidth]{fig_length_logprob_scatter}\ndocs/paper/sections/appendix.tex:162:\\caption{Output length vs.\\ mean log-probability on SciERC ($N{=}8$, $T{=}1.0$). Positive correlations (NER: $\\rho{=}0.386$; RE: $\\rho{=}0.326$) rule out length-penalty confounding.}\ndocs/paper/sections/appendix.tex-163-\\label{fig:length_logprob_scatter}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-164-\\end{figure}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-196-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-197-\\paragraph{Conditional filtering details.}\ndocs/paper/sections/appendix.tex:198:On LLaMA conditional RE (non-zero F1 instances), SJ recovers to $\\rho{=}0.405$ while FK drops to $\\rho{=}0.259$, consistent with the NER structural advantage; on full-set RE, however, the SJ--FK difference is non-significant ($\\Delta\\rho{=}{-}0.005$, $p{=}0.53$; preliminary).\ndocs/paper/sections/appendix.tex:199:At $N{=}16$, the divergence persists: SJ maintains $\\rho{=}0.308$ on conditional RE while LP drops to $\\rho{=}{-}0.026$.\ndocs/paper/sections/appendix.tex:200:EM ranks first across all four tested conditional configurations---SciERC NER ($\\rho{=}0.360$), CoNLL Qwen $N{=}16$ ($\\rho{=}0.466$), CoNLL LLaMA 3-seed ($\\rho{=}0.462$), and SciERC RE ($\\rho{=}0.417$)---despite full-set rankings ranging from \\#1 (CoNLL Qwen) to \\#5 (SciERC RE).\ndocs/paper/sections/appendix.tex-201-On the full set, EM is diluted by trivial agreement: instances where all $N$ samples produce identical (possibly incorrect) outputs receive EM${=}1$ regardless of quality, compressing the signal's dynamic range.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-202-On the conditional set---where the model demonstrably produces varied outputs---exact agreement becomes the strongest quality signal.\ndocs/paper/sections/appendix.tex:203:The margin over SJ is largest on RE ($\\Delta\\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\\Delta\\rho{=}{+}0.002$), where all signals converge near $\\rho{\\approx}0.46$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-204-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-205-\\paragraph{WNUT-17 full signal analysis.}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-312-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-313-\\includegraphics[width=\\textwidth]{fig_selection_gap}\ndocs/paper/sections/appendix.tex:314:\\caption{The correlation-selection gap on SciERC NER ($N{=}8$, $T{=}1.0$, 2-seed mean). Bars show best-of-$N$ selection F1; the line marks quality estimation $\\rho$. Despite $\\rho$ up to 0.40, no signal significantly outperforms single-sample (all $p{>}0.05$; Table~\\ref{tab:selection}). Dashed line indicates oracle upper bound. RE selection results in Table~\\ref{tab:selection}.}\ndocs/paper/sections/appendix.tex-315-\\label{fig:selection_gap}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-316-\\end{figure*}\n--\ndocs/paper/sections/appendix.tex-398-Table~\\ref{tab:multiseed} reports quality estimation metrics across three random seeds for both model families on SciERC ($N{=}8$, $T{=}1.0$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-399-On NER, the signal ranking VC${>}$SJ${>}$EM${>}$FK${>}$LP is identical across all six model-seed combinations, with $\\sigma{\\leq}0.025$ for all signals (rankings are stable across our 3 seeds, though statistical power with $n{=}3$ is limited).\ndocs/paper/sections/appendix.tex:400:On RE (Qwen only, preliminary), VC remains the top signal ($\\rho{=}0.309{\\pm}0.024$), but LP rises to \\#2 ($\\rho{=}0.297{\\pm}0.022$), above FK, SJ, and EM---a reversal from the NER ranking that reflects RE's higher sensitivity to per-sample scoring.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-401-LLaMA absolute values are systematically lower than Qwen on NER, consistent with the directionally-consistent-but-magnitude-dependent characterization in the main text.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-402-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-414-LLaMA & .162${\\pm}$.025 & .256${\\pm}$.024 & .325${\\pm}$.021 & .384${\\pm}$.014 & .279${\\pm}$.011 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-415-\\midrule\ndocs/paper/sections/appendix.tex:416:\\multicolumn{6}{l}{\\textit{RE Spearman $\\rho$ (mean $\\pm\\sigma$, Qwen)}} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-417-Qwen & .297${\\pm}$.022 & .290${\\pm}$.012 & .249${\\pm}$.002 & .309${\\pm}$.024 & .135${\\pm}$.016 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-418-\\midrule\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-797-\\begin{tabular}{l ccc ccc}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-798-\\toprule\ndocs/paper/sections/appendix.tex:799: & \\multicolumn{3}{c}{\\textbf{NER} $\\rho$} & \\multicolumn{3}{c}{\\textbf{RE} $\\rho$} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-800-\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-801-Signal & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-837-\\begin{tabular}{l cc cc}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-838-\\toprule\ndocs/paper/sections/appendix.tex:839: & \\multicolumn{2}{c}{\\textbf{NER} $\\sigma_\\rho$} & \\multicolumn{2}{c}{\\textbf{RE} $\\sigma_\\rho$} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-840-\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex-841-Signal & $N\\!=\\!8$ & $N\\!=\\!16$ & $N\\!=\\!8$ & $N\\!=\\!16$ \\\\",
+    "numLines": 107
+  },
+  "sourceToolAssistantUUID": "54400bb0-d704-4be6-be76-6af8bf30acbb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-16T04:55:18.077Z_
+
+<details><summary>↩ Tool result · `toolu_016o8Ua1Th1k2FdK3G5uXeZf`</summary>
+
+```text
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	\subsection{Experimental Setup}
+5	\label{sec:setup}
+6	
+7	\paragraph{Datasets.}
+8	We evaluate on three English IE benchmarks spanning a difficulty gradient.
+9	\textbf{SciERC} \cite{luan2018scierc} contains 551 test instances annotated for joint NER (6 types) and RE (7 types).
+10	\textbf{CoNLL-2003} \cite{tjongkimsang2003conll} provides 3{,}453 test sentences with 4 entity types, where models achieve ${\approx}$91\% micro F1.
+11	\textbf{WNUT-17} \cite{derczynski2017wnut} consists of 1{,}287 social media instances with emerging entities, used to probe method boundaries (52\% zero F1).
+12	
+13	\paragraph{Models and sampling.}
+14	Both \textbf{Qwen3-8B} and \textbf{LLaMA-3.1-8B-Instruct} are fine-tuned with LoRA (rank$=$32, $\alpha{=}64$) for 5 epochs using LLaMA Factory \cite{zheng2024llamafactory} under identical training procedures.
+15	Qwen3-8B's SciERC checkpoint has a minor train--test mismatch (empty thinking tokens); a quantitative analysis rules out this confound (Appendix~\ref{app:thinking_token}).
+16	We draw $N{=}8$ samples at $T{=}1.0$ (primary), with $N{=}16$ for scaling experiments.\footnote{$N{=}16$ with 3 seeds verifies scaling and ranking stability ($\sigma{\leq}0.026$; Table~\ref{tab:multiseed}); gains beyond $N{=}8$ are sublinear (Appendix~\ref{app:n_scaling}).}
+17	Inference uses vLLM with constrained decoding \cite{willard2023guided}.
+18	
+19	%% ============================================================
+20	\subsection{Quality Estimation Results}
+21	\label{sec:qe_results}
+22	
+23	\begin{table*}[t]
+24	\centering
+25	\small
+26	\caption{Quality estimation ($\rho$ and AUROC; $N{=}8$, seed${=}42$, single-seed; 3-seed stability in Table~\ref{tab:multiseed}). Best in \textbf{bold}. $^\dagger$RE results rest on a single benchmark (SciERC, 40\% zero-F1 rate). $N{=}16$ in Table~\ref{tab:robustness}.}
+27	\label{tab:quality_estimation}
+28	\begin{tabular}{ll cc cc cc cc}
+29	\toprule
+30	& & \multicolumn{2}{c}{\textbf{SciERC NER}} & \multicolumn{2}{c}{\textbf{SciERC RE}} & \multicolumn{2}{c}{\textbf{CoNLL (Qwen)}} & \multicolumn{2}{c}{\textbf{CoNLL (LLaMA)}} \\
+31	\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8} \cmidrule(lr){9-10}
+32	Signal & Family & $\rho$ & AUC & $\rho$ & AUC & $\rho$ & AUC & $\rho$ & AUC \\
+33	\midrule
+34	VC & Structural & \textbf{.379} & \textbf{.663} & \textbf{.350} & .694 & .424 & .789 & .426 & .709 \\
+35	SJ  & Structural & .360 & .650 & .250 & .670 & .436 & .801 & \textbf{.431} & .704 \\
+36	FK & Surface & .267 & .602 & .275 & .609 & .400 & .774 & .428 & .703 \\
+37	EM  & Surface    & .295 & .614 & .134 & \textbf{.706} & \textbf{.451} & \textbf{.816} & \textbf{.431} & .705 \\
+38	\midrule
+39	LP     & Model      & .205 & .578 & .266 & .601 & .316 & .753 & .307 & \textbf{.761} \\
+40	\bottomrule
+41	\end{tabular}
+42	\end{table*}
+43	
+44	Table~\ref{tab:quality_estimation} presents $\rho$ and AUROC for five signals across tasks and models.\footnote{$\varepsilon{=}0.05$ applies only to selection (\S\ref{sec:selection_gap}); quality estimation is $\varepsilon$-free. Selection F1 is stable across $\varepsilon \in [0, 0.2]$ (Appendix~\ref{app:epsilon_robustness}).}
+45	
+46	\paragraph{Signal rankings are difficulty-dependent.}
+47	On SciERC NER, structural signals lead (VC $\rho{=}0.379$, SJ $0.360$) over surface ($\rho{\leq}0.295$) and LP ($0.205$); bootstrap CIs confirm the SJ--LP gap ($\Delta\rho{=}{+}0.155$; Appendix~\ref{app:bootstrap_signal}).
+48	On CoNLL (single-sample F1${\approx}$0.91), EM leads both $\rho$ and AUROC ($0.816$); the $\rho$--AUROC dissociation across datasets reflects use-case alignment.
+49	On $^\dagger$RE, LP rises above SJ and FK at $N{=}16$ (Table~\ref{tab:multiseed}).
+50	At the capability boundary---WNUT-17 (52\% zero F1)---all conditional signals collapse (Table~\ref{tab:wnut}); restricting to non-zero instances reshuffles rankings, with EM strongest on NER ($\rho{=}0.360$) and $^\dagger$RE ($\rho{=}0.417$) while LP $^\dagger$RE collapses to $\rho{=}0.011$ (Figure~\ref{fig:signal_heatmap}, Appendix~\ref{app:additional}).
+51	
+52	%% ============================================================
+53	\subsection{The Correlation-Selection Gap}
+54	\label{sec:selection_gap}
+55	
+56	We define the correlation-selection gap as the disparity between a signal's instance-level rank correlation with F1 and its ability to select the best output from $N$ candidates.
+57	
+58	\begin{table}[t]
+59	\centering
+60	\small
+61	\caption{Best-of-$N$ selection F1 on SciERC ($N{=}8$, $T{=}1.0$). LP is per-sample; others are instance-level. NER: 2-seed mean${\pm}\sigma$, Fisher $p$ vs.\ single-sample; $^\dagger$RE: single seed. Best non-oracle in \textbf{bold}. $^\ddagger$Single: one $T{=}1.0$ draw.}
+62	\label{tab:selection}
+63	\begin{tabular}{lccc}
+64	\toprule
+65	Method & NER F1 & $p$ & RE F1 \\
+66	\midrule
+67	Oracle & $0.778 \pm 0.003$ & --- & 0.585 \\
+68	\midrule
+69	\multicolumn{4}{l}{\textit{Per-sample signal}} \\
+70	LP           & $\mathbf{0.647} \pm 0.005$ & .29 & 0.395 \\
+71	\midrule
+72	\multicolumn{4}{l}{\textit{Instance-level signals (consensus-proximity selection)}} \\
+73	SJ           & $0.646 \pm 0.002$ & .68 & 0.386 \\
+74	FK           & $0.646 \pm 0.001$ & .79 & --- \\
+75	EM           & $0.637 \pm 0.001$ & .45 & 0.372 \\
+76	VC           & $0.623 \pm 0.004$ & .26 & 0.359 \\
+77	\midrule
+78	Single$^\ddagger$ & $0.645 \pm 0.001$ & --- & \textbf{0.404} \\
+79	Random           & $0.610 \pm 0.003$ & --- & 0.354 \\
+80	\bottomrule
+81	\end{tabular}
+82	\end{table}
+83	
+84	Despite strong quality estimation, confidence signals yield limited selection gains (Table~\ref{tab:selection}, Figure~\ref{fig:selection_gap}).
+85	Instance-level signals (SJ, FK, EM, VC) assign identical scores to all candidates per input and cannot rank outputs by construction; the key question is whether LP---the only per-sample signal---can exploit the oracle headroom.
+86	
+87	\paragraph{No significant improvement over single-sample.}
+88	On SciERC NER (2-seed sign tests, $n{=}551$), the oracle (0.778) reveals 13.3~pp of headroom above single-sample (0.645), yet LP achieves only 0.647 ($\Delta{=}{+}0.2$~pp, $p{=}0.29$); no signal consistently improves selection ($p{>}0.05$; TOST equivalence holds under all external anchors for LLaMA-CoNLL but varies by configuration, Appendix~\ref{app:tost}).
+89	On $^\dagger$RE, the best signal (LP, 0.395) falls below single-sample (0.404), with 18.1~pp unrealized.
+90	The pattern holds across CoNLL and WNUT-17 (Table~\ref{tab:cross_selection}).
+91	Instance-level signals predict \textit{which inputs} the model handles reliably, not \textit{which output} is best; closing this gap likely requires trained verifiers \cite{cobbe2021verifiers}.\footnote{For negative results (all $p{>}0.05$), uncorrected tests suffice; the sole positive finding (non-tied LP subset, $+2.9$~pp, $p{=}0.004$; \S\ref{sec:discussion}) survives Bonferroni correction over 5 comparisons.}
+92	
+93	%% ============================================================
+94	\subsection{Robustness}
+95	\label{sec:robustness_main}
+96	
+97	Consistency signals are robust across $T{\in}\{0.7, 1.0\}$ with sublinear $N$-scaling gains (Table~\ref{tab:robustness}); LP shows the largest temperature sensitivity ($\Delta\rho{=}{+}0.044$).
+98	NER calibration is reasonable (ECE 0.069--0.096); $^\dagger$RE miscalibration (ECE${\leq}$0.339) caps $\rho$ at ${\approx}0.28$ for $N{=}16$ (Appendix~\ref{app:calibration}).
+99	
+100	\begin{table}[t]
+101	\centering
+102	\small
+103	\caption{Scale ablation: Qwen3-8B vs.\ 4B quality estimation ($\rho$; $N{=}8$, $T{=}1.0$, seed${=}42$). 8B values identical to Table~\ref{tab:quality_estimation}; 4B uses matched evaluation protocol. $^\dagger$Preliminary.}
+104	\label{tab:scale_ablation}
+105	\begin{tabular}{@{}ll cc r@{}}
+106	\toprule
+107	& & \textbf{8B} & \textbf{4B} & $\Delta$ \\
+108	\midrule
+109	CoNLL NER & SJ & .436 & .422 & $-$.014 \\
+110	          & FK & .400 & .418 & $+$.018 \\
+111	SciERC NER & SJ & .360 & .422 & $+$.062 \\
+112	           & FK & .267 & .326 & $+$.059 \\
+113	SciERC RE$^\dagger$ & SJ & .250 & .267 & $+$.017 \\
+114	           & FK & .275 & .359 & $+$.084 \\
+115	\bottomrule
+116	\end{tabular}
+117	\end{table}
+118	
+119	\paragraph{Scale robustness.}
+120	Repeating with Qwen3-4B (Table~\ref{tab:scale_ablation}), quality estimation is comparable or improved (mean $|\Delta\rho|{=}0.042$), yet selection remains below single-sample on SciERC ($\Delta$ up to $-3.4$~pp) despite 13.0~pp of oracle headroom, and indistinguishable on CoNLL (${<}0.3$~pp, 1.7~pp headroom). Within the 3B--8B range tested across two model families, task difficulty is a stronger predictor of the gap than model scale.
+121	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5fc6c862-9113-4a42-8157-b717712d4623",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "ab3776a3-0edd-4f13-9586-b66884fd39de",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+      "content": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\n\\label{sec:setup}\n\n\\paragraph{Datasets.}\nWe evaluate on three English IE benchmarks spanning a difficulty gradient.\n\\textbf{SciERC} \\cite{luan2018scierc} contains 551 test instances annotated for joint NER (6 types) and RE (7 types).\n\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} provides 3{,}453 test sentences with 4 entity types, where models achieve ${\\approx}$91\\% micro F1.\n\\textbf{WNUT-17} \\cite{derczynski2017wnut} consists of 1{,}287 social media instances with emerging entities, used to probe method boundaries (52\\% zero F1).\n\n\\paragraph{Models and sampling.}\nBoth \\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are fine-tuned with LoRA (rank$=$32, $\\alpha{=}64$) for 5 epochs using LLaMA Factory \\cite{zheng2024llamafactory} under identical training procedures.\nQwen3-8B's SciERC checkpoint has a minor train--test mismatch (empty thinking tokens); a quantitative analysis rules out this confound (Appendix~\\ref{app:thinking_token}).\nWe draw $N{=}8$ samples at $T{=}1.0$ (primary), with $N{=}16$ for scaling experiments.\\footnote{$N{=}16$ with 3 seeds verifies scaling and ranking stability ($\\sigma{\\leq}0.026$; Table~\\ref{tab:multiseed}); gains beyond $N{=}8$ are sublinear (Appendix~\\ref{app:n_scaling}).}\nInference uses vLLM with constrained decoding \\cite{willard2023guided}.\n\n%% ============================================================\n\\subsection{Quality Estimation Results}\n\\label{sec:qe_results}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Quality estimation ($\\rho$ and AUROC; $N{=}8$, seed${=}42$, single-seed; 3-seed stability in Table~\\ref{tab:multiseed}). Best in \\textbf{bold}. $^\\dagger$RE results rest on a single benchmark (SciERC, 40\\% zero-F1 rate). $N{=}16$ in Table~\\ref{tab:robustness}.}\n\\label{tab:quality_estimation}\n\\begin{tabular}{ll cc cc cc cc}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{SciERC NER}} & \\multicolumn{2}{c}{\\textbf{SciERC RE}} & \\multicolumn{2}{c}{\\textbf{CoNLL (Qwen)}} & \\multicolumn{2}{c}{\\textbf{CoNLL (LLaMA)}} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-8} \\cmidrule(lr){9-10}\nSignal & Family & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC \\\\\n\\midrule\nVC & Structural & \\textbf{.379} & \\textbf{.663} & \\textbf{.350} & .694 & .424 & .789 & .426 & .709 \\\\\nSJ  & Structural & .360 & .650 & .250 & .670 & .436 & .801 & \\textbf{.431} & .704 \\\\\nFK & Surface & .267 & .602 & .275 & .609 & .400 & .774 & .428 & .703 \\\\\nEM  & Surface    & .295 & .614 & .134 & \\textbf{.706} & \\textbf{.451} & \\textbf{.816} & \\textbf{.431} & .705 \\\\\n\\midrule\nLP     & Model      & .205 & .578 & .266 & .601 & .316 & .753 & .307 & \\textbf{.761} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\nTable~\\ref{tab:quality_estimation} presents $\\rho$ and AUROC for five signals across tasks and models.\\footnote{$\\varepsilon{=}0.05$ applies only to selection (\\S\\ref{sec:selection_gap}); quality estimation is $\\varepsilon$-free. Selection F1 is stable across $\\varepsilon \\in [0, 0.2]$ (Appendix~\\ref{app:epsilon_robustness}).}\n\n\\paragraph{Signal rankings are difficulty-dependent.}\nOn SciERC NER, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over surface ($\\rho{\\leq}0.295$) and LP ($0.205$); bootstrap CIs confirm the SJ--LP gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\nOn CoNLL (single-sample F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$); the $\\rho$--AUROC dissociation across datasets reflects use-case alignment.\nOn $^\\dagger$RE, LP rises above SJ and FK at $N{=}16$ (Table~\\ref{tab:multiseed}).\nAt the capability boundary---WNUT-17 (52\\% zero F1)---all conditional signals collapse (Table~\\ref{tab:wnut}); restricting to non-zero instances reshuffles rankings, with EM strongest on NER ($\\rho{=}0.360$) and $^\\dagger$RE ($\\rho{=}0.417$) while LP $^\\dagger$RE collapses to $\\rho{=}0.011$ (Figure~\\ref{fig:signal_heatmap}, Appendix~\\ref{app:additional}).\n\n%% ============================================================\n\\subsection{The Correlation-Selection Gap}\n\\label{sec:selection_gap}\n\nWe define the correlation-selection gap as the disparity between a signal's instance-level rank correlation with F1 and its ability to select the best output from $N$ candidates.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection F1 on SciERC ($N{=}8$, $T{=}1.0$). LP is per-sample; others are instance-level. NER: 2-seed mean${\\pm}\\sigma$, Fisher $p$ vs.\\ single-sample; $^\\dagger$RE: single seed. Best non-oracle in \\textbf{bold}. $^\\ddagger$Single: one $T{=}1.0$ draw.}\n\\label{tab:selection}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & NER F1 & $p$ & RE F1 \\\\\n\\midrule\nOracle & $0.778 \\pm 0.003$ & --- & 0.585 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Per-sample signal}} \\\\\nLP           & $\\mathbf{0.647} \\pm 0.005$ & .29 & 0.395 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Instance-level signals (consensus-proximity selection)}} \\\\\nSJ           & $0.646 \\pm 0.002$ & .68 & 0.386 \\\\\nFK           & $0.646 \\pm 0.001$ & .79 & --- \\\\\nEM           & $0.637 \\pm 0.001$ & .45 & 0.372 \\\\\nVC           & $0.623 \\pm 0.004$ & .26 & 0.359 \\\\\n\\midrule\nSingle$^\\ddagger$ & $0.645 \\pm 0.001$ & --- & \\textbf{0.404} \\\\\nRandom           & $0.610 \\pm 0.003$ & --- & 0.354 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nDespite strong quality estimation, confidence signals yield limited selection gains (Table~\\ref{tab:selection}, Figure~\\ref{fig:selection_gap}).\nInstance-level signals (SJ, FK, EM, VC) assign identical scores to all candidates per input and cannot rank outputs by construction; the key question is whether LP---the only per-sample signal---can exploit the oracle headroom.\n\n\\paragraph{No significant improvement over single-sample.}\nOn SciERC NER (2-seed sign tests, $n{=}551$), the oracle (0.778) reveals 13.3~pp of headroom above single-sample (0.645), yet LP achieves only 0.647 ($\\Delta{=}{+}0.2$~pp, $p{=}0.29$); no signal consistently improves selection ($p{>}0.05$; TOST equivalence holds under all external anchors for LLaMA-CoNLL but varies by configuration, Appendix~\\ref{app:tost}).\nOn $^\\dagger$RE, the best signal (LP, 0.395) falls below single-sample (0.404), with 18.1~pp unrealized.\nThe pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\nInstance-level signals predict \\textit{which inputs} the model handles reliably, not \\textit{which output} is best; closing this gap likely requires trained verifiers \\cite{cobbe2021verifiers}.\\footnote{For negative results (all $p{>}0.05$), uncorrected tests suffice; the sole positive finding (non-tied LP subset, $+2.9$~pp, $p{=}0.004$; \\S\\ref{sec:discussion}) survives Bonferroni correction over 5 comparisons.}\n\n%% ============================================================\n\\subsection{Robustness}\n\\label{sec:robustness_main}\n\nConsistency signals are robust across $T{\\in}\\{0.7, 1.0\\}$ with sublinear $N$-scaling gains (Table~\\ref{tab:robustness}); LP shows the largest temperature sensitivity ($\\Delta\\rho{=}{+}0.044$).\nNER calibration is reasonable (ECE 0.069--0.096); $^\\dagger$RE miscalibration (ECE${\\leq}$0.339) caps $\\rho$ at ${\\approx}0.28$ for $N{=}16$ (Appendix~\\ref{app:calibration}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Scale ablation: Qwen3-8B vs.\\ 4B quality estimation ($\\rho$; $N{=}8$, $T{=}1.0$, seed${=}42$). 8B values identical to Table~\\ref{tab:quality_estimation}; 4B uses matched evaluation protocol. $^\\dagger$Preliminary.}\n\\label{tab:scale_ablation}\n\\begin{tabular}{@{}ll cc r@{}}\n\\toprule\n& & \\textbf{8B} & \\textbf{4B} & $\\Delta$ \\\\\n\\midrule\nCoNLL NER & SJ & .436 & .422 & $-$.014 \\\\\n          & FK & .400 & .418 & $+$.018 \\\\\nSciERC NER & SJ & .360 & .422 & $+$.062 \\\\\n           & FK & .267 & .326 & $+$.059 \\\\\nSciERC RE$^\\dagger$ & SJ & .250 & .267 & $+$.017 \\\\\n           & FK & .275 & .359 & $+$.084 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Scale robustness.}\nRepeating with Qwen3-4B (Table~\\ref{tab:scale_ablation}), quality estimation is comparable or improved (mean $|\\Delta\\rho|{=}0.042$), yet selection remains below single-sample on SciERC ($\\Delta$ up to $-3.4$~pp) despite 13.0~pp of oracle headroom, and indistinguishable on CoNLL (${<}0.3$~pp, 1.7~pp headroom). Within the 3B--8B range tested across two model families, task difficulty is a stronger predictor of the gap than model scale.\n",
+      "numLines": 121,
+      "startLine": 1,
+      "totalLines": 121
+    }
+  },
+  "sourceToolAssistantUUID": "5fc6c862-9113-4a42-8157-b717712d4623",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-16T04:55:19.034Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01WsZ4WszAZ1Dwbt1RdQTk8H`</summary>
+
+```json
+{
+  "pattern": "RE.*rho|rho.*RE",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true,
+  "context": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ab3776a3-0edd-4f13-9586-b66884fd39de",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ejci4uNoeywDTfRdYr",
+  "type": "assistant",
+  "uuid": "54400bb0-d704-4be6-be76-6af8bf30acbb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vnpm16Q69EbyyLsZZYmVCR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3629,
+      "cache_read_input_tokens": 54302,
+      "output_tokens": 1708,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3629,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1708,
+          "cache_read_input_tokens": 54302,
+          "cache_creation_input_tokens": 3629,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3629
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 99_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "8cce9f2a-59d0-448c-8e98-b70de056661c",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 100_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit provenance values in paper against registry",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 101 · 2026-05-16T04:55:40.326Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I'm getting a much clearer picture. Let me look at the key findings:
+
+**c032: LP cond RE ρ**
+The task says the paper writes "0.002" but I can't find 0.002 used as LP cond RE ρ. What I found:
+- experiments.tex line 50: "LP $^\dagger$RE collapses to $\rho{=}0.011$" — this is the LP RE conditional ρ
+- appendix.tex line 137: "LP RE collapses to near-zero ($\rho{=}0.011$)" — same value in figure caption
+
+
+- Registry truth: 0.0112 → rounds to 0.011
+
+So the 0.011 value in the paper matches the registry truth of 0.0112 when rounded. The task mentions "RE cond logprob rho = 0.0112 (n=238)" from exp_012_rerun_1024, which is consistent with what's reported. I'm wondering if there was an earlier version with 0.002, or if the task is referencing something I haven't located yet.
+
+Let me approach this differently by checking what exp_015_metrics_expansion with max_tokens=512 shows (0.1457) versus the correct value from exp_012_rerun_1024 (0.0112). The paper's 0.011 appears to be the right value. I should look through the N-scaling table and other sections to see if 0.002 appears elsewhere, or check experiments.tex for any other relevant metrics like the SciERC NER differences.
+
+I'm noticing that the 0.062 value in experiments.tex line 111 is actually the delta between 4B and 8B SJ ρ for SciERC NER, not WNUT SJ ρ. Looking back at the c021 task, the registry shows WNUT rho_sj should be 0.089, and checking appendix.tex line 222 confirms the paper already has 0.089 in the WNUT table. So either the paper was already corrected or the reported 0.062 was a misidentification—it's actually the SciERC NER delta, not the WNUT value.
+
+Now I need to verify whether 0.062 appears anywhere else that could be mistaken for WNUT SJ ρ, and then look at the N-scaling appendix tables for c032 to find the RE LP values.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8cce9f2a-59d0-448c-8e98-b70de056661c",
+  "isSidechain": false,
+  "requestId": "req_011Cb5emvWhEZommYjgHHRQp",
+  "type": "assistant",
+  "uuid": "223b60ed-b1b9-4a14-b289-b16257746cdd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vh2KXiDUHR7KrtPaddkjAB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11568,
+      "cache_read_input_tokens": 57931,
+      "output_tokens": 1075,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11568,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1075,
+          "cache_read_input_tokens": 57931,
+          "cache_creation_input_tokens": 11568,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11568
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102 · 2026-05-16T04:55:40.355Z_
+
+让我检查 N-scaling 表和 multiseed 表中的 RE LP 值。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "223b60ed-b1b9-4a14-b289-b16257746cdd",
+  "isSidechain": false,
+  "requestId": "req_011Cb5emvWhEZommYjgHHRQp",
+  "type": "assistant",
+  "uuid": "136f522b-ddd9-4c6c-8aea-437f5bcc94a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vh2KXiDUHR7KrtPaddkjAB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11568,
+      "cache_read_input_tokens": 57931,
+      "output_tokens": 1075,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11568,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1075,
+          "cache_read_input_tokens": 57931,
+          "cache_creation_input_tokens": 11568,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11568
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-16T04:55:40.531Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018sVjdRaEpMWcvDbVQYKdw7`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 793,
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "136f522b-ddd9-4c6c-8aea-437f5bcc94a5",
+  "isSidechain": false,
+  "requestId": "req_011Cb5emvWhEZommYjgHHRQp",
+  "type": "assistant",
+  "uuid": "20bcdaab-79e8-4cfd-b2d7-69ac4d534bf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vh2KXiDUHR7KrtPaddkjAB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11568,
+      "cache_read_input_tokens": 57931,
+      "output_tokens": 1075,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11568,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1075,
+          "cache_read_input_tokens": 57931,
+          "cache_creation_input_tokens": 11568,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11568
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-16T04:55:41.258Z_
+
+<details><summary>↩ Tool result · `toolu_01TMa2R5U7Hq27KzJubpoaoG`</summary>
+
+```text
+403	\begin{table}[t]
+404	\centering
+405	\small
+406	\caption{Multi-seed quality estimation on SciERC ($N{=}8$, $T{=}1.0$, seeds: 42, 123, 456). NER: both models; RE: Qwen only (preliminary). Signal ranking is stable across seeds ($\sigma{\leq}0.025$). $\sigma$ is population standard deviation over 3 seeds.}
+407	\label{tab:multiseed}
+408	\begin{tabular}{lccccc}
+409	\toprule
+410	& LP & FK & SJ & VC & EM \\
+411	\midrule
+412	\multicolumn{6}{l}{\textit{NER Spearman $\rho$ (mean $\pm\sigma$)}} \\
+413	Qwen & .217${\pm}$.013 & .254${\pm}$.016 & .364${\pm}$.018 & .386${\pm}$.019 & .307${\pm}$.008 \\
+414	LLaMA & .162${\pm}$.025 & .256${\pm}$.024 & .325${\pm}$.021 & .384${\pm}$.014 & .279${\pm}$.011 \\
+415	\midrule
+416	\multicolumn{6}{l}{\textit{RE Spearman $\rho$ (mean $\pm\sigma$, Qwen)}} \\
+417	Qwen & .297${\pm}$.022 & .290${\pm}$.012 & .249${\pm}$.002 & .309${\pm}$.024 & .135${\pm}$.016 \\
+418	\midrule
+419	\multicolumn{6}{l}{\textit{NER AUROC (mean $\pm\sigma$)}} \\
+420	Qwen & .613${\pm}$.002 & .618${\pm}$.009 & .684${\pm}$.009 & .697${\pm}$.010 & .661${\pm}$.010 \\
+421	LLaMA & .577${\pm}$.007 & .616${\pm}$.011 & .655${\pm}$.010 & .689${\pm}$.005 & .636${\pm}$.006 \\
+422	\bottomrule
+423	\end{tabular}
+424	\end{table}
+425	
+426	\section{Training Configuration}\label{app:training}
+427	
+428	Both models are fine-tuned with identical hyperparameters (Table~\ref{tab:training}) to ensure comparisons across model families reflect model differences rather than training confounds.
+429	
+430	\begin{table}[t]
+431	\centering
+432	\small
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "56c04a16-4322-4b31-9f82-b8728bbeadf4",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "9bb0b01a-58cf-4ab9-bc89-9196e320cd26",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "\\begin{table}[t]\n\\centering\n\\small\n\\caption{Multi-seed quality estimation on SciERC ($N{=}8$, $T{=}1.0$, seeds: 42, 123, 456). NER: both models; RE: Qwen only (preliminary). Signal ranking is stable across seeds ($\\sigma{\\leq}0.025$). $\\sigma$ is population standard deviation over 3 seeds.}\n\\label{tab:multiseed}\n\\begin{tabular}{lccccc}\n\\toprule\n& LP & FK & SJ & VC & EM \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{NER Spearman $\\rho$ (mean $\\pm\\sigma$)}} \\\\\nQwen & .217${\\pm}$.013 & .254${\\pm}$.016 & .364${\\pm}$.018 & .386${\\pm}$.019 & .307${\\pm}$.008 \\\\\nLLaMA & .162${\\pm}$.025 & .256${\\pm}$.024 & .325${\\pm}$.021 & .384${\\pm}$.014 & .279${\\pm}$.011 \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{RE Spearman $\\rho$ (mean $\\pm\\sigma$, Qwen)}} \\\\\nQwen & .297${\\pm}$.022 & .290${\\pm}$.012 & .249${\\pm}$.002 & .309${\\pm}$.024 & .135${\\pm}$.016 \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{NER AUROC (mean $\\pm\\sigma$)}} \\\\\nQwen & .613${\\pm}$.002 & .618${\\pm}$.009 & .684${\\pm}$.009 & .697${\\pm}$.010 & .661${\\pm}$.010 \\\\\nLLaMA & .577${\\pm}$.007 & .616${\\pm}$.011 & .655${\\pm}$.010 & .689${\\pm}$.005 & .636${\\pm}$.006 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Training Configuration}\\label{app:training}\n\nBoth models are fine-tuned with identical hyperparameters (Table~\\ref{tab:training}) to ensure comparisons across model families reflect model differences rather than training confounds.\n\n\\begin{table}[t]\n\\centering\n\\small",
+      "numLines": 30,
+      "startLine": 403,
+      "totalLines": 959
+    }
+  },
+  "sourceToolAssistantUUID": "56c04a16-4322-4b31-9f82-b8728bbeadf4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-16T04:55:40.537Z_
+
+<details><summary>↩ Tool result · `toolu_018sVjdRaEpMWcvDbVQYKdw7`</summary>
+
+```text
+793	\centering
+794	\caption{Effect of sample pool size on signal quality (Qwen3-8B, SciERC, 3-seed mean Spearman $\rho$).}
+795	\label{tab:n-scaling}
+796	\small
+797	\begin{tabular}{l ccc ccc}
+798	\toprule
+799	 & \multicolumn{3}{c}{\textbf{NER} $\rho$} & \multicolumn{3}{c}{\textbf{RE} $\rho$} \\
+800	\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+801	Signal & $N\!=\!8$ & $N\!=\!16$ & $\Delta$ & $N\!=\!8$ & $N\!=\!16$ & $\Delta$ \\
+802	\midrule
+803	SJ & 0.3641 & 0.4105 & \textbf{+0.0464} & 0.2485 & 0.2758 & \textbf{+0.0273} \\
+804	FK & 0.2536 & 0.2833 & \textbf{+0.0297} & 0.2903 & 0.2964 & \textbf{+0.0061} \\
+805	VC & 0.3861 & 0.4092 & \textbf{+0.0231} & 0.3088 & 0.3738 & \textbf{+0.0650} \\
+806	LP & 0.2167 & 0.2393 & \textbf{+0.0226} & 0.2970 & 0.3100 & \textbf{+0.0130} \\
+807	EM & 0.3071 & 0.3395 & \textbf{+0.0324} & 0.1353 & 0.1506 & \textbf{+0.0153} \\
+808	\midrule
+809	Mean & 0.3055 & 0.3364 & \textbf{+0.0308} & 0.2560 & 0.2813 & \textbf{+0.0253} \\
+810	\bottomrule
+811	\end{tabular}
+812	\end{table}
+813	
+814	\begin{table}[t]
+815	\centering
+816	\caption{Cross-seed signal ranking stability (Kendall's $W$, 3 seeds).}
+817	\label{tab:ranking-stability}
+818	\small
+819	\begin{tabular}{ll cc l}
+820	\toprule
+821	Model & Task & $N$ & Kendall's $W$ & Consensus ranking \\
+822	\midrule
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "20bcdaab-79e8-4cfd-b2d7-69ac4d534bf5",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "cf3f90fd-a78d-4d3c-8839-a9093b99502b",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+      "content": "\\centering\n\\caption{Effect of sample pool size on signal quality (Qwen3-8B, SciERC, 3-seed mean Spearman $\\rho$).}\n\\label{tab:n-scaling}\n\\small\n\\begin{tabular}{l ccc ccc}\n\\toprule\n & \\multicolumn{3}{c}{\\textbf{NER} $\\rho$} & \\multicolumn{3}{c}{\\textbf{RE} $\\rho$} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\nSignal & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ \\\\\n\\midrule\nSJ & 0.3641 & 0.4105 & \\textbf{+0.0464} & 0.2485 & 0.2758 & \\textbf{+0.0273} \\\\\nFK & 0.2536 & 0.2833 & \\textbf{+0.0297} & 0.2903 & 0.2964 & \\textbf{+0.0061} \\\\\nVC & 0.3861 & 0.4092 & \\textbf{+0.0231} & 0.3088 & 0.3738 & \\textbf{+0.0650} \\\\\nLP & 0.2167 & 0.2393 & \\textbf{+0.0226} & 0.2970 & 0.3100 & \\textbf{+0.0130} \\\\\nEM & 0.3071 & 0.3395 & \\textbf{+0.0324} & 0.1353 & 0.1506 & \\textbf{+0.0153} \\\\\n\\midrule\nMean & 0.3055 & 0.3364 & \\textbf{+0.0308} & 0.2560 & 0.2813 & \\textbf{+0.0253} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[t]\n\\centering\n\\caption{Cross-seed signal ranking stability (Kendall's $W$, 3 seeds).}\n\\label{tab:ranking-stability}\n\\small\n\\begin{tabular}{ll cc l}\n\\toprule\nModel & Task & $N$ & Kendall's $W$ & Consensus ranking \\\\\n\\midrule",
+      "numLines": 30,
+      "startLine": 793,
+      "totalLines": 959
+    }
+  },
+  "sourceToolAssistantUUID": "20bcdaab-79e8-4cfd-b2d7-69ac4d534bf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106 · 2026-05-16T04:55:41.253Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TMa2R5U7Hq27KzJubpoaoG`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+  "offset": 403,
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cf3f90fd-a78d-4d3c-8839-a9093b99502b",
+  "isSidechain": false,
+  "requestId": "req_011Cb5emvWhEZommYjgHHRQp",
+  "type": "assistant",
+  "uuid": "56c04a16-4322-4b31-9f82-b8728bbeadf4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vh2KXiDUHR7KrtPaddkjAB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11568,
+      "cache_read_input_tokens": 57931,
+      "output_tokens": 1075,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11568,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1075,
+          "cache_read_input_tokens": 57931,
+          "cache_creation_input_tokens": 11568,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11568
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 107 · 2026-05-16T04:55:41.363Z_
+
+```json
+{
+  "parentUuid": "9bb0b01a-58cf-4ab9-bc89-9196e320cd26",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "44d58c44-143d-46cc-84f4-253dfefa12d1",
+  "timestamp": "2026-05-16T04:55:41.363Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 108 · 2026-05-16T04:56:07.158Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture. Let me also check the registry data on the server to verify the truth values, and check for TACRED processes.
+
+Let me also verify: does the heatmap figure actually contain the 0.011 value, or is it just in the caption? The caption says 0.011 for LP RE conditional. And the experiments.tex line 50 also says 0.011.
+
+For the c032 issue, the task says "论文中据报写的是 0.002" but I can't find 0.002 as LP cond RE ρ anywhere in the paper. 
+
+The paper consistently shows 0.011 across multiple locations—the inline text, figure captions, and registry data all align at 0.0112—so either this was already corrected or the reported discrepancy doesn't actually exist in the current version. I'm wondering if the heatmap figure itself contains different values than what's documented in the captions — maybe the plotted data diverges from the text. Let me track down the heatmap data file or generation script to see what values are actually being visualized. I also notice the appendix lines 198-199 are specifically about LLaMA results at N=16, not the main Qwen N=8 baseline I've been checking.
+
+For the primary Qwen N=8 conditional LP RE ρ value, I'm finding 0.011 consistently across both experiments.tex and appendix.tex, which aligns with the registry value of 0.0112 — so that checks out. The WNUT SJ ρ also matches at 0.089 in the appendix. But for the Q1-Q4 SJ ρ progression, there's a clear mismatch: the appendix shows "Q1: 0.110 → Q4: 0.473" while the registry appears to have different values.
+
+I'm realizing I need to dig into whether the paper and registry are using different stratification approaches — the registry might be stratifying by_sent_len while the paper could be using by_greedy_f1 or another dimension entirely. Let me trace through the registry data for exp_009 to see which stratification is actually being used, then cross-reference the heatmap sources and check the TACRED and WNUT17 evaluation data to resolve these discrepancies.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "44d58c44-143d-46cc-84f4-253dfefa12d1",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eoZqYWCvPf6st5iDae",
+  "type": "assistant",
+  "uuid": "204b27c8-742e-4ccc-b66c-7b4e75c1418d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0153RBEJpQ1rSsonmFNGPu4u",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2660,
+      "cache_read_input_tokens": 69499,
+      "output_tokens": 1267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2660,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1267,
+          "cache_read_input_tokens": 69499,
+          "cache_creation_input_tokens": 2660,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2660
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 109 · 2026-05-16T04:56:07.161Z_
+
+c023 在 appendix.tex line 150 确认有差异。c032 和 c021 在当前论文中实际值可能已修正。让我验证 registry 数据并检查 TACRED 进程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "204b27c8-742e-4ccc-b66c-7b4e75c1418d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eoZqYWCvPf6st5iDae",
+  "type": "assistant",
+  "uuid": "90a4fb1c-07bc-4d79-b78b-81f0df9cc204",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0153RBEJpQ1rSsonmFNGPu4u",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2660,
+      "cache_read_input_tokens": 69499,
+      "output_tokens": 1267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2660,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1267,
+          "cache_read_input_tokens": 69499,
+          "cache_creation_input_tokens": 2660,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2660
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110 · 2026-05-16T04:56:07.222Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XaNXvH9iZQT8JFcpXGtmjk`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90a4fb1c-07bc-4d79-b78b-81f0df9cc204",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eoZqYWCvPf6st5iDae",
+  "type": "assistant",
+  "uuid": "914a52dc-aeca-4de5-b984-9fda4b5e23ec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0153RBEJpQ1rSsonmFNGPu4u",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2660,
+      "cache_read_input_tokens": 69499,
+      "output_tokens": 1267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2660,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1267,
+          "cache_read_input_tokens": 69499,
+          "cache_creation_input_tokens": 2660,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2660
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-16T04:56:07.229Z_
+
+<details><summary>↩ Tool result · `toolu_01XaNXvH9iZQT8JFcpXGtmjk`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "914a52dc-aeca-4de5-b984-9fda4b5e23ec",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "9f76f5ba-bce6-4265-9f4b-041b53920193",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  },
+  "sourceToolAssistantUUID": "914a52dc-aeca-4de5-b984-9fda4b5e23ec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112 · 2026-05-16T04:56:10.463Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Uvk4CgbdFvEBP1HVA2XwLy`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "filters": {
+    "exp_id": "exp_009_capability_stratification"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f76f5ba-bce6-4265-9f4b-041b53920193",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eqUDWokxnMiKNAHEYU",
+  "type": "assistant",
+  "uuid": "1894d863-deef-4bc7-abd1-48c48058c04a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018yY7qb37Wr7Z5ZBbwzKsTH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1627,
+      "cache_read_input_tokens": 72159,
+      "output_tokens": 216,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1627,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 216,
+          "cache_read_input_tokens": 72159,
+          "cache_creation_input_tokens": 1627,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1627
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-16T04:56:10.809Z_
+
+<details><summary>↩ Tool result · `toolu_01Uvk4CgbdFvEBP1HVA2XwLy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3304}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1894d863-deef-4bc7-abd1-48c48058c04a",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "3333ca1c-bec9-46ec-9689-6b4f824ca525",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3304}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3304}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1894d863-deef-4bc7-abd1-48c48058c04a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-16T04:56:11.454Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HE3FVUALsP9BwG2PkA4pbC`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ps aux --no-headers -o pid,comm,args",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3333ca1c-bec9-46ec-9689-6b4f824ca525",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eqUDWokxnMiKNAHEYU",
+  "type": "assistant",
+  "uuid": "c8f07653-8e73-4404-9bdc-6fbcd7e6a6bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018yY7qb37Wr7Z5ZBbwzKsTH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1627,
+      "cache_read_input_tokens": 72159,
+      "output_tokens": 216,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1627,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 216,
+          "cache_read_input_tokens": 72159,
+          "cache_creation_input_tokens": 1627,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1627
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 115_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "c8f07653-8e73-4404-9bdc-6fbcd7e6a6bf",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 116_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit provenance values in paper against registry",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-16T04:56:11.813Z_
+
+<details><summary>↩ Tool result · `toolu_01HE3FVUALsP9BwG2PkA4pbC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"error: conflicting format options\\n\\nUsage:\\n ps [options]\\n\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\n for additional help text.\\n\\nFor more details see ps(1).\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c8f07653-8e73-4404-9bdc-6fbcd7e6a6bf",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "c0cbec0a-e353-403a-b8ed-dda4d6b63063",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"error: conflicting format options\\\\n\\\\nUsage:\\\\n ps [options]\\\\n\\\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\\\n for additional help text.\\\\n\\\\nFor more details see ps(1).\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"error: conflicting format options\\n\\nUsage:\\n ps [options]\\n\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\n for additional help text.\\n\\nFor more details see ps(1).\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c8f07653-8e73-4404-9bdc-6fbcd7e6a6bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118 · 2026-05-16T04:56:15.311Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01TGQ6f75BWmRRctGeDdN4ht`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "filters": {
+    "exp_id": "exp_009"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0cbec0a-e353-403a-b8ed-dda4d6b63063",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eqonzQEqP1TWzdboq2",
+  "type": "assistant",
+  "uuid": "ddc2f6c1-55c6-4bc3-b121-cca6306408b7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019iDekjVTqmBSbV9rGcMydm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 516,
+      "cache_read_input_tokens": 73786,
+      "output_tokens": 199,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 516,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 199,
+          "cache_read_input_tokens": 73786,
+          "cache_creation_input_tokens": 516,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 516
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-16T04:56:15.476Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UXUcGroXUAX4phU1XFU8L9`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ps aux",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ddc2f6c1-55c6-4bc3-b121-cca6306408b7",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eqonzQEqP1TWzdboq2",
+  "type": "assistant",
+  "uuid": "19290ad9-b1f6-4924-9794-236603c42236",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019iDekjVTqmBSbV9rGcMydm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 516,
+      "cache_read_input_tokens": 73786,
+      "output_tokens": 199,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 516,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 199,
+          "cache_read_input_tokens": 73786,
+          "cache_creation_input_tokens": 516,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 516
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-16T04:56:15.657Z_
+
+<details><summary>↩ Tool result · `toolu_01TGQ6f75BWmRRctGeDdN4ht`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3344}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ddc2f6c1-55c6-4bc3-b121-cca6306408b7",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "bce8d33e-911d-4efb-a08b-705cfde9cd9f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3344}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3344}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ddc2f6c1-55c6-4bc3-b121-cca6306408b7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-16T04:56:16.014Z_
+
+<details><summary>↩ Tool result · `toolu_01UXUcGroXUAX4phU1XFU8L9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot          1  0.0  0.0   4476  3408 ?        Ss   May14   0:00 bash /init/boot/boot.sh\\nroot        917  1.6  0.0 719264 20412 ?        Sl   May14  48:01 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        932  0.0  0.0  15444  9276 ?        S    May14   0:01 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        935  0.0  0.0 4147828 78676 ?       Sl   May14   1:04 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        937  0.3  0.0 6748620 102416 ?      Sl   May14   8:43 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        939  0.0  0.0 191560 103872 ?       S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        940  0.0  0.0 3681840 18924 ?       Sl   May14   0:48 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        941  0.0  0.0 3682608 20068 ?       Sl   May14   1:48 proxy -c /init/proxy/proxy.ini\\nroot       1050  0.0  0.0 28341068 12208 ?      Sl   May14   2:32 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\nroot     154437  0.0  0.0  16692 10924 ?        Ss   May15   0:05 sshd: root@notty\\nroot     154438  0.0  0.0  16692 10752 ?        Ss   May15   0:05 sshd: root@notty\\nroot     174588  0.0  0.0   9308  6492 ?        Ss   May15   0:01 tmux new-session -d -s exp_001_n16_seed456 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --output_dir output/exp001_n16_seed456 --collect_logprobs 2>&1 | tee output/exp001_n16_seed456_run.log\\nroot     175728  0.0  0.0   4624  3868 pts/1    Ss+  May15   0:00 bash\\nroot     175864  0.0  0.0   4624  3796 pts/2    Ss+  May15   0:00 bash\\nroot     181723  0.0  0.0   4624  3916 pts/0    Ss+  May15   0:00 bash\\nroot     265465  0.0  0.0  16692 10648 ?        Ss   12:50   0:00 sshd: root@notty\\nroot     265629  0.0  0.0  16692 10772 ?        Ss   12:53   0:00 sshd: root@notty\\nroot     265677  0.0  0.0  16692 10980 ?        Ss   12:53   0:00 sshd: root@notty\\nroot     265729  0.0  0.0  16692 10624 ?        Ss   12:54   0:00 sshd: root@notty\\nroot     265852  0.0  0.0   7064  1580 ?        Rs   12:56   0:00 ps aux\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "19290ad9-b1f6-4924-9794-236603c42236",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "ca41170f-fe57-4ba1-8780-c7d1587507c5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot          1  0.0  0.0   4476  3408 ?        Ss   May14   0:00 bash /init/boot/boot.sh\\\\nroot        917  1.6  0.0 719264 20412 ?        Sl   May14  48:01 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        932  0.0  0.0  15444  9276 ?        S    May14   0:01 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        935  0.0  0.0 4147828 78676 ?       Sl   May14   1:04 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        937  0.3  0.0 6748620 102416 ?      Sl   May14   8:43 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        939  0.0  0.0 191560 103872 ?       S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        940  0.0  0.0 3681840 18924 ?       Sl   May14   0:48 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        941  0.0  0.0 3682608 20068 ?       Sl   May14   1:48 proxy -c /init/proxy/proxy.ini\\\\nroot       1050  0.0  0.0 28341068 12208 ?      Sl   May14   2:32 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\\\nroot     154437  0.0  0.0  16692 10924 ?        Ss   May15   0:05 sshd: root@notty\\\\nroot     154438  0.0  0.0  16692 10752 ?        Ss   May15   0:05 sshd: root@notty\\\\nroot     174588  0.0  0.0   9308  6492 ?        Ss   May15   0:01 tmux new-session -d -s exp_001_n16_seed456 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --output_dir output/exp001_n16_seed456 --collect_logprobs 2>&1 | tee output/exp001_n16_seed456_run.log\\\\nroot     175728  0.0  0.0   4624  3868 pts/1    Ss+  May15   0:00 bash\\\\nroot     175864  0.0  0.0   4624  3796 pts/2    Ss+  May15   0:00 bash\\\\nroot     181723  0.0  0.0   4624  3916 pts/0    Ss+  May15   0:00 bash\\\\nroot     265465  0.0  0.0  16692 10648 ?        Ss   12:50   0:00 sshd: root@notty\\\\nroot     265629  0.0  0.0  16692 10772 ?        Ss   12:53   0:00 sshd: root@notty\\\\nroot     265677  0.0  0.0  16692 10980 ?        Ss   12:53   0:00 sshd: root@notty\\\\nroot     265729  0.0  0.0  16692 10624 ?        Ss   12:54   0:00 sshd: root@notty\\\\nroot     265852  0.0  0.0   7064  1580 ?        Rs   12:56   0:00 ps aux\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot          1  0.0  0.0   4476  3408 ?        Ss   May14   0:00 bash /init/boot/boot.sh\\nroot        917  1.6  0.0 719264 20412 ?        Sl   May14  48:01 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        932  0.0  0.0  15444  9276 ?        S    May14   0:01 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        935  0.0  0.0 4147828 78676 ?       Sl   May14   1:04 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        937  0.3  0.0 6748620 102416 ?      Sl   May14   8:43 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        939  0.0  0.0 191560 103872 ?       S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        940  0.0  0.0 3681840 18924 ?       Sl   May14   0:48 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        941  0.0  0.0 3682608 20068 ?       Sl   May14   1:48 proxy -c /init/proxy/proxy.ini\\nroot       1050  0.0  0.0 28341068 12208 ?      Sl   May14   2:32 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_n2g13yqg/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_n2g13yqg/startup_error\\nroot     154437  0.0  0.0  16692 10924 ?        Ss   May15   0:05 sshd: root@notty\\nroot     154438  0.0  0.0  16692 10752 ?        Ss   May15   0:05 sshd: root@notty\\nroot     174588  0.0  0.0   9308  6492 ?        Ss   May15   0:01 tmux new-session -d -s exp_001_n16_seed456 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --output_dir output/exp001_n16_seed456 --collect_logprobs 2>&1 | tee output/exp001_n16_seed456_run.log\\nroot     175728  0.0  0.0   4624  3868 pts/1    Ss+  May15   0:00 bash\\nroot     175864  0.0  0.0   4624  3796 pts/2    Ss+  May15   0:00 bash\\nroot     181723  0.0  0.0   4624  3916 pts/0    Ss+  May15   0:00 bash\\nroot     265465  0.0  0.0  16692 10648 ?        Ss   12:50   0:00 sshd: root@notty\\nroot     265629  0.0  0.0  16692 10772 ?        Ss   12:53   0:00 sshd: root@notty\\nroot     265677  0.0  0.0  16692 10980 ?        Ss   12:53   0:00 sshd: root@notty\\nroot     265729  0.0  0.0  16692 10624 ?        Ss   12:54   0:00 sshd: root@notty\\nroot     265852  0.0  0.0   7064  1580 ?        Rs   12:56   0:00 ps aux\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "19290ad9-b1f6-4924-9794-236603c42236",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 122 · 2026-05-16T04:56:19.638Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No TACRED processes running. No registry entries found for exp_009. Let me search with broader filters.
+
+Let me look at the registry more broadly to find the relevant experiments, and also look at the data files on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca41170f-fe57-4ba1-8780-c7d1587507c5",
+  "isSidechain": false,
+  "requestId": "req_011Cb5er7kjEPYRguWXwpztU",
+  "type": "assistant",
+  "uuid": "c91b4aa9-aab1-489b-aca2-d7418ecf997e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013o5y5U82orpjvxkDK19o3f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1634,
+      "cache_read_input_tokens": 74302,
+      "output_tokens": 325,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1634,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 325,
+          "cache_read_input_tokens": 74302,
+          "cache_creation_input_tokens": 1634,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1634
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 123 · 2026-05-16T04:56:20.615Z_
+
+没有 TACRED 进程。Registry 中找不到 exp_009。让我更广泛地搜索 registry 和服务器上的实验数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c91b4aa9-aab1-489b-aca2-d7418ecf997e",
+  "isSidechain": false,
+  "requestId": "req_011Cb5er7kjEPYRguWXwpztU",
+  "type": "assistant",
+  "uuid": "b7b7499a-dab9-478c-a62b-3242d6ca5953",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013o5y5U82orpjvxkDK19o3f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1634,
+      "cache_read_input_tokens": 74302,
+      "output_tokens": 325,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1634,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 325,
+          "cache_read_input_tokens": 74302,
+          "cache_creation_input_tokens": 1634,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1634
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 124 · 2026-05-16T04:56:21.054Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01MTE13u9naQE6wJktq4cZuK`</summary>
+
+```json
+{
+  "project": "struct_self_consist_ie",
+  "limit": 50,
+  "fields": [
+    "exp_id",
+    "status",
+    "conclusion"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7b7499a-dab9-478c-a62b-3242d6ca5953",
+  "isSidechain": false,
+  "requestId": "req_011Cb5er7kjEPYRguWXwpztU",
+  "type": "assistant",
+  "uuid": "1e2f17c2-a470-4ff6-bbaf-d5e88b431240",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013o5y5U82orpjvxkDK19o3f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1634,
+      "cache_read_input_tokens": 74302,
+      "output_tokens": 325,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1634,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 325,
+          "cache_read_input_tokens": 74302,
+          "cache_creation_input_tokens": 1634,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1634
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 125 · 2026-05-16T04:56:21.442Z_
+
+<details><summary>↩ Tool result · `toolu_01MTE13u9naQE6wJktq4cZuK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_vc_quartile_analysis\": {\"status\": \"PREPARING\"}, \"exp_vc_lp_cascade_selection\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"exp_tacred_re_benchmark\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"exp_llama3b_scierc_ablation\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_qwen3_4b_conll_scs_inference_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_verbalized_confidence\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_freeform_conll_4seed\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_qwen3_4b_conll_merge_inference_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_qwen3_4b_scierc_scs_inference\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_qwen3_4b_scierc_merge_inference\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_qwen3_4b_scierc_finetune_v4\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_qwen3_4b_scierc_finetune_v3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_qwen3_4b_conll_finetune_resume\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_freeform_seed789_v3\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_freeform_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_qwen3_4b_scierc_finetune_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_qwen3_4b_conll_scs_inference\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_freeform_seed789\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_freeform_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_qwen3_4b_conll_finetune\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_freeform_seed789_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_qwen3_4b_scierc_finetune\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_lp_t07_scierc\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_lp_scierc_t07\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_re_scierc_seed456\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_re_scierc_seed123\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_017_llama_conll_n8_t07\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_001_n16_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_017_llama_conll_n16_s456_r1024\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_017_llama_conll_n16_r1024\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp008_re_n16\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp001_seed456\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp001_seed123\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_001_n16_seed456_full\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_001_n16_seed123_full\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_007_ner_llama\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_002_merge_conll2003\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_019_supervised_verifier\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_011_ood_conll_to_scierc\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_011_ood_scierc_to_conll\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_017_llama_conll_n16_s123_r1024\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_freeform_ablation\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_018_llama_scierc_seed456\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_018_llama_scierc_seed42_r1024\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_018_llama_scierc_seed456_r1024\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_018_llama_scierc_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_018_qwen_scierc_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_018_qwen_scierc_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_002_conll_n16_r1024\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_007_llama_n16_r1024\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}}, \"count\": 50, \"total\": 110, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3776}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1e2f17c2-a470-4ff6-bbaf-d5e88b431240",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "7a1f3ef9-79cb-4886-951c-c14665f600df",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_vc_quartile_analysis\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_vc_lp_cascade_selection\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_tacred_re_benchmark\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_llama3b_scierc_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_qwen3_4b_conll_scs_inference_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_verbalized_confidence\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_freeform_conll_4seed\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_qwen3_4b_conll_merge_inference_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_qwen3_4b_scierc_scs_inference\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_qwen3_4b_scierc_merge_inference\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_qwen3_4b_scierc_finetune_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_qwen3_4b_scierc_finetune_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_qwen3_4b_conll_finetune_resume\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_freeform_seed789_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_freeform_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_qwen3_4b_scierc_finetune_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_qwen3_4b_conll_scs_inference\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_freeform_seed789\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_freeform_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_qwen3_4b_conll_finetune\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_freeform_seed789_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_qwen3_4b_scierc_finetune\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_lp_t07_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_lp_scierc_t07\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_re_scierc_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_re_scierc_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_017_llama_conll_n8_t07\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_n16_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_017_llama_conll_n16_s456_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_017_llama_conll_n16_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp008_re_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp001_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp001_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_001_n16_seed456_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_001_n16_seed123_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_007_ner_llama\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_002_merge_conll2003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_019_supervised_verifier\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_011_ood_conll_to_scierc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_011_ood_scierc_to_conll\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_017_llama_conll_n16_s123_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_freeform_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_018_llama_scierc_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_018_llama_scierc_seed42_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_018_llama_scierc_seed456_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_018_llama_scierc_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_018_qwen_scierc_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_018_qwen_scierc_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_002_conll_n16_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_007_llama_n16_r1024\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"count\\\": 50, \\\"total\\\": 110, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3776}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_vc_quartile_analysis\": {\"status\": \"PREPARING\"}, \"exp_vc_lp_cascade_selection\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"exp_tacred_re_benchmark\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"exp_llama3b_scierc_ablation\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_qwen3_4b_conll_scs_inference_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_verbalized_confidence\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_freeform_conll_4seed\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_qwen3_4b_conll_merge_inference_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_qwen3_4b_scierc_scs_inference\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_qwen3_4b_scierc_merge_inference\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_qwen3_4b_scierc_finetune_v4\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_qwen3_4b_scierc_finetune_v3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_qwen3_4b_conll_finetune_resume\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_freeform_seed789_v3\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_freeform_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_qwen3_4b_scierc_finetune_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_qwen3_4b_conll_scs_inference\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_freeform_seed789\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_freeform_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_qwen3_4b_conll_finetune\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_freeform_seed789_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_qwen3_4b_scierc_finetune\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_lp_t07_scierc\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_lp_scierc_t07\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_re_scierc_seed456\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_re_scierc_seed123\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_017_llama_conll_n8_t07\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_001_n16_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_017_llama_conll_n16_s456_r1024\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_017_llama_conll_n16_r1024\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp008_re_n16\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp001_seed456\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp001_seed123\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_001_n16_seed456_full\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_001_n16_seed123_full\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_007_ner_llama\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_002_merge_conll2003\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_019_supervised_verifier\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_011_ood_conll_to_scierc\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_011_ood_scierc_to_conll\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_017_llama_conll_n16_s123_r1024\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_freeform_ablation\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp_018_llama_scierc_seed456\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_018_llama_scierc_seed42_r1024\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_018_llama_scierc_seed456_r1024\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_018_llama_scierc_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_018_qwen_scierc_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_018_qwen_scierc_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"exp_002_conll_n16_r1024\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_007_llama_n16_r1024\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}}, \"count\": 50, \"total\": 110, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3776}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1e2f17c2-a470-4ff6-bbaf-d5e88b431240",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 126 · 2026-05-16T04:56:21.775Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BKfaLsu3SpDqdPURoUytWf`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/struct_self_consist_ie/output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a1f3ef9-79cb-4886-951c-c14665f600df",
+  "isSidechain": false,
+  "requestId": "req_011Cb5er7kjEPYRguWXwpztU",
+  "type": "assistant",
+  "uuid": "547312ea-3660-4652-a995-8e041c59de12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013o5y5U82orpjvxkDK19o3f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1634,
+      "cache_read_input_tokens": 74302,
+      "output_tokens": 325,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1634,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 325,
+          "cache_read_input_tokens": 74302,
+          "cache_creation_input_tokens": 1634,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1634
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 127_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "547312ea-3660-4652-a995-8e041c59de12",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 128_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit provenance values in paper against registry",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 129 · 2026-05-16T04:56:22.129Z_
+
+<details><summary>↩ Tool result · `toolu_01BKfaLsu3SpDqdPURoUytWf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analysis_epsilon_sweep\\nanalysis_fk_bootstrap_ci.json\\nanalysis_fk_bootstrap_per_instance.json\\nanalysis_lp_range_cdf.json\\nanalysis_lp_range_cdf_n16_3seed.json\\nanalysis_multiseed_selection_f1.json\\nanalysis_round8\\nanalysis_scierc_n16_3seed_selection_f1.json\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\nanalysis_unified_rho_full.json\\nbootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\nconditional_filter_diagnosis.json\\nexp001_n16_seed123\\nexp001_n16_seed123_200only\\nexp001_n16_seed123_200only_backup\\nexp001_n16_seed123_full\\nexp001_n16_seed123_run.log\\nexp001_n16_seed42\\nexp001_n16_seed42_200only_backup\\nexp001_n16_seed42_run.log\\nexp001_n16_seed456\\nexp001_n16_seed456_200only\\nexp001_n16_seed456_run.log\\nexp001_seed123_t10_full\\nexp001_seed123_t10_full.log\\nexp001_seed456_t10_full\\nexp001_seed456_t10_full.log\\nexp002_conll2003\\nexp003_wnut17_dryrun\\nexp003_wnut17_eval\\nexp003_wnut17_eval.log\\nexp003_wnut17_pilot\\nexp003_wnut17_pilot.log\\nexp004_re_diagnostic\\nexp004v2_re_diagnostic\\nexp007_llama_dryrun\\nexp007_llama_inference\\nexp008_re_n16\\nexp008_re_n16_200only\\nexp008_re_n16_t10_full\\nexp008_re_n16_t10_full.log\\nexp009_stratification_results.json\\nexp010_selection_curves\\nexp016_signal_ensemble\\nexp018_3seed_5signal_results.json\\nexp_001_seed123_v2\\nexp_001_seed123_v2_r1024\\nexp_001_seed42_v2\\nexp_001_seed42_v2_r1024\\nexp_001_seed456_v2\\nexp_001_seed456_v2_ner\\nexp_001_seed456_v2_ner.log\\nexp_001_seed456_v2_ner_r1024\\nexp_002_conll_n16\\nexp_002_conll_n16.log\\nexp_002_conll_n16_r1024\\nexp_003_wnut17_v2_infer\\nexp_005_v2_temperature\\nexp_006_v2\\nexp_006_v2_run.log\\nexp_007_llama_n16\\nexp_007_llama_n16.log\\nexp_007_llama_n16_r1024\\nexp_007_llama_seed123\\nexp_007_llama_seed456\\nexp_008_re_n16_v2\\nexp_008_re_seed123\\nexp_009_v2\\nexp_009_v2_re_rerun\\nexp_009_v2_run.log\\nexp_011_ood_analysis\\nexp_011_ood_conll_to_scierc\\nexp_011_ood_scierc_to_conll\\nexp_011_ood_scierc_to_conll_run.log\\nexp_012_logprob\\nexp_012_rerun_1024\\nexp_015_unified\\nexp_015_v2\\nexp_016_rerun_1024\\nexp_016_v2\\nexp_017_llama_conll_infer\\nexp_017_llama_conll_infer.log\\nexp_017_llama_conll_n16\\nexp_017_llama_conll_n16_r1024\\nexp_017_llama_conll_n16_r1024_run.log\\nexp_017_llama_conll_n16_s123\\nexp_017_llama_conll_n16_s123.log\\nexp_017_llama_conll_n16_s123_r1024\\nexp_017_llama_conll_n16_s456\\nexp_017_llama_conll_n16_s456.log\\nexp_017_llama_conll_n16_s456_r1024\\nexp_017_llama_conll_n16_s456_r1024_run.log\\nexp_017_llama_conll_n8_t07\\nexp_018_llama_scierc_seed123\\nexp_018_llama_scierc_seed123.log\\nexp_018_llama_scierc_seed42_r1024\\nexp_018_llama_scierc_seed456\\nexp_018_llama_scierc_seed456_r1024\\nexp_018_qwen_scierc_seed123\\nexp_018_qwen_scierc_seed123.log\\nexp_018_qwen_scierc_seed456\\nexp_lp_scierc_t07\\nexp_qwen3_4b_conll_merge_inference_v2\\nexp_qwen3_4b_conll_scs_inference\\nexp_qwen3_4b_conll_scs_inference_v2\\nexp_qwen3_4b_scierc_scs_inference\\nexp_re_scierc_seed123\\nexp_re_scierc_seed456\\nexp_scale_qwen3_4b_conll\\nfigures\\ngate0_all_predictions.jsonl\\ngate0_ft002v2\\ngate0_ft002v2_ckpt400\\ngate0_realigned_predictions.jsonl\\ngate0_realigned_results.json\\ngate0_results.json\\ngate0_samples.json\\nllama_conll_n16_3seed_5signal_summary.json\\nlogprob_diagnosis\\nloo_sj_cross_dataset\\nmultiseed_selection_f1.json\\nmvp_pilot_001\\nmvp_pilot_001.log\\nmvp_pilot_003\\nmvp_pilot_004\\nmvp_pilot_005\\nn16_3seed_5signal_results.json\\nn16_3seed_analysis.py\\nn16_5signal_results.json\\nn8_5signal_results.json\\nreview_round2\\nreview_round4\\nreview_round8\\nreview_round9_experiments\\nrho_audit_results.json\\nselection_f1_4b_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "547312ea-3660-4652-a995-8e041c59de12",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "34573755-cb2a-4d29-83f1-7a934547f574",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analysis_epsilon_sweep\\\\nanalysis_fk_bootstrap_ci.json\\\\nanalysis_fk_bootstrap_per_instance.json\\\\nanalysis_lp_range_cdf.json\\\\nanalysis_lp_range_cdf_n16_3seed.json\\\\nanalysis_multiseed_selection_f1.json\\\\nanalysis_round8\\\\nanalysis_scierc_n16_3seed_selection_f1.json\\\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\\\nanalysis_unified_rho_full.json\\\\nbootstrap_ci_nscaling\\\\nbootstrap_ci_summary.json\\\\nbootstrap_ci_tables.tex\\\\nconditional_filter_diagnosis.json\\\\nexp001_n16_seed123\\\\nexp001_n16_seed123_200only\\\\nexp001_n16_seed123_200only_backup\\\\nexp001_n16_seed123_full\\\\nexp001_n16_seed123_run.log\\\\nexp001_n16_seed42\\\\nexp001_n16_seed42_200only_backup\\\\nexp001_n16_seed42_run.log\\\\nexp001_n16_seed456\\\\nexp001_n16_seed456_200only\\\\nexp001_n16_seed456_run.log\\\\nexp001_seed123_t10_full\\\\nexp001_seed123_t10_full.log\\\\nexp001_seed456_t10_full\\\\nexp001_seed456_t10_full.log\\\\nexp002_conll2003\\\\nexp003_wnut17_dryrun\\\\nexp003_wnut17_eval\\\\nexp003_wnut17_eval.log\\\\nexp003_wnut17_pilot\\\\nexp003_wnut17_pilot.log\\\\nexp004_re_diagnostic\\\\nexp004v2_re_diagnostic\\\\nexp007_llama_dryrun\\\\nexp007_llama_inference\\\\nexp008_re_n16\\\\nexp008_re_n16_200only\\\\nexp008_re_n16_t10_full\\\\nexp008_re_n16_t10_full.log\\\\nexp009_stratification_results.json\\\\nexp010_selection_curves\\\\nexp016_signal_ensemble\\\\nexp018_3seed_5signal_results.json\\\\nexp_001_seed123_v2\\\\nexp_001_seed123_v2_r1024\\\\nexp_001_seed42_v2\\\\nexp_001_seed42_v2_r1024\\\\nexp_001_seed456_v2\\\\nexp_001_seed456_v2_ner\\\\nexp_001_seed456_v2_ner.log\\\\nexp_001_seed456_v2_ner_r1024\\\\nexp_002_conll_n16\\\\nexp_002_conll_n16.log\\\\nexp_002_conll_n16_r1024\\\\nexp_003_wnut17_v2_infer\\\\nexp_005_v2_temperature\\\\nexp_006_v2\\\\nexp_006_v2_run.log\\\\nexp_007_llama_n16\\\\nexp_007_llama_n16.log\\\\nexp_007_llama_n16_r1024\\\\nexp_007_llama_seed123\\\\nexp_007_llama_seed456\\\\nexp_008_re_n16_v2\\\\nexp_008_re_seed123\\\\nexp_009_v2\\\\nexp_009_v2_re_rerun\\\\nexp_009_v2_run.log\\\\nexp_011_ood_analysis\\\\nexp_011_ood_conll_to_scierc\\\\nexp_011_ood_scierc_to_conll\\\\nexp_011_ood_scierc_to_conll_run.log\\\\nexp_012_logprob\\\\nexp_012_rerun_1024\\\\nexp_015_unified\\\\nexp_015_v2\\\\nexp_016_rerun_1024\\\\nexp_016_v2\\\\nexp_017_llama_conll_infer\\\\nexp_017_llama_conll_infer.log\\\\nexp_017_llama_conll_n16\\\\nexp_017_llama_conll_n16_r1024\\\\nexp_017_llama_conll_n16_r1024_run.log\\\\nexp_017_llama_conll_n16_s123\\\\nexp_017_llama_conll_n16_s123.log\\\\nexp_017_llama_conll_n16_s123_r1024\\\\nexp_017_llama_conll_n16_s456\\\\nexp_017_llama_conll_n16_s456.log\\\\nexp_017_llama_conll_n16_s456_r1024\\\\nexp_017_llama_conll_n16_s456_r1024_run.log\\\\nexp_017_llama_conll_n8_t07\\\\nexp_018_llama_scierc_seed123\\\\nexp_018_llama_scierc_seed123.log\\\\nexp_018_llama_scierc_seed42_r1024\\\\nexp_018_llama_scierc_seed456\\\\nexp_018_llama_scierc_seed456_r1024\\\\nexp_018_qwen_scierc_seed123\\\\nexp_018_qwen_scierc_seed123.log\\\\nexp_018_qwen_scierc_seed456\\\\nexp_lp_scierc_t07\\\\nexp_qwen3_4b_conll_merge_inference_v2\\\\nexp_qwen3_4b_conll_scs_inference\\\\nexp_qwen3_4b_conll_scs_inference_v2\\\\nexp_qwen3_4b_scierc_scs_inference\\\\nexp_re_scierc_seed123\\\\nexp_re_scierc_seed456\\\\nexp_scale_qwen3_4b_conll\\\\nfigures\\\\ngate0_all_predictions.jsonl\\\\ngate0_ft002v2\\\\ngate0_ft002v2_ckpt400\\\\ngate0_realigned_predictions.jsonl\\\\ngate0_realigned_results.json\\\\ngate0_results.json\\\\ngate0_samples.json\\\\nllama_conll_n16_3seed_5signal_summary.json\\\\nlogprob_diagnosis\\\\nloo_sj_cross_dataset\\\\nmultiseed_selection_f1.json\\\\nmvp_pilot_001\\\\nmvp_pilot_001.log\\\\nmvp_pilot_003\\\\nmvp_pilot_004\\\\nmvp_pilot_005\\\\nn16_3seed_5signal_results.json\\\\nn16_3seed_analysis.py\\\\nn16_5signal_results.json\\\\nn8_5signal_results.json\\\\nreview_round2\\\\nreview_round4\\\\nreview_round8\\\\nreview_round9_experiments\\\\nrho_audit_results.json\\\\nselection_f1_4b_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"analysis_epsilon_sweep\\nanalysis_fk_bootstrap_ci.json\\nanalysis_fk_bootstrap_per_instance.json\\nanalysis_lp_range_cdf.json\\nanalysis_lp_range_cdf_n16_3seed.json\\nanalysis_multiseed_selection_f1.json\\nanalysis_round8\\nanalysis_scierc_n16_3seed_selection_f1.json\\nanalysis_scierc_n16_3seed_selection_f1_merged.json\\nanalysis_scierc_re_n16_3seed_selection_f1.json\\nanalysis_unified_rho_full.json\\nbootstrap_ci_nscaling\\nbootstrap_ci_summary.json\\nbootstrap_ci_tables.tex\\nconditional_filter_diagnosis.json\\nexp001_n16_seed123\\nexp001_n16_seed123_200only\\nexp001_n16_seed123_200only_backup\\nexp001_n16_seed123_full\\nexp001_n16_seed123_run.log\\nexp001_n16_seed42\\nexp001_n16_seed42_200only_backup\\nexp001_n16_seed42_run.log\\nexp001_n16_seed456\\nexp001_n16_seed456_200only\\nexp001_n16_seed456_run.log\\nexp001_seed123_t10_full\\nexp001_seed123_t10_full.log\\nexp001_seed456_t10_full\\nexp001_seed456_t10_full.log\\nexp002_conll2003\\nexp003_wnut17_dryrun\\nexp003_wnut17_eval\\nexp003_wnut17_eval.log\\nexp003_wnut17_pilot\\nexp003_wnut17_pilot.log\\nexp004_re_diagnostic\\nexp004v2_re_diagnostic\\nexp007_llama_dryrun\\nexp007_llama_inference\\nexp008_re_n16\\nexp008_re_n16_200only\\nexp008_re_n16_t10_full\\nexp008_re_n16_t10_full.log\\nexp009_stratification_results.json\\nexp010_selection_curves\\nexp016_signal_ensemble\\nexp018_3seed_5signal_results.json\\nexp_001_seed123_v2\\nexp_001_seed123_v2_r1024\\nexp_001_seed42_v2\\nexp_001_seed42_v2_r1024\\nexp_001_seed456_v2\\nexp_001_seed456_v2_ner\\nexp_001_seed456_v2_ner.log\\nexp_001_seed456_v2_ner_r1024\\nexp_002_conll_n16\\nexp_002_conll_n16.log\\nexp_002_conll_n16_r1024\\nexp_003_wnut17_v2_infer\\nexp_005_v2_temperature\\nexp_006_v2\\nexp_006_v2_run.log\\nexp_007_llama_n16\\nexp_007_llama_n16.log\\nexp_007_llama_n16_r1024\\nexp_007_llama_seed123\\nexp_007_llama_seed456\\nexp_008_re_n16_v2\\nexp_008_re_seed123\\nexp_009_v2\\nexp_009_v2_re_rerun\\nexp_009_v2_run.log\\nexp_011_ood_analysis\\nexp_011_ood_conll_to_scierc\\nexp_011_ood_scierc_to_conll\\nexp_011_ood_scierc_to_conll_run.log\\nexp_012_logprob\\nexp_012_rerun_1024\\nexp_015_unified\\nexp_015_v2\\nexp_016_rerun_1024\\nexp_016_v2\\nexp_017_llama_conll_infer\\nexp_017_llama_conll_infer.log\\nexp_017_llama_conll_n16\\nexp_017_llama_conll_n16_r1024\\nexp_017_llama_conll_n16_r1024_run.log\\nexp_017_llama_conll_n16_s123\\nexp_017_llama_conll_n16_s123.log\\nexp_017_llama_conll_n16_s123_r1024\\nexp_017_llama_conll_n16_s456\\nexp_017_llama_conll_n16_s456.log\\nexp_017_llama_conll_n16_s456_r1024\\nexp_017_llama_conll_n16_s456_r1024_run.log\\nexp_017_llama_conll_n8_t07\\nexp_018_llama_scierc_seed123\\nexp_018_llama_scierc_seed123.log\\nexp_018_llama_scierc_seed42_r1024\\nexp_018_llama_scierc_seed456\\nexp_018_llama_scierc_seed456_r1024\\nexp_018_qwen_scierc_seed123\\nexp_018_qwen_scierc_seed123.log\\nexp_018_qwen_scierc_seed456\\nexp_lp_scierc_t07\\nexp_qwen3_4b_conll_merge_inference_v2\\nexp_qwen3_4b_conll_scs_inference\\nexp_qwen3_4b_conll_scs_inference_v2\\nexp_qwen3_4b_scierc_scs_inference\\nexp_re_scierc_seed123\\nexp_re_scierc_seed456\\nexp_scale_qwen3_4b_conll\\nfigures\\ngate0_all_predictions.jsonl\\ngate0_ft002v2\\ngate0_ft002v2_ckpt400\\ngate0_realigned_predictions.jsonl\\ngate0_realigned_results.json\\ngate0_results.json\\ngate0_samples.json\\nllama_conll_n16_3seed_5signal_summary.json\\nlogprob_diagnosis\\nloo_sj_cross_dataset\\nmultiseed_selection_f1.json\\nmvp_pilot_001\\nmvp_pilot_001.log\\nmvp_pilot_003\\nmvp_pilot_004\\nmvp_pilot_005\\nn16_3seed_5signal_results.json\\nn16_3seed_analysis.py\\nn16_5signal_results.json\\nn8_5signal_results.json\\nreview_round2\\nreview_round4\\nreview_round8\\nreview_round9_experiments\\nrho_audit_results.json\\nselection_f1_4b_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "547312ea-3660-4652-a995-8e041c59de12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 130 · 2026-05-16T04:56:26.654Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me look at the key data files to verify:
+1. exp_012_rerun_1024/report.json for c032 (LP cond RE ρ)
+2. exp009_stratification_results.json for c023 (Q1-Q4 SJ ρ)
+3. exp003_wnut17_eval for c021 (WNUT SJ ρ)
+
+Also, let me search the registry with different filters since the exp_009 I searched for didn't exist.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34573755-cb2a-4d29-83f1-7a934547f574",
+  "isSidechain": false,
+  "requestId": "req_011Cb5erZuqjPSmwG8TgyN9c",
+  "type": "assistant",
+  "uuid": "6912e8a1-7ae6-4aa4-b6b7-4f38f0bce72b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FdsJSJE2PhVrvmomWxQ2dS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4004,
+      "cache_read_input_tokens": 75936,
+      "output_tokens": 493,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4004,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 493,
+          "cache_read_input_tokens": 75936,
+          "cache_creation_input_tokens": 4004,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4004
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-16T04:56:27.669Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Pb2hNiBpMQS6JitabMJhBj`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp009_stratification_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6912e8a1-7ae6-4aa4-b6b7-4f38f0bce72b",
+  "isSidechain": false,
+  "requestId": "req_011Cb5erZuqjPSmwG8TgyN9c",
+  "type": "assistant",
+  "uuid": "4d82eac1-53b1-47d2-a56b-4bda83a6f0ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FdsJSJE2PhVrvmomWxQ2dS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4004,
+      "cache_read_input_tokens": 75936,
+      "output_tokens": 493,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4004,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 493,
+          "cache_read_input_tokens": 75936,
+          "cache_creation_input_tokens": 4004,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4004
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-16T04:56:28.119Z_
+
+<details><summary>↩ Tool result · `toolu_01Pb2hNiBpMQS6JitabMJhBj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc_ner\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"by_greedy_f1\\\": {\\n      \\\"[0, 0.25)\\\": {\\n        \\\"n\\\": 63,\\n        \\\"mean_f1\\\": 0.012964108202203438,\\n        \\\"std_f1\\\": 0.050002566931507855,\\n        \\\"signals\\\": {\\n          \\\"sj\\\": {\\n            \\\"rho\\\": 0.1591899032754564,\\n            \\\"rho_ci_lo\\\": 0.03484575311256299,\\n            \\\"rho_ci_hi\\\": 0.29441645758229157,\\n            \\\"p\\\": 0.21269348192185367,\\n            \\\"auroc\\\": 0.6864406779661016,\\n            \\\"auroc_ci_lo\\\": 0.5161290322580645,\\n            \\\"auroc_ci_hi\\\": 0.8158114035087718\\n          },\\n          \\\"fk\\\": {\\n            \\\"rho\\\": 0.25112822147572084,\\n            \\\"rho_ci_lo\\\": 0.11183009657879464,\\n            \\\"rho_ci_hi\\\": 0.3935594404481513,\\n            \\\"p\\\": 0.04711186360938125,\\n            \\\"auroc\\\": 0.7966101694915254,\\n            \\\"auroc_ci_lo\\\": 0.6694783752191701,\\n            \\\"auroc_ci_hi\\\": 0.8965794515023189\\n          },\\n          \\\"logprob\\\": {\\n            \\\"rho\\\": 0.07734328551539553,\\n            \\\"rho_ci_lo\\\": -0.11072736503133365,\\n            \\\"rho_ci_hi\\\": 0.285400972688807,\\n            \\\"p\\\": 0.5468388938510856,\\n            \\\"auroc\\\": 0.597457627118644,\\n            \\\"auroc_ci_lo\\\": 0.3225806451612903,\\n            \\\"auroc_ci_hi\\\": 0.967741935483871\\n          },\\n          \\\"voting_conf\\\": {\\n            \\\"rho\\\": 0.12773976400064793,\\n            \\\"rho_ci_lo\\\": -0.013989156754501072,\\n            \\\"rho_ci_hi\\\": 0.26940805593564277,\\n            \\\"p\\\": 0.3184276301710296,\\n            \\\"auroc\\\": 0.6504237288135594,\\n            \\\"auroc_ci_lo\\\": 0.4872404351273664,\\n            \\\"auroc_ci_hi\\\": 0.8277800546448086\\n          },\\n          \\\"em\\\": {\\n            \\\"rho\\\": -0.2739048176676682,\\n            \\\"rho_ci_lo\\\": -0.4695927686112411,\\n            \\\"rho_ci_hi\\\": -0.01621394650427604,\\n            \\\"p\\\": 0.02983720087857538,\\n            \\\"auroc\\\": 0.18220338983050846,\\n            \\\"auroc_ci_lo\\\": 0.0,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          }\\n        }\\n      },\\n      \\\"[0.25, 0.5)\\\": {\\n        \\\"n\\\": 78,\\n        \\\"mean_f1\\\": 0.3697545332160716,\\n        \\\"std_f1\\\": 0.04536759676707544,\\n        \\\"signals\\\": {\\n          \\\"sj\\\": {\\n            \\\"rho\\\": 0.13885451144085342,\\n            \\\"rho_ci_lo\\\": -0.09114450841016568,\\n            \\\"rho_ci_hi\\\": 0.36692788647388663,\\n            \\\"p\\\": 0.22535394631979694,\\n            \\\"auroc\\\": 0.6101249178172256,\\n            \\\"auroc_ci_lo\\\": 0.30952868852459015,\\n            \\\"auroc_ci_hi\\\": 0.7159836691086691\\n          },\\n          \\\"fk\\\": {\\n            \\\"rho\\\": 0.0459157185368359,\\n            \\\"rho_ci_lo\\\": -0.1810606519947235,\\n            \\\"rho_ci_hi\\\": 0.2776831969032178,\\n            \\\"p\\\": 0.6897604412226611,\\n            \\\"auroc\\\": 0.5417488494411571,\\n            \\\"auroc_ci_lo\\\": 0.2088235294117647,\\n            \\\"auroc_ci_hi\\\": 0.6731311659054872\\n          },\\n          \\\"logprob\\\": {\\n            \\\"rho\\\": 0.03389278379405684,\\n            \\\"rho_ci_lo\\\": -0.18663301271430244,\\n            \\\"rho_ci_hi\\\": 0.25588643322834975,\\n            \\\"p\\\": 0.7683110427817313,\\n            \\\"auroc\\\": 0.5016436554898094,\\n            \\\"auroc_ci_lo\\\": 0.38272425249169434,\\n            \\\"auroc_ci_hi\\\": 0.702009210407648\\n          },\\n          \\\"voting_conf\\\": {\\n            \\\"rho\\\": 0.19436296219311822,\\n            \\\"rho_ci_lo\\\": -0.03166594759986229,\\n            \\\"rho_ci_hi\\\": 0.40357319026948685,\\n            \\\"p\\\": 0.0881654156922624,\\n            \\\"auroc\\\": 0.6403681788297173,\\n            \\\"auroc_ci_lo\\\": 0.4249968434343434,\\n            \\\"auroc_ci_hi\\\": 0.7466630306614166\\n          },\\n          \\\"em\\\": {\\n            \\\"rho\\\": 0.08701019210809648,\\n            \\\"rho_ci_lo\\\": -0.14460701938409987,\\n            \\\"rho_ci_hi\\\": 0.31280563776695314,\\n            \\\"p\\\": 0.4487595276336306,\\n            \\\"auroc\\\": 0.5979618671926364,\\n            \\\"auroc_ci_lo\\\": 0.20392839922854386,\\n            \\\"auroc_ci_hi\\\": 0.7093358602504941\\n          }\\n        }\\n      },\\n      \\\"[0.5, 0.75)\\\": {\\n        \\\"n\\\": 170,\\n        \\\"mean_f1\\\": 0.5984006593176143,\\n        \\\"std_f1\\\": 0.0773586205073124,\\n        \\\"signals\\\": {\\n          \\\"sj\\\": {\\n            \\\"rho\\\": 0.08976872817475849,\\n            \\\"rho_ci_lo\\\": -0.0732873876570541,\\n            \\\"rho_ci_hi\\\": 0.24245038\\n\\n... [截断: 输出过长，省略 56331 字符] ...\\n\\n      \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          },\\n          \\\"em\\\": {\\n            \\\"rho\\\": 0.40751129212812337,\\n            \\\"rho_ci_lo\\\": 0.36544852416223617,\\n            \\\"rho_ci_hi\\\": 0.44933968948320163,\\n            \\\"p\\\": 3.572851504016174e-86,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          }\\n        }\\n      },\\n      \\\"3-5\\\": {\\n        \\\"n\\\": 543,\\n        \\\"mean_f1\\\": 0.8963691107337517,\\n        \\\"std_f1\\\": 0.17473706713457543,\\n        \\\"signals\\\": {\\n          \\\"sj\\\": {\\n            \\\"rho\\\": 0.45584986082993095,\\n            \\\"rho_ci_lo\\\": 0.3847102040976742,\\n            \\\"rho_ci_hi\\\": 0.522384107969557,\\n            \\\"p\\\": 3.2231396899083346e-29,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          },\\n          \\\"fk\\\": {\\n            \\\"rho\\\": 0.4269463872321119,\\n            \\\"rho_ci_lo\\\": 0.3561455078887171,\\n            \\\"rho_ci_hi\\\": 0.4944982471926566,\\n            \\\"p\\\": 1.8211172179554786e-25,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          },\\n          \\\"logprob\\\": {\\n            \\\"rho\\\": 0.1950812789070626,\\n            \\\"rho_ci_lo\\\": 0.10949195164271895,\\n            \\\"rho_ci_hi\\\": 0.27785768872172684,\\n            \\\"p\\\": 4.662031410335864e-06,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          },\\n          \\\"voting_conf\\\": {\\n            \\\"rho\\\": 0.41616947313817737,\\n            \\\"rho_ci_lo\\\": 0.3430915322223445,\\n            \\\"rho_ci_hi\\\": 0.4869893314995537,\\n            \\\"p\\\": 3.7100615274507845e-24,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          },\\n          \\\"em\\\": {\\n            \\\"rho\\\": 0.4726830832963961,\\n            \\\"rho_ci_lo\\\": 0.405120140786377,\\n            \\\"rho_ci_hi\\\": 0.5401866959666276,\\n            \\\"p\\\": 1.4183873291831032e-31,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          }\\n        }\\n      },\\n      \\\"6+\\\": {\\n        \\\"n\\\": 79,\\n        \\\"mean_f1\\\": 0.9212062199403971,\\n        \\\"std_f1\\\": 0.1563689469922546,\\n        \\\"signals\\\": {\\n          \\\"sj\\\": {\\n            \\\"rho\\\": 0.3287493120084988,\\n            \\\"rho_ci_lo\\\": 0.11139540431690538,\\n            \\\"rho_ci_hi\\\": 0.5227043810024001,\\n            \\\"p\\\": 0.003095376931723192,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          },\\n          \\\"fk\\\": {\\n            \\\"rho\\\": 0.2742355543522497,\\n            \\\"rho_ci_lo\\\": 0.06328555271535638,\\n            \\\"rho_ci_hi\\\": 0.46587927254486433,\\n            \\\"p\\\": 0.01445745785753974,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          },\\n          \\\"logprob\\\": {\\n            \\\"rho\\\": 0.2580718345320923,\\n            \\\"rho_ci_lo\\\": 0.02634806198515859,\\n            \\\"rho_ci_hi\\\": 0.4739869773687927,\\n            \\\"p\\\": 0.021660037569061746,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          },\\n          \\\"voting_conf\\\": {\\n            \\\"rho\\\": 0.37563569976061006,\\n            \\\"rho_ci_lo\\\": 0.17888101185167418,\\n            \\\"rho_ci_hi\\\": 0.5513615095818712,\\n            \\\"p\\\": 0.0006464344968954178,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          },\\n          \\\"em\\\": {\\n            \\\"rho\\\": 0.3802028682777722,\\n            \\\"rho_ci_lo\\\": 0.1775583782617113,\\n            \\\"rho_ci_hi\\\": 0.561632255159122,\\n            \\\"p\\\": 0.0005478212155457922,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          }\\n        }\\n      }\\n    },\\n    \\\"proxy_correlations\\\": {\\n      \\\"f1_vs_sent_len\\\": {\\n        \\\"rho\\\": -0.15495573192513581,\\n        \\\"p\\\": 5.305897457172406e-20\\n      },\\n      \\\"f1_vs_ent_count\\\": {\\n        \\\"rho\\\": -0.16102106704565386,\\n        \\\"p\\\": 1.7198469930449225e-21\\n      },\\n      \\\"sent_len_vs_ent_count\\\": {\\n        \\\"rho\\\": 0.4188409068116794,\\n        \\\"p\\\": 9.18303749705018e-147\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d82eac1-53b1-47d2-a56b-4bda83a6f0ab",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "0c779975-df9c-4173-bdb6-804546cbca74",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scierc_ner\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"by_greedy_f1\\\\\\\": {\\\\n      \\\\\\\"[0, 0.25)\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 63,\\\\n        \\\\\\\"mean_f1\\\\\\\": 0.012964108202203438,\\\\n        \\\\\\\"std_f1\\\\\\\": 0.050002566931507855,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.1591899032754564,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": 0.03484575311256299,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.29441645758229157,\\\\n            \\\\\\\"p\\\\\\\": 0.21269348192185367,\\\\n            \\\\\\\"auroc\\\\\\\": 0.6864406779661016,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.5161290322580645,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.8158114035087718\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.25112822147572084,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": 0.11183009657879464,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.3935594404481513,\\\\n            \\\\\\\"p\\\\\\\": 0.04711186360938125,\\\\n            \\\\\\\"auroc\\\\\\\": 0.7966101694915254,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.6694783752191701,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.8965794515023189\\\\n          },\\\\n          \\\\\\\"logprob\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.07734328551539553,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": -0.11072736503133365,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.285400972688807,\\\\n            \\\\\\\"p\\\\\\\": 0.5468388938510856,\\\\n            \\\\\\\"auroc\\\\\\\": 0.597457627118644,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.3225806451612903,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.967741935483871\\\\n          },\\\\n          \\\\\\\"voting_conf\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.12773976400064793,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": -0.013989156754501072,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.26940805593564277,\\\\n            \\\\\\\"p\\\\\\\": 0.3184276301710296,\\\\n            \\\\\\\"auroc\\\\\\\": 0.6504237288135594,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.4872404351273664,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.8277800546448086\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": -0.2739048176676682,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": -0.4695927686112411,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": -0.01621394650427604,\\\\n            \\\\\\\"p\\\\\\\": 0.02983720087857538,\\\\n            \\\\\\\"auroc\\\\\\\": 0.18220338983050846,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.0,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.5\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"[0.25, 0.5)\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 78,\\\\n        \\\\\\\"mean_f1\\\\\\\": 0.3697545332160716,\\\\n        \\\\\\\"std_f1\\\\\\\": 0.04536759676707544,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.13885451144085342,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": -0.09114450841016568,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.36692788647388663,\\\\n            \\\\\\\"p\\\\\\\": 0.22535394631979694,\\\\n            \\\\\\\"auroc\\\\\\\": 0.6101249178172256,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.30952868852459015,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.7159836691086691\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.0459157185368359,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": -0.1810606519947235,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.2776831969032178,\\\\n            \\\\\\\"p\\\\\\\": 0.6897604412226611,\\\\n            \\\\\\\"auroc\\\\\\\": 0.5417488494411571,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.2088235294117647,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.6731311659054872\\\\n          },\\\\n          \\\\\\\"logprob\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.03389278379405684,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": -0.18663301271430244,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.25588643322834975,\\\\n            \\\\\\\"p\\\\\\\": 0.7683110427817313,\\\\n            \\\\\\\"auroc\\\\\\\": 0.5016436554898094,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.38272425249169434,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.702009210407648\\\\n          },\\\\n          \\\\\\\"voting_conf\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.19436296219311822,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": -0.03166594759986229,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.40357319026948685,\\\\n            \\\\\\\"p\\\\\\\": 0.0881654156922624,\\\\n            \\\\\\\"auroc\\\\\\\": 0.6403681788297173,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.4249968434343434,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.7466630306614166\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.08701019210809648,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": -0.14460701938409987,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.31280563776695314,\\\\n            \\\\\\\"p\\\\\\\": 0.4487595276336306,\\\\n            \\\\\\\"auroc\\\\\\\": 0.5979618671926364,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.20392839922854386,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.7093358602504941\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"[0.5, 0.75)\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 170,\\\\n        \\\\\\\"mean_f1\\\\\\\": 0.5984006593176143,\\\\n        \\\\\\\"std_f1\\\\\\\": 0.0773586205073124,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.08976872817475849,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": -0.0732873876570541,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.24245038\\\\n\\\\n... [截断: 输出过长，省略 56331 字符] ...\\\\n\\\\n      \\\\\\\"auroc\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.5\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.40751129212812337,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": 0.36544852416223617,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.44933968948320163,\\\\n            \\\\\\\"p\\\\\\\": 3.572851504016174e-86,\\\\n            \\\\\\\"auroc\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.5\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"3-5\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 543,\\\\n        \\\\\\\"mean_f1\\\\\\\": 0.8963691107337517,\\\\n        \\\\\\\"std_f1\\\\\\\": 0.17473706713457543,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.45584986082993095,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": 0.3847102040976742,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.522384107969557,\\\\n            \\\\\\\"p\\\\\\\": 3.2231396899083346e-29,\\\\n            \\\\\\\"auroc\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.5\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.4269463872321119,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": 0.3561455078887171,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.4944982471926566,\\\\n            \\\\\\\"p\\\\\\\": 1.8211172179554786e-25,\\\\n            \\\\\\\"auroc\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.5\\\\n          },\\\\n          \\\\\\\"logprob\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.1950812789070626,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": 0.10949195164271895,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.27785768872172684,\\\\n            \\\\\\\"p\\\\\\\": 4.662031410335864e-06,\\\\n            \\\\\\\"auroc\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.5\\\\n          },\\\\n          \\\\\\\"voting_conf\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.41616947313817737,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": 0.3430915322223445,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.4869893314995537,\\\\n            \\\\\\\"p\\\\\\\": 3.7100615274507845e-24,\\\\n            \\\\\\\"auroc\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.5\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.4726830832963961,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": 0.405120140786377,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.5401866959666276,\\\\n            \\\\\\\"p\\\\\\\": 1.4183873291831032e-31,\\\\n            \\\\\\\"auroc\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.5\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"6+\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 79,\\\\n        \\\\\\\"mean_f1\\\\\\\": 0.9212062199403971,\\\\n        \\\\\\\"std_f1\\\\\\\": 0.1563689469922546,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.3287493120084988,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": 0.11139540431690538,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.5227043810024001,\\\\n            \\\\\\\"p\\\\\\\": 0.003095376931723192,\\\\n            \\\\\\\"auroc\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.5\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.2742355543522497,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": 0.06328555271535638,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.46587927254486433,\\\\n            \\\\\\\"p\\\\\\\": 0.01445745785753974,\\\\n            \\\\\\\"auroc\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.5\\\\n          },\\\\n          \\\\\\\"logprob\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.2580718345320923,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": 0.02634806198515859,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.4739869773687927,\\\\n            \\\\\\\"p\\\\\\\": 0.021660037569061746,\\\\n            \\\\\\\"auroc\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.5\\\\n          },\\\\n          \\\\\\\"voting_conf\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.37563569976061006,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": 0.17888101185167418,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.5513615095818712,\\\\n            \\\\\\\"p\\\\\\\": 0.0006464344968954178,\\\\n            \\\\\\\"auroc\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.5\\\\n          },\\\\n          \\\\\\\"em\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.3802028682777722,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": 0.1775583782617113,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.561632255159122,\\\\n            \\\\\\\"p\\\\\\\": 0.0005478212155457922,\\\\n            \\\\\\\"auroc\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.5,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.5\\\\n          }\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"proxy_correlations\\\\\\\": {\\\\n      \\\\\\\"f1_vs_sent_len\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.15495573192513581,\\\\n        \\\\\\\"p\\\\\\\": 5.305897457172406e-20\\\\n      },\\\\n      \\\\\\\"f1_vs_ent_count\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.16102106704565386,\\\\n        \\\\\\\"p\\\\\\\": 1.7198469930449225e-21\\\\n      },\\\\n      \\\\\\\"sent_len_vs_ent_count\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.4188409068116794,\\\\n        \\\\\\\"p\\\\\\\": 9.18303749705018e-147\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scierc_ner\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"by_greedy_f1\\\": {\\n      \\\"[0, 0.25)\\\": {\\n        \\\"n\\\": 63,\\n        \\\"mean_f1\\\": 0.012964108202203438,\\n        \\\"std_f1\\\": 0.050002566931507855,\\n        \\\"signals\\\": {\\n          \\\"sj\\\": {\\n            \\\"rho\\\": 0.1591899032754564,\\n            \\\"rho_ci_lo\\\": 0.03484575311256299,\\n            \\\"rho_ci_hi\\\": 0.29441645758229157,\\n            \\\"p\\\": 0.21269348192185367,\\n            \\\"auroc\\\": 0.6864406779661016,\\n            \\\"auroc_ci_lo\\\": 0.5161290322580645,\\n            \\\"auroc_ci_hi\\\": 0.8158114035087718\\n          },\\n          \\\"fk\\\": {\\n            \\\"rho\\\": 0.25112822147572084,\\n            \\\"rho_ci_lo\\\": 0.11183009657879464,\\n            \\\"rho_ci_hi\\\": 0.3935594404481513,\\n            \\\"p\\\": 0.04711186360938125,\\n            \\\"auroc\\\": 0.7966101694915254,\\n            \\\"auroc_ci_lo\\\": 0.6694783752191701,\\n            \\\"auroc_ci_hi\\\": 0.8965794515023189\\n          },\\n          \\\"logprob\\\": {\\n            \\\"rho\\\": 0.07734328551539553,\\n            \\\"rho_ci_lo\\\": -0.11072736503133365,\\n            \\\"rho_ci_hi\\\": 0.285400972688807,\\n            \\\"p\\\": 0.5468388938510856,\\n            \\\"auroc\\\": 0.597457627118644,\\n            \\\"auroc_ci_lo\\\": 0.3225806451612903,\\n            \\\"auroc_ci_hi\\\": 0.967741935483871\\n          },\\n          \\\"voting_conf\\\": {\\n            \\\"rho\\\": 0.12773976400064793,\\n            \\\"rho_ci_lo\\\": -0.013989156754501072,\\n            \\\"rho_ci_hi\\\": 0.26940805593564277,\\n            \\\"p\\\": 0.3184276301710296,\\n            \\\"auroc\\\": 0.6504237288135594,\\n            \\\"auroc_ci_lo\\\": 0.4872404351273664,\\n            \\\"auroc_ci_hi\\\": 0.8277800546448086\\n          },\\n          \\\"em\\\": {\\n            \\\"rho\\\": -0.2739048176676682,\\n            \\\"rho_ci_lo\\\": -0.4695927686112411,\\n            \\\"rho_ci_hi\\\": -0.01621394650427604,\\n            \\\"p\\\": 0.02983720087857538,\\n            \\\"auroc\\\": 0.18220338983050846,\\n            \\\"auroc_ci_lo\\\": 0.0,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          }\\n        }\\n      },\\n      \\\"[0.25, 0.5)\\\": {\\n        \\\"n\\\": 78,\\n        \\\"mean_f1\\\": 0.3697545332160716,\\n        \\\"std_f1\\\": 0.04536759676707544,\\n        \\\"signals\\\": {\\n          \\\"sj\\\": {\\n            \\\"rho\\\": 0.13885451144085342,\\n            \\\"rho_ci_lo\\\": -0.09114450841016568,\\n            \\\"rho_ci_hi\\\": 0.36692788647388663,\\n            \\\"p\\\": 0.22535394631979694,\\n            \\\"auroc\\\": 0.6101249178172256,\\n            \\\"auroc_ci_lo\\\": 0.30952868852459015,\\n            \\\"auroc_ci_hi\\\": 0.7159836691086691\\n          },\\n          \\\"fk\\\": {\\n            \\\"rho\\\": 0.0459157185368359,\\n            \\\"rho_ci_lo\\\": -0.1810606519947235,\\n            \\\"rho_ci_hi\\\": 0.2776831969032178,\\n            \\\"p\\\": 0.6897604412226611,\\n            \\\"auroc\\\": 0.5417488494411571,\\n            \\\"auroc_ci_lo\\\": 0.2088235294117647,\\n            \\\"auroc_ci_hi\\\": 0.6731311659054872\\n          },\\n          \\\"logprob\\\": {\\n            \\\"rho\\\": 0.03389278379405684,\\n            \\\"rho_ci_lo\\\": -0.18663301271430244,\\n            \\\"rho_ci_hi\\\": 0.25588643322834975,\\n            \\\"p\\\": 0.7683110427817313,\\n            \\\"auroc\\\": 0.5016436554898094,\\n            \\\"auroc_ci_lo\\\": 0.38272425249169434,\\n            \\\"auroc_ci_hi\\\": 0.702009210407648\\n          },\\n          \\\"voting_conf\\\": {\\n            \\\"rho\\\": 0.19436296219311822,\\n            \\\"rho_ci_lo\\\": -0.03166594759986229,\\n            \\\"rho_ci_hi\\\": 0.40357319026948685,\\n            \\\"p\\\": 0.0881654156922624,\\n            \\\"auroc\\\": 0.6403681788297173,\\n            \\\"auroc_ci_lo\\\": 0.4249968434343434,\\n            \\\"auroc_ci_hi\\\": 0.7466630306614166\\n          },\\n          \\\"em\\\": {\\n            \\\"rho\\\": 0.08701019210809648,\\n            \\\"rho_ci_lo\\\": -0.14460701938409987,\\n            \\\"rho_ci_hi\\\": 0.31280563776695314,\\n            \\\"p\\\": 0.4487595276336306,\\n            \\\"auroc\\\": 0.5979618671926364,\\n            \\\"auroc_ci_lo\\\": 0.20392839922854386,\\n            \\\"auroc_ci_hi\\\": 0.7093358602504941\\n          }\\n        }\\n      },\\n      \\\"[0.5, 0.75)\\\": {\\n        \\\"n\\\": 170,\\n        \\\"mean_f1\\\": 0.5984006593176143,\\n        \\\"std_f1\\\": 0.0773586205073124,\\n        \\\"signals\\\": {\\n          \\\"sj\\\": {\\n            \\\"rho\\\": 0.08976872817475849,\\n            \\\"rho_ci_lo\\\": -0.0732873876570541,\\n            \\\"rho_ci_hi\\\": 0.24245038\\n\\n... [截断: 输出过长，省略 56331 字符] ...\\n\\n      \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          },\\n          \\\"em\\\": {\\n            \\\"rho\\\": 0.40751129212812337,\\n            \\\"rho_ci_lo\\\": 0.36544852416223617,\\n            \\\"rho_ci_hi\\\": 0.44933968948320163,\\n            \\\"p\\\": 3.572851504016174e-86,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          }\\n        }\\n      },\\n      \\\"3-5\\\": {\\n        \\\"n\\\": 543,\\n        \\\"mean_f1\\\": 0.8963691107337517,\\n        \\\"std_f1\\\": 0.17473706713457543,\\n        \\\"signals\\\": {\\n          \\\"sj\\\": {\\n            \\\"rho\\\": 0.45584986082993095,\\n            \\\"rho_ci_lo\\\": 0.3847102040976742,\\n            \\\"rho_ci_hi\\\": 0.522384107969557,\\n            \\\"p\\\": 3.2231396899083346e-29,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          },\\n          \\\"fk\\\": {\\n            \\\"rho\\\": 0.4269463872321119,\\n            \\\"rho_ci_lo\\\": 0.3561455078887171,\\n            \\\"rho_ci_hi\\\": 0.4944982471926566,\\n            \\\"p\\\": 1.8211172179554786e-25,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          },\\n          \\\"logprob\\\": {\\n            \\\"rho\\\": 0.1950812789070626,\\n            \\\"rho_ci_lo\\\": 0.10949195164271895,\\n            \\\"rho_ci_hi\\\": 0.27785768872172684,\\n            \\\"p\\\": 4.662031410335864e-06,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          },\\n          \\\"voting_conf\\\": {\\n            \\\"rho\\\": 0.41616947313817737,\\n            \\\"rho_ci_lo\\\": 0.3430915322223445,\\n            \\\"rho_ci_hi\\\": 0.4869893314995537,\\n            \\\"p\\\": 3.7100615274507845e-24,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          },\\n          \\\"em\\\": {\\n            \\\"rho\\\": 0.4726830832963961,\\n            \\\"rho_ci_lo\\\": 0.405120140786377,\\n            \\\"rho_ci_hi\\\": 0.5401866959666276,\\n            \\\"p\\\": 1.4183873291831032e-31,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          }\\n        }\\n      },\\n      \\\"6+\\\": {\\n        \\\"n\\\": 79,\\n        \\\"mean_f1\\\": 0.9212062199403971,\\n        \\\"std_f1\\\": 0.1563689469922546,\\n        \\\"signals\\\": {\\n          \\\"sj\\\": {\\n            \\\"rho\\\": 0.3287493120084988,\\n            \\\"rho_ci_lo\\\": 0.11139540431690538,\\n            \\\"rho_ci_hi\\\": 0.5227043810024001,\\n            \\\"p\\\": 0.003095376931723192,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          },\\n          \\\"fk\\\": {\\n            \\\"rho\\\": 0.2742355543522497,\\n            \\\"rho_ci_lo\\\": 0.06328555271535638,\\n            \\\"rho_ci_hi\\\": 0.46587927254486433,\\n            \\\"p\\\": 0.01445745785753974,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          },\\n          \\\"logprob\\\": {\\n            \\\"rho\\\": 0.2580718345320923,\\n            \\\"rho_ci_lo\\\": 0.02634806198515859,\\n            \\\"rho_ci_hi\\\": 0.4739869773687927,\\n            \\\"p\\\": 0.021660037569061746,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          },\\n          \\\"voting_conf\\\": {\\n            \\\"rho\\\": 0.37563569976061006,\\n            \\\"rho_ci_lo\\\": 0.17888101185167418,\\n            \\\"rho_ci_hi\\\": 0.5513615095818712,\\n            \\\"p\\\": 0.0006464344968954178,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          },\\n          \\\"em\\\": {\\n            \\\"rho\\\": 0.3802028682777722,\\n            \\\"rho_ci_lo\\\": 0.1775583782617113,\\n            \\\"rho_ci_hi\\\": 0.561632255159122,\\n            \\\"p\\\": 0.0005478212155457922,\\n            \\\"auroc\\\": 0.5,\\n            \\\"auroc_ci_lo\\\": 0.5,\\n            \\\"auroc_ci_hi\\\": 0.5\\n          }\\n        }\\n      }\\n    },\\n    \\\"proxy_correlations\\\": {\\n      \\\"f1_vs_sent_len\\\": {\\n        \\\"rho\\\": -0.15495573192513581,\\n        \\\"p\\\": 5.305897457172406e-20\\n      },\\n      \\\"f1_vs_ent_count\\\": {\\n        \\\"rho\\\": -0.16102106704565386,\\n        \\\"p\\\": 1.7198469930449225e-21\\n      },\\n      \\\"sent_len_vs_ent_count\\\": {\\n        \\\"rho\\\": 0.4188409068116794,\\n        \\\"p\\\": 9.18303749705018e-147\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4d82eac1-53b1-47d2-a56b-4bda83a6f0ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-16T04:56:28.623Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Rv3xP1B9myjhENQMobC7Gx`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp_012_rerun_1024/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c779975-df9c-4173-bdb6-804546cbca74",
+  "isSidechain": false,
+  "requestId": "req_011Cb5erZuqjPSmwG8TgyN9c",
+  "type": "assistant",
+  "uuid": "6dbc573d-102e-4725-8a7c-9fec6172961d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FdsJSJE2PhVrvmomWxQ2dS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4004,
+      "cache_read_input_tokens": 75936,
+      "output_tokens": 493,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4004,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 493,
+          "cache_read_input_tokens": 75936,
+          "cache_creation_input_tokens": 4004,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4004
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-16T04:56:28.978Z_
+
+<details><summary>↩ Tool result · `toolu_01Rv3xP1B9myjhENQMobC7Gx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"ner_greedy_f1\\\": 0.6632805497460412,\\n  \\\"ner_oracle_f1\\\": 0.7775133848899465,\\n  \\\"ner_oracle_headroom\\\": 0.11423283514390525,\\n  \\\"ner_fleiss_kappa_mean\\\": 0.3932668065534345,\\n  \\\"ner_soft_jaccard_mean\\\": 0.6963097751953397,\\n  \\\"ner_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2665109373463269,\\n    \\\"p_value\\\": 4.716829112137585e-10,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3598905669976535,\\n    \\\"p_value\\\": 1.2752281196882738e-17,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.17607370722783125,\\n    \\\"p_value\\\": 0.00011078924939793821,\\n    \\\"n\\\": 477\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3113352549686453,\\n    \\\"p_value\\\": 3.5148620246813462e-12,\\n    \\\"n\\\": 477\\n  },\\n  \\\"ner_n_gold_empty_filtered\\\": 22,\\n  \\\"ner_n_greedy_f1_zero_filtered\\\": 52,\\n  \\\"ner_structural_beats_surface\\\": true,\\n  \\\"ner_rho_advantage\\\": 0.09337962965132657,\\n  \\\"ner_sample_f1_mean\\\": 0.6077394535406134,\\n  \\\"ner_sample_f1_std\\\": 0.3177849195309394,\\n  \\\"ner_sample_f1_pct_zero\\\": 12.594517958412098,\\n  \\\"ner_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.20517413101613924,\\n      \\\"p_rho\\\": 1.9498006196855416e-06,\\n      \\\"tau\\\": 0.14782758668777154,\\n      \\\"p_tau\\\": 1.2434769103035355e-06,\\n      \\\"auroc\\\": 0.6115722797477874,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.1537825418721844,\\n      \\\"p_rho\\\": 0.0007519115126420073,\\n      \\\"tau\\\": 0.11105453570642614,\\n      \\\"p_tau\\\": 0.000576950633780567,\\n      \\\"auroc\\\": 0.5929390252479078,\\n      \\\"n\\\": 477\\n    }\\n  },\\n  \\\"re_greedy_f1\\\": 0.42893018583626313,\\n  \\\"re_oracle_f1\\\": 0.5795918367346938,\\n  \\\"re_oracle_headroom\\\": 0.1506616508984307,\\n  \\\"re_fleiss_kappa_mean\\\": 0.29342166441787654,\\n  \\\"re_soft_jaccard_mean\\\": 0.6146283784710029,\\n  \\\"re_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2752041540770546,\\n    \\\"p_value\\\": 2.4879922095201242e-08,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2503364334141933,\\n    \\\"p_value\\\": 4.3522331002259703e-07,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.11387685552692939,\\n    \\\"p_value\\\": 0.07955653487541735,\\n    \\\"n\\\": 238\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.24569967508929075,\\n    \\\"p_value\\\": 0.00012846667277061877,\\n    \\\"n\\\": 238\\n  },\\n  \\\"re_n_gold_empty_filtered\\\": 154,\\n  \\\"re_n_greedy_f1_zero_filtered\\\": 159,\\n  \\\"re_structural_beats_surface\\\": false,\\n  \\\"re_rho_advantage\\\": -0.024867720662861303,\\n  \\\"re_sample_f1_mean\\\": 0.3544350077048391,\\n  \\\"re_sample_f1_std\\\": 0.37736734533106986,\\n  \\\"re_sample_f1_pct_zero\\\": 44.395465994962215,\\n  \\\"re_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.26624475312006335,\\n      \\\"p_rho\\\": 7.217251690334773e-08,\\n      \\\"tau\\\": 0.19508661157044746,\\n      \\\"p_tau\\\": 8.831074413665826e-08,\\n      \\\"auroc\\\": 0.6204557091653866,\\n      \\\"n\\\": 397\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.011185364740047766,\\n      \\\"p_rho\\\": 0.8637077626329154,\\n      \\\"tau\\\": 0.005069639898728457,\\n      \\\"p_tau\\\": 0.9126852484133136,\\n      \\\"auroc\\\": 0.5632929642445214,\\n      \\\"n\\\": 238\\n    }\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"verdict_note\\\": \\\"Joint mode: verdict requires RE ρ_sj ≥ 0.40 AND ρ_sj > ρ_fk AND any subtask headroom ≥ 2pp\\\",\\n  \\\"warning\\\": \\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6dbc573d-102e-4725-8a7c-9fec6172961d",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "62a27f8a-2c9a-4e07-8a0f-4893967f016d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"scierc\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"joint\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 8,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 551,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"ner_greedy_f1\\\\\\\": 0.6632805497460412,\\\\n  \\\\\\\"ner_oracle_f1\\\\\\\": 0.7775133848899465,\\\\n  \\\\\\\"ner_oracle_headroom\\\\\\\": 0.11423283514390525,\\\\n  \\\\\\\"ner_fleiss_kappa_mean\\\\\\\": 0.3932668065534345,\\\\n  \\\\\\\"ner_soft_jaccard_mean\\\\\\\": 0.6963097751953397,\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2665109373463269,\\\\n    \\\\\\\"p_value\\\\\\\": 4.716829112137585e-10,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3598905669976535,\\\\n    \\\\\\\"p_value\\\\\\\": 1.2752281196882738e-17,\\\\n    \\\\\\\"n\\\\\\\": 529\\\\n  },\\\\n  \\\\\\\"ner_correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.17607370722783125,\\\\n    \\\\\\\"p_value\\\\\\\": 0.00011078924939793821,\\\\n    \\\\\\\"n\\\\\\\": 477\\\\n  },\\\\n  \\\\\\\"ner_correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.3113352549686453,\\\\n    \\\\\\\"p_value\\\\\\\": 3.5148620246813462e-12,\\\\n    \\\\\\\"n\\\\\\\": 477\\\\n  },\\\\n  \\\\\\\"ner_n_gold_empty_filtered\\\\\\\": 22,\\\\n  \\\\\\\"ner_n_greedy_f1_zero_filtered\\\\\\\": 52,\\\\n  \\\\\\\"ner_structural_beats_surface\\\\\\\": true,\\\\n  \\\\\\\"ner_rho_advantage\\\\\\\": 0.09337962965132657,\\\\n  \\\\\\\"ner_sample_f1_mean\\\\\\\": 0.6077394535406134,\\\\n  \\\\\\\"ner_sample_f1_std\\\\\\\": 0.3177849195309394,\\\\n  \\\\\\\"ner_sample_f1_pct_zero\\\\\\\": 12.594517958412098,\\\\n  \\\\\\\"ner_logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.20517413101613924,\\\\n      \\\\\\\"p_rho\\\\\\\": 1.9498006196855416e-06,\\\\n      \\\\\\\"tau\\\\\\\": 0.14782758668777154,\\\\n      \\\\\\\"p_tau\\\\\\\": 1.2434769103035355e-06,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6115722797477874,\\\\n      \\\\\\\"n\\\\\\\": 529\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.1537825418721844,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.0007519115126420073,\\\\n      \\\\\\\"tau\\\\\\\": 0.11105453570642614,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.000576950633780567,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5929390252479078,\\\\n      \\\\\\\"n\\\\\\\": 477\\\\n    }\\\\n  },\\\\n  \\\\\\\"re_greedy_f1\\\\\\\": 0.42893018583626313,\\\\n  \\\\\\\"re_oracle_f1\\\\\\\": 0.5795918367346938,\\\\n  \\\\\\\"re_oracle_headroom\\\\\\\": 0.1506616508984307,\\\\n  \\\\\\\"re_fleiss_kappa_mean\\\\\\\": 0.29342166441787654,\\\\n  \\\\\\\"re_soft_jaccard_mean\\\\\\\": 0.6146283784710029,\\\\n  \\\\\\\"re_correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2752041540770546,\\\\n    \\\\\\\"p_value\\\\\\\": 2.4879922095201242e-08,\\\\n    \\\\\\\"n\\\\\\\": 397\\\\n  },\\\\n  \\\\\\\"re_correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2503364334141933,\\\\n    \\\\\\\"p_value\\\\\\\": 4.3522331002259703e-07,\\\\n    \\\\\\\"n\\\\\\\": 397\\\\n  },\\\\n  \\\\\\\"re_correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.11387685552692939,\\\\n    \\\\\\\"p_value\\\\\\\": 0.07955653487541735,\\\\n    \\\\\\\"n\\\\\\\": 238\\\\n  },\\\\n  \\\\\\\"re_correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.24569967508929075,\\\\n    \\\\\\\"p_value\\\\\\\": 0.00012846667277061877,\\\\n    \\\\\\\"n\\\\\\\": 238\\\\n  },\\\\n  \\\\\\\"re_n_gold_empty_filtered\\\\\\\": 154,\\\\n  \\\\\\\"re_n_greedy_f1_zero_filtered\\\\\\\": 159,\\\\n  \\\\\\\"re_structural_beats_surface\\\\\\\": false,\\\\n  \\\\\\\"re_rho_advantage\\\\\\\": -0.024867720662861303,\\\\n  \\\\\\\"re_sample_f1_mean\\\\\\\": 0.3544350077048391,\\\\n  \\\\\\\"re_sample_f1_std\\\\\\\": 0.37736734533106986,\\\\n  \\\\\\\"re_sample_f1_pct_zero\\\\\\\": 44.395465994962215,\\\\n  \\\\\\\"re_logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.26624475312006335,\\\\n      \\\\\\\"p_rho\\\\\\\": 7.217251690334773e-08,\\\\n      \\\\\\\"tau\\\\\\\": 0.19508661157044746,\\\\n      \\\\\\\"p_tau\\\\\\\": 8.831074413665826e-08,\\\\n      \\\\\\\"auroc\\\\\\\": 0.6204557091653866,\\\\n      \\\\\\\"n\\\\\\\": 397\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.011185364740047766,\\\\n      \\\\\\\"p_rho\\\\\\\": 0.8637077626329154,\\\\n      \\\\\\\"tau\\\\\\\": 0.005069639898728457,\\\\n      \\\\\\\"p_tau\\\\\\\": 0.9126852484133136,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5632929642445214,\\\\n      \\\\\\\"n\\\\\\\": 238\\\\n    }\\\\n  },\\\\n  \\\\\\\"verdict\\\\\\\": \\\\\\\"FAIL\\\\\\\",\\\\n  \\\\\\\"verdict_note\\\\\\\": \\\\\\\"Joint mode: verdict requires RE ρ_sj ≥ 0.40 AND ρ_sj > ρ_fk AND any subtask headroom ≥ 2pp\\\\\\\",\\\\n  \\\\\\\"warning\\\\\\\": \\\\\\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"scierc\\\",\\n  \\\"subtask\\\": \\\"joint\\\",\\n  \\\"n_samples\\\": 8,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 551,\\n  \\\"use_train_format\\\": true,\\n  \\\"ner_greedy_f1\\\": 0.6632805497460412,\\n  \\\"ner_oracle_f1\\\": 0.7775133848899465,\\n  \\\"ner_oracle_headroom\\\": 0.11423283514390525,\\n  \\\"ner_fleiss_kappa_mean\\\": 0.3932668065534345,\\n  \\\"ner_soft_jaccard_mean\\\": 0.6963097751953397,\\n  \\\"ner_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2665109373463269,\\n    \\\"p_value\\\": 4.716829112137585e-10,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.3598905669976535,\\n    \\\"p_value\\\": 1.2752281196882738e-17,\\n    \\\"n\\\": 529\\n  },\\n  \\\"ner_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.17607370722783125,\\n    \\\"p_value\\\": 0.00011078924939793821,\\n    \\\"n\\\": 477\\n  },\\n  \\\"ner_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.3113352549686453,\\n    \\\"p_value\\\": 3.5148620246813462e-12,\\n    \\\"n\\\": 477\\n  },\\n  \\\"ner_n_gold_empty_filtered\\\": 22,\\n  \\\"ner_n_greedy_f1_zero_filtered\\\": 52,\\n  \\\"ner_structural_beats_surface\\\": true,\\n  \\\"ner_rho_advantage\\\": 0.09337962965132657,\\n  \\\"ner_sample_f1_mean\\\": 0.6077394535406134,\\n  \\\"ner_sample_f1_std\\\": 0.3177849195309394,\\n  \\\"ner_sample_f1_pct_zero\\\": 12.594517958412098,\\n  \\\"ner_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.20517413101613924,\\n      \\\"p_rho\\\": 1.9498006196855416e-06,\\n      \\\"tau\\\": 0.14782758668777154,\\n      \\\"p_tau\\\": 1.2434769103035355e-06,\\n      \\\"auroc\\\": 0.6115722797477874,\\n      \\\"n\\\": 529\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.1537825418721844,\\n      \\\"p_rho\\\": 0.0007519115126420073,\\n      \\\"tau\\\": 0.11105453570642614,\\n      \\\"p_tau\\\": 0.000576950633780567,\\n      \\\"auroc\\\": 0.5929390252479078,\\n      \\\"n\\\": 477\\n    }\\n  },\\n  \\\"re_greedy_f1\\\": 0.42893018583626313,\\n  \\\"re_oracle_f1\\\": 0.5795918367346938,\\n  \\\"re_oracle_headroom\\\": 0.1506616508984307,\\n  \\\"re_fleiss_kappa_mean\\\": 0.29342166441787654,\\n  \\\"re_soft_jaccard_mean\\\": 0.6146283784710029,\\n  \\\"re_correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2752041540770546,\\n    \\\"p_value\\\": 2.4879922095201242e-08,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.2503364334141933,\\n    \\\"p_value\\\": 4.3522331002259703e-07,\\n    \\\"n\\\": 397\\n  },\\n  \\\"re_correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.11387685552692939,\\n    \\\"p_value\\\": 0.07955653487541735,\\n    \\\"n\\\": 238\\n  },\\n  \\\"re_correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.24569967508929075,\\n    \\\"p_value\\\": 0.00012846667277061877,\\n    \\\"n\\\": 238\\n  },\\n  \\\"re_n_gold_empty_filtered\\\": 154,\\n  \\\"re_n_greedy_f1_zero_filtered\\\": 159,\\n  \\\"re_structural_beats_surface\\\": false,\\n  \\\"re_rho_advantage\\\": -0.024867720662861303,\\n  \\\"re_sample_f1_mean\\\": 0.3544350077048391,\\n  \\\"re_sample_f1_std\\\": 0.37736734533106986,\\n  \\\"re_sample_f1_pct_zero\\\": 44.395465994962215,\\n  \\\"re_logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": 0.26624475312006335,\\n      \\\"p_rho\\\": 7.217251690334773e-08,\\n      \\\"tau\\\": 0.19508661157044746,\\n      \\\"p_tau\\\": 8.831074413665826e-08,\\n      \\\"auroc\\\": 0.6204557091653866,\\n      \\\"n\\\": 397\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.011185364740047766,\\n      \\\"p_rho\\\": 0.8637077626329154,\\n      \\\"tau\\\": 0.005069639898728457,\\n      \\\"p_tau\\\": 0.9126852484133136,\\n      \\\"auroc\\\": 0.5632929642445214,\\n      \\\"n\\\": 238\\n    }\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"verdict_note\\\": \\\"Joint mode: verdict requires RE ρ_sj ≥ 0.40 AND ρ_sj > ρ_fk AND any subtask headroom ≥ 2pp\\\",\\n  \\\"warning\\\": \\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6dbc573d-102e-4725-8a7c-9fec6172961d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135 · 2026-05-16T04:56:29.175Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T9fx71yq5NAFZagxpQT31r`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/struct_self_consist_ie/output/exp003_wnut17_eval/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62a27f8a-2c9a-4e07-8a0f-4893967f016d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5erZuqjPSmwG8TgyN9c",
+  "type": "assistant",
+  "uuid": "97234ac5-bc37-45c2-8cc2-1a46a9beb7b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FdsJSJE2PhVrvmomWxQ2dS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4004,
+      "cache_read_input_tokens": 75936,
+      "output_tokens": 493,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4004,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 493,
+          "cache_read_input_tokens": 75936,
+          "cache_creation_input_tokens": 4004,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4004
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 136_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "97234ac5-bc37-45c2-8cc2-1a46a9beb7b3",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 137_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit provenance values in paper against registry",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-16T04:56:29.530Z_
+
+<details><summary>↩ Tool result · `toolu_01T9fx71yq5NAFZagxpQT31r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"wnut17\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 16,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 1287,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.52316715542522,\\n  \\\"oracle_f1\\\": 0.6637217007178353,\\n  \\\"oracle_headroom\\\": 0.14055454529261535,\\n  \\\"fleiss_kappa_mean\\\": 0.7002625416298626,\\n  \\\"soft_jaccard_mean\\\": 0.8844110439882366,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.12498639982700602,\\n    \\\"p_value\\\": 0.0010101389238927497,\\n    \\\"n\\\": 689\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.08883161050304318,\\n    \\\"p_value\\\": 0.019695320766242228,\\n    \\\"n\\\": 689\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.16863345538503793,\\n    \\\"p_value\\\": 0.0019847067973992236,\\n    \\\"n\\\": 334\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.2884389703925184,\\n    \\\"p_value\\\": 8.044470580733825e-08,\\n    \\\"n\\\": 334\\n  },\\n  \\\"n_gold_empty_filtered\\\": 598,\\n  \\\"n_greedy_f1_zero_filtered\\\": 355,\\n  \\\"structural_beats_surface\\\": false,\\n  \\\"rho_advantage\\\": -0.036154789323962835,\\n  \\\"sample_f1_mean\\\": 0.4007648977651592,\\n  \\\"sample_f1_std\\\": 0.45324774277971985,\\n  \\\"sample_f1_pct_zero\\\": 53.68287373004354,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": -0.4094891030514717,\\n      \\\"p_rho\\\": 3.0724001673695786e-29,\\n      \\\"tau\\\": -0.2984555640667542,\\n      \\\"p_tau\\\": 3.0647533023775854e-24,\\n      \\\"auroc\\\": 0.21888336004048242,\\n      \\\"n\\\": 689\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.35011390590805674,\\n      \\\"p_rho\\\": 4.575598794556641e-11,\\n      \\\"tau\\\": 0.2722466231418909,\\n      \\\"p_tau\\\": 1.373591283647736e-10,\\n      \\\"auroc\\\": 0.5,\\n      \\\"n\\\": 334\\n    }\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"verdict_note\\\": \\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\",\\n  \\\"warning\\\": \\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "97234ac5-bc37-45c2-8cc2-1a46a9beb7b3",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "30c28d2c-2b6f-442d-9462-e7fc0da451df",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"wnut17\\\\\\\",\\\\n  \\\\\\\"subtask\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 16,\\\\n  \\\\\\\"temperature\\\\\\\": 1.0,\\\\n  \\\\\\\"num_instances\\\\\\\": 1287,\\\\n  \\\\\\\"use_train_format\\\\\\\": true,\\\\n  \\\\\\\"greedy_f1\\\\\\\": 0.52316715542522,\\\\n  \\\\\\\"oracle_f1\\\\\\\": 0.6637217007178353,\\\\n  \\\\\\\"oracle_headroom\\\\\\\": 0.14055454529261535,\\\\n  \\\\\\\"fleiss_kappa_mean\\\\\\\": 0.7002625416298626,\\\\n  \\\\\\\"soft_jaccard_mean\\\\\\\": 0.8844110439882366,\\\\n  \\\\\\\"correlation_fleiss_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.12498639982700602,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0010101389238927497,\\\\n    \\\\\\\"n\\\\\\\": 689\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_full\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.08883161050304318,\\\\n    \\\\\\\"p_value\\\\\\\": 0.019695320766242228,\\\\n    \\\\\\\"n\\\\\\\": 689\\\\n  },\\\\n  \\\\\\\"correlation_fleiss_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.16863345538503793,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0019847067973992236,\\\\n    \\\\\\\"n\\\\\\\": 334\\\\n  },\\\\n  \\\\\\\"correlation_softjaccard_vs_f1_conditional\\\\\\\": {\\\\n    \\\\\\\"rho\\\\\\\": 0.2884389703925184,\\\\n    \\\\\\\"p_value\\\\\\\": 8.044470580733825e-08,\\\\n    \\\\\\\"n\\\\\\\": 334\\\\n  },\\\\n  \\\\\\\"n_gold_empty_filtered\\\\\\\": 598,\\\\n  \\\\\\\"n_greedy_f1_zero_filtered\\\\\\\": 355,\\\\n  \\\\\\\"structural_beats_surface\\\\\\\": false,\\\\n  \\\\\\\"rho_advantage\\\\\\\": -0.036154789323962835,\\\\n  \\\\\\\"sample_f1_mean\\\\\\\": 0.4007648977651592,\\\\n  \\\\\\\"sample_f1_std\\\\\\\": 0.45324774277971985,\\\\n  \\\\\\\"sample_f1_pct_zero\\\\\\\": 53.68287373004354,\\\\n  \\\\\\\"logprob_baseline\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": -0.4094891030514717,\\\\n      \\\\\\\"p_rho\\\\\\\": 3.0724001673695786e-29,\\\\n      \\\\\\\"tau\\\\\\\": -0.2984555640667542,\\\\n      \\\\\\\"p_tau\\\\\\\": 3.0647533023775854e-24,\\\\n      \\\\\\\"auroc\\\\\\\": 0.21888336004048242,\\\\n      \\\\\\\"n\\\\\\\": 689\\\\n    },\\\\n    \\\\\\\"conditional\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.35011390590805674,\\\\n      \\\\\\\"p_rho\\\\\\\": 4.575598794556641e-11,\\\\n      \\\\\\\"tau\\\\\\\": 0.2722466231418909,\\\\n      \\\\\\\"p_tau\\\\\\\": 1.373591283647736e-10,\\\\n      \\\\\\\"auroc\\\\\\\": 0.5,\\\\n      \\\\\\\"n\\\\\\\": 334\\\\n    }\\\\n  },\\\\n  \\\\\\\"verdict\\\\\\\": \\\\\\\"FAIL\\\\\\\",\\\\n  \\\\\\\"verdict_note\\\\\\\": \\\\\\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\\\\\",\\\\n  \\\\\\\"warning\\\\\\\": \\\\\\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"wnut17\\\",\\n  \\\"subtask\\\": \\\"ner\\\",\\n  \\\"n_samples\\\": 16,\\n  \\\"temperature\\\": 1.0,\\n  \\\"num_instances\\\": 1287,\\n  \\\"use_train_format\\\": true,\\n  \\\"greedy_f1\\\": 0.52316715542522,\\n  \\\"oracle_f1\\\": 0.6637217007178353,\\n  \\\"oracle_headroom\\\": 0.14055454529261535,\\n  \\\"fleiss_kappa_mean\\\": 0.7002625416298626,\\n  \\\"soft_jaccard_mean\\\": 0.8844110439882366,\\n  \\\"correlation_fleiss_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.12498639982700602,\\n    \\\"p_value\\\": 0.0010101389238927497,\\n    \\\"n\\\": 689\\n  },\\n  \\\"correlation_softjaccard_vs_f1_full\\\": {\\n    \\\"rho\\\": 0.08883161050304318,\\n    \\\"p_value\\\": 0.019695320766242228,\\n    \\\"n\\\": 689\\n  },\\n  \\\"correlation_fleiss_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.16863345538503793,\\n    \\\"p_value\\\": 0.0019847067973992236,\\n    \\\"n\\\": 334\\n  },\\n  \\\"correlation_softjaccard_vs_f1_conditional\\\": {\\n    \\\"rho\\\": 0.2884389703925184,\\n    \\\"p_value\\\": 8.044470580733825e-08,\\n    \\\"n\\\": 334\\n  },\\n  \\\"n_gold_empty_filtered\\\": 598,\\n  \\\"n_greedy_f1_zero_filtered\\\": 355,\\n  \\\"structural_beats_surface\\\": false,\\n  \\\"rho_advantage\\\": -0.036154789323962835,\\n  \\\"sample_f1_mean\\\": 0.4007648977651592,\\n  \\\"sample_f1_std\\\": 0.45324774277971985,\\n  \\\"sample_f1_pct_zero\\\": 53.68287373004354,\\n  \\\"logprob_baseline\\\": {\\n    \\\"full\\\": {\\n      \\\"rho\\\": -0.4094891030514717,\\n      \\\"p_rho\\\": 3.0724001673695786e-29,\\n      \\\"tau\\\": -0.2984555640667542,\\n      \\\"p_tau\\\": 3.0647533023775854e-24,\\n      \\\"auroc\\\": 0.21888336004048242,\\n      \\\"n\\\": 689\\n    },\\n    \\\"conditional\\\": {\\n      \\\"rho\\\": 0.35011390590805674,\\n      \\\"p_rho\\\": 4.575598794556641e-11,\\n      \\\"tau\\\": 0.2722466231418909,\\n      \\\"p_tau\\\": 1.373591283647736e-10,\\n      \\\"auroc\\\": 0.5,\\n      \\\"n\\\": 334\\n    }\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"verdict_note\\\": \\\"MVP verdict on single subtask; final pass requires at least one of NER/RE/EAE to meet threshold\\\",\\n  \\\"warning\\\": \\\"⚠️ >30% samples F1=0, recommend re-running at T=0.7\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "97234ac5-bc37-45c2-8cc2-1a46a9beb7b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 139 · 2026-05-16T04:56:29.533Z_
+
+```json
+{
+  "parentUuid": "30c28d2c-2b6f-442d-9462-e7fc0da451df",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "a5334a2f-d683-4495-ab21-c224795011fd",
+  "timestamp": "2026-05-16T04:56:29.533Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 140 · 2026-05-16T04:56:51.937Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the key data:
+
+**c032: LP cond RE ρ**
+From `exp_012_rerun_1024/report.json`:
+- `re_logprob_baseline.conditional.rho = 0.011185364740047766` → rounds to **0.0112** or **0.011**
+- `n = 238`
+
+In the paper:
+- experiments.tex line 50: "LP $^\dagger$RE collapses to $\rho{=}0.011$"
+
+
+- appendix.tex line 137: "LP RE collapses to near-zero ($\rho{=}0.011$)"
+
+The paper consistently reports 0.011, which is the correct 3-decimal rounding of 0.01119 and matches the registry value of 0.0112. I can't find any mention of 0.002 for this metric anywhere in the paper.
+
+**c023: Q1-Q4 stratification SJ ρ**
+Now examining the stratification results data...
+
+**c021: WNUT SJ ρ**
+From the WNUT evaluation report, the soft Jaccard correlation against F1 gives ρ = 0.08883, which rounds to 0.089 across 689 samples. Looking at the conditional correlation metric as well...
+
+Conditional correlation rounds to 0.288, and both values match what's in the paper's appendix exactly. The user mentioned 0.062, but that's actually from a different section—it's the SciERC NER comparison showing the delta between model variants, not the correlation metric itself.
+
+So the registry data confirms the paper's reported values are correct.
+
+Now I need to verify c023 by looking up the actual by_sent_len breakdown for SciERC RE to see if the Q1 and Q4 values the paper reports match what's stored.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a5334a2f-d683-4495-ab21-c224795011fd",
+  "isSidechain": false,
+  "requestId": "req_011Cb5es7Z6rGgRRrKoPX5xD",
+  "type": "assistant",
+  "uuid": "806fe8dd-256e-487f-babb-a7f77bdb2096",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6WDG9K5CKunCMt8zkEWTn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8581,
+      "cache_read_input_tokens": 79940,
+      "output_tokens": 1082,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8581,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1082,
+          "cache_read_input_tokens": 79940,
+          "cache_creation_input_tokens": 8581,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8581
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 141 · 2026-05-16T04:56:51.944Z_
+
+Registry 数据确认了 WNUT 和 LP RE 的正确值。需要找 exp009 的 RE by_sent_len 分层数据来验证 c023。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "806fe8dd-256e-487f-babb-a7f77bdb2096",
+  "isSidechain": false,
+  "requestId": "req_011Cb5es7Z6rGgRRrKoPX5xD",
+  "type": "assistant",
+  "uuid": "e64dbdaf-d6ad-4506-b0ad-a598ae9d3e6e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6WDG9K5CKunCMt8zkEWTn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8581,
+      "cache_read_input_tokens": 79940,
+      "output_tokens": 1082,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8581,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1082,
+          "cache_read_input_tokens": 79940,
+          "cache_creation_input_tokens": 8581,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8581
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 142 · 2026-05-16T04:56:53.053Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Sr3XY52RoekFyAPf4xeagm`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -A 20 \"scierc_re\" /root/autodl-tmp/struct_self_consist_ie/output/exp009_stratification_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e64dbdaf-d6ad-4506-b0ad-a598ae9d3e6e",
+  "isSidechain": false,
+  "requestId": "req_011Cb5es7Z6rGgRRrKoPX5xD",
+  "type": "assistant",
+  "uuid": "48c5623e-d31e-4b2e-a160-3a504da4b2bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6WDG9K5CKunCMt8zkEWTn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8581,
+      "cache_read_input_tokens": 79940,
+      "output_tokens": 1082,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8581,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1082,
+          "cache_read_input_tokens": 79940,
+          "cache_creation_input_tokens": 8581,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8581
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 143 · 2026-05-16T04:56:53.420Z_
+
+<details><summary>↩ Tool result · `toolu_01Sr3XY52RoekFyAPf4xeagm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"scierc_re\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"by_greedy_f1\\\": {\\n      \\\"[0, 0.25)\\\": {\\n        \\\"n\\\": 209,\\n        \\\"mean_f1\\\": 0.005321154124981876,\\n        \\\"std_f1\\\": 0.03101423990904849,\\n        \\\"signals\\\": {\\n          \\\"sj\\\": {\\n            \\\"rho\\\": -0.043349885386418555,\\n            \\\"rho_ci_lo\\\": -0.1715330985400362,\\n            \\\"rho_ci_hi\\\": 0.09260789012547045,\\n            \\\"p\\\": 0.5331291066904361,\\n            \\\"auroc\\\": 0.42610837438423643,\\n            \\\"auroc_ci_lo\\\": 0.16397417451104718,\\n            \\\"auroc_ci_hi\\\": 0.6941292379020573\\n          },\\n          \\\"fk\\\": {\\n            \\\"rho\\\": 0.061418257967095366,\\n            \\\"rho_ci_lo\\\": -0.03525757439427809,\\n            \\\"rho_ci_hi\\\": 0.15433842255843064,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "48c5623e-d31e-4b2e-a160-3a504da4b2bd",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "35d1949c-7131-4b80-afcd-2d2210968a24",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"scierc_re\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 551,\\\\n    \\\\\\\"by_greedy_f1\\\\\\\": {\\\\n      \\\\\\\"[0, 0.25)\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 209,\\\\n        \\\\\\\"mean_f1\\\\\\\": 0.005321154124981876,\\\\n        \\\\\\\"std_f1\\\\\\\": 0.03101423990904849,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n          \\\\\\\"sj\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": -0.043349885386418555,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": -0.1715330985400362,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.09260789012547045,\\\\n            \\\\\\\"p\\\\\\\": 0.5331291066904361,\\\\n            \\\\\\\"auroc\\\\\\\": 0.42610837438423643,\\\\n            \\\\\\\"auroc_ci_lo\\\\\\\": 0.16397417451104718,\\\\n            \\\\\\\"auroc_ci_hi\\\\\\\": 0.6941292379020573\\\\n          },\\\\n          \\\\\\\"fk\\\\\\\": {\\\\n            \\\\\\\"rho\\\\\\\": 0.061418257967095366,\\\\n            \\\\\\\"rho_ci_lo\\\\\\\": -0.03525757439427809,\\\\n            \\\\\\\"rho_ci_hi\\\\\\\": 0.15433842255843064,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  \\\"scierc_re\\\": {\\n    \\\"n_total\\\": 551,\\n    \\\"by_greedy_f1\\\": {\\n      \\\"[0, 0.25)\\\": {\\n        \\\"n\\\": 209,\\n        \\\"mean_f1\\\": 0.005321154124981876,\\n        \\\"std_f1\\\": 0.03101423990904849,\\n        \\\"signals\\\": {\\n          \\\"sj\\\": {\\n            \\\"rho\\\": -0.043349885386418555,\\n            \\\"rho_ci_lo\\\": -0.1715330985400362,\\n            \\\"rho_ci_hi\\\": 0.09260789012547045,\\n            \\\"p\\\": 0.5331291066904361,\\n            \\\"auroc\\\": 0.42610837438423643,\\n            \\\"auroc_ci_lo\\\": 0.16397417451104718,\\n            \\\"auroc_ci_hi\\\": 0.6941292379020573\\n          },\\n          \\\"fk\\\": {\\n            \\\"rho\\\": 0.061418257967095366,\\n            \\\"rho_ci_lo\\\": -0.03525757439427809,\\n            \\\"rho_ci_hi\\\": 0.15433842255843064,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "48c5623e-d31e-4b2e-a160-3a504da4b2bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 144 · 2026-05-16T04:56:58.237Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SoJdeA3UA9gpEe2JjcYGSc`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -A 5 \"by_sent_len\" /root/autodl-tmp/struct_self_consist_ie/output/exp009_stratification_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "35d1949c-7131-4b80-afcd-2d2210968a24",
+  "isSidechain": false,
+  "requestId": "req_011Cb5etshy1gFSVqe5STxqh",
+  "type": "assistant",
+  "uuid": "4b3fee17-6bdb-4077-9c9f-beaf0053a8ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jcz87a4CMvoCCiUZWgT6fS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1547,
+      "cache_read_input_tokens": 88521,
+      "output_tokens": 141,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1547,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 141,
+          "cache_read_input_tokens": 88521,
+          "cache_creation_input_tokens": 1547,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1547
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 145 · 2026-05-16T04:56:58.593Z_
+
+<details><summary>↩ Tool result · `toolu_01SoJdeA3UA9gpEe2JjcYGSc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"by_sent_len\\\": {\\n      \\\"Q1 (lowest)\\\": {\\n        \\\"n\\\": 143,\\n        \\\"mean_f1\\\": 0.6117382617382617,\\n        \\\"std_f1\\\": 0.3766057229227462,\\n        \\\"signals\\\": {\\n--\\n    \\\"by_sent_len\\\": {\\n      \\\"Q1 (lowest)\\\": {\\n        \\\"n\\\": 143,\\n        \\\"mean_f1\\\": 0.5912587412587412,\\n        \\\"std_f1\\\": 0.4728644061174139,\\n        \\\"signals\\\": {\\n--\\n    \\\"by_sent_len\\\": {\\n      \\\"Q1 (lowest)\\\": {\\n        \\\"n\\\": 874,\\n        \\\"mean_f1\\\": 0.9087337909992372,\\n        \\\"std_f1\\\": 0.27629223662660385,\\n        \\\"signals\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4b3fee17-6bdb-4077-9c9f-beaf0053a8ab",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "b3debe5f-f6d7-4a97-9908-460dfebf1b62",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    \\\\\\\"by_sent_len\\\\\\\": {\\\\n      \\\\\\\"Q1 (lowest)\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 143,\\\\n        \\\\\\\"mean_f1\\\\\\\": 0.6117382617382617,\\\\n        \\\\\\\"std_f1\\\\\\\": 0.3766057229227462,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n--\\\\n    \\\\\\\"by_sent_len\\\\\\\": {\\\\n      \\\\\\\"Q1 (lowest)\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 143,\\\\n        \\\\\\\"mean_f1\\\\\\\": 0.5912587412587412,\\\\n        \\\\\\\"std_f1\\\\\\\": 0.4728644061174139,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n--\\\\n    \\\\\\\"by_sent_len\\\\\\\": {\\\\n      \\\\\\\"Q1 (lowest)\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 874,\\\\n        \\\\\\\"mean_f1\\\\\\\": 0.9087337909992372,\\\\n        \\\\\\\"std_f1\\\\\\\": 0.27629223662660385,\\\\n        \\\\\\\"signals\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    \\\"by_sent_len\\\": {\\n      \\\"Q1 (lowest)\\\": {\\n        \\\"n\\\": 143,\\n        \\\"mean_f1\\\": 0.6117382617382617,\\n        \\\"std_f1\\\": 0.3766057229227462,\\n        \\\"signals\\\": {\\n--\\n    \\\"by_sent_len\\\": {\\n      \\\"Q1 (lowest)\\\": {\\n        \\\"n\\\": 143,\\n        \\\"mean_f1\\\": 0.5912587412587412,\\n        \\\"std_f1\\\": 0.4728644061174139,\\n        \\\"signals\\\": {\\n--\\n    \\\"by_sent_len\\\": {\\n      \\\"Q1 (lowest)\\\": {\\n        \\\"n\\\": 874,\\n        \\\"mean_f1\\\": 0.9087337909992372,\\n        \\\"std_f1\\\": 0.27629223662660385,\\n        \\\"signals\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4b3fee17-6bdb-4077-9c9f-beaf0053a8ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 146 · 2026-05-16T04:57:02.350Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There are multiple by_sent_len sections. The second one (n=143, mean_f1=0.5913) is likely scierc_re. Let me get the full scierc_re by_sent_len data with the SJ rho values for Q1 and Q4.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3debe5f-f6d7-4a97-9908-460dfebf1b62",
+  "isSidechain": false,
+  "requestId": "req_011Cb5euFpk6z3AVFAyL3rFZ",
+  "type": "assistant",
+  "uuid": "6f194419-3cd6-45f6-b121-7968f9bd2d07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pswb8rfYCgy5BTmJeDXHyR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 520,
+      "cache_read_input_tokens": 90068,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 520,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 90068,
+          "cache_creation_input_tokens": 520,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 520
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 147 · 2026-05-16T04:57:03.768Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XdztaXJPeyjw62an79QzEn`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/struct_self_consist_ie/output/exp009_stratification_results.json')); re=d['scierc_re']['by_sent_len']; [print(k, re[k]['n'], re[k]['signals']['sj']['rho']) for k in re]\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f194419-3cd6-45f6-b121-7968f9bd2d07",
+  "isSidechain": false,
+  "requestId": "req_011Cb5euFpk6z3AVFAyL3rFZ",
+  "type": "assistant",
+  "uuid": "53b09dee-bf32-4a72-b75b-9c7c4a725048",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pswb8rfYCgy5BTmJeDXHyR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 520,
+      "cache_read_input_tokens": 90068,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 520,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 90068,
+          "cache_creation_input_tokens": 520,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 520
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 148 · 2026-05-16T04:57:03.781Z_
+
+<details><summary>↩ Tool result · `toolu_01XdztaXJPeyjw62an79QzEn`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "53b09dee-bf32-4a72-b75b-9c7c4a725048",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "7a6518b0-8bcb-4177-b5aa-a848f17a59ce",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "53b09dee-bf32-4a72-b75b-9c7c4a725048",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 149_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "7a6518b0-8bcb-4177-b5aa-a848f17a59ce",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 150_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit provenance values in paper against registry",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Tool call
+
+_source line 151 · 2026-05-16T04:57:07.577Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019NP1GaM5wzpGxSAYhp8dcU`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/struct_self_consist_ie/output/exp009_stratification_results.json'))\nre=d['scierc_re']['by_sent_len']\nfor k in re:\n    print(k, re[k]['n'], re[k]['signals']['sj']['rho'])\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a6518b0-8bcb-4177-b5aa-a848f17a59ce",
+  "isSidechain": false,
+  "requestId": "req_011Cb5eueFs9HJb92UFNEK86",
+  "type": "assistant",
+  "uuid": "fa0994b0-b893-4c5e-a525-14427f7b2f9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AV8Es8rZKmcvdMh6bn6N6t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 367,
+      "cache_read_input_tokens": 90588,
+      "output_tokens": 195,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 367,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 195,
+          "cache_read_input_tokens": 90588,
+          "cache_creation_input_tokens": 367,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 367
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 152 · 2026-05-16T04:57:07.591Z_
+
+<details><summary>↩ Tool result · `toolu_019NP1GaM5wzpGxSAYhp8dcU`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa0994b0-b893-4c5e-a525-14427f7b2f9a",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "ac47eb01-a0f6-49c0-9867-638b4b9a4958",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fa0994b0-b893-4c5e-a525-14427f7b2f9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 153 · 2026-05-16T04:57:11.902Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to extract the scierc_re by_sent_len data another way. Let me use grep to find Q1-Q4 within the scierc_re section.
+
+Actually, the JSON is very large and nested. Let me use ssh_execute to run python.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac47eb01-a0f6-49c0-9867-638b4b9a4958",
+  "isSidechain": false,
+  "requestId": "req_011Cb5euvaPDbrGMjGzsrEhL",
+  "type": "assistant",
+  "uuid": "11617eea-a06c-419b-bcc2-058c4f191f67",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUYXn2cipuB94GyjoWq2AP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 285,
+      "cache_read_input_tokens": 90955,
+      "output_tokens": 415,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 285,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 415,
+          "cache_read_input_tokens": 90955,
+          "cache_creation_input_tokens": 285,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 285
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 154 · 2026-05-16T04:57:14.951Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018iADzmUH5WGPJwhjRyQSXT`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \"\nimport json\nd=json.load(open('output/exp009_stratification_results.json'))\nre=d['scierc_re']['by_sent_len']\nfor k in re:\n    sj = re[k]['signals']['sj']['rho']\n    n = re[k]['n']\n    print(f'{k}: n={n}, sj_rho={sj:.4f}')\nprint()\n# Also check by_greedy_f1 for RE\nre_gf = d['scierc_re']['by_greedy_f1']\nfor k in re_gf:\n    sj = re_gf[k]['signals']['sj']['rho']\n    n = re_gf[k]['n']\n    print(f'by_greedy_f1 {k}: n={n}, sj_rho={sj:.4f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11617eea-a06c-419b-bcc2-058c4f191f67",
+  "isSidechain": false,
+  "requestId": "req_011Cb5euvaPDbrGMjGzsrEhL",
+  "type": "assistant",
+  "uuid": "807a5bcc-8b05-4497-8539-6e0ee0ef5ea7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUYXn2cipuB94GyjoWq2AP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 285,
+      "cache_read_input_tokens": 90955,
+      "output_tokens": 415,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 285,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 415,
+          "cache_read_input_tokens": 90955,
+          "cache_creation_input_tokens": 285,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 285
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 155 · 2026-05-16T04:57:15.360Z_
+
+<details><summary>↩ Tool result · `toolu_018iADzmUH5WGPJwhjRyQSXT`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \\\"\\\\nimport json\\\\nd=json.load(open(\\\\'output/exp009_stratification_results.json\\\\'))\\\\nre=d[\\\\'scierc_re\\\\'][\\\\'by_sent_len\\\\']\\\\nfor k in re:\\\\n    sj = re[k][\\\\'signals\\\\'][\\\\'sj\\\\'][\\\\'rho\\\\']\\\\n    n = re[k][\\\\'n\\\\']\\\\n    print(f\\\\'{k}: n={n}, sj_rho={sj:.4f}\\\\')\\\\nprint()\\\\n# Also check by_greedy_f1 for RE\\\\nre_gf = d[\\\\'scierc_re\\\\'][\\\\'by_greedy_f1\\\\']\\\\nfor k in re_gf:\\\\n    sj = re_gf[k][\\\\'signals\\\\'][\\\\'sj\\\\'][\\\\'rho\\\\']\\\\n    n = re_gf[k][\\\\'n\\\\']\\\\n    print(f\\\\'by_greedy_f1 {k}: n={n}, sj_rho={sj:.4f}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "807a5bcc-8b05-4497-8539-6e0ee0ef5ea7",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "9c5b5475-2e57-4492-93bf-c66cf85fab10",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nd=json.load(open(\\\\\\\\'output/exp009_stratification_results.json\\\\\\\\'))\\\\\\\\nre=d[\\\\\\\\'scierc_re\\\\\\\\'][\\\\\\\\'by_sent_len\\\\\\\\']\\\\\\\\nfor k in re:\\\\\\\\n    sj = re[k][\\\\\\\\'signals\\\\\\\\'][\\\\\\\\'sj\\\\\\\\'][\\\\\\\\'rho\\\\\\\\']\\\\\\\\n    n = re[k][\\\\\\\\'n\\\\\\\\']\\\\\\\\n    print(f\\\\\\\\'{k}: n={n}, sj_rho={sj:.4f}\\\\\\\\')\\\\\\\\nprint()\\\\\\\\n# Also check by_greedy_f1 for RE\\\\\\\\nre_gf = d[\\\\\\\\'scierc_re\\\\\\\\'][\\\\\\\\'by_greedy_f1\\\\\\\\']\\\\\\\\nfor k in re_gf:\\\\\\\\n    sj = re_gf[k][\\\\\\\\'signals\\\\\\\\'][\\\\\\\\'sj\\\\\\\\'][\\\\\\\\'rho\\\\\\\\']\\\\\\\\n    n = re_gf[k][\\\\\\\\'n\\\\\\\\']\\\\\\\\n    print(f\\\\\\\\'by_greedy_f1 {k}: n={n}, sj_rho={sj:.4f}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/struct_self_consist_ie && python3 -c \\\"\\\\nimport json\\\\nd=json.load(open(\\\\'output/exp009_stratification_results.json\\\\'))\\\\nre=d[\\\\'scierc_re\\\\'][\\\\'by_sent_len\\\\']\\\\nfor k in re:\\\\n    sj = re[k][\\\\'signals\\\\'][\\\\'sj\\\\'][\\\\'rho\\\\']\\\\n    n = re[k][\\\\'n\\\\']\\\\n    print(f\\\\'{k}: n={n}, sj_rho={sj:.4f}\\\\')\\\\nprint()\\\\n# Also check by_greedy_f1 for RE\\\\nre_gf = d[\\\\'scierc_re\\\\'][\\\\'by_greedy_f1\\\\']\\\\nfor k in re_gf:\\\\n    sj = re_gf[k][\\\\'signals\\\\'][\\\\'sj\\\\'][\\\\'rho\\\\']\\\\n    n = re_gf[k][\\\\'n\\\\']\\\\n    print(f\\\\'by_greedy_f1 {k}: n={n}, sj_rho={sj:.4f}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  },
+  "sourceToolAssistantUUID": "807a5bcc-8b05-4497-8539-6e0ee0ef5ea7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 156 · 2026-05-16T04:57:20.068Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MQ4G8YiBhmtpc56K8TDevG`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -c \"\nimport json\nd=json.load(open('output/exp009_stratification_results.json'))\nre=d['scierc_re']['by_sent_len']\nfor k in re:\n    sj = re[k]['signals']['sj']['rho']\n    n = re[k]['n']\n    print(f'{k}: n={n}, sj_rho={sj:.4f}')\nprint()\nre_gf = d['scierc_re']['by_greedy_f1']\nfor k in re_gf:\n    sj = re_gf[k]['signals']['sj']['rho']\n    n = re_gf[k]['n']\n    print(f'by_greedy_f1 {k}: n={n}, sj_rho={sj:.4f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c5b5475-2e57-4492-93bf-c66cf85fab10",
+  "isSidechain": false,
+  "requestId": "req_011Cb5evVZGJXqT519DVbhCW",
+  "type": "assistant",
+  "uuid": "d9013135-d77c-4090-b5ee-c4649603ebcd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0128XuhqXN4n5gGm2bJwMbz6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 873,
+      "cache_read_input_tokens": 91240,
+      "output_tokens": 346,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 873,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 346,
+          "cache_read_input_tokens": 91240,
+          "cache_creation_input_tokens": 873,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 873
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 157 · 2026-05-16T04:57:21.185Z_
+
+<details><summary>↩ Tool result · `toolu_01MQ4G8YiBhmtpc56K8TDevG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Q1 (lowest): n=143, sj_rho=0.4472\\nQ2: n=151, sj_rho=0.3191\\nQ3: n=119, sj_rho=0.4975\\nQ4 (highest): n=138, sj_rho=0.5401\\n\\nby_greedy_f1 [0, 0.25): n=209, sj_rho=-0.0433\\nby_greedy_f1 [0.25, 0.5): n=60, sj_rho=-0.0032\\nby_greedy_f1 [0.5, 0.75): n=70, sj_rho=0.0057\\nby_greedy_f1 [0.75, 1.0]: n=212, sj_rho=0.2101\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d9013135-d77c-4090-b5ee-c4649603ebcd",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "0cc1b45b-641c-4ac7-a733-2ff72ce77a87",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Q1 (lowest): n=143, sj_rho=0.4472\\\\nQ2: n=151, sj_rho=0.3191\\\\nQ3: n=119, sj_rho=0.4975\\\\nQ4 (highest): n=138, sj_rho=0.5401\\\\n\\\\nby_greedy_f1 [0, 0.25): n=209, sj_rho=-0.0433\\\\nby_greedy_f1 [0.25, 0.5): n=60, sj_rho=-0.0032\\\\nby_greedy_f1 [0.5, 0.75): n=70, sj_rho=0.0057\\\\nby_greedy_f1 [0.75, 1.0]: n=212, sj_rho=0.2101\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Q1 (lowest): n=143, sj_rho=0.4472\\nQ2: n=151, sj_rho=0.3191\\nQ3: n=119, sj_rho=0.4975\\nQ4 (highest): n=138, sj_rho=0.5401\\n\\nby_greedy_f1 [0, 0.25): n=209, sj_rho=-0.0433\\nby_greedy_f1 [0.25, 0.5): n=60, sj_rho=-0.0032\\nby_greedy_f1 [0.5, 0.75): n=70, sj_rho=0.0057\\nby_greedy_f1 [0.75, 1.0]: n=212, sj_rho=0.2101\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d9013135-d77c-4090-b5ee-c4649603ebcd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 158 · 2026-05-16T04:57:32.159Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the definitive data for c023:
+
+**Registry truth (exp009, scierc_re, by_sent_len):**
+- Q1 (lowest): sj_rho = **0.4472** (n=143)
+- Q2: sj_rho = **0.3191** (n=151)
+- Q3: sj_rho = **0.4975** (n=119)
+- Q4 (highest): sj_rho = **0.5401** (n=138)
+
+**Paper says (appendix.tex line 150):**
+"For RE, SJ $\rho$ increases monotonically with sentence length (Q1: 0.110 → Q4: 0.473; Fisher z-test p=0.004)"
+
+
+The paper's reported values are drastically off—Q1 should be 0.447 not 0.110, and Q4 should be 0.540 not 0.473. Looking at the by_greedy_f1 breakdown, I'm seeing similarly large discrepancies where the reported correlations don't align with what's actually in the registry.
+
+Maybe the paper pulled from a different stratification entirely. The Q1=0.110 value is suspiciously close to what I'm seeing in the NER by_greedy_f1 data, so perhaps they mixed up NER and RE results. I should check the NER by_sent_len values to confirm, and also look for whether there's an exp_009_v2 that might explain the discrepancy.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0cc1b45b-641c-4ac7-a733-2ff72ce77a87",
+  "isSidechain": false,
+  "requestId": "req_011Cb5evvRjbfYhdfQGfKQPD",
+  "type": "assistant",
+  "uuid": "cdf8e7d1-0332-4fa9-b8d8-8b5f3b904468",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rg3eSZt2SeHbsSo8p1JfuY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 637,
+      "cache_read_input_tokens": 92113,
+      "output_tokens": 1609,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 637,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1609,
+          "cache_read_input_tokens": 92113,
+          "cache_creation_input_tokens": 637,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 637
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 159 · 2026-05-16T04:57:32.312Z_
+
+c023 **确认差异**：Registry Q1=0.447, Q4=0.540 vs 论文 Q1=0.110, Q4=0.473。让我检查是否混淆了 NER/RE。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cdf8e7d1-0332-4fa9-b8d8-8b5f3b904468",
+  "isSidechain": false,
+  "requestId": "req_011Cb5evvRjbfYhdfQGfKQPD",
+  "type": "assistant",
+  "uuid": "01af7eec-c6b6-4757-a470-9b1a86e64199",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rg3eSZt2SeHbsSo8p1JfuY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 637,
+      "cache_read_input_tokens": 92113,
+      "output_tokens": 1609,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 637,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1609,
+          "cache_read_input_tokens": 92113,
+          "cache_creation_input_tokens": 637,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 637
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 160 · 2026-05-16T04:57:37.656Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DUf6bMWvsNbzEaAzaJMCug`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -c \"\nimport json\nd=json.load(open('output/exp009_stratification_results.json'))\n\n# NER by_sent_len\nner=d['scierc_ner']['by_sent_len']\nprint('=== NER by_sent_len ===')\nfor k in ner:\n    sj = ner[k]['signals']['sj']['rho']\n    n = ner[k]['n']\n    print(f'{k}: n={n}, sj_rho={sj:.4f}')\n\n# NER by_greedy_f1\nprint()\nprint('=== NER by_greedy_f1 ===')\nner_gf = d['scierc_ner']['by_greedy_f1']\nfor k in ner_gf:\n    sj = ner_gf[k]['signals']['sj']['rho']\n    n = ner_gf[k]['n']\n    print(f'{k}: n={n}, sj_rho={sj:.4f}')\n\n# Check entity count stratification for both\nif 'by_entity_count' in d['scierc_ner']:\n    print()\n    print('=== NER by_entity_count ===')\n    ec = d['scierc_ner']['by_entity_count']\n    for k in ec:\n        sj = ec[k]['signals']['sj']['rho']\n        n = ec[k]['n']\n        print(f'{k}: n={n}, sj_rho={sj:.4f}')\n\nif 'by_entity_count' in d.get('scierc_re', {}):\n    print()\n    print('=== RE by_entity_count ===')\n    ec = d['scierc_re']['by_entity_count']\n    for k in ec:\n        sj = ec[k]['signals']['sj']['rho']\n        n = ec[k]['n']\n        print(f'{k}: n={n}, sj_rho={sj:.4f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "01af7eec-c6b6-4757-a470-9b1a86e64199",
+  "isSidechain": false,
+  "requestId": "req_011Cb5evvRjbfYhdfQGfKQPD",
+  "type": "assistant",
+  "uuid": "bf5e876c-9844-4493-b1b8-fec9ce8ac2c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rg3eSZt2SeHbsSo8p1JfuY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 637,
+      "cache_read_input_tokens": 92113,
+      "output_tokens": 1609,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 637,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1609,
+          "cache_read_input_tokens": 92113,
+          "cache_creation_input_tokens": 637,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 637
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 161 · 2026-05-16T04:57:38.196Z_
+
+<details><summary>↩ Tool result · `toolu_01DUf6bMWvsNbzEaAzaJMCug`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== NER by_sent_len ===\\nQ1 (lowest): n=143, sj_rho=0.4609\\nQ2: n=151, sj_rho=0.4008\\nQ3: n=119, sj_rho=0.2960\\nQ4 (highest): n=138, sj_rho=0.3825\\n\\n=== NER by_greedy_f1 ===\\n[0, 0.25): n=63, sj_rho=0.1592\\n[0.25, 0.5): n=78, sj_rho=0.1389\\n[0.5, 0.75): n=170, sj_rho=0.0898\\n[0.75, 1.0]: n=240, sj_rho=0.2301\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bf5e876c-9844-4493-b1b8-fec9ce8ac2c9",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "ad939842-1dc8-423e-8b8b-48b792ceaa02",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== NER by_sent_len ===\\\\nQ1 (lowest): n=143, sj_rho=0.4609\\\\nQ2: n=151, sj_rho=0.4008\\\\nQ3: n=119, sj_rho=0.2960\\\\nQ4 (highest): n=138, sj_rho=0.3825\\\\n\\\\n=== NER by_greedy_f1 ===\\\\n[0, 0.25): n=63, sj_rho=0.1592\\\\n[0.25, 0.5): n=78, sj_rho=0.1389\\\\n[0.5, 0.75): n=170, sj_rho=0.0898\\\\n[0.75, 1.0]: n=240, sj_rho=0.2301\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== NER by_sent_len ===\\nQ1 (lowest): n=143, sj_rho=0.4609\\nQ2: n=151, sj_rho=0.4008\\nQ3: n=119, sj_rho=0.2960\\nQ4 (highest): n=138, sj_rho=0.3825\\n\\n=== NER by_greedy_f1 ===\\n[0, 0.25): n=63, sj_rho=0.1592\\n[0.25, 0.5): n=78, sj_rho=0.1389\\n[0.5, 0.75): n=170, sj_rho=0.0898\\n[0.75, 1.0]: n=240, sj_rho=0.2301\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bf5e876c-9844-4493-b1b8-fec9ce8ac2c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 162 · 2026-05-16T04:57:41.447Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01GTWcvR6GPDWB9iPsatS46U`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -c \"\nimport json\n\n# Check exp_009_v2 data\nimport os\nv2_path = 'output/exp_009_v2/report.json'\nif os.path.exists(v2_path):\n    d = json.load(open(v2_path))\n    print('=== exp_009_v2 keys ===')\n    print(list(d.keys())[:20])\nelse:\n    print('exp_009_v2/report.json not found')\n\n# Check exp_009_v2_re_rerun\nre_path = 'output/exp_009_v2_re_rerun/report.json'\nif os.path.exists(re_path):\n    d = json.load(open(re_path))\n    print()\n    print('=== exp_009_v2_re_rerun keys ===')\n    for k,v in d.items():\n        if isinstance(v, (int, float, str)):\n            print(f'{k}: {v}')\nelse:\n    print('exp_009_v2_re_rerun/report.json not found')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ad939842-1dc8-423e-8b8b-48b792ceaa02",
+  "isSidechain": false,
+  "requestId": "req_011Cb5evvRjbfYhdfQGfKQPD",
+  "type": "assistant",
+  "uuid": "ea48f640-9ac9-48e7-8755-ff269a805aa5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rg3eSZt2SeHbsSo8p1JfuY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 637,
+      "cache_read_input_tokens": 92113,
+      "output_tokens": 1609,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 637,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1609,
+          "cache_read_input_tokens": 92113,
+          "cache_creation_input_tokens": 637,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 637
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 163 · 2026-05-16T04:57:42.016Z_
+
+<details><summary>↩ Tool result · `toolu_01GTWcvR6GPDWB9iPsatS46U`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp_009_v2/report.json not found\\nexp_009_v2_re_rerun/report.json not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ea48f640-9ac9-48e7-8755-ff269a805aa5",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "cdddde21-f76d-4a6f-8940-f4d3dec076ac",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp_009_v2/report.json not found\\\\nexp_009_v2_re_rerun/report.json not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp_009_v2/report.json not found\\nexp_009_v2_re_rerun/report.json not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ea48f640-9ac9-48e7-8755-ff269a805aa5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 164 · 2026-05-16T04:57:42.027Z_
+
+```json
+{
+  "parentUuid": "cdddde21-f76d-4a6f-8940-f4d3dec076ac",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "920312ac-3a40-4e9f-ada6-86a6184a4e1d",
+  "timestamp": "2026-05-16T04:57:42.027Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 165 · 2026-05-16T04:57:58.847Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the complete picture:
+
+**NER by_sent_len:**
+- Q1: sj_rho = 0.4609
+- Q2: sj_rho = 0.4008
+- Q3: sj_rho = 0.2960
+- Q4: sj_rho = 0.3825
+
+**RE by_sent_len:**
+- Q1: sj_rho = 0.4472
+
+
+- Q2: sj_rho = 0.3191
+- Q3: sj_rho = 0.4975
+- Q4: sj_rho = 0.5401
+
+**RE by_greedy_f1:**
+- [0, 0.25): sj_rho = -0.0433
+- [0.25, 0.5): sj_rho = -0.0032
+- [0.5, 0.75): sj_rho = 0.0057
+- [0.75, 1.0]: sj_rho = 0.2101
+
+Looking at what the paper says in the appendix around line 150 regarding RE...
+
+The paper reports Q1=0.110 and Q4=0.473 for SJ ρ increasing with sentence length, but my actual results show Q1=0.447 and Q4=0.540 for RE by sentence length. These paper values don't match any of my stratifications—the Q1=0.110 is somewhat close to the NER by_greedy_f1 [0.5, 0.75) value of 0.0898, but that's not a clean match. I'm wondering if these values might come from a different experiment or version of the data, possibly exp_009_v2, though I don't have those report files available to verify. Let me dig deeper into whether there's a stratification result I'm missing.
+
+Looking at the RE by_greedy_f1 values (-0.0433, -0.0032, 0.0057, 0.2101), they don't align with the paper's reported numbers either. My best guess is that the paper's 0.110 and 0.473 came from a different experimental setup with different bin boundaries or data pipeline. The monotonically increasing claim doesn't hold up—my actual RE by_sent_len shows 0.447, 0.319, 0.498, 0.540, which is clearly non-monotonic. There's also a chance the values were mislabeled and actually came from the NER task instead of RE, since NER by_sent_len gives 0.461, 0.401, 0.296, 0.383.
+
+I'm wondering if there was a bug in an earlier version of the analysis script. The exp_009_v2 directory exists but has no report.json, so I should check if there's any stratification data stored there. At this point I think I have enough to write up the audit report, and I should also verify whether exp_015_metrics_expansion is actually the right source for c032 before finalizing everything.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "920312ac-3a40-4e9f-ada6-86a6184a4e1d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5exTYGxDNkCEFfgkpnj",
+  "type": "assistant",
+  "uuid": "a1a02ef9-4610-43a0-9163-a596b3c2ecfb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JsZ7Zg9xY9CijQtSE9MjuZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2162,
+      "cache_read_input_tokens": 92750,
+      "output_tokens": 1323,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2162,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1323,
+          "cache_read_input_tokens": 92750,
+          "cache_creation_input_tokens": 2162,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2162
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 166 · 2026-05-16T04:58:02.915Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PxqfoHYcPQe54TRs6q7rGh`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -c \"\nimport json, os\n\n# Check exp_009_v2 for stratification data\nv2_dir = 'output/exp_009_v2'\nif os.path.isdir(v2_dir):\n    files = os.listdir(v2_dir)\n    print('exp_009_v2 files:', files[:20])\n    for f in files:\n        if 'strat' in f.lower() or f.endswith('.json'):\n            print(f'  {f}')\n\n# Check exp_015 for the wrong-source LP RE rho\nfor d in ['output/exp_015_unified', 'output/exp_015_v2']:\n    if os.path.isdir(d):\n        files = os.listdir(d)\n        print(f'{d} files:', files[:10])\n        rpt = os.path.join(d, 'report.json')\n        if os.path.exists(rpt):\n            data = json.load(open(rpt))\n            if 're_logprob_baseline' in data:\n                lp = data['re_logprob_baseline']\n                print(f'  RE LP full rho: {lp.get(\\\"full\\\",{}).get(\\\"rho\\\",\\\"N/A\\\")}')\n                print(f'  RE LP cond rho: {lp.get(\\\"conditional\\\",{}).get(\\\"rho\\\",\\\"N/A\\\")}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a1a02ef9-4610-43a0-9163-a596b3c2ecfb",
+  "isSidechain": false,
+  "requestId": "req_011Cb5exTYGxDNkCEFfgkpnj",
+  "type": "assistant",
+  "uuid": "c96a6632-06e6-4d6b-aa32-75c25ebc2663",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JsZ7Zg9xY9CijQtSE9MjuZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2162,
+      "cache_read_input_tokens": 92750,
+      "output_tokens": 1323,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2162,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1323,
+          "cache_read_input_tokens": 92750,
+          "cache_creation_input_tokens": 2162,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2162
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 167_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "c96a6632-06e6-4d6b-aa32-75c25ebc2663",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 168_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit provenance values in paper against registry",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 169 · 2026-05-16T04:58:03.431Z_
+
+<details><summary>↩ Tool result · `toolu_01PxqfoHYcPQe54TRs6q7rGh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp_009_v2 files: ['results.json', 'ner_seed42_stratification.pdf', 'ner_seed123_stratification.pdf', 're_seed42_stratification.pdf', 'summary.txt']\\n  results.json\\n  ner_seed42_stratification.pdf\\n  ner_seed123_stratification.pdf\\n  re_seed42_stratification.pdf\\noutput/exp_015_unified files: ['exp015_unified_report.json', 'exp015_summary.md']\\noutput/exp_015_v2 files: ['exp015_v2_metrics.json']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c96a6632-06e6-4d6b-aa32-75c25ebc2663",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "4f0f66b8-8bc3-4d28-a5be-421c5112eea1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp_009_v2 files: ['results.json', 'ner_seed42_stratification.pdf', 'ner_seed123_stratification.pdf', 're_seed42_stratification.pdf', 'summary.txt']\\\\n  results.json\\\\n  ner_seed42_stratification.pdf\\\\n  ner_seed123_stratification.pdf\\\\n  re_seed42_stratification.pdf\\\\noutput/exp_015_unified files: ['exp015_unified_report.json', 'exp015_summary.md']\\\\noutput/exp_015_v2 files: ['exp015_v2_metrics.json']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp_009_v2 files: ['results.json', 'ner_seed42_stratification.pdf', 'ner_seed123_stratification.pdf', 're_seed42_stratification.pdf', 'summary.txt']\\n  results.json\\n  ner_seed42_stratification.pdf\\n  ner_seed123_stratification.pdf\\n  re_seed42_stratification.pdf\\noutput/exp_015_unified files: ['exp015_unified_report.json', 'exp015_summary.md']\\noutput/exp_015_v2 files: ['exp015_v2_metrics.json']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c96a6632-06e6-4d6b-aa32-75c25ebc2663",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 170 · 2026-05-16T04:58:11.941Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013i9vn5S5fHPgxYLvbVzdNk`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -c \"\nimport json\n\n# exp_009_v2 results\nd = json.load(open('output/exp_009_v2/results.json'))\nif 'scierc_re' in d:\n    re = d['scierc_re']\n    if 'by_sent_len' in re:\n        print('=== exp_009_v2 RE by_sent_len ===')\n        for k in re['by_sent_len']:\n            q = re['by_sent_len'][k]\n            sj = q.get('signals', {}).get('sj', {}).get('rho', 'N/A')\n            n = q.get('n', 'N/A')\n            print(f'{k}: n={n}, sj_rho={sj}')\n    if 'by_greedy_f1' in re:\n        print()\n        print('=== exp_009_v2 RE by_greedy_f1 ===')\n        for k in re['by_greedy_f1']:\n            q = re['by_greedy_f1'][k]\n            sj = q.get('signals', {}).get('sj', {}).get('rho', 'N/A')\n            n = q.get('n', 'N/A')\n            print(f'{k}: n={n}, sj_rho={sj}')\nelse:\n    print('Keys:', list(d.keys())[:15])\n\n# exp_015 unified\nprint()\nd2 = json.load(open('output/exp_015_unified/exp015_unified_report.json'))\nfor k in d2:\n    if 'logprob' in k.lower() or 'lp' in k.lower() or 're_cond' in k.lower():\n        print(f'{k}: {d2[k]}')\n# Just show all keys\nprint('exp015 keys:', [k for k in d2.keys() if 're' in k.lower() or 'lp' in k.lower() or 'log' in k.lower()])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f0f66b8-8bc3-4d28-a5be-421c5112eea1",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ez32SeqxrwFSwLbfqK",
+  "type": "assistant",
+  "uuid": "92dc961f-c133-4847-9b58-6ec37d619be7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CvG9ZDK9U1LruVnMTEVokA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1554,
+      "cache_read_input_tokens": 94912,
+      "output_tokens": 653,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1554,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 653,
+          "cache_read_input_tokens": 94912,
+          "cache_creation_input_tokens": 1554,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1554
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 171 · 2026-05-16T04:58:12.454Z_
+
+<details><summary>↩ Tool result · `toolu_013i9vn5S5fHPgxYLvbVzdNk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Keys: ['ner_seed42', 'ner_seed123', 're_seed42', 'ner_avg']\\n\\nexp015 keys: ['re']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "92dc961f-c133-4847-9b58-6ec37d619be7",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "f2a5e400-dd46-4cf2-b5dc-d6a7f9a10fcd",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Keys: ['ner_seed42', 'ner_seed123', 're_seed42', 'ner_avg']\\\\n\\\\nexp015 keys: ['re']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Keys: ['ner_seed42', 'ner_seed123', 're_seed42', 'ner_avg']\\n\\nexp015 keys: ['re']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  },
+  "sourceToolAssistantUUID": "92dc961f-c133-4847-9b58-6ec37d619be7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 172 · 2026-05-16T04:58:20.192Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01WLKTooRF7AKxjp9jxqgNt5`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -c \"\nimport json\n\n# exp_009_v2 - check re_seed42\nd = json.load(open('output/exp_009_v2/results.json'))\nif 're_seed42' in d:\n    re = d['re_seed42']\n    print('re_seed42 keys:', list(re.keys())[:15])\n    if 'by_sent_len' in re:\n        print('=== exp_009_v2 re_seed42 by_sent_len ===')\n        for k in re['by_sent_len']:\n            q = re['by_sent_len'][k]\n            sj = q.get('signals', {}).get('sj', {}).get('rho', 'N/A')\n            n = q.get('n', 'N/A')\n            print(f'{k}: n={n}, sj_rho={sj}')\n\n# exp_015 RE data\nd2 = json.load(open('output/exp_015_unified/exp015_unified_report.json'))\nre = d2.get('re', {})\nprint()\nprint('exp015 RE keys:', list(re.keys())[:20])\nif 'logprob' in re or 'lp' in re:\n    print('LP data:', re.get('logprob', re.get('lp', 'N/A')))\n# Print all signal data\nfor k, v in re.items():\n    if isinstance(v, (int, float)):\n        print(f'  {k}: {v}')\n    elif isinstance(v, dict):\n        print(f'  {k}: {list(v.keys())[:5]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f2a5e400-dd46-4cf2-b5dc-d6a7f9a10fcd",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ezhaS7Co7d1ymcHfPJ",
+  "type": "assistant",
+  "uuid": "8c0403d6-94ca-4137-a38f-b7ec3f192fb7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F27peDQ2v7W8p7vdaySVKk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 770,
+      "cache_read_input_tokens": 96466,
+      "output_tokens": 553,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 770,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 553,
+          "cache_read_input_tokens": 96466,
+          "cache_creation_input_tokens": 770,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 770
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 173 · 2026-05-16T04:58:20.707Z_
+
+<details><summary>↩ Tool result · `toolu_01WLKTooRF7AKxjp9jxqgNt5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"re_seed42 keys: ['n_total', 'subtask', 'by_greedy_f1', 'by_greedy_f1_fisher_z', 'by_sent_len', 'by_sent_len_thresholds', 'by_sent_len_fisher_z', 'by_ent_count', 'by_ent_count_fisher_z', 'by_type_diversity', 'by_type_diversity_thresholds', 'by_type_diversity_fisher_z', 'proxy_correlations', 'global_signals']\\n=== exp_009_v2 re_seed42 by_sent_len ===\\nLow (T1): n=196, sj_rho=-0.04635972468824193\\nMedium (T2): n=180, sj_rho=0.13818692226576398\\nHigh (T3): n=175, sj_rho=0.2669239250691258\\n\\nexp015 RE keys: ['n_total', 'n_valid', 'n_conditional', 'median_f1_full', 'median_f1_cond', 'signals', 'bootstrap_ci', 'loo_sj', 'calibration']\\n  n_total: 551\\n  n_valid: 397\\n  n_conditional: 296\\n  median_f1_full: 0.3333333333333333\\n  median_f1_cond: 0.5\\n  signals: ['soft_jaccard', 'fleiss_kappa', 'mean_logprob', 'exact_match', 'entity_voting']\\n  bootstrap_ci: ['sj_vs_fleiss_kappa', 'sj_vs_mean_logprob', 'sj_vs_exact_match', 'sj_vs_entity_voting']\\n  loo_sj: ['standard_f1_rho', 'loo_f1_rho', 'rho_difference', 'loo_vs_standard_rho', 'circularity_ok']\\n  calibration: ['soft_jaccard', 'fleiss_kappa', 'mean_logprob', 'exact_match', 'entity_voting']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8c0403d6-94ca-4137-a38f-b7ec3f192fb7",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "96b9ea06-8d68-43eb-abfc-c8d62b874e75",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"re_seed42 keys: ['n_total', 'subtask', 'by_greedy_f1', 'by_greedy_f1_fisher_z', 'by_sent_len', 'by_sent_len_thresholds', 'by_sent_len_fisher_z', 'by_ent_count', 'by_ent_count_fisher_z', 'by_type_diversity', 'by_type_diversity_thresholds', 'by_type_diversity_fisher_z', 'proxy_correlations', 'global_signals']\\\\n=== exp_009_v2 re_seed42 by_sent_len ===\\\\nLow (T1): n=196, sj_rho=-0.04635972468824193\\\\nMedium (T2): n=180, sj_rho=0.13818692226576398\\\\nHigh (T3): n=175, sj_rho=0.2669239250691258\\\\n\\\\nexp015 RE keys: ['n_total', 'n_valid', 'n_conditional', 'median_f1_full', 'median_f1_cond', 'signals', 'bootstrap_ci', 'loo_sj', 'calibration']\\\\n  n_total: 551\\\\n  n_valid: 397\\\\n  n_conditional: 296\\\\n  median_f1_full: 0.3333333333333333\\\\n  median_f1_cond: 0.5\\\\n  signals: ['soft_jaccard', 'fleiss_kappa', 'mean_logprob', 'exact_match', 'entity_voting']\\\\n  bootstrap_ci: ['sj_vs_fleiss_kappa', 'sj_vs_mean_logprob', 'sj_vs_exact_match', 'sj_vs_entity_voting']\\\\n  loo_sj: ['standard_f1_rho', 'loo_f1_rho', 'rho_difference', 'loo_vs_standard_rho', 'circularity_ok']\\\\n  calibration: ['soft_jaccard', 'fleiss_kappa', 'mean_logprob', 'exact_match', 'entity_voting']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"re_seed42 keys: ['n_total', 'subtask', 'by_greedy_f1', 'by_greedy_f1_fisher_z', 'by_sent_len', 'by_sent_len_thresholds', 'by_sent_len_fisher_z', 'by_ent_count', 'by_ent_count_fisher_z', 'by_type_diversity', 'by_type_diversity_thresholds', 'by_type_diversity_fisher_z', 'proxy_correlations', 'global_signals']\\n=== exp_009_v2 re_seed42 by_sent_len ===\\nLow (T1): n=196, sj_rho=-0.04635972468824193\\nMedium (T2): n=180, sj_rho=0.13818692226576398\\nHigh (T3): n=175, sj_rho=0.2669239250691258\\n\\nexp015 RE keys: ['n_total', 'n_valid', 'n_conditional', 'median_f1_full', 'median_f1_cond', 'signals', 'bootstrap_ci', 'loo_sj', 'calibration']\\n  n_total: 551\\n  n_valid: 397\\n  n_conditional: 296\\n  median_f1_full: 0.3333333333333333\\n  median_f1_cond: 0.5\\n  signals: ['soft_jaccard', 'fleiss_kappa', 'mean_logprob', 'exact_match', 'entity_voting']\\n  bootstrap_ci: ['sj_vs_fleiss_kappa', 'sj_vs_mean_logprob', 'sj_vs_exact_match', 'sj_vs_entity_voting']\\n  loo_sj: ['standard_f1_rho', 'loo_f1_rho', 'rho_difference', 'loo_vs_standard_rho', 'circularity_ok']\\n  calibration: ['soft_jaccard', 'fleiss_kappa', 'mean_logprob', 'exact_match', 'entity_voting']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8c0403d6-94ca-4137-a38f-b7ec3f192fb7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 174 · 2026-05-16T04:58:26.787Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting! The exp_009_v2 has different bin boundaries (T1/T2/T3 tertiles instead of Q1/Q2/Q3/Q4 quartiles), and the RE by_sent_len values are very different:
+- Low (T1): sj_rho = -0.046
+- Medium (T2): sj_rho = 0.138
+- High (T3): sj_rho = 0.267
+
+These are also not matching the paper's 0.110 and 0.473.
+
+
+Let me dig into exp_015 to see what's going on there.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96b9ea06-8d68-43eb-abfc-c8d62b874e75",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f1JwBtBips9a9WjrL8",
+  "type": "assistant",
+  "uuid": "446bf26b-5c02-4392-9bfe-f497fb999495",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MUi3jdLfZex4tJQJbRG1iH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1189,
+      "cache_read_input_tokens": 97236,
+      "output_tokens": 510,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1189,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 510,
+          "cache_read_input_tokens": 97236,
+          "cache_creation_input_tokens": 1189,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1189
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 175 · 2026-05-16T04:58:29.232Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TtNKfKzmxGbaKZ2SBAmXia`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -c \"\nimport json\n\n# exp015 RE signal data - look for LP/logprob conditional rho\nd = json.load(open('output/exp_015_unified/exp015_unified_report.json'))\nre_signals = d['re']['signals']\nfor sig_name, sig_data in re_signals.items():\n    print(f'=== {sig_name} ===')\n    if isinstance(sig_data, dict):\n        for k, v in sig_data.items():\n            if isinstance(v, (int, float)):\n                print(f'  {k}: {v:.6f}' if isinstance(v, float) else f'  {k}: {v}')\n            elif isinstance(v, dict):\n                for kk, vv in v.items():\n                    print(f'  {k}.{kk}: {vv}')\n    print()\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "446bf26b-5c02-4392-9bfe-f497fb999495",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f1JwBtBips9a9WjrL8",
+  "type": "assistant",
+  "uuid": "f751551d-9ae8-458b-ad77-655ebcc1bd0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MUi3jdLfZex4tJQJbRG1iH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1189,
+      "cache_read_input_tokens": 97236,
+      "output_tokens": 510,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1189,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 510,
+          "cache_read_input_tokens": 97236,
+          "cache_creation_input_tokens": 1189,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1189
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 176 · 2026-05-16T04:58:29.746Z_
+
+<details><summary>↩ Tool result · `toolu_01TtNKfKzmxGbaKZ2SBAmXia`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== soft_jaccard ===\\n  full.rho: 0.2111856976869065\\n  full.p_rho: 2.210227030399547e-05\\n  full.tau: 0.16188645960396325\\n  full.p_tau: 1.4258913210766884e-05\\n  full.auroc: 0.5816197004315816\\n  full.n: 397\\n  cond.rho: 0.3682920531854295\\n  cond.p_rho: 6.116385001848524e-11\\n  cond.tau: 0.26990942241983057\\n  cond.p_tau: 1.289936027756236e-10\\n  cond.auroc: 0.6966274114466389\\n  cond.n: 296\\n\\n=== fleiss_kappa ===\\n  full.rho: 0.25280782133455587\\n  full.p_rho: 3.317974348766374e-07\\n  full.tau: 0.19665787066549478\\n  full.p_tau: 1.311107459309817e-07\\n  full.auroc: 0.6307946179233308\\n  full.n: 397\\n  cond.rho: 0.31683087192539916\\n  cond.p_rho: 2.5167905576227273e-08\\n  cond.tau: 0.23975586405437\\n  cond.p_tau: 1.0993703240960715e-08\\n  cond.auroc: 0.6566466571965358\\n  cond.n: 296\\n\\n=== mean_logprob ===\\n  full.rho: 0.24668271217578314\\n  full.p_rho: 6.466504185414077e-07\\n  full.tau: 0.18084207809868308\\n  full.p_tau: 9.558517952039666e-07\\n  full.auroc: 0.6353643056613354\\n  full.n: 397\\n  cond.rho: 0.14574645978771525\\n  cond.p_rho: 0.012061990555778583\\n  cond.tau: 0.1039174853770387\\n  cond.p_tau: 0.012826956762003008\\n  cond.auroc: 0.552169729184805\\n  cond.n: 296\\n\\n=== exact_match ===\\n  full.rho: 0.10021526626212784\\n  full.p_rho: 0.04598783917208473\\n  full.tau: 0.08392806452160913\\n  full.p_tau: 0.032743921148723945\\n  full.auroc: 0.5036176694592536\\n  full.n: 397\\n  cond.rho: 0.36070963611203544\\n  cond.p_rho: 1.5924985078578092e-10\\n  cond.tau: 0.2781183358720306\\n  cond.p_tau: 4.299840883899117e-10\\n  cond.auroc: 0.6990331301837511\\n  cond.n: 296\\n\\n=== entity_voting ===\\n  full.rho: 0.42166547797708653\\n  full.p_rho: 1.518253441833814e-18\\n  full.tau: 0.3270212126296791\\n  full.p_tau: 2.503868053851325e-18\\n  full.auroc: 0.7161843107387662\\n  full.n: 397\\n  cond.rho: 0.4630297678261838\\n  cond.p_rho: 3.9035855770200273e-17\\n  cond.tau: 0.3476419278754012\\n  cond.p_tau: 2.1073259450903802e-16\\n  cond.auroc: 0.734843971956193\\n  cond.n: 296\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f751551d-9ae8-458b-ad77-655ebcc1bd0e",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "15478457-ab0f-411a-842b-748af1dcbbfa",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== soft_jaccard ===\\\\n  full.rho: 0.2111856976869065\\\\n  full.p_rho: 2.210227030399547e-05\\\\n  full.tau: 0.16188645960396325\\\\n  full.p_tau: 1.4258913210766884e-05\\\\n  full.auroc: 0.5816197004315816\\\\n  full.n: 397\\\\n  cond.rho: 0.3682920531854295\\\\n  cond.p_rho: 6.116385001848524e-11\\\\n  cond.tau: 0.26990942241983057\\\\n  cond.p_tau: 1.289936027756236e-10\\\\n  cond.auroc: 0.6966274114466389\\\\n  cond.n: 296\\\\n\\\\n=== fleiss_kappa ===\\\\n  full.rho: 0.25280782133455587\\\\n  full.p_rho: 3.317974348766374e-07\\\\n  full.tau: 0.19665787066549478\\\\n  full.p_tau: 1.311107459309817e-07\\\\n  full.auroc: 0.6307946179233308\\\\n  full.n: 397\\\\n  cond.rho: 0.31683087192539916\\\\n  cond.p_rho: 2.5167905576227273e-08\\\\n  cond.tau: 0.23975586405437\\\\n  cond.p_tau: 1.0993703240960715e-08\\\\n  cond.auroc: 0.6566466571965358\\\\n  cond.n: 296\\\\n\\\\n=== mean_logprob ===\\\\n  full.rho: 0.24668271217578314\\\\n  full.p_rho: 6.466504185414077e-07\\\\n  full.tau: 0.18084207809868308\\\\n  full.p_tau: 9.558517952039666e-07\\\\n  full.auroc: 0.6353643056613354\\\\n  full.n: 397\\\\n  cond.rho: 0.14574645978771525\\\\n  cond.p_rho: 0.012061990555778583\\\\n  cond.tau: 0.1039174853770387\\\\n  cond.p_tau: 0.012826956762003008\\\\n  cond.auroc: 0.552169729184805\\\\n  cond.n: 296\\\\n\\\\n=== exact_match ===\\\\n  full.rho: 0.10021526626212784\\\\n  full.p_rho: 0.04598783917208473\\\\n  full.tau: 0.08392806452160913\\\\n  full.p_tau: 0.032743921148723945\\\\n  full.auroc: 0.5036176694592536\\\\n  full.n: 397\\\\n  cond.rho: 0.36070963611203544\\\\n  cond.p_rho: 1.5924985078578092e-10\\\\n  cond.tau: 0.2781183358720306\\\\n  cond.p_tau: 4.299840883899117e-10\\\\n  cond.auroc: 0.6990331301837511\\\\n  cond.n: 296\\\\n\\\\n=== entity_voting ===\\\\n  full.rho: 0.42166547797708653\\\\n  full.p_rho: 1.518253441833814e-18\\\\n  full.tau: 0.3270212126296791\\\\n  full.p_tau: 2.503868053851325e-18\\\\n  full.auroc: 0.7161843107387662\\\\n  full.n: 397\\\\n  cond.rho: 0.4630297678261838\\\\n  cond.p_rho: 3.9035855770200273e-17\\\\n  cond.tau: 0.3476419278754012\\\\n  cond.p_tau: 2.1073259450903802e-16\\\\n  cond.auroc: 0.734843971956193\\\\n  cond.n: 296\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== soft_jaccard ===\\n  full.rho: 0.2111856976869065\\n  full.p_rho: 2.210227030399547e-05\\n  full.tau: 0.16188645960396325\\n  full.p_tau: 1.4258913210766884e-05\\n  full.auroc: 0.5816197004315816\\n  full.n: 397\\n  cond.rho: 0.3682920531854295\\n  cond.p_rho: 6.116385001848524e-11\\n  cond.tau: 0.26990942241983057\\n  cond.p_tau: 1.289936027756236e-10\\n  cond.auroc: 0.6966274114466389\\n  cond.n: 296\\n\\n=== fleiss_kappa ===\\n  full.rho: 0.25280782133455587\\n  full.p_rho: 3.317974348766374e-07\\n  full.tau: 0.19665787066549478\\n  full.p_tau: 1.311107459309817e-07\\n  full.auroc: 0.6307946179233308\\n  full.n: 397\\n  cond.rho: 0.31683087192539916\\n  cond.p_rho: 2.5167905576227273e-08\\n  cond.tau: 0.23975586405437\\n  cond.p_tau: 1.0993703240960715e-08\\n  cond.auroc: 0.6566466571965358\\n  cond.n: 296\\n\\n=== mean_logprob ===\\n  full.rho: 0.24668271217578314\\n  full.p_rho: 6.466504185414077e-07\\n  full.tau: 0.18084207809868308\\n  full.p_tau: 9.558517952039666e-07\\n  full.auroc: 0.6353643056613354\\n  full.n: 397\\n  cond.rho: 0.14574645978771525\\n  cond.p_rho: 0.012061990555778583\\n  cond.tau: 0.1039174853770387\\n  cond.p_tau: 0.012826956762003008\\n  cond.auroc: 0.552169729184805\\n  cond.n: 296\\n\\n=== exact_match ===\\n  full.rho: 0.10021526626212784\\n  full.p_rho: 0.04598783917208473\\n  full.tau: 0.08392806452160913\\n  full.p_tau: 0.032743921148723945\\n  full.auroc: 0.5036176694592536\\n  full.n: 397\\n  cond.rho: 0.36070963611203544\\n  cond.p_rho: 1.5924985078578092e-10\\n  cond.tau: 0.2781183358720306\\n  cond.p_tau: 4.299840883899117e-10\\n  cond.auroc: 0.6990331301837511\\n  cond.n: 296\\n\\n=== entity_voting ===\\n  full.rho: 0.42166547797708653\\n  full.p_rho: 1.518253441833814e-18\\n  full.tau: 0.3270212126296791\\n  full.p_tau: 2.503868053851325e-18\\n  full.auroc: 0.7161843107387662\\n  full.n: 397\\n  cond.rho: 0.4630297678261838\\n  cond.p_rho: 3.9035855770200273e-17\\n  cond.tau: 0.3476419278754012\\n  cond.p_tau: 2.1073259450903802e-16\\n  cond.auroc: 0.734843971956193\\n  cond.n: 296\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f751551d-9ae8-458b-ad77-655ebcc1bd0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 177 · 2026-05-16T04:58:40.967Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I found the exp_015 data:
+
+**exp_015 (metrics expansion) - mean_logprob RE:**
+- full.rho: 0.2467 (n=397)
+- cond.rho: **0.1457** (n=296)
+
+So exp_015's conditional LP RE rho = 0.1457, and n=296 (not n=238).
+
+**exp_012_rerun_1024 - RE logprob conditional:**
+- rho: 0.0112 (n=238)
+
+
+The sample size difference between exp_015 (n=296) and exp_012 (n=238) likely stems from exp_015 using max_tokens=512, which affects the filtering thresholds. The paper reports 0.011 for conditional LP RE rho, matching exp_012's 0.0112, but I still can't locate where the 0.002 value mentioned in the task appears—let me check if there's a heatmap with that data.
+
+I should also look at the exp_015_v2 results to see if they provide any clarity.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "15478457-ab0f-411a-842b-748af1dcbbfa",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f1yYeQEPrzoLR16H5Q",
+  "type": "assistant",
+  "uuid": "63233a0f-b1e4-4cb6-9bdf-d1c1e036dbd3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C7yw1Vy3qNPQ6DLUAAA9Pf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1668,
+      "cache_read_input_tokens": 98425,
+      "output_tokens": 1074,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1668,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1074,
+          "cache_read_input_tokens": 98425,
+          "cache_creation_input_tokens": 1668,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1668
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 178 · 2026-05-16T04:58:43.894Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_012JTk9ECEkb3xaZdJcpGzrS`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -c \"\nimport json\n\n# exp_015_v2 metrics\nd = json.load(open('output/exp_015_v2/exp015_v2_metrics.json'))\nprint('exp015_v2 keys:', list(d.keys())[:20])\nif 're' in d:\n    re = d['re']\n    if 'signals' in re:\n        for sig_name, sig_data in re['signals'].items():\n            if 'logprob' in sig_name or 'lp' in sig_name:\n                print(f'{sig_name}: {sig_data}')\n    # Check if there's a direct logprob entry\n    for k, v in re.items():\n        if 'log' in k.lower() or 'lp' in k.lower():\n            print(f'{k}: {v}')\nelif 'scierc_re' in d:\n    print('scierc_re:', list(d['scierc_re'].keys())[:10])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63233a0f-b1e4-4cb6-9bdf-d1c1e036dbd3",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f1yYeQEPrzoLR16H5Q",
+  "type": "assistant",
+  "uuid": "e732d51d-cf5f-4c4c-b4b0-bd949189000a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C7yw1Vy3qNPQ6DLUAAA9Pf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1668,
+      "cache_read_input_tokens": 98425,
+      "output_tokens": 1074,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1668,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1074,
+          "cache_read_input_tokens": 98425,
+          "cache_creation_input_tokens": 1668,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1668
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 179 · 2026-05-16T04:58:44.400Z_
+
+<details><summary>↩ Tool result · `toolu_012JTk9ECEkb3xaZdJcpGzrS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp015_v2 keys: ['scierc_n8_logprob_ner', 'scierc_n8_logprob_re', 'scierc_n16_seed42_ner', 'scierc_n16_seed42_re', 'scierc_n16_seed123_ner', 'scierc_n16_seed123_re', 'conll2003_ner', 'wnut17_ner', 'llama_scierc_n8_ner', 'llama_scierc_n8_re', 'llama_seed123_ner', 'llama_seed123_re', 'llama_seed456_ner', 'llama_seed456_re', 'scierc_re_n16_ner', 'scierc_re_n16_re', 'scierc_re_seed123_ner', 'scierc_re_seed123_re']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e732d51d-cf5f-4c4c-b4b0-bd949189000a",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "1ecbc765-a814-438c-b018-8bbd99891312",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp015_v2 keys: ['scierc_n8_logprob_ner', 'scierc_n8_logprob_re', 'scierc_n16_seed42_ner', 'scierc_n16_seed42_re', 'scierc_n16_seed123_ner', 'scierc_n16_seed123_re', 'conll2003_ner', 'wnut17_ner', 'llama_scierc_n8_ner', 'llama_scierc_n8_re', 'llama_seed123_ner', 'llama_seed123_re', 'llama_seed456_ner', 'llama_seed456_re', 'scierc_re_n16_ner', 'scierc_re_n16_re', 'scierc_re_seed123_ner', 'scierc_re_seed123_re']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp015_v2 keys: ['scierc_n8_logprob_ner', 'scierc_n8_logprob_re', 'scierc_n16_seed42_ner', 'scierc_n16_seed42_re', 'scierc_n16_seed123_ner', 'scierc_n16_seed123_re', 'conll2003_ner', 'wnut17_ner', 'llama_scierc_n8_ner', 'llama_scierc_n8_re', 'llama_seed123_ner', 'llama_seed123_re', 'llama_seed456_ner', 'llama_seed456_re', 'scierc_re_n16_ner', 'scierc_re_n16_re', 'scierc_re_seed123_ner', 'scierc_re_seed123_re']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e732d51d-cf5f-4c4c-b4b0-bd949189000a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 180 · 2026-05-16T04:58:47.631Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01AEkmRgeYDkiFBxtNvea2LP`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -c \"\nimport json\n\n# Check the heatmap data file\nimport os\nfig_dir = 'output/figures'\nif os.path.isdir(fig_dir):\n    print('figures:', os.listdir(fig_dir)[:20])\n\n# Check for heatmap data in analysis files\nfor f in ['output/analysis_unified_rho_full.json', 'output/rho_audit_results.json']:\n    if os.path.exists(f):\n        d = json.load(open(f))\n        print(f'\\\\n=== {f} ===')\n        if isinstance(d, dict):\n            for k in list(d.keys())[:10]:\n                v = d[k]\n                if isinstance(v, (int, float, str)):\n                    print(f'  {k}: {v}')\n                elif isinstance(v, dict):\n                    print(f'  {k}: {list(v.keys())[:5]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ecbc765-a814-438c-b018-8bbd99891312",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f1yYeQEPrzoLR16H5Q",
+  "type": "assistant",
+  "uuid": "36516a41-c4c9-4861-a0a7-84e22db92233",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C7yw1Vy3qNPQ6DLUAAA9Pf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1668,
+      "cache_read_input_tokens": 98425,
+      "output_tokens": 1074,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1668,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1074,
+          "cache_read_input_tokens": 98425,
+          "cache_creation_input_tokens": 1668,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1668
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 181_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "36516a41-c4c9-4861-a0a7-84e22db92233",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 182_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit provenance values in paper against registry",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 183 · 2026-05-16T04:58:48.143Z_
+
+<details><summary>↩ Tool result · `toolu_01AEkmRgeYDkiFBxtNvea2LP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"figures: ['lp_range_cdf.pdf', 'lp_range_cdf.png', 'lp_range_cdf_check.png', 'lp_range_cdf_n16_3seed.pdf', 'lp_range_cdf_n16_3seed.png', 'fig_selection_gap.pdf', 'fig_selection_gap.png']\\n\\n=== output/analysis_unified_rho_full.json ===\\n  metadata: ['pipeline', 'date', 'fk_empty_fix', 'gold_filter', 'conll_n_valid']\\n  results: ['llama_conll_n16_seed42', 'llama_conll_n16_seed123', 'llama_conll_n16_seed456', 'qwen_scierc_n16_seed42', 'qwen_scierc_n16_seed123']\\n  sanity_check_vs_rho_audit: ['llama_conll_n16_seed42.FK', 'llama_conll_n16_seed42.SJ', 'llama_conll_n16_seed42.VC', 'llama_conll_n16_seed42.EM', 'llama_conll_n16_seed42.LP']\\n  sanity_check_vs_n8_5signal: ['qwen_conll_n8_seed42.SJ', 'qwen_conll_n8_seed42.FK', 'qwen_conll_n8_seed42.EM', 'qwen_conll_n8_seed42.LP', 'qwen_conll_n8_seed42.VC']\\n\\n=== output/rho_audit_results.json ===\\n  exp_017_llama_conll_n16_r1024: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\n  exp_017_llama_conll_n16_s456_r1024: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\n  exp_001_n16_seed456: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\n  exp_011_ood_conll_to_scierc: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "36516a41-c4c9-4861-a0a7-84e22db92233",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "2b7fb61c-60a3-4d99-8559-4cdc94a7a844",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"figures: ['lp_range_cdf.pdf', 'lp_range_cdf.png', 'lp_range_cdf_check.png', 'lp_range_cdf_n16_3seed.pdf', 'lp_range_cdf_n16_3seed.png', 'fig_selection_gap.pdf', 'fig_selection_gap.png']\\\\n\\\\n=== output/analysis_unified_rho_full.json ===\\\\n  metadata: ['pipeline', 'date', 'fk_empty_fix', 'gold_filter', 'conll_n_valid']\\\\n  results: ['llama_conll_n16_seed42', 'llama_conll_n16_seed123', 'llama_conll_n16_seed456', 'qwen_scierc_n16_seed42', 'qwen_scierc_n16_seed123']\\\\n  sanity_check_vs_rho_audit: ['llama_conll_n16_seed42.FK', 'llama_conll_n16_seed42.SJ', 'llama_conll_n16_seed42.VC', 'llama_conll_n16_seed42.EM', 'llama_conll_n16_seed42.LP']\\\\n  sanity_check_vs_n8_5signal: ['qwen_conll_n8_seed42.SJ', 'qwen_conll_n8_seed42.FK', 'qwen_conll_n8_seed42.EM', 'qwen_conll_n8_seed42.LP', 'qwen_conll_n8_seed42.VC']\\\\n\\\\n=== output/rho_audit_results.json ===\\\\n  exp_017_llama_conll_n16_r1024: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\\\n  exp_017_llama_conll_n16_s456_r1024: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\\\n  exp_001_n16_seed456: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\\\n  exp_011_ood_conll_to_scierc: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"figures: ['lp_range_cdf.pdf', 'lp_range_cdf.png', 'lp_range_cdf_check.png', 'lp_range_cdf_n16_3seed.pdf', 'lp_range_cdf_n16_3seed.png', 'fig_selection_gap.pdf', 'fig_selection_gap.png']\\n\\n=== output/analysis_unified_rho_full.json ===\\n  metadata: ['pipeline', 'date', 'fk_empty_fix', 'gold_filter', 'conll_n_valid']\\n  results: ['llama_conll_n16_seed42', 'llama_conll_n16_seed123', 'llama_conll_n16_seed456', 'qwen_scierc_n16_seed42', 'qwen_scierc_n16_seed123']\\n  sanity_check_vs_rho_audit: ['llama_conll_n16_seed42.FK', 'llama_conll_n16_seed42.SJ', 'llama_conll_n16_seed42.VC', 'llama_conll_n16_seed42.EM', 'llama_conll_n16_seed42.LP']\\n  sanity_check_vs_n8_5signal: ['qwen_conll_n8_seed42.SJ', 'qwen_conll_n8_seed42.FK', 'qwen_conll_n8_seed42.EM', 'qwen_conll_n8_seed42.LP', 'qwen_conll_n8_seed42.VC']\\n\\n=== output/rho_audit_results.json ===\\n  exp_017_llama_conll_n16_r1024: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\n  exp_017_llama_conll_n16_s456_r1024: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\n  exp_001_n16_seed456: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\n  exp_011_ood_conll_to_scierc: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  },
+  "sourceToolAssistantUUID": "36516a41-c4c9-4861-a0a7-84e22db92233",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 184 · 2026-05-16T04:58:57.550Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the rho_audit_results and the unified rho data for the specific LP RE conditional values. Also, let me check the exp_015_v2 data for the LP RE values that might contain the 0.002 value.
+
+Actually, let me step back and look at the big picture. The task mentions 3 discrepancies:
+1. c032: LP cond RE ρ — registry says 0.0112, paper reportedly says 0.002
+2. c023: Q1-Q4 SJ ρ — registry says Q1=0.447, Q4=0.540, paper says Q1=0.110, Q4=0.473
+
+
+3. c021: WNUT SJ ρ — registry says 0.089, paper reportedly says 0.062
+
+I've confirmed the c023 discrepancy in appendix.tex line 150. For c021 and c032, the paper's current values actually match the registry values, so these may have already been corrected or the reported discrepancies were inaccurate.
+
+Let me search through all the tex files including the artifacts directory to double-check for any remaining instances of 0.062 and 0.002.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b7fb61c-60a3-4d99-8559-4cdc94a7a844",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f3LFs9CKgfVuR7uuv3",
+  "type": "assistant",
+  "uuid": "e8db38bf-e497-4222-acfb-019acc77dbaa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A43NfvXnkEbo9XQWxbaUtT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2160,
+      "cache_read_input_tokens": 100093,
+      "output_tokens": 842,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2160,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 842,
+          "cache_read_input_tokens": 100093,
+          "cache_creation_input_tokens": 2160,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2160
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 185 · 2026-05-16T04:58:57.755Z_
+
+让我在 artifacts 旧版论文中搜索 0.062 和 0.002，看是否有残留。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8db38bf-e497-4222-acfb-019acc77dbaa",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f3LFs9CKgfVuR7uuv3",
+  "type": "assistant",
+  "uuid": "3349091d-507f-40fb-87a5-c1e48e24893c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A43NfvXnkEbo9XQWxbaUtT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2160,
+      "cache_read_input_tokens": 100093,
+      "output_tokens": 842,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2160,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 842,
+          "cache_read_input_tokens": 100093,
+          "cache_creation_input_tokens": 2160,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2160
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 186 · 2026-05-16T04:58:59.884Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01UwYWyyYFYxp7xCAVMzseNK`</summary>
+
+```json
+{
+  "pattern": "0\\.062",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper",
+  "output_mode": "content",
+  "-n": true,
+  "context": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3349091d-507f-40fb-87a5-c1e48e24893c",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f3LFs9CKgfVuR7uuv3",
+  "type": "assistant",
+  "uuid": "2de9fd12-ff7d-4180-a35a-a86f31f14e60",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A43NfvXnkEbo9XQWxbaUtT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2160,
+      "cache_read_input_tokens": 100093,
+      "output_tokens": 842,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2160,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 842,
+          "cache_read_input_tokens": 100093,
+          "cache_creation_input_tokens": 2160,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2160
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 187 · 2026-05-16T04:59:02.133Z_
+
+<details><summary>↩ Tool result · `toolu_01RS1aPREN414GRaeagzZsyQ`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f1f017d4-89d4-4b01-8876-e3133b4012c6",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "015f6d0a-ff07-4de8-b922-5938a1e08dbc",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "f1f017d4-89d4-4b01-8876-e3133b4012c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 188 · 2026-05-16T04:58:59.906Z_
+
+<details><summary>↩ Tool result · `toolu_01UwYWyyYFYxp7xCAVMzseNK`</summary>
+
+```text
+artifacts/_project/paper/experiments.tex-179-\paragraph{Method boundary: WNUT-17.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-180-WNUT-17 establishes where the approach breaks down.
+artifacts/_project/paper/experiments.tex:181:SJ achieves $\rho{=}0.062$ ($p{=}0.106$, not statistically significant), with 54\% of instances at zero F1.
+artifacts/_project/paper/experiments.tex-182-Log-probability shows a strong \textit{negative} correlation ($\rho{=}{-}0.411$): the model is confidently wrong on novel entities, a calibration failure that no post-hoc consistency signal can remedy.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-183-This is a boundary of the method, not a limitation of the datasets.
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-15-\midrule
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-16-Mean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\
+artifacts/_project/paper/freeform_ablation_appendix_table.tex:17:Mean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-18-Tied fraction ($\varepsilon{=}0.05$) & 59.7\% & 57.7\% & $-$2.0\,pp \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-19-\bottomrule
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2de9fd12-ff7d-4180-a35a-a86f31f14e60",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "19babb28-52f9-4616-bf9a-a7e334a8f721",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "artifacts/_project/paper/experiments.tex-179-\\paragraph{Method boundary: WNUT-17.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-180-WNUT-17 establishes where the approach breaks down.\nartifacts/_project/paper/experiments.tex:181:SJ achieves $\\rho{=}0.062$ ($p{=}0.106$, not statistically significant), with 54\\% of instances at zero F1.\nartifacts/_project/paper/experiments.tex-182-Log-probability shows a strong \\textit{negative} correlation ($\\rho{=}{-}0.411$): the model is confidently wrong on novel entities, a calibration failure that no post-hoc consistency signal can remedy.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-183-This is a boundary of the method, not a limitation of the datasets.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-15-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-16-Mean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\nartifacts/_project/paper/freeform_ablation_appendix_table.tex:17:Mean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-18-Tied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-19-\\bottomrule",
+    "numLines": 11
+  },
+  "sourceToolAssistantUUID": "2de9fd12-ff7d-4180-a35a-a86f31f14e60",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 189 · 2026-05-16T04:59:01.313Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01L4HPdWnFggQUuNJaeyeEBq`</summary>
+
+```json
+{
+  "pattern": "0\\.002[^0-9]",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper",
+  "output_mode": "content",
+  "-n": true,
+  "context": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "19babb28-52f9-4616-bf9a-a7e334a8f721",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f3LFs9CKgfVuR7uuv3",
+  "type": "assistant",
+  "uuid": "a4ff313a-3210-461f-a2d0-79822fa6ee9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A43NfvXnkEbo9XQWxbaUtT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2160,
+      "cache_read_input_tokens": 100093,
+      "output_tokens": 842,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2160,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 842,
+          "cache_read_input_tokens": 100093,
+          "cache_creation_input_tokens": 2160,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2160
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 190 · 2026-05-16T04:59:01.339Z_
+
+<details><summary>↩ Tool result · `toolu_01L4HPdWnFggQUuNJaeyeEBq`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a4ff313a-3210-461f-a2d0-79822fa6ee9e",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "1be64c8f-ed65-4e8c-867f-c9e4fddc7946",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "a4ff313a-3210-461f-a2d0-79822fa6ee9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 191 · 2026-05-16T04:59:02.115Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01RS1aPREN414GRaeagzZsyQ`</summary>
+
+```json
+{
+  "pattern": "Q1.*0\\.110|0\\.110.*Q1",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper",
+  "output_mode": "content",
+  "-n": true,
+  "context": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1be64c8f-ed65-4e8c-867f-c9e4fddc7946",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f3LFs9CKgfVuR7uuv3",
+  "type": "assistant",
+  "uuid": "f1f017d4-89d4-4b01-8876-e3133b4012c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A43NfvXnkEbo9XQWxbaUtT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2160,
+      "cache_read_input_tokens": 100093,
+      "output_tokens": 842,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2160,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 842,
+          "cache_read_input_tokens": 100093,
+          "cache_creation_input_tokens": 2160,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2160
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 192 · 2026-05-16T04:59:02.167Z_
+
+```json
+{
+  "parentUuid": "015f6d0a-ff07-4de8-b922-5938a1e08dbc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "28bb3aa2-e8c3-424c-89b4-a0272d25c5f8",
+  "timestamp": "2026-05-16T04:59:02.167Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 193 · 2026-05-16T04:59:10.582Z_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Found it! In `artifacts/_project/paper/experiments.tex` line 181:
+```
+SJ achieves $\rho{=}0.062$ ($p{=}0.106$, not statistically significant), with 54\% of instances at zero F1.
+```
+
+This is the OLD version of the paper (artifacts/_project/paper/), which has 0.062 for WNUT SJ ρ. The current version (docs/paper/sections/) has already been updated to 0.089 in the WNUT table.
+
+But wait — the current paper text in experiments.tex line 50 doesn't mention SJ ρ=0.089 in inline text. 
+
+The inline text just references Table tab:wnut, which contains the correct 0.089 value. So for c021, the old artifacts version had 0.062 but the current version already has the corrected 0.089 — this has been fixed. Now I need to track down the old LP RE conditional rho value of 0.002 in the artifacts version.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "28bb3aa2-e8c3-424c-89b4-a0272d25c5f8",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f4N8ksXh3APbE92SsG",
+  "type": "assistant",
+  "uuid": "65fc4ad6-1b55-4b23-bd1b-c05b2550cd97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VyTSX3kpYHjKRYP6dWAxaE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1639,
+      "cache_read_input_tokens": 102253,
+      "output_tokens": 530,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1639,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 530,
+          "cache_read_input_tokens": 102253,
+          "cache_creation_input_tokens": 1639,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1639
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 194 · 2026-05-16T04:59:10.963Z_
+
+找到了 c021 的旧值！`artifacts/_project/paper/experiments.tex:181` 有 SJ ρ=0.062。已在当前版本修正。继续搜索 c032 的 0.002。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65fc4ad6-1b55-4b23-bd1b-c05b2550cd97",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f4N8ksXh3APbE92SsG",
+  "type": "assistant",
+  "uuid": "bd53a118-5239-4e62-a465-2a3b0c5db21a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VyTSX3kpYHjKRYP6dWAxaE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1639,
+      "cache_read_input_tokens": 102253,
+      "output_tokens": 530,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1639,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 530,
+          "cache_read_input_tokens": 102253,
+          "cache_creation_input_tokens": 1639,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1639
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 195 · 2026-05-16T04:59:12.147Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_012Pn5ePyxrc5PWKrADZyR5N`</summary>
+
+```json
+{
+  "pattern": "LP.*RE.*rho|LP.*cond.*RE|logprob.*RE.*rho|0\\.002",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper",
+  "output_mode": "content",
+  "-n": true,
+  "context": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd53a118-5239-4e62-a465-2a3b0c5db21a",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f4N8ksXh3APbE92SsG",
+  "type": "assistant",
+  "uuid": "54f2d2e4-9c50-4e3b-84a9-df7db071f448",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VyTSX3kpYHjKRYP6dWAxaE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1639,
+      "cache_read_input_tokens": 102253,
+      "output_tokens": 530,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1639,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 530,
+          "cache_read_input_tokens": 102253,
+          "cache_creation_input_tokens": 1639,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1639
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 196 · 2026-05-16T04:59:12.178Z_
+
+<details><summary>↩ Tool result · `toolu_012Pn5ePyxrc5PWKrADZyR5N`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-15-\midrule
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-16-Mean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\
+artifacts/_project/paper/freeform_ablation_appendix_table.tex:17:Mean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-18-Tied fraction ($\varepsilon{=}0.05$) & 59.7\% & 57.7\% & $-$2.0\,pp \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-19-\bottomrule
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-31-\midrule
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-32-\multirow{3}{*}{NER}
+artifacts/_project/paper/freeform_ablation_appendix_table.tex:33:  & Greedy        & 0.6182 & 0.6204 & \textbf{+0.0022} \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-34-  & LP-selected   & 0.6241 & 0.6222 & $-$0.0019 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-35-  & Selection gap & +0.0059 & +0.0018 & $-$0.0041 \\
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-57-FK & 0.2665 & 0.3197 & \textbf{+0.0532} & 0.2752 & 0.3145 & \textbf{+0.0393} \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-58-LP & 0.2052 & 0.2129 & \textbf{+0.0077} & 0.2662 & 0.3042 & \textbf{+0.0379} \\
+artifacts/_project/paper/freeform_ablation_appendix_table.tex:59:EM & 0.2945 & 0.3171 & \textbf{+0.0225} & 0.1344 & 0.1367 & \textbf{+0.0024} \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-60-VC & 0.3792 & 0.4089 & \textbf{+0.0297} & 0.3498 & 0.3234 & $-$0.0263 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-61-\bottomrule
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "54f2d2e4-9c50-4e3b-84a9-df7db071f448",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "fc43e37f-295d-4e21-9aa8-a908af0451b2",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-15-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-16-Mean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\nartifacts/_project/paper/freeform_ablation_appendix_table.tex:17:Mean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-18-Tied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-19-\\bottomrule\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-31-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-32-\\multirow{3}{*}{NER}\nartifacts/_project/paper/freeform_ablation_appendix_table.tex:33:  & Greedy        & 0.6182 & 0.6204 & \\textbf{+0.0022} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-34-  & LP-selected   & 0.6241 & 0.6222 & $-$0.0019 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-35-  & Selection gap & +0.0059 & +0.0018 & $-$0.0041 \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-57-FK & 0.2665 & 0.3197 & \\textbf{+0.0532} & 0.2752 & 0.3145 & \\textbf{+0.0393} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-58-LP & 0.2052 & 0.2129 & \\textbf{+0.0077} & 0.2662 & 0.3042 & \\textbf{+0.0379} \\\\\nartifacts/_project/paper/freeform_ablation_appendix_table.tex:59:EM & 0.2945 & 0.3171 & \\textbf{+0.0225} & 0.1344 & 0.1367 & \\textbf{+0.0024} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-60-VC & 0.3792 & 0.4089 & \\textbf{+0.0297} & 0.3498 & 0.3234 & $-$0.0263 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-61-\\bottomrule",
+    "numLines": 17
+  },
+  "sourceToolAssistantUUID": "54f2d2e4-9c50-4e3b-84a9-df7db071f448",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 197_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "fc43e37f-295d-4e21-9aa8-a908af0451b2",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 198_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit provenance values in paper against registry",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 199 · 2026-05-16T04:59:17.722Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No direct match for "0.002" as LP cond RE rho in the artifacts/_project/paper either. Let me do a broader search across all artifacts and check the old experiments.tex more carefully for any LP RE conditional mention.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc43e37f-295d-4e21-9aa8-a908af0451b2",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f57DbVo4Kxef6PaLDD",
+  "type": "assistant",
+  "uuid": "4894cbbe-bf84-4e92-954d-e4217a6c73b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UqsRrnZctxxMBiz6CBzhmo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1689,
+      "cache_read_input_tokens": 103892,
+      "output_tokens": 391,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1689,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 391,
+          "cache_read_input_tokens": 103892,
+          "cache_creation_input_tokens": 1689,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1689
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 200 · 2026-05-16T04:59:19.636Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_014AS2oCWKrQDjsJfEsVdZmz`</summary>
+
+```json
+{
+  "pattern": "LP.*collapses|LP.*RE.*0\\.|LP.*near.zero",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper",
+  "output_mode": "content",
+  "-n": true,
+  "context": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4894cbbe-bf84-4e92-954d-e4217a6c73b1",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f57DbVo4Kxef6PaLDD",
+  "type": "assistant",
+  "uuid": "d21139b3-4a03-4cd8-a8e9-372885f16046",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UqsRrnZctxxMBiz6CBzhmo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1689,
+      "cache_read_input_tokens": 103892,
+      "output_tokens": 391,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1689,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 391,
+          "cache_read_input_tokens": 103892,
+          "cache_creation_input_tokens": 1689,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1689
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 201 · 2026-05-16T04:59:19.664Z_
+
+<details><summary>↩ Tool result · `toolu_014AS2oCWKrQDjsJfEsVdZmz`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d21139b3-4a03-4cd8-a8e9-372885f16046",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "1355415d-da38-4add-a0d9-f747dfc1aeba",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "d21139b3-4a03-4cd8-a8e9-372885f16046",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 202 · 2026-05-16T04:59:20.835Z_
+
+<details><summary>↩ Tool result · `toolu_017i7DBj1efutypFv8WViLyn`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-62-
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-63-\paragraph{Structural signals dominate on complex schemas.}
+artifacts/_project/paper/experiments.tex:64:On SciERC NER, Voting Confidence achieves $\rho{=}0.502$, substantially outperforming the second-best signal, SJ ($\rho{=}0.357$), and all remaining signals ($\rho{\leq}0.265$).
+artifacts/_project/paper/experiments.tex-65-Voting's advantage reflects its extraction-level granularity: it rewards entities that appear consistently while penalizing hallucinated or missed ones, whereas SJ compares entire sets and is sensitive to both overlap and total extraction count.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-66-The structural advantage persists on RE, where Voting ($\rho{=}0.422$) again leads.
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-259-LLaMA-3.1-8B-Instruct replicates the structural-over-surface ordering on SciERC NER (SJ $\rho{=}0.325{\pm}0.021$, FK $\rho{=}0.256{\pm}0.024$, 3-seed mean).
+artifacts/_project/paper/experiments.tex-260-On CoNLL, the cross-model gap is minimal (Table~\ref{tab:quality_estimation}): SJ achieves $\rho{=}0.431$ (LLaMA) vs.\ 0.436 (Qwen), $\Delta{=}0.005$.
+artifacts/_project/paper/experiments.tex:261:On conditional RE (non-zero F1 instances), SJ recovers to $\rho{=}0.405$ while FK drops to $\rho{=}0.259$, confirming that structural advantage is robust across both models and evaluation conditions.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-262-
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-263-\paragraph{Evaluation circularity.}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-268-We define instances as \textit{tied} when the within-sample log-probability range falls below $\varepsilon{=}0.05$ nats; results are robust to $\varepsilon \in \{0.01, 0.05, 0.10\}$ (tied fractions of 45\%, 60\%, 72\% on NER, with consistent patterns across all thresholds).
+artifacts/_project/paper/experiments.tex-269-Filtering to non-zero F1 instances improves SJ correlations: NER $\rho{=}0.412$ (from 0.357), RE $\rho{=}0.368$ at $N{=}8$.
+artifacts/_project/paper/experiments.tex:270:At $N{=}16$, signal families diverge sharply on conditional RE: SJ maintains $\rho{=}0.308$, while logprob drops to $\rho{=}{-}0.026$---effectively zero---showing that logprob's apparent RE utility at $N{=}8$ does not generalize to larger sample sets.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-271-For applications that can first filter out catastrophic failures, SJ's effective ranking approaches $\rho{\approx}0.4$ on both NER and RE, a regime where quality-aware aggregation can provide meaningful benefit.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-272-
+--
+artifacts/_project/paper/discussion.tex-5-For per-instance quality estimation, entity voting provides the strongest single signal ($\rho{=}0.50$, Table~\ref{tab:quality_estimation}).
+artifacts/_project/paper/discussion.tex-6-When temperature or cross-condition robustness is required, SJ is preferable: its temperature sensitivity is small with bootstrap CIs including zero (Table~\ref{tab:robustness}), and it generalizes beyond entity-level structure to any set-valued output.
+artifacts/_project/paper/discussion.tex:7:Under conditional filtering, SJ achieves $\rho{\approx}0.4$ on both NER and RE (\S\ref{sec:complexity_robustness}), and its ensemble with voting reaches AUROC${=}0.735$ (\S\ref{sec:selection_gap}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/discussion.tex-8-For binary accept/reject decisions, logprob is most effective (AUROC${=}0.761$ on CoNLL with LLaMA).
+artifacts/_project/paper/discussion.tex-9-For best-of-$N$ selection, greedy decoding is near-optimal on NER; on RE, logprob is the only helpful signal (+2.3~pp, Table~\ref{tab:selection}).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60e70c53-c25d-45b8-84c3-d5e618fd957b",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "02207eb0-e61a-41d3-a911-b6899484aa1f",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-62-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-63-\\paragraph{Structural signals dominate on complex schemas.}\nartifacts/_project/paper/experiments.tex:64:On SciERC NER, Voting Confidence achieves $\\rho{=}0.502$, substantially outperforming the second-best signal, SJ ($\\rho{=}0.357$), and all remaining signals ($\\rho{\\leq}0.265$).\nartifacts/_project/paper/experiments.tex-65-Voting's advantage reflects its extraction-level granularity: it rewards entities that appear consistently while penalizing hallucinated or missed ones, whereas SJ compares entire sets and is sensitive to both overlap and total extraction count.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-66-The structural advantage persists on RE, where Voting ($\\rho{=}0.422$) again leads.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-259-LLaMA-3.1-8B-Instruct replicates the structural-over-surface ordering on SciERC NER (SJ $\\rho{=}0.325{\\pm}0.021$, FK $\\rho{=}0.256{\\pm}0.024$, 3-seed mean).\nartifacts/_project/paper/experiments.tex-260-On CoNLL, the cross-model gap is minimal (Table~\\ref{tab:quality_estimation}): SJ achieves $\\rho{=}0.431$ (LLaMA) vs.\\ 0.436 (Qwen), $\\Delta{=}0.005$.\nartifacts/_project/paper/experiments.tex:261:On conditional RE (non-zero F1 instances), SJ recovers to $\\rho{=}0.405$ while FK drops to $\\rho{=}0.259$, confirming that structural advantage is robust across both models and evaluation conditions.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-262-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-263-\\paragraph{Evaluation circularity.}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-268-We define instances as \\textit{tied} when the within-sample log-probability range falls below $\\varepsilon{=}0.05$ nats; results are robust to $\\varepsilon \\in \\{0.01, 0.05, 0.10\\}$ (tied fractions of 45\\%, 60\\%, 72\\% on NER, with consistent patterns across all thresholds).\nartifacts/_project/paper/experiments.tex-269-Filtering to non-zero F1 instances improves SJ correlations: NER $\\rho{=}0.412$ (from 0.357), RE $\\rho{=}0.368$ at $N{=}8$.\nartifacts/_project/paper/experiments.tex:270:At $N{=}16$, signal families diverge sharply on conditional RE: SJ maintains $\\rho{=}0.308$, while logprob drops to $\\rho{=}{-}0.026$---effectively zero---showing that logprob's apparent RE utility at $N{=}8$ does not generalize to larger sample sets.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-271-For applications that can first filter out catastrophic failures, SJ's effective ranking approaches $\\rho{\\approx}0.4$ on both NER and RE, a regime where quality-aware aggregation can provide meaningful benefit.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-272-\n--\nartifacts/_project/paper/discussion.tex-5-For per-instance quality estimation, entity voting provides the strongest single signal ($\\rho{=}0.50$, Table~\\ref{tab:quality_estimation}).\nartifacts/_project/paper/discussion.tex-6-When temperature or cross-condition robustness is required, SJ is preferable: its temperature sensitivity is small with bootstrap CIs including zero (Table~\\ref{tab:robustness}), and it generalizes beyond entity-level structure to any set-valued output.\nartifacts/_project/paper/discussion.tex:7:Under conditional filtering, SJ achieves $\\rho{\\approx}0.4$ on both NER and RE (\\S\\ref{sec:complexity_robustness}), and its ensemble with voting reaches AUROC${=}0.735$ (\\S\\ref{sec:selection_gap}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/discussion.tex-8-For binary accept/reject decisions, logprob is most effective (AUROC${=}0.761$ on CoNLL with LLaMA).\nartifacts/_project/paper/discussion.tex-9-For best-of-$N$ selection, greedy decoding is near-optimal on NER; on RE, logprob is the only helpful signal (+2.3~pp, Table~\\ref{tab:selection}).",
+    "numLines": 23
+  },
+  "sourceToolAssistantUUID": "60e70c53-c25d-45b8-84c3-d5e618fd957b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 203 · 2026-05-16T04:59:20.815Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_017i7DBj1efutypFv8WViLyn`</summary>
+
+```json
+{
+  "pattern": "conditional.*rho|cond.*rho.*0\\.",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper",
+  "output_mode": "content",
+  "-n": true,
+  "context": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1355415d-da38-4add-a0d9-f747dfc1aeba",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f57DbVo4Kxef6PaLDD",
+  "type": "assistant",
+  "uuid": "60e70c53-c25d-45b8-84c3-d5e618fd957b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UqsRrnZctxxMBiz6CBzhmo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1689,
+      "cache_read_input_tokens": 103892,
+      "output_tokens": 391,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1689,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 391,
+          "cache_read_input_tokens": 103892,
+          "cache_creation_input_tokens": 1689,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1689
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 204 · 2026-05-16T04:59:52.328Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me look more closely at the old version of the paper. The old version at `artifacts/_project/paper/experiments.tex` line 270 mentions:
+"At N=16, signal families diverge sharply on conditional RE: SJ maintains ρ=0.308, while logprob drops to ρ=-0.026"
+
+This is about N=16. The paper doesn't explicitly mention the N=8 LP conditional RE rho in the old version either.
+
+Let me also check if there's a specific heatmap or figure that had the 0.002 value. 
+
+Maybe the "0.002" was actually the difference between rho_sj_cond and rho_fk_cond somewhere. Let me search across all local files to see if this value appears in any analysis or report related to LP RE rho. But actually, I should focus on what the task is telling me: the registry shows RE cond logprob rho = 0.0112 from exp_012_rerun_1024, and the error is coming from exp_015.
+
+Looking at the metrics, exp_015_metrics_expansion with max_tokens=512 gives 0.1457, but the paper currently writes 0.011, which matches the registry value of 0.0112. So the paper appears to be correct now. The "0.002" mentioned in the task might be a misreading, an already-fixed issue, or from an older version of the paper. It could also be confusion with a p-value or something from the old figure data. Let me check the exp_015 analysis report to confirm, then I'll have enough to write the audit summary.
+
+For c032 (LP cond RE ρ), the paper says 0.011 which aligns with the registry truth of 0.0112 from exp_012_rerun_1024 — that's correct when rounded to three decimal places. The exp_015 wrong source would give 0.1457, but that's not in the paper. The "0.002" value from the task doesn't appear anywhere in current or previous paper versions, so it's likely a misattribution.
+
+Now checking c023 (Q1-Q4 stratification SJ ρ) where the paper reports Q1=0.110 through Q4=0.473 in the appendix.
+
+Looking at the registry data for scierc_re stratified by sentence length, I'm getting Q1=0.4472 and Q4=0.5401, which clearly doesn't match the paper's values. I've checked all available stratification dimensions — by_sent_len, by_greedy_f1, by_entity_count — and none of them produce those numbers. The closest I can find is exp_009_v2 with by_sent_len tertiles showing T2=0.138, which is somewhat near the paper's 0.110 but still off. These values most likely came from an intermediate analysis with different binning or filtering that got incorrectly attributed to RE.
+
+For WNUT, the current paper value of 0.089 checks out against the registry at 0.08883, so that's correct. The old version had 0.062, which has since been fixed, though I can't pinpoint exactly where that earlier number originated — possibly from a pilot run or different filtering approach. I've confirmed there are no active TACRED processes on the server, so I'm ready to compile the audit report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02207eb0-e61a-41d3-a911-b6899484aa1f",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f5k7d1Hy93p4euAxG1",
+  "type": "assistant",
+  "uuid": "0acfeccb-9fdb-4077-9652-9841d1d0fb23",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U9nKc2kcsSFtM5iW8DyXVx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 105581,
+      "output_tokens": 1364,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1364,
+          "cache_read_input_tokens": 105581,
+          "cache_creation_input_tokens": 1920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 205 · 2026-05-16T04:59:53.062Z_
+
+数据收集完毕。总结发现：
+- c023：确认差异（appendix.tex:150，Q1=0.110→Q4=0.473 vs 真值 Q1=0.447→Q4=0.540）
+- c021：已在 docs/ 版修正为 0.089，旧版 artifacts/ 有 0.062
+- c032：当前论文写的是 0.011（≈registry 0.0112），未找到 0.002
+
+现在写审计报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0acfeccb-9fdb-4077-9652-9841d1d0fb23",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f5k7d1Hy93p4euAxG1",
+  "type": "assistant",
+  "uuid": "35a11f05-53e3-4af9-91c8-820f0857a715",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U9nKc2kcsSFtM5iW8DyXVx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 105581,
+      "output_tokens": 1364,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1364,
+          "cache_read_input_tokens": 105581,
+          "cache_creation_input_tokens": 1920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 206 · 2026-05-16T04:59:54.189Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01AZpW8UZHKG1vKz7qZby3Cy`</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/provenance_audit_d105",
+  "description": "Create audit report output directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "35a11f05-53e3-4af9-91c8-820f0857a715",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f5k7d1Hy93p4euAxG1",
+  "type": "assistant",
+  "uuid": "79e4efe0-e33d-4c13-a678-79bd57576e95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U9nKc2kcsSFtM5iW8DyXVx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 105581,
+      "output_tokens": 1364,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1364,
+          "cache_read_input_tokens": 105581,
+          "cache_creation_input_tokens": 1920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 207 · 2026-05-16T04:59:54.356Z_
+
+<details><summary>↩ Tool result · `toolu_01AZpW8UZHKG1vKz7qZby3Cy`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "79e4efe0-e33d-4c13-a678-79bd57576e95",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "f7b357df-c29d-4179-882a-405721fbc21f",
+  "toolUseResult": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": true
+  },
+  "sourceToolAssistantUUID": "79e4efe0-e33d-4c13-a678-79bd57576e95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 208 · 2026-05-16T05:00:34.949Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_0141mhVpFJ1GMxMYNbXNLQuQ`</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/provenance_audit_d105/audit_report.md",
+  "content": "# Provenance Audit Report (D105)\n\n**Date**: 2026-05-16  \n**Auditor**: Worker (automated)  \n**Scope**: 3 reported numerical discrepancies between paper and registry\n\n---\n\n## Summary\n\n| ID | Claim | Current Paper Value | Registry Truth | Status |\n|----|-------|-------------------|----------------|--------|\n| c032 | LP cond RE ρ = 0.002 | **0.011** | 0.0112 | CORRECT (already fixed or misreported) |\n| c023 | Q1-Q4 SJ ρ = 0.110→0.473 | **0.110→0.473** | 0.447→0.540 | **DISCREPANCY CONFIRMED** |\n| c021 | WNUT SJ ρ = 0.062 | **0.089** | 0.089 | CORRECT (fixed in docs/ version) |\n\n---\n\n## Detailed Findings\n\n### c032: LP Conditional RE ρ (72x差异)\n\n**Reported**: Paper writes 0.002, registry truth is 0.0112  \n**Actual finding**: Paper currently writes **0.011**, NOT 0.002\n\n- `docs/paper/sections/experiments.tex:50` — \"LP $^\\dagger$RE collapses to $\\rho{=}0.011$\"\n- `docs/paper/sections/appendix.tex:137` — figure caption: \"LP RE collapses to near-zero ($\\rho{=}0.011$)\"\n\n**Registry verification** (`exp_012_rerun_1024/report.json`):\n```\nre_logprob_baseline.conditional.rho = 0.01119 (n=238)\n```\n\n**Verdict**: Paper's 0.011 is a correct 3-decimal rounding of 0.01119. No error.\n\n**Wrong-source confirmation**: exp_015 (max_tokens=512) gives cond rho=0.1457 (n=296) — different filtering threshold produces inflated n and different rho, but this value is NOT in the paper.\n\n**Note on \"0.002\"**: This value was NOT found anywhere in the paper (current or old versions) as LP cond RE ρ. The task description may contain a misattribution. The only 0.002 values in experiments.tex are confidence intervals (±0.002) and unrelated deltas.\n\n---\n\n### c023: Q1-Q4 Stratification SJ ρ — CONFIRMED DISCREPANCY\n\n**Location**: `docs/paper/sections/appendix.tex:150`\n\n**Paper text**:\n```latex\nFor RE, SJ $\\rho$ increases monotonically with sentence length \n(Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$)\n```\n\n**Registry truth** (`exp009_stratification_results.json`, scierc_re, by_sent_len):\n```\nQ1 (lowest): n=143, sj_rho=0.4472\nQ2:          n=151, sj_rho=0.3191\nQ3:          n=119, sj_rho=0.4975\nQ4 (highest):n=138, sj_rho=0.5401\n```\n\n**Discrepancy analysis**:\n- Paper Q1=0.110 vs truth Q1=0.447 (4x difference)\n- Paper Q4=0.473 vs truth Q4=0.540 (14% off)\n- Paper claims \"monotonically increasing\" — truth is NON-monotonic (Q2 dips to 0.319)\n- Paper's Fisher z-test p=0.004 may be valid for the wrong values, not the truth\n\n**Possible confusion sources**:\n1. **exp_009_v2** (re_seed42, tertile bins): T1=-0.046, T2=0.138, T3=0.267 — T2≈0.138 is close to 0.110 but not exact\n2. **by_greedy_f1 dimension** (RE): values are -0.043, -0.003, 0.006, 0.210 — no match\n3. **Different pipeline version**: The values 0.110 and 0.473 may originate from an intermediate analysis with different bin boundaries or conditional filtering not present in the final data\n\n**Root cause hypothesis**: Values likely came from a preliminary analysis run (possibly with quartile boundaries computed on a subset, or from a different stratification variable) and were never reconciled with the final exp009 data.\n\n**Correct text should read**: \"For RE, SJ ρ ranges from 0.319 (Q2) to 0.540 (Q4) across sentence-length quartiles (Q1: 0.447); the pattern is non-monotonic.\"\n\n---\n\n### c021: WNUT SJ ρ\n\n**Reported**: Paper writes 0.062, registry truth is 0.089  \n**Actual finding**: Paper **already fixed** to 0.089 in current compilation version.\n\n**Current paper** (`docs/paper/sections/appendix.tex:222`, Table tab:wnut):\n```latex\nSJ      & .089 & .020 & .517 & .288 & ${<}$1e-7 \\\\\n```\n\n**Registry verification** (`exp003_wnut17_eval/report.json`):\n```\ncorrelation_softjaccard_vs_f1_full.rho = 0.08883 (n=689)\ncorrelation_softjaccard_vs_f1_conditional.rho = 0.2884 (n=334)\n```\n\n**Old version** (`artifacts/_project/paper/experiments.tex:181`):\n```latex\nSJ achieves $\\rho{=}0.062$ ($p{=}0.106$, not statistically significant)\n```\n\n**Verdict**: Already corrected. The old 0.062 (artifacts/ version) was likely from an earlier pilot run (exp003_wnut17_pilot?) or from full-set n=1287 without gold-empty filtering.\n\n---\n\n## TACRED Process Check\n\n```\nps aux | grep tacred → No matches\n```\n\nNo TACRED-related processes running on autodl-5090. The `exp_tacred_re_benchmark` in registry has status=PREPARING, conclusion=killed.\n\n---\n\n## Action Items\n\n| Priority | Item | Action Required |\n|----------|------|----------------|\n| HIGH | c023 (appendix.tex:150) | Fix Q1-Q4 values to match registry truth. Remove \"monotonically increasing\" claim. Consider whether to report quartiles (non-monotonic) or focus on Q1 vs Q4 comparison only. |\n| NONE | c032 | No action needed — paper is correct (0.011 ≈ 0.0112). |\n| NONE | c021 | No action needed — already fixed in docs/ compilation version. |\n| LOW | Constraint C001 reminder | Confirm artifacts/_project/paper/ files are NOT used in compilation. They contain stale values (0.062 for WNUT). |\n\n---\n\n## Data Provenance Chain\n\n```\nexp_012_rerun_1024 (max_tokens=1024, n_cond=238) → LP RE cond ρ=0.0112 → paper: 0.011 ✓\nexp009_stratification_results.json (by_sent_len, scierc_re) → Q1=0.447, Q4=0.540 → paper: 0.110, 0.473 ✗\nexp003_wnut17_eval (n=689, gold-filtered) → SJ ρ=0.089 → paper: 0.089 ✓\n```\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7b357df-c29d-4179-882a-405721fbc21f",
+  "isSidechain": false,
+  "requestId": "req_011Cb5f8DJYsfNeTZyqLQyyB",
+  "type": "assistant",
+  "uuid": "ce313e1a-2ccb-4bcd-a77d-cfdcfee09553",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D2zi5mqtAAyUTJ2A9szMkC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1382,
+      "cache_read_input_tokens": 107501,
+      "output_tokens": 2008,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1382,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2008,
+          "cache_read_input_tokens": 107501,
+          "cache_creation_input_tokens": 1382,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1382
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 209 · 2026-05-16T05:00:34.973Z_
+
+<details><summary>↩ Tool result · `toolu_0141mhVpFJ1GMxMYNbXNLQuQ`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/provenance_audit_d105/audit_report.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "ce313e1a-2ccb-4bcd-a77d-cfdcfee09553",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "c717faea-d783-41fc-ac28-75ea3ce4b578",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/provenance_audit_d105/audit_report.md",
+    "content": "# Provenance Audit Report (D105)\n\n**Date**: 2026-05-16  \n**Auditor**: Worker (automated)  \n**Scope**: 3 reported numerical discrepancies between paper and registry\n\n---\n\n## Summary\n\n| ID | Claim | Current Paper Value | Registry Truth | Status |\n|----|-------|-------------------|----------------|--------|\n| c032 | LP cond RE ρ = 0.002 | **0.011** | 0.0112 | CORRECT (already fixed or misreported) |\n| c023 | Q1-Q4 SJ ρ = 0.110→0.473 | **0.110→0.473** | 0.447→0.540 | **DISCREPANCY CONFIRMED** |\n| c021 | WNUT SJ ρ = 0.062 | **0.089** | 0.089 | CORRECT (fixed in docs/ version) |\n\n---\n\n## Detailed Findings\n\n### c032: LP Conditional RE ρ (72x差异)\n\n**Reported**: Paper writes 0.002, registry truth is 0.0112  \n**Actual finding**: Paper currently writes **0.011**, NOT 0.002\n\n- `docs/paper/sections/experiments.tex:50` — \"LP $^\\dagger$RE collapses to $\\rho{=}0.011$\"\n- `docs/paper/sections/appendix.tex:137` — figure caption: \"LP RE collapses to near-zero ($\\rho{=}0.011$)\"\n\n**Registry verification** (`exp_012_rerun_1024/report.json`):\n```\nre_logprob_baseline.conditional.rho = 0.01119 (n=238)\n```\n\n**Verdict**: Paper's 0.011 is a correct 3-decimal rounding of 0.01119. No error.\n\n**Wrong-source confirmation**: exp_015 (max_tokens=512) gives cond rho=0.1457 (n=296) — different filtering threshold produces inflated n and different rho, but this value is NOT in the paper.\n\n**Note on \"0.002\"**: This value was NOT found anywhere in the paper (current or old versions) as LP cond RE ρ. The task description may contain a misattribution. The only 0.002 values in experiments.tex are confidence intervals (±0.002) and unrelated deltas.\n\n---\n\n### c023: Q1-Q4 Stratification SJ ρ — CONFIRMED DISCREPANCY\n\n**Location**: `docs/paper/sections/appendix.tex:150`\n\n**Paper text**:\n```latex\nFor RE, SJ $\\rho$ increases monotonically with sentence length \n(Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$)\n```\n\n**Registry truth** (`exp009_stratification_results.json`, scierc_re, by_sent_len):\n```\nQ1 (lowest): n=143, sj_rho=0.4472\nQ2:          n=151, sj_rho=0.3191\nQ3:          n=119, sj_rho=0.4975\nQ4 (highest):n=138, sj_rho=0.5401\n```\n\n**Discrepancy analysis**:\n- Paper Q1=0.110 vs truth Q1=0.447 (4x difference)\n- Paper Q4=0.473 vs truth Q4=0.540 (14% off)\n- Paper claims \"monotonically increasing\" — truth is NON-monotonic (Q2 dips to 0.319)\n- Paper's Fisher z-test p=0.004 may be valid for the wrong values, not the truth\n\n**Possible confusion sources**:\n1. **exp_009_v2** (re_seed42, tertile bins): T1=-0.046, T2=0.138, T3=0.267 — T2≈0.138 is close to 0.110 but not exact\n2. **by_greedy_f1 dimension** (RE): values are -0.043, -0.003, 0.006, 0.210 — no match\n3. **Different pipeline version**: The values 0.110 and 0.473 may originate from an intermediate analysis with different bin boundaries or conditional filtering not present in the final data\n\n**Root cause hypothesis**: Values likely came from a preliminary analysis run (possibly with quartile boundaries computed on a subset, or from a different stratification variable) and were never reconciled with the final exp009 data.\n\n**Correct text should read**: \"For RE, SJ ρ ranges from 0.319 (Q2) to 0.540 (Q4) across sentence-length quartiles (Q1: 0.447); the pattern is non-monotonic.\"\n\n---\n\n### c021: WNUT SJ ρ\n\n**Reported**: Paper writes 0.062, registry truth is 0.089  \n**Actual finding**: Paper **already fixed** to 0.089 in current compilation version.\n\n**Current paper** (`docs/paper/sections/appendix.tex:222`, Table tab:wnut):\n```latex\nSJ      & .089 & .020 & .517 & .288 & ${<}$1e-7 \\\\\n```\n\n**Registry verification** (`exp003_wnut17_eval/report.json`):\n```\ncorrelation_softjaccard_vs_f1_full.rho = 0.08883 (n=689)\ncorrelation_softjaccard_vs_f1_conditional.rho = 0.2884 (n=334)\n```\n\n**Old version** (`artifacts/_project/paper/experiments.tex:181`):\n```latex\nSJ achieves $\\rho{=}0.062$ ($p{=}0.106$, not statistically significant)\n```\n\n**Verdict**: Already corrected. The old 0.062 (artifacts/ version) was likely from an earlier pilot run (exp003_wnut17_pilot?) or from full-set n=1287 without gold-empty filtering.\n\n---\n\n## TACRED Process Check\n\n```\nps aux | grep tacred → No matches\n```\n\nNo TACRED-related processes running on autodl-5090. The `exp_tacred_re_benchmark` in registry has status=PREPARING, conclusion=killed.\n\n---\n\n## Action Items\n\n| Priority | Item | Action Required |\n|----------|------|----------------|\n| HIGH | c023 (appendix.tex:150) | Fix Q1-Q4 values to match registry truth. Remove \"monotonically increasing\" claim. Consider whether to report quartiles (non-monotonic) or focus on Q1 vs Q4 comparison only. |\n| NONE | c032 | No action needed — paper is correct (0.011 ≈ 0.0112). |\n| NONE | c021 | No action needed — already fixed in docs/ compilation version. |\n| LOW | Constraint C001 reminder | Confirm artifacts/_project/paper/ files are NOT used in compilation. They contain stale values (0.062 for WNUT). |\n\n---\n\n## Data Provenance Chain\n\n```\nexp_012_rerun_1024 (max_tokens=1024, n_cond=238) → LP RE cond ρ=0.0112 → paper: 0.011 ✓\nexp009_stratification_results.json (by_sent_len, scierc_re) → Q1=0.447, Q4=0.540 → paper: 0.110, 0.473 ✗\nexp003_wnut17_eval (n=689, gold-filtered) → SJ ρ=0.089 → paper: 0.089 ✓\n```\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "ce313e1a-2ccb-4bcd-a77d-cfdcfee09553",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 210_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "c717faea-d783-41fc-ac28-75ea3ce4b578",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 211_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit provenance values in paper against registry",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Tool call
+
+_source line 212 · 2026-05-16T05:00:40.966Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01Cyhe7SgABzEMVqA7yTnndX`</summary>
+
+```json
+{
+  "name": "provenance_audit_d105",
+  "type": "report",
+  "description": "Provenance audit of 3 numerical discrepancies between paper and registry. c023 confirmed (appendix.tex:150), c021 and c032 already correct in current paper.",
+  "project": "struct_self_consist_ie",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/provenance_audit_d105/audit_report.md",
+  "tags": [
+    "audit",
+    "provenance",
+    "d105"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c717faea-d783-41fc-ac28-75ea3ce4b578",
+  "isSidechain": false,
+  "requestId": "req_011Cb5fBCvoh72sQNC6ZroyK",
+  "type": "assistant",
+  "uuid": "42dfa18b-3b88-47cb-b17b-0e8a8c0ca5f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VJdyCARHwS3JhjBPa9UrkT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2070,
+      "cache_read_input_tokens": 108883,
+      "output_tokens": 255,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2070,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 255,
+          "cache_read_input_tokens": 108883,
+          "cache_creation_input_tokens": 2070,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2070
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 213 · 2026-05-16T05:00:41.305Z_
+
+<details><summary>↩ Tool result · `toolu_01Cyhe7SgABzEMVqA7yTnndX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_ea4a11\", \"name\": \"provenance_audit_d105\", \"type\": \"report\", \"description\": \"Provenance audit of 3 numerical discrepancies between paper and registry. c023 confirmed (appendix.tex:150), c021 and c032 already correct in current paper.\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/report/audit_report.md\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T05:00:40.972190+00:00\", \"tags\": [\"audit\", \"provenance\", \"d105\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "42dfa18b-3b88-47cb-b17b-0e8a8c0ca5f3",
+  "isSidechain": false,
+  "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+  "type": "user",
+  "uuid": "4d33ff68-07a7-4db4-86cb-7a24d259e169",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_ea4a11\\\", \\\"name\\\": \\\"provenance_audit_d105\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Provenance audit of 3 numerical discrepancies between paper and registry. c023 confirmed (appendix.tex:150), c021 and c032 already correct in current paper.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/report/audit_report.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T05:00:40.972190+00:00\\\", \\\"tags\\\": [\\\"audit\\\", \\\"provenance\\\", \\\"d105\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_ea4a11\", \"name\": \"provenance_audit_d105\", \"type\": \"report\", \"description\": \"Provenance audit of 3 numerical discrepancies between paper and registry. c023 confirmed (appendix.tex:150), c021 and c032 already correct in current paper.\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/report/audit_report.md\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T05:00:40.972190+00:00\", \"tags\": [\"audit\", \"provenance\", \"d105\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "42dfa18b-3b88-47cb-b17b-0e8a8c0ca5f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 214 · 2026-05-16T05:00:51.491Z_
+
+审计完成。结果：
+
+**1/3 有真正差异需修复**：
+- **c023** (`appendix.tex:150`)：论文写 Q1=0.110→Q4=0.473，实际数据 Q1=0.447→Q4=0.540，且非单调递增。需要修正。
+- **c032**：论文当前写 0.011，与 registry 0.0112 一致。"0.002"未在论文中找到。
+- **c021**：docs/ 版已修正为 0.089，artifacts/ 旧版残留 0.062 不参与编译。
+
+无 TACRED 进程运行。报告已写入 `artifacts/provenance_audit_d105/audit_report.md` 并注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d33ff68-07a7-4db4-86cb-7a24d259e169",
+  "isSidechain": false,
+  "requestId": "req_011Cb5fBg4TgFfi9pnHbfZKQ",
+  "type": "assistant",
+  "uuid": "4522e7a0-a710-420e-9ba4-bbbe1e986573",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012GT8h1MsZXHcR5KirscLni",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 539,
+      "cache_read_input_tokens": 110953,
+      "output_tokens": 212,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 539,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 212,
+          "cache_read_input_tokens": 110953,
+          "cache_creation_input_tokens": 539,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 539
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 215_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "4522e7a0-a710-420e-9ba4-bbbe1e986573",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 216_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit provenance values in paper against registry",
+  "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+}
+```
+
+---

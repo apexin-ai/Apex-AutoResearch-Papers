@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "0b510fc1b7c03b880010",
+  "project": "struct_self_consist_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: exp_fewnerd_",
+  "task_key": "7a2f9f9c-a4c4-4f40-98ee-37b9d3504bcd",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/7a2f9f9c-a4c4-4f40-98ee-37b9d3504bcd.jsonl",
+    "occurrence": 1,
+    "bytes": 722655,
+    "sha256": "b3a8023cb5428644862a84e7d269b458ecfb50a1b8637987674c2f1cd507ddee"
+  },
+  "statistics": {
+    "messages": 82,
+    "user_turns": 1,
+    "tool_calls": 24,
+    "roles": {
+      "record": 18,
+      "user": 1,
+      "assistant": 15,
+      "tool_call": 24,
+      "tool_result": 24
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "0b510fc1b7c03b880010-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 80,
+      "chunks": [
+        {
+          "path": "0b510fc1b7c03b880010-part-0001.json",
+          "message_count": 39
+        },
+        {
+          "path": "0b510fc1b7c03b880010-part-0002.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-cron-analyzing-done-process-exited-cleanly-w-b-data-available-exp-id-exp-fewne-copy-2.md"
+}

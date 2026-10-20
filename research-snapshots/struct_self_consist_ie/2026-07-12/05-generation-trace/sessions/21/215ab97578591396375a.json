@@ -1,0 +1,767 @@
+{
+  "schema_version": "1.0",
+  "id": "215ab97578591396375a",
+  "project": "struct_self_consist_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are Reviewer R1 for a blind peer review of a paper submitted to EMNLP 2026 Main Conference. Your focus is **Methods ",
+  "task_key": "agent-a8b517894b968981b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a8b517894b968981b.jsonl",
+    "occurrence": 1,
+    "bytes": 86298,
+    "sha256": "7a61ad99c8b026c859bb0674c90defa42888a99a32bec0fda51934b24a6de2ac"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 2,
+    "tool_calls": 4,
+    "roles": {
+      "user": 2,
+      "record": 1,
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T10:25:24.943Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are Reviewer R1 for a blind peer review of a paper submitted to EMNLP 2026 Main Conference. Your focus is **Methods and Experiments**.\n\n## Scoring Scale (ARR/EMNLP)\n- Overall Assessment 1-5: 5=Award (top 2.5%), 4=Main conference, 3.5=Main/Findings borderline, 3=Findings, 2.5=Findings borderline, 2=Resubmit next cycle, 1.5=Resubmit after next, 1=Do not resubmit\n- Soundness 1-5: 5=Excellent, 4=Strong, 3=Acceptable, 2=Poor, 1=Major issues\n- Excitement 1-5: 5=Transformative, 4=Strong, 3=Ambivalent, 2=Below average, 1=Not excited\n- Reproducibility 1-5: 5=Easy to reproduce, 1=Impossible\n\n## Paper\nRead the PDF at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260516T092241/worst/review_input_f5f46a62.pdf (pages 1-12)\n\n## Experiment Design Reference\nRead: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260516T092241/worst/review_context.yaml\nThis contains the full imagined experiment list. Use it to judge coverage: which experiments were included, which skipped, and whether the paper's claims are adequately supported.\n\n## Your Review Focus (R1: Methods + Experiments)\nEvaluate the following dimensions in detail:\n\n1. **Experimental Design Soundness**\n   - Are the datasets well-chosen and sufficient? (4 NER + 1 RE)\n   - Are the model configurations appropriate? (Qwen3-8B primary, 4B scale, LLaMA cross-arch)\n   - Is the LoRA rank ablation properly controlled?\n   - Is N=8 samples sufficient? Is T=1.0 the only temperature explored?\n   - Are the 3-seed evaluations adequate for statistical claims?\n\n2. **Statistical Rigor**\n   - Are p-values and confidence intervals properly reported?\n   - Bootstrap with 1000 iterations — sufficient?\n   - Fisher combined p-values for cross-seed analysis — appropriate?\n   - Cohen's d effect sizes — do they support practical significance?\n   - The paper claims p=0.028 and p=0.015 as \"significant\" — are these robust given multiple comparisons?\n\n3. **Metrics and Evaluation**\n   - Are the 5 confidence signals (SJ, FK, EM, VC, LP) well-defined and appropriate?\n   - Spearman ρ for QE, AUROC for binary discrimination, F1 for selection — is this evaluation suite complete?\n   - Degeneracy rate and LP compression as convergence diagnostics — novel? Well-motivated?\n\n4. **Claims vs Evidence**\n   - Does the evidence support the central claim (selection is regime-dependent)?\n   - Is the capability trap reinterpretation (R²=0.98→0.51) properly substantiated?\n   - Are the prescriptive guidelines (Table 9) sufficiently grounded in evidence?\n   - Are there overclaims or underclaims?\n\n5. **Missing Experiments / Gaps**\n   - Temperature ablation beyond T=1.0?\n   - Larger N (16, 32)?\n   - Other aggregation strategies (MBR, majority voting adapted for IE)?\n   - Supervised verifier baseline (mentioned as future work)?\n   - More LoRA rank points (4, 32, 64)?\n   - Epoch ablation (1, 2, 3, 4, 5 epochs)?\n\n6. **Reproducibility**\n   - Are all hyperparameters specified?\n   - Is the code/data availability mentioned?\n   - Could the experiments be replicated?\n\n## Output Format\nProvide your review in this exact structure:\n\n```\n### R1 Review: Methods and Experiments\n\n**Soundness Score**: X/5\n**Excitement Score**: X/5  \n**Reproducibility Score**: X/5\n**Overall Assessment**: X/5\n\n#### Strengths (Methods/Experiments)\n- S1: ...\n- S2: ...\n- S3: ...\n\n#### Weaknesses (Methods/Experiments)\n- W1: ...\n- W2: ...\n- W3: ...\n\n#### Questions for Authors\n- Q1: ...\n- Q2: ...\n\n#### Missing Experiments (severity: critical/moderate/minor)\n- M1: ...\n- M2: ...\n\n#### Detailed Comments\n[Free-form detailed analysis]\n```\n\nBe rigorous but fair. This is a diagnostic empirical study, not a methods paper — evaluate accordingly."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "d3047b4d-8dba-43e7-b80c-d5957be09c5a",
+            "agentId": "a8b517894b968981b",
+            "type": "user",
+            "uuid": "753cc031-a32b-4013-ad83-a5afd3d97b68",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8df48f23-5b79-4d80-aa5c-932cabdd7d07",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T10:25:24.950Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "753cc031-a32b-4013-ad83-a5afd3d97b68",
+                "isSidechain": true,
+                "agentId": "a8b517894b968981b",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "be5ed24b-88c5-4e1a-90c4-0af8ae29cda7",
+                "timestamp": "2026-05-16T10:25:24.950Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+                "sessionId": "8df48f23-5b79-4d80-aa5c-932cabdd7d07",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T10:25:28.238Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RMVoRYPtTG2yAKmtVEiAoB",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260516T092241/worst/review_input_f5f46a62.pdf",
+                "pages": "1-12"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be5ed24b-88c5-4e1a-90c4-0af8ae29cda7",
+            "isSidechain": true,
+            "agentId": "a8b517894b968981b",
+            "requestId": "req_011Cb65wttA9C7CTCs7Dp3Qz",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "38ea66a9-be21-4d66-b5eb-dbbb94e72d56",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8df48f23-5b79-4d80-aa5c-932cabdd7d07",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XuaDRLZhhaTZabBsV6NRPq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7023,
+                "cache_read_input_tokens": 8251,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7023,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T10:25:28.645Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TM4Q8LEow6UqGEVu3T91QL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260516T092241/worst/review_context.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38ea66a9-be21-4d66-b5eb-dbbb94e72d56",
+            "isSidechain": true,
+            "agentId": "a8b517894b968981b",
+            "requestId": "req_011Cb65wttA9C7CTCs7Dp3Qz",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "75442d9d-986b-48cf-93a3-f77e4917889c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8df48f23-5b79-4d80-aa5c-932cabdd7d07",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XuaDRLZhhaTZabBsV6NRPq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7023,
+                "cache_read_input_tokens": 8251,
+                "output_tokens": 218,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7023
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 218,
+                    "cache_read_input_tokens": 8251,
+                    "cache_creation_input_tokens": 7023,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7023,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T10:25:28.736Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RMVoRYPtTG2yAKmtVEiAoB",
+              "type": "tool_result",
+              "content": "PDF pages extracted: 12 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260516T092241/worst/review_input_f5f46a62.pdf (184.3KB)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38ea66a9-be21-4d66-b5eb-dbbb94e72d56",
+            "isSidechain": true,
+            "promptId": "d3047b4d-8dba-43e7-b80c-d5957be09c5a",
+            "agentId": "a8b517894b968981b",
+            "type": "user",
+            "uuid": "81ab63da-c238-40ff-9c4d-364da737538f",
+            "sourceToolAssistantUUID": "38ea66a9-be21-4d66-b5eb-dbbb94e72d56",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8df48f23-5b79-4d80-aa5c-932cabdd7d07",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T10:25:28.735Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "81ab63da-c238-40ff-9c4d-364da737538f",
+            "isSidechain": true,
+            "promptId": "d3047b4d-8dba-43e7-b80c-d5957be09c5a",
+            "agentId": "a8b517894b968981b",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "56f00316-9dc4-49e3-8d1c-2392690a2674",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8df48f23-5b79-4d80-aa5c-932cabdd7d07",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T10:25:28.934Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TM4Q8LEow6UqGEVu3T91QL",
+              "type": "tool_result",
+              "content": "1\tnarrative_guidance: '放弃 capability trap 作为 unifying framework。Reframe 为条件性研究： ''Conditions\n2\t  for Effective Test-Time Scaling in Structured IE''。 核心转向：不是 ''selection universally\n3\t  fails''，而是 ''selection fails under high-convergence regimes induced by aggressive\n4\t  fine-tuning, but succeeds when output diversity is preserved.'' LP compression 仍成立（free-form\n5\t  ablation 证据不受影响）。 Instance degeneracy 从 ''inevitable consequence of capability''\n6\t  变为 ''controllable artifact of training configuration''。 Paper 变 prescriptive：给出什么条件下可以/不可以用\n7\t  multi-sample 策略。 标题改为 ''When Does Multi-Sample Selection Help Structured IE? A Diagnostic\n8\t  Study of Output Convergence''。 仍冲 EMNLP Main——从 novel insight paper 转为 large-scale\n9\t  empirical study with actionable guidelines。\n10\t\n11\t  '\n12\timagined_experiments:\n13\t- name: 'exp-020: fewnerd_smoke'\n14\t  plan_id: exp-020\n15\t  description: 'Few-NERD INTRA (coarse 8-type) smoke test: 1-epoch LoRA fine-tune\n16\t    on Qwen3-8B + N=8 pilot inference on 200 instances. 验证数据管线和模型可学性，Gate exp-021.\n17\t\n18\t    '\n19\t  expected_results:\n20\t    n_instances: 200\n21\t    n_valid: 188\n22\t    n_gold_empty: 12\n23\t    parse_rate: 0.985\n24\t    parse_failures: 24\n25\t    N: 8\n26\t    T: 1.0\n27\t    seed: 42\n28\t    ner_greedy_f1: 0.718\n29\t    ner_oracle_f1: 0.828\n30\t    ner_headroom_pp: 11.0\n31\t    degeneracy_rate: 0.101\n32\t    sj_rho_full: 0.192\n33\t    fk_rho_full: 0.148\n34\t    lp_rho_full: 0.214\n35\t    vc_rho_full: 0.248\n36\t    em_rho_full: 0.175\n37\t    sj_auroc: 0.582\n38\t    lp_auroc: 0.604\n39\t    vc_auroc: 0.638\n40\t    em_auroc: 0.621\n41\t    lp_selection_f1: 0.74\n42\t    lp_selection_delta_pp: 2.2\n43\t    greedy_selection_ref: 0.718\n44\t    sample_f1_pct_zero: 5.3\n45\t    sample_f1_mean: 0.671\n46\t    sample_f1_std: 0.248\n47\t    fleiss_kappa_mean: 0.371\n48\t    soft_jaccard_mean: 0.612\n49\t    elapsed_minutes: 18\n50\t    train_loss_1epoch: 0.142\n51\t    eval_loss_1epoch: 0.128\n52\t  result_rationale: '1-epoch fine-tune 不够充分训练，F1=0.718 低于 full run 预期（~0.78） 但已验证任务可学性。Degeneracy\n53\t    10.1% 初步暗示 Few-NERD 不符合 capability trap 预测——按 capability trap 的 F1→degeneracy\n54\t    单调关系， 0.718 F1 应对应 ~15-20% degeneracy（介于 SciERC 21% 和 WNUT 0% 之间）， 但实际更低。原因：(a)\n55\t    Few-NERD 每句平均 3-4 实体、多词实体边界变异空间大； (b) 1-epoch 训练保留了预训练模型的高输出多样性，weight update\n56\t    幅度小； (c) coarse 8-type 标签系统清晰，类型错误少但边界变异多。 SJ rho 仅 0.192 因 inter-sample 结构一致性弱——不同样本在多词实体\n57\t    边界上产生变化，SJ 对此敏感但 F1 对此宽容。 LP rho 0.214 略优于 SJ，初步提示 LP 在低 degeneracy regime 下有效。\n58\t    LP selection +2.2pp 是 directional positive，200 instances 样本量 不足以达到统计显著但方向明确。Smoke\n59\t    test 通过，gate exp-021.\n60\t\n61\t    '\n62\t  tables:\n63\t  - name: 'Table S-smoke: Few-NERD Smoke Test QE Metrics (n=188, 1-epoch, N=8)'\n64\t    columns:\n65\t    - Signal\n66\t    - rho_full\n67\t    - AUROC\n68\t    - tau\n69\t    rows:\n70\t    - - VC\n71\t      - 0.248\n72\t      - 0.638\n73\t      - 0.18\n74\t    - - LP\n75\t      - 0.214\n76\t      - 0.604\n77\t      - 0.153\n78\t    - - SJ\n79\t      - 0.192\n80\t      - 0.582\n81\t      - 0.139\n82\t    - - EM\n83\t      - 0.175\n84\t      - 0.621\n85\t      - 0.125\n86\t    - - FK\n87\t      - 0.148\n88\t      - 0.555\n89\t      - 0.108\n90\t  figures_description:\n91\t  - 'Bar chart: degeneracy rate at smoke test stage across datasets (Few-NERD 10.1%\n92\t    vs SciERC 21% vs CoNLL 58% vs WNUT ~0%). Few-NERD 已经偏低于 capability trap 预测线.\n93\t\n94\t    '\n95\t  analysis: 'Smoke test 成功验证数据管线和模型训练。关键早期信号： degeneracy rate (10.1%) 明显低于 capability\n96\t    trap 对 F1=0.718 的预测值 (~15-20%), 暗示 fine-tuning 配置（1 epoch, LoRA rank=16）而非 capability\n97\t    驱动 degeneracy。 LP 在 QE 和 selection 上均优于 SJ，与 SciERC 模式不同—— 提示数据集特性对最优信号有影响。Gate\n98\t    通过，进入 exp-021 full run。 注意 parse_rate 0.985 可接受，fine-tuned model 对 Few-NERD 格式适应良好。\n99\t\n100\t    '\n101\t- name: 'exp-021: fewnerd_full'\n102\t  plan_id: exp-021\n103\t  description: 'Few-NERD INTRA (coarse 8-type) full experiment: 3-epoch LoRA fine-tune\n104\t    + N=8 inference on full test set with 3 seeds [42, 123, 456]. Captures log-probs.\n105\t    第三个 NER 数据集，Main Conference 必要条件.\n106\t\n107\t    '\n108\t  expected_results:\n109\t    n_instances_total: 5218\n110\t    n_valid: 4506\n111\t    n_gold_empty: 712\n112\t    N: 8\n113\t    T: 1.0\n114\t    lora_rank: 16\n115\t    lora_alpha: 32\n116\t    epochs: 3\n117\t    train_final_loss: 0.058\n118\t    eval_loss: 0.072\n119\t    train_runtime_min: 95\n120\t    seed42_ner:\n121\t      greedy_f1: 0.782\n122\t      oracle_f1: 0.873\n123\t      headroom_pp: 9.1\n124\t      degeneracy_rate: 0.048\n125\t      sj_rho_full: 0.238\n126\t      fk_rho_full: 0.183\n127\t      lp_rho_full: 0.291\n128\t      vc_rho_full: 0.312\n129\t      em_rho_full: 0.228\n130\t      sj_auroc: 0.624\n131\t      fk_auroc: 0.588\n132\t      lp_auroc: 0.658\n133\t      vc_auroc: 0.681\n134\t      em_auroc: 0.718\n135\t      sj_tau: 0.172\n136\t      lp_tau: 0.211\n137\t      lp_selection_f1: 0.818\n138\t      vc_selection_f1: 0.805\n139\t      sj_selection_f1: 0.798\n140\t      fk_selection_f1: 0.793\n141\t      em_selection_f1: 0.795\n142\t      random_f1: 0.769\n143\t      sample_f1_pct_zero: 3.8\n144\t      tied_fraction_f1: 0.048\n145\t      lp_within_instance_range_median: 0.088\n146\t    seed123_ner:\n147\t      greedy_f1: 0.776\n148\t      oracle_f1: 0.868\n149\t      headroom_pp: 9.2\n150\t      degeneracy_rate: 0.055\n151\t      sj_rho_full: 0.208\n152\t      fk_rho_full: 0.165\n153\t      lp_rho_full: 0.271\n154\t      vc_rho_full: 0.285\n155\t      em_rho_full: 0.21\n156\t      lp_selection_f1: 0.808\n157\t      vc_selection_f1: 0.798\n158\t      sj_selection_f1: 0.791\n159\t      random_f1: 0.764\n160\t      sample_f1_pct_zero: 4.1\n161\t      lp_within_instance_range_median: 0.083\n162\t    seed456_ner:\n163\t      greedy_f1: 0.775\n164\t      oracle_f1: 0.865\n165\t      headroom_pp: 9.0\n166\t      degeneracy_rate: 0.058\n167\t      sj_rho_full: 0.203\n168\t      fk_rho_full: 0.17\n169\t      lp_rho_full: 0.262\n170\t      vc_rho_full: 0.289\n171\t      em_rho_full: 0.198\n172\t      lp_selection_f1: 0.805\n173\t      vc_selection_f1: 0.796\n174\t      sj_selection_f1: 0.789\n175\t      random_f1: 0.762\n176\t      sample_f1_pct_zero: 4.5\n177\t      lp_within_instance_range_median: 0.081\n178\t    mean_greedy_f1: 0.778\n179\t    mean_oracle_f1: 0.869\n180\t    mean_headroom_pp: 9.1\n181\t    mean_degeneracy_rate: 0.054\n182\t    sd_degeneracy_rate: 0.005\n183\t    mean_sj_rho_full: 0.216\n184\t    sd_sj_rho_full: 0.019\n185\t    mean_fk_rho_full: 0.173\n186\t    sd_fk_rho_full: 0.009\n187\t    mean_lp_rho_full: 0.275\n188\t    sd_lp_rho_full: 0.015\n189\t    mean_vc_rho_full: 0.295\n190\t    sd_vc_rho_full: 0.015\n191\t    mean_em_rho_full: 0.212\n192\t    sd_em_rho_full: 0.015\n193\t    mean_lp_selection_f1: 0.81\n194\t    mean_lp_selection_gap_pp: 3.2\n195\t    lp_selection_bootstrap_ci95:\n196\t    - 0.004\n197\t    - 0.06\n198\t    lp_selection_bootstrap_p: 0.028\n199\t    lp_selection_cohen_d: 0.152\n200\t    mean_vc_selection_gap_pp: 2.1\n201\t    vc_selection_bootstrap_p: 0.065\n202\t    mean_sj_selection_gap_pp: 1.5\n203\t    sj_selection_bootstrap_p: 0.12\n204\t    mean_lp_within_instance_range_median: 0.084\n205\t    lp_range_ratio_vs_scierc: 2.05\n206\t    capability_trap_r2_3datasets: 0.98\n207\t    capability_trap_r2_4datasets_with_fewnerd: 0.51\n208\t    capability_trap_regression_residual_fewnerd_pp: 30.2\n209\t  result_rationale: 'Few-NERD 打破 capability trap 的 F1→degeneracy 单调预测： F1=0.778（高于\n210\t    SciERC 0.664）但 degeneracy 仅 5.4% （远低于 SciERC 21%，更远低于 CoNLL 58%）。 按 capability\n211\t    trap 线性回归，F1=0.778 应预测 ~35-40% degeneracy。 实际偏差超过 30pp。\n212\t\n213\t    低 degeneracy 的根因： (1) 实体密度高——Few-NERD INTRA 每实例平均 3.4 个实体（vs SciERC 2.1）， 更多实体意味着更多的组合变异空间。即使每个实体的\n214\t    type 高度一致 （coarse 8-type 系统下类型错误极少），多词实体的边界变异 仍能产生不同的 entity sets——不同的 sets 有不同的\n215\t    F1。 (2) 3-epoch LoRA（vs SciERC 5-epoch）对预训练权重修改幅度更小， 输出分布未被压缩至 mode collapse。\n216\t    (3) 8 类粗粒度标签意味着类型空间简单， 模型不需要 overly specialize 就能达到高 F1，保留了 generation diversity。\n217\t\n218\t    Selection 首次显著有效：LP +3.2pp (p=0.028, d=0.152)。 这是全研究中首个某信号显著优于 greedy 的结果。 LP\n219\t    成功的原因：degeneracy 低 → LP 有真实 within-instance variance (median range 0.084 nats,\n220\t    是 SciERC 0.041 的 2×) → LP 可区分好坏样本。 VC +2.1pp 接近显著 (p=0.065)。SJ +1.5pp 不显著 (p=0.12)——\n221\t    SJ 的弱 rho (0.216) 限制了其 selection 能力。\n222\t\n223\t    SJ rho 仅 0.216 的原因：coarse entity types 使得 SJ 的 type-aware matching 在多数实例上给出高分（类型一致），\n224\t    区分力来自边界差异——但边界差异与 F1 的对齐度弱。 LP 直接捕获 generation confidence，与 F1 的关联更强。 这是与 SciERC\n225\t    的关键区别：SciERC 上 SJ > LP (rho 0.36 vs 0.21)， Few-NERD 上 LP > SJ (rho 0.275 vs 0.216)。\n226\t    信号有效性取决于数据集特性，不存在 universal best signal。\n227\t\n228\t    Capability trap R² 从 0.98 (3 datasets) 降至 0.51 (4 datasets)。 Few-NERD 是一个明确的 outlier，残差\n229\t    30.2pp。 这迫使叙事从 \"capability drives degeneracy\" 转向 \"fine-tuning intensity and dataset\n230\t    properties drive degeneracy\"。\n231\t\n232\t    '\n233\t  tables:\n234\t  - name: 'Table 5: Few-NERD QE Metrics (3-seed mean +/- SD, N=8, T=1.0, n=4506)'\n235\t    columns:\n236\t    - Signal\n237\t    - rho_full\n238\t    - SD\n239\t    - AUROC\n240\t    - tau\n241\t    - Sel_F1\n242\t    - Delta_greedy_pp\n243\t    - p\n244\t    rows:\n245\t    - - LP\n246\t      - 0.275\n247\t      - 0.015\n248\t      - 0.658\n249\t      - 0.211\n250\t      - 0.81\n251\t      - '+3.2'\n252\t      - 0.028*\n253\t    - - VC\n254\t      - 0.295\n255\t      - 0.015\n256\t      - 0.681\n257\t      - 0.214\n258\t      - 0.799\n259\t      - '+2.1'\n260\t      - '0.065'\n261\t    - - SJ\n262\t      - 0.216\n263\t      - 0.019\n264\t      - 0.624\n265\t      - 0.172\n266\t      - 0.793\n267\t      - '+1.5'\n268\t      - '0.12'\n269\t    - - EM\n270\t      - 0.212\n271\t      - 0.015\n272\t      - 0.718\n273\t      - 0.153\n274\t      - 0.793\n275\t      - '+1.5'\n276\t      - '0.13'\n277\t    - - FK\n278\t      - 0.173\n279\t      - 0.009\n280\t      - 0.588\n281\t      - 0.125\n282\t      - 0.79\n283\t      - '+1.2'\n284\t      - '0.18'\n285\t    - - greedy\n286\t      - '---'\n287\t      - '---'\n288\t      - '---'\n289\t      - '---'\n290\t      - 0.778\n291\t      - '---'\n292\t      - '---'\n293\t    - - oracle\n294\t      - '---'\n295\t      - '---'\n296\t      - '---'\n297\t      - '---'\n298\t      - 0.869\n299\t      - '+9.1'\n300\t      - '---'\n301\t    - - random\n302\t      - '---'\n303\t      - '---'\n304\t      - '---'\n305\t      - '---'\n306\t      - 0.765\n307\t      - '-1.3'\n308\t      - '---'\n309\t  - name: 'Table 6: Capability Trap — F1 vs Degeneracy Across 4 Datasets'\n310\t    columns:\n311\t    - Dataset\n312\t    - greedy_F1\n313\t    - degen_pct\n314\t    - predicted_degen_pct\n315\t    - residual_pp\n316\t    rows:\n317\t    - - CoNLL-2003\n318\t      - 0.912\n319\t      - 58.0\n320\t      - 55-60\n321\t      - ~0\n322\t    - - Few-NERD*\n323\t      - 0.778\n324\t      - 5.4\n325\t      - 35-40\n326\t      - '-30.2'\n327\t    - - SciERC\n328\t      - 0.664\n329\t      - 21.0\n330\t      - 20-25\n331\t      - ~0\n332\t    - - WNUT-17\n333\t      - 0.523\n334\t      - 0.0\n335\t      - 0-5\n336\t      - ~0\n337\t  - name: 'Table 7: LP Compression Comparison Across Datasets'\n338\t    columns:\n339\t    - Dataset\n340\t    - LP_range_median_nats\n341\t    - degen_pct\n342\t    - LP_sel_gap_pp\n343\t    - LP_sel_p\n344\t    rows:\n345\t    - - Few-NERD\n346\t      - 0.084\n347\t      - 5.4\n348\t      - '+3.2'\n349\t      - 0.028\n350\t    - - SciERC NER\n351\t      - 0.041\n352\t      - 21.0\n353\t      - '+0.6'\n354\t      - 0.39\n355\t    - - CoNLL NER\n356\t      - 0.018\n357\t      - 58.0\n358\t      - '-1.0'\n359\t      - 0.62\n360\t  figures_description:\n361\t  - 'Figure 4 (CRITICAL): Scatter plot — greedy F1 (x) vs degeneracy rate (y) for\n362\t    4 datasets + 4B data point. Regression line from CoNLL/SciERC/WNUT (R²=0.98, dashed).\n363\t    Few-NERD plotted as red triangle, massive residual visible. Annotated R² drop\n364\t    (0.98 → 0.51). Shows capability trap breakdown.\n365\t\n366\t    '\n367\t  - 'Figure 5: Selection F1 vs N curves for Few-NERD (N=1,2,4,8). LP line rises monotonically\n368\t    above greedy baseline (horizontal dashed). Contrast panel: SciERC curves are flat.\n369\t    Demonstrates recovered TTS scaling.\n370\t\n371\t    '\n372\t  - 'Figure 6: LP within-instance range distributions — three overlaid histograms\n373\t    for Few-NERD (median 0.084), SciERC (0.041), CoNLL (0.018). Few-NERD distribution\n374\t    visibly shifted right, showing reduced LP compression.\n375\t\n376\t    '\n377\t  analysis: 'Few-NERD 实验产生三个核心 worst-tier 结论：\n378\t\n379\t    (1) Capability trap 预测失败 (R² 0.98→0.51)。F1=0.778 + degen=5.4% 不在 F1→degeneracy\n380\t    回归线上。Few-NERD 的残差 30.2pp 是压倒性的 反面证据。\"Capability drives degeneracy\" 被替换为 \"degeneracy\n381\t    is a joint function of fine-tuning intensity, entity density, and task structure.\"\n382\t\n383\t    (2) Selection 在低 degeneracy regime 下有效。LP +3.2pp (p=0.028) 证明 \"universal failure\"\n384\t    不成立。Selection 失败是 condition-dependent, not structural. 关键条件：degeneracy < 10% +\n385\t    LP range > 0.08 nats.\n386\t\n387\t    (3) 最优信号依赖数据集。SciERC: SJ > LP. Few-NERD: LP > SJ. 不存在 universal best signal——进一步支持\n388\t    conditional/prescriptive framing. Paper 需要给出 practitioners 决策指南：根据数据集的 degeneracy\n389\t    rate 和 LP compression degree 选择策略 (multi-sample vs greedy).\n390\t\n391\t    '\n392\t- name: 'exp-022: 3rd_seed_scierc'\n393\t  plan_id: exp-022\n394\t  description: 'SciERC NER+RE N=8 第三个 seed (seed=789). 强化 Fisher p-value power，测试\n395\t    cross-seed stability.\n396\t\n397\t    '\n398\t  expected_results:\n399\t    n_instances: 551\n400\t    n_valid_ner: 529\n401\t    n_valid_re: 397\n402\t    N: 8\n403\t    T: 1.0\n404\t    seed: 789\n405\t    parse_rate: 1.0\n406\t    ner_greedy_f1: 0.658\n407\t    ner_oracle_f1: 0.772\n408\t    ner_headroom_pp: 11.4\n409\t    ner_degeneracy_rate: 0.235\n410\t    ner_sj_rho_full: 0.285\n411\t    ner_fk_rho_full: 0.218\n412\t    ner_lp_rho_full: 0.228\n413\t    ner_vc_rho_full: 0.338\n414\t    ner_em_rho_full: 0.272\n415\t    ner_sj_rho_cond: 0.248\n416\t    ner_fk_rho_cond: 0.162\n417\t    ner_lp_rho_cond: 0.178\n418\t    ner_vc_rho_cond: 0.295\n419\t    ner_em_rho_cond: 0.345\n420\t    ner_sj_auroc: 0.648\n421\t    ner_fk_auroc: 0.598\n422\t    ner_lp_auroc: 0.578\n423\t    ner_vc_auroc: 0.662\n424\t    ner_em_auroc: 0.738\n425\t    ner_lp_selection_f1: 0.65\n426\t    ner_sj_selection_f1: 0.645\n427\t    ner_greedy_ref: 0.658\n428\t    ner_sample_f1_pct_zero: 13.2\n429\t    re_greedy_f1: 0.412\n430\t    re_oracle_f1: 0.582\n431\t    re_headroom_pp: 17.0\n432\t    re_sj_rho_full: 0.308\n433\t    re_fk_rho_full: 0.248\n434\t    re_lp_rho_full: 0.192\n435\t    re_vc_rho_full: 0.293\n436\t    re_em_rho_full: 0.198\n437\t    re_sj_rho_cond: 0.352\n438\t    re_lp_rho_cond: 0.022\n439\t    re_zero_f1_pct: 44.8\n440\t    three_seed_ner_sj_rho_values:\n441\t    - 0.36\n442\t    - 0.385\n443\t    - 0.285\n444\t    three_seed_ner_sj_rho_mean: 0.343\n445\t    three_seed_ner_sj_rho_sd: 0.053\n446\t    three_seed_ner_fk_rho_values:\n447\t    - 0.267\n448\t    - 0.29\n449\t    - 0.218\n450\t    three_seed_ner_fk_rho_mean: 0.258\n451\t    three_seed_ner_fk_rho_sd: 0.037\n452\t    three_seed_ner_lp_rho_values:\n453\t    - 0.205\n454\t    - 0.225\n455\t    - 0.228\n456\t    three_seed_ner_lp_rho_mean: 0.219\n457\t    three_seed_ner_lp_rho_sd: 0.013\n458\t    three_seed_ner_vc_rho_values:\n459\t    - 0.379\n460\t    - 0.395\n461\t    - 0.338\n462\t    three_seed_ner_vc_rho_mean: 0.371\n463\t    three_seed_ner_vc_rho_sd: 0.03\n464\t    three_seed_re_sj_rho_values:\n465\t    - 0.25\n466\t    - 0.283\n467\t    - 0.308\n468\t    three_seed_re_sj_rho_mean: 0.28\n469\t    three_seed_re_sj_rho_sd: 0.029\n470\t    three_seed_re_fk_rho_values:\n471\t    - 0.275\n472\t    - 0.317\n473\t    - 0.248\n474\t    three_seed_re_fk_rho_mean: 0.28\n475\t    three_seed_re_fk_rho_sd: 0.035\n476\t    three_seed_re_lp_rho_values:\n477\t    - 0.266\n478\t    - 0.29\n479\t    - 0.192\n480\t    three_seed_re_lp_rho_mean: 0.249\n481\t    three_seed_re_lp_rho_sd: 0.051\n482\t    three_seed_re_vc_rho_values:\n483\t    - 0.35\n484\t    - 0.32\n485\t    - 0.293\n486\t    three_seed_re_vc_rho_mean: 0.321\n487\t    three_seed_re_vc_rho_sd: 0.029\n488\t    re_ranking_seed42: VC(0.350) > FK(0.275) > LP(0.266) > SJ(0.250) > EM(0.134)\n489\t    re_ranking_seed123: FK(0.317) > LP(0.290) > SJ(0.283) > VC(0.320) > EM(0.170)\n490\t    re_ranking_seed789: SJ(0.308) > VC(0.293) > FK(0.248) > EM(0.198) > LP(0.192)\n491\t    re_ranking_top1_consistent: false\n492\t    fisher_sj_gt_lp_ner_individual_p:\n493\t    - 0.002\n494\t    - 0.003\n495\t    - 0.18\n496\t    fisher_sj_gt_lp_ner_combined_p: 0.085\n497\t    fisher_sj_gt_fk_ner_combined_p: 0.032\n498\t    fisher_vc_gt_lp_ner_combined_p: 0.018\n499\t    fisher_structural_gt_surface_ner_combined_p: 0.042\n500\t    ner_sj_cv: 0.154\n501\t    ner_lp_cv: 0.059\n502\t    re_sj_cv: 0.104\n503\t    re_lp_cv: 0.205\n504\t  result_rationale: 'Seed 789 暴露 NER SJ rho 的 seed-to-seed 不稳定性。 SJ rho=0.285 是三个\n505\t    seed 中最低值，显著低于 seed42 (0.360) 和 seed123 (0.385)。3-seed SD=0.053 在定义范围 [0.04, 0.07]\n506\t    内。\n507\t\n508\t    低 SJ rho 的来源：seed 789 的随机采样在 medium-difficulty 实例 (greedy F1 0.4-0.7) 上产生了与其他\n509\t    seed 不同的输出分布—— 这些实例中模型产生了多样但质量差异小的输出， SJ 无法从结构一致性中区分好坏。SJ 对 sampling randomness\n510\t    的敏感度高于 LP (CV 0.154 vs 0.059)，因 SJ 是 pairwise comparison 的平均值，对极端样本敏感。LP 是每个样本的独立属性，\n511\t    受 sampling 影响更小。\n512\t\n513\t    RE 信号排名跨 seed 完全不一致是最重要的发现： - seed42: VC 最强 → seed123: FK 最强 → seed789: SJ 最强。\n514\t    三个不同的 top-1 signal. 这说明 RE 上 n=397 + 44.8% zero-F1 使得任何无监督信号的排名都不稳定。单 seed RE\n515\t    结论不可信。 Cross-seed 一致的唯一结论：EM 始终最弱 (0.134/0.170/0.198)。\n516\t\n517\t    Fisher combined p=0.085 对 SJ>LP (NER) 的含义： seed42 (p=0.002) 和 seed123 (p=0.003)\n518\t    给出强证据， 但 seed789 (p=0.180) 大幅削弱了 combined evidence。 使用 Meng''s test（考虑 SJ-LP 间\n519\t    Pearson r≈0.55）， seed789 的 SJ-LP gap 仅 0.057 (0.285-0.228)， 在 n=529 下不够显著。Fisher\n520\t    将三个 p-values 合并后 给出 borderline result。\n521\t\n522\t    VC>LP (p=0.018) 仍显著——structural family 作为整体 优于 surface signals 的结论可用 VC 作为 anchor，\n523\t    但 SJ 的优势变得 seed-dependent。\n524\t\n525\t    '\n526\t  tables:\n527\t  - name: 'Table 8: SciERC NER 3-Seed QE (N=8, T=1.0, n=529)'\n528\t    columns:\n529\t    - Seed\n530\t    - SJ_rho\n531\t    - FK_rho\n532\t    - LP_rho\n533\t    - VC_rho\n534\t    - EM_rho\n535\t    rows:\n536\t    - - 42\n537\t      - 0.36\n538\t      - 0.267\n539\t      - 0.205\n540\t      - 0.379\n541\t      - 0.295\n542\t    - - 123\n543\t      - 0.385\n544\t      - 0.29\n545\t      - 0.225\n546\t      - 0.395\n547\t      - 0.31\n548\t    - - 789\n549\t      - 0.285\n550\t      - 0.218\n551\t      - 0.228\n552\t      - 0.338\n553\t      - 0.272\n554\t    - - mean\n555\t      - 0.343\n556\t      - 0.258\n557\t      - 0.219\n558\t      - 0.371\n559\t      - 0.292\n560\t    - - SD\n561\t      - 0.053\n562\t      - 0.037\n563\t      - 0.013\n564\t      - 0.03\n565\t      - 0.02\n566\t    - - CV\n567\t      - 0.154\n568\t      - 0.143\n569\t      - 0.059\n570\t      - 0.081\n571\t      - 0.068\n572\t  - name: 'Table 9: SciERC RE 3-Seed Signal Rankings'\n573\t    columns:\n574\t    - Seed\n575\t    - Rank_1\n576\t    - Rank_2\n577\t    - Rank_3\n578\t    - Rank_4\n579\t    - Rank_5\n580\t    rows:\n581\t    - - 42\n582\t      - VC(0.350)\n583\t      - FK(0.275)\n584\t      - LP(0.266)\n585\t      - SJ(0.250)\n586\t      - EM(0.134)\n587\t    - - 123\n588\t      - VC(0.320)\n589\t      - FK(0.317)\n590\t      - LP(0.290)\n591\t      - SJ(0.283)\n592\t      - EM(0.170)\n593\t    - - 789\n594\t      - SJ(0.308)\n595\t      - VC(0.293)\n596\t      - FK(0.248)\n597\t      - EM(0.198)\n598\t      - LP(0.192)\n599\t  - name: 'Table 10: Fisher Combined P-values (3-seed NER)'\n600\t    columns:\n601\t    - Comparison\n602\t    - p_s42\n603\t    - p_s123\n604\t    - p_s789\n605\t    - Fisher_p\n606\t    - Conclusion\n607\t    rows:\n608\t    - - SJ > LP\n609\t      - 0.002\n610\t      - 0.003\n611\t      - 0.18\n612\t      - 0.085\n613\t      - borderline (alpha=0.10)\n614\t    - - SJ > FK\n615\t      - 0.005\n616\t      - 0.004\n617\t      - 0.12\n618\t      - 0.032\n619\t      - significant (alpha=0.05)\n620\t    - - VC > LP\n621\t      - 0.001\n622\t      - 0.001\n623\t      - 0.038\n624\t      - 0.018\n625\t      - significant (alpha=0.05)\n626\t  figures_description:\n627\t  - 'Figure 7: Error bar plot — NER signal rho across 3 seeds. SJ shows widest error\n628\t    bars (SD=0.053). LP shows narrowest (SD=0.013). Seed 789 SJ (0.285) is a clear\n629\t    low outlier, nearly overlapping with LP.\n630\t\n631\t    '\n632\t  - 'Figure 8: Heatmap — RE signal ranking by seed (3x5 grid). Color intensity = rank\n633\t    position. Visual chaos demonstrates complete ranking inconsistency.\n634\t\n635\t    '\n636\t  analysis: '3rd seed 暴露两个关键弱点：\n637\t\n638\t    (1) NER SJ rho instability (SD=0.053, CV=0.154): 2-seed 分析低估真实变异。 Seed 789 的 SJ\n639\t    rho=0.285 接近 LP (0.228)，SJ 的优势 seed-dependent。 Fisher combined p=0.085 意味着 SJ>LP\n640\t    在 alpha=0.05 下不显著。 论文应用 VC (p=0.018) 作为 structural>surface 的 primary evidence，\n641\t    SJ 降为 complementary signal。\n642\t\n643\t    (2) RE 信号排名跨 seed 不一致: 无 reliable winner。 RE 结论限定为 \"no unsupervised signal reliably\n644\t    ranks RE quality; all signals are weak and unstable under cross-seed variation.\"\n645\t    这不是 failure of analysis——这是 genuine empirical finding， strengthens the conditional\n646\t    framing: \"reliability depends on task structure and sample size.\"\n647\t\n648\t    对 worst tier 叙事的影响: SJ instability + RE ranking chaos 进一步削弱 universal claims，支持\n649\t    conditional/prescriptive pivot。 NER 上 signal effectiveness 有 regime dependency\n650\t    (dataset × seed)， RE 上所有 unsupervised signals 都不可靠。\n651\t\n652\t    '\n653\t- name: 'exp-023: lora_rank8_ablation'\n654\t  plan_id: exp-023\n655\t  description: 'LoRA rank=8 ablation on SciERC: fine-tune with rank=8 (vs baseline\n656\t    rank=16) + N=8 inference. 测试 fine-tuning intensity 是否是 degeneracy 的主驱动.\n657\t\n658\t    '\n659\t  expected_results:\n660\t    base_model: Qwen3-8B\n661\t    lora_rank: 8\n662\t    lora_alpha: 16\n663\t    lora_dropout: 0.0\n664\t    epochs: 5\n665\t    dataset: SciERC\n666\t    train_final_loss: 0.108\n667\t    eval_loss: 0.115\n668\t    best_checkpoint: checkpoint-400\n669\t    train_runtime_min: 24\n670\t    N: 8\n671\t    T: 1.0\n672\t    seed: 42\n673\t    n_valid_ner: 529\n674\t    n_valid_re: 397\n675\t    parse_rate: 1.0\n676\t    ner_greedy_f1: 0.625\n677\t    ner_oracle_f1: 0.812\n678\t    ner_headroom_pp: 18.7\n679\t    ner_degeneracy_rate: 0.052\n680\t    ner_degeneracy_delta_vs_rank16_pp: -15.8\n681\t    ner_sj_rho_full: 0.378\n682\t    ner_fk_rho_full: 0.288\n683\t    ner_lp_rho_full: 0.252\n684\t    ner_vc_rho_full: 0.408\n685\t    ner_em_rho_full: 0.312\n686\t    ner_sj_rho_cond: 0.362\n687\t    ner_fk_rho_cond: 0.258\n688\t    ner_lp_rho_cond: 0.218\n689\t    ner_sj_auroc: 0.698\n690\t    ner_fk_auroc: 0.645\n691\t    ner_lp_auroc: 0.622\n692\t    ner_vc_auroc: 0.712\n693\t    ner_em_auroc: 0.758\n694\t    ner_sj_ece: 0.408\n695\t    ner_lp_ece: 0.652\n696\t    ner_em_ece: 0.318\n697\t    ner_lp_selection_f1: 0.661\n698\t    ner_sj_selection_f1: 0.653\n699\t    ner_vc_selection_f1: 0.648\n700\t    ner_fk_selection_f1: 0.645\n701\t    ner_em_selection_f1: 0.642\n702\t    ner_random_f1: 0.598\n703\t    ner_greedy_ref: 0.625\n704\t    ner_oracle_ref: 0.812\n705\t    ner_lp_selection_gap_pp: 3.6\n706\t    ner_lp_selection_bootstrap_p: 0.015\n707\t    ner_lp_selection_cohen_d: 0.168\n708\t    ner_lp_selection_ci95:\n709\t    - 0.008\n710\t    - 0.064\n711\t    ner_sj_selection_gap_pp: 2.8\n712\t    ner_sj_selection_bootstrap_p: 0.042\n713\t    ner_lp_within_instance_range_median: 0.074\n714\t    ner_lp_within_instance_std_mean: 0.032\n715\t    ner_tied_fraction_f1: 0.052\n716\t    ner_sample_f1_pct_zero: 15.8\n717\t    ner_sample_f1_mean: 0.545\n718\t    ner_sample_f1_std: 0.312\n719\t    re_greedy_f1: 0.388\n720\t    re_oracle_f1: 0.598\n721\t    re_headroom_pp: 21.0\n722\t    re_degeneracy_rate: 0.12\n723\t    re_degeneracy_delta_vs_rank16_pp: -9.0\n724\t    re_sj_rho_full: 0.238\n725\t    re_fk_rho_full: 0.342\n726\t    re_lp_rho_full: 0.288\n727\t    re_vc_rho_full: 0.318\n728\t    re_em_rho_full: 0.185\n729\t    re_zero_f1_pct: 48.5\n730\t    re_lp_rho_cond: 0.115\n731\t    re_lp_rho_cond_p: 0.078\n732\t    re_lp_selection_f1: 0.415\n733\t    re_lp_selection_gap_pp: 2.7\n734\t    re_lp_selection_p: 0.068\n735\t    comparison_rank16_ner_f1: 0.664\n736\t    comparison_rank8_ner_f1: 0.625\n737\t    comparison_f1_delta_pp: -3.9\n738\t    comparison_rank16_degeneracy: 0.21\n739\t    comparison_rank8_degeneracy: 0.052\n740\t    comparison_degeneracy_delta_pp: -15.8\n741\t    comparison_rank16_oracle_headroom: 10.85\n742\t    comparison_rank8_oracle_headroom: 18.7\n743\t    comparison_headroom_gain_pp: 7.85\n744\t    comparison_rank16_lp_range_median: 0.041\n745\t    comparison_rank8_lp_range_median: 0.074\n746\t    comparison_lp_range_ratio: 1.8\n747\t    comparison_rank16_sj_rho: 0.36\n748\t    comparison_rank8_sj_rho: 0.378\n749\t    comparison_sj_rho_delta: 0.018\n750\t    comparison_rank16_lp_sel_gap_pp: 0.6\n751\t    comparison_rank8_lp_sel_gap_pp: 3.6\n752\t  result_rationale: 'LoRA rank=8 ablation 是 worst tier 的因果证据核心。\n753\t\n754\t    F1 下降有限 (-3.9pp: 0.664→0.625)。rank=8 的参数空间更小 (rank-8 矩阵 vs rank-16), 模型学到了 SciERC\n755\t    NER 的主要 extraction patterns 但未达到 rank=16 的精度。5 epochs 同样训练量下， rank=8 的有效 capacity\n756\t    更低，final loss 0.108 vs rank=16 的 0.081。 但 0.625 F1 仍然是 reasonable performance（高于\n757\t    WNUT 0.523）。\n758\t\n759\t    Degeneracy 大幅下降 15.8pp (21%→5.2%)。这是最关键的发现。 机制：rank=8 LoRA 对预训练权重的修改幅度更小。 预训练\n760\t    Qwen3-8B 的 generation distribution 是 diverse 的； fine-tuning 将这个 distribution 压缩向\n761\t    task-specific modes。 Rank=16 提供了足够的 capacity 来 aggressively specialize (更多参数 →\n762\t    更大的 weight update → 更强的 mode collapse)。 Rank=8 参数不足以完全 collapse output distribution，保留了多样性。\n763\t\n764\t    Oracle headroom 从 10.85pp 增加到 18.7pp (+7.85pp)。 更多的输出多样性意味着 N=8 samples 覆盖更广的\n765\t    output space, oracle 能找到更好的 sample。这直接转化为 selection 机会： LP selection +3.6pp (p=0.015,\n766\t    d=0.168)。\n767\t\n768\t    LP compression 显著减轻：median range 0.074 vs 0.041 (1.80×)。 更宽的 LP range → LP 有更多的\n769\t    discrimination power → selection 从 negligible (+0.6pp, n.s.) 变为 significant (+3.6pp,\n770\t    p=0.015)。\n771\t\n772\t    SJ rho 在 rank=8 下甚至略高 (0.378 vs 0.360, +0.018)。 这证明 QE correlation 能力不受 fine-tuning\n773\t    intensity 影响—— signals 的 quality estimation 能力是 robust 的。 只有 selection 受 degeneracy/compression\n774\t    影响。 这 disentangles QE vs selection：QE 是 signal 的 intrinsic property， selection\n775\t    effectiveness 是 regime-dependent。\n776\t\n777\t    RE degeneracy 也下降但幅度更小 (-9.0pp: 21%→12%)， 因 RE 的 zero-F1 问题 (48.5%) 不受 LoRA rank\n778\t    影响—— 这是 task difficulty 驱动的 fundamental limitation。\n779\t\n780\t    '\n781\t  tables:\n782\t  - name: 'Table 11: LoRA Rank Ablation — SciERC NER (N=8, T=1.0, n=529)'\n783\t    columns:\n784\t    - Metric\n785\t    - rank_16_baseline\n786\t    - rank_8\n787\t    - Delta\n788\t    rows:\n789\t    - - greedy F1\n790\t      - 0.664\n791\t      - 0.625\n792\t      - -3.9pp\n793\t    - - oracle F1\n794\t      - 0.775\n795\t      - 0.812\n796\t      - +3.7pp\n797\t    - - oracle headroom\n798\t      - 10.85pp\n799\t      - 18.7pp\n800\t      - +7.85pp\n801\t    - - degeneracy rate\n802\t      - 21.0%\n803\t      - 5.2%\n804\t      - -15.8pp\n805\t    - - SJ rho\n806\t      - 0.36\n807\t      - 0.378\n808\t      - '+0.018'\n809\t    - - FK rho\n810\t      - 0.267\n811\t      - 0.288\n812\t      - '+0.021'\n813\t    - - LP rho\n814\t      - 0.205\n815\t      - 0.252\n816\t      - '+0.047'\n817\t    - - VC rho\n818\t      - 0.379\n819\t      - 0.408\n820\t      - '+0.029'\n821\t    - - LP selection gap vs greedy\n822\t      - +0.6pp (p=0.39)\n823\t      - +3.6pp (p=0.015)\n824\t      - +3.0pp\n825\t    - - SJ selection gap vs greedy\n826\t      - -1.9pp\n827\t      - +2.8pp (p=0.042)\n828\t      - +4.7pp\n829\t    - - LP range median (nats)\n830\t      - 0.041\n831\t      - 0.074\n832\t      - '+0.033'\n833\t    - - tied fraction (F1)\n834\t      - 21.0%\n835\t      - 5.2%\n836\t      - -15.8pp\n837\t  - name: 'Table 12: Degeneracy Drivers — Evidence Summary'\n838\t    columns:\n839\t    - Condition\n840\t    - F1\n841\t    - degen_pct\n842\t    - driver\n843\t    rows:\n844\t    - - CoNLL rank=16 5ep\n845\t      - 0.912\n846\t      - 58\n847\t      - high capability + aggressive FT\n848\t    - - SciERC rank=16 5ep\n849\t      - 0.664\n850\t      - 21\n851\t      - moderate capability + aggressive FT\n852\t    - - SciERC rank=8 5ep\n853\t      - 0.625\n854\t      - 5.2\n855\t      - moderate capability + MILD FT\n856\t    - - Few-NERD rank=16 3ep\n857\t      - 0.778\n858\t      - 5.4\n859\t      - high capability + MILD FT\n860\t    - - SciERC 4B rank=16 5ep\n861\t      - 0.661\n862\t      - 10.4\n863\t      - lower capability + aggressive FT\n864\t    - - WNUT rank=16 5ep\n865\t      - 0.523\n866\t      - 0\n867\t      - low capability (no convergence)\n868\t  - name: 'Table 13: QE vs Selection Decoupling'\n869\t    columns:\n870\t    - Config\n871\t    - SJ_rho (QE)\n872\t    - LP_sel_gap_pp (selection)\n873\t    - Interpretation\n874\t    rows:\n875\t    - - rank=16\n876\t      - 0.36\n877\t      - +0.6 (n.s.)\n878\t      - good QE, no selection\n879\t    - - rank=8\n880\t      - 0.378\n881\t      - +3.6 (p=0.015)\n882\t      - good QE, good selection\n883\t    - - Delta\n884\t      - '+0.018'\n885\t      - +3.0pp\n886\t      - QE stable, selection regime-dependent\n887\t  figures_description:\n888\t  - 'Figure 9 (CRITICAL): Paired bar chart — degeneracy rate and F1 side-by-side for\n889\t    rank=16 vs rank=8. Left bars (degeneracy): dramatic drop 21%→5.2%. Right bars\n890\t    (F1): modest drop 0.664→0.625. Annotated trade-off ratio: 4.05× degeneracy reduction\n891\t    per 1pp F1 cost.\n892\t\n893\t    '\n894\t  - 'Figure 10: Dual-axis plot — LP within-instance range distributions for rank=16\n895\t    (compressed, peaked at 0.03-0.05) and rank=8 (wider, spread 0.04-0.12). Overlay:\n896\t    LP selection gap vs range bin showing threshold effect (~0.06 nats needed for\n897\t    effective selection).\n898\t\n899\t    '\n900\t  - 'Figure 11: Selection F1 vs N curves at rank=8, showing monotonic improvement\n901\t    (LP: 0.625→0.640→0.652→0.661). Contrast: rank=16 curves are flat (0.664→0.647→0.650→0.650).\n902\t    Demonstrates recovered test-time scaling at lower LoRA rank.\n903\t\n904\t    '\n905\t  analysis: 'LoRA rank=8 ablation 提供了 degeneracy causality 的最强证据。\n906\t\n907\t    (1) Fine-tuning intensity 是 degeneracy 的主驱动因素： 同一数据集、同一模型、同一 training data，仅改变\n908\t    LoRA rank 就从 21% degeneracy 降至 5.2%。F1 仅下降 3.9pp。 这排除了 \"capability drives degeneracy\"\n909\t    解释—— rank=8 的 NER capability 仍然很强 (F1=0.625)。\n910\t\n911\t    (2) Selection 从 \"fails\" 变为 \"works\"：同一 SciERC 数据， rank=16 下 LP selection +0.6pp\n912\t    (n.s.)，rank=8 下 +3.6pp (p=0.015)。 Controlled experiment 证明 selection failure 是\n913\t    regime-dependent。\n914\t\n915\t    (3) QE 与 selection 完全 decouple：SJ rho 0.360→0.378 (stable)， LP selection gap 0.6→3.6pp\n916\t    (dramatic change)。 QE 是 signal 的 intrinsic property，不受 FT intensity 影响。 Selection\n917\t    是 regime-dependent，受 degeneracy/compression 控制。\n918\t\n919\t    (4) Prescriptive implication：如果需要 multi-sample selection， 使用较低的 LoRA rank。Trade-off\n920\t    量化： 每 1pp F1 cost 换取 4.05× degeneracy reduction。 在 SciERC 上，rank=8 + LP selection\n921\t    (0.661) vs rank=16 greedy (0.664) = 仅 0.3pp 差距， 但获得了 uncertainty quantification\n922\t    能力。\n923\t\n924\t    (5) 与 Few-NERD 证据互补：Few-NERD (3-epoch) 和 SciERC rank=8 都独立地表明 mild fine-tuning\n925\t    → low degeneracy → selection works。 两个独立 ablation 维度 (epoch × rank) 给出一致结论。\n926\t\n927\t    '\n928\t- name: 'exp-019: simple_verifier_baseline (hypothetical)'\n929\t  plan_id: exp-019\n930\t  description: 'Supervised verifier baseline — SKIPPED per DDL constraint + scope\n931\t    creep risk. 以下为 hypothetical worst-tier predictions.\n932\t\n933\t    '\n934\t  expected_results:\n935\t    status: SKIPPED\n936\t    skip_reason: DDL 10 days, scope creep risk, exp-016 LR ensemble already underperforms\n937\t      EM\n938\t    hypothetical_if_run:\n939\t      verifier_model: DeBERTa-v3-large\n940\t      training_data: SciERC N=8 samples with F1 labels, 529*8=4232 instances\n941\t      train_test_split: 5-fold CV\n942\t      ner_verifier_auroc: 0.828\n943\t      ner_verifier_rho: 0.485\n944\t      ner_verifier_selection_f1: 0.698\n945\t      ner_oracle_gap_captured_pct: 24.1\n946\t      ner_verifier_vs_best_unsupervised_auroc_delta: 0.079\n947\t      ner_verifier_vs_greedy_pp: 3.4\n948\t      re_verifier_auroc: 0.782\n949\t      re_verifier_selection_f1: 0.448\n950\t      re_oracle_gap_captured_pct: 19.3\n951\t      re_verifier_vs_greedy_pp: 2.6\n952\t  result_rationale: '[HYPOTHETICAL — NOT EXECUTED] 如果执行，supervised verifier 应能部分关闭\n953\t    selection gap。 DeBERTa-v3-large 可以从 (input, output) pair 中学到 quality patterns：entity\n954\t    boundary correctness、 relation consistency with context、output completeness。 这些是\n955\t    unsupervised signals 无法捕获的 learned features。\n956\t\n957\t    NER AUROC 0.828 (vs unsupervised best EM 0.749, +7.9pp) 证明 supervised 上界显著高于 unsupervised。\n958\t    Selection F1 0.698 captures 24.1% oracle gap (vs unsupervised LP ~0.5% at rank=16)。\n959\t    这证明 information exists in the outputs， 但 unsupervised signals 无法 access it。\n960\t\n961\t    在 worst tier context 下，exp-019 的 hypothetical 结果 与 exp-023 (LoRA rank=8) 互补： 路径\n962\t    A: 降低 FT intensity 保留输出多样性 → unsupervised selection works 路径 B: 训练 supervised\n963\t    verifier → learned selection works even on converged outputs 两条路径都证明 selection\n964\t    gap is closable，不是 fundamental impossibility。\n965\t\n966\t    SKIPPED 是正确决策——exp-023 已提供了更 elegant 的 actionable answer (改 training config vs\n967\t    训练额外 model)，且 scope 更 clean。\n968\t\n969\t    '\n970\t  tables: []\n971\t  figures_description: []\n972\t  analysis: 'exp-019 SKIPPED。Hypothetical 结果支持 Future Work： \"Two paths close the selection\n973\t    gap: (1) reducing fine-tuning intensity restores unsupervised selection (exp-023),\n974\t    (2) trained verifiers capture quality patterns inaccessible to unsupervised signals.\"\n975\t    在 worst tier paper 中，exp-023 的 prescriptive finding 比 exp-019 的 supervised finding\n976\t    更有 practical value—— 不需要额外 labeled data 或 additional model。\n977\t\n978\t    '\n979\t- name: 'exp-017: ner_llama_conll (reinterpretation)'\n980\t  plan_id: exp-017\n981\t  description: 'LLaMA-3.1-8B on CoNLL-2003. Registry 已有完整数据 (exp_017_llama_conll_infer).\n982\t    此处提供 worst-tier 叙事重解读.\n983\t\n984\t    '\n985\t  expected_results:\n986\t    status: DONE_IN_REGISTRY\n987\t    registry_ref: exp_017_llama_conll_infer\n988\t    actual_metrics:\n989\t      sj_rho_full: 0.4314\n990\t      fk_rho_full: 0.4277\n991\t      lp_rho_full: 0.3072\n992\t      greedy_f1: 0.9266\n993\t      oracle_headroom: 0.0177\n994\t    worst_tier_reinterpretation: 'LLaMA CoNLL SJ rho=0.431 matches Qwen CoNLL rho=0.436.\n995\t      Cross-model consistency 强，但在 worst tier 下这同时意味着 degeneracy pattern (high F1\n996\t      → high degeneracy) 也跨模型一致—— 不是 Qwen-specific artifact 而是 5-epoch LoRA fine-tuning\n997\t      的通用效应。 如果对 LLaMA 也做 rank=8 ablation，预期同样会看到 degeneracy 大幅下降。\n998\t\n999\t      '\n1000\t  result_rationale: '已完成实验，不需要 prediction。在 worst tier 下重新解读： LLaMA 复现了 Qwen 的 CoNLL\n1001\t    pattern (greedy_f1=0.927, 高 degeneracy, selection 无效, oracle headroom 仅 1.77pp)。\n1002\t    这原本被解释为 \"capability trap is model-agnostic\"， 但现在应解释为 \"aggressive fine-tuning (5\n1003\t    epochs, rank=32 for LLaMA) consistently produces high degeneracy regardless of\n1004\t    model architecture.\" Cross-model validation 的含义从 \"capability trap is universal\"\n1005\t    变为 \"fine-tuning-induced convergence is universal.\" 证据相同，解释不同。\n1006\t\n1007\t    '\n1008\t  tables: []\n1009\t  figures_description: []\n1010\t  analysis: 'exp-017 无需新实验。Worst tier 仅改变解释框架： LLaMA+CoNLL 的 high degeneracy 归因于 fine-tuning\n1011\t    regime 而非 model capability。Cross-model consistency 反而 strengthens worst tier 论点——两个不同架构\n1012\t    (Qwen3, LLaMA-3.1) 在相同 fine-tuning 强度下产生相同的 convergence pattern。\n1013\t\n1014\t    '\n1015\t- name: 'exp-024: claim_audit'\n1016\t  plan_id: exp-024\n1017\t  description: 'Systematic cross-chapter numerical consistency audit. 在 worst tier\n1018\t    下检查所有 claims 与新实验数据的一致性, 识别需要 rewrite 的 sections.\n1019\t\n1020\t    '\n1021\t  expected_results:\n1022\t    total_inconsistencies_found: 8\n1023\t    critical: 5\n1024\t    moderate: 2\n1025\t    minor: 1\n1026\t    critical_inconsistencies:\n1027\t    - id: CA-1\n1028\t      location: Abstract + Introduction\n1029\t      current_claim: '''universally fail to select better candidates'''\n1030\t      contradicting_evidence: Few-NERD LP +3.2pp (p=0.028); rank=8 LP +3.6pp (p=0.015)\n1031\t      fix: '''fail to select under high-convergence regimes; succeed when output diversity\n1032\t        is preserved'''\n1033\t    - id: CA-2\n1034\t      location: Discussion line 3 vs Limitations line 8\n1035\t      current_claim: '''+0.1pp over single-sample'' vs ''+0.4pp over greedy'''\n1036\t      contradicting_evidence: 'exp_016_rerun_1024: LP selection +0.6pp (n.s., p=0.39)'\n1037\t      fix: unify to '+0.6pp, not significant (bootstrap p=0.39, CI [-0.030, +0.042])'\n1038\t    - id: CA-3\n1039\t      location: Section 4.4 Capability Trap\n1040\t      current_claim: '''structural inevitability: the better the model, the less TTS\n1041\t        helps'''\n1042\t      contradicting_evidence: R2=0.51 (4 datasets); rank=8 F1=0.625 with degen=5.2%\n1043\t      fix: '''one factor among several; fine-tuning intensity is the primary driver\n1044\t        of degeneracy'''\n1045\t    - id: CA-4\n1046\t      location: Claim 1 PRIMARY\n1047\t      current_claim: '''diagnose two failure mechanisms and a unifying capability\n1048\t        trap'''\n1049\t      contradicting_evidence: Few-NERD + rank=8 break capability trap; provide positive\n1050\t        selection examples\n1051\t      fix: '''diagnose conditions under which each mechanism activates; convergence\n1052\t        drivers include FT intensity, entity density, task complexity'''\n1053\t    - id: CA-5\n1054\t      location: Story Spine headline\n1055\t      current_claim: '''T=0 greedy dominates all multi-sample strategies at zero cost'''\n1056\t      contradicting_evidence: 'Few-NERD: LP +3.2pp > greedy (p=0.028); rank=8: LP\n1057\t        +3.6pp > greedy (p=0.015)'\n1058\t      fix: '''T=0 greedy dominates under standard fine-tuning regimes, but multi-sample\n1059\t        LP selection recovers 3-4pp when output diversity is preserved'''\n1060\t    moderate_inconsistencies:\n1061\t    - id: CA-6\n1062\t      location: Scale ablation (4B)\n1063\t      current_claim: '''4B degeneracy 10.4% supports capability trap'''\n1064\t      contradicting_evidence: rank=8 provides alternative explanation (FT intensity,\n1065\t        not capability)\n1066\t      fix: 'acknowledge confound: 4B lower degeneracy may reflect both reduced capability\n1067\t        AND different convergence dynamics'\n1068\t    - id: CA-7\n1069\t      location: SJ claims throughout\n1070\t      current_claim: '''SJ clearly beats LP on NER (rho +0.15-0.22)'''\n1071\t      contradicting_evidence: 3-seed Fisher p=0.085 (borderline); seed 789 gap only\n1072\t        0.057\n1073\t      fix: soften to 'SJ tends to outperform LP on NER (p=0.085); VC>LP is more robust\n1074\t        (p=0.018)'\n1075\t    minor_inconsistencies:\n1076\t    - id: CA-8\n1077\t      location: Figure 4 caption\n1078\t      current_claim: '''monotonic relationship between F1 and degeneracy'''\n1079\t      contradicting_evidence: R2=0.51 with Few-NERD, R2=0.35 with rank=8 data point\n1080\t      fix: update caption to reflect weak-to-moderate relationship\n1081\t    narrative_changes:\n1082\t      old_title: 'Strong Predictors, Weak Selectors: Why Confidence Signals Cannot\n1083\t        Scale Structured Information Extraction'\n1084\t      new_title: When Does Multi-Sample Selection Help Structured IE? A Diagnostic\n1085\t        Study of Output Convergence\n1086\t      old_primary_claim: universal failure + capability trap as unifying framework\n1087\t      new_primary_claim: 'conditional effectiveness: selection fails under high-convergence\n1088\t        regimes, succeeds with output diversity'\n1089\t      old_paper_type: novel insight (negative result) paper\n1090\t      new_paper_type: large-scale empirical study with prescriptive guidelines\n1091\t      sections_requiring_major_rewrite:\n1092\t      - Abstract (remove 'universally', add conditions, mention positive Few-NERD/rank=8\n1093\t        results)\n1094\t      - Introduction (reframe as conditional study, not universal negative)\n1095\t      - 'Section 4.4 retitle: ''Output Convergence Drivers'' (not ''Capability Trap'')'\n1096\t      - 'New Section 4.5: ''When Does Selection Succeed? — Prescriptive Guidelines'''\n1097\t      - 'Discussion (trade-off analysis: F1 cost vs selection gain; practical recommendations)'\n1098\t      - Conclusion (actionable takeaways for practitioners)\n1099\t      sections_minor_edits:\n1100\t      - Section 3 (add Few-NERD dataset description)\n1101\t      - Section 4.1 (add Few-NERD QE results)\n1102\t      - Section 4.2 (add Few-NERD selection results)\n1103\t      - Section 4.3 (add rank=8 ablation subsection)\n1104\t      - Related Work (reframe positioning vs TTS scaling literature)\n1105\t    capability_trap_r2_progression:\n1106\t      three_datasets: 0.98\n1107\t      four_datasets_with_fewnerd: 0.51\n1108\t      five_points_with_rank8: 0.35\n1109\t    prescriptive_guidelines:\n1110\t    - condition: degeneracy < 10% AND LP range > 0.07 nats\n1111\t      recommendation: use LP-based best-of-N selection (expected gain 2-4pp)\n1112\t      evidence: Few-NERD (+3.2pp), rank=8 SciERC (+3.6pp)\n1113\t    - condition: degeneracy > 20%\n1114\t      recommendation: use T=0 greedy (zero additional cost)\n1115\t      evidence: SciERC rank=16 (+0.6pp n.s.), CoNLL (-1.0pp)\n1116\t    - condition: 10% < degeneracy < 20%\n1117\t      recommendation: evaluate on dev set; marginal expected gain\n1118\t      evidence: borderline regime, outcome depends on specific dataset\n1119\t    - condition: RE with >40% zero-F1 instances\n1120\t      recommendation: no unsupervised signal reliably helps; consider supervised verifier\n1121\t      evidence: RE rankings unstable across all seeds\n1122\t  result_rationale: 'Claim audit 在 worst tier 下揭示 8 处不一致，其中 5 处 critical。 核心问题：现有文本围绕\n1123\t    \"universal failure + capability trap\" 构建， 但 Few-NERD 和 LoRA rank=8 直接推翻了 universality\n1124\t    和 structural inevitability。\n1125\t\n1126\t    CA-1 是最高优先级：Abstract 的 \"universally fail\" 被两个 statistically significant 正结果 (p=0.028,\n1127\t    p=0.015) 直接否定。 如果保留 \"universally fail\"，reviewer 会立即指出与 Results section 的 internal\n1128\t    contradiction。\n1129\t\n1130\t    CA-2 是 legacy 不一致，需要统一数字。\n1131\t\n1132\t    CA-3 是叙事核心变化：capability trap 从 unifying framework 降级为 one-of-several factors。R²=0.51\n1133\t    (4 datasets) 和 0.35 (5 points) 说明 F1 只解释 35-51% 的 degeneracy 方差。\n1134\t\n1135\t    CA-4 需要重构 Claim 1 从 \"why selection fails\" 到 \"when selection fails/succeeds and\n1136\t    what drives the boundary\"。\n1137\t\n1138\t    CA-5 headline 变化反映从 pure negative 到 conditional finding。\n1139\t\n1140\t    Prescriptive guidelines 是 worst tier 最大的新贡献—— 给 practitioners 具体的 decision criteria：\n1141\t    观察 degeneracy rate 和 LP range，决定是否使用 multi-sample 策略。 这比 \"selection always fails\"\n1142\t    有更大的 practical value。\n1143\t\n1144\t    '\n1145\t  tables:\n1146\t  - name: 'Table A1: Claim Audit Summary'\n1147\t    columns:\n1148\t    - ID\n1149\t    - Severity\n1150\t    - Location\n1151\t    - Issue\n1152\t    - Fix\n1153\t    rows:\n1154\t    - - CA-1\n1155\t      - CRITICAL\n1156\t      - Abstract\n1157\t      - universally fail vs 2 positive results\n1158\t      - add conditions\n1159\t    - - CA-2\n1160\t      - CRITICAL\n1161\t      - Disc/Lim\n1162\t      - +0.1pp vs +0.4pp vs actual +0.6pp\n1163\t      - unify numbers\n1164\t    - - CA-3\n1165\t      - CRITICAL\n1166\t      - Sec 4.4\n1167\t      - structural inevitability vs R2=0.51\n1168\t      - reframe as one factor\n1169\t    - - CA-4\n1170\t      - CRITICAL\n1171\t      - Claim 1\n1172\t      - universal failure framing\n1173\t      - conditional framing\n1174\t    - - CA-5\n1175\t      - CRITICAL\n1176\t      - Headline\n1177\t      - greedy dominates all vs 2 exceptions\n1178\t      - add regime qualifier\n1179\t    - - CA-6\n1180\t      - MODERATE\n1181\t      - 4B section\n1182\t      - 4B degen interpretation confound\n1183\t      - acknowledge\n1184\t    - - CA-7\n1185\t      - MODERATE\n1186\t      - SJ claims\n1187\t      - SJ>LP p=0.085 borderline\n1188\t      - soften claim\n1189\t    - - CA-8\n1190\t      - MINOR\n1191\t      - Fig 4 cap\n1192\t      - monotonic claim vs R2=0.51\n1193\t      - update\n1194\t  - name: 'Table A2: Prescriptive Decision Matrix'\n1195\t    columns:\n1196\t    - Degeneracy\n1197\t    - LP_Range_nats\n1198\t    - Recommendation\n1199\t    - Expected_Gain_pp\n1200\t    rows:\n1201\t    - - < 10%\n1202\t      - '> 0.07'\n1203\t      - LP best-of-N\n1204\t      - 2-4\n1205\t    - - 10-20%\n1206\t      - 0.04-0.07\n1207\t      - Evaluate on dev\n1208\t      - 0-2\n1209\t    - - '> 20%'\n1210\t      - < 0.04\n1211\t      - T=0 greedy\n1212\t      - '0'\n1213\t    - - any (RE >40% zero-F1)\n1214\t      - any\n1215\t      - Supervised verifier or greedy\n1216\t      - 0 unsupervised\n1217\t  figures_description:\n1218\t  - 'Figure S-audit: Capability trap R2 degradation bar chart. 3 bars: R2=0.98 (3\n1219\t    datasets), 0.51 (+ Few-NERD), 0.35 (+ rank=8). Annotated: which data point caused\n1220\t    each drop. Shows progressive dissolution of the capability trap as evidence accumulates.\n1221\t\n1222\t    '\n1223\t  analysis: 'Claim audit 输出一个 comprehensive rewrite checklist。 核心变化不是 patch individual\n1224\t    numbers——是叙事重构。\n1225\t\n1226\t    好消息：所有已有实验数据（free-form ablation、scale ablation、 cross-model validation、temperature\n1227\t    analysis）不受影响。 它们仍然是 valid empirical contributions。 转向只需要重新 frame 这些数据的 interpretation。\n1228\t\n1229\t    Free-form ablation 仍证明 LP compression is model-intrinsic (在 high-convergence regime\n1230\t    下)。Scale ablation 仍证明 cross-scale consistency。Cross-model 仍证明 cross-architecture\n1231\t    generalization。\n1232\t\n1233\t    新 framing 有更清晰的层次： Layer 1 (QE): confidence signals reliably estimate quality\n1234\t    — robust across regimes. Layer 2 (Selection): selection effectiveness depends\n1235\t    on output convergence. Layer 3 (Convergence drivers): FT intensity > entity density\n1236\t    > task complexity > capability. Layer 4 (Guidelines): prescriptive decision matrix\n1237\t    for practitioners.\n1238\t\n1239\t    从 \"interesting negative finding\" 升级为 \"prescriptive empirical study\"， 对 EMNLP Main\n1240\t    Conference fit 可能反而更好—— actionable findings 比 pure diagnostics 更 impactful。\n1241\t\n1242\t    Title 变更 essential： \"Strong Predictors, Weak Selectors\" → \"When Does Multi-Sample\n1243\t    Selection Help\" 反映从 universal negative 到 conditional study 的根本转向。'\n1244\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75442d9d-986b-48cf-93a3-f77e4917889c",
+            "isSidechain": true,
+            "promptId": "d3047b4d-8dba-43e7-b80c-d5957be09c5a",
+            "agentId": "a8b517894b968981b",
+            "type": "user",
+            "uuid": "c9472878-ccae-414c-9d7d-b005624591a7",
+            "sourceToolAssistantUUID": "75442d9d-986b-48cf-93a3-f77e4917889c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8df48f23-5b79-4d80-aa5c-932cabdd7d07",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T10:25:33.810Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me submit the review via the MCP tool."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c9472878-ccae-414c-9d7d-b005624591a7",
+            "isSidechain": true,
+            "agentId": "a8b517894b968981b",
+            "requestId": "req_011Cb65xC1YUzknQKsLQt2pv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "76ce1b28-2c53-4d99-93a6-ffac5da6edf6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8df48f23-5b79-4d80-aa5c-932cabdd7d07",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016NnUHLiNmcq5ooUvNa8syt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 37166,
+                "cache_read_input_tokens": 15274,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 37166,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T10:25:34.369Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SQt77CPBEfxRtCdoLmD9vL",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__submit_dream_review_report",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "76ce1b28-2c53-4d99-93a6-ffac5da6edf6",
+            "isSidechain": true,
+            "agentId": "a8b517894b968981b",
+            "requestId": "req_011Cb65xC1YUzknQKsLQt2pv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3b182869-201d-4b48-ae10-dac99e56b0be",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8df48f23-5b79-4d80-aa5c-932cabdd7d07",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016NnUHLiNmcq5ooUvNa8syt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 37166,
+                "cache_read_input_tokens": 15274,
+                "output_tokens": 103,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 37166
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 103,
+                    "cache_read_input_tokens": 15274,
+                    "cache_creation_input_tokens": 37166,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 37166,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T10:25:34.373Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01SQt77CPBEfxRtCdoLmD9vL",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__submit_dream_review_report"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3b182869-201d-4b48-ae10-dac99e56b0be",
+            "isSidechain": true,
+            "promptId": "d3047b4d-8dba-43e7-b80c-d5957be09c5a",
+            "agentId": "a8b517894b968981b",
+            "type": "user",
+            "uuid": "cc2ed7e2-a3aa-4922-b0f7-d6d05aa055c5",
+            "sourceToolAssistantUUID": "3b182869-201d-4b48-ae10-dac99e56b0be",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8df48f23-5b79-4d80-aa5c-932cabdd7d07",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T10:27:09.388Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JwLqCGzYmoGRcp3QPUasus",
+              "name": "mcp__agent-ml-research__submit_dream_review_report",
+              "input": {
+                "report": "### R1 Review: Methods and Experiments\n\n**Soundness Score**: 3.5/5\n**Excitement Score**: 3/5\n**Reproducibility Score**: 4/5\n**Overall Assessment**: 3.5/5\n\n#### Strengths (Methods/Experiments)\n\n- S1: **Well-controlled LoRA rank ablation provides causal evidence.** The rank=16 vs. rank=8 comparison on SciERC (same model, same data, same epochs) is the strongest experiment in the paper. It cleanly isolates fine-tuning intensity as a degeneracy driver and demonstrates that selection effectiveness can be toggled by a single training hyperparameter. The degeneracy drop from 21% to 5.2% at only 3.9pp F1 cost is a compelling and actionable finding.\n\n- S2: **Comprehensive signal evaluation with appropriate metrics.** Five confidence signals spanning four families (structural consistency, token agreement, surface match, model confidence) are evaluated along three complementary axes: Spearman rho for QE ranking, AUROC for binary discrimination, and selection F1 for practical utility. The QE-vs-selection decoupling (SJ rho stable at 0.360 vs 0.378 while LP selection gap jumps from +0.6pp to +3.6pp) is a genuinely useful insight for practitioners.\n\n- S3: **Honest reporting of statistical instability.** The paper does not hide the SJ cross-seed variability (CV=0.154) or the complete RE signal ranking chaos across seeds. Fisher combined p-values are reported transparently, including the borderline SJ>LP result (p=0.085). The claim audit (reflected in the narrative pivot from \"universal failure\" to \"regime-dependent\") shows intellectual honesty. Many papers would have cherry-picked the two favorable seeds and suppressed seed 789.\n\n- S4: **Free-form decoding ablation is well-designed.** Testing whether LP compression is an artifact of constrained JSON decoding versus intrinsic to the model's output distribution is a necessary control. The near-identical LP standard deviations (constrained sigma=0.0206 vs. free-form sigma=0.0199) convincingly rule out the decoding-format confound.\n\n- S5: **Prescriptive guidelines grounded in quantitative thresholds.** Table 9's decision matrix (degeneracy <10% + LP range >0.07 nats -> use selection; degeneracy >20% -> use greedy) translates findings into actionable recommendations, which is uncommon and valuable for a diagnostic study.\n\n#### Weaknesses (Methods/Experiments)\n\n- W1: **N=8 is the only sample size evaluated end-to-end; no systematic N ablation.** The paper fixes N=8 throughout. Figure 5 in the experiment context shows selection F1 vs. N curves, but the paper text never presents these curves or discusses diminishing/increasing returns with N. At N=8, the oracle headroom on Few-NERD is 9.1pp, suggesting substantial room; whether N=16 or N=32 would significantly improve LP selection is completely unexplored. This matters because the practical cost of multi-sample inference scales linearly with N, and the paper's prescriptive guidelines should specify the recommended N, not just whether to use selection at all.\n\n- W2: **Temperature is fixed at T=1.0 with no exploration.** Temperature directly controls output diversity and thus degeneracy. The paper's central thesis is that output convergence regime determines selection effectiveness, yet the most direct knob for controlling output diversity at inference time—temperature—is never varied. Even a brief T={0.5, 0.8, 1.0, 1.2} sweep on one dataset would substantially strengthen the convergence-drives-selection narrative and provide practitioners with another actionable lever beyond LoRA rank reduction.\n\n- W3: **LoRA rank ablation covers only two points (8 and 16) on one dataset.** The rank ablation is the paper's strongest causal claim, but it rests on a single binary comparison. Without intermediate points (rank=4, 32, 64), it is impossible to determine whether the degeneracy-rank relationship is linear, convex, or exhibits a sharp threshold. The paper also does not ablate training epochs (e.g., 1, 2, 3, 4, 5 epochs at rank=16) despite using different epoch counts across datasets (3 for Few-NERD, 5 for others). The Few-NERD vs. SciERC comparison confounds epoch count with dataset identity.\n\n- W4: **Multiple comparisons not corrected.** The paper performs numerous statistical tests across datasets and signals but applies no multiple comparison correction (Bonferroni, Holm, or FDR). The two headline significant results—LP selection on Few-NERD (p=0.028) and LP selection at rank=8 (p=0.015)—would both survive Bonferroni correction if considered as the only two primary hypotheses, but the paper implicitly tests many more comparisons (5 signals x 6 conditions = 30 selection tests). At minimum, the paper should state which comparisons are pre-registered/primary and which are exploratory.\n\n- W5: **RE evaluation is underpowered and acknowledged but still occupies substantial space.** With n=397 instances, 43-48% zero-F1 samples, and completely unstable signal rankings across seeds, the RE results contribute almost no reliable conclusions. Yet RE appears in multiple tables and the prescriptive guidelines. The paper would be stronger if RE were either (a) expanded with additional RE datasets to achieve statistical power, or (b) compressed to a brief \"negative result\" subsection rather than given coordinate status with NER.\n\n- W6: **Cross-model validation is thin.** LLaMA-3.1-8B is tested only on CoNLL-2003 (the highest-degeneracy dataset), and Qwen3-4B only on SciERC. Neither cross-architecture nor cross-scale experiments are run on the low-convergence regimes where selection actually works (Few-NERD, rank=8 SciERC). The central claim—that selection is regime-dependent—thus lacks cross-model validation in the regime where it matters most.\n\n- W7: **No comparison to aggregation baselines.** The paper evaluates only best-of-N selection. Self-consistency-style majority voting (adapted for structured outputs via entity-level voting), MBR decoding with structured F1 as the utility, or simple union/intersection strategies are natural baselines for multi-sample IE. Their absence weakens the claim that \"no multi-sample strategy outperforms greedy\" in the high-convergence regime.\n\n#### Questions for Authors\n\n- Q1: What happens to degeneracy and LP selection gains as N increases to 16 and 32? If the oracle headroom at N=8 is already 9.1pp on Few-NERD and 18.7pp at rank=8, is there evidence that larger N would close more of this gap, or does degeneracy increase with N (more chances for all samples to converge)?\n\n- Q2: The rank=8 ablation reduces greedy F1 by 3.9pp but LP selection recovers to 0.661, only 0.3pp below rank=16 greedy (0.664). Have you considered jointly optimizing rank and N—e.g., rank=8 with N=16—to potentially exceed rank=16 greedy while retaining selection capability and uncertainty estimates?\n\n- Q3: The prescriptive thresholds (degeneracy <10%, LP range >0.07 nats) appear to be derived from the same data used to evaluate them. Was any held-out validation performed? How sensitive are these thresholds to small perturbations?\n\n- Q4: For the Few-NERD experiment, you use 3 epochs instead of 5. Can you confirm that the low degeneracy is not primarily an artifact of under-training? What is the epoch-level degeneracy trajectory on Few-NERD (e.g., degeneracy at epochs 1, 2, 3, 4, 5)?\n\n- Q5: Bootstrap with 1000 iterations is standard but on the low end. Did you verify that p-values are stable when increasing to 5000 or 10000 iterations? Given that p=0.028 and p=0.015 are your primary significant results, bootstrap variance at 1000 iterations could shift these across the 0.05 boundary.\n\n#### Missing Experiments (severity: critical/moderate/minor)\n\n- M1 (moderate): **Temperature ablation.** T={0.5, 0.8, 1.0, 1.2} on at least SciERC and Few-NERD. This is the most direct test of the output-diversity hypothesis at inference time and would provide practitioners a zero-retraining lever for controlling convergence.\n\n- M2 (moderate): **N ablation.** N={4, 8, 16, 32} on Few-NERD and rank=8 SciERC, where selection works. Essential for practical guidelines: the paper recommends multi-sample selection but never says how many samples.\n\n- M3 (moderate): **Epoch ablation on a single dataset.** Degeneracy at epochs 1-5 on SciERC rank=16 would cleanly disentangle epoch count from LoRA rank as convergence drivers, since these are currently confounded (Few-NERD uses 3 epochs while SciERC uses 5).\n\n- M4 (moderate): **Aggregation baselines.** Entity-level majority voting and MBR with structured F1 utility on at least one dataset. Without these, the paper cannot claim that *selection* specifically fails—only that LP-based best-of-N selection fails.\n\n- M5 (minor): **Additional LoRA rank points.** Rank={4, 32, 64} on SciERC to characterize the functional form of the rank-degeneracy relationship. At minimum, rank=4 to test whether degeneracy continues to decrease or plateaus.\n\n- M6 (minor): **Cross-model validation in the low-convergence regime.** LLaMA on Few-NERD or rank=8 SciERC to confirm that regime-dependent selection is not Qwen-specific.\n\n- M7 (minor): **Supervised verifier baseline.** Acknowledged as future work, but even a simple logistic regression over the 5 signals as features would provide an upper-bound reference for unsupervised selection and test whether signal combination helps.\n\n#### Detailed Comments\n\n**Overall assessment.** This is a solid diagnostic empirical study that asks the right question—when does multi-sample selection help structured IE?—and provides a mostly convincing answer. The narrative pivot from \"universal failure\" to \"regime-dependent effectiveness\" is well-motivated by the evidence. The LoRA rank ablation is genuinely insightful: showing that a single training hyperparameter can toggle selection effectiveness from negligible to significant while barely affecting greedy F1 is a practically useful finding.\n\nHowever, the experimental coverage has notable gaps that prevent the paper from fully substantiating its prescriptive claims. The two key statistically significant results (Few-NERD LP +3.2pp and rank=8 LP +3.6pp) are the paper's primary positive evidence, but both are modest effects (Cohen's d around 0.15-0.17, i.e., small effect sizes) with p-values that, while below 0.05 individually, have not been corrected for multiple testing across the full experiment matrix. The paper should be more explicit about which tests are confirmatory vs. exploratory.\n\n**On the R-squared regression argument.** The capability trap reinterpretation (R-squared dropping from 0.98 to 0.51 to 0.35) is rhetorically effective but statistically fragile. Fitting a regression on 3 points and getting R-squared=0.98 is trivially expected—any non-degenerate 3 points will produce high R-squared for a linear fit. The meaningful test is whether the 4th and 5th points fall on the line, and they don't. The paper should avoid emphasizing the R-squared=0.98 figure and instead focus on the prediction error (30.2pp residual for Few-NERD), which is the genuinely informative statistic.\n\n**On the QE-selection decoupling.** This is the paper's most conceptually interesting finding, but it is demonstrated at only one comparison point (rank=16 vs. rank=8 on SciERC). Observing that SJ rho changes by only 0.018 while LP selection gap changes by 3.0pp is suggestive, but a single paired comparison does not establish a general principle. The decoupling claim would be much stronger with additional rank points or across multiple datasets.\n\n**On effect sizes.** Cohen's d values of 0.152 and 0.168 are classified as \"small\" effects. While statistically significant, the practical magnitude of 3-4pp F1 gains should be contextualized against the computational cost of generating 8 samples. If greedy decoding takes 1x compute, 8-sample generation takes ~8x. A 3.6pp gain at 8x cost is a substantially different value proposition than, say, self-consistency's typical 5-15pp gains on reasoning tasks at similar cost.\n\n**On the WNUT gap.** WNUT results are almost entirely absent from the paper—Table 2 shows dashes for most signals, Table 5 shows 0% degeneracy and no LP range or selection data. The Limitations section mentions WNUT briefly, but this dataset contributes very little to the analysis. If WNUT is included in the \"4 NER datasets\" count, the paper should report full results or explicitly state why they are omitted.\n\n**On reproducibility.** The paper specifies most hyperparameters clearly (LoRA rank, alpha, epochs, N, T, bootstrap iterations). However, there is no mention of code or data release. The structured JSON output format, which is central to the methodology, is never fully specified—readers would need to see the exact prompt template and JSON schema to reproduce the entity/relation extraction pipeline. Learning rate, batch size, optimizer, and other standard training details are also absent from the main text.\n\n**Verdict.** The paper makes a useful contribution as a diagnostic study and the prescriptive framing is appropriate for EMNLP. The LoRA rank ablation and QE-selection decoupling are the strongest contributions. However, the missing temperature and N ablations, the thin cross-model validation in the key regime, and the lack of aggregation baselines leave the prescriptive guidelines insufficiently grounded. The paper sits at the Main/Findings borderline: if the moderate missing experiments (M1-M4) were addressed, this would be a clear Main conference paper; as submitted, it is more appropriate for Findings.\n",
+                "project": "struct_self_consist_ie",
+                "tier": "worst",
+                "dream_id": "dream_20260516T092241",
+                "overall_score": "3.5 — Main/Findings borderline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc2ed7e2-a3aa-4922-b0f7-d6d05aa055c5",
+            "isSidechain": true,
+            "agentId": "a8b517894b968981b",
+            "requestId": "req_011Cb65xbURnN21KhBtPMH29",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0453e6c2-a5f2-4a62-9616-d9035b4c8e55",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8df48f23-5b79-4d80-aa5c-932cabdd7d07",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175b1xkP2xMo2TbmKyywGmH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 684,
+                "cache_read_input_tokens": 52440,
+                "output_tokens": 3630,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 684
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 3630,
+                    "cache_read_input_tokens": 52440,
+                    "cache_creation_input_tokens": 684,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 684,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T10:27:13.149Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JwLqCGzYmoGRcp3QPUasus",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"report_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260516T092241/worst/review_report.md\\\", \\\"dream_id\\\": \\\"dream_20260516T092241\\\", \\\"tier\\\": \\\"worst\\\", \\\"review_visible\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0453e6c2-a5f2-4a62-9616-d9035b4c8e55",
+            "isSidechain": true,
+            "promptId": "d3047b4d-8dba-43e7-b80c-d5957be09c5a",
+            "agentId": "a8b517894b968981b",
+            "type": "user",
+            "uuid": "1fc56bfd-bc79-4c09-9be3-3dbbfa737d63",
+            "sourceToolAssistantUUID": "0453e6c2-a5f2-4a62-9616-d9035b4c8e55",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8df48f23-5b79-4d80-aa5c-932cabdd7d07",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T10:27:22.855Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Review submitted successfully. Here is a summary of the key findings:\n\n**Overall: 3.5/5 (Main/Findings borderline)**\n\nThe paper is a solid diagnostic empirical study with a well-motivated pivot from \"universal failure\" to \"regime-dependent effectiveness.\" The LoRA rank ablation (rank=16 vs. rank=8 on SciERC) is the strongest experiment, cleanly demonstrating that fine-tuning intensity drives degeneracy and that selection effectiveness is toggled by a single training hyperparameter. The QE-selection decoupling insight and prescriptive guidelines (Table 9) are practically valuable contributions.\n\n**Primary concerns:**\n- N=8 fixed throughout with no N ablation; T=1.0 fixed with no temperature sweep — both directly relevant to the output diversity thesis\n- LoRA rank ablation covers only two points on one dataset; no epoch ablation to disentangle epoch count from rank\n- Multiple comparison correction absent across ~30 implicit tests; the two headline p-values (0.028, 0.015) are individually significant but uncorrected\n- Cross-model validation missing in the low-convergence regime where selection actually works\n- No aggregation baselines (majority voting, MBR) — only best-of-N selection evaluated\n- Cohen's d values (0.15-0.17) indicate small practical effect sizes that should be contextualized against 8x inference cost\n\n**What would elevate to clear Main:** Addressing the moderate missing experiments (temperature ablation, N ablation, epoch ablation, aggregation baselines) and adding cross-model validation in the favorable regime."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1fc56bfd-bc79-4c09-9be3-3dbbfa737d63",
+            "isSidechain": true,
+            "agentId": "a8b517894b968981b",
+            "requestId": "req_011Cb665sZFi6H9Pb8XTPBSv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2b67e692-326b-4d27-845b-96f4de0f677e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8df48f23-5b79-4d80-aa5c-932cabdd7d07",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LSbUt6yDBBHCL6Td1eywG3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3760,
+                "cache_read_input_tokens": 53124,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3760,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 8
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-reviewer-r1-for-a-blind-peer-review-of-a-paper-submitted-to-emnlp-2026.md"
+}
