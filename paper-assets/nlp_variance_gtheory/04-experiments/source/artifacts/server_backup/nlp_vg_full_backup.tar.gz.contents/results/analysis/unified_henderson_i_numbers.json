@@ -1,0 +1,392 @@
+{
+  "single_model_6facet": {
+    "data_source": "exp001_llama (4 shards + fp32_t0_backfill)",
+    "records": 259200,
+    "conditions": 1296,
+    "items": 200,
+    "method": "Henderson I (EMS-based)",
+    "facets": [
+      "precision",
+      "temperature",
+      "prompt_template",
+      "seed",
+      "ordering",
+      "item_id"
+    ],
+    "facet_levels": {
+      "precision": 3,
+      "temperature": 3,
+      "prompt_template": 6,
+      "seed": 6,
+      "ordering": 4,
+      "item_id": 200
+    },
+    "grand_mean": 0.6839,
+    "metric": "correct",
+    "anova_table": {
+      "precision": {
+        "SS": 384.666412,
+        "df": 2,
+        "MS": 192.3332060185
+      },
+      "temperature": {
+        "SS": 47.5275,
+        "df": 2,
+        "MS": 23.76375
+      },
+      "prompt_template": {
+        "SS": 19.133044,
+        "df": 5,
+        "MS": 3.8266087963
+      },
+      "seed": {
+        "SS": 6.55647,
+        "df": 5,
+        "MS": 1.3112939815
+      },
+      "ordering": {
+        "SS": 0.362542,
+        "df": 3,
+        "MS": 0.1208474794
+      },
+      "item_id": {
+        "SS": 35019.73191,
+        "df": 199,
+        "MS": 175.9785523102
+      },
+      "precision:temperature": {
+        "SS": 66.743171,
+        "df": 4,
+        "MS": 16.6857928241
+      },
+      "precision:prompt_template": {
+        "SS": 16.879051,
+        "df": 10,
+        "MS": 1.6879050926
+      },
+      "precision:seed": {
+        "SS": 0.988403,
+        "df": 10,
+        "MS": 0.0988402778
+      },
+      "precision:ordering": {
+        "SS": 0.573927,
+        "df": 6,
+        "MS": 0.0956545782
+      },
+      "precision:item_id": {
+        "SS": 1256.315069,
+        "df": 398,
+        "MS": 3.1565705262
+      },
+      "temperature:prompt_template": {
+        "SS": 14.764074,
+        "df": 10,
+        "MS": 1.4764074074
+      },
+      "temperature:seed": {
+        "SS": 10.730926,
+        "df": 10,
+        "MS": 1.0730925926
+      },
+      "temperature:ordering": {
+        "SS": 0.263395,
+        "df": 6,
+        "MS": 0.043899177
+      },
+      "temperature:item_id": {
+        "SS": 1116.907685,
+        "df": 398,
+        "MS": 2.8063007165
+      },
+      "prompt_template:seed": {
+        "SS": 2.66559,
+        "df": 25,
+        "MS": 0.1066236111
+      },
+      "prompt_template:ordering": {
+        "SS": 3.132249,
+        "df": 15,
+        "MS": 0.2088166152
+      },
+      "prompt_template:item_id": {
+        "SS": 2607.017419,
+        "df": 995,
+        "MS": 2.620118009
+      },
+      "seed:ordering": {
+        "SS": 0.581046,
+        "df": 15,
+        "MS": 0.0387363683
+      },
+      "seed:item_id": {
+        "SS": 2255.168067,
+        "df": 995,
+        "MS": 2.26650057
+      },
+      "ordering:item_id": {
+        "SS": 354.067242,
+        "df": 597,
+        "MS": 0.5930774565
+      },
+      "residual": {
+        "SS": 12849.241439,
+        "df": 255489,
+        "MS": 0.0502927384
+      }
+    },
+    "variance_components_raw": {
+      "residual": 0.0502927384,
+      "precision:temperature": 0.0005776215,
+      "precision:prompt_template": 0.0001137231,
+      "precision:seed": 3.3714e-06,
+      "precision:ordering": 2.1001e-06,
+      "precision:item_id": 0.0071904578,
+      "temperature:prompt_template": 9.90357e-05,
+      "temperature:seed": 7.10278e-05,
+      "temperature:ordering": -2.96e-07,
+      "temperature:item_id": 0.0063796481,
+      "prompt_template:seed": 7.8237e-06,
+      "prompt_template:ordering": 1.46781e-05,
+      "prompt_template:item_id": 0.0118973392,
+      "seed:ordering": -1.07e-06,
+      "seed:item_id": 0.0102602214,
+      "ordering:item_id": 0.0016752615,
+      "precision": 0.0019769631,
+      "temperature": 2.17526e-05,
+      "prompt_template": -4.79651e-05,
+      "seed": -4.79474e-05,
+      "ordering": -1.01569e-05,
+      "item_id": 0.1271120031
+    },
+    "variance_components_adj": {
+      "residual": 0.0502927384,
+      "precision:temperature": 0.0005776215,
+      "precision:prompt_template": 0.0001137231,
+      "precision:seed": 3.3714e-06,
+      "precision:ordering": 2.1001e-06,
+      "precision:item_id": 0.0071904578,
+      "temperature:prompt_template": 9.90357e-05,
+      "temperature:seed": 7.10278e-05,
+      "temperature:ordering": 0.0,
+      "temperature:item_id": 0.0063796481,
+      "prompt_template:seed": 7.8237e-06,
+      "prompt_template:ordering": 1.46781e-05,
+      "prompt_template:item_id": 0.0118973392,
+      "seed:ordering": 0.0,
+      "seed:item_id": 0.0102602214,
+      "ordering:item_id": 0.0016752615,
+      "precision": 0.0019769631,
+      "temperature": 2.17526e-05,
+      "prompt_template": 0.0,
+      "seed": 0.0,
+      "ordering": 0.0,
+      "item_id": 0.1271120031
+    },
+    "variance_pct": {
+      "item_id": 58.3897,
+      "residual": 23.1023,
+      "prompt_template:item_id": 5.4651,
+      "seed:item_id": 4.7131,
+      "precision:item_id": 3.303,
+      "temperature:item_id": 2.9305,
+      "precision": 0.9081,
+      "ordering:item_id": 0.7695,
+      "precision:temperature": 0.2653,
+      "precision:prompt_template": 0.0522,
+      "temperature:prompt_template": 0.0455,
+      "temperature:seed": 0.0326,
+      "temperature": 0.01,
+      "prompt_template:ordering": 0.0067,
+      "prompt_template:seed": 0.0036,
+      "precision:seed": 0.0015,
+      "precision:ordering": 0.001,
+      "temperature:ordering": 0.0,
+      "seed:ordering": 0.0,
+      "prompt_template": 0.0,
+      "seed": 0.0,
+      "ordering": 0.0
+    },
+    "total_variance": 0.2176957667,
+    "G_item": 0.936121,
+    "G_item_detail": {
+      "G_item": 0.936121,
+      "tau": 0.1271120031,
+      "sigma_delta": 0.0086739169,
+      "delta_breakdown": {
+        "residual": {
+          "estimate": 0.0502927384,
+          "divisor": 1296,
+          "contribution": 3.88061e-05
+        },
+        "precision:item_id": {
+          "estimate": 0.0071904578,
+          "divisor": 3,
+          "contribution": 0.0023968193
+        },
+        "temperature:item_id": {
+          "estimate": 0.0063796481,
+          "divisor": 3,
+          "contribution": 0.0021265494
+        },
+        "prompt_template:item_id": {
+          "estimate": 0.0118973392,
+          "divisor": 6,
+          "contribution": 0.0019828899
+        },
+        "seed:item_id": {
+          "estimate": 0.0102602214,
+          "divisor": 6,
+          "contribution": 0.0017100369
+        },
+        "ordering:item_id": {
+          "estimate": 0.0016752615,
+          "divisor": 4,
+          "contribution": 0.0004188154
+        }
+      }
+    },
+    "d_study": {
+      "25": 0.646869,
+      "50": 0.785575,
+      "75": 0.846046,
+      "100": 0.879912,
+      "150": 0.916603,
+      "200": 0.936121,
+      "300": 0.956487,
+      "500": 0.97343
+    }
+  },
+  "single_model_bf16_5facet": {
+    "data_source": "exp001_llama bf16 subset",
+    "records": 86400,
+    "conditions": 432,
+    "items": 200,
+    "method": "Henderson I (EMS-based)",
+    "facets": [
+      "temperature",
+      "prompt_template",
+      "seed",
+      "ordering",
+      "item_id"
+    ],
+    "facet_levels": {
+      "temperature": 3,
+      "prompt_template": 6,
+      "seed": 6,
+      "ordering": 4,
+      "item_id": 200
+    },
+    "grand_mean": 0.710833,
+    "metric": "correct",
+    "variance_components_raw": {
+      "residual": 0.0280888431,
+      "temperature:prompt_template": 1.18059e-05,
+      "temperature:seed": 7.97052e-05,
+      "temperature:ordering": 7.3187e-06,
+      "temperature:item_id": 0.005515902,
+      "prompt_template:seed": -1.8588e-06,
+      "prompt_template:ordering": 2.35204e-05,
+      "prompt_template:item_id": 0.0111442446,
+      "seed:ordering": -1.5902e-06,
+      "seed:item_id": 0.0130522511,
+      "ordering:item_id": 0.0020624892,
+      "temperature": -1.59982e-05,
+      "prompt_template": -1.74456e-05,
+      "seed": -4.59741e-05,
+      "ordering": -1.59228e-05,
+      "item_id": 0.1464130129
+    },
+    "variance_components_adj": {
+      "residual": 0.0280888431,
+      "temperature:prompt_template": 1.18059e-05,
+      "temperature:seed": 7.97052e-05,
+      "temperature:ordering": 7.3187e-06,
+      "temperature:item_id": 0.005515902,
+      "prompt_template:seed": 0.0,
+      "prompt_template:ordering": 2.35204e-05,
+      "prompt_template:item_id": 0.0111442446,
+      "seed:ordering": 0.0,
+      "seed:item_id": 0.0130522511,
+      "ordering:item_id": 0.0020624892,
+      "temperature": 0.0,
+      "prompt_template": 0.0,
+      "seed": 0.0,
+      "ordering": 0.0,
+      "item_id": 0.1464130129
+    },
+    "variance_pct": {
+      "item_id": 70.9368,
+      "residual": 13.609,
+      "seed:item_id": 6.3238,
+      "prompt_template:item_id": 5.3994,
+      "temperature:item_id": 2.6724,
+      "ordering:item_id": 0.9993,
+      "temperature:seed": 0.0386,
+      "prompt_template:ordering": 0.0114,
+      "temperature:prompt_template": 0.0057,
+      "temperature:ordering": 0.0035,
+      "prompt_template:seed": 0.0,
+      "seed:ordering": 0.0,
+      "temperature": 0.0,
+      "prompt_template": 0.0,
+      "seed": 0.0,
+      "ordering": 0.0
+    },
+    "total_variance": 0.206399093,
+    "G_item": 0.957793,
+    "G_item_detail": {
+      "G_item": 0.957793,
+      "tau": 0.1464130129,
+      "sigma_delta": 0.0064520261,
+      "delta_breakdown": {
+        "residual": {
+          "estimate": 0.0280888431,
+          "divisor": 432,
+          "contribution": 6.50205e-05
+        },
+        "temperature:item_id": {
+          "estimate": 0.005515902,
+          "divisor": 3,
+          "contribution": 0.001838634
+        },
+        "prompt_template:item_id": {
+          "estimate": 0.0111442446,
+          "divisor": 6,
+          "contribution": 0.0018573741
+        },
+        "seed:item_id": {
+          "estimate": 0.0130522511,
+          "divisor": 6,
+          "contribution": 0.0021753752
+        },
+        "ordering:item_id": {
+          "estimate": 0.0020624892,
+          "divisor": 4,
+          "contribution": 0.0005156223
+        }
+      }
+    },
+    "d_study": {
+      "25": 0.739351,
+      "50": 0.850146,
+      "75": 0.894844,
+      "100": 0.919004,
+      "150": 0.944504,
+      "200": 0.957793,
+      "300": 0.97146,
+      "500": 0.982678
+    }
+  },
+  "comparison_with_old": {
+    "old_data": "239,200 records (missing FP32×T=0.0)",
+    "old_method": "SS proportion (SS_component / SS_total)",
+    "old_item_id_pct": 54.8479,
+    "old_G_item_200": 0.9184,
+    "new_data": "259,200 records (complete)",
+    "new_method": "Henderson I (EMS-based)",
+    "new_item_id_pct": 58.3897,
+    "new_G_item": 0.936121,
+    "note": "Henderson I yields unbiased variance component estimates; SS proportion is biased for unbalanced/complex designs. With balanced data, differences are primarily from the 20,000 added FP32 T=0.0 records."
+  }
+}

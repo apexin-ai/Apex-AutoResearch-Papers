@@ -1,0 +1,81 @@
+{
+  "dataset": "cross_model_2way_precision (balanced)",
+  "n_records": 230400,
+  "design": {
+    "models": 2,
+    "precisions": 2,
+    "temperatures": 2,
+    "prompt_templates": 6,
+    "seeds": 6,
+    "orderings": 4,
+    "items": 200,
+    "description": "2 models (Llama, Gemma) x 2 precisions (bf16, fp32) x 2 temps (0.3, 0.7) x 6 prompts x 6 seeds x 4 orderings x 200 items"
+  },
+  "grand_mean": 0.6934,
+  "variance_components_pct": {
+    "item_id": 52.2836,
+    "residual": 25.4614,
+    "model:item_id": 12.2253,
+    "seed:item_id": 4.2756,
+    "prompt_template:item_id": 2.5282,
+    "precision:item_id": 1.0627,
+    "model": 0.6243,
+    "ordering:item_id": 0.4391,
+    "temperature:item_id": 0.3751,
+    "model:precision": 0.3336,
+    "precision": 0.3205,
+    "prompt_template": 0.0208,
+    "seed": 0.0108,
+    "temperature": 0.0087,
+    "model:seed": 0.0067,
+    "model:prompt_template": 0.006,
+    "temperature:seed": 0.005,
+    "prompt_template:seed": 0.0047,
+    "precision:prompt_template": 0.0018,
+    "prompt_template:ordering": 0.0015,
+    "seed:ordering": 0.0014,
+    "temperature:prompt_template": 0.001,
+    "precision:seed": 0.0009,
+    "precision:ordering": 0.0007,
+    "ordering": 0.0004,
+    "precision:temperature": 0.0001,
+    "model:ordering": 0.0001,
+    "temperature:ordering": 0.0,
+    "model:temperature": 0.0
+  },
+  "G_item": 0.8659,
+  "G_condition": 0.9421,
+  "d_study": {
+    "vary_n_models": {
+      "1": 0.786,
+      "2": 0.8659,
+      "3": 0.8962,
+      "4": 0.9122,
+      "5": 0.9221,
+      "10": 0.9425
+    },
+    "vary_n_prompts": {
+      "1": 0.8352,
+      "2": 0.8534,
+      "3": 0.8596,
+      "6": 0.8659,
+      "10": 0.8684,
+      "20": 0.8704
+    },
+    "vary_n_seeds": {
+      "1": 0.8162,
+      "2": 0.8453,
+      "3": 0.8555,
+      "6": 0.8659,
+      "10": 0.8701,
+      "20": 0.8733
+    }
+  },
+  "comparison_with_unbalanced": {
+    "unbalanced_N": 325600,
+    "balanced_N": 230400,
+    "unbalanced_G_item": 0.707,
+    "balanced_G_item": 0.8659,
+    "notes": "Unbalanced included temp=0.0 (but Llama fp32 missing at temp=0.0); balanced excluded temp=0.0"
+  }
+}

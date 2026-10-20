@@ -1,0 +1,154 @@
+{
+  "T0.0": {
+    "n_records": 66400,
+    "seed_pct": 0.0,
+    "seed_item_pct": 0.0427,
+    "item_id_pct": 68.2479,
+    "G_item": 0.6825,
+    "all_components_pct": {
+      "item_id": 68.2479,
+      "precision:item_id": 13.5431,
+      "prompt_template:item_id": 9.9613,
+      "residual": 4.0422,
+      "precision": 2.1419,
+      "ordering:item_id": 1.6687,
+      "precision:prompt_template": 0.1968,
+      "prompt_template:ordering": 0.0578,
+      "prompt_template": 0.047,
+      "seed:item_id": 0.0427,
+      "precision:ordering": 0.0229,
+      "prompt_template:seed": 0.0158,
+      "precision:seed": 0.0118,
+      "seed:ordering": 0.0,
+      "seed": 0.0,
+      "ordering": 0.0
+    },
+    "n_levels": {
+      "precision": 3,
+      "prompt_template": 6,
+      "seed": 6,
+      "ordering": 4,
+      "item_id": 200
+    }
+  },
+  "T0.3": {
+    "n_records": 86400,
+    "seed_pct": 0.0,
+    "seed_item_pct": 6.1574,
+    "item_id_pct": 56.431,
+    "G_item": 0.5643,
+    "all_components_pct": {
+      "item_id": 56.431,
+      "residual": 22.5203,
+      "prompt_template:item_id": 6.2231,
+      "precision:item_id": 6.1854,
+      "seed:item_id": 6.1574,
+      "precision": 1.7098,
+      "ordering:item_id": 0.7537,
+      "precision:ordering": 0.0097,
+      "precision:prompt_template": 0.0056,
+      "prompt_template:seed": 0.0041,
+      "precision:seed": 0.0,
+      "prompt_template:ordering": 0.0,
+      "seed:ordering": 0.0,
+      "prompt_template": 0.0,
+      "seed": 0.0,
+      "ordering": 0.0
+    },
+    "n_levels": {
+      "precision": 3,
+      "prompt_template": 6,
+      "seed": 6,
+      "ordering": 4,
+      "item_id": 200
+    }
+  },
+  "T0.7": {
+    "n_records": 86400,
+    "seed_pct": 0.0071,
+    "seed_item_pct": 17.4038,
+    "item_id_pct": 49.355,
+    "G_item": 0.4936,
+    "all_components_pct": {
+      "item_id": 49.355,
+      "residual": 21.8606,
+      "seed:item_id": 17.4038,
+      "precision:item_id": 4.6758,
+      "prompt_template:item_id": 4.6422,
+      "precision": 1.5991,
+      "ordering:item_id": 0.4263,
+      "prompt_template:seed": 0.0104,
+      "precision:prompt_template": 0.0099,
+      "precision:seed": 0.008,
+      "seed": 0.0071,
+      "prompt_template:ordering": 0.0013,
+      "prompt_template": 0.0005,
+      "precision:ordering": 0.0,
+      "seed:ordering": 0.0,
+      "ordering": 0.0
+    },
+    "n_levels": {
+      "precision": 3,
+      "prompt_template": 6,
+      "seed": 6,
+      "ordering": 4,
+      "item_id": 200
+    }
+  },
+  "T_gt0": {
+    "n_records": 172800,
+    "seed_pct": 0.0,
+    "seed_item_pct": 10.5564,
+    "item_id_pct": 51.9483,
+    "G_item": 0.5195,
+    "all_components_pct": {
+      "item_id": 51.9483,
+      "residual": 23.463,
+      "seed:item_id": 10.5564,
+      "precision:item_id": 5.3013,
+      "prompt_template:item_id": 5.2363,
+      "precision": 1.6544,
+      "temperature:item_id": 1.1803,
+      "ordering:item_id": 0.5948,
+      "seed:temperature": 0.0339,
+      "precision:prompt_template": 0.0095,
+      "temperature": 0.0087,
+      "prompt_template:seed": 0.0047,
+      "precision:seed": 0.0037,
+      "precision:ordering": 0.0028,
+      "prompt_template:temperature": 0.0012,
+      "prompt_template:ordering": 0.0004,
+      "seed:ordering": 0.0003,
+      "precision:temperature": 0.0,
+      "ordering:temperature": 0.0,
+      "prompt_template": 0.0,
+      "seed": 0.0,
+      "ordering": 0.0
+    },
+    "n_levels": {
+      "precision": 3,
+      "prompt_template": 6,
+      "seed": 6,
+      "ordering": 4,
+      "temperature": 2,
+      "item_id": 200
+    }
+  },
+  "gradient": {
+    "seed_T0": 0.0,
+    "seed_T03": 0.0,
+    "seed_T07": 0.0071,
+    "seed_item_T0": 0.0427,
+    "seed_item_T03": 6.1574,
+    "seed_item_T07": 17.4038,
+    "monotonic_increase_seed": true,
+    "monotonic_increase_seed_item": true
+  },
+  "fp_non_associativity": {
+    "T0_seed_nonzero": true,
+    "T0_seed_pct": 0.0,
+    "T0_seed_item_pct": 0.0427,
+    "magnitude": 0.0427,
+    "interpretation": "Non-zero seed variance at T=0 indicates floating-point non-associativity in vLLM. Combined seed+seed:item = 0.0427% of total variance."
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "analysis": "dstudy_single_condition",
+  "description": "D-study comparing multi-facet averaged G vs single-condition G for fair IRT baseline",
+  "n_actual_items": 200,
+  "variance_components": {
+    "item_id": 0.11294394,
+    "residual": 0.04760054,
+    "precision:item_id": 0.01246693,
+    "seed:item_id": 0.01119598,
+    "prompt_template:item_id": 0.01085704,
+    "temperature:item_id": 0.0054314,
+    "precision": 0.00342922,
+    "ordering:item_id": 0.00144969,
+    "precision:temperature": 0.00023455,
+    "temperature:prompt_template": 0.00010584,
+    "temperature:seed": 6.795e-05,
+    "temperature": 6.631e-05,
+    "precision:prompt_template": 4.407e-05,
+    "prompt_template:ordering": 9.88e-06,
+    "precision:ordering": 8.03e-06,
+    "prompt_template:seed": 7.62e-06,
+    "precision:seed": 3.29e-06
+  },
+  "tau_item": 0.11294394,
+  "conditions": {
+    "multi_facet": {
+      "levels": {
+        "precision": 3,
+        "temperature": 3,
+        "prompt_template": 6,
+        "seed": 6,
+        "ordering": 4
+      },
+      "delta": 0.01004077,
+      "g_at_200": 0.9184,
+      "min_items_g80": 72,
+      "delta_breakdown": {
+        "precision:item_id": {
+          "estimate": 0.01246693,
+          "divisor": 3,
+          "contribution": 0.00415564
+        },
+        "seed:item_id": {
+          "estimate": 0.01119598,
+          "divisor": 6,
+          "contribution": 0.001866
+        },
+        "temperature:item_id": {
+          "estimate": 0.0054314,
+          "divisor": 3,
+          "contribution": 0.00181047
+        },
+        "prompt_template:item_id": {
+          "estimate": 0.01085704,
+          "divisor": 6,
+          "contribution": 0.00180951
+        },
+        "ordering:item_id": {
+          "estimate": 0.00144969,
+          "divisor": 4,
+          "contribution": 0.00036242
+        },
+        "residual": {
+          "estimate": 0.04760054,
+          "divisor": 1296,
+          "contribution": 3.673e-05
+        }
+      }
+    },
+    "reduced": {
+      "levels": {
+        "precision": 2,
+        "temperature": 2,
+        "prompt_template": 3,
+        "seed": 3,
+        "ordering": 2
+      },
+      "delta": 0.01768614,
+      "g_at_200": 0.8646,
+      "min_items_g80": 126,
+      "delta_breakdown": {
+        "precision:item_id": {
+          "estimate": 0.01246693,
+          "divisor": 2,
+          "contribution": 0.00623347
+        },
+        "seed:item_id": {
+          "estimate": 0.01119598,
+          "divisor": 3,
+          "contribution": 0.00373199
+        },
+        "prompt_template:item_id": {
+          "estimate": 0.01085704,
+          "divisor": 3,
+          "contribution": 0.00361901
+        },
+        "temperature:item_id": {
+          "estimate": 0.0054314,
+          "divisor": 2,
+          "contribution": 0.0027157
+        },
+        "ordering:item_id": {
+          "estimate": 0.00144969,
+          "divisor": 2,
+          "contribution": 0.00072485
+        },
+        "residual": {
+          "estimate": 0.04760054,
+          "divisor": 72,
+          "contribution": 0.00066112
+        }
+      }
+    },
+    "single": {
+      "levels": {
+        "precision": 1,
+        "temperature": 1,
+        "prompt_template": 1,
+        "seed": 1,
+        "ordering": 1
+      },
+      "delta": 0.08900158,
+      "g_at_200": 0.5593,
+      "min_items_g80": 631,
+      "delta_breakdown": {
+        "residual": {
+          "estimate": 0.04760054,
+          "divisor": 1,
+          "contribution": 0.04760054
+        },
+        "precision:item_id": {
+          "estimate": 0.01246693,
+          "divisor": 1,
+          "contribution": 0.01246693
+        },
+        "seed:item_id": {
+          "estimate": 0.01119598,
+          "divisor": 1,
+          "contribution": 0.01119598
+        },
+        "prompt_template:item_id": {
+          "estimate": 0.01085704,
+          "divisor": 1,
+          "contribution": 0.01085704
+        },
+        "temperature:item_id": {
+          "estimate": 0.0054314,
+          "divisor": 1,
+          "contribution": 0.0054314
+        },
+        "ordering:item_id": {
+          "estimate": 0.00144969,
+          "divisor": 1,
+          "contribution": 0.00144969
+        }
+      }
+    }
+  },
+  "dstudy_curves": {
+    "n_items": [
+      10,
+      20,
+      30,
+      50,
+      72,
+      75,
+      100,
+      116,
+      150,
+      200,
+      300,
+      500
+    ],
+    "multi_facet": [
+      0.36,
+      0.5294,
+      0.6279,
+      0.7377,
+      0.802,
+      0.8084,
+      0.849,
+      0.8671,
+      0.894,
+      0.9184,
+      0.944,
+      0.9657
+    ],
+    "reduced": [
+      0.242,
+      0.3897,
+      0.4892,
+      0.6149,
+      0.6969,
+      0.7054,
+      0.7615,
+      0.7874,
+      0.8273,
+      0.8646,
+      0.9055,
+      0.9411
+    ],
+    "single": [
+      0.0597,
+      0.1126,
+      0.1599,
+      0.2408,
+      0.3136,
+      0.3224,
+      0.3882,
+      0.424,
+      0.4876,
+      0.5593,
+      0.6556,
+      0.7603
+    ]
+  },
+  "key_findings": {
+    "single_g_at_200": 0.5593,
+    "single_min_items_g80": 631,
+    "single_g_at_116": 0.424,
+    "multi_g_at_72": 0.802,
+    "multi_g_at_200": 0.9184,
+    "delta_ratio_single_vs_multi": 8.86,
+    "items_ratio_single_vs_multi": "631 vs 72"
+  }
+}

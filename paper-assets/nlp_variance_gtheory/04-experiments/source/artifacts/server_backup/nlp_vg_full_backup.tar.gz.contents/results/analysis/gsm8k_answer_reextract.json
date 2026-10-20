@@ -1,0 +1,222 @@
+{
+  "experiment": "exp-002",
+  "analysis": "gsm8k_answer_reextract",
+  "n_total": 230400,
+  "n_differences": 225672,
+  "pct_differences": 97.9479,
+  "original_accuracy": 0.555764,
+  "reextracted_accuracy": 0.017708,
+  "accuracy_delta": -0.538056,
+  "flipped_to_correct": 1484,
+  "flipped_to_wrong": 125452,
+  "stop_sequences_used": [
+    "\n\n",
+    "\nQuestion:",
+    "\nQ:",
+    "\nProblem:",
+    "####"
+  ],
+  "sample_differences": [
+    {
+      "item_id": "gsm8k_91",
+      "condition_id": 2593,
+      "gold": "28",
+      "original": "28",
+      "reextracted": "",
+      "generated_text_preview": "Marcia has two more pets than Cindy, who has four, so Marcia has 4 + 2 = <<4+2=6>>6 pets.\nJan has three times the number of pets as Marcia, who has six, so Jan has 3 * 6 = <<3*6=18>>18 pets.\nIn total,",
+      "original_correct": 1,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_1239",
+      "condition_id": 2593,
+      "gold": "50",
+      "original": "100",
+      "reextracted": "1200",
+      "generated_text_preview": "First, we need to calculate the total time spent cleaning: 80 classrooms * 15 minutes/classroom = 1200 minutes.\nThen, we convert that time to hours: 1200 minutes / 60 minutes/hour = 20 hours.\nNow, we ",
+      "original_correct": 0,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_649",
+      "condition_id": 2593,
+      "gold": "162000",
+      "original": "160000",
+      "reextracted": "",
+      "generated_text_preview": "First, we need to find the number of likes after three weeks.\nShe had 2000 likes initially and they increased 70 times, so she had 2000 * 70 = <<2000*70=140000>>140000 likes after three weeks.\nThen, s",
+      "original_correct": 0,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_663",
+      "condition_id": 2593,
+      "gold": "193",
+      "original": "193",
+      "reextracted": "",
+      "generated_text_preview": "First, we find the total number of newspapers delivered to District A and C: 198 + 209 = <<198+209=407>>407 newspapers.\nThen, we subtract this number from the total number of newspapers delivered to f",
+      "original_correct": 1,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_796",
+      "condition_id": 2593,
+      "gold": "2880000",
+      "original": "1040000",
+      "reextracted": "",
+      "generated_text_preview": "First, we need to calculate the total number of employees after three months.\nThe company hires 20 employees per month for three months, so they hire 20 * 3 = <<20*3=60>>60 new employees.\nThe total nu",
+      "original_correct": 0,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_950",
+      "condition_id": 2593,
+      "gold": "5",
+      "original": "25",
+      "reextracted": "45",
+      "generated_text_preview": "Let's say Dinar scored 'x' points.\nThen, Bahati scored 'x + 10' points.\nAnd Azibo scored 'x + 20' points.\nThe sum of their scores is 45 points, so:\nx + (x + 10) + (x + 20) = 45\nSimplifying the equatio",
+      "original_correct": 0,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_144",
+      "condition_id": 2593,
+      "gold": "20",
+      "original": "20",
+      "reextracted": "8",
+      "generated_text_preview": "First, we need to calculate the total number of clients Kim will have: 3 existing clients + 5 potential clients = 8 clients.\nNext, we calculate the total cost of bleach: 8 clients * 2 bottles/client *",
+      "original_correct": 1,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_1087",
+      "condition_id": 2593,
+      "gold": "12",
+      "original": "12",
+      "reextracted": "5",
+      "generated_text_preview": "The farmer makes 5 bales per hour and works for 6 hours, so they make 5 * 6 = <<5*6=30>>30 bales.\nThe truck picks up 3 bales per hour and works for 6 hours, so they pick up 3 * 6 = <<3*6=18>>18 bales.",
+      "original_correct": 1,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_705",
+      "condition_id": 2593,
+      "gold": "120",
+      "original": "120",
+      "reextracted": "",
+      "generated_text_preview": "First, we need to find the turtle's speed. Since the cat is 5 times faster than the turtle, the turtle crawls 15 / 5 = <<15/5=3>>3 feet per second.\nNext, we need to find the distance the turtle crawls",
+      "original_correct": 1,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_134",
+      "condition_id": 2593,
+      "gold": "720",
+      "original": "720",
+      "reextracted": "",
+      "generated_text_preview": "First, we need to find out how much Tom spends in a month: 4 car washes * $15/car wash = $60/month.\nThen, we need to find out how much he spends in a year: $60/month * 12 months/year = $720/year.\nSo, ",
+      "original_correct": 1,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_1121",
+      "condition_id": 2593,
+      "gold": "35",
+      "original": "35",
+      "reextracted": "10",
+      "generated_text_preview": "Sofie will walk 10 miles/day * 7 days = <<10*7=70>>70 miles in seven days.\nBrian will walk half the distance Sofie walks, so he will walk 70 miles / 2 = <<70/2=35>>35 miles in seven days.\n#### 35",
+      "original_correct": 1,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_1317",
+      "condition_id": 2593,
+      "gold": "5",
+      "original": "5",
+      "reextracted": "20",
+      "generated_text_preview": "Let 'c' be the number of chickens and 'w' be the number of cows.\nWe know that c + w = 20 (total number of animals)\nWe also know that 2c + 4w = 70 (total number of legs)\nNow we can solve for 'c' (numbe",
+      "original_correct": 1,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_534",
+      "condition_id": 2593,
+      "gold": "300",
+      "original": "30",
+      "reextracted": "60",
+      "generated_text_preview": "First, we need to find out how many boys and girls there are. Since the kids were divided into two equal groups, there are 20 / 2 = <<20/2=10>>10 boys and 10 girls.\nNext, we need to find out how many ",
+      "original_correct": 0,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_402",
+      "condition_id": 2593,
+      "gold": "4",
+      "original": "4",
+      "reextracted": "12",
+      "generated_text_preview": "First, we need to calculate the total amount of flour and milk needed for the quadruple batch.\nFlour: 3 cups * 4 = 12 cups\nMilk: 1 cup * 4 = 4 cups\nNext, we need to figure out how many bags of flour a",
+      "original_correct": 1,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_386",
+      "condition_id": 2593,
+      "gold": "80",
+      "original": "80",
+      "reextracted": "",
+      "generated_text_preview": "First, we need to find the sum of his test scores: 65 + 94 + 81 + 86 + 74 = <<65+94+81+86+74=400>>400\nThen, we divide the sum by the number of tests to find the average: 400 / 5 = <<400/5=80>>80\n\nWils",
+      "original_correct": 1,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_472",
+      "condition_id": 2593,
+      "gold": "6",
+      "original": "6",
+      "reextracted": "5",
+      "generated_text_preview": "Matt wants to eat 5 cookies in total, and 2 of those are for cleaning his room, so he wants to eat 5-2=<<5-2=3>>3 cookies from eating carrot sticks.\nSince he gets half the number of cookies as carrot ",
+      "original_correct": 1,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_784",
+      "condition_id": 2593,
+      "gold": "15",
+      "original": "15",
+      "reextracted": "10",
+      "generated_text_preview": "First, we need to calculate the total distance Andy drives per day: 5 miles (one-way) * 2 = 10 miles.\nThen, we calculate the total distance he drives per week: 10 miles/day * 5 days/week = 50 miles.\nN",
+      "original_correct": 1,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_1009",
+      "condition_id": 2593,
+      "gold": "1875",
+      "original": "1875",
+      "reextracted": "1",
+      "generated_text_preview": "1. **Students over 16:** Half of the 3000 students are over 16, so there are 3000 / 2 = <<3000/2=1500>>1500 students over 16.\n2. **Male students over 16:** One-fourth of the students over 16 are male,",
+      "original_correct": 1,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_1204",
+      "condition_id": 2593,
+      "gold": "168",
+      "original": "168",
+      "reextracted": "",
+      "generated_text_preview": "First, we calculate the number of shells Team Alphas found: 700 * 40/100 = <<700*40/100=280>>280 shells.\nThen, we calculate the number of shells remaining after Team Alphas found theirs: 700 - 280 = <",
+      "original_correct": 1,
+      "reextracted_correct": 0
+    },
+    {
+      "item_id": "gsm8k_960",
+      "condition_id": 2593,
+      "gold": "11",
+      "original": "11",
+      "reextracted": "31",
+      "generated_text_preview": "First, we need to find the total number of holes dug in the first three days: 10 + 13 + 8 = 31 holes.\nThen, we need to subtract the two holes they filled in: 31 - 2 = 29 holes.\nThe island had four tim",
+      "original_correct": 1,
+      "reextracted_correct": 0
+    }
+  ],
+  "corrected_file": "results/analysis/gsm8k_corrected.jsonl"
+}

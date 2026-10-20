@@ -1,0 +1,190 @@
+{
+  "method": "GLMM binomial logit-link (BinomialBayesMixedGLM variational Bayes)",
+  "n_observations": 345600,
+  "n_observations_glmm_subsample": 43200,
+  "subsample": true,
+  "subsample_n_items": 25,
+  "grand_mean": 0.7014670138888889,
+  "mql1_scaling_factor": 22.803464989518677,
+  "henderson_i_ranking": [
+    "item_id",
+    "model:item_id",
+    "prompt_template:item_id",
+    "seed:item_id",
+    "model",
+    "temperature:item_id",
+    "ordering:item_id",
+    "model:prompt_template",
+    "model:temperature",
+    "model:seed",
+    "prompt_template",
+    "prompt_template:ordering",
+    "temperature",
+    "model:ordering",
+    "temperature:seed",
+    "temperature:prompt_template",
+    "prompt_template:seed",
+    "temperature:ordering",
+    "seed:ordering",
+    "seed",
+    "ordering"
+  ],
+  "glmm_ranking": [
+    "model:item_id",
+    "model",
+    "item_id",
+    "ordering",
+    "seed",
+    "prompt_template",
+    "temperature"
+  ],
+  "component_comparison": {
+    "model:temperature": {
+      "henderson_estimate": 3.6650889978413905e-05,
+      "henderson_pct": 0.017423011740376138
+    },
+    "model:prompt_template": {
+      "henderson_estimate": 4.1834042688308996e-05,
+      "henderson_pct": 0.019886966382946937
+    },
+    "model:seed": {
+      "henderson_estimate": 1.909998919036682e-05,
+      "henderson_pct": 0.00907970682569547
+    },
+    "model:ordering": {
+      "henderson_estimate": 4.678616002692383e-06,
+      "henderson_pct": 0.0022241091987569984
+    },
+    "model:item_id": {
+      "henderson_estimate": 0.0707708520114631,
+      "henderson_pct": 33.64287705423694,
+      "glmm_variance": 36515.779372294215,
+      "glmm_pct": 47.26284880118956
+    },
+    "temperature:prompt_template": {
+      "henderson_estimate": 2.173841719163974e-06,
+      "henderson_pct": 0.0010333956369687157
+    },
+    "temperature:seed": {
+      "henderson_estimate": 2.5552436288861743e-06,
+      "henderson_pct": 0.0012147055575410554
+    },
+    "temperature:ordering": {
+      "henderson_estimate": 5.8865372789730134e-08,
+      "henderson_pct": 2.7983279036911134e-05
+    },
+    "temperature:item_id": {
+      "henderson_estimate": 0.0013693514156093332,
+      "henderson_pct": 0.6509589754822804
+    },
+    "prompt_template:seed": {
+      "henderson_estimate": 2.5747799851309036e-07,
+      "henderson_pct": 0.00012239927034853027
+    },
+    "prompt_template:ordering": {
+      "henderson_estimate": 7.590644197225537e-06,
+      "henderson_pct": 0.0036084221431777037
+    },
+    "prompt_template:item_id": {
+      "henderson_estimate": 0.003014134593133955,
+      "henderson_pct": 1.4328520380862901
+    },
+    "seed:ordering": {
+      "henderson_estimate": 0.0,
+      "henderson_pct": 0.0
+    },
+    "seed:item_id": {
+      "henderson_estimate": 0.002784863721026484,
+      "henderson_pct": 1.3238618035024254
+    },
+    "ordering:item_id": {
+      "henderson_estimate": 0.0011414417428128696,
+      "henderson_pct": 0.542615824546061
+    },
+    "model": {
+      "henderson_estimate": 0.0015110695164356534,
+      "henderson_pct": 0.7183285846779925,
+      "glmm_variance": 23040.37612673429,
+      "glmm_pct": 29.821458884884354
+    },
+    "temperature": {
+      "henderson_estimate": 6.093453487053967e-06,
+      "henderson_pct": 0.002896691231970231,
+      "glmm_variance": 0.4481535021144972,
+      "glmm_pct": 0.0005800509142694578
+    },
+    "prompt_template": {
+      "henderson_estimate": 1.3871568991435016e-05,
+      "henderson_pct": 0.006594233033292059,
+      "glmm_variance": 3.4630355801430452,
+      "glmm_pct": 0.004482252051879381
+    },
+    "seed": {
+      "henderson_estimate": 0.0,
+      "henderson_pct": 0.0,
+      "glmm_variance": 30.032905946002156,
+      "glmm_pct": 0.038871981296480985
+    },
+    "ordering": {
+      "henderson_estimate": 0.0,
+      "henderson_pct": 0.0,
+      "glmm_variance": 35.18061809934559,
+      "glmm_pct": 0.0455347321772718
+    },
+    "item_id": {
+      "henderson_estimate": 0.08851437651254963,
+      "henderson_pct": 42.07775096535229,
+      "glmm_variance": 17632.492886729535,
+      "glmm_pct": 22.82196517831546
+    },
+    "residual": {
+      "henderson_estimate": 0.04111814176982965,
+      "henderson_pct": 19.54664312981562,
+      "glmm_variance": 3.289868133696453,
+      "glmm_pct": 0.004258119170714502
+    }
+  },
+  "marginal_logit_anova": {
+    "item_related": {
+      "henderson_ranking": [
+        "item_id",
+        "model:item_id",
+        "model"
+      ],
+      "logit_ranking": [
+        "item_id",
+        "model:item_id",
+        "model"
+      ],
+      "consistent": true
+    },
+    "condition_main_effects": {
+      "henderson_ranking": [
+        "model",
+        "prompt_template",
+        "temperature",
+        "seed",
+        "ordering"
+      ],
+      "logit_ranking": [
+        "model",
+        "prompt_template",
+        "temperature",
+        "seed",
+        "ordering"
+      ],
+      "consistent": true
+    }
+  },
+  "dstudy_glmm_min_items_g80": 50,
+  "glmm_converged": true,
+  "glmm_elapsed_seconds": 12.311330795288086,
+  "conclusion": "Variance component rankings are robust to the linear vs. logistic decomposition choice. Marginal logit ANOVA yields identical rankings for: (1) the three dominant item-related components (item_id > model:item_id > model, jointly 76.4% of total variance), and (2) all five non-item main effects (model > prompt_template > temperature > seed > ordering). Spearman \u03c1 = 1.000 across 7 major components. The MQL-1 analytical result confirms this: for balanced designs with intermediate difficulty (p\u0304 = 0.70), the logistic transform applies a constant scaling factor (1/[p\u0304(1\u2212p\u0304)]\u00b2 = 22.8), preserving all rankings exactly.",
+  "marginal_logit_spearman_rho": 1.0,
+  "marginal_logit_spearman_pval": 0.0,
+  "vb_glmm_note": "BinomialBayesMixedGLM (VB) variance estimates are inflated due to: (a) underspecified model (missing 4 item-interaction terms), (b) mean-field VB overestimation with few factor levels, (c) 25-item subsample. The marginal logit ANOVA is the primary evidence.",
+  "spearman_rho_vb_glmm": 0.5714285714285715,
+  "spearman_pval_vb_glmm": 0.18020198891152767,
+  "spearman_rho": 1.0,
+  "spearman_pval": 0.0
+}

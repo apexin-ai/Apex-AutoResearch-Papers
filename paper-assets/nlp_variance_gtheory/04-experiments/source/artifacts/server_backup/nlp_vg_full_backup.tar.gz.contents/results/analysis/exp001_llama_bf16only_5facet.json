@@ -1,0 +1,55 @@
+{
+  "description": "exp-001 Llama bf16-only 5-facet matched baseline",
+  "facets": [
+    "temperature",
+    "prompt_template",
+    "seed",
+    "ordering",
+    "item_id"
+  ],
+  "filter": "precision == bfloat16",
+  "result": {
+    "grand_mean": 0.7108,
+    "components_pct": {
+      "item_id": 73.9972,
+      "residual": 13.1463,
+      "seed:item_id": 5.4225,
+      "prompt_template:item_id": 4.6529,
+      "temperature:item_id": 1.843,
+      "ordering:item_id": 0.8432,
+      "temperature:seed": 0.0231,
+      "prompt_template": 0.0202,
+      "seed": 0.0191,
+      "temperature": 0.0096,
+      "prompt_template:ordering": 0.0095,
+      "temperature:prompt_template": 0.0048,
+      "prompt_template:seed": 0.0033,
+      "temperature:ordering": 0.0027,
+      "seed:ordering": 0.0019,
+      "ordering": 0.0007
+    },
+    "G_item": 0.74,
+    "total_variance": 17759.46,
+    "n_records": 86400,
+    "n_items": 200,
+    "n_conditions": 432,
+    "n_levels": {
+      "temperature": 3,
+      "prompt_template": 6,
+      "seed": 6,
+      "ordering": 4,
+      "item_id": 200
+    },
+    "d_study": {
+      "25": 0.2624,
+      "50": 0.4157,
+      "75": 0.5162,
+      "100": 0.5873,
+      "150": 0.6809,
+      "200": 0.74,
+      "300": 0.8102,
+      "500": 0.8768
+    },
+    "min_items_g80": 282
+  }
+}
