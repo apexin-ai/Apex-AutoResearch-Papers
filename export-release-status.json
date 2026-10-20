@@ -45,6 +45,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 1746
+        },
+        "gen-depth-fingerprint": {
+          "status": "uploaded",
+          "project": "gen-depth-fingerprint",
+          "collection": "gen-depth-fingerprint--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "64f5d8f83465b0b278e8a8c461ab607c2588d002ac9c9be347dc31a0b79af679",
+          "indexed_members": 1922,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 1917
         }
       },
       "status": "in_progress",

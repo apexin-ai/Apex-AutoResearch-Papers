@@ -665,6 +665,19 @@
       }
     },
     {
+      "project": "gen-depth-fingerprint--export-20260712",
+      "title": "Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text (July export snapshot)",
+      "catalog": "../research-snapshots/gen-depth-fingerprint/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1917,
+        "messages": 346415,
+        "user_turns": 16266,
+        "tool_calls": 91231,
+        "unparsed_lines": 7,
+        "conversation": 1917
+      }
+    },
+    {
       "project": "importance_margin_vla_compress",
       "title": "Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility",
       "catalog": "../paper-assets/importance_margin_vla_compress/05-generation-trace/catalog.json",

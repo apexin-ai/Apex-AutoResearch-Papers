@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **93 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **94 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -54,6 +54,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [gated_mfrm_judge_bias](../paper-assets/gated_mfrm_judge_bias/05-generation-trace/README.md) | 144 | 421 | 398 | 10 | 78,434 | [Read](../paper-assets/gated_mfrm_judge_bias/05-generation-trace/readable/README.md) |
 | [gen-depth-contamination](../paper-assets/gen-depth-contamination/05-generation-trace/README.md) | 399 | 900 | 871 | 73 | 205,665 | [Read](../paper-assets/gen-depth-contamination/05-generation-trace/readable/README.md) |
 | [gen-depth-fingerprint](../paper-assets/gen-depth-fingerprint/05-generation-trace/README.md) | 354 | 774 | 736 | 100 | 183,002 | [Read](../paper-assets/gen-depth-fingerprint/05-generation-trace/readable/README.md) |
+| [gen-depth-fingerprint--export-20260712](../research-snapshots/gen-depth-fingerprint/2026-07-12/05-generation-trace/README.md) | 1,917 | 0 | 0 | 0 | 346,415 | [Read](../research-snapshots/gen-depth-fingerprint/2026-07-12/05-generation-trace/readable/README.md) |
 | [importance_margin_vla_compress](../paper-assets/importance_margin_vla_compress/05-generation-trace/README.md) | 1,235 | 2,223 | 2,107 | 189 | 413,702 | [Read](../paper-assets/importance_margin_vla_compress/05-generation-trace/readable/README.md) |
 | [irt_equated_bench_regen](../paper-assets/irt_equated_bench_regen/05-generation-trace/README.md) | 58 | 170 | 148 | 4 | 53,711 | [Read](../paper-assets/irt_equated_bench_regen/05-generation-trace/readable/README.md) |
 | [irt_personfit_contam](../paper-assets/irt_personfit_contam/05-generation-trace/README.md) | 117 | 322 | 276 | 11 | 70,309 | [Read](../paper-assets/irt_personfit_contam/05-generation-trace/readable/README.md) |
@@ -102,6 +103,6 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
 | [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**101,544 source records · 8,568,835 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**103,461 source records · 8,915,250 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.
