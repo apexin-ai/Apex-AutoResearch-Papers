@@ -1,0 +1,66 @@
+{
+  "exp_id": "eval_pi05_l2norm_k095_long_seed43_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T17:02:02.311Z",
+    "updated_at": "2026-05-24T19:12:52.867Z",
+    "hypothesis": "π0.5 L2norm k=0.95 Long seed43 post-fix — dual-seed mild pruning 验证。seed42 L2norm k=0.95 Long=87.0% vs Random=63.2%（+23.8pp margin）。seed43 验证此优势跨 seed 稳定性",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "612452",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k095_long_seed43_postfix.log",
+      "submitted_at": "2026-05-24T17:02:33.578Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/importance_margin_vla_compress",
+      "data_count": 50,
+      "model_name": "pi0.5-l2norm-k0.95",
+      "seed": 43,
+      "wall_clock_seconds": 7819.3,
+      "gpu_hours": 2.17
+    },
+    "reproduce": {
+      "finished_at": "2026-05-24T19:10:30.332Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-24T19:10:54.562200+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_sr": 87.4,
+      "n_episodes": 50,
+      "suite": "libero_10",
+      "per_task": [
+        98,
+        98,
+        94,
+        98,
+        96,
+        96,
+        52,
+        94,
+        54,
+        94
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A (eval only)",
+    "completed_at": "2026-05-24T19:12:52.867Z"
+  },
+  "timestamp": "2026-05-24T19:12:53.884704+00:00",
+  "trigger": "update_registry"
+}

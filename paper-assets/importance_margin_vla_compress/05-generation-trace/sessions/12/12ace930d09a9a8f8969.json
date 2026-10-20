@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_pi05-gpu-param-bug_20260525T214030_result.json",
     "occurrence": 1,
-    "bytes": 938,
-    "sha256": "816b89e6c3c29a50871f5fc2913f5f13f2fb9c17cd4247187d6825beab385ff2"
+    "bytes": 937,
+    "sha256": "21dbb883c362939adcb1a5a62e0cd51b432bed312f3c598babfbba397afd9bf3"
   },
   "statistics": {
     "messages": 1,

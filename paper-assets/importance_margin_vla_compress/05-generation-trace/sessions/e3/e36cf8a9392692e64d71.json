@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_plan_008_pruning_sweep_v2_20260516T151209_result.json",
     "occurrence": 1,
-    "bytes": 822,
-    "sha256": "5894052a1e611503bcb2204b70c5ad907b88ca23c84ec2faf9abea4f8027d579"
+    "bytes": 821,
+    "sha256": "cb7088549bbac80ae82bef4fe467faaedf5a06ff1384340c00da3e1e082b042a"
   },
   "statistics": {
     "messages": 1,

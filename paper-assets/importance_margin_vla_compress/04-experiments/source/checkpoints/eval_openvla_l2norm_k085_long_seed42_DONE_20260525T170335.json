@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval_openvla_l2norm_k085_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T14:36:16.089Z",
+    "updated_at": "2026-05-25T17:03:33.871Z",
+    "hypothesis": "OpenVLA L2norm k=0.85 Long — 填充曲线缺口。Attn k=0.85=45.8% 已有。k=0.9 L2norm=43.6%，k=0.85 应介于两者之间，完善压缩率-性能曲线。",
+    "spec": {
+      "command": "python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.85 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10 --output eval_results/eval_openvla_l2norm_k085_long_seed42.json",
+      "server": "westd-38929",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "openvla-7b-finetuned-libero-10",
+      "seed": 42,
+      "eval_data": "libero_10 Long 10 tasks x 50 episodes",
+      "log_path": "/tmp/eval_openvla_l2norm_k085_long_seed42.log",
+      "gpu": [
+        "cuda:3"
+      ]
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-25T17:03:33.871Z"
+  },
+  "timestamp": "2026-05-25T17:03:35.036425+00:00",
+  "trigger": "update_registry"
+}

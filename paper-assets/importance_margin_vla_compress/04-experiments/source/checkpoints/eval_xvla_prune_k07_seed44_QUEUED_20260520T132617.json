@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_xvla_prune_k07_seed44",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:26:03.840Z",
+    "updated_at": "2026-05-20T13:26:16.707Z",
+    "hypothesis": "X-VLA L2 norm pruning at k=0.7 with seed=44 (3rd seed). Seed42=56.2%, seed43=59.0%. If seed44 also ~56-59%, confirms cliff onset at k=0.7 is robust across 3 seeds."
+  },
+  "timestamp": "2026-05-20T13:26:17.079532+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd41074-kill-bad-eval-and-verify-checkpoint_20260521T004757_result.json",
     "occurrence": 1,
-    "bytes": 1212,
-    "sha256": "ef982811d1104027b15f17105fb88e8557afa33741fd652256d366be4786f1e1"
+    "bytes": 1211,
+    "sha256": "b425e7d93d31dbe995c35f7f6716cf94f267577d103e47feafdd36837c7ece6d"
   },
   "statistics": {
     "messages": 1,

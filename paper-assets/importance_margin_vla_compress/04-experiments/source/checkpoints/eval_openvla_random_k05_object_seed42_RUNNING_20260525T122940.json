@@ -1,0 +1,49 @@
+{
+  "exp_id": "eval_openvla_random_k05_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "completed_at": "2026-05-21T16:44:07.304Z",
+    "created_at": "2026-05-21T11:54:21.630Z",
+    "hypothesis": "OpenVLA Random k=0.5 Object seed42 — 与 L2norm k=0.5 (39.2%) 配对对比。50% pruning 下 Random vs L2norm 是否收敛。",
+    "parent": "eval_openvla_l2norm_k05_object_seed42_v2",
+    "retry_count": 1,
+    "status": "RUNNING",
+    "updated_at": "2026-05-25T12:29:36.091Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "per_task": {
+            "alphabet_soup": 56,
+            "bbq_sauce": 58,
+            "butter": 0,
+            "chocolate_pudding": 30,
+            "cream_cheese": 2,
+            "ketchup": 60,
+            "milk": 12,
+            "orange_juice": 74,
+            "salad_dressing": 40,
+            "tomato_sauce": 26
+          },
+          "success_rate": 35.8,
+          "total_episodes": 500,
+          "total_successes": 179
+        }
+      }
+    },
+    "spec": {
+      "command": "python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.5 --suite libero_object --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/openvla-libero-object --unnorm_key libero_object --gpu 0 --output eval_results/openvla_random_k05_object_seed42.json",
+      "server": "westd-41074",
+      "data_path": "libero_object",
+      "data_count": 500,
+      "model_name": "openvla-libero-object",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/openvla-libero-object",
+      "eval_data": "libero_object"
+    }
+  },
+  "timestamp": "2026-05-25T12:29:40.746130+00:00",
+  "trigger": "update_registry"
+}

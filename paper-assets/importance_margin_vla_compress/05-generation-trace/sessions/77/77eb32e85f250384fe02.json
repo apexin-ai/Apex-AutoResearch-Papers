@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_seed44_sweep_cqa1_gpu3_20260519T200519_result.json",
     "occurrence": 1,
-    "bytes": 129,
-    "sha256": "9a1863c124e25f771adc23c889b71768c0f64c98aba9d76b3a4e61a9964c36b7"
+    "bytes": 128,
+    "sha256": "51fe0cf55196af617b3e0c6e516b8c67425f9238d4d0c46af5b01a410954ee30"
   },
   "statistics": {
     "messages": 1,

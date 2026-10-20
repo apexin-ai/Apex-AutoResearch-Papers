@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_openvla_sc_m128_vtconly_20k_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:19:29.095Z",
+    "updated_at": "2026-05-20T07:19:55.780Z",
+    "hypothesis": "OpenVLA VTC-only M=128 best checkpoint (20K step, eval loss 2.7768) LIBERO-Object eval. Go/no-go gate: if SR > 37.4% (random pruning k=0.5 baseline), confirms VTC cross-attention re-encoding generalizes from pixel-shuffle (SmolVLA) to MLP-projector architecture (OpenVLA), establishing C4-ext method universality.",
+    "parent": "train_openvla_sc_m128_vtconly_seed42"
+  },
+  "timestamp": "2026-05-20T07:19:56.057084+00:00",
+  "trigger": "update_registry"
+}

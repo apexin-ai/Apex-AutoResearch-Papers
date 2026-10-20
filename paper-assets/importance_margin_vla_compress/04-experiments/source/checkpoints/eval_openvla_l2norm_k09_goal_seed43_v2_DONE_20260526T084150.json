@@ -1,0 +1,46 @@
+{
+  "exp_id": "eval_openvla_l2norm_k09_goal_seed43_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T03:42:19.557Z",
+    "updated_at": "2026-05-26T08:41:48.679Z",
+    "spec": {
+      "command": "OpenVLA L2norm pruning k=0.9 Goal seed43 on westd-27271 GPU0",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": 3897,
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_l2norm_k09_goal_seed43_v2.log",
+      "submitted_at": "2026-05-26T03:42:06.192Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "openvla-7b-finetuned",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/openvla-7b-finetuned-libero-goal",
+      "eval_data": "libero_goal",
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "gpu_ids": [
+        0
+      ],
+      "wall_clock_seconds": 17982.5,
+      "gpu_hours": 5.0
+    },
+    "hypothesis": "OpenVLA L2norm k=0.9 Goal seed43 — cross-seed 验证。seed42 L2norm=74.8%(=baseline)。seed43 验证 L2norm 在 Goal 上 method-indifferent 的一致性",
+    "parent": "eval_openvla_l2norm_k09_goal_seed42",
+    "reproduce": {
+      "finished_at": "2026-05-26T08:41:37.802Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-26T08:41:48.679Z"
+  },
+  "timestamp": "2026-05-26T08:41:50.114233+00:00",
+  "trigger": "update_registry"
+}

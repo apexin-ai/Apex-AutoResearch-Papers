@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_urgent-gpu-audit-and-fix_20260521T054336_result.json",
     "occurrence": 1,
-    "bytes": 2643,
-    "sha256": "ea488a9414108819b63579432f690a5d35ee974eeabfc2c22c9c425af1ec1749"
+    "bytes": 2642,
+    "sha256": "d4e96d7c7d4a6225eb1067731773a4c8f2c87536fa5631ec29943bafd5b139d6"
   },
   "statistics": {
     "messages": 1,

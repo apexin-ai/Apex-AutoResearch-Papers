@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_w27-deploy-seed43-replications_20260527T135121_result.json",
     "occurrence": 1,
-    "bytes": 533,
-    "sha256": "33b04036df7643d1e5a2a1f93682e2e1892593052ea2674856736046c0f95526"
+    "bytes": 532,
+    "sha256": "3a62b5fdc50ebb2b58b586d6a26f0cc224196ef63c40151c6d84e00c47870fa5"
   },
   "statistics": {
     "messages": 1,

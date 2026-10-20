@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_cqa1_process_failures_20260517T014152_result.json",
     "occurrence": 1,
-    "bytes": 1122,
-    "sha256": "0a1eafce4c8f0584fad1dc4e58a7ddf782c995d058004eaf95e9ddb3876be060"
+    "bytes": 1121,
+    "sha256": "658dd5c3c1afe3cfadd2f3b2c7a21af1918f59f5928a3cbb622e4569a65ce9bb"
   },
   "statistics": {
     "messages": 1,

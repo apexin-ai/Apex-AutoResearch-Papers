@@ -1,0 +1,4508 @@
+dream_id: dream_20260525T050917
+project: importance_margin_vla_compress
+venue: corl-2026
+focus: ''
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: 2-axis framework cleanly validated across all model×suite combinations;
+        CV diagnostic and scaling law hold without major exceptions; E5 attention
+        pruning adds complementary method contribution
+      key_assumptions:
+      - 'Axis-2 interaction (task complexity amplification) replicates for π0.5 Goal/Long
+        with pattern matching X-VLA: entangling connectors show ≥20pp amplification,
+        independent connectors show ≤10pp'
+      - CV-strategy scaling law (Δ(R-L2) monotonically decreasing with CV) holds at
+        k=0.5 AND k=0.7 across all 3 tested models — already confirmed, no new exceptions
+        emerge from remaining seeds
+      - π0.5 'uniformly critical' behavior (random cliff at k=0.85-0.925, L2norm plateau)
+        generalizes to Spatial/Goal with consistent mechanism (concentrated vs distributed
+        critical tokens)
+      - VTR connector-dependency (works for pixel-shuffle, fails for MLP) is a clean,
+        explainable result that strengthens rather than weakens the framework
+      - E5 attention-based pruning for X-VLA (Object k=0.5=99.2%, Long k=0.5=90.2%)
+        generalizes to Goal suite, providing a 'correct importance metric rescues
+        entangling connectors' story
+      number_ranges:
+        axis2_amplification_pp:
+        - 25
+        - 45
+        cv_strategy_abs_spearman:
+        - 0.85
+        - 1.0
+        cross_suite_framework_accuracy_pct:
+        - 90
+        - 100
+        claims_surviving_review:
+        - 4
+        - 5
+        vtr_smolvla_recovery_ratio:
+        - 0.95
+        - 1.05
+        pi05_l2norm_random_gap_k05_pp:
+        - 30
+        - 40
+      narrative_direction: 原始 framing 完全成立。Paper title 保持不变。5 claims 全部保留。2-axis framework
+        是 principled contribution（非 post-hoc observation）。CV diagnostic + VTR method
+        形成完整的 Diagnose-then-Compress pipeline。Analysis 是 primary contribution，method
+        是 well-motivated secondary。E5 attention pruning 作为 §4.7 或 supplementary 增加实用价值。Reviewer
+        concern RC7（仅一个 benchmark）被 4 suites 完全化解。
+    median:
+      tier: median
+      meaning: 2-axis framework directionally correct but有 2-3 个 edge cases 需要 qualify；CV
+        scaling law 在 moderate compression 成立但在 extreme k 有 reversal；method contribution
+        限于 SmolVLA；需要调整若干 claim 强度
+      key_assumptions:
+      - Axis-2 interaction 对 X-VLA 成立（27.8pp gap confirmed）但 π0.5 Goal/Long 的 amplification
+        弱于预期（<15pp），因为 token-independent connector 的 task sensitivity 本身较低
+      - CV scaling law 在 k=0.5 成立，但 k=0.3 出现 reversal（π0.5 L2norm wins +14.6pp）且 k=0.7
+        的 gap 明显小于 k=0.5，说明 CV 只在特定 compression regime 有效
+      - π0.5 random cliff (k=0.85-0.925) 是 Object-specific 而非 universal：Spatial 没有
+        catastrophic dip（已见 58.4% floor vs Object 5%），Goal/Long 的 cliff profile 不同
+      - VTR 仅对 pixel-shuffle 有效，OpenVLA VTR 已确认 0% SR。VTC-only M=32/64 training 如果也失败，method
+        contribution 进一步缩窄
+      - E5 attention pruning 在 Object/Spatial/Long 表现好但 Goal 初始为 0%（后修复为 98.2%），结果可靠性需要额外
+        seed 确认
+      number_ranges:
+        axis2_amplification_pp:
+        - 10
+        - 25
+        cv_strategy_abs_spearman:
+        - 0.6
+        - 0.85
+        cross_suite_framework_accuracy_pct:
+        - 75
+        - 90
+        claims_surviving_review:
+        - 3
+        - 4
+        vtr_smolvla_recovery_ratio:
+        - 0.9
+        - 1.0
+        pi05_l2norm_random_gap_k05_pp:
+        - 20
+        - 35
+      narrative_direction: 需要调整 claims 强度。Claim 1 从 'governed by two axes' 弱化为 'primarily
+        explained by connector architecture, with task complexity as a modulating
+        factor'。Claim 5 加限定条件 'at moderate compression (k=0.5-0.7)'，k=0.3 reversal
+        移入 Discussion。VTR 明确定位为 pixel-shuffle-specific solution 而非 universal method。Paper
+        identity 从 'analysis + method' 调整为 'primarily analysis with targeted method
+        for worst-case architecture'。Title 可能改为更保守的 framing，如 'How Vision Connectors
+        Shape Token Pruning Robustness in VLAs'。仍提交 CoRL，但 contribution statement
+        更聚焦于 diagnostic insight 而非 complete framework。
+    worst:
+      tier: worst
+      meaning: 2-axis framework 过度简化——新的 cross-suite 数据揭示 task complexity 轴不独立于 connector
+        轴；CV 作为 universal predictor 失败；paper 需要 reframe 为 empirical study 但仍冲 CoRL
+      key_assumptions:
+      - π0.5 cross-suite 数据显示 token-independent connector 在 Goal/Long 上也出现 >20pp amplification（实际已见
+        random k=0.9 Goal=62.2% vs Object=9% 的 anomalous pattern），破坏 '独立 connector
+        不受 task complexity 影响' 的假设
+      - CV scaling law 在 cross-suite 条件下失效：同一 CV 的 model 在不同 suite 上的 Δ(R-L2) 差异 >15pp，说明
+        CV 只在 within-suite 有效，不是 architecture-level property
+      - E5 attention pruning 证明 X-VLA 的 'entangling connector 不可剪' 叙事有误——用 attention
+        替代 L2norm 即可在 k=0.5 保持 99%+ SR，这意味着问题不在 connector entanglement 而在 importance
+        metric 选择
+      - VTR 完全是 SmolVLA-specific，且 M=96 dip (p=0.034) 暗示 VTR 训练不稳定
+      - Reviewer 可能指出：如果 attention pruning 解决了 X-VLA 的问题，那么 2-axis framework 的 Axis-1
+        定义有根本缺陷——'token entanglement' 不是关键因素，importance metric 才是
+      number_ranges:
+        axis2_amplification_pp:
+        - 3
+        - 15
+        cv_strategy_abs_spearman:
+        - 0.3
+        - 0.6
+        cross_suite_framework_accuracy_pct:
+        - 50
+        - 75
+        claims_surviving_review:
+        - 2
+        - 3
+        vtr_smolvla_recovery_ratio:
+        - 0.85
+        - 0.95
+        pi05_l2norm_random_gap_k05_pp:
+        - 10
+        - 25
+      narrative_direction: 核心 reframe：从 'principled 2-axis framework' 转为 'comprehensive
+        empirical study of VLA token pruning across architectures and tasks'。不再声称发现了
+        governing principle，而是提供了 community 需要的系统性 benchmark + surprising findings
+        catalog。新 angle：(1) 'importance metric selection matters more than connector
+        architecture' — L2norm 在低 CV model 上 actively harmful 是独立的 novel finding，不需要
+        2-axis framework 支撑；(2) 'attention-based pruning universally outperforms norm-based
+        pruning for VLAs' 如果 E5 数据可靠；(3) VTR 作为 case study 而非 general method。Title
+        改为 'A Systematic Study of Token Pruning Strategies Across VLA Architectures'。仍然
+        submit CoRL（不降级），因为 5 models × 4 suites × systematic comparison 本身就是 substantial
+        empirical contribution，即使没有 unified theory。Claims 缩减为 3 个 empirical observations
+        + 1 个 practical guideline。
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/dream_reports/dream_20260525T050917/best/paper.pdf
+  imagined_experiments:
+  - name: VTR M-sweep tri-seed completion (SmolVLA)
+    plan_id: c4_learned_reencoding_smolvla
+    description: 'SmolVLA VTR cross-attention M=16/32/64/96/128 全部 3-seed 完成。 MLP
+      adapter M=32 3-seed 完成。M-curve 平坦性、架构独立性、near-lossless compression 已确认。 剩余工作：最终统计汇总与
+      paper table 生成。
+
+      '
+    expected_results:
+      m16_3seed_mean_sr: 56.9
+      m16_3seed_std: 1.3
+      m32_3seed_mean_sr: 60.1
+      m32_3seed_std: 1.3
+      m64_3seed_mean_sr: 62.0
+      m64_3seed_std: 2.3
+      m96_3seed_mean_sr: 54.5
+      m96_3seed_std: 3.2
+      m128_3seed_mean_sr: 58.0
+      m128_3seed_std: 3.5
+      mlp_adapter_m32_mean_sr: 63.4
+      mlp_adapter_m32_std: 2.6
+      vtr_recovery_ratio_m128: 0.98
+      m_curve_max_range_pp: 7.5
+      vtc_vs_mlp_pvalue: 0.15
+      baseline_sr: 59.2
+    result_rationale: 'M-curve 平坦的根本原因：pixel-shuffle 的空间折叠创造了可逆的 token 纠缠。VTR 的 cross-attention
+      学习了"展开"这种纠缠的映射——无论压缩到多少 query token（M=16→128），只要保留足够的 capacity 来表示空间结构，re-encoding
+      就能恢复。M=128 passthrough（58.0%）≈baseline（59.2%）证明 VTR 是恢复而非增强。MLP adapter 与 cross-attention
+      无显著差异（p=0.15）证明任何 learned  re-encoding 都能完成此恢复，不依赖特定架构机制。M=96 dip（p=0.034 vs
+      M=64）是统计真实但 实际影响有限的波动（54.5% 仍远高于 0% hard pruning）。
+
+      '
+    tables:
+    - title: 'Table: SmolVLA VTR M-sweep (3-seed)'
+      columns:
+      - M
+      - Compression
+      - SR mean±std (%)
+      - vs Baseline Δ (pp)
+      - p vs M=128
+      data:
+      - - '16'
+        - 87.5%
+        - 56.9±1.3
+        - '-2.3'
+        - '>0.25'
+      - - '32'
+        - 75%
+        - 60.1±1.3
+        - '+0.9'
+        - '>0.25'
+      - - '64'
+        - 50%
+        - 62.0±2.3
+        - '+2.8'
+        - '>0.25'
+      - - '96'
+        - 25%
+        - 54.5±3.2
+        - '-4.7'
+        - 0.034*
+      - - '128'
+        - 0% (passthrough)
+        - 58.0±3.5
+        - '-1.2'
+        - —
+      - - MLP-adapter@32
+        - 75%
+        - 63.4±2.6
+        - '+4.2'
+        - —
+      - - Hard pruning k=0.5
+        - 50%
+        - '0.0'
+        - '-59.2'
+        - —
+    figures_description:
+    - 'Fig: M-curve flat plot — x=M (16→128), y=SR(%). Horizontal band at baseline
+      59.2%±5pp, all M values within band. Hard pruning 0% shown as contrast.'
+    analysis: 'VTR 在 pixel-shuffle connector 上实现 near-lossless compression at ANY
+      ratio（0-87.5%）。 这是 Claim 4 的核心证据。M=16 87.5% compression 仅损失 2.3pp，而 hard pruning
+      在 5% removal  即 collapse 至 0%。recovery ratio 0.98 落在 best tier 目标范围 [0.95, 1.05]
+      内。 架构独立性（VTC vs MLP p=0.15）排除了特定机制假说，支持"任何 learned re-encoding 均可修复 pixel-shuffle
+      entanglement"的一般性结论。
+
+      '
+  - name: VTR on OpenVLA (MLP projector) — connector-dependent ceiling
+    plan_id: c4_ext_method_universality_openvla
+    description: 'VTR M=128 full training 已确认 0% SR（overfitting, 每步输出相同 action）。 VTC-only
+      M=32/M=64 作为 fallback 继续训练。预测结果为 clean negative： VTR 对 MLP projector 无效，VTR
+      ceiling 取决于 connector 类型。
+
+      '
+    expected_results:
+      vtconly_m32_sr: 0.0
+      vtconly_m64_sr: 0.0
+      vtconly_m96_sr: 0.0
+      vtr_m128_sr: 0.0
+      openvla_baseline_sr: 74.0
+      failure_mode: overfitting — model outputs identical action per step
+      connector_dependency_confirmed: true
+    result_rationale: 'MLP projector tokens 已经是独立且有意义的（CV=0.215，信息分布在 token 间有分化）。
+      VTR 的 cross-attention 试图将这些已经 well-structured 的 token 重新编码为更少的 query  token，但这个重新编码过程引入了不必要的复杂性。MLP
+      token 的信息是 per-token 局部化的， 与 pixel-shuffle token 的空间纠缠不同——后者的信息恢复 requires 全局
+      re-arrangement， 恰好是 VTR cross-attention 擅长的。对 MLP projector，简单的 hard pruning（k=0.5
+      仍有  37.4% SR）比 VTR 更有效，因为保留的 token 仍然 individually meaningful。VTR 的 22M  额外参数在缺乏
+      spatial entanglement repair 目标时退化为纯噪声拟合器。 所有 M 值（32/64/96/128）均失败进一步证明这不是超参数问题而是架构兼容性问题。
+
+      '
+    tables:
+    - title: 'Table: VTR connector-dependency summary'
+      columns:
+      - Connector
+      - Model
+      - CV
+      - Hard prune k=0.5 SR(%)
+      - VTR M=32 SR(%)
+      - VTR Δ vs prune (pp)
+      data:
+      - - Pixel-shuffle
+        - SmolVLA
+        - '0.314'
+        - '0.0'
+        - '60.1'
+        - '+60.1'
+      - - MLP (3-layer)
+        - OpenVLA
+        - '0.215'
+        - '37.4'
+        - '0.0'
+        - '-37.4'
+      - - Linear+BART
+        - X-VLA
+        - '0.151'
+        - 42.6(L2)/70.6(R)
+        - N/A
+        - —
+    figures_description:
+    - 'Fig: VTR recovery diagram — SmolVLA: 0%→60% (recovery), OpenVLA: 37%→0% (degradation).
+      Visual contrast showing connector-dependent VTR ceiling.'
+    analysis: 'Clean negative result 强化了 paper narrative：VTR 是 pixel-shuffle 的特解而非通用压缩方法。
+      这从 weakness 变为 strength——说明 Diagnose-then-Compress framework 的第一步（CV diagnostic）
+      是必要的，因为不同 connector 需要不同的 compression strategy。MLP projector 应用 simple  pruning（已有
+      graded degradation），pixel-shuffle 应用 VTR re-encoding。
+
+      '
+  - name: OpenVLA VTC M-sweep training (M=32/64/96)
+    plan_id: c4_ext_openvla_msweep
+    description: 'OpenVLA VTC-only（无 backbone fine-tuning）M-sweep 训练。此前 M=96_v3 和
+      M=64_v3  均报 failed/negative。预测所有 M 值均无法恢复 SR，与 c4_ext 一致。
+
+      '
+    expected_results:
+      m32_vtconly_sr: 0.0
+      m64_vtconly_sr: 0.0
+      m96_vtconly_sr: 0.0
+      training_loss_converges: true
+      eval_sr_zero: true
+      diagnosis: VTC learns to minimize training loss but does not transfer to closed-loop
+        control
+    result_rationale: 'VTC-only 模式冻结了 backbone，仅训练 22M compressor 参数。对 MLP projector，
+      backbone 已经学习了 per-token semantically meaningful representations。VTC  强制将 256
+      个有独立语义的 token 映射到更少的 query token，丢失了 token-level  semantic granularity。训练 loss
+      收敛（因为 cross-attention 可以学习压缩映射） 但 closed-loop control 失败，因为 action prediction
+      依赖 fine-grained token  discrimination 而非 compressed summary。与 SmolVLA 不同，SmolVLA
+      的 pixel-shuffle  token 本身缺乏 individual semantics（每个 token 编码 32×32 pixel region），
+      VTR re-encoding 只需恢复 spatial structure 而非 semantic content。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '所有 M 值失败构成 c4_ext 的完整 ablation：VTR 的有效性严格绑定到 pixel-shuffle  connector
+      的空间纠缠修复功能。Paper 中作为 §5.3 "Re-encoding mechanism" 的 反面证据，说明 VTR 不是通用 token compressor。
+
+      '
+  - name: X-VLA cliff threshold 3-seed localization
+    plan_id: c1_xvla_threshold_localization
+    description: 'X-VLA k=0.8 和 k=0.85 的 3-seed 精确定位已完成。 k=0.80=89.0±0.72pp, k=0.85=67.9±0.31pp。Non-monotonic
+      recovery 确认。
+
+      '
+    expected_results:
+      k080_3seed_mean: 89.0
+      k080_3seed_std: 0.72
+      k085_3seed_mean: 67.9
+      k085_3seed_std: 0.31
+      nonmonotonic_gap_pp: 21.1
+      cliff_zone: k=0.82-0.87
+      deterministic_sd_below_1pp: true
+    result_rationale: 'BART encoder（12 层 transformer）在 42 tokens（k=0.85）时触发 length-dependent  interaction
+      breakdown。42 tokens 是 BART 自注意力模式的临界密度——低于此密度， BART 的 cross-token mixing 产生的依赖链被截断，导致
+      cascading information loss。 40 tokens（k=0.8）反而恢复，因为 token 密度进一步降低使 BART 退化为  near-independent
+      processing（类似纯 linear projection 行为）。SD<1pp 证明这是  完全 deterministic 的架构属性，非随机效应。3-seed
+      一致性消除了训练 seed 混淆因素。
+
+      '
+    tables:
+    - title: 'Table: X-VLA cliff localization (L2norm, 3-seed)'
+      columns:
+      - k
+      - Tokens kept
+      - Seed 42
+      - Seed 43
+      - Seed 44
+      - Mean±SD
+      data:
+      - - '0.90'
+        - '45'
+        - '97.6'
+        - '98.2'
+        - '99.4'
+        - 98.4±0.9
+      - - '0.85'
+        - '42'
+        - '68.0'
+        - '67.6'
+        - '68.2'
+        - 67.9±0.3
+      - - '0.80'
+        - '40'
+        - '88.8'
+        - '88.4'
+        - '89.8'
+        - 89.0±0.7
+      - - '0.70'
+        - '35'
+        - '56.2'
+        - '58.2'
+        - '56.4'
+        - 56.9±1.1
+    figures_description:
+    - 'Fig: X-VLA pruning curve with cliff zone highlighted. k=0.85 dip (67.9%) below
+      k=0.8 (89.0%) creating non-monotonic pattern. Error bars from 3-seed.'
+    analysis: 'Cliff 定位精确到 k=0.82-0.87 区间。Non-monotonicity 是 BART encoder 的 emergent  property：存在一个
+      critical token density 使得 BART self-attention 的 cross-token  mixing 恰好最大化 information
+      cascading damage。Paper figure 将此作为  token-entangling connector 的典型特征展示。
+
+      '
+  - name: OFT token importance CV measurement
+    plan_id: diagnostic_oft_cv
+    description: 'OpenVLA-OFT CV 已从 openvla_entropy_real 和 analysis 中确认为 0.219。 Entropy=0.667≈Standard(0.661)。完成
+      5/5 model diagnostic table。
+
+      '
+    expected_results:
+      oft_cv: 0.219
+      oft_entropy: 0.667
+      standard_openvla_cv: 0.215
+      cv_delta_oft_vs_standard: 0.004
+      entropy_delta: 0.006
+      connector_determines_attention: true
+    result_rationale: 'OFT 与 Standard OpenVLA 共享相同的 3-layer MLP connector（DINOv2+SigLIP
+      fusion  仅增加输入通道但不改变 MLP mixing 结构）。Action head 差异（OFT diffusion vs  Standard
+      autoregressive）不影响 vision token attention 分布，因为 attention  pattern 由 connector
+      在 vision-LLM 接口处决定，action head 在 LLM output 端操作。 CV 0.219≈0.215 差异在 noise level（<0.01），证明
+      connector 是 attention structure  的唯一决定因素。
+
+      '
+    tables:
+    - title: 'Table: Complete 6-model diagnostic spectrum'
+      columns:
+      - Model
+      - Connector
+      - Params
+      - Tokens
+      - Entropy
+      - CV
+      - Pruning Class
+      data:
+      - - pi0
+        - Pure linear
+        - 3.3B
+        - '256'
+        - '0.959'
+        - '0.038'
+        - Immune
+      - - pi0.5
+        - Pure linear (x sqrt_d)
+        - 4B
+        - '768'
+        - ~0.67
+        - '0.055'
+        - Uniformly Critical
+      - - X-VLA
+        - Linear+BART 12L
+        - 880M
+        - '50'
+        - '0.614'
+        - '0.151'
+        - Threshold-graded
+      - - OpenVLA
+        - 3-layer MLP
+        - 7B
+        - '256'
+        - '0.661'
+        - '0.215'
+        - Smooth graded
+      - - OFT
+        - 3-layer MLP (DINOv2+SigLIP)
+        - 7B
+        - '512'
+        - '0.667'
+        - '0.219'
+        - Smooth graded (expected)
+      - - SmolVLA
+        - Pixel-shuffle 16x
+        - 450M
+        - '128'
+        - '0.952'
+        - '0.314'
+        - Catastrophic
+    figures_description: []
+    analysis: '6-model diagnostic table 完整化。CV 连续谱 0.038→0.314 无间断地预测 pruning tolerance。
+      OFT entry 作为 action head 对照实验消除了"action head 影响 pruning"的替代假说。
+
+      '
+  - name: Cross-suite 2-axis framework validation (5 models × 4 suites)
+    plan_id: c6_libero_suite_expansion
+    description: '5 models × 4 LIBERO suites × 2 methods（L2norm/random）全矩阵填充。 已收集绝大部分数据。剩余：OpenVLA
+      Spatial random k=0.9, OpenVLA Long L2norm/random k=0.9, 部分 OpenVLA attention
+      cross-suite。预测所有剩余数据点与 2-axis framework 一致。
+
+      '
+    expected_results:
+      xvla_object_k09_sr: 97.6
+      xvla_goal_k09_sr: 70.2
+      xvla_long_k09_sr: 27.5
+      xvla_amplification_object_to_goal_pp: 27.4
+      xvla_amplification_object_to_long_pp: 70.1
+      pi05_l2norm_object_k09_sr: 98.2
+      pi05_l2norm_goal_k09_sr: 90.6
+      pi05_l2norm_long_k09_sr: 81.0
+      pi05_amplification_object_to_goal_pp: 7.6
+      pi05_amplification_object_to_long_pp: 17.2
+      openvla_spatial_random_k09_sr: 67.0
+      openvla_long_l2norm_k09_sr: 46.0
+      openvla_long_random_k09_sr: 43.0
+      smolvla_spatial_k095_sr: 0.0
+      smolvla_goal_k095_sr: 0.0
+      smolvla_long_k095_sr: 0.0
+      cross_suite_framework_accuracy_pct: 95
+      axis2_amplification_entangling_min_pp: 27.4
+      axis2_amplification_independent_max_pp: 17.2
+    result_rationale: "Axis-2（task complexity）放大效应的机制：complex tasks（Goal/Long）要求 multi-step\
+      \  reasoning，每一步的 action prediction 依赖前一步保留的 spatial information。 Token-entangling\
+      \ connectors（BART/pixel-shuffle）的 pruning damage 在 multi-step  中 compound——单步小损失在序列中累积为大损失。Token-independent\
+      \ connectors（linear/MLP） 的 pruning damage 是 per-step 局部的，不会 cascade。\n具体预测依据：\
+      \ - X-VLA Object→Goal 27.4pp 已确认（same k=0.9, same method, only task differs）\
+      \ - X-VLA Object→Long 更大（70.1pp）因为 Long 任务平均 horizon 更长，compounding 更严重 - π0.5\
+      \ L2norm Object→Goal 仅 7.6pp（low CV 使得 L2norm 选择的 token 在 spatial \n  coverage\
+      \ 上已近最优，task complexity 无法放大 spatial coverage 的已有优势）\n- π0.5 Object→Long 17.2pp\
+      \ 稍大，但仍 <20pp（independent connector 上限）\nOpenVLA 剩余预测： - Spatial random k=0.9≈67%：OpenVLA\
+      \ Spatial baseline=80%, L2norm k=0.9=75%。\n  Random 通常比 L2norm 低 5-8pp（CV=0.215\
+      \ 使 L2norm 有轻微优势）\n- Long L2norm k=0.9≈46%：Long baseline=52.8%, 相对保留率≈OpenVLA\
+      \ Object pattern - Long random k=0.9≈43%：随机稍差于 L2norm（high CV）\nSmolVLA 全 suite\
+      \ 0%：pixel-shuffle 纠缠在任何 task distribution 下都导致 catastrophic  failure。Spatial/Goal\
+      \ 的 baseline 较低（44.6%/60.8%）不影响 cliff-edge——即使 baseline  更低，k=0.95 pruning 仍然\
+      \ collapse 至 0%。\n"
+    tables:
+    - title: 'Table: 2-Axis Framework — Axis-2 amplification at k=0.9 (L2norm)'
+      columns:
+      - Model
+      - CV
+      - Connector
+      - Object SR(%)
+      - Spatial SR(%)
+      - Goal SR(%)
+      - Long SR(%)
+      - Amplif O→G (pp)
+      data:
+      - - pi0.5
+        - '0.055'
+        - Linear
+        - '98.2'
+        - '95.0'
+        - '90.6'
+        - '81.0'
+        - '7.6'
+      - - X-VLA
+        - '0.151'
+        - Lin+BART
+        - '97.6'
+        - '78.8'
+        - '70.2'
+        - '27.5'
+        - '27.4'
+      - - OpenVLA
+        - '0.215'
+        - MLP
+        - '70.6'
+        - '75.0'
+        - '74.8'
+        - '46.0'
+        - -4.2*
+      - - SmolVLA
+        - '0.314'
+        - Pix-shuf
+        - '0.0'
+        - '0.0'
+        - '0.0'
+        - '0.0'
+        - N/A
+    - title: 'Table: Cross-suite pruning sensitivity heatmap (SR at k=0.5, random)'
+      columns:
+      - Model
+      - Object
+      - Spatial
+      - Goal
+      - Long
+      data:
+      - - pi0.5
+        - 69.4 (68.9†)
+        - '71.6'
+        - '73.6'
+        - '46.8'
+      - - X-VLA
+        - 70.6 (70.3†)
+        - '71.4'
+        - 67.9†
+        - '61.6'
+      - - OpenVLA
+        - '35.8'
+        - ~36
+        - '52.2'
+        - ~35
+      - - SmolVLA
+        - '0.0'
+        - '0.6'
+        - '0.0'
+        - '0.0'
+    figures_description:
+    - 'Fig: 2-axis heatmap — rows=models (sorted by CV), columns=suites (sorted by
+      complexity). Color=SR at k=0.9. Clear gradient: entangling connectors show steep
+      color change across suites, independent connectors show mild change.'
+    - 'Fig: Amplification bar chart — grouped bars per model showing Object→Goal SR
+      drop (pp). X-VLA 27.4pp tower vs π0.5 7.6pp bar. Horizontal line at 20pp separating
+      entangling/independent zones.'
+    analysis: '2-axis framework 在 95% 的 model×suite cells 中正确预测 pruning outcome。 唯一的
+      partial exception：OpenVLA Goal k=0.9 SR（74.8%）高于 Object k=0.9（70.6%）， 但这是 baseline
+      difference（Goal baseline 74.8% = Object baseline 74%），相对  degradation 是一致的。Framework
+      accuracy 95% 落在 best tier 范围 [90, 100] 内。
+
+      Key axis-2 interaction：entangling connectors 放大倍数 27.4pp（X-VLA Object→Goal）
+      落在 best tier 范围 [25, 45] 内。Independent connectors 保持 ≤10pp（π0.5 7.6pp） 符合假设。Long
+      suite 的更大放大（X-VLA 70.1pp, π0.5 17.2pp）与 horizon length  正相关，进一步验证 compounding
+      damage 机制。
+
+      '
+  - name: VTR cross-suite generalization (SmolVLA Long)
+    plan_id: c6_libero_suite_vtr
+    description: 'SmolVLA VTR M=32 已在 Spatial（53.2%）和 Goal（56.4%）验证。 剩余：Long suite（baseline
+      36.6%）的 VTR recovery。 预测 M=32 Long≈33-38%，完成 Diagnose-then-Compress 全 suite
+      验证。
+
+      '
+    expected_results:
+      smolvla_long_baseline_sr: 36.6
+      smolvla_long_hard_prune_k05_sr: 0.0
+      smolvla_long_hard_prune_k095_sr: 0.0
+      vtr_m32_long_sr: 35.5
+      vtr_m32_long_ci95_lower: 31.0
+      vtr_m32_long_ci95_upper: 40.0
+      vtr_m32_spatial_sr: 53.2
+      vtr_m32_goal_sr: 56.4
+      vtr_m32_object_sr: 60.1
+      recovery_ratio_long: 0.97
+      cross_suite_recovery_consistent: true
+    result_rationale: "VTR cross-suite recovery ratio 预测≈0.97（35.5/36.6）：\n1. M-curve\
+      \ 平坦性在 Object suite 已确认——VTR 的 re-encoding 修复 spatial \n   entanglement，这是 connector-level\
+      \ 属性，与 task distribution 无关。\n2. Spatial recovery 53.2%/43.8%=1.21 和 Goal recovery\
+      \ 56.4%/60.8%=0.93 \n   显示 cross-suite recovery ratio 围绕 1.0 波动（±20%），中位数 ≈1.0。\n\
+      3. Long suite baseline 较低（36.6% vs Object 59.2%）因为 Long 任务本身更难，\n   但 VTR 不应额外降低——它只修复\
+      \ pruning damage，不影响 task difficulty。\n4. Long 的稍低 recovery（预测 0.97）可能源于 Long\
+      \ horizon 放大了 VTR \n   re-encoding 中的微小信息损失，但效果应 <5pp。\n\nVTR 在 Long 上仍将远超 hard\
+      \ pruning（35.5% vs 0%），完成全 4 suites 的  \"recovery from cliff-edge\" 证据链。\n"
+    tables:
+    - title: 'Table: VTR M=32 cross-suite recovery'
+      columns:
+      - Suite
+      - Baseline SR(%)
+      - Hard prune k=0.5 SR(%)
+      - VTR M=32 SR(%)
+      - Recovery ratio
+      data:
+      - - Object
+        - '59.2'
+        - '0.0'
+        - '60.1'
+        - '1.015'
+      - - Spatial
+        - 43.8*
+        - '0.6'
+        - '53.2'
+        - 1.21*
+      - - Goal
+        - 60.8*
+        - '0.0'
+        - '56.4'
+        - '0.93'
+      - - Long
+        - '36.6'
+        - '0.0'
+        - 35.5 (pred)
+        - 0.97 (pred)
+    figures_description:
+    - 'Fig: VTR recovery bar chart — 4 suites side by side, each showing baseline
+      (gray), hard prune (red, near 0), VTR M=32 (green, near baseline). Consistent
+      recovery pattern across all suites.'
+    analysis: 'VTR cross-suite generalization证明 re-encoding 修复的是 architectural entanglement  而非
+      task-specific information。Recovery ratio ≈1.0 across 4 suites 支持 Claim 4： "Learned
+      Re-Encoding Achieves Near-Lossless Compression Where Deletion Fails"。 vtr_smolvla_recovery_ratio
+      0.97 落在 best tier 范围 [0.95, 1.05] 内。
+
+      对 practitioner 的 implication：使用 pixel-shuffle connector 的 VLA 可以通过  VTR 实现任意压缩比而无显著
+      SR 损失。22M 额外参数 + 6% latency overhead 是可接受的代价。
+
+      '
+  - name: π0.5 uniformly critical behavior cross-suite validation
+    plan_id: c1_pi05_immune_confirmation
+    description: 'π0.5（4B, PaliGemma linear proj）已完成 4 suites baseline + 全面 pruning
+      sweep。 CV=0.055 confirmed。L2norm plateau（k≥0.85 maintains ≥98% Object, ≥88%
+      Spatial/Goal） 和 random cliff（k=0.85-0.925 Object collapse）均已 multi-seed 验证。
+      Scaling law extreme（Δ(R-L2)=+36pp at k=0.5）confirmed。 剩余工作：Cross-suite 一致性最终确认
+      + paper narrative 整合。
+
+      '
+    expected_results:
+      baseline_object: 98.2
+      baseline_spatial: 97.2
+      baseline_goal: 96.4
+      baseline_long: 92.8
+      cv: 0.055
+      l2norm_k095_object: 98.2
+      l2norm_k09_object: 98.2
+      l2norm_k085_object: 98.0
+      l2norm_k095_spatial: 97.8
+      l2norm_k09_spatial: 95.0
+      l2norm_k085_spatial: 88.6
+      l2norm_k095_goal: 90.8
+      l2norm_k09_goal: 90.6
+      l2norm_k085_goal: 88.0
+      l2norm_k095_long: 87.0
+      l2norm_k09_long: 81.0
+      l2norm_k085_long: 78.4
+      random_k095_object: 74.0
+      random_k0925_object: 27.6
+      random_k09_object: 9.0
+      random_k085_object: 5.0
+      random_k095_spatial: 76.4
+      random_k0925_spatial: 58.2
+      random_k09_spatial: 54.6
+      random_k085_spatial: 60.2
+      random_k095_goal: 83.8
+      random_k0925_goal: 70.0
+      random_k09_goal: 62.2
+      random_k085_goal: 52.4
+      random_k095_long: 63.2
+      random_k09_long: 31.8
+      random_k085_long: 45.2
+      l2norm_k05_object: 33.4
+      random_k05_object: 69.4
+      gap_R_minus_L2_k05_pp: 36.0
+      l2norm_k05_spatial: 55.6
+      random_k05_spatial: 71.6
+      gap_spatial_k05_pp: 16.0
+      l2norm_k05_goal: 59.8
+      random_k05_goal: 73.6
+      gap_goal_k05_pp: 13.8
+      l2norm_k05_long: 50.2
+      random_k05_long: 46.8
+      gap_long_k05_pp: -3.4
+    result_rationale: "π0.5 \"uniformly critical\" 行为的 cross-suite 一致性验证了 Claim 1\
+      \ 和 Claim 5：\n1. **L2norm plateau 跨 suite 一致**：k≥0.85 时 L2norm 在所有 4 suites\
+      \ 维持高 SR\n   （Object 98%, Spatial 88.6%, Goal 88%, Long 78.4%）。Plateau 随 task\
+      \ complexity \n   轻微下降但保持>78%。机制：L2norm 的 deterministic selection 保留 spatial\
+      \ coverage，\n   low CV（0.055）使选中的 token subset 具有 near-uniform importance，覆盖度好。\n\
+      \n2. **Random cliff 跨 suite 差异化**：\n   - Object cliff dramatic（74→28→9→5%），因为\
+      \ Object tasks 有 concentrated critical \n     tokens（object identity discrimination\
+      \ 依赖 specific patches）\n   - Spatial cliff milder（76→58→55→60%），因为 spatial layout\
+      \ information 是 \n     distributed 的，random removal 不会完全摧毁 spatial signal\n\
+      \   - Goal cliff moderate（84→70→62→52%），因为 Goal tasks 混合了 spatial 和 \n     semantic\
+      \ disambiguation\n   - Long cliff steep（63→32→45%），因为 long-horizon compounding\
+      \ 放大了 random \n     token loss\n\n3. **Scaling law（Δ(R-L2)）cross-suite 演变**：\n\
+      \   - Object k=0.5: +36.0pp（random wins massively, extreme of scaling law）\n\
+      \   - Spatial k=0.5: +16.0pp（random wins, spatial distributed info helps random）\n\
+      \   - Goal k=0.5: +13.8pp（random wins, similar to spatial）\n   - Long k=0.5:\
+      \ -3.4pp（L2norm slightly wins — long horizon 使 L2norm 的 \n     deterministic\
+      \ consistency 成为优势，random 的 per-step variance compounds）\n   \n   Gap 从 +36→+16→+14→-3.4\
+      \ 的变化不违反 scaling law：scaling law 是 \n   cross-model（CV drives direction），不是\
+      \ cross-suite。Suite 影响 gap \n   magnitude 但不改变 sign（除 Long 的轻微 reversal，可解释为\
+      \ horizon effect）。\n"
+    tables:
+    - title: 'Table: π0.5 L2norm plateau cross-suite'
+      columns:
+      - k
+      - Object
+      - Spatial
+      - Goal
+      - Long
+      data:
+      - - 1.0 (baseline)
+        - '98.2'
+        - '97.2'
+        - '96.4'
+        - '92.8'
+      - - '0.95'
+        - '98.2'
+        - '97.8'
+        - '90.8'
+        - '87.0'
+      - - '0.925'
+        - '99.2'
+        - '97.0'
+        - '89.8'
+        - —
+      - - '0.9'
+        - '98.2'
+        - '95.0'
+        - '90.6'
+        - '81.0'
+      - - '0.85'
+        - '98.0'
+        - '88.6'
+        - '88.0'
+        - '78.4'
+      - - '0.7'
+        - '55.0'
+        - '67.0'
+        - '73.6'
+        - '62.6'
+      - - '0.5'
+        - '33.4'
+        - '55.6'
+        - '59.8'
+        - '50.2'
+      - - '0.3'
+        - '51.0'
+        - '57.2'
+        - '50.6'
+        - '36.6'
+    - title: 'Table: π0.5 random cliff cross-suite'
+      columns:
+      - k
+      - Object
+      - Spatial
+      - Goal
+      - Long
+      data:
+      - - '0.95'
+        - '74.0'
+        - '76.4'
+        - '83.8'
+        - '63.2'
+      - - '0.925'
+        - '27.6'
+        - '58.2'
+        - '70.0'
+        - —
+      - - '0.9'
+        - '9.0'
+        - '54.6'
+        - '62.2'
+        - '31.8'
+      - - '0.85'
+        - '5.0'
+        - '60.2'
+        - '52.4'
+        - '45.2'
+      - - '0.7'
+        - '75.5'
+        - '74.4'
+        - '75.6'
+        - '65.8'
+      - - '0.5'
+        - '69.4'
+        - '71.6'
+        - '73.6'
+        - '46.8'
+      - - '0.3'
+        - '36.4'
+        - '43.4'
+        - '52.8'
+        - '29.6'
+    figures_description:
+    - 'Fig: π0.5 L2norm vs random pruning curves, 4 suites side-by-side. L2norm plateau
+      vs random cliff contrast. Object cliff most dramatic, Spatial most resilient.'
+    - 'Fig: Concentrated vs distributed critical tokens illustration — Object tasks
+      show localized critical patches, Spatial tasks show diffuse importance.'
+    analysis: 'π0.5 完整 cross-suite 数据确认了核心假设 3：uniformly critical behavior  generalize
+      至 Spatial/Goal，且机制一致（concentrated vs distributed critical tokens  决定 cliff severity）。pi05_l2norm_random_gap_k05_pp=36.0pp
+      落在 best tier  范围 [30, 40] 内。
+
+      π0.5 是 scaling law 的 extreme point（CV=0.055, 最低），在所有 suite 上都展现 L2norm catastrophic
+      failure at aggressive compression。这强化了 "CV predicts optimal  pruning strategy"
+      narrative——对 low-CV models，importance-based pruning actively harmful。
+
+      '
+  - name: OpenVLA-OFT graded degradation cross-suite validation
+    plan_id: c3_oft_graded_full
+    description: 'OFT（7B, 3-layer MLP, DINOv2+SigLIP fusion, 512 tokens）在兼容硬件（A100+torch2.2）
+      上进行 4 suites baseline + pruning 评估。CV=0.219≈OpenVLA(0.215) 预测相同的  graded degradation
+      模式。此实验验证 action head（OFT vs Standard）不影响 pruning behavior。
+
+      '
+    expected_results:
+      baseline_object: 97.0
+      baseline_spatial: 95.0
+      baseline_goal: 96.0
+      baseline_long: 85.0
+      l2norm_k095_object: 91.0
+      l2norm_k09_object: 83.0
+      l2norm_k07_object: 65.0
+      l2norm_k05_object: 50.0
+      l2norm_k03_object: 28.0
+      random_k095_object: 90.0
+      random_k09_object: 80.0
+      random_k07_object: 60.0
+      random_k05_object: 46.0
+      random_k03_object: 25.0
+      gap_R_minus_L2_k05_object_pp: -4.0
+      gap_R_minus_L2_k07_object_pp: -5.0
+      l2norm_k09_spatial: 82.0
+      l2norm_k09_goal: 84.0
+      l2norm_k09_long: 68.0
+      cv: 0.219
+      entropy: 0.667
+    result_rationale: "OFT 使用与 Standard OpenVLA 相同的 3-layer MLP connector。CV 0.219≈0.215\
+      \ 的高度一致性 预测几乎相同的 pruning degradation pattern：\n1. **Graded degradation 预测**：OpenVLA\
+      \ relative retention at k=0.5 = 37.4/74 = 50.5%。\n   OFT baseline 更高（~97%），absolute\
+      \ SR 更高但 relative pattern 一致。\n   预测 OFT k=0.5 L2norm ≈ 97×0.515 ≈ 50%。\n\n\
+      2. **L2norm > random 一致**：high CV（0.219）= meaningful importance differentiation\
+      \ → \n   L2norm selection effective。预测 L2norm 在所有 k 值优于 random 3-6pp，\n   与\
+      \ OpenVLA pattern（+1.4 to +5.4pp）一致。\n\n3. **Cross-suite pattern**：OFT 的 512\
+      \ tokens（vs OpenVLA 256）提供更高的信息冗余，\n   可能使 pruning tolerance 略高于 OpenVLA。但 connector\
+      \ mechanism 相同，\n   degradation shape 应一致（smooth graded）。\n\n4. **Action head\
+      \ 独立性**：OFT diffusion action head 和 Standard autoregressive \n   action head\
+      \ 对 pruning 的反应应 identical，因为 pruning 发生在 vision-LLM \n   接口而非 action decode\
+      \ 阶段。这是 connector-determines-pruning 假说的关键证据。\n"
+    tables:
+    - title: 'Table: OFT vs OpenVLA pruning comparison (Object suite, L2norm)'
+      columns:
+      - k
+      - OFT SR(%) (pred)
+      - OpenVLA SR(%)
+      - OFT retention
+      - OpenVLA retention
+      data:
+      - - '1.0'
+        - '97.0'
+        - '74.0'
+        - 100%
+        - 100%
+      - - '0.95'
+        - '91.0'
+        - '69.4'
+        - 93.8%
+        - 93.8%
+      - - '0.9'
+        - '83.0'
+        - '62.0'
+        - 85.6%
+        - 83.8%
+      - - '0.7'
+        - '65.0'
+        - '49.0'
+        - 67.0%
+        - 66.2%
+      - - '0.5'
+        - '50.0'
+        - '37.4'
+        - 51.5%
+        - 50.5%
+      - - '0.3'
+        - '28.0'
+        - '20.6'
+        - 28.9%
+        - 27.8%
+    figures_description:
+    - 'Fig: OFT vs OpenVLA pruning curves overlaid, normalized by baseline. Near-identical
+      relative degradation pattern despite different baselines and action heads.'
+    analysis: 'OFT 实验是 paper 中消除 confound 的关键 ablation：same connector + different
+      action head  → same pruning behavior，证明 connector 是 causal factor。如果 Blackwell
+      GPU  兼容性问题无法解决，OFT 可以仅通过 CV/entropy analysis（已完成）纳入 paper， 辅以 official baseline
+      引用。LIBERO eval 是 bonus（icing on the cake）， CV/entropy 已足够支持 Claim。
+
+      '
+  - name: Perceiver Resampler connector fine-tune + pruning
+    plan_id: c5_third_connector_roboflamingo
+    description: 'RoboFlamingo（Perceiver Resampler: 64 learned query tokens 通过 cross-attention  attend
+      to vision patches）在 LIBERO Object 上 fine-tune 后进行 pruning sweep。 验证第 4 种 connector
+      family 的 pruning behavior。此前训练尝试因基础设施问题被 kill。
+
+      '
+    expected_results:
+      baseline_object_sr: 58.0
+      baseline_ci95:
+      - 53.5
+      - 62.4
+      l2norm_k095_sr: 52.0
+      l2norm_k09_sr: 42.0
+      l2norm_k07_sr: 22.0
+      l2norm_k05_sr: 10.0
+      random_k095_sr: 50.0
+      random_k09_sr: 38.0
+      random_k07_sr: 18.0
+      random_k05_sr: 8.0
+      importance_cv: 0.22
+      entropy_ratio: 0.82
+      connector_class: token-entangling (cross-attention)
+      pruning_pattern: steep graded → threshold at k≈0.7
+    result_rationale: "Perceiver Resampler 的 cross-attention 机制创造了中等程度的 token entanglement：\n\
+      1. **Entanglement 机制**：64 query tokens 各自通过 cross-attention attend 全部 vision\
+      \ \n   patches。每个 output token 不再对应特定 spatial region（unlike linear proj），\n\
+      \   而是 learned mixture of all patches。但与 pixel-shuffle 不同，这种 mixture \n   是\
+      \ learned 的且 query-specific，因此不同 query 可能 specialize to different \n   spatial/semantic\
+      \ aspects。\n\n2. **CV 预测 ~0.22**：介于 X-VLA（0.151）和 SmolVLA（0.314）之间。\n   Cross-attention\
+      \ 创造的依赖比 BART sequential mixing 更直接但不如 pixel-shuffle \n   的空间折叠极端。Query specialization\
+      \ 产生 moderate importance heterogeneity。\n\n3. **Pruning pattern 预测**：steep graded\
+      \ degradation。k=0.95 开始可见 drop \n   （~10% relative），k=0.7 显著下降（~60% relative），k=0.5\
+      \ 接近 collapse。\n   比 OpenVLA/MLP 更陡但不如 SmolVLA/pixel-shuffle catastrophic。\n\
+      \n4. **Baseline 预测 ~58%**：first-attempt fine-tuning on LIBERO，\n   RoboFlamingo\
+      \ original architecture 不是为 LIBERO 任务优化的。\n   合理的 mid-range SR。\n\n5. **L2norm\
+      \ ≈ random**：CV ~0.22 处于 L2norm 和 random 的交叉区域，\n   两种方法差异应 <5pp，类似 OpenVLA\
+      \ pattern。\n"
+    tables:
+    - title: 'Table: Perceiver Resampler pruning curve (predicted)'
+      columns:
+      - k
+      - Tokens kept
+      - L2norm SR(%)
+      - Random SR(%)
+      - Δ(R-L2)
+      data:
+      - - '1.0'
+        - '64'
+        - '58.0'
+        - '58.0'
+        - '0'
+      - - '0.95'
+        - '61'
+        - '52.0'
+        - '50.0'
+        - '-2.0'
+      - - '0.9'
+        - '58'
+        - '42.0'
+        - '38.0'
+        - '-4.0'
+      - - '0.7'
+        - '45'
+        - '22.0'
+        - '18.0'
+        - '-4.0'
+      - - '0.5'
+        - '32'
+        - '10.0'
+        - '8.0'
+        - '-2.0'
+    figures_description:
+    - 'Fig: 4-connector family pruning curves on same axes — Linear (π0.5, flat),
+      MLP (OpenVLA, gradual), Perceiver (RoboFlamingo, steep graded), Pixel-shuffle
+      (SmolVLA, cliff). Continuous spectrum of pruning tolerance.'
+    analysis: 'Perceiver Resampler 填补了 connector spectrum 的空白——在 MLP（graded）和 pixel-shuffle  （catastrophic）之间提供了第
+      4 个 data point。如果 CV ~0.22 且 pruning pattern  呈 steep graded，它将进一步验证 CV 作为 continuous
+      predictor 的有效性。
+
+      对 paper 的贡献：从 3 connector families 扩展到 4，增加了 paper 的 generalizability。 但即使此实验因基础设施问题未完成，paper
+      已有 5 models × 3 families 的充分覆盖， Perceiver 可作为 future work 提及。在 best tier 下，此实验成功完成并增加
+      paper  的 reviewer 说服力。
+
+      '
+  - name: E5 attention-based pruning — correct importance metric for entangling connectors
+    plan_id: e5_attention_pruning_xvla
+    description: 'X-VLA attention-based token pruning（last-layer / mean / rollout）在
+      4 suites 上验证。 核心发现：attention-based importance 在 entangling connector 上远优于 L2norm，
+      因为 attention 捕获了 BART encoder 创造的 cross-token dependencies。 已有数据覆盖 Object/Spatial/Goal/Long
+      at k=0.5 和 k=0.3/k=0.7 部分点。 Goal suite 泛化已确认（SR=96.8-98.2% at k=0.5）。
+
+      '
+    expected_results:
+      attn_last_obj_k05: 99.2
+      attn_mean_obj_k05: 98.4
+      attn_rollout_obj_k05: 97.4
+      attn_last_obj_k07: 99.2
+      attn_last_obj_k03: 84.2
+      attn_mean_obj_k03: 96.0
+      attn_rollout_obj_k03: 92.0
+      attn_last_spatial_k05: 88.8
+      attn_mean_spatial_k05: 91.6
+      attn_rollout_spatial_k05: 92.8
+      attn_last_spatial_k03: 85.6
+      attn_mean_spatial_k03: 90.4
+      attn_last_goal_k05: 98.2
+      attn_mean_goal_k05: 97.4
+      attn_rollout_goal_k05: 96.8
+      attn_last_long_k05: 90.2
+      attn_mean_long_k05: 94.0
+      attn_rollout_long_k05: 94.8
+      attn_last_long_k05_seed43: 90.4
+      attn_mean_long_k05_seed43: 94.6
+      l2norm_obj_k05: 42.6
+      attn_advantage_obj_k05_pp: 56.6
+      l2norm_goal_k05: 59.0
+      attn_advantage_goal_k05_pp: 39.2
+      l2norm_long_k05: 44.6
+      attn_advantage_long_k05_pp: 45.6
+    result_rationale: "E5 attention pruning 成功的根本原因：attention weights 直接编码了 BART encoder\
+      \  创造的 cross-token dependencies。L2norm 失败（特别是在 aggressive compression 下） 是因为\
+      \ BART 使 token norms 近乎 uniform（CV=0.151），导致 L2norm selection  退化为 spatial clustering。而\
+      \ attention weights 捕获了 decoder 实际需要哪些 token， 考虑了 cross-token 依赖关系。\nCross-suite\
+      \ 一致性的原因： - Object k=0.5 = 99.2%：简单任务 + attention guidance = near-perfect（仅需保留\
+      \ \n  与 language instruction 相关的 object tokens）\n- Goal k=0.5 = 98.2%：complex\
+      \ task 但 attention 正确识别了 multi-step 所需的 \n  critical tokens，消除了 task complexity\
+      \ amplification\n- Long k=0.5 = 90.2%：最长 horizon，attention 仍能恢复大部分（vs L2norm\
+      \ 44.6%），\n  但 10pp gap vs baseline 来自 long-horizon compounding 的不可完全消除的 information\
+      \ loss\n- Spatial k=0.5 = 88.8-92.8%：spatial tasks 需要 precise spatial token\
+      \ coverage，\n  attention 基本正确但不完美\n\n\"Correct importance metric rescues entangling\
+      \ connectors\" story： X-VLA L2norm k=0.5 = 42.6% vs attention k=0.5 = 99.2%\
+      \ → +56.6pp。 这证明 pruning failure on entangling connectors 不是因为 information 不可保留，\
+      \ 而是因为 wrong importance metric。Attention-based pruning 是 correct metric。\n"
+    tables:
+    - title: 'Table: E5 attention pruning vs L2norm on X-VLA (k=0.5, all suites)'
+      columns:
+      - Suite
+      - Baseline
+      - L2norm SR(%)
+      - Random SR(%)
+      - Attn-last SR(%)
+      - Attn-mean SR(%)
+      - Attn advantage vs L2 (pp)
+      data:
+      - - Object
+        - '99.2'
+        - '42.6'
+        - '70.6'
+        - '99.2'
+        - '98.4'
+        - '+56.6'
+      - - Spatial
+        - '93.0'
+        - '58.8'
+        - '71.4'
+        - '88.8'
+        - '91.6'
+        - '+30.0'
+      - - Goal
+        - '98.4'
+        - '59.0'
+        - '67.2'
+        - '98.2'
+        - '97.4'
+        - '+39.2'
+      - - Long
+        - '94.0'
+        - '44.6'
+        - '61.6'
+        - '90.2'
+        - '94.0'
+        - '+45.6'
+    figures_description:
+    - 'Fig: X-VLA pruning method comparison across 4 suites at k=0.5. Three bars per
+      suite (L2norm, random, attention). Attention near-baseline everywhere, L2norm
+      catastrophic on Object/Long.'
+    - 'Fig: Attention advantage heatmap — rows=suites, columns=k values. Color intensity
+      shows pp advantage of attention over L2norm. Hottest zones at aggressive k ×
+      complex tasks.'
+    analysis: "E5 是 best tier 的关键 complementary contribution。它证明： 1. Entangling connectors\
+      \ 的 pruning failure 是 metric failure，不是 fundamental limit 2. 正确的 importance\
+      \ metric（attention）can rescue X-VLA 至 near-baseline（99.2% at k=0.5） 3. Goal\
+      \ suite 泛化完美（98.2%），确认 assumption 5 4. 为 Diagnose-then-Compress framework 增加第三步：Diagnose（CV）→\
+      \ Choose method \n   （attention for low-CV entangling, L2norm for high-CV independent）→\
+      \ Compress（VTR if needed）\n\nPaper positioning：§4.7 或 supplementary，作为实用价值的补充。\
+      \ 不改变 primary contribution（2-axis framework + CV diagnostic）， 但显著增强 method contribution\
+      \ 的完整性。\n"
+  - name: Scaling law cross-validation (k=0.5 and k=0.7, 3 models)
+    plan_id: c6_libero_suite_expansion
+    description: 'CV-strategy scaling law（Δ(R-L2) monotonically decreasing with CV）在
+      k=0.5 和 k=0.7  已确认，无例外。Final validation 确保 remaining seeds 不引入 exceptions。
+
+      '
+    expected_results:
+      pi05_delta_R_L2_k05: 36.0
+      xvla_delta_R_L2_k05: 26.9
+      openvla_delta_R_L2_k05: -1.8
+      spearman_k05: -1.0
+      pi05_delta_R_L2_k07: 22.2
+      xvla_delta_R_L2_k07: 6.5
+      openvla_delta_R_L2_k07: -5.4
+      spearman_k07: -1.0
+      cv_strategy_abs_spearman: 1.0
+      scaling_law_holds_both_k: true
+      new_exceptions: 0
+    result_rationale: 'Scaling law 在 k=0.5 和 k=0.7 均展示完美的 monotonic pattern（|ρ|=1.0）：
+      CV 越低（tokens 越 uniform），L2norm 越 harmful（因为 uniform distribution 上的  norm-based
+      selection 退化为 spatial clustering），random 越有优势。
+
+      机制链： CV=0.055（π0.5）→ near-uniform importance → L2norm clusters spatially →  catastrophic
+      coverage loss → +36pp random advantage
+
+      CV=0.151（X-VLA）→ moderate uniformity → L2norm partial clustering →  +27pp random
+      advantage（smaller because BART creates some meaningful differentiation）
+
+      CV=0.215（OpenVLA）→ meaningful differentiation → L2norm preserves important tokens
+      →  -1.8pp（L2norm slightly better, importance-based selection effective）
+
+      k=0.7 gap 小于 k=0.5 gap（22.2 vs 36.0 for π0.5）因为 k=0.7 保留更多 tokens， spatial coverage
+      loss 更轻。但 monotonic ordering 保持不变。
+
+      Remaining seeds（已通过 multi-seed 确认）不会引入 exceptions： - π0.5 L2norm k=0.5 dual-seed:
+      33.4/33.6（std=0.1pp） - X-VLA random k=0.5 tri-seed: 70.6/71.0/69.2（σ=0.9pp）
+      - Gap reproducibility confirmed across all available seeds。
+
+      '
+    tables:
+    - title: 'Table: CV-Strategy Scaling Law (dual k validation)'
+      columns:
+      - Model
+      - CV
+      - Δ(R-L2) k=0.5 (pp)
+      - Δ(R-L2) k=0.7 (pp)
+      - Direction
+      data:
+      - - pi0.5
+        - '0.055'
+        - '+36.0'
+        - '+22.2'
+        - Random >> L2norm
+      - - X-VLA
+        - '0.151'
+        - '+26.9'
+        - '+6.5'
+        - Random > L2norm
+      - - OpenVLA
+        - '0.215'
+        - '-1.8'
+        - '-5.4'
+        - L2norm >= Random
+      - - SmolVLA
+        - '0.314'
+        - N/A (both 0%)
+        - N/A
+        - Method-independent
+    figures_description:
+    - 'Fig: Scaling law scatter plot — x=CV, y=Δ(R-L2). Two series (k=0.5 solid, k=0.7
+      dashed). Both monotonically decreasing. Crossover from random-advantage to L2norm-advantage
+      at CV≈0.2.'
+    analysis: '|Spearman|=1.0 at both k values 落在 best tier 范围 [0.85, 1.0] 内（实际是上界）。
+      Scaling law 是 Claim 5 的核心，提供了 practitioner-facing 的 prescriptive guidance： measure
+      CV → if CV<0.15: use random pruning; if CV>0.2: use L2norm;  if 0.15<CV<0.2:
+      either method works at mild compression。'
+  review_report: '---
+
+    dream_id: dream_20260525T050917
+
+    tier: best
+
+    overall_score: 5.5/10 — Weak Reject (Borderline)
+
+    timestamp: 2026-05-25T06:08:46.747971+00:00
+
+    ---
+
+
+    # Dream Review Report — "Why Token Pruning Crashes Some Robot Policies but Not
+    Others: The Role of Vision Connectors in VLA Token Compressibility"
+
+
+    ## Venue: CoRL 2026
+
+
+    ## Paper Summary
+
+
+    This paper presents the first systematic study of vision token pruning across
+    6 VLA architectures (π0, π0.5, X-VLA, OpenVLA, OpenVLA-OFT, SmolVLA, + RoboFlamingo),
+    4 connector families (linear, MLP, BART, pixel-shuffle, Perceiver Resampler),
+    and 4 LIBERO task suites. The central finding is a 2-axis framework: (1) connector-determined
+    token coupling and (2) task complexity jointly govern pruning robustness. Importance
+    CV is proposed as a zero-cost diagnostic (continuous spectrum 0.038→0.314) predicting
+    both pruning tolerance and optimal strategy. Vision Token Re-encoding (VTR) is
+    introduced for near-lossless compression where deletion fails. A double dissociation
+    between scoring methods (L2-norm vs. attention) and connector types is documented.
+
+
+    ## Consolidated Scores
+
+
+    | Criterion | R1 | R2 | Final | Justification |
+
+    |-----------|----|----|-------|---------------|
+
+    | Originality | 7 | 5 | 6 | First systematic cross-architecture VLA pruning study
+    is a genuine gap-fill. The 2-axis interaction (connector × task complexity) is
+    novel—X-VLA''s 27.4pp Object→Goal amplification at same k was not predictable
+    from prior work. However, individual components (CV, VTR, attention scoring) are
+    not methodologically novel. Empirical synthesis novelty is real but limited. |
+
+    | Quality | 5 | 7 | 5.5 | Resolved toward R1. The data matrix has significant
+    gaps: OpenVLA evaluated on Object suite only (no Spatial/Goal/Long), multiple
+    "--" entries in main table. Most conditions single-seed. VTR baseline confounded
+    by batch size difference (4 vs 512 → 44.8% vs 59.2%). However, completed data
+    points (SmolVLA cliff, π0.5 cliff, X-VLA 3-seed, VTR M-sweep) are individually
+    well-validated. |
+
+    | Clarity | 7 | 7 | 7 | Both reviewers agree. Well-structured paper with effective
+    figures and tables. Dense but logically organized. Extensive appendix. Minor repetition
+    across sections. |
+
+    | Significance | 6 | 6 | 6 | Practically useful for VLA deployment decisions.
+    Double dissociation and CV diagnostic are immediately actionable. Limited by LIBERO-only
+    evaluation—no real-robot, no cross-benchmark validation. Findings are descriptive
+    rather than predictive. |
+
+    | Relevance | 8 | 8 | 8 | Directly targets VLA efficiency for robot deployment—a
+    core CoRL topic. Closed-loop evaluation is the right methodology. Highly relevant.
+    |
+
+
+    ## Overall Score: 5.5/10 — Borderline (Weak Reject)
+
+
+    ## Roundtable Consensus
+
+
+    ### Key Agreements
+
+    - The paper fills a genuine gap: no prior work systematically compares VLA token
+    pruning across connector families in closed-loop control
+
+    - SmolVLA pixel-shuffle catastrophic collapse (0% SR at 5% removal, verified across
+    checkpoints/methods/seeds) is the strongest and most practically important finding
+
+    - The double dissociation between scoring method effectiveness and connector type
+    (attention helps entangling but hurts independent; L2-norm shows the converse)
+    is the most compelling and actionable result
+
+    - The incomplete data matrix is a real problem—OpenVLA on Object-only undermines
+    the 2-axis "systematic" claim
+
+    - LIBERO-only evaluation limits generalizability; no real-robot validation
+
+    - VTR is narrowly validated (one model success, one model failure)
+
+    - CV diagnostic rests on too few data points (3-4 closed-loop models) for a "scaling
+    law" claim
+
+    - Relevance to CoRL is high (8/10)
+
+    - Writing quality is good (7/10)
+
+
+    ### Resolved Disagreements
+
+
+    **Originality (R1=7 → R2=5 → Final=6):** R1 valued the 2-axis framework as a genuinely
+    new organizational contribution; R2 noted that individual components are not novel.
+    Resolution: the empirical synthesis and the interaction finding (connector × task
+    complexity amplification) constitute real novelty for the VLA community, but the
+    absence of methodological novelty limits the score. Neither a pure analysis paper
+    (which would need more complete coverage) nor a methods paper (VTR is essentially
+    Q-Former). Settled at 6.
+
+
+    **Quality (R1=5 → R2=7 → Final=5.5):** R1 emphasized the gaps (incomplete matrix,
+    single seed, confounds); R2 emphasized thoroughness within scope. Resolution:
+    R1''s concerns are well-founded and material. The OpenVLA gap is the most damaging—it
+    is the only MLP-connector model with genuine importance differentiation (CV=0.215),
+    making it the most interesting case for testing task complexity amplification
+    on independent connectors. This missing data directly undermines Claim 1 (2-axis
+    framework). However, R2 is correct that the completed experiments (SmolVLA cliff,
+    π0.5 random/L2 dissociation, X-VLA 3-seed cliff) are individually rigorous. Settled
+    at 5.5.
+
+
+    **Overall (R1=5 → R2=6 → Final=5.5):** The paper is genuinely on the boundary.
+    It provides the most comprehensive VLA pruning analysis to date, with several
+    striking findings. But the experimental gaps, limited model count for the CV diagnostic,
+    and absence of head-to-head comparisons with concurrent methods mean the claims
+    slightly outpace the evidence. For CoRL''s ~39% acceptance rate, the paper needs
+    either more complete experimental coverage OR a stronger methodological contribution
+    to cross the threshold.
+
+
+    ## Strengths (ranked by importance)
+
+
+    1. **First cross-architecture VLA pruning study.** No prior work compares pruning
+    robustness across connector families (linear, MLP, BART, pixel-shuffle) in closed-loop
+    robot control. The systematic design spanning 6 models, 4 connector families,
+    and 4 task suites is a contribution in itself, even with gaps.
+
+
+    2. **Double dissociation in scoring methods.** The finding that attention-based
+    scoring helps entangling connectors (+56.6pp on X-VLA) but hurts independent ones
+    (−30.4pp on π0.5 Object), while L2-norm shows the converse, is clean, surprising,
+    and immediately actionable for practitioners. This is the paper''s most compelling
+    result.
+
+
+    3. **SmolVLA pixel-shuffle catastrophic failure is definitive.** The 0% SR at
+    k=0.95 (removing 7/128 tokens), verified across two checkpoints, multiple seeds,
+    multiple scoring methods (L2, random, attention, geometric), and multiple mechanisms
+    (zero-mask, true removal, token merging), is exhaustive and practically important.
+    Provides a clear design warning for the community.
+
+
+    4. **Honest limitations and extensive appendix.** The paper does not overclaim.
+    Confounders (model scale, training data, backbone) are explicitly discussed. Multi-seed
+    validation is provided where feasible. The appendix includes per-task breakdowns,
+    confounder analyses, and mechanistic models.
+
+
+    5. **CV as a practical diagnostic.** Despite thin validation (few models), the
+    concept is sound and zero-cost (one forward pass). Even as a "coarse indicator"
+    it offers more guidance than any prior work provides.
+
+
+    ## Weaknesses (ranked by severity)
+
+
+    1. **Incomplete data matrix undermines "systematic" claim.** OpenVLA—the primary
+    MLP exemplar and the only model with intermediate CV (0.215)—is evaluated on Object
+    suite only. The 2-axis framework''s prediction for "token-independent + complex
+    task" rests entirely on π0.5. Multiple "--" entries in the main results table.
+    The Perceiver Resampler (RoboFlamingo) adds a 4th connector family but appears
+    with limited results. This is the most critical weakness: the paper''s central
+    claim is a framework explaining interactions, but the data to validate interactions
+    is incomplete.
+
+
+    2. **CV diagnostic rests on too few data points.** The "scaling law" (Δ(R−L2)
+    monotonically decreases with CV) is fitted to 3 closed-loop models. Any monotonic
+    ordering of 3 points yields |ρ|=1.0 by construction. The boundaries between pruning
+    classes (uniform/graded/catastrophic) are drawn post-hoc to fit perfectly. No
+    held-out validation. The diagnostic is a promising hypothesis, not an established
+    law.
+
+
+    3. **Confounded architecture comparisons.** The 6 models differ simultaneously
+    in backbone, encoder, model scale (450M–7B), training data, number of vision tokens
+    (50–768), and connector. The paper cannot isolate the connector''s causal role.
+    The only controlled comparison (OFT vs OpenVLA: same connector, different action
+    head) contributes primarily offline metrics. Causal language ("connector determines
+    compressibility") is stronger than the observational evidence supports.
+
+
+    4. **No head-to-head with concurrent VLA pruning methods.** The paper critiques
+    prior work (VLA-IAP, LightVLA, Compressor-VLA, etc.) for single-architecture validation
+    but does not evaluate any of these methods under its own framework. It remains
+    unclear whether learned importance scoring from these methods would overcome the
+    failures identified here. This is a missed opportunity: running VLA-IAP on SmolVLA
+    or X-VLA would directly test whether the connector-dependent failure is method-specific.
+
+
+    5. **VTR contribution is weak and narrowly validated.** Architecturally identical
+    to Q-Former/Perceiver Resampler. Validated on SmolVLA only; fails on OpenVLA (0%
+    SR). The VTR training uses batch size 4 vs official 512, yielding a weakened baseline
+    (44.8% vs 59.2%). The M=128 passthrough gaining 13pp over the reproduced baseline
+    suggests training-recipe effects beyond re-encoding. VTR is more useful as an
+    experimental probe (demonstrating deletion is the problem) than as a method contribution.
+    Positioning it as a contribution creates expectations of methodological novelty
+    that are not met.
+
+
+    ## Detailed Technical Critique
+
+
+    ### Methods and Experiments (R1 focus)
+
+
+    **Statistical rigor:** Most conditions use seed 42 only. Cross-seed validation
+    is provided for select conditions (2 seeds for SmolVLA/π0.5, 3 seeds for X-VLA
+    cliff and VTR M-sweep), showing acceptable variance (σ < 3pp for most). However,
+    for stochastic methods (random pruning), single-seed results have inherent variance—cross-seed
+    tables in the appendix show deltas up to 5.8pp, which is comparable to some claimed
+    effects.
+
+
+    **Pruning protocol confound:** The protocol re-indexes position IDs after token
+    removal. This creates a confound: observed degradation conflates information loss
+    with positional disruption. SmolVLA''s zero-masking control (also 0%) suggests
+    information loss dominates for pixel-shuffle, but this control is absent for other
+    models. A position-preserving pruning control (dummy tokens replacing removed
+    ones) would disambiguate.
+
+
+    **OFT and π0 overcounting:** The paper claims "6 VLA architectures" but π0 contributes
+    only offline loss at two k values, and OFT contributes only CV/entropy measurements.
+    Only 4 models have closed-loop LIBERO evaluation. Counting offline-only models
+    as full participants overstates experimental coverage.
+
+
+    **Attention-based pruning cost:** Attention scoring requires decoder forward passes
+    to compute attention weights, but the paper does not discuss this computational
+    cost. The "zero-cost" framing of CV is contrasted against L2-norm but not against
+    attention scoring, creating an incomplete picture for practitioners choosing between
+    methods.
+
+
+    ### Novelty and Related Work (R2 focus)
+
+
+    **Individual component novelty:** CV of token norms is a basic statistic. VTR
+    is architecturally Q-Former/Perceiver. Attention-based pruning extends FastV to
+    VLAs. The novelty is entirely in the empirical synthesis and the interaction finding.
+    For CoRL with 39% acceptance rate, this is thin without compensating experimental
+    completeness.
+
+
+    **Related work gaps:** The bibliography (~15 references in main text, ~50 in bib)
+    is adequate but several areas are under-discussed:
+
+    - Knowledge distillation for VLAs (alternative efficiency approach)
+
+    - Temporal token compression (VLA-Cache, VLA-Pruner exploit frame continuity;
+    this paper''s per-frame analysis may not generalize)
+
+    - "Don''t Run with Scissors" (Jabbour et al., 2025) addresses a very similar question
+    and deserves more than one sentence of discussion
+
+    - Weight pruning / quantization for context on where token pruning sits in the
+    efficiency landscape
+
+
+    **Framing concerns:** "Diagnose-then-Compress" is presented as a framework but
+    is essentially a two-step decision rule (measure CV, choose method). This is useful
+    practical guidance but calling it a "framework" oversells it. The paper would
+    benefit from framing it as "practical guidelines" or "decision rules."
+
+
+    **Claim proportionality:** Generally appropriate with some exceptions:
+
+    - "Scaling law" language should be "empirical monotonic trend" (3 data points)
+
+    - "6 architectures" should acknowledge only 4 have closed-loop evaluation
+
+    - "Near-lossless" VTR should be contextualized against the weakened baseline
+
+
+    ## Questions for Authors
+
+
+    1. Can you provide OpenVLA results on Goal and Long suites? This is the most critical
+    gap—the 2-axis framework''s MLP + complex-task cell is entirely unvalidated.
+
+
+    2. Have you tested VTR on X-VLA at aggressive k values (k=0.5) where L2-norm fails
+    (42.6%)? This would test whether re-encoding generalizes beyond pixel-shuffle.
+
+
+    3. Have you evaluated any concurrent VLA pruning method (VLA-IAP, LightVLA) under
+    your framework? Running VLA-IAP on SmolVLA would directly test whether learned
+    importance scoring overcomes the pixel-shuffle failure.
+
+
+    4. What is the computational cost of attention-based pruning (forward pass for
+    attention weights) relative to L2-norm scoring? This is critical for the practical
+    "Diagnose-then-Compress" guidelines.
+
+
+    5. For the pruning protocol: have you tested position-preserving pruning (replacing
+    removed tokens with mask tokens rather than re-indexing) on any model besides
+    SmolVLA? This would separate positional disruption from information loss.
+
+
+    6. The VTR M=128 passthrough gains 13pp over the reproduced baseline (44.8%→58.0%).
+    The extended-training control gains only 0.2pp. What explains this gap—is it the
+    cross-attention architecture providing implicit regularization, or the 22M additional
+    trainable parameters acting as a regularizer?
+
+
+    ## Improvement Recommendations
+
+
+    To move from borderline to clear accept:
+
+
+    1. **Complete the data matrix.** Fill all "--" entries in the main results table,
+    especially OpenVLA across all 4 suites. This is the single highest-impact improvement.
+
+
+    2. **Add one head-to-head comparison.** Run VLA-IAP or LightVLA on SmolVLA and
+    X-VLA under your evaluation protocol. This directly tests whether the connector-dependent
+    failures are method-independent.
+
+
+    3. **Reposition VTR.** Either (a) reframe VTR purely as an experimental probe
+    validating that "deletion is the problem, not information redundancy," removing
+    it from the contribution list, or (b) validate it on X-VLA to demonstrate generalization
+    beyond SmolVLA.
+
+
+    4. **Soften overclaimed language.** "Scaling law" → "empirical trend"; "6 architectures"
+    → "4 with closed-loop evaluation + 2 with diagnostic-only analysis"; "framework"
+    → "practical guidelines."
+
+
+    5. **Add cross-benchmark validation.** Even one additional benchmark (CALVIN or
+    RLBench) on 2 models would substantially strengthen generalizability claims.
+
+
+    ## Meta-Review Summary
+
+
+    This paper addresses a genuinely important question—why does token pruning work
+    for some VLAs but catastrophically fail for others?—and provides the most comprehensive
+    empirical analysis to date. The SmolVLA pixel-shuffle finding and the double dissociation
+    between scoring methods and connector types are striking, well-validated results
+    with clear practical value. However, the experimental coverage has material gaps
+    (OpenVLA tested on one suite only, most conditions single-seed), the CV diagnostic
+    rests on too few models to support "scaling law" claims, no concurrent pruning
+    methods are compared head-to-head, and VTR is narrowly validated. The paper sits
+    at the accept/reject boundary: it covers more ground than any prior work but does
+    not cover enough ground for the scope of its claims. With completed experiments
+    and moderated claims, this would be a clear accept.
+
+
+    **Final Verdict: 5.5/10 — Weak Reject (Borderline)**
+
+
+
+    ---
+
+
+    ## 引用验证结果
+
+
+    **统计**: 62 篇文献 / 52 处引用 / 在线验证 62/62 篇
+
+
+    ### 问题 (45)
+
+
+    - ⚠️ `black2025pi05` — 元数据不匹配: first_author: bib=black vs api=intelligence
+
+    - ⚠️ `ghosh2024octo` — 元数据不匹配: first_author: bib=team vs api=ghosh
+
+    - ⚠️ `liu2023libero` — 元数据不匹配: first_author: bib=liu vs api=feng
+
+    - ⚠️ `yang2025efficientvla` — 元数据不匹配: first_author: bib=yang vs api=yantai
+
+    - ⚠️ `liu2025vlapruner` — 元数据不匹配: first_author: bib=liu vs api=ziyan
+
+    - ⚠️ `liu2023llava` — 元数据不匹配: first_author: bib=liu vs api=lee
+
+    - ⚠️ `yang2024qwen2` — 元数据不匹配: first_author: bib=yang vs api=an
+
+    - ⚠️ `zhang2024fastervlm` — 元数据不匹配: title: similarity=0.48 (possible wrong arXiv
+    ID)
+
+    - ⚠️ `zitkovich2023rt2` — 元数据不匹配: first_author: bib=zitkovich vs api=brohan
+
+    - ⚠️ `bouthillier2024negative` — 元数据不匹配: first_author: bib=bouthillier vs api=karl
+
+    - ⚠️ `wang2025specprunevla` — 在 .bib 中但正文未引用
+
+    - ⚠️ `feng2026seewhatmatters` — 在 .bib 中但正文未引用
+
+    - ⚠️ `zhang2025sparsevlm` — 在 .bib 中但正文未引用
+
+    - ⚠️ `khaki2025sparsevila` — 在 .bib 中但正文未引用
+
+    - ⚠️ `li2024roboflamingo` — 在 .bib 中但正文未引用
+
+    - ⚠️ `brohan2023rt2` — 在 .bib 中但正文未引用
+
+    - ⚠️ `ghosh2024octo` — 在 .bib 中但正文未引用
+
+    - ⚠️ `brohan2023rt1` — 在 .bib 中但正文未引用
+
+    - ⚠️ `alayrac2022flamingo` — 在 .bib 中但正文未引用
+
+    - ⚠️ `chen2024internvl` — 在 .bib 中但正文未引用
+
+    - ⚠️ `jaegle2021perceiver` — 在 .bib 中但正文未引用
+
+    - ⚠️ `oquab2023dinov2` — 在 .bib 中但正文未引用
+
+    - ⚠️ `zhai2023siglip` — 在 .bib 中但正文未引用
+
+    - ⚠️ `yang2024qwen2` — 在 .bib 中但正文未引用
+
+    - ⚠️ `lipman2023flow` — 在 .bib 中但正文未引用
+
+    - ⚠️ `li2024tokenpacker` — 在 .bib 中但正文未引用
+
+    - ⚠️ `wen2024tinyvla` — 在 .bib 中但正文未引用
+
+    - ⚠️ `ryoo2021tokenlearner` — 在 .bib 中但正文未引用
+
+    - ⚠️ `meng2022adavit` — 在 .bib 中但正文未引用
+
+    - ⚠️ `chen2023sparsevit` — 在 .bib 中但正文未引用
+
+    - ⚠️ `ye2025fitprune` — 在 .bib 中但正文未引用
+
+    - ⚠️ `shi2024crossget` — 在 .bib 中但正文未引用
+
+    - ⚠️ `zhang2024fastervlm` — 在 .bib 中但正文未引用
+
+    - ⚠️ `liu2024llava15` — 在 .bib 中但正文未引用
+
+    - ⚠️ `chen2024internvl25` — 在 .bib 中但正文未引用
+
+    - ⚠️ `gao2024miniinternvl` — 在 .bib 中但正文未引用
+
+    - ⚠️ `zitkovich2023rt2` — 在 .bib 中但正文未引用
+
+    - ⚠️ `openxembodiment2024` — 在 .bib 中但正文未引用
+
+    - ⚠️ `zhang2023h2o` — 在 .bib 中但正文未引用
+
+    - ⚠️ `xiao2024streamingllm` — 在 .bib 中但正文未引用
+
+    - ⚠️ `mees2022calvin` — 在 .bib 中但正文未引用
+
+    - ⚠️ `chi2023diffusionpolicy` — 在 .bib 中但正文未引用
+
+    - ⚠️ `zeng2023transformers_tsf` — 在 .bib 中但正文未引用
+
+    - ⚠️ `bouthillier2024negative` — 在 .bib 中但正文未引用
+
+    - ⚠️ `oquab2024dinov2` — 在 .bib 中但正文未引用
+
+
+    ### ✅ 通过 (52)'
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/dream_reports/dream_20260525T050917/median/paper.pdf
+  imagined_experiments:
+  - name: π0.5 4-Suite Pruning Characterization — Median Tier Consolidation
+    plan_id: c1_pi05_immune_confirmation
+    description: 'π0.5 (4B, PaliGemma linear proj, CV=0.055) 在 4 个 LIBERO suites 的
+      pruning response。 Median tier 预测：Object 上 random cliff (k=0.85-0.925) 是 Object-specific
+      而非 universal； Goal/Long 上 Axis-2 amplification 弱于 X-VLA (<15pp for π0.5 vs 27.8pp
+      for X-VLA)。 CV scaling law 在 k=0.5 成立但 k=0.3 reversal 需要限定讨论。
+
+      '
+    expected_results:
+      pi05_baseline_object: 98.2
+      pi05_baseline_spatial: 97.2
+      pi05_baseline_goal: 96.4
+      pi05_baseline_long: 92.8
+      pi05_cv: 0.055
+      pi05_random_k095_object_sr: 72.5
+      pi05_random_k0925_object_sr: 28.8
+      pi05_random_k09_object_sr: 10.2
+      pi05_random_k085_object_sr: 4.4
+      pi05_random_k07_object_sr: 75.5
+      pi05_random_k05_object_sr: 68.9
+      pi05_random_k03_object_sr: 34.3
+      pi05_l2norm_k095_object_sr: 98.2
+      pi05_l2norm_k0925_object_sr: 99.2
+      pi05_l2norm_k09_object_sr: 98.2
+      pi05_l2norm_k085_object_sr: 98.0
+      pi05_l2norm_k07_object_sr: 56.4
+      pi05_l2norm_k05_object_sr: 33.5
+      pi05_l2norm_k03_object_sr: 53.2
+      pi05_random_k095_spatial_sr: 76.6
+      pi05_random_k0925_spatial_sr: 59.3
+      pi05_random_k09_spatial_sr: 54.0
+      pi05_random_k085_spatial_sr: 58.8
+      pi05_random_k07_spatial_sr: 74.1
+      pi05_random_k05_spatial_sr: 72.0
+      pi05_random_k03_spatial_sr: 48.4
+      pi05_l2norm_k095_spatial_sr: 97.9
+      pi05_l2norm_k09_spatial_sr: 95.3
+      pi05_l2norm_k085_spatial_sr: 88.8
+      pi05_l2norm_k07_spatial_sr: 67.7
+      pi05_l2norm_k05_spatial_sr: 55.7
+      pi05_l2norm_k03_spatial_sr: 55.0
+      pi05_random_k095_goal_sr: 83.5
+      pi05_random_k09_goal_sr: 61.7
+      pi05_random_k085_goal_sr: 52.6
+      pi05_random_k07_goal_sr: 76.9
+      pi05_random_k05_goal_sr: 73.6
+      pi05_random_k03_goal_sr: 51.7
+      pi05_l2norm_k095_goal_sr: 90.1
+      pi05_l2norm_k0925_goal_sr: 89.6
+      pi05_l2norm_k09_goal_sr: 89.8
+      pi05_l2norm_k085_goal_sr: 87.5
+      pi05_l2norm_k07_goal_sr: 72.0
+      pi05_l2norm_k05_goal_sr: 59.5
+      pi05_l2norm_k03_goal_sr: 51.8
+      pi05_random_k095_long_sr: 62.2
+      pi05_random_k09_long_sr: 31.3
+      pi05_random_k085_long_sr: 44.3
+      pi05_random_k07_long_sr: 66.3
+      pi05_random_k05_long_sr: 47.6
+      pi05_random_k03_long_sr: 28.7
+      pi05_l2norm_k095_long_sr: 87.2
+      pi05_l2norm_k09_long_sr: 80.3
+      pi05_l2norm_k085_long_sr: 78.8
+      pi05_l2norm_k07_long_sr: 63.5
+      pi05_l2norm_k05_long_sr: 51.4
+      pi05_l2norm_k03_long_sr: 37.5
+      axis2_amplification_object_pp: 88.0
+      axis2_amplification_spatial_pp: 43.2
+      axis2_amplification_goal_pp: 34.7
+      axis2_amplification_long_pp: 61.5
+      pi05_axis2_object_vs_goal_random_k09_pp: -51.5
+      pi05_axis2_object_vs_spatial_random_k09_pp: -43.8
+      pi05_l2norm_random_gap_k05_object_pp: -35.4
+      pi05_l2norm_random_gap_k05_spatial_pp: -16.3
+      pi05_l2norm_random_gap_k05_goal_pp: -14.1
+      pi05_l2norm_random_gap_k05_long_pp: 3.8
+      pi05_l2norm_random_gap_k03_object_pp: 18.9
+      pi05_l2norm_random_gap_k03_spatial_pp: 6.6
+      pi05_l2norm_random_gap_k03_goal_pp: 0.1
+      pi05_l2norm_random_gap_k03_long_pp: 8.8
+    result_rationale: 'Median tier 下 π0.5 数据呈现三个关键 pattern：
+
+      (1) Random cliff 是 Object-specific。Object suite 在 k=0.85-0.925 出现灾难性 dip (5%→10.8%→27.6%)，但
+      Spatial 的 floor 保持在 54% 以上，Goal 在 k=0.9 仍有 61.7%。 这是因为 Object 任务需要精确的 object
+      identity discrimination（视觉相似物体间区分）， 而 random 在 cliff zone 恰好破坏了 concentrated
+      critical tokens。Spatial 的关键信息 是分布式的（layout patches），Goal 的关键信息由 language 部分承载。
+
+      (2) Axis-2 amplification 对 π0.5 表现为 REVERSED pattern：Goal 和 Spatial 在 k=0.9
+      random 下反而 BETTER than Object（61.7% vs 10.2%）。这与 X-VLA 的 pattern 完全相反 （X-VLA
+      Goal k=0.9 比 Object 差 27.8pp）。原因：token-independent connector 下， pruning damage
+      是 local 的，不会 cascade。Object 的 cliff 是 random sampling 的 统计效应（concentrated critical
+      tokens），不是 task complexity amplification。 因此 median tier 预测 π0.5 的 Axis-2 amplification
+      <15pp（如果排除 Object cliff zone）， 需要在 paper 中 qualify 2-axis framework 对 token-independent
+      connector 的适用性。
+
+      (3) CV scaling law 在 k=0.5 成立：L2norm-random gap = -35.4pp（Object），与 CV=0.055
+      的极低值一致。但 k=0.3 出现 reversal：L2norm 反而 +18.9pp 领先。这是因为 k=0.3 保留 230 tokens（足够大的
+      budget），L2norm 的 spatial clustering 在此 budget 下 反而 fragment 成多个 cluster，恢复了
+      spatial coverage。k=0.5 是 clustering 最严重的 sweet spot（1 cluster, 100% concentration,
+      78% coverage）。
+
+      '
+    tables:
+    - caption: π0.5 Cross-Suite Random Pruning — Cliff Zone Comparison
+      columns:
+      - Suite
+      - k=0.95
+      - k=0.925
+      - k=0.9
+      - k=0.85
+      - k=0.7
+      - k=0.5
+      - k=0.3
+      rows:
+      - - Object
+        - 72.5%
+        - 28.8%
+        - 10.2%
+        - 4.4%
+        - 75.5%
+        - 68.9%
+        - 34.3%
+      - - Spatial
+        - 76.6%
+        - 59.3%
+        - 54.0%
+        - 58.8%
+        - 74.1%
+        - 72.0%
+        - 48.4%
+      - - Goal
+        - 83.5%
+        - —
+        - 61.7%
+        - 52.6%
+        - 76.9%
+        - 73.6%
+        - 51.7%
+      - - Long
+        - 62.2%
+        - —
+        - 31.3%
+        - 44.3%
+        - 66.3%
+        - 47.6%
+        - 28.7%
+    - caption: π0.5 L2norm vs Random Gap (pp) — CV Scaling Law Validation
+      columns:
+      - Suite
+      - k=0.7
+      - k=0.5
+      - k=0.3
+      - Pattern
+      rows:
+      - - Object
+        - '-19.1'
+        - '-35.4'
+        - '+18.9'
+        - Reversal at k=0.3
+      - - Spatial
+        - '-6.4'
+        - '-16.3'
+        - '+6.6'
+        - Reversal at k=0.3
+      - - Goal
+        - '-4.9'
+        - '-14.1'
+        - '+0.1'
+        - Near-zero at k=0.3
+      - - Long
+        - '-2.8'
+        - '+3.8'
+        - '+8.8'
+        - L2norm consistently better
+    figures_description:
+    - 'Fig: π0.5 random pruning cliff profile — Object (deep V-shape dip to 4.4% at
+      k=0.85) vs Spatial (gradual, floor >54%) vs Goal/Long. Key visual: Object-specific
+      catastrophic collapse.'
+    - 'Fig: L2norm-Random gap vs keep ratio across 4 suites — showing k=0.5 as peak
+      random advantage and k=0.3 reversal point.'
+    analysis: 'Median tier 下需要在 paper 中加 qualification：2-axis framework 的 Axis-2 (task
+      complexity) 对 token-independent connector 的 amplification effect 显著弱于 token-entangling
+      connector。 π0.5 的 suite-dependent sensitivity 主要由 Object cliff（random sampling
+      + concentrated critical tokens 的统计效应）驱动，而非 task complexity amplification。 Claim
+      1 需弱化为 ''connector architecture is the primary determinant; task complexity
+      is a modulating factor primarily for token-entangling connectors''。 CV scaling
+      law (Claim 5) 在 k=0.5 清晰成立但 k=0.3 reversal 需要限定讨论—— Long suite 在所有 k 值 L2norm
+      都不差于 random，可能是 Long 任务的 multi-step 结构 使得 importance-based selection 的 token
+      恰好 cover 关键 subgoal transitions。
+
+      '
+  - name: Cross-Suite Framework Validation — 5 Models × 4 Suites
+    plan_id: c6_libero_suite_expansion
+    description: '将 pruning 实验从 LIBERO-Object 扩展到 Spatial/Goal/Long。 验证 2-axis framework
+      跨 suite 的预测准确性。 Median tier 预测 framework accuracy 75-90%。
+
+      '
+    expected_results:
+      xvla_baseline_object: 99.2
+      xvla_baseline_spatial: 93.0
+      xvla_baseline_goal: 98.4
+      xvla_baseline_long: 94.0
+      xvla_l2norm_k09_object: 97.6
+      xvla_l2norm_k09_spatial: 78.8
+      xvla_l2norm_k09_goal: 70.2
+      xvla_l2norm_k09_long: 27.5
+      xvla_random_k09_object: 97.8
+      xvla_random_k09_spatial: 77.8
+      xvla_random_k09_goal: 70.6
+      xvla_random_k09_long: 29.6
+      xvla_drop_k09_object_pp: 1.6
+      xvla_drop_k09_spatial_pp: 14.2
+      xvla_drop_k09_goal_pp: 28.2
+      xvla_drop_k09_long_pp: 66.5
+      xvla_l2norm_k05_object: 43.4
+      xvla_random_k05_object: 70.3
+      xvla_l2norm_k05_spatial: 58.9
+      xvla_random_k05_spatial: 71.4
+      xvla_l2norm_k05_goal: 59.5
+      xvla_random_k05_goal: 67.9
+      xvla_l2norm_k05_long: 44.8
+      xvla_random_k05_long: 61.6
+      smolvla_baseline_object: 59.2
+      smolvla_baseline_spatial: 44.6
+      smolvla_baseline_goal: 60.8
+      smolvla_baseline_long: 36.6
+      smolvla_k095_all_suites_all_methods: 0
+      framework_correct_predictions: 17
+      framework_total_predictions: 20
+      framework_accuracy_pct: 85
+      edge_case_1: π0.5 Axis-2 reversed — Goal BETTER than Object at k=0.9
+      edge_case_2: X-VLA Long k=0.85 non-monotonic (35%) < k=0.5 (61.6%)
+      edge_case_3: CV scaling law k=0.3 reversal for low-CV models
+    result_rationale: 'Median tier framework accuracy ~85%：20 个 cross-suite predictions
+      中 17 个正确。
+
+      正确的 predictions： - X-VLA Axis-2 amplification Object→Goal/Long（confirmed 27.8pp/66.5pp）
+      - SmolVLA all suites cliff-edge（confirmed 0% everywhere） - OpenVLA graded degradation
+      across suites - CV scaling law at k=0.5（L2norm-random gap correlates with CV）
+      - L2norm plateau for π0.5 at k≥0.85 on all suites
+
+      需要 qualify 的 edge cases： (1) π0.5 的 Axis-2 pattern 是 reversed（Object WORST,
+      not Goal/Long），因为 token-independent connector 下 task complexity 不 amplify damage，而
+      Object 的 concentrated critical tokens 在 random cliff zone 反而最脆弱。 (2) X-VLA Long
+      k=0.85 出现 non-monotonic reversal（35% < k=0.5 的 61.6%）， 与 Object 的 non-monotonic
+      pattern 不同——Long 的 cliff zone 在更高 k 值， 因为 multi-step reasoning 对 token density
+      的 threshold 更高。 (3) CV scaling law k=0.3 reversal 限制了 Claim 5 的适用范围。
+
+      '
+    tables:
+    - caption: 2-Axis Framework — X-VLA Pruning Drop at k=0.9 Across Suites
+      columns:
+      - Suite
+      - Baseline
+      - L2norm k=0.9
+      - Drop (pp)
+      - Axis-2 Level
+      rows:
+      - - Object
+        - 99.2%
+        - 97.6%
+        - '-1.6'
+        - Simple
+      - - Spatial
+        - 93.0%
+        - 78.8%
+        - '-14.2'
+        - Moderate
+      - - Goal
+        - 98.4%
+        - 70.2%
+        - '-28.2'
+        - Complex
+      - - Long
+        - 94.0%
+        - 27.5%
+        - '-66.5'
+        - Most Complex
+    - caption: Cross-Suite L2norm vs Random Gap at k=0.5 (pp) — CV Scaling Law
+      columns:
+      - Model
+      - CV
+      - Object
+      - Spatial
+      - Goal
+      - Long
+      rows:
+      - - pi0.5
+        - '0.055'
+        - '-35.4'
+        - '-16.3'
+        - '-14.1'
+        - '+3.8'
+      - - X-VLA
+        - '0.151'
+        - '-26.9'
+        - '-12.5'
+        - '-8.4'
+        - '-16.8'
+      - - OpenVLA
+        - '0.215'
+        - '+1.8'
+        - —
+        - —
+        - —
+    figures_description:
+    - 'Fig: Heatmap of pruning drop (pp from baseline) — 5 models × 4 suites × k=0.9.
+      Visual shows clear Axis-1 (rows) and Axis-2 (columns) gradients for X-VLA/SmolVLA,
+      but flat for π0.5/OpenVLA across suites.'
+    analysis: 'Framework accuracy 85% 落在 median tier range [75%, 90%] 中。3 个 edge cases
+      需要在 paper 中 qualify：(1) 对 π0.5 等 token-independent model，用 ''connector architecture
+      determines base sensitivity; task semantics modulate through statistical token
+      criticality rather than cascading damage'' 替代原先的 ''task complexity amplifies''。
+      (2) X-VLA Long 的 non-monotonic pattern 需要额外 figure 说明 cliff zone 随 task complexity
+      右移。(3) k=0.3 reversal 在 Discussion 中说明 CV scaling law 的边界条件。
+
+      '
+  - name: VTR SmolVLA Cross-Suite Recovery (M=32 on Spatial/Goal/Long)
+    plan_id: c6_libero_suite_vtr
+    description: 'VTR M=32 在 Spatial/Goal/Long 上的 recovery 验证。 已有数据：M=32 Spatial=53.2%,
+      Goal=56.4%。 Median tier 预测 recovery ratio 0.9-1.0。
+
+      '
+    expected_results:
+      smolvla_baseline_object: 59.2
+      smolvla_baseline_spatial: 44.6
+      smolvla_baseline_goal: 60.8
+      smolvla_baseline_long: 36.6
+      smolvla_prune_k05_all_suites: 0
+      vtr_m32_object_sr: 60.1
+      vtr_m32_spatial_sr: 53.2
+      vtr_m32_goal_sr: 56.4
+      vtr_m32_long_sr: 35.0
+      vtr_recovery_ratio_object: 1.015
+      vtr_recovery_ratio_spatial: 1.193
+      vtr_recovery_ratio_goal: 0.928
+      vtr_recovery_ratio_long: 0.956
+      vtr_mean_recovery_ratio: 0.96
+      vtr_m16_object_sr: 56.9
+      vtr_m32_object_sr_confirmed: 60.1
+      vtr_m64_object_sr: 62.0
+      vtr_m96_object_sr: 54.5
+      vtr_m128_object_sr: 58.0
+    result_rationale: 'Median tier 下 VTR 在所有 suites 都能从 0%（hard pruning）恢复到 near-baseline，
+      但 recovery ratio 有 suite-dependent variation（0.928-1.193）。
+
+      Object (recovery 1.015): VTR 在 Object 上 recovery 最稳定，因为 Object 任务的 visual discriminability
+      需求可以被 re-encoded tokens 完整保留——pixel-shuffle 的 spatial entanglement 是 Object
+      failure 的唯一原因，VTR 修复了这个 entanglement。
+
+      Spatial (recovery 1.193): 看似超过 baseline 但需注意 baseline 是 official checkpoint
+      (44.6%) vs VTR 是 LoRA-FT + VTC (53.2%)——实际上是不同 training pipeline 的差异， 不应解读为
+      VTR 超越。Paper 中需要用 recovery from 0% 而非 absolute comparison。
+
+      Goal (recovery 0.928): 轻微低于 baseline（-4.4pp），因为 VTR 是在 Object suite 训练的， Goal
+      的 multi-step task structure 引入了 distribution shift。Token re-encoding 恢复了 spatial
+      information 但无法完全补偿 task-distribution mismatch。
+
+      Long (predicted 0.956): Long 的 baseline 最低（36.6%），VTR 的 re-encoding 在 simple
+      manipulation primitives 上有效，但 Long 需要跨多个 sub-goal 的 temporal coherence， VTR
+      的 per-step re-encoding 无法显式捕捉 cross-step dependencies。预测 recovery ~35%， 略低于
+      baseline 但远高于 0%。
+
+      关键限定：VTR 仅对 pixel-shuffle connector 有效（OpenVLA M=128 = 0%），method contribution
+      限于 ''targeted solution for worst-case architecture''。
+
+      '
+    tables:
+    - caption: VTR M=32 Cross-Suite Recovery from Cliff-Edge
+      columns:
+      - Suite
+      - Baseline
+      - Hard Prune k=0.5
+      - VTR M=32
+      - Recovery Ratio
+      rows:
+      - - Object
+        - 59.2%
+        - 0%
+        - 60.1%
+        - '1.015'
+      - - Spatial
+        - 44.6%*
+        - 0%
+        - 53.2%
+        - 1.193*
+      - - Goal
+        - 60.8%
+        - 0%
+        - 56.4%
+        - '0.928'
+      - - Long
+        - 36.6%
+        - 0%
+        - ~35.0%
+        - ~0.956
+    figures_description:
+    - 'Fig: Bar chart — SmolVLA Baseline vs Hard Prune vs VTR M=32 across 4 suites.
+      Visual emphasis on recovery from 0% (red) to near-baseline (green).'
+    analysis: 'VTR 的 mean recovery ratio 0.96 落在 median tier range [0.9, 1.0] 中。 Method
+      contribution 需明确限定为 pixel-shuffle-specific：(1) 只在 SmolVLA 上有效， (2) 在非 Object
+      suite 上有 -4.4pp 到 +8.6pp 的 variance，(3) OpenVLA VTR = 0%。 Paper identity 从 ''analysis
+      + method'' 调整为 ''primarily analysis with targeted method for worst-case architecture''。
+
+      '
+  - name: VTR/VTC on OpenVLA (MLP projector) — Universality Falsification
+    plan_id: c4_ext_method_universality_openvla
+    description: 'VTR M=128 已确认 0% SR（overfitting）。VTC-only M=32/M=64 training in
+      progress。 Median tier 预测 VTC-only 也失败，VTR 限于 pixel-shuffle。
+
+      '
+    expected_results:
+      openvla_vtr_m128_20k_sr: 0
+      openvla_baseline_object_sr: 74
+      openvla_vtc_m32_sr: 0
+      openvla_vtc_m64_sr: 0
+      openvla_vtc_m96_sr: 0
+      openvla_vtc_m32_train_loss: 2.5
+      openvla_vtc_m64_train_loss: 2.4
+      openvla_vtc_m96_train_loss: 2.45
+    result_rationale: 'Median tier 预测 VTC-only M=32/M=64 也会失败，原因是 MLP projector tokens
+      已经是 individually meaningful 的——re-encoding 增加了不必要的 bottleneck，导致 overfitting。
+
+      具体机制：OpenVLA 的 3-layer MLP connector 将 SigLIP features 映射为 256 个独立的 vision tokens，每个
+      token 保留了原始 spatial meaning。VTR/VTC 在这些 tokens 上 添加 cross-attention / MLP adapter
+      作为 bottleneck，但这些 tokens 不需要 ''re-encoding''——它们的 spatial information 没有被 entangle。额外的
+      bottleneck 反而限制了 information flow，导致模型 overfit 到 training set 的 action distribution。
+
+      实际 training logs 显示 M=128 在 20K steps 后 output 是 identical action（所有 observation
+      产生相同的 action sequence），这是 severe mode collapse 的 hallmark。 M=32/M=64 的更强 compression
+      会加剧而非缓解这个问题。
+
+      Training 失败的 root cause 也可能是 OpenVLA 的 7B model size 导致 VTC 的 22M params 相对过小（0.3%
+      of model）——gradient signal 在 backprop 过程中被 diluted。
+
+      这个 negative result 反而 strengthens 论文：VTR 的有效性是 connector-dependent 的， 验证了 ''connector
+      determines both compressibility AND optimal compression strategy''。
+
+      '
+    tables:
+    - caption: VTR/VTC on OpenVLA vs SmolVLA — Connector-Dependent Effectiveness
+      columns:
+      - Model
+      - Connector
+      - CV
+      - VTR M=128
+      - VTC M=32
+      - VTC M=64
+      rows:
+      - - SmolVLA
+        - Pixel-shuffle
+        - '0.314'
+        - 58.0%
+        - 60.1%
+        - 62.0%
+      - - OpenVLA
+        - 3-layer MLP
+        - '0.215'
+        - 0%
+        - ~0%*
+        - ~0%*
+    figures_description:
+    - 'Fig: Training loss curves — SmolVLA VTC (converges to ~0.05) vs OpenVLA VTC
+      (plateaus at ~2.5, fails to converge). Annotate divergence point.'
+    analysis: 'VTR universality falsified。Method contribution 收窄为 pixel-shuffle-specific
+      solution。 Paper 中将 VTR 定位为 ''targeted re-encoding for architectures where token
+      pruning creates irreversible information loss''。Discussion 中指出 MLP projector
+      VLAs 应 直接用 simple pruning（L2norm 或 random depending on CV），不需要 learned compression。
+
+      '
+  - name: OpenVLA VTC M-Sweep (M=32/64/96) — Training Convergence Test
+    plan_id: c4_ext_openvla_msweep
+    description: 'OpenVLA 上 VTC-only training（不冻结 backbone），测试不同 M 值。 Training 已 failed/killed
+      on all M values。
+
+      '
+    expected_results:
+      openvla_vtc_m32_status: failed
+      openvla_vtc_m64_status: failed
+      openvla_vtc_m96_status: failed
+      openvla_vtc_m96_final_loss: 2.45
+      openvla_vtc_m64_final_loss: null
+      interpretation: VTC training does not converge on MLP-projector VLAs
+    result_rationale: 'All M values 的 VTC training 在 OpenVLA 上失败或 killed。M=96 跑完了
+      100K steps 但 final loss 2.45（远高于 SmolVLA 的 ~0.05），说明模型未能学到有效的 token re-encoding。M=64
+      和 M=32 的 VTC-only training 也 crashed/failed。
+
+      Root cause：OpenVLA (7B) 是 frozen backbone + 22M compressor 的极端不平衡。 SmolVLA (450M)
+      的 compressor/backbone ratio = 22M/450M = 4.9%，而 OpenVLA 的 ratio = 22M/7B = 0.3%。VTC
+      的 gradient signal 在通过 7B frozen backbone 的 attention layers 时被严重 attenuate，导致
+      compressor 无法学到有用的 representation。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'OpenVLA VTC M-sweep 的 universal failure 进一步确认 VTR/VTC 仅对 pixel-shuffle
+      connector 有效。Paper 中在 Table 5 或 supplementary 中报告这些 negative results， 强化 ''VTR
+      effectiveness is connector-dependent'' 的 claim。
+
+      '
+  - name: OpenVLA-OFT Cross-Suite Pruning (Blocked by GPU Incompatibility)
+    plan_id: c3_oft_graded_full
+    description: 'OFT (7B, 3-layer MLP, DINOv2+SigLIP fused, 512 tokens) 在 4 suites
+      上的 baseline + pruning。Blocked by Blackwell GPU SDPA incompatibility。 Median
+      tier 用 CV/entropy analysis 替代 SR eval。
+
+      '
+    expected_results:
+      oft_cv: 0.219
+      oft_entropy: 0.667
+      oft_tokens: 512
+      oft_baseline_official_sr: 97
+      oft_predicted_k09_sr: 65
+      oft_predicted_k07_sr: 50
+      oft_predicted_k05_sr: 38
+      oft_predicted_k03_sr: 22
+      oft_l2norm_random_gap_k05_pp: -2
+      oft_l2norm_advantage_mild_k: true
+      blocker: Blackwell GPU SDPA incompatibility — requires A100 + torch 2.2
+    result_rationale: 'OFT eval 被 Blackwell GPU 的 SDPA 不兼容 blocked。Median tier 下仅用
+      diagnostic metrics 参与分析：CV=0.219 ≈ OpenVLA (0.215)，entropy=0.667 ≈ OpenVLA (0.661)。
+
+      这两个 near-identical diagnostic values 预测 OFT 的 pruning behavior 与 OpenVLA 几乎一致——graded
+      degradation，L2norm 在 aggressive k 略优于 random。 512 tokens (vs OpenVLA 的 256)
+      意味着 absolute token budget 在 same k ratio 下 更大（k=0.5 保留 256 vs 128），可能导致略好的 SR，但
+      degradation PATTERN 应相同。
+
+      关键 paper value：OFT 用了不同的 action head（Optimal Flow Transport vs standard）， 但
+      CV 和 entropy 几乎 identical → 确认 connector（not action head）determines attention
+      structure 和 pruning behavior。这是一个 clean controlled comparison。
+
+      Median tier 下 OFT 作为 supplementary evidence 出现（CV/entropy table）， 不作为 primary
+      experimental evidence。Cite official baseline ~97%， acknowledge eval 未能完成。
+
+      '
+    tables:
+    - caption: Connector vs Action Head — Diagnostic Decoupling
+      columns:
+      - Model
+      - Action Head
+      - Connector
+      - CV
+      - Entropy
+      rows:
+      - - OpenVLA
+        - Standard (MLP)
+        - 3-layer MLP
+        - '0.215'
+        - '0.661'
+      - - OpenVLA-OFT
+        - OFT (flow)
+        - 3-layer MLP
+        - '0.219'
+        - '0.667'
+    figures_description:
+    - 'Fig: Scatter plot of CV vs Entropy for all 6 models — OFT and OpenVLA as overlapping
+      points, confirming connector-dominance over action-head.'
+    analysis: 'OFT 贡献收窄为 diagnostic decoupling evidence。Paper 中用一句话总结： ''OFT (CV=0.219)
+      ≈ Standard OpenVLA (CV=0.215) despite different action heads, confirming that
+      connector architecture, not downstream components, determines token importance
+      distribution.'' Eval SR 不可得，acknowledged as limitation。
+
+      '
+  - name: OFT Token Importance CV Measurement
+    plan_id: diagnostic_oft_cv
+    description: 'OFT importance CV 测量，完成 6-model diagnostic table 的最后一个空位。
+
+      '
+    expected_results:
+      oft_importance_cv: 0.219
+      oft_importance_cv_std: 0.012
+      oft_importance_gini: 0.11
+      oft_n_tokens: 512
+      spectrum_position: between OpenVLA (0.215) and SmolVLA (0.314)
+    result_rationale: 'OFT 使用与 OpenVLA 相同的 3-layer MLP connector（GELU activation），唯一差异是
+      (1) fused DINOv2+SigLIP encoder 产生 512 tokens（vs OpenVLA 的 256）， (2) OFT action
+      head。Entropy 已确认 0.667 ≈ 0.661，CV 预测 0.219 ≈ 0.215。 微小的 CV 差异（+0.004）可能来自 DINOv2
+      features 的 additional modality 引入的 slightly higher token heterogeneity。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'CV=0.219 完成 6-model spectrum：π0(0.038) < π0.5(0.055) < X-VLA(0.151)
+      < OpenVLA(0.215) ≈ OFT(0.219) < SmolVLA(0.314)。 Paper Table 1 中 OFT 行填入 CV=0.219,
+      Entropy=0.667, Pruning=''Graded (predicted)''。
+
+      '
+  - name: X-VLA k=0.8/k=0.85 3-Seed Cliff Localization
+    plan_id: c1_xvla_threshold_localization
+    description: 'X-VLA Object cliff threshold 精确定位：k=0.85 (67.9% ± 0.31pp, 3-seed)
+      和 k=0.80 (89.0% ± 0.72pp, 3-seed)。Non-monotonic: k=0.85 < k=0.80。
+
+      '
+    expected_results:
+      xvla_l2norm_k085_object_mean: 67.9
+      xvla_l2norm_k085_object_std: 0.31
+      xvla_l2norm_k085_seeds:
+      - 68.0
+      - 67.6
+      - 68.2
+      xvla_l2norm_k080_object_mean: 89.0
+      xvla_l2norm_k080_object_std: 0.72
+      xvla_l2norm_k080_seeds:
+      - 88.8
+      - 88.4
+      - 89.8
+      xvla_random_k085_object_mean: 64.3
+      xvla_random_k085_seeds:
+      - 65.0
+      - 63.6
+      - 63.2
+      xvla_random_k080_object_mean: 89.4
+      xvla_random_k080_seeds:
+      - 89.4
+      non_monotonic_gap_pp: 21.1
+      cliff_width_k_units: 0.05
+      l2norm_random_k085_gap_pp: 3.6
+      both_crash_same_tasks: true
+    result_rationale: "3-seed deterministic data 确认 cliff 位于 k=0.85（42 tokens kept），且\
+      \ k=0.80（40 tokens）recovery 到 89%——仅差 2 个 tokens 但 21pp gap。\nNon-monotonicity\
+      \ 来自 BART encoder 的 length-dependent interactions： - k=0.85 (42 tokens): BART\
+      \ 的 12-layer self-attention 在 42 tokens 上产生\n  destructive interference pattern——刚好是\
+      \ critical token density threshold\n- k=0.80 (40 tokens): 少保留 2 个 tokens 反而破坏了这个\
+      \ interference pattern，\n  恢复了正常的 information flow\n\nSD < 1pp across all 3\
+      \ seeds 确认 cliff 是完全 deterministic 的（L2norm pruning 是 deterministic function\
+      \ of token norms），不是 stochastic noise。\nL2norm 和 random 在 cliff zone 都 crash\
+      \ on same 4 tasks (T1=cream_cheese, T4=ketchup, T6=butter, T8=chocolate_pudding)\
+      \ → cliff 是 architectural， 不是 method-specific。\n"
+    tables:
+    - caption: X-VLA Object Cliff Zone — 3-Seed Deterministic (L2norm)
+      columns:
+      - k
+      - Tokens Kept
+      - Seed 42
+      - Seed 43
+      - Seed 44
+      - Mean
+      - SD
+      rows:
+      - - '0.90'
+        - '45'
+        - 97.6%
+        - —
+        - 98.2%
+        - 97.6%
+        - —
+      - - '0.85'
+        - '42'
+        - 68.0%
+        - 67.6%
+        - 68.2%
+        - 67.9%
+        - '0.31'
+      - - '0.80'
+        - '40'
+        - 88.8%
+        - 88.4%
+        - 89.8%
+        - 89.0%
+        - '0.72'
+      - - '0.70'
+        - '35'
+        - 56.2%
+        - 59.0%
+        - 56.4%
+        - 57.2%
+        - '1.56'
+    figures_description:
+    - 'Fig: X-VLA Object cliff profile with 3-seed error bars — sharp V-shape at k=0.85,
+      recovery at k=0.80. Annotate ''2 tokens, 21pp gap''.'
+    analysis: 'Cliff localization 完成。Paper 中用 1 figure 展示 X-VLA 的 full pruning curve
+      (k=0.1 to k=0.95)，annotate k=0.85 cliff 和 non-monotonic recovery。 Discussion
+      中说明 BART encoder 的 length-dependent interaction 机制。
+
+      '
+  - name: RoboFlamingo Perceiver Resampler Fine-tune + Pruning
+    plan_id: c5_third_connector_roboflamingo
+    description: 'Perceiver Resampler connector 作为第 3 个 connector family 验证。 Training
+      killed twice。Median tier 预测即使完成也不会改变核心结论。
+
+      '
+    expected_results:
+      training_status: killed
+      training_attempts: 2
+      roboflamingo_predicted_cv: 0.18
+      roboflamingo_predicted_entropy: 0.72
+      roboflamingo_predicted_baseline_sr: 55
+      roboflamingo_predicted_k09_sr: 48
+      roboflamingo_predicted_k05_sr: 28
+      would_strengthen_paper: false
+      paper_coverage_without: 5 models × 3 families sufficient for CoRL
+    result_rationale: 'RoboFlamingo training 两次 killed，likely due to (1) Perceiver
+      Resampler 与 LIBERO task distribution 的 incompatibility，(2) fine-tuning instability
+      from frozen cross-attention + trainable resampler 的 gradient mismatch。
+
+      即使完成，Perceiver Resampler 的预测 CV=0.18 会落在 X-VLA 和 OpenVLA 之间—— 介于 token-entangling
+      和 token-independent 之间。这不会改变 2-axis framework 的核心结论，只是增加一个中间数据点。
+
+      Median tier 下 5 models × 3 families (linear / MLP / pixel-shuffle) 已经足够 支撑 CoRL
+      submission。Perceiver Resampler 作为 ''future work'' 提及。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Dropped from paper scope。在 Discussion 中提到 ''additional connector families
+      (e.g., Perceiver Resampler, cross-attention based) remain to be validated''
+      作为 limitation 和 future direction。
+
+      '
+  - name: E5 Attention-Based Pruning — X-VLA vs π0.5 Cross-Suite
+    plan_id: c6_libero_suite_expansion
+    description: 'Attention-based pruning (E5) 在 X-VLA 和 π0.5 上的 cross-suite 结果。 X-VLA
+      attention pruning 表现极好（Object 99.2%, Long 90.2%）， π0.5 attention 在 Object k=0.7
+      catastrophic (0.6%) 但 Goal 70.2%。 Median tier：Goal 初始 0% 后修复为 98.2%，需额外 seed
+      确认可靠性。
+
+      '
+    expected_results:
+      xvla_attn_last_k05_object: 99.2
+      xvla_attn_mean_k05_object: 98.4
+      xvla_attn_rollout_k05_object: 97.4
+      xvla_attn_last_k05_spatial: 88.8
+      xvla_attn_mean_k05_spatial: 91.6
+      xvla_attn_rollout_k05_spatial: 92.8
+      xvla_attn_last_k05_goal: 98.2
+      xvla_attn_mean_k05_goal: 97.4
+      xvla_attn_rollout_k05_goal: 96.8
+      xvla_attn_last_k05_long: 90.2
+      xvla_attn_mean_k05_long: 94.0
+      xvla_attn_rollout_k05_long: 94.8
+      xvla_attn_last_k03_object: 84.2
+      xvla_attn_mean_k03_object: 96.0
+      xvla_attn_mean_k03_spatial: 90.4
+      xvla_attn_last_k03_spatial: 85.6
+      pi05_attn_k095_object: 98.4
+      pi05_attn_k09_object: 97.2
+      pi05_attn_k085_object: 92.2
+      pi05_attn_k07_object: 0.6
+      pi05_attn_k05_object: 37.8
+      pi05_attn_k05_spatial: 72.6
+      pi05_attn_k05_goal: 71.2
+      pi05_attn_k05_long: 49.4
+      openvla_attn_k09_object: 61.4
+      openvla_attn_k085_object: 55.0
+      openvla_attn_k09_goal: 73.2
+      openvla_attn_k09_spatial: 80.4
+      xvla_attn_goal_fix_needed: true
+      xvla_attn_goal_seed42_sr: 98.2
+      xvla_attn_goal_seed43_needed: true
+      xvla_attn_goal_predicted_seed43_sr: 97.5
+    result_rationale: 'E5 attention pruning 在不同 model 上表现 divergent：
+
+      X-VLA (BART encoder)：attention pruning 近乎 lossless，因为 BART 的 12-layer self-attention
+      产生了 meaningful attention patterns——high-attention tokens 确实 是最重要的。k=0.5 Object
+      99.2% vs L2norm 42.6% → attention 比 L2norm 好 56.6pp。 这是因为 BART encoder 的 attention
+      直接反映了 token 间的 functional dependency。
+
+      Goal suite 初始为 0%（bug），修复后 98.2% → 需要 seed43 确认 fix 是 genuine。 Median tier 预测
+      seed43 = 97.5%（fix 是 valid 的，但需要额外 seed 才能在 paper 中 claim）。
+
+      π0.5 (linear projection)：attention pruning 在 k=0.7 catastrophic (0.6%)， 因为 PaliGemma
+      的 per-layer attention 在中间 k 值产生了 adversarial selection。 π0.5 的 attention entropy
+      = 0.666，说明 attention 分布有 moderate sharpness， 但不 correlate with true token importance（CV=0.055
+      说明所有 tokens equally important）。Attention-based pruning 在 uniform-importance
+      model 上不可靠。
+
+      OpenVLA (MLP)：attention pruning k=0.9 Object = 61.4% < L2norm = 70.6% < random
+      = 69.2%。 Attention 是三种方法中最差的，因为 MLP connector 后的 attention 也不 reliable predict
+      token importance。
+
+      Paper value：attention pruning 的 effectiveness 也是 connector-dependent， strengthening
+      ''connector determines optimal compression strategy'' claim。
+
+      '
+    tables:
+    - caption: E5 Attention Pruning k=0.5 — Cross-Model Cross-Suite
+      columns:
+      - Model
+      - Object
+      - Spatial
+      - Goal
+      - Long
+      rows:
+      - - X-VLA (attn-last)
+        - 99.2%
+        - 88.8%
+        - 98.2%*
+        - 90.2%
+      - - X-VLA (attn-mean)
+        - 98.4%
+        - 91.6%
+        - 97.4%
+        - 94.0%
+      - - pi0.5 (attn)
+        - 37.8%
+        - 72.6%
+        - 71.2%
+        - 49.4%
+      - - X-VLA (L2norm)
+        - 42.6%
+        - 58.8%
+        - 59.0%
+        - 44.6%
+      - - X-VLA (random)
+        - 70.6%
+        - 71.4%
+        - 67.9%
+        - 61.6%
+    figures_description:
+    - 'Fig: Method comparison radar chart — X-VLA at k=0.5: attention (near-lossless)
+      vs L2norm (42.6%) vs random (70.6%) across 4 suites. Shows attention dominance
+      for BART connector.'
+    analysis: 'E5 attention pruning 提供了 Claim 5 的重要扩展：不只是 L2norm vs random 的 strategy
+      depends on CV，attention-based methods 也是 connector-dependent。 BART connector
+      的 attention 是 reliable signal（因为 12-layer self-attention creates meaningful
+      importance distribution），而 linear/MLP connector 的 attention 不可靠。Paper 中可以加一行
+      Table showing method effectiveness rank per model。 但 Goal 0%→98.2% 的 fix 需要
+      seed43 确认，Median tier 下这个 reliability concern 需要在 paper 中 transparent disclosure。
+
+      '
+  - name: CV Scaling Law — Spearman Correlation Across Conditions
+    plan_id: c6_libero_suite_expansion
+    description: 'CV 作为 pruning strategy predictor 的 Spearman correlation 分析。 Median
+      tier 预测 abs(Spearman) 在 0.6-0.85 之间。
+
+      '
+    expected_results:
+      cv_vs_l2norm_random_gap_k05_spearman: 0.82
+      cv_vs_l2norm_random_gap_k05_p_value: 0.03
+      cv_vs_l2norm_random_gap_k07_spearman: 0.75
+      cv_vs_l2norm_random_gap_k07_p_value: 0.05
+      cv_vs_l2norm_random_gap_k03_spearman: 0.45
+      cv_vs_l2norm_random_gap_k03_p_value: 0.15
+      cv_strategy_abs_spearman_mean: 0.74
+      n_models_k05: 3
+      n_suites_k05: 1
+      datapoints_k05:
+      - model: pi0.5
+        cv: 0.055
+        gap_pp: -35.4
+      - model: X-VLA
+        cv: 0.151
+        gap_pp: -26.9
+      - model: OpenVLA
+        cv: 0.215
+        gap_pp: 1.8
+      k05_gap_monotonic: true
+      k07_gap_monotonic: true
+      k03_gap_monotonic: false
+    result_rationale: 'CV scaling law 的 Spearman correlation 0.74 落在 median tier range
+      [0.6, 0.85] 中。
+
+      k=0.5 是最 clean 的 scaling law validation point：3 个 model 的 L2norm-random gap
+      与 CV 呈单调关系（-35.4pp → -26.9pp → +1.8pp as CV increases 0.055 → 0.151 → 0.215）。
+      Spearman = 0.82，因为只有 3 个 data points 所以 p-value 边缘显著。
+
+      k=0.7 作为 confirmatory second row：pattern 一致但 gap magnitudes 小（-22.2 → -6.5 →
+      +5.4）， Spearman = 0.75。
+
+      k=0.3 BREAKS the scaling law：π0.5 reversal (+18.9pp L2norm wins) 但 X-VLA random
+      仍大幅领先 (+42.3pp)。这不是 CV 不好，而是 absolute token budget 的交互效应： π0.5 k=0.3 保留 230
+      tokens（大 budget），X-VLA k=0.3 保留 15 tokens（小 budget）。 Large budget + low CV =
+      L2norm 可以 fragment clusters 恢复 diversity。 Small budget + mid CV = 无论如何都太少，random
+      保持 stochastic diversity 的优势。
+
+      Paper strategy：k=0.5 作为 main table，k=0.7 作为 confirmatory。k=0.3 reversal 在 Discussion
+      中说明，强调 ''CV predicts strategy preference at moderate compression (k=0.5-0.7);
+      at extreme compression (k=0.3), absolute token budget introduces additional
+      interaction''。Claim 5 加限定 ''at moderate compression''。
+
+      '
+    tables:
+    - caption: CV Scaling Law — L2norm vs Random Gap (pp) at k=0.5 and k=0.7
+      columns:
+      - Model
+      - CV
+      - Gap k=0.7 (pp)
+      - Gap k=0.5 (pp)
+      - Gap k=0.3 (pp)
+      rows:
+      - - pi0.5
+        - '0.055'
+        - '-22.2'
+        - '-35.4'
+        - '+18.9'
+      - - X-VLA
+        - '0.151'
+        - '-6.5'
+        - '-26.9'
+        - '-42.3'
+      - - OpenVLA
+        - '0.215'
+        - '+5.4'
+        - '+1.8'
+        - '+3.6'
+    - caption: 'Spearman Correlation: CV vs Strategy Gap'
+      columns:
+      - k value
+      - Spearman rho
+      - p-value
+      - Monotonic?
+      rows:
+      - - '0.7'
+        - '0.75'
+        - '0.05'
+        - 'Yes'
+      - - '0.5'
+        - '0.82'
+        - '0.03'
+        - 'Yes'
+      - - '0.3'
+        - '0.45'
+        - '0.15'
+        - No (reversal)
+    figures_description:
+    - 'Fig: Scatter plot with regression line — CV (x-axis) vs L2norm-Random gap (y-axis)
+      at k=0.5. Three points with clear positive trend. Annotate Spearman=0.82.'
+    analysis: 'Claim 5 survives review but需要加限定。原 claim ''CV predicts optimal pruning
+      strategy'' 改为 ''CV predicts optimal pruning strategy at moderate compression
+      (k=0.5-0.7)''。 k=0.3 reversal 说明 strategy preference = f(CV, k, absolute_token_budget)，
+      不是仅 CV 决定。这个 nuance 在 median tier 下是可以接受的——reviewers 会 appreciate honest boundary
+      conditions。3-4 个 claims survive review 的预测中，这个 claim 以 qualified form survive。
+
+      '
+  - name: SmolVLA VTR M-Sweep 3-Seed Consolidation + Architecture Control
+    plan_id: c4_learned_reencoding_smolvla
+    description: 'VTR M-sweep (M=16/32/64/96/128) 的 3-seed 最终结果 + MLP adapter 对照。
+      已有大量数据，Median tier 下 consolidate 最终 statistics。
+
+      '
+    expected_results:
+      vtr_m16_3seed_mean: 56.9
+      vtr_m16_3seed_std: 1.3
+      vtr_m16_3seed_seeds:
+      - 55.8
+      - 58.4
+      - 56.5
+      vtr_m32_3seed_mean: 60.1
+      vtr_m32_3seed_std: 1.3
+      vtr_m32_3seed_seeds:
+      - 61.6
+      - 59.2
+      - 59.6
+      vtr_m64_3seed_mean: 62.0
+      vtr_m64_3seed_std: 2.3
+      vtr_m64_3seed_seeds:
+      - 61.6
+      - 60.0
+      - 64.4
+      vtr_m96_3seed_mean: 54.5
+      vtr_m96_3seed_std: 3.2
+      vtr_m96_3seed_seeds:
+      - 52.6
+      - 58.2
+      - 52.8
+      vtr_m128_3seed_mean: 58.0
+      vtr_m128_3seed_std: 3.5
+      vtr_m128_3seed_seeds:
+      - 59.8
+      - 54.0
+      - 60.2
+      m_curve_range_pp: 7.5
+      m_curve_vs_baseline_max_diff: 5.3
+      m_curve_flat: true
+      mlp_adapter_m32_3seed_mean: 63.4
+      mlp_adapter_m32_3seed_std: 2.6
+      mlp_adapter_m32_3seed_seeds:
+      - 65.2
+      - 64.6
+      - 60.4
+      vtc_vs_mlp_t_stat: 1.94
+      vtc_vs_mlp_p_value: 0.15
+      architecture_independent: true
+      smolvla_baseline: 59.2
+      hard_prune_k05: 0
+      recovery_from_zero: true
+    result_rationale: 'VTR M-sweep 确认 M-curve 是 flat 的：M=16 (56.9%) 到 M=128 (58.0%)，
+      all within ±5pp of baseline 59.2%。这意味着 VTR 对 pixel-shuffle connector 实现了 near-lossless
+      compression at ANY ratio (0-87.5%)。
+
+      M=64 是 absolute best (62.0%)，M=96 是 lowest (54.5%) 但 p=0.034 与 M=64 的差异 statistically
+      significant——M=96 的 higher variance (3.2pp) 和 lower mean 可能是因为 96-token representation
+      落在 an awkward regime：不够多以 passthrough (M=128)，但 compression ratio 不够大 to force
+      useful abstraction (M=32/64)。
+
+      MLP adapter (63.4%) vs VTC (60.1%) p=0.15 → architecture independent。 任何 learned
+      re-encoding 都能从 0% 恢复到 baseline。
+
+      Median tier 下 VTR 的 contribution statement 明确：''VTR achieves near-lossless compression
+      at any ratio for pixel-shuffle connectors, recovering from 0% (hard pruning)
+      to ~59% (baseline)''。不 overclaim 超过 baseline。
+
+      '
+    tables:
+    - caption: VTR M-Sweep — 3-Seed Statistics (SmolVLA Object)
+      columns:
+      - M
+      - Compression
+      - Mean SR (%)
+      - Std (pp)
+      - vs Baseline
+      rows:
+      - - '16'
+        - 87.5%
+        - '56.9'
+        - '1.3'
+        - -2.3pp
+      - - '32'
+        - 75.0%
+        - '60.1'
+        - '1.3'
+        - +0.9pp
+      - - '64'
+        - 50.0%
+        - '62.0'
+        - '2.3'
+        - +2.8pp
+      - - '96'
+        - 25.0%
+        - '54.5'
+        - '3.2'
+        - -4.7pp
+      - - '128'
+        - 0% (pass)
+        - '58.0'
+        - '3.5'
+        - -1.2pp
+      - - MLP-32
+        - 75.0%
+        - '63.4'
+        - '2.6'
+        - +4.2pp
+    figures_description:
+    - 'Fig: M-curve with error bars — flat profile, all within baseline ±5pp band
+      (shaded). Hard prune reference at 0%.'
+    analysis: 'VTR results 完备。Paper 中用 M-curve figure + architecture control table
+      支撑 Claim 4。Key limitation：仅对 pixel-shuffle 有效（OpenVLA 0%）， method contribution
+      限于 worst-case architecture。
+
+      '
+  - name: Claims Survival Under Review — Median Tier Assessment
+    plan_id: c6_libero_suite_expansion
+    description: '5 个 core claims 在 median tier 下的 review survival 预测。 预测 3-4 个 claims
+      survive。
+
+      '
+    expected_results:
+      claims_surviving: 3.5
+      claim_1_2axis_framework:
+        status: survives with qualification
+        original: governed by two axes
+        revised: primarily explained by connector architecture, with task complexity
+          as a modulating factor for token-entangling connectors
+        qualification: Axis-2 amplification weak for token-independent connectors
+          (π0.5)
+        strength: 0.8
+      claim_2_pixel_shuffle_entanglement:
+        status: survives fully
+        evidence: 7 conditions × 4 suites × official checkpoint → 0%
+        strength: 1.0
+      claim_3_graded_degradation:
+        status: survives fully
+        evidence: OpenVLA 6-point curve + OFT CV/entropy confirmation
+        strength: 0.95
+      claim_4_vtr_recovery:
+        status: survives with limitation
+        original: universal compression via VTR
+        revised: VTR recovers pixel-shuffle from 0% to baseline; ineffective for MLP
+          projector
+        limitation: method contribution narrowed to pixel-shuffle-specific
+        strength: 0.7
+      claim_5_cv_scaling_law:
+        status: survives with boundary condition
+        original: CV predicts optimal strategy
+        revised: CV predicts optimal strategy at moderate compression (k=0.5-0.7)
+        boundary: k=0.3 reversal for low-CV models with large token budgets
+        strength: 0.75
+    result_rationale: 'Median tier 预测 3.5 claims survive（3 full + 1.5 qualified），落在
+      [3, 4] range。
+
+      Claim 2（pixel-shuffle entanglement）是最 robust 的——0% at k=0.95, all methods, all
+      suites, official checkpoint, dual-seed confirmed。没有任何 edge case。
+
+      Claim 3（graded degradation）也 robust——OpenVLA 6-point curve 是 clean monotonic，
+      OFT CV/entropy confirmation 是 clean controlled comparison。
+
+      Claim 1（2-axis framework）需要 qualification 因为 Axis-2 对 token-independent connectors
+      的 amplification 弱于预期。Paper 不能说 ''task complexity always amplifies pruning sensitivity''，而是
+      ''task complexity amplifies sensitivity SPECIFICALLY for token-entangling connectors
+      where pruning damage cascades''。
+
+      Claim 4（VTR）的 method contribution 收窄——OpenVLA 0% 意味着 VTR 不是 universal。 Reviewers
+      可能 question: ''if VTR only works on pixel-shuffle, and pixel-shuffle is the
+      architecture you''re warning against, isn''t the method contribution circular?''
+      Response: ''VTR provides a migration path for existing pixel-shuffle VLAs, not
+      a design recommendation for new ones.''
+
+      Claim 5（CV scaling law）加 boundary condition 后仍有价值——k=0.5-0.7 的 scaling law 是
+      clean 的（Spearman 0.75-0.82），只是 k=0.3 有 reversal。
+
+      '
+    tables:
+    - caption: Claims Survival Assessment — Median Tier
+      columns:
+      - Claim
+      - Original Strength
+      - Median Tier Status
+      - Revised Strength
+      rows:
+      - - 'C1: 2-Axis Framework'
+        - Strong
+        - Qualified
+        - '0.80'
+      - - 'C2: Pixel-Shuffle'
+        - Strong
+        - Fully Survives
+        - '1.00'
+      - - 'C3: Graded Degradation'
+        - Strong
+        - Fully Survives
+        - '0.95'
+      - - 'C4: VTR Recovery'
+        - Moderate
+        - Limited to pixel-shuffle
+        - '0.70'
+      - - 'C5: CV Scaling Law'
+        - Moderate
+        - Boundary at k=0.3
+        - '0.75'
+    figures_description: []
+    analysis: Paper identity 调整为 'primarily analysis with targeted method'。 Title
+      改为 'How Vision Connectors Shape Token Pruning Robustness in VLAs'—— 更保守但准确。Contribution
+      statement 聚焦：(1) first systematic cross-architecture token pruning analysis
+      in VLAs (5 models × 4 suites), (2) CV as zero-cost diagnostic for pruning tolerance
+      AND strategy, (3) VTR as targeted recovery method for worst-case (pixel-shuffle)
+      connectors。仍提交 CoRL。
+  review_report: "---\ndream_id: dream_20260525T050917\ntier: median\noverall_score:\
+    \ borderline (5.5/10)\ntimestamp: 2026-05-25T06:17:01.057818+00:00\n---\n\n# Dream\
+    \ Review Report: \"How Vision Connectors Shape Token Pruning Robustness in Vision-Language-Action\
+    \ Models\"\n\n**Venue**: CoRL 2026  \n**Review Mode**: Full (2 Reviewers + Roundtable)\
+    \  \n**Date**: 2026-05-25\n\n---\n\n## Reviewer Assignments\n\n- **R1** — Methods\
+    \ & Experiments  \n- **R2** — Novelty & Related Work  \n\n---\n\n## Step 1: Independent\
+    \ Reviews\n\n### Reviewer R1 (Methods & Experiments)\n\n#### Summary\nSystematic\
+    \ empirical study of how vision connector architecture determines VLA robustness\
+    \ to post-connector token pruning. Six VLA architectures (450M–7B) across three\
+    \ connector families are evaluated on four LIBERO task suites under L2-norm, random,\
+    \ and attention-based pruning. Key findings: token-independent connectors degrade\
+    \ gracefully while token-entangling connectors exhibit catastrophic collapse amplified\
+    \ by task complexity; CV of token L2-norms serves as a zero-cost diagnostic; VTR\
+    \ (~22M params) recovers SmolVLA from 0% to ~60% SR at 75% compression.\n\n####\
+    \ Strengths\n\n- **S1: Breadth of experimental coverage.** 6 architectures, 3\
+    \ connector families, 4 task suites, 3 pruning strategies, k=0.3–0.95. Genuinely\
+    \ the first cross-architecture, cross-task VLA token pruning study, filling an\
+    \ important gap.\n- **S2: Double dissociation finding is compelling.** Attention-based\
+    \ scoring effective on X-VLA but harmful on π0.5, while L2-norm shows the converse.\
+    \ Well-supported by data from multiple suites and retention ratios. Immediate\
+    \ practical implications and hard to dismiss as noise.\n- **S3: Thorough SmolVLA\
+    \ cliff characterization.** Multiple checkpoints (LoRA and official), multiple\
+    \ methods (L2, random, attention, ToMe), all 4 suites. Two independent baselines\
+    \ both show 0% under any pruning. Conclusively establishes the architectural cliff.\n\
+    - **S4: VTR with proper controls.** Flat M-curve (M=16–128 within ±5pp), parameter-matched\
+    \ MLP adapter control (p=0.15), M=128 passthrough demonstrating re-encoding mechanism,\
+    \ 3-seed validation. Careful experimental design.\n- **S5: Honest limitation acknowledgment.**\
+    \ Confounders, small CV sample, sim-only evaluation, lack of causal isolation\
+    \ all explicitly flagged. Unusual intellectual honesty for this space.\n- **S6:\
+    \ Non-monotonic phenomena well-documented.** π0.5 random cliff at k=0.85–0.925,\
+    \ X-VLA k=0.85/k=0.80 inversion, all multi-seed confirmed. Hypergeometric cliff\
+    \ model provides mechanistic account.\n\n#### Weaknesses\n\n- **W1: CV diagnostic\
+    \ severely underpowered.** Only 4 closed-loop data points. With n=4, any monotonic\
+    \ ordering yields high Spearman ρ trivially. CV range confounds with connector\
+    \ type — cannot distinguish \"CV predicts robustness\" from \"connector type predicts\
+    \ robustness.\" More models needed.\n- **W2: 2-axis framework lacks testable boundaries.**\
+    \ Does not specify expected amplification factors or predict where thresholds\
+    \ occur. Post-hoc descriptive rather than predictive.\n- **W3: OpenVLA coverage\
+    \ notably sparse.** Only Object suite in main results. Many Table cells marked\
+    \ \"—\". Cannot make strong claims about MLP connector × task complexity interaction\
+    \ without Goal/Long/Spatial data for OpenVLA.\n- **W4: VTR universality falsified\
+    \ but underexplored.** 0% SR on OpenVLA mentioned in passing. No investigation\
+    \ of why (overfitting? training protocol? learning rate?). Missing training loss\
+    \ curves.\n- **W5: Seed and statistical rigor concerns.** Most conditions single-seed.\
+    \ Some cross-model comparisons mix seeds (L2: seed42, Random: seed7). \"Scaling\
+    \ law\" table uses inconsistent statistical treatment across models.\n- **W6:\
+    \ VTR baseline discrepancy.** VTR trained baseline = 44.8% vs official 59.2%.\
+    \ The \"exceeds baseline\" framing depends on which baseline. Should be framed\
+    \ as \"recovery from 0% to functional performance.\"\n- **W7: No real-robot evaluation.**\
+    \ For a CoRL submission, sim-only is a notable gap. LIBERO is respected but VLA\
+    \ pruning behavior could differ under real-world visual conditions.\n- **W8: π0.5\
+    \ attention extraction protocol questionable.** Attention scores in [2e-6, 3.6e-3]\
+    \ with position bias. No discussion of whether different extraction methods might\
+    \ produce different results.\n\n#### Questions to Authors (R1)\n\n1. Can you provide\
+    \ evidence that CV is predictive beyond what connector type already tells us?\
+    \ Within the MLP family (OpenVLA CV=0.215, OFT CV=0.219), is there measurable\
+    \ pruning robustness difference consistent with the 0.004 CV gap?\n2. The π0.5\
+    \ cliff at k=0.85–0.925 and X-VLA's non-monotonic recovery at k=0.85/0.80 both\
+    \ involve similar k values but different connectors. How do you reconcile the\
+    \ mechanistic explanations?\n3. For VTR failure on OpenVLA, did you attempt different\
+    \ learning rates, fewer training steps, or freezing strategies? Training loss\
+    \ curves?\n4. Why is OpenVLA evaluated on only Object in main results? If cross-suite\
+    \ data exists, omitting it weakens the cross-task claims.\n5. The Spearman ρ=0.82\
+    \ (p=0.03) — how many data points? With only 3 models in the scaling law table,\
+    \ any monotonic ordering gives ρ=1.0.\n\n#### R1 Scores\n\n| Dimension | Score\
+    \ |\n|-----------|-------|\n| Soundness | 3/4 |\n| Presentation | 3/4 |\n| Contribution\
+    \ | 3/4 |\n| Overall | 6/10 |\n| Confidence | 4/5 |\n\n---\n\n### Reviewer R2\
+    \ (Novelty & Related Work)\n\n#### Summary\nThe paper systematically studies how\
+    \ vision connector architecture and task complexity jointly determine whether\
+    \ token pruning preserves or destroys VLA performance. The main novelty claims\
+    \ are a 2-axis framework (connector coupling × task complexity), CV as a zero-cost\
+    \ diagnostic, and VTR as a targeted recovery method for pixel-shuffle architectures.\
+    \ The paper is positioned as \"primarily analysis with targeted method for worst-case\
+    \ architecture.\"\n\n#### Strengths\n\n- **S1: Timely and well-scoped question.**\
+    \ VLA efficiency literature has grown rapidly but each work validates on a single\
+    \ architecture. First paper to ask whether pruning transferability is architecture-dependent,\
+    \ with clear mechanistic explanations.\n- **S2: Empirical breadth.** 5 models\
+    \ in closed-loop evaluation, 4 LIBERO suites, 3 pruning methods, 6+ retention\
+    \ ratios, multi-seed for key claims. Cross-model, cross-suite, cross-method factorial\
+    \ design considerably more thorough than typical VLA papers.\n- **S3: Double dissociation\
+    \ is genuinely novel.** Goes beyond \"different models behave differently\" into\
+    \ identifying a structural interaction between scoring mechanism and connector\
+    \ architecture. The paper's strongest contribution.\n- **S4: Pixel-shuffle cliff\
+    \ is a valuable negative result.** Practically important documentation. Mechanism\
+    \ clearly explained and architecturally motivated.\n- **S5: Honest self-assessment.**\
+    \ Unusual candor about confounders, small N, sim-only evaluation.\n\n#### Weaknesses\n\
+    \n- **W1: 2-axis framework is descriptive, not predictive.** The \"two axes\"\
+    \ are really one axis (connector coupling) with a moderating variable. Framework\
+    \ does not predict where thresholds occur, only that entangling = bad for pruning\
+    \ — arguably expected once pixel-shuffle's non-overlapping receptive fields are\
+    \ understood.\n- **W2: CV diagnostic underpowered and elementary.** Correlation\
+    \ on 3–4 points. CV = σ/μ of L2 norms is a trivial statistic. No comparison against\
+    \ alternative diagnostics (kurtosis, effective rank, pairwise cosine similarity).\
+    \ Cannot assess if CV is the best diagnostic or merely a diagnostic.\n- **W3:\
+    \ VTR novelty is limited.** Structurally identical to Perceiver Resampler (Flamingo)\
+    \ and Q-Former (BLIP-2). The paper itself notes this. Novelty limited to applying\
+    \ known architecture in a new setting. Validated on only one model (SmolVLA);\
+    \ fails on OpenVLA.\n- **W4: Missing important related work.**\n  - Token Merging\
+    \ (ToMe) tested only on SmolVLA, not on token-independent architectures where\
+    \ it might succeed.\n  - SparseVLM (Zhang et al., 2024, NeurIPS) not discussed\
+    \ — also analyzes visual token sparsity in VLMs.\n  - \"Don't Run with Scissors\"\
+    \ dismissed in one sentence despite analyzing how architectural choices affect\
+    \ pruning robustness — a direct conceptual precursor.\n  - VLA-IAP positioning\
+    \ thin: no discussion of whether VLA-IAP's specific scoring mechanism would succeed/fail\
+    \ on entangling connectors (would demonstrate framework's predictive utility).\n\
+    - **W5: Simulation-only, no sim-to-real evidence.** LIBERO baselines vary widely\
+    \ across models (SmolVLA 44.8–59.2% vs X-VLA 99.2%), complicating cross-model\
+    \ comparisons. Models with higher baselines have more room for graceful degradation.\n\
+    - **W6: Connector-type confounds only partially addressed.** No controlled comparison\
+    \ isolates connector while controlling backbone, encoder, and scale. Causal claim\
+    \ \"connector is the primary determinant\" should be softened.\n- **W7: Data gaps\
+    \ in main results.** Multiple \"—\" entries in cross-suite tables. Undermines\
+    \ the \"systematic\" claim.\n\n#### Questions to Authors (R2)\n\n1. The hypergeometric\
+    \ cliff model fits C=106, T=7 to 3 data points with 2 free parameters — effectively\
+    \ interpolation. Can you validate on held-out retention ratios?\n2. Why was attention-based\
+    \ scoring not evaluated on OpenVLA? Would complete the dissociation pattern.\n\
+    3. X-VLA (CV=0.151, \"entangling\") has lower CV than OpenVLA (CV=0.215, \"independent\"\
+    ). Entangling connectors should produce more heterogeneous tokens. How do you\
+    \ reconcile?\n4. How stable is CV across different inputs? Is CV=0.055 for π0.5\
+    \ consistent across tasks, images, timesteps?\n5. Can you compare CV against alternative\
+    \ diagnostic metrics (kurtosis, effective rank, cosine similarity)?\n\n#### R2\
+    \ Scores\n\n| Dimension | Score |\n|-----------|-------|\n| Soundness | 3/4 |\n\
+    | Presentation | 3/4 |\n| Contribution | 2/4 |\n| Overall | 5/10 |\n| Confidence\
+    \ | 4/5 |\n\n---\n\n## Step 2: Cross-Sharing Summary\n\nBoth reviewers independently\
+    \ identified the same strongest result (double dissociation / scoring crossover),\
+    \ same critical weaknesses (CV underpowered, OpenVLA incomplete, VTR limited novelty,\
+    \ sim-only), and same praise (empirical breadth, honest limitations).\n\nKey divergence:\
+    \ R1 values the practical/actionable contribution more highly (Contribution 3/4),\
+    \ while R2 emphasizes that the conceptual novelty is limited — framework is descriptive,\
+    \ CV is elementary, VTR is derivative (Contribution 2/4).\n\n## Step 3: Convergence\n\
+    \n### Consensus Points\n\n1. **Strongest contribution**: Cross-architecture empirical\
+    \ analysis breadth + double dissociation finding (attention vs L2-norm crossover\
+    \ across connector types). This is novel, well-evidenced, and practically valuable.\n\
+    \n2. **Weakest claims**: CV as an independent diagnostic predictor. With n=3–4,\
+    \ the correlation is trivially achievable and confounded with connector type.\
+    \ The \"scaling law\" framing is inappropriate for 3 data points.\n\n3. **Framework\
+    \ assessment**: The 2-axis framework organizes observations well but is descriptive,\
+    \ not predictive. It does not predict thresholds, cliff locations, or amplification\
+    \ magnitudes. \"Connector coupling determines pruning robustness\" is useful but\
+    \ arguably expected once the architecture differences are understood.\n\n4. **VTR\
+    \ assessment**: Engineering contribution (applying cross-attention bottleneck\
+    \ to pixel-shuffle recovery), not methodological novelty. Validated on only 1\
+    \ model, fails on OpenVLA. The failure investigation is insufficient — the paper\
+    \ cannot distinguish \"VTR is fundamentally connector-specific\" from \"VTR training\
+    \ protocol was inappropriate for 7B models.\"\n\n5. **Critical missing elements\
+    \ for CoRL**: (a) OpenVLA multi-suite data, (b) real-robot validation, (c) more\
+    \ models for CV correlation, (d) attention-based pruning on OpenVLA.\n\n6. **Paper\
+    \ identity**: Clear and appropriately scoped as \"primarily analysis with targeted\
+    \ method.\" The paper correctly downscales its method claims relative to its analysis\
+    \ claims.\n\n### Post-Convergence Score Calibration\n\nBoth reviewers agree the\
+    \ paper falls in the borderline-to-weak-accept range. The empirical breadth and\
+    \ double dissociation finding argue for acceptance; the underpowered CV diagnostic,\
+    \ OpenVLA gaps, VTR limited novelty, and sim-only evaluation argue against.\n\n\
+    ---\n\n## Step 4: Consolidated Assessment\n\n### Overall Recommendation: **Borderline**\
+    \ (5.5/10)\n\n### Consolidated Scores\n\n| Dimension | R1 | R2 | Consolidated\
+    \ |\n|-----------|----|----|-------------|\n| Soundness | 3/4 | 3/4 | 3/4 |\n\
+    | Presentation | 3/4 | 3/4 | 3/4 |\n| Contribution | 3/4 | 2/4 | 2.5/4 |\n| Overall\
+    \ | 6/10 | 5/10 | 5.5/10 |\n| Confidence | 4/5 | 4/5 | 4/5 |\n\n### What Would\
+    \ Move This Paper to Accept\n\n1. **CV diagnostic**: Add 2–3 more VLA models (even\
+    \ offline CV measurements without closed-loop eval) to demonstrate CV predicts\
+    \ beyond connector type. Compare CV against alternative diagnostics (kurtosis,\
+    \ effective rank).\n2. **OpenVLA multi-suite**: Complete the Object/Spatial/Goal/Long\
+    \ grid for OpenVLA. This is the only MLP-projector model with closed-loop eval\
+    \ — its data gaps are disproportionately damaging.\n3. **VTR failure investigation**:\
+    \ Provide OpenVLA training loss curves, try different learning rates / training\
+    \ durations, discuss whether the failure is architectural or procedural.\n4. **Real-robot\
+    \ validation**: Even a single model on 1–2 tasks would substantially strengthen\
+    \ the CoRL submission.\n5. **Attention on OpenVLA**: Complete the double dissociation\
+    \ table with OpenVLA attention-based pruning.\n\n### What Would Move This Paper\
+    \ to Reject\n\n1. If the CV diagnostic cannot survive additional models (i.e.,\
+    \ new models break the monotonic ordering).\n2. If OpenVLA multi-suite data reveals\
+    \ the framework's predictions are wrong (e.g., MLP projectors also cliff on complex\
+    \ tasks).\n3. If VTR failure on OpenVLA is shown to be a training protocol issue\
+    \ rather than architectural, undermining the \"connector-dependent\" narrative.\n\
+    \n### Coverage vs. Experimental Design\n\nThe paper covers 10 of 12 imagined experiments\
+    \ from the design document. Two were dropped with acknowledgment:\n- OpenVLA-OFT\
+    \ cross-suite pruning (blocked by GPU incompatibility) → properly acknowledged\
+    \ as limitation\n- RoboFlamingo Perceiver Resampler (training killed) → acknowledged\
+    \ as future work\n\nThe remaining 10 are reflected in the paper with appropriate\
+    \ qualification of edge cases (π0.5 Axis-2 reversal, X-VLA non-monotonicity, k=0.3\
+    \ CV reversal).\n\n### Key Risks for This Paper at CoRL\n\n1. **\"Obvious once\
+    \ explained\" criticism**: Reviewers may argue that pixel-shuffle destroying spatial\
+    \ information under deletion is architecturally obvious, reducing the 2-axis framework\
+    \ to a post-hoc rationalization.\n2. **Statistical power**: The n=3 scaling law\
+    \ and n=4 CV spectrum are vulnerable to criticism. The Spearman ρ=0.82 at k=0.5\
+    \ with potentially only 3 data points is a red flag.\n3. **Sim-to-real gap**:\
+    \ CoRL increasingly expects real-robot results. A pure LIBERO study, even a thorough\
+    \ one, may be seen as belonging more at an NLP/ML venue.\n4. **VTR circularity**:\
+    \ \"VTR only works on pixel-shuffle, and pixel-shuffle is the architecture you're\
+    \ warning against\" — the method contribution may be seen as circular.\n\n###\
+    \ Final Summary\n\nA thorough empirical study addressing an important and timely\
+    \ question — why does token pruning work on some VLAs but not others? The double\
+    \ dissociation finding (attention helps entangling connectors but hurts independent\
+    \ ones; L2-norm shows the reverse) is the strongest novel contribution and has\
+    \ immediate practical value. The pixel-shuffle cliff documentation is rigorous\
+    \ and practically important. However, the conceptual framework is descriptive\
+    \ rather than predictive, the CV diagnostic is statistically underpowered, VTR\
+    \ is architecturally derivative with limited scope, and the absence of real-robot\
+    \ evaluation weakens the CoRL fit. The paper is at the borderline — strong empirical\
+    \ work with useful practical implications, but the contributions are collectively\
+    \ incremental rather than individually compelling.\n\n\n---\n\n## 引用验证结果\n\n**统计**:\
+    \ 62 篇文献 / 52 处引用 / 在线验证 62/62 篇\n\n### 问题 (45)\n\n- ⚠️ `black2025pi05` — 元数据不匹配:\
+    \ first_author: bib=black vs api=intelligence\n- ⚠️ `ghosh2024octo` — 元数据不匹配:\
+    \ first_author: bib=team vs api=ghosh\n- ⚠️ `liu2023libero` — 元数据不匹配: first_author:\
+    \ bib=liu vs api=feng\n- ⚠️ `yang2025efficientvla` — 元数据不匹配: first_author: bib=yang\
+    \ vs api=yantai\n- ⚠️ `liu2025vlapruner` — 元数据不匹配: first_author: bib=liu vs api=ziyan\n\
+    - ⚠️ `liu2023llava` — 元数据不匹配: first_author: bib=liu vs api=lee\n- ⚠️ `yang2024qwen2`\
+    \ — 元数据不匹配: first_author: bib=yang vs api=an\n- ⚠️ `zhang2024fastervlm` — 元数据不匹配:\
+    \ title: similarity=0.48 (possible wrong arXiv ID)\n- ⚠️ `zitkovich2023rt2` —\
+    \ 元数据不匹配: first_author: bib=zitkovich vs api=brohan\n- ⚠️ `bouthillier2024negative`\
+    \ — 元数据不匹配: first_author: bib=bouthillier vs api=karl\n- ⚠️ `wang2025specprunevla`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `feng2026seewhatmatters` — 在 .bib 中但正文未引用\n- ⚠️ `zhang2025sparsevlm`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `khaki2025sparsevila` — 在 .bib 中但正文未引用\n- ⚠️ `li2024roboflamingo`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `brohan2023rt2` — 在 .bib 中但正文未引用\n- ⚠️ `ghosh2024octo`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `brohan2023rt1` — 在 .bib 中但正文未引用\n- ⚠️ `alayrac2022flamingo`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `chen2024internvl` — 在 .bib 中但正文未引用\n- ⚠️ `jaegle2021perceiver`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `oquab2023dinov2` — 在 .bib 中但正文未引用\n- ⚠️ `zhai2023siglip`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `yang2024qwen2` — 在 .bib 中但正文未引用\n- ⚠️ `lipman2023flow`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `li2024tokenpacker` — 在 .bib 中但正文未引用\n- ⚠️ `wen2024tinyvla`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `ryoo2021tokenlearner` — 在 .bib 中但正文未引用\n- ⚠️ `meng2022adavit`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `chen2023sparsevit` — 在 .bib 中但正文未引用\n- ⚠️ `ye2025fitprune`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `shi2024crossget` — 在 .bib 中但正文未引用\n- ⚠️ `zhang2024fastervlm`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `liu2024llava15` — 在 .bib 中但正文未引用\n- ⚠️ `chen2024internvl25`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `gao2024miniinternvl` — 在 .bib 中但正文未引用\n- ⚠️ `zitkovich2023rt2`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `openxembodiment2024` — 在 .bib 中但正文未引用\n- ⚠️ `zhang2023h2o`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `xiao2024streamingllm` — 在 .bib 中但正文未引用\n- ⚠️ `mees2022calvin`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `chi2023diffusionpolicy` — 在 .bib 中但正文未引用\n- ⚠️ `zeng2023transformers_tsf`\
+    \ — 在 .bib 中但正文未引用\n- ⚠️ `bouthillier2024negative` — 在 .bib 中但正文未引用\n- ⚠️ `oquab2024dinov2`\
+    \ — 在 .bib 中但正文未引用\n\n### ✅ 通过 (52)"
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/dream_reports/dream_20260525T050917/worst/paper.pdf
+  imagined_experiments:
+  - name: 'Cross-Suite Expansion: π0.5 + X-VLA + OpenVLA + SmolVLA × 4 Suites'
+    plan_id: c6_libero_suite_expansion
+    description: '将所有 5 models 的 pruning 实验从 Object 扩展到 Spatial/Goal/Long。 核心目的：验证
+      2-axis framework 的 cross-suite 一致性。 实际结果：framework 在 Object suite 上准确，但 cross-suite
+      后出现系统性偏差。
+
+      '
+    expected_results:
+      pi05_random_k09_object_sr_pct: 9.3
+      pi05_random_k09_goal_sr_pct: 62.2
+      pi05_random_k09_spatial_sr_pct: 54.0
+      pi05_random_k09_long_sr_pct: 31.4
+      pi05_random_k09_cross_suite_range_pp: 52.9
+      pi05_l2norm_k09_object_sr_pct: 98.2
+      pi05_l2norm_k09_goal_sr_pct: 89.6
+      pi05_l2norm_k09_spatial_sr_pct: 95.3
+      pi05_l2norm_k09_long_sr_pct: 80.0
+      pi05_l2norm_k09_cross_suite_range_pp: 18.2
+      xvla_l2norm_k09_object_sr_pct: 97.6
+      xvla_l2norm_k09_goal_sr_pct: 70.2
+      xvla_l2norm_k09_spatial_sr_pct: 78.8
+      xvla_l2norm_k09_long_sr_pct: 27.5
+      xvla_l2norm_k095_long_sr_pct: 47.0
+      smolvla_k095_all_suites_sr_pct: <0.1 (all 4 suites)
+      cv_strategy_spearman_object: -1.0
+      cv_strategy_spearman_goal: -0.5
+      cv_strategy_spearman_long: 0.5
+      cv_strategy_abs_spearman_mean: 0.45
+      delta_R_L2_k05_pi05_object_pp: 36.0
+      delta_R_L2_k05_pi05_goal_pp: 13.8
+      delta_R_L2_k05_pi05_long_pp: -4.6
+      delta_R_L2_k05_xvla_object_pp: 28.0
+      delta_R_L2_k05_xvla_goal_pp: 8.5
+      delta_R_L2_k05_xvla_long_pp: 17.0
+      delta_R_L2_k05_openvla_object_pp: -1.8
+      delta_R_L2_k05_openvla_goal_pp: 8.8
+      framework_accuracy_pct: 62
+      axis2_amplification_entangling_minus_independent_pp: 11.4
+      e5_xvla_attn_last_k05_object_sr_pct: 99.2
+      e5_xvla_attn_last_k05_goal_sr_pct: 98.2
+      e5_xvla_attn_last_k05_spatial_sr_pct: 88.8
+      e5_xvla_attn_last_k05_long_sr_pct: 90.2
+      e5_xvla_attn_mean_k05_long_sr_pct: 94.0
+    result_rationale: 'π0.5 random k=0.9 在 Object 上出现 catastrophic cliff（9.3%），但在
+      Goal 上仅下降至 62.2%——同一 linear projection connector、同一 random method、同一 k，仅 task
+      distribution 不同就产生 53pp 差异。这直接破坏 "token-independent connector 不受 task complexity
+      影响" 的核心假设。 机制：Object suite 需要 precise object identity discrimination（visually
+      similar condiments），random 在 cliff zone 摧毁 concentrated discriminative features；Goal
+      suite 的 task 由 language instruction 区分，vision tokens 冗余度更高，random 破坏的影响小。 L2norm
+      在相同 k=0.9 的 cross-suite range 仅 18.2pp（vs random 53pp），证明 cross-suite sensitivity
+      是 METHOD-dependent 而非 connector-dependent。 E5 attention pruning 数据更具破坏性：X-VLA
+      k=0.5 attn_last=99.2%（Object）、98.2%（Goal），vs L2norm=42.6%/59%。这意味着 X-VLA 的 "entanglement"
+      问题完全可以通过更换 importance metric 解决，BART encoder 产生的不是 "irreversible entanglement"
+      而是 "norm-unfriendly importance distribution"。 CV scaling law 在 Object 内仍然成立（Spearman
+      -1.0），但 Long-horizon 出现反转（π0.5 L2norm > random，Δ=-4.6pp），导致 cross-suite 平均 |ρ|≈0.45，远低于
+      paper 声称的 "universal predictor" 所需的 >0.8。 OpenVLA 在 Goal 上也出现 method preference
+      reversal（random > L2norm +8.8pp），而 Object 上 L2norm > random（+1.8pp）。同一 CV=0.215
+      的 model，跨 suite 后 method preference 反转。 Framework 在 20 个 model×suite 预测中仅正确约
+      12 个（62%），达不到 "principled framework" 标准。
+
+      '
+    tables:
+    - title: 'Table A: Cross-Suite Δ(Random-L2norm) at k=0.5 — CV Scaling Law Breakdown'
+      columns:
+      - Model
+      - CV
+      - Object Δ(pp)
+      - Spatial Δ(pp)
+      - Goal Δ(pp)
+      - Long Δ(pp)
+      - Range(pp)
+      rows:
+      - - π0.5
+        - '0.055'
+        - '+36.0'
+        - '+16.0'
+        - '+13.8'
+        - '-4.6'
+        - '40.6'
+      - - X-VLA
+        - '0.151'
+        - '+28.0'
+        - '+12.6'
+        - '+8.5'
+        - '+17.0'
+        - '19.5'
+      - - OpenVLA
+        - '0.215'
+        - '-1.8'
+        - ~+5
+        - '+8.8'
+        - ~+3
+        - ~10.6
+      notes: Object suite 上 monotonic（ρ=-1.0），Long suite 上 π0.5 reversal 破坏 monotonicity。Cross-suite
+        mean |ρ|≈0.45。
+    - title: 'Table B: π0.5 Random k=0.9 Cross-Suite — Token-Independent ≠ Task-Independent'
+      columns:
+      - Suite
+      - Baseline(%)
+      - Random k=0.9(%)
+      - Δ from baseline(pp)
+      - L2norm k=0.9(%)
+      - Method gap(pp)
+      rows:
+      - - Object
+        - '98.2'
+        - '9.3'
+        - '-88.9'
+        - '98.2'
+        - '-88.9'
+      - - Spatial
+        - '97.2'
+        - '54.0'
+        - '-43.2'
+        - '95.3'
+        - '-41.3'
+      - - Goal
+        - '96.4'
+        - '62.2'
+        - '-34.2'
+        - '89.6'
+        - '-27.4'
+      - - Long
+        - '92.8'
+        - '31.4'
+        - '-61.4'
+        - '80.0'
+        - '-12.8'
+      notes: Cross-suite range 53pp for random vs 18pp for L2norm。Task sensitivity
+        是 method-specific，非 architecture-level property。
+    - title: 'Table C: E5 Attention Pruning Demolishes Entanglement Narrative (X-VLA
+        k=0.5)'
+      columns:
+      - Suite
+      - L2norm(%)
+      - Random(%)
+      - Attn-Last(%)
+      - Attn-Mean(%)
+      - Best Attn vs L2norm(pp)
+      rows:
+      - - Object
+        - '42.6'
+        - '70.6'
+        - '99.2'
+        - '98.4'
+        - '+56.6'
+      - - Spatial
+        - '58.8'
+        - '71.4'
+        - '88.8'
+        - '91.6'
+        - '+32.8'
+      - - Goal
+        - '59.0'
+        - '67.2'
+        - '98.2'
+        - '97.4'
+        - '+38.4'
+      - - Long
+        - '44.6'
+        - '61.6'
+        - '90.2'
+        - '94.0'
+        - '+49.4'
+      notes: Attention pruning 在所有 4 suites 上实现 88-99% SR at k=0.5。问题不在 connector
+        entanglement，在 importance metric。
+    figures_description:
+    - 'Fig cross-suite heatmap: 5 models × 4 suites × 2 methods (L2norm/random) at
+      k=0.5/k=0.9, 颜色编码 SR。清晰展示 framework 预测（虚线框）vs 实际结果的 mismatch areas。'
+    - 'Fig CV vs Δ(R-L2) scatter: 4 panels (one per suite), 每个 panel 3 个点 (π0.5/X-VLA/OpenVLA)，展示
+      scaling law 在 Object 上线性但在 Long 上崩溃。'
+    analysis: 'Cross-suite 数据系统性地破坏 2-axis framework 的两个核心预测： (1) Axis-1 独立性：token-independent
+      connectors should be immune to task complexity → π0.5 random k=0.9 Object=9%
+      vs Goal=62% 证伪（53pp gap）。 (2) CV universal predictor：CV 应在所有 suite 上预测 method
+      preference → Long-horizon 上 π0.5 出现 reversal（L2norm > random），OpenVLA 在 Goal
+      上也 reversal。 E5 attention pruning 数据进一步瓦解 Axis-1 定义：X-VLA（"entangling"）在 attention
+      pruning 下表现如同 "independent" connector。Axis-1 的区分不在 "token coupling" 而在 "susceptibility
+      to norm-based importance bias"。 Reframe：论文不能声称发现了 governing principle，而应定位为
+      "comprehensive empirical study revealing that importance metric selection matters
+      more than connector architecture"。
+
+      '
+  - name: π0.5 Token-Independent Confirmation (4B, Linear Proj)
+    plan_id: c1_pi05_immune_confirmation
+    description: 'π0.5 作为 2nd token-independent data point，验证 CV=0.055 的 linear projection
+      在所有 suite 上的 pruning 行为。 worst 档：π0.5 数据揭示 "immune class" 不存在——random pruning
+      在 cliff zone (k=0.85-0.925) 产生 catastrophic collapse，且行为极度 task-dependent。
+
+      '
+    expected_results:
+      pi05_cv: 0.055
+      pi05_baseline_object_sr_pct: 98.2
+      pi05_baseline_spatial_sr_pct: 97.2
+      pi05_baseline_goal_sr_pct: 96.4
+      pi05_baseline_long_sr_pct: 92.8
+      pi05_random_k095_object_sr_pct: 71.1
+      pi05_random_k0925_object_sr_pct: 27.6
+      pi05_random_k09_object_sr_pct: 10.8
+      pi05_random_k085_object_sr_pct: 5.0
+      pi05_random_k07_object_sr_pct: 75.5
+      pi05_random_k05_object_sr_pct: 69.4
+      pi05_l2norm_k09_object_sr_pct: 98.2
+      pi05_l2norm_k085_object_sr_pct: 98.0
+      pi05_l2norm_k05_object_sr_pct: 33.4
+      pi05_l2norm_k03_object_sr_pct: 51.0
+      pi05_random_cliff_depth_pp: 66.1
+      pi05_l2norm_v_shape_depth_pp: 17.6
+      pi05_l2norm_random_gap_k05_cross_suite_avg_pp: 15.3
+      pi05_attention_k07_object_sr_pct: 0.6
+      pi05_attention_k05_object_sr_pct: 37.8
+      pi05_attention_k095_object_sr_pct: 98.4
+    result_rationale: 'π0.5（CV=0.055）本应是 "immune" class 的完美验证，但数据揭示了截然不同的图景： (1) Random-specific
+      cliff：k=0.95→71.1% → k=0.925→27.6% → k=0.9→10.8% → k=0.85→5.0%，在 10% keep ratio
+      变化范围内产生 66pp collapse。这个 cliff 是 random-specific 的——L2norm 在同区间保持 98.0-99.2%
+      的 plateau。 (2) Fixed-mask experiment 排除了 temporal inconsistency（T0=12% = per-call
+      12%），证明 cliff 是 spatial coverage 的 structural failure。 (3) V-shape non-monotonicity：L2norm
+      在 k=0.5 出现 valley（33.4%），k=0.7=55.0% 和 k=0.3=51.0% 都更高。Token position visualization
+      确认 k=0.5 恰好是 spatial clustering 最严重的点（1 cluster, 78% coverage）。 (4) Cross-suite
+      数据摧毁 "immune" 标签：random k=0.9 在 Object=9% 但 Goal=62.2%（+53pp），Spatial=54%，Long=31.4%。Object
+      的 concentrated critical features（visually similar condiments）在 cliff zone 极度脆弱，而
+      Goal 的 language-disambiguated tasks 对 random token loss 更 robust。 (5) Attention
+      pruning 不解决问题：k=0.7 attn=0.6%（比 random 的 75.5% 差 75pp），k=0.5 attn=37.8%（与 L2norm
+      33.4% 持平）。π0.5 的 attention map 不提供有效 importance signal。 In worst tier, π0.5
+      从 "immune class exemplar" 降级为 "case study demonstrating that pruning behavior
+      is an irreducible function of method × k × task, not a simple connector property"。Cross-suite
+      average Δ(R-L2) at k=0.5 = (+36+16+13.8-4.6)/4 = 15.3pp，远低于 Object-only 的 36pp。
+
+      '
+    tables:
+    - title: 'Table D: π0.5 Random Cliff Zone (Object Suite)'
+      columns:
+      - k
+      - Tokens kept
+      - Random SR(%)
+      - L2norm SR(%)
+      - Δ(L2-R)(pp)
+      rows:
+      - - '0.95'
+        - '730'
+        - '71.1'
+        - '98.2'
+        - '+27.1'
+      - - '0.925'
+        - '710'
+        - '27.6'
+        - '99.2'
+        - '+71.6'
+      - - '0.90'
+        - '691'
+        - '10.8'
+        - '98.2'
+        - '+87.4'
+      - - '0.85'
+        - '653'
+        - '5.0'
+        - '98.0'
+        - '+93.0'
+      - - '0.70'
+        - '538'
+        - '75.5'
+        - '55.0'
+        - '-20.5'
+      - - '0.50'
+        - '384'
+        - '69.4'
+        - '33.4'
+        - '-36.0'
+      - - '0.30'
+        - '230'
+        - '36.4'
+        - '51.0'
+        - '+14.6'
+      notes: 方法偏好在 k=0.7 附近反转。Cliff zone (k=0.85-0.925) L2norm 完胜；aggressive zone
+        (k=0.5-0.7) random 完胜。
+    - title: 'Table E: π0.5 Cross-Suite Random k=0.9 — ''Immune'' Class Falsified'
+      columns:
+      - Suite
+      - Baseline(%)
+      - Random k=0.9(%)
+      - L2norm k=0.9(%)
+      - Δ from baseline (random, pp)
+      rows:
+      - - Object
+        - '98.2'
+        - '9.3'
+        - '98.2'
+        - '-88.9'
+      - - Spatial
+        - '97.2'
+        - '54.0'
+        - '95.3'
+        - '-43.2'
+      - - Goal
+        - '96.4'
+        - '62.2'
+        - '89.6'
+        - '-34.2'
+      - - Long
+        - '92.8'
+        - '31.4'
+        - '80.0'
+        - '-61.4'
+      notes: 同一 model/method/k，cross-suite range=53pp。Framework 预测 token-independent
+        应 <5pp variation。
+    figures_description:
+    - 'Fig π0.5 dual-method pruning curve: x=k, y=SR, two lines (random/L2norm), Object
+      suite。突出 random cliff zone 和 L2norm V-shape valley。'
+    - 'Fig π0.5 4-suite comparison: 4 panels, 每 panel 一个 suite, random+L2norm curves。展示
+      cross-suite behavior divergence。'
+    analysis: 'π0.5 数据是 worst 档的 smoking gun：CV=0.055 的 pure linear projection 不 "immune"，只是
+      L2norm 恰好在 cliff zone 有效。 换用 random pruning，即出现 catastrophic cliff。换 suite（Goal/Long），random
+      的 cliff 消失但 L2norm 的 advantage 也缩小。 这意味着 "compressibility" 不是 connector 的 intrinsic
+      property，而是 (connector, method, k, task) 四元组的 emergent property。 2-axis framework
+      的简化——将其压缩为 (connector, task) 二维——在 worst 档数据下失效。 Paper 需要 reframe：不是 "connector
+      determines compressibility"，而是 "we provide the first comprehensive map of the
+      4D pruning landscape across VLA architectures"。
+
+      '
+  - name: VTR Cross-Suite Generalization (SmolVLA M=32 on Spatial/Goal/Long)
+    plan_id: c6_libero_suite_vtr
+    description: 'SmolVLA VTR M=32 在 Spatial/Goal/Long suites 上的压缩性能验证。 worst 档：VTR
+      cross-suite recovery 衰减，且 VTR 训练在非 Object suite 上有不稳定性。
+
+      '
+    expected_results:
+      vtr_m32_object_sr_pct: 60.1
+      vtr_m32_spatial_sr_pct: 53.2
+      vtr_m32_goal_sr_pct: 56.4
+      vtr_m32_long_sr_pct_predicted: 48.0
+      smolvla_baseline_object_sr_pct: 59.2
+      smolvla_baseline_spatial_sr_pct: 44.6
+      smolvla_baseline_goal_sr_pct: 60.8
+      smolvla_baseline_long_sr_pct: 36.6
+      vtr_recovery_ratio_object: 1.015
+      vtr_recovery_ratio_spatial: 1.193
+      vtr_recovery_ratio_goal: 0.928
+      vtr_recovery_ratio_long_predicted: 0.874
+      vtr_recovery_ratio_mean: 0.95
+      vtr_m96_dip_p_value: 0.034
+      vtr_m96_dip_confirmed: true
+      hard_pruning_k05_all_suites_sr_pct: 0.0
+    result_rationale: 'VTR M=32 在 Object 上实现 near-lossless compression（60.1% vs baseline
+      59.2%），Spatial 上甚至超过 baseline（53.2% vs 44.6%，可能因为 VTR 训练 regularization 效应）。
+      但 Goal suite recovery ratio = 56.4/60.8 = 0.928，低于 Object。预测 Long-horizon（未测）recovery
+      ratio 进一步下降至 ~0.87：Long tasks 需要 multi-step reasoning，VTR 的 cross-attention
+      可能无法完全保留 temporal action sequence 所需的 spatial information chain。 M=96 dip（p=0.034
+      vs M=64）在 worst 档被确认为 training instability（非 statistical fluke），因为 M=96 的 3-seed
+      std=3.2pp 是所有 M 值中最高的。这暗示 VTR 的 flat M-curve 可能是 M=16-64 的幸运区间，M=96 暴露了 cross-attention
+      query 数量与 pixel-shuffle token structure 之间的 resonance 问题。 VTR 仍然是 valid contribution（从
+      0% hard pruning 恢复到 ~baseline），但 worst 档将其定位为 "SmolVLA-specific case study"
+      而非 "general method"，因为： (1) cross-suite recovery 有衰减（Goal 0.93, Long predicted
+      0.87）， (2) M=96 dip 暗示 training sensitivity， (3) OpenVLA VTR 完全失败（下条）。
+
+      '
+    tables:
+    - title: 'Table F: VTR M=32 Cross-Suite Recovery (SmolVLA)'
+      columns:
+      - Suite
+      - Hard Prune k=0.5(%)
+      - VTR M=32(%)
+      - Baseline(%)
+      - Recovery Ratio
+      rows:
+      - - Object
+        - '0.0'
+        - '60.1'
+        - '59.2'
+        - '1.015'
+      - - Spatial
+        - '0.6'
+        - '53.2'
+        - '44.6'
+        - '1.193'
+      - - Goal
+        - '0.0'
+        - '56.4'
+        - '60.8'
+        - '0.928'
+      - - Long (pred)
+        - '0.0'
+        - ~48
+        - '36.6'
+        - ~0.87
+      notes: Recovery ratio 从 Object(1.0) 下降到 Long(0.87)。VTR 在 complex tasks 上 recovery
+        衰减 ~13%。
+    figures_description:
+    - 'Fig VTR M-curve with error bars: x=M, y=SR, 3-seed error bars。M=96 dip 突出标注
+      p=0.034。'
+    - 'Fig VTR cross-suite bar chart: 4 suites × (hard prune / VTR M=32 / baseline)，展示
+      recovery gap 在 Long 上最大。'
+    analysis: 'VTR 从 "universal compression method" 降级为 "effective recovery tool for
+      pixel-shuffle connectors, with decreasing efficacy on complex tasks"。 M=96 dip
+      的 statistical significance (p=0.034) 不足以证明 systematic failure（n=3 power ~0.2），但足以引起
+      reviewer 对 training stability 的质疑。 Cross-suite recovery 衰减是合理的：VTR 在 Object
+      suite 上训练，cross-suite 是 zero-shot transfer。Long-horizon tasks 的 action sequence
+      依赖 precise temporal-spatial correspondence，VTR 的 cross-attention bottleneck
+      可能丢失这些 long-range dependencies。 Paper 策略：VTR 作为 §4.7 的 case study 保留，但移除 "universal
+      compression" 措辞，改为 "recovers pixel-shuffle cliff-edge to near-baseline on trained
+      distribution, with ~13% degradation on out-of-distribution complex tasks"。
+
+      '
+  - name: 'VTR Universality Test: OpenVLA MLP Projector (M=128/32/64)'
+    plan_id: c4_ext_method_universality_openvla
+    description: 'VTR 在 OpenVLA（MLP projector）上的泛化性测试。M=128 full VTR 已失败（0% SR），VTC-only
+      M=32/M=64 作为 fallback。
+
+      '
+    expected_results:
+      openvla_vtr_m128_sr_pct: 0.0
+      openvla_vtconly_m32_sr_pct_predicted: 3.0
+      openvla_vtconly_m64_sr_pct_predicted: 5.0
+      openvla_vtconly_m96_sr_pct_predicted: 2.0
+      openvla_baseline_sr_pct: 74.0
+      overfitting_confirmed: true
+      failure_mode: model outputs identical action every timestep
+    result_rationale: 'M=128 VTR 在 20K steps 后 0% SR（model 对所有 observation 输出相同 action）确认
+      severe overfitting。 VTC-only M=32/M=64 预测同样失败（<5% SR），因为根本原因不在 VTR architecture
+      而在 MLP projector tokens 的特性： (1) MLP projector tokens 已经是 individually meaningful
+      的（CV=0.215, 有 gradient differentiation），VTR 的 cross-attention 无法提供额外信息，反而引入
+      information bottleneck。 (2) OpenVLA 的 256 tokens × 7B parameters 的 scale 与 SmolVLA
+      的 128 tokens × 450M parameters 完全不同——VTR 的 ~22M params 对 7B model 来说是 rounding
+      error，无法学到有意义的 re-encoding。 (3) M=96/M=64/M=32 的 training loss 持续下降但 eval SR
+      不恢复，典型的 action space overfitting pattern。 在 worst 档，这确认 VTR 是 pixel-shuffle-specific
+      method。Paper 中 VTR 需要 reframe：不是 "universal compression tool" 而是 "architecture-specific
+      recovery mechanism that works because pixel-shuffle tokens need re-entangling,
+      while MLP tokens are already independent and don''t benefit from cross-attention
+      re-encoding"。
+
+      '
+    tables:
+    - title: 'Table G: VTR on OpenVLA — Universal Failure'
+      columns:
+      - Config
+      - M
+      - Params(M)
+      - Steps
+      - Train Loss
+      - SR(%)
+      rows:
+      - - Full VTR
+        - '128'
+        - '22.2'
+        - 20K
+        - converged
+        - '0.0'
+      - - VTC-only
+        - '32'
+        - '22.2'
+        - 100K
+        - converged
+        - ~3
+      - - VTC-only
+        - '64'
+        - '22.2'
+        - 100K
+        - converged
+        - ~5
+      - - VTC-only
+        - '96'
+        - '22.2'
+        - 100K
+        - converged
+        - ~2
+      - - LoRA baseline
+        - —
+        - '883'
+        - 100K
+        - '0.065'
+        - '0.0'
+      notes: '所有 VTR configs 失败。Train loss 收敛但 SR ≈0。Failure mode: identical action
+        output。'
+    figures_description:
+    - 'Fig overfitting diagnostic: training loss curve (converging) + eval SR curve
+      (flat at 0%), 展示 train/eval disconnect。'
+    analysis: 'VTR universality 完全失败。这不是 hyperparameter tuning 问题——M=128/96/64/32
+      全部 <5% SR，且 LoRA fine-tuning 也产生 0% SR（libero_lora_baseline），说明 OpenVLA 的 fine-tuning
+      本身就 fragile。 Reviewer 会问："如果 VTR 只在 SmolVLA 上 work，它是在修复 pixel-shuffle entanglement
+      还是只是在 SmolVLA 的特定 action space 上 overfit？" Response 策略：M=128 passthrough control（58.0%
+      ≈ baseline 59.2%）证明 VTR 确实在学 re-encoding 而非 action space memorization。但这个 argument
+      仅对 SmolVLA 成立。
+
+      '
+  - name: OpenVLA VTC M-Sweep (M=32/64/96)
+    plan_id: c4_ext_openvla_msweep
+    description: 'OpenVLA 上的 VTC cross-attention compressor M-sweep。所有 M 值预期失败。
+
+      '
+    expected_results:
+      openvla_vtc_m32_sr_pct: 0.0
+      openvla_vtc_m64_sr_pct: 0.0
+      openvla_vtc_m96_train_loss: 2.45
+      openvla_vtc_m96_sr_pct: 0.0
+      all_m_values_fail: true
+    result_rationale: 'M=96 已训完（final train loss 2.45, eval loss 2.66），远高于 SmolVLA
+      VTR 的 ~0.05 train loss。这不是欠拟合——100K steps with OpenVLA 的 tokenized action space
+      天然产生高 cross-entropy loss。 M=32/M=64 的 v3/v4/v5 版本反复失败（disk full, GPU crash,
+      training instability），即使成功训完也预期 0% SR。 根本原因：OpenVLA 使用 discrete tokenized actions（不是
+      continuous actions），VTC 的 cross-attention 将 256 个 vision tokens 压缩到 M 个 queries，但
+      OpenVLA 的 LLM decoder 期望完整的 256-token vision context 来做 autoregressive action
+      token generation。压缩后的 M queries 无法提供 decoder 所需的 token-level spatial precision。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '确认 VTR/VTC 在 MLP projector + discrete action space 的组合下无效。 Paper 中作为
+      negative result 报告：VTR effectiveness = f(connector_type)，strengthens architecture-dependency
+      narrative。
+
+      '
+  - name: X-VLA Cliff Threshold Localization (k=0.80/0.85, 3-seed)
+    plan_id: c1_xvla_threshold_localization
+    description: 'X-VLA 在 k=0.80 和 k=0.85 的 3-seed 精确定位 cliff。Non-monotonic pattern
+      已确认。 worst 档：cliff 是真实的，但 E5 attention pruning 证明它是 L2norm-specific artifact。
+
+      '
+    expected_results:
+      xvla_l2norm_k080_sr_3seed_mean: 89.0
+      xvla_l2norm_k080_sr_3seed_std: 0.72
+      xvla_l2norm_k085_sr_3seed_mean: 67.9
+      xvla_l2norm_k085_sr_3seed_std: 0.31
+      xvla_l2norm_nonmonotonic_gap_pp: 21.1
+      xvla_random_k085_sr_mean: 63.6
+      xvla_random_k080_sr_mean: 89.4
+      xvla_e5_attn_k05_sr_mean: 98.4
+      cliff_is_l2norm_specific: true
+      cliff_is_method_independent: false
+    result_rationale: 'X-VLA k=0.85 L2norm = 67.9%±0.31pp（3-seed，SD<1pp 确认完全 deterministic）。k=0.80
+      = 89.0%±0.72pp。 Non-monotonic gap = 21.1pp（k=0.85 < k=0.80），2-token 差异产生 21pp
+      SR change。Random pruning 在同区间也出现 cliff（63.6% vs 89.4%），但 per-task crash pattern
+      不同（T4, T6 both crash across methods → architectural bottleneck）。 在 worst 档，这个
+      cliff 的意义被 E5 attention pruning 完全重新诠释： - L2norm k=0.5 = 42.6% → attn_last k=0.5
+      = 99.2%（+56.6pp） - 同样的 50 tokens，同样的 k=0.5（保留 25 tokens），attention 几乎完美而 L2norm
+      catastrophic - 因此 cliff 不是 "BART encoder entanglement creates irreversible token
+      dependencies"，而是 "L2norm 在 BART encoder 的 near-uniform norm distribution 上退化为
+      spatially clustered selection" - Reviewer argument："如果换 importance metric 就消除了
+      cliff，那 Axis-1 的 ''token coupling'' 定义有根本缺陷——关键不在 coupling 而在 importance metric。"
+
+      '
+    tables:
+    - title: 'Table H: X-VLA Cliff Zone — 3-Seed Deterministic'
+      columns:
+      - k
+      - L2norm SR(%)
+      - L2norm SD(pp)
+      - Random SR(%)
+      - Attn-Last SR(%)
+      rows:
+      - - '0.90'
+        - '97.6'
+        - —
+        - '97.8'
+        - ~99
+      - - '0.85'
+        - '67.9'
+        - '0.31'
+        - '63.6'
+        - ~97
+      - - '0.80'
+        - '89.0'
+        - '0.72'
+        - '89.4'
+        - ~99
+      - - '0.70'
+        - '56.2'
+        - —
+        - '65.2'
+        - '99.2'
+      - - '0.50'
+        - '42.6'
+        - —
+        - '70.6'
+        - '99.2'
+      notes: Attention pruning 完全消除 cliff 和 degradation。问题在 metric 不在 architecture。
+    figures_description:
+    - 'Fig X-VLA 3-method comparison: L2norm (cliff+degradation), Random (moderate
+      degradation), Attention (near-flat). 三条 curve 在同一 plot 上，清晰展示 metric choice
+      的 decisive role。'
+    analysis: 'Cliff localization 数据本身是 solid experimental result。但在 worst 档，E5 data
+      完全改变其解读： cliff 不是 connector architecture 的 intrinsic property，而是 L2norm importance
+      metric 在 low-CV distribution 上的 pathological behavior。 Attention pruning（zero
+      additional training）消除所有 degradation，这意味着 BART encoder 并没有 "entangle" tokens
+      in a way that prevents pruning，它只是让 tokens 的 L2-norm 不再是 good importance proxy。
+      Paper 需要重新定义 Axis-1：从 "token coupling" 改为 "importance metric suitability"，或者承认
+      2-axis framework 是 L2norm-specific observation 而非 architecture-level insight。
+
+      '
+  - name: OFT CV Diagnostic (Token Importance Measurement)
+    plan_id: diagnostic_oft_cv
+    description: 'OpenVLA-OFT 的 token importance CV 测量。Expected CV≈0.219（≈Standard
+      OpenVLA）。
+
+      '
+    expected_results:
+      oft_cv: 0.219
+      oft_cv_std: 0.012
+      oft_entropy: 0.667
+      openvla_standard_cv: 0.215
+      cv_delta_pp: 0.4
+      sr_eval_blocked: true
+      gpu_incompatibility: Blackwell SDPA requires A100+torch2.2
+    result_rationale: 'OFT CV=0.219 ≈ Standard OpenVLA CV=0.215（Δ=0.004），确认 connector（3-layer
+      MLP）而非 action head（OFT vs standard）决定 token importance distribution。 Entropy
+      也几乎相同（0.667 vs 0.661）。这是 framework 的 positive confirmation——same connector →
+      same CV → same predicted pruning behavior。 但在 worst 档，这个 data point 的价值有限： (1)
+      无法在 LIBERO 上 eval SR（Blackwell GPU SDPA 不兼容），所以 CV 预测没有 ground truth 验证 (2)
+      OFT 和 Standard OpenVLA 用相同 connector 产生相同 CV 是 trivially expected，不提供 additional
+      discrimination power (3) Reviewer 会指出："你们有 6 个 model 的 CV，但只有 4 个能实际 eval SR。CV
+      作为 predictor 的 validation set 太小。"
+
+      '
+    tables:
+    - title: 'Table I: Diagnostic Metrics — 6-Model Spectrum'
+      columns:
+      - Model
+      - Connector
+      - CV
+      - Entropy
+      - Eval SR Available?
+      rows:
+      - - π0
+        - Pure linear
+        - '0.038'
+        - '0.959'
+        - Offline only
+      - - π0.5
+        - Pure linear (×√d)
+        - '0.055'
+        - —
+        - Yes (4 suites)
+      - - X-VLA
+        - Linear + BART 12L
+        - '0.151'
+        - '0.614'
+        - Yes (4 suites)
+      - - OpenVLA
+        - 3-layer MLP
+        - '0.215'
+        - '0.661'
+        - Yes (Object only)
+      - - OFT
+        - 3-layer MLP (DINOv2+SigLIP)
+        - '0.219'
+        - '0.667'
+        - No (GPU blocked)
+      - - SmolVLA
+        - Pixel-shuffle
+        - '0.314'
+        - '0.952'
+        - Yes (4 suites)
+      notes: 6 models 有 CV，但仅 3 models 有 full cross-suite SR。OFT 和 π0 只有 diagnostic
+        metrics。
+    figures_description: []
+    analysis: 'OFT CV 完成了 6-model diagnostic table，但不改变任何结论。在 worst 档，这是 incrementally
+      supportive 而非 decisive evidence。
+
+      '
+  - name: OFT Full Graded-Class Evaluation (4 Suites)
+    plan_id: c3_oft_graded_full
+    description: 'OpenVLA-OFT 在 4 个 LIBERO suites 上的 baseline + pruning evaluation。
+      worst 档：GPU 不兼容问题持续，无法完成 evaluation。
+
+      '
+    expected_results:
+      eval_blocked: true
+      blocker: Blackwell GPU SDPA incompatibility with OpenVLA-OFT
+      workaround_attempted: A100 rental, torch2.2 downgrade — both failed
+      fallback_evidence: CV=0.219≈OpenVLA, entropy=0.667≈0.661 — inferred graded behavior
+      paper_impact: Missing 2nd graded-class SR data point, relies on CV inference
+      reviewer_risk: Moderate — 2/3 connector classes have ≥2 SR-evaluated models,
+        MLP class has only 1
+    result_rationale: 'OFT evaluation 在 worst 档仍然被 GPU 不兼容阻塞。Blackwell GPU 的 SDPA
+      implementation 与 OFT checkpoint 的 torch 版本不兼容，降级 torch 或租用 A100 都不可行（timeline
+      限制）。 Paper 只能用 CV/entropy comparison 间接 argue OFT follows OpenVLA pattern。Reviewer
+      会注意到 MLP projector class 只有 OpenVLA 1 个 model 有 SR data，不足以 generalize。 CogACT（literature
+      baseline, MLP projector, 74.8%→74.2% under 78% pruning from EfficientVLA）可以作为
+      external evidence，但不是 our own evaluation。 In worst tier, this is a clear gap
+      but not fatal — pixel-shuffle (SmolVLA, 1 model, universal 0%) and linear (π0/π0.5,
+      2 models, variable) are well-characterized. MLP class has 1 internal + 1 external
+      data point.
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Missing OFT SR data 在 worst 档是 acknowledged limitation。Reviewer concern
+      等级 "moderate"——不会 reject paper，但会要求 camera-ready 补充或更 cautious language about
+      MLP class generalization。
+
+      '
+  - name: Perceiver Resampler (RoboFlamingo) — 3rd Connector Family
+    plan_id: c5_third_connector_roboflamingo
+    description: 'RoboFlamingo (Perceiver Resampler connector) 在 LIBERO 上 fine-tune
+      + pruning。 worst 档：fine-tuning 产生低 baseline，且 Perceiver 不清晰地落入 2-axis taxonomy。
+
+      '
+    expected_results:
+      fine_tuning_baseline_sr_pct_predicted: 18.0
+      fine_tuning_difficulty: high — requires custom training pipeline adaptation
+      perceiver_cv_predicted: 0.28
+      perceiver_pruning_k09_predicted_sr_pct: 4.0
+      perceiver_pruning_k05_predicted_sr_pct: 0.0
+      taxonomy_fit: ambiguous — cross-attention creates partial entanglement different
+        from both pixel-shuffle and BART
+      paper_inclusion: dropped — insufficient time and unclear taxonomy value
+    result_rationale: 'RoboFlamingo 在 worst 档面临多重困难： (1) Fine-tuning infrastructure：RoboFlamingo
+      使用 Flamingo-style cross-attention perceiver resampler，将 variable-length vision
+      tokens 压缩到 fixed 64 queries。这需要 custom training pipeline，previous attempts (train_c5_roboflamingo_v2)
+      被 killed。 (2) Low baseline：Perceiver Resampler 的 cross-attention 在 LIBERO manipulation
+      tasks 上可能不如 direct projection（SmolVLA 59.2%, OpenVLA 74%），因为 LIBERO 需要 precise
+      spatial information 而 perceiver 天然是 lossy compression。预测 baseline ~18% SR。 (3)
+      Taxonomy ambiguity：Perceiver Resampler 的 cross-attention 与 BART encoder 的 self-attention
+      和 pixel-shuffle 的 spatial folding 都不同。它是 "learned entanglement" 而非 "structural
+      entanglement"。CV 可能在 0.2-0.3 range，不清晰地落入现有 taxonomy。 (4) Timeline：距 abstract
+      deadline 1 天，paper deadline 4 天，没有时间 debug fine-tuning pipeline + run full evaluation。
+      In worst tier, RoboFlamingo 被 dropped from paper。这减少了 paper 的 connector family
+      覆盖（3→2 confirmed families），但避免了 messy data 进一步复杂化已经 fragile 的 framework。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Dropping RoboFlamingo 在 worst 档是 rational choice：paper 已经有足够的 models（5
+      models × 4 suites）作为 empirical contribution，加入一个 low-baseline 的新 connector 只会模糊
+      narrative。 但这意味着 paper 的 connector 覆盖限于 linear/MLP/pixel-shuffle 三类，reviewer
+      可能指出 "what about attention-based connectors (Perceiver, Q-Former)?" 作为 limitation。
+
+      '
+  - name: VTR M-Sweep Completion (SmolVLA 3-seed × 5 M-values)
+    plan_id: c4_learned_reencoding_smolvla
+    description: 'SmolVLA VTR M-sweep 的 3-seed 完成和 MLP adapter control。 worst 档：数据
+      solid 但 M=96 dip 和 high variance 引起质疑。
+
+      '
+    expected_results:
+      m16_3seed_mean_sr_pct: 56.9
+      m16_3seed_std_pp: 1.3
+      m32_3seed_mean_sr_pct: 60.1
+      m32_3seed_std_pp: 1.3
+      m64_3seed_mean_sr_pct: 62.0
+      m64_3seed_std_pp: 2.3
+      m96_3seed_mean_sr_pct: 54.5
+      m96_3seed_std_pp: 3.2
+      m128_3seed_mean_sr_pct: 58.0
+      m128_3seed_std_pp: 3.5
+      mlp_adapter_m32_3seed_mean_sr_pct: 63.4
+      mlp_adapter_m32_3seed_std_pp: 2.6
+      vtc_vs_mlp_pvalue: 0.15
+      m64_vs_m96_pvalue: 0.034
+      baseline_sr_pct: 59.2
+      m_curve_flat_within_3pp: true
+      m96_dip_significant: true
+    result_rationale: 'VTR M-sweep 数据 intrinsically solid：M=16(56.9%) 到 M=128(58.0%)
+      都在 baseline 59.2% 的 ±5pp 内，证明 near-lossless compression at any ratio。MLP adapter
+      control（63.4%）与 VTC（60.1%）无显著差异（p=0.15），确认 architecture independence。 但 worst
+      档关注两个 weakness： (1) M=96 dip（54.5%, p=0.034 vs M=64=62.0%）虽然在 Bonferroni correction
+      后 marginally significant，但 3.2pp std 是所有 M 值中最高的。这暗示 training instability——某些
+      seed/M 组合在 training dynamics 中进入 suboptimal basin。 (2) M=128 passthrough 的 3.5pp
+      std 也高，且 seed43=54.0% 是 outlier（其他两个 seed 59.8/60.2%）。如果 passthrough control
+      本身有 6pp variance，"near-lossless" 的声称需要 caveat。 In worst tier, VTR 仍然是 valid
+      method（0%→~59% recovery），但 training stability concern 使其从 "recommended practice"
+      降级为 "promising but needs further investigation"。
+
+      '
+    tables:
+    - title: 'Table J: VTR M-Sweep 3-Seed Results'
+      columns:
+      - M
+      - Compression(%)
+      - Mean SR(%)
+      - Std(pp)
+      - Individual Seeds
+      - vs Baseline
+      rows:
+      - - '16'
+        - '87.5'
+        - '56.9'
+        - '1.3'
+        - 55.8/58.4/56.5
+        - -2.3pp
+      - - '32'
+        - '75.0'
+        - '60.1'
+        - '1.3'
+        - 61.6/59.2/59.6
+        - +0.9pp
+      - - '64'
+        - '50.0'
+        - '62.0'
+        - '2.3'
+        - 61.6/60.0/64.4
+        - +2.8pp
+      - - '96'
+        - '25.0'
+        - '54.5'
+        - '3.2'
+        - 52.6/58.2/52.8
+        - -4.7pp
+      - - '128'
+        - '0.0'
+        - '58.0'
+        - '3.5'
+        - 59.8/54.0/60.2
+        - -1.2pp
+      - - MLP-32
+        - '75.0'
+        - '63.4'
+        - '2.6'
+        - 65.2/64.6/60.4
+        - +4.2pp
+      notes: M=96 dip p=0.034。M=128 seed43=54.0 outlier。Flat M-curve 成立但 variance
+        在高 M 处增大。
+    figures_description:
+    - Fig M-curve with 3-seed error bars and baseline band (59.2%±3pp shaded). M=96
+      dip 和 M=128 variance clearly visible。
+    analysis: 'VTR 在 worst 档仍是 paper 的 positive contribution：hard pruning 0% → VTR
+      ~59% ≈ baseline 是 dramatic recovery。 但 M=96 dip 和 high-M variance 需要 honest
+      reporting。建议 paper 用 M=32 或 M=64 作为 recommended setting（stable seeds, good compression
+      ratio），将 M=96 dip 作为 "open question: why does M=96 underperform?" 放入 discussion。
+      Reviewer concern level: low-moderate. VTR 的 core claim（recovery from 0% to baseline）is
+      robust. M=96 是 interesting anomaly 但不 undermine main contribution。
+
+      '
+  - name: Consolidated Cross-Suite Framework Accuracy Assessment
+    plan_id: c6_libero_suite_expansion
+    description: '综合所有 cross-suite 数据的 framework 准确率评估。 worst 档：framework accuracy
+      ~62%，不足以支撑 "principled framework" 定位。
+
+      '
+    expected_results:
+      framework_predictions_total: 20
+      framework_predictions_correct: 12
+      framework_accuracy_pct: 62
+      claims_surviving_review: 2.5
+      surviving_claims: C2 (pixel-shuffle entanglement), C4 (VTR case study), partial
+        C3b (MLP graded)
+      failed_claims: C1 (2-axis framework as principled theory), C5 (CV universal
+        predictor)
+      reframed_claims: C1→empirical observation catalog, C5→within-suite heuristic
+      paper_contribution_type: empirical study with surprising findings
+      corl_submission_viable: true
+      corl_acceptance_probability_pct: 45
+    result_rationale: 'Framework accuracy 计算方法： - SmolVLA × 4 suites: 预测 "catastrophic
+      at k=0.95" → 实际 all suites ≤0.1% → 4/4 correct - X-VLA × 4 suites: 预测 "entangling,
+      task-dependent collapse" → Object OK (97.6%), Goal 70.2% (partial collapse),
+      Spatial 78.8% (moderate), Long 27.5% (collapse) → 3/4 correct（Object 不 collapse，与预测不符）
+      - π0.5 × 4 suites: 预测 "independent, immune to task complexity" → Object random
+      k=0.9=9%（NOT immune!），但 L2norm=98.2% → method-dependent → 1/4 correct（框架不区分
+      method） - OpenVLA × 4 suites: 预测 "graded, L2norm preferred" → Object L2norm>random
+      (+1.8pp ✓), Goal random>L2norm (+8.8pp ✗) → 2/4 correct - π0 × offline: 预测 "immune"
+      → k=0.1 improves → 1/1 correct Total: 4+3+1+2+1 = 11/17 = 65%（≈62% with margin
+      of error）
+
+      Claims survival analysis: - C1 (2-axis framework): FAILS as theory → survives
+      as "descriptive taxonomy for L2norm pruning on Object suite" - C2 (pixel-shuffle
+      entanglement): SURVIVES — universal 0% across all suites/methods/k is unambiguous
+      - C3a (linear proj depends on pipeline): Partially survives — π0 immune, π0.5
+      method-dependent, X-VLA cliff - C3b (MLP graded): Survives on Object — graded
+      curve confirmed - C4 (VTR): Survives as SmolVLA case study — 0%→59% recovery
+      - C5 (CV predicts strategy): FAILS as universal law → survives as "within-Object-suite
+      heuristic"
+
+      2.5 claims survive: C2, C4, half of C3b.
+
+      CoRL viability: paper 作为 "comprehensive empirical study" 仍然 viable（5 models
+      × 4 suites × 3 methods 是任何 VLA pruning 工作中最大规模的 comparison）。Acceptance probability
+      ~45%——足够好的 empirical contribution 但缺少 unified theory 会让某些 reviewers 觉得 "incremental"。
+
+      '
+    tables:
+    - title: 'Table K: Framework Prediction Accuracy by Model'
+      columns:
+      - Model
+      - Connector Class
+      - Framework Prediction
+      - Object
+      - Spatial
+      - Goal
+      - Long
+      - Accuracy
+      rows:
+      - - SmolVLA
+        - Pixel-shuffle
+        - Catastrophic all suites
+        - ✓
+        - ✓
+        - ✓
+        - ✓
+        - 4/4
+      - - X-VLA
+        - BART encoder
+        - Task-dependent collapse
+        - ✗(no collapse)
+        - ✓
+        - ✓
+        - ✓
+        - 3/4
+      - - π0.5
+        - Linear proj
+        - Immune to task complexity
+        - ✗(random cliff)
+        - ✗
+        - ✗
+        - ✗
+        - 1/4
+      - - OpenVLA
+        - MLP
+        - Graded, L2norm preferred
+        - ✓
+        - '~'
+        - ✗(random preferred)
+        - '~'
+        - 2/4
+      - - π0
+        - Linear proj
+        - Immune
+        - ✓(offline)
+        - —
+        - —
+        - —
+        - 1/1
+      notes: Total 11/17 ≈ 65%。π0.5 是 framework 最大 failure point。
+    - title: 'Table L: Claim Survival Assessment'
+      columns:
+      - Claim
+      - Original Status
+      - Worst-Tier Status
+      - Surviving Evidence
+      rows:
+      - - 'C1: 2-Axis Framework'
+        - Primary contribution
+        - Fails as theory
+        - Descriptive taxonomy for L2norm-Object only
+      - - 'C2: Pixel-Shuffle Entanglement'
+        - Strong
+        - Survives
+        - Universal 0% across 4 suites × 2 methods
+      - - 'C3: Connector-Specific Patterns'
+        - Strong
+        - Partial survival
+        - MLP graded confirmed; linear 'immune' falsified
+      - - 'C4: VTR Recovery'
+        - Strong
+        - Survives as case study
+        - 0%→59% on SmolVLA; fails on OpenVLA
+      - - 'C5: CV Scaling Law'
+        - Novel contribution
+        - Fails as universal
+        - Within-Object heuristic only; cross-suite |ρ|≈0.45
+      notes: 2-3 claims survive review intact. Paper viable as empirical study, not
+        as theory paper.
+    figures_description:
+    - 'Fig framework accuracy heatmap: 5 models × 4 suites grid, color = (prediction
+      correct / partially correct / wrong). Visual impact: scattered errors, no clean
+      pattern.'
+    - 'Fig revised paper narrative flow: from ''discover governing principle'' to
+      ''provide systematic benchmark + catalog surprising findings''.'
+    analysis: '在 worst 档，paper 的 identity 发生根本转变： FROM: "We discover a principled
+      2-axis framework governing VLA token compressibility" TO: "We provide the first
+      systematic study of token pruning across VLA architectures, revealing that pruning
+      behavior is an irreducible function of (connector, method, k, task), not reducible
+      to simple architectural rules"
+
+      Key novel findings that survive independently of the framework: (1) Pixel-shuffle
+      entanglement is real and irreversible — this is a genuine architectural insight
+      (2) Importance metric selection matters more than connector architecture — supported
+      by E5 attention data + π0.5 method divergence (3) L2norm is actively harmful
+      on low-CV models — 36pp gap on π0.5, 28pp on X-VLA at k=0.5 Object (4) VTR achieves
+      near-lossless compression for pixel-shuffle — 0%→59% at any M ratio
+
+      These 4 findings are individually publishable observations that together constitute
+      a substantial empirical contribution for CoRL, even without a unified theory.
+      Title: "A Systematic Study of Token Pruning Strategies Across VLA Architectures."'
+  review_report: '---
+
+    dream_id: dream_20260525T050917
+
+    tier: worst
+
+    overall_score: 5/10 — Weak Reject (Marginally Below)
+
+    timestamp: 2026-05-25T06:34:52.067450+00:00
+
+    ---
+
+
+    # Dream Review Report: "A Systematic Study of Token Pruning Strategies Across
+    VLA Architectures"
+
+
+    **Venue**: CoRL 2026
+
+    **Review Mode**: Full (2 Reviewers + AC Roundtable)
+
+    **R1 Score**: 6/10 (Methods + Experiments) | **R2 Score**: 5/10 (Novelty + Related
+    Work) | **AC Consolidated**: 5.5/10
+
+
+    ---
+
+
+    ## 1. Paper Summary
+
+
+    This paper presents a systematic empirical study of vision token pruning across
+    5 VLA architectures (π0 3.3B, π0.5 4B, X-VLA 880M, OpenVLA 7B, SmolVLA 450M) spanning
+    3 connector families (linear projection, MLP, pixel-shuffle), evaluated on 4 LIBERO
+    task suites (Object, Spatial, Goal, Long-horizon) with 3 pruning methods (L2-norm,
+    random, attention-based). The study reveals three principal findings: (1) pixel-shuffle
+    connectors create irreversible token entanglement where removing even 5% of tokens
+    collapses SR to 0% across all suites; (2) importance metric selection produces
+    larger performance gaps (56.6pp) than connector architecture variation; (3) VTR
+    recovers pixel-shuffle models from 0% to ~59% ≈ baseline but fails entirely on
+    MLP-projector architectures. A CV-based diagnostic and 2-axis framework are proposed
+    but achieve only ~62% prediction accuracy cross-suite.
+
+
+    ---
+
+
+    ## 2. Agreed Strengths
+
+
+    **S1. Unprecedented cross-architecture breadth.** 5 models × 4 suites × 3 methods
+    × 6+ retention ratios is the most comprehensive VLA pruning comparison to date.
+    No concurrent work (SP-VLA, VLA-IAP, LightVLA, EfficientVLA, Compressor-VLA, See
+    What Matters) evaluates pruning across more than 1-2 architectures. The factorial
+    design enables interaction effects that single-architecture studies cannot detect.
+
+
+    **S2. Pixel-shuffle catastrophic cliff is definitive.** SmolVLA collapses to 0%
+    SR at k=0.95 (removing only 6 of 128 tokens) across all 4 LIBERO suites, all pruning
+    methods tested (L2-norm, random, attention, geometric prior), and both checkpoints
+    (LoRA-reproduced and official HuggingFace). The mechanism is clearly explained:
+    pixel-shuffle 4×4 folding creates non-overlapping receptive fields with zero inter-token
+    redundancy. This is a rigorous, practically important negative result.
+
+
+    **S3. Double dissociation between scoring method and connector type.** The paper''s
+    strongest and most novel finding. Attention-based scoring achieves 99.2% on X-VLA
+    Object at k=0.5 while L2-norm achieves 42.6% (56.6pp gap). Conversely, on π0.5,
+    L2-norm outperforms random by up to 93pp at k=0.85. This structural interaction
+    is non-obvious, validated across multiple suites and retention ratios, and has
+    immediate practical implications.
+
+
+    **S4. Intellectual honesty and transparent limitations.** Both reviewers commend
+    the paper''s unusual candor. The confounder analysis acknowledges that models
+    differ simultaneously in backbone, encoder, scale, and connector. VTR failure
+    on OpenVLA is reported rather than suppressed. The CV diagnostic''s small sample
+    size is flagged. The paper refrains from overclaiming VTR "exceeds baseline."
+    This level of honesty is rare and scientifically valuable.
+
+
+    **S5. Multi-seed validation for key claims.** SmolVLA cliff (dual-seed, dual-checkpoint),
+    π0.5 cliff zone (sub-1pp std), X-VLA cliff localization (3-seed, std=0.31pp at
+    k=0.85), and VTR M-curve (3-seed for all M values) are all multi-seed validated.
+    Cross-seed deltas are typically under 5pp, confirming architectural rather than
+    stochastic phenomena.
+
+
+    **S6. Non-monotonic phenomena carefully documented.** The π0.5 random cliff at
+    k=0.85-0.925, the X-VLA k=0.85/k=0.80 inversion (21pp gap from 2 tokens), and
+    the π0.5 L2-norm V-shaped curve are all multi-seed confirmed with mechanistic
+    accounts.
+
+
+    ---
+
+
+    ## 3. Agreed Weaknesses
+
+
+    **W1. CV diagnostic is statistically underpowered.** The "scaling law" and "continuous
+    spectrum" claims rest on only 3 closed-loop data points for strategy prediction
+    (π0.5, X-VLA, OpenVLA). SmolVLA contributes nothing to strategy comparison (both
+    methods = 0%). A perfect monotonic ordering with n=3 has probability 1/6 under
+    null — barely significant. OFT and π0 contribute offline metrics only, padding
+    model count to 6 without adding closed-loop validation. CV may be a proxy for
+    connector type membership rather than an independent predictor.
+
+
+    **W2. Incomplete data matrix undermines "systematic" claim.** Main results have
+    multiple "--" entries, particularly OpenVLA (only Object suite in most conditions;
+    Goal/Spatial/Long missing or partial). Several X-VLA cells are absent. For a paper
+    claiming "first systematic cross-architecture study," structural gaps are notable.
+
+
+    **W3. LIBERO-only evaluation.** All results from one simulation benchmark, one
+    robot platform. No real-robot or multi-simulator validation. CoRL increasingly
+    expects deployment evidence (acceptance rate 25-33%). LIBERO baselines vary widely
+    across models (SmolVLA 59.2% vs X-VLA 99.2%), potentially confounding cross-model
+    comparisons via headroom effects.
+
+
+    **W4. Confounded cross-model comparisons.** Models differ simultaneously in LLM
+    backbone, vision encoder, scale (450M to 7B), training data, and connector. Only
+    OFT vs OpenVLA provides semi-controlled comparison (same connector, same backbone),
+    but OFT lacks closed-loop evaluation. The paper''s language often implies connector
+    is causally isolated when evidence is strictly correlational.
+
+
+    **W5. VTR contribution is narrow and architecturally derivative.** VTR is structurally
+    identical to Perceiver Resampler / Q-Former. Validated on SmolVLA only; fails
+    on OpenVLA (0% SR across all M values). The investigation of failure is insufficient:
+    no alternative learning rates, no frozen-backbone ablation. VTR training uses
+    batch size 4 vs official 512, creating a baseline discrepancy (44.8% vs 59.2%).
+
+
+    **W6. No efficiency measurements.** The abstract motivates work by "computational
+    bottleneck for real-time robotic control," yet contains no systematic latency,
+    throughput, or memory benchmarks. The only efficiency figure is a brief 6% VTR
+    speedup mention. For an efficiency-motivated paper, this is a notable omission.
+
+
+    ---
+
+
+    ## 4. Contested Points (AC Resolution)
+
+
+    **4a. Contribution novelty (R1: 3/4 vs R2: 2/4).**
+
+    R1 values the practical breadth; R2 emphasizes limited methodological novelty
+    (CV is trivial, VTR is derivative, framework is descriptive). **AC Resolution**:
+    The cross-architecture breadth and double dissociation are genuine contributions
+    exceeding "running existing methods on more models" — interaction effects could
+    not have been discovered by single-architecture studies. However, the 2-axis framework
+    is descriptive rather than predictive. **Consolidated: 2.5/4.**
+
+
+    **4b. Paper framing of the 2-axis framework.**
+
+    The framework is listed as Contribution #1 in the introduction. The 62% accuracy
+    figure appears in project documents but the submitted paper presents the framework
+    more positively. Both reviewers are justified in engaging with it as a positive
+    claim. **AC Resolution**: Reviewers'' treatment is appropriate; the paper would
+    benefit from more explicit main-text acknowledgment of framework limitations.
+
+
+    ---
+
+
+    ## 5. Factual Corrections
+
+
+    **5a. "Single pruning ratio" (both R1 and R2).** INCORRECT. The paper evaluates
+    k ∈ {0.30, 0.50, 0.70, 0.85, 0.90, 0.925, 0.95} with additional values for specific
+    models. Tables 3, 5, 6 show full degradation curves. This criticism is struck
+    from the record.
+
+
+    **5b. "No figures" (R2).** The paper is table-dense (11 tables) but the concern
+    about visual density is legitimate. The paper would benefit from consolidating
+    some tabular data into degradation curve plots.
+
+
+    **5c. Neither factual error changes the overall assessment by more than ~0.5 points.**
+    The substantive concerns about CV validation, sim-only evaluation, VTR scope,
+    and data completeness remain.
+
+
+    ---
+
+
+    ## 6. Key Questions for Rebuttal
+
+
+    **Q1. CV beyond connector type membership.** Can you demonstrate CV is predictive
+    beyond what connector family already tells you? Within MLP family (OpenVLA CV=0.215
+    vs OFT CV=0.219, Δ=0.004), does the CV difference correspond to measurable pruning
+    robustness difference? If not, CV is a 3-bin discrete classifier, not a continuous
+    predictor.
+
+
+    **Q2. Attention-based scoring on additional models.** The double dissociation
+    has only two entries: X-VLA (attention effective) and π0.5 (attention harmful
+    on Object). Does attention help or hurt on OpenVLA (MLP, CV=0.215)? Completing
+    this cell would either strengthen or complicate the dissociation pattern.
+
+
+    **Q3. Efficiency measurements.** Can you provide wall-clock latency and peak GPU
+    memory for at least two models at two retention ratios? A paper motivating pruning
+    by efficiency must quantify efficiency gains, not just accuracy costs.
+
+
+    **Q4. VTR batch size confound.** VTR trained at batch=4 yields LoRA baseline 44.8%
+    vs official 59.2% at batch=512. VTR recovery to ~60% could partly reflect reduced
+    baseline training quality. How confident are you VTR at official batch size would
+    still exceed baseline?
+
+
+    **Q5. X-VLA CV reconciliation.** X-VLA (CV=0.151, "entangling") has lower CV than
+    OpenVLA (CV=0.215, "independent"). If CV measures entanglement, entangling connectors
+    should produce higher CV. How do you reconcile this ordering?
+
+
+    ---
+
+
+    ## 7. Missing Elements (ranked by impact)
+
+
+    1. **Complete data matrix** — fill all "--" entries, especially OpenVLA cross-suite
+
+    2. **Efficiency benchmarks** — latency (ms/action), peak GPU memory, throughput
+    (Hz)
+
+    3. **Attention-based scoring on OpenVLA** — completes the dissociation table
+
+    4. **Head-to-head with one concurrent method** — e.g., VLA-IAP or SP-VLA on same
+    LIBERO setup
+
+    5. **Position-preserving ablation** — zero-mask control for π0.5 to isolate positional
+    disruption
+
+    6. **Additional benchmark or real-robot validation** — even one model on one non-LIBERO
+    benchmark
+
+    7. **Alternative diagnostic metrics** — compare CV against kurtosis, effective
+    rank, pairwise cosine similarity
+
+
+    ---
+
+
+    ## 8. Limitations Assessment
+
+
+    The paper''s limitation reporting is **above average** for the field:
+
+    - Simulation-only evaluation explicitly stated
+
+    - Confounder analysis discusses backbone/encoder/scale confounds
+
+    - CV sample size hedged ("validated on four closed-loop architectures")
+
+    - VTR scope acknowledged (fails on OpenVLA)
+
+    - Baseline discrepancy noted (LoRA-reproduced vs official)
+
+    - Single-seed caveat provided
+
+
+    **Gap**: Some deeper self-awareness (e.g., the 62% framework accuracy, data matrix
+    incompleteness) surfaces in project documents but not fully in the submitted paper.
+    Key caveats are in the appendix; a main-text reader may overestimate claim strength.
+
+
+    ---
+
+
+    ## 9. CoRL Relevance
+
+
+    Token pruning for VLA efficiency is directly relevant to robot learning. The cross-architecture
+    perspective fills a genuine gap as concurrent works each validate on 1-2 architectures.
+    Practical recommendations (measure CV, use attention on entangling connectors,
+    use L2-norm on independent connectors, avoid deletion on pixel-shuffle) are immediately
+    actionable.
+
+
+    **However**, CoRL increasingly expects real-robot or multi-simulator validation.
+    A pure LIBERO simulation study may be better suited to NeurIPS/ICML where empirical
+    analysis is more valued and sim-only less penalized. The paper''s analysis contribution
+    is stronger than its method contribution, which slightly misaligns with CoRL''s
+    emphasis on methods and systems.
+
+
+    **Verdict**: Topically appropriate for CoRL; sim-only limitation is more significant
+    here than at ML venues.
+
+
+    ---
+
+
+    ## 10. Final Scores
+
+
+    | Dimension | R1 | R2 | AC Consolidated |
+
+    |-----------|----|----|-----------------|
+
+    | Soundness | 2/4 | 2/4 | **3/4** (upgraded: "single ratio" error corrected; methodology
+    is rigorous where data exists) |
+
+    | Presentation | 3/4 | 2/4 | **2.5/4** (well-organized but 11-table density, key
+    caveats in appendix) |
+
+    | Contribution | 3/4 | 2/4 | **2.5/4** (genuine empirical novelty but limited
+    theoretical/methodological advance) |
+
+    | **Overall** | **6/10** | **5/10** | **5/10** |
+
+    | Confidence | 4/5 | 4/5 | **4/5** |
+
+
+    **Overall Justification (5/10 — Marginally Below)**: The paper addresses a timely
+    question with the most comprehensive cross-architecture VLA pruning evaluation
+    to date. The double dissociation and pixel-shuffle cliff are genuinely novel and
+    practically valuable findings. Intellectual honesty is exemplary.
+
+
+    However, the combination of weaknesses places it below CoRL acceptance threshold:
+
+    - CV "scaling law" is a 3-point correlation, possibly a proxy for connector type
+
+    - Structural data gaps in main results
+
+    - No efficiency measurements for an efficiency-motivated paper
+
+    - VTR narrowly validated (1 model) and architecturally derivative
+
+    - Simulation-only on single benchmark
+
+    - 2-axis framework is descriptive, not predictive
+
+
+    No single weakness is fatal, but their combination places the paper below the
+    top 25-33%.
+
+
+    ---
+
+
+    ## 11. Recommendation
+
+
+    **Weak Reject (5/10).**
+
+
+    The paper provides genuinely useful empirical knowledge — the cross-architecture
+    breadth is a real differentiator, and the double dissociation and pixel-shuffle
+    cliff are findings the community needs. Intellectual honesty throughout is exemplary.
+    However, the combination of underpowered CV validation, structural data gaps,
+    absent efficiency benchmarks, narrow VTR scope, simulation-only evaluation, and
+    a descriptive (not predictive) theoretical framework collectively place it below
+    the CoRL acceptance threshold.
+
+
+    **What would move to accept**: (a) Complete OpenVLA cross-suite data; (b) add
+    attention scoring on OpenVLA; (c) validate CV on 2-3 additional VLAs; (d) provide
+    wall-clock efficiency measurements; (e) any non-LIBERO validation. Items (a),
+    (b), (d) are achievable within a revision cycle and would likely move to solid
+    accept.
+
+
+    **What would move to clear reject**: (a) Additional VLA models break monotonic
+    CV ordering; (b) OpenVLA cross-suite reveals MLP projectors also cliff on complex
+    tasks; (c) VTR failure on OpenVLA shown to be training protocol issue rather than
+    architectural.
+
+
+    **Alternative venues if rejected**: NeurIPS 2026 (empirical analysis track), ICML
+    2026 (sim-only less penalized), RSS 2027 (if real-robot validation added).
+
+
+    ---
+
+
+    ## 引用验证结果
+
+
+    **统计**: 62 篇文献 / 52 处引用 / 在线验证 62/62 篇
+
+
+    ### 问题 (45)
+
+
+    - ⚠️ `black2025pi05` — 元数据不匹配: first_author: bib=black vs api=intelligence
+
+    - ⚠️ `ghosh2024octo` — 元数据不匹配: first_author: bib=team vs api=ghosh
+
+    - ⚠️ `liu2023libero` — 元数据不匹配: first_author: bib=liu vs api=feng
+
+    - ⚠️ `yang2025efficientvla` — 元数据不匹配: first_author: bib=yang vs api=yantai
+
+    - ⚠️ `liu2025vlapruner` — 元数据不匹配: first_author: bib=liu vs api=ziyan
+
+    - ⚠️ `liu2023llava` — 元数据不匹配: first_author: bib=liu vs api=lee
+
+    - ⚠️ `yang2024qwen2` — 元数据不匹配: first_author: bib=yang vs api=an
+
+    - ⚠️ `zhang2024fastervlm` — 元数据不匹配: title: similarity=0.48 (possible wrong arXiv
+    ID)
+
+    - ⚠️ `zitkovich2023rt2` — 元数据不匹配: first_author: bib=zitkovich vs api=brohan
+
+    - ⚠️ `bouthillier2024negative` — 元数据不匹配: first_author: bib=bouthillier vs api=karl
+
+    - ⚠️ `wang2025specprunevla` — 在 .bib 中但正文未引用
+
+    - ⚠️ `feng2026seewhatmatters` — 在 .bib 中但正文未引用
+
+    - ⚠️ `zhang2025sparsevlm` — 在 .bib 中但正文未引用
+
+    - ⚠️ `khaki2025sparsevila` — 在 .bib 中但正文未引用
+
+    - ⚠️ `li2024roboflamingo` — 在 .bib 中但正文未引用
+
+    - ⚠️ `brohan2023rt2` — 在 .bib 中但正文未引用
+
+    - ⚠️ `ghosh2024octo` — 在 .bib 中但正文未引用
+
+    - ⚠️ `brohan2023rt1` — 在 .bib 中但正文未引用
+
+    - ⚠️ `alayrac2022flamingo` — 在 .bib 中但正文未引用
+
+    - ⚠️ `chen2024internvl` — 在 .bib 中但正文未引用
+
+    - ⚠️ `jaegle2021perceiver` — 在 .bib 中但正文未引用
+
+    - ⚠️ `oquab2023dinov2` — 在 .bib 中但正文未引用
+
+    - ⚠️ `zhai2023siglip` — 在 .bib 中但正文未引用
+
+    - ⚠️ `yang2024qwen2` — 在 .bib 中但正文未引用
+
+    - ⚠️ `lipman2023flow` — 在 .bib 中但正文未引用
+
+    - ⚠️ `li2024tokenpacker` — 在 .bib 中但正文未引用
+
+    - ⚠️ `wen2024tinyvla` — 在 .bib 中但正文未引用
+
+    - ⚠️ `ryoo2021tokenlearner` — 在 .bib 中但正文未引用
+
+    - ⚠️ `meng2022adavit` — 在 .bib 中但正文未引用
+
+    - ⚠️ `chen2023sparsevit` — 在 .bib 中但正文未引用
+
+    - ⚠️ `ye2025fitprune` — 在 .bib 中但正文未引用
+
+    - ⚠️ `shi2024crossget` — 在 .bib 中但正文未引用
+
+    - ⚠️ `zhang2024fastervlm` — 在 .bib 中但正文未引用
+
+    - ⚠️ `liu2024llava15` — 在 .bib 中但正文未引用
+
+    - ⚠️ `chen2024internvl25` — 在 .bib 中但正文未引用
+
+    - ⚠️ `gao2024miniinternvl` — 在 .bib 中但正文未引用
+
+    - ⚠️ `zitkovich2023rt2` — 在 .bib 中但正文未引用
+
+    - ⚠️ `openxembodiment2024` — 在 .bib 中但正文未引用
+
+    - ⚠️ `zhang2023h2o` — 在 .bib 中但正文未引用
+
+    - ⚠️ `xiao2024streamingllm` — 在 .bib 中但正文未引用
+
+    - ⚠️ `mees2022calvin` — 在 .bib 中但正文未引用
+
+    - ⚠️ `chi2023diffusionpolicy` — 在 .bib 中但正文未引用
+
+    - ⚠️ `zeng2023transformers_tsf` — 在 .bib 中但正文未引用
+
+    - ⚠️ `bouthillier2024negative` — 在 .bib 中但正文未引用
+
+    - ⚠️ `oquab2024dinov2` — 在 .bib 中但正文未引用
+
+
+    ### ✅ 通过 (52)'
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-25T06:35:03+00:00'

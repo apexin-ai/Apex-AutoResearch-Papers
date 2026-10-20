@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_monitor_westd41074_attn_object_20260525T144423_result.json",
     "occurrence": 1,
-    "bytes": 1429,
-    "sha256": "54455bd51cccc6ac8d6f84b289fc80a661dce81c516bbcf527dc4f91c90b199e"
+    "bytes": 1428,
+    "sha256": "8dade9d768eb4bc0214336e94c6457caec506c1dcedb2d8bf6ef034bab68393a"
   },
   "statistics": {
     "messages": 1,

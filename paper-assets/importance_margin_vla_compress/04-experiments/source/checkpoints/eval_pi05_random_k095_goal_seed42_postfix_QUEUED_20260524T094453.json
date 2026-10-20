@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_random_k095_goal_seed42_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:44:36.843Z",
+    "updated_at": "2026-05-24T09:44:52.772Z",
+    "hypothesis": "π0.5 Random k=0.95 Goal post-fix — near-baseline Goal。Object k=0.95=74%, Spatial k=0.95=76.8%。Goal baseline=88.4%。补全 Goal Random 曲线最高 k 值点。"
+  },
+  "timestamp": "2026-05-24T09:44:53.758365+00:00",
+  "trigger": "update_registry"
+}

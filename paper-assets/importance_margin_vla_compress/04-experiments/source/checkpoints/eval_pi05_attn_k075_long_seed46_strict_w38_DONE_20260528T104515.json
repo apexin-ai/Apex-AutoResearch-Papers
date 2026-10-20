@@ -1,0 +1,71 @@
+{
+  "exp_id": "eval_pi05_attn_k075_long_seed46_strict_w38",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-28T07:46:15.671Z",
+    "updated_at": "2026-05-28T10:45:13.612Z",
+    "hypothesis": "π0.5 Attn k=0.75 Long strict seed46 — plateau 边缘第 5 seed（当前 ±1.1pp），确认 Attention 在 plateau zone 的稳定性",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 46 --gpu 0\"",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "363743",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed46_strict_w38.log",
+      "submitted_at": "2026-05-28T07:47:39.761Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "pi05",
+      "seed": 46,
+      "checkpoint_source": "pi05_libero_finetuned",
+      "eval_data": "libero_10",
+      "wall_clock_seconds": 10653.9,
+      "gpu_hours": 2.96
+    },
+    "server": "westd-38929",
+    "gpu": "cuda:2",
+    "reproduce": {
+      "finished_at": "2026-05-28T10:32:01.865Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-28T10:32:31.001319+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 50.6,
+      "total_episodes": 500,
+      "total_successes": 253,
+      "per_task": {
+        "T0": 62,
+        "T1": 64,
+        "T2": 54,
+        "T3": 34,
+        "T4": 36,
+        "T5": 52,
+        "T6": 74,
+        "T7": 30,
+        "T8": 12,
+        "T9": 88
+      }
+    },
+    "conclusion": "success",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed46_strict_w38.log",
+    "checkpoint_path": "N/A (eval-only experiment)",
+    "completed_at": "2026-05-28T10:45:13.612Z"
+  },
+  "timestamp": "2026-05-28T10:45:15.137629+00:00",
+  "trigger": "update_registry"
+}

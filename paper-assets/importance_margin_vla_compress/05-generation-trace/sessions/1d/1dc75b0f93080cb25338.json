@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_cqa1_w27_urgent_harvest_20260528T060706_result.json",
     "occurrence": 1,
-    "bytes": 863,
-    "sha256": "d8efda2872f38ffdb9f76d7ddac95a1ab37654ca2e3cb1660223ed0f40f81ce3"
+    "bytes": 862,
+    "sha256": "9ddc53778781d427dc8d9d40b1b6ce92c0abc4221b4edc69bafcf95f8e1acd54"
   },
   "statistics": {
     "messages": 1,

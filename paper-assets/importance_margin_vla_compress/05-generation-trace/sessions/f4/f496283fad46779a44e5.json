@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check-cqa1-cliff-results-k085s43-k08s42_20260520T221123_result.json",
     "occurrence": 1,
-    "bytes": 1145,
-    "sha256": "0623f8439d308ca7ff8555a09e6d10a3e8ed2fdbf10efacc1c7a40b02d1a4354"
+    "bytes": 1144,
+    "sha256": "29b7e7d63d25e84b0e96fba58c3d42b62c5a6a711cdccf5d5da876f85bf7a722"
   },
   "statistics": {
     "messages": 1,

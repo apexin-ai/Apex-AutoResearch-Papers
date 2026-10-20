@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_eval_openvla_l2norm_batch_fail_20260521T070451_result.json",
     "occurrence": 1,
-    "bytes": 2018,
-    "sha256": "1caff45b1c4d685db22ec950efab6b963b0af235664820b0eff43de38b6e4167"
+    "bytes": 2017,
+    "sha256": "ccdbef86fba44e0d00e80e0a87f432114a0de46b1ba5d3db79c02a8135ced6c4"
   },
   "statistics": {
     "messages": 1,

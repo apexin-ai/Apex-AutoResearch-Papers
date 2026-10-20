@@ -1,0 +1,88 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{brohan2023rt2,kim2024openvla,black2024pi0}
+\citation{chen2024fastv,tang2024vlaiap,zhang2024lightvla}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{chen2024fastv}
+\citation{tang2024vlaiap}
+\citation{zhang2024lightvla}
+\citation{seewhatmatters2026}
+\citation{black2024pi0}
+\citation{kim2024openvla}
+\citation{liu2023libero}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Token Pruning in Vision-Language Models.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Vision-Language-Action Models.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Models and Connectors}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Benchmark and Evaluation}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces VLA models studied. CV = Coefficient of Variation of token importance (L2-norm). Entropy = mean attention entropy across layers. Connector ``type'' refers to the effective vision-to-LLM pathway.}}{2}{table.1}\protected@file@percent }
+\newlabel{tab:models}{{1}{2}{VLA models studied. CV = Coefficient of Variation of token importance (L2-norm). Entropy = mean attention entropy across layers. Connector ``type'' refers to the effective vision-to-LLM pathway}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Pruning Protocol}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Diagnostic Metrics}{2}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{2}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Two-Axis Framework Overview}{2}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:framework}{{4.1}{2}{Two-Axis Framework Overview}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces X-VLA pruning sensitivity across suites (L2-norm, $k\!=\!0.9$). Task complexity amplifies degradation for token-entangling connectors.}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:framework_xvla}{{2}{3}{X-VLA pruning sensitivity across suites (L2-norm, $k\!=\!0.9$). Task complexity amplifies degradation for token-entangling connectors}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Pixel-Shuffle: Catastrophic Entanglement}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:pixelshuffle}{{4.2}{3}{Pixel-Shuffle: Catastrophic Entanglement}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}MLP Projector: Graded Degradation}{3}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:mlp}{{4.3}{3}{MLP Projector: Graded Degradation}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces $\pi $0.5 random pruning across suites. Object exhibits a sharp cliff at $k\!=\!0.85$--$0.925$ absent from other suites.}}{3}{table.3}\protected@file@percent }
+\newlabel{tab:pi05_random}{{3}{3}{$\pi $0.5 random pruning across suites. Object exhibits a sharp cliff at $k\!=\!0.85$--$0.925$ absent from other suites}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Linear Projection: Suite-Dependent Sensitivity}{3}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:linear}{{4.4}{3}{Linear Projection: Suite-Dependent Sensitivity}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Task Complexity as Modulating Factor}{3}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:task_complexity}{{4.5}{3}{Task Complexity as Modulating Factor}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces X-VLA Object cliff zone, 3-seed deterministic (L2-norm). Non-monotonic recovery at $k\!=\!0.80$.}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:xvla_cliff}{{4}{4}{X-VLA Object cliff zone, 3-seed deterministic (L2-norm). Non-monotonic recovery at $k\!=\!0.80$}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces CV scaling law: L2-norm vs.\ random gap (pp) at $k\!=\!0.5$ and $k\!=\!0.7$ (Object suite). Positive = random better. The gap is monotonic with CV at moderate compression but breaks at $k\!=\!0.3$.}}{4}{table.5}\protected@file@percent }
+\newlabel{tab:cv_scaling}{{5}{4}{CV scaling law: L2-norm vs.\ random gap (pp) at $k\!=\!0.5$ and $k\!=\!0.7$ (Object suite). Positive = random better. The gap is monotonic with CV at moderate compression but breaks at $k\!=\!0.3$}{table.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{X-VLA Cliff Localization.}{4}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}CV Predicts Optimal Pruning Strategy}{4}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:cv_scaling}{{4.6}{4}{CV Predicts Optimal Pruning Strategy}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Spearman correlation between CV and L2-norm vs.\ random strategy gap. The scaling law holds at moderate compression ($k\!=\!0.5$--$0.7$) but weakens at $k\!=\!0.3$.}}{4}{table.6}\protected@file@percent }
+\newlabel{tab:spearman}{{6}{4}{Spearman correlation between CV and L2-norm vs.\ random strategy gap. The scaling law holds at moderate compression ($k\!=\!0.5$--$0.7$) but weakens at $k\!=\!0.3$}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces L2-norm vs.\ random gap (pp) at $k\!=\!0.5$ across suites ($-$ = random better).}}{4}{table.7}\protected@file@percent }
+\newlabel{tab:cv_cross_suite}{{7}{4}{L2-norm vs.\ random gap (pp) at $k\!=\!0.5$ across suites ($-$ = random better)}{table.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Suite L2-norm vs.\ Random.}{4}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Attention-Based Pruning Is Also Connector-Dependent}{4}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:attention}{{4.7}{4}{Attention-Based Pruning Is Also Connector-Dependent}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Attention-based pruning at $k\!=\!0.5$ across models and suites, compared with L2-norm and random baselines. X-VLA's BART encoder produces reliable attention signals; $\pi $0.5's linear connector does not. $^*$Goal result from single seed after bug fix.}}{5}{table.8}\protected@file@percent }
+\newlabel{tab:attention}{{8}{5}{Attention-based pruning at $k\!=\!0.5$ across models and suites, compared with L2-norm and random baselines. X-VLA's BART encoder produces reliable attention signals; $\pi $0.5's linear connector does not. $^*$Goal result from single seed after bug fix}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces VTR M-sweep on SmolVLA Object (3-seed). M-curve is flat: all within $\pm $5\,pp of baseline (59.2\%). MLP-32 is an architecture control using an MLP adapter instead of cross-attention.}}{5}{table.9}\protected@file@percent }
+\newlabel{tab:vtr_msweep}{{9}{5}{VTR M-sweep on SmolVLA Object (3-seed). M-curve is flat: all within $\pm $5\,pp of baseline (59.2\%). MLP-32 is an architecture control using an MLP adapter instead of cross-attention}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}VTR: Targeted Recovery for Pixel-Shuffle}{5}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:vtr}{{4.8}{5}{VTR: Targeted Recovery for Pixel-Shuffle}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{M-Sweep.}{5}{section*.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces VTR $M\!=\!32$ cross-suite recovery from cliff-edge (SmolVLA). $^*$Spatial baseline is official checkpoint (44.6\%); VTR trained on Object suite only.}}{5}{table.10}\protected@file@percent }
+\newlabel{tab:vtr_cross_suite}{{10}{5}{VTR $M\!=\!32$ cross-suite recovery from cliff-edge (SmolVLA). $^*$Spatial baseline is official checkpoint (44.6\%); VTR trained on Object suite only}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces VTR/VTC effectiveness is connector-dependent. Pixel-shuffle benefits enormously; MLP projector produces mode collapse.}}{5}{table.11}\protected@file@percent }
+\newlabel{tab:vtr_universality}{{11}{5}{VTR/VTC effectiveness is connector-dependent. Pixel-shuffle benefits enormously; MLP projector produces mode collapse}{table.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Suite Recovery.}{5}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{VTR Is Connector-Specific.}{5}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{5}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{5}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Edge Cases and Boundary Conditions.}{5}{section*.9}\protected@file@percent }
+\bibcite{brohan2023rt2}{{1}{2023}{{Brohan et~al.}}{{}}}
+\bibcite{kim2024openvla}{{2}{2024}{{Kim et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Diagnostic Decoupling: Connector vs.\ Action Head.}{6}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical Guidelines.}{6}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{6}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{6}{section.6}\protected@file@percent }
+\bibcite{black2024pi0}{{3}{2024}{{Black et~al.}}{{}}}
+\bibcite{chen2024fastv}{{4}{2024}{{Chen et~al.}}{{}}}
+\bibcite{tang2024vlaiap}{{5}{2024}{{Tang et~al.}}{{}}}
+\bibcite{zhang2024lightvla}{{6}{2026}{{Zhang et~al.}}{{}}}
+\bibcite{seewhatmatters2026}{{7}{2026}{{See What Matters}}{{}}}
+\bibcite{liu2023libero}{{8}{2023}{{Liu et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces $\pi $0.5 L2-norm pruning across suites. L2-norm eliminates the Object cliff zone visible in random pruning (Table~\ref {tab:pi05_random}).}}{7}{table.12}\protected@file@percent }
+\newlabel{tab:pi05_l2norm}{{12}{7}{$\pi $0.5 L2-norm pruning across suites. L2-norm eliminates the Object cliff zone visible in random pruning (Table~\ref {tab:pi05_random})}{table.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Full $\pi $0.5 L2-norm Pruning Results}{7}{appendix.A}\protected@file@percent }
+\newlabel{app:pi05_l2norm}{{A}{7}{Full $\pi $0.5 L2-norm Pruning Results}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}OpenVLA Attention-Based Pruning}{7}{appendix.B}\protected@file@percent }
+\newlabel{app:openvla_attn}{{B}{7}{OpenVLA Attention-Based Pruning}{appendix.B}{}}
+\gdef \@abspage@last{7}

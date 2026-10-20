@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_urgent_cqa1-direct-fix-p0-v4_20260526T225654_result.json",
     "occurrence": 1,
-    "bytes": 1567,
-    "sha256": "da1f1a4e7b6dbcd0f28b62fb7f054997b40e548cfa7b07127c3f6a62d0bea55e"
+    "bytes": 1566,
+    "sha256": "2729ca422c37f317e51d45b5fd856c5e94f355dfc0a7903a934f603279961a01"
   },
   "statistics": {
     "messages": 1,

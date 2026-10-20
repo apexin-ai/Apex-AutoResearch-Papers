@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_launch_m96_westd41074_20260520T024652_result.json",
     "occurrence": 1,
-    "bytes": 138,
-    "sha256": "44ec6fd1abe0a7875da3583da85f735e5635e6ec2249900b365b8746f8bbe86f"
+    "bytes": 137,
+    "sha256": "94377cfe34203cfdcaedbde0e192af826bdaab29233379d6515165228f27be87"
   },
   "statistics": {
     "messages": 1,

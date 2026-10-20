@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_all_servers_pid_scan_20260524T204703_result.json",
     "occurrence": 1,
-    "bytes": 3184,
-    "sha256": "4d353b1914a22864eca1dfbb4df858de83c2d1b5d98d0f0627911afbcd07eb1c"
+    "bytes": 3183,
+    "sha256": "d1faff3dfdd189e8574ffac0f39612545219818fe09de8e78fbc1750032c5720"
   },
   "statistics": {
     "messages": 1,

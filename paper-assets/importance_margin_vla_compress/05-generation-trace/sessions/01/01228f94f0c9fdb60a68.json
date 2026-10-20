@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_baseline_v6_default_sim_20260516T122005_result.json",
     "occurrence": 1,
-    "bytes": 752,
-    "sha256": "b4f549c1184509950d498b237d021f15e38e51eec78b61b8f28c487e24510784"
+    "bytes": 751,
+    "sha256": "3a56f4c5998a38e8c9e07d23f71cad611fd1e7e45de24451b5b68754491e38ca"
   },
   "statistics": {
     "messages": 1,

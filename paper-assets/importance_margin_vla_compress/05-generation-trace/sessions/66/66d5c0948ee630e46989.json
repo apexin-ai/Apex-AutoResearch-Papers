@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd_disk_audit_and_openvla_20260517T140429_result.json",
     "occurrence": 1,
-    "bytes": 3621,
-    "sha256": "ada379a4cbca21dc29c37c3c33692c84a603506353ac9508f7f8c855e32aadba"
+    "bytes": 3620,
+    "sha256": "1dce79508aee5997ec8daff32e46b8c532ff0827b45cb2c6d30cb5cd0126e09c"
   },
   "statistics": {
     "messages": 1,

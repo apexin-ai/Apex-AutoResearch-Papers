@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_openvla_prune_random_k05_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:18:44.772Z",
+    "updated_at": "2026-05-20T13:20:13.523Z",
+    "hypothesis": "OpenVLA random pruning at k=0.5 with seed=43 verifies reproducibility of seed=7 result (37.4% SR). If seed43 ≈ 37.4%, confirms graded degradation pattern is robust across seeds.",
+    "parent": "eval_openvla_prune_seed43_sweep"
+  },
+  "timestamp": "2026-05-20T13:20:13.794172+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_w38_cuda1_kill_v2_deploy_attn_k09_s45_20260528T005110_result.json",
     "occurrence": 1,
-    "bytes": 396,
-    "sha256": "6492decf6fe9774c61ab0e19a46c6a19de802de7c92eb72efcbe97744e13f9a4"
+    "bytes": 395,
+    "sha256": "9b2d6afa79c353de962ba91d7ab521b8b7557389f99cce9f40d230217fb60346"
   },
   "statistics": {
     "messages": 1,

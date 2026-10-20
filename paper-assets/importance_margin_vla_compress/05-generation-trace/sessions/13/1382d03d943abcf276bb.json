@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_v7_2-final-gate-analysis_20260515T230441_result.json",
     "occurrence": 1,
-    "bytes": 1235,
-    "sha256": "8bf6a1e8a4440c0e6a2c0f7d9875225cd4c3911b2521e7032a2cf944199ff4a8"
+    "bytes": 1234,
+    "sha256": "8bfec3343de46950fbbe59f4959a427bda1297a38d972682a7df64ba7acbfc69"
   },
   "statistics": {
     "messages": 1,

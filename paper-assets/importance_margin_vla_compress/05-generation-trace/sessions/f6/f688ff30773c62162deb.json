@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1_cuda2_harvest_20260522_20260522T215037_result.json",
     "occurrence": 1,
-    "bytes": 966,
-    "sha256": "d8b75b2caf7dfa477c3b4c1ff9a16ff5af56a34cc14f16756a9559f6f472d196"
+    "bytes": 965,
+    "sha256": "584b219375ceb3560d393b71579bee5a0618e7988695eeba9bd8abccee1e2cc7"
   },
   "statistics": {
     "messages": 1,

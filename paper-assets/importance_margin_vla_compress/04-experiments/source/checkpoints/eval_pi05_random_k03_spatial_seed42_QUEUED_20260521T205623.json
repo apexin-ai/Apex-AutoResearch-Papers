@@ -1,0 +1,23 @@
+{
+  "exp_id": "eval_pi05_random_k03_spatial_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T20:55:20.520Z",
+    "updated_at": "2026-05-21T20:56:23.132Z",
+    "hypothesis": "π0.5 random k=0.3 on LIBERO-Spatial seed42. Object suite 上 D140 发现 k=0.3 method reversal (L2norm=51.0% > random=36.4%)。验证该 reversal 是否跨 suite 复现。与运行中的 L2norm k=0.3 spatial 实验配对。",
+    "spec": {
+      "data_path": "libero_spatial (10 tasks x 50 eps)",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_spatial"
+    }
+  },
+  "timestamp": "2026-05-21T20:56:23.625421+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill_westd38929_residual_20260527T045404_result.json",
     "occurrence": 1,
-    "bytes": 309,
-    "sha256": "7b634c10db71c1bd2936b69d79450df300f53c2afa0c97d3c4b6e6403a92cebb"
+    "bytes": 308,
+    "sha256": "331bd6e79d7b4b52b2fc282ce13a89bb634877e3543d503e74d8fec98505aa5e"
   },
   "statistics": {
     "messages": 1,

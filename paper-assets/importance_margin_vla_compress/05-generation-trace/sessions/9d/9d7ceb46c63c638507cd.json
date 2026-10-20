@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_combined-status-p1p3p4_20260520T075057_result.json",
     "occurrence": 1,
-    "bytes": 2323,
-    "sha256": "866c1a473655da09cd496fe70039af03a971a4400bbc60e23cc2a671207eafdb"
+    "bytes": 2322,
+    "sha256": "ae41398af912dde75ea2fcda731ffbb569e3775746128c3df8120a21b273ec99"
   },
   "statistics": {
     "messages": 1,

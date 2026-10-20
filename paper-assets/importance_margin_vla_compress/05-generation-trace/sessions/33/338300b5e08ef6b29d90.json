@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_w27_experiments_20260528T015249_result.json",
     "occurrence": 1,
-    "bytes": 1063,
-    "sha256": "634798255a45828ddbfc28ee226b36ec8a28aec2489fb636107bff8e4c337d3f"
+    "bytes": 1062,
+    "sha256": "d93397796895170a4ecd24a9479a684679da03240d15a26329c8cde165b39e76"
   },
   "statistics": {
     "messages": 1,

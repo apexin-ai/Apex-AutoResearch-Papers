@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_cqa1_gpu_usage_20260524T234614_result.json",
     "occurrence": 1,
-    "bytes": 1233,
-    "sha256": "009018e734bc0ed12da55e487395b333a1810b6bf00b45b7488b30255fff855a"
+    "bytes": 1232,
+    "sha256": "5dd7d6abde02d6c4b8ad1dac32b35589f8d4a542946f0d6effe3c218b60f3375"
   },
   "statistics": {
     "messages": 1,

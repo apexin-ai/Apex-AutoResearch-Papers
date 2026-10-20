@@ -1,0 +1,69 @@
+{
+  "exp_id": "eval_openvla_l2norm_k075_long_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T01:39:50.975Z",
+    "updated_at": "2026-05-27T13:35:05.470Z",
+    "hypothesis": "OpenVLA L2norm k=0.75 Long seed42 v2 — v1 因 8h 超时失败(EXIT_CODE=124, 8/10 tasks 完成)。增加 timeout 到 12h 重跑。Long suite L2norm cliff curve 关键中间点：k=0.85=38.8%, k=0.7=31.2%",
+    "parent": "eval_openvla_l2norm_k075_long_seed42",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && MUJOCO_GL=egl /root/miniconda3/bin/python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\"",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "968300",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_l2norm_k075_long_seed42_v2.log",
+      "submitted_at": "2026-05-27T01:41:35.106Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 42810.4,
+      "gpu_hours": 11.89
+    },
+    "server": "westd-38929",
+    "gpu": "cuda:2",
+    "pid": "968300",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_l2norm_k075_long_seed42_v2.log",
+    "reproduce": {
+      "command": "bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && MUJOCO_GL=egl /root/miniconda3/bin/python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\"",
+      "finished_at": "2026-05-27T13:13:03.052Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T13:13:19.139755+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "avg_success_rate": 0.34,
+      "total_episodes": 500,
+      "total_success": 170,
+      "time_min": 690.5,
+      "per_task": {
+        "task_01_alphabet_soup_tomato_sauce_basket": 0.46,
+        "task_02_cream_cheese_butter_basket": 0.48,
+        "task_03_stove_moka_pot": 0.48,
+        "task_04_black_bowl_drawer": 0.14,
+        "task_05_white_mug_left_yellow_mug_right": 0.14,
+        "task_06_book_caddy": 0.68,
+        "task_07_white_mug_plate_chocolate_pudding": 0.3,
+        "task_08_alphabet_soup_cream_cheese_basket": 0.46,
+        "task_09_both_moka_pots_stove": 0.12,
+        "task_10_yellow_white_mug_microwave": 0.14
+      }
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A (eval only)",
+    "completed_at": "2026-05-27T13:35:05.470Z"
+  },
+  "timestamp": "2026-05-27T13:35:07.526913+00:00",
+  "trigger": "update_registry"
+}

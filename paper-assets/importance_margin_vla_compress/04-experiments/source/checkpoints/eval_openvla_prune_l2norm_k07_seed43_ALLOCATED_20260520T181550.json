@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_openvla_prune_l2norm_k07_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:15:31.381Z",
+    "updated_at": "2026-05-20T18:15:50.021Z",
+    "hypothesis": "OpenVLA L2 norm pruning at k=0.7 with seed=43. Seed42 L2 norm k=0.7 = 49.8%. If seed43 ≈ 50%, confirms L2 norm pruning curve is reproducible across seeds for MLP projector."
+  },
+  "timestamp": "2026-05-20T18:15:50.343057+00:00",
+  "trigger": "update_registry"
+}

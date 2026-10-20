@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan_011_acis_overhead",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T16:27:51.008Z",
+    "updated_at": "2026-05-16T16:27:51.008Z"
+  },
+  "timestamp": "2026-05-16T16:27:51.094874+00:00",
+  "trigger": "update_registry"
+}

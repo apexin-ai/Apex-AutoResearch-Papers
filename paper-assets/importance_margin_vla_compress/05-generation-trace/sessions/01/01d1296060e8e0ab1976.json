@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill_cqa1_dup_deploy_goal_strict_20260527T045422_result.json",
     "occurrence": 1,
-    "bytes": 378,
-    "sha256": "bf9d1c9daa45ba7d52926e79b4cef1890353c567cf301d033571e41402d540bb"
+    "bytes": 377,
+    "sha256": "80b05af0e41948226c1d2a5ab3f6456c6fba0b54fbb86343ac9378f3b947c124"
   },
   "statistics": {
     "messages": 1,

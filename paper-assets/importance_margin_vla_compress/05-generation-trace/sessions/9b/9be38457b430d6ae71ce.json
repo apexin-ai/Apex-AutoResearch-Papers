@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_v8c_annealing_restart_20260516T074619_result.json",
     "occurrence": 1,
-    "bytes": 82,
-    "sha256": "88505572a2841c8bda2dc9914628e447038423244795cd63202ef8ba8441d1a6"
+    "bytes": 81,
+    "sha256": "2b3bed53e47339d32e4b54db6aeb43fcd80df7de93e4195119b387335fd0f8c1"
   },
   "statistics": {
     "messages": 1,

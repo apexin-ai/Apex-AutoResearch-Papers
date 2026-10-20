@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_smolvla_zeromask_l2norm_k095_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:43:39.042Z",
+    "updated_at": "2026-05-22T11:44:27.393Z",
+    "hypothesis": "SmolVLA zero_mask l2norm k=0.95: 将 5% 最低 L2 norm tokens 置零但不删除。与 random zero_mask 配对。如果两者都 0% → 确认 64-token 表示中每个 token 不可替代。"
+  },
+  "timestamp": "2026-05-22T11:44:27.979245+00:00",
+  "trigger": "update_registry"
+}

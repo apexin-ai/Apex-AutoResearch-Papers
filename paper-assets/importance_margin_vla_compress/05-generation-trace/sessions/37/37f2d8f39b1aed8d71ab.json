@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_acis_k05_supplement_200eps_20260518T132147_result.json",
     "occurrence": 1,
-    "bytes": 741,
-    "sha256": "afdfec8cb7be08e367e20b7702e8e9dd965ec0e89d751582ae342ae011291f5e"
+    "bytes": 740,
+    "sha256": "0457063e44b901c6266859943da2201d385a1d8e43f944a7a723d8736af39fa2"
   },
   "statistics": {
     "messages": 1,

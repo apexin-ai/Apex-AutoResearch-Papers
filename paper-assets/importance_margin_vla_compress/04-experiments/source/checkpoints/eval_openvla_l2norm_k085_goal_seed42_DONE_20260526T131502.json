@@ -1,0 +1,45 @@
+{
+  "exp_id": "eval_openvla_l2norm_k085_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T09:35:56.430Z",
+    "updated_at": "2026-05-26T13:15:01.242Z",
+    "hypothesis": "OpenVLA L2norm k=0.85 Goal seed42 — Goal L2norm cliff curve 中间点。L2norm k=0.9 Goal=75.2%。k=0.85 填补 cliff curve",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.85 --suite libero_goal --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/openvla-7b-finetuned-libero-goal --unnorm_key libero_goal --gpu 0",
+      "server": "westd-27271",
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "model_name": "openvla-7b-finetuned-libero-goal",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/openvla-7b-finetuned-libero-goal",
+      "eval_data": "libero_goal",
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_l2norm_k085_goal_seed42.log"
+    },
+    "parent": "eval_openvla_l2norm_k09_goal_seed42",
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 75.4,
+      "per_task": {
+        "T1_open_drawer": 66,
+        "T2_bowl_stove": 96,
+        "T3_wine_cabinet": 74,
+        "T4_drawer_bowl": 30,
+        "T5_bowl_cabinet": 96,
+        "T6_plate_stove": 78,
+        "T7_cream_bowl": 74,
+        "T8_stove_on": 94,
+        "T9_bowl_plate": 84,
+        "T10_wine_rack": 62
+      }
+    },
+    "completed_at": "2026-05-26T13:15:01.242Z"
+  },
+  "timestamp": "2026-05-26T13:15:02.623766+00:00",
+  "trigger": "update_registry"
+}

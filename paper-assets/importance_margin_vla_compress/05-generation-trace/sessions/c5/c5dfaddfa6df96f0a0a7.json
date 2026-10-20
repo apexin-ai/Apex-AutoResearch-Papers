@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/chats/worker_ops_fix_twostage_network_20260516T042516.jsonl",
     "occurrence": 1,
-    "bytes": 74108,
-    "sha256": "0c320936041748297e40125d9762d9191fe5d6d8778908a74b8eb91d3609bd63"
+    "bytes": 74116,
+    "sha256": "fcd7053c4054dc573527b9edf3fe8755eeda78bbe61286daf1df8ad9be08c2d3"
   },
   "statistics": {
     "messages": 114,
@@ -379,7 +379,7 @@
           "content": [
             {
               "type": "text",
-              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"env: 'WANDB_API_KEY': No such file or directory\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"env: 'WANDB_API_KEY': [REDACTED] such file or directory\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
             }
           ],
           "metadata": {

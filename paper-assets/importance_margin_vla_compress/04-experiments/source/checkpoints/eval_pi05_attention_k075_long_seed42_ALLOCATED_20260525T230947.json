@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_attention_k075_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T23:09:13.496Z",
+    "updated_at": "2026-05-25T23:09:45.724Z",
+    "hypothesis": "π0.5 Attention k=0.75 Long seed42 — cliff curve 补充点。Attn k=0.9=63.8%。k=0.75 测试 Attention scoring 在中等压缩率下的性能衰退速度，填补 cliff curve",
+    "parent": "eval_pi05_attention_k09_long_seed42_postfix"
+  },
+  "timestamp": "2026-05-25T23:09:47.213638+00:00",
+  "trigger": "update_registry"
+}

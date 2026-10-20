@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_probe_westd38929-full-status_20260521T233236_result.json",
     "occurrence": 1,
-    "bytes": 1341,
-    "sha256": "3f88ba261ca609a6a4b4dc10399b30c26450c038bcd5ac2a39e98d39434ee533"
+    "bytes": 1340,
+    "sha256": "3af0068bc07624cfd9caf4efbb343178d9aa051fb7e954f11a55df4a44354237"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_smart_compress_eval_bypass_check_20260518T012442_result.json",
     "occurrence": 1,
-    "bytes": 2186,
-    "sha256": "a6bd4755789b3cd9cf9bb9992c14d1e9a2af10d570c7cc4811006c9e66cfce21"
+    "bytes": 2185,
+    "sha256": "8feff42f04096a3d76f4aca680f79238c0a3d8a0e07c2ea7f64187c4e6ef631b"
   },
   "statistics": {
     "messages": 1,

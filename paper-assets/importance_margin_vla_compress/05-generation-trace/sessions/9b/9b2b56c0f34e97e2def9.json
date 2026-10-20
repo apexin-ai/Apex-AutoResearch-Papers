@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cleanup_westd41074_gpu3_20260523T041440_result.json",
     "occurrence": 1,
-    "bytes": 321,
-    "sha256": "40cd27b6497176d4eb71231944f7a83f46a26c77ebb7174336b17aeb0f040295"
+    "bytes": 320,
+    "sha256": "cfc577a61ac43871473010cda8dcdb41088cc5edc1d9a739d9a2f6b70807b2ae"
   },
   "statistics": {
     "messages": 1,

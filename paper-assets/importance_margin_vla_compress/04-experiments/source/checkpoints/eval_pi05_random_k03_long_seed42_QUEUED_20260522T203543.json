@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_random_k03_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:35:23.898Z",
+    "updated_at": "2026-05-22T20:35:42.853Z",
+    "hypothesis": "π0.5 Random k=0.3 on LIBERO-Long: extreme 70% random token removal on 520-step horizon. Object Random k=0.3=8.2%. Expecting severe degradation — floor data point for Long random curve."
+  },
+  "timestamp": "2026-05-22T20:35:43.464775+00:00",
+  "trigger": "update_registry"
+}

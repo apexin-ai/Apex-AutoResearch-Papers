@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_fix-westd41074-gpu3-zombie-redeploy-pi05-random-k07_20260521T110541_result.json",
     "occurrence": 1,
-    "bytes": 97,
-    "sha256": "4ce9aa08609f6d9424d74e3e0530a5b16fb2a364071f7658af88e41cbec79f1e"
+    "bytes": 96,
+    "sha256": "f939dcf9011b6bb39d128dd45d5879238bf2183530ad8e1594a31aff0c63e636"
   },
   "statistics": {
     "messages": 1,

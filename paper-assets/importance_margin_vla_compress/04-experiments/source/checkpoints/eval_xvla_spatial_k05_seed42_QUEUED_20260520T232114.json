@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_xvla_spatial_k05_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T23:19:33.364Z",
+    "updated_at": "2026-05-20T23:21:14.330Z",
+    "hypothesis": "X-VLA k=0.5 pruning on LIBERO-Spatial. Object suite k=0.5=43.7%. If Spatial shows similar degradation pattern, confirms cross-suite consistency. If different, reveals suite-dependent pruning sensitivity"
+  },
+  "timestamp": "2026-05-20T23:21:14.876392+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_openvla_eval_westd38929_batch_fail_20260521T070443_result.json",
     "occurrence": 1,
-    "bytes": 1023,
-    "sha256": "d1c423908b2e805a69f04b0dca548238a84d5f5aaf7c9a32cda30b8263c94183"
+    "bytes": 1022,
+    "sha256": "01b381c348cefb6bca96b01059755ae083a0b10ae800ee46b936f2e174841200"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_verify_openvla_model_path_default_20260525T003454_result.json",
     "occurrence": 1,
-    "bytes": 1251,
-    "sha256": "2fc1241a1be6bb9128db30ed5475f38d860bdbc27c37fb955be2a7a4c66bf4d9"
+    "bytes": 1250,
+    "sha256": "5c9a173315325fdf491ae2f9695c467c0b7500929e07088c327ff52dc59f6da0"
   },
   "statistics": {
     "messages": 1,

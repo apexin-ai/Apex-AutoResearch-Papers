@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_investigate_prune-inconsistency-critical_20260516T025354_result.json",
     "occurrence": 1,
-    "bytes": 4739,
-    "sha256": "05d9704a444098843bd3b8ccd846431f94f46b884a9e8926027df6801fc5497f"
+    "bytes": 4738,
+    "sha256": "23cb4e07184147a4f2dd940f7d13332bd1189e9fc2c7d4cbc9879132eeda8df4"
   },
   "statistics": {
     "messages": 1,

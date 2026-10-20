@@ -1,0 +1,61 @@
+{
+  "exp_id": "eval_e5_xvla_attn_mean_spatial_k05",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T11:03:49.621Z",
+    "updated_at": "2026-05-23T11:59:17.266Z",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_xvla_attention_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_spatial --keep_ratio 0.5 --mode attention_mean --num_episodes 50 --seed 42 --gpu 0\"",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "793357",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_e5_xvla_attn_mean_spatial_k05.log",
+      "submitted_at": "2026-05-23T11:03:48.562Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_spatial",
+      "data_count": 500,
+      "model_name": "X-VLA-Libero",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/X-VLA-Libero",
+      "eval_data": "libero_spatial",
+      "checkpoint_path": "N/A - eval experiment",
+      "wall_clock_seconds": 3328.7,
+      "gpu_hours": 0.92
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 91.6,
+      "wilson_ci_95": [
+        88.8,
+        93.7
+      ],
+      "episodes": 500,
+      "tasks": 10,
+      "per_task_sr": {
+        "T0_bowl_between_plate_ramekin": 100,
+        "T1_bowl_next_ramekin": 100,
+        "T2_bowl_table_center": 100,
+        "T3_bowl_on_cookie_box": 100,
+        "T4_bowl_top_drawer_cabinet": 90,
+        "T5_bowl_on_ramekin": 40,
+        "T6_bowl_next_cookie_box": 100,
+        "T7_bowl_on_stove": 92,
+        "T8_bowl_next_plate": 96,
+        "T9_bowl_on_cabinet": 98
+      },
+      "elapsed_min": 45.9
+    },
+    "hypothesis": "Attention-mean pruning at k=0.5 on X-VLA Spatial preserves performance because averaging attention across heads identifies globally important tokens more robustly than single-head attention.",
+    "completed_at": "2026-05-23T11:59:17.266Z"
+  },
+  "timestamp": "2026-05-23T11:59:18.146403+00:00",
+  "trigger": "update_registry"
+}

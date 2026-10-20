@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_register_untracked_exps_0527_20260527T004625_result.json",
     "occurrence": 1,
-    "bytes": 454,
-    "sha256": "d9a0c1705552f161c499e1061a9173f1746e2f137085638d4285e75324797716"
+    "bytes": 453,
+    "sha256": "265e1fa1b9b8647143a69309e32d6e7382ceb732986934a7a6b85cdf23b2b335"
   },
   "statistics": {
     "messages": 1,

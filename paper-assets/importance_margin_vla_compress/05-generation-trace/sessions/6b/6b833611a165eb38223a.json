@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_harvest_three_done_exps_0527_20260527T012735_result.json",
     "occurrence": 1,
-    "bytes": 2647,
-    "sha256": "59c0c5a2c2fe209e415a809d979416efe7933828ae82bcd168b9ef619812ed6b"
+    "bytes": 2646,
+    "sha256": "2727e6843e19b7768400d504d91e4fd58889d7e9a520f8fb5318260437b38a3e"
   },
   "statistics": {
     "messages": 1,

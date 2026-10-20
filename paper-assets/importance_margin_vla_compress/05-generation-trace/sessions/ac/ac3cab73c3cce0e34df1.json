@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_p0_stdout-rescue-3servers_20260526T223630_result.json",
     "occurrence": 1,
-    "bytes": 1508,
-    "sha256": "12d0ef6f043a368e7bf1d8c459a1cac10d325e3960eb888a2195f42965bd9d7d"
+    "bytes": 1507,
+    "sha256": "c0f22c75e02e2fdf737e3725fe393d33e8bceccc6f2ba99047a90789b76a9878"
   },
   "statistics": {
     "messages": 1,

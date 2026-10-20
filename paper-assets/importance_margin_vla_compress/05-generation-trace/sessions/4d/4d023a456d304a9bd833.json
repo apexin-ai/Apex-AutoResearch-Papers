@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_read-trajectory-data_20260516T014325_result.json",
     "occurrence": 1,
-    "bytes": 1618,
-    "sha256": "08ef33474e61bba4d17f7ae4b18514fd876d1adf31d992c59b02c53a06d86cad"
+    "bytes": 1617,
+    "sha256": "ddcd52eec93b285daddbe9dc0f5f87ade84e8b7dc1a89b13b690f042cf629b2f"
   },
   "statistics": {
     "messages": 1,

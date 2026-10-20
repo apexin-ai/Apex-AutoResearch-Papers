@@ -1,0 +1,32 @@
+{
+  "exp_id": "plan_009_token_importance",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T16:57:07.812Z",
+    "updated_at": "2026-05-16T16:57:38.243Z",
+    "conclusion": "success",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python eval_token_importance.py --checkpoint checkpoints/imm_anchor_v8b_twostage/final/checkpoint.pt --num_samples 100",
+      "server": "westd-27271",
+      "data_path": "lerobot/aloha_sim_insertion_scripted_image",
+      "data_count": 100,
+      "model_name": "imm_anchor_v8b_twostage",
+      "seed": 42,
+      "hypothesis": "ACIS importance score 与 action prediction gradient 的 Spearman correlation",
+      "plan_id": "plan_009",
+      "gpu_ids": [
+        "cuda:1"
+      ],
+      "checkpoint_source": "checkpoints/imm_anchor_v8b_twostage/final/checkpoint.pt",
+      "checkpoint_path": "checkpoints/imm_anchor_v8b_twostage/final/checkpoint.pt",
+      "log_path": "/tmp/token_importance.log"
+    },
+    "completed_at": "2026-05-16T16:57:38.243Z"
+  },
+  "timestamp": "2026-05-16T16:57:38.294475+00:00",
+  "trigger": "update_registry"
+}

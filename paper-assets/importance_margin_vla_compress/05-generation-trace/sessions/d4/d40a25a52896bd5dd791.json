@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill_and_probe_cqa1_20260529T033729_result.json",
     "occurrence": 1,
-    "bytes": 674,
-    "sha256": "0d0aa1c9409e93f51b81d59c4951dc78da5a162d88094ae942573bff594cd92e"
+    "bytes": 673,
+    "sha256": "dc0d570849acb8cdcac49d454997347af99d4de7b71f212620b113629348741f"
   },
   "statistics": {
     "messages": 1,

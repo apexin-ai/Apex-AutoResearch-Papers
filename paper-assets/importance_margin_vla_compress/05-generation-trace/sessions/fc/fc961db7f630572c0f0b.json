@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_method_reviewer_5items_20260528T180655_result.json",
     "occurrence": 1,
-    "bytes": 1992,
-    "sha256": "7917e9da99babe542d9a87106521df71b4cbbf17757fa0647d872e57326e261a"
+    "bytes": 1991,
+    "sha256": "ed23f294c144b9f09c42c4d60b889dd408b83bebcd8741dda9ebad8d644c3ae9"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_registry_cleanup_phantom_running_20260522T200606_result.json",
     "occurrence": 1,
-    "bytes": 1842,
-    "sha256": "05f0d1e3ed1699f789d03c0b706e71605c750cff24fe3fef4ed947635496a8e3"
+    "bytes": 1841,
+    "sha256": "6ca000f72b6a64023b327164fcdf7c8afcc0f45c3b9a8acc6d4d3687b02c171d"
   },
   "statistics": {
     "messages": 1,

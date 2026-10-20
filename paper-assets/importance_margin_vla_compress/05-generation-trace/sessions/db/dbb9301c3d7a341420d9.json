@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diag_k07_long_failures_20260525T170601_result.json",
     "occurrence": 1,
-    "bytes": 1477,
-    "sha256": "76f6e0136530ca71898b134e7203e173af6a9b96dd943a2de232a61dcdb5ec9c"
+    "bytes": 1476,
+    "sha256": "00faa8d0d4c3e522dd12da5a25669cf7583712f74cc19469b4223ac3d83e2125"
   },
   "statistics": {
     "messages": 1,

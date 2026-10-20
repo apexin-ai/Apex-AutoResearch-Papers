@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd-41074-gpu01-tmux-fix_20260525T201623_result.json",
     "occurrence": 1,
-    "bytes": 491,
-    "sha256": "6799b6cacd2c928df2958d60b8effd2befd89130dd1998167bc4180d4817b0a0"
+    "bytes": 490,
+    "sha256": "15d7f4e4a7288c8d8a083e36154cd9b0dcc80d5176757c6cf26b229ea92ba34d"
   },
   "statistics": {
     "messages": 1,

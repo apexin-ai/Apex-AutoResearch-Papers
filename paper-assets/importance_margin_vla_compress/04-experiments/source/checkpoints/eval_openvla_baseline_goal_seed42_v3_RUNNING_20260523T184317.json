@@ -1,0 +1,43 @@
+{
+  "exp_id": "eval_openvla_baseline_goal_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T14:15:39.130Z",
+    "updated_at": "2026-05-23T18:43:16.668Z",
+    "spec": {
+      "command": "python -u eval_openvla_l2norm_libero.py --mode baseline --suite libero_goal --model_path /root/autodl-tmp/openvla-7b-finetuned-libero-goal --unnorm_key libero_goal --num_episodes 50 --seed 42",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "263432",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_baseline_goal_seed42_v3.log",
+      "submitted_at": "2026-05-23T14:15:37.902Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "model_name": "openvla-7b-finetuned-libero-goal",
+      "seed": 42,
+      "checkpoint_source": "openvla-7b-finetuned-libero-goal",
+      "eval_data": "libero_goal"
+    },
+    "hypothesis": "OpenVLA baseline Goal (v3, correct model+unnorm_key): E2 Must-Fix R6-W5。使用 openvla-7b-finetuned-libero-goal + unnorm_key=libero_goal。建立 Goal suite 参考线。",
+    "metrics": {
+      "success_rate": 74.8,
+      "total_episodes": 500,
+      "total_successes": 374,
+      "elapsed_min": 242.4,
+      "source": "SSH log harvest by diagnostic worker"
+    },
+    "checkpoint_path": "N/A (eval only)",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T18:43:17.492235+00:00",
+  "trigger": "update_registry"
+}

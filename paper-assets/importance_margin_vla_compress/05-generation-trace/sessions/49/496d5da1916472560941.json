@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill_all_duplicates_v1_20260522T092719_result.json",
     "occurrence": 1,
-    "bytes": 431,
-    "sha256": "0ef8bb34f45d6c10a9c0906570b8a4d4e77e3873484a36ebd54be26d277981d3"
+    "bytes": 430,
+    "sha256": "baa0e41ce38cddd3d5046f7c9de3bb04953eb351d3a31c01062eea81db5ec1e5"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cleanup_41074_gpu3_20260519T214915_result.json",
     "occurrence": 1,
-    "bytes": 1642,
-    "sha256": "e17e40069292b2813a37a0701772b220fc55c9fd245db210b06338b62364c77e"
+    "bytes": 1641,
+    "sha256": "7499a4c6aaff0f0ef1be7559c3268ba62bfd823ad381889a3171691922949473"
   },
   "statistics": {
     "messages": 1,

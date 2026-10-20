@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_verify_must_have_papers_20260519T013320_result.json",
     "occurrence": 1,
-    "bytes": 4671,
-    "sha256": "be7e75c2c6633e5f53a84264eb983c826256fdf20b86870fc945720b810579fa"
+    "bytes": 4670,
+    "sha256": "9cb0ff0dc7fe00512e07fa9626920e42a568f3c437c221e57dcf9b31828c8c2f"
   },
   "statistics": {
     "messages": 1,

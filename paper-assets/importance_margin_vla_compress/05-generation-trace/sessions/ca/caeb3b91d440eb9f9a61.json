@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_review_xvla_l2norm_code_20260522T184609_result.json",
     "occurrence": 1,
-    "bytes": 3475,
-    "sha256": "dac92bddc74bbc8deceefedee2d5d5a36b799f18bacb867c8cdea37db1f229bc"
+    "bytes": 3474,
+    "sha256": "4a3333cba0b5c65e1ca189e2df1c9a4861f4320edfff218fd5ff34691c2bf580"
   },
   "statistics": {
     "messages": 1,

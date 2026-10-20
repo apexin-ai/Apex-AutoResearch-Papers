@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix-westd38929-gpu3-redeploy-v3_20260523T221708_result.json",
     "occurrence": 1,
-    "bytes": 65,
-    "sha256": "aff9521c9a30e353af494710c5bf61feababf2b0faca942d0861f6b25b5f1543"
+    "bytes": 64,
+    "sha256": "0e02c9632f51d8ceeae5055b0c31150beef386da4ed49d274b47c24a31afc763"
   },
   "statistics": {
     "messages": 1,

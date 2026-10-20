@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_attn_k09_long_seed43_strict_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T16:17:39.274Z",
+    "updated_at": "2026-05-27T16:18:00.922Z",
+    "hypothesis": "π0.5 Attn k=0.9 Long strict seed43 — Attn k=0.9 seed42 尚无 strict 数据（cliff curve 缺失点）。Attn k=0.95=78.4%, k=0.85=50.0%，k=0.9 是断崖（78.4→50.0）的中间位置，seed43 同步生成 error bar",
+    "parent": "eval_pi05_attn_k09_long_seed42_strict"
+  },
+  "timestamp": "2026-05-27T16:18:03.047021+00:00",
+  "trigger": "update_registry"
+}

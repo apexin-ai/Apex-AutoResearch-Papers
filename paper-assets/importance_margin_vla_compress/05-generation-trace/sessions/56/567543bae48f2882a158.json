@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_investigate_pi05_baseline_goal_strict_logs_20260527T063936_result.json",
     "occurrence": 1,
-    "bytes": 3578,
-    "sha256": "594f9fd85d9cb061f0e810f294e85d6c8f43261dacbf762eb3311b45fc38d6d2"
+    "bytes": 3577,
+    "sha256": "72871a3981fc84c103a09fd52a07a4a585831ba914fb91405fb160a910bc4f01"
   },
   "statistics": {
     "messages": 1,

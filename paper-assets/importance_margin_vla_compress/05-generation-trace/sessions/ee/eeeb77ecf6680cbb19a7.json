@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_verify_all-servers-gpu-status-and-redeploy_20260525T213949_result.json",
     "occurrence": 1,
-    "bytes": 1894,
-    "sha256": "38d7be253267eec694410aeddb7bb65313ba4100e8b14a2dfe6d65aaadcf6f43"
+    "bytes": 1893,
+    "sha256": "c1adf3a3da8a6212e5f036c5e1422d6542a75c0c0e2acc2a07520fedfa3075ef"
   },
   "statistics": {
     "messages": 1,

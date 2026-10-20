@@ -1,0 +1,26 @@
+{
+  "exp_id": "eval_pi05_l2norm_k05_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:35:25.972Z",
+    "updated_at": "2026-05-22T20:35:59.358Z",
+    "hypothesis": "π0.5 L2norm k=0.5 on LIBERO-Long: 50% L2norm token removal on 520-step horizon. L2norm k=0.7 Long=60.0%, k=0.85=78.0%. Testing how far L2norm can go before severe degradation on Long tasks.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0",
+      "server": "westd-38929",
+      "data_path": "/root/autodl-tmp/pi05_libero_finetuned",
+      "data_count": 500,
+      "model_name": "pi05",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_10",
+      "log_path": "logs/eval_pi05_l2norm_k05_long_seed42.log"
+    }
+  },
+  "timestamp": "2026-05-22T20:35:59.961234+00:00",
+  "trigger": "update_registry"
+}

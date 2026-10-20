@@ -1,0 +1,46 @@
+{
+  "exp_id": "eval_openvla_attn_k085_goal_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T08:52:15.807Z",
+    "updated_at": "2026-05-26T13:15:26.196Z",
+    "hypothesis": "OpenVLA Attention k=0.85 Goal v3 — 论文关键缺口。Goal Attn 仅有 k=0.9=73.2%，k=0.85 是 cliff curve 唯一中间点。之前 v1/v2 失败可能因模型路径问题，本次显式传 --model_path",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_goal --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-goal --unnorm_key libero_goal",
+      "server": "westd-38929",
+      "gpu": "GPU2",
+      "pid": 412621,
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "model_name": "openvla-7b-finetuned-libero-goal",
+      "seed": 42,
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_goal_seed42_v3.log",
+      "checkpoint_source": "/root/autodl-tmp/models/openvla-7b-finetuned-libero-goal",
+      "eval_data": "libero_goal",
+      "checkpoint_path": "N/A (eval only)"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 74.6,
+      "per_task": {
+        "T1_open_drawer": 52,
+        "T2_bowl_stove": 88,
+        "T3_wine_cabinet": 76,
+        "T4_drawer_bowl": 44,
+        "T5_bowl_cabinet": 98,
+        "T6_plate_stove": 84,
+        "T7_cream_bowl": 74,
+        "T8_stove_on": 94,
+        "T9_bowl_plate": 78,
+        "T10_wine_rack": 58
+      }
+    },
+    "completed_at": "2026-05-26T13:15:26.196Z"
+  },
+  "timestamp": "2026-05-26T13:15:27.471746+00:00",
+  "trigger": "update_registry"
+}

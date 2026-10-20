@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_westd_rsync_status_20260516T191133_result.json",
     "occurrence": 1,
-    "bytes": 1469,
-    "sha256": "88a5af57a75fd501dc0fc11244df8d7e5da0fd7930ed24129cd0dea32b03bb57"
+    "bytes": 1468,
+    "sha256": "d381cb5d3a16e0c0aa346064fdfc23bc8ea5e571156eb8429c5079659d29002f"
   },
   "statistics": {
     "messages": 1,

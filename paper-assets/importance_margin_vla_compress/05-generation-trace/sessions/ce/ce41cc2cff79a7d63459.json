@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_w38-gpu01_20260527T194331_result.json",
     "occurrence": 1,
-    "bytes": 537,
-    "sha256": "edb6ecdfbe03c023f9ded9bd1b1d7dec6c525833fff5706d103de8c89aa06dbf"
+    "bytes": 536,
+    "sha256": "5dfef81493659fafad4affd89cf558ae102ee9f7da65f6d00833f808938d9a1e"
   },
   "statistics": {
     "messages": 1,

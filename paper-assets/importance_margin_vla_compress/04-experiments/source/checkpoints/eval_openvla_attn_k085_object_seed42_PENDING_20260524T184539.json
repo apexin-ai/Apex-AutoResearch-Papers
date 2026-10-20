@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_openvla_attn_k085_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T18:45:07.308Z",
+    "updated_at": "2026-05-24T18:45:37.326Z",
+    "hypothesis": "OpenVLA attention pruning k=0.85 on Object suite — 2×2 crossover table 数据点。验证 attention-based importance scoring 在 OpenVLA 上保留 85% vision tokens 时的表现。k=0.85 接近 cliff zone，预期能揭示 attention scoring 在更激进压缩下的鲁棒性。"
+  },
+  "timestamp": "2026-05-24T18:45:39.092127+00:00",
+  "trigger": "update_registry"
+}

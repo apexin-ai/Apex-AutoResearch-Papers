@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd-27271-goal_20260525T180935_result.json",
     "occurrence": 1,
-    "bytes": 497,
-    "sha256": "15f8f06103a814184684bacaa0c6bb8cd954cf51473e31db86b0857103e488f0"
+    "bytes": 496,
+    "sha256": "625dbf720e30c8e7df5237ec987410407495f98b0a547c275b51672363643ba6"
   },
   "statistics": {
     "messages": 1,

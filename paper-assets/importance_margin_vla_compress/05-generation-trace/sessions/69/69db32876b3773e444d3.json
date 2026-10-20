@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill-westd38929-duplicate-k095-seed43_20260520T215357_result.json",
     "occurrence": 1,
-    "bytes": 189,
-    "sha256": "22203a4c4f838557d4dde9c997c5f4da1fd11f9e8ce0a41d479ce22bccf7709b"
+    "bytes": 188,
+    "sha256": "b036796a86c21ef6405b2660ba86bae31ff563ef4ffe90618aa7144702881d83"
   },
   "statistics": {
     "messages": 1,

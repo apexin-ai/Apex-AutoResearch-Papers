@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_nvidia_smi_check_20260518T061540_result.json",
     "occurrence": 1,
-    "bytes": 738,
-    "sha256": "fb95b42bc3a853c1614dafcff59b4ce33675e2da21f3a13e8e667ca38770030b"
+    "bytes": 737,
+    "sha256": "18bc6d2d9148a132580bd0eca45ad139b32590d8774062a8af35b377e601a7e9"
   },
   "statistics": {
     "messages": 1,

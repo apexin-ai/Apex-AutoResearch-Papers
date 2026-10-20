@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_cqa1_seed1_crash_20260517T004008_result.json",
     "occurrence": 1,
-    "bytes": 889,
-    "sha256": "0c9a219139b17bcfef39dfb3cdca0fc7056d935f74eb207fdd07bbe9d64a0368"
+    "bytes": 888,
+    "sha256": "362c112a0db25bb6ac9fb2abd6a742a60a1aff0239e52b34c54eeb9fb4639543"
   },
   "statistics": {
     "messages": 1,

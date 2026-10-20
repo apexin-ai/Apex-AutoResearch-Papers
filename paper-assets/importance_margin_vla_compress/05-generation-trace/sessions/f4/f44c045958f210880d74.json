@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_v8c_annealing_gates_20260516T103406_result.json",
     "occurrence": 1,
-    "bytes": 1048,
-    "sha256": "709950edcc1183b3c005054d83c2db265e71c586953aef49e6e90d4e5da94817"
+    "bytes": 1047,
+    "sha256": "456904458c558c3a6c0b3247bba2abe6a9c3cb11f7e30ed5467da21f413e7b11"
   },
   "statistics": {
     "messages": 1,

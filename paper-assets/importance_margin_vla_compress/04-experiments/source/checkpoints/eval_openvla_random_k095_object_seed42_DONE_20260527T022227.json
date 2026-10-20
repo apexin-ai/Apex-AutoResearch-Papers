@@ -1,0 +1,43 @@
+{
+  "exp_id": "eval_openvla_random_k095_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T01:02:28.200Z",
+    "updated_at": "2026-05-27T02:22:26.010Z",
+    "hypothesis": "OpenVLA Random k=0.95 Object seed42 — Object curve 顶端 Random 方法缺口。Random k=0.9=57.4%。k=0.95 补全 Object Random cliff curve 起始段，与 L2norm k=0.95=70.6% 形成对比",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/openvla-libero-object",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k095_object_seed42.log"
+    },
+    "metrics": {
+      "overall_sr": 67.4,
+      "suite": "libero_object",
+      "prune_method": "random",
+      "keep_ratio": 0.95,
+      "seed": 42,
+      "episodes_per_task": 50,
+      "total_successes": 337,
+      "total_episodes": 500,
+      "per_task_sr": {
+        "alphabet_soup": 76,
+        "cream_cheese": 44,
+        "salad_dressing": 74,
+        "bbq_sauce": 48,
+        "ketchup": 78,
+        "tomato_sauce": 78,
+        "butter": 48,
+        "milk": 66,
+        "chocolate_pudding": 74,
+        "orange_juice": 88
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-27T02:22:26.010Z"
+  },
+  "timestamp": "2026-05-27T02:22:27.333880+00:00",
+  "trigger": "update_registry"
+}

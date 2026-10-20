@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_dead_s47_attn_k095_v2_deploy_20260529T025236_result.json",
     "occurrence": 1,
-    "bytes": 631,
-    "sha256": "b502c9ed0d24edcd979c7ea4afa4098cd86211915432b70577178531f3da88ad"
+    "bytes": 630,
+    "sha256": "0fcc6f241521c53ab05227f440402162f9979ebbe7fb5ba68dcba57b1e0eb48f"
   },
   "statistics": {
     "messages": 1,

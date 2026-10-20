@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_cqa1_redeploy_attn_k095_goal_20260527T053432_result.json",
     "occurrence": 1,
-    "bytes": 503,
-    "sha256": "1d72466fd6298db05bfc668d9bcd9b44ac8c4582ced7c251fca1a27c1e0beecd"
+    "bytes": 502,
+    "sha256": "1b8c89bbb15ac4ebafe67a257b65d5a944ddcf7544731f874e15882edf0c7ac5"
   },
   "statistics": {
     "messages": 1,

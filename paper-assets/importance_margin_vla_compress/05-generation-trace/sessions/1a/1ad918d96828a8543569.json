@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_harvest_ov_attn_k095_goal_v2_20260527T093113_result.json",
     "occurrence": 1,
-    "bytes": 316,
-    "sha256": "2f289262f13f56851c983b0c719fd11529ff90d928b5debafcf8416d895d663a"
+    "bytes": 315,
+    "sha256": "c5abbf0ca5f44891110b9844a95659ff480cf398f8315befab363349ab68d6d5"
   },
   "statistics": {
     "messages": 1,

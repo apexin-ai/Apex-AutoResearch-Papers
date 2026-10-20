@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd41074-collect-seed43-and-redeploy_20260521T123013_result.json",
     "occurrence": 1,
-    "bytes": 94,
-    "sha256": "903fb8a811de28050b7c76fc825f574994b77851341815b469202b7f3c164061"
+    "bytes": 93,
+    "sha256": "3a3f70fdfa7ba4db17734a66fadb7647f50d815b34cf624de1cd387d75e966de"
   },
   "statistics": {
     "messages": 1,

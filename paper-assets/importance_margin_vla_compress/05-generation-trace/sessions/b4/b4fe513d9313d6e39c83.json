@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_w27_attn_code_sync_20260527T175538_result.json",
     "occurrence": 1,
-    "bytes": 959,
-    "sha256": "41d7f42904731c43ccf2a7738be0868a88b1d74bc7e3301b945f621883822445"
+    "bytes": 958,
+    "sha256": "53a51ed0702f42141931c4ee0331e19f17ed7891cb2b23ae673cec48bfca667f"
   },
   "statistics": {
     "messages": 1,

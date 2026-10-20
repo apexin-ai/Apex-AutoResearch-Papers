@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_s47_batch_w41_w38_20260529T021726_result.json",
     "occurrence": 1,
-    "bytes": 595,
-    "sha256": "2199cb4b4b19a9928f8c5127ce9ed8c8050cf6dd5c1ef9971a249cca1c4dfc28"
+    "bytes": 594,
+    "sha256": "bc38a4d768e906f8817de47f04fc5917836d05b8f30113ba247daea341c70cb8"
   },
   "statistics": {
     "messages": 1,

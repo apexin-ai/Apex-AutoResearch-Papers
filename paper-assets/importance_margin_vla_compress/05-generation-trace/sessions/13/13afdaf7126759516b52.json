@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_cliff_curve_data_aggregation_20260527T102205_result.json",
     "occurrence": 1,
-    "bytes": 614,
-    "sha256": "da8aa942da61ad5f404a27ef532c7a764e75a1c6bd2daed39064c1dc4388a55d"
+    "bytes": 613,
+    "sha256": "a4304bdb55a7baef6756d443c7a898441ed096b41905006ad92aae66d269f640"
   },
   "statistics": {
     "messages": 1,

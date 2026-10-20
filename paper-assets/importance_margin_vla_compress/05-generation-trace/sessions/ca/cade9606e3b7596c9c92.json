@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd38929_gpu3_spatial_dualseed_20260524T194910_result.json",
     "occurrence": 1,
-    "bytes": 303,
-    "sha256": "f1ffe26c9135a55f11b62cc7d4b6dd4b0a7a2a411128da2f9d64ddc99614bf4a"
+    "bytes": 302,
+    "sha256": "81b16187ac3966f03d5303310549e38e8cb6e46c263310b5bb9f285f611594bf"
   },
   "statistics": {
     "messages": 1,

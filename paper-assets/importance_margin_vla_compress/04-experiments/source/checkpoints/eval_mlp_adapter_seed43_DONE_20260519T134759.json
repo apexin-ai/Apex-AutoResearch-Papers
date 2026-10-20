@@ -1,0 +1,54 @@
+{
+  "exp_id": "eval_mlp_adapter_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:06:49.591Z",
+    "updated_at": "2026-05-19T13:47:59.209Z",
+    "hypothesis": "MLP adapter control seed=43 eval on LIBERO-Object (50 eps/task). Prior seed42=65.2%. Multi-seed parity with cross-attention 3-seed (61.2±1.4%) required by Reviewer. If seed43 yields ~60-65%, confirms MLP adapter result is robust.",
+    "parent": "eval_mlp_adapter_control",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 python -u eval_smart_compress_libero.py --n_queries 32 --checkpoint_path checkpoints/mlp_adapter_control/checkpoint.pt --suite libero_object --num_episodes 50 --gpu 0 --seed 43 --output eval_results/eval_mlp_adapter_seed43.json",
+      "server": "westd-27271",
+      "gpu": "cuda:0",
+      "model_name": "SmolVLA + MLP adapter control (avg-pool, ~22M params)",
+      "seed": 43,
+      "data_path": "libero_object",
+      "data_count": 500,
+      "checkpoint_source": "checkpoints/mlp_adapter_control/checkpoint.pt",
+      "eval_data": "libero_object (10 tasks x 50 episodes)",
+      "log_path": "eval_results/eval_mlp_adapter_seed43.log",
+      "checkpoint_path": "checkpoints/mlp_adapter_control/checkpoint.pt",
+      "pid": 651149
+    },
+    "metrics": {
+      "overall_success_rate": 0.646,
+      "wilson_ci_95": [
+        0.603,
+        0.687
+      ],
+      "total_episodes": 500,
+      "total_successes": 323,
+      "suite": "libero_object",
+      "per_task_sr": {
+        "task0_alphabet_soup": 0.74,
+        "task1_cream_cheese": 0.74,
+        "task2_salad_dressing": 0.66,
+        "task3_bbq_sauce": 0.44,
+        "task4_ketchup": 0.56,
+        "task5_tomato_sauce": 0.64,
+        "task6_butter": 0.86,
+        "task7_milk": 0.58,
+        "task8_chocolate_pudding": 0.72,
+        "task9_orange_juice": 0.52
+      }
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-19T13:47:59.209Z"
+  },
+  "timestamp": "2026-05-19T13:47:59.430518+00:00",
+  "trigger": "update_registry"
+}

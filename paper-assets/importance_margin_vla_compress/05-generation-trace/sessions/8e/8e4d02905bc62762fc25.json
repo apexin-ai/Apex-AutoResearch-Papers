@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_smart_token_compression_20260517T170928_result.json",
     "occurrence": 1,
-    "bytes": 1237,
-    "sha256": "3659c8c22a20fd6189d2b23adbbd208e8216311a9d5e53926b108b59b84f3a6a"
+    "bytes": 1236,
+    "sha256": "949b50f3ca45d584393c1c6202e02590b70696729758bbea1c4d9997adfdaf53"
   },
   "statistics": {
     "messages": 1,

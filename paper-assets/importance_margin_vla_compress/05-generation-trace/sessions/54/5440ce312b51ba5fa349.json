@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_c5_gripper_bugfix_retrain_20260519T222001_result.json",
     "occurrence": 1,
-    "bytes": 967,
-    "sha256": "3cba3a8ba30969dd0ae833eb2dcbf2153662d4321f5ce27fe055b6b7b30b8b21"
+    "bytes": 966,
+    "sha256": "c9b7d26823a7d2d5d1f2199239cf12c1571f78247c58a37c94406d4a37a67e3c"
   },
   "statistics": {
     "messages": 1,

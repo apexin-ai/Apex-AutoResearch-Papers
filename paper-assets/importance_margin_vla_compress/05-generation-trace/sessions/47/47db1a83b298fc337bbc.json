@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_rename_buggy_entropy_file_20260518T072106_result.json",
     "occurrence": 1,
-    "bytes": 280,
-    "sha256": "0704c1618f931fff8b099e580ae2211066a3ebfd818045ebf74a6c55eb5152b5"
+    "bytes": 279,
+    "sha256": "9241ebd384b4cf9742588bf4e5f2f1687d7aa8a0559f91097e385a25f8ba8ae7"
   },
   "statistics": {
     "messages": 1,

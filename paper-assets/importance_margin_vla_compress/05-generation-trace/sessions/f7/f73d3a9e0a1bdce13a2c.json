@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_urgent-collect-results-and-redeploy-all_20260521T131119_result.json",
     "occurrence": 1,
-    "bytes": 2416,
-    "sha256": "472af4a5da2f5a1e226f335ab0cff0564b739eae9827b19a7cdc598935d98ad8"
+    "bytes": 2415,
+    "sha256": "9bd5d6452b921014f987caf5422235754b9aa841d8124322a51b3c5a4cdb95bc"
   },
   "statistics": {
     "messages": 1,

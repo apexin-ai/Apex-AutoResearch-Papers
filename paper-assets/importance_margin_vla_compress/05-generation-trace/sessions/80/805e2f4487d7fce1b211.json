@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_probe_westd38929-gpu-status_20260522T004040_result.json",
     "occurrence": 1,
-    "bytes": 1123,
-    "sha256": "7292f46806514017bead7d3b6a28b8493c5b9e3c50dc0ed67cdec025f9b7a5be"
+    "bytes": 1122,
+    "sha256": "056c97ff9fe003705873b6471f35b6a681749b7647fff4c9cb630cfea6a58733"
   },
   "statistics": {
     "messages": 1,

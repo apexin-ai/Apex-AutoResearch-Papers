@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_long_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T14:02:35.361Z",
+    "updated_at": "2026-05-26T14:03:45.900Z",
+    "hypothesis": "π0.5 L2norm k=0.85 Long seed42 — L2norm Long 单调曲线缺失点。k=0.9=81%, k=0.75=73.4%。k=0.85 确认下降斜率，验证 D237 position encoding sensitivity 假设中 L2norm 的平滑退化特性",
+    "parent": "eval_pi05_l2norm_k09_long_seed42"
+  },
+  "timestamp": "2026-05-26T14:03:47.152055+00:00",
+  "trigger": "update_registry"
+}

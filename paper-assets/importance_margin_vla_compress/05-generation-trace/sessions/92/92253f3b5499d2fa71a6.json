@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check-m96-alive_20260520T193235_result.json",
     "occurrence": 1,
-    "bytes": 570,
-    "sha256": "bd747d42ab598dec020e377627080e3d89cf078b25b59b243a390ac95eb7b570"
+    "bytes": 569,
+    "sha256": "500d9ead44dac5fd7546a6a9833984092cc9d8e97938e9b3ecf504c3f362699d"
   },
   "statistics": {
     "messages": 1,

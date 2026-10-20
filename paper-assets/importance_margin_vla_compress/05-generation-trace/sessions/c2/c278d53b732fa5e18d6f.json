@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_train_libero_imm_twostage_start_20260516T183748_result.json",
     "occurrence": 1,
-    "bytes": 846,
-    "sha256": "285c189de5f7f6ce7a299b292b251fc66dbab8451619e3f8b78c60a44cb07646"
+    "bytes": 845,
+    "sha256": "4ea0407b956daa83cc85b40f2c87322762e80814cae533e20e6395492c6c1753"
   },
   "statistics": {
     "messages": 1,

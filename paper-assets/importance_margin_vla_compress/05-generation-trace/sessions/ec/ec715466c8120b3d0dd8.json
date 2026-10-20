@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analyze_goal_l2norm_postfix_batch_20260524T111041_result.json",
     "occurrence": 1,
-    "bytes": 952,
-    "sha256": "48dc968b83e0c32d4aec358a12321d75e29bb3ffea987d546181186eb4fcb15b"
+    "bytes": 951,
+    "sha256": "e1cbfa630df0766364e803a35bca007123761f8dacb1abb87a3ad19b572103a4"
   },
   "statistics": {
     "messages": 1,

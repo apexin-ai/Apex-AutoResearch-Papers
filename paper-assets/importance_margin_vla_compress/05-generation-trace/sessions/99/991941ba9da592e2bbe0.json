@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_geometric_prior_k07_20260517T160521_result.json",
     "occurrence": 1,
-    "bytes": 112,
-    "sha256": "78529caedf483de842cb2b83ee33429deff1fa882c767fed80f94b80a0586d88"
+    "bytes": 111,
+    "sha256": "44a62f11f3e0699fa6e1631ad878b7101d78d1da6d516d3b4ea49717d85d1799"
   },
   "statistics": {
     "messages": 1,

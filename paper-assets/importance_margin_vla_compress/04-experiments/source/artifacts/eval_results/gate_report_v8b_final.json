@@ -1,0 +1,70 @@
+{
+  "conditions_evaluated": [
+    "eps0.01_pruneFalse",
+    "eps0.02_pruneFalse",
+    "eps0.05_pruneFalse"
+  ],
+  "per_condition": {
+    "eps0.01_pruneFalse": {
+      "margin_ratio": 95.47057533614172,
+      "bl_margin_median": 0.010328888893127441,
+      "imm_margin_median": 0.9861049652099609,
+      "pres_diff": 0.6318618655204773,
+      "bl_preservation": 0.3352324962615967,
+      "imm_preservation": 0.967094361782074,
+      "imm_led_median": 0.06792138516902924
+    },
+    "eps0.02_pruneFalse": {
+      "margin_ratio": 92.85919079294216,
+      "bl_margin_median": 0.010627388954162598,
+      "imm_margin_median": 0.9868507385253906,
+      "pres_diff": 0.591134637594223,
+      "bl_preservation": 0.3362119495868683,
+      "imm_preservation": 0.9273465871810913,
+      "imm_led_median": 0.13539984822273254
+    },
+    "eps0.05_pruneFalse": {
+      "margin_ratio": 91.35323914203859,
+      "bl_margin_median": 0.010943293571472168,
+      "imm_margin_median": 0.9997053146362305,
+      "pres_diff": 0.45718568563461304,
+      "bl_preservation": 0.3380565047264099,
+      "imm_preservation": 0.795242190361023,
+      "imm_led_median": 0.3348260819911957
+    }
+  },
+  "gate": {
+    "G1_margin_median_ratio": {
+      "value": 93.22766842370748,
+      "threshold": "\u2265 2.0",
+      "pass": true
+    },
+    "G2_preservation_rate_diff": {
+      "value": 0.5600607295831045,
+      "threshold": "\u2265 0.10",
+      "pass": true
+    },
+    "G3_deploy_ratio": {
+      "value": 0.8678756730396621,
+      "threshold": "\u2264 1.10",
+      "pass": true,
+      "note": "D025 primary: ACIS+Prune(50%) action_loss / baseline"
+    },
+    "G3_standard_ratio": {
+      "value": 5.08856655299489,
+      "role": "reference",
+      "note": "Standard eval action_loss / baseline (non-blocking)"
+    },
+    "G4_led_ratio_median": {
+      "value": 0.13539984822273254,
+      "threshold": "< 1.0",
+      "pass": true
+    },
+    "G3a_bypass_ratio": {
+      "value": 4.574971773240028,
+      "role": "reference",
+      "note": "Bypass action_loss / baseline (non-blocking, distribution mismatch confound)"
+    }
+  },
+  "overall_pass": true
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-oft-spatial-goal-fill_20260521T022803_result.json",
     "occurrence": 1,
-    "bytes": 1012,
-    "sha256": "bbe83a50ac1ef14793b4ef3ac2bfa47a5c21b254688e16cf2434af95ff47ca4f"
+    "bytes": 1011,
+    "sha256": "c83fb89972f42a72badd0d38d97e09b8df1337c92c391368c0b7f28675acf54f"
   },
   "statistics": {
     "messages": 1,

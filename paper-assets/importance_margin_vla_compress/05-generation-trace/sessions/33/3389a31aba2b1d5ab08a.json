@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_kill_gpu0_stale_pid_20260526T015811_result.json",
     "occurrence": 1,
-    "bytes": 351,
-    "sha256": "641909c01f8b7f07305d699dc7eb0ca2f5c0598b7ebc6430c5abf0bb88e678c0"
+    "bytes": 350,
+    "sha256": "d5e0add7a42a3e05db64d27705c46898a61d17f564e03b3efba18a45ce09cf77"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_redeploy-xvla-random-goal-seed43-v2_20260523T214426_result.json",
     "occurrence": 1,
-    "bytes": 214,
-    "sha256": "8d4c19fc14c1fa8b85cd8644c1eea0fd17dc950b2f6ed5759847566c42299aa2"
+    "bytes": 213,
+    "sha256": "3bfc8b4434fe9c604c35fe7169619826eb8d9b5b3087e9c487f1d6b3ce22f34b"
   },
   "statistics": {
     "messages": 1,

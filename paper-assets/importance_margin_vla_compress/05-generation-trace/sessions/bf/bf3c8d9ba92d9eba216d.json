@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_validate_simplerenv_render_20260524T164831_result.json",
     "occurrence": 1,
-    "bytes": 1193,
-    "sha256": "43568ebdac85153f0639a29230eff6b6889b51dea1d253590d7e385e3ab24e59"
+    "bytes": 1192,
+    "sha256": "ab6dbd4ac51541d3ec4cc235a91cbc7cdec72750fad87c9e2a36e1cf3cfc0bd8"
   },
   "statistics": {
     "messages": 1,

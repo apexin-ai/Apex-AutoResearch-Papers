@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_expand_method_section_20260528T174644_result.json",
     "occurrence": 1,
-    "bytes": 1473,
-    "sha256": "68be0f03dfa51ea64d0342122c0add6ad20db684a2e0578a45b1c32c33d80a21"
+    "bytes": 1472,
+    "sha256": "2d26484295c883c05b111482b65012659ed9a9f8411a789968353ce5db07bdba"
   },
   "statistics": {
     "messages": 1,

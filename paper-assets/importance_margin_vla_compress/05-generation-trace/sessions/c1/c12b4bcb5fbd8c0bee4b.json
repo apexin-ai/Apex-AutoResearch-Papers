@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd27271_v2_20260526T050118_result.json",
     "occurrence": 1,
-    "bytes": 651,
-    "sha256": "56f72f0d95123b7d28a9c759913e57e1609fe18a3148e6f4c84a7d53fbdef449"
+    "bytes": 650,
+    "sha256": "57a10a5ca9afcaeaeaeb3abb0866fb3691840940789a146c3da54825b92d9b5d"
   },
   "statistics": {
     "messages": 1,

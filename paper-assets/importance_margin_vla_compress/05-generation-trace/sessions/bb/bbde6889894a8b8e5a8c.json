@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill_westd41074_pid30737_20260519T190731_result.json",
     "occurrence": 1,
-    "bytes": 561,
-    "sha256": "5cd5a98d1c450a20152857d6fdb02a13bfa80d786a9a77d7f1958724b765bfe5"
+    "bytes": 560,
+    "sha256": "b5ed54dd494df73cc1a1d2c4b4c3a5dc4f30b2ac59a048d3668f9e41f5a363ed"
   },
   "statistics": {
     "messages": 1,

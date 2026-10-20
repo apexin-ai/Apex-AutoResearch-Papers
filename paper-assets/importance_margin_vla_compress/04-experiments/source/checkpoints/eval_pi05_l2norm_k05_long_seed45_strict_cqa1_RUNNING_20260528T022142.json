@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_pi05_l2norm_k05_long_seed45_strict_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-28T02:21:01.963Z",
+    "updated_at": "2026-05-28T02:21:40.721Z",
+    "hypothesis": "π0.5 L2norm k=0.5 Long strict seed45 — 第四 seed 收窄当前最宽 error bar ±1.8pp (s42=52.8%, s43=49.2%, s44=51.0%, mean=51.0%±1.8pp)。极端压缩段 L2norm 稳定性验证",
+    "parent": "eval_pi05_l2norm_k05_long_seed44_strict_cqa1",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0\"",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "981950",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_long_seed45_strict_cqa1.log",
+      "submitted_at": "2026-05-28T02:21:15.841Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_10",
+      "data_count": "10 tasks x 50 episodes",
+      "model_name": "pi0.5",
+      "seed": 45,
+      "checkpoint_source": "pi0.5 pretrained",
+      "eval_data": "libero_10 (10 tasks x 50 episodes)"
+    }
+  },
+  "timestamp": "2026-05-28T02:21:42.147916+00:00",
+  "trigger": "update_registry"
+}

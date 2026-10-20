@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_post_restart_westd_20260519T124618_result.json",
     "occurrence": 1,
-    "bytes": 1141,
-    "sha256": "553461567d9706c1a495a142d10180e84446a52048fa25ac7d01aed9c1c27dcd"
+    "bytes": 1140,
+    "sha256": "d59967326d43bee29a137509b2ecc1fbb70a81184e02f1690b4b93b5c59c57bb"
   },
   "statistics": {
     "messages": 1,

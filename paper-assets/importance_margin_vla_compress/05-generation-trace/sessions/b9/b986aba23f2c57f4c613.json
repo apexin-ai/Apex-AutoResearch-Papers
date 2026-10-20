@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_read_divergence_data_20260517T103629_result.json",
     "occurrence": 1,
-    "bytes": 2766,
-    "sha256": "1b569273dde8295f87ed19734f246055ccb92343c662c4dd5e8648794ffeace0"
+    "bytes": 2765,
+    "sha256": "75d06021dc28a2d3dee67701610b714ae9d0c7678e049b89fdb4d6aad63a04ad"
   },
   "statistics": {
     "messages": 1,

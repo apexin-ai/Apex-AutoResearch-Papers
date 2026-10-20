@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_m32_official_completion_20260519T092239_result.json",
     "occurrence": 1,
-    "bytes": 706,
-    "sha256": "4f4679df7a8b6b102bdb63aa8aca055c6a4748147cf03065189b612189742203"
+    "bytes": 705,
+    "sha256": "a7413e060b4a13a2fa8fa53f8fb5abea20cc7741c27dfb88a08079b1500a5084"
   },
   "statistics": {
     "messages": 1,

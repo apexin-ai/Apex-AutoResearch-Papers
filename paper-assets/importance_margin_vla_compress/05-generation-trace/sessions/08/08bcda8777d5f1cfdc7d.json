@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_cqa1_all_gpu_urgent_v3_20260518T235724_result.json",
     "occurrence": 1,
-    "bytes": 991,
-    "sha256": "36fbf5cf1fca883e921902c74be845670e9ed49fd17c5ebb84e764883f04b946"
+    "bytes": 990,
+    "sha256": "7fba1f5516675f136eb177aff79dabdf1ba80fa9d470a3282e3137d8ec6061ed"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_deploy-l2norm-long-westd27271_20260524T132512_result.json",
     "occurrence": 1,
-    "bytes": 352,
-    "sha256": "9dc30497a6ab5da5a7d210a0071381008686bcbff16f863e1640ce9182674753"
+    "bytes": 351,
+    "sha256": "0e722e4e6002cfbdf0b4dc1d226288c24b4e022e441ec22d9ec6be7a6642b06d"
   },
   "statistics": {
     "messages": 1,

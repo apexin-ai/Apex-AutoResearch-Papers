@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_westd41074_offline_flags_20260527T104049_result.json",
     "occurrence": 1,
-    "bytes": 823,
-    "sha256": "f59a48840b6b376016bca38578c92f53bcc87fdd7c879cfed61ac5b2cf0be16e"
+    "bytes": 822,
+    "sha256": "c1b7ba2af267580480f581e67084ce22935c48dd5242052a5beec9e56696f81b"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,16 @@
+{
+  "exp_id": "train_c5_roboflamingo_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:24:24.260Z",
+    "updated_at": "2026-05-19T22:24:29.606Z",
+    "hypothesis": "RoboFlamingo (Perceiver Resampler) fine-tuned on LIBERO-Object with fixed gripper loss (BCE instead of BCE_with_logits, weight 0.1). Establishes 3rd connector architecture baseline for compression analysis (C5). Bug M029 fix: previous version had double sigmoid causing gripper to not learn.",
+    "parent": "train_c5_roboflamingo_libero_object"
+  },
+  "timestamp": "2026-05-19T22:24:29.878594+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd41074_gpu13_cliff_20260526T075148_result.json",
     "occurrence": 1,
-    "bytes": 716,
-    "sha256": "de8fff67ee8a9b6a210f138705ed9d4f22e38954ed126368339ed0e02a0675a4"
+    "bytes": 715,
+    "sha256": "357acbd0f84981debf323b8dfd9ae26f45f59822e6ed63c1f1d8e2366121eabe"
   },
   "statistics": {
     "messages": 1,

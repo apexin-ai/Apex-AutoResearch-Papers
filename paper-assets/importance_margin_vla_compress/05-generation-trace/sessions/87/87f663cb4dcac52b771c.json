@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_eval_pi05_baseline_goal_seed42_strict_20260527T054137_result.json",
     "occurrence": 1,
-    "bytes": 957,
-    "sha256": "c9811779143b6b2821e4888f10fba2f63970543091cb3333884605d30648ec6b"
+    "bytes": 956,
+    "sha256": "c4808791a1e7c46f9e238a8c7a575a5bc86dc45a36de396f697edbfbf5a6e884"
   },
   "statistics": {
     "messages": 1,

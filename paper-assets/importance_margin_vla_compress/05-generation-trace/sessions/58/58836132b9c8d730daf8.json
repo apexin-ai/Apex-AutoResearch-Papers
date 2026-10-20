@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_vtconly_heartbeat_20260519T200235_result.json",
     "occurrence": 1,
-    "bytes": 274,
-    "sha256": "1d684884b71cda96649030bd62a7146d4eb5a87a14eb96e20962625537b1a9fd"
+    "bytes": 273,
+    "sha256": "4b179e90170308b7a035f325bc2c9c911e431f6af433ead35792a384a4a1396e"
   },
   "statistics": {
     "messages": 1,

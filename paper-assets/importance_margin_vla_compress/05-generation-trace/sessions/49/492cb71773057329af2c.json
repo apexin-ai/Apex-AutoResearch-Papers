@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_cqa1_code_sync_redeploy_0527_20260527T012958_result.json",
     "occurrence": 1,
-    "bytes": 786,
-    "sha256": "8f3c8fbf1f991e9c4d34a02539f398d5f5ad082253047b1f3a4db5c4f4e47b3d"
+    "bytes": 785,
+    "sha256": "7bef62ac88d4df1a52818d2958c07276a9d6c893f4ba4435dc5486ae70fcce2e"
   },
   "statistics": {
     "messages": 1,

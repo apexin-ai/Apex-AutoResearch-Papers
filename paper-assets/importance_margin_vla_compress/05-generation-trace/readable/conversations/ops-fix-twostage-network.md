@@ -526,7 +526,7 @@ called mcp__agent-ml-research__ssh_read_only
 
 _source line 18 · 2026-05-16T04:29:54.437759+00:00_
 
-{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"env: 'WANDB_API_KEY': No such file or directory\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"env: 'WANDB_API_KEY': [REDACTED] such file or directory\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.5}}"}
 
 <details><summary>Recorded metadata</summary>
 

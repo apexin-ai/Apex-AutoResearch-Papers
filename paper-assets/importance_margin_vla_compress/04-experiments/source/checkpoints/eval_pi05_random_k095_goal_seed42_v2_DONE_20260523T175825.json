@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval_pi05_random_k095_goal_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T15:01:56.608Z",
+    "updated_at": "2026-05-23T17:58:24.219Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_goal --n_episodes 50 --seed 42 --gpu 0\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "223914",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k095_goal_seed42_v2.log",
+      "submitted_at": "2026-05-23T15:40:12.803Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 8291.4,
+      "gpu_hours": 2.3
+    },
+    "hypothesis": "CPU RNG 修复后 π0.5 Random k=0.95 Goal 重跑。修复前 cqa1-33015 数据=84%，现用 westd-41074 统一服务器消除跨硬件 RNG 污染。验证修复后 k=0.95 的真实 SR。",
+    "metrics": {
+      "success_rate": 83.8,
+      "total_episodes": 500,
+      "total_successes": 419,
+      "source": "westd-41074 diag harvested, CPU RNG fixed"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A (eval only)",
+    "completed_at": "2026-05-23T17:58:24.220Z"
+  },
+  "timestamp": "2026-05-23T17:58:25.055842+00:00",
+  "trigger": "update_registry"
+}

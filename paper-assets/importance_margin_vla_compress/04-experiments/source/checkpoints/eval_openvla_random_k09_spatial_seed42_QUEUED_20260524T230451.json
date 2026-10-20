@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_openvla_random_k09_spatial_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T23:03:38.545Z",
+    "updated_at": "2026-05-24T23:04:50.264Z",
+    "hypothesis": "OpenVLA Random k=0.9 Spatial seed42 — Random baseline for 三方 crossover (Random vs L2norm vs Attention) at k=0.9 on libero_spatial suite. Tests whether structured importance signals (L2norm/Attention) outperform random pruning at light compression ratios.",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && /root/miniconda3/bin/python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_spatial --num_episodes 50 --seed 42 --output eval_results/openvla_random_prune_k09_spatial_seed42.json 2>&1 | tee logs/eval_openvla_random_k09_spatial_seed42.log\"",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "937064",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_random_k09_spatial_seed42.log",
+      "submitted_at": "2026-05-24T23:04:09.832Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-24T23:04:51.407975+00:00",
+  "trigger": "update_registry"
+}

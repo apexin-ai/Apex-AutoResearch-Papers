@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_w27_seed45_highvar_20260528T000547_result.json",
     "occurrence": 1,
-    "bytes": 547,
-    "sha256": "3460e0786a74fb1e1b565cf3b70105eadc6a9a1479d6693caf5f98db66481cc5"
+    "bytes": 546,
+    "sha256": "01b44d0c06f9e1f26168c909515816ba1c8bef09fee86dba10d38c0da989dead"
   },
   "statistics": {
     "messages": 1,

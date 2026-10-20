@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_smolvla_l2norm_k09_spatial_seed42_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "created_at": "2026-05-22T20:51:14.507Z",
+    "hypothesis": "SmolVLA L2norm k=0.9 on LIBERO-Spatial: 10% L2norm pruning on spatial tasks. Object L2norm k=0.9=82.0% vs baseline 83.6%. Testing spatial sensitivity to structured pruning.",
+    "retry_count": 0,
+    "status": "PENDING",
+    "updated_at": "2026-05-29T06:56:02.096Z",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-29T06:56:03.738265+00:00",
+  "trigger": "update_registry"
+}

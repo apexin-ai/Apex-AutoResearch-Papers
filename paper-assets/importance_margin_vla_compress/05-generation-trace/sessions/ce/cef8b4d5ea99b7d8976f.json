@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_dead_s47_cqa1_20260529T025224_result.json",
     "occurrence": 1,
-    "bytes": 623,
-    "sha256": "912412343e59164fde1bca5fb80b3e79dfdf3c0d65082e0655db8ba2be33d90c"
+    "bytes": 622,
+    "sha256": "144d9548499befd8236eb746b0615d2ca7502de368116b165e738010ac9cd879"
   },
   "statistics": {
     "messages": 1,

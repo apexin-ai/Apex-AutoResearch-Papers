@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_cqa1_gpu2_process_gone_20260527T114520_result.json",
     "occurrence": 1,
-    "bytes": 1466,
-    "sha256": "f77d1e5be8f59c29a1b417e8285bc0092d5e8fbd961fc552db02dc6064284dd9"
+    "bytes": 1465,
+    "sha256": "aa8fc8dab0cd44bb8a2f3cf70e2ac580fb9b29609e82be12172ba427bcc61a27"
   },
   "statistics": {
     "messages": 1,

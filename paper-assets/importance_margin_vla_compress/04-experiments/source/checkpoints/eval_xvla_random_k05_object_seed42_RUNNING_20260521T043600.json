@@ -1,0 +1,34 @@
+{
+  "exp_id": "eval_xvla_random_k05_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:14:00.000Z",
+    "updated_at": "2026-05-21T04:35:59.655Z",
+    "hypothesis": "X-VLA random pruning at k=0.5 (50% tokens removed randomly). Compare with L2norm k=0.5 (baseline comparison point). Random pruning at aggressive compression should show larger degradation than L2norm, confirming importance-aware selection advantage.",
+    "parent": "eval_xvla_prune_k05_seed42",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python eval_xvla_pruning_libero.py --mode random --keep_ratio 0.5 --suite libero_object --seed 42 --gpu 0",
+      "server": "cqa1-33015",
+      "data_path": "libero_object",
+      "data_count": 500,
+      "model_name": "X-VLA + random pruning k=0.5",
+      "seed": 42,
+      "pid": 715930,
+      "gpu_ids": [
+        "cuda:2"
+      ],
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_object_seed42.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T04:35:57.799Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-21T04:36:00.038168+00:00",
+  "trigger": "update_registry"
+}

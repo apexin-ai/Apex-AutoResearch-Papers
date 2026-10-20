@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_lerobot_official_libero_eval_20260516T163536_result.json",
     "occurrence": 1,
-    "bytes": 2073,
-    "sha256": "1bceb90982a1b80e4918201d6355df760d2ff90e7a17cb603807c5818a11d813"
+    "bytes": 2072,
+    "sha256": "dd2b7a6b33821622884f1813d27fe5d54ffcffd051f93a85c03f2cf03f5583e4"
   },
   "statistics": {
     "messages": 1,

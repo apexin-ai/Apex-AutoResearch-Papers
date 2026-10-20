@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_smolvla_zeromask_deploy_20260522T112240_result.json",
     "occurrence": 1,
-    "bytes": 1018,
-    "sha256": "9a89d42440cbd3d97fb5e750f28878bbdec4843ef0b67a067057b937fc8cf2d1"
+    "bytes": 1017,
+    "sha256": "7ded0277b8bf51113874e1dd06b67aa3f021079e7325ed8f30293b96cf1ae76c"
   },
   "statistics": {
     "messages": 1,

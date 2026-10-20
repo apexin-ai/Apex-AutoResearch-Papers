@@ -1,0 +1,21 @@
+% Requires: booktabs
+\begin{table}[t]
+\centering
+\caption{VLA models studied. Token coupling type is determined by the vision connector architecture. CV = coefficient of variation of token L2 norms (one forward pass).}
+\label{tab:model_properties}
+\setlength{\tabcolsep}{3.5pt}
+\footnotesize
+\begin{tabular}{@{}lrlrcll@{}}
+\toprule
+Model & Params & Connector & Tokens & CV & Coupling & Eval \\
+\midrule
+$\pi_{0.5}$ & 4B & Linear & 768 & 0.055 & Indep. & Closed-loop \\
+X-VLA & 880M & Linear+BART 12L & 50 & 0.151 & Entang. & Closed-loop \\
+OpenVLA & 7B & MLP 3L & 256 & 0.215 & Indep. & Closed-loop \\
+SmolVLA & 450M & Pixel-shuffle & 128 & 0.314 & Entang. & Closed-loop \\
+\midrule
+$\pi_0$ & 3.3B & Linear & 256 & 0.038 & Indep. & Offline \\
+OFT & 7B & MLP 3L & 512 & 0.219 & Indep. & Offline \\
+\bottomrule
+\end{tabular}
+\end{table}

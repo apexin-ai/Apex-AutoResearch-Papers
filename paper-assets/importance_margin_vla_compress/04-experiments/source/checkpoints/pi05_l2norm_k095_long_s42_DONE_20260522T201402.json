@@ -1,0 +1,29 @@
+{
+  "exp_id": "pi05_l2norm_k095_long_s42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:29:35.527Z",
+    "updated_at": "2026-05-22T20:14:01.662Z",
+    "hypothesis": "Cross-suite expansion: π0.5 l2norm k=0.95 on LIBERO-Long, testing cliff behavior generalization",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0",
+      "server": "westd-38929",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "log_path": "logs/eval_pi05_l2norm_k095_long_seed42.log"
+    },
+    "failure_reason": "duplicate of eval_pi05_l2norm_k095_long_seed42",
+    "conclusion": "negative",
+    "checkpoint_path": "N/A - eval experiment",
+    "log_path": "logs/eval_pi05_l2norm_k095_long_seed42.log",
+    "completed_at": "2026-05-22T20:14:01.662Z"
+  },
+  "timestamp": "2026-05-22T20:14:02.313881+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_cqa1_l2norm_k07_long_s43_20260525T162153_result.json",
     "occurrence": 1,
-    "bytes": 537,
-    "sha256": "391def19d574ca3664d1fb2a11a0744c99cb23b9d6a2342f4fbc9358e9a7fb83"
+    "bytes": 536,
+    "sha256": "a4bad98286788093f680e3fa6a74f67d3fd65df421dbf2176a8d265c942052de"
   },
   "statistics": {
     "messages": 1,

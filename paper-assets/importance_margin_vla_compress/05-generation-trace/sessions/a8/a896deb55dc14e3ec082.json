@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_harvest_westd27271_xvla_random_20260522_20260522T211137_result.json",
     "occurrence": 1,
-    "bytes": 494,
-    "sha256": "1103c5d6f7f9eef9dbc40019cda13cd631a140090d12c801b787c154f07cf318"
+    "bytes": 493,
+    "sha256": "82e492795f7dcc9b94ef897730d52e63525373b8a6d2a7e876bafd280e09c69d"
   },
   "statistics": {
     "messages": 1,

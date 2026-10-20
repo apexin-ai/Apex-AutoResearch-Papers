@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_smart_compress_m128_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T23:16:35.879Z",
+    "updated_at": "2026-05-20T08:30:52.647Z",
+    "hypothesis": "Eval Smart Compress M=128 seed43 on LIBERO-Object (500 eps). Third seed for M=128 passthrough point. Prior: seed42=59.8%.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T08:30:52.986009+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd_cqa1_full_status_20260517T094208_result.json",
     "occurrence": 1,
-    "bytes": 1719,
-    "sha256": "5978752c9996233de672ee22509ca6554bfec2259585fdb924c704d46aaa381a"
+    "bytes": 1718,
+    "sha256": "905ce93b35c40697c1c0313c5d1ca7bca3b2912b954313394e0ac757d649399b"
   },
   "statistics": {
     "messages": 1,

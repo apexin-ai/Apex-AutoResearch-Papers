@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_xvla_random_k095_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T02:49:13.642Z",
+    "updated_at": "2026-05-23T02:50:17.681Z",
+    "hypothesis": "X-VLA Random k=0.95 Long seed42: L2 k=0.95=47.0% (-47pp from 94.0% baseline)。Random pruning 在 50 tokens 上对 Long suite 的影响。BART encoder 的 cross-token 依赖在 Long horizon 下是否使 random/L2 差异放大。"
+  },
+  "timestamp": "2026-05-23T02:50:18.405608+00:00",
+  "trigger": "update_registry"
+}

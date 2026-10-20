@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd27271_kill_redeploy_20260526T040024_result.json",
     "occurrence": 1,
-    "bytes": 111,
-    "sha256": "323b976223a3e6741efbf8f694ee5b5e9501c2cdc0a1cc79d46d6852e7027436"
+    "bytes": 110,
+    "sha256": "aa79df3978c02593cdf7bbcef7205671e01c63db5164b319e078310b046fac77"
   },
   "statistics": {
     "messages": 1,

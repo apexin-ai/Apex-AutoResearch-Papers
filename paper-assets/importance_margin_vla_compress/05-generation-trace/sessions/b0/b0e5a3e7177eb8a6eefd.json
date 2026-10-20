@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_k07_zero_mask_20260517T094321_result.json",
     "occurrence": 1,
-    "bytes": 561,
-    "sha256": "ca2c52c0a6a3c8e894ad8bc6d215f92655ac207e8d6a1c78e2fddf87312bd3bc"
+    "bytes": 560,
+    "sha256": "6793d29172013b4b6143ae088323947055b4ff92940d540cb0f8484f88bd43b4"
   },
   "statistics": {
     "messages": 1,

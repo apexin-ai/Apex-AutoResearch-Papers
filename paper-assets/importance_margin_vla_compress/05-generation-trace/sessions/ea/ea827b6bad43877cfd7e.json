@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_smolvla-importance-cv_20260520T085613_result.json",
     "occurrence": 1,
-    "bytes": 1068,
-    "sha256": "f77a6bb627e77418fd3d021598f7f65b7306b00131885e887b5d978f67649b48"
+    "bytes": 1067,
+    "sha256": "cc6136a5a576f2b63fcfb49b846ec674cabfcd133ca9038bb8326f2b196c8dd1"
   },
   "statistics": {
     "messages": 1,

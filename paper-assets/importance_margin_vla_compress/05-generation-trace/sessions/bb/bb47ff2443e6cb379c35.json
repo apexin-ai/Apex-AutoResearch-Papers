@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_train_acis_stage1only_k03_k07_20260517T074121_result.json",
     "occurrence": 1,
-    "bytes": 982,
-    "sha256": "d6f0b2e4dfab645e4bdeccfe589ce6154caed174c9879e9c7b0b8f613a60337d"
+    "bytes": 981,
+    "sha256": "141cdf7c47fa57238607c364206eee805d10a3481c0fc4882ba2add5a134438c"
   },
   "statistics": {
     "messages": 1,

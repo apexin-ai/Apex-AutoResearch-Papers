@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_urgent_backup_attn_result_20260525T141502_result.json",
     "occurrence": 1,
-    "bytes": 611,
-    "sha256": "17b0f0b2146321bad2077e7dda0b5413bd4cc1b2f03af73eff51ceb86df2defa"
+    "bytes": 610,
+    "sha256": "e0c4d43138a6b973ebd01730e037d0491a3de431bd3de1fd83685db883107b52"
   },
   "statistics": {
     "messages": 1,

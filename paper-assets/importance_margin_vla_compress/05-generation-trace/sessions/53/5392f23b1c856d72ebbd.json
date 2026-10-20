@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_monitor_attn_object_and_deploy_cqa1_20260525T162501_result.json",
     "occurrence": 1,
-    "bytes": 575,
-    "sha256": "b2f018bebb16e7eac4e8514131858d561640c450979d3512a4c25f072a1945ce"
+    "bytes": 574,
+    "sha256": "fdfd171789c5e8246e895964519b61d891d9666c1ebeb70cc638fba33148ae9d"
   },
   "statistics": {
     "messages": 1,

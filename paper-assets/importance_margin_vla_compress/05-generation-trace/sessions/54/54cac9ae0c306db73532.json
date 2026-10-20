@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_pi05-fixedmask-k09-v2_20260521T201519_result.json",
     "occurrence": 1,
-    "bytes": 145,
-    "sha256": "705359da68f62af8505d779d1ccc7471e973030705aa2fb0ad34d8e34c2e8911"
+    "bytes": 144,
+    "sha256": "8f876bf83b897642b78aecb3deb79d990532c9df47b27291557d238a95afc9aa"
   },
   "statistics": {
     "messages": 1,

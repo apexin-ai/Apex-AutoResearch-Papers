@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_vtc-eval-prep-westd38929_20260521T185934_result.json",
     "occurrence": 1,
-    "bytes": 2503,
-    "sha256": "9f13228ffaf2bacd8bdcf96815d74f9add3a5f54f08e096c1dece308f91b0319"
+    "bytes": 2502,
+    "sha256": "3320992de64c949858a83e3a16edc617520feacfb19a575b8d0d7c0225b22136"
   },
   "statistics": {
     "messages": 1,

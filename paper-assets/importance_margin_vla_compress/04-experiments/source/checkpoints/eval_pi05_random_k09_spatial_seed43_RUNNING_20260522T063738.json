@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_pi05_random_k09_spatial_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:19:54.793Z",
+    "updated_at": "2026-05-22T06:37:38.230Z",
+    "hypothesis": "π0.5 random k=0.9 Spatial seed43: seed42=54.6% 的双种子验证。random k=0.9 是 Spatial cliff 关键点（Object 上 k=0.9 已完全崩溃至 ~5%），seed43 验证 Spatial 的 cliff 是否更平缓。",
+    "spec": {
+      "command": "python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_spatial --n_episodes 50 --seed 43 --gpu 1",
+      "server": "cqa1-33015",
+      "gpu": 1,
+      "pid": 5866,
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k09_spatial_seed43.log",
+      "submitted_at": "2026-05-22T04:20:11.634Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 500,
+      "model_name": "pi0.5",
+      "seed": 43,
+      "checkpoint_source": "physical-intelligence/pi0.5",
+      "eval_data": "LIBERO-Spatial 10 tasks x 50 episodes"
+    }
+  },
+  "timestamp": "2026-05-22T06:37:38.770888+00:00",
+  "trigger": "update_registry"
+}

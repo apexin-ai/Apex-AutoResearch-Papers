@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_pi05_l2norm_k03_long_seed42_postfix_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T14:56:22.524Z",
+    "updated_at": "2026-05-24T14:56:22.524Z"
+  },
+  "timestamp": "2026-05-24T14:56:23.509737+00:00",
+  "trigger": "update_registry"
+}

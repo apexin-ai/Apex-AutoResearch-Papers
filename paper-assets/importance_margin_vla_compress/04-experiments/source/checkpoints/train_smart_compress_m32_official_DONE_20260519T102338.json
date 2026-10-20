@@ -1,0 +1,30 @@
+{
+  "exp_id": "train_smart_compress_m32_official",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:37:54.191Z",
+    "updated_at": "2026-05-19T10:23:38.436Z",
+    "hypothesis": "Training Smart Compress (M=32) from the official SmolVLA checkpoint (HuggingFaceVLA/smolvla_libero, baseline SR=59.2%) will yield higher success rate than training from smolvla_base (baseline SR=44.8%), because the official checkpoint has stronger pretrained features for LIBERO tasks.",
+    "parent": "",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 WANDB_MODE=offline python -u train_smart_compress.py --config configs/smart_compress_m32_official.yaml --wandb_run smart_compress_m32_official --seed 42 --gpu 0",
+      "server": "cqa1-33015",
+      "data_path": "/root/autodl-tmp/importance_margin_vla_compress",
+      "data_count": "full LIBERO dataset",
+      "model_name": "smart_compress_m32",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/checkpoints/smart_compress_m32_official/checkpoint.pt",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/train_smart_compress_m32_official.log",
+      "checkpoint_source": "/root/checkpoints/smart_compress_m32_official/checkpoint.pt"
+    },
+    "notes": "CWD issue: nohup启动时未cd到项目目录，CWD=/root，checkpoint实际保存在/root/checkpoints/smart_compress_m32_official/checkpoint.pt（非项目目录下）。训练结束后需移动到/root/autodl-tmp/importance_margin_vla_compress/checkpoints/smart_compress_m32_official/。当前进度: step 23900/100000, loss~0.05-0.19, ETA~5.2h (截至2026-05-19 11:52)",
+    "conclusion": "success",
+    "completed_at": "2026-05-19T10:23:38.436Z"
+  },
+  "timestamp": "2026-05-19T10:23:38.644635+00:00",
+  "trigger": "update_registry"
+}

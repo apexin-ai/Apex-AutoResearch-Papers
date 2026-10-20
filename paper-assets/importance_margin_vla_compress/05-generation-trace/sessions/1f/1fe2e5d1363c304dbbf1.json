@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_eval_xvla_random_k05_spatial_seed43_20260523T234137_result.json",
     "occurrence": 1,
-    "bytes": 1420,
-    "sha256": "5a04e57989c065b269cb750a3c8e129bf7a52a8ae8c5c4db8ef72e69094f8c4d"
+    "bytes": 1419,
+    "sha256": "ae916c037f6ebc443c17a80a5080103ed345eb99ef8634b097ee82d3dbb5f5a3"
   },
   "statistics": {
     "messages": 1,

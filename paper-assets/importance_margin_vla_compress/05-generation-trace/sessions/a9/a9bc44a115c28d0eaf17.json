@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy-cqa1-gpu2-l2norm-k03_20260523T203217_result.json",
     "occurrence": 1,
-    "bytes": 410,
-    "sha256": "0a9ff30835890f81232be3c8ca4404e3c551a186d5a310100883bc8b293c6617"
+    "bytes": 409,
+    "sha256": "56ba5d98976e18e4bb7ad4ba2670a267db1054f188dad858d5858efc1e6c1c41"
   },
   "statistics": {
     "messages": 1,

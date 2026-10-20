@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd41074-gpu0-checkpoint-or-smolvla_20260520T234313_result.json",
     "occurrence": 1,
-    "bytes": 1046,
-    "sha256": "668c5b2bbd99ee98ae6c5df94b539435c5d0bdad542def1a4cb7a587ac004664"
+    "bytes": 1045,
+    "sha256": "5e1dec0942a8d2e8af64175a22a3bb19a8cc5c4be12653d27d553065c44c9f84"
   },
   "statistics": {
     "messages": 1,

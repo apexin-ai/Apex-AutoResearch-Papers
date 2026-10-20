@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-gpu2-kill-zombie-and-liberoplus-smoke_20260520T234556_result.json",
     "occurrence": 1,
-    "bytes": 1009,
-    "sha256": "fa89b71213dd500990b032f292a76621026993782e548b9120d7ed33a9adf563"
+    "bytes": 1008,
+    "sha256": "b70e7fdf5f659a7be89cc4f9c1db7a9ccd0f46c2552b0e18399cb5e2128ef0f7"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_attention_k05_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T21:48:42.737Z",
+    "updated_at": "2026-05-23T21:49:04.007Z",
+    "hypothesis": "π0.5 attention k=0.5 Object seed42。已有 attention Object curve (k=0.95=98.4%, k=0.85=92.2%, k=0.7=0.6% cliff)。k=0.5 预测 ≤Random(70.6%)？若如此，attention 在 MLP connector 上跨 suite 无效。"
+  },
+  "timestamp": "2026-05-23T21:49:07.059030+00:00",
+  "trigger": "update_registry"
+}

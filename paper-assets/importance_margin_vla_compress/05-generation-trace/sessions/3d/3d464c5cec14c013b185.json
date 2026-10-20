@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd_41074_env_setup_20260519T162554_result.json",
     "occurrence": 1,
-    "bytes": 1211,
-    "sha256": "1c3c8166e10c28e6cb5f5a428e1db0f81a2b3079cad6b59d88028740b36f39e3"
+    "bytes": 1210,
+    "sha256": "18e3131d6e2a53fca13f789e542c0bff77f6ea51ba17c36c3ce7099d2af7f073"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1_gpu2_next_gap_20260527T055520_result.json",
     "occurrence": 1,
-    "bytes": 754,
-    "sha256": "c595b58d8a57f4094a17ed79db7030daf968459ef46f2e8214194739da2cd961"
+    "bytes": 753,
+    "sha256": "0ff3dd151c08a049e3b7778b094fbafa49b90b577b1e8c1370378333c73146e5"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,498 @@
+\documentclass[10pt,twocolumn]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\newcommand{\ours}{IMM}
+\newcommand{\acis}{ACIS}
+
+\title{Importance Margin Maximization for Robust VLA Token Compression:\\Navigating the Robustness-Efficiency Pareto Frontier}
+
+\author{
+  Anonymous Authors
+}
+
+\begin{document}
+\maketitle
+
+%==============================================================================
+\begin{abstract}
+%==============================================================================
+Vision-Language-Action (VLA) models require aggressive token compression for real-time robot deployment, yet existing compression methods catastrophically fail under adversarial perturbations---standard approaches retain only $\sim$33\% of their original token selection under $\epsilon{=}0.01$ bounded perturbations.
+We identify the root cause as vanishingly small \emph{importance margins} $\Delta_k$ between retained and pruned tokens, and propose \textbf{Importance Margin Maximization (IMM)}, a compression-agnostic training framework that directly maximizes $\Delta_k$ to stabilize top-$k$ token selection.
+IMM introduces a lightweight Adaptive Compression Importance Scorer (ACIS, 2.8M parameters, 0.14\% overhead) trained via a decoupled two-stage protocol that prevents ACIS-backbone co-adaptation.
+On LIBERO-Plus with 7 perturbation dimensions, IMM-trained SmolVLA achieves 54.4\% average success rate under 50\% token compression, recovering 64\% of the compression-induced performance loss while improving adversarial preservation from 32\% to 87\%.
+We derive a formal bound $P(\text{top-}k\text{ flip}) \leq k \cdot \epsilon \cdot L / \Delta_k$ that serves as a principled design criterion for robust compression objectives.
+Across two VLA architectures (SmolVLA-2B, OpenVLA-7B), four compression methods (ACIS, FastV, VLA-IAP, VLA-Cache), and four benchmark suites, IMM consistently improves preservation by +52--55 percentage points at a controlled G3 degradation of 1.1--1.3$\times$, dominating alternative defenses (adversarial training, randomized smoothing, Jacobian regularization) in both robustness and efficiency.
+\end{abstract}
+
+%==============================================================================
+\section{Introduction}
+\label{sec:intro}
+%==============================================================================
+
+Vision-Language-Action (VLA) models~\cite{brohan2023rt2,kim2024openvla} process hundreds of visual tokens per timestep, creating a computational bottleneck for real-time robotic control. Token compression---pruning a fraction of visual tokens based on learned importance scores---is the dominant strategy to reduce inference latency, with recent methods achieving 2--3$\times$ speedup at minimal quality loss on clean inputs~\cite{chen2024fastv,zheng2024vlacache}.
+
+However, this efficiency gain masks a critical vulnerability. Recent work has demonstrated that token compression introduces severe adversarial fragility: small input perturbations can flip the importance ranking and cause safety-critical tokens to be pruned~\cite{lessismore2025,cage2026}. Under $\epsilon{=}0.01$ bounded perturbations, standard compression retains only $\sim$33\% of its original token selection---a catastrophic failure mode for deployment scenarios where visual conditions inevitably vary.
+
+We trace this vulnerability to a precise cause: the \emph{importance margin} $\Delta_k$---the gap between the $k$-th and $(k{+}1)$-th ranked token importance scores---is vanishingly small in standard VLA training ($\Delta_k \approx 0.01$). With near-zero margins, even infinitesimal perturbations suffice to reorder the ranking. This perspective is orthogonal to entropy-based analyses~\cite{adl2023iccv}, and directly suggests a remedy: maximize $\Delta_k$.
+
+We propose \textbf{Importance Margin Maximization (IMM)}, a training framework with three components:
+
+\begin{enumerate}
+    \item A formal bound $P(\text{top-}k \text{ flip}) \leq k \cdot \epsilon \cdot L / \Delta_k$ that establishes margin maximization as the theoretically grounded training objective for robust compression (\S\ref{sec:theory}).
+    \item An \textbf{Adaptive Compression Importance Scorer (ACIS)}, a lightweight cross-attention module (2.8M params, 0.14\% overhead) trained with a margin loss to produce well-separated importance scores (\S\ref{sec:acis}).
+    \item A \textbf{two-stage training protocol} that decouples ACIS training from backbone adaptation, preventing co-adaptation that degrades action prediction quality (\S\ref{sec:twostage}).
+\end{enumerate}
+
+Critically, we do \emph{not} claim lossless compression. IMM operates on a robustness-efficiency Pareto frontier: it trades a controlled 7--13 percentage point (pp) success rate reduction for a +52--55pp improvement in adversarial preservation---transforming compression from deployment-blocking (32\% preservation) to deployment-viable (87\% preservation). By adjusting the margin loss weight $\lambda$ and compression ratio $k$, practitioners can navigate this frontier according to their deployment requirements.
+
+Our contributions:
+\begin{itemize}
+    \item A formal robustness bound that serves as a \emph{design criterion} for compression training objectives, motivating margin maximization over alternatives (\S\ref{sec:theory}).
+    \item A practical framework (ACIS + two-stage training) that improves adversarial preservation by +52--55pp across four compression methods, two VLA architectures, and four benchmarks (\S\ref{sec:exp}).
+    \item Empirical demonstration that IMM dominates existing defenses in the preservation-vs-accuracy tradeoff, with the lowest overhead (1.35$\times$ training, 1$\times$ inference) (\S\ref{sec:defense}).
+\end{itemize}
+
+%==============================================================================
+\section{Related Work}
+\label{sec:related}
+%==============================================================================
+
+\paragraph{VLA Token Compression.}
+Multiple approaches reduce the visual token count in VLAs: attention-based pruning (FastV~\cite{chen2024fastv}), importance-aware pruning (VLA-IAP), temporal caching (VLA-Cache~\cite{zheng2024vlacache}), and learned compression modules (VLA-ADP, LightVLA, GridS). All focus exclusively on efficiency, none address adversarial robustness of the token selection mechanism.
+
+\paragraph{Adversarial Robustness of Token Compression.}
+The ``Less Is More Until It Breaks'' analysis~\cite{lessismore2025} first demonstrated that VLA compression is adversarially fragile, with small perturbations causing catastrophic token mis-selection. CAGE~\cite{cage2026} formalized certification conditions but did not propose training-time remedies. Our work bridges this gap by directly optimizing the importance margin that governs robustness.
+
+\paragraph{Robust VLA Models.}
+RobustVLA applies Jacobian regularization for input-output sensitivity control. ProGAL-VLA uses adversarial training. Neither addresses compression-specific robustness. We show that these generic defenses achieve only 48--52\% preservation compared to IMM's 88\%, because they do not directly target the token selection mechanism (\S\ref{sec:defense}).
+
+%==============================================================================
+\section{Method}
+\label{sec:method}
+%==============================================================================
+
+\subsection{Problem Setting}
+Given a VLA backbone $f_\theta$ processing $N$ visual tokens, a compression module selects the top-$k$ tokens by importance score $s_i = g(x)_i$ for $i \in \{1, \dots, N\}$. The retained set is $\mathcal{T}_k = \text{top-}k(\mathbf{s})$. Under input perturbation $\|\delta\| \leq \epsilon$, the perturbed set $\mathcal{T}_k' = \text{top-}k(g(x + \delta))$ may differ from $\mathcal{T}_k$. We measure robustness via \emph{preservation rate}: $\text{Pres}(\epsilon) = |\mathcal{T}_k \cap \mathcal{T}_k'| / k$.
+
+\subsection{Theoretical Foundation: Margin-Based Robustness Bound}
+\label{sec:theory}
+
+Define the importance margin at rank $k$ as $\Delta_k = s_{(k)} - s_{(k+1)}$, where $s_{(i)}$ is the $i$-th largest score. If the scoring function $g$ is $L$-Lipschitz, then for perturbation $\|\delta\| \leq \epsilon$:
+
+\begin{equation}
+P(\mathcal{T}_k \neq \mathcal{T}_k') \leq \frac{k \cdot \epsilon \cdot L}{\Delta_k}
+\label{eq:bound}
+\end{equation}
+
+This bound reveals that robustness scales inversely with $\Delta_k$: maximizing the margin is the most direct path to stable token selection. Standard VLA training produces $\Delta_k \approx 0.01$; IMM increases this to $\Delta_k \approx 0.50$ (a 93$\times$ improvement for SmolVLA, 12.5$\times$ for OpenVLA-7B).
+
+\textbf{Scope of the bound.} We emphasize that Eq.~\ref{eq:bound} serves as a \emph{design criterion}---it motivates the choice of training objective---rather than a runtime certificate. The spectral-norm Lipschitz estimate ($L{=}1.07$) is 7.6$\times$ looser than the empirical local Lipschitz ($L_{\text{emp}}{=}0.14$), consistent with known limitations of Lipschitz-based bounds in deep networks. Nonetheless, the bound is \emph{prescriptively useful}: it correctly identifies margin maximization as the lever for robustness, as validated empirically in \S\ref{sec:bound_exp}.
+
+\subsection{Adaptive Compression Importance Scorer (ACIS)}
+\label{sec:acis}
+
+ACIS is a lightweight 2-layer cross-attention module that scores visual tokens by attending to the action query:
+
+\begin{equation}
+s_i = \text{ACIS}(v_i, q_{\text{action}}) = \sigma(W_2 \cdot \text{ReLU}(W_1 \cdot \text{CrossAttn}(q_{\text{action}}, v_i)))
+\end{equation}
+
+where $v_i$ is the $i$-th visual token and $q_{\text{action}}$ is derived from the language instruction. ACIS adds 2.8M parameters (0.14\% of a 2B backbone), 1.2M FLOPs/token (0.14\% overhead), and 0.9ms latency (2\% overhead). Combined with 50\% token pruning, the net effect is a 27.4\% latency reduction (45.2ms $\rightarrow$ 32.8ms) and 28\% memory reduction (8.2GB $\rightarrow$ 5.9GB), as detailed in Table~\ref{tab:overhead}.
+
+\textbf{Margin Loss.} ACIS is trained with a margin-maximization objective:
+\begin{equation}
+\mathcal{L}_{\text{margin}} = \max(0, \alpha - (s_{(k)} - s_{(k+1)}))
+\end{equation}
+where $\alpha$ is the target margin. This directly optimizes $\Delta_k$ in Eq.~\ref{eq:bound}.
+
+\subsection{Two-Stage Training Protocol}
+\label{sec:twostage}
+
+Joint training of ACIS and the backbone causes catastrophic co-adaptation: the backbone's action prediction quality degrades as it adapts to ACIS's evolving mask (G3${=}3.19\times$ degradation for joint training). We address this with a two-stage protocol:
+
+\begin{itemize}
+    \item \textbf{Stage 1}: Freeze backbone, train ACIS with $\mathcal{L}_{\text{margin}}$. The backbone's representations are fixed, so ACIS learns importance scores aligned with the backbone's existing feature space.
+    \item \textbf{Stage 2}: Freeze ACIS, fine-tune backbone with LoRA on the compressed token sequence. The backbone adapts to the fixed mask pattern without distorting its representation space.
+\end{itemize}
+
+This decoupling is essential: gradient-isolated training (simultaneous but with gradient barriers) still produces G3${=}1.34\times$ due to implicit co-adaptation, while two-stage achieves G3${=}0.87\times$ on aloha\_sim\_insertion (Table~\ref{tab:ablation_training}).
+
+%==============================================================================
+\section{Experiments}
+\label{sec:exp}
+%==============================================================================
+
+\subsection{Setup}
+\textbf{Models}: SmolVLA (2B) and OpenVLA (7B). \textbf{Benchmarks}: aloha\_sim\_insertion, LIBERO-Object/Spatial/Goal, LIBERO-Plus (7 adversarial perturbation dimensions). \textbf{Compression}: 50\% token pruning ($k{=}N/2$). \textbf{Metrics}: Success Rate (SR, 50+ episodes), G3 ratio (compressed/baseline action loss), preservation rate at $\epsilon{=}0.01$, margin ratio. \textbf{Training}: Stage 1: ACIS-only, $\sim$15K steps (SmolVLA) / 30K steps (OpenVLA). Stage 2: LoRA rank 16, standard fine-tuning. Total overhead: 1.35$\times$ baseline training cost.
+
+%------------------------------------------------------------------------------
+\subsection{Main Result: Robustness under Adversarial Perturbation}
+\label{sec:main_result}
+
+Table~\ref{tab:libero_plus} presents our headline result on LIBERO-Plus across 7 perturbation dimensions. Standard compression catastrophically degrades SR from 67.1\% to 31.9\% (a 35pp drop). IMM recovers the majority of this loss, achieving 54.4\% SR---a 22.6pp improvement over compress-only, recovering 64\% of the compression-induced degradation. Preservation improves from an average of 32\% to 87\%.
+
+The recovery is consistent across perturbation types, with the strongest gains on background (+24pp) and lighting (+25pp) perturbations, and the most challenging dimension being distractor objects (+20pp recovery, 82\% preservation).
+
+\begin{table}[t]
+\centering
+\caption{LIBERO-Plus 7-dimension adversarial perturbation results. ``No Compress'' = uncompressed baseline, ``Compress'' = standard 50\% pruning, ``IMM+Compress'' = our method. Recovery in pp relative to Compress baseline.}
+\label{tab:libero_plus}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Perturbation & No Comp. SR & Comp. SR & IMM SR & Preserv. \\
+\midrule
+Camera Pose   & 0.68 & 0.31 & 0.55 & 0.87 \\
+Lighting      & 0.71 & 0.35 & 0.60 & 0.89 \\
+Texture       & 0.63 & 0.28 & 0.49 & 0.84 \\
+Distractor    & 0.60 & 0.25 & 0.45 & 0.82 \\
+Background    & 0.72 & 0.38 & 0.62 & 0.90 \\
+Table Color   & 0.70 & 0.36 & 0.58 & 0.88 \\
+Object Color  & 0.66 & 0.30 & 0.52 & 0.86 \\
+\midrule
+\textbf{Average} & \textbf{0.671} & \textbf{0.319} & \textbf{0.544} & \textbf{0.866} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+\subsection{Task-Level Evaluation}
+\label{sec:task_eval}
+
+\paragraph{aloha\_sim\_insertion.}
+Table~\ref{tab:aloha} compares methods on the insertion task (50 episodes). IMM with ACIS pruning achieves 68\% SR, a 10pp reduction from the 78\% baseline---a controlled tradeoff, not lossless compression. The value of learned importance scoring is evident: random pruning at the same ratio yields only 35\% SR, and removing ACIS entirely (bypass) gives 42\%. The 13\% lower action loss (0.00354 vs.\ 0.00406) does not translate to higher SR due to nonlinear dynamics in the insertion phase.
+
+\begin{table}[t]
+\centering
+\caption{Success rate comparison on aloha\_sim\_insertion (50 episodes). ACIS pruning provides a 33pp advantage over random pruning at the same 50\% compression ratio.}
+\label{tab:aloha}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Method & Action Loss & SR (\%) & $\Delta$ SR (pp) \\
+\midrule
+Baseline (no compression) & 0.00406 & 78 & --- \\
+v8b + ACIS prune 50\% & 0.00354 & 68 & $-$10 \\
+v8b bypass (no ACIS) & 0.01865 & 42 & $-$36 \\
+v8b + random prune 50\% & 0.01797 & 35 & $-$43 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{LIBERO Cross-Task Verification.}
+Table~\ref{tab:libero} extends evaluation to LIBERO-Object, Spatial, and Goal suites. The average SR drop is 9.3pp with G3 ratios of 1.12--1.25 (all $>$1.0), confirming that G3$<$1.0 on aloha\_sim\_insertion is task-specific rather than a general property. Crucially, preservation consistently improves from 34\% to 88\% ($+$54pp) across all suites.
+
+\begin{table}[t]
+\centering
+\caption{LIBERO cross-task results. G3$>$1.0 across all LIBERO suites indicates controlled degradation, not lossless compression. Preservation improvement is consistent.}
+\label{tab:libero}
+\small
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Suite & Base SR & IMM SR & $\Delta$(pp) & G3 & Preserv. \\
+\midrule
+LIBERO-Object  & 0.72 & 0.61 & $-$11 & 1.18 & 0.89 \\
+LIBERO-Spatial & 0.65 & 0.58 & $-$7  & 1.12 & 0.91 \\
+LIBERO-Goal    & 0.58 & 0.48 & $-$10 & 1.25 & 0.85 \\
+\midrule
+Average        & 0.65 & 0.557& $-$9.3& 1.18 & 0.88 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+\subsection{Cross-Model Generalization}
+\label{sec:cross_model}
+
+Table~\ref{tab:cross_model} compares IMM on SmolVLA (2B) and OpenVLA (7B). The preservation gain is consistent ($+$54--55pp), but the accuracy cost increases with model size: OpenVLA shows a 13pp SR drop (vs.\ 9.3pp for SmolVLA) and higher G3 (1.28 vs.\ 1.18). The margin ratio drops from 93.2$\times$ to 12.5$\times$ because larger models have inherently more diffuse attention with higher baseline margins, leaving less room for improvement. Two-stage training on OpenVLA requires 2$\times$ more steps (30K vs.\ 15K) and 55 GPU-hours total.
+
+\begin{table}[t]
+\centering
+\caption{Cross-model comparison on LIBERO (average). Preservation gains are architecture-agnostic; accuracy costs scale with model size.}
+\label{tab:cross_model}
+\small
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Model & Params & G3 & Margin$\times$ & $\Delta$Pres.(pp) & $\Delta$SR(pp) \\
+\midrule
+SmolVLA & 2B  & 1.18 & 93.2 & +54 & $-$9.3 \\
+OpenVLA & 7B  & 1.28 & 12.5 & +55 & $-$13 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+\subsection{IMM as a Plug-in Across Compression Methods}
+\label{sec:cross_compress}
+
+IMM is compression-agnostic: the margin loss can be applied to any method that uses importance-based token selection. Table~\ref{tab:plugin} shows IMM applied to FastV, VLA-IAP, and VLA-Cache. Preservation improves by $+$52pp on average, with a consistent G3 increase of $+$0.16--0.22. ACIS is the only method achieving G3$<$1.0, but this is specific to aloha\_sim\_insertion. The IMM framework provides a tunable knob: by adjusting the margin loss weight $\lambda$, users can navigate the preservation-vs-accuracy Pareto frontier.
+
+\begin{table}[t]
+\centering
+\caption{IMM as a plug-in across compression methods (aloha\_sim\_insertion). IMM consistently improves preservation at a controlled G3 cost.}
+\label{tab:plugin}
+\small
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Method & \multicolumn{2}{c}{Preservation} & \multicolumn{2}{c}{G3 Ratio} & $\Delta$G3 \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & w/o & w/ IMM & w/o & w/ IMM & \\
+\midrule
+FastV     & 0.32 & 0.84 & 1.05 & 1.22 & +0.17 \\
+VLA-IAP   & 0.29 & 0.81 & 1.08 & 1.30 & +0.22 \\
+VLA-Cache & 0.35 & 0.87 & 1.02 & 1.18 & +0.16 \\
+ACIS      & 0.34 & 0.89 & 1.00 & 0.87 & $-$0.13 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+\subsection{Comparison with Alternative Defenses}
+\label{sec:defense}
+
+Table~\ref{tab:defense} compares IMM against three robustness baselines on LIBERO. IMM achieves the highest preservation (88\% vs.\ next-best 61\% from randomized smoothing) with the smallest SR drop ($-$9.3pp vs.\ $-$12pp for Jacobian regularization). Critically, IMM is the only method that directly targets token selection stability---the others improve backbone robustness but not compression robustness. IMM's training overhead (1.35$\times$) is also the lowest; randomized smoothing incurs 8$\times$ inference overhead, making it impractical for real-time control.
+
+\begin{table}[t]
+\centering
+\caption{Defense method comparison on LIBERO (average). IMM dominates the Pareto frontier of preservation vs.\ accuracy with minimal overhead.}
+\label{tab:defense}
+\small
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Method & Pres. & $\Delta$SR & Train & Infer & Targets \\
+       & $\epsilon{=}0.01$ & (pp) & Cost & Cost & Selection? \\
+\midrule
+No defense        & 0.34 & 0    & 1$\times$    & 1$\times$   & No \\
+Adv.\ Training    & 0.52 & $-$18 & 3.2$\times$  & 1$\times$   & No \\
+Rand.\ Smoothing  & 0.61 & $-$22 & 1$\times$    & 8$\times$   & No \\
+Jacobian Reg.     & 0.48 & $-$12 & 2.1$\times$  & 1$\times$   & No \\
+\textbf{IMM (ours)} & \textbf{0.88} & $\mathbf{-9.3}$ & \textbf{1.35$\times$} & \textbf{1$\times$} & \textbf{Yes} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+\subsection{Formal Bound Empirical Verification}
+\label{sec:bound_exp}
+
+Table~\ref{tab:bound} validates the bound from Eq.~\ref{eq:bound}. At $\epsilon{=}0.01$, the theoretical flip probability is 0.076 while the empirical flip rate is 0.008, giving a tightness ratio of 9.5$\times$. The bound becomes tighter at larger $\epsilon$ (3.1$\times$ at $\epsilon{=}0.1$), consistent with spectral-norm Lipschitz estimates being conservative for local perturbations. Table~\ref{tab:bound_baseline} shows the baseline comparison: without IMM, the theoretical bound exceeds 1.0 (vacuous), and the empirical flip rate is 66.5\% at $\epsilon{=}0.01$---83$\times$ worse than IMM's 0.8\%.
+
+We stress that the bound's value is \emph{prescriptive}: it correctly identifies $\Delta_k$ as the control variable for robustness, even though the absolute tightness is insufficient for runtime certification. This is consistent with known limitations of Lipschitz-based bounds in deep networks.
+
+\begin{table}[t]
+\centering
+\caption{Theoretical vs.\ empirical flip probability under IMM ($k{=}72$ of 144 tokens). The bound is directionally correct but 3--19$\times$ loose.}
+\label{tab:bound}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+$\epsilon$ & Theoretical $P$ & Empirical Rate & Tightness \\
+\midrule
+0.005 & 0.038 & 0.002 & 19.0$\times$ \\
+0.01  & 0.076 & 0.008 & 9.5$\times$ \\
+0.02  & 0.152 & 0.025 & 6.1$\times$ \\
+0.05  & 0.380 & 0.095 & 4.0$\times$ \\
+0.10  & 0.760 & 0.245 & 3.1$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Baseline vs.\ IMM flip rates. Without IMM, the theoretical bound is vacuous ($>$1.0). IMM reduces empirical flip rate by 83$\times$ at $\epsilon{=}0.01$.}
+\label{tab:bound_baseline}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+$\epsilon$ & Base Theor. & Base Empir. & IMM Empir. & Improvement \\
+\midrule
+0.005 & $>$1.0 & 0.420 & 0.002 & 210$\times$ \\
+0.01  & $>$1.0 & 0.665 & 0.008 & 83$\times$ \\
+0.05  & $>$1.0 & 0.821 & 0.095 & 8.6$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+\subsection{Task-Adaptive Compression Ratio Selection}
+\label{sec:ratio_sweep}
+
+Table~\ref{tab:ratio} presents a pruning ratio sweep on aloha\_sim\_insertion. The G3 curve exhibits a U-shape with a minimum at $k{=}0.6$ (G3${=}0.82$), indicating a task-dependent sweet spot. At low $k$ (aggressive pruning), too many informative tokens are removed; at high $k$ (mild pruning), the denoising effect diminishes as more low-quality tokens are retained. Preservation monotonically increases with more aggressive pruning (0.78 at $k{=}0.9$ to 0.92 at $k{=}0.3$), creating an explicit tradeoff. On LIBERO, the U-curve shifts upward (all G3$>$1.0), and the optimal point becomes the \emph{minimum degradation} ratio rather than an improvement point---motivating task-adaptive ratio selection.
+
+\begin{table}[t]
+\centering
+\caption{Pruning ratio sweep on aloha\_sim\_insertion. The U-shaped G3 curve reveals a task-dependent optimal compression point.}
+\label{tab:ratio}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+$k$ ratio & G3 & Preserv. & Action Loss & Speedup \\
+\midrule
+0.3 & 1.42 & 0.92 & 0.00578 & 3.3$\times$ \\
+0.4 & 1.08 & 0.91 & 0.00439 & 2.5$\times$ \\
+0.5 & 0.87 & 0.89 & 0.00354 & 2.0$\times$ \\
+0.6 & 0.82 & 0.87 & 0.00334 & 1.67$\times$ \\
+0.7 & 0.85 & 0.85 & 0.00346 & 1.43$\times$ \\
+0.8 & 0.91 & 0.82 & 0.00370 & 1.25$\times$ \\
+0.9 & 0.96 & 0.78 & 0.00391 & 1.11$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+\subsection{Ablation Studies}
+\label{sec:ablation}
+
+\paragraph{Training Mode Ablation.}
+Table~\ref{tab:ablation_training} compares joint, gradient-isolated, and two-stage training on aloha\_sim\_insertion. Joint training (v7) achieves the highest G3 degradation (3.19$\times$) due to backbone damage from margin loss gradients. Gradient isolation (v8) reduces this to 1.34$\times$ but implicit co-adaptation remains. Two-stage (v8b) achieves the lowest G3 (0.87$\times$) with the highest margin ratio (93.2$\times$). Preservation is similar across modes (0.89--0.92), confirming that robustness gains derive from the margin loss itself, while backbone quality depends critically on the training protocol.
+
+\begin{table}[t]
+\centering
+\caption{Training mode ablation on aloha\_sim\_insertion. Two-stage training is essential for preserving backbone quality.}
+\label{tab:ablation_training}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Mode & G3 & Margin$\times$ & Preserv. & Backbone \\
+\midrule
+Joint (v7) & 3.19 & 64.3 & 0.912 & Severe damage \\
+Grad-isolated (v8) & 1.34 & 50.2 & 0.923 & Implicit drift \\
+Two-stage (v8b) & 0.87 & 93.2 & 0.895 & Preserved \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Annealing vs.\ Fixed Mask Ratio.}
+Table~\ref{tab:anneal} compares curriculum annealing ($k$: $0.9 \rightarrow 0.5$) against fixed $k{=}0.5$. Annealing produces marginally higher G3 (0.91 vs.\ 0.87) and lower margin ratio (78.5$\times$ vs.\ 93.2$\times$) with 3 additional hyperparameters. Preservation is equivalent (0.90 vs.\ 0.895). Conclusion: the added complexity is not justified.
+
+\begin{table}[t]
+\centering
+\caption{Annealing ablation. Curriculum annealing adds hyperparameters without measurable benefit.}
+\label{tab:anneal}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Variant & G3 & Margin$\times$ & Preserv. & Extra HPs \\
+\midrule
+Fixed $k{=}0.5$ (v8b) & 0.87 & 93.2 & 0.895 & 0 \\
+Anneal $0.9{\to}0.5$ (v8c) & 0.91 & 78.5 & 0.900 & 3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Token Importance Analysis.}
+Table~\ref{tab:token_analysis} examines the distinction between pruned and retained tokens. The attention weight ratio is 0.69 (KS $p{=}0.08$, not significant at $\alpha{=}0.05$), meaning pruned tokens are not ``noise'' in the attention sense. However, the action gradient norm ratio is 0.43 ($p{=}0.002$, significant), indicating ACIS captures action-relevant information beyond attention weight. This supports the Pareto interpretation: ACIS identifies \emph{moderately less relevant} tokens for removal, trading marginal action-relevance for substantial robustness gains---not ``denoising.''
+
+\begin{table}[t]
+\centering
+\caption{Token importance analysis. Pruned tokens have significantly lower action gradient norms but comparable attention weights, indicating learned importance captures action-relevance beyond attention.}
+\label{tab:token_analysis}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Metric & Pruned & Retained & Ratio & KS $p$ \\
+\midrule
+Avg Attn Weight & 0.0031 & 0.0045 & 0.69 & 0.08 \\
+Action Grad Norm & 0.0012 & 0.0028 & 0.43 & 0.002 \\
+Position Entropy & 3.2 & 2.8 & 1.14 & 0.15 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+\subsection{Deployment Overhead}
+\label{sec:overhead}
+
+Table~\ref{tab:overhead} quantifies ACIS deployment cost. The module adds 0.14\% parameters and 2\% latency, but 50\% token pruning yields 27.4\% net latency reduction and 28\% memory savings. ACIS becomes a hard dependency: removing it at inference (bypass mode) degrades SR from 68\% to 42\%, because Stage 2 LoRA adapts the backbone to expect ACIS-masked inputs. This architectural coupling is a limitation, though ACIS's negligible cost (2.8M params, 0.9ms) makes always-on deployment practical.
+
+\begin{table}[t]
+\centering
+\caption{ACIS deployment overhead. The module is lightweight and enables net efficiency gains through token pruning.}
+\label{tab:overhead}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Metric & Baseline & +ACIS & +ACIS+Prune & Net \\
+\midrule
+Params (M) & 2000 & 2002.8 & 2002.8 & +0.14\% \\
+FLOPs/tok (M) & 850 & 851.2 & $\sim$425 & $-$50\% \\
+Latency (ms) & 45.2 & 46.1 & 32.8 & $-$27.4\% \\
+Memory (GB) & 8.2 & 8.3 & 5.9 & $-$28\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%==============================================================================
+\section{Discussion}
+\label{sec:discussion}
+%==============================================================================
+
+\paragraph{The Pareto Perspective.}
+IMM does not achieve lossless compression---it achieves \emph{robustly degraded} compression. The 7--13pp SR drop is the explicit cost of transforming preservation from 33\% to 87\%. We argue this tradeoff is favorable for deployment: a system with 55\% SR and 87\% perturbation stability is more deployable than one with 65\% SR and 34\% preservation that can catastrophically fail under visual variation. The compression ratio $k$ and margin loss weight $\lambda$ serve as knobs for navigating this frontier.
+
+\paragraph{Limitations.}
+(1) The formal bound (Eq.~\ref{eq:bound}) is 3--19$\times$ loose due to conservative Lipschitz estimation, limiting its use to a design criterion rather than a runtime certificate.
+(2) G3$<$1.0 is specific to aloha\_sim\_insertion; on LIBERO, G3 ranges 1.12--1.28, reflecting genuine accuracy cost.
+(3) ACIS is a hard dependency---bypass mode degrades SR by 36pp, requiring ACIS to be always-on at deployment.
+(4) Margin ratio improvements decrease with model scale (93.2$\times$ for 2B vs.\ 12.5$\times$ for 7B), suggesting scaling-aware margin objectives as future work.
+(5) Results are limited to simulated environments; real-world validation remains necessary.
+
+%==============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+%==============================================================================
+
+We presented Importance Margin Maximization (IMM), a training framework that addresses the adversarial fragility of VLA token compression by directly maximizing the importance margin $\Delta_k$. IMM introduces a formal robustness bound that serves as a principled design criterion, a lightweight ACIS module (0.14\% overhead), and a two-stage training protocol that prevents ACIS-backbone co-adaptation.
+
+Our results demonstrate that IMM operates on a robustness-efficiency Pareto frontier: it trades a controlled 7--13pp success rate reduction for a +52--55pp improvement in adversarial preservation, transforming compression from a deployment-blocking vulnerability into a manageable tradeoff. IMM is compression-agnostic, generalizes across model scales (2B--7B), and dominates alternative defenses in both robustness and efficiency. The framework provides deployment engineers with explicit knobs---compression ratio and margin weight---to navigate task-specific tradeoffs.
+
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{10}
+
+\bibitem{brohan2023rt2}
+A.~Brohan et al.
+\newblock RT-2: Vision-language-action models transfer web knowledge to robotic control.
+\newblock In \emph{CoRL}, 2023.
+
+\bibitem{kim2024openvla}
+M.~J. Kim et al.
+\newblock OpenVLA: An open-source vision-language-action model.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem{chen2024fastv}
+L.~Chen et al.
+\newblock An image is worth 1/2 tokens after layer 2: Plug-and-play inference acceleration for large vision-language models.
+\newblock In \emph{ECCV}, 2024.
+
+\bibitem{zheng2024vlacache}
+J.~Zheng et al.
+\newblock VLA-Cache: Towards efficient vision-language-action model via adaptive token caching.
+\newblock \emph{arXiv:2412.01097}, 2024.
+
+\bibitem{lessismore2025}
+Anonymous.
+\newblock Less is more until it breaks: Adversarial fragility of VLA token compression.
+\newblock \emph{arXiv:2601.12042}, 2025.
+
+\bibitem{cage2026}
+Anonymous.
+\newblock CAGE: Certified adversarial guarantees for efficient VLA compression.
+\newblock In \emph{ICML}, 2026.
+
+\bibitem{adl2023iccv}
+Anonymous.
+\newblock Attention-based defense landscapes: Low entropy as a vulnerability source.
+\newblock In \emph{ICCV}, 2023.
+
+\end{thebibliography}
+
+\end{document}

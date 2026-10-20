@@ -12580,7 +12580,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
 
 ```json
 {
-  "text": "**⚠️ API Key 更新 — 用新 key 重新跑 PaperBanana 生成 Hero Figure**\n\n之前 PaperBanana 失败是因为用了 OpenRouter 代理 key。用户提供了直连 Google AI Studio 的 API key，已更新存储（key_id: `google_api_key`）。\n\n请重新执行：\n1. 通过 `request_secret(key_id=\"google_api_key\", ...)` 获取新 key\n2. 直接设置 `GOOGLE_API_KEY=&lt;key value>`（不要设 base_url，直连 Google API）\n3. 用 PaperBanana 重新生成 fig_hero_overview：`paperbanana generate --vlm-model gemini-2.5-pro --iterations 5 ...`\n4. 保持之前的三面板设计（The Puzzle / Two-Axis Framework / Diagnose-then-Compress）\n5. 至少 3 轮外部迭代（生成→Read PNG→调整→重新生成）\n6. 替换现有 matplotlib 版本，编译验证\n\n目标是让 PaperBanana + Gemini 2.5 Pro 生成更高质量的概念图。",
+  "text": "**⚠️ API Key 更新 — 用新 key 重新跑 PaperBanana 生成 Hero Figure**\n\n之前 PaperBanana 失败是因为用了 OpenRouter 代理 key。用户提供了直连 Google AI Studio 的 API key，已更新存储（key_id: `google_api_key`）。\n\n请重新执行：\n1. 通过 `request_secret(key_id=\"google_api_key\", ...)` 获取新 key\n2. 直接设置 `GOOGLE_API_KEY=[REDACTED] value>`（不要设 base_url，直连 Google API）\n3. 用 PaperBanana 重新生成 fig_hero_overview：`paperbanana generate --vlm-model gemini-2.5-pro --iterations 5 ...`\n4. 保持之前的三面板设计（The Puzzle / Two-Axis Framework / Diagnose-then-Compress）\n5. 至少 3 轮外部迭代（生成→Read PNG→调整→重新生成）\n6. 替换现有 matplotlib 版本，编译验证\n\n目标是让 PaperBanana + Gemini 2.5 Pro 生成更高质量的概念图。",
   "project": "importance_margin_vla_compress"
 }
 ```
@@ -12595,7 +12595,7 @@ called mcp__agent-ml-research__director_post_to_paper_agent
   "session": "feishu:group:oc_6ea0e93e255655758819bea2ab1f224d:director",
   "tool": "mcp__agent-ml-research__director_post_to_paper_agent",
   "tool_args": {
-    "text": "**⚠️ API Key 更新 — 用新 key 重新跑 PaperBanana 生成 Hero Figure**\n\n之前 PaperBanana 失败是因为用了 OpenRouter 代理 key。用户提供了直连 Google AI Studio 的 API key，已更新存储（key_id: `google_api_key`）。\n\n请重新执行：\n1. 通过 `request_secret(key_id=\"google_api_key\", ...)` 获取新 key\n2. 直接设置 `GOOGLE_API_KEY=&lt;key value>`（不要设 base_url，直连 Google API）\n3. 用 PaperBanana 重新生成 fig_hero_overview：`paperbanana generate --vlm-model gemini-2.5-pro --iterations 5 ...`\n4. 保持之前的三面板设计（The Puzzle / Two-Axis Framework / Diagnose-then-Compress）\n5. 至少 3 轮外部迭代（生成→Read PNG→调整→重新生成）\n6. 替换现有 matplotlib 版本，编译验证\n\n目标是让 PaperBanana + Gemini 2.5 Pro 生成更高质量的概念图。",
+    "text": "**⚠️ API Key 更新 — 用新 key 重新跑 PaperBanana 生成 Hero Figure**\n\n之前 PaperBanana 失败是因为用了 OpenRouter 代理 key。用户提供了直连 Google AI Studio 的 API key，已更新存储（key_id: `google_api_key`）。\n\n请重新执行：\n1. 通过 `request_secret(key_id=\"google_api_key\", ...)` 获取新 key\n2. 直接设置 `GOOGLE_API_KEY=[REDACTED] value>`（不要设 base_url，直连 Google API）\n3. 用 PaperBanana 重新生成 fig_hero_overview：`paperbanana generate --vlm-model gemini-2.5-pro --iterations 5 ...`\n4. 保持之前的三面板设计（The Puzzle / Two-Axis Framework / Diagnose-then-Compress）\n5. 至少 3 轮外部迭代（生成→Read PNG→调整→重新生成）\n6. 替换现有 matplotlib 版本，编译验证\n\n目标是让 PaperBanana + Gemini 2.5 Pro 生成更高质量的概念图。",
     "project": "importance_margin_vla_compress"
   }
 }

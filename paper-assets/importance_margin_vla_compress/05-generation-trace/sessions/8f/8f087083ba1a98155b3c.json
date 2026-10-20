@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diag_exp_b_k095_health_20260518T123622_result.json",
     "occurrence": 1,
-    "bytes": 1253,
-    "sha256": "7b2b9975b3594d9ccd2fd86940e3e97cdc217e11c8b996288f67bfb108f0d9fc"
+    "bytes": 1252,
+    "sha256": "c50139aceeea2b510d9c771aaea410322b69218c74e6a715731bb29492214db5"
   },
   "statistics": {
     "messages": 1,

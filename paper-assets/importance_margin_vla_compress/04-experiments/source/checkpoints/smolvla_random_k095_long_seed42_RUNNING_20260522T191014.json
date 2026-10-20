@@ -1,0 +1,25 @@
+{
+  "exp_id": "smolvla_random_k095_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:08:58.420Z",
+    "updated_at": "2026-05-22T19:10:14.073Z",
+    "hypothesis": "SmolVLA Random k=0.95 Long: 5% random removal on long-horizon tasks.",
+    "spec": {
+      "command": "python eval_official_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42",
+      "server": "westd-38929",
+      "model_name": "SmolVLA",
+      "seed": 42,
+      "data_path": "libero_10",
+      "data_count": 500,
+      "checkpoint_path": "results/smolvla_random_libero_10.json",
+      "log_path": "logs/smolvla_random_libero_10.log"
+    }
+  },
+  "timestamp": "2026-05-22T19:10:14.684009+00:00",
+  "trigger": "update_registry"
+}

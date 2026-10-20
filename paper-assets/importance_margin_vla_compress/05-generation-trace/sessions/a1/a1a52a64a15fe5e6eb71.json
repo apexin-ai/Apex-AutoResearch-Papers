@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill-duplicate-smolvla-cqa1_20260521T213022_result.json",
     "occurrence": 1,
-    "bytes": 416,
-    "sha256": "202f0e7db50cbc0356d0535582551a073e8ff0e0c64c9d174b107e59ede76815"
+    "bytes": 415,
+    "sha256": "430d49b8c664002c7a8626f64cd0dd23a4257ef4318002b4ce7e1ed79d30f6d2"
   },
   "statistics": {
     "messages": 1,

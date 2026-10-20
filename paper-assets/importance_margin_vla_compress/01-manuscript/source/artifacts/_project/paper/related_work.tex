@@ -1,0 +1,37 @@
+\section{Related Work}
+\label{sec:related_work}
+
+\paragraph{ViT token pruning and merging.}
+Token reduction methods for Vision Transformers consistently remove 50--66\% of tokens with less than 0.5 percentage points of ImageNet accuracy loss.
+DynamicViT~\cite{rao2021dynamicvit} learns binary masks to identify uninformative tokens,
+EViT~\cite{liang2022evit} uses attention scores to fuse or discard low-salience patches,
+A-ViT~\cite{yin2022avit} introduces adaptive per-token halting depth,
+and Token Merging~\cite{bolya2023tome} applies training-free bipartite matching to merge similar tokens.
+Their effectiveness rests on a property specific to classification: spatial layout contributes minimally to category identity, so discarding patches incurs little information loss.
+Robotic manipulation inverts this assumption.
+Grasping and placement tasks depend on the spatial arrangement of objects, and the same token removal rates may destroy task-critical geometric information that classification safely ignores.
+None of these methods has been evaluated in closed-loop VLA control.
+
+\paragraph{Token efficiency in VLMs and VLAs.}
+Extending token reduction to vision-language models introduces a new importance signal: the language backbone's attention over image tokens.
+FastV~\cite{chen2024fastv} observes that image token attention drops sharply after early layers and prunes accordingly.
+PruMerge~\cite{shang2024prumerge} clusters and merges spatially adjacent tokens before they enter the language backbone.
+These VLM-level methods transfer naturally to VLAs that share the same backbone architecture.
+VLA-specific compression has emerged in parallel:
+VLA-IAP~\cite{wang2026vlaiap} aligns pruning with action-prediction importance,
+VLA-Cache~\cite{hsu2025vlacache} compresses at the KV-cache level,
+EfficientVLA~\cite{yang2025efficientvla} combines pruning with merging,
+and VLA-Pruner~\cite{liu2025vlapruner} learns a pruning policy jointly with the action head.
+Each method validates on a single VLA architecture and demonstrates bounded performance loss on that model.
+No study compares pruning robustness across connector designs, so whether a method validated on one connector type transfers to another remains untested.
+
+\paragraph{Vision connectors and token structure.}
+The connector between a ViT encoder and a language backbone determines how spatial information is distributed across the tokens that downstream pruning must operate on.
+LLaVA~\cite{liu2023llava} projects each patch independently through an MLP, preserving per-token locality.
+BLIP-2~\cite{li2023blip2} uses cross-attention with learned queries to aggregate patch information into a fixed set of output tokens.
+Pixel shuffle~\cite{shi2016subpixel}, originally designed for super-resolution, folds spatial neighborhoods into channel dimensions and has been adopted by VLAs such as SmolVLA~\cite{shukor2025smolvla} to compress patch groups into single tokens.
+These designs create qualitatively different token dependencies: independent connectors (MLP, linear projection) leave patch information separable, while entangling connectors (pixel-shuffle, cross-attention encoders) distribute spatial content across multiple token representations.
+The pruning consequences of this distinction have not been characterized.
+
+Our work provides the first cross-architecture analysis of how connector coupling and task complexity jointly determine VLA token compressibility.
+Where prior methods optimize pruning for one model, we identify which architectural properties govern pruning tolerance and introduce a single-pass diagnostic (CV of token norms) that correlates with compressibility without requiring closed-loop evaluation.

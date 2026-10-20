@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_e5_attention_pruning_20260523T070916_result.json",
     "occurrence": 1,
-    "bytes": 1533,
-    "sha256": "bf8ed7b0284444fd204803f679f9cd956adaabbd0a8dcab7c9fba52b4da09f30"
+    "bytes": 1532,
+    "sha256": "ac14c81ab4791ef619a9b16b3c537de6edd1ecee097346055475c8fd3a62c22c"
   },
   "statistics": {
     "messages": 1,

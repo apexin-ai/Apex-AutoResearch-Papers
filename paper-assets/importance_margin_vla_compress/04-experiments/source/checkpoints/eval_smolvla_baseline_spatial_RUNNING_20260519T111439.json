@@ -1,0 +1,34 @@
+{
+  "exp_id": "eval_smolvla_baseline_spatial",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:11:07.968Z",
+    "updated_at": "2026-05-19T11:14:39.354Z",
+    "hypothesis": "SmolVLA baseline (no compression, no Smart Compress) eval on LIBERO-Spatial. SmolVLA uses pixel-shuffle connector which creates entangled tokens. Cross-suite eval provides reference point for compression impact on spatial reasoning tasks. Combined with OpenVLA Spatial baseline, tests MF-3 (architecture-dependent compressibility across task suites).",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -u eval_success_rate_libero.py --checkpoint checkpoints/libero_baseline/latest/checkpoint.pt --config configs/libero_baseline.yaml --suite libero_spatial --num_episodes 50 --gpu 0 --seed 42 --mode baseline --output eval_results/eval_smolvla_baseline_spatial.json",
+      "server": "cqa1-33015",
+      "gpu": "cuda:0",
+      "pid": 439389,
+      "log_path": "~/runs/importance_margin_vla_compress/eval_smolvla_baseline_spatial.log",
+      "submitted_at": "2026-05-19T19:13:09Z",
+      "submitted_via": "tmux",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_spatial",
+      "data_count": 500,
+      "model_name": "smolvla_baseline (LoRA fine-tuned, no compression)",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/libero_baseline/latest/checkpoint.pt",
+      "eval_data": "LIBERO-Spatial (10 tasks x 50 episodes)",
+      "checkpoint_path": "N/A (eval only)",
+      "tmux_session": "eval_smolvla_baseline_spatial"
+    }
+  },
+  "timestamp": "2026-05-19T11:14:39.562189+00:00",
+  "trigger": "update_registry"
+}

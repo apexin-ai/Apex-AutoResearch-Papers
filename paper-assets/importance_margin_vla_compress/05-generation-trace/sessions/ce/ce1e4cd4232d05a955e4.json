@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_cqa1_gpu0_attn_stall_20260525T150358_result.json",
     "occurrence": 1,
-    "bytes": 1228,
-    "sha256": "02738ca626194bbd01a96ba28b881fda7fc95cbf7466f1a2a0fb5db63543f0fb"
+    "bytes": 1227,
+    "sha256": "bbc1326fe6f23f81acea0d1e4982d6feee164d0878f222647d11dbdf3ba5cffc"
   },
   "statistics": {
     "messages": 1,

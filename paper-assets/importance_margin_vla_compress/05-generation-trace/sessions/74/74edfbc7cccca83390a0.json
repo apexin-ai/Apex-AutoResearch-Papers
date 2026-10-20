@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_debug_sim_rollout_diagnosis_20260516T080619_result.json",
     "occurrence": 1,
-    "bytes": 2077,
-    "sha256": "827a94b2b1129588ba2643a5168ac1071fc9d566742addff1143da5ea7354aed"
+    "bytes": 2076,
+    "sha256": "beb4fb18be81c595451b34537816d6e19a2da1a6ea14f086ce7eebafe58ee7b5"
   },
   "statistics": {
     "messages": 1,

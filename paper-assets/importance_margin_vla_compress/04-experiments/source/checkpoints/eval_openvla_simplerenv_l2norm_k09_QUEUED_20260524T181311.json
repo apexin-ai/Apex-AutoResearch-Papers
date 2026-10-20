@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_openvla_simplerenv_l2norm_k09",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T18:12:07.118Z",
+    "updated_at": "2026-05-24T18:13:09.160Z",
+    "hypothesis": "L2-norm pruning at k=0.9 (removing 10% lowest-norm vision tokens) on OpenVLA-7B SimplerEnv Bridge tasks will show minimal performance degradation vs baseline, as the cliff zone for OpenVLA is expected near k=0.7-0.8. This tests whether 10% pruning is safely above the cliff."
+  },
+  "timestamp": "2026-05-24T18:13:11.029959+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_prepare_m128_train_script_20260518T013452_result.json",
     "occurrence": 1,
-    "bytes": 1063,
-    "sha256": "936cc6c4fdd2cf31aa11babd613c02e6b49062e353431c5ce142083fed0a8d28"
+    "bytes": 1062,
+    "sha256": "c41c692856d65514af9f492ecc12d38b9424f66bf5d9aff41bd86e36c9932a6a"
   },
   "statistics": {
     "messages": 1,

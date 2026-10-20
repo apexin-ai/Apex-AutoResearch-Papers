@@ -1,0 +1,42 @@
+{
+  "exp_id": "train_acis_stage1only_k07",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-17T07:12:36.355Z",
+    "updated_at": "2026-05-17T08:08:05.674Z",
+    "hypothesis": "Stage1-only ACIS (k=0.7, 保留 70% tokens) 训练。与 k=0.5 (44.8% SR) 对比，预期 k=0.7 prune 后 SR >= 44.8% 因为保留更多信息。",
+    "notes": "2026-05-17T07:26Z diagnostic: cron false alarm. Process PID 11257 still alive on cqa1-33015 GPU 2. Currently at step 2300/10000, 4.3 sps, margin_loss ~0.19 (converging). ETA ~07:55 UTC. wandb run: offline-run-20260517_151656-8r6bfv8x. Log: ~/runs/importance_margin_vla_compress/train_acis_stage1only_k07.log",
+    "reproduce": {
+      "finished_at": "2026-05-17T07:39:53.025Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-17T07:39:53.628Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T07:39:56.009064+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "2026-05-17T07:26Z diagnostic: cron false alarm. Process PID 11257 still alive on cqa1-33015 GPU 2. Currently at step 2300/10000, 4.3 sps, margin_loss ~0.19 (converging). ETA ~07:55 UTC. wandb run: offline-run-20260517_151656-8r6bfv8x. Log: ~/runs/importance_margin_vla_compress/train_acis_stage1only_k07.log"
+      }
+    },
+    "spec": {
+      "command": "python train_twostage.py --config configs/libero_acis_stage1only_k07.yaml --gpu 0",
+      "server": "cqa1-33015",
+      "data_path": "HuggingFaceVLA/libero",
+      "data_count": "10K steps",
+      "model_name": "SmolVLA ACIS Stage1-only k=0.7",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-17T08:08:05.764935+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check-m128-seed43-completion_20260520T083024_result.json",
     "occurrence": 1,
-    "bytes": 765,
-    "sha256": "df89bb975b27506096955e48a1d9e7fe14ed968b79d771b6324f5d87a3611be2"
+    "bytes": 764,
+    "sha256": "f0cad1a3009cab7f1047d1a57abe1545386d932cf45f279595f311c431c8fc52"
   },
   "statistics": {
     "messages": 1,

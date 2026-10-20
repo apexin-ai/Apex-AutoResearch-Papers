@@ -1,0 +1,25 @@
+{
+  "exp_id": "eval_pi05_random_k085_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:56:44.915Z",
+    "updated_at": "2026-05-22T10:59:33.906Z",
+    "hypothesis": "π0.5 random k=0.85 LIBERO-Goal seed42: Phase 2 cliff zone sweep。Object random k=0.85=5.0%（cliff 最深），Spatial 待测。Goal 的 cliff 底部位置在哪？",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_goal --n_episodes 500 --seed 42 --gpu 0",
+      "server": "westd-38929",
+      "data_path": "LIBERO-Goal",
+      "data_count": 500,
+      "model_name": "pi0.5",
+      "seed": 42,
+      "gpu": 3,
+      "pid": 931023
+    }
+  },
+  "timestamp": "2026-05-22T10:59:34.465628+00:00",
+  "trigger": "update_registry"
+}

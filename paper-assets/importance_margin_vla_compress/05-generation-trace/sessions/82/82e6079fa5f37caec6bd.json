@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_verify_lora_50k_checkpoint_integrity_20260516T192803_result.json",
     "occurrence": 1,
-    "bytes": 1296,
-    "sha256": "79af594520077ecc27437397721cb59ad165bca36d50851f39eb84b94af24c68"
+    "bytes": 1295,
+    "sha256": "d02919e3bea3e48938853a76616ca4999eadafd617f75d437f12a774989181f6"
   },
   "statistics": {
     "messages": 1,

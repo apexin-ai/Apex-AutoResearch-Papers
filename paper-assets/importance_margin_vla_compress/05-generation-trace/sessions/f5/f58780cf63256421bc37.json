@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_westd41074_idle_gpus_20260527T075123_result.json",
     "occurrence": 1,
-    "bytes": 1690,
-    "sha256": "dc6378e56badf81d382d6eb9a0bd27767a152d301f3c76946fd79129e333d10b"
+    "bytes": 1689,
+    "sha256": "e1bd5db83b472f3815d483ed6a1d5fc203c87c4e782639714a12f7425bdd32d6"
   },
   "statistics": {
     "messages": 1,

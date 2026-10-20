@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_xvla-domain-id_20260524T083837_result.json",
     "occurrence": 1,
-    "bytes": 3844,
-    "sha256": "9b36e85111fb8279513ece61453655f6d087966969946c484b38f24c9669ae0d"
+    "bytes": 3843,
+    "sha256": "548d31ffff8a2b0fbdf0bfea6778df31cd7d1a12782b361d36201f1816c96b20"
   },
   "statistics": {
     "messages": 1,

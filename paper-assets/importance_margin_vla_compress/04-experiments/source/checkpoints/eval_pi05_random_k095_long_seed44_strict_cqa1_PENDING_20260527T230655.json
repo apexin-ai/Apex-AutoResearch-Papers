@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_random_k095_long_seed44_strict_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T22:29:48.231Z",
+    "updated_at": "2026-05-27T23:06:54.321Z",
+    "hypothesis": "π0.5 Random k=0.95 Long strict seed44 — 第三 seed (s42=60.6%, s43=60.8%, mean=60.7%±0.1pp)。margin 表顶端 Random 基准精度加固，空卡利用",
+    "parent": "eval_pi05_random_k095_long_seed43_strict_w41"
+  },
+  "timestamp": "2026-05-27T23:06:55.677872+00:00",
+  "trigger": "update_registry"
+}

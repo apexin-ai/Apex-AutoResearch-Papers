@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_infra_install-tmux_20260515T143515_result.json",
     "occurrence": 1,
-    "bytes": 65,
-    "sha256": "752c46daa253fd4bf7b2dac13384226645a9bb3419e947cf6a41cadef3b53dce"
+    "bytes": 64,
+    "sha256": "5c2f8f6d4298fba72d96ac997e63c0a081d312d0cdc0c06d115f3c74f26b6ad4"
   },
   "statistics": {
     "messages": 1,

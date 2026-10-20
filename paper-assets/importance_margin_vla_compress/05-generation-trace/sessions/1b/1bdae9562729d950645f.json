@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_bypass_k07_westd1_20260517T033420_result.json",
     "occurrence": 1,
-    "bytes": 814,
-    "sha256": "725ecf8da8c615bb96c3f125a708678a6dc411b4307ec189b5aa8868ce33f341"
+    "bytes": 813,
+    "sha256": "a3b2c827da4ed6d9ec696464525d464a854149113d320ae4c7f7d9cec28dc2e1"
   },
   "statistics": {
     "messages": 1,

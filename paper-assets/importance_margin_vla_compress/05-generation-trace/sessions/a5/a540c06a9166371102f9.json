@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_simplerenv_westd27271_20260524T180143_result.json",
     "occurrence": 1,
-    "bytes": 1186,
-    "sha256": "a7d5b275055f57a8bd549405b037ce3cfa85207aa04bc7f87104e9dc7bd38b1b"
+    "bytes": 1185,
+    "sha256": "e8418b56aa82111996e0e585747fd08cfff995df707b8a6cc8a96d5aab25b278"
   },
   "statistics": {
     "messages": 1,

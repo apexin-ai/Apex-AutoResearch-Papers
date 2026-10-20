@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_verify_cqa1_gpu3_startup_20260525T110752_result.json",
     "occurrence": 1,
-    "bytes": 454,
-    "sha256": "03ac4793b8eba4caf3df0b8914325193f71b8cbdc3ede8e7aaf450b8a2c8da4c"
+    "bytes": 453,
+    "sha256": "0c2a36cb1e832e6aa73ce925e5f1acd5241ec4cd09b562e97e7ec679f82ec2c0"
   },
   "statistics": {
     "messages": 1,

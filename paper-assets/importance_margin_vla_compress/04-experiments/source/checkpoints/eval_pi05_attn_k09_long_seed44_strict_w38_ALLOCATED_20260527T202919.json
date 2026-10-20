@@ -1,0 +1,18 @@
+{
+  "exp_id": "eval_pi05_attn_k09_long_seed44_strict_w38",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T20:07:56.006Z",
+    "updated_at": "2026-05-27T20:29:16.692Z",
+    "hypothesis": "π0.5 Attn k=0.9 Long strict seed44 — 峰值点 Attn 端的第三个种子。seed42=64.0%, seed43 RUNNING。k=0.9 是 Attn cliff 后的 plateau 段，seed44 验证 plateau 稳定性",
+    "server": "cqa1-33015",
+    "gpu": "cuda:2",
+    "parent": "eval_pi05_attn_k09_long_seed43_strict_cqa1"
+  },
+  "timestamp": "2026-05-27T20:29:19.079156+00:00",
+  "trigger": "update_registry"
+}

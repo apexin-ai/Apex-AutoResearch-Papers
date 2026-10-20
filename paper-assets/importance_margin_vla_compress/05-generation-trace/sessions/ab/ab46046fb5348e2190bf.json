@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill_westd41074_correct_server_20260519T192726_result.json",
     "occurrence": 1,
-    "bytes": 310,
-    "sha256": "92dabd7f5bbf90bf48b06e150b38078311258c832503b402480714af988562f6"
+    "bytes": 309,
+    "sha256": "1fe655c17e32e43857578bc83f88c5328e0b0a3e2d8e706ace80bb3e8c22bb75"
   },
   "statistics": {
     "messages": 1,

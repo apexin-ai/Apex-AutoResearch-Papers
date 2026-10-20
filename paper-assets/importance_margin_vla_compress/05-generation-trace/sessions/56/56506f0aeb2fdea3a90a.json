@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_smolvla_seed43_failed_20260521T182700_result.json",
     "occurrence": 1,
-    "bytes": 1265,
-    "sha256": "9e5ad1cd2d4c9912307b0570600bc59ab6c14178cb50245038a935576fcf0307"
+    "bytes": 1264,
+    "sha256": "50660e1c89a3b28a21f75601fc1f578e841d23fee18f60e444385437e2b8b698"
   },
   "statistics": {
     "messages": 1,

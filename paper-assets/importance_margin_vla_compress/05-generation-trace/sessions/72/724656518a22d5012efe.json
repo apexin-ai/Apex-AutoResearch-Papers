@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analyze_eval_openvla_l2norm_k05_goal_seed42_v3_20260523T231714_result.json",
     "occurrence": 1,
-    "bytes": 1170,
-    "sha256": "cf94b217fcd9ceeec11a7c0859ed1ccff42d24dae243a58fd5ca912b2411148e"
+    "bytes": 1169,
+    "sha256": "7b4f77112248a39de6fb5b366ca9f14fcc3ad586d7baf6c69b8a15a20968ed8c"
   },
   "statistics": {
     "messages": 1,

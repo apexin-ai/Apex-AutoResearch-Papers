@@ -1,0 +1,115 @@
+{
+  "exp_id": "mvp_imm_anchor_v8",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:07:33.075Z",
+    "updated_at": "2026-05-16T04:07:58.695Z",
+    "hypothesis": "gradient isolation (dual detach) 消除 backbone 权重损伤 (G3a≤1.10)，同时 ACIS 仍能学到有效 importance scoring (G1≥2x, G2≥10pp)",
+    "parent": "mvp_imm_anchor_v7_2",
+    "notes": "训练完成 (step 30K)。D028 fix re-eval (500-batch, fixed evaluate.py with 5 fixes): G1=50.2x PASS, G2=+58.8pp PASS, G3=1.344x FAIL (target ≤1.10), G4=0.087 PASS → Overall FAIL。Fixed eval 结果与 buggy eval 一致在 ~5% 内：standard_clean 0.00546 (was 0.00530), bypass_clean 0.02895 (was 0.03019), margin_median 0.5034 (was 0.505)。关键发现：(1) G4 LED 从 0.169 降至 0.087，修复显著影响了 LED 计算；(2) G3 从 1.30x 升至 1.34x；(3) bypass/baseline=7.12x 确认 backbone 严重受损。结论不变：gradient isolation 未能解决 backbone 损伤问题。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python3 train.py --config configs/imm_anchor_v8.yaml",
+      "server": "westd-27271",
+      "gpu": "cuda:0",
+      "pid": "86610",
+      "data_path": "lerobot/aloha_sim_insertion_scripted_image",
+      "data_count": 20000,
+      "model_name": "lerobot/smolvla_base + LoRA r=32 + IMM(delta=0.3, lambda=0.5, gradient_isolation=true)",
+      "seed": 42,
+      "log_path": "~/runs/importance_margin_vla_compress/mvp_imm_anchor_v8.log",
+      "checkpoint_path": "checkpoints/imm_anchor_v8/",
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "N/A (training experiment)"
+    },
+    "metrics": {
+      "checkpoint_trajectory": {
+        "step_2000": {
+          "standard": 0.03787,
+          "acis_prune": 0.0357,
+          "bypass": 0.05842,
+          "random_prune": 0.0425,
+          "acis_advantage": 0.0068
+        },
+        "step_29999": {
+          "standard": 0.00659,
+          "acis_prune": 0.0033,
+          "bypass": 0.0323,
+          "random_prune": 0.01576,
+          "acis_advantage": 0.01246
+        }
+      },
+      "eval_500batch_fixed": {
+        "source": "eval_results/eval_imm_v8_fixed.json",
+        "eval_tag": "D028_fix_reeval",
+        "standard_clean_action_loss": 0.005462,
+        "bypass_clean_action_loss": 0.028948,
+        "pruneTrue_clean_action_loss": 0.005462,
+        "pruneFalse_clean_action_loss": 0.029996,
+        "margin_median": 0.5034,
+        "margin_mean": 0.7696,
+        "margin_std": 0.8133,
+        "eps001_preservation": 0.923,
+        "eps002_preservation": 0.8367,
+        "eps005_preservation": 0.6613,
+        "eps001_kendall_tau": 0.8393,
+        "eps001_led_median": 0.0852,
+        "eps002_led_median": 0.1714,
+        "eps005_led_median": 0.4429,
+        "lipschitz_empirical": 0.1364,
+        "lipschitz_spectral": 1.0672
+      },
+      "eval_500batch_bypass_fixed": {
+        "source": "eval_results/eval_imm_v8_bypass_fixed.json",
+        "bypass_clean_action_loss": 0.028948,
+        "bypass_pruned_action_loss": 0.017215,
+        "eps001_action_loss_noprune": 0.027873,
+        "eps001_action_loss_prune": 0.016572,
+        "eps005_action_loss_noprune": 0.039901,
+        "eps005_action_loss_prune": 0.02627
+      },
+      "baseline_v5_fixed": {
+        "source": "eval_results/eval_baseline_v5_fixed.json",
+        "clean_action_loss": 0.004063,
+        "margin_median": 0.010022,
+        "eps001_preservation": 0.3352
+      },
+      "gate_analysis_fixed": {
+        "eval_tag": "D028_fix_reeval",
+        "G1_margin_ratio": 50.2,
+        "G1_pass": true,
+        "G2_preservation_diff_pp": 58.78,
+        "G2_pass": true,
+        "G3_clean_loss_ratio": 1.344,
+        "G3_target": 1.1,
+        "G3_pass": false,
+        "G3_deploy_ratio": 1.344,
+        "G3_deploy_pass": false,
+        "G4_led_median": 0.0865,
+        "G4_pass": true,
+        "overall_pass": false,
+        "bypass_backbone_ratio": 7.12,
+        "notes": "Fixed eval (5 bugs: eps0 pruning flag, hard binary mask, per-condition RNG, eval mode, preloaded batches). Results consistent with old buggy eval within ~5%. G3 still fails at 1.344x."
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T02:05:58.213Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T02:05:59.086501+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-16T04:07:58.695Z"
+  },
+  "timestamp": "2026-05-16T04:07:58.729910+00:00",
+  "trigger": "update_registry"
+}

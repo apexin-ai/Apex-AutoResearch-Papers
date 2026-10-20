@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k07_long_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:09:25.953Z",
+    "updated_at": "2026-05-23T00:10:27.665Z",
+    "hypothesis": "π0.5 L2norm k=0.7 Long seed43: seed42=60.0%，L2norm 曲线关键中点。需要 seed43 交叉验证。L2norm k=0.5 seed42=50.2%, k=0.85 seed42=running(cqa1)。"
+  },
+  "timestamp": "2026-05-23T00:10:28.309288+00:00",
+  "trigger": "update_registry"
+}

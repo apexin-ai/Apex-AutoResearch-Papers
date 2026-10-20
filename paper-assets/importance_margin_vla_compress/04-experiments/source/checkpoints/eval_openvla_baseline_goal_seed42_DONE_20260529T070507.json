@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_openvla_baseline_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "created_at": "2026-05-23T14:10:43.653Z",
+    "hypothesis": "OpenVLA baseline Goal: E2 Must-Fix R6-W5——OpenVLA 多 suite baseline。现有 Object baseline=96.2%, Spatial=78.8%。Goal baseline 建立 OpenVLA 在 Goal suite 上的无剪枝参考线。",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "command": "bash -c \"source /etc/network_turbo 2>/dev/null; export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt; export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt; export HF_HUB_DISABLE_XET=1; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode baseline --suite libero_goal --num_episodes 50 --seed 42\"",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_baseline_goal_seed42.log",
+      "pid": "257931",
+      "server": "westd-27271",
+      "submitted_at": "2026-05-23T14:10:42.558Z",
+      "submitted_via": "submit_training_job",
+      "wall_clock_seconds": 492862.1,
+      "gpu_hours": 136.91
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-29T07:05:04.640Z",
+    "conclusion": "killed",
+    "completed_at": "2026-05-29T07:05:04.640Z"
+  },
+  "timestamp": "2026-05-29T07:05:07.128963+00:00",
+  "trigger": "update_registry"
+}

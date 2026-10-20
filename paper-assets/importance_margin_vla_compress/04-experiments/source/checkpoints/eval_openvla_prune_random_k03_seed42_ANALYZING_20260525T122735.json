@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_openvla_prune_random_k03_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "created_at": "2026-05-20T19:33:01.904Z",
+    "hypothesis": "OpenVLA random pruning k=0.3 seed42 provides 3rd seed for MF-3 validation at 70% pruning. seed7=20.6%. Auto-queued by Director to start when current seed42 batch completes.",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "checkpoint_source": "/root/autodl-tmp/openvla-libero-object",
+      "command": "bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.3 --suite libero_object --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/openvla-libero-object --unnorm_key libero_object --gpu 3 --output eval_results/openvla_random_k03_object_seed42.json\"",
+      "data_count": 500,
+      "data_path": "libero_object",
+      "eval_data": "libero_object 10 tasks x 50 episodes",
+      "gpu": "cuda:3",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_prune_random_k03_seed42.log",
+      "model_name": "openvla-libero-object",
+      "pid": "8906",
+      "seed": 42,
+      "server": "westd-41074",
+      "submitted_at": "2026-05-25T06:11:17.670Z",
+      "submitted_via": "submit_training_job"
+    },
+    "status": "ANALYZING",
+    "updated_at": "2026-05-25T12:27:33.763Z",
+    "reproduce": {
+      "finished_at": "2026-05-25T12:27:30.817Z"
+    }
+  },
+  "timestamp": "2026-05-25T12:27:35.820441+00:00",
+  "trigger": "update_registry"
+}

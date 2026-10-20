@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_westd_servers_status_registration_20260527T060212_result.json",
     "occurrence": 1,
-    "bytes": 2543,
-    "sha256": "45518564ee832b22a4f0ad8d9080c0fcc54209126e910d533819a67d8bcdef3e"
+    "bytes": 2542,
+    "sha256": "c4a4da02c79f388e47bfe216157a3b77b6c5a6863de1d1e683411380244dd551"
   },
   "statistics": {
     "messages": 1,

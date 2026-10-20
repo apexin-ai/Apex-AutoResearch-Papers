@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_imm-core-modules_20260515T111402_result.json",
     "occurrence": 1,
-    "bytes": 589,
-    "sha256": "4c0059abe229ad53a29ab940cf3e97dd9a26b065ba4d7dd292c157e2f0f00162"
+    "bytes": 588,
+    "sha256": "a49efa71e9606b006e2a21951e7044d97c1ece26f92c290920a559ca6a87f2d4"
   },
   "statistics": {
     "messages": 1,

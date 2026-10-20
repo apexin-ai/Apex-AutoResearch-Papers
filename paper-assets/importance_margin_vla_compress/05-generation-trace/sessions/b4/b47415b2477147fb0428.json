@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-restart-all-4-experiments_20260520T215809_result.json",
     "occurrence": 1,
-    "bytes": 586,
-    "sha256": "e9df6772ca01c52aaf9ef09b8cc956993da3b841c65a8e292ab37b7fb97761ec"
+    "bytes": 585,
+    "sha256": "3667036d6c62da10f074a9868e708b3cc2b328b3e802a1fc58905de5e9040453"
   },
   "statistics": {
     "messages": 1,

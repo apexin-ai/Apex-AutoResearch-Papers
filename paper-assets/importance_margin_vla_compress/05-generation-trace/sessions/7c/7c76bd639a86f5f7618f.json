@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd38929_gpu3_pi05_l2norm_k05_20260527T114946_result.json",
     "occurrence": 1,
-    "bytes": 1005,
-    "sha256": "ac2b8f0c7a74df33061d396e82053f941c76ceed80fc153d429e9c5b96193368"
+    "bytes": 1004,
+    "sha256": "ac0ccb56390f717b9edd63e69c5e4d9726e73bd02c8f407daaf912dd8b80850a"
   },
   "statistics": {
     "messages": 1,

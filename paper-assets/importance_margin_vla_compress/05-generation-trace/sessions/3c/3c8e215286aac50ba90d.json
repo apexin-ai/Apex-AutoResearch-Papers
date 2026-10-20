@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_deploy-eval-fixes_20260515T190148_result.json",
     "occurrence": 1,
-    "bytes": 344,
-    "sha256": "d98dd0006e6ddd7b9a9eda27ad8e35c9d86982be9c4ea94c1be3f8cf6e84b942"
+    "bytes": 343,
+    "sha256": "56569f249542f7d3e28b471920d7a7c5f6ed10f4a8c3ed71305183ded53ae992"
   },
   "statistics": {
     "messages": 1,

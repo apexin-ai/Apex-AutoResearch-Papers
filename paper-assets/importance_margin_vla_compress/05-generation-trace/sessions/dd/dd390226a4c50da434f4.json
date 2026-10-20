@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd27271-gpu23-goal-k075_20260526T192739_result.json",
     "occurrence": 1,
-    "bytes": 542,
-    "sha256": "7416cca2bf901870897c3d9413fa3dc476f55c130d21b3ca96f3d29ec771d4f9"
+    "bytes": 541,
+    "sha256": "c065df90ac5a4e6ea23ac96ce2f544cb6682892fdf701276861bdf6e366c4842"
   },
   "statistics": {
     "messages": 1,

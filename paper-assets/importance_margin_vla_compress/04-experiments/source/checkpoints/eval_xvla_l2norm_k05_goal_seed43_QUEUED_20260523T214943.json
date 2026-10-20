@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_xvla_l2norm_k05_goal_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T21:49:14.251Z",
+    "updated_at": "2026-05-23T21:49:42.634Z",
+    "hypothesis": "X-VLA L2norm k=0.5 Goal seed43。seed42=59.0%(negative, < Random 67.2%)。seed43 验证 L2 anti-informativeness 可复现性（R6-C1 CV）。"
+  },
+  "timestamp": "2026-05-23T21:49:43.780292+00:00",
+  "trigger": "update_registry"
+}

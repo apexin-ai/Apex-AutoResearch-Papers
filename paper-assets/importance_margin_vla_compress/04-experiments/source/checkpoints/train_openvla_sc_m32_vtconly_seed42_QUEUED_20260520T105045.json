@@ -1,0 +1,35 @@
+{
+  "exp_id": "train_openvla_sc_m32_vtconly_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-20T01:13:01.057Z",
+    "updated_at": "2026-05-20T10:50:45.195Z",
+    "hypothesis": "OpenVLA VTC-only M=32 (256→32 tokens, 87.5% compression) on westd-27271. Most aggressive OpenVLA compression point. Independent of 20K gate — even if C4-ext fails, M=32 data point contributes to M-sweep curve. If VTC M=32 > random pruning k=0.3 (20.6% SR), demonstrates learned re-encoding value at extreme compression.",
+    "parent": "train_openvla_sc_m128_vtconly_seed42",
+    "reproduce": {
+      "finished_at": "2026-05-20T10:41:31.047Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-20T10:41:33.455Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T10:41:38.206200+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: 磁盘写入失败 — step 20000 checkpoint 保存时 RuntimeError: PytorchStreamWriter failed writing file data/1007: file write failed (pos 16157571008). 训练本身正常 (loss ~2.8, eval_loss=2.8768@20K). | 已有成果: 训练正常到 step 20000/100K, 可能有 step 10K/15K 的 checkpoint | 建议: 检查磁盘空间, 清理旧 checkpoint, 从最新 checkpoint resume"
+      }
+    },
+    "notes": "失败原因: 磁盘写入失败 — step 20000 checkpoint 保存时 RuntimeError: PytorchStreamWriter failed writing file data/1007: file write failed (pos 16157571008). 训练本身正常 (loss ~2.8, eval_loss=2.8768@20K). | 已有成果: 训练正常到 step 20000/100K, 可能有 step 10K/15K 的 checkpoint | 建议: 检查磁盘空间, 清理旧 checkpoint, 从最新 checkpoint resume"
+  },
+  "timestamp": "2026-05-20T10:50:45.480445+00:00",
+  "trigger": "update_registry"
+}

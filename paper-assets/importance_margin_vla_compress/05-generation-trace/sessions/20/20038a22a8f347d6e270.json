@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1-cuda1-cuda3-two-experiments_20260525T211323_result.json",
     "occurrence": 1,
-    "bytes": 592,
-    "sha256": "88226b72970e5b7f0c14237f672ef7d34ecacec05e0c4772b74e77822216f2c3"
+    "bytes": 591,
+    "sha256": "300be0317df106ba02d2e5f74eb7a0f7a13f26364e81c49d26c28db2c82dfe40"
   },
   "statistics": {
     "messages": 1,

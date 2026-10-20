@@ -1,0 +1,41 @@
+{
+  "exp_id": "eval_pi05_l2norm_k0925_spatial_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T05:05:09.169Z",
+    "updated_at": "2026-05-22T20:14:42.766Z",
+    "hypothesis": "π0.5 L2norm k=0.925 Spatial seed43: cliff 入口处 L2norm 双种子验证。Object k=0.925 L2norm=99.2%。seed42 待收割。验证 L2norm 在 cliff zone 保持 plateau 的跨 seed 一致性。",
+    "spec": {
+      "command": "eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.925 --suite libero_spatial --seed 43",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "133112",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k0925_spatial_seed43.log",
+      "submitted_at": "2026-05-22T05:05:16.877Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "seed": 43,
+      "model_name": "pi0-fast",
+      "data_path": "libero_spatial",
+      "data_count": 500,
+      "checkpoint_source": "pi0-fast-pruned-l2norm-k0925",
+      "eval_data": "libero_spatial",
+      "wall_clock_seconds": 54565.9,
+      "gpu_hours": 15.16
+    },
+    "failure_reason": "stale RUNNING, no metrics after 14h",
+    "conclusion": "negative",
+    "checkpoint_path": "N/A - eval experiment",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k0925_spatial_seed43.log",
+    "completed_at": "2026-05-22T20:14:42.766Z"
+  },
+  "timestamp": "2026-05-22T20:14:43.956204+00:00",
+  "trigger": "update_registry"
+}

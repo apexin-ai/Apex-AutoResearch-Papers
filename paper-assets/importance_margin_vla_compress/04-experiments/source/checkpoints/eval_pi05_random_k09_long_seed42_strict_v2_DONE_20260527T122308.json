@@ -1,0 +1,110 @@
+{
+  "exp_id": "eval_pi05_random_k09_long_seed42_strict_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T09:17:50.924Z",
+    "updated_at": "2026-05-27T12:23:05.276Z",
+    "spec": {
+      "command": "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python eval_pi05_pruning_libero.py --suite libero_10 --prune_mode random --keep_ratio 0.9 --n_episodes 50 --gpu 0 --seed 42",
+      "server": "westd-41074",
+      "gpu": "cuda:0",
+      "pid": 356361,
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed42_strict_v2.log",
+      "submitted_at": "2026-05-27T09:17:47.259Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/importance_margin_vla_compress",
+      "data_count": 500,
+      "model_name": "pi0.5",
+      "seed": 42,
+      "checkpoint_source": "pi0.5 pretrained",
+      "eval_data": "libero_10 (Long)",
+      "wall_clock_seconds": 11118.0,
+      "gpu_hours": 3.09
+    },
+    "hypothesis": "π0.5 Random k=0.9 Long lenient 结果 ~32% 异常低（反单调性 D254：k=0.75=63%→k=0.85=45%→k=0.9=32%），strict 重跑验证是否为 success 条件污染或真实性能",
+    "parent": "eval_pi05_random_k09_long_seed42_strict",
+    "reproduce": {
+      "finished_at": "2026-05-27T12:17:13.389Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T12:17:45.810329+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_sr": 34.2,
+      "per_task_sr": [
+        10,
+        46,
+        40,
+        58,
+        16,
+        38,
+        2,
+        38,
+        6,
+        88
+      ],
+      "total_successes": 171,
+      "total_episodes": 500,
+      "eval_time_min": 177.3,
+      "per_task_raw": [
+        [
+          5,
+          50
+        ],
+        [
+          23,
+          50
+        ],
+        [
+          20,
+          50
+        ],
+        [
+          29,
+          50
+        ],
+        [
+          8,
+          50
+        ],
+        [
+          19,
+          50
+        ],
+        [
+          1,
+          50
+        ],
+        [
+          19,
+          50
+        ],
+        [
+          3,
+          50
+        ],
+        [
+          44,
+          50
+        ]
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A (eval only)",
+    "completed_at": "2026-05-27T12:23:05.276Z"
+  },
+  "timestamp": "2026-05-27T12:23:08.008210+00:00",
+  "trigger": "update_registry"
+}

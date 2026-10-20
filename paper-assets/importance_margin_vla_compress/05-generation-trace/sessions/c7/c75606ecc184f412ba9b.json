@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_smart_compress_m32_spatial_20260519T113052_result.json",
     "occurrence": 1,
-    "bytes": 408,
-    "sha256": "99a58ac5452e96fa2d349e37421257feec86a239ba32b4ad3dc7e068769b0971"
+    "bytes": 407,
+    "sha256": "745957cfe857cc7d6c973961ae0c32f98683bc09807800c443b6dce8d93af31e"
   },
   "statistics": {
     "messages": 1,

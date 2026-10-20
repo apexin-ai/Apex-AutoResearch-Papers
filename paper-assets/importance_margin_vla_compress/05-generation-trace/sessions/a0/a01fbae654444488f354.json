@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1-check-and-fill-random_20260521T022829_result.json",
     "occurrence": 1,
-    "bytes": 1552,
-    "sha256": "a3e359039ef5a3d335182f0dd56877ce39b4994e04fa54ae125ae56b8d9249d7"
+    "bytes": 1551,
+    "sha256": "d5b10ac693c90c58abc06b13f0d37ecf4850278ea44599bd8671e207d42de4c0"
   },
   "statistics": {
     "messages": 1,

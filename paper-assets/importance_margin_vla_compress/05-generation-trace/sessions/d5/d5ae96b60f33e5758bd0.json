@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_restart_all_evals_correct_params_20260519T100242_result.json",
     "occurrence": 1,
-    "bytes": 823,
-    "sha256": "61fafd358b4f9c96766c46b1707998373ea90cfd300a91f18822dfeed3e7febf"
+    "bytes": 822,
+    "sha256": "47734c5e466ed78f4c76b616f9c9eba8490b5b6feb8814e363f1c3e0caa3003b"
   },
   "statistics": {
     "messages": 1,

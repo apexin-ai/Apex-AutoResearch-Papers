@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_westd41074_gpu0_kill_conflict_20260526T015549_result.json",
     "occurrence": 1,
-    "bytes": 397,
-    "sha256": "a849d5d44e31e1ec7c88836f993cb8d7855cdf40ed2ca636d27f048d365df58a"
+    "bytes": 396,
+    "sha256": "558afff66b689d2d1f3768c0b24033e628b32f1320c2bc9510af5874a0a50dad"
   },
   "statistics": {
     "messages": 1,

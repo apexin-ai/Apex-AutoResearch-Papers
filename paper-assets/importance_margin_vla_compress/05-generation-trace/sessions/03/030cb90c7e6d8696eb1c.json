@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_harvest_eval_openvla_l2norm_k075_long_seed42_v2_and_cascade_20260527T133405_result.json",
     "occurrence": 1,
-    "bytes": 1286,
-    "sha256": "cebcc42a4577fc3d427f24fbbed137a8064b31cf8f307de8e79a7b9e96cf063b"
+    "bytes": 1285,
+    "sha256": "87f4cda2fc767bb636587575be0ee0535579aa46eeb145a59a6bbf613c824578"
   },
   "statistics": {
     "messages": 1,

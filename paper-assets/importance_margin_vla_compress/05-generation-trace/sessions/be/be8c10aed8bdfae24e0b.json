@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_oft-download-fix_20260520T114944_result.json",
     "occurrence": 1,
-    "bytes": 1354,
-    "sha256": "77fb29637e3207f2dcc36b6c31d936a42bdc96db0a82e5150366861e32d5075f"
+    "bytes": 1353,
+    "sha256": "8378899ec8a16ae925d8ad4e6de47121b0c0b8862998cbce8337e93d424cb324"
   },
   "statistics": {
     "messages": 1,

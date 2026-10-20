@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check-pruning-method_20260520T113007_result.json",
     "occurrence": 1,
-    "bytes": 1513,
-    "sha256": "6aa3e08f955871036645f0026e62e7f3d05601f149a80ac58944924a3a641e0e"
+    "bytes": 1512,
+    "sha256": "7f8d6efec513ff0cbaaac820166fb50578b194afcc6ff3ea0a84ee76a37f94f7"
   },
   "statistics": {
     "messages": 1,

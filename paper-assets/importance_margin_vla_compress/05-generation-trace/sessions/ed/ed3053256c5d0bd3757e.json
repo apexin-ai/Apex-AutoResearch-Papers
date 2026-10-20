@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_c4ext_10k_gate_check_20260519T231700_result.json",
     "occurrence": 1,
-    "bytes": 1161,
-    "sha256": "8cc2bb36308f3b91c656296ca76416118a26a53ac22c9ba418768cf263d8f3b6"
+    "bytes": 1160,
+    "sha256": "c0ca42c65eb752c4195cf4de543bf03cdc8101f6fa90ea0d8b38686da1490e78"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval_pi05_attn_k09_long_seed44_strict_w38",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T20:07:56.006Z",
+    "updated_at": "2026-05-28T00:24:11.374Z",
+    "hypothesis": "π0.5 Attn k=0.9 Long strict seed44 — 峰值点 Attn 端的第三个种子。seed42=64.0%, seed43 RUNNING。k=0.9 是 Attn cliff 后的 plateau 段，seed44 验证 plateau 稳定性",
+    "server": "cqa1-33015",
+    "gpu": "cuda:2",
+    "parent": "eval_pi05_attn_k09_long_seed43_strict_cqa1",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\"",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "695388",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k09_long_seed44_strict_w38.log",
+      "submitted_at": "2026-05-27T20:29:38.138Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "695388",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k09_long_seed44_strict_w38.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\"",
+      "finished_at": "2026-05-28T00:24:07.923Z"
+    }
+  },
+  "timestamp": "2026-05-28T00:24:12.818524+00:00",
+  "trigger": "update_registry"
+}

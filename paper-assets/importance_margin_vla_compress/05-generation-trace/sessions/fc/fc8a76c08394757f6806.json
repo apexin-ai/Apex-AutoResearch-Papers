@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_westd38929_gpu3_20260526T081210_result.json",
     "occurrence": 1,
-    "bytes": 719,
-    "sha256": "5899d7124f58ddf2e6c9b18ba92b75261beffebdbc0254b0296e3a82df9fcd13"
+    "bytes": 718,
+    "sha256": "f215d0c9cbef52cbed714a5a82787eee57dc36cb918807bfec3917916a21075f"
   },
   "statistics": {
     "messages": 1,

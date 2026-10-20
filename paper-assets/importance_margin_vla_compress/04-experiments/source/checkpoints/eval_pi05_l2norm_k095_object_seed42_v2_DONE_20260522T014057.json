@@ -1,0 +1,76 @@
+{
+  "exp_id": "eval_pi05_l2norm_k095_object_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T00:30:25.866Z",
+    "updated_at": "2026-05-22T01:40:56.708Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_object --n_episodes 50 --seed 42 --gpu 0\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "818643",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k095_object_seed42_v2.log",
+      "submitted_at": "2026-05-22T00:30:25.140Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_object",
+      "wall_clock_seconds": 4231.6,
+      "gpu_hours": 1.18
+    },
+    "hypothesis": "π0.5 L2norm k=0.95 Object seed42 v2: v1 crashed due to lerobot groot dataclass bug. Patched. L2norm k=0.9=98.2%. k=0.95 should be ≥98% if L2norm is monotonic.",
+    "reproduce": {
+      "finished_at": "2026-05-22T01:35:48.127Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T01:35:57.662928+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 98.2,
+      "total_success": 491,
+      "total_episodes": 500,
+      "per_task_sr": [
+        96,
+        98,
+        96,
+        96,
+        96,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "prune_method": "l2norm",
+      "keep_ratio": 0.95,
+      "tokens_kept": "243/256",
+      "suite": "libero_object",
+      "seed": 42,
+      "eval_episodes_per_task": 50,
+      "wall_time_min": 63.2
+    },
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k095_object_seed42_v2.log",
+    "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.95_libero_object_seed42.json",
+    "conclusion": "success",
+    "completed_at": "2026-05-22T01:40:56.708Z"
+  },
+  "timestamp": "2026-05-22T01:40:57.634302+00:00",
+  "trigger": "update_registry"
+}

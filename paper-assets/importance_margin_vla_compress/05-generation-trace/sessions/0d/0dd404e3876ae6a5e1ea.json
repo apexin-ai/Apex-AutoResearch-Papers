@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_westd-38929-harvest-and-pids_20260524T013412_result.json",
     "occurrence": 1,
-    "bytes": 1957,
-    "sha256": "d0c053d084841a81464e37a0b62ec75593430137fe92136736e44b508ed2080c"
+    "bytes": 1956,
+    "sha256": "a740d7d04bbb7facd94ccdc2e0f51d979e50260f37ec58dd613e418713a0b5ef"
   },
   "statistics": {
     "messages": 1,

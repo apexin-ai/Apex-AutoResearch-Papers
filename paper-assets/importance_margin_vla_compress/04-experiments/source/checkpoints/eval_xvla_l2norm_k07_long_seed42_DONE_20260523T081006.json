@@ -1,0 +1,62 @@
+{
+  "exp_id": "eval_xvla_l2norm_k07_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T06:11:48.575Z",
+    "updated_at": "2026-05-23T08:10:05.695Z",
+    "hypothesis": "X-VLA L2norm k=0.7 Long seed42: Table 2 gap. L2 k=0.9 Long=27.5%, L2 k=0.95 Long=47.0%. L2 在 Long 上非单调（k=0.9 < k=0.95），k=0.7 是否继续下降。",
+    "spec": {
+      "command": "python eval_xvla_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 42",
+      "server": "westd-27271",
+      "gpu": 0,
+      "pid": 457656,
+      "seed": 42,
+      "model_name": "X-VLA",
+      "data_path": "LIBERO-Long",
+      "data_count": 500,
+      "checkpoint_source": "/root/autodl-tmp/X-VLA-Libero",
+      "eval_data": "libero_10",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/",
+      "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/xvla_checkpoints/"
+    },
+    "notes": "失败原因: 标记 RUNNING 但从未实际提交（无 server/pid/spec/command）。cron 检测进程不存在 (miss 3/5)。无日志文件。需要重新提交。",
+    "conclusion": "success",
+    "completed_at": "2026-05-23T08:01:12.678Z",
+    "reproduce": {
+      "finished_at": "2026-05-23T08:01:23.404Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-23T08:01:50.962295+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_SR": 0.494,
+      "total_successes": 247,
+      "total_episodes": 500,
+      "per_task_SR": {
+        "T0_alphabet_soup_tomato": 0.12,
+        "T1_cream_cheese_butter": 0.04,
+        "T2_stove_moka": 0.56,
+        "T3_bowl_drawer": 0.98,
+        "T4_mugs_plates": 0.68,
+        "T5_book_caddy": 0.94,
+        "T6_mug_pudding": 0.78,
+        "T7_soup_cream_cheese": 0.76,
+        "T8_two_moka_pots": 0,
+        "T9_mug_microwave": 0.08
+      }
+    }
+  },
+  "timestamp": "2026-05-23T08:10:06.732901+00:00",
+  "trigger": "update_registry"
+}

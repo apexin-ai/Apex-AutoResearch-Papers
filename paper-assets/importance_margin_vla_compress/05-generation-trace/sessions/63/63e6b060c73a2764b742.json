@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_claim_coverage_0527_20260527T010732_result.json",
     "occurrence": 1,
-    "bytes": 1632,
-    "sha256": "3790e01962f0259cdd5cc6d3b47a5e04092b9259e1e2058f9feee9de534467dd"
+    "bytes": 1631,
+    "sha256": "3ec4d8e99b43e024e335b6f05772a00523dfa14f2730c457cf83afb2ae9ad48e"
   },
   "statistics": {
     "messages": 1,

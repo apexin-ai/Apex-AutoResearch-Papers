@@ -755,7 +755,7 @@ _source line 14_
 
 ```json
 {
-  "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" nohup /home/ubuntu/.local/bin/paperbanana generate \\\n  --input /tmp/fig_architecture_intent.txt \\\n  --caption \"Four VLA architectures arranged by connector fragility (CV), showing vision encoder → connector → LLM pipeline\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/figures/paper/fig_architecture_v2.png \\\n  --iterations 3 \\\n  > /tmp/paperbanana_fig2.log 2>&1 &\necho \"PID=$!\"",
+  "command": "GOOGLE_API_KEY=\"[REDACTED]\" nohup /home/ubuntu/.local/bin/paperbanana generate \\\n  --input /tmp/fig_architecture_intent.txt \\\n  --caption \"Four VLA architectures arranged by connector fragility (CV), showing vision encoder → connector → LLM pipeline\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/figures/paper/fig_architecture_v2.png \\\n  --iterations 3 \\\n  > /tmp/paperbanana_fig2.log 2>&1 &\necho \"PID=$!\"",
   "description": "Launch PaperBanana in background"
 }
 ```

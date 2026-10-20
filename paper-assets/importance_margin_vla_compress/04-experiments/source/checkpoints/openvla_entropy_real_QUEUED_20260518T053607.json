@@ -1,0 +1,15 @@
+{
+  "exp_id": "openvla_entropy_real",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T05:35:28.266Z",
+    "updated_at": "2026-05-18T05:36:07.609Z",
+    "hypothesis": "Measure OpenVLA attention entropy on real LIBERO-Object images (250 frames, 10 tasks) to replace previous measurement on 20 random images. Expected similar directional finding (entropy << 1.0) but more defensible to reviewers."
+  },
+  "timestamp": "2026-05-18T05:36:07.774286+00:00",
+  "trigger": "update_registry"
+}

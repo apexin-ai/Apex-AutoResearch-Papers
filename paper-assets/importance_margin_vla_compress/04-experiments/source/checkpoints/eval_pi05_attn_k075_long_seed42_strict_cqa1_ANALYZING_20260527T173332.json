@@ -1,0 +1,49 @@
+{
+  "exp_id": "eval_pi05_attn_k075_long_seed42_strict_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T12:30:42.904Z",
+    "updated_at": "2026-05-27T17:33:31.499Z",
+    "hypothesis": "π0.5 attention pruning at k=0.75 on Long suite (strict metric) will show moderate performance degradation compared to k=0.85 (50.0%) and k=0.9 (64.0%), filling the cliff curve gap between k=0.85 and k=0.5.",
+    "parent": "eval_pi05_attn_k085_long_seed42_strict",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "300488",
+      "tmux_session": "pi05_attn_k075_strict",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed42_strict_cqa1.log",
+      "submitted_at": "2026-05-27T12:31:32Z",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_10 (Long, 10 tasks x 50 episodes)",
+      "checkpoint_path": "N/A (eval only)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-27T17:12:27.912Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T17:12:50.800914+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-27T17:33:32.851025+00:00",
+  "trigger": "update_registry"
+}

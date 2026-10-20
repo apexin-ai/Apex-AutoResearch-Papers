@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_imm_twostage_dryrun_libero_20260516T174503_result.json",
     "occurrence": 1,
-    "bytes": 1451,
-    "sha256": "3db9e6a6131baccd06ddfa0cfd55966078ec4cedd276203936fcdc8ddc7c5db5"
+    "bytes": 1450,
+    "sha256": "854ae25ceaf7b030c8cdc33132b3947540262d7a5908653b9e48441996df4748"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check-c4ext-eval-results_20260521T025331_result.json",
     "occurrence": 1,
-    "bytes": 928,
-    "sha256": "d2210c5cdd83dcc1d83725a485c92381cb2f839b07f5f62b3607e702e97f020b"
+    "bytes": 927,
+    "sha256": "7ed462731d5b22f36a0b1aacfcacfc16866ba592595f0a348753fb4132d12822"
   },
   "statistics": {
     "messages": 1,

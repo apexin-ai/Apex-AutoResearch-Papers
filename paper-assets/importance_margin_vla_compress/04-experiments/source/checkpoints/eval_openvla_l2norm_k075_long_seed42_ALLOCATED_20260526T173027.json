@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_openvla_l2norm_k075_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T17:30:02.823Z",
+    "updated_at": "2026-05-26T17:30:26.557Z",
+    "hypothesis": "OpenVLA L2norm k=0.75 Long seed42 — Long cliff curve 中间点。L2norm k=0.9=43.6%, k=0.85=38.8%, k=0.7=31.2%。k=0.75 填补 k=0.85→0.7 间的下降斜率，Long 三方法 k=0.75 均缺失"
+  },
+  "timestamp": "2026-05-26T17:30:27.750530+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_cqa1_gpu3_duplicate_check_20260528T004612_result.json",
     "occurrence": 1,
-    "bytes": 595,
-    "sha256": "f507ea88788a42aefea4aca9a39a1222f00c04fe759ce4650707ac7e6e2386df"
+    "bytes": 594,
+    "sha256": "193bfa29504586179dde6211b97accc5372e3d2d0d04bd79a4df6ca37af65482"
   },
   "statistics": {
     "messages": 1,

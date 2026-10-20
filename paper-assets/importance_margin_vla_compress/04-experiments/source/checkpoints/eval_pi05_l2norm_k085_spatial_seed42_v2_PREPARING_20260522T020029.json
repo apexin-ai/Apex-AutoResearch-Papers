@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_spatial_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T02:00:29.001Z",
+    "updated_at": "2026-05-22T02:00:29.001Z"
+  },
+  "timestamp": "2026-05-22T02:00:29.551277+00:00",
+  "trigger": "update_registry"
+}

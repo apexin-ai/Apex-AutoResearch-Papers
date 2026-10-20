@@ -1,0 +1,54 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_long_seed44_strict_w38",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T22:05:01.866Z",
+    "updated_at": "2026-05-28T01:49:04.121Z",
+    "hypothesis": "π0.5 L2norm k=0.85 Long strict seed44 — 第三 seed 收窄 ±0.5pp (s42=78.6%, s43=77.6%, mean=78.1%)。L2norm graceful degradation 肩部关键点，margin=32.5pp 处精度",
+    "parent": "eval_pi05_l2norm_k085_long_seed43_strict_w41",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\"",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "773760",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k085_long_seed44_strict_w38.log",
+      "data_path": "libero_10",
+      "data_count": "10 tasks x 50 episodes",
+      "model_name": "pi0.5",
+      "seed": 44,
+      "checkpoint_source": "pi0.5 pretrained",
+      "eval_data": "libero_10 (10 tasks x 50 episodes)",
+      "note": "restarted with correct CUDA_VISIBLE_DEVICES=2, original PID 691997 was on cuda:0 (bug)"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 76.6,
+      "total_episodes": 500,
+      "total_successes": 383,
+      "elapsed_min": 142.8,
+      "per_task": {
+        "T0_alphabet_soup_tomato": 98,
+        "T1_cream_cheese_butter": 94,
+        "T2_stove_moka_pot": 88,
+        "T3_black_bowl_drawer": 100,
+        "T4_white_mug_left_plate": 64,
+        "T5_book_back_shelf": 90,
+        "T6_white_mug_plate": 6,
+        "T7_alphabet_soup_cream": 82,
+        "T8_moka_pots_stove": 52,
+        "T9_yellow_white_mug_microwave": 92
+      }
+    },
+    "checkpoint_path": "N/A (eval-only)",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k085_long_seed44_strict_w38.log",
+    "completed_at": "2026-05-28T01:49:04.121Z"
+  },
+  "timestamp": "2026-05-28T01:49:06.028756+00:00",
+  "trigger": "update_registry"
+}

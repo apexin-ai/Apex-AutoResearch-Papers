@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1_lerobot_upgrade_20260522T125121_result.json",
     "occurrence": 1,
-    "bytes": 311,
-    "sha256": "18b0cfe014ac69fad616c545c836d0e32765cb603f512d187e6c09851200907f"
+    "bytes": 310,
+    "sha256": "9d4ef5a340468821aaf518511b54327303bf8d77ad79e0f69da0dba65c0292f4"
   },
   "statistics": {
     "messages": 1,

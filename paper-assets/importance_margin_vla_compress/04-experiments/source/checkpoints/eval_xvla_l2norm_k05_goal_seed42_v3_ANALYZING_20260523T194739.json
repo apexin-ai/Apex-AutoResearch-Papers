@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_xvla_l2norm_k05_goal_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T18:39:32.467Z",
+    "updated_at": "2026-05-23T19:47:38.613Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_goal --keep_ratio 0.5 --mode l2_norm --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\"",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "179415",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_xvla_l2norm_k05_goal_seed42_v3.log",
+      "submitted_at": "2026-05-23T18:39:31.310Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_count": 500,
+      "data_path": "libero_goal",
+      "model_name": "X-VLA-Libero",
+      "seed": 42
+    },
+    "hypothesis": "X-VLA L2norm k=0.5 Goal v3 (fix --mode l2_norm typo)。v2 用了 --mode l2norm（无下划线），参数错误。与 attention Goal k=0.5 (96.8-98.2%) 和 random Goal k=0.5 (67.2%) 对比，验证 L2norm 在 Goal 上的表现。",
+    "reproduce": {
+      "finished_at": "2026-05-23T19:47:36.471Z"
+    }
+  },
+  "timestamp": "2026-05-23T19:47:39.421439+00:00",
+  "trigger": "update_registry"
+}

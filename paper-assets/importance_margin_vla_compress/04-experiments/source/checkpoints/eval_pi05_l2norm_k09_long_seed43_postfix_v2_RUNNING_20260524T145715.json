@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval_pi05_l2norm_k09_long_seed43_postfix_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T14:56:08.781Z",
+    "updated_at": "2026-05-24T14:57:14.973Z",
+    "hypothesis": "π0.5 L2norm k=0.9 Long seed43 post-fix v2 — dual-seed 验证 cliff zone 最强数据点。seed42 L2norm k=0.9 Long postfix 正在跑。k=0.9 是 Random disruption peak（Object=9.0%），L2norm 预期保持高 SR。dual-seed 增强 cliff zone immunity claim",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0",
+      "server": "westd-41074",
+      "gpu_ids": [
+        0
+      ],
+      "model_name": "pi05_libero_finetuned",
+      "seed": 43,
+      "data_path": "libero_10",
+      "data_count": 500,
+      "pid": "466673",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/l2norm_k09_long_seed43_v2.log",
+      "checkpoint_source": "pi05_libero_finetuned",
+      "eval_data": "libero_10"
+    }
+  },
+  "timestamp": "2026-05-24T14:57:15.989177+00:00",
+  "trigger": "update_registry"
+}

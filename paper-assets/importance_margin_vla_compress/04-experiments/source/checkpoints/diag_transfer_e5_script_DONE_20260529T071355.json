@@ -1,0 +1,31 @@
+{
+  "exp_id": "diag_transfer_e5_script",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "created_at": "2026-05-23T08:43:06.358Z",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "command": "bash -c \"echo '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...rest truncated' | base64 -d | gunzip > /root/autodl-tmp/importance_margin_vla_compress/eval_xvla_attention_pruning_libero.py && ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_xvla_attention_pruning_libero.py && echo 'TRANSFER_OK' && find /root/autodl-tmp -maxdepth 3 -name 'X-VLA*' -o -name 'xvla*' 2>/dev/null | head -5\"",
+      "gpu": [
+        "cuda:1"
+      ],
+      "log_path": "~/runs/importance_margin_vla_compress/diag_transfer_e5_script.log",
+      "pid": "unknown",
+      "server": "westd-38929",
+      "submitted_at": "2026-05-23T08:43:05.337Z",
+      "submitted_via": "submit_training_job",
+      "wall_clock_seconds": 513048.5,
+      "gpu_hours": 142.51
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-29T07:13:53.789Z",
+    "conclusion": "killed",
+    "completed_at": "2026-05-29T07:13:53.789Z"
+  },
+  "timestamp": "2026-05-29T07:13:55.777839+00:00",
+  "trigger": "update_registry"
+}

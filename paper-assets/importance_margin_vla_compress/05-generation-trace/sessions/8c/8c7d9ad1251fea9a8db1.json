@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_v8-checkpoint-22k-26k_20260516T015101_result.json",
     "occurrence": 1,
-    "bytes": 218,
-    "sha256": "e78dd241833055431b8025d1f336848111c2a76e17bacc7bcf7dd959d586e483"
+    "bytes": 217,
+    "sha256": "7b95bb8a5e8327b1cc665b7e7ededb64ae5d1a7b09e74c4827a3c2ff46854ba3"
   },
   "statistics": {
     "messages": 1,

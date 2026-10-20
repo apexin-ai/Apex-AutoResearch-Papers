@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1-fill-3-gpus-director-plan_20260521T095213_result.json",
     "occurrence": 1,
-    "bytes": 719,
-    "sha256": "8e4b87af7e106037cde3909f8f51057d55fe6b9d8050dd99558fc00727837146"
+    "bytes": 718,
+    "sha256": "d0315e818bbe5913bc78e45ea5bfabab1f87aecafb0513cf8fe24b9701457eed"
   },
   "statistics": {
     "messages": 1,

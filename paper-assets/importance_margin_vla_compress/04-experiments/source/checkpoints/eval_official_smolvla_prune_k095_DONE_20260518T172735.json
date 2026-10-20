@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_official_smolvla_prune_k095",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:01:21.015Z",
+    "updated_at": "2026-05-18T17:27:35.461Z",
+    "hypothesis": "Official SmolVLA checkpoint with k=0.95 random pruning (remove only 5% = 7/128 tokens). If 0% SR, confirms that even the slightest random token removal destroys the official model, matching our fine-tuned model's cliff-edge behavior exactly.",
+    "parent": "eval_official_smolvla_baseline",
+    "spec": {
+      "command": "MUJOCO_GL=egl PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 python eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --mode random_prune --k_ratio 0.95 --output eval_results/official_libero_object_random_prune_k095.json --seed 42",
+      "server": "westd-27271",
+      "gpu": "cuda:1",
+      "data_path": "/root/autodl-tmp/.hf_cache/smolvla_libero_official",
+      "data_count": "500 episodes (10 tasks x 50 eps)",
+      "model_name": "SmolVLA-LIBERO official checkpoint",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/.hf_cache/smolvla_libero_official",
+      "eval_data": "LIBERO-Object (10 tasks, 50 episodes each)",
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/official_prune_k095.log"
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "success",
+    "completed_at": "2026-05-18T16:26:06.078Z"
+  },
+  "timestamp": "2026-05-18T17:27:35.630738+00:00",
+  "trigger": "update_registry"
+}

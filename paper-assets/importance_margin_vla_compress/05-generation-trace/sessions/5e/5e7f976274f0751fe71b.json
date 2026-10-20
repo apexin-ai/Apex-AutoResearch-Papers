@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_cqa1-gpu1-kill-duplicate_20260525T215701_result.json",
     "occurrence": 1,
-    "bytes": 393,
-    "sha256": "7eab42b399ec4451345f03816aa7c45b3f0d3e45206cdb5da284a35669263341"
+    "bytes": 392,
+    "sha256": "0688bddc810807360d12d335049e4187492c57a4f6601f434110904465e3080a"
   },
   "statistics": {
     "messages": 1,

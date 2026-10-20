@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd27271-m128-check_20260521T052148_result.json",
     "occurrence": 1,
-    "bytes": 915,
-    "sha256": "535dc171d71d5dfcad58bdfe65a56670bbf8428dc4bfb2f1dc8e6d764fcca348"
+    "bytes": 914,
+    "sha256": "00ba65d58819af36f68c4489dfb402a8ae856e7d4110aeb1dfc9184969fb59b8"
   },
   "statistics": {
     "messages": 1,

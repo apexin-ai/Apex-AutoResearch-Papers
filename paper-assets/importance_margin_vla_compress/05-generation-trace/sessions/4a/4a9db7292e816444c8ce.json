@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1-gpu3-harvest-and-deploy_20260527T140859_result.json",
     "occurrence": 1,
-    "bytes": 994,
-    "sha256": "cc07a0f963daef310dce287ddee8fe85fcbd7968ca89a655d1b95332fb9238ce"
+    "bytes": 993,
+    "sha256": "9b530e5650e707bf29120e1edfcb60a2425b4f8efcfaf902cabc718860b4e4b8"
   },
   "statistics": {
     "messages": 1,

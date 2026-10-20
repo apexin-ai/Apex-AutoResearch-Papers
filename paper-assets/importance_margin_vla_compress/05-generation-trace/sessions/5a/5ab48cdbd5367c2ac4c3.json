@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_read-diagnostic-data_20260516T013022_result.json",
     "occurrence": 1,
-    "bytes": 1269,
-    "sha256": "c008603dc492de2e5d5d98c92024c4acab1882588af700ef7ebcd996eb93a07b"
+    "bytes": 1268,
+    "sha256": "76a4de50d8c358d97aa48c3a421e817a2c7ffa5dd95f14bc505db1366afa1f39"
   },
   "statistics": {
     "messages": 1,

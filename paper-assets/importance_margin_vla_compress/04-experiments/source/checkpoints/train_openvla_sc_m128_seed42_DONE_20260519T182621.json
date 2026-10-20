@@ -1,0 +1,38 @@
+{
+  "exp_id": "train_openvla_sc_m128_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:05:34.873Z",
+    "updated_at": "2026-05-19T18:26:21.388Z",
+    "hypothesis": "OpenVLA (MLP-projector, baseline 74% SR) + VTC cross-attention re-encoding (256→128 tokens, 50% compression). If VTC re-encoding significantly outperforms k=0.5 random pruning (37.4% SR) on OpenVLA, demonstrates learned re-encoding generalizes from pixel-shuffle (SmolVLA) to MLP-projector architecture, establishing C4-ext method universality.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && WANDB_MODE=offline python train_openvla_smart_compress.py --config configs/openvla_smart_compress_m128.yaml\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "21116",
+      "log_path": "~/runs/importance_margin_vla_compress/train_openvla_sc_m128_seed42.log",
+      "submitted_at": "2026-05-19T18:05:05.806Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "HuggingFaceVLA/libero",
+      "data_count": "unknown",
+      "model_name": "openvla",
+      "seed": 42,
+      "gpu_model": "NVIDIA RTX PRO 6000 Blackwell Server Edition 96GB",
+      "wall_clock_seconds": 1275.6,
+      "gpu_hours": 0.35
+    },
+    "conclusion": "failed",
+    "failure_reason": "httpx.ConnectError: Network is unreachable on westd-41074",
+    "completed_at": "2026-05-19T18:26:21.388Z"
+  },
+  "timestamp": "2026-05-19T18:26:21.928570+00:00",
+  "trigger": "update_registry"
+}

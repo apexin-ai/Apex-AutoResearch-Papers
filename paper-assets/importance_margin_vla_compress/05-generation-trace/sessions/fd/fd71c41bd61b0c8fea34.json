@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_fix-westd38929-race-condition-and-restart_20260520T232205_result.json",
     "occurrence": 1,
-    "bytes": 1720,
-    "sha256": "17ae01345e2221e436504c5b1e7527e05da94908dfc730fe8b9fd3b3c59a2d37"
+    "bytes": 1719,
+    "sha256": "5e465c8ee49a358f97ac03849de5aa1148548a2309c5379cf2c035d8995c1e75"
   },
   "statistics": {
     "messages": 1,

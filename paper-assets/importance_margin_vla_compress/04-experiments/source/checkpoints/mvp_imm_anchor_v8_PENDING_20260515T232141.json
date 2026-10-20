@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp_imm_anchor_v8",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:07:33.075Z",
+    "updated_at": "2026-05-15T23:21:41.024Z",
+    "hypothesis": "gradient isolation (dual detach) 消除 backbone 权重损伤 (G3a≤1.10)，同时 ACIS 仍能学到有效 importance scoring (G1≥2x, G2≥10pp)",
+    "parent": "mvp_imm_anchor_v7_2"
+  },
+  "timestamp": "2026-05-15T23:21:41.073228+00:00",
+  "trigger": "update_registry"
+}

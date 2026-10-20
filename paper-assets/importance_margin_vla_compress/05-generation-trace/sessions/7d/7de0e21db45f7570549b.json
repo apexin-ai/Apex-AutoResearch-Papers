@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diag_cqa1_gpu_check_20260525T070304_result.json",
     "occurrence": 1,
-    "bytes": 2581,
-    "sha256": "bfc80fd801eb1a57b8f1b818851800ad2bebde7af30faaee3f4138f6b8a77e57"
+    "bytes": 2580,
+    "sha256": "d0f349473761adca8ca24e176d99aa0681a7da0a6a1c248cfa01e9a2a9777789"
   },
   "statistics": {
     "messages": 1,

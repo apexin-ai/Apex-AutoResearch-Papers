@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-fix-duplicates_20260520T191550_result.json",
     "occurrence": 1,
-    "bytes": 766,
-    "sha256": "6339a5a4b82e5402b2839a90923c6772116c635cbb18e84e4d83554be5496127"
+    "bytes": 765,
+    "sha256": "25e1e987bf7fb6dc1fb0142a2c442e01ad1d963ff0af6294159f38d200e4d34e"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_openvla_libero_spatial_check_20260519T104713_result.json",
     "occurrence": 1,
-    "bytes": 1002,
-    "sha256": "42de3d09447c4e7d1f0b5fe951766ba118c373e1a295a088999e631204d773d0"
+    "bytes": 1001,
+    "sha256": "1ca54408542a9fc1da7d6b19d01da42a54909647b4292f3951b1b504f811b6cf"
   },
   "statistics": {
     "messages": 1,

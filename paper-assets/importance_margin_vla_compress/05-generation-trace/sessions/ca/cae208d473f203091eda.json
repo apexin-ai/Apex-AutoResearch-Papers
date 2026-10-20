@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_c4ext-eval-migrate-cqa1_20260520T081109_result.json",
     "occurrence": 1,
-    "bytes": 843,
-    "sha256": "ebd43b7b64909f90f0c06655b1bf96fcf6a1c25c28e77ae1a6c4647dda37408b"
+    "bytes": 842,
+    "sha256": "4449354369c894efafdd79184c31f8440e5809c51c5ef049f4cb7f9831e079d5"
   },
   "statistics": {
     "messages": 1,

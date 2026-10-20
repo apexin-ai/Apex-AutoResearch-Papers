@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_openvla_pruning_k03_restart",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T05:29:54.046Z",
+    "updated_at": "2026-05-18T05:29:54.046Z"
+  },
+  "timestamp": "2026-05-18T05:29:54.188382+00:00",
+  "trigger": "update_registry"
+}

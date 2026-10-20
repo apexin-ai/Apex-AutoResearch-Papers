@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_goal_long_data_check_other_servers_20260522T093108_result.json",
     "occurrence": 1,
-    "bytes": 1327,
-    "sha256": "e8e69ff8b223b396e3e0053558d22d522a882a44e18a4c739f9a4246dc8e73f9"
+    "bytes": 1326,
+    "sha256": "25b0798f179a299184c347e2824bb8ce2727dfddd0847455dec309bcf889befb"
   },
   "statistics": {
     "messages": 1,

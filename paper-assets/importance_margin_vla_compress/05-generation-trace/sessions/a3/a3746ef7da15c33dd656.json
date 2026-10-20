@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_grids_mechanism_analysis_20260519T034002_result.json",
     "occurrence": 1,
-    "bytes": 4765,
-    "sha256": "8019081807b62d0e20c2d0dd876e0fd91d17db2358503622e19811e287779c85"
+    "bytes": 4764,
+    "sha256": "ca0f3656a9edcf2f3db079745479548dc41215004d7a4920bf39b76aefd15ac6"
   },
   "statistics": {
     "messages": 1,

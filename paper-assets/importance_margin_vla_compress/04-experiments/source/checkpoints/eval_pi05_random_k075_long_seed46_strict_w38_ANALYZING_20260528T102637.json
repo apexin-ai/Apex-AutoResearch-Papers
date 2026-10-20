@@ -1,0 +1,65 @@
+{
+  "exp_id": "eval_pi05_random_k075_long_seed46_strict_w38",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-28T07:46:04.969Z",
+    "updated_at": "2026-05-28T10:26:34.521Z",
+    "hypothesis": "π0.5 Random k=0.75 Long strict seed46 — crossover 区间第 5 seed，收窄 Random k=0.75 误差棒（当前 4-seed std 偏高），加固 Importance Margin 转正点数据",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 46 --gpu 0\"",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "363188",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k075_long_seed46_strict_w38.log",
+      "submitted_at": "2026-05-28T07:47:27.897Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "pi05",
+      "seed": 46,
+      "checkpoint_source": "pi05_libero_finetuned",
+      "eval_data": "libero_10"
+    },
+    "server": "westd-38929",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "finished_at": "2026-05-28T10:22:42.821Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-28T10:23:02.877370+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 62.2,
+      "total": "311/500",
+      "per_task": {
+        "T0_alphabet_soup_tomato": 82,
+        "T1_cream_cheese_butter": 52,
+        "T2_stove_moka_pot": 70,
+        "T3_black_bowl_drawer": 70,
+        "T4_white_mug_left_plate": 68,
+        "T5_book_back_shelf": 38,
+        "T6_white_mug_plate": 72,
+        "T7_alphabet_soup_cream": 76,
+        "T8_both_moka_pots_stove": 6,
+        "T9_yellow_white_mug_microwave": 88
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-28T10:26:37.395199+00:00",
+  "trigger": "update_registry"
+}

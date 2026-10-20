@@ -1,0 +1,15 @@
+{
+  "exp_id": "smart_compress_m16",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T21:08:36.215Z",
+    "updated_at": "2026-05-17T21:08:43.257Z",
+    "hypothesis": "Compressing 128 vision tokens to 16 (87.5% compression) via learned queries will retain sufficient visual information for action prediction, though with expected performance degradation compared to higher token counts (M=32/64/96)"
+  },
+  "timestamp": "2026-05-17T21:08:43.414280+00:00",
+  "trigger": "update_registry"
+}

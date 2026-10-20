@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_goal_prune_k05_20260517T124811_result.json",
     "occurrence": 1,
-    "bytes": 1334,
-    "sha256": "3b01c5fe93df90e1d92b459c96fb222cf06c74a1438d9295e3c6b21366d49904"
+    "bytes": 1333,
+    "sha256": "f5ebf1259637fc5ab38cdfc5b772c4e1c6de88711943a56da00ca5bd109dbd18"
   },
   "statistics": {
     "messages": 1,

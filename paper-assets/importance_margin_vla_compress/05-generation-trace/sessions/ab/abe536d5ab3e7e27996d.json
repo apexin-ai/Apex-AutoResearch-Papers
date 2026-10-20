@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_fig4_pixel_shuffle_fix_20260528T134353_result.json",
     "occurrence": 1,
-    "bytes": 707,
-    "sha256": "5bcce787c335919ce618e1f9af967a540ba34f99e2ba1bd770ddfd05ec8b9106"
+    "bytes": 706,
+    "sha256": "2a2821ea0d4b00e918ffe87efb0d3d8f85bc1c39a52c64994e69a4ef19f17eaa"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_kill_v3_deploy_pi05_random_k07_long_20260526T150442_result.json",
     "occurrence": 1,
-    "bytes": 286,
-    "sha256": "a63682d93cf23290c45e34dc8865cb55888a0b0cf4c45f9052c3096ffbaace33"
+    "bytes": 285,
+    "sha256": "7f57c71e110ed889871668f222719c52f3d819b0ee679c9ef0d0658e7cf35fe9"
   },
   "statistics": {
     "messages": 1,

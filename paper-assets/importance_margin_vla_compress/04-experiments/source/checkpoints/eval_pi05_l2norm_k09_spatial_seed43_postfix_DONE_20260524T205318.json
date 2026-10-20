@@ -1,0 +1,43 @@
+{
+  "exp_id": "eval_pi05_l2norm_k09_spatial_seed43_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T20:44:32.737Z",
+    "updated_at": "2026-05-24T20:53:17.074Z",
+    "hypothesis": "π0.5 L2norm k=0.9 on LIBERO-Spatial seed43 for dual-seed validation. Cliff zone k=0.9 showed +46.2pp margin on Long suite (dual-seed avg). Testing if margin holds across Spatial suite with seed43.",
+    "spec": {
+      "command": "python eval_vla_libero.py --model pi05 --scoring l2norm --keep_ratio 0.9 --suite libero_spatial --episodes 50 --seed 43 --gpu 0",
+      "server": "westd-38929",
+      "gpu": "3",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 50,
+      "model_name": "pi0.5",
+      "seed": 43,
+      "log_path": "logs/eval_pi05_l2norm_k09_spatial_seed43_postfix.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 96.2,
+      "per_task": [
+        100,
+        100,
+        98,
+        100,
+        84,
+        92,
+        100,
+        98,
+        100,
+        90
+      ]
+    },
+    "checkpoint_path": "eval_results/pi05_l2norm_k0.90_libero_spatial_seed43.json",
+    "completed_at": "2026-05-24T20:53:17.074Z"
+  },
+  "timestamp": "2026-05-24T20:53:18.344781+00:00",
+  "trigger": "update_registry"
+}

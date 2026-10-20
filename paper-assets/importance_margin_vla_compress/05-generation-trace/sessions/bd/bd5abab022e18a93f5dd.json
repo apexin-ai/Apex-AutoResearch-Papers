@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_accelerate-openvla-checkpoint-download_20260520T235105_result.json",
     "occurrence": 1,
-    "bytes": 891,
-    "sha256": "a3eb74c9fd1c22841530a0605aab7cfb7fd2888979af5c287ee721bf23611967"
+    "bytes": 890,
+    "sha256": "c48f7599a7a396e8aa2b27c0144221377c225debcfcf5c8ce7a9fe28fbcc787a"
   },
   "statistics": {
     "messages": 1,

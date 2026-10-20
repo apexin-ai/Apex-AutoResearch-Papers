@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_cqa1-xvla-failures_20260521T091921_result.json",
     "occurrence": 1,
-    "bytes": 1711,
-    "sha256": "a1bc90f4a0a16f2abe2fd5d13a4c35a6bb89e69f0a1b17155772777784541f42"
+    "bytes": 1710,
+    "sha256": "d3e8a590853acd857aa7ecdd34bd146fff8fb12823d2209080f4d43ab3f819a1"
   },
   "statistics": {
     "messages": 1,

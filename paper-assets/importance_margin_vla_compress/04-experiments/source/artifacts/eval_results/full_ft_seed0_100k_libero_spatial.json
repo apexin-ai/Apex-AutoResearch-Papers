@@ -1,0 +1,99 @@
+{
+  "suite": "libero_spatial",
+  "mode": "baseline",
+  "checkpoint": "checkpoints/libero_full_ft_seed0_100k/checkpoint.pt",
+  "config": "configs/libero_full_ft.yaml",
+  "total_episodes": 500,
+  "total_successes": 259,
+  "overall_success_rate": 0.518,
+  "wilson_ci_95": [
+    0.4742,
+    0.5615
+  ],
+  "num_episodes_per_task": 50,
+  "max_steps": 280,
+  "action_horizon": 50,
+  "seed": 42,
+  "per_task": {
+    "0": {
+      "task_id": 0,
+      "task_description": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+      "success_count": 30,
+      "total_episodes": 50,
+      "success_rate": 0.6,
+      "mean_steps": 178.2
+    },
+    "1": {
+      "task_id": 1,
+      "task_description": "pick up the black bowl next to the ramekin and place it on the plate",
+      "success_count": 21,
+      "total_episodes": 50,
+      "success_rate": 0.42,
+      "mean_steps": 211.5
+    },
+    "2": {
+      "task_id": 2,
+      "task_description": "pick up the black bowl from table center and place it on the plate",
+      "success_count": 11,
+      "total_episodes": 50,
+      "success_rate": 0.22,
+      "mean_steps": 240.9
+    },
+    "3": {
+      "task_id": 3,
+      "task_description": "pick up the black bowl on the cookie box and place it on the plate",
+      "success_count": 40,
+      "total_episodes": 50,
+      "success_rate": 0.8,
+      "mean_steps": 121.8
+    },
+    "4": {
+      "task_id": 4,
+      "task_description": "pick up the black bowl in the top drawer of the wooden cabinet and place it on the plate",
+      "success_count": 17,
+      "total_episodes": 50,
+      "success_rate": 0.34,
+      "mean_steps": 228.1
+    },
+    "5": {
+      "task_id": 5,
+      "task_description": "pick up the black bowl on the ramekin and place it on the plate",
+      "success_count": 22,
+      "total_episodes": 50,
+      "success_rate": 0.44,
+      "mean_steps": 201.9
+    },
+    "6": {
+      "task_id": 6,
+      "task_description": "pick up the black bowl next to the cookie box and place it on the plate",
+      "success_count": 33,
+      "total_episodes": 50,
+      "success_rate": 0.66,
+      "mean_steps": 167.5
+    },
+    "7": {
+      "task_id": 7,
+      "task_description": "pick up the black bowl on the stove and place it on the plate",
+      "success_count": 25,
+      "total_episodes": 50,
+      "success_rate": 0.5,
+      "mean_steps": 200.1
+    },
+    "8": {
+      "task_id": 8,
+      "task_description": "pick up the black bowl next to the plate and place it on the plate",
+      "success_count": 37,
+      "total_episodes": 50,
+      "success_rate": 0.74,
+      "mean_steps": 146.7
+    },
+    "9": {
+      "task_id": 9,
+      "task_description": "pick up the black bowl on the wooden cabinet and place it on the plate",
+      "success_count": 23,
+      "total_episodes": 50,
+      "success_rate": 0.46,
+      "mean_steps": 205.4
+    }
+  }
+}

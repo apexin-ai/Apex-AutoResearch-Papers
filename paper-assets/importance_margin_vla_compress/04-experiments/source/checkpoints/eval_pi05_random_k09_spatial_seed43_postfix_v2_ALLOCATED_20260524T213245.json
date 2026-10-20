@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_random_k09_spatial_seed43_postfix_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T21:32:23.858Z",
+    "updated_at": "2026-05-24T21:32:43.975Z",
+    "hypothesis": "π0.5 Random k=0.9 Spatial seed43 v2. Retry after v1 network error. HF_HUB_OFFLINE=1 added. Paired with L2norm k=0.9 Spatial s43 (96.2%) for cliff zone margin.",
+    "parent": "eval_pi05_random_k09_spatial_seed43_postfix"
+  },
+  "timestamp": "2026-05-24T21:32:45.125169+00:00",
+  "trigger": "update_registry"
+}

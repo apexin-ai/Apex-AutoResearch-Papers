@@ -1,0 +1,57 @@
+{
+  "exp_id": "eval_pi05_random_k0925_object_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T00:07:09.764Z",
+    "updated_at": "2026-05-22T20:51:20.865Z",
+    "hypothesis": "π0.5 random k=0.925 Object seed43: cliff 入口双种子验证。seed42=27.6%，验证 cliff 入口点的跨 seed 一致性。",
+    "parent": "eval_pi05_random_k0925_object_seed42",
+    "spec": {
+      "command": "eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.925 --suite libero_object --n_episodes 50 --seed 43",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "68029",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k0925_object_seed43.log",
+      "submitted_at": "2026-05-22T00:07:20.338Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "pi05_libero_finetuned",
+      "seed": 43,
+      "data_path": "libero_object",
+      "data_count": 500,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_object",
+      "wall_clock_seconds": 9250.2,
+      "gpu_hours": 2.57
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T01:48:47.427Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T01:49:02.912126+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 0.3,
+      "suite": "libero_object",
+      "seed": 43
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.93_libero_object_seed43.json",
+    "completed_at": "2026-05-22T02:41:30.566Z"
+  },
+  "timestamp": "2026-05-22T20:51:21.490124+00:00",
+  "trigger": "update_registry"
+}

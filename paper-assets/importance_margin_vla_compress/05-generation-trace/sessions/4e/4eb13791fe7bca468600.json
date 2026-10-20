@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_openvla_reencoding_adapt_20260519T162506_result.json",
     "occurrence": 1,
-    "bytes": 1452,
-    "sha256": "aa25fa9db4623782ea430f9ba3fba25cb3bf9330c86afb621548ae8c03b6205e"
+    "bytes": 1451,
+    "sha256": "8548c10cb0a9c99e6f03454f5fe0145582a3eddeab8d3ea9f89197a11201ec7b"
   },
   "statistics": {
     "messages": 1,

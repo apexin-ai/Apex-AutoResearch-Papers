@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_verify_c4ext_and_cleanup_41074_20260520T011513_result.json",
     "occurrence": 1,
-    "bytes": 3956,
-    "sha256": "7071b689b23f7ee806655c2751b0e2cafb16c2afdea88cdbae0620a462cae94d"
+    "bytes": 3955,
+    "sha256": "0d877e2828a036c3ae6e83068d8141ea542076e35ebbd334e7410f7ffc4e7ba3"
   },
   "statistics": {
     "messages": 1,

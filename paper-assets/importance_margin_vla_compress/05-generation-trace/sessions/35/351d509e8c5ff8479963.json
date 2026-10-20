@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_eval_pi05_l2norm_k05_strict_w38_failure_20260527T123606_result.json",
     "occurrence": 1,
-    "bytes": 1379,
-    "sha256": "157fee7eaefa8bae58b798dadbd88b9837f68c4adc5de2107e1170ac33416d4d"
+    "bytes": 1378,
+    "sha256": "ca6b73c32be952dd2c1fc63381ce5356a9fa7ae4f07efb4d706a6295d037cdcf"
   },
   "statistics": {
     "messages": 1,

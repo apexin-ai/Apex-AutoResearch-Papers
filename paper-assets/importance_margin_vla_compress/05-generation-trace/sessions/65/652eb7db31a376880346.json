@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_phase2_cliff_deploy_batch1_20260522T094114_result.json",
     "occurrence": 1,
-    "bytes": 738,
-    "sha256": "dd7610864fe585cc3864a4d0d0bb2c0883fbb347935a0062aa03a49a09b61fb6"
+    "bytes": 737,
+    "sha256": "2a36435e1bccaaf3d4284c7cac5b1990fad91fe56241b6be0abd9050f8c4797f"
   },
   "statistics": {
     "messages": 1,

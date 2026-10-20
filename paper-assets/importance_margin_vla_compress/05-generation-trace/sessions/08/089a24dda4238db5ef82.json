@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_cqa1_seed44_sweep_20260519T215208_result.json",
     "occurrence": 1,
-    "bytes": 399,
-    "sha256": "55f5db3266367800238545d0ed6d5ce6736b4ce9def5e45e01687d5ea0507f08"
+    "bytes": 398,
+    "sha256": "fe7dd5f643b3179c38869382c3e1fac82d492c08fef1920f6095ac23bf0fda72"
   },
   "statistics": {
     "messages": 1,

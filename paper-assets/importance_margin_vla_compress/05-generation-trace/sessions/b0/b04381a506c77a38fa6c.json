@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_fill_idle_gpus_w41_w27_20260527T095633_result.json",
     "occurrence": 1,
-    "bytes": 727,
-    "sha256": "45e228a4c8ef5a4c00b0c872e51d441cfab73db99d65a3eb43c5f4e1e43ae90e"
+    "bytes": 726,
+    "sha256": "c45025e98d31d5fec211f500bc8035360e232a3254761f5a98e29d90befbf16d"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,62 @@
+{
+  "exp_id": "eval_pi05_zeromask_random_k09_object_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T01:57:57.921Z",
+    "updated_at": "2026-05-26T06:11:59.700Z",
+    "hypothesis": "π0.5 zero_mask_random k=0.9 Object v3 — D225 P0 实验。从 cqa1 丢失后在 westd-41074 重部署。保留 token 位置但置 0，对比 hard-prune random。测试位置扰动 vs 信息丢失在 π0.5 linear connector 上的效应",
+    "parent": "eval_pi05_zeromask_random_k09_object_seed42_v2",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl python -u eval_pi05_zeromask_ablation.py --prune_mode zero_mask_random --keep_ratio 0.9 --suite libero_object --n_episodes 50 --seed 42 --gpu 0",
+      "server": "westd-41074",
+      "gpu": 3,
+      "pid": 308695,
+      "log_path": "/root/runs/importance_margin_vla_compress/eval_pi05_zeromask_random_k09_object_seed42_v3.log",
+      "data_path": "libero_object",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_object"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-26T03:57:10.120Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-26T03:57:29.185383+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 0.98,
+      "total_successes": 490,
+      "total_episodes": 500,
+      "elapsed_min": 83.05,
+      "per_task_sr": {
+        "T0_alphabet_soup": 0.96,
+        "T1_cream_cheese": 0.96,
+        "T2_salad_dressing": 1,
+        "T3_bbq_sauce": 0.94,
+        "T4_ketchup": 0.98,
+        "T5_tomato_sauce": 1,
+        "T6_butter": 1,
+        "T7_milk": 0.98,
+        "T8_chocolate_pudding": 1,
+        "T9_orange_juice": 0.98
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_zero_mask_random_k0.90_libero_object_seed42.json",
+    "completed_at": "2026-05-26T06:11:59.700Z"
+  },
+  "timestamp": "2026-05-26T06:12:00.850764+00:00",
+  "trigger": "update_registry"
+}

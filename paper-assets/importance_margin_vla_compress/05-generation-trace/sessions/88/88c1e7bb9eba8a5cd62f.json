@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_search_pi05_baseline_results_20260524T235224_result.json",
     "occurrence": 1,
-    "bytes": 1616,
-    "sha256": "750b6f40b5349d25a72c2cb4daf3a600def22ad84974da9d1c54834996788034"
+    "bytes": 1615,
+    "sha256": "1502c1398fcfb3b491517fdbd4bcafafe7c7705c139b991f24c38292fc6615c2"
   },
   "statistics": {
     "messages": 1,

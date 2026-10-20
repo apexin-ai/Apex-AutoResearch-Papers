@@ -1,0 +1,41 @@
+{
+  "exp_id": "eval_pi05_l2norm_k03_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-22T17:24:33.389Z",
+    "updated_at": "2026-05-23T14:06:26.010Z",
+    "hypothesis": "π0.5 L2norm k=0.3 on LIBERO-Goal: extreme 70% pruning. Object L2norm k=0.3=30.4%. Goal extreme pruning floor data point.",
+    "completed_at": "2026-05-22T19:30:03.692Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "negative",
+        "metrics": {
+          "success_rate": 0.534,
+          "num_success": 267,
+          "num_episodes": 500,
+          "suite": "libero_goal",
+          "seed": 42
+        }
+      }
+    },
+    "spec": {
+      "command": "python -u eval_pi05_pruning_libero.py --suite libero_goal --prune_mode l2norm --keep_ratio 0.3 --seed 42 --gpu 0",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "786753",
+      "model_name": "pi0.5",
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "seed": 42
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-23T14:06:26.943625+00:00",
+  "trigger": "update_registry"
+}

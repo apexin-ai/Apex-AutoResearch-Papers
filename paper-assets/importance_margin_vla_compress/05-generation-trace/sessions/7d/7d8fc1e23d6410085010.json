@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_openvla-l2norm-pruning_20260520T114919_result.json",
     "occurrence": 1,
-    "bytes": 764,
-    "sha256": "cf1abf281ab213cb796c2e8471c348343c64dc318388931ab84af68b348e6980"
+    "bytes": 763,
+    "sha256": "5c744eb7cf83c3f031bde0727c1f73a7333944ce892008b9e1acb371ab97678a"
   },
   "statistics": {
     "messages": 1,

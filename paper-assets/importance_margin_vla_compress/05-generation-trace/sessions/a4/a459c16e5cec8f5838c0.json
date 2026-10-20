@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_eval_openvla_random_k085_goal_seed42_20260526T135742_result.json",
     "occurrence": 1,
-    "bytes": 396,
-    "sha256": "5a23ea580e3f121233f5f7893ce68bac5fa2e66135cea9d0e55e57ea1e60b1c5"
+    "bytes": 395,
+    "sha256": "dd3032ac46a6b6fca79152f9160a97c4f3fc0850274e5782f31ea2a08dcbec4c"
   },
   "statistics": {
     "messages": 1,

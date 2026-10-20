@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-restore-4gpu-v2_20260521T072333_result.json",
     "occurrence": 1,
-    "bytes": 752,
-    "sha256": "da4886ee96b217b03942db065ab38e6e50525a2b47cb68cc123abf8cdd54d561"
+    "bytes": 751,
+    "sha256": "7d9769eb70ee3c4a1b0b23b5dcdac43673e777a7acdae89b034aa173d76d2e5f"
   },
   "statistics": {
     "messages": 1,

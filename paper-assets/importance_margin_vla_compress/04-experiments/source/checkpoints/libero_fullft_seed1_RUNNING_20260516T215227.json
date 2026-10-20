@@ -1,0 +1,26 @@
+{
+  "exp_id": "libero_fullft_seed1",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T21:52:18.096Z",
+    "updated_at": "2026-05-16T21:52:27.126Z",
+    "hypothesis": "SmolVLA full expert FT on LIBERO seed=1, 第三 seed 用于论文统计完整性 (已有 seed=42, seed=0)",
+    "spec": {
+      "command": "python train.py --config configs/libero_full_ft_seed1.yaml --gpu 0 --seed 1 --wandb_run libero_fullft_seed1",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "HuggingFaceVLA/libero",
+      "data_count": 273465,
+      "model_name": "smolvla_base_full_ft",
+      "seed": 1
+    }
+  },
+  "timestamp": "2026-05-16T21:52:27.200368+00:00",
+  "trigger": "update_registry"
+}

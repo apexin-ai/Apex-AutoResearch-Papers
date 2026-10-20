@@ -1,0 +1,27 @@
+{
+  "exp_id": "eval_pi05_random_k03_goal_seed43_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T18:22:19.002Z",
+    "updated_at": "2026-05-23T19:22:45.836Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.3 --suite libero_goal --n_episodes 50 --seed 43 --gpu 0\"",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "97987",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k03_goal_seed43_v2.log",
+      "submitted_at": "2026-05-23T18:22:17.879Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-23T19:22:46.683802+00:00",
+  "trigger": "update_registry"
+}

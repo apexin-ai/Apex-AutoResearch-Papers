@@ -1,0 +1,52 @@
+{
+  "exp_id": "train_openvla_sc_m32_vtconly_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-20T01:13:01.057Z",
+    "updated_at": "2026-05-22T00:20:28.603Z",
+    "hypothesis": "OpenVLA VTC-only M=32 (256→32 tokens, 87.5% compression) on westd-27271. Most aggressive OpenVLA compression point. Independent of 20K gate — even if C4-ext fails, M=32 data point contributes to M-sweep curve. If VTC M=32 > random pruning k=0.3 (20.6% SR), demonstrates learned re-encoding value at extreme compression.",
+    "parent": "train_openvla_sc_m128_vtconly_seed42",
+    "reproduce": {
+      "finished_at": "2026-05-20T10:41:31.047Z"
+    },
+    "failure_reason": "SSH check failed 5x — last error: [Errno None] Unable to connect to port 27271 on 36.103.198.204",
+    "completed_at": "2026-05-20T10:41:33.455Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T10:41:38.206200+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: 磁盘写入失败 — step 20000 checkpoint 保存时 RuntimeError: PytorchStreamWriter failed writing file data/1007: file write failed (pos 16157571008). 训练本身正常 (loss ~2.8, eval_loss=2.8768@20K). | 已有成果: 训练正常到 step 20000/100K, 可能有 step 10K/15K 的 checkpoint | 建议: 检查磁盘空间, 清理旧 checkpoint, 从最新 checkpoint resume"
+      }
+    },
+    "notes": "Resume from step 10001 (checkpoint.pt). 修复: 1) 删除损坏的 step20000.pt (16G) 和冗余 step10000.pt (19G), 释放 35G; 2) 修改 save_checkpoint 添加旧 checkpoint 自动清理 (只保留最新 1 个 step checkpoint), 防止再次磁盘满; 3) 磁盘 67G 可用, 足够完成剩余训练.",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 WANDB_MODE=offline python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42'",
+      "server": "westd-27271",
+      "gpu": "cuda:1",
+      "pid": "921279",
+      "data_path": "HuggingFaceVLA/libero",
+      "data_count": "273465",
+      "model_name": "openvla + VTC(M=32)",
+      "seed": 42,
+      "checkpoint_path": "checkpoints/openvla_sc_m32_seed42/",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/train_openvla_sc_m32_seed42_resume.log",
+      "checkpoint_source": "openvla/openvla-7b (libero finetuned)",
+      "eval_data": "N/A (training experiment)",
+      "account": "root",
+      "tmux_session": "train_openvla_sc_m32_seed42"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-22T00:20:29.150278+00:00",
+  "trigger": "update_registry"
+}

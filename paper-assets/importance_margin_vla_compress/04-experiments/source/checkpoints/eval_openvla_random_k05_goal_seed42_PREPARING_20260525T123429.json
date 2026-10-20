@@ -1,0 +1,50 @@
+{
+  "exp_id": "eval_openvla_random_k05_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "completed_at": "2026-05-24T05:05:51.288Z",
+    "created_at": "2026-05-24T01:05:55.800Z",
+    "extra": {
+      "hook_events": [
+        {
+          "action": "agent",
+          "event": "on_failed",
+          "ts": "2026-05-24T05:06:08.081055+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "overall_sr": 0.522,
+          "per_task_sr": {
+            "bowl_on_cabinet": 0.74,
+            "bowl_on_plate": 0.46,
+            "bowl_on_stove": 0.64,
+            "cream_cheese_in_bowl": 0.48,
+            "open_drawer_put_bowl": 0.1,
+            "open_middle_drawer": 0.44,
+            "push_plate_front_stove": 0.54,
+            "turn_on_stove": 0.94,
+            "wine_bottle_on_cabinet": 0.64,
+            "wine_bottle_on_rack": 0.24
+          },
+          "total_episodes": 500,
+          "total_success": 261,
+          "wall_time_min": 230.7
+        }
+      }
+    },
+    "failure_reason": "cron误判(无W&B sentinel), 实际正常完成. SR=52.2%, 诊断Worker已确认",
+    "hypothesis": "OpenVLA Random k=0.5 Goal seed42 — 与 L2norm k=0.5 Goal 配对，验证 MLP connector 下 L2 vs Random 在 Goal suite 的差异，补全 Table 2 缺失数据点",
+    "reproduce": {
+      "finished_at": "2026-05-24T05:05:38.598Z"
+    },
+    "retry_count": 1,
+    "status": "PREPARING",
+    "updated_at": "2026-05-25T12:34:26.527Z"
+  },
+  "timestamp": "2026-05-25T12:34:29.674409+00:00",
+  "trigger": "update_registry"
+}

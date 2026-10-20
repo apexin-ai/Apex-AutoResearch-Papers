@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_train_mlp_adapter_control_20260519T060656_result.json",
     "occurrence": 1,
-    "bytes": 579,
-    "sha256": "75cbb5d7ac905544b223115efb6a45d1d231613026380d1ab8d745c7113d4bb7"
+    "bytes": 578,
+    "sha256": "4e61ef9315d6ab9fbbbf20e7cf2c6cef14c14b82a8a41595036cc6da5c2208a4"
   },
   "statistics": {
     "messages": 1,

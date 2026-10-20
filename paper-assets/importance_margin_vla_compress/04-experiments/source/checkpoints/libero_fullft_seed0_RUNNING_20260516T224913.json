@@ -1,0 +1,36 @@
+{
+  "exp_id": "libero_fullft_seed0",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-16T15:59:20.198Z",
+    "updated_at": "2026-05-16T22:49:13.523Z",
+    "notes": "step 83900/100000 (83.9%), loss=0.049, lr=8.72e-06, sps=4.0 as of 2026-05-17 05:34 UTC. Running on cuda:3 cqa1-33015. ETA ~1h.",
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "completed_at": "2026-05-16T21:01:45.291Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "step 42450/100000 (42.5%), loss=0.026, lr=6.36e-05, sps=4.0 as of 2026-05-17 02:38"
+      }
+    },
+    "spec": {
+      "command": "python train.py --config configs/libero_full_ft.yaml",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "21461",
+      "data_path": "HuggingFaceVLA/libero",
+      "data_count": 273465,
+      "model_name": "smolvla_base_full_ft",
+      "seed": 0
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T22:49:13.584601+00:00",
+  "trigger": "update_registry"
+}

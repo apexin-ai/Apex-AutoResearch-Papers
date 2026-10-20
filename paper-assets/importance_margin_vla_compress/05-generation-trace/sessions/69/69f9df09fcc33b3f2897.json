@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_w41_cuda0_cuda2_s45_20260528T010501_result.json",
     "occurrence": 1,
-    "bytes": 516,
-    "sha256": "53ba968dcba0d3612e3f567ee208cf909aa508a35c08c28b109ef58e8568fb6b"
+    "bytes": 515,
+    "sha256": "4745c2733e0727b488242749c04513975481bc92007c094fe0bb055cd2f34159"
   },
   "statistics": {
     "messages": 1,

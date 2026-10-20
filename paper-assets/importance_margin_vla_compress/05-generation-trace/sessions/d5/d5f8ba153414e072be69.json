@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_cqa1_scp_sync_and_deploy_0527_20260527T014752_result.json",
     "occurrence": 1,
-    "bytes": 1293,
-    "sha256": "122eea023a3fe532040fc9234b360a0b4b0c306577832e29bc4d23b82697f389"
+    "bytes": 1292,
+    "sha256": "9911fac8268a01a6d06335725d681990c5ae8fb8bded098d0e97bd4c88cebe27"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,36 @@
+{
+  "exp_id": "eval_openvla_random_k09_spatial_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T23:03:38.545Z",
+    "updated_at": "2026-05-24T23:05:13.627Z",
+    "hypothesis": "OpenVLA Random k=0.9 Spatial seed42 — Random baseline for 三方 crossover (Random vs L2norm vs Attention) at k=0.9 on libero_spatial suite. Tests whether structured importance signals (L2norm/Attention) outperform random pruning at light compression ratios.",
+    "spec": {
+      "command": "cd /root/autodl-tmp/importance_margin_vla_compress && /root/miniconda3/bin/python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_spatial --num_episodes 50 --seed 42 --output eval_results/openvla_random_prune_k09_spatial_seed42.json",
+      "server": "westd-38929",
+      "gpu": "cuda:1",
+      "pid": "937064",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k09_spatial_seed42.log",
+      "submitted_at": "2026-05-24T23:04:09.832Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "tmux_session": "eval_openvla_random_k09_spatial_seed42",
+      "data_path": "/root/autodl-tmp/libero_data",
+      "eval_data": "libero_spatial (10 tasks x 50 episodes = 500)",
+      "data_count": 500,
+      "model_name": "openvla-libero-object",
+      "checkpoint_source": "/root/autodl-tmp/openvla-libero-object",
+      "seed": 42,
+      "k_ratio": 0.9,
+      "mode": "random_prune",
+      "output_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k09_spatial_seed42.json"
+    }
+  },
+  "timestamp": "2026-05-24T23:05:14.768251+00:00",
+  "trigger": "update_registry"
+}

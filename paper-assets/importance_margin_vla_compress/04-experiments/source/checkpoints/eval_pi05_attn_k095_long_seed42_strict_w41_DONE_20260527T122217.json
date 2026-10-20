@@ -1,0 +1,47 @@
+{
+  "exp_id": "eval_pi05_attn_k095_long_seed42_strict_w41",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T10:20:39.338Z",
+    "updated_at": "2026-05-27T12:22:13.357Z",
+    "hypothesis": "π0.5 Attn k=0.95 Long strict — 补全 k=0.95 三方法对比表。L2norm strict=86.2%, Random strict=60.6%, Attn lenient=77.0% 待 strict 验证。westd-41074 用 426 行代码避免 cqa1 的 HF Hub 崩溃问题",
+    "parent": "eval_pi05_attn_k095_long_seed42_strict",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=2 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0",
+      "server": "westd-41074",
+      "data_path": "libero_10",
+      "data_count": "10 tasks x 50 episodes",
+      "model_name": "pi0.5",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_10"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-27T10:40:25.407Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T10:41:09.327860+00:00"
+        }
+      ]
+    },
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k095_long_seed42_strict_v3.log",
+    "checkpoint_path": "N/A (eval only)",
+    "metrics": {
+      "status": "CRASHED",
+      "error": "HF Hub network unreachable - missing HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 env vars (C004 violation)",
+      "crash_point": "make_pre_post_processors() line 464 -> AutoTokenizer.from_pretrained('google/paligemma-3b-pt-224')"
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-27T12:22:13.357Z"
+  },
+  "timestamp": "2026-05-27T12:22:17.637458+00:00",
+  "trigger": "update_registry"
+}

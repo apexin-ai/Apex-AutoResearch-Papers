@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_eval_pi05_baseline_spatial_seed42_20260521T200919_result.json",
     "occurrence": 1,
-    "bytes": 1291,
-    "sha256": "1584fd64591340bb174e3d4c8ec7044c2107cdcf634893c0371757ceb8ec9e36"
+    "bytes": 1290,
+    "sha256": "509253897881e24322c45e1e10d2f5f15fda4d05d3ff1965ddc3530c0b2638a9"
   },
   "statistics": {
     "messages": 1,

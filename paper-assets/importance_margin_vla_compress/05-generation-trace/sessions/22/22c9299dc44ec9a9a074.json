@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_seed43_object_random_cliff_20260523T015443_result.json",
     "occurrence": 1,
-    "bytes": 653,
-    "sha256": "a409b1f37c93fcd8fa2fe8a4276036733244df5ff0cf5a9c55801b45c0e8f418"
+    "bytes": 652,
+    "sha256": "33de6f76e679b21b82f2cd9e6c6c883a99ea49d362cd792777981e4a5832fd1f"
   },
   "statistics": {
     "messages": 1,

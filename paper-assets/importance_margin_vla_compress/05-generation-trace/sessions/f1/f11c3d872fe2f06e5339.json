@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_harvest_dense_window_batch1_20260528T085218_result.json",
     "occurrence": 1,
-    "bytes": 1353,
-    "sha256": "fff62f3dacdb182430578e89f8fda8a6f13aac4fc57adea09111f204faa3029d"
+    "bytes": 1352,
+    "sha256": "3d8ab2df093ee133e2aa1e6cfa667f46361dad6d3d70052cbbb8ab141c04963a"
   },
   "statistics": {
     "messages": 1,

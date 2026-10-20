@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1_cuda3_l2norm_k09_s45_20260528T010350_result.json",
     "occurrence": 1,
-    "bytes": 295,
-    "sha256": "163160ebb7c319835039bb3f613110606ed129261f64240b45a1911096ce5d24"
+    "bytes": 294,
+    "sha256": "6ebf554560650c21f78a4937c72e1c46021e6734517cd7e654d0778af5f3e74a"
   },
   "statistics": {
     "messages": 1,

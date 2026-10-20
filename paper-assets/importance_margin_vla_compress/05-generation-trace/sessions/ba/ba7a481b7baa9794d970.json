@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_verify-gpu-distribution_20260521T200407_result.json",
     "occurrence": 1,
-    "bytes": 2671,
-    "sha256": "96e99c37f714630e13e0c3fe9826c8a5eb9b140721aa855c32361da0e59b7046"
+    "bytes": 2670,
+    "sha256": "f02c6d29a8247ed385dcdf2dbf869fcf79ee652be19a5815c5587febb99e29c0"
   },
   "statistics": {
     "messages": 1,

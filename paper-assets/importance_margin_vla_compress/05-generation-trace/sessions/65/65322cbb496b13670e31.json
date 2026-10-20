@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_dying_experiments_20260524_20260524T050620_result.json",
     "occurrence": 1,
-    "bytes": 790,
-    "sha256": "bc91b43fed30779b859d7b13d1677d502645965e745eb5b93f443680be8ed9c5"
+    "bytes": 789,
+    "sha256": "ff5806252298244d718276596cc35aca8a3c03e5537fb8b4189af661bad69f0b"
   },
   "statistics": {
     "messages": 1,

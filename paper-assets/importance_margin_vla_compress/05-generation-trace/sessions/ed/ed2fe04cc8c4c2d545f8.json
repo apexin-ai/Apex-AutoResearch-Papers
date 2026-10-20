@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_cqa1_gpu_harvest_deploy_20260527T073348_result.json",
     "occurrence": 1,
-    "bytes": 2833,
-    "sha256": "780c1ff2d331eff41b1ceb68b34ef984b9dd362d4b15bd02dcb61643a416d24d"
+    "bytes": 2832,
+    "sha256": "07b65328fa68f1bc15dd9ee8ae5b829802f45cb9b16bbdde5828317b18597de5"
   },
   "statistics": {
     "messages": 1,

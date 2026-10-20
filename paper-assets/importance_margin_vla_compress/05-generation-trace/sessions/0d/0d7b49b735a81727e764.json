@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check_pi05_seed43_v4_result_20260523T074613_result.json",
     "occurrence": 1,
-    "bytes": 542,
-    "sha256": "b403be311b433968f92c24310b5ff5ad25b9c160cca8c83d3f6d2f69062e31e2"
+    "bytes": 541,
+    "sha256": "ecfbb677225a40245248bc1f56d004ff56ecf9051f23310f848297d1ce1c283d"
   },
   "statistics": {
     "messages": 1,

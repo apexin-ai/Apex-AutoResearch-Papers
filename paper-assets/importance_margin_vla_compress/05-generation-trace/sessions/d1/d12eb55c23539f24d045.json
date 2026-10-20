@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_westd41074_full_20260522T200531_result.json",
     "occurrence": 1,
-    "bytes": 1596,
-    "sha256": "3038f98d76d1e935cbd435ab87c2e4f4eeef48cbbf26fe33dc6c1b2c2570828c"
+    "bytes": 1595,
+    "sha256": "88fdaf61a7288acf563e545cf1ff2bc1bfcda64d1e66c58e7bc3ffbbffd18065"
   },
   "statistics": {
     "messages": 1,

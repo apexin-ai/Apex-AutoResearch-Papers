@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_idle_gpus_pi05_attn_strict_20260527T122634_result.json",
     "occurrence": 1,
-    "bytes": 748,
-    "sha256": "14801b1c76fbf6768a6a9bb3a16643d452a6bf0248c816faa49ad5ae7a5b856c"
+    "bytes": 747,
+    "sha256": "6d992e6f6d1645ff30813ed22bec4fb0194dcddf1310f2baca0e5931770a35e3"
   },
   "statistics": {
     "messages": 1,

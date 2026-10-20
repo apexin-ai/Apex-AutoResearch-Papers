@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_fix-save-checkpoint-and-restart-m64_20260521T090742_result.json",
     "occurrence": 1,
-    "bytes": 1421,
-    "sha256": "e783835fe8b93fef65c27a5bf729fd99fdc53a83aff97b592c52402a6b3f901d"
+    "bytes": 1420,
+    "sha256": "42bd3acc624c1982b81b5bdbc52ce5afd4792d8af6898fb53df662d37c48f6d0"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_eval_random_prune_k05_20260517T091043_result.json",
     "occurrence": 1,
-    "bytes": 2201,
-    "sha256": "ea6af9ca2f8bf99c3517042231ab4c14d93f7f6f973dbc0266888a1e55c75c22"
+    "bytes": 2200,
+    "sha256": "397c281dfb2fb7ca6c3773745e6b39ade6c44f9006b957488a0fd3b1f490e3c5"
   },
   "statistics": {
     "messages": 1,

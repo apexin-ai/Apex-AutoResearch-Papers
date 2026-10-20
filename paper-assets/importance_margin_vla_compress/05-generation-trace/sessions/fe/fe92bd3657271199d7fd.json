@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_kill_cqa1-zombie-537176_20260525T181403_result.json",
     "occurrence": 1,
-    "bytes": 440,
-    "sha256": "620b6786bb20154bef93fe1769cc072f50fcfa2c045ae50fd9169386d6c77ab1"
+    "bytes": 439,
+    "sha256": "c5305e7f6e7c1876a4597f60b04c830f5781e889b270473ad134b56b82e33620"
   },
   "statistics": {
     "messages": 1,

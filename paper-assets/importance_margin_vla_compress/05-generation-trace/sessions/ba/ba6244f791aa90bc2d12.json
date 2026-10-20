@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_c5_bce_blast_radius_20260519T225657_result.json",
     "occurrence": 1,
-    "bytes": 2319,
-    "sha256": "406d15dbdbffaa1e740a8043887a746b6544072bce817f4510f4e40cfcdd56c2"
+    "bytes": 2318,
+    "sha256": "1459f1bd1ad91af9107f500469492af567f4076e68493edf8a8d00b1611c23a9"
   },
   "statistics": {
     "messages": 1,

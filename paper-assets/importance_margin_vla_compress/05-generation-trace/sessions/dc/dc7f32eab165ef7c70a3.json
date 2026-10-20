@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_cqa1_cuda_visible_devices_bug_20260528T003320_result.json",
     "occurrence": 1,
-    "bytes": 2143,
-    "sha256": "dcb5b891421ed7b98a7a27db5a6567e01aecb02529d34a54b9a6fd3d16f92b1d"
+    "bytes": 2142,
+    "sha256": "55e549987a3f3b903c3f84e6d6b44bff46f80c8e441d9bb16b61d28b444d9dde"
   },
   "statistics": {
     "messages": 1,

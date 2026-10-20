@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_smart_compress_m32_spatial",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:11:10.734Z",
+    "updated_at": "2026-05-19T11:32:40.490Z",
+    "hypothesis": "Smart Compress M=32 (75% compression) eval on LIBERO-Spatial, seed=42. If M=32 maintains similar relative performance on Spatial as on Object (61.2% vs 44.8% baseline = +16.4pp), cross-attention compression generalizes across task suites. Combined with SmolVLA baseline Spatial and OpenVLA Spatial, completes cross-suite evidence for MF-3."
+  },
+  "timestamp": "2026-05-19T11:32:40.743911+00:00",
+  "trigger": "update_registry"
+}

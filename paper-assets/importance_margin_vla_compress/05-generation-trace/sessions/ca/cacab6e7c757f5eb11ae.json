@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_k0925-and-deploy_20260521T234744_result.json",
     "occurrence": 1,
-    "bytes": 660,
-    "sha256": "c8e2be41ca38a4f1f4e6fa2350724245c215cdecab6630a50129fbad99fc591a"
+    "bytes": 659,
+    "sha256": "b3efcdd394785ee20ffc63b59cafac49e46c96abd98fc1e9da5a8a350f3eb371"
   },
   "statistics": {
     "messages": 1,

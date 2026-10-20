@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval_pi05_random_k07_object_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T11:09:35.389Z",
+    "updated_at": "2026-05-23T23:08:43.414Z",
+    "hypothesis": "π0.5 Random k=0.7 Object post-fix v3 — 修复 tokenizer 缓存后重试，设置 TRANSFORMERS_OFFLINE=1 和 HF_HOME 避免网络请求",
+    "parent": "eval_pi05_random_k05_object_seed42",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.7 --suite libero_object --n_episodes 50 --seed 42 --gpu 0",
+      "server": "cqa1-33015",
+      "gpu_id": 2,
+      "data_path": "libero_object",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_object (10 tasks x 50 episodes)"
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T11:30:13.001Z",
+    "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k07_object_seed42_v3.log",
+    "checkpoint_path": "/root/autodl-tmp/pi05_libero_finetuned"
+  },
+  "timestamp": "2026-05-23T23:08:44.331649+00:00",
+  "trigger": "update_registry"
+}

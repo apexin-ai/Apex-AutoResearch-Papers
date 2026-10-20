@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_westd27271_gpu_check_deploy_20260527T061429_result.json",
     "occurrence": 1,
-    "bytes": 536,
-    "sha256": "8b225fa6c6d2ceada99558bb7f20ff049f66be4b61ab0b134e143d269dda9bec"
+    "bytes": 535,
+    "sha256": "ff9b9381996a505f5311e1e7d97d291d6047004d2becee7cab45343216a81f41"
   },
   "statistics": {
     "messages": 1,

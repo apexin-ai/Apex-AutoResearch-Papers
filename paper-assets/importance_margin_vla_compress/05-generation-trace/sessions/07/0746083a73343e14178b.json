@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd41074-gpu1-replace-k05-seed43_20260521T095312_result.json",
     "occurrence": 1,
-    "bytes": 459,
-    "sha256": "6ceaf0e74ef739a14c4acdd6ee92bc5c31055fcdc9559093e2f19af6365df12a"
+    "bytes": 458,
+    "sha256": "10dcfb36b1f607838194b0440f0b50346643814fc4b65c5615a8455dd5da7d31"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_pi05-fixed-mask-random_20260521T191000_result.json",
     "occurrence": 1,
-    "bytes": 1456,
-    "sha256": "77c50458a62de8e9ed528d0c76837ba1da34a5094d120b8e3832dab39e9b50e8"
+    "bytes": 1455,
+    "sha256": "4e68c78ef22f8628b19c6d673d8a95882e84da475ad6a6ba0735a7c38288074c"
   },
   "statistics": {
     "messages": 1,

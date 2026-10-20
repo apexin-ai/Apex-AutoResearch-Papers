@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd41074-gpu1-pi05-random-k07_20260521T095037_result.json",
     "occurrence": 1,
-    "bytes": 368,
-    "sha256": "8c0af2c94bb0221927aaa5204a8ee43ac5964a49bf500bd704d5e91c4150a18e"
+    "bytes": 367,
+    "sha256": "aaa0b8ddee9c173c8925f2a3a6877e123dc883c8a24187f6454a6e20bede5b80"
   },
   "statistics": {
     "messages": 1,

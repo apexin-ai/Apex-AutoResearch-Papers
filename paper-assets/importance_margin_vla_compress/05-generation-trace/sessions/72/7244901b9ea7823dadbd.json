@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_deep_analysis_competitors_20260519T013824_result.json",
     "occurrence": 1,
-    "bytes": 10924,
-    "sha256": "a5a744ff137b70230203bab26cfff5a709056dd795746dde6df17fb32cc57c8b"
+    "bytes": 10923,
+    "sha256": "9236c900264e8ad8e31f9770c2207f12af6df5e76b7cb917cc16693d4018799a"
   },
   "statistics": {
     "messages": 1,

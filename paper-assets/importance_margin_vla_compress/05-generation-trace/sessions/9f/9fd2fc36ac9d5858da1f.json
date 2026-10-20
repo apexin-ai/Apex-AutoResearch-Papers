@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_eval_pi05_l2norm_k0925_goal_seed42_postfix_20260525T120353_result.json",
     "occurrence": 1,
-    "bytes": 494,
-    "sha256": "94e786a9ca52116c28c54d0c6b5ffd3c85b3b8e53be41b59e50005c080d62df3"
+    "bytes": 493,
+    "sha256": "f4c10dc8f80b6de9111a0c43fc812eee40cf86a3d7775c72f5cbd2a374d644db"
   },
   "statistics": {
     "messages": 1,

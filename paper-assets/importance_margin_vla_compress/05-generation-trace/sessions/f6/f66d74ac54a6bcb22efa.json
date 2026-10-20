@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_openvla_pruning_k03_launch_20260518T012419_result.json",
     "occurrence": 1,
-    "bytes": 688,
-    "sha256": "20b0d394e820327077d400029e3779bf6a49039b912e62fe033a81a8de87d827"
+    "bytes": 687,
+    "sha256": "babf3f2b3f0bce78884798f78a7ada4094df959afff42ec481a40f10aac8d987"
   },
   "statistics": {
     "messages": 1,

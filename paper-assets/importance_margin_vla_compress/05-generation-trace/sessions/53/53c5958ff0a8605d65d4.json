@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_westd38929_status_20260521T072618_result.json",
     "occurrence": 1,
-    "bytes": 1206,
-    "sha256": "85d6fc1bb1e3f08faaaf477e380757d46ec205c76a3802f6efcc6650e0b56e6d"
+    "bytes": 1205,
+    "sha256": "427f777c75bed080724d58db191cebf111b1a8fa9e01828cb718178de34a9859"
   },
   "statistics": {
     "messages": 1,

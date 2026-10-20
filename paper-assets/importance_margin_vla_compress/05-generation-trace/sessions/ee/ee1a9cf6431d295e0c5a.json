@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-gpu2-openvla-baseline-seed42_20260521T120207_result.json",
     "occurrence": 1,
-    "bytes": 457,
-    "sha256": "d903389f6ea41840d663a4e185aea36d53df0038a8bc89c1d4c612fda1cafebc"
+    "bytes": 456,
+    "sha256": "016856325c97f18b44e4019ce7275323eaa5fdac791d46500f023c523db7c88b"
   },
   "statistics": {
     "messages": 1,

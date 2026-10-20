@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check-cqa1-k07-spatial-and-westd38929-gpu0_20260524T124811_result.json",
     "occurrence": 1,
-    "bytes": 1025,
-    "sha256": "3cc78bf771e69e4c2373403570987bab198ddf297729d5223d108ce66e55d749"
+    "bytes": 1024,
+    "sha256": "fce717adacbd18fffda4b0653489a32cc63f59a8692e97af1d4881e701f38f0c"
   },
   "statistics": {
     "messages": 1,

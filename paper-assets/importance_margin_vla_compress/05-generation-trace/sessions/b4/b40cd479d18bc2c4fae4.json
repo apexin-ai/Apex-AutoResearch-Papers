@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_kill-zombies-westd41074-gpu0_20260523T203208_result.json",
     "occurrence": 1,
-    "bytes": 384,
-    "sha256": "528bb73a7de384549f43665606fb6a2484903a6cd46c0a2ca8f3a4cf3c2abd2e"
+    "bytes": 383,
+    "sha256": "ba4d2299c5936c72e1082c77bb3074744403b8ee0828fb134e559592f36e313b"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-gpu1-openvla-random-k07-seed43_20260521T123434_result.json",
     "occurrence": 1,
-    "bytes": 141,
-    "sha256": "49b863ad098fbd6cb9f6125538cb840f4ab4c10301a12c90e02f706b8566101e"
+    "bytes": 140,
+    "sha256": "30e7f9be3f8f8b62f42a72a58990819814b6a7a22a6a86730d69a1ed893c862c"
   },
   "statistics": {
     "messages": 1,

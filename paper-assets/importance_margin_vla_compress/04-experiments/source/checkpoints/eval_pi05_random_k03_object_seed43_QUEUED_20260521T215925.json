@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_random_k03_object_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T21:52:57.780Z",
+    "updated_at": "2026-05-21T21:59:25.168Z",
+    "hypothesis": "π0.5 random k=0.3 Object seed43: seed 验证，seed42=36.4%。确认 random k=0.3 的 SR 在 seed 间可重复。",
+    "parent": "eval_pi05_random_k03_object_seed42"
+  },
+  "timestamp": "2026-05-21T21:59:25.635473+00:00",
+  "trigger": "update_registry"
+}

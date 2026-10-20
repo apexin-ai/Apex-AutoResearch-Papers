@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_pi05_l2norm_k05_long_seed47_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-28T22:31:25.393Z",
+    "updated_at": "2026-05-29T02:54:28.332Z",
+    "hypothesis": "π0.5 L2norm k=0.5 Long seed47 — 6th seed bonus for revision. High std cell (1.5pp)。5-seed mean=51.7±1.5pp",
+    "spec": {
+      "model_name": "pi0.5",
+      "seed": 47,
+      "data_path": "libero_long",
+      "data_count": 500,
+      "checkpoint_source": "pi05_libero_finetuned",
+      "eval_data": "libero_10",
+      "server": "cqa1-33015",
+      "command": "python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 47 --gpu 0",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_long_seed47_cqa1.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 50
+    },
+    "checkpoint_path": "N/A (eval only)",
+    "completed_at": "2026-05-29T02:54:28.332Z"
+  },
+  "timestamp": "2026-05-29T02:54:31.474010+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_submit_openvla_random_k09_goal_spatial_20260524T230009_result.json",
     "occurrence": 1,
-    "bytes": 711,
-    "sha256": "864561a6cd9590e36cd6a0118f750bc0e7388ad6b99636ba78647ab8f2810dbf"
+    "bytes": 710,
+    "sha256": "edfb0247a0cab35c68826a16b3e726b347bb326258a026dd934146f871335128"
   },
   "statistics": {
     "messages": 1,

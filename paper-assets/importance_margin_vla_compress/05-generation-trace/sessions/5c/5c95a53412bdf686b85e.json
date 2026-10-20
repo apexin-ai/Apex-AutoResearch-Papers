@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_viz_importance_heatmap_20260524T194142_result.json",
     "occurrence": 1,
-    "bytes": 377,
-    "sha256": "30ba2bdc5d86c18d63ea632a55b73892950040d723413db400048306b0ba728f"
+    "bytes": 376,
+    "sha256": "c73becdb9c2e03c2a2481fe78e1873c7a99331be9eb2e7437648fd1694ecd49b"
   },
   "statistics": {
     "messages": 1,

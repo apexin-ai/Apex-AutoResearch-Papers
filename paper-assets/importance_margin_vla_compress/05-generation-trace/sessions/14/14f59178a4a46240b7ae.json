@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_w38-gpu23-diagnosis_20260527T231558_result.json",
     "occurrence": 1,
-    "bytes": 895,
-    "sha256": "306a15195d69c06ca05e64be3a2399c3529028fcb2f380af2bdadbcf1226881e"
+    "bytes": 894,
+    "sha256": "e346289b438083472a20109cd9c21a2d86f30253a386d3455c88a91570532d76"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_imm_100k_object_urgent_20260517T010456_result.json",
     "occurrence": 1,
-    "bytes": 1120,
-    "sha256": "3b0f8e1f20149f9afb7ea65b29dbb01c9d660db91a75f0d9a00df939a82000a1"
+    "bytes": 1119,
+    "sha256": "04f6bee876f67fd7f19f6b0fec14d90c0526c49c408745c75c558dea6ceaf061"
   },
   "statistics": {
     "messages": 1,

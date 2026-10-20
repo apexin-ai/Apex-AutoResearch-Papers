@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_v8-contingency-configs_20260516T014410_result.json",
     "occurrence": 1,
-    "bytes": 876,
-    "sha256": "a96f2a711b109081b53bc8264cf9be434372d5c1aedc966ee138ce901ea775f5"
+    "bytes": 875,
+    "sha256": "b4cba2fd8dad072d8f31f3258363aafb1e60da2ba53d9be64112a37a58706ff8"
   },
   "statistics": {
     "messages": 1,

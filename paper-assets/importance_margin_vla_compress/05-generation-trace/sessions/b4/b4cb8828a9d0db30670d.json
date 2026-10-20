@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_find-pids-register-crons_20260527T130601_result.json",
     "occurrence": 1,
-    "bytes": 2139,
-    "sha256": "be68f0e8c8e69268acc637e04fc76fff9815916018892ba118106dc8aed809ab"
+    "bytes": 2138,
+    "sha256": "22d0df197c03a822425f5d395e8770ef88a42c738f5b2e45c6304ab843ed75bf"
   },
   "statistics": {
     "messages": 1,

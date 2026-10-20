@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_oft-eval-adapter_20260521T012139_result.json",
     "occurrence": 1,
-    "bytes": 2038,
-    "sha256": "333e095fc4e4e43e16f8cff33d088a822ea9a736e1ed1ad39be4574354800be2"
+    "bytes": 2037,
+    "sha256": "a5d0c4157be98e996703f2b04852002d79b0ecacb8d17cb239b0c873bde1d5c0"
   },
   "statistics": {
     "messages": 1,

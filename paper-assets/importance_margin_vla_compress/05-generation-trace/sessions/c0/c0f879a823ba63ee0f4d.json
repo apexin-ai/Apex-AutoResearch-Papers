@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_libero_lora_baseline_100k_20260516T212853_result.json",
     "occurrence": 1,
-    "bytes": 1360,
-    "sha256": "ad8c5457e4236bd144b12a13d7c05e2345f7dc9c7f2a6cfbf15aff00268012c6"
+    "bytes": 1359,
+    "sha256": "938a18119634b4bb1fa9c17d1664b67796f3e16a61e7b2592955f4f2b44560b8"
   },
   "statistics": {
     "messages": 1,

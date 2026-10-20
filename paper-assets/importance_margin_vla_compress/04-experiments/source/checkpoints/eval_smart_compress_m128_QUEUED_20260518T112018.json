@@ -1,0 +1,51 @@
+{
+  "exp_id": "eval_smart_compress_m128",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:08:14.626Z",
+    "updated_at": "2026-05-18T11:20:18.120Z",
+    "hypothesis": "Cross-attention pooling with M=128 queries (no compression, passthrough control) on LIBERO-Object. If SR similar to M=32/M=64 (61.6%), improvement comes from cross-attention architecture itself. If lower/equal to baseline (44.8%), compression bottleneck provides the benefit. Critical control experiment for paper framing.",
+    "parent": "train_smart_compress_m128_resume",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 WANDB_MODE=offline python eval_smart_compress_libero.py --checkpoint_path checkpoints/smart_compress_m128/checkpoint.pt --n_queries 128 --num_episodes 50 --suite libero_object --gpu 0\"",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "18074",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_smart_compress_m128.log",
+      "submitted_at": "2026-05-18T10:08:26.674Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "libero_object_sr": 0.598,
+      "libero_object_sr_ci95": [
+        0.554,
+        0.64
+      ],
+      "total_episodes": 500,
+      "total_successes": 299,
+      "per_task_sr": {
+        "alphabet_soup": 0.62,
+        "cream_cheese": 0.58,
+        "salad_dressing": 0.54,
+        "bbq_sauce": 0.34,
+        "ketchup": 0.62,
+        "tomato_sauce": 0.5,
+        "butter": 0.82,
+        "milk": 0.56,
+        "chocolate_pudding": 0.82,
+        "orange_juice": 0.58
+      }
+    }
+  },
+  "timestamp": "2026-05-18T11:20:18.264712+00:00",
+  "trigger": "update_registry"
+}

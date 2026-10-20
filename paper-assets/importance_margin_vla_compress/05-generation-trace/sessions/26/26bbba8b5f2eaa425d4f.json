@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_pipeline_monitor_deploy_v1_20260522T101131_result.json",
     "occurrence": 1,
-    "bytes": 2214,
-    "sha256": "f31b55e7c27d2b0383c4773658fc6aa9f32439a43ed06f9ef976f8afa30a4525"
+    "bytes": 2213,
+    "sha256": "509f1e152087beedaba67a67a32ac5062e406a6572530c0e9ed511c2fa27dcf9"
   },
   "statistics": {
     "messages": 1,

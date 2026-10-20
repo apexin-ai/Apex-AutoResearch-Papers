@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_long_seed43_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "created_at": "2026-05-23T03:50:15.603Z",
+    "hypothesis": "π0.5 L2Norm k=0.85 Long seed43 v3: seed42=78.0%。L2norm 单调下降验证，用 CUDA_VISIBLE_DEVICES=1 确保正确 GPU 映射",
+    "parent": "eval_pi05_l2norm_k085_long_seed43_v2",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "checkpoint_source": "pi0.5-pretrained",
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0",
+      "data_count": 50,
+      "data_path": "libero_10",
+      "eval_data": "libero_10",
+      "gpu": [
+        "cuda:1"
+      ],
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k085_long_seed43_v3.log",
+      "model_name": "pi0.5",
+      "pid": "252122",
+      "seed": 43,
+      "server": "cqa1-33015",
+      "submitted_at": "2026-05-25T17:58:03Z"
+    },
+    "status": "ANALYZING",
+    "updated_at": "2026-05-25T13:29:47.419Z",
+    "reproduce": {
+      "finished_at": "2026-05-25T13:29:42.629Z"
+    }
+  },
+  "timestamp": "2026-05-25T13:29:49.598216+00:00",
+  "trigger": "update_registry"
+}

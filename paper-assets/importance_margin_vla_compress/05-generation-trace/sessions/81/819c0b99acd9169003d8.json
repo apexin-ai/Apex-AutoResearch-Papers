@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_figure_fig_scoring_crossover_heatmap_20260525T181019_result.json",
     "occurrence": 1,
-    "bytes": 652,
-    "sha256": "799db2c885b0ba2cfc698708b64d999f8847f7b2a128e0bd2132f8454e8abd23"
+    "bytes": 651,
+    "sha256": "e2e2bad8b258c5e03a054fbb521f83a6e2c4e229ff65bc3e806079e7a8f0db66"
   },
   "statistics": {
     "messages": 1,

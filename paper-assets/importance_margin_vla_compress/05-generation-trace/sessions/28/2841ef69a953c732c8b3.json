@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_20k_gate_prep_20260520T024314_result.json",
     "occurrence": 1,
-    "bytes": 2192,
-    "sha256": "70a37445ee2a1d6019abe199b7e232ce3999a90357824a9e6b3bbb7e710a627b"
+    "bytes": 2191,
+    "sha256": "aac346c97600f97feff5717a34a3b935698ef698a92416561cabb3f9968fe225"
   },
   "statistics": {
     "messages": 1,

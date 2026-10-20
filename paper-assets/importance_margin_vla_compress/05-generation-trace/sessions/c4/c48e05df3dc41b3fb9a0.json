@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1-33015-xvla-check_20260523T184829_result.json",
     "occurrence": 1,
-    "bytes": 846,
-    "sha256": "aa6bc92d5f05477dbc5d85ac98ebf66727f54a37816a9015bace990645fdced3"
+    "bytes": 845,
+    "sha256": "590d7e21b069e146a5c9537fb34c9735fcca25f6640c0bff79aeb9fc067fa537"
   },
   "statistics": {
     "messages": 1,

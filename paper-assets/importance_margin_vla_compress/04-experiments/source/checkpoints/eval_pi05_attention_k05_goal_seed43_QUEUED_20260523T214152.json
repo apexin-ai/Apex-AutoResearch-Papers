@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_attention_k05_goal_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T21:41:36.973Z",
+    "updated_at": "2026-05-23T21:41:50.633Z",
+    "hypothesis": "π0.5 attention k=0.5 Goal seed43。seed42=70.2% (< Random 73.6%, Δ=-3.4pp)。seed43 验证 attention 在 MLP connector 上是否持续 anti-informative。若 seed43 也 < Random，则双 seed 确认 2×2 crossover（X-VLA attention=98.2% vs π0.5 attention ≤ Random）。"
+  },
+  "timestamp": "2026-05-23T21:41:52.326650+00:00",
+  "trigger": "update_registry"
+}

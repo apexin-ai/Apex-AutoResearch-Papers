@@ -1,0 +1,46 @@
+{
+  "exp_id": "plan_005_formal_bound_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T15:33:16.146Z",
+    "updated_at": "2026-05-16T16:17:57.022Z",
+    "spec": {
+      "command": "python eval_formal_bound.py --checkpoint checkpoints/imm_anchor_v8b_twostage/final/checkpoint.pt --num_batches 500",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "208269",
+      "log_path": "~/runs/importance_margin_vla_compress/plan_005_formal_bound_v2.log",
+      "submitted_at": "2026-05-16T15:33:16.093Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "lerobot/aloha_sim_insertion_scripted_image",
+      "data_count": 500,
+      "model_name": "imm_anchor_v8b_twostage",
+      "seed": 42,
+      "checkpoint_path": "results/formal_bound_plan005.json",
+      "wall_clock_seconds": 2680.9,
+      "gpu_hours": 0.74
+    },
+    "hypothesis": "Formal bound 实证验证: 多 ε 水平 (0.005-0.1) 下测量 top-k stability，绘制 theoretical vs empirical bound 对比图 (v2 fix AttributeError)",
+    "conclusion": "success",
+    "metrics": {
+      "tightness_spectral_min": 1.005,
+      "tightness_spectral_max": 1.125,
+      "stability_eps01": 0.976,
+      "margin_median": 0.96,
+      "L_spectral": 1.067,
+      "L_empirical": 0.193,
+      "source": "results/formal_bound_plan005.json"
+    },
+    "completed_at": "2026-05-16T16:17:57.022Z"
+  },
+  "timestamp": "2026-05-16T16:17:57.074643+00:00",
+  "trigger": "update_registry"
+}

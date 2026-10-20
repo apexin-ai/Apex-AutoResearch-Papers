@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_smolvla_repro_harvest_20260522T110248_result.json",
     "occurrence": 1,
-    "bytes": 2421,
-    "sha256": "0224a4f8fc7583bb9aff82f5a2c2cdf2193d3f049d512c768642e361d11b547e"
+    "bytes": 2420,
+    "sha256": "6e09576c1ee2f39efdb286e49d5efe2b6951c20283f2a9a6a0028da530668163"
   },
   "statistics": {
     "messages": 1,

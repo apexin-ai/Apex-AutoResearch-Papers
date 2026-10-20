@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_train_openvla_vtc_only_westd27271_20260519T182443_result.json",
     "occurrence": 1,
-    "bytes": 969,
-    "sha256": "c6b74cb2b0ddc059f8e9506bf1783d5e8a47ff1e36723053addd773f0b9c2c61"
+    "bytes": 968,
+    "sha256": "5882576b1c37b3d02c93136803cfbed8399a7107ed8a22a0362b13ac1f510c7b"
   },
   "statistics": {
     "messages": 1,

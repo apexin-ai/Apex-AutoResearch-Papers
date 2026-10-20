@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_monitor_check_dual_experiments_20260516_20260516T051340_result.json",
     "occurrence": 1,
-    "bytes": 1475,
-    "sha256": "ae215303f8df974efb3dbc63232bfe3e29548a90d9725dd0d106c8b511bf854f"
+    "bytes": 1474,
+    "sha256": "a73312e7bbe8d3a774281cceac24ecf7aa18c85f1d3ad1688df035b9ea5d1db7"
   },
   "statistics": {
     "messages": 1,

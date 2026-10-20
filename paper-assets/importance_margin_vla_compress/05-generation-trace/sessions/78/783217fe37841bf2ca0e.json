@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_action_divergence_20260517T100440_result.json",
     "occurrence": 1,
-    "bytes": 1119,
-    "sha256": "26d5951a1a66b9f9233d285c4e3338620885a10599d94368d055e6383f83289e"
+    "bytes": 1118,
+    "sha256": "02875f9230c284aad4af57d786eebc8f8fe9a60d6f11b85652a7de18d531787f"
   },
   "statistics": {
     "messages": 1,

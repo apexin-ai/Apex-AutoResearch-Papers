@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval_pi05_attn_k05_long_seed43_strict_w38",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T18:10:15.232Z",
+    "updated_at": "2026-05-27T18:58:19.606Z",
+    "hypothesis": "π0.5 Attn k=0.5 Long strict seed43 — seed42 对比值待查，验证极端压缩下 Attn 的 error bar",
+    "parent": "eval_pi05_attn_k05_long_seed42_strict_w41",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\"",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "541240",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log",
+      "submitted_at": "2026-05-27T18:40:11.366Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-38929",
+    "gpu": "cuda:3",
+    "pid": 541240,
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log"
+  },
+  "timestamp": "2026-05-27T18:58:22.755245+00:00",
+  "trigger": "update_registry"
+}

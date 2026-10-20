@@ -1,0 +1,36 @@
+{
+  "exp_id": "eval_pi05_random_k03_long_seed43_v4",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "created_at": "2026-05-23T03:50:12.434Z",
+    "hypothesis": "π0.5 Random k=0.3 Long seed43 v4: seed42=29.0%. V-shape floor 端点验证。k=0.5=50.2%，k=0.3 是 extreme pruning 的 floor。seed43 验证 V-shape 在 extreme 端的 reproducibility。",
+    "parent": "eval_pi05_random_k03_long_seed43_v3",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=3 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.3 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\"",
+      "data_count": 500,
+      "data_path": "libero_10",
+      "eval_data": "libero_10 (Long) 10 tasks x 50 episodes",
+      "gpu": "cuda:3",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k03_long_seed43_v4.log",
+      "model_name": "pi0.5",
+      "pid": "313394",
+      "seed": 43,
+      "server": "cqa1-33015",
+      "submitted_at": "2026-05-25T19:05:00Z",
+      "submitted_via": "ssh_execute+tmux"
+    },
+    "status": "ANALYZING",
+    "updated_at": "2026-05-25T16:03:16.805Z",
+    "reproduce": {
+      "finished_at": "2026-05-25T16:03:14.145Z"
+    }
+  },
+  "timestamp": "2026-05-25T16:03:17.914769+00:00",
+  "trigger": "update_registry"
+}

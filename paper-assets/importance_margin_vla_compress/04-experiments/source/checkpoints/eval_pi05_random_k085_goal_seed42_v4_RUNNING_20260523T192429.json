@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_pi05_random_k085_goal_seed42_v4",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T18:14:36.077Z",
+    "updated_at": "2026-05-23T19:24:27.559Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_goal --n_episodes 50 --seed 42 --gpu 0\"",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "88533",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k085_goal_seed42_v4.log",
+      "submitted_at": "2026-05-23T18:14:34.984Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_count": 500,
+      "data_path": "libero_goal",
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42
+    },
+    "hypothesis": "CPU RNG 修复后 π0.5 Random k=0.85 Goal。v3=52.4%(pre-fix, westd-38929)。修复后验证——k=0.9=62.2%, k=0.7=78.2%。v3 显示 k=0.85 在 cliff zone 内，修复后是否依然在 50% 附近？"
+  },
+  "timestamp": "2026-05-23T19:24:29.047199+00:00",
+  "trigger": "update_registry"
+}

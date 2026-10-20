@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_consistency_pi05_random_k07_vs_k085_20260526T175611_result.json",
     "occurrence": 1,
-    "bytes": 1970,
-    "sha256": "e624f865fb0450d15f8f6f338cffd7d662bb11e187369974032c59052410e5dc"
+    "bytes": 1969,
+    "sha256": "4c44ced88df2005e4d7796837b100ec6aa66c71f3346ef33c5b2634b0c40660d"
   },
   "statistics": {
     "messages": 1,

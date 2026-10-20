@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_batch64_faulthandler_restart_20260517T083602_result.json",
     "occurrence": 1,
-    "bytes": 668,
-    "sha256": "021a1c2c3711b88c82b48e18994f90f1ed2e455df671e07290f216096f79f67a"
+    "bytes": 667,
+    "sha256": "c3b7b592cee0e06368671d28727893506d24e843e2bf94ed5504409686efebfc"
   },
   "statistics": {
     "messages": 1,

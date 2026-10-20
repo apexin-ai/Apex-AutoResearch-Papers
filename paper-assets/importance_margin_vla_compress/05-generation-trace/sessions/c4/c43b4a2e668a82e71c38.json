@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_v8-trajectory-recovery_20260516T025040_result.json",
     "occurrence": 1,
-    "bytes": 1521,
-    "sha256": "ef064565ab491a4797bb059c4d3e9b24c81dfebcbc18e32dbb0cd04848efecd8"
+    "bytes": 1520,
+    "sha256": "7ba58bfb1b5c8ffa01172d536723046108bf0c07629ed2794a708397c42975b5"
   },
   "statistics": {
     "messages": 1,

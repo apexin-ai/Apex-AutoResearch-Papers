@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_registry-__-4gpu-20260526_20260526T221210_result.json",
     "occurrence": 1,
-    "bytes": 775,
-    "sha256": "0b91ec6187dc9134973ae1489aacbc156b267964289ed5610cba4dd873171d83"
+    "bytes": 774,
+    "sha256": "4f2700b05befdf2ff192ed723d21e17c1dd18363e24fae9f4818f703abd68357"
   },
   "statistics": {
     "messages": 1,

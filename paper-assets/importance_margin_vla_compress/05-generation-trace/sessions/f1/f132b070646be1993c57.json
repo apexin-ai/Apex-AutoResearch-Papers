@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_recon_openvla-availability_20260523T115331_result.json",
     "occurrence": 1,
-    "bytes": 2354,
-    "sha256": "027adeabc495b38aa0814fca38d459090657cff28165536da6ddddae869ca9ae"
+    "bytes": 2353,
+    "sha256": "98533ba9454a0bda0834b0aeec4f44eb7cffd66a673ceca708c5cc9687d3db81"
   },
   "statistics": {
     "messages": 1,

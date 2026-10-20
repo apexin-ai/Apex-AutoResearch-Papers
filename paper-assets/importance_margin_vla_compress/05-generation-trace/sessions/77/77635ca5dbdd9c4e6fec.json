@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analyze_eval_pi05_random_k03_goal_seed43_v2_20260524T025501_result.json",
     "occurrence": 1,
-    "bytes": 382,
-    "sha256": "be7c74bd9b6da7850098c9e2de5cd5030d892066508f72b9bbb5aac4de180834"
+    "bytes": 381,
+    "sha256": "4fb681c116d253c0aff4f8a7485b32d90979e813c8495da1de4c4e311c359e57"
   },
   "statistics": {
     "messages": 1,

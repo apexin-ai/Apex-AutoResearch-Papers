@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1-smolvla-sweep_20260521T191518_result.json",
     "occurrence": 1,
-    "bytes": 880,
-    "sha256": "d8b00d224632177d8e5936a7936bacefaade08bb186a7064869963413a0e176f"
+    "bytes": 879,
+    "sha256": "2113a5bd181499e4d9abdd7439f8eb7612290c277d9c568aeddfed1c7a440766"
   },
   "statistics": {
     "messages": 1,

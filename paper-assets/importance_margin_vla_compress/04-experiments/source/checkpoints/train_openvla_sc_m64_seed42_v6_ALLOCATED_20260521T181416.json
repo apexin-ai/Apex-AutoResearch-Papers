@@ -1,0 +1,16 @@
+{
+  "exp_id": "train_openvla_sc_m64_seed42_v6",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:14:05.043Z",
+    "updated_at": "2026-05-21T18:14:16.438Z",
+    "hypothesis": "OpenVLA VTC-only M=64 (256→64 tokens, 75% compression) v6 retry. v5 SIGKILL at step 17050 (原因不明，疑似磁盘空间). 验证 VTC re-encoding 在 M=64 的效果，与 M=96/M=32 形成 M-sweep 曲线。",
+    "parent": "train_openvla_sc_m64_seed42_v5"
+  },
+  "timestamp": "2026-05-21T18:14:16.876128+00:00",
+  "trigger": "update_registry"
+}

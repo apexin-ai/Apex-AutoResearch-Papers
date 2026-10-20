@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_urgent_fix_deploy_v1_20260522T092357_result.json",
     "occurrence": 1,
-    "bytes": 1383,
-    "sha256": "12f66459f3c5426518d87356b954e6f88d86f70c13ba282b2e2a2ed5dd76550b"
+    "bytes": 1382,
+    "sha256": "1b8e81d6b2d59dc56968bd13d1fc374fb63949b798d04da078df0234e2145ff3"
   },
   "statistics": {
     "messages": 1,

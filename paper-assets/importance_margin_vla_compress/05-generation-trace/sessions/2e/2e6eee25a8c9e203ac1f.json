@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_goal_long_official_config_fix_20260522T121752_result.json",
     "occurrence": 1,
-    "bytes": 2471,
-    "sha256": "456d91672d1f01d0b3aa8704fc20975ca88bc5f9d1e1af7fb8a861941b75c395"
+    "bytes": 2470,
+    "sha256": "4f7cd987dc0ea8928df0c7c11e5b2b6134f130d5e7670459238164885845536c"
   },
   "statistics": {
     "messages": 1,

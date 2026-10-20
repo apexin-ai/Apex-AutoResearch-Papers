@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_pi05_random_k07_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:10:50.961Z",
+    "updated_at": "2026-05-22T21:54:17.624Z",
+    "hypothesis": "π0.5 Random k=0.7 on LIBERO-Long: 30% random removal on long-horizon tasks. Aggressive random pruning data point.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0",
+      "server": "westd-41074",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "pi0.5",
+      "seed": 42,
+      "checkpoint_source": "pi0.5_pretrained",
+      "eval_data": "libero_10",
+      "checkpoint_path": "n/a (inference-only eval)",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.70_libero_10_seed42.json"
+    },
+    "metrics": {
+      "overall_sr": 0.646,
+      "total_successes": 323,
+      "total_episodes": 500,
+      "elapsed_min": 156.4
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T21:54:17.624Z"
+  },
+  "timestamp": "2026-05-22T21:54:18.627855+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd38929_cliff_zone_batch_20260525T143531_result.json",
     "occurrence": 1,
-    "bytes": 803,
-    "sha256": "0184433ba134cdfa628bf4d44f0b3daa65a5cc712d959619118ecbf83bf0ee66"
+    "bytes": 802,
+    "sha256": "003e1241224cc1a597f9e762c961ea39ba24e14929c93331fb661e2c3369a444"
   },
   "statistics": {
     "messages": 1,

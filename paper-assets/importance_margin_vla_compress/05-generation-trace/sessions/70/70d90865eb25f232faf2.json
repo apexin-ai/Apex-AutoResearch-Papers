@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_debug_lerobot_official_eval_run_20260516T124342_result.json",
     "occurrence": 1,
-    "bytes": 1129,
-    "sha256": "1fcadcee627ed84ccbd36a15402e3b861ca2a9928e641ca97f08d73f8eba86d2"
+    "bytes": 1128,
+    "sha256": "9fe4238f78ef02df7d7d3024ec16249752f2062f7d0fb9403d258a62ea306de0"
   },
   "statistics": {
     "messages": 1,

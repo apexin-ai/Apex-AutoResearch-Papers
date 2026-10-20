@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_d014-eval-prep_20260515T200102_result.json",
     "occurrence": 1,
-    "bytes": 2219,
-    "sha256": "61d0de813c09bccbca17e24ea03f5c305847e482695abff75d81baaf67068952"
+    "bytes": 2218,
+    "sha256": "38e0fb78bec115cc220bce78400c521185ecaf04cc3f8523e7f29b0500155a6a"
   },
   "statistics": {
     "messages": 1,

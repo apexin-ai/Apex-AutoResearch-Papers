@@ -1,0 +1,36 @@
+{
+  "exp_id": "eval_pi05_random_k07_long_seed46_strict_w41",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-28T06:35:52.180Z",
+    "updated_at": "2026-05-28T09:09:42.046Z",
+    "hypothesis": "5th seed for Random k=0.7 crossover point — 3-seed mean=65.3%±0.83pp (s45 pending), adding s46 for 5-seed error bar at crossover where Random ≈ L2norm",
+    "server": "westd-41074",
+    "gpu": "cuda:1",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 46 --gpu 0\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "744875",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k07_long_seed46_strict_w41.log",
+      "submitted_at": "2026-05-28T06:37:42.521Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "744875",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k07_long_seed46_strict_w41.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 46 --gpu 0\"",
+      "finished_at": "2026-05-28T09:09:33.945Z"
+    }
+  },
+  "timestamp": "2026-05-28T09:09:45.395909+00:00",
+  "trigger": "update_registry"
+}

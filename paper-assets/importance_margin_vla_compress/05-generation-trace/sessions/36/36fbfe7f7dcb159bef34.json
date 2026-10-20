@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ssh_kill_buggy_simplerenv_20260524T182118_result.json",
     "occurrence": 1,
-    "bytes": 342,
-    "sha256": "41fa1639e03c86f342e882ed5400b8b4c0ad28bf9cc78bd70f8fd70bef9fa016"
+    "bytes": 341,
+    "sha256": "d18c8bab7f3e98daba316fb91f4c9b8b6380ab2f6efd686554cbeec4d874d244"
   },
   "statistics": {
     "messages": 1,

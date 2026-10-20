@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_d168_westd38929_smolvla_v2_20260522T141953_result.json",
     "occurrence": 1,
-    "bytes": 2223,
-    "sha256": "891b9eaf85b74a2373566e57097921292d1fba2136d5b7ff4cf8538ba48d761f"
+    "bytes": 2222,
+    "sha256": "7a4a065e9b4b1fecb0d9bd0099940067ca96634ba87a8646bef5db1e5aba8643"
   },
   "statistics": {
     "messages": 1,

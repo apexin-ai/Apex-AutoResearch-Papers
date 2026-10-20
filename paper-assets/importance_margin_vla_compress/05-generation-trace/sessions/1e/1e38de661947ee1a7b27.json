@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_d024-gate-revision_20260516T013251_result.json",
     "occurrence": 1,
-    "bytes": 1104,
-    "sha256": "c3f69a54228090d9c854853a42ba6db70aa213faa5b46484f6c067b45034fbae"
+    "bytes": 1103,
+    "sha256": "fe24b099c0ff8315be0f547661865d7614d479de208780794d2e5da5bf9f9d24"
   },
   "statistics": {
     "messages": 1,

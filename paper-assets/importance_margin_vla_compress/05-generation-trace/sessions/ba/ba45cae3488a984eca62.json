@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy-westd41074-gpu123-attention_20260523T214642_result.json",
     "occurrence": 1,
-    "bytes": 769,
-    "sha256": "9d6c36df5a0eabb8bfc98e13713640a123fd5ae5b8a3871f3e9b526e37527bb0"
+    "bytes": 768,
+    "sha256": "9000aecab1be0ff46ec23603a57a993c89f9beeb1a0b14edb3f313db3a9eb1ce"
   },
   "statistics": {
     "messages": 1,

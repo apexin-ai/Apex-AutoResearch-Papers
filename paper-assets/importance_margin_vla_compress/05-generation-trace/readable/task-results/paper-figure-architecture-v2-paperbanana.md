@@ -12,8 +12,34 @@ This page is a human-readable rendering of one source record. It preserves the r
 - **Original source:** `logs/workers/worker_paper_figure_architecture_v2_paperbanana_20260528T130129_result.json`
 - **Structured JSON:** [`67eb3ce088d329d05fa9.json`](../../sessions/67/67eb3ce088d329d05fa9.json)
 
-## Browse this transcript
+## Before a recorded user message
 
-This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
+1 recorded events
 
-[Part 1](paper-figure-architecture-v2-paperbanana/part-001.md) · [Part 2](paper-figure-architecture-v2-paperbanana/part-002.md) · [Part 3](paper-figure-architecture-v2-paperbanana/part-003.md)
+### Log line
+
+_source line 1_
+
+Large source content is retained in the sanitized trace archive.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "large_content_blocks": [
+    {
+      "index": 0,
+      "storage": "sanitized-trace-archive",
+      "source_line": 1,
+      "serialized_bytes": 2158731,
+      "serialized_sha256": "ac69ff138a41d85b066a8123d1a578a0d11d0466e36a23d3321dac51bf57cc2d",
+      "note": "Complete sanitized source is retained in trace-files.tar.gz."
+    }
+  ]
+}
+```
+
+</details>
+
+---

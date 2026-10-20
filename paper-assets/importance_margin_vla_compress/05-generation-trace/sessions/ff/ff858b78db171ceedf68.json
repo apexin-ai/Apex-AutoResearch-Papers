@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_harvest-random-k09-s43-cqa1-v2_20260527T184557_result.json",
     "occurrence": 1,
-    "bytes": 403,
-    "sha256": "8f313ab37ad43d5cb6c82198c7b059d54d370ee2e787adf65d5cf19d29ef0cb4"
+    "bytes": 402,
+    "sha256": "cbb8a1fc339bed3eea0889a86ed418f0f310974d0f76f59ba675f79af3231ccd"
   },
   "statistics": {
     "messages": 1,

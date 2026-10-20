@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_w41-s44-attn095-and-verify-w38_20260527T220124_result.json",
     "occurrence": 1,
-    "bytes": 647,
-    "sha256": "fa3e1cf007dfcb53b8d03d84535c0a10c25002c04b05f53b05719e20a0134bfd"
+    "bytes": 646,
+    "sha256": "65499277a1e9c7f507f1a3c7cc25587e95b03aa312c296ee9dc7ca2d90c51b73"
   },
   "statistics": {
     "messages": 1,

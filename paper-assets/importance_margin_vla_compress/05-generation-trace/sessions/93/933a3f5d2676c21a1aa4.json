@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_pi05-pruning-adapter_20260521T014154_result.json",
     "occurrence": 1,
-    "bytes": 2074,
-    "sha256": "d88e6a0f8fca207375f744ba08b4df78ccc9e371cd72ee6c9d3e2d48369360e2"
+    "bytes": 2073,
+    "sha256": "19852c387eaba47f71bf5fb97e37efa2e5f9826636b5a9681845b0cd5cdf34cf"
   },
   "statistics": {
     "messages": 1,

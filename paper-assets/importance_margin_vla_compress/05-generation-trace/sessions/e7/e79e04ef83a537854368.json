@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_kill-baseline-rerun_20260521T164201_result.json",
     "occurrence": 1,
-    "bytes": 337,
-    "sha256": "f8b8ee842300f9f6013aa514d6cddf4875d70f9f4d517d2512c0bb9dc04f64a7"
+    "bytes": 336,
+    "sha256": "e4a2e58c11221e918fc1c19d0a6e8e7ce05cbb8e9558e2ff7e47a9355fc42691"
   },
   "statistics": {
     "messages": 1,

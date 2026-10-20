@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1-reassign-3gpu-xvla-goal-long_20260521T004704_result.json",
     "occurrence": 1,
-    "bytes": 1099,
-    "sha256": "f80d814de9a8c5517e04de4faf844abefe8af352909b2d4e656416454bdba6d4"
+    "bytes": 1098,
+    "sha256": "5df6d4c7d65f7acc2b3b1e54a5587fe60e061fe84ac3bbe2ab83c0597b6d6130"
   },
   "statistics": {
     "messages": 1,

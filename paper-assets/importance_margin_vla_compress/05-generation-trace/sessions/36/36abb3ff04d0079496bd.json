@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_seed43_harvest_gpu_audit_v1_20260522T085151_result.json",
     "occurrence": 1,
-    "bytes": 2658,
-    "sha256": "b4e4802189f83d76505d8862b23b2e1df8a610b2560e615bb798d65a11e8ef74"
+    "bytes": 2657,
+    "sha256": "9a1f3bae5810c76e3bde75fc7ae94d53fdd682bcb59c30951ab66d4b46511e3f"
   },
   "statistics": {
     "messages": 1,

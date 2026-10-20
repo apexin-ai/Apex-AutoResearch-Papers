@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_attn_k05_long_seed44_strict_w38",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T21:51:00.095Z",
+    "updated_at": "2026-05-27T23:20:49.856Z",
+    "hypothesis": "π0.5 Attn k=0.5 Long strict seed44 — 当前 ±1.6pp 是 Attn 曲线最宽 error bar (s42=52.0%, s43=48.8%, mean=50.4%)。第三 seed 收窄极端压缩段不确定性，验证 Attn k=0.5 是否稳定在 ~50% 平台",
+    "parent": "eval_pi05_attn_k05_long_seed43_strict_w38"
+  },
+  "timestamp": "2026-05-27T23:20:52.869074+00:00",
+  "trigger": "update_registry"
+}

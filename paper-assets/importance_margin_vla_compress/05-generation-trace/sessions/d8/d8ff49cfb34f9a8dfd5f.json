@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd41074-disk-emergency_20260521T082244_result.json",
     "occurrence": 1,
-    "bytes": 2092,
-    "sha256": "19bbededb2ea66be116e6585f69884d76cca63a1f9f9f1fe05a0b89631673ee3"
+    "bytes": 2091,
+    "sha256": "7126a40b458399e2cfea203e4224ed2fa7695a92c570ba1ff5b0eb4cdcf4e80a"
   },
   "statistics": {
     "messages": 1,

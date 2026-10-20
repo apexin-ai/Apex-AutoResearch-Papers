@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_m103_scp_and_resubmit_westd38929_long_20260525T044510_result.json",
     "occurrence": 1,
-    "bytes": 749,
-    "sha256": "f551cd8a41d35fc4d1443ec54cc0f9457afa883a480cf452b6068c0e71d4e0ba"
+    "bytes": 748,
+    "sha256": "364ff09d42ce0e3a187a416fa76c37605f0767d074136a661c8d807b4c03b0d4"
   },
   "statistics": {
     "messages": 1,

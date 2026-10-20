@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_figure_fig_method_gap_20260522T225122_result.json",
     "occurrence": 1,
-    "bytes": 544,
-    "sha256": "9453aac3dc140f8758fc876429ad239910a9a0ac9ee7819028971cc456226eb4"
+    "bytes": 543,
+    "sha256": "81bcf6442a691f80f40196c923b30a16760859d6e3353c10cc9904ce6d08f71e"
   },
   "statistics": {
     "messages": 1,

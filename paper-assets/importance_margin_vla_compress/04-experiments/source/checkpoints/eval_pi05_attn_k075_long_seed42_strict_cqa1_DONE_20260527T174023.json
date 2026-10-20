@@ -1,0 +1,69 @@
+{
+  "exp_id": "eval_pi05_attn_k075_long_seed42_strict_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T12:30:42.904Z",
+    "updated_at": "2026-05-27T17:40:21.775Z",
+    "hypothesis": "π0.5 attention pruning at k=0.75 on Long suite (strict metric) will show moderate performance degradation compared to k=0.85 (50.0%) and k=0.9 (64.0%), filling the cliff curve gap between k=0.85 and k=0.5.",
+    "parent": "eval_pi05_attn_k085_long_seed42_strict",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "300488",
+      "tmux_session": "pi05_attn_k075_strict",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed42_strict_cqa1.log",
+      "submitted_at": "2026-05-27T12:31:32Z",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_10 (Long, 10 tasks x 50 episodes)",
+      "checkpoint_path": "N/A (eval only)",
+      "wall_clock_seconds": 18529.8,
+      "gpu_hours": 5.15
+    },
+    "reproduce": {
+      "finished_at": "2026-05-27T17:12:27.912Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T17:12:50.800914+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 0.524,
+      "per_task": {
+        "T0": 0.82,
+        "T1": 0.94,
+        "T2": 0.64,
+        "T3": 0.48,
+        "T4": 0.26,
+        "T5": 0.5,
+        "T6": 0.76,
+        "T7": 0.3,
+        "T8": 0.06,
+        "T9": 0.78
+      },
+      "successes": 262,
+      "total": 500
+    },
+    "completed_at": "2026-05-27T17:40:21.775Z"
+  },
+  "timestamp": "2026-05-27T17:40:23.085175+00:00",
+  "trigger": "update_registry"
+}

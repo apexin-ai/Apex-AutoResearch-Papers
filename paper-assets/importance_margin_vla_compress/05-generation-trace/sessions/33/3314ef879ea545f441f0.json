@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1-collect-goal-long-results_20260521T023248_result.json",
     "occurrence": 1,
-    "bytes": 2433,
-    "sha256": "75c1281013cbfe910e43e55cf21991ab54c0f0e52bb6c1ff735726429c975d08"
+    "bytes": 2432,
+    "sha256": "23df6f37c320d61cf90e197129760babdf8e47ebd0c707faa3f212d522f73d01"
   },
   "statistics": {
     "messages": 1,

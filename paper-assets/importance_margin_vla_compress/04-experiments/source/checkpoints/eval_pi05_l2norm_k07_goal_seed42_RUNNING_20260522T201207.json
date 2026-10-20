@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_pi05_l2norm_k07_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T13:22:55.883Z",
+    "updated_at": "2026-05-22T20:12:06.483Z",
+    "hypothesis": "π0.5 L2norm k=0.7 LIBERO-Goal seed42: Goal baseline=96.4%. 30% pruning 是否让 L2norm 在 Goal 上出现 cliff？Object k=0.7=97.2%。测试 L2norm 更激进压缩在 Goal 的表现。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_goal --n_episodes 500 --seed 42 --gpu 0",
+      "server": "westd-38929",
+      "data_path": "LIBERO-Goal",
+      "data_count": 500,
+      "model_name": "pi0.5",
+      "seed": 42,
+      "gpu": 1,
+      "pid": "queued_after_k085",
+      "log_path": "logs/pi05_l2norm_k07_goal_s42.log"
+    },
+    "failure_reason": "stale RUNNING, no metrics after 6h",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-22T20:12:07.189217+00:00",
+  "trigger": "update_registry"
+}

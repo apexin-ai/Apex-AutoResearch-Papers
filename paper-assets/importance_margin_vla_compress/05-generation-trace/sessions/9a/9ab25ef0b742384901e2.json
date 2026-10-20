@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_rsync_k07_k03_to_westd_20260517T081013_result.json",
     "occurrence": 1,
-    "bytes": 552,
-    "sha256": "89affd7c3bb669a5f7f3eba505769a29926641d26ee8485534f75db8eb1b5a7a"
+    "bytes": 551,
+    "sha256": "2d2956fbbc253b36e75ff4cfcd80040da1a63a577b909008ea369bf6137c86cd"
   },
   "statistics": {
     "messages": 1,

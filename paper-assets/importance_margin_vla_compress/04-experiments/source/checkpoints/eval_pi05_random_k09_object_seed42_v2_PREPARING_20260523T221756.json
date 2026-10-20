@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_pi05_random_k09_object_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-21T15:52:07.928Z",
+    "updated_at": "2026-05-23T22:17:55.699Z",
+    "hypothesis": "π0.5 random k=0.9 seed42 v2; 填充 scaling curve 数据点。低 CV 模型 10% random pruning 预期影响极小 (baseline 98.2%)",
+    "parent": "eval_pi05_random_k07_object_seed43",
+    "completed_at": "2026-05-21T17:48:20.079Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "success_rate": 12,
+          "total_episodes": 500,
+          "seed": 42,
+          "suspect": false,
+          "suspect_reason": "cleared - seed43=9.6% confirms result is real, not bug"
+        }
+      }
+    }
+  },
+  "timestamp": "2026-05-23T22:17:56.694128+00:00",
+  "trigger": "update_registry"
+}

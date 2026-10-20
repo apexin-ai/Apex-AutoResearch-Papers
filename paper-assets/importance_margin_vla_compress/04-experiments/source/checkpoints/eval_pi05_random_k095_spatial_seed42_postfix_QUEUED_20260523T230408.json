@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_random_k095_spatial_seed42_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T23:03:54.457Z",
+    "updated_at": "2026-05-23T23:04:06.536Z",
+    "hypothesis": "π0.5 Random k=0.95 Spatial post-fix — CPU RNG 修复后的 baseline，用于替换 fig_method_gap 中 pre-fix 值 76.4%",
+    "parent": "eval_pi05_random_k095_spatial_seed42"
+  },
+  "timestamp": "2026-05-23T23:04:08.164550+00:00",
+  "trigger": "update_registry"
+}

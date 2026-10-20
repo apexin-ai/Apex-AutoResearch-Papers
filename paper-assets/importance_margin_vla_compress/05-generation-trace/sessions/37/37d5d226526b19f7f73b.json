@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_pi05_code_integrity_0527_20260527T020052_result.json",
     "occurrence": 1,
-    "bytes": 4820,
-    "sha256": "e7849f06782c737dc21d95a3c40c453e169120c7b4e67607f3c8a2762c6a5e70"
+    "bytes": 4819,
+    "sha256": "af61e4d3ea2a276979876df77c92ba7b6bfe37f61a81a1019b9b15ed1cd4117e"
   },
   "statistics": {
     "messages": 1,

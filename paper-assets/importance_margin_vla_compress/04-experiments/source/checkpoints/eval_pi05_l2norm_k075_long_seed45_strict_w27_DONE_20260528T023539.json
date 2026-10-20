@@ -1,0 +1,51 @@
+{
+  "exp_id": "eval_pi05_l2norm_k075_long_seed45_strict_w27",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-28T00:06:40.983Z",
+    "updated_at": "2026-05-28T02:35:37.642Z",
+    "hypothesis": "π0.5 L2norm k=0.75 Long strict seed45 — 三 seed 方差 ±2.9pp 偏大（seed44=67.4% 偏低），第四 seed 验证是否为噪声还是方法不稳定",
+    "parent": "eval_pi05_l2norm_k075_long_seed44_strict_w27",
+    "server": "westd-27271",
+    "gpu": 0,
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0",
+      "server": "westd-27271",
+      "data_path": "libero_10",
+      "data_count": "10 tasks x 50 episodes",
+      "model_name": "pi0.5",
+      "seed": 45,
+      "checkpoint_source": "pi0.5 pretrained",
+      "eval_data": "libero_10 (10 tasks x 50 episodes)",
+      "pid": 346959,
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/l2norm_k075_s45.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 68.4,
+      "total_successes": 342,
+      "total_episodes": 500,
+      "per_task": {
+        "T0": 82,
+        "T1": 84,
+        "T2": 78,
+        "T3": 64,
+        "T4": 54,
+        "T5": 80,
+        "T6": 48,
+        "T7": 72,
+        "T8": 30,
+        "T9": 92
+      }
+    },
+    "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/l2norm_k075_s45.log",
+    "checkpoint_path": "N/A (eval-only)",
+    "completed_at": "2026-05-28T02:35:37.642Z"
+  },
+  "timestamp": "2026-05-28T02:35:39.185385+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_figure_fig2_final_three_curves_20260518T141047_result.json",
     "occurrence": 1,
-    "bytes": 603,
-    "sha256": "9929a9d222df78ce7401410209f91f9662cf22af97be16fb86028b4a8007235a"
+    "bytes": 602,
+    "sha256": "059d38099f24e3e85662153fb2b8161a19650e29aa3512a970ecfa7ab804384f"
   },
   "statistics": {
     "messages": 1,

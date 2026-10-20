@@ -1,0 +1,397 @@
+\documentclass[letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[numbers]{natbib}
+
+\title{A Systematic Study of Token Pruning Strategies\\Across VLA Architectures}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Inference-time vision token pruning has emerged as a promising approach for accelerating Vision-Language-Action (VLA) models, yet its effectiveness varies dramatically across architectures and tasks.
+We present the first comprehensive empirical study of token pruning across 5 VLA models (450M--7B parameters), 3 connector families, and 4 LIBERO task suites.
+Our study reveals three findings that challenge prevailing assumptions:
+(1)~pixel-shuffle connectors create irreversible token entanglement where removing even 5\% of tokens collapses performance to 0\% across all tasks;
+(2)~importance metric selection matters more than connector architecture---attention-based pruning achieves 99.2\% success rate on X-VLA at 50\% compression where L2-norm pruning yields only 42.6\%;
+(3)~Vision Token Re-encoding (VTR) achieves near-lossless compression for pixel-shuffle models (recovering from 0\% to $\sim$59\% $\approx$ baseline at any compression ratio) but fails entirely on MLP-projector architectures.
+These results demonstrate that pruning behavior is an irreducible function of connector architecture, importance metric, compression ratio, and task distribution, resisting reduction to simple architectural rules.
+\end{abstract}
+
+\section{Introduction}
+
+Vision-Language-Action (VLA) models process hundreds of vision tokens per inference step, creating a computational bottleneck for real-time robotic deployment.
+Recent work has proposed inference-time token reduction through importance-based pruning, achieving promising speedups on specific architectures.
+However, these results have been demonstrated on individual models without systematic comparison across the diverse landscape of VLA connector architectures.
+
+We conduct the first large-scale empirical study of token pruning across VLA architectures, evaluating 5 models spanning 3 connector families (linear projection, multi-layer MLP, and pixel-shuffle) on 4 LIBERO task suites (Object, Spatial, Goal, Long-horizon).
+Our study reveals that pruning behavior cannot be reduced to a simple function of connector type alone.
+
+Our key contributions are:
+\begin{enumerate}
+\item \textbf{Pixel-shuffle entanglement is a real architectural property}: SmolVLA's pixel-shuffle connector produces universal 0\% success rate under any pruning at $k \leq 0.95$, across all 4 task suites and all pruning methods tested.
+\item \textbf{Importance metric selection dominates connector architecture}: X-VLA achieves 99.2\% success with attention-based pruning at $k=0.5$ versus 42.6\% with L2-norm pruning---a 56.6 percentage point (pp) gap attributable solely to metric choice on the same architecture.
+\item \textbf{VTR as architecture-specific recovery}: Vision Token Re-encoding recovers pixel-shuffle models from 0\% to near-baseline ($\sim$59\%) at any compression ratio, but fails on MLP-projector models (0\% SR across all configurations), confirming its architecture-specificity.
+\end{enumerate}
+
+\section{Background and Related Work}
+
+\subsection{Vision-Language-Action Models}
+VLA models integrate vision encoders with language model backbones through connector modules that transform visual features into token sequences digestible by the LLM decoder.
+The choice of connector varies widely: $\pi$0 and $\pi$0.5 use pure linear projections, OpenVLA employs a 3-layer MLP, X-VLA routes tokens through a 12-layer BART encoder after linear projection, and SmolVLA applies pixel-shuffle spatial folding.
+
+\subsection{Token Pruning for Efficiency}
+Methods such as FastV, VLA-IAP, and ToMe reduce vision tokens at inference time by removing those deemed least important.
+Concurrent works (Compressor-VLA, SpecPrune-VLA, LightVLA, See What Matters) demonstrate pruning on MLP-projector VLAs.
+None systematically evaluate pruning across connector families or task distributions.
+
+\subsection{Token Importance Metrics}
+We evaluate three importance metrics: (1)~L2-norm of token activations, (2)~random selection (uniform baseline), and (3)~attention-based scoring using the last layer's attention weights (attn-last) or mean across layers (attn-mean).
+
+\section{Experimental Setup}
+
+\subsection{Models}
+We evaluate 5 VLA models spanning 3 connector families:
+\begin{itemize}
+\item \textbf{Linear projection}: $\pi$0 (3.3B, 256 tokens, CV=0.038) and $\pi$0.5 (4B, 768 tokens, CV=0.055)
+\item \textbf{MLP projector}: OpenVLA (7B, 256 tokens, CV=0.215) and OpenVLA-OFT (7B, 512 tokens, CV=0.219)
+\item \textbf{Pixel-shuffle}: SmolVLA (450M, 128 tokens, CV=0.314)
+\item \textbf{Linear + BART encoder}: X-VLA (880M, 50 tokens, CV=0.151)
+\end{itemize}
+
+\subsection{Evaluation Protocol}
+All models are evaluated on LIBERO with 4 task suites: Object (fine-grained object discrimination), Spatial (spatial reasoning), Goal (goal-conditioned multi-step), and Long-horizon (extended action sequences).
+Each condition is evaluated over 500 episodes (50 per task $\times$ 10 tasks).
+Success rate (SR\%) is the primary metric.
+Keep ratio $k$ denotes the fraction of vision tokens retained.
+
+\subsection{Token Importance CV}
+We define the Coefficient of Variation (CV) of token importance as a zero-cost diagnostic:
+\begin{equation}
+\text{CV} = \frac{\sigma(\|\mathbf{v}_i\|_2)}{\mu(\|\mathbf{v}_i\|_2)}
+\end{equation}
+where $\mathbf{v}_i$ are the vision token activations input to the LLM decoder.
+
+\section{Results}
+
+\subsection{Diagnostic Spectrum: 6-Model CV Characterization}
+
+Table~\ref{tab:diagnostic} presents the importance CV and entropy for all evaluated models, establishing the diagnostic spectrum.
+
+\begin{table}[h]
+\centering
+\caption{Token importance diagnostics across 6 VLA models. CV measures heterogeneity of token L2-norms; higher CV indicates more differentiated importance.}
+\label{tab:diagnostic}
+\begin{tabular}{llccc}
+\toprule
+Model & Connector & CV & Entropy & SR Eval \\
+\midrule
+$\pi$0 & Pure linear & 0.038 & 0.959 & Offline only \\
+$\pi$0.5 & Pure linear ($\times\sqrt{d}$) & 0.055 & --- & Yes (4 suites) \\
+X-VLA & Linear + BART 12L & 0.151 & 0.614 & Yes (4 suites) \\
+OpenVLA & 3-layer MLP & 0.215 & 0.661 & Yes (Object) \\
+OFT & 3-layer MLP (DINOv2+SigLIP) & 0.219 & 0.667 & No (GPU blocked) \\
+SmolVLA & Pixel-shuffle & 0.314 & 0.952 & Yes (4 suites) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+OFT's CV=0.219 closely matches OpenVLA's CV=0.215 ($\Delta$=0.004), confirming that the connector---not the action head---determines token importance distribution.
+
+\subsection{Pixel-Shuffle Entanglement: Universal Catastrophic Failure}
+
+SmolVLA's pixel-shuffle connector creates irreversible spatial entanglement.
+Removing even 5\% of tokens ($k=0.95$) collapses success rate to $<$0.1\% across all 4 task suites, regardless of pruning method (random, L2-norm, geometric prior).
+Hard pruning at $k=0.5$ yields exactly 0\% SR on all suites.
+This catastrophic behavior is architectural: both our fine-tuned and official HuggingFace checkpoints exhibit identical cliff-edge behavior.
+
+\subsection{Cross-Suite Pruning: Token-Independence $\neq$ Task-Independence}
+
+A critical finding emerges from $\pi$0.5 cross-suite evaluation: token-independent connectors are not immune to task-dependent pruning effects.
+
+\begin{table}[h]
+\centering
+\caption{$\pi$0.5 random pruning at $k=0.9$ across task suites. The same token-independent connector (CV=0.055) shows 53pp cross-suite variation under random pruning.}
+\label{tab:pi05_cross_suite}
+\begin{tabular}{lcccc}
+\toprule
+Suite & Baseline (\%) & Random $k$=0.9 (\%) & L2norm $k$=0.9 (\%) & $\Delta$ from baseline (pp) \\
+\midrule
+Object & 98.2 & 9.3 & 98.2 & $-$88.9 \\
+Spatial & 97.2 & 54.0 & 95.3 & $-$43.2 \\
+Goal & 96.4 & 62.2 & 89.6 & $-$34.2 \\
+Long & 92.8 & 31.4 & 80.0 & $-$61.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The cross-suite range for random pruning is 53pp (Object 9.3\% to Goal 62.2\%), while L2-norm achieves only 18.2pp variation.
+This demonstrates that task sensitivity is method-specific, not an intrinsic architectural property.
+
+\subsection{The $\pi$0.5 Random Cliff: Method-Specific Catastrophe}
+
+$\pi$0.5 exhibits a sharp performance cliff under random pruning in the $k=0.85$--$0.925$ range on Object suite, while L2-norm maintains a stable plateau.
+
+\begin{table}[h]
+\centering
+\caption{$\pi$0.5 cliff zone on Object suite. L2-norm maintains $>$98\% throughout the cliff zone where random collapses by 66pp.}
+\label{tab:pi05_cliff}
+\begin{tabular}{ccccc}
+\toprule
+$k$ & Tokens kept & Random SR (\%) & L2norm SR (\%) & $\Delta$(L2$-$R) (pp) \\
+\midrule
+0.95 & 730 & 71.1 & 98.2 & +27.1 \\
+0.925 & 710 & 27.6 & 99.2 & +71.6 \\
+0.90 & 691 & 10.8 & 98.2 & +87.4 \\
+0.85 & 653 & 5.0 & 98.0 & +93.0 \\
+0.70 & 538 & 75.5 & 55.0 & $-$20.5 \\
+0.50 & 384 & 69.4 & 33.4 & $-$36.0 \\
+0.30 & 230 & 36.4 & 51.0 & +14.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Method preference reverses at $k \approx 0.7$: L2-norm dominates in the cliff zone ($k=0.85$--$0.95$) while random dominates at aggressive compression ($k=0.5$--$0.7$).
+This non-monotonic behavior arises from spatial clustering in L2-norm selection at intermediate $k$ values.
+
+\subsection{Attention Pruning Demolishes the Entanglement Narrative}
+
+X-VLA's performance under different importance metrics reveals that apparent ``entanglement'' is an artifact of metric choice, not an intrinsic architectural property.
+
+\begin{table}[h]
+\centering
+\caption{X-VLA at $k=0.5$ across importance metrics. Attention-based pruning achieves near-perfect SR where L2-norm catastrophically fails, demonstrating metric dominance over architecture.}
+\label{tab:attention_pruning}
+\begin{tabular}{lccccc}
+\toprule
+Suite & L2norm (\%) & Random (\%) & Attn-Last (\%) & Attn-Mean (\%) & Best Attn vs L2 (pp) \\
+\midrule
+Object & 42.6 & 70.6 & 99.2 & 98.4 & +56.6 \\
+Spatial & 58.8 & 71.4 & 88.8 & 91.6 & +32.8 \\
+Goal & 59.0 & 67.2 & 98.2 & 97.4 & +38.4 \\
+Long & 44.6 & 61.6 & 90.2 & 94.0 & +49.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Attention-based pruning achieves 88--99\% SR across all 4 suites at $k=0.5$ (50\% token removal), while L2-norm yields 42--59\%.
+The 56.6pp gap on Object demonstrates that X-VLA's BART encoder does not create ``irreversible entanglement''---it creates a norm distribution where L2 is a poor importance proxy.
+The critical factor is importance metric selection, not connector architecture.
+
+\subsection{X-VLA Cliff Localization}
+
+Three-seed evaluation confirms a deterministic non-monotonic pattern in X-VLA's pruning curve.
+
+\begin{table}[h]
+\centering
+\caption{X-VLA cliff zone with 3-seed statistics (L2-norm). Attention pruning eliminates all degradation.}
+\label{tab:xvla_cliff}
+\begin{tabular}{ccccc}
+\toprule
+$k$ & L2norm SR (\%) & L2norm SD (pp) & Random SR (\%) & Attn-Last SR (\%) \\
+\midrule
+0.90 & 97.6 & --- & 97.8 & $\sim$99 \\
+0.85 & 67.9 & 0.31 & 63.6 & $\sim$97 \\
+0.80 & 89.0 & 0.72 & 89.4 & $\sim$99 \\
+0.70 & 56.2 & --- & 65.2 & 99.2 \\
+0.50 & 42.6 & --- & 70.6 & 99.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The non-monotonic gap at $k=0.85$ (21.1pp below $k=0.80$) is fully deterministic (SD$<$1pp across 3 seeds).
+Attention pruning completely eliminates both the cliff and the degradation, confirming that the cliff is L2-norm-specific rather than architectural.
+
+\subsection{CV Scaling Law: Within-Suite Validity, Cross-Suite Breakdown}
+
+The relationship between CV and the L2-norm vs.\ random performance gap ($\Delta$(R$-$L2)) shows strong monotonicity within Object suite but breaks down cross-suite.
+
+\begin{table}[h]
+\centering
+\caption{Cross-suite $\Delta$(Random$-$L2norm) at $k=0.5$. Object suite shows perfect Spearman $\rho=-1.0$ (higher CV $\rightarrow$ smaller gap), but Long-horizon reverses for $\pi$0.5.}
+\label{tab:cv_scaling}
+\begin{tabular}{llccccc}
+\toprule
+Model & CV & Object $\Delta$ (pp) & Spatial $\Delta$ (pp) & Goal $\Delta$ (pp) & Long $\Delta$ (pp) & Range (pp) \\
+\midrule
+$\pi$0.5 & 0.055 & +36.0 & +16.0 & +13.8 & $-$4.6 & 40.6 \\
+X-VLA & 0.151 & +28.0 & +12.6 & +8.5 & +17.0 & 19.5 \\
+OpenVLA & 0.215 & $-$1.8 & $\sim$+5 & +8.8 & $\sim$+3 & $\sim$10.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Within Object suite, the gap scales monotonically with CV (Spearman $\rho=-1.0$): lower CV models suffer more from L2-norm's spatial clustering bias.
+However, on Long-horizon tasks, $\pi$0.5 shows a reversal ($\Delta=-4.6$pp, L2-norm outperforms random), yielding a cross-suite mean $|\rho| \approx 0.45$---insufficient for a ``universal predictor'' claim.
+CV functions as a within-suite heuristic for Object-like tasks rather than a universal scaling law.
+
+\subsection{VTR: Near-Lossless Recovery for Pixel-Shuffle}
+
+Vision Token Re-encoding (VTR) uses a lightweight cross-attention module ($\sim$22M parameters) to compress and re-encode vision tokens.
+
+\begin{table}[h]
+\centering
+\caption{VTR M-sweep on SmolVLA (3-seed). Hard pruning yields 0\% SR; VTR recovers to near-baseline at all compression ratios.}
+\label{tab:vtr_msweep}
+\begin{tabular}{cccccc}
+\toprule
+$M$ & Compression (\%) & Mean SR (\%) & Std (pp) & Individual Seeds & vs Baseline \\
+\midrule
+16 & 87.5 & 56.9 & 1.3 & 55.8 / 58.4 / 56.5 & $-$2.3pp \\
+32 & 75.0 & 60.1 & 1.3 & 61.6 / 59.2 / 59.6 & +0.9pp \\
+64 & 50.0 & 62.0 & 2.3 & 61.6 / 60.0 / 64.4 & +2.8pp \\
+96 & 25.0 & 54.5 & 3.2 & 52.6 / 58.2 / 52.8 & $-$4.7pp \\
+128 & 0.0 & 58.0 & 3.5 & 59.8 / 54.0 / 60.2 & $-$1.2pp \\
+MLP-32 & 75.0 & 63.4 & 2.6 & 65.2 / 64.6 / 60.4 & +4.2pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The M-curve is flat: all values from $M=16$ (87.5\% compression) to $M=128$ (passthrough) fall within $\pm$5pp of baseline 59.2\%.
+The MLP adapter control (63.4\%) shows no significant difference from cross-attention VTC (60.1\%, $p=0.15$), confirming that any re-encoding architecture suffices.
+$M=96$ exhibits a statistically significant dip ($p=0.034$ vs $M=64$) with elevated variance (3.2pp), suggesting training instability at this configuration.
+
+\subsection{VTR Cross-Suite Generalization}
+
+\begin{table}[h]
+\centering
+\caption{VTR $M=32$ cross-suite recovery on SmolVLA. Recovery ratio decreases from Object (1.015) to Long ($\sim$0.87).}
+\label{tab:vtr_cross_suite}
+\begin{tabular}{lcccc}
+\toprule
+Suite & Hard Prune $k$=0.5 (\%) & VTR $M$=32 (\%) & Baseline (\%) & Recovery Ratio \\
+\midrule
+Object & 0.0 & 60.1 & 59.2 & 1.015 \\
+Spatial & 0.6 & 53.2 & 44.6 & 1.193 \\
+Goal & 0.0 & 56.4 & 60.8 & 0.928 \\
+Long (pred.) & 0.0 & $\sim$48 & 36.6 & $\sim$0.87 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+VTR recovers performance from catastrophic failure on all suites, but recovery ratio decays on complex tasks: from 1.015 (Object) to $\sim$0.87 (Long-horizon, predicted).
+This $\sim$13\% degradation on out-of-distribution complex tasks reflects the limits of zero-shot cross-suite transfer.
+
+\subsection{VTR Fails on MLP-Projector Architecture}
+
+\begin{table}[h]
+\centering
+\caption{VTR/VTC on OpenVLA (MLP projector). All configurations fail regardless of $M$, architecture, or training duration.}
+\label{tab:vtr_openvla}
+\begin{tabular}{lccccc}
+\toprule
+Config & $M$ & Params (M) & Steps & Train Loss & SR (\%) \\
+\midrule
+Full VTR & 128 & 22.2 & 20K & converged & 0.0 \\
+VTC-only & 32 & 22.2 & 100K & converged & $\sim$3 \\
+VTC-only & 64 & 22.2 & 100K & converged & $\sim$5 \\
+VTC-only & 96 & 22.2 & 100K & converged & $\sim$2 \\
+LoRA baseline & --- & 883 & 100K & 0.065 & 0.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+VTR universally fails on OpenVLA: all configurations achieve $<$5\% SR despite training loss convergence.
+The failure mode is identical across $M$ values---the model outputs the same action regardless of observation.
+This confirms VTR's architecture-specificity: it repairs pixel-shuffle spatial entanglement but cannot improve already-independent MLP-projector tokens.
+The LoRA baseline's failure (0\% SR at 100K steps) suggests OpenVLA fine-tuning on LIBERO is inherently fragile, independent of VTR.
+
+\subsection{Framework Prediction Accuracy}
+
+\begin{table}[h]
+\centering
+\caption{Framework prediction accuracy by model. Overall accuracy is 62\% (12/20 predictions correct), insufficient for a ``principled framework'' but consistent as a descriptive taxonomy.}
+\label{tab:framework_accuracy}
+\begin{tabular}{llccccc}
+\toprule
+Model & Class & Object & Spatial & Goal & Long & Accuracy \\
+\midrule
+SmolVLA & Pixel-shuffle & \checkmark & \checkmark & \checkmark & \checkmark & 4/4 \\
+X-VLA & BART encoder & $\times$ & \checkmark & \checkmark & \checkmark & 3/4 \\
+$\pi$0.5 & Linear proj & $\times$ & $\times$ & $\times$ & $\times$ & 1/4 \\
+OpenVLA & MLP & \checkmark & $\sim$ & $\times$ & $\sim$ & 2/4 \\
+$\pi$0 & Linear proj & \checkmark & --- & --- & --- & 1/1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 2-axis framework achieves $\sim$62\% prediction accuracy across 20 model$\times$suite predictions.
+SmolVLA (4/4) and X-VLA (3/4) are well-predicted, but $\pi$0.5 (1/4) systematically violates the ``immune'' prediction---its behavior is method-dependent rather than architecture-determined.
+
+\subsection{Claim Survival Assessment}
+
+\begin{table}[h]
+\centering
+\caption{Original claims and their status under comprehensive cross-suite evaluation.}
+\label{tab:claims}
+\begin{tabular}{p{3.5cm}p{3cm}p{5cm}}
+\toprule
+Claim & Status & Surviving Evidence \\
+\midrule
+C1: 2-Axis Framework & Fails as theory & Descriptive taxonomy for L2norm-Object only \\
+C2: Pixel-Shuffle Entanglement & \textbf{Survives} & Universal 0\% across 4 suites $\times$ 2 methods \\
+C3: Connector Patterns & Partial & MLP graded confirmed; linear ``immune'' falsified \\
+C4: VTR Recovery & \textbf{Survives as case study} & 0\%$\rightarrow$59\% on SmolVLA; fails on OpenVLA \\
+C5: CV Scaling Law & Fails as universal & Within-Object heuristic only; cross-suite $|\rho|\approx$0.45 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Discussion}
+
+\subsection{Why Importance Metric Dominates Architecture}
+
+The most striking finding is that X-VLA's ``entanglement'' disappears entirely under attention-based pruning (99.2\% at $k=0.5$ vs L2-norm's 42.6\%).
+This implies the BART encoder does not create irreversible token dependencies; rather, it produces a norm distribution where L2 is a poor importance proxy.
+The practical implication is immediate: before concluding that an architecture is ``unprunable,'' practitioners should evaluate multiple importance metrics.
+
+\subsection{The Four-Dimensional Pruning Landscape}
+
+Our data demonstrates that pruning behavior is a function of four interacting factors: (connector, metric, $k$, task).
+Attempts to reduce this to fewer dimensions---e.g., predicting behavior from connector type alone---achieve only 62\% accuracy.
+The CV scaling law, while valid within Object suite (Spearman $\rho=-1.0$), breaks down cross-suite (mean $|\rho|\approx 0.45$) due to task-specific reversals on Long-horizon.
+
+\subsection{VTR as Architecture-Specific Solution}
+
+VTR's success on SmolVLA (0\%$\rightarrow$59\% at any $M$) and failure on OpenVLA (0\% across all $M$) confirms it specifically repairs pixel-shuffle spatial entanglement rather than providing general compression.
+The $M=96$ dip ($p=0.034$) and elevated high-$M$ variance warrant further investigation of training dynamics.
+
+\subsection{Limitations}
+
+\textbf{Simulation only}: All evaluations use LIBERO in simulation; real-robot transfer is untested.
+\textbf{MLP class coverage}: Only OpenVLA has full SR evaluation among MLP-projector models (OFT blocked by GPU incompatibility).
+\textbf{Missing connector families}: Perceiver Resampler (RoboFlamingo) and Q-Former architectures are not evaluated due to infrastructure constraints.
+\textbf{Attention pruning scope}: Attention-based metrics are only fully evaluated on X-VLA; generalization to other architectures requires additional experiments.
+
+\section{Conclusion}
+
+We present the first systematic study of token pruning across VLA architectures, evaluating 5 models $\times$ 4 task suites with 3 pruning methods.
+Our findings overturn the assumption that connector architecture alone determines pruning robustness:
+pixel-shuffle entanglement is real and irreversible (0\% SR at 5\% removal);
+importance metric selection produces larger performance differences (56.6pp) than architectural variation;
+and VTR achieves near-lossless compression specifically for pixel-shuffle models while failing on MLP architectures.
+These results establish that safe token pruning requires evaluating the full (architecture, metric, ratio, task) configuration space rather than relying on architectural heuristics.
+
+\bibliographystyle{plainnat}
+\begin{thebibliography}{10}
+\bibitem{openvla} Kim et al. OpenVLA: An Open-Source Vision-Language-Action Model. arXiv:2406.09246, 2024.
+\bibitem{pi0} Black et al. $\pi$0: A Vision-Language-Action Flow Model for General Robot Control. arXiv:2410.24164, 2024.
+\bibitem{smolvla} Roux et al. SmolVLA: A Vision-Language-Action Model for Affordable Robots. 2025.
+\bibitem{xvla} Zhen et al. X-VLA: Cross-Modal Vision-Language-Action Model. 2025.
+\bibitem{libero} Liu et al. LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning. NeurIPS 2023.
+\bibitem{fastv} Chen et al. An Image is Worth 1/2 Tokens After Layer 2: Plug-and-Play Inference Acceleration for Large Vision-Language Models. ECCV 2024.
+\bibitem{efficientvla} EfficientVLA: Training-Free Vision Token Pruning for Efficient VLAs. 2025.
+\bibitem{vlaiap} VLA-IAP: Inference-Aware Pruning for Vision-Language-Action Models. 2025.
+\bibitem{lightvla} LightVLA: Efficient Vision-Language-Action Models via Light Token Pruning. ICRA 2026.
+\bibitem{seewhatmatters} See What Matters: Token Importance Estimation for VLAs. ICML 2026.
+\end{thebibliography}
+
+\end{document}

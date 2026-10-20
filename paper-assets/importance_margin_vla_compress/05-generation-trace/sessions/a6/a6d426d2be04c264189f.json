@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_bce_blast_check_20260520T001159_result.json",
     "occurrence": 1,
-    "bytes": 1069,
-    "sha256": "ee160fbc92f060a0454fc6d0948814b2b572532cea761c63947b9b29ed84b078"
+    "bytes": 1068,
+    "sha256": "214921dd57b3f1815893160a9dcc32944deef2dc6b7fbb10bb43f057bf04bb60"
   },
   "statistics": {
     "messages": 1,

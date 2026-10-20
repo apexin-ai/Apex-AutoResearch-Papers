@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_libero_training_config_20260516T125843_result.json",
     "occurrence": 1,
-    "bytes": 3227,
-    "sha256": "c207bfd5d9b9fd486789825fe9c27e304e0b8e917ba9535e5f9f602d5c980dc7"
+    "bytes": 3226,
+    "sha256": "c527851d3f1b92dc5d5aee08382b53559dc6b673bebca0dc8ffd77e0a296d02f"
   },
   "statistics": {
     "messages": 1,

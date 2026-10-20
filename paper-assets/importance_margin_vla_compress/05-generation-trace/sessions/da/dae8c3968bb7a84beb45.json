@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_lora_50k_rerun_verified_20260516T195446_result.json",
     "occurrence": 1,
-    "bytes": 837,
-    "sha256": "db8448bbf95f33606bc09280ffcea29a547f72e9ff0f812c74123aa59f93f710"
+    "bytes": 836,
+    "sha256": "d4a0969b52289c41eae592991fdd642c65fb0e1845936b18a64601c068aa5762"
   },
   "statistics": {
     "messages": 1,

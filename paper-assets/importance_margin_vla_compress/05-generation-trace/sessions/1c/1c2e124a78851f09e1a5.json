@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_westd41074_dup_kill_and_gpu3_redeploy_20260524T212435_result.json",
     "occurrence": 1,
-    "bytes": 832,
-    "sha256": "2d1d7ef403148c0d3044345c1c1d9634f9e0d91932e94414e1a8851954f1d9e4"
+    "bytes": 831,
+    "sha256": "666ad963f2640230d3c09d832e1f6b5b175825209d3670b7a62280ae2cbf7fcf"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T21:52:55.538Z",
+    "updated_at": "2026-05-21T21:59:23.076Z",
+    "hypothesis": "π0.5 L2norm k=0.85 Object seed42: 与 random k=0.85 配对对比。L2norm 在 k=0.9 时 98.2%（接近 baseline），在 cliff 区间 L2norm 是否也下降？如果 L2norm k=0.85 仍高→证实 L2norm 的 monotonic degradation vs random 的 cliff behavior。"
+  },
+  "timestamp": "2026-05-21T21:59:23.574747+00:00",
+  "trigger": "update_registry"
+}

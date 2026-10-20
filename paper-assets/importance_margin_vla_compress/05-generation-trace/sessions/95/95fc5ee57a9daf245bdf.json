@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_westd38929_l2norm_k05_crash_20260527T122053_result.json",
     "occurrence": 1,
-    "bytes": 1355,
-    "sha256": "84e68868deeb4a75ddd58ad41edbd3040d3068964ae59e1329d9fc4abc8022e4"
+    "bytes": 1354,
+    "sha256": "b7fb8d6f4cb88963a938106f5b2ebd62891aca008438122d358de604b844f7b5"
   },
   "statistics": {
     "messages": 1,

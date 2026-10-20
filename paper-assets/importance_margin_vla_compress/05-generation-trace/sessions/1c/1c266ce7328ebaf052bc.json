@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd41074_fill_idle_20260524T193017_result.json",
     "occurrence": 1,
-    "bytes": 1652,
-    "sha256": "c3b071e38930c040f080a0bf9cd5c6905df0815bd651224e8f070f64699b5701"
+    "bytes": 1651,
+    "sha256": "6ce629663f970cf8007b80c5c0a8cf156175ac91e4c26d65c1db853a92a95dbc"
   },
   "statistics": {
     "messages": 1,

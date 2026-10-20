@@ -1,0 +1,33 @@
+{
+  "exp_id": "train_smart_compress_m16_seed44",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-19T03:03:15.846Z",
+    "updated_at": "2026-05-19T04:53:25.576Z",
+    "hypothesis": "Third seed (seed=44) for Smart Compress M=16 (87.5% compression). Prior: seed42=55.8%. M=16 showed lowest SR among tested M values, confirming information bottleneck at extreme compression. Third seed establishes variance at this extreme point.",
+    "parent": "eval_smart_compress_m16",
+    "reproduce": {
+      "finished_at": "2026-05-19T04:37:14.278Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-19T04:37:16.668Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T04:37:21.512792+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-19T04:53:25.795098+00:00",
+  "trigger": "update_registry"
+}

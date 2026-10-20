@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_full-gpu-audit-and-redeploy-urgent_20260521T104544_result.json",
     "occurrence": 1,
-    "bytes": 2983,
-    "sha256": "7ffe0d4f12feb2589bf83e991630fa7c627260d04d4eed1fe97ecc8dadcd8385"
+    "bytes": 2982,
+    "sha256": "3d28dcc7801b73346d16112b3c68ebe81a0af95840888662de7e2a5b3c0182f4"
   },
   "statistics": {
     "messages": 1,

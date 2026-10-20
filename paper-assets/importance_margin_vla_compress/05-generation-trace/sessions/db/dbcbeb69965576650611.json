@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_bib_audit_fixes_20260528T171451_result.json",
     "occurrence": 1,
-    "bytes": 1546,
-    "sha256": "b109d8fb34ad9b1733cf6cc3431e3b977112aa9e0bd34a297f5ee45ef4816f7d"
+    "bytes": 1545,
+    "sha256": "623e07960b7f24af50d40ea9cb19449d116003b6e7e4817ffe7559149e9038f3"
   },
   "statistics": {
     "messages": 1,

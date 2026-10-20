@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd41074_goal_l2norm_k05_20260522T154559_result.json",
     "occurrence": 1,
-    "bytes": 680,
-    "sha256": "aa559e2b890cbc3b220dfaaf886a2392b4723917200eb665bf44f6b95864956b"
+    "bytes": 679,
+    "sha256": "72c10c55a1bc2453cc966a2f3dafb4f7814ac582f132ad191f647014dc13b101"
   },
   "statistics": {
     "messages": 1,

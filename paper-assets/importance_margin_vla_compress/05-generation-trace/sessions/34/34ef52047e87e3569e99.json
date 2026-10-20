@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_acis_k07_final_20260517T073515_result.json",
     "occurrence": 1,
-    "bytes": 591,
-    "sha256": "5a37a0e10d639ec41f45008e5e2c8a063a053d042922a02ee7311ca5fc1898e9"
+    "bytes": 590,
+    "sha256": "e9ca757231bdd2f718969b0b554341b0454ae376767642f22ab79b653da9729d"
   },
   "statistics": {
     "messages": 1,

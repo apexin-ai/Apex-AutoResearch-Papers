@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check_m128_training_20260518T052400_result.json",
     "occurrence": 1,
-    "bytes": 331,
-    "sha256": "8e0c6f0879f57f7f3c5c40ebf148d59e87ba507a313339f001ef940fcd785f83"
+    "bytes": 330,
+    "sha256": "c5af60cf2fa122f7c65e3e230c481122062a6fc508ca285a97398c0235e3ec58"
   },
   "statistics": {
     "messages": 1,

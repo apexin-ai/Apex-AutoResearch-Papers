@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_fullft_loss_convergence_20260518T115159_result.json",
     "occurrence": 1,
-    "bytes": 1609,
-    "sha256": "a82d728e166f90392e7d13e1807598b9c73c2cac2eb3038fab66342d8fbfd7bd"
+    "bytes": 1608,
+    "sha256": "eb40117fe074f89e136478b155005408f2a20c153b08c2d8e4ad92d655eca9fd"
   },
   "statistics": {
     "messages": 1,

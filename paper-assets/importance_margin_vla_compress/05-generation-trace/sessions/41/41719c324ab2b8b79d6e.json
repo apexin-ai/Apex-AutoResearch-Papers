@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_fill-cqa1-gpu1-gpu3-xvla-3rd-seed_20260521T113305_result.json",
     "occurrence": 1,
-    "bytes": 681,
-    "sha256": "963096fc8268f6978a4edf0f4396eacf1d780849fe69fdba92f9fc97ff423ca2"
+    "bytes": 680,
+    "sha256": "68489af2d11239cef19ed2cdcfe4b112d799c36e22995780362ed1b2f73da0c5"
   },
   "statistics": {
     "messages": 1,

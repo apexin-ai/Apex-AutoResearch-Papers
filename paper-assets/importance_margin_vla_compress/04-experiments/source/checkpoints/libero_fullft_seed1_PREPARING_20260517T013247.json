@@ -1,0 +1,22 @@
+{
+  "exp_id": "libero_fullft_seed1",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-16T21:52:18.096Z",
+    "updated_at": "2026-05-17T01:32:47.213Z",
+    "hypothesis": "SmolVLA full expert FT on LIBERO seed=1, 第三 seed 用于论文统计完整性 (已有 seed=42, seed=0)",
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "completed_at": "2026-05-17T01:27:49.728Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-17T01:32:47.285854+00:00",
+  "trigger": "update_registry"
+}

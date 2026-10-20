@@ -12,8 +12,34 @@ This page is a human-readable rendering of one source record. It preserves the r
 - **Original source:** `logs/workers/worker_paper_figure_fig_degradation_curve_v4_20260521T124159_result.json`
 - **Structured JSON:** [`7a87033e6fcee114371b.json`](../../sessions/7a/7a87033e6fcee114371b.json)
 
-## Browse this transcript
+## Before a recorded user message
 
-This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
+1 recorded events
 
-[Part 1](paper-figure-fig-degradation-curve-v4/part-001.md) · [Part 2](paper-figure-fig-degradation-curve-v4/part-002.md) · [Part 3](paper-figure-fig-degradation-curve-v4/part-003.md) · [Part 4](paper-figure-fig-degradation-curve-v4/part-004.md)
+### Task result
+
+_source line 1_
+
+Large source content is retained in the sanitized trace archive.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "large_content_blocks": [
+    {
+      "index": 0,
+      "storage": "sanitized-trace-archive",
+      "source_line": 1,
+      "serialized_bytes": 2112588,
+      "serialized_sha256": "aa8b754c2ce905b25b6d78b2cbf51647d120cb558915d2735e0737d171f1f0d3",
+      "note": "Complete sanitized source is retained in trace-files.tar.gz."
+    }
+  ]
+}
+```
+
+</details>
+
+---

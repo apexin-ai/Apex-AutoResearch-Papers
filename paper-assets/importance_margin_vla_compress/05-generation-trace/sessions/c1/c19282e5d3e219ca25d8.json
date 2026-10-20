@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_c4ext-early-check_20260520T115345_result.json",
     "occurrence": 1,
-    "bytes": 715,
-    "sha256": "c734f3d49b4b63ed591b88e6d441b7952d1b657dab19d260cb3ce609e6bcfdb5"
+    "bytes": 714,
+    "sha256": "12418024196b450b8e46a4f98f6b4840576aa054b1c6438ed09ea75b598f93d4"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,67 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{brohan2023rt2}
+\citation{kim2024openvla}
+\citation{black2024pi0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Vision-Language-Action Models}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Token Reduction for Vision-Language Models}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Models}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces VLA models evaluated, ordered by connector complexity.}}{3}{table.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:models}{{1}{3}{VLA models evaluated, ordered by connector complexity}{table.caption.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Benchmark and Protocol}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Diagnostic Metrics}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Vision Token Re-encoding (VTR)}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Main Results}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Six-Model Taxonomy}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Extended 6-model taxonomy of VLA token pruning behavior. CV forms a continuous predictor of pruning tolerance. $k{=}0.5$ SR serves as a discriminative reference point.}}{4}{table.caption.2}\protected@file@percent }
+\newlabel{tab:taxonomy}{{2}{4}{Extended 6-model taxonomy of VLA token pruning behavior. CV forms a continuous predictor of pruning tolerance. $k{=}0.5$ SR serves as a discriminative reference point}{table.caption.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Catastrophic: Pixel-Shuffle Cliff-Edge (SmolVLA)}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Smooth Graded: MLP Degradation (OpenVLA)}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces OpenVLA pruning degradation curve. Baseline $k{=}1.0$: 74.0\% SR (370/500). All results averaged over 500 episodes.}}{4}{table.caption.3}\protected@file@percent }
+\newlabel{tab:openvla_curve}{{3}{4}{OpenVLA pruning degradation curve. Baseline $k{=}1.0$: 74.0\% SR (370/500). All results averaged over 500 episodes}{table.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Threshold-Graded: Linear + Deep Post-Processing (X-VLA)}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces X-VLA pruning curve showing threshold-graded pattern. Baseline $k{=}1.0$: 99.2\% SR. Per-task SR shows extreme variance at the cliff point ($k{=}0.7$).}}{5}{table.caption.4}\protected@file@percent }
+\newlabel{tab:xvla_curve}{{4}{5}{X-VLA pruning curve showing threshold-graded pattern. Baseline $k{=}1.0$: 99.2\% SR. Per-task SR shows extreme variance at the cliff point ($k{=}0.7$)}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Gentle Graded: Perceiver Resampler (RoboFlamingo)}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces RoboFlamingo pruning curve on LIBERO-Object. Baseline SR: 42\%. 500 episodes per $k$.}}{5}{table.caption.5}\protected@file@percent }
+\newlabel{tab:roboflamingo_curve}{{5}{5}{RoboFlamingo pruning curve on LIBERO-Object. Baseline SR: 42\%. 500 episodes per $k$}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Immune: Pure Linear Projection ($\pi _0$)}{5}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Diagnose-then-Compress Framework}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Step 1: Connector Compressibility Diagnostic}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Step 2: Vision Token Re-encoding (VTR)}{6}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}VTR on SmolVLA (Pixel-Shuffle Connector)}{6}{subsubsection.5.2.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces SmolVLA VTR M-sweep (cross-attention, 3-seed mean$\pm $std). Baseline: 44.8\%. All hard pruning conditions: 0\%. The M-curve is flat---all values within $\pm $5pp.}}{6}{table.caption.6}\protected@file@percent }
+\newlabel{tab:smolvla_vtr}{{6}{6}{SmolVLA VTR M-sweep (cross-attention, 3-seed mean$\pm $std). Baseline: 44.8\%. All hard pruning conditions: 0\%. The M-curve is flat---all values within $\pm $5pp}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}VTR Universality Across Connector Types}{7}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces VTR cross-connector universality. VTC-only (frozen LLM, $\sim $22M compressor). Hard pruning baselines at equivalent compression rates shown for comparison.}}{7}{table.caption.7}\protected@file@percent }
+\newlabel{tab:vtr_universal}{{7}{7}{VTR cross-connector universality. VTC-only (frozen LLM, $\sim $22M compressor). Hard pruning baselines at equivalent compression rates shown for comparison}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Analysis}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Pruning Method Equivalence on MLP Projectors}{7}{subsection.6.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces OpenVLA pruning method comparison: L2-norm importance-based vs.\ random removal. All differences within $\pm $3pp, confirming pruning method does not affect conclusions. 500 episodes per configuration.}}{8}{table.caption.8}\protected@file@percent }
+\newlabel{tab:pruning_method}{{8}{8}{OpenVLA pruning method comparison: L2-norm importance-based vs.\ random removal. All differences within $\pm $3pp, confirming pruning method does not affect conclusions. 500 episodes per configuration}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Seed Robustness}{8}{subsection.6.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Seed robustness verification. All replications within expected ranges, confirming architectural patterns are seed-robust.}}{8}{table.caption.9}\protected@file@percent }
+\newlabel{tab:seed_robust}{{9}{8}{Seed robustness verification. All replications within expected ranges, confirming architectural patterns are seed-robust}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Re-encoding Mechanism Analysis}{8}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Connector-Dependent VTR Mechanisms}{8}{subsection.6.4}\protected@file@percent }
+\bibdata{references}
+\bibstyle{plainnat}
+\bibcite{brohan2023rt2}{1}
+\bibcite{kim2024openvla}{2}
+\bibcite{black2024pi0}{3}
+\bibcite{zhu2025smolvla}{4}
+\bibcite{xvla2025}{5}
+\bibcite{roboflamingo2024}{6}
+\bibcite{libero2023}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{9}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{9}{section.8}\protected@file@percent }
+\bibcite{fastv2024}{8}
+\bibcite{h2o2023}{9}
+\bibcite{tome2023}{10}
+\gdef \@abspage@last{10}

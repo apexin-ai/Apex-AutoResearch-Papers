@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd27271_gpu01_next_20260525T123326_result.json",
     "occurrence": 1,
-    "bytes": 395,
-    "sha256": "958869fe561c3ee6f1a3da1bdd78e0847f1fff48841041ae4e1d0810c813981e"
+    "bytes": 394,
+    "sha256": "f911c2cfb0c68ead53ae6b52b9afebbe9dcbc8090b0b2af8ae768be861d25827"
   },
   "statistics": {
     "messages": 1,

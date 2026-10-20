@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analyze_eval_pi05_random_k09_spatial_seed42_20260522T012651_result.json",
     "occurrence": 1,
-    "bytes": 2645,
-    "sha256": "c557c7b703821ad72c970b4f1101f9712f5fcb3ca52cfb5993b72cc0454100ec"
+    "bytes": 2644,
+    "sha256": "ef87099a84f99c1d0f240b41db177379313f610bd1126e04d545f4e4cad98bb9"
   },
   "statistics": {
     "messages": 1,

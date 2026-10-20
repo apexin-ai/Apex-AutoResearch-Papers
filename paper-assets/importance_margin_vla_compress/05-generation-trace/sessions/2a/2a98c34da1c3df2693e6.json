@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_urgent-full-status-sweep-all-servers_20260521T121759_result.json",
     "occurrence": 1,
-    "bytes": 3419,
-    "sha256": "c3cbf8bc0ff0247159a1b0c73799b140562f64dbc609134c53a3e892225efaa9"
+    "bytes": 3418,
+    "sha256": "315b78a4fc49ac2c2a74d0b27cd84f05e732f50269e15817ec50cc9216a4b70b"
   },
   "statistics": {
     "messages": 1,

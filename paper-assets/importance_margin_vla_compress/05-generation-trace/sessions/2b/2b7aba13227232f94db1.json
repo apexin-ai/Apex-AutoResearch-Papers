@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1-check-and-assign_20260520T131653_result.json",
     "occurrence": 1,
-    "bytes": 2311,
-    "sha256": "30f785866db2da188a9ca9f94687b85fbfd6283e4c06ccc9dc8129c1fcbaf74a"
+    "bytes": 2310,
+    "sha256": "9a01b3b40cf6aa0e262d73aba000a1ce62afb69599b7e36a2aed33c2afa060a1"
   },
   "statistics": {
     "messages": 1,

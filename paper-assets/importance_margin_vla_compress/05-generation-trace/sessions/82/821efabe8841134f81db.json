@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit-deploy_cqa1-33015-20260524_20260524T053526_result.json",
     "occurrence": 1,
-    "bytes": 728,
-    "sha256": "93e2e0f0d57a9d611cfd7a27ab3da4485a2b0ced43fc1297538683cfd0f04f2b"
+    "bytes": 727,
+    "sha256": "e6bedea9b488d64743359f1656149dc7fc395cd407fa691cc86e24ff8e041ed8"
   },
   "statistics": {
     "messages": 1,

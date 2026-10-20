@@ -1,0 +1,22 @@
+# IMM ablation: large margin, strong weight.
+# delta=0.5, lambda=1.0
+
+_base_: baseline.yaml
+
+imm:
+  enabled: true
+  delta: 0.5
+  lambda_margin: 1.0
+  warmup_steps: 3000      # 10% of total_steps
+  temperature: 0.5
+  soft_topk_method: "sigmoid"
+  k_ratio: 0.5
+
+acis:
+  visual_dim: 960
+  action_dim: 720
+  num_heads: 8
+  dropout: 0.0
+
+training:
+  output_dir: "checkpoints/imm_d05_l10"

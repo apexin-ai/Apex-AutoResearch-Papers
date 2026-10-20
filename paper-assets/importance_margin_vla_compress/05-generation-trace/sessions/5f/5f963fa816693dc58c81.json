@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_metrics_extract_and_deploy_20260522T023715_result.json",
     "occurrence": 1,
-    "bytes": 1046,
-    "sha256": "94dd287b6d78268297fe6aabe7903f882e4203065f46bc8db4b315eb73d8dd4e"
+    "bytes": 1045,
+    "sha256": "bd7dfb1e1c381960afe1d218bad0fd468cbb6a1096f1403eeab7cf8c564ffea7"
   },
   "statistics": {
     "messages": 1,

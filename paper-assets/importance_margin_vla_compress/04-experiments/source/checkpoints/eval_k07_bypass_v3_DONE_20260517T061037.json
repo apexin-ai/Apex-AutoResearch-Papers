@@ -1,0 +1,63 @@
+{
+  "exp_id": "eval_k07_bypass_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:00:06.238Z",
+    "updated_at": "2026-05-17T06:10:37.113Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python eval_success_rate_libero.py --checkpoint checkpoints/libero_imm_twostage_fullft_k07/final/checkpoint.pt --config configs/libero_imm_twostage_fullft_k07.yaml --suite libero_object --mode baseline --num_episodes 50 --gpu 0 --output eval_results/imm_k07_bypass_object.json\"",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "905921",
+      "log_path": "eval_results/imm_k07_bypass_object.json",
+      "submitted_at": "2026-05-17T04:00:06.138Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "libero_imm_twostage_fullft_k07",
+      "data_path": "libero_object",
+      "data_count": 500,
+      "seed": 0,
+      "checkpoint_source": "checkpoints/libero_imm_twostage_fullft_k07/final/checkpoint.pt",
+      "eval_data": "libero_object (10 tasks x 50 episodes)",
+      "checkpoint_path": "checkpoints/libero_imm_twostage_fullft_k07/final/checkpoint.pt",
+      "wall_clock_seconds": 7831.0,
+      "gpu_hours": 2.18
+    },
+    "hypothesis": "k=0.7 two-stage full-FT model with baseline (bypass/no-pruning) forward should achieve competitive success rate on libero_object, establishing upper-bound performance before ACIS pruning is applied.",
+    "notes": "2026-05-17 ~12:00 UTC: westd-27271 不可达。eval 提交于 04:00 UTC，距今 ~8h，预计已完成或接近完成。需重启后检查 eval_results/imm_k07_bypass_object.json。",
+    "conclusion": "negative",
+    "metrics": {
+      "overall_success_rate": 0,
+      "total_episodes": 500,
+      "total_successes": 0,
+      "wilson_ci_95": [
+        0,
+        0.0076
+      ],
+      "per_task_sr": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mode": "baseline_bypass",
+      "note": "Stage2 k=0.7 also completely destroyed expert weights"
+    },
+    "completed_at": "2026-05-17T06:10:37.113Z"
+  },
+  "timestamp": "2026-05-17T06:10:37.200318+00:00",
+  "trigger": "update_registry"
+}

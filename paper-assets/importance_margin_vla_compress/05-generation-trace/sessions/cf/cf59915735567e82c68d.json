@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_eval_success_rate_libero_20260516T163309_result.json",
     "occurrence": 1,
-    "bytes": 1050,
-    "sha256": "428b00b292768ba9e41bb8439a465c4f4c31bc29d4c1e2c4f77c72df97a4b8bc"
+    "bytes": 1049,
+    "sha256": "612316218bb927749f48438e560f13f64bcc8b521a27911de92e6c532ee93549"
   },
   "statistics": {
     "messages": 1,

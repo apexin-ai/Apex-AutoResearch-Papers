@@ -1,0 +1,1 @@
+Experiment: π0.5 L2norm k=0.9 Spatial seed43 postfix\nServer: westd-38929, GPU3\nCommand: CUDA_VISIBLE_DEVICES=3 python eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_spatial --n_episodes 50 --seed 43 --gpu 0\nLog: logs/eval_pi05_l2norm_k09_spatial_seed43_postfix.log\nStarted: 2026-05-25 03:50 UTC\nStatus: running

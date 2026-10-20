@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diag_gpu_idle_deploy_0527b_20260527T002559_result.json",
     "occurrence": 1,
-    "bytes": 1325,
-    "sha256": "5ee67451b4a66039e3ace9eacf43ecde6247561e54730507e60a58362eee4a00"
+    "bytes": 1324,
+    "sha256": "5d91ff186873d8944c0f9e91df2e0039ca48e7c0213a8c7906c0269d0e075bbd"
   },
   "statistics": {
     "messages": 1,

@@ -12,8 +12,34 @@ This page is a human-readable rendering of one source record. It preserves the r
 - **Original source:** `logs/workers/worker_ops_d166_cqa1_openvla_20260522T131218_result.json`
 - **Structured JSON:** [`d350b184911fb8415dea.json`](../../sessions/d3/d350b184911fb8415dea.json)
 
-## Browse this transcript
+## Before a recorded user message
 
-This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
+1 recorded events
 
-[Part 1](ops-d166-cqa1-openvla/part-001.md) · [Part 2](ops-d166-cqa1-openvla/part-002.md) · [Part 3](ops-d166-cqa1-openvla/part-003.md)
+### Task result
+
+_source line 1_
+
+Large source content is retained in the sanitized trace archive.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "large_content_blocks": [
+    {
+      "index": 0,
+      "storage": "sanitized-trace-archive",
+      "source_line": 1,
+      "serialized_bytes": 2372578,
+      "serialized_sha256": "dfe1f8144f2f2a654bf56f87813dc24ec05a5d8085402c4980a1829acaf32a40",
+      "note": "Complete sanitized source is retained in trace-files.tar.gz."
+    }
+  ]
+}
+```
+
+</details>
+
+---

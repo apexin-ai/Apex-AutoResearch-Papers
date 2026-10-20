@@ -1,0 +1,53 @@
+{
+  "exp_id": "eval_xvla_l2norm_k05_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T06:11:52.093Z",
+    "updated_at": "2026-05-23T08:06:16.416Z",
+    "hypothesis": "X-VLA L2norm k=0.5 Long seed42: Table 2 gap. L2 k=0.9=27.5%. 50% L2 pruning 在 Long suite 上的极端 compression 表现。",
+    "spec": {
+      "command": "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=2 python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.5 --mode l2_norm --num_episodes 50 --seed 42 --domain_id 3 --gpu 0",
+      "server": "westd-38929",
+      "gpu": 2,
+      "pid": 459651,
+      "seed": 42,
+      "model_name": "X-VLA-Libero",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "checkpoint_source": "/root/autodl-tmp/X-VLA-Libero",
+      "eval_data": "libero_10",
+      "log_path": "logs/eval_xvla_l2norm_k05_long_seed42.log",
+      "checkpoint_path": "N/A - eval experiment"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 45,
+      "wilson_ci_95": [
+        40.7,
+        49.4
+      ],
+      "per_task_sr": {
+        "task_0_alphabet_soup_tomato_sauce": 26,
+        "task_1_cream_cheese_butter": 0,
+        "task_2_stove_moka_pot": 46,
+        "task_3_black_bowl_drawer": 82,
+        "task_4_white_mug_yellow_mug": 42,
+        "task_5_book_caddy": 92,
+        "task_6_white_mug_chocolate_pudding": 54,
+        "task_7_alphabet_soup_cream_cheese": 70,
+        "task_8_both_moka_pots": 34,
+        "task_9_mug_microwave": 4
+      },
+      "episodes": 500,
+      "elapsed_min": 94.6
+    },
+    "notes": "已完成。SR=45%。之前 cron miss 1/5 是检测延迟，实验实际已成功完成并有 metrics。",
+    "completed_at": "2026-05-23T08:01:02.767Z"
+  },
+  "timestamp": "2026-05-23T08:06:17.523653+00:00",
+  "trigger": "update_registry"
+}

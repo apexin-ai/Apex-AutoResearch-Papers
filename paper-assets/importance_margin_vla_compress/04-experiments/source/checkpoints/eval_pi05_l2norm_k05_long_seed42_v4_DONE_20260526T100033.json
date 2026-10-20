@@ -1,0 +1,52 @@
+{
+  "exp_id": "eval_pi05_l2norm_k05_long_seed42_v4",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T08:17:45.845Z",
+    "updated_at": "2026-05-26T10:00:32.154Z",
+    "hypothesis": "π0.5 L2norm k=0.5 Long seed42 v4 — 重跑。L2norm k=0.5 在 libero_10 上的 50% 压缩性能评估",
+    "parent": "eval_pi05_l2norm_k05_long_seed42",
+    "spec": {
+      "command": "python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0",
+      "server": "cqa1-33015",
+      "gpu": "cuda:2",
+      "pid": 77661,
+      "data_path": "/root/autodl-tmp/importance_margin_vla_compress",
+      "data_count": 500,
+      "model_name": "pi0.5",
+      "seed": 42,
+      "log_path": "/root/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_long_seed42.log",
+      "checkpoint_source": "pi0.5-base",
+      "eval_data": "libero_10"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 50,
+      "total_successes": 250,
+      "total_episodes": 500,
+      "per_task_sr": {
+        "T0_alphabet_soup_tomato": 66,
+        "T1_cream_cheese_butter": 52,
+        "T2_stove_moka_pot": 74,
+        "T3_black_bowl_drawer": 38,
+        "T4_white_mug_left_plate": 30,
+        "T5_book_back_shelf": 50,
+        "T6_white_mug_plate": 32,
+        "T7_alphabet_soup_cream": 60,
+        "T8_moka_pots_stove": 16,
+        "T9_yellow_mug_microwave": 82
+      },
+      "elapsed_minutes": 249.4,
+      "seed": 42
+    },
+    "checkpoint_path": "N/A (eval only)",
+    "log_path": "/root/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_long_seed42.log",
+    "completed_at": "2026-05-26T10:00:32.154Z"
+  },
+  "timestamp": "2026-05-26T10:00:33.359259+00:00",
+  "trigger": "update_registry"
+}

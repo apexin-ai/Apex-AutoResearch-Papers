@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1_gpu0_goal_attn_k05_20260526T235227_result.json",
     "occurrence": 1,
-    "bytes": 643,
-    "sha256": "95ca2d1b36aa4c7d2d64dbe82131913eb2999859ae2be94bb4f50bde83ae08af"
+    "bytes": 642,
+    "sha256": "c18fe332edce8ccf5b568bdaec1137718fc43ed70764dc0b965ceafd40c96553"
   },
   "statistics": {
     "messages": 1,

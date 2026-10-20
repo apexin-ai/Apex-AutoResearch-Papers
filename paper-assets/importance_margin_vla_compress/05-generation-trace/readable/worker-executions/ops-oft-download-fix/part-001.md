@@ -12542,7 +12542,7 @@ _source line 266 · 2026-05-20T12:02:18.070Z_
 
 ```text
 1	cqa1_33015_password:
-2	  created_at: '2026-05-16T13:06:04.037915+00:00'
+[REDACTED]	  created_at: '2026-05-16T13:06:04.037915+00:00'
 3	  provider: AutoDL
 4	  purpose: SSH password for cqa1-33015 server (4x RTX 4090)
 5	  updated_at: '2026-05-16T13:06:04.037942+00:00'
@@ -12552,18 +12552,18 @@ _source line 266 · 2026-05-20T12:02:18.070Z_
 9	  purpose: 下载 SmolVLA 模型和 LIBERO 数据集
 10	  updated_at: '2026-05-15T12:57:33.905821+00:00'
 11	westd_27271_password:
-12	  created_at: '2026-05-15T11:16:34.006411+00:00'
+[REDACTED]	  created_at: '2026-05-15T11:16:34.006411+00:00'
 13	  provider: westd
 14	  purpose: SSH password for westd-27271 server
 15	  updated_at: '2026-05-15T11:16:34.006436+00:00'
 16	westd_38929_password:
-17	  created_at: '2026-05-20T02:50:09.113316+00:00'
+[REDACTED]	  created_at: '2026-05-20T02:50:09.113316+00:00'
 18	  provider: AutoDL
 19	  purpose: SSH password for westd-38929 (4x RTX PRO 6000 96GB) - multi-VLA expansion
 20	    server
 21	  updated_at: '2026-05-20T02:50:09.113339+00:00'
 22	westd_41074_ssh_password:
-23	  created_at: '2026-05-19T16:23:04.417784+00:00'
+[REDACTED]	  created_at: '2026-05-19T16:23:04.417784+00:00'
 24	  provider: AutoDL
 25	  purpose: SSH password for westd-41074 (4×RTX PRO 6000 96GB)
 26	  updated_at: '2026-05-19T16:23:04.417811+00:00'
@@ -12585,7 +12585,7 @@ _source line 266 · 2026-05-20T12:02:18.070Z_
     "type": "text",
     "file": {
       "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/config/secrets/importance_margin_vla_compress/manifest.yaml",
-      "content": "cqa1_33015_password:\n  created_at: '2026-05-16T13:06:04.037915+00:00'\n  provider: AutoDL\n  purpose: SSH password for cqa1-33015 server (4x RTX 4090)\n  updated_at: '2026-05-16T13:06:04.037942+00:00'\nhf_token:\n  created_at: '2026-05-15T12:57:33.905796+00:00'\n  provider: HuggingFace\n  purpose: 下载 SmolVLA 模型和 LIBERO 数据集\n  updated_at: '2026-05-15T12:57:33.905821+00:00'\nwestd_27271_password:\n  created_at: '2026-05-15T11:16:34.006411+00:00'\n  provider: westd\n  purpose: SSH password for westd-27271 server\n  updated_at: '2026-05-15T11:16:34.006436+00:00'\nwestd_38929_password:\n  created_at: '2026-05-20T02:50:09.113316+00:00'\n  provider: AutoDL\n  purpose: SSH password for westd-38929 (4x RTX PRO 6000 96GB) - multi-VLA expansion\n    server\n  updated_at: '2026-05-20T02:50:09.113339+00:00'\nwestd_41074_ssh_password:\n  created_at: '2026-05-19T16:23:04.417784+00:00'\n  provider: AutoDL\n  purpose: SSH password for westd-41074 (4×RTX PRO 6000 96GB)\n  updated_at: '2026-05-19T16:23:04.417811+00:00'\n",
+      "content": "cqa1_33015_password:\n  [REDACTED] '2026-05-16T13:06:04.037915+00:00'\n  provider: AutoDL\n  purpose: SSH password for cqa1-33015 server (4x RTX 4090)\n  updated_at: '2026-05-16T13:06:04.037942+00:00'\nhf_token:\n  created_at: '2026-05-15T12:57:33.905796+00:00'\n  provider: HuggingFace\n  purpose: 下载 SmolVLA 模型和 LIBERO 数据集\n  updated_at: '2026-05-15T12:57:33.905821+00:00'\nwestd_27271_password:\n  [REDACTED] '2026-05-15T11:16:34.006411+00:00'\n  provider: westd\n  purpose: SSH password for westd-27271 server\n  updated_at: '2026-05-15T11:16:34.006436+00:00'\nwestd_38929_password:\n  [REDACTED] '2026-05-20T02:50:09.113316+00:00'\n  provider: AutoDL\n  purpose: SSH password for westd-38929 (4x RTX PRO 6000 96GB) - multi-VLA expansion\n    server\n  updated_at: '2026-05-20T02:50:09.113339+00:00'\nwestd_41074_ssh_password:\n  [REDACTED] '2026-05-19T16:23:04.417784+00:00'\n  provider: AutoDL\n  purpose: SSH password for westd-41074 (4×RTX PRO 6000 96GB)\n  updated_at: '2026-05-19T16:23:04.417811+00:00'\n",
       "numLines": 27,
       "startLine": 1,
       "totalLines": 27

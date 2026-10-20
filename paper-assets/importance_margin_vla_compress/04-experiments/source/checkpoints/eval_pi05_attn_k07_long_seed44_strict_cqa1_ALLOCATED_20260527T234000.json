@@ -1,0 +1,18 @@
+{
+  "exp_id": "eval_pi05_attn_k07_long_seed44_strict_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T23:23:46.685Z",
+    "updated_at": "2026-05-27T23:39:58.937Z",
+    "hypothesis": "π0.5 Attn k=0.7 Long strict seed44 — 最后一个未部署的 s44 (s42=53.6%, s43=53.8%, mean=53.7%±0.1pp)。error bar 已极紧但有空卡，填满 s44 矩阵",
+    "parent": "eval_pi05_attn_k07_long_seed43_strict_w41",
+    "server": "westd-41074",
+    "gpu": "cuda:1"
+  },
+  "timestamp": "2026-05-27T23:40:00.374103+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,66 @@
+{
+  "exp_id": "eval_xvla_random_k05_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T06:11:45.093Z",
+    "updated_at": "2026-05-23T09:06:20.479Z",
+    "hypothesis": "X-VLA Random k=0.5 Goal seed42: Table 2 gap. L2 k=0.5 Goal=61.0%. Goal 的 task complexity 在 50% pruning 下如何影响 random performance。",
+    "spec": {
+      "command": "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=0 python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_goal --keep_ratio 0.5 --mode random --num_episodes 50 --seed 42 --domain_id 2 --gpu 0",
+      "server": "westd-27271",
+      "gpu": 0,
+      "pid": 250272,
+      "seed": 42,
+      "model_name": "X-VLA-Libero",
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "checkpoint_source": "/root/autodl-tmp/X-VLA-Libero",
+      "eval_data": "libero_goal",
+      "log_path": "logs/eval_xvla_random_k05_goal_seed42.log",
+      "checkpoint_path": "N/A - eval experiment"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T09:03:36.638Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "negative",
+    "completed_at": "2026-05-23T09:03:33.363Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-23T09:03:47.420256+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 0,
+      "wilson_ci_95": [
+        0,
+        0.8
+      ],
+      "episodes": 500,
+      "tasks": 10,
+      "per_task_sr": {
+        "task0_open_middle_drawer": 0,
+        "task1_bowl_on_stove": 0,
+        "task2_wine_on_cabinet": 0,
+        "task3_open_drawer_bowl_inside": 0,
+        "task4_bowl_on_cabinet": 0,
+        "task5_push_plate_front_stove": 0,
+        "task6_cream_cheese_in_bowl": 0,
+        "task7_turn_on_stove": 0,
+        "task8_bowl_on_plate": 0,
+        "task9_wine_on_rack": 0
+      },
+      "elapsed_min": 158.9
+    }
+  },
+  "timestamp": "2026-05-23T09:06:21.267717+00:00",
+  "trigger": "update_registry"
+}

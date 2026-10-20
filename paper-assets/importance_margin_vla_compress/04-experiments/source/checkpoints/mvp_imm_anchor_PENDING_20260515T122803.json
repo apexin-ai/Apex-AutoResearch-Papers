@@ -1,0 +1,14 @@
+{
+  "exp_id": "mvp_imm_anchor",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:27:58.507Z",
+    "updated_at": "2026-05-15T12:28:03.218Z"
+  },
+  "timestamp": "2026-05-15T12:28:03.226006+00:00",
+  "trigger": "update_registry"
+}

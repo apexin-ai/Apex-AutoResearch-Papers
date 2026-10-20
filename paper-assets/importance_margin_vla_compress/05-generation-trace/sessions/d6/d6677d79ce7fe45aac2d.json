@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_token_merging_k05_20260517T094313_result.json",
     "occurrence": 1,
-    "bytes": 1126,
-    "sha256": "ed46027679a2fa05aa5895bab93142b7a11a8c12a98771f15deb5acaf6ca690c"
+    "bytes": 1125,
+    "sha256": "a32e39495db388ec2180a255c0f412a30f70653fe0776797b7b31460c84415b9"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_westd41074_gpu3_pi05_zeromask_20260526T015719_result.json",
     "occurrence": 1,
-    "bytes": 1271,
-    "sha256": "2230bbdf86eec2dd58476d0fba4116773162634df7bebc890e0a794baccc7733"
+    "bytes": 1270,
+    "sha256": "b8f768f1eb8a2a0763d643d8c6ec162f0bc2c06dc46b99795783ff9dc683ede9"
   },
   "statistics": {
     "messages": 1,

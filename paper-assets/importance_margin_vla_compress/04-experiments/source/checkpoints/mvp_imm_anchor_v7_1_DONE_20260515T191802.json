@@ -1,0 +1,39 @@
+{
+  "exp_id": "mvp_imm_anchor_v7_1",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:19:52.057Z",
+    "updated_at": "2026-05-15T19:18:02.335Z",
+    "hypothesis": "降低 lambda_margin (0.2 vs 0.5) 可以在保持 margin 增长的同时抑制 Lipschitz 爆炸",
+    "parent": "mvp_imm_anchor_v7",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo ... && python3 train.py --config configs/imm_anchor_v7_1.yaml\"",
+      "server": "westd-27271",
+      "gpu": "cuda:0",
+      "pid": "53500",
+      "log_path": "/tmp/imm_anchor_v7_1.log",
+      "submitted_at": "2026-05-15T19:01:30.975Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "lerobot/aloha_sim_insertion_scripted_image",
+      "data_count": 20000,
+      "model_name": "lerobot/smolvla_base + LoRA r=32 + IMM(delta=0.3, lambda=0.2, grad_clip=30.0)",
+      "seed": 42,
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "N/A (training experiment)",
+      "failure_reason": "eval mode leak in compute_empirical_lipschitz(): acis.eval() never restored to train(). Spectral norm power iteration stopped at step 500. SN: 1.014→2.485→4.617. Training data invalid from step 500.",
+      "checkpoint_path": "N/A",
+      "wall_clock_seconds": 991.4,
+      "gpu_hours": 0.28
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T19:18:02.335Z"
+  },
+  "timestamp": "2026-05-15T19:18:02.364273+00:00",
+  "trigger": "update_registry"
+}

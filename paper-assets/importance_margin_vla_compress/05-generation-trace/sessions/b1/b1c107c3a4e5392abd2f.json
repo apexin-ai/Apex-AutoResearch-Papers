@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_transfer_scp_45k_ckpt_and_monitor_rsync_20260516T200440_result.json",
     "occurrence": 1,
-    "bytes": 1012,
-    "sha256": "630e2cc4a755bfe5fa60956cc69ca2f1db148bfe4a8215556efde120fc814d20"
+    "bytes": 1011,
+    "sha256": "48d81661cc98ce02d40205d845ceffb9c2f2c160e4c1d6182a93030bc306167b"
   },
   "statistics": {
     "messages": 1,

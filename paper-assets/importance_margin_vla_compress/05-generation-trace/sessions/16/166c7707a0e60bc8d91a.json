@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_deploy-hard-forward-fix_20260515T172928_result.json",
     "occurrence": 1,
-    "bytes": 406,
-    "sha256": "cabcb3cdaa27d90190f05d9aa9f644f2ce5898aa38a29e161485bb963b8ebd8a"
+    "bytes": 405,
+    "sha256": "e9aa64d45b62db6d8b1473e6224212b2d23ca44a94008f429d2b8d1fd20acb00"
   },
   "statistics": {
     "messages": 1,

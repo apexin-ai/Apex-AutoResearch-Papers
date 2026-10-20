@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1-s44-random095_20260527T223007_result.json",
     "occurrence": 1,
-    "bytes": 336,
-    "sha256": "3602eee9fc6e84b37162d2ba7ddbc3285b511f366bdb9132636cb3a0a230fdb8"
+    "bytes": 335,
+    "sha256": "3c7dfa8d2be44adc909d082c94bc1bd870a52792114b255705de834368887b31"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,74 @@
+{
+  "exp_id": "eval_openvla_l2norm_k05_object_seed42_v4",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "created_at": "2026-05-21T23:17:39.648Z",
+    "hypothesis": "OpenVLA L2norm k=0.5 on LIBERO-Object seed42 v4. D132 crossover evidence: OpenVLA (MLP projector, CV=0.215) at k=0.5 shows L2norm≈random (-3.4pp in prior data). Retry after westd-38929 GPU shrinkage killed v1. Critical for Table 3 completion.",
+    "parent": "eval_openvla_l2norm_k05_object_seed42",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "checkpoint_source": "/root/autodl-tmp/openvla-libero-object",
+      "command": "bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.5 --suite libero_object --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/openvla-libero-object --unnorm_key libero_object --gpu 2 --output eval_results/openvla_l2norm_k05_object_seed42_v4.json\"",
+      "data_count": 500,
+      "data_path": "libero_object",
+      "eval_data": "libero_object 10 tasks x 50 episodes",
+      "gpu": "cuda:2",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_l2norm_k05_object_seed42_v4.log",
+      "model_name": "openvla-libero-object",
+      "pid": "8722",
+      "seed": 42,
+      "server": "westd-41074",
+      "submitted_at": "2026-05-25T06:11:12.660Z",
+      "submitted_via": "submit_training_job",
+      "wall_clock_seconds": 21198.0,
+      "gpu_hours": 5.89
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-25T12:04:30.703Z",
+    "reproduce": {
+      "finished_at": "2026-05-25T12:00:10.752Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-25T12:00:24.409766+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 0.392,
+      "total_episodes": 500,
+      "total_successes": 196,
+      "per_task_rates": {
+        "alphabet_soup": 0.56,
+        "cream_cheese": 0.14,
+        "salad_dressing": 0.38,
+        "bbq_sauce": 0.32,
+        "ketchup": 0.7,
+        "tomato_sauce": 0.32,
+        "butter": 0.12,
+        "milk": 0.5,
+        "chocolate_pudding": 0.44,
+        "orange_juice": 0.44
+      },
+      "baseline_sr": 0.74,
+      "delta_from_baseline": -0.348,
+      "k_ratio": 0.5,
+      "vision_tokens_kept": 128,
+      "vision_tokens_total": 256,
+      "elapsed_minutes": 346.85
+    },
+    "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_l2norm_k05_object_seed42_v4.log",
+    "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_l2norm_k05_object_seed42_v4.json",
+    "conclusion": "success",
+    "completed_at": "2026-05-25T12:04:30.703Z"
+  },
+  "timestamp": "2026-05-25T12:04:31.872963+00:00",
+  "trigger": "update_registry"
+}

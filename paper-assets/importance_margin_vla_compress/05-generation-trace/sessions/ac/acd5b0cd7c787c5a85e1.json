@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_libero_fullft_seed1_k07_20260517T015238_result.json",
     "occurrence": 1,
-    "bytes": 1507,
-    "sha256": "5c0bcd071dcc66e73f4bf8c8b56f1f90524cdf42647321a499786733ac304ce8"
+    "bytes": 1506,
+    "sha256": "0e168788933de787378627ec5ab1a1fec7a7eabb84c2751b95fe263828ed2245"
   },
   "statistics": {
     "messages": 1,

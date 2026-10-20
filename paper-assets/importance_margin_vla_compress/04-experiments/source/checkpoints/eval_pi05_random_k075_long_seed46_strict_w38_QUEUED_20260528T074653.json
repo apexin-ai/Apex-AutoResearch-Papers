@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_random_k075_long_seed46_strict_w38",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-28T07:46:04.969Z",
+    "updated_at": "2026-05-28T07:46:51.308Z",
+    "hypothesis": "π0.5 Random k=0.75 Long strict seed46 — crossover 区间第 5 seed，收窄 Random k=0.75 误差棒（当前 4-seed std 偏高），加固 Importance Margin 转正点数据"
+  },
+  "timestamp": "2026-05-28T07:46:53.227966+00:00",
+  "trigger": "update_registry"
+}

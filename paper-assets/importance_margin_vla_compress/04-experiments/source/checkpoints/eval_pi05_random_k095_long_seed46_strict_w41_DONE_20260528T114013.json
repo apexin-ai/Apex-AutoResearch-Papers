@@ -1,0 +1,67 @@
+{
+  "exp_id": "eval_pi05_random_k095_long_seed46_strict_w41",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-28T08:54:51.752Z",
+    "updated_at": "2026-05-28T11:40:10.436Z",
+    "spec": {
+      "command": "eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 46",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "898746",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k095_long_seed46_strict_w41.log",
+      "submitted_at": "2026-05-28T08:54:49.370Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "pi0.5",
+      "seed": 46,
+      "data_path": "libero_10",
+      "data_count": 500,
+      "checkpoint_path": "/root/autodl-tmp/pi05_libero_finetuned",
+      "wall_clock_seconds": 9921.1,
+      "gpu_hours": 2.76
+    },
+    "hypothesis": "π0.5 Random k=0.95 Long strict seed46 — 第5 seed 加固 margin 顶端点。s42=60.6%, s43=60.8%, s44=61.2%, s45=62.4%, 4-seed mean=61.25%±0.81pp",
+    "reproduce": {
+      "finished_at": "2026-05-28T11:35:33.960Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-28T11:35:55.822560+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 0.608,
+      "total_successes": 304,
+      "total_episodes": 500,
+      "elapsed_min": 157.7,
+      "per_task": {
+        "T0": 0.52,
+        "T1": 0.86,
+        "T2": 0.76,
+        "T3": 0.88,
+        "T4": 0.48,
+        "T5": 0.8,
+        "T6": 0.08,
+        "T7": 0.64,
+        "T8": 0.24,
+        "T9": 0.82
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-28T11:40:10.436Z"
+  },
+  "timestamp": "2026-05-28T11:40:13.336351+00:00",
+  "trigger": "update_registry"
+}

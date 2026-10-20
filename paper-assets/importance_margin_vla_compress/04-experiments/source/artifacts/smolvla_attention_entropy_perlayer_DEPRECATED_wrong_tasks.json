@@ -1,0 +1,25 @@
+{
+  "model": "SmolVLA-base",
+  "dataset": "LIBERO mixed tasks",
+  "n_images": 256,
+  "n_tasks": 9,
+  "n_layers": 16,
+  "overall_entropy_ratio": 0.944,
+  "overall_entropy_std": 0.020,
+  "min_entropy_layer": {"layer": 13, "ratio": 0.917},
+  "max_entropy_layer": {"layer": 0, "ratio": 0.979},
+  "entropy_range_width": 0.06,
+  "per_layer_samples": {
+    "L0": {"entropy_ratio": 0.979, "std": 0.005, "vision_attn_frac": 0.585},
+    "L4": {"entropy_ratio": 0.927, "std": 0.020, "vision_attn_frac": 0.418},
+    "L7": {"entropy_ratio": 0.958, "std": 0.010, "vision_attn_frac": 0.549},
+    "L13": {"entropy_ratio": 0.917, "std": 0.019, "vision_attn_frac": 0.557},
+    "L15": {"entropy_ratio": 0.953, "std": 0.013, "vision_attn_frac": 0.651}
+  },
+  "openvla_comparison": {
+    "overall_entropy_ratio": 0.639,
+    "range_width": 0.50,
+    "min_layer_ratio": 0.477
+  },
+  "finding": "Flat entropy profile (range=0.06) vs OpenVLA progressive sharpening (range=0.50). Pixel-shuffle creates uniform token dependence at every depth."
+}

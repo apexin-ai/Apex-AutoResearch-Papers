@@ -1,0 +1,15 @@
+{
+  "exp_id": "train_smart_compress_m64_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:51:27.728Z",
+    "updated_at": "2026-05-18T16:51:43.207Z",
+    "hypothesis": "Repeat of Smart Compress M=64 training with seed=43. M=64 is a headline result (61.6% SR at 50% compression, same as M=32). If seed=43 yields similar SR (~60%), confirms robustness. If significantly different, indicates high variance."
+  },
+  "timestamp": "2026-05-18T16:51:43.390370+00:00",
+  "trigger": "update_registry"
+}

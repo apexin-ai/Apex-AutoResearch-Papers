@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_disk-cleanup-all-servers_20260521T234714_result.json",
     "occurrence": 1,
-    "bytes": 609,
-    "sha256": "641c8d2f4ea37e9c91b94d6dbac30306cf7be4ee30b2f49c575f4334a37caf79"
+    "bytes": 608,
+    "sha256": "0e8f0acd7828d29f08790778bcc132fbaa0efa2f140941e9be1e9ba3049f09e8"
   },
   "statistics": {
     "messages": 1,

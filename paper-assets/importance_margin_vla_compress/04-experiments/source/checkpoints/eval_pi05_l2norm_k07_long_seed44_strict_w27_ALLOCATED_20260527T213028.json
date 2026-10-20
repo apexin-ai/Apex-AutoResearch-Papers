@@ -1,0 +1,18 @@
+{
+  "exp_id": "eval_pi05_l2norm_k07_long_seed44_strict_w27",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T21:29:07.056Z",
+    "updated_at": "2026-05-27T21:30:27.163Z",
+    "hypothesis": "π0.5 L2norm k=0.7 Long strict seed44 — smooth degradation 下降段第三个种子。seed42=63.2%, seed43=65.4%, error bar ±1.1%。seed44 加固 L2norm 下降段 vs Attn cliff 后平台段的对比",
+    "parent": "eval_pi05_l2norm_k07_long_seed43_strict_w41",
+    "server": "westd-27271",
+    "gpu": "cuda:1"
+  },
+  "timestamp": "2026-05-27T21:30:28.546643+00:00",
+  "trigger": "update_registry"
+}

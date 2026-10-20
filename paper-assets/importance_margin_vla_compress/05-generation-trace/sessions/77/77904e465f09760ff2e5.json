@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-oft-baseline-and-results_20260521T022253_result.json",
     "occurrence": 1,
-    "bytes": 2498,
-    "sha256": "4fee75142729e4c496fa3bce0c06fe3f88acad7c094b79498c166c9a246aeb58"
+    "bytes": 2497,
+    "sha256": "047153cb2145d5da8a94f3b9c76085d96bc89bcfe25c6d4db05fe2d2b3c19927"
   },
   "statistics": {
     "messages": 1,

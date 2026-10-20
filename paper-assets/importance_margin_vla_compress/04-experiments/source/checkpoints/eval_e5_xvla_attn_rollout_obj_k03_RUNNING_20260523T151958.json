@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_e5_xvla_attn_rollout_obj_k03",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T14:08:57.564Z",
+    "updated_at": "2026-05-23T15:19:57.579Z",
+    "spec": {
+      "command": "eval_xvla_attention_pruning_libero.py --mode attention_rollout --suite libero_object --keep_ratio 0.3 --seed 42",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "967125",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_e5_xvla_attn_rollout_obj_k03.log",
+      "submitted_at": "2026-05-23T14:08:56.446Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO libero_object 10 tasks",
+      "data_count": 500,
+      "model_name": "X-VLA-Libero",
+      "seed": 42
+    },
+    "hypothesis": "E5 attention_rollout Object k=0.3: 极端剪枝。rollout k=0.5=97.4%——k=0.3 测试 rollout 在极端条件下的退化。与 last 和 mean k=0.3 对比三种模式的鲁棒性排序。"
+  },
+  "timestamp": "2026-05-23T15:19:58.357737+00:00",
+  "trigger": "update_registry"
+}

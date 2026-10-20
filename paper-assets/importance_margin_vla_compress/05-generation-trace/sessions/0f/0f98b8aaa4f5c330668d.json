@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_eval_pi05_random_k0925_spatial_seed42_unreg_20260523T212744_result.json",
     "occurrence": 1,
-    "bytes": 1822,
-    "sha256": "6c42be09a2c1fc937bcdcea301a6db5933991cfcefbdc728aa61576e4ff9a674"
+    "bytes": 1821,
+    "sha256": "1af3ddf11dc24555e1ad6e2407a80130987b048289ec4991c9ebb758958e3d21"
   },
   "statistics": {
     "messages": 1,

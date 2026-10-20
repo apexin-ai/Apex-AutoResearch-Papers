@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_d168_westd41074_pi05_random_goal_20260522T142322_result.json",
     "occurrence": 1,
-    "bytes": 1158,
-    "sha256": "e5554e144f9502fe9636b7a87b70231a0d398a9987a870ddc6de5969bb7ded9e"
+    "bytes": 1157,
+    "sha256": "4af0be6c7753dd1979a89b4bfb4c1b091704edb382ba611c1141d28756f808a1"
   },
   "statistics": {
     "messages": 1,

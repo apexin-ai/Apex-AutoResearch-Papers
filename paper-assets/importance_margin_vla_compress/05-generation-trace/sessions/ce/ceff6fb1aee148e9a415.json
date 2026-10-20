@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_e3_token_cosine_similarity_20260523T054900_result.json",
     "occurrence": 1,
-    "bytes": 1390,
-    "sha256": "7e304c82507311c6f5173c44f5ad2f98685fd8290209646ec7a2c6cc3fdd5c1c"
+    "bytes": 1389,
+    "sha256": "01dfdb43b26852d6c195bc6f85a64344bb3beb04ff1b814db05980134a7aec0a"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_infra_vlm-backbone-download_20260515T130217_result.json",
     "occurrence": 1,
-    "bytes": 674,
-    "sha256": "b1a91e7c216905c9e4d6f3c0e36000bb921ea47c4a8aa36105a4800b690b1659"
+    "bytes": 673,
+    "sha256": "3ab8a317ba93a44bba961b58b04044c236bf05f33e66e0f1bb48a6c9859f81d6"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_official_smolvla_baseline_v4_20260518T130236_result.json",
     "occurrence": 1,
-    "bytes": 888,
-    "sha256": "385dfe52ef920534b36db9a2e2ebd79560b9fdc8521f3181202d3893cbec00a7"
+    "bytes": 887,
+    "sha256": "d4d478eaa38fec341a9d007e70ab27fa71cf2acd46dd9071d7334a21c91edf3c"
   },
   "statistics": {
     "messages": 1,

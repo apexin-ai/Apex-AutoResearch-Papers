@@ -1,0 +1,42 @@
+{
+  "exp_id": "train_smart_compress_m128_resume",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T05:27:32.368Z",
+    "updated_at": "2026-05-21T22:35:43.265Z",
+    "hypothesis": "Resume of train_smart_compress_m128 from step 32,000 checkpoint. Cross-attention pooling with M=128 queries (no compression, passthrough control). If SR similar to M=32/M=64 (61.6%), improvement comes from cross-attention architecture itself. If lower/equal to baseline (44.8%), compression provides the benefit.",
+    "parent": "train_smart_compress_m128",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/checkpoints/smart_compress_m128/checkpoint.pt",
+      "log_path": "~/runs/importance_margin_vla_compress/train_smart_compress_m128_resume.log",
+      "wandb_offline_run": "/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260518_132800-x610qzvt"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T10:06:16.992Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T10:06:20.885052+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "train_action_loss": 0.05412,
+      "eval_action_loss": 0.05743,
+      "train_grad_norm": 0.92663,
+      "total_steps": 99999,
+      "resumed_from_step": 32001
+    },
+    "completed_at": "2026-05-21T22:35:43.265Z"
+  },
+  "timestamp": "2026-05-21T22:35:43.770571+00:00",
+  "trigger": "update_registry"
+}

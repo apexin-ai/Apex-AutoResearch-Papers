@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_c4ext_heartbeat_v2_20260519T204639_result.json",
     "occurrence": 1,
-    "bytes": 2063,
-    "sha256": "141246d30ef826d2afe68ffabf45825c202964b184bff2776481499493aa447b"
+    "bytes": 2062,
+    "sha256": "5e8f6616b3d3146b826b8cbd43ca9c7325fd26ef01f3cdc93868c7966c874252"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,33 @@
+{
+  "exp_id": "libero_imm_twostage_v1",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T18:47:03.312Z",
+    "updated_at": "2026-05-16T19:05:51.300Z",
+    "spec": {
+      "command": "python -u train_twostage.py --config configs/libero_imm_twostage.yaml",
+      "server": "westd-27271",
+      "gpu_ids": [
+        "cuda:0"
+      ],
+      "data_path": "HuggingFaceVLA/libero",
+      "data_count": 383,
+      "model_name": "SmolVLA + IMM two-stage (ACIS-first)",
+      "seed": 42,
+      "hypothesis": "IMM two-stage on LIBERO: Stage1 freeze LoRA train ACIS, Stage2 freeze ACIS train LoRA. 验证 aloha 上验证的 two-stage 方法在 LIBERO 上的泛化",
+      "baseline_checkpoint": "checkpoints/libero_baseline/step_040000/checkpoint.pt",
+      "stage1_steps": 10000,
+      "stage2_steps": 20000,
+      "total_steps": 30000,
+      "log_path": "/tmp/libero_imm_twostage_v1.log",
+      "checkpoint_path": "checkpoints/libero_imm_twostage/"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T19:05:51.400710+00:00",
+  "trigger": "update_registry"
+}

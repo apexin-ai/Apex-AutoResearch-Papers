@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_eval_m128_seed44_exit_20260519T104404_result.json",
     "occurrence": 1,
-    "bytes": 392,
-    "sha256": "a2384048f117404db7549a14b1c5a3a5b37de6f9f7c276003e9d42e50392eb03"
+    "bytes": 391,
+    "sha256": "b956e87cb131cd37332476ca86a0c5d2fbdb08ed1fa6b80f685250cbc86be7a3"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_w41-kill-dup-and-investigate_20260527T134148_result.json",
     "occurrence": 1,
-    "bytes": 1000,
-    "sha256": "5f813988398b07809ac633b628d1039b37aa20eaa15623fe8c0bf50b631281c9"
+    "bytes": 999,
+    "sha256": "4ad4d17b6643ebfa8644087b16f87b6a44359c544aee6dc7bfff7a8b2667e470"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,42 @@
+{
+  "exp_id": "eval_pi05_random_k07_object_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:44:00.325Z",
+    "updated_at": "2026-05-23T09:51:17.073Z",
+    "metrics": {
+      "success_rate": 78.6,
+      "successes": 393,
+      "episodes": 500,
+      "per_task_sr": {
+        "T4": 86,
+        "T5": 48,
+        "T6": 88,
+        "T7": 70,
+        "T8": 86,
+        "T9": 80
+      },
+      "elapsed_min": 123
+    },
+    "conclusion": "success",
+    "reproduce": {
+      "finished_at": "2026-05-23T09:50:52.919Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-23T09:51:08.234154+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-23T09:51:17.856656+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_attention_k09_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:06:10.900Z",
+    "updated_at": "2026-05-22T19:09:29.414Z",
+    "hypothesis": "π0.5 Attention pruning k=0.9 on Object: 10% attention-based removal. Attention k=0.95=98.4%. Testing if attention pruning maintains advantage over L2norm at more aggressive pruning."
+  },
+  "timestamp": "2026-05-22T19:09:29.994496+00:00",
+  "trigger": "update_registry"
+}

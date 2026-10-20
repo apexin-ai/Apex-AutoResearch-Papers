@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_random_k07_spatial_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:39:23.035Z",
+    "updated_at": "2026-05-22T06:42:11.189Z",
+    "hypothesis": "π0.5 random k=0.7 Spatial seed43: seed42=74.4%。双种子验证。random k=0.7 在 Object 上已完全崩溃(~5%)，Spatial seed42 仍有 74.4%，验证 Spatial 的 cliff 是否在更低 k 处。"
+  },
+  "timestamp": "2026-05-22T06:42:11.786291+00:00",
+  "trigger": "update_registry"
+}

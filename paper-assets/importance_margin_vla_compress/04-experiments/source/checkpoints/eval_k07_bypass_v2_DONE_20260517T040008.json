@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval_k07_bypass_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:36:19.130Z",
+    "updated_at": "2026-05-17T04:00:07.952Z",
+    "spec": {
+      "command": "python eval_success_rate_libero.py --mode baseline --suite libero_object --num_episodes 50",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "876957",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_k07_bypass_v2.log",
+      "submitted_at": "2026-05-17T03:36:19.036Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_object",
+      "data_count": 50,
+      "model_name": "smolvla_imm_k07_twostage_fullft",
+      "seed": 0,
+      "checkpoint_source": "checkpoints/libero_imm_twostage_fullft_k07/final/checkpoint.pt",
+      "eval_data": "libero_object",
+      "wall_clock_seconds": 1412.9,
+      "gpu_hours": 0.39
+    },
+    "hypothesis": "k=0.7 bypass eval will show less expert degradation than k=0.5 bypass because retaining more tokens during training causes less damage to the expert backbone representations",
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T03:59:51.984Z"
+  },
+  "timestamp": "2026-05-17T04:00:08.024992+00:00",
+  "trigger": "update_registry"
+}

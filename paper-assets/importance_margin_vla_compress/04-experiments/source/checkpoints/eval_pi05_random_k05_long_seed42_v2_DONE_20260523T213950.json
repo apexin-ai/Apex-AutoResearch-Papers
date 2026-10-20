@@ -1,0 +1,85 @@
+{
+  "exp_id": "eval_pi05_random_k05_long_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T18:52:17.059Z",
+    "updated_at": "2026-05-23T21:39:49.493Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "764079",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_v2.log",
+      "submitted_at": "2026-05-23T18:52:15.430Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_count": 500,
+      "data_path": "libero_10",
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "wall_clock_seconds": 10054.1,
+      "gpu_hours": 2.79
+    },
+    "hypothesis": "π0.5 Random k=0.5 Long seed42 重跑（CPU RNG 修复后）。填充 Long suite Random k=0.5 数据点。与 L2norm k=0.5 Long 对比计算 importance margin。",
+    "reproduce": {
+      "finished_at": "2026-05-23T21:34:25.354Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T21:34:36.739837+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 46.8,
+      "total_episodes": 500,
+      "total_successes": 234,
+      "elapsed_min": 160,
+      "suite": "libero_10",
+      "model": "pi05",
+      "prune_mode": "random",
+      "keep_ratio": 0.5,
+      "seed": 42,
+      "cpu_rng_fixed": true,
+      "per_task": {
+        "T0_alphabet_soup_tomato_basket": 0.7,
+        "T1_cream_cheese_butter_basket": 0.4,
+        "T2_stove_moka_pot": 0.72,
+        "T3_bowl_bottom_drawer": 0.72,
+        "T4_white_mug_left_yellow_right": 0.52,
+        "T5_book_caddy": 0.2,
+        "T6_white_mug_plate_chocolate": 0.26,
+        "T7_alphabet_soup_cream_cheese_basket": 0.56,
+        "T8_both_moka_pots_stove": 0.04,
+        "T9_yellow_mug_microwave": 0.56
+      },
+      "v1_comparison": {
+        "v1_sr": 50.2,
+        "v2_sr": 46.8,
+        "delta_pp": -3.4,
+        "note": "CPU RNG fix caused -3.4pp drop"
+      },
+      "importance_margin_vs_l2norm": {
+        "l2norm_k05_long_sr": 50.2,
+        "random_k05_long_sr": 46.8,
+        "margin_pp": 3.4
+      }
+    },
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_v2.log",
+    "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed42.json",
+    "conclusion": "success",
+    "completed_at": "2026-05-23T21:39:49.493Z"
+  },
+  "timestamp": "2026-05-23T21:39:50.386430+00:00",
+  "trigger": "update_registry"
+}

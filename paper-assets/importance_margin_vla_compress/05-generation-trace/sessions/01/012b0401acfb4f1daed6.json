@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_harvest_eval_pi05_attention_k05_spatial_seed42_20260523T230413_result.json",
     "occurrence": 1,
-    "bytes": 1291,
-    "sha256": "57a5e36059882a6921ef456e88b1ae22d5119e0de8eb809e4ac484486dab995f"
+    "bytes": 1290,
+    "sha256": "790b7de4367b974e79a9dcc3395502d6a1f0876374e51dda038cb46b7940f615"
   },
   "statistics": {
     "messages": 1,

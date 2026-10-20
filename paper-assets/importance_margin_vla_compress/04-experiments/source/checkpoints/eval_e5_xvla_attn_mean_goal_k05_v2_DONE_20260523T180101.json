@@ -1,0 +1,47 @@
+{
+  "exp_id": "eval_e5_xvla_attn_mean_goal_k05_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T16:50:00.083Z",
+    "updated_at": "2026-05-23T18:01:00.513Z",
+    "spec": {
+      "command": "eval_xvla_attention_pruning_libero.py --mode attention_mean --keep_ratio 0.5 --suite libero_goal --seed 42",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "743486",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_e5_xvla_attn_mean_goal_k05_v2.log",
+      "submitted_at": "2026-05-23T16:49:58.923Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "model_name": "X-VLA-Libero",
+      "seed": 42,
+      "wall_clock_seconds": 4261.6,
+      "gpu_hours": 1.18
+    },
+    "hypothesis": "E5 X-VLA attention_mean pruning k=0.5 Goal v2 重跑。mean attention作为token重要性指标，在50%极端剪枝下Goal表现。与last/rollout/random对比评估不同attention聚合策略。",
+    "metrics": {
+      "success_rate": 97.4,
+      "total_successes": 487,
+      "total_episodes": 500,
+      "wilson_ci_95": [
+        95.6,
+        98.5
+      ],
+      "elapsed_min": 30.2
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A (eval only)",
+    "completed_at": "2026-05-23T18:01:00.513Z"
+  },
+  "timestamp": "2026-05-23T18:01:01.339128+00:00",
+  "trigger": "update_registry"
+}

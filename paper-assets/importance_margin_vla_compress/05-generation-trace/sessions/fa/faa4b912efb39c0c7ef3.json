@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diag_westd_official_eval_failures_20260518T162727_result.json",
     "occurrence": 1,
-    "bytes": 1244,
-    "sha256": "cba8e0673cba1fc16fac11ab3d82b33bd6fd9a356f680c1c5ef2e18d7a97ebb8"
+    "bytes": 1243,
+    "sha256": "beb538b6cb7de6a2009b220c9b502b3974c2e301035223fc837b3d6551610efc"
   },
   "statistics": {
     "messages": 1,

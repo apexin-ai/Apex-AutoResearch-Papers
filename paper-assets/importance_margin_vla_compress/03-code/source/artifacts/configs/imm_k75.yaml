@@ -1,0 +1,10 @@
+# IMM config: k_ratio=0.75 (retain 75% visual tokens), delta=0.3, lambda=0.5
+# Per D004 decision: test k=96 (75%) alongside k=64 (50%).
+
+_base_: imm_anchor.yaml
+
+imm:
+  k_ratio: 0.75            # retain 75% of visual tokens (k=96 for N_vis=128)
+
+training:
+  output_dir: "checkpoints/imm_k75"

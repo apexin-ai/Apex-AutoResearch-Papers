@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_eval_xvla_l2norm_k03_goal_v2_20260523T190124_result.json",
     "occurrence": 1,
-    "bytes": 865,
-    "sha256": "d6c04d38864796a1c3b37d9d859ef5c0e247de78042738b83ec5dff780946424"
+    "bytes": 864,
+    "sha256": "968e980a873dcbc6207bab5294a797ac8601da3b9574d2da779254be04179c44"
   },
   "statistics": {
     "messages": 1,

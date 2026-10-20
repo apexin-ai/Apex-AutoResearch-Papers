@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_openvla_attention_entropy_20260518T003400_result.json",
     "occurrence": 1,
-    "bytes": 1047,
-    "sha256": "d887cf9a63e7827b06196707435b06fdc5907180a70109e05f495cc8d4d01350"
+    "bytes": 1046,
+    "sha256": "f208d36d418242c42018e7dafb43687e18aa7646f5a465a6e4673f64715ec0be"
   },
   "statistics": {
     "messages": 1,

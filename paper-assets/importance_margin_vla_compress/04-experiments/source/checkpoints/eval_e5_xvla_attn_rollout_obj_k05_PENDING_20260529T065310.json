@@ -1,0 +1,51 @@
+{
+  "exp_id": "eval_e5_xvla_attn_rollout_obj_k05",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "conclusion": "killed",
+    "created_at": "2026-05-23T08:58:34.468Z",
+    "hypothesis": "Attention rollout (Abnar & Zuidema 2020) 通过残差连接传播累积 attention，理论上更准确反映信息流——预测在 3 种 scoring 方法中最优",
+    "metrics": {
+      "elapsed_min": 34.1,
+      "episodes": 500,
+      "per_task_sr": {
+        "T0": 100,
+        "T1": 100,
+        "T2": 96,
+        "T3": 96,
+        "T4": 98,
+        "T5": 96,
+        "T6": 100,
+        "T7": 88,
+        "T8": 100,
+        "T9": 100
+      },
+      "success_rate": 97.4,
+      "successes": 487,
+      "wilson_ci_95": [
+        95.6,
+        98.5
+      ]
+    },
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "command": "bash -c \"source /etc/network_turbo 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_xvla_attention_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_object --keep_ratio 0.5 --mode attention_rollout --num_episodes 50 --seed 42 --gpu 0\"",
+      "gpu": [
+        "cuda:2"
+      ],
+      "log_path": "~/runs/importance_margin_vla_compress/eval_e5_xvla_attn_rollout_obj_k05.log",
+      "pid": "850078",
+      "server": "westd-38929",
+      "submitted_at": "2026-05-23T08:58:33.411Z",
+      "submitted_via": "submit_training_job"
+    },
+    "status": "PENDING",
+    "updated_at": "2026-05-29T06:53:07.064Z"
+  },
+  "timestamp": "2026-05-29T06:53:10.158566+00:00",
+  "trigger": "update_registry"
+}

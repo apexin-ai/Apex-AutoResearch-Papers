@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-gpu2-harvest-deploy_20260524T073607_result.json",
     "occurrence": 1,
-    "bytes": 751,
-    "sha256": "99b99c291f0cab60fb2d80ff4257204d56688d76aec0d700fc0d44f78b1bd876"
+    "bytes": 750,
+    "sha256": "f1d3c30cbeafa9071c9a2b31780ae71d113af8eceea88a88f2e5e23adbcaa0e8"
   },
   "statistics": {
     "messages": 1,

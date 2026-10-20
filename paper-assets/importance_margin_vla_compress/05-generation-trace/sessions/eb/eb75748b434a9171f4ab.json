@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_openvla-oft-cqa1-gpu3_20260520T074953_result.json",
     "occurrence": 1,
-    "bytes": 169,
-    "sha256": "f806f31238f205504fbf671288e0741dbf36ac84d42cf74e30c5ea09790635dd"
+    "bytes": 168,
+    "sha256": "d24503baf99435b969a869026bb0714b25c1e4f08f3ecc1f8b8905506f62c7c7"
   },
   "statistics": {
     "messages": 1,

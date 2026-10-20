@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_pi05_random_k095_spatial_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T02:36:27.524Z",
+    "updated_at": "2026-05-22T02:55:12.378Z",
+    "hypothesis": "π0.5 random k=0.95 Spatial seed42 v3: westd-38929 备份部署。Object 上 random k=0.95=71.1% (dual seed mean)。Spatial baseline=97.2%。如果 Spatial random k=0.95 也 >70% → cliff 强度跨 suite 一致; 如果 >90% → Spatial 更 tolerant to random pruning。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && export HF_HUB_OFFLINE=1 && MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 0\"",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "293341",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k095_spatial_seed42_v3.log",
+      "submitted_at": "2026-05-22T02:36:56.714Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-22T02:55:12.960463+00:00",
+  "trigger": "update_registry"
+}

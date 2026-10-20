@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diag_eval_spatial_prune_k05_20260517T113819_result.json",
     "occurrence": 1,
-    "bytes": 474,
-    "sha256": "3f3e4738bd8f12d6d251bc04d52d4a1291e107c86bbf98acfa707f31e0333b8f"
+    "bytes": 473,
+    "sha256": "3aba4447d17323a6e427704039f7af2001364d17c4d67aacfde143e043e87581"
   },
   "statistics": {
     "messages": 1,

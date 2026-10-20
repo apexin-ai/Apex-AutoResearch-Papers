@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_random_k09_object_s43_20260524T222458_result.json",
     "occurrence": 1,
-    "bytes": 194,
-    "sha256": "87386d578109f88309d229e26eda27cd101c93df48b79a5c47c1971a85dad264"
+    "bytes": 193,
+    "sha256": "24c543d1ea9df71e4bac2155ec14469ce8f037b1b57b30e719afd7488ca457f9"
   },
   "statistics": {
     "messages": 1,

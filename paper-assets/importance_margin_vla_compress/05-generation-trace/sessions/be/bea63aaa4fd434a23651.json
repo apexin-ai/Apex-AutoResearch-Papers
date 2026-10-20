@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_eval_official_smolvla_prune_k05_spatial_v2_20260519T161703_result.json",
     "occurrence": 1,
-    "bytes": 689,
-    "sha256": "672a1a1980ddc60cf143aeaaa1466ab4137d6b55d80fc7c7e6d5ae81c79b2bdc"
+    "bytes": 688,
+    "sha256": "15fde4fc29cd8badc52460f4b023df5326d430201c69ef332ff0830556fb4f2e"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,69 @@
+{
+  "exp_id": "eval_openvla_baseline_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T15:39:48.301Z",
+    "updated_at": "2026-05-23T23:47:02.767Z",
+    "spec": {
+      "command": "python -u eval_openvla_l2norm_libero.py --mode baseline --suite libero_10 --model_path /root/autodl-tmp/openvla-7b-finetuned-libero-10 --unnorm_key libero_10 --num_episodes 50 --seed 42",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "291093",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_baseline_long_seed42.log",
+      "submitted_at": "2026-05-23T15:39:47.133Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "openvla-7b-finetuned-libero-10",
+      "seed": 42,
+      "checkpoint_source": "openvla-7b-finetuned-libero-10",
+      "eval_data": "libero_10",
+      "wall_clock_seconds": 29235.6,
+      "gpu_hours": 8.12
+    },
+    "hypothesis": "OpenVLA Long (libero_10) baseline。E2 Must-Fix R6-W5 要求 OpenVLA 覆盖 Goal/Long 套件。Long 套件任务更复杂（520 步），需要建立 OpenVLA 在此套件的 baseline SR，作为后续 pruning 对比基准。",
+    "reproduce": {
+      "finished_at": "2026-05-23T23:44:16.172Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T23:44:29.400148+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 0.528,
+      "total_episodes": 500,
+      "total_success": 264,
+      "time_min": 483.3,
+      "task_sr": {
+        "task01_alphabet_soup_tomato_sauce_basket": 0.62,
+        "task02_cream_cheese_butter_basket": 0.7,
+        "task03_stove_moka_pot": 0.5,
+        "task04_black_bowl_drawer": 0.48,
+        "task05_white_mug_left_yellow_mug_right": 0.4,
+        "task06_book_caddy": 0.7,
+        "task07_white_mug_plate_chocolate_pudding": 0.5,
+        "task08_alphabet_soup_cream_cheese_basket": 0.6,
+        "task09_both_moka_pots_stove": 0.24,
+        "task10_yellow_white_mug_microwave": 0.54
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_baseline_10_seed42.json",
+    "completed_at": "2026-05-23T23:47:02.767Z"
+  },
+  "timestamp": "2026-05-23T23:47:03.609864+00:00",
+  "trigger": "update_registry"
+}

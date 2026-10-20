@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_cleanup_gpu_collision_fix_20260522_20260522T230218_result.json",
     "occurrence": 1,
-    "bytes": 2118,
-    "sha256": "acd06295e4f292e647bb962b72651046df3b470a2f2d71a95ced90bb85dd689a"
+    "bytes": 2117,
+    "sha256": "395c21ad0af2a4a598255e9d90f61a336249913967026d7010317515e7c1c8d6"
   },
   "statistics": {
     "messages": 1,

@@ -40,6 +40,12 @@
       "statistics": {}
     },
     {
+      "project": "be-idea-gen-0515-2",
+      "title": "be idea gen 0515 2",
+      "catalog": "../paper-assets/be-idea-gen-0515-2/05-generation-trace/catalog.json",
+      "statistics": {}
+    },
+    {
       "project": "be-idea-gen-0515-3",
       "title": "be idea gen 0515 3",
       "catalog": "../paper-assets/be-idea-gen-0515-3/05-generation-trace/catalog.json",
@@ -434,7 +440,7 @@
         "messages": 413702,
         "user_turns": 11786,
         "tool_calls": 163280,
-        "unparsed_lines": 2111,
+        "unparsed_lines": 2113,
         "result": 2107,
         "worker": 2223,
         "conversation": 1235,

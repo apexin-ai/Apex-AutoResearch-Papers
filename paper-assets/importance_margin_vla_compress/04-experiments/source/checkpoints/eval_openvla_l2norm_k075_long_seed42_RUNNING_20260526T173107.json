@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_openvla_l2norm_k075_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T17:30:02.823Z",
+    "updated_at": "2026-05-26T17:31:04.568Z",
+    "hypothesis": "OpenVLA L2norm k=0.75 Long seed42 — Long cliff curve 中间点。L2norm k=0.9=43.6%, k=0.85=38.8%, k=0.7=31.2%。k=0.75 填补 k=0.85→0.7 间的下降斜率，Long 三方法 k=0.75 均缺失",
+    "server": "westd-38929",
+    "gpu": "cuda:2",
+    "spec": {
+      "command": "MUJOCO_GL=egl /root/miniconda3/bin/python -u /root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "732922",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_l2norm_k075_long_seed42.log",
+      "submitted_at": "2026-05-26T17:30:51.655Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "732922",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_l2norm_k075_long_seed42.log",
+    "reproduce": {
+      "command": "MUJOCO_GL=egl /root/miniconda3/bin/python -u /root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10"
+    }
+  },
+  "timestamp": "2026-05-26T17:31:07.396771+00:00",
+  "trigger": "update_registry"
+}

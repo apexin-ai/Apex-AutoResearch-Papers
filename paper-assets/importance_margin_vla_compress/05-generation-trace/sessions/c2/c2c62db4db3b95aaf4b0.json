@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_cqa1_oom_random_k095_goal_20260527T093731_result.json",
     "occurrence": 1,
-    "bytes": 1573,
-    "sha256": "2b7536bbe1ea90420da3b8848bf1f1e7568cbd69babddc59f2f4064d8d883328"
+    "bytes": 1572,
+    "sha256": "552f0f5d60ac5b7d7dbbe26270f20da12971c13a5c202b48f9286411b09cfb47"
   },
   "statistics": {
     "messages": 1,

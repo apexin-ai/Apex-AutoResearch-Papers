@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_westd38929-random-seed43-sweep_20260520T181819_result.json",
     "occurrence": 1,
-    "bytes": 512,
-    "sha256": "3c6bae1976b00443b584e32d5160499e7f50ba98195930cb93fb000031ddcc67"
+    "bytes": 511,
+    "sha256": "221bacceb064b79ab6b7cadda1ddd4694a8670c1453d5382a0b6d79a709202b7"
   },
   "statistics": {
     "messages": 1,

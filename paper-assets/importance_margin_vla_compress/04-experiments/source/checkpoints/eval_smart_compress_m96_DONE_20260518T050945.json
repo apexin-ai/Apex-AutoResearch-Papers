@@ -1,0 +1,71 @@
+{
+  "exp_id": "eval_smart_compress_m96",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T04:10:41.873Z",
+    "updated_at": "2026-05-18T05:09:45.271Z",
+    "hypothesis": "Cross-attention pooling compression (128→96 tokens, 25% reduction) is the mildest compression. Expected to retain near-full SR, establishing the upper bound of the compression-performance curve alongside M=32 (61.6%) and M=64 (61.6%).",
+    "parent": "train_smart_compress_m96",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache python eval_smart_compress_libero.py --checkpoint_path checkpoints/smart_compress_m96/checkpoint.pt --n_queries 96 --num_episodes 50 --suite libero_object --seed 42\"",
+      "server": "cqa1-33015",
+      "gpu": "cuda:1",
+      "pid": 689457,
+      "log_path": "~/runs/importance_margin_vla_compress/eval_smart_compress_m96.log",
+      "submitted_at": "2026-05-18T04:10:59.380Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Object (10 tasks x 50 eps)",
+      "data_count": 500,
+      "model_name": "SmolVLA-SmartCompress-M96",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/smart_compress_m96/checkpoint.pt",
+      "eval_data": "LIBERO-Object",
+      "checkpoint_path": "checkpoints/smart_compress_m96/checkpoint.pt",
+      "wall_clock_seconds": 3525.9,
+      "gpu_hours": 0.98
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T05:08:01.938Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T05:08:08.217286+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_sr": 0.526,
+      "total_episodes": 500,
+      "total_successes": 263,
+      "wilson_ci_95": [
+        0.482,
+        0.569
+      ],
+      "per_task_sr": {
+        "alphabet_soup": 0.4,
+        "cream_cheese": 0.52,
+        "salad_dressing": 0.56,
+        "bbq_sauce": 0.4,
+        "ketchup": 0.26,
+        "tomato_sauce": 0.5,
+        "butter": 0.72,
+        "milk": 0.62,
+        "chocolate_pudding": 0.86,
+        "orange_juice": 0.42
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T05:09:45.271Z"
+  },
+  "timestamp": "2026-05-18T05:09:45.513020+00:00",
+  "trigger": "update_registry"
+}

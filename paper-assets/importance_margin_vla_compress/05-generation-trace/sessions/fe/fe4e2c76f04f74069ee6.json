@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_monitor_s44-harvest-round1_20260527T230940_result.json",
     "occurrence": 1,
-    "bytes": 4034,
-    "sha256": "e66698514217cff663d14ddab463fec77c995bb40939a4be0d04b416d6a5da21"
+    "bytes": 4033,
+    "sha256": "92f6b0aa0904e3bb575b14a2020e1b0fa27313f23a6a39feb5a00c190886a6d6"
   },
   "statistics": {
     "messages": 1,

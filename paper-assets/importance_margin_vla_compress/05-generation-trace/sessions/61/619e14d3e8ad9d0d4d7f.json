@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1-zeromask_20260525T181140_result.json",
     "occurrence": 1,
-    "bytes": 737,
-    "sha256": "31a908d0f08414ec16f23b6468c0a3ece36157344d26de10da28150df2555405"
+    "bytes": 736,
+    "sha256": "0e75a6d30044dc8d16e2fd16e887497637d400cd35c5c5c15b98943f248a6d71"
   },
   "statistics": {
     "messages": 1,

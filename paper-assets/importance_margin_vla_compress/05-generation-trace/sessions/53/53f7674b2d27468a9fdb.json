@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check-pi05-random-k05-progress_20260521T082056_result.json",
     "occurrence": 1,
-    "bytes": 2134,
-    "sha256": "e48a0e633648d1972520fcb86bfe0810931b703cdd73806232b12d5c43c20021"
+    "bytes": 2133,
+    "sha256": "003cfd03fd79f95e3eb32c881f4ceeb7108218b8f5c51463a076c07d052b4058"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,45 @@
+{
+  "exp_id": "mvp_imm_v8b_twostage",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:17:57.529Z",
+    "updated_at": "2026-05-16T07:05:42.004Z",
+    "hypothesis": "Two-stage training: 冻结 baseline_v5 backbone (含 LoRA)，Stage1 (10K) 只训 ACIS selector，Stage2 (20K) 解冻 LoRA 微调。消除 co-adaptation，目标 G3 ≤ 1.10",
+    "parent": "mvp_imm_anchor_v8",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python train_twostage.py --config configs/imm_anchor_v8b_twostage.yaml'",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "136367",
+      "log_path": "~/runs/importance_margin_vla_compress/mvp_imm_v8b_twostage.log",
+      "submitted_at": "2026-05-16T04:18:10.534Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "lerobot/aloha_sim_insertion_scripted_image",
+      "data_count": 20000,
+      "model_name": "lerobot/smolvla_base + LoRA r=32 + ACIS two-stage (stage1: ACIS-only lambda=1.0, stage2: LoRA+ACIS lambda=0.5)",
+      "seed": 42,
+      "config_path": "configs/imm_anchor_v8b_twostage.yaml",
+      "checkpoint_path": "checkpoints/imm_two_stage/",
+      "checkpoint_source": "checkpoints/baseline_v5/ (mvp_baseline_v5 final checkpoint)",
+      "eval_data": "N/A (training experiment, not eval)",
+      "tmux_session": "v8b_twostage"
+    },
+    "notes": "网络修复重启完成。原 PID 133659 卡在 HF 网络错误（未 source /etc/network_turbo），已 kill。新 PID=136367 (python) / 136351 (bash wrapper)，含 network_turbo + HF_HOME + SSL 证书 + WANDB_MODE=offline。Stage 1 正常运行中 (4.3 steps/sec, margin_loss 正常下降)。wandb offline run: /root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260516_122925-2t4p795u。Stage 设计: Stage1 (0-10K) freeze backbone+LoRA 只训 ACIS (λ=1.0), Stage2 (10K-30K) freeze ACIS 只训 LoRA (三层防护已确认)。基于 baseline_v5 checkpoint。",
+    "pid": 136367,
+    "reproduce": {
+      "finished_at": "2026-05-16T07:05:41.853Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T07:05:42.042302+00:00",
+  "trigger": "update_registry"
+}

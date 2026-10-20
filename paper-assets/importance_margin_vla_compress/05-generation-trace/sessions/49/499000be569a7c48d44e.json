@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_eval_m32_official_20260519T110812_result.json",
     "occurrence": 1,
-    "bytes": 765,
-    "sha256": "99cb34934837b35ea18a4e2454e95b6a7719308c2fe3cdaf03be6e38d0014cc6"
+    "bytes": 764,
+    "sha256": "066531165965359a3e3fd0e74f05a6d4cf97d9352cc46c63ec8de18090e45947"
   },
   "statistics": {
     "messages": 1,

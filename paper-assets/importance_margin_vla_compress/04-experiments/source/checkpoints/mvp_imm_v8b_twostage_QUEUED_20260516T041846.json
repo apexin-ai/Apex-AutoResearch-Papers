@@ -1,0 +1,36 @@
+{
+  "exp_id": "mvp_imm_v8b_twostage",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:17:57.529Z",
+    "updated_at": "2026-05-16T04:18:46.300Z",
+    "hypothesis": "Two-stage training: 冻结 baseline_v5 backbone (含 LoRA)，Stage1 (10K) 只训 ACIS selector，Stage2 (20K) 解冻 LoRA 微调。消除 co-adaptation，目标 G3 ≤ 1.10",
+    "parent": "mvp_imm_anchor_v8",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python train_twostage.py --config configs/imm_anchor_v8b_twostage.yaml'",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "133659",
+      "log_path": "~/runs/importance_margin_vla_compress/mvp_imm_v8b_twostage.log",
+      "submitted_at": "2026-05-16T04:18:10.534Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "lerobot/aloha_sim_insertion_scripted_image",
+      "data_count": 20000,
+      "model_name": "lerobot/smolvla_base + LoRA r=32 + ACIS two-stage (stage1: ACIS-only λ=1.0, stage2: LoRA+ACIS λ=0.5)",
+      "seed": 42,
+      "config_path": "configs/imm_anchor_v8b_twostage.yaml",
+      "checkpoint_path": "checkpoints/imm_two_stage/"
+    },
+    "notes": "Two-stage training 启动。Stage1 (0-10K): freeze backbone+LoRA, 只训 ACIS selector (λ=1.0)。Stage2 (10K-20K): 解冻 LoRA, 联合训练 ACIS+LoRA (λ=0.5)。基于 baseline_v5 checkpoint。"
+  },
+  "timestamp": "2026-05-16T04:18:46.336758+00:00",
+  "trigger": "update_registry"
+}

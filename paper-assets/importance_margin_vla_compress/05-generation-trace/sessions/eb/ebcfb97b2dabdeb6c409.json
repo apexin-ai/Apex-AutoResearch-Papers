@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_harvest_cqa1-full-audit-20260527_20260526T230842_result.json",
     "occurrence": 1,
-    "bytes": 1724,
-    "sha256": "f2a8597dca424f8c86be7e82cd8cc1355f2c44b506329d5a1a0e9f5391405f31"
+    "bytes": 1723,
+    "sha256": "cd69238ccd090f79ee9fe9418cfb8144fa75c36b9baaed776227d3c5aa663a45"
   },
   "statistics": {
     "messages": 1,

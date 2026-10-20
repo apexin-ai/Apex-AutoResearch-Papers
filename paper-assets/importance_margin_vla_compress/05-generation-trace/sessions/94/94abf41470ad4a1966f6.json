@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_v8-step2k-read-results_20260516T001442_result.json",
     "occurrence": 1,
-    "bytes": 2089,
-    "sha256": "1dbb2b67a0d1ec72a069e6e1b951b43ffc090652bba309607f0bd4a5180cffd2"
+    "bytes": 2088,
+    "sha256": "94529eac143dc2fcad38532bef83bb8f49046a04c1943719bef30d2b4d391833"
   },
   "statistics": {
     "messages": 1,

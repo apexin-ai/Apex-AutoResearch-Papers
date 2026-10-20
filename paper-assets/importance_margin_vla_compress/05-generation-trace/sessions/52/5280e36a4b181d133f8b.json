@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_westd41074_gpu_state_20260525T131646_result.json",
     "occurrence": 1,
-    "bytes": 1041,
-    "sha256": "ab88be97019447301f158b1550834ae884560c9ce98365bc1b95a0fe69d8ca97"
+    "bytes": 1040,
+    "sha256": "dab4147b1c202b0afbce8b09a516f41aceefe27116128ab9fcf021307c15773f"
   },
   "statistics": {
     "messages": 1,

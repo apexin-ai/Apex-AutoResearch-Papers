@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_m103_resubmit_westd41074_20260525T012507_result.json",
     "occurrence": 1,
-    "bytes": 629,
-    "sha256": "ee81dc8db7781ac167cd9b4903a2c5197ae9b6c4d35cbc024f7218c7ee323b4a"
+    "bytes": 628,
+    "sha256": "d3115bf45192969f49f2a3609c74771973c8272ee707c7a9dc4af87996730787"
   },
   "statistics": {
     "messages": 1,

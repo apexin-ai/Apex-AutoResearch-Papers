@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_m103_kill_westd38929_20260525T005915_result.json",
     "occurrence": 1,
-    "bytes": 972,
-    "sha256": "6eb6125b986f1b80e285dfb14e54045a7a2b6d74b585448bd63fecc079e9599f"
+    "bytes": 971,
+    "sha256": "8fbee72776c78a1a5e8a9f08e673fb7ab491b9aabfa4b260eb41d0232714345c"
   },
   "statistics": {
     "messages": 1,

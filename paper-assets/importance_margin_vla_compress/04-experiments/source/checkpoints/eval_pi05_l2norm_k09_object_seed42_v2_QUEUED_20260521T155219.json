@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_l2norm_k09_object_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:52:06.118Z",
+    "updated_at": "2026-05-21T15:52:19.126Z",
+    "hypothesis": "π0.5 L2norm k=0.9 seed42 v2; 填充 scaling curve k=1.0(98.2%) 到 k=0.7(55.0%) 之间。低 CV=0.055 linear projection 模型在 10% pruning 下 L2norm 表现",
+    "parent": "eval_pi05_l2norm_k07_object_seed42"
+  },
+  "timestamp": "2026-05-21T15:52:19.577480+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_urgent_westd-41074-collect-and-redeploy_20260525T224015_result.json",
     "occurrence": 1,
-    "bytes": 855,
-    "sha256": "ed9905af1e929cd359f24e23daa367083a3e6f2c3902358999ad8ceceb22e686"
+    "bytes": 854,
+    "sha256": "e44bb454fb5d8844ed694e39ce767e597e77f166987bcfb89ea9646b1e892f75"
   },
   "statistics": {
     "messages": 1,

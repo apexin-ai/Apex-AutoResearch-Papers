@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_imm-v7-step8k-killcheck_20260515T182245_result.json",
     "occurrence": 1,
-    "bytes": 122,
-    "sha256": "9e7599ebc9d2771ed74a586fd1ac5c1fea4abaade798490e40a1081959ec5c1f"
+    "bytes": 121,
+    "sha256": "4a59b647da3d7a877a0c71c54bf4e8a09d4de02d0c274480f73dc115b74fedba"
   },
   "statistics": {
     "messages": 1,

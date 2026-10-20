@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1_cuda2_attn_k095_s42_v2_20260528T004516_result.json",
     "occurrence": 1,
-    "bytes": 510,
-    "sha256": "63a9d87fc73a1064b87b456332b53aedc63b364fa75ebb916f91d3d6d0d3f721"
+    "bytes": 509,
+    "sha256": "01216368320fb6c3c6f3cc11e9446ad922ce6f5e4fc867f0f5819f266463e9a4"
   },
   "statistics": {
     "messages": 1,

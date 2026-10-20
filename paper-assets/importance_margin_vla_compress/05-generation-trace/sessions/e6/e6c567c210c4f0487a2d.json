@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_libero-dataset-v2_20260515T125532_result.json",
     "occurrence": 1,
-    "bytes": 1424,
-    "sha256": "f76880f100ce4637d405853b9f0a6a7ba0ccc982f72bf48b5e9f2cb11b689283"
+    "bytes": 1423,
+    "sha256": "c556116ffc46c5e32c33bf89b05bba80e71c1c37aeb321824cc3895626067487"
   },
   "statistics": {
     "messages": 1,

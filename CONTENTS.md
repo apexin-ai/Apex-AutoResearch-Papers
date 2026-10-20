@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **27 projects with manuscript PDFs** and **16 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **27 projects with manuscript PDFs** and **17 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -24,7 +24,7 @@ This catalogue covers **27 projects with manuscript PDFs** and **16 additional p
 | [gated_mfrm_judge_bias](paper-assets/gated_mfrm_judge_bias/README.md) | [PDF](paper-assets/gated_mfrm_judge_bias/01-manuscript/paper.pdf) | 211 | 329 | 973 | 78,434 |
 | [gen-depth-contamination](paper-assets/gen-depth-contamination/README.md) | [PDF](paper-assets/gen-depth-contamination/01-manuscript/paper.pdf) | 487 | 1,332 | 2,243 | 205,665 |
 | [gen-depth-fingerprint](paper-assets/gen-depth-fingerprint/README.md) | [PDF](paper-assets/gen-depth-fingerprint/01-manuscript/paper.pdf) | 650 | 1,256 | 1,964 | 183,002 |
-| [importance_margin_vla_compress](paper-assets/importance_margin_vla_compress/README.md) | [PDF](paper-assets/importance_margin_vla_compress/01-manuscript/paper.pdf) | 83 | 50 | 5,754 | 413,702 |
+| [importance_margin_vla_compress](paper-assets/importance_margin_vla_compress/README.md) | [PDF](paper-assets/importance_margin_vla_compress/01-manuscript/paper.pdf) | 1,165 | 5,903 | 5,754 | 413,702 |
 | [meta_brain_lora_routing](paper-assets/meta_brain_lora_routing/README.md) | [PDF](paper-assets/meta_brain_lora_routing/01-manuscript/paper.pdf) | 137 | 203 | 556 | 55,779 |
 | [ratekv](paper-assets/ratekv/README.md) | [PDF](paper-assets/ratekv/01-manuscript/paper.pdf) | 308 | 874 | 1,250 | 87,631 |
 | [recursive_gen_depth_est](paper-assets/recursive_gen_depth_est/README.md) | [PDF](paper-assets/recursive_gen_depth_est/01-manuscript/paper.pdf) | 86 | 80 | 1,779 | 166,550 |
@@ -33,6 +33,7 @@ This catalogue covers **27 projects with manuscript PDFs** and **16 additional p
 | [xling_calib_direction](paper-assets/xling_calib_direction/README.md) | [PDF](paper-assets/xling_calib_direction/01-manuscript/paper.pdf) | 121 | 201 | 290 | 27,260 |
 | [action_cond_info_bottleneck](paper-assets/action_cond_info_bottleneck/README.md) | No PDF in snapshot | 172 | 255 | 800 | 45,967 |
 | [be-idea-gen-0515](paper-assets/be-idea-gen-0515/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
+| [be-idea-gen-0515-2](paper-assets/be-idea-gen-0515-2/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [be-idea-gen-0515-3](paper-assets/be-idea-gen-0515-3/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [contrastive_graph_jailbreak_detect](paper-assets/contrastive_graph_jailbreak_detect/README.md) | No PDF in snapshot | 28 | 15 | 28 | 3,080 |
 | [crosscoder-behavioral-circuit-transplant](paper-assets/crosscoder-behavioral-circuit-transplant/README.md) | No PDF in snapshot | 13 | 33 | 20 | 1,393 |

@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval_pi05_l2norm_k07_long_seed46_strict_w38_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-28T07:46:24.306Z",
+    "updated_at": "2026-05-28T16:19:54.482Z",
+    "hypothesis": "π0.5 L2norm k=0.7 Long strict seed46 — v1 被 GPU OOM kill (w38:cuda:1 三进程共享)。重试部署到独占 GPU。5th seed for crossover point, 4-seed mean=63.5±1.57pp",
+    "parent": "eval_pi05_l2norm_k07_long_seed46_strict_w38",
+    "conclusion": "killed",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 46 --gpu 0\"",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "16710",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed46_strict_w38_v2.log",
+      "submitted_at": "2026-05-28T16:19:35.184Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-28T16:19:56.029735+00:00",
+  "trigger": "update_registry"
+}

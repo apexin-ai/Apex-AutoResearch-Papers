@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval_merge_k05",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T10:03:09.100Z",
+    "updated_at": "2026-05-17T10:34:55.451Z",
+    "hypothesis": "Token merging（将 pruned token 信息加权合并到保留 token）比 zero-masking 和 true-removal 更好地保留信息，可能恢复部分推理能力。如果 merge SR > 0%，说明信息丢失（而非序列长度变化）是 pruning 崩溃的主因",
+    "parent": "eval_true_removal_k05",
+    "spec": {
+      "command": "python eval_success_rate_libero.py --checkpoint checkpoints/libero_acis_stage1only_k07/stage1_done/checkpoint.pt --suite object --k_ratio 0.5 --pruning_method merge --merge_alpha 1.0 --num_episodes 50 --gpu 0",
+      "server": "westd-27271",
+      "gpu": "0",
+      "data_path": "libero_object",
+      "data_count": 500,
+      "model_name": "SmolVLA-ACIS-Stage1Only-k07",
+      "seed": 0,
+      "checkpoint_source": "libero_acis_stage1only_k07",
+      "eval_data": "LIBERO-Object (10 tasks x 50 episodes)"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "libero_object_sr": 0,
+      "episodes": 500,
+      "pruning_method": "merge",
+      "merge_alpha": 1,
+      "k_ratio": 0.5,
+      "pruning_type": "acis",
+      "wilson_ci_95": "[0.0%, 0.76%]"
+    },
+    "log_path": "eval_results/eval_merge_k05.log",
+    "checkpoint_path": "checkpoints/libero_acis_stage1only_k07/stage1_done/checkpoint.pt",
+    "completed_at": "2026-05-17T10:34:55.451Z"
+  },
+  "timestamp": "2026-05-17T10:34:55.547950+00:00",
+  "trigger": "update_registry"
+}

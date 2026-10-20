@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k05_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:46:53.768Z",
+    "updated_at": "2026-05-22T15:47:04.682Z",
+    "hypothesis": "π0.5 L2norm k=0.5 on LIBERO-Goal: 50% token removal is aggressive. Object k=0.5 L2norm showed significant degradation. Testing if Goal suite shows similar or worse cliff at this pruning ratio, providing the low-end data point for the Goal L2norm curve."
+  },
+  "timestamp": "2026-05-22T15:47:05.266433+00:00",
+  "trigger": "update_registry"
+}

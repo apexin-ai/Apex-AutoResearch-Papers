@@ -1,0 +1,39 @@
+{
+  "exp_id": "libero_fullft_seed0",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-16T15:59:20.198Z",
+    "updated_at": "2026-05-16T22:50:06.425Z",
+    "notes": "100K 完成 (2026-05-17 06:47 UTC). Full FT seed=0, 需要 SR eval 确认（预期与 seed=42 相近 ~33-42%）。",
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "completed_at": "2026-05-16T21:01:45.291Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "step 42450/100000 (42.5%), loss=0.026, lr=6.36e-05, sps=4.0 as of 2026-05-17 02:38"
+      }
+    },
+    "spec": {
+      "command": "python train.py --config configs/libero_full_ft.yaml",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "21461",
+      "data_path": "HuggingFaceVLA/libero",
+      "data_count": 273465,
+      "model_name": "smolvla_base_full_ft",
+      "seed": 0,
+      "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/checkpoints/libero_full_ft_seed0/step_099999/checkpoint.pt",
+      "log_path": "~/runs/importance_margin_vla_compress/libero_fullft_seed0.log"
+    },
+    "conclusion": "success",
+    "hypothesis": "SmolVLA full expert FT on LIBERO seed=0, 第二 seed 用于论文统计完整性，预期 SR 与 seed=42 相近 (~33-42%)"
+  },
+  "timestamp": "2026-05-16T22:50:06.491912+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval_pi05_l2norm_k07_long_seed46_strict_w41",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-28T09:18:22.975Z",
+    "updated_at": "2026-05-28T12:04:43.427Z",
+    "hypothesis": "π0.5 L2norm k=0.7 Long strict seed46 — crossover 区第5个 seed，v1 w38 失败后换 w41 重跑。s42=63.2%, s43=65.4%, s44=67.4%, s45=68.4%。收窄 L2norm k=0.7 error bar",
+    "spec": {
+      "command": "eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 46",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "923767",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k07_long_seed46_strict_w41.log",
+      "model_name": "pi0.5",
+      "seed": 46,
+      "data_path": "libero_10",
+      "data_count": 500,
+      "note": "Config confirmed correct: --keep_ratio 0.7. The k0.75 seed46 file is from a separate earlier experiment.",
+      "checkpoint_path": "N/A"
+    },
+    "notes": "配置确认正确: --keep_ratio 0.7, 日志首行确认 keep=0.7。w41上k0.75结果文件来自独立早期实验(SR=73.2%)。进度~86% (T8 ep30/50), 预计~12:30 UTC完成。",
+    "conclusion": "success",
+    "metrics": {
+      "SR_libero_10": 62.2,
+      "tasks_completed": 10,
+      "total_episodes": 500,
+      "successful_episodes": 311
+    },
+    "completed_at": "2026-05-28T12:04:43.427Z"
+  },
+  "timestamp": "2026-05-28T12:04:47.802538+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval_pi05_l2norm_k07_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T17:45:34.517Z",
+    "updated_at": "2026-05-22T20:34:03.285Z",
+    "hypothesis": "π0.5 L2norm k=0.7 on LIBERO-Long: 30% token removal on 520-step horizon. Object k=0.7=97.2%. Testing if Long tasks show more degradation with aggressive pruning.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0",
+      "server": "westd-38929",
+      "model_name": "pi0.5",
+      "seed": 42,
+      "data_count": 500,
+      "data_path": "libero_10"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.6,
+      "num_success": 300,
+      "num_episodes": 500,
+      "suite": "libero_10",
+      "seed": 42,
+      "keep_ratio": 0.7,
+      "prune_mode": "l2norm",
+      "elapsed_min": 152.3
+    },
+    "log_path": "eval_results/pi05_l2norm_k0.70_libero_10_seed42.json",
+    "checkpoint_path": "/root/autodl-tmp/pi05_libero_finetuned",
+    "completed_at": "2026-05-22T20:34:03.285Z"
+  },
+  "timestamp": "2026-05-22T20:34:03.898630+00:00",
+  "trigger": "update_registry"
+}

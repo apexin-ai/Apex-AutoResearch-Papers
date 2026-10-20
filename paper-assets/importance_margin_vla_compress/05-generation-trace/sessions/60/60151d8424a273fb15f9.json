@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_infra_dataset-search-only_20260515T134144_result.json",
     "occurrence": 1,
-    "bytes": 500,
-    "sha256": "a1578abf45e73fb9a4046a7b2e46154d5274e74614bb9aa6067f3a2262c4e571"
+    "bytes": 499,
+    "sha256": "1c95fb2039797a4e9707a042cded708eb77fe3737bad414454dd9476b82369f6"
   },
   "statistics": {
     "messages": 1,

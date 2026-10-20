@@ -1,0 +1,14 @@
+{
+  "exp_id": "random_k095_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T09:45:15.687Z",
+    "updated_at": "2026-05-22T09:45:15.688Z"
+  },
+  "timestamp": "2026-05-22T09:45:16.328916+00:00",
+  "trigger": "update_registry"
+}

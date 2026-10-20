@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_xvla_l2norm_k03_goal_seed42_v5",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T08:47:23.760Z",
+    "updated_at": "2026-05-24T08:47:38.861Z",
+    "hypothesis": "X-VLA L2norm k=0.3 Goal v5 — 用正确 domain_id=3 重跑，恢复被 domain_id=1 覆写的磁盘结果文件。v3/v4 registry 中 SR=37.6% (188/500) 是正确值，本次用 M087 修复后的文件名格式 (含 seed 后缀) 防止再次覆写。",
+    "parent": "eval_xvla_l2norm_k03_goal_seed42_v4"
+  },
+  "timestamp": "2026-05-24T08:47:39.850798+00:00",
+  "trigger": "update_registry"
+}

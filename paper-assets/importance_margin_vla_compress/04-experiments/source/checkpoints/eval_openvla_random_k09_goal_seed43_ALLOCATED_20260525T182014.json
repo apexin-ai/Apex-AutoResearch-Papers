@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_openvla_random_k09_goal_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T18:12:36.504Z",
+    "updated_at": "2026-05-25T18:20:12.998Z",
+    "hypothesis": "Random k=0.9 Goal seed43 — 验证 seed42 Random=79.6%>baseline(74.8%) 异常是否可复现。如果 seed43 也高于 baseline，说明 random pruning 在 Goal 上有 regularization effect",
+    "parent": "eval_openvla_random_k09_goal_seed42",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYTHONUNBUFFERED=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && CUDA_VISIBLE_DEVICES=1 python3 eval_openvla_l2norm_libero.py --mode random_prune --model_path /root/autodl-tmp/openvla-7b-finetuned-libero-goal --unnorm_key libero_goal --suite libero_goal --k_ratio 0.9 --num_episodes 50 --seed 43 --output results/openvla_random_prune_k09_goal_seed43.json > /tmp/eval_openvla_random_k09_goal_seed43.log 2>&1\"",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "556697",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_random_k09_goal_seed43.log",
+      "submitted_at": "2026-05-25T18:13:00.876Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-25T18:20:14.146879+00:00",
+  "trigger": "update_registry"
+}

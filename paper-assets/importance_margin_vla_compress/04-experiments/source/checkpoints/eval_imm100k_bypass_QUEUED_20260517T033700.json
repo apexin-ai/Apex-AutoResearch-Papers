@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_imm100k_bypass",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:35:41.235Z",
+    "updated_at": "2026-05-17T03:37:00.163Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python eval_success_rate_libero.py --checkpoint checkpoints/libero_imm_twostage_fullft/final/checkpoint.pt --config configs/libero_imm_twostage_fullft.yaml --suite libero_object --num_episodes 50 --gpu 0 --mode baseline --output eval_results/eval_imm100k_bypass_object.json\"",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "876813",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_imm100k_bypass.log",
+      "submitted_at": "2026-05-17T03:36:14.397Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "IMM Stage2 full-FT training preserves expert weight quality: bypass eval (baseline mode, no pruning) of the IMM 100K checkpoint should recover baseline SR ~44% if weights are intact, or show SR < 20% if Stage2 damaged expert weights."
+  },
+  "timestamp": "2026-05-17T03:37:00.264148+00:00",
+  "trigger": "update_registry"
+}

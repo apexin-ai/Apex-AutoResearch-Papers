@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill-w41-gpu3-redundant_20260527T173309_result.json",
     "occurrence": 1,
-    "bytes": 213,
-    "sha256": "afe31032198a3385eceb8f7858aba9fe5157bc0e5eaaed4524ab1ffab379f483"
+    "bytes": 212,
+    "sha256": "6245f79bb46df3fe69ee352de56886c97c43ccb4ee7fadaf8f60da8c0683ab1e"
   },
   "statistics": {
     "messages": 1,

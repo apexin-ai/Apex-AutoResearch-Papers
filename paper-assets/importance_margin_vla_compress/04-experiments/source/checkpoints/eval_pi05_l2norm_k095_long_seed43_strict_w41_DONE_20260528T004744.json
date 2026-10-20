@@ -1,0 +1,45 @@
+{
+  "exp_id": "eval_pi05_l2norm_k095_long_seed43_strict_w41",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T13:01:41.865Z",
+    "updated_at": "2026-05-28T00:47:40.646Z",
+    "hypothesis": "π0.5 L2norm k=0.95 Long strict seed43 — seed42=86.2% 标杆的 seed 复制，生成 error bar。L2norm k=0.95 是 importance margin 计算的另一端",
+    "parent": "eval_pi05_l2norm_k095_long_seed42_strict",
+    "server": "westd-41074",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-41074",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-27T23:49:44.052Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\""
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "383791",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k095_long_seed43_strict_w41.log",
+      "submitted_at": "2026-05-27T23:49:50.439Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "N/A",
+      "wall_clock_seconds": 3470.2,
+      "gpu_hours": 0.96
+    },
+    "pid": "383791",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k095_long_seed43_strict_w41.log",
+    "conclusion": "killed",
+    "completed_at": "2026-05-28T00:47:40.646Z"
+  },
+  "timestamp": "2026-05-28T00:47:44.645543+00:00",
+  "trigger": "update_registry"
+}

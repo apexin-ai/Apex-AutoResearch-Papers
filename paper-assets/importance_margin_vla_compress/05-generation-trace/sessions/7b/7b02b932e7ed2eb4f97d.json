@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analyze_eval_xvla_l2norm_k05_spatial_seed42_v2_20260524T034308_result.json",
     "occurrence": 1,
-    "bytes": 1047,
-    "sha256": "423d7cb19827a20448ba8e9c923a0b46b45ced27426f53ad7b29bb085bf78084"
+    "bytes": 1046,
+    "sha256": "b5cefa70f0df9bd61dd9b27dc8f4e561711c8e52ffdad7e4252f539dcda38c3f"
   },
   "statistics": {
     "messages": 1,

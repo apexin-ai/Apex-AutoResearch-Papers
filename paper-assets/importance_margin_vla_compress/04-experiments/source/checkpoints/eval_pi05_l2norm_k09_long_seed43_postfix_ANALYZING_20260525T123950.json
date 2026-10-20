@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval_pi05_l2norm_k09_long_seed43_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "conclusion": "failed",
+    "created_at": "2026-05-24T14:34:43.813Z",
+    "failure_reason": "缺少环境变量 TRANSFORMERS_OFFLINE/HF_HOME/HF_HUB_OFFLINE 导致启动崩溃。已用 v2 重部署",
+    "hypothesis": "π0.5 L2norm k=0.9 Long seed43 postfix — dual-seed 验证 cliff zone 最强数据点。seed42 L2norm k=0.9 Long postfix 已有数据，seed43 增强 cliff zone immunity claim 的统计可信度",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "command": "python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 43 --gpu 1",
+      "data_count": 500,
+      "data_path": "/root/autodl-tmp/importance_margin_vla_compress",
+      "eval_data": "libero_10 (Long) 10 tasks x 50 episodes",
+      "gpu": "cuda:0",
+      "model_name": "pi0.5",
+      "note": "BUG: no CUDA_VISIBLE_DEVICES set, --gpu 1 did not work, actually running on physical GPU 0",
+      "pid": "213747",
+      "seed": 43,
+      "server": "cqa1-33015"
+    },
+    "status": "ANALYZING",
+    "updated_at": "2026-05-25T12:39:48.327Z",
+    "reproduce": {
+      "finished_at": "2026-05-25T12:39:44.301Z"
+    }
+  },
+  "timestamp": "2026-05-25T12:39:50.476120+00:00",
+  "trigger": "update_registry"
+}

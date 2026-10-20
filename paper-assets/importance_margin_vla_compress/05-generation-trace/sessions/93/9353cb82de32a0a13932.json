@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_redeploy_westd-41074-fix_20260523T121630_result.json",
     "occurrence": 1,
-    "bytes": 532,
-    "sha256": "6cbe52472e71dc93208c11836c3a5060fa72997c882543de6b7f9dd33e3a6c95"
+    "bytes": 531,
+    "sha256": "ec6ea5b536a1d170df416aaf06969a4ac0867507aaed1846fd9c1eebf42fef32"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_pi05_random_k095_long_seed47_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-29T03:59:15.520Z",
+    "updated_at": "2026-05-29T04:27:12.550Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 47 --gpu 0\"",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "799465",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k095_long_seed47_cqa1.log",
+      "submitted_at": "2026-05-29T03:59:06.851Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "π0.5 Random k=0.95 Long seed47 — 6th seed bonus for revision. 5-seed mean=61.2±0.7pp"
+  },
+  "timestamp": "2026-05-29T04:27:14.341080+00:00",
+  "trigger": "update_registry"
+}

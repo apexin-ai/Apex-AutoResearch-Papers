@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval_xvla_l2norm_k09_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:00:17.701Z",
+    "updated_at": "2026-05-22T16:01:14.509Z",
+    "hypothesis": "X-VLA L2norm k=0.9 on LIBERO-Long: testing if 10% token removal degrades performance on long-horizon tasks. Baseline=92.5%.",
+    "spec": {
+      "command": "python eval_xvla_pruning_libero.py --suite libero_10 --prune_mode l2norm --keep_ratio 0.9 --seed 42",
+      "server": "westd-41074",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "X-VLA",
+      "seed": 42,
+      "checkpoint_path": "results/xvla_long_l2norm_k09.json",
+      "log_path": "results/xvla_long_l2norm_k09.json"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "success_rate": 0.275,
+      "num_episodes": 500,
+      "wilson_ci_95": [
+        0.218,
+        0.341
+      ],
+      "suite": "libero_10",
+      "seed": 42
+    },
+    "completed_at": "2026-05-22T16:01:14.509Z"
+  },
+  "timestamp": "2026-05-22T16:01:15.087231+00:00",
+  "trigger": "update_registry"
+}

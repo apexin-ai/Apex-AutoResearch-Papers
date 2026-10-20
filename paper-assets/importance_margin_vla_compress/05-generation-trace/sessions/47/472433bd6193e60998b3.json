@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_gpu_reconcile_westd_0527b_20260527T005836_result.json",
     "occurrence": 1,
-    "bytes": 1972,
-    "sha256": "d20598f97db805b490d6ff66b87aee2cf721d29d21a977f234af8b37a2403067"
+    "bytes": 1971,
+    "sha256": "6c21e066df300e793607a6b5d62f940fa182f27ae9697c8de4c42a75c1c43065"
   },
   "statistics": {
     "messages": 1,

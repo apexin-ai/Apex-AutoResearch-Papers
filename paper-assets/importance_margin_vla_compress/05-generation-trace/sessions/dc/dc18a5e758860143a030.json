@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_xvla-l2norm-cv_20260520T102821_result.json",
     "occurrence": 1,
-    "bytes": 1337,
-    "sha256": "5f47a8f5e110b0eee3b68d04e1330844991935168bcae3ef615f040e4619675e"
+    "bytes": 1336,
+    "sha256": "e7bdb99b0d34dcd14495bef002d823e57313e2e2e0877417982f52366b2758b8"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_zero_mask_ablation_20260525T120536_result.json",
     "occurrence": 1,
-    "bytes": 1259,
-    "sha256": "0ba304f16b54f0a2c8e64f5ce7a1301f11f5984f797526aa1d02a75d8529a6d6"
+    "bytes": 1258,
+    "sha256": "48b025c869b2c2929f84cc058202c858fa015b7fcf20b8be654a06f0d04b5de0"
   },
   "statistics": {
     "messages": 1,

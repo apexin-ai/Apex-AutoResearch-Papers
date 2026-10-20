@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_eval_pi05_l2norm_k09_long_seed42_strict_cqa1_20260527T141454_result.json",
     "occurrence": 1,
-    "bytes": 1308,
-    "sha256": "5fb8b5d9abd4e86197caf4884d2b3bd190dac011b4405c486d78cc2c9df5e855"
+    "bytes": 1307,
+    "sha256": "1ce2073a4a4174dfd3ec2d153db8569660362b4b4cba281ddc61460fbd4d7cae"
   },
   "statistics": {
     "messages": 1,

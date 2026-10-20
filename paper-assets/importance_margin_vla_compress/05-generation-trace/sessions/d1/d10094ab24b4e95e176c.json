@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd_full_status_readonly_20260520T012546_result.json",
     "occurrence": 1,
-    "bytes": 803,
-    "sha256": "a67b912801364f14640204647bf9c82c14ff8a3b3a8a8b3410ba401b47528e6e"
+    "bytes": 802,
+    "sha256": "a5e0e7df508950a2f83f643c672c0737691763a955b3b1be1b937bd4f5bdee68"
   },
   "statistics": {
     "messages": 1,

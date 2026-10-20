@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_importance_visualization_v2_20260524T160302_result.json",
     "occurrence": 1,
-    "bytes": 1231,
-    "sha256": "041de1ce1a4aafa0db30938bd7ade809627e141202a5df96eec70544a3523175"
+    "bytes": 1230,
+    "sha256": "084ed8689aee4a5101e358fea944d40352a932004ca3f747fe67a71891ae3524"
   },
   "statistics": {
     "messages": 1,

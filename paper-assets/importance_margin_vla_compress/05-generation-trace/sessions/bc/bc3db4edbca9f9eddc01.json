@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_m64-train-exit-diagnosis_20260521T023947_result.json",
     "occurrence": 1,
-    "bytes": 837,
-    "sha256": "35f51e49d81038b13fdc3fd2766cc9cd25110666cf68b073494df296140ac5e3"
+    "bytes": 836,
+    "sha256": "f09cdc79fa4b0247c3d864dc4260069cc24310185e722b26a8243dc10f4f46fa"
   },
   "statistics": {
     "messages": 1,

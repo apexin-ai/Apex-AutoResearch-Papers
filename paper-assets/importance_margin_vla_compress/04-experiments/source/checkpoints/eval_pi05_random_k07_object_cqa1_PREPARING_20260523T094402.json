@@ -1,0 +1,34 @@
+{
+  "exp_id": "eval_pi05_random_k07_object_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:44:00.325Z",
+    "updated_at": "2026-05-23T09:44:02.201Z",
+    "metrics": {
+      "success_rate": 78.6,
+      "total_successes": 393,
+      "total_episodes": 500,
+      "per_task_sr": {
+        "T0": null,
+        "T1": null,
+        "T2": null,
+        "T3": null,
+        "T4": 86,
+        "T5": 48,
+        "T6": 88,
+        "T7": 70,
+        "T8": 86,
+        "T9": 80
+      },
+      "elapsed_min": 123,
+      "source": "cqa1-33015 /tmp/pi05_random_k070_object.log"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T09:44:02.924961+00:00",
+  "trigger": "update_registry"
+}

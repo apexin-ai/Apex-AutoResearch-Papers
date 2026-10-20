@@ -1,0 +1,51 @@
+{
+  "exp_id": "eval_pi05_random_k05_spatial_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T19:04:45.852Z",
+    "updated_at": "2026-05-21T20:49:16.497Z",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_spatial_seed42.json",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k05_spatial_seed42.log",
+      "wall_clock_seconds": 5581,
+      "gpu_hours": 1.55
+    },
+    "hypothesis": "π0.5 random k=0.5 on LIBERO-Spatial seed42, 与 L2norm k=0.5 对比验证 cross-suite 下 method preference 是否一致",
+    "reproduce": {
+      "finished_at": "2026-05-21T20:46:53.112Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T20:46:59.855517+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 71.6,
+      "total_successes": 358,
+      "total_episodes": 500,
+      "per_task": {
+        "T0_bowl_between_plate_ramekin": 88,
+        "T1_bowl_next_to_ramekin": 82,
+        "T2_bowl_from_table_center": 88,
+        "T3_bowl_on_cookie_box": 52,
+        "T4_bowl_in_top_drawer": 44,
+        "T5_bowl_on_ramekin": 38,
+        "T6_bowl_next_to_cookie_box": 84,
+        "T7_bowl_on_stove": 84,
+        "T8_bowl_next_to_plate": 80,
+        "T9_bowl_on_wooden_cabinet": 76
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T20:49:16.945482+00:00",
+  "trigger": "update_registry"
+}

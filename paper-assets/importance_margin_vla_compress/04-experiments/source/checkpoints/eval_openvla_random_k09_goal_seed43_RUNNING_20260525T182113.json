@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_openvla_random_k09_goal_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T18:12:36.504Z",
+    "updated_at": "2026-05-25T18:21:11.967Z",
+    "hypothesis": "Random k=0.9 Goal seed43 — 验证 seed42 Random=79.6%>baseline(74.8%) 异常是否可复现。如果 seed43 也高于 baseline，说明 random pruning 在 Goal 上有 regularization effect",
+    "parent": "eval_openvla_random_k09_goal_seed42",
+    "spec": {
+      "command": "python3 eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_goal --num_episodes 50 --seed 43",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "556697",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_random_k09_goal_seed43.log",
+      "submitted_at": "2026-05-25T18:13:00.876Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "model_name": "openvla-7b-finetuned-libero-goal",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/openvla-7b-finetuned-libero-goal",
+      "eval_data": "libero_goal"
+    }
+  },
+  "timestamp": "2026-05-25T18:21:13.112005+00:00",
+  "trigger": "update_registry"
+}

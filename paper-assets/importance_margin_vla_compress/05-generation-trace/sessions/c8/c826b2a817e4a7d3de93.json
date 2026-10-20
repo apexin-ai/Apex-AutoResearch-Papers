@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_s47_remaining_gpus_20260529T022240_result.json",
     "occurrence": 1,
-    "bytes": 522,
-    "sha256": "d787e125de3b11451d3e074db1cdc531f3effb0448436906cd6357f962a5a1eb"
+    "bytes": 521,
+    "sha256": "4f896bb393607d5d12aefb74e004d9cd3d21d8481d08b61d40701d980f85ad38"
   },
   "statistics": {
     "messages": 1,

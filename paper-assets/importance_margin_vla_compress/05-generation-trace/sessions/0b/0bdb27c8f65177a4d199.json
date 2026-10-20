@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd27271_goal_cliff_20260526T091847_result.json",
     "occurrence": 1,
-    "bytes": 518,
-    "sha256": "f15646b0bec4348056a16c800d6bcbbb03bca0abce1da7311fc013fb38d80575"
+    "bytes": 517,
+    "sha256": "706c2ed1ad0cd1168d13daff2699aeae0e2dd92c8f759bfabb15ae02c1478fa1"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_stage1only_k09_20260517T081048_result.json",
     "occurrence": 1,
-    "bytes": 897,
-    "sha256": "0eed3968946f6ba431ed849c4c1b0fa6cde28557647eae6186f08bdc81f859cd"
+    "bytes": 896,
+    "sha256": "c05b52c8d7f65a3f3bb02c09bac89c2c306240b83ba02188b6286f96ce3d883b"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill_c5v2_20260520T003141_result.json",
     "occurrence": 1,
-    "bytes": 270,
-    "sha256": "cdc9bbe8ce6d3f85a477ade4864034fcb1208c514d90abf33bb3c5bb6b92ddce"
+    "bytes": 269,
+    "sha256": "34c51109c5d4186b8eab4b8a3194e162028ab686d8ac1cc48808df37a3b6d00c"
   },
   "statistics": {
     "messages": 1,

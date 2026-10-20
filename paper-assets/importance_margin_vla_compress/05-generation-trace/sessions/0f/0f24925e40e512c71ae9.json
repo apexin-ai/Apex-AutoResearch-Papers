@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_inspect_cqa1_westd27_retry_20260526T022222_result.json",
     "occurrence": 1,
-    "bytes": 500,
-    "sha256": "77e58d02ac92522a26a499f87f37d3d77896860e9f7507ead7a3ad0be5a7978d"
+    "bytes": 499,
+    "sha256": "6eb9a53f377c15669584bd6907da34582110a4acd8501b3750fcc1f1fbb5abd6"
   },
   "statistics": {
     "messages": 1,

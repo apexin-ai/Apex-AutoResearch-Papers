@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_harvest_k095_spatial_v4_20260522T044452_result.json",
     "occurrence": 1,
-    "bytes": 375,
-    "sha256": "0289b1b895ac6895b1548b40cd3381864a0a16d2f30f355351ad881270dadbb0"
+    "bytes": 374,
+    "sha256": "4533b7930e45d3592505d0e2072a579f18af6892d60a8fb5354b443d29d17f6b"
   },
   "statistics": {
     "messages": 1,

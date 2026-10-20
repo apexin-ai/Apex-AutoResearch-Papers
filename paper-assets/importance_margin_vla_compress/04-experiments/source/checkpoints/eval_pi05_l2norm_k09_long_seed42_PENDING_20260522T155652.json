@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k09_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:56:35.737Z",
+    "updated_at": "2026-05-22T15:56:52.284Z",
+    "hypothesis": "π0.5 L2norm k=0.9 on LIBERO-Long (libero_10): Long suite has 520-step horizon. Testing if 10% L2norm pruning preserves performance on long-horizon tasks. Object k=0.9 L2norm=98.0%, expecting similar resilience on Long."
+  },
+  "timestamp": "2026-05-22T15:56:52.906325+00:00",
+  "trigger": "update_registry"
+}

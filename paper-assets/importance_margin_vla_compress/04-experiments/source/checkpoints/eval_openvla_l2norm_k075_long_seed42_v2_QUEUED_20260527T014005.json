@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_openvla_l2norm_k075_long_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T01:39:50.975Z",
+    "updated_at": "2026-05-27T01:40:03.018Z",
+    "hypothesis": "OpenVLA L2norm k=0.75 Long seed42 v2 — v1 因 8h 超时失败(EXIT_CODE=124, 8/10 tasks 完成)。增加 timeout 到 12h 重跑。Long suite L2norm cliff curve 关键中间点：k=0.85=38.8%, k=0.7=31.2%",
+    "parent": "eval_openvla_l2norm_k075_long_seed42"
+  },
+  "timestamp": "2026-05-27T01:40:05.302307+00:00",
+  "trigger": "update_registry"
+}

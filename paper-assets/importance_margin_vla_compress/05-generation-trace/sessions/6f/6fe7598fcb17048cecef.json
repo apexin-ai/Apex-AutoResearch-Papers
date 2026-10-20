@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_harvest_eval_xvla_random_k05_spatial_seed43_20260524T012028_result.json",
     "occurrence": 1,
-    "bytes": 961,
-    "sha256": "c6745592205df7941426eabb92385a0df6c1403cd08ba13aa6ab4892bdf91118"
+    "bytes": 960,
+    "sha256": "0101b85194f780cb0f2215612c2a9f9a4e3a77ca8c3c7f0f33e0470ba645d733"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_xvla-add-mode-param_20260521T022105_result.json",
     "occurrence": 1,
-    "bytes": 578,
-    "sha256": "18c3931584305388a83e92c76c7c798e9a7557917e71c6835bf2a40159bd7c19"
+    "bytes": 577,
+    "sha256": "f3f8badf42e6cb489384f365fb5cac2089689532bb76871dbaf979e0c70b4f90"
   },
   "statistics": {
     "messages": 1,

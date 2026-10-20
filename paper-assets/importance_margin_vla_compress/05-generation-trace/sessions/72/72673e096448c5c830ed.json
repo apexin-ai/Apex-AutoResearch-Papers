@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd41074-gpu1-pi05-l2norm-k07-seed43-and-collect_20260521T125933_result.json",
     "occurrence": 1,
-    "bytes": 901,
-    "sha256": "37a17ed28c7acfa2e83cc8876518d58d1a36c0b812ad46a456bb8870543e53c8"
+    "bytes": 900,
+    "sha256": "b4b031a129d83acfe777c7b41fb76b96999a9de32092d6c397444e43e21a08f4"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_debug_imm_eval_same_sr_bug_20260517T010135_result.json",
     "occurrence": 1,
-    "bytes": 2349,
-    "sha256": "76cf75db9917e6fd3aee6a9f87f0c5d85dbd34bfe2c2598ee33a58bd7549160d"
+    "bytes": 2348,
+    "sha256": "10bf283ac98c1536d7f8c3b7993911aabefb340cb497756dccf18ee693f78abb"
   },
   "statistics": {
     "messages": 1,

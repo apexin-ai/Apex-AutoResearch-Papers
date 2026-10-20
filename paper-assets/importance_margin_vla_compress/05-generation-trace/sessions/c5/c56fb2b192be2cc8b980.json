@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_harvest_eval_pi05_random_k07_object_seed42_v2_20260523T225134_result.json",
     "occurrence": 1,
-    "bytes": 814,
-    "sha256": "7099807113333ed6db395e17db08789187cc69da65afba093164baeded396534"
+    "bytes": 813,
+    "sha256": "772c70222e434c61b5dc42a003f2d308ad75274c46aa98b31c9d98234698dd72"
   },
   "statistics": {
     "messages": 1,

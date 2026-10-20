@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_infra_imm-eval-dryrun-step5k_20260515T165956_result.json",
     "occurrence": 1,
-    "bytes": 1696,
-    "sha256": "6a65fea4558f8fb3c013eef1ddd3b22e0c15095e513fc09335918047ecc1a1d2"
+    "bytes": 1695,
+    "sha256": "ec6c488ac448770b9030817b387df4b1733073460021f5a842d536c579ddc1da"
   },
   "statistics": {
     "messages": 1,

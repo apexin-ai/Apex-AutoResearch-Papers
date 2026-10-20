@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_smolvla_official_baseline_spatial_20260519T123436_result.json",
     "occurrence": 1,
-    "bytes": 747,
-    "sha256": "8efb91452a3d83890a9592c812e47164e5d52265ff830ec3753cde66d7cade57"
+    "bytes": 746,
+    "sha256": "6b0c93b751e4e0bda2c2d923920e26aecdc52fe22517ed1ccf38ea5d002f3142"
   },
   "statistics": {
     "messages": 1,

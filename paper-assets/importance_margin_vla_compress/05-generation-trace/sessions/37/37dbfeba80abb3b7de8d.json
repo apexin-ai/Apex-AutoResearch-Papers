@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_mlp_adapter_control_20260519T115543_result.json",
     "occurrence": 1,
-    "bytes": 733,
-    "sha256": "9279c4f2af716408ed084b6937bf3bff51d38f6f76cd91900230e3d60b8941b7"
+    "bytes": 732,
+    "sha256": "ce31091dabf12c48fddfd60ec7cb0281ecdb47da67905f16d3115c6d4eab9a8d"
   },
   "statistics": {
     "messages": 1,

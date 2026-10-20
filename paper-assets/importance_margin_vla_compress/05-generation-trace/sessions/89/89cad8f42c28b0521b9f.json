@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check-westd27271-gpu1-m32_20260520T200605_result.json",
     "occurrence": 1,
-    "bytes": 509,
-    "sha256": "c8b2c31466b0ea8e7d4cd911921cc2ca110950c6e3e2937069e32e3c27844e4c"
+    "bytes": 508,
+    "sha256": "750e95f36d31195236b6e059156084025900eb9af9e4c5de3ef4f2df5ce974f8"
   },
   "statistics": {
     "messages": 1,

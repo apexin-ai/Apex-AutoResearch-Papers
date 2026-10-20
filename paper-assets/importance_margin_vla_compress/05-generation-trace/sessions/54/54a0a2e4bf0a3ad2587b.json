@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_gpu-check_idle-audit-20260526_20260526T163308_result.json",
     "occurrence": 1,
-    "bytes": 1357,
-    "sha256": "b0f65ed972380c624a2b4961cf58c0dfed86e9f3521ad5e4bcf4015ff38c6d8b"
+    "bytes": 1356,
+    "sha256": "9fdb9d42949d1f5720446c0f97a556f423e16f59cb1a375348d542f3f26a96f1"
   },
   "statistics": {
     "messages": 1,

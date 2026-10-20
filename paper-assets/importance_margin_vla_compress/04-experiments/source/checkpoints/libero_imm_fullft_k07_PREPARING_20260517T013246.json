@@ -1,0 +1,22 @@
+{
+  "exp_id": "libero_imm_fullft_k07",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-16T23:32:00.560Z",
+    "updated_at": "2026-05-17T01:32:46.853Z",
+    "hypothesis": "IMM two-stage k_ratio=0.7 ablation (保留 70% tokens, pruning 30%)。对比 k=0.5 验证 compression-performance tradeoff。Base: Full FT seed=42 100K",
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "completed_at": "2026-05-17T01:27:51.384Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-17T01:32:46.920505+00:00",
+  "trigger": "update_registry"
+}

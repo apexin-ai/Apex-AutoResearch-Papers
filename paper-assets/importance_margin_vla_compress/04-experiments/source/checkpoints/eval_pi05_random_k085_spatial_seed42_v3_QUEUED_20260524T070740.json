@@ -1,0 +1,47 @@
+{
+  "exp_id": "eval_pi05_random_k085_spatial_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T16:57:50.554Z",
+    "updated_at": "2026-05-24T07:07:39.359Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 0\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "525009",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k085_spatial_seed42_v3.log",
+      "submitted_at": "2026-05-23T16:57:49.379Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "π0.5 Random k=0.85 Spatial seed42 v3 — CPU RNG 修复后重跑 Spatial random disruption。v2 SR=60.8%，验证 post-fix 结果一致性。Spatial baseline=78%",
+    "metrics": {
+      "overall_sr": 60.2,
+      "total_success": 301,
+      "total_episodes": 500,
+      "elapsed_min": 86.9,
+      "per_task_sr": {
+        "T0_between_plate_ramekin": 78,
+        "T1_next_to_ramekin": 62,
+        "T2_table_center": 92,
+        "T3_on_cookie_box": 14,
+        "T4_top_drawer": 60,
+        "T5_on_ramekin": 36,
+        "T6_next_to_cookie_box": 44,
+        "T7_on_stove": 82,
+        "T8_next_to_plate": 86,
+        "T9_wooden_cabinet": 48
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/pi05_libero_finetuned"
+  },
+  "timestamp": "2026-05-24T07:07:40.340115+00:00",
+  "trigger": "update_registry"
+}

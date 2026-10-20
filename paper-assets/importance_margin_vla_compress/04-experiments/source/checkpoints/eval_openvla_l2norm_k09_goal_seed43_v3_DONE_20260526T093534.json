@@ -1,0 +1,60 @@
+{
+  "exp_id": "eval_openvla_l2norm_k09_goal_seed43_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T04:01:17.047Z",
+    "updated_at": "2026-05-26T09:35:32.307Z",
+    "hypothesis": "OpenVLA L2norm k=0.9 Goal seed43 v3 — cross-seed验证。seed42 L2norm Goal=75.6%。v2失败（错误模型+SIGTERM），v3用正确model_path重跑",
+    "parent": "eval_openvla_l2norm_k09_goal_seed42",
+    "spec": {
+      "command": "eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.9 --suite libero_goal --seed 43",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "11190",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_l2norm_k09_goal_seed43_v3.log",
+      "submitted_at": "2026-05-26T04:02:13.434Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "model_name": "openvla-7b-finetuned-libero-goal",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/openvla-7b-finetuned-libero-goal",
+      "eval_data": "libero_goal",
+      "wall_clock_seconds": 19998.9,
+      "gpu_hours": 5.56
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 0.752,
+      "total_successes": 376,
+      "total_episodes": 500,
+      "per_task_sr": {
+        "T0_open_middle_drawer": 0.66,
+        "T1_put_bowl_on_stove": 0.92,
+        "T2_put_wine_bottle_on_cabinet": 0.82,
+        "T3_open_drawer_put_bowl": 0.38,
+        "T4_put_bowl_on_cabinet": 0.94,
+        "T5_push_plate_to_stove": 0.72,
+        "T6_put_cream_cheese_in_bowl": 0.74,
+        "T7_turn_on_stove": 0.94,
+        "T8_put_bowl_on_plate": 0.8,
+        "T9_put_wine_bottle_on_rack": 0.6
+      },
+      "elapsed_minutes": 210.5,
+      "seed": 43
+    },
+    "checkpoint_path": "N/A (eval only)",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_l2norm_k09_goal_seed43_v3.log",
+    "completed_at": "2026-05-26T09:35:32.307Z"
+  },
+  "timestamp": "2026-05-26T09:35:34.598270+00:00",
+  "trigger": "update_registry"
+}

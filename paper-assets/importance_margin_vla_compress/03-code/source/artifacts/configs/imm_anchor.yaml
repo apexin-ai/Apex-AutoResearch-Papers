@@ -1,0 +1,25 @@
+# IMM anchor config: delta=0.3, lambda=0.5
+# L_total = L_action + lambda * L_margin with ACIS scoring + token selection.
+
+_base_: baseline.yaml
+
+imm:
+  enabled: true
+  delta: 0.3              # hinge margin threshold
+  lambda_margin: 0.5      # margin loss weight (after warmup)
+  warmup_steps: 3000      # 10% of total_steps — linear lambda warmup
+  temperature: 0.5        # SoftTopK temperature (lower = sharper mask)
+  soft_topk_method: "sigmoid"  # sigmoid | sinkhorn | implicit_diff
+  k_ratio: 0.5            # retain 50% of visual tokens
+
+acis:
+  visual_dim: 960          # SigLIP connector output dim
+  action_dim: 720          # expert hidden dim
+  num_heads: 8             # cross-attention heads
+  dropout: 0.0             # attention dropout
+  # spectral_norm applied by default in ACIS for Lipschitz control
+
+training:
+  output_dir: "checkpoints/imm_anchor"
+  eval_every: 999999           # D008: skip in-training eval, use standalone evaluate.py
+  save_every: 2000             # more frequent checkpoints for early validation

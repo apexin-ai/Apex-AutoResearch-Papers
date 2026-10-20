@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_openvla-random-k05-seed42_20260521T221747_result.json",
     "occurrence": 1,
-    "bytes": 525,
-    "sha256": "237fbeab3efbdbb131a5f6d4c91c558c7818c30ee41d929b31216c0e19f70eb8"
+    "bytes": 524,
+    "sha256": "ee973656a0b5ef9c059cf0014b63cb36ec6d131f5576888f9b1ec14dc8f1a134"
   },
   "statistics": {
     "messages": 1,

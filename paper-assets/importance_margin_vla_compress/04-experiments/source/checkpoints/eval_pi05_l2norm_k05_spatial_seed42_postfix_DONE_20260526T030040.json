@@ -1,0 +1,50 @@
+{
+  "exp_id": "eval_pi05_l2norm_k05_spatial_seed42_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "checkpoint_path": "/root/autodl-tmp/pi05_libero_finetuned",
+    "completed_at": "2026-05-24T09:56:50.545Z",
+    "conclusion": "success",
+    "created_at": "2026-05-24T07:11:58.404Z",
+    "hypothesis": "π0.5 L2norm k=0.5 Spatial seed42 post-fix — L2norm Spatial 曲线缺口。L2norm k=0.85 Spatial=88.4%。验证 L2norm importance scoring 在 50% keep ratio 下的 Spatial 表现",
+    "log_path": "/tmp/eval_pi05_l2norm_k05_spatial_postfix.log",
+    "metrics": {
+      "elapsed_min": 149.18,
+      "overall_sr": 0.574,
+      "per_task_sr": {
+        "pick_up_black_bowl_between_plate_and_ramekin": 0.8,
+        "pick_up_black_bowl_from_table_center": 0.9,
+        "pick_up_black_bowl_in_top_drawer": 0.32,
+        "pick_up_black_bowl_next_to_cookie_box": 0.28,
+        "pick_up_black_bowl_next_to_plate": 0.74,
+        "pick_up_black_bowl_next_to_ramekin": 0.9,
+        "pick_up_black_bowl_on_cookie_box": 0.26,
+        "pick_up_black_bowl_on_ramekin": 0.34,
+        "pick_up_black_bowl_on_stove": 0.76,
+        "pick_up_black_bowl_on_wooden_cabinet": 0.44
+      },
+      "total_episodes": 500,
+      "total_successes": 287
+    },
+    "retry_count": 0,
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 0",
+      "data_count": 500,
+      "data_path": "libero_spatial",
+      "gpu_ids": [
+        3
+      ],
+      "log_path": "/tmp/eval_pi05_l2norm_k05_spatial_postfix.log",
+      "model_name": "pi05_libero_finetuned",
+      "pid": "979181",
+      "seed": 42,
+      "server": "cqa1-33015"
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-26T03:00:38.991Z"
+  },
+  "timestamp": "2026-05-26T03:00:40.128625+00:00",
+  "trigger": "update_registry"
+}

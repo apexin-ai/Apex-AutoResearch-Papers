@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_eval_pi05_l2norm_k095_long_strict_20260527T095613_result.json",
     "occurrence": 1,
-    "bytes": 345,
-    "sha256": "f79c931420bcf5e948d416902a7d0a76ed395b52d05dc9ade5167d08b8fec773"
+    "bytes": 344,
+    "sha256": "c3a8435b8fc4753c82d67ca81c2131293d4b7117522f0e182428bc84adc413da"
   },
   "statistics": {
     "messages": 1,

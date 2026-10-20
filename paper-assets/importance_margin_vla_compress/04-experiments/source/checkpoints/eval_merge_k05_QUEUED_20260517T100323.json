@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_merge_k05",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T10:03:09.100Z",
+    "updated_at": "2026-05-17T10:03:23.556Z",
+    "hypothesis": "Token merging（将 pruned token 信息加权合并到保留 token）比 zero-masking 和 true-removal 更好地保留信息，可能恢复部分推理能力。如果 merge SR > 0%，说明信息丢失（而非序列长度变化）是 pruning 崩溃的主因",
+    "parent": "eval_true_removal_k05"
+  },
+  "timestamp": "2026-05-17T10:03:23.670075+00:00",
+  "trigger": "update_registry"
+}

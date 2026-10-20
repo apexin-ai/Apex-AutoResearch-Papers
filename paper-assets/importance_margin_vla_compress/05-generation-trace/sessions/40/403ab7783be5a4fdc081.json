@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-gpu-fix-deploy_20260522T021517_result.json",
     "occurrence": 1,
-    "bytes": 1370,
-    "sha256": "5cb4b82f027e721cfa6421e98f34ecf7dc695da7b69306d7fd13d0e9a88d34f6"
+    "bytes": 1369,
+    "sha256": "c182f791d51f923fc21b0d5694fd77072468c01c9597c3a1f1a5360107f736a2"
   },
   "statistics": {
     "messages": 1,

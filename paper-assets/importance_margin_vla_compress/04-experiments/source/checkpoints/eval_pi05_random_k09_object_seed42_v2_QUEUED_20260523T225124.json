@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_pi05_random_k09_object_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-21T15:52:07.928Z",
+    "updated_at": "2026-05-23T22:51:23.816Z",
+    "hypothesis": "π0.5 Random k=0.9 Object post-fix — pre-fix 值可能受 CPU RNG bug 影响，需确认 post-fix 基线",
+    "parent": "eval_pi05_random_k07_object_seed43",
+    "completed_at": "2026-05-21T17:48:20.079Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "success_rate": 12,
+          "total_episodes": 500,
+          "seed": 42,
+          "suspect": false,
+          "suspect_reason": "cleared - seed43=9.6% confirms result is real, not bug"
+        }
+      }
+    }
+  },
+  "timestamp": "2026-05-23T22:51:24.697628+00:00",
+  "trigger": "update_registry"
+}

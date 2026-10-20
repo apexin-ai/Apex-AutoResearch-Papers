@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_p0-m64-m96-fresh-diagnosis_20260520T045633_result.json",
     "occurrence": 1,
-    "bytes": 1474,
-    "sha256": "be699789b35ed6facec75b56b43d26faa082d1eee5c8aaddccfcfac11e5ef72f"
+    "bytes": 1473,
+    "sha256": "2c0129bda33f9f84a7d7badba78baef72caee7fb3dae4435f9b7b758ffc77a8d"
   },
   "statistics": {
     "messages": 1,

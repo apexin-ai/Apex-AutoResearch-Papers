@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill_geometric_prior_all_20260517T164946_result.json",
     "occurrence": 1,
-    "bytes": 170,
-    "sha256": "348b3cb2b1bb423da23019f18c0db5e620f6eb3685a84b52fc1e6bce50bf6f0d"
+    "bytes": 169,
+    "sha256": "e7f29902a8debfc26b80ee59f2e81fe03a54f43fa1675efb1ed0cb500dd1208e"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval_pi05_random_k09_goal_seed42_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "conclusion": "killed",
+    "created_at": "2026-05-23T11:52:00.832Z",
+    "hypothesis": "π0.5 Random k=0.9 Goal seed42: Object cliff 在 k~0.925。Goal suite tolerance 更高（k=0.95=84%, k=0.3=51.8%），k=0.9 测试 Goal 上 cliff 位置是否比 Object 更低。",
+    "metrics": {
+      "keep_ratio": 0.9,
+      "prune_mode": "random",
+      "seed": 42,
+      "success_rate": 84,
+      "successes": 420,
+      "suite": "libero_goal",
+      "total": 500
+    },
+    "retry_count": 0,
+    "spec": {
+      "command": "python -u eval_pi05_pruning_libero.py --suite libero_goal --prune_mode random --keep_ratio 0.9 --seed 42 --gpu 0 --n_episodes 50",
+      "data_count": 500,
+      "data_path": "libero_goal",
+      "gpu": [
+        "cuda:0"
+      ],
+      "model_name": "pi0.5",
+      "pid": "593031",
+      "seed": 42,
+      "server": "cqa1-33015"
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-29T07:06:12.783Z",
+    "completed_at": "2026-05-29T07:06:12.783Z"
+  },
+  "timestamp": "2026-05-29T07:06:15.466451+00:00",
+  "trigger": "update_registry"
+}

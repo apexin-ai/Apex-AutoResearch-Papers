@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_fix_twostage_fullft_support_20260516T193329_result.json",
     "occurrence": 1,
-    "bytes": 1614,
-    "sha256": "be8093b8da53686d9204a37886de7feb8a736d42b2b7e533e764a76ba32dbe19"
+    "bytes": 1613,
+    "sha256": "11ed2f37d24b2245d9af1a8a8f8d67b1eb44166a4c0838082916fac7b3603d36"
   },
   "statistics": {
     "messages": 1,

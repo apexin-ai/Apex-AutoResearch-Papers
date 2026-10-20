@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd_kill_eval_20260517T080625_result.json",
     "occurrence": 1,
-    "bytes": 84,
-    "sha256": "c617b820e710faa74087e9402c089627e006bc5a672b5870e30c884c3d776998"
+    "bytes": 83,
+    "sha256": "0d8d07397afc064fcb3a089a1e429de513629ba8af6db2417d43e68a8c398a1e"
   },
   "statistics": {
     "messages": 1,

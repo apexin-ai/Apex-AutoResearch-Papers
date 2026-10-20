@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_fig2_architecture_paperbanana_v3_20260528T155811_result.json",
     "occurrence": 1,
-    "bytes": 494,
-    "sha256": "bc3789c0a1bba70556371c8784cd7c7e1c599ca2fce4fc38988257e33f72862d"
+    "bytes": 493,
+    "sha256": "b4d2adc98a3bcd9e5e541fb125b08f1a18b53f950a157fbc98c62373105b54ff"
   },
   "statistics": {
     "messages": 1,

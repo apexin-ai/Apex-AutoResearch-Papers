@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_pi05_random_k0925_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "created_at": "2026-05-23T14:09:09.568Z",
+    "hypothesis": "π0.5 Random k=0.925 Goal: Object cliff 在 k~0.925 (27.6%)。Goal 的 cliff 位置不同——k=0.85=51.6%, k=0.9=58-84%。k=0.925 精确定位 Goal cliff 是否与 Object 同位。",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "command": "bash -c \"cd /root/pi05_pruning_eval && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -u eval_pi05_pruning_libero.py --suite libero_goal --prune_mode random --keep_ratio 0.925 --seed 42 --gpu 0 --n_episodes 50\"",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k0925_goal_seed42.log",
+      "pid": "unknown",
+      "server": "westd-41074",
+      "submitted_at": "2026-05-23T14:09:08.447Z",
+      "submitted_via": "submit_training_job",
+      "wall_clock_seconds": 492975.8,
+      "gpu_hours": 136.94
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-29T07:05:24.220Z",
+    "conclusion": "killed",
+    "completed_at": "2026-05-29T07:05:24.220Z"
+  },
+  "timestamp": "2026-05-29T07:05:26.175793+00:00",
+  "trigger": "update_registry"
+}

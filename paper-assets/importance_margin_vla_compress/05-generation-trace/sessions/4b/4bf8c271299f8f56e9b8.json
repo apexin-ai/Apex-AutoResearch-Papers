@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_train_c4ext_vtconly_westd41074_20260519T184403_result.json",
     "occurrence": 1,
-    "bytes": 459,
-    "sha256": "3fa5861795f863febc80ad3eb014fe1893ff2792621f6c9dc5cc978280b6a494"
+    "bytes": 458,
+    "sha256": "81162b96dfcf4a340a86a0f7f1adce60a60c6c492413adebbb55dab8d4a425ed"
   },
   "statistics": {
     "messages": 1,

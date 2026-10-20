@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_w27_full_gpu_check_20260528T045845_result.json",
     "occurrence": 1,
-    "bytes": 984,
-    "sha256": "5190cb2d86eb3bc71f0920857f9a0e3d353df2438ec2bae6644aaae70d8105d1"
+    "bytes": 983,
+    "sha256": "dd978a4331e8b416b8f567b3320843e432929301826610a26e55a217d72996b4"
   },
   "statistics": {
     "messages": 1,

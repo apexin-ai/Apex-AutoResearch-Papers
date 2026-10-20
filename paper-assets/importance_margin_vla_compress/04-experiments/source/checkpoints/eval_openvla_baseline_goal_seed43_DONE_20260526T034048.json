@@ -1,0 +1,70 @@
+{
+  "exp_id": "eval_openvla_baseline_goal_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T18:12:30.754Z",
+    "updated_at": "2026-05-26T03:40:46.973Z",
+    "hypothesis": "OpenVLA baseline Goal seed43 — 验证 seed42 baseline=74.8% 的稳定性，建立 cross-seed 参考线",
+    "spec": {
+      "command": "python3 eval_openvla_l2norm_libero.py --mode baseline --suite libero_goal --num_episodes 50 --seed 43",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "556486",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_baseline_goal_seed43.log",
+      "submitted_at": "2026-05-25T18:12:55.031Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "model_name": "openvla-7b-finetuned-libero-goal",
+      "seed": 43,
+      "checkpoint_path": "N/A (eval-only)",
+      "wall_clock_seconds": 34071.9,
+      "gpu_hours": 9.46
+    },
+    "reproduce": {
+      "finished_at": "2026-05-25T21:27:56.387Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-25T21:28:20.337773+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_sr": 0.776,
+      "total_successes": 388,
+      "total_episodes": 500,
+      "elapsed_minutes": 193,
+      "seed": 43,
+      "per_task_sr": {
+        "T1_open_middle_drawer": 0.58,
+        "T2_put_bowl_on_stove": 0.96,
+        "T3_put_wine_bottle_on_cabinet": 0.82,
+        "T4_open_top_drawer_put_bowl": 0.58,
+        "T5_put_bowl_on_cabinet": 0.98,
+        "T6_push_plate_front_stove": 0.8,
+        "T7_put_cream_cheese_in_bowl": 0.66,
+        "T8_turn_on_stove": 0.98,
+        "T9_put_bowl_on_plate": 0.86,
+        "T10_put_wine_bottle_on_rack": 0.54
+      }
+    },
+    "log_path": "/tmp/eval_openvla_baseline_goal_seed43.log",
+    "checkpoint_path": "N/A (eval only)",
+    "conclusion": "success",
+    "completed_at": "2026-05-26T03:40:46.974Z"
+  },
+  "timestamp": "2026-05-26T03:40:48.118556+00:00",
+  "trigger": "update_registry"
+}

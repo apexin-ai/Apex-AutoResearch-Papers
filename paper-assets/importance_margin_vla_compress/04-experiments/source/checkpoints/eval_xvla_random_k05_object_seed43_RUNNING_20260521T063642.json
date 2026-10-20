@@ -1,0 +1,25 @@
+{
+  "exp_id": "eval_xvla_random_k05_object_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:36:33.544Z",
+    "updated_at": "2026-05-21T06:36:41.708Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --keep_ratio 0.50 --suite libero_object --seed 43 --num_episodes 50 --gpu 0 --mode random",
+      "server": "cqa1-33015",
+      "data_path": "libero_object",
+      "data_count": 500,
+      "model_name": "X-VLA",
+      "seed": 43,
+      "gpu_ids": [
+        3
+      ]
+    }
+  },
+  "timestamp": "2026-05-21T06:36:42.159798+00:00",
+  "trigger": "update_registry"
+}

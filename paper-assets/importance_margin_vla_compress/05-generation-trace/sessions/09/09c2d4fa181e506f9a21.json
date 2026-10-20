@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_cqa1_random_k03_long_s43_20260525T160516_result.json",
     "occurrence": 1,
-    "bytes": 65,
-    "sha256": "7e8b92cbd2d4ee5476ca8df6b3427deda8d191d7a2c7d24489aea029ca395d66"
+    "bytes": 64,
+    "sha256": "a4961a9c40e66fb884c6a11b44442169d093d1f3b209ea5157e4d76522b14e13"
   },
   "statistics": {
     "messages": 1,

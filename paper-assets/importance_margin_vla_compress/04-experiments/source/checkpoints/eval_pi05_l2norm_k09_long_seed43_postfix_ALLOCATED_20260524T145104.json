@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_pi05_l2norm_k09_long_seed43_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T14:34:43.813Z",
+    "updated_at": "2026-05-24T14:51:03.370Z",
+    "hypothesis": "π0.5 L2norm k=0.9 Long seed43 post-fix — dual-seed 验证 cliff zone 最强数据点。seed42 L2norm k=0.9 Long postfix 正在跑（cqa1）。k=0.9 是 Random disruption peak（Object=9.0%），而 L2norm 预期保持高 SR。dual-seed 增强 cliff zone immunity claim 的统计可信度",
+    "spec": {
+      "command": "MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "460962",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed43_postfix.log",
+      "submitted_at": "2026-05-24T14:38:43.399Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-24T14:51:04.354730+00:00",
+  "trigger": "update_registry"
+}

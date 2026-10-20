@@ -1,0 +1,29 @@
+{
+  "exp_id": "action_divergence_v2_clean",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:04:33.765Z",
+    "updated_at": "2026-05-17T13:13:46.693Z",
+    "hypothesis": "Closed-loop action divergence: bypass vs ACIS k=0.5 true-removal 在 sim rollout 中的逐步轨迹偏离。与 offline single-step error (111.5% relative) 互为补充——offline 证明每步误差大，closed-loop 展示实际轨迹如何快速分叉。",
+    "spec": {
+      "command": "python closedloop_action_divergence.py --num_tasks 3 --episodes_per_task 10 --max_steps 300",
+      "server": "westd-27271",
+      "data_path": "libero_object",
+      "data_count": 30,
+      "model_name": "SmolVLA+ACIS_stage1only_k05",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/acis_stage1only_k05/stage1_done/checkpoint.pt",
+      "eval_data": "libero_object",
+      "checkpoint_path": "checkpoints/acis_stage1only_k05/stage1_done/checkpoint.pt",
+      "log_path": "eval_results/action_divergence_closedloop.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-17T13:13:46.694Z"
+  },
+  "timestamp": "2026-05-17T13:13:46.818090+00:00",
+  "trigger": "update_registry"
+}

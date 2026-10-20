@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_m103_verify_spatial_baseline_westd27271_20260525T012523_result.json",
     "occurrence": 1,
-    "bytes": 1387,
-    "sha256": "e99eec337f5bbc573b015c798b3e9c1324906528f0d6e0025b80392e34def716"
+    "bytes": 1386,
+    "sha256": "5b68b8a4623f629b6458173229fc8a842ae507f3a2e70e4d2861e9d67a8e2300"
   },
   "statistics": {
     "messages": 1,

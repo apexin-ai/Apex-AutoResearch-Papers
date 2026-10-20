@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_harvest_goal_baseline_deploy_next_20260522T131725_result.json",
     "occurrence": 1,
-    "bytes": 941,
-    "sha256": "c1b2ccf4699bc0b5cf137017f20d23502254828da0fbd25192b15efa4395ea9a"
+    "bytes": 940,
+    "sha256": "b285b290b61529ff497e3d2cad372355f990a42b8bccb06d982a8bd6d715ef39"
   },
   "statistics": {
     "messages": 1,

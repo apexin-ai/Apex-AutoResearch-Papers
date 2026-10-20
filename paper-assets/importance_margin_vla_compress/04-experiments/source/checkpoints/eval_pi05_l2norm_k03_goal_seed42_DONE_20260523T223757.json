@@ -1,0 +1,67 @@
+{
+  "exp_id": "eval_pi05_l2norm_k03_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-22T17:24:33.389Z",
+    "updated_at": "2026-05-23T22:37:56.297Z",
+    "hypothesis": "π0.5 L2norm k=0.3 Goal seed42: 极端剪枝端数据点。L2norm Goal curve: k=0.925=89%, k=0.9=90.6%, k=0.85=88%, k=0.7=73.6%, k=0.5=59.2%。k=0.3 预测 <50%。与 Random k=0.3 Goal (cqa1 GPU 1 同时跑) 对比验证极端剪枝下 importance margin。",
+    "completed_at": "2026-05-22T19:30:03.692Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "negative",
+        "metrics": {
+          "success_rate": 0.534,
+          "num_success": 267,
+          "num_episodes": 500,
+          "suite": "libero_goal",
+          "seed": 42
+        }
+      }
+    },
+    "spec": {
+      "command": "python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.3 --suite libero_goal --n_episodes 50 --seed 42 --gpu 0",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "786753",
+      "model_name": "pi05_libero_finetuned",
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "seed": 42
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "overall_SR": 0.542,
+      "total_successes": 271,
+      "total_episodes": 500,
+      "elapsed_min": 118.7,
+      "suite": "libero_goal",
+      "prune_mode": "l2norm",
+      "keep_ratio": 0.3,
+      "seed": 42,
+      "per_task": {
+        "open the middle drawer of the cabinet": 0.7,
+        "put the bowl on the stove": 0.2,
+        "put the wine bottle on top of the cabinet": 0.82,
+        "open the top drawer and put the bowl inside": 0.4,
+        "put the bowl on top of the cabinet": 0.6,
+        "push the plate to the front of the stove": 0.48,
+        "put the cream cheese in the bowl": 0.26,
+        "turn on the stove": 0.96,
+        "put the bowl on the plate": 0.72,
+        "put the wine bottle on the rack": 0.28
+      },
+      "v2_run_SR": 0.506,
+      "note": "Two runs: v2=50.6%, latest=54.2%. vs Random k=0.3 Goal=51.8%, delta=+2.4pp (negligible)"
+    },
+    "log_path": "logs/eval_pi05_l2norm_k03_goal_seed42.log",
+    "checkpoint_path": "n/a (eval only)"
+  },
+  "timestamp": "2026-05-23T22:37:57.957382+00:00",
+  "trigger": "update_registry"
+}

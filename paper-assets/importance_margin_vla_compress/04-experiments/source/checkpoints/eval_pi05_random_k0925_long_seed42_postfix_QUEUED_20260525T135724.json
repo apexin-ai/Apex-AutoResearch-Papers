@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_random_k0925_long_seed42_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T13:56:10.794Z",
+    "updated_at": "2026-05-25T13:57:22.891Z",
+    "hypothesis": "π0.5 Random k=0.925 Long seed42 — cliff zone 精确定位。k=0.95=61.2%, k=0.9=32%（V-shape 最低点）。k=0.925 将揭示 cliff 起始点是渐进式还是突变式，对 importance margin 机制解释至关重要",
+    "parent": "eval_pi05_random_k09_long_seed42_postfix"
+  },
+  "timestamp": "2026-05-25T13:57:24.168826+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd-41074-spatial-goal-batch_20260524T060754_result.json",
     "occurrence": 1,
-    "bytes": 992,
-    "sha256": "a9f3f67b5e4b2d2da24dbdf9819456fe07b6c72ff5adcef19fb3bd14afbc92ec"
+    "bytes": 991,
+    "sha256": "2ea53a80821d36b19e99b2d4f566105422ff5ca588078c850694c18f8a9062dd"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_openvla_script_suite_guard_20260526T040002_result.json",
     "occurrence": 1,
-    "bytes": 645,
-    "sha256": "c8ab2d2710b06077bfaa8951c6e11bea65bac410c3c2b4116555c8b87978d408"
+    "bytes": 644,
+    "sha256": "6307374f2ce9702f8eb181816a897eb16e2ae55fd5d64fdf765a3b5169a16175"
   },
   "statistics": {
     "messages": 1,

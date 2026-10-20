@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd_41074_lerobot_install_20260519T164631_result.json",
     "occurrence": 1,
-    "bytes": 275,
-    "sha256": "1eb36d76364b9e857e7ffe2907e99d0e440635dfda173ae75359ca48d4415255"
+    "bytes": 274,
+    "sha256": "9321e379494b9005f11a207105bd84d9cab731289b6cdd777f3e5869951127f3"
   },
   "statistics": {
     "messages": 1,

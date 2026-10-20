@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_healthcheck-westd38929-v2_20260524T093531_result.json",
     "occurrence": 1,
-    "bytes": 1774,
-    "sha256": "7af98c1e0fd03d721797a2a8c0165fa1911ca2bbabd94d74d440db46d78a23d5"
+    "bytes": 1773,
+    "sha256": "aef3cff919fa4e4eb1258f7d38ff7d4dedbdce658fb6d99f979c71c3fd8e10a6"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_bypass_evals_status_20260517T040353_result.json",
     "occurrence": 1,
-    "bytes": 1221,
-    "sha256": "4945c6070e0f6f7eca23e655b9e3a2e0854b1923ce3ffbf8d1a5130b7e8afd9f"
+    "bytes": 1220,
+    "sha256": "eadaf340e0aab406d37042b84249a037c89a96e84d43fefeb2832b14786fa6a7"
   },
   "statistics": {
     "messages": 1,

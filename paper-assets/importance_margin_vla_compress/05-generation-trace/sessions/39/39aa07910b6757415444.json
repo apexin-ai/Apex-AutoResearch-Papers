@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_c2_crossref_and_compile_20260528T181333_result.json",
     "occurrence": 1,
-    "bytes": 796,
-    "sha256": "bda36f98992e23ef899ef71a376a2a252fbe301b29afaee41759448be4dbda76"
+    "bytes": 795,
+    "sha256": "42addced98f4dce10ebb1e3a45754966f8c1974a795be5f2474452f91417e020"
   },
   "statistics": {
     "messages": 1,

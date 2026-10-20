@@ -1,0 +1,17 @@
+{
+  "exp_id": "eval_pi05_attn_k09_long_seed43_strict_w41",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T19:05:49.590Z",
+    "updated_at": "2026-05-27T19:09:07.634Z",
+    "hypothesis": "π0.5 Attn k=0.9 Long strict seed43 备份 — cqa1 版本是唯一实例（断崖关键点：k=0.95=78.4%, k=0.85=50.0%），w41 作为保险确保截止前获得数据",
+    "parent": "eval_pi05_attn_k09_long_seed43_strict_cqa1",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-27T19:09:12.318055+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_eval_openvla_sc_m128_vtconly_20k_seed42_20260520T075058_result.json",
     "occurrence": 1,
-    "bytes": 920,
-    "sha256": "207893dc78267a8e7fe79c184922da62f636808329caf1a99cb998220c93b26f"
+    "bytes": 919,
+    "sha256": "2904fe8507c9fedd49f872595d00dcfa1a163abf7f103bab1884e458f4b5310d"
   },
   "statistics": {
     "messages": 1,

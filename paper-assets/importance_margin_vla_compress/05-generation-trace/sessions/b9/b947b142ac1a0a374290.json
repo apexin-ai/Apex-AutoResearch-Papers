@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_cqa1_transformers_check_20260526T061749_result.json",
     "occurrence": 1,
-    "bytes": 1015,
-    "sha256": "520c4c1f77afd41db60d7dd546aeef078d9467828e373dba8ea7b85868f38f2f"
+    "bytes": 1014,
+    "sha256": "866c30dd1276dafad5b67792d0b58862562cf1e332d8a2ce25b12c3a239e252e"
   },
   "statistics": {
     "messages": 1,

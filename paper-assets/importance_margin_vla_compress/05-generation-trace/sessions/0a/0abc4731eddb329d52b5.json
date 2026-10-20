@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_figure_fig2_final_four_official_points_20260518T172938_result.json",
     "occurrence": 1,
-    "bytes": 276,
-    "sha256": "6427b6b2ed10a7858a30d6e72860f0daecc3de4fb8ebaf3f25b2c12dd5eb2a9b"
+    "bytes": 275,
+    "sha256": "0d14044df349486440a6c4e4d5186e61b836846966f5089416d41cb9766a87da"
   },
   "statistics": {
     "messages": 1,

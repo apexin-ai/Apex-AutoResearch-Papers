@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_westd41074_gpu2_random_k085_goal_s43_20260524T230022_result.json",
     "occurrence": 1,
-    "bytes": 543,
-    "sha256": "bebd9e76e5e6f2f1e94abda50612d4ba39e88054a8713885dde6af7f847e882e"
+    "bytes": 542,
+    "sha256": "bf59dda42d55d6980dbf4ffefeb090bb358da18c74105b05384131ce8b560742"
   },
   "statistics": {
     "messages": 1,

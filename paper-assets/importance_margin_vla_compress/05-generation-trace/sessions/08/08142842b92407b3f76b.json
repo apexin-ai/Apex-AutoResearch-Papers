@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check-and-fix-k095-spatial-postfix_20260523T233211_result.json",
     "occurrence": 1,
-    "bytes": 1503,
-    "sha256": "eb06f4efa8dbe4358d4a4a37c22e8b4769740422a0745e857da84888ed73a928"
+    "bytes": 1502,
+    "sha256": "1143c222c174bb4c19daece03f3f3b76572ff85471642db661eff48f3643e079"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,53 @@
+{
+  "exp_id": "eval_pi05_baseline_goal_seed42_strict",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-27T04:55:16.633Z",
+    "updated_at": "2026-05-27T06:35:51.413Z",
+    "hypothesis": "Pi0.5 baseline (no pruning, k=1.0) on libero_goal with strict done-only success condition will produce a lower SR than the contaminated lenient baseline (96.4%), providing a fair reference for pruning method comparisons.",
+    "reproduce": {
+      "finished_at": "2026-05-27T05:46:15.284Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed (log check: no success markers found in log tail (path=~/runs/importance_margin_vla_compress/eval_pi05_baseline_goal_seed42_strict.log))",
+    "completed_at": "2026-05-27T05:46:18.817Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-27T05:46:42.046308+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u eval_pi05_pruning_libero.py --prune_mode none --keep_ratio 1.0 --suite libero_goal --seed 42 --n_episodes 50 --gpu 0",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_baseline_goal_seed42_strict.log",
+      "submitted_at": "2026-05-27T05:47:00Z",
+      "backend": "tmux",
+      "session": "baseline_goal_strict",
+      "account": "root",
+      "data_path": "libero_goal",
+      "data_count": 50,
+      "model_name": "pi0.5-libero-finetuned",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned/",
+      "eval_data": "libero_goal",
+      "wall_clock_seconds": 2931.4,
+      "gpu_hours": 0.81
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-27T06:35:54.998346+00:00",
+  "trigger": "update_registry"
+}

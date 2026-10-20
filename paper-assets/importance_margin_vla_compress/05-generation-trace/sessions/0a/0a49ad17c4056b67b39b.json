@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1-smolvla-results-and-fill_20260521T212450_result.json",
     "occurrence": 1,
-    "bytes": 1874,
-    "sha256": "b01b17b49cbee207529d980bf66173c516a2160e4e85fde611ea6e736b6d7715"
+    "bytes": 1873,
+    "sha256": "5c9f3a50ba36ad6329d594534b50ac53d401339986921efa41ae836a2572dc3d"
   },
   "statistics": {
     "messages": 1,

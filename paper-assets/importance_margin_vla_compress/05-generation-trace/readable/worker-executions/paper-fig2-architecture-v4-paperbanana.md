@@ -1318,7 +1318,7 @@ _source line 28_
 
 ```json
 {
-  "command": "echo \"${GOOGLE_API_KEY:-NOT_SET}\"",
+  "command": "echo \"${GOOGLE_API_KEY:[REDACTED]}\"",
   "description": "Check if GOOGLE_API_KEY is already set in environment"
 }
 ```

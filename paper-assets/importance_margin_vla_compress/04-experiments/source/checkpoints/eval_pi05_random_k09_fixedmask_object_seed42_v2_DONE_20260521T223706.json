@@ -1,0 +1,51 @@
+{
+  "exp_id": "eval_pi05_random_k09_fixedmask_object_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T20:15:58.542Z",
+    "updated_at": "2026-05-21T22:37:05.644Z",
+    "hypothesis": "π0.5 fixed-mask random k=0.9 seed42 v2: 判别 k=0.9 ~10% SR 根因。per-episode 固定 random mask 消除 temporal inconsistency。恢复~90%+ → stochastic mask 是根因; 仍~12% → specific tokens critical。网络修复后重跑。",
+    "parent": "eval_pi05_random_k09_fixedmask_object_seed42",
+    "spec": {
+      "checkpoint_path": "pi0.5_pretrained (no finetuning)",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k09_fixedmask_object_seed42_v2.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T22:10:27.937Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T22:10:35.317039+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "success_rate": 0.17,
+      "successes": 85,
+      "total_episodes": 500,
+      "per_task_sr": [
+        0.12,
+        0.26,
+        0.16,
+        0.14,
+        0.12,
+        0.24,
+        0.18,
+        0.14,
+        0.24,
+        0.1
+      ]
+    },
+    "completed_at": "2026-05-21T22:37:05.645Z"
+  },
+  "timestamp": "2026-05-21T22:37:06.179817+00:00",
+  "trigger": "update_registry"
+}

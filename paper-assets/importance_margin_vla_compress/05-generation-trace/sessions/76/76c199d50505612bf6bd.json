@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_bonus_seed47_w41_20260528T170510_result.json",
     "occurrence": 1,
-    "bytes": 291,
-    "sha256": "6931a0fcfc60d8ddc807ff4121b5e72449e0aae3710c608493f73e2b639b600f"
+    "bytes": 290,
+    "sha256": "608d67ed552f865ca12c3ea05af479936006280e199e8a5b518ab898198d671b"
   },
   "statistics": {
     "messages": 1,

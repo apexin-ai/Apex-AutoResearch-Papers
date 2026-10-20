@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_c4ext_fix_pathA_westd27271_20260519T182110_result.json",
     "occurrence": 1,
-    "bytes": 829,
-    "sha256": "66d28e471855d3ec9b067d8976c29a6c92d0319992b33e478753bf468e11b7fe"
+    "bytes": 828,
+    "sha256": "edb773fffa201cc7028798e67f68bc6a492a8beef99ff03a5c9c5dc3b5a7c299"
   },
   "statistics": {
     "messages": 1,

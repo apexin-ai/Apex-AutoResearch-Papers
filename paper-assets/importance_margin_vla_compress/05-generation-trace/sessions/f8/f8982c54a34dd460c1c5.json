@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_geometric_prior_pruning_20260517T154301_result.json",
     "occurrence": 1,
-    "bytes": 948,
-    "sha256": "cb6536f5ee4eefb63fd4417030f68707fcb7c9ad207850528e314e1c8da25328"
+    "bytes": 947,
+    "sha256": "52c7d6c227c555c0f41671196df9803374542ee8287baa28a95d307fcc430e38"
   },
   "statistics": {
     "messages": 1,

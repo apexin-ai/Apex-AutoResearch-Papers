@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_deploy-v7_1-files_20260515T182219_result.json",
     "occurrence": 1,
-    "bytes": 298,
-    "sha256": "304caaed373be7c64c1274b039b6f5318c3b0732ffa1da6eac11fa6af3ba8d32"
+    "bytes": 297,
+    "sha256": "c654efe82607788a3c2ca27187cd9cd8fab577b74e11cab347689314dcf24eb5"
   },
   "statistics": {
     "messages": 1,

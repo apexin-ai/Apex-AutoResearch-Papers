@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check_xvla_random_k05_long_result_20260523T074732_result.json",
     "occurrence": 1,
-    "bytes": 1395,
-    "sha256": "555007016dd860f12b431c798486f274adf1efbf707125fa3bc6c3bb15452101"
+    "bytes": 1394,
+    "sha256": "7a8cab0e328288f9208960c2832778c99143462832bec1a08673697e4f0b5c7a"
   },
   "statistics": {
     "messages": 1,

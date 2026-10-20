@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_openvla_attn_k05_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T06:46:57.292Z",
+    "updated_at": "2026-05-24T06:49:55.554Z",
+    "hypothesis": "OpenVLA Attention k=0.5 Goal seed42 — 2×2 crossover Attention 列第二个 suite 验证。L2norm k=0.5 Goal=43.4%，Random k=0.5 Goal 需确认。验证 MLP connector 下 attention scoring 在 Goal 上的有效性"
+  },
+  "timestamp": "2026-05-24T06:49:56.460306+00:00",
+  "trigger": "update_registry"
+}

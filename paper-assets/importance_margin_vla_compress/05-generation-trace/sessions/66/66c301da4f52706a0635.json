@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_openvla-spatial-maxsteps-diagnosis_20260521T011112_result.json",
     "occurrence": 1,
-    "bytes": 1939,
-    "sha256": "8005ba04f81b83a6efb409587846aa7e6a3f9f3c691af7897672b39f223b97c8"
+    "bytes": 1938,
+    "sha256": "31d06900fcf075f27cc18f9a1decf1085aa5075dd5a94c8dbcf10fb949d1d676"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd41074-gpu2-random-k095-object_20260526T213050_result.json",
     "occurrence": 1,
-    "bytes": 620,
-    "sha256": "f257dcb9d010c6c64efab289130713983e89a20461eeee88bf7bdaf42a247d0e"
+    "bytes": 619,
+    "sha256": "5d7372cc561777280d8ec017030ca2d2859bdebc5a1f5cdeee0ad70d9fb2b555"
   },
   "statistics": {
     "messages": 1,

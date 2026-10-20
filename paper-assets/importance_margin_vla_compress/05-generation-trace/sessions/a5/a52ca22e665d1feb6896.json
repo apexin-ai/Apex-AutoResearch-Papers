@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_scp-libero-to-38929_20260520T083600_result.json",
     "occurrence": 1,
-    "bytes": 642,
-    "sha256": "62f569e06c8ced2f3520bc28f8d67445c92c4102fc89227cf65ff59e3d070c97"
+    "bytes": 641,
+    "sha256": "76ccc0395e173e1c7baab2fddcbeace2c0470faa623b0b2279f9dcdc06e07f3f"
   },
   "statistics": {
     "messages": 1,

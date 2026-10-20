@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_cqa1-xvla-k085-seed42_20260520T203108_result.json",
     "occurrence": 1,
-    "bytes": 247,
-    "sha256": "4b322a0a03873d971f6538f4fb686839d4b902a17aad3d340e5765be7a42adb9"
+    "bytes": 246,
+    "sha256": "dd2e106e038fc6fd6b91cffbd847ecafa38e88b95c96126c4fe4f7c6fffae11f"
   },
   "statistics": {
     "messages": 1,

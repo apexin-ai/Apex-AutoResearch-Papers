@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_cqa1_gpu1_l2norm_k085_long_s43_20260525T133519_result.json",
     "occurrence": 1,
-    "bytes": 376,
-    "sha256": "12fa535fda1693c93d2022359323e8d220ff3c2ab827c6cacc27cb835ba1c27a"
+    "bytes": 375,
+    "sha256": "8ffa0ea33d177766d5ae8ef94f71d348a4e54655a03a45ff512e6e5d19d94205"
   },
   "statistics": {
     "messages": 1,

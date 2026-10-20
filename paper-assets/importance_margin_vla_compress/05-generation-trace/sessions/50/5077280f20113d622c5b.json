@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd27271-eval-sc-m128_20260521T030106_result.json",
     "occurrence": 1,
-    "bytes": 836,
-    "sha256": "960e8573c9227569090937212e0e5660907d7f08eb6ebe771eb487aba6033ab1"
+    "bytes": 835,
+    "sha256": "4b91d9e518521d1428afc2ab35cbd3a09629c8de50569381f0c9da947c4f8656"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_attn_k085_long_seed42_strict",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T03:42:25.358Z",
+    "updated_at": "2026-05-27T03:44:34.957Z",
+    "hypothesis": "π0.5 Attn k=0.85 Long strict — cqa1 污染值 SR=51.6% 与 reward>0.5 阈值吻合，极度可疑。strict 重跑获取真实值。L2norm k=0.85=77.8%(strict confirmed)，Attn 真实值决定 k=0.85 处方法差异",
+    "parent": "eval_pi05_attention_k085_long_seed42_v2"
+  },
+  "timestamp": "2026-05-27T03:44:36.245875+00:00",
+  "trigger": "update_registry"
+}

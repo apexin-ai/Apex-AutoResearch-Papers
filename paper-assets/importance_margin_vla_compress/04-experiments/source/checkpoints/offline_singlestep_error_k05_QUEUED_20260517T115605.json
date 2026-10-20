@@ -1,0 +1,15 @@
+{
+  "exp_id": "offline_singlestep_error_k05",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:55:59.152Z",
+    "updated_at": "2026-05-17T11:56:05.271Z",
+    "hypothesis": "ACIS k=0.5 true_removal pruning causes large per-step action errors (not small compounding errors) because removing 50% of visual tokens fundamentally disrupts the attention pattern the expert relies on for action prediction, especially for discrete actions like gripper."
+  },
+  "timestamp": "2026-05-17T11:56:05.400688+00:00",
+  "trigger": "update_registry"
+}

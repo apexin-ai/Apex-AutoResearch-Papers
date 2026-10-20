@@ -1,0 +1,36 @@
+{
+  "exp_id": "train_smart_compress_m128_resume",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T05:27:32.368Z",
+    "updated_at": "2026-05-18T10:06:17.371Z",
+    "hypothesis": "Resume of train_smart_compress_m128 from step 32,000 checkpoint. Cross-attention pooling with M=128 queries (no compression, passthrough control). If SR similar to M=32/M=64 (61.6%), improvement comes from cross-attention architecture itself. If lower/equal to baseline (44.8%), compression provides the benefit.",
+    "parent": "train_smart_compress_m128",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 WANDB_MODE=offline python train_smart_compress.py --config configs/smart_compress_m128.yaml --resume checkpoints/smart_compress_m128 --wandb_run smart_compress_m128\"",
+      "server": "cqa1-33015",
+      "gpu": "cuda:0",
+      "pid": 1715,
+      "log_path": "~/runs/importance_margin_vla_compress/train_smart_compress_m128_resume.log",
+      "submitted_at": "2026-05-18T05:27:46.155Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO dataset",
+      "data_count": 100000,
+      "model_name": "SmolVLA-SmartCompress-M128",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/smart_compress_m128/checkpoint.pt (step 32000)",
+      "eval_data": "N/A (training)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T10:06:16.992Z"
+    }
+  },
+  "timestamp": "2026-05-18T10:06:17.543820+00:00",
+  "trigger": "update_registry"
+}

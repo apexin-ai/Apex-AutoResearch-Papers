@@ -1,0 +1,16 @@
+{
+  "exp_id": "train_smart_compress_m32_seed44",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:10:50.362Z",
+    "updated_at": "2026-05-19T01:12:34.372Z",
+    "hypothesis": "Smart compress with M=32 vision token compression trained with seed 44 will achieve comparable performance to seed 43, confirming reproducibility of the importance-margin-based compression approach.",
+    "parent": "train_smart_compress_m32_seed43"
+  },
+  "timestamp": "2026-05-19T01:12:34.607893+00:00",
+  "trigger": "update_registry"
+}

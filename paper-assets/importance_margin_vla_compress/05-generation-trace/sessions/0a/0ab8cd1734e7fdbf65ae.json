@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_westd38929_process_gone_20260525T165936_result.json",
     "occurrence": 1,
-    "bytes": 1061,
-    "sha256": "0723e8725fe77f4df6aa1f98ba4dc08489506ddb79c8e4d515ec847cc1cb6b02"
+    "bytes": 1060,
+    "sha256": "1e7ffaeadf6e4c69f2dc3d9aa1f5c73d085c216be44bdbe11b0800c8f45305b7"
   },
   "statistics": {
     "messages": 1,

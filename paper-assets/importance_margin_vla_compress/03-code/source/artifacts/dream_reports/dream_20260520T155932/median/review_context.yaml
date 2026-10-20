@@ -1,0 +1,502 @@
+narrative_guidance: '分析贡献完整成立，但VTR仅对pixel-shuffle有效，方法贡献需收窄。 Claim 4从"universal compression"收窄为"VTR
+  specifically solves pixel-shuffle entanglement"—— 这反而强化architecture-dependency的核心叙事（连修复方案都取决于connector类型）。
+  OpenVLA VTC-only全部失败本身成为evidence：MLP projector tokens已独立可用， 额外re-encoding引入过拟合。OpenVLA
+  L2-norm与random基本一致（±10pp）， pruning method不影响taxonomy。X-VLA seed复现合理但cliff处variance偏大。
+  论文标题不变，abstract从"diagnose-then-compress framework"调整为 "first systematic analysis
+  + targeted fix for the hardest case"。仍为CoRL强投稿。
+
+  '
+imagined_experiments:
+- name: SmolVLA VTR 3-seed aggregation completion (M=16, M=128)
+  plan_id: c4_learned_reencoding_smolvla
+  description: 'M=16 seed43/44和M=128 seed43的training已完成（ANALYZING），eval数据已全部采集。 确认3-seed聚合数值。此plan实质已完成，status应更新为complete。
+
+    '
+  expected_results:
+    m16_3seed_mean_sr: 56.9
+    m16_3seed_std: 1.3
+    m16_seeds:
+      seed42: 55.8
+      seed43: 58.4
+      seed44: 56.5
+    m128_3seed_mean_sr: 58.0
+    m128_3seed_std: 3.5
+    m128_seeds:
+      seed42: 59.8
+      seed43: 54.0
+      seed44: 60.2
+    m_curve_flat_confirmed: true
+    max_m_diff_pp: 1.1
+  result_rationale: '数据已全部在registry中确认。M=16 (56.9±1.3%) ≈ M=128 (58.0±3.5%)， 差异<1.1pp。M-curve
+    flatness是confirmed fact (D105)。 M=128 seed43的54.0%是该seed下特定task表现偏弱导致（cream_cheese
+    32.2%, ketchup 34.8%均显著低于其他seed），但不影响核心结论。 所有5个M值的3-seed mean均在baseline ~59%的±5pp内。
+    此plan_id实质已完成，无需预测。
+
+    '
+  tables:
+  - name: SmolVLA VTR完整M-sweep (3-seed confirmed)
+    data: '| M   | 压缩率  | Seed42 | Seed43 | Seed44 | Mean±Std      |
+
+      |-----|---------|--------|--------|--------|---------------|
+
+      | 16  | 87.5%   | 55.8%  | 58.4%  | 56.5%  | 56.9 ± 1.3%  |
+
+      | 32  | 75%     | 61.6%  | 59.2%  | 59.6%  | 60.1 ± 1.3%  |
+
+      | 64  | 50%     | 61.6%  | 60.0%  | 64.4%  | 62.0 ± 2.3%  |
+
+      | 96  | 25%     | 52.6%  | 58.2%  | 52.8%  | 54.5 ± 3.2%  |
+
+      | 128 | 0%      | 59.8%  | 54.0%  | 60.2%  | 58.0 ± 3.5%  |
+
+      '
+  figures_description:
+  - 'M-curve with 3-seed error bars: 水平带状分布，所有M值均在54-62%区间内。核心视觉信息是flatness——压缩比不影响SR。'
+  analysis: '已完成。M-curve flat是VTR on pixel-shuffle的核心发现： re-encoding而非compression是因果因子。任何压缩比下均near-lossless。
+
+    '
+- name: OpenVLA VTR M=128 全量 (已confirmed negative)
+  plan_id: c4_ext_method_universality_openvla
+  description: 'VTR (cross-attention compressor + decoder) M=128在OpenVLA上20K步评估。 已确认0%
+    SR——严重过拟合，模型每步输出identical action。
+
+    '
+  expected_results:
+    openvla_vtr_m128_sr: 0
+    episodes_evaluated: 44
+    failure_mode: identical action every timestep
+    overfitting_severity: complete — model collapsed to single-action policy
+  result_rationale: 'MLP projector的3层GELU已将SigLIP patch embeddings投射为LLM-ready tokens，
+    每个token独立承载语义（CV=0.215，moderate heterogeneity但无空间纠缠）。 VTR的cross-attention将256个独立token强制经过bottleneck再decode，
+    这对已经独立的tokens是destructive operation：(1) 引入了不必要的信息混合， (2) 22M额外参数在LIBERO的小规模数据（~50
+    demo/task）上快速过拟合， (3) 20K步已足够让compressor学会"记住"训练分布而非泛化。 对比SmolVLA：pixel-shuffle
+    tokens确实需要re-encoding来解空间纠缠， 所以同样的VTR在那里成功（0%→60%+）。 此failure本身是median档叙事的核心evidence。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: '已完成。0% SR将作为Claim 4 negative evidence呈现： "VTR ceiling depends on connector
+    type — pixel-shuffle benefits enormously (0%→60%+) while MLP projector suffers
+    (74%→0%)."
+
+    '
+- name: OpenVLA VTC-only M=32 (75%压缩)
+  plan_id: c4_ext_openvla_msweep
+  description: '仅cross-attention compressor（无decoder），M=32，在OpenVLA上训练。 测试VTC-only是否能避免full
+    VTR M=128的过拟合。 当前状态：train_openvla_sc_m32_vtconly_seed42 RUNNING。
+
+    '
+  expected_results:
+    openvla_vtconly_m32_sr: 7
+    openvla_vtconly_m32_sr_range:
+    - 0
+    - 15
+    openvla_vtconly_m32_failure_mode: severe degradation, possible partial overfitting
+  result_rationale: '核心问题未变：MLP projector tokens不需要re-encoding。VTC-only去掉了decoder
+    （减少约11M参数），但cross-attention compressor仍将256个token压缩到32个query。 这对MLP projector是根本性错误——每个original
+    token独立承载语义， cross-attention将8个token的信息挤进1个query（256/32=8:1）， 不同于pixel-shuffle
+    tokens中spatial信息可通过re-encoding恢复。 M=32的强压缩可能提供些许regularization（相比M=128）， 所以过拟合可能没那么complete，但SR仍将极低。
+    少数"简单"task可能偶尔成功（如chocolate_pudding在OpenVLA baseline中>80%）， 但overall SR远低于baseline
+    74%。预测0-15%，中位数~7%。
+
+    '
+  tables:
+  - name: OpenVLA VTC-only M-sweep predicted results
+    data: '| M   | 压缩率  | 预测SR     | 预测区间     | vs Baseline 74% |
+
+      |-----|---------|-----------|------------|----------------|
+
+      | 32  | 75%     | ~7%       | [0%, 15%]  | -91% relative  |
+
+      | 64  | 50%     | ~4%       | [0%, 15%]  | -95% relative  |
+
+      | 96  | 62.5%保留| ~2%       | [0%, 10%]  | -97% relative  |
+
+      | 128 | 0% (VTR)| 0%        | confirmed  | -100%          |
+
+      '
+  figures_description:
+  - 对比图：SmolVLA VTR M-sweep (flat at ~60%) vs OpenVLA VTC-only M-sweep (all near 0%).
+    视觉上两条线的dramatic contrast直接说明connector-dependency。
+  analysis: 'M=32的strong compression理论上是最有可能"accidentally work"的配置： (1) 参数最少→过拟合风险最低，(2)
+    信息压缩最极端→如果某些token确实冗余 则可能保留核心信息。但MLP projector的CV=0.215意味着tokens间heterogeneity
+    不够极端（不像SmolVLA CV=0.314的空间纠缠），没有"需要被解开的结构" 供cross-attention利用。预测SR<15%。
+
+    '
+- name: OpenVLA VTC-only M=64 (50%压缩)
+  plan_id: c4_ext_openvla_msweep
+  description: 'VTC-only M=64在OpenVLA上训练。 当前状态：train_openvla_sc_m64_seed42_v3 RUNNING。
+
+    '
+  expected_results:
+    openvla_vtconly_m64_sr: 4
+    openvla_vtconly_m64_sr_range:
+    - 0
+    - 15
+  result_rationale: 'M=64保留50%的token数。M=128 full VTR已0%，M=64 VTC-only减少了decoder 但仍有cross-attention
+    bottleneck。比M=32的regularization弱（更多参数自由度）， 比M=128少了decoder。如果过拟合是dominant failure
+    mode（M=128 evidence支持此判断）， M=64介于M=32和M=128之间，可能比M=32稍差。 但如果压缩损失是dominant failure
+    mode，M=64应比M=32好（保留更多信息）。 在median档下，过拟合是主因→M=64可能≤M=32。预测~4%，区间[0, 15%]。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'M=64结果与M=32共同形成OpenVLA VTC-only M-sweep。 无论具体数值排序如何（M=32 > M=64 or M=32
+    < M=64）， 只要全部<15%就确认VTR/VTC对MLP projector无效。
+
+    '
+- name: OpenVLA VTC-only M=96 (25%压缩)
+  plan_id: c4_ext_openvla_msweep
+  description: 'VTC-only M=96在OpenVLA上训练。最接近passthrough（96/256=37.5%保留）。 当前状态：train_openvla_sc_m96_seed42_v3
+    RUNNING。
+
+    '
+  expected_results:
+    openvla_vtconly_m96_sr: 2
+    openvla_vtconly_m96_sr_range:
+    - 0
+    - 10
+  result_rationale: 'M=96 VTC-only最接近M=128的configuration——压缩比最低，参数自由度最大。 M=128 full
+    VTR的0%主要由过拟合导致，M=96 VTC-only虽去掉decoder但 compressor参数仍然很多（96个query × hidden_dim）。
+    在三个M值中最容易过拟合，预测为最差。~2%，区间[0, 10%]。 若M=96≈0%且M=32~7%，则形成inverse M-curve（越大的M越差），
+    与SmolVLA的flat M-curve形成sharp contrast——进一步支持 "VTR的行为本身取决于connector type"的论点。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: '三个M值形成的M-sweep pattern本身是informative的： 如果SmolVLA M-curve flat而OpenVLA
+    M-curve monotonically decreasing（或all near 0%）， 这两条曲线的对比就是一张figure。
+
+    '
+- name: OpenVLA L2-norm pruning k=0.95 (5% removal)
+  plan_id: d108_unified_pruning_protocol
+  description: 'L2 norm importance-based pruning k=0.95在OpenVLA上。 统一pruning method与X-VLA（两者均L2
+    norm）。 对比：random pruning k=0.95 = 69.4%。 当前状态：eval_openvla_prune_l2norm_k095 RUNNING。
+
+    '
+  expected_results:
+    openvla_l2norm_k095_sr: 70
+    openvla_l2norm_k095_sr_range:
+    - 59
+    - 79
+    delta_vs_random_pp: '+0.6'
+  result_rationale: 'k=0.95仅移除13/256 = 5%的token。在如此低的removal ratio下， importance-based
+    (L2 norm) vs random的差异被两个因素压缩到极小： (1) 被移除的13个token中，L2 norm选中的"最不重要"vs随机选中的差异有限——
+    MLP projector CV=0.215意味着importance分布的tail不极端； (2) 500 episodes的statistical power在1-2pp的difference下不足以detect。
+    Random=69.4%。L2 norm预测~70%（可能69-72%），差异在统计噪声内。 核心论点不受影响：无论pruning method，MLP projector在k=0.95保持>90%性能。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'k=0.95是两种方法差异最小的数据点。 用于完善L2 norm全曲线，与random曲线overlay展示method invariance。
+
+    '
+- name: OpenVLA L2-norm pruning k=0.9 (10% removal)
+  plan_id: d108_unified_pruning_protocol
+  description: 'L2 norm k=0.9在OpenVLA上。对比random k=0.9 = 62.0%。 当前状态：eval_openvla_prune_l2norm_k09
+    RUNNING。
+
+    '
+  expected_results:
+    openvla_l2norm_k09_sr: 63
+    openvla_l2norm_k09_sr_range:
+    - 52
+    - 72
+    delta_vs_random_pp: '+1'
+  result_rationale: 'k=0.9移除26/256 = 10%的token。L2 norm有一点点空间选择性保留重要token， 但26个token中importance
+    ranking的真正差异仍然有限。 Random=62%。L2 norm可能有marginal improvement to ~63%（1pp）， 但也可能恰好worse
+    by 1-2pp due to sampling variance。 重要的是：62%±5pp，仍在"graded degradation"的范畴内， 与X-VLA
+    k=0.9 (97.6%, robust) 形成stark contrast—— OpenVLA在10% removal就已经-16% relative，X-VLA还几乎无损。
+    这直接isolate connector effect：same pruning method, same k, different degradation
+    pattern。
+
+    '
+  tables:
+  - name: Cross-model L2 norm k=0.9对比
+    data: '| Model   | Connector       | CV    | L2 norm k=0.9 SR | 对比baseline |
+
+      |---------|-----------------|-------|------------------|-------------|
+
+      | π0      | Pure linear     | 0.038 | ~99% (offline)   | -0.7%       |
+
+      | X-VLA   | Linear+BART 12L | 0.151 | 97.6%            | -1.6pp      |
+
+      | OpenVLA | 3-layer MLP     | 0.215 | ~63%             | -15% rel    |
+
+      | SmolVLA | Pixel-shuffle   | 0.314 | 0%               | -100%       |
+
+      '
+  figures_description:
+  - 'Four-model L2 norm k=0.9 bar chart: 可视化CV spectrum与pruning tolerance的单调关系。CV越高，k=0.9
+    SR越低。'
+  analysis: 'k=0.9是论文中cross-model comparison的关键k值： 所有4个model在同一pruning method下的对比清晰展示taxonomy。
+    L2 norm unified protocol使得cross-model comparison methodologically clean。
+
+    '
+- name: OpenVLA L2-norm pruning k=0.7 (30% removal)
+  plan_id: d108_unified_pruning_protocol
+  description: 'L2 norm k=0.7。对比random k=0.7 = 49.0%。 此k值是X-VLA cliff point (56.2%)的对照。
+
+    '
+  expected_results:
+    openvla_l2norm_k07_sr: 51
+    openvla_l2norm_k07_sr_range:
+    - 42
+    - 58
+    delta_vs_random_pp: '+2'
+  result_rationale: 'k=0.7移除30%的token。L2 norm的importance-based selection在较大removal
+    ratio下 有更多空间发挥——30%中最不重要的token确实可以被识别。 但OpenVLA CV=0.215意味着importance分布不极端（不像SmolVLA
+    CV=0.314）， L2 norm vs random的差距仍然modest。 Random=49%，L2 norm预测~51%（+2pp），区间[42,
+    58]。 关键cross-model对比：OpenVLA L2 norm k=0.7 ~51% vs X-VLA L2 norm k=0.7 = 56.2%。
+    两者数值接近但模式不同——OpenVLA是smooth curve上的一点（k=0.9: 63% → k=0.7: 51%, delta=-12pp），X-VLA是cliff-edge（k=0.9:
+    97.6% → k=0.7: 56.2%, delta=-41pp）。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'OpenVLA k=0.7 L2 norm是统一protocol下最重要的cross-model对比点之一。 与X-VLA同k同method但degradation
+    pattern截然不同，直接isolate connector effect。
+
+    '
+- name: OpenVLA L2-norm pruning k=0.5 (50% removal)
+  plan_id: d108_unified_pruning_protocol
+  description: 'L2 norm k=0.5。对比random k=0.5 = 37.4%。
+
+    '
+  expected_results:
+    openvla_l2norm_k05_sr: 40
+    openvla_l2norm_k05_sr_range:
+    - 30
+    - 47
+    delta_vs_random_pp: '+3'
+  result_rationale: '50% removal下L2 norm的优势最可能visible——保留最重要的一半token。 MLP projector的CV=0.215意味着top-50%
+    vs random-50%在信息量上有 measurable但不dramatic的差异。Random=37.4%，L2 norm预测~40%（+3pp）。
+    +3pp是500 episodes下可detect的差异（Wilson CI width ~±4pp）， 但单次实验不一定statistically significant。
+    即使L2 norm优势达到+5pp (42%)，仍然是severe degradation vs baseline 74%， taxonomy classification不变（smooth
+    graded）。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: ''
+- name: OpenVLA L2-norm pruning k=0.3 (70% removal)
+  plan_id: d108_unified_pruning_protocol
+  description: 'L2 norm k=0.3。对比random k=0.3 = 20.6%。
+
+    '
+  expected_results:
+    openvla_l2norm_k03_sr: 23
+    openvla_l2norm_k03_sr_range:
+    - 15
+    - 30
+    delta_vs_random_pp: '+2'
+  result_rationale: '70% removal是extreme。L2 norm在此能保留最关键的30%， 但绝对信息损失已很大。Random=20.6%，L2
+    norm预测~23%。 在此极端条件下，L2 norm的marginal advantage开始diminish—— 即使保留了最重要的30%，remaining
+    30%中也有很多重要token被丢弃。 两种方法都在20-25%区间内挣扎。
+
+    '
+  tables:
+  - name: OpenVLA L2 norm vs Random完整对比（含预测）
+    data: '| k    | Random SR | L2-norm SR | Delta  | 解读                        |
+
+      |------|-----------|------------|--------|-----------------------------|
+
+      | 1.0  | 74.0%     | 74.0%      | 0      | baseline, 无pruning          |
+
+      | 0.95 | 69.4%     | ~70%       | ~+0.6  | 差异在noise内                |
+
+      | 0.9  | 62.0%     | ~63%       | ~+1    | marginal L2 advantage        |
+
+      | 0.7  | 49.0%     | ~51%       | ~+2    | visible但modest advantage    |
+
+      | 0.5  | 37.4%     | ~40%       | ~+3    | L2 advantage最大点           |
+
+      | 0.3  | 20.6%     | ~23%       | ~+2    | extreme removal, 优势缩小    |
+
+      '
+  figures_description:
+  - 'Dual-line plot: OpenVLA SR vs k for random (solid) and L2-norm (dashed). 两条线近似parallel，间距1-3pp，确认pruning
+    method不影响degradation pattern。'
+  analysis: 'L2 norm全曲线确认：OpenVLA graded degradation与pruning方法无关。 两条曲线的near-overlap是taxonomy
+    robustness的直接evidence。 论文可一句话总结："L2-norm和random pruning在OpenVLA上产生near-identical
+    degradation curves (Δ<3pp across all k), confirming that connector type — not
+    pruning strategy — determines pruning tolerance."
+
+    '
+- name: X-VLA L2-norm pruning k=0.7 seed44 (cliff variance)
+  plan_id: c1_xvla_cliff_pattern
+  description: 'X-VLA k=0.7使用seed44重复。验证cliff位置的seed robustness。 Seed42 = 56.2%。当前状态：eval_xvla_prune_k07_seed44
+    RUNNING。
+
+    '
+  expected_results:
+    xvla_k07_seed44_sr: 52
+    xvla_k07_seed44_sr_range:
+    - 40
+    - 70
+    cliff_pattern_preserved: true
+  result_rationale: 'k=0.7是X-VLA的cliff point——从k=0.9的97.6%骤降到56.2% (seed42)。 Cliff
+    points天然high-variance，原因是： (1) BART encoder的12层transformer mixing创建了partial token
+    dependencies， 在k=0.7恰好跨过dependencies被破坏的threshold； (2) seed决定eval episodes的随机初始状态和token
+    removal order， cliff附近某些task的成功高度依赖于具体哪些token被保留； (3) Seed42的per-task分析：task1=2%,
+    task4=28%, task6=12%, task8=0% vs task0=94%, task2=100%——bimodality极端。 seed44的specific
+    task分布会不同，可能某些在seed42失败的task反而成功， 反之亦然。预测overall 40-70%，中位数~52%。 无论具体数值，只要k=0.9
+    >> k=0.7（>30pp gap），cliff pattern就成立。
+
+    '
+  tables:
+  - name: X-VLA cliff-point seed variance
+    data: '| k    | Seed42  | Seed44 (pred) | 2-seed Mean | Interpretation          |
+
+      |------|---------|---------------|-------------|-------------------------|
+
+      | 1.0  | 99.2%   | ~99%          | ~99%        | baseline stable         |
+
+      | 0.95 | 99.0%   | ~98%          | ~98.5%      | robust region           |
+
+      | 0.9  | 97.6%   | ~96.5%        | ~97%        | robust region           |
+
+      | 0.7  | 56.2%   | ~52%          | ~54%        | CLIFF — high variance   |
+
+      | 0.5  | 42.6%   | ~40%          | ~41%        | below cliff, stabilizes |
+
+      '
+  figures_description:
+  - X-VLA pruning curve with seed42 (solid) and seed44 (dashed) overlaid. k>=0.9区域两线重合，k=0.7处visible
+    spread，k<=0.5再次收敛。
+  analysis: 'Cliff variance是expected phenomenon（不是noise），可以直接在论文中讨论： "cliff位置在k~0.7处，但exact
+    SR在不同seed下波动±10pp， reflecting the stochastic nature of dependency breaking when
+    token removal crosses the critical threshold." 若seed44 < 45%，cliff比seed42更sharp
+    → 更强的evidence； 若seed44 > 60%，cliff更shallow → 仍然是>30pp drop from k=0.9。
+
+    '
+- name: X-VLA L2-norm pruning k=0.9 seed44 (robust region)
+  plan_id: c1_xvla_cliff_pattern
+  description: 'X-VLA k=0.9 seed44。Seed42 = 97.6%。验证robust region稳定性。 当前状态：eval_xvla_prune_k09_seed44
+    RUNNING。
+
+    '
+  expected_results:
+    xvla_k09_seed44_sr: 96.5
+    xvla_k09_seed44_sr_range:
+    - 94
+    - 99
+  result_rationale: 'k=0.9在robust region内（cliff在k=0.7）。仅移除10% token。 BART encoder的partial
+    dependencies在此ratio下未被破坏—— 50个token中移除5个，保留的45个token仍足以覆盖绝大多数spatial和semantic信息。
+    Seed variance在robust region天然很小：不同seed改变的是"哪5个token被移除"， 但L2 norm保证移除的是importance最低的5个，这些token在所有seed下都是
+    relatively dispensable的。Seed42=97.6%，seed44预测~96.5%（可能95-99%）。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'k=0.9 seed44的高SR（>94%）与k=0.7 seed44的cliff（~52%） 共同确认threshold-graded
+    pattern的定性stability。 2-seed evidence足以支持论文claim（加上per-task breakdown更convincing）。
+
+    '
+- name: OpenVLA random pruning k=0.7 seed43
+  plan_id: d108_unified_pruning_protocol
+  description: 'OpenVLA random pruning k=0.7 seed43重复。Seed42 = 49.0%。 当前状态：eval_openvla_prune_random_k07_seed43_v2
+    RUNNING。
+
+    '
+  expected_results:
+    openvla_random_k07_seed43_sr: 47
+    openvla_random_k07_seed43_sr_range:
+    - 40
+    - 56
+  result_rationale: 'OpenVLA k=0.7在smooth degradation curve上（不是cliff point）， seed
+    variance应显著低于X-VLA k=0.7。MLP projector的partial independence 意味着不同random mask导致的信息损失是relatively
+    consistent的—— 没有特定token的移除会cause catastrophic failure（不像X-VLA的critical tokens）。
+    500 episodes × 10 tasks提供了good statistical power。 Seed42=49%，seed43预测47%（±5pp）。
+    如果delta<3pp，则single-seed结果高度representative。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'Seed43的一致性确认OpenVLA smooth degradation的reproducibility。 与X-VLA k=0.7的high
+    seed variance形成对比—— "smooth degradation is reproducible, cliff is stochastic."
+
+    '
+- name: OpenVLA random pruning k=0.5 seed43
+  plan_id: d108_unified_pruning_protocol
+  description: 'OpenVLA random pruning k=0.5 seed43。Seed42 = 37.4%。 当前状态：eval_openvla_prune_random_k05_seed43_v2
+    RUNNING。
+
+    '
+  expected_results:
+    openvla_random_k05_seed43_sr: 36
+    openvla_random_k05_seed43_sr_range:
+    - 30
+    - 44
+  result_rationale: '同k=0.7的推理。k=0.5移除50%，random mask的具体配置差异更大， 所以seed variance可能比k=0.7稍高（±4pp
+    vs ±3pp）。 但MLP projector的graded特性保证不会出现cliff-like discontinuity。 Seed42=37.4%，seed43预测~36%。若在33-41%范围内均合理。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: ''
+- name: RoboFlamingo Perceiver Resampler baseline + pruning sweep
+  plan_id: c5_third_connector_roboflamingo
+  description: '在LIBERO上fine-tune RoboFlamingo (Perceiver Resampler connector)， 然后执行pruning
+    sweep。验证第4种connector family的pruning行为。 状态：planned，未开始。
+
+    '
+  expected_results:
+    will_complete_before_deadline: false
+    baseline_sr_if_run: 45
+    baseline_sr_range:
+    - 35
+    - 55
+    perceiver_cv_prediction: 0.15
+    perceiver_cv_range:
+    - 0.1
+    - 0.2
+    pruning_k09_sr_if_run: 40
+    pruning_k07_sr_if_run: 25
+    pruning_behavior: moderate graded, possibly with soft threshold
+  result_rationale: 'Perceiver Resampler使用learnable query tokens通过cross-attention从encoder
+    output中提取固定数量的compressed representations。架构上与VTC类似 （都是cross-attention压缩），但位于connector（而非compression
+    module）。 预测CV=0.10-0.20（between π0=0.038 and OpenVLA=0.215）： (1) cross-attention引入了soft
+    inter-token dependencies（类似BART）， (2) 但每个query token attend to all encoder tokens（global
+    receptive field）， 信息分布比MLP projector更structured但比pixel-shuffle less entangled。
+    pruning行为预测：moderate graded degradation，可能在k~0.8有soft threshold （类似X-VLA但更gentle）——Perceiver的global
+    attention给每个token 提供了more redundancy than MLP but less than pure linear。
+
+    但此实验需要至少3-5天：(1) RoboFlamingo codebase adaptation (~1天), (2) LIBERO data loading
+    + fine-tuning pipeline (~0.5天 setup + 1天 training), (3) pruning sweep + evaluation
+    (~1天), (4) analysis (~0.5天)。 距离abstract deadline (May 26) 仅6天，距离paper deadline
+    (May 29) 仅9天。 无法在deadline前完成。
+
+    '
+  tables:
+  - name: 完整taxonomy预测（含Perceiver Resampler）
+    data: '| Connector         | Model         | CV    | k=0.9 SR | k=0.7 SR | Pattern         |
+      Status    |
+
+      |-------------------|---------------|-------|----------|----------|-----------------|-----------|
+
+      | Pure linear       | π0 3.3B       | 0.038 | ~99%     | ~99%     | Immune          |
+      Confirmed |
+
+      | Linear+BART 12L   | X-VLA 880M    | 0.151 | 97.6%    | 56.2%    | Threshold-graded|
+      Confirmed |
+
+      | Perceiver Resamp. | RoboFlamingo  | ~0.15 | ~40%?    | ~25%?    | Soft graded?    |
+      Predicted |
+
+      | 3-layer MLP       | OpenVLA 7B    | 0.215 | 62%      | 49%      | Smooth graded   |
+      Confirmed |
+
+      | Pixel-shuffle 16× | SmolVLA 450M  | 0.314 | 0%       | 0%       | Catastrophic    |
+      Confirmed |
+
+      '
+  figures_description:
+  - Taxonomy spectrum figure with RoboFlamingo shown as predicted/dashed entry between
+    X-VLA and OpenVLA on CV axis.
+  analysis: 在median档下，RoboFlamingo不会完成。论文以5模型×3 connector families提交。 Perceiver Resampler作为Discussion
+    section的future work： "Our taxonomy and CV diagnostic predict Perceiver Resampler
+    (used in Flamingo) would show intermediate behavior (CV~0.15); validation is left
+    to future work." 这是acceptable的——4 confirmed connector types + 5 models已是 most
+    comprehensive cross-architecture VLA token analysis。 Reviewer可能要求但可以argue coverage已足够。
+    如果reviewer要求且有revision opportunity，可作为revision deliverable。

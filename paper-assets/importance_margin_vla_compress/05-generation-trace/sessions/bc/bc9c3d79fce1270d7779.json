@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_estimate_completion-times_20260527T200327_result.json",
     "occurrence": 1,
-    "bytes": 2871,
-    "sha256": "8012c66cbd3374f45481e8c3d599a18d8a20e5558c01b2f02220cfefebdc1574"
+    "bytes": 2870,
+    "sha256": "4b235cef2fec24c09e2da7dc4c820e584794c1fcf42a2a6d03787631913db586"
   },
   "statistics": {
     "messages": 1,

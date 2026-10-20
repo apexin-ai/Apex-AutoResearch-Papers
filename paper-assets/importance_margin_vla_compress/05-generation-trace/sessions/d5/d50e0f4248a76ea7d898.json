@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill_duplicate_attn_k095_20260529T025332_result.json",
     "occurrence": 1,
-    "bytes": 235,
-    "sha256": "c6f535e26efe7f61ab1e809d1dfbad2ef040cb961c52511923efa90dc3f84f88"
+    "bytes": 234,
+    "sha256": "bc3f763bca1cc37ab3847c3f9e6a04a14eeca5ff95b6f8cb3c8df00afd071be4"
   },
   "statistics": {
     "messages": 1,

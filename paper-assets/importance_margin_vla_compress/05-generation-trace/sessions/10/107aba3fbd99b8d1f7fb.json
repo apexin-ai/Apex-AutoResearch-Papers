@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd41074_gpu1_openvla_attn_k085_long_20260524T210550_result.json",
     "occurrence": 1,
-    "bytes": 719,
-    "sha256": "f1094570dacc9bb6f9e5a86808609f063e3b091770e486c64be50b235350140d"
+    "bytes": 718,
+    "sha256": "1d45c5ca870fb850b5f744d7f536ba6b2f789327fb34898173d22a16b68ab6c6"
   },
   "statistics": {
     "messages": 1,

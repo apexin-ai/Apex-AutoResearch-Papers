@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_oft-k10-baseline_20260520T125047_result.json",
     "occurrence": 1,
-    "bytes": 463,
-    "sha256": "34f2d14aaacad90a882f247feeafe271c56f6d743d80b38e97b602bfc17c0ac7"
+    "bytes": 462,
+    "sha256": "b0f2c7e64af1598654cb34d5f7c2c2e1e9a868b3bf8b10d6203e649ec150bb4b"
   },
   "statistics": {
     "messages": 1,

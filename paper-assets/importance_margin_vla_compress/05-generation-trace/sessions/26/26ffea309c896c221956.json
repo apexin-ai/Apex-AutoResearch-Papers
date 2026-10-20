@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_k07_bypass_retry_20260517T035938_result.json",
     "occurrence": 1,
-    "bytes": 320,
-    "sha256": "966d1a2d4174729905be17911c2fe8a504b7ca51fa920109904a446f7214f4f2"
+    "bytes": 319,
+    "sha256": "c280aab2930d99adfbdb2fc1bf58b06fe210ee6e63d0a9901d963da51080e622"
   },
   "statistics": {
     "messages": 1,

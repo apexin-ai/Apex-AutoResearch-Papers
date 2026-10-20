@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_healthcheck-westd27271-gpu0-stall_20260523T221725_result.json",
     "occurrence": 1,
-    "bytes": 1165,
-    "sha256": "326e0d65b8f3ee71e257f26749b1fa259d1ecd4802c749a3aa130411e62ce0a3"
+    "bytes": 1164,
+    "sha256": "c5398eb7db4f80f49a5235de4aa0e1b20393463da5468a0fe99b4c466d3c7579"
   },
   "statistics": {
     "messages": 1,

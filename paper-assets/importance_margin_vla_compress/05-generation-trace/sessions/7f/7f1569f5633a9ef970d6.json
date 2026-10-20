@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_probe_westd-27271-gpu-status_20260521T231343_result.json",
     "occurrence": 1,
-    "bytes": 1269,
-    "sha256": "91d4c93018c3ef81a92a85ccaf995024a0d142f5543dc2704fd44e25a58caa93"
+    "bytes": 1268,
+    "sha256": "d9cf555c2a3f4ec02c588be61033a82727e23a418e456648876fc8ae7028879c"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ssh_check_l2norm_k07_s46_and_s47_20260528T120704_result.json",
     "occurrence": 1,
-    "bytes": 1450,
-    "sha256": "37ad55eec4f30d8ffd7601e73e87e43bffed475f9661f402c5227d84a869bd54"
+    "bytes": 1449,
+    "sha256": "de03377d1ccfb569dd7969d68c4cff89ec0c53e2cc556bbcb7b1058e6db996d7"
   },
   "statistics": {
     "messages": 1,

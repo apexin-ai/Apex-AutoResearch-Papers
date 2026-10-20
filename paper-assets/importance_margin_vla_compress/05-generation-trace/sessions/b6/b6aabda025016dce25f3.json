@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_random_k03_spatial_v2_20260524T150256_result.json",
     "occurrence": 1,
-    "bytes": 390,
-    "sha256": "1d38a061a118ea8ffe71640c854877b010917653228294b0dde408a46247e16f"
+    "bytes": 389,
+    "sha256": "d32ebfb84df3ebbdb0ab8f71ef0d63e91666391c27dcf27063babc4ba542e1fe"
   },
   "statistics": {
     "messages": 1,

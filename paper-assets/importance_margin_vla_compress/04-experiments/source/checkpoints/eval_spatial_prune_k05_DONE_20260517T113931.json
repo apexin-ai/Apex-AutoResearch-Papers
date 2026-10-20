@@ -1,0 +1,47 @@
+{
+  "exp_id": "eval_spatial_prune_k05",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T10:43:21.844Z",
+    "updated_at": "2026-05-17T11:39:31.186Z",
+    "hypothesis": "ACIS k=0.5 true_removal pruning on libero_spatial will show the same cliff-edge collapse (0% SR) as observed on libero_object, confirming that removing ACIS-identified important tokens destroys policy capability across different task suites.",
+    "parent": "eval_true_removal_k05",
+    "spec": {
+      "command": "python eval_success_rate_libero.py --checkpoint checkpoints/libero_acis_stage1only_k03/stage1_done/checkpoint.pt --suite spatial --k_ratio 0.5 --pruning_method true_removal --num_episodes 50 --gpu 0",
+      "server": "westd-27271",
+      "gpu": "1",
+      "data_path": "libero_spatial",
+      "data_count": 500,
+      "model_name": "SmolVLA-ACIS-Stage1Only-k03",
+      "seed": 0,
+      "checkpoint_source": "libero_acis_stage1only_k03",
+      "eval_data": "LIBERO-Spatial (10 tasks x 50 episodes)"
+    },
+    "metrics": {
+      "suite": "libero_spatial",
+      "mode": "acis_prune",
+      "pruning_method": "true_removal",
+      "overall_sr": 0,
+      "total_episodes": 500,
+      "total_successes": 0,
+      "wilson_ci_95": [
+        0,
+        0.0076
+      ],
+      "baseline_sr": 0.518,
+      "sr_drop": -0.518,
+      "all_tasks_zero": true
+    },
+    "conclusion": "success",
+    "notes": "Completed normally at 2026-05-17 19:35. 0% SR across all 10 spatial tasks (0/500 episodes). Confirms cliff-edge generalizes from object to spatial suite. Log: eval_results/eval_spatial_prune_k05.log, Results: eval_results/eval_spatial_prune_k05.json",
+    "checkpoint_path": "checkpoints/libero_acis_stage1only_k03/stage1_done/checkpoint.pt",
+    "log_path": "eval_results/eval_spatial_prune_k05.log",
+    "completed_at": "2026-05-17T11:39:31.186Z"
+  },
+  "timestamp": "2026-05-17T11:39:31.308000+00:00",
+  "trigger": "update_registry"
+}

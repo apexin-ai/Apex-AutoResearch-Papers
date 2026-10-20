@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_stage1only_spatial_20260517T065126_result.json",
     "occurrence": 1,
-    "bytes": 561,
-    "sha256": "f9f8bdf707bb3e0a43bc71a3e95a7892c72dec1c9e1eaea8618dda6fa00ca342"
+    "bytes": 560,
+    "sha256": "11a9bd524a75b5f95da618acae422286c9bc0b129ba98cdbf60353635685cc6c"
   },
   "statistics": {
     "messages": 1,

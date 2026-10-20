@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_figure_fig_compression_curve_20260520T054606_result.json",
     "occurrence": 1,
-    "bytes": 347,
-    "sha256": "488ec75e1faf12c9d8c106f47c2d5f57f04347b6dd2a07681a8fb7ad4b3664c8"
+    "bytes": 346,
+    "sha256": "755b1be11376d05f1cecfb194e8d15b91d064fd7ec60e01e246b21ffdd7c9f74"
   },
   "statistics": {
     "messages": 1,

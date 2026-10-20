@@ -1,0 +1,983 @@
+narrative_guidance: 'Claim 2 降级为 ''near-lossless compression with robustness guarantee''——不再强调
+  performance gain，改为强调 robustness-compression tradeoff 的 Pareto improvement。Claim
+  3 从独立 claim 降级为 ''empirical observation consistent with denoising hypothesis''，放入
+  analysis section 而非 core contribution。 Claim 1 certified bound 改为强调 ''principled
+  design criterion'' 而非 ''tight guarantee''——bound 的价值 在于指导训练目标设计而非运行时认证。Story 从 ''provably
+  robust + lossless'' 调整为 ''first robustness-aware compression framework with theoretical
+  grounding''。仍可投 CoRL 但需要补充 computational overhead analysis 证明 practical value。
+
+  '
+imagined_experiments:
+- name: Success Rate Evaluation on aloha_sim_insertion
+  plan_id: plan_001
+  description: 'aloha_sim_insertion 上 baseline vs v8b+prune(50%) vs v8b bypass，50+
+    episodes 对比 success rate。 验证 action loss 差异是否反映在实际任务表现上。
+
+    '
+  expected_results:
+    baseline_success_rate: 0.82
+    v8b_prune50_success_rate: 0.84
+    v8b_bypass_success_rate: 0.8
+    random_prune50_success_rate: 0.54
+    n_episodes: 60
+    success_rate_delta_prune_vs_baseline_pp: 2.0
+    success_rate_delta_bypass_vs_baseline_pp: -2.0
+    p_value_prune_vs_baseline: 0.38
+    p_value_random_vs_baseline: 0.001
+    confidence_interval_95_prune:
+    - 0.73
+    - 0.92
+    confidence_interval_95_baseline:
+    - 0.71
+    - 0.9
+  result_rationale: 'Median 档预测 success_rate_delta 在 [-3, +4] pp 范围内。v8b+prune(50%)
+    的 action loss (0.0035) 显著低于 baseline (0.0041)，但 action loss 差异为 ~15%，在 sim rollout
+    中这种差异 被环境随机性和 closed-loop 误差修正机制所稀释——机器人在多数 timestep 上都有足够的 action 质量完成任务， 因此
+    success rate 差异被压缩到统计不显著的 +2pp。Random prune 的 action loss (0.018) 是 baseline 的
+    4.4x，这种程度的 degradation 在 closed-loop 中无法被修正，success rate 大幅下降到 54%。 60 episode
+    的样本量在 ±2pp 的差异上 power 不足（需要 ~2000 episodes 才能 detect），因此 p>0.05。 这意味着论文不能声称 "compression
+    improves success rate"，只能说 "compression is near-lossless in task performance while
+    providing robustness guarantee"。
+
+    '
+  tables:
+  - name: 'Table: Success Rate Comparison (aloha_sim_insertion, 60 episodes)'
+    columns:
+    - Method
+    - Success Rate
+    - 95% CI
+    - p vs baseline
+    rows:
+    - - Baseline (no compression)
+      - 82%
+      - '[71%, 90%]'
+      - —
+    - - IMM two-stage + ACIS prune 50%
+      - 84%
+      - '[73%, 92%]'
+      - '0.38'
+    - - IMM two-stage bypass (no prune)
+      - 80%
+      - '[68%, 89%]'
+      - '0.52'
+    - - Random prune 50%
+      - 54%
+      - '[41%, 66%]'
+      - '0.001'
+  figures_description:
+  - 'Bar chart with 95% CI error bars: 4 conditions, y-axis success rate 0-100%。前三个
+    bar 高度接近且 CI 重叠，random prune 明显低。标注 n.s. (not significant) 在 baseline vs ACIS
+    prune 之间。'
+  analysis: 'Success rate 方向一致但差异不显著（p=0.38），符合 median 档预期。这支持 ''near-lossless'' 叙事但不支持
+    ''performance gain'' 叙事。Random prune 的显著下降（-28pp, p<0.001）证明 ACIS importance scoring
+    是必要的——不是任意 50% 都能删。论文应呈现为 "ACIS-guided compression preserves task success while
+    random compression catastrophically degrades"。审稿人可能要求更多 episodes 或更多 tasks 来增强统计
+    power，这由 plan_002 (LIBERO) 部分解决。
+
+    '
+- name: LIBERO Benchmark Validation
+  plan_id: plan_002
+  description: 'SmolVLA+IMM two-stage 在 LIBERO-Object/Spatial/Goal 三个 suite 上训练+评估，对比
+    baseline。 每 suite 10 tasks × 20 episodes = 200 episodes per suite。
+
+    '
+  expected_results:
+    libero_object:
+      baseline_success_rate: 0.76
+      imm_prune50_success_rate: 0.74
+      delta_pp: -2.0
+      G3_deploy_ratio: 0.95
+    libero_spatial:
+      baseline_success_rate: 0.68
+      imm_prune50_success_rate: 0.7
+      delta_pp: 2.0
+      G3_deploy_ratio: 0.92
+    libero_goal:
+      baseline_success_rate: 0.61
+      imm_prune50_success_rate: 0.59
+      delta_pp: -2.0
+      G3_deploy_ratio: 1.04
+    libero_avg_G3_deploy_ratio: 0.97
+    libero_avg_success_delta_pp: -0.7
+    p_value_paired_across_tasks: 0.31
+    eps001_preservation_avg: 0.91
+    margin_ratio_avg: 78.5
+  result_rationale: 'Median 档预测 G3_deploy_ratio_libero_avg 在 [0.9, 1.05]。LIBERO 是比
+    aloha_sim_insertion 更复杂的多任务 benchmark，SmolVLA 在 LIBERO 上的 baseline 表现本身就不如 aloha（更多
+    task 多样性 和更长 horizon），因此 two-stage training 的增益被任务复杂度稀释。部分 task 上 G3<1.0（Object、Spatial
+    的 action loss 下降），部分 task 上 G3>1.0（Goal suite 的长 horizon 任务中 pruning 偶尔丢弃 长期规划相关
+    token），整体平均在 0.97 左右——接近无损但不是所有 task 都无损。 Success rate 差异在各 suite 上方向不一致（Object
+    -2pp, Spatial +2pp, Goal -2pp），平均 -0.7pp， paired test p=0.31 不显著。这进一步支持 ''near-lossless''
+    而非 ''improvement'' 叙事。 Robustness 指标（preservation 0.91, margin ratio 78.5x）在 LIBERO
+    上依然显著优于 baseline， 说明 IMM 的 robustness benefit 跨 benchmark 泛化。
+
+    '
+  tables:
+  - name: 'Table: LIBERO Suite Results (SmolVLA, 50% compression)'
+    columns:
+    - Suite
+    - Baseline SR
+    - IMM+Prune SR
+    - Δpp
+    - G3 ratio
+    - ε=0.01 Pres.
+    rows:
+    - - LIBERO-Object
+      - 76%
+      - 74%
+      - '-2'
+      - '0.95'
+      - '0.92'
+    - - LIBERO-Spatial
+      - 68%
+      - 70%
+      - '+2'
+      - '0.92'
+      - '0.90'
+    - - LIBERO-Goal
+      - 61%
+      - 59%
+      - '-2'
+      - '1.04'
+      - '0.91'
+    - - Average
+      - 68.3%
+      - 67.7%
+      - '-0.7'
+      - '0.97'
+      - '0.91'
+  figures_description:
+  - 'Per-task G3 ratio heatmap: 30 tasks (10 per suite) × G3 值，用颜色编码 <0.95 (green)
+    / 0.95-1.05 (yellow) / >1.05 (red)。预期大部分为 yellow，少数 green，1-2 个 red。'
+  - 'Robustness improvement bar chart: 每 suite 的 preservation rate（baseline ~0.34
+    vs IMM ~0.91）并排 bar。'
+  analysis: 'LIBERO 结果验证 two-stage 跨 benchmark 有效但效果不如 aloha_sim_insertion 上明显。G3
+    ratio 在 0.92~1.04 范围，平均 0.97，部分 task 低于 1（支持 denoising 假设但不普遍），部分略高于 1（压缩有微小 代价）。Success
+    rate 差异不显著，整体叙事为 "near-lossless compression + significant robustness gain across
+    benchmarks"。审稿人可能注意到 Goal suite 上 G3>1.0 的趋势——需在论文中讨论长 horizon 任务 中 token importance
+    分布可能需要 task-adaptive pruning ratio。
+
+    '
+- name: OpenVLA Model Validation
+  plan_id: plan_003
+  description: 'IMM two-stage 在 OpenVLA (7B) 上复现，LIBERO 数据集。验证跨模型泛化性。
+
+    '
+  expected_results:
+    openvla_libero_object:
+      baseline_action_loss: 0.0032
+      imm_prune50_action_loss: 0.0035
+      G3_deploy_ratio: 1.09
+    openvla_libero_spatial:
+      baseline_action_loss: 0.0038
+      imm_prune50_action_loss: 0.0042
+      G3_deploy_ratio: 1.11
+    openvla_libero_goal:
+      baseline_action_loss: 0.0045
+      imm_prune50_action_loss: 0.005
+      G3_deploy_ratio: 1.11
+    openvla_avg_G3_deploy_ratio: 1.1
+    openvla_margin_ratio: 32.5
+    openvla_eps001_preservation: 0.89
+    openvla_success_rate_delta_pp: -1.5
+    training_gpu_hours: 55
+  result_rationale: 'Median 档预测 G3_deploy_ratio_openvla 在 [1.0, 1.15]。OpenVLA 是 7B
+    模型，baseline 本身 的 action prediction 质量更高（loss 更低），因此 pruning 带来的 denoising 效应被更强的
+    backbone 能力所稀释——大模型的 token representation 本身冗余度更低（每个 token 携带更多非冗余信息），pruning
+    50% 时不可避免地丢弃部分有用信息。G3 ratio 1.10 意味着压缩后 action loss 上升 10%——不再 lossless 但 degradation
+    可控（success rate 仅降 1.5pp，在统计噪声内）。 Margin ratio 32.5x（vs SmolVLA 93x）也反映了大模型上 IMM
+    的效果衰减——7B 模型的 LoRA 微调 可能不足以让 ACIS margin 被充分优化（LoRA rank 限制了优化自由度）。但 preservation
+    0.89 仍远优于 baseline 的 ~0.34，robustness benefit 依然显著。
+
+    '
+  tables:
+  - name: 'Table: Cross-Model Comparison (LIBERO-Object, 50% compression)'
+    columns:
+    - Model
+    - Params
+    - Baseline Loss
+    - IMM+Prune Loss
+    - G3
+    - Margin Ratio
+    - Pres. ε=0.01
+    rows:
+    - - SmolVLA
+      - 0.5B
+      - '0.0041'
+      - '0.0035'
+      - '0.87'
+      - 93.2x
+      - '0.90'
+    - - OpenVLA
+      - 7B
+      - '0.0032'
+      - '0.0035'
+      - '1.09'
+      - 32.5x
+      - '0.89'
+  figures_description:
+  - 'G3 ratio vs model size scatter plot (2 points + trend line): 显示 G3 随模型增大从 <1.0
+    上升到 >1.0 的趋势。'
+  - 'Margin ratio vs model size: 显示 IMM 对 margin 的提升随模型增大而减弱。'
+  analysis: 'OpenVLA 结果证实 two-stage 方法跨模型可行但效果减弱。G3=1.10 意味着论文不能声称 "lossless compression
+    on all models"，需要改为 "near-lossless on small models, controllable degradation on
+    large models"。 关键 insight：大模型 token 冗余度低，denoising effect 消失，但 robustness benefit
+    仍然存在 （preservation 0.89 vs 0.34）。论文叙事需要强调 robustness-compression tradeoff 的 Pareto
+    improvement 而非 free lunch。审稿人可能追问：是否可以通过调整 pruning ratio 到 30% 在 OpenVLA 上恢复 lossless？这由
+    plan_008 的 ratio sweep 部分回答。
+
+    '
+- name: 'Training Ablation: Joint vs Gradient-Isolated vs Two-Stage'
+  plan_id: plan_004
+  description: 'Joint (v7 style) vs gradient-isolated (v8 style) vs two-stage (v8b
+    style) 三路对比， 统一超参，消除 confounding factors。
+
+    '
+  expected_results:
+    joint_v7:
+      clean_action_loss: 0.0134
+      acis_prune50_action_loss: 0.0134
+      bypass_action_loss: 0.0078
+      G3_deploy_ratio: 3.29
+      margin_median: 0.57
+      eps001_preservation: 0.91
+      diagnosis: backbone_damaged_by_coadaptation
+    gradient_isolated_v8:
+      clean_action_loss: 0.0055
+      acis_prune50_action_loss: 0.0055
+      bypass_action_loss: 0.0289
+      G3_deploy_ratio: 1.34
+      margin_median: 0.5
+      eps001_preservation: 0.92
+      diagnosis: partial_coadaptation_residual
+    two_stage_v8b:
+      clean_action_loss: 0.0207
+      acis_prune50_action_loss: 0.0035
+      bypass_action_loss: 0.0187
+      G3_deploy_ratio: 0.87
+      margin_median: 0.93
+      eps001_preservation: 0.9
+      diagnosis: clean_separation
+    baseline_ref:
+      clean_action_loss: 0.0041
+  result_rationale: '三种训练策略的根本差异在于 ACIS 和 backbone 之间的信息流隔离程度： (1) Joint (v7): ACIS
+    和 backbone 同时训练，backbone 适应 ACIS 的 mask pattern，导致 backbone 单独运行时性能崩溃（bypass loss
+    仅 0.0078 ≪ standard loss 0.0134，说明 backbone 在 co-adaptation 中学到了 "依赖 ACIS"的模式）。G3=3.29
+    表明不加 ACIS 几乎无法使用。 (2) Gradient-isolated (v8): 阻断了 ACIS→backbone 的梯度流，但 backbone
+    仍然在有 ACIS mask 的环境中训练，产生隐式 co-adaptation。G3=1.34——比 joint 好很多但仍非无损。 (3) Two-stage
+    (v8b): Stage1 完全冻结 backbone 训 ACIS，Stage2 完全冻结 ACIS 训 LoRA。 两者从未同时优化，消除所有 co-adaptation。G3=0.87，backbone
+    质量最接近原始 baseline。 这个 ablation 是论文的核心工程贡献——解释了为什么 two-stage 是必要的。
+
+    '
+  tables:
+  - name: 'Table: Training Strategy Ablation (SmolVLA, aloha_sim_insertion)'
+    columns:
+    - Strategy
+    - Standard Loss
+    - ACIS+Prune Loss
+    - Bypass Loss
+    - G3 Ratio
+    - Margin
+    - ε=0.01 Pres.
+    rows:
+    - - Joint (v7)
+      - '0.0134'
+      - '0.0134'
+      - '0.0078'
+      - '3.29'
+      - '0.57'
+      - '0.91'
+    - - Grad-Isolated (v8)
+      - '0.0055'
+      - '0.0055'
+      - '0.0289'
+      - '1.34'
+      - '0.50'
+      - '0.92'
+    - - Two-Stage (v8b)
+      - '0.0207'
+      - '0.0035'
+      - '0.0187'
+      - '0.87'
+      - '0.93'
+      - '0.90'
+    - - Baseline (no IMM)
+      - '0.0041'
+      - —
+      - —
+      - '1.00'
+      - '0.01'
+      - '0.34'
+  figures_description:
+  - '三行子图：每行一个训练策略，x 轴为 training step，y 轴为 action loss。每行画 3 条线（standard / ACIS+prune
+    / bypass），直观展示 co-adaptation 的不同模式。Joint: standard 和 bypass 交叉；Grad-isolated:
+    bypass 高于 standard 但差距不大；Two-stage: 两段 plateau 明显，最终 ACIS+prune 远低于其他。'
+  analysis: 'Ablation 清晰展示 co-adaptation 问题的机制和 two-stage 的解决方案。Joint 训练中 bypass loss
+    极低 说明 backbone 被 ACIS 的 mask pattern 结构性改变——这不是 "improved backbone" 而是 "broken
+    backbone that depends on ACIS"。Gradient isolation 部分解决但不彻底（G3=1.34 仍>1.0）。Two-stage
+    完全解决， 代价是训练流程更复杂（需要两阶段、冻结策略）。论文应将此呈现为 key engineering contribution，类似 BatchNorm
+    需要 running mean/var 分离一样，ACIS 需要训练解耦来保证 backbone 完整性。
+
+    '
+- name: Formal Bound Empirical Validation
+  plan_id: plan_005
+  description: '多 ε 水平 (0.005, 0.01, 0.02, 0.05, 0.1) 下测量 top-k stability，绘制 theoretical
+    vs empirical bound 对比图。估计 Lipschitz constant L via spectral norm。
+
+    '
+  expected_results:
+    lipschitz_spectral_norm: 1.07
+    margin_median: 0.93
+    k: 145
+    eps_levels:
+      eps_0005:
+        theoretical_flip_prob_bound: 0.083
+        empirical_flip_rate: 0.012
+        tightness_ratio: 6.9
+      eps_001:
+        theoretical_flip_prob_bound: 0.167
+        empirical_flip_rate: 0.025
+        tightness_ratio: 6.7
+      eps_002:
+        theoretical_flip_prob_bound: 0.333
+        empirical_flip_rate: 0.058
+        tightness_ratio: 5.7
+      eps_005:
+        theoretical_flip_prob_bound: 0.834
+        empirical_flip_rate: 0.148
+        tightness_ratio: 5.6
+      eps_01:
+        theoretical_flip_prob_bound: 1.0
+        empirical_flip_rate: 0.312
+        tightness_ratio: N/A (bound saturated)
+    avg_tightness_ratio: 6.2
+    bound_direction_correct: true
+    bound_never_violated: true
+  result_rationale: 'Median 档预测 bound_tightness_ratio 在 [5.0, 10.0]。Formal bound P(flip)
+    ≤ k·ε·L/Δ_k 使用的是 worst-case Lipschitz constant（spectral norm 1.07）和 median margin（0.93），但实际
+    扰动下的 importance score 变化远小于 worst case——因为 (a) spectral norm 是所有方向的上界，实际 扰动方向大多不沿最大奇异值方向；(b)
+    Δ_k 是 median 但很多 token 的 margin 远大于 median。因此 theoretical bound 是 empirical rate
+    的 ~6x——方向正确（bound 从未被违反），但 loose 程度会让 追求 tight guarantee 的审稿人不满。 ε=0.1 时 theoretical
+    bound 饱和到 1.0（trivial bound），此时 empirical rate 0.312 说明实际 还有很大空间——bound 在高扰动下失去指导价值。
+    论文应将 bound 定位为 "principled design criterion that correctly ranks training objectives"
+    而非 "tight runtime certificate"。
+
+    '
+  tables:
+  - name: 'Table: Theoretical vs Empirical Bound (SmolVLA, k=145)'
+    columns:
+    - ε
+    - Theoretical P(flip)
+    - Empirical flip rate
+    - Tightness ratio
+    - Bound holds?
+    rows:
+    - - '0.005'
+      - '0.083'
+      - '0.012'
+      - 6.9x
+      - ✓
+    - - '0.010'
+      - '0.167'
+      - '0.025'
+      - 6.7x
+      - ✓
+    - - '0.020'
+      - '0.333'
+      - '0.058'
+      - 5.7x
+      - ✓
+    - - '0.050'
+      - '0.834'
+      - '0.148'
+      - 5.6x
+      - ✓
+    - - '0.100'
+      - '1.000'
+      - '0.312'
+      - —
+      - ✓ (trivial)
+  figures_description:
+  - 'Log-log plot: x 轴 ε，y 轴 flip probability。两条线：theoretical bound (上方虚线) 和 empirical
+    rate (下方实线 + error bars)。两线平行但间隔 ~6x，在 ε=0.1 处 theoretical 线碰顶。shaded area 表示
+    ''certified safe zone''。'
+  - 'Tightness ratio vs ε: bar chart，显示 ratio 在 5.6~6.9 范围，标注 median 档 target [5,
+    10]。'
+  analysis: 'Bound 从未被违反（soundness 成立），但 5.6~6.9x 的 tightness ratio 意味着 bound 提供的是
+    conservative certificate。审稿人可能的反应："bound 太 loose，实际指导价值有限"。应对策略： (1) 强调 bound
+    的 comparative value——IMM 训练后 Δ_k 从 0.01 提升到 0.93（93x），即使 bound 是 6x loose，认证区域仍扩大了
+    93/6 ≈ 15x； (2) 强调 bound 作为 training objective design principle 的价值——最大化 Δ_k 的动机来自
+    bound， 实验证明这个方向正确； (3) 承认 tightening bound 是 future work（可能通过 data-dependent Lipschitz
+    估计）。
+
+    '
+- name: Cross-Compression Validation (IMM + FastV/VLA-IAP/VLA-Cache)
+  plan_id: plan_006
+  description: 'IMM 叠加到 FastV、VLA-IAP、VLA-Cache 三种现有压缩方法上，对比各方法 baseline vs +IMM 的鲁棒性。
+
+    '
+  expected_results:
+    fastv:
+      baseline_eps001_preservation: 0.36
+      imm_eps001_preservation: 0.89
+      baseline_G3: 1.0
+      imm_G3: 0.94
+      preservation_gain_pp: 53.0
+    vla_iap:
+      baseline_eps001_preservation: 0.38
+      imm_eps001_preservation: 0.9
+      baseline_G3: 1.0
+      imm_G3: 0.97
+      preservation_gain_pp: 52.0
+    vla_cache:
+      baseline_eps001_preservation: 0.33
+      imm_eps001_preservation: 0.88
+      baseline_G3: 1.0
+      imm_G3: 1.02
+      preservation_gain_pp: 55.0
+    avg_preservation_gain_pp: 53.3
+    avg_G3_with_imm: 0.98
+    cross_method_margin_ratio_range:
+    - 18
+    - 45
+  result_rationale: 'Median 档预测 cross_model_margin_ratio 在 [15, 50]。IMM 训练的 margin
+    maximization 是在 ACIS importance scoring 上进行的，与下游具体用哪种压缩方法无关——ACIS 训练完成后，FastV/VLA-IAP/
+    VLA-Cache 各自用自己的 token selection 策略，但 IMM 训练过的 backbone 对 token importance 分布本身已经被
+    restructured（高重要性 token 的 score 与低重要性 token 拉开了更大间距）。因此 不管用哪种 selection 策略，被选中/被丢弃的
+    token 集合在扰动下更稳定。 G3 接近 1.0（0.94~1.02）因为 IMM two-stage 对 backbone 的修改是通过 Stage2
+    LoRA 完成的， 影响范围有限，不会严重干扰其他压缩方法的工作方式。VLA-Cache 的 G3 略>1.0 因为它的 KV-cache eviction
+    策略本身就不依赖 token importance scoring，IMM 的修改对它影响最小。
+
+    '
+  tables:
+  - name: 'Table: IMM as Plugin for Existing Compression Methods'
+    columns:
+    - Compression Method
+    - Pres. (baseline)
+    - Pres. (+IMM)
+    - Gain (pp)
+    - G3 (+IMM)
+    rows:
+    - - FastV
+      - '0.36'
+      - '0.89'
+      - '+53'
+      - '0.94'
+    - - VLA-IAP
+      - '0.38'
+      - '0.90'
+      - '+52'
+      - '0.97'
+    - - VLA-Cache
+      - '0.33'
+      - '0.88'
+      - '+55'
+      - '1.02'
+    - - ACIS (ours)
+      - '0.34'
+      - '0.90'
+      - '+56'
+      - '0.87'
+  figures_description:
+  - 'Grouped bar chart: 4 compression methods × 2 conditions (baseline vs +IMM)，y
+    轴 preservation rate。所有 baseline bars 在 0.33~0.38，所有 +IMM bars 在 0.88~0.90，形成强烈视觉对比。'
+  analysis: 'IMM 对所有测试的压缩方法都提供 ~53pp 的 preservation rate 提升，G3 在 0.94~1.02 范围，证明 IMM
+    是 compression-agnostic 的训练策略。这是 paper 的一个 strong selling point——IMM 不是又一个 新压缩方法，而是一个可以叠加到任何现有方法上的
+    robustness layer。审稿人可能追问 overhead： IMM 训练需要额外 Stage1，推理时需要 ACIS module——这由 plan_011
+    量化。
+
+    '
+- name: Defense Comparison (IMM vs AT vs RS vs Jacobian Reg)
+  plan_id: plan_007
+  description: 'IMM vs adversarial training vs randomized smoothing vs RobustVLA Jacobian
+    regularization， 在 LIBERO 设置下标准+扰动条件的对比。
+
+    '
+  expected_results:
+    clean_success_rate:
+      baseline: 0.68
+      imm: 0.67
+      adversarial_training: 0.62
+      randomized_smoothing: 0.64
+      jacobian_reg: 0.66
+    perturbed_eps001_success_rate:
+      baseline: 0.51
+      imm: 0.63
+      adversarial_training: 0.59
+      randomized_smoothing: 0.56
+      jacobian_reg: 0.57
+    perturbed_eps005_success_rate:
+      baseline: 0.32
+      imm: 0.48
+      adversarial_training: 0.46
+      randomized_smoothing: 0.41
+      jacobian_reg: 0.42
+    training_overhead_relative:
+      imm: 1.3
+      adversarial_training: 3.2
+      randomized_smoothing: 1.0
+      jacobian_reg: 1.8
+    compression_compatible:
+      imm: true
+      adversarial_training: false
+      randomized_smoothing: false
+      jacobian_reg: false
+  result_rationale: 'IMM 在 perturbed 条件下优于其他方法但优势不大（+4~7pp vs AT, +7~12pp vs RS/JR），在
+    clean 条件下几乎无损（-1pp）。AT 在 clean 上损失最多（-6pp），因为 adversarial training 的 min-max 优化牺牲了
+    clean performance 换 robust performance——经典的 accuracy-robustness tradeoff。 RS 的
+    clean 损失来自 inference-time noise injection 的 variance。JR 的损失来自 Jacobian 约束限制了模型表达能力。
+    IMM 的独特优势不在于 robustness 绝对值（与 AT 接近），而在于 (1) 几乎不损失 clean performance， (2) 兼容 token
+    compression（其他方法都不提供 compression），(3) 训练开销较低（1.3x vs AT 的 3.2x）。 这是 Pareto improvement
+    叙事的核心支撑。
+
+    '
+  tables:
+  - name: 'Table: Defense Method Comparison (LIBERO-avg)'
+    columns:
+    - Method
+    - Clean SR
+    - ε=0.01 SR
+    - ε=0.05 SR
+    - Train Cost
+    - Compression?
+    rows:
+    - - Baseline
+      - 68%
+      - 51%
+      - 32%
+      - 1.0x
+      - —
+    - - IMM (ours)
+      - 67%
+      - 63%
+      - 48%
+      - 1.3x
+      - ✓ 50%
+    - - Adversarial Training
+      - 62%
+      - 59%
+      - 46%
+      - 3.2x
+      - ✗
+    - - Randomized Smoothing
+      - 64%
+      - 56%
+      - 41%
+      - 1.0x
+      - ✗
+    - - Jacobian Reg
+      - 66%
+      - 57%
+      - 42%
+      - 1.8x
+      - ✗
+  figures_description:
+  - 'Pareto front plot: x 轴 clean SR，y 轴 perturbed SR (ε=0.01)。IMM 在右上角（高 clean +
+    高 robust），AT 在左上偏下（低 clean + medium robust），RS/JR 在中间。标注 IMM 为 Pareto optimal。'
+  analysis: 'IMM 是唯一同时提供 compression + robustness 且 clean performance 几乎无损的方法。但优势幅度不大
+    （vs AT 仅 +4pp @ε=0.01），审稿人可能认为 "AT 不需要 ACIS 模块更简单"。应对：强调 IMM 是 compression-aware
+    defense（场景不同），且训练成本仅 1.3x（AT 需 3.2x）。在 median 档下这个结果 足以 support "Pareto improvement"
+    claim 但不足以声称 "dominant defense"。
+
+    '
+- name: Pruning Ratio Sweep
+  plan_id: plan_008
+  description: 'k_ratio = 0.3/0.4/0.5/0.6/0.7/0.8/0.9 下 G3 deploy ratio 曲线，找最优压缩点。
+
+    '
+  expected_results:
+    ratio_030:
+      G3_deploy_ratio: 1.18
+      action_loss: 0.0048
+      eps001_preservation: 0.92
+    ratio_040:
+      G3_deploy_ratio: 1.03
+      action_loss: 0.0042
+      eps001_preservation: 0.91
+    ratio_050:
+      G3_deploy_ratio: 0.87
+      action_loss: 0.0035
+      eps001_preservation: 0.9
+    ratio_060:
+      G3_deploy_ratio: 0.83
+      action_loss: 0.0034
+      eps001_preservation: 0.89
+    ratio_070:
+      G3_deploy_ratio: 0.89
+      action_loss: 0.0036
+      eps001_preservation: 0.88
+    ratio_080:
+      G3_deploy_ratio: 0.95
+      action_loss: 0.0039
+      eps001_preservation: 0.87
+    ratio_090:
+      G3_deploy_ratio: 0.99
+      action_loss: 0.004
+      eps001_preservation: 0.86
+    optimal_ratio: 0.6
+    sweet_spot_range:
+    - 0.5
+    - 0.7
+  result_rationale: "Pruning ratio sweep 展示一个 U-shaped G3 curve： - ratio 0.3 (保留 30%\
+    \ token): 过度压缩，丢弃了部分有用 token，G3=1.18（18% degradation）。 - ratio 0.4~0.5: 进入 sweet\
+    \ spot，denoising effect 开始主导——删除的 token 主要是低信息量的，\n  删除它们减少了 action prediction\
+    \ 中的 noise source。G3<1.0。\n- ratio 0.6: 最优点 G3=0.83，保留 60% token 时 denoising 效果最强——足够的\
+    \ token 被删除来\n  产生 denoising，但没多到丢失关键信息。\n- ratio 0.7~0.9: 删除太少 token，denoising\
+    \ 效果减弱（fewer noise tokens removed），G3 逐渐\n  回到 1.0。\nPreservation rate 随 ratio\
+    \ 增大单调微降（0.92→0.86），因为保留更多 token 意味着更多 borderline token 被包含，这些 token 的 importance\
+    \ score 接近 threshold，更容易被扰动翻转。\n"
+  tables:
+  - name: 'Table: Pruning Ratio Sweep (SmolVLA, aloha_sim_insertion)'
+    columns:
+    - Keep Ratio
+    - Action Loss
+    - G3 Ratio
+    - ε=0.01 Pres.
+    - Tokens Kept
+    rows:
+    - - '0.30'
+      - '0.0048'
+      - '1.18'
+      - '0.92'
+      - 87/290
+    - - '0.40'
+      - '0.0042'
+      - '1.03'
+      - '0.91'
+      - 116/290
+    - - '0.50'
+      - '0.0035'
+      - '0.87'
+      - '0.90'
+      - 145/290
+    - - '0.60'
+      - '0.0034'
+      - '0.83'
+      - '0.89'
+      - 174/290
+    - - '0.70'
+      - '0.0036'
+      - '0.89'
+      - '0.88'
+      - 203/290
+    - - '0.80'
+      - '0.0039'
+      - '0.95'
+      - '0.87'
+      - 232/290
+    - - '0.90'
+      - '0.0040'
+      - '0.99'
+      - '0.86'
+      - 261/290
+  figures_description:
+  - 'Dual y-axis line plot: x 轴 keep ratio (0.3→0.9)，左 y 轴 G3 ratio (U-shaped curve,
+    min at 0.6)，右 y 轴 preservation rate (gentle downward slope)。horizontal dashed
+    line at G3=1.0。Green shading for ''denoising zone'' (G3<1.0)。'
+  analysis: 'U-shape curve 支持 denoising hypothesis——存在一个 sweet spot (0.5~0.7) 在该范围内
+    compression is beneficial。但这不是 conclusive evidence：同样的 U-shape 可能由 regularization
+    effect（类似 dropout）解释，不一定是 "removing noisy tokens"。论文应将此作为 "empirical observation
+    consistent with denoising hypothesis" 而非 strong causal claim。最优点在 0.6 而非 0.5 说明
+    paper 中使用的 50% 不是最优选择——但 0.5 是更标准的比较点，且 G3=0.87 已经 <1.0。
+
+    '
+- name: Token Importance Analysis (Attention & Gradient)
+  plan_id: plan_009
+  description: '分析被 ACIS 删除 vs 保留 token 的 attention weight 分布、与 action prediction
+    的 gradient 相关性。
+
+    '
+  expected_results:
+    pruned_token_avg_attn_weight: 0.0018
+    kept_token_avg_attn_weight: 0.0041
+    attn_weight_ratio: 0.44
+    pruned_token_avg_grad_norm: 0.0012
+    kept_token_avg_grad_norm: 0.0038
+    grad_norm_ratio: 0.32
+    attn_weight_ks_test_p: 0.003
+    grad_norm_ks_test_p: 0.008
+    cohen_d_attn: 0.42
+    cohen_d_grad: 0.51
+    spearman_importance_vs_attn: 0.38
+    spearman_importance_vs_grad: 0.45
+  result_rationale: 'Median 档预测 pruned_token_attn_weight_ratio 在 [0.3, 0.6]。被 ACIS
+    标记为低重要性并删除的 token 在 action decoder 的 cross-attention 中确实接收更少 attention（ratio 0.44）——这些
+    token 携带的信息对 action prediction 贡献较小。Gradient norm ratio 0.32 也支持这一点——被删除 token
+    对 action loss 的梯度贡献更小。 但 effect size 中等（Cohen''s d = 0.42~0.51），不是大效应（d>0.8）。这意味着分布有
+    overlap—— 部分被删除的 token 的 attention weight 其实不低，部分被保留的 token 的 attention weight
+    也不高。 ACIS 学到的 importance 与 attention/gradient 有中等正相关（Spearman 0.38~0.45），说明 ACIS
+    捕捉了部分但非全部的 task-relevance 信号。 这足以支持 "consistent with denoising hypothesis" 但不够强到作为独立
+    claim。
+
+    '
+  tables:
+  - name: 'Table: Token Analysis — Pruned vs Kept'
+    columns:
+    - Metric
+    - Pruned Tokens
+    - Kept Tokens
+    - Ratio
+    - Cohen's d
+    - p-value
+    rows:
+    - - Avg Attention Weight
+      - '0.0018'
+      - '0.0041'
+      - '0.44'
+      - '0.42'
+      - '0.003'
+    - - Avg Gradient Norm
+      - '0.0012'
+      - '0.0038'
+      - '0.32'
+      - '0.51'
+      - '0.008'
+  figures_description:
+  - 'Violin plot (split): 左半 pruned tokens、右半 kept tokens，y 轴 attention weight。Kept
+    分布重心更高但有 overlap。标注 Cohen''s d 和 p-value。'
+  - 'Scatter plot: x 轴 ACIS importance score，y 轴 action-head attention weight，每点一个
+    token (subsample 1000)。标注 Spearman ρ=0.38。颜色编码 pruned (red) vs kept (blue)，分界线处有明显混合。'
+  analysis: 'Token analysis 提供 "部分证据" 支持 denoising 假设：被删除 token 确实平均而言 task-relevance
+    更低， 但 effect size 中等且分布有 overlap。这不足以排除其他解释（如 regularization/implicit ensemble）。
+    论文中应呈现为 supplementary analysis，措辞为 "the attention and gradient analysis is consistent
+    with an importance-guided denoising interpretation, though the moderate effect
+    sizes suggest additional mechanisms may contribute"。审稿人可能接受这个 level 的 evidence
+    用于 analysis section， 但如果放在 core contribution 中会被质疑不够 conclusive。
+
+    '
+- name: v8c Annealing Ablation (mask ratio 0.9→0.5)
+  plan_id: plan_010
+  description: 'Mask ratio annealing (0.9→0.5 during Stage1) vs two-stage 固定 0.5 对比。已在
+    cuda:0 运行中。
+
+    '
+  expected_results:
+    v8c_annealing:
+      acis_prune50_action_loss: 0.0038
+      G3_deploy_ratio: 0.93
+      margin_median: 0.85
+      eps001_preservation: 0.91
+      training_stability: smoother convergence curve
+    v8b_fixed:
+      acis_prune50_action_loss: 0.0035
+      G3_deploy_ratio: 0.87
+      margin_median: 0.93
+      eps001_preservation: 0.9
+      training_stability: slight oscillation in early steps
+    delta_G3: 0.06
+    delta_margin: -0.08
+  result_rationale: 'Annealing (0.9→0.5) 在 Stage1 早期让 ACIS 看到几乎所有 token（mask ratio
+    0.9 = keep 90%）， 逐步增加压缩难度。这产生更平滑的训练曲线但最终 margin 略低于固定 0.5——因为 ACIS 在早期 "easy"
+    阶段学到了较宽松的 importance 分布，切换到 0.5 时需要 re-sharpen，但训练结束前可能不完全收敛。 G3=0.93 vs 0.87，annealing
+    版本的 denoising effect 更弱（删除的 token 不如固定 0.5 版本 那么 confidently low-importance）。两者差距不大（0.06），annealing
+    的价值更多在训练稳定性 而非最终性能。论文可能只在 appendix 中提及。
+
+    '
+  tables:
+  - name: 'Table: Annealing vs Fixed Mask Ratio'
+    columns:
+    - Strategy
+    - Action Loss
+    - G3
+    - Margin
+    - ε=0.01 Pres.
+    rows:
+    - - Fixed 0.5 (v8b)
+      - '0.0035'
+      - '0.87'
+      - '0.93'
+      - '0.90'
+    - - Anneal 0.9→0.5 (v8c)
+      - '0.0038'
+      - '0.93'
+      - '0.85'
+      - '0.91'
+  figures_description:
+  - 'Training loss curve comparison: 两条线（v8b vs v8c），x 轴 step，y 轴 Stage1 loss。v8c
+    更平滑但最终略高。'
+  analysis: 'Annealing 不优于固定 mask ratio，主要价值在于训练稳定性。在 median 档下两者差距不大（G3 差 0.06），
+    paper 应以 v8b（固定 0.5）为主结果，annealing 作为 ablation 放 appendix。这也暗示 mask ratio 的选择不是
+    critical hyperparameter——在合理范围内结果 robust。
+
+    '
+- name: ACIS Overhead Quantification
+  plan_id: plan_011
+  description: 'ACIS 模块的参数量、FLOPs、推理延迟测量。证明部署成本可忽略。
+
+    '
+  expected_results:
+    acis_params_M: 2.3
+    backbone_params_M: 500
+    param_overhead_pct: 0.46
+    acis_flops_G: 0.18
+    backbone_flops_G: 45.2
+    flop_overhead_pct: 0.4
+    inference_latency_ms_without_acis: 42.5
+    inference_latency_ms_with_acis: 43.1
+    latency_overhead_ms: 0.6
+    latency_overhead_pct: 1.4
+    throughput_tokens_per_sec_without: 6800
+    throughput_tokens_per_sec_with_compression: 11200
+    throughput_gain_pct: 64.7
+    net_speedup_with_50pct_compression: 1.62
+  result_rationale: 'ACIS 是一个 lightweight cross-attention module（2~3M params），相对于
+    SmolVLA 的 500M backbone 开销 <0.5%。推理时 ACIS 只需要一次 forward pass 来产生 importance scores，然后
+    top-k selection 是 O(n log n) 的排序操作——latency 几乎可忽略（+0.6ms）。 但 ACIS 带来的 50% token
+    compression 使后续 transformer 层的计算量大幅减少（attention 是 O(n²)， token 减半意味着 attention
+    计算减少 75%，但只有 decoder 部分受益），净 throughput 提升约 64%。 这意味着 ACIS 的 overhead 被 compression
+    的效率增益远远补偿——实际上是 net positive。
+
+    '
+  tables:
+  - name: 'Table: ACIS Deployment Overhead'
+    columns:
+    - Metric
+    - Without ACIS
+    - With ACIS+Compress
+    - Overhead/Gain
+    rows:
+    - - Parameters
+      - 500M
+      - 502.3M
+      - +0.46%
+    - - FLOPs per step
+      - 45.2G
+      - 27.6G
+      - -39% (net)
+    - - Latency (ms)
+      - '42.5'
+      - '26.8'
+      - -37% (net)
+    - - Throughput (tok/s)
+      - '6800'
+      - '11200'
+      - +64.7%
+  figures_description:
+  - 'Stacked bar: 左 bar 为 without ACIS (full tokens)，右 bar 为 with ACIS+compression，分段颜色表示
+    ACIS overhead (tiny red slice) 和 compression saving (large green reduction)。'
+  analysis: 'ACIS overhead 几乎可忽略（<0.5% params, +0.6ms latency），而 50% compression 带来
+    ~37% latency reduction 和 65% throughput gain。这有效回应 RC4——ACIS 不是 deployment burden
+    而是 deployment accelerator。论文应将此呈现为 "ACIS adds negligible overhead while enabling
+    substantial inference speedup through principled compression"。
+
+    '
+- name: LIBERO-Plus 7-Dimension Perturbation Evaluation
+  plan_id: plan_012
+  description: 'IMM+compression 在 LIBERO-Plus 7 维扰动（camera, lighting, texture, distractors,
+    table color, scene structure, combined）上的 success rate 评估。Headline result 所需的完整鲁棒性评估。
+
+    '
+  expected_results:
+    baseline_no_compress:
+      camera: 0.58
+      lighting: 0.61
+      texture: 0.55
+      distractors: 0.52
+      table_color: 0.63
+      scene_structure: 0.48
+      combined: 0.35
+      clean: 0.68
+    baseline_compress50:
+      camera: 0.41
+      lighting: 0.45
+      texture: 0.39
+      distractors: 0.36
+      table_color: 0.47
+      scene_structure: 0.33
+      combined: 0.2
+      clean: 0.67
+    imm_compress50:
+      camera: 0.55
+      lighting: 0.59
+      texture: 0.52
+      distractors: 0.49
+      table_color: 0.61
+      scene_structure: 0.45
+      combined: 0.31
+      clean: 0.67
+    imm_vs_baseline_compress_avg_gain_pp: 14.3
+    imm_vs_baseline_nocompress_avg_loss_pp: -2.6
+    headline_template_fill:
+      benchmark: LIBERO
+      X_success: 67%
+      Y_epsilon: camera+lighting+texture
+      Z_baseline_retain: 40%
+      imm_retain: 55%
+  result_rationale: 'LIBERO-Plus 扰动直接改变视觉输入，测试 VLA 的感知鲁棒性。Baseline+compression 在扰动下严重退化
+    （clean 67% → combined 20%）因为 token compression 在扰动输入上的 importance ranking 不稳定——
+    扰动使关键 token 被误判为不重要而被删除。 IMM 训练后 compression 在扰动下表现显著改善（combined 31% vs 20%，+11pp），因为
+    margin 最大化 使 importance ranking 对输入扰动更稳定。但 IMM+compress 仍不如 baseline no-compress（31%
+    vs 35%）， 说明 compression 在 combined 极端扰动下仍有不可避免的信息损失。 在单维扰动上 IMM+compress 接近 baseline
+    no-compress（差距 2~5pp），这是 median 档的核心结果： IMM 使 compressed model 在常见扰动下的表现接近 uncompressed
+    model，compression 的 robustness cost 从 ~17pp 缩小到 ~3pp。
+
+    '
+  tables:
+  - name: 'Table: LIBERO-Plus 7-Dimension Robustness (Success Rate %)'
+    columns:
+    - Perturbation
+    - No Compress
+    - Compress 50%
+    - IMM+Compress 50%
+    - IMM Gain vs Compress
+    rows:
+    - - Clean
+      - '68'
+      - '67'
+      - '67'
+      - '+0'
+    - - Camera
+      - '58'
+      - '41'
+      - '55'
+      - '+14'
+    - - Lighting
+      - '61'
+      - '45'
+      - '59'
+      - '+14'
+    - - Texture
+      - '55'
+      - '39'
+      - '52'
+      - '+13'
+    - - Distractors
+      - '52'
+      - '36'
+      - '49'
+      - '+13'
+    - - Table Color
+      - '63'
+      - '47'
+      - '61'
+      - '+14'
+    - - Scene Structure
+      - '48'
+      - '33'
+      - '45'
+      - '+12'
+    - - Combined
+      - '35'
+      - '20'
+      - '31'
+      - '+11'
+    - - Avg Perturbed
+      - '53.1'
+      - '37.3'
+      - '50.3'
+      - '+13.0'
+  figures_description:
+  - 'Radar chart: 7 axes (one per perturbation type)。三条线（no-compress: blue, compress:
+    red, IMM+compress: green）。IMM+compress 线几乎与 no-compress 重叠（除 combined 维度外），compress
+    线明显内缩。'
+  - 'Headline figure: 横向 bar chart，每个扰动类型三个 bar 上下排列，清晰展示 IMM 恢复了 compression 丢失的
+    robustness。'
+  analysis: LIBERO-Plus 结果是 paper 的 headline result。核心 message："IMM closes the robustness
+    gap between compressed and uncompressed VLAs under realistic perturbations"。在单维扰动下
+    IMM+compress 与 no-compress 仅差 ~3pp（平均），而 naive compression 差 ~16pp。Combined 扰动下差距更大（4pp
+    vs 15pp） 但方向一致。 Headline 可写为："On LIBERO-Plus, IMM-trained SmolVLA achieves 50.3%
+    average success under 50% token compression + visual perturbation, recovering
+    78% of the robustness lost by standard compression (37.3% → 50.3% vs 53.1%), while
+    providing the first certified robustness guarantee for VLA token compression."
+    审稿人可能注意到 IMM+compress 仍不如 no-compress——这是诚实的 median 档结果，paper 不应声称 compression
+    is free，而应强调 robustness-compression tradeoff 的 Pareto improvement。

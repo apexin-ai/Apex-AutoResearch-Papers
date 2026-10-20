@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_pruning-method-consistency_20260520T075045_result.json",
     "occurrence": 1,
-    "bytes": 3458,
-    "sha256": "1704bf27b7a5f5d56be83df46a29908858b128fb39446ae5f478d32b9580e16f"
+    "bytes": 3457,
+    "sha256": "bef5af38fa762c23b9e019c4ee462e4ec7924eed218ab7ef55a9c41d2589b711"
   },
   "statistics": {
     "messages": 1,

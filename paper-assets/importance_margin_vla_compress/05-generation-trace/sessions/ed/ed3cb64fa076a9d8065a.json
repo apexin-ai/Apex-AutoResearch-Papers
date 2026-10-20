@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diag_westd41074_pi05_failures_20260521T092406_result.json",
     "occurrence": 1,
-    "bytes": 2038,
-    "sha256": "789a610fb19e2762801293dbde47b3c3114073491b483e79d9ee19eea560638c"
+    "bytes": 2037,
+    "sha256": "fd3fba4d108ef93205ff8f4549fc76550a1f3de24333678aa925628c4dc643eb"
   },
   "statistics": {
     "messages": 1,

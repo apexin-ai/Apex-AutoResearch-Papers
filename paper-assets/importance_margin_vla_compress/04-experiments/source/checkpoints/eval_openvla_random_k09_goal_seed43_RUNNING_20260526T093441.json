@@ -1,0 +1,71 @@
+{
+  "exp_id": "eval_openvla_random_k09_goal_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-25T18:12:36.504Z",
+    "updated_at": "2026-05-26T09:34:39.313Z",
+    "hypothesis": "OpenVLA Random k=0.9 Goal seed43 — cross-seed验证。Random pruning在Goal suite上的性能基准，对比L2norm和Attention方法",
+    "parent": "eval_openvla_random_k09_goal_seed42",
+    "reproduce": {
+      "finished_at": "2026-05-25T21:09:09.573Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-25T21:09:25.389623+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "overall_sr": 0.804,
+          "total_successes": 402,
+          "total_episodes": 500,
+          "per_task_sr": {
+            "T0_open_middle_drawer": 0.7,
+            "T1_put_bowl_on_stove": 0.98,
+            "T2_put_wine_bottle_on_cabinet": 0.92,
+            "T3_open_drawer_put_bowl": 0.42,
+            "T4_put_bowl_on_cabinet": 0.94,
+            "T5_push_plate_to_stove": 0.78,
+            "T6_put_cream_cheese_in_bowl": 0.82,
+            "T7_turn_on_stove": 1,
+            "T8_put_bowl_on_plate": 0.74,
+            "T9_put_wine_bottle_on_rack": 0.74
+          },
+          "elapsed_minutes": 175.5,
+          "seed": 43
+        }
+      }
+    },
+    "completed_at": "2026-05-25T21:12:30.628Z",
+    "spec": {
+      "command": "python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_goal --num_episodes 50 --seed 43",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "11373",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/results/openvla_random_prune_k09_goal_seed43.json",
+      "submitted_at": "2026-05-26T04:02:18.962Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "model_name": "openvla-7b-finetuned-libero-goal",
+      "seed": 43,
+      "checkpoint_source": "openvla-7b-finetuned-libero-goal",
+      "eval_data": "libero_goal",
+      "checkpoint_path": "N/A (eval only)"
+    }
+  },
+  "timestamp": "2026-05-26T09:34:41.378863+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_eval_pi05_seed47_cqa1_20260529T075715_result.json",
     "occurrence": 1,
-    "bytes": 513,
-    "sha256": "80dae9f845437cb388f838259bb323d92c8ecea1bb9301fc4ceb7ee448b0860d"
+    "bytes": 512,
+    "sha256": "829af6fd60104afac63dd2b05533ebd06700a8906dcdb0c5757452c7456212df"
   },
   "statistics": {
     "messages": 1,

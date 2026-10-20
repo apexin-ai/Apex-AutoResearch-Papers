@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_pi05-baseline-object-westd41074_20260521T023759_result.json",
     "occurrence": 1,
-    "bytes": 373,
-    "sha256": "ef2945cfe2d8b0310089f02f16450c9a9bc516c3456dd6af84f43c504a20e07d"
+    "bytes": 372,
+    "sha256": "bdb034dfa0e335e75d0b81f0ddfee17131640c53bd8cf0d24580a3ddb21e7265"
   },
   "statistics": {
     "messages": 1,

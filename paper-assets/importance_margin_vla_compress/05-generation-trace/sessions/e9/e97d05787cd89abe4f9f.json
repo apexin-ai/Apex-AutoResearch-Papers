@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1_eval_files_check_20260520T014619_result.json",
     "occurrence": 1,
-    "bytes": 595,
-    "sha256": "360ac77670679448f230734874711253831c3a974524841a1347cc13da56c43f"
+    "bytes": 594,
+    "sha256": "2327ff4daf1e355f4355350ae83dc216de282b71545c1b3f87547a2fe662d845"
   },
   "statistics": {
     "messages": 1,

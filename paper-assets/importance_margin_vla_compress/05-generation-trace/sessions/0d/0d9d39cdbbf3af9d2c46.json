@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd41074_long_l2norm_k09_20260522T154958_result.json",
     "occurrence": 1,
-    "bytes": 342,
-    "sha256": "95d162d52691a10cc497337193075a94b9feb0499042abfaba60275085c4230d"
+    "bytes": 341,
+    "sha256": "fe3e7c7ea397f8e0c9ba861dc21a3afcca761b12a162ae03cdc3609254e520dd"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_xvla-token-count-check_20260520T045446_result.json",
     "occurrence": 1,
-    "bytes": 1100,
-    "sha256": "763be939859a5c992da3625039289fbd3e299b540f2ca68efac5b3fcfb12ccdf"
+    "bytes": 1099,
+    "sha256": "16b5840cc749b9377a7d07991ae4310408b930cee54405f1cea28edc3a2c98eb"
   },
   "statistics": {
     "messages": 1,

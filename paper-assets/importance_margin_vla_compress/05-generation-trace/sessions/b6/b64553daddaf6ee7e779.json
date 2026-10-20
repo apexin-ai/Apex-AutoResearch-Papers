@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_infra_server-setup-deploy-v2_20260515T122853_result.json",
     "occurrence": 1,
-    "bytes": 1980,
-    "sha256": "5cd461e53d0aa2881fe3ff8c76057d15a3f5dd00a3b6fb20ce2d0309c9625cfd"
+    "bytes": 1979,
+    "sha256": "e7921b42e5f21def74618791830c6fe4fbcb2ae42ba761c1ea33c0beb9cebd30"
   },
   "statistics": {
     "messages": 1,

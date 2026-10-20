@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_inference_latency_20260518T065536_result.json",
     "occurrence": 1,
-    "bytes": 830,
-    "sha256": "3d67d20adcfc391d94bcc2628b24142814c309e7ba8b952324588e840e333ea3"
+    "bytes": 829,
+    "sha256": "4bd2552b20e25e203ee54699d45c4421f0cfd51fc94f4ff15ea52cfe24ae207e"
   },
   "statistics": {
     "messages": 1,

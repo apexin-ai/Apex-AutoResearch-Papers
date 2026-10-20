@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_vla_model_survey_20260520T024303_result.json",
     "occurrence": 1,
-    "bytes": 1149,
-    "sha256": "a1257f185fae7cba68090bd2b2aea21101ac1048a6d117bd4906bf99a2749060"
+    "bytes": 1148,
+    "sha256": "15a65bbca62ce5f97e4db5cc481e61f726a45b86a5d3e387ab325f3e69fa6669"
   },
   "statistics": {
     "messages": 1,

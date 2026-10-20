@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_smart_compress_m32_libero_goal_20260519T000106_result.json",
     "occurrence": 1,
-    "bytes": 344,
-    "sha256": "7ba094cf5caf98c20652e017e461f5900fcf0cc5bebc7566ddc942ce1fc6ec5b"
+    "bytes": 343,
+    "sha256": "3cef7208309bbd1b0f39f8ba1d17ae1b13ffc2a95761015f63f67bf5d1cc7221"
   },
   "statistics": {
     "messages": 1,

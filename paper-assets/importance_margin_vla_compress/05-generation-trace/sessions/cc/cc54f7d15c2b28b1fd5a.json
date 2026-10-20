@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_infra_deploy-dryrun-submit-atomic_20260515T134431_result.json",
     "occurrence": 1,
-    "bytes": 2022,
-    "sha256": "d858c4e37aeedd4da611b4fa365ad0696eedc5f7188faf50330b38134e8c5c31"
+    "bytes": 2021,
+    "sha256": "b9bb7070339e686bdf3bdb763ffe25c02eb1b6446350171b78c1d39308b53384"
   },
   "statistics": {
     "messages": 1,

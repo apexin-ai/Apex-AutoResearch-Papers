@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_xvla_l2norm_k05_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T06:11:52.093Z",
+    "updated_at": "2026-05-23T06:25:59.560Z",
+    "hypothesis": "X-VLA L2norm k=0.5 Long seed42: Table 2 gap. L2 k=0.9=27.5%. 50% L2 pruning 在 Long suite 上的极端 compression 表现。"
+  },
+  "timestamp": "2026-05-23T06:26:00.248167+00:00",
+  "trigger": "update_registry"
+}

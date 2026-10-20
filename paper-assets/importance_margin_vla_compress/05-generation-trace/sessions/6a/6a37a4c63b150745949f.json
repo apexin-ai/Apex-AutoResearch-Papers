@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_harvest_attn_k085_s47_w38_then_deploy_20260529T050212_result.json",
     "occurrence": 1,
-    "bytes": 323,
-    "sha256": "ef1f51dd3193d26d7422556ea6eb30bee5b9c6cccbdf955c35ff15e1cd317129"
+    "bytes": 322,
+    "sha256": "01efe4ed3288860d1b9eecd1fa13909cf332b522261079dd15fc8dd2bb48c5ee"
   },
   "statistics": {
     "messages": 1,

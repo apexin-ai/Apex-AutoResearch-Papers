@@ -1,0 +1,82 @@
+{
+  "exp_id": "eval_xvla_l2norm_k03_goal_seed42_v5",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T08:47:23.760Z",
+    "updated_at": "2026-05-24T10:16:33.881Z",
+    "hypothesis": "Rerunning X-VLA L2norm pruning k=0.3 eval on libero_goal with correct domain_id=3 should reproduce the v3/v4 result of 37.6% SR, confirming the result was not corrupted by domain_id mismatch.",
+    "parent": "eval_xvla_l2norm_k03_goal_seed42_v4",
+    "server": "westd-38929",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-38929",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-24T08:47:57.559Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_goal --keep_ratio 0.3 --mode l2_norm --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\"",
+      "finished_at": "2026-05-24T10:13:11.879Z",
+      "training_hours": 1.42
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_goal --keep_ratio 0.3 --mode l2_norm --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\"",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "16823",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_xvla_l2norm_k03_goal_seed42_v5.log",
+      "submitted_at": "2026-05-24T08:48:03.067Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 5310.8,
+      "gpu_hours": 1.48
+    },
+    "pid": "16823",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_xvla_l2norm_k03_goal_seed42_v5.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-24T10:13:24.174894+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 0.37,
+      "total_success": 185,
+      "total_episodes": 500,
+      "wilson_ci_95": [
+        0.3288,
+        0.4132
+      ],
+      "per_task_sr": {
+        "task0_open_drawer": 0.42,
+        "task1_bowl_on_stove": 0.92,
+        "task2_wine_on_cabinet": 0.2,
+        "task3_drawer_bowl": 0.24,
+        "task4_bowl_on_cabinet": 0.98,
+        "task5_push_plate": 0,
+        "task6_cream_cheese": 0.02,
+        "task7_turn_stove": 0.16,
+        "task8_bowl_on_plate": 0.76,
+        "task9_wine_on_rack": 0
+      },
+      "elapsed_min": 84,
+      "vision_tokens_kept": 15,
+      "vision_tokens_original": 50,
+      "domain_id": 3,
+      "seed": 42
+    },
+    "checkpoint_path": "/root/autodl-tmp/X-VLA-Libero",
+    "completed_at": "2026-05-24T10:16:33.881Z"
+  },
+  "timestamp": "2026-05-24T10:16:34.897596+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k07_long_seed46_strict_w41",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-28T09:18:22.975Z",
+    "updated_at": "2026-05-28T09:18:33.032Z",
+    "hypothesis": "π0.5 L2norm k=0.7 Long strict seed46 — crossover 区第5个 seed，v1 w38 失败后换 w41 重跑。s42=63.2%, s43=65.4%, s44=67.4%, s45=68.4%。收窄 L2norm k=0.7 error bar"
+  },
+  "timestamp": "2026-05-28T09:18:36.363522+00:00",
+  "trigger": "update_registry"
+}

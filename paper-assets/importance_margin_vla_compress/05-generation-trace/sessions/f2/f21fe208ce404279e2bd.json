@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_eval_openvla_attn_k09_spatial_seed42_20260524T225823_result.json",
     "occurrence": 1,
-    "bytes": 929,
-    "sha256": "ac68899cedb54cda0807ddb1d271c87ccbe616ecc10f514ab87586843398d611"
+    "bytes": 928,
+    "sha256": "f15a4f9cff8f25acf375b7d3658e71d95c9ad18890320affce3a282073dcfa0e"
   },
   "statistics": {
     "messages": 1,

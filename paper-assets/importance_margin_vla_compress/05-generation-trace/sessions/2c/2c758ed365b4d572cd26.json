@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_openvla_attn_westd38929_20260524T190203_result.json",
     "occurrence": 1,
-    "bytes": 678,
-    "sha256": "0da688f339bb5d2cf97513c9037350caa7fb078f7d94e13099881f99aab5c22d"
+    "bytes": 677,
+    "sha256": "81e1c08df7e374e77c47ea356dcf4da4073a0bda13020f7ebdc9be5901792c56"
   },
   "statistics": {
     "messages": 1,

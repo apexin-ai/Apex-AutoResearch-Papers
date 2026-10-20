@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval_xvla_prune_k02_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:50:05.876Z",
+    "updated_at": "2026-05-20T18:58:29.628Z",
+    "hypothesis": "X-VLA L2 norm pruning at k=0.2 with seed=43. Seed42 k=0.2=5.2%. Extends seed43 curve to extreme compression. If seed43 ≈ 5%, confirms near-total collapse at 80% token removal is consistent.",
+    "spec": {
+      "command": "python -u eval_xvla_pruning_libero.py --keep_ratio 0.2 --seed 43 --suite libero_object --num_episodes 50",
+      "server": "cqa1-33015",
+      "gpu": "cuda:0",
+      "pid": 443004,
+      "data_path": "libero_object",
+      "data_count": 500,
+      "model_name": "X-VLA-Libero",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/X-VLA-Libero",
+      "eval_data": "libero_object",
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k02_libero_object_seed43.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T18:58:29.628Z"
+  },
+  "timestamp": "2026-05-20T18:58:29.915596+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "exp_id": "eval_pi05_l2norm_k095_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:47:31.610Z",
+    "updated_at": "2026-05-23T22:49:34.997Z",
+    "hypothesis": "π0.5 L2norm k=0.95 Goal seed42。L2 Goal 曲线高端数据点——k=0.925=89%, k=0.9=90.6%。k=0.95 接近无剪枝，预测 >90%。完善 L2 Goal 全曲线。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_goal --n_episodes 50 --seed 42 --gpu 0",
+      "server": "cqa1-33015",
+      "model_name": "pi0.5",
+      "seed": 42,
+      "data_count": 500,
+      "data_path": "libero_goal",
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "log_path": "logs/eval_pi05_l2norm_k095_goal_seed42.log",
+      "checkpoint_path": "/root/autodl-tmp/pi05_libero_finetuned"
+    },
+    "metrics": {
+      "overall_sr": 0.908,
+      "total_successes": 454,
+      "total_episodes": 500,
+      "elapsed_min": 90.4,
+      "per_task": {
+        "open the middle drawer of the cabinet": 0.84,
+        "put the bowl on the stove": 0.98,
+        "put the wine bottle on top of the cabinet": 0.94,
+        "open the top drawer and put the bowl inside": 0.96,
+        "put the bowl on top of the cabinet": 1,
+        "push the plate to the front of the stove": 1,
+        "put the cream cheese in the bowl": 0.92,
+        "turn on the stove": 1,
+        "put the bowl on the plate": 0.98,
+        "put the wine bottle on the rack": 0.46
+      }
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-22T20:50:31.511Z"
+  },
+  "timestamp": "2026-05-23T22:49:35.832857+00:00",
+  "trigger": "update_registry"
+}

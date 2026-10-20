@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_cqa1-checkpoint-v2_20260521T230750_result.json",
     "occurrence": 1,
-    "bytes": 1796,
-    "sha256": "154c9a95bbbd1937557dbdee72dd39dc350364a8cf0da2a315c19fbf1ffc9b60"
+    "bytes": 1795,
+    "sha256": "ebad7d0172d5899ef45bd912e37621001c8d3122e96719da8b9ada0ddfdff6f6"
   },
   "statistics": {
     "messages": 1,

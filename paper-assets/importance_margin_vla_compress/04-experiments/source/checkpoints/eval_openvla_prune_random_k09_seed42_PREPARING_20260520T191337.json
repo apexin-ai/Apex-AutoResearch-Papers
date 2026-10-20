@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_openvla_prune_random_k09_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T19:13:37.199Z",
+    "updated_at": "2026-05-20T19:13:37.199Z"
+  },
+  "timestamp": "2026-05-20T19:13:37.493396+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1-cuda1-xvla-random-k07_20260521T040127_result.json",
     "occurrence": 1,
-    "bytes": 356,
-    "sha256": "1782c4efd902ab7a49fd6d9efab2b2f415255fa92e500d2ebf0193f830dff17e"
+    "bytes": 355,
+    "sha256": "860b35b1cce1f9ebce929a5f4eb36987215bf726b9d383add87e626e1a101187"
   },
   "statistics": {
     "messages": 1,

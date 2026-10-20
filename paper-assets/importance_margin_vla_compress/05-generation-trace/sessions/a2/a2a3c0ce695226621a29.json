@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diag_full-server-survey-20260523_20260523T191423_result.json",
     "occurrence": 1,
-    "bytes": 2573,
-    "sha256": "d5a303200d9ad408809de37fef13d0896e075f0948fd9072b6f299358909d0a9"
+    "bytes": 2572,
+    "sha256": "48d9376ab61b32b67f32dfa01cb8903f37d4828fb329b9f6682a71b7942b1ad9"
   },
   "statistics": {
     "messages": 1,

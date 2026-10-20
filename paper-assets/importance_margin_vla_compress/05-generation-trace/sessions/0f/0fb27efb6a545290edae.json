@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_global_status_snapshot_v1_20260522T091720_result.json",
     "occurrence": 1,
-    "bytes": 3212,
-    "sha256": "a84669035ca97ae325dca66b80e320e9f6ba0dafd6b7be3a0f824ee89085ec4f"
+    "bytes": 3211,
+    "sha256": "296422a164a7832f7f77fd70efbb74d43c16c194f6aede7e440abbcc25b501a8"
   },
   "statistics": {
     "messages": 1,

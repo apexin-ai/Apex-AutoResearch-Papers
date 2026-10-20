@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diag_cqa1-readonly-only-v5_20260526T230251_result.json",
     "occurrence": 1,
-    "bytes": 8456,
-    "sha256": "fd4f2bc87d600b28bb4da18ab5368cbf5add483b976a4363150e0c08c6e89b6a"
+    "bytes": 8455,
+    "sha256": "938a25ec7006241048de59a9acadaaeb7faf15cfef7a383a2ce2af32583624d2"
   },
   "statistics": {
     "messages": 1,

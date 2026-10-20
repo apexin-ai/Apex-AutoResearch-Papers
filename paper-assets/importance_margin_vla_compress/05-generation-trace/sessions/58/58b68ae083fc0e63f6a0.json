@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_westd38929_gpu1_ov_attn_k075_20260527T121748_result.json",
     "occurrence": 1,
-    "bytes": 365,
-    "sha256": "e60442765351b1bcdeb5dd305be4f860e53132a2ba8dab488390773057c11d29"
+    "bytes": 364,
+    "sha256": "556f67ba0dd028397f2fc02e040c1d95befefc021323cb39c201a176515f6bb5"
   },
   "statistics": {
     "messages": 1,

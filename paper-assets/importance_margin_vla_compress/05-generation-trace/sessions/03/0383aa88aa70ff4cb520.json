@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_expert_only_ft_config_20260516T235224_result.json",
     "occurrence": 1,
-    "bytes": 1101,
-    "sha256": "b7de691fc7a488a31d5fdadc6f00ca2bdddc418878b4a4285f1374ff5d701221"
+    "bytes": 1100,
+    "sha256": "077e769cc8dcb6751a08ce2d0da957f8e996bcfef33995a4d1bbd5e52298e3f5"
   },
   "statistics": {
     "messages": 1,

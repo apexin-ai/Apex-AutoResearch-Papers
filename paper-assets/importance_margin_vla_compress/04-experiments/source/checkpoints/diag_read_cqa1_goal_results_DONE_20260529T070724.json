@@ -1,0 +1,31 @@
+{
+  "exp_id": "diag_read_cqa1_goal_results",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "created_at": "2026-05-23T14:03:58.708Z",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "command": "bash -c \"echo '=== GOAL K09 ==='; python3 -c \\\"import json; d=json.load(open('/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.90_libero_goal_seed42.json')); print(f'SR={d.get(\\\"success_rate\\\",d.get(\\\"overall_sr\\\",\\\"?\\\"))}, total={d.get(\\\"total_episodes\\\",d.get(\\\"num_episodes\\\",\\\"?\\\"))}, successes={d.get(\\\"total_successes\\\",d.get(\\\"num_success\\\",\\\"?\\\"))}'); [print(f'  {k}: {v}') for k,v in d.get('per_task',d.get('task_results',{})).items()]\\\" 2>/dev/null || cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.90_libero_goal_seed42.json; echo '=== GOAL K095 ==='; cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.95_libero_goal_seed42.json 2>/dev/null; echo '=== L2NORM_K095_GOAL ==='; cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.95_libero_goal_seed42.json 2>/dev/null; echo 'DONE'\"",
+      "gpu": [
+        "cuda:1"
+      ],
+      "log_path": "~/runs/importance_margin_vla_compress/diag_read_cqa1_goal_results.log",
+      "pid": "unknown",
+      "server": "cqa1-33015",
+      "submitted_at": "2026-05-23T14:03:57.609Z",
+      "submitted_via": "submit_training_job",
+      "wall_clock_seconds": 493402.6,
+      "gpu_hours": 137.06
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-29T07:07:20.211Z",
+    "conclusion": "killed",
+    "completed_at": "2026-05-29T07:07:20.211Z"
+  },
+  "timestamp": "2026-05-29T07:07:24.373026+00:00",
+  "trigger": "update_registry"
+}

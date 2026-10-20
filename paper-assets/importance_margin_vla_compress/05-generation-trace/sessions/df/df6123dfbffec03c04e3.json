@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_submit_fill_pi05_idle_gpus_batch_20260526T152152_result.json",
     "occurrence": 1,
-    "bytes": 1144,
-    "sha256": "e526e2676ef0a9850b5690bf9a9b2f76848b755f06d296a31bf5379aec5d257a"
+    "bytes": 1143,
+    "sha256": "91e00e4a4ddd981d7ad75f177d27e89e03a76cf894fbccd2b9f341b048b70087"
   },
   "statistics": {
     "messages": 1,

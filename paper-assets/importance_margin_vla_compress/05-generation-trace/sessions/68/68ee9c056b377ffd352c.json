@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd41074-k05-completion-check_20260520T181743_result.json",
     "occurrence": 1,
-    "bytes": 801,
-    "sha256": "6f9f71c2754485a5ab057d070ba208795a5d7707324955c1ed1c8b7dc1bb900c"
+    "bytes": 800,
+    "sha256": "3a45ca34deb816a179f8d5d6321594281f34ef064c2bd9feb7a3b8b0bf190103"
   },
   "statistics": {
     "messages": 1,

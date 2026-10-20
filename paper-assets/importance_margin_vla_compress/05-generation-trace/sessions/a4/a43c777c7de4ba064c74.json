@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_gpu-audit-west-servers_20260520T165607_result.json",
     "occurrence": 1,
-    "bytes": 3189,
-    "sha256": "62e1c18df40a48772ea1c2f0d2d92324fb0b2092fe90da237e6d02adf330a7ab"
+    "bytes": 3188,
+    "sha256": "d3d7bf724a8e24cb4cae3e3be5edf207f73700514987947b80061828a42d7b3e"
   },
   "statistics": {
     "messages": 1,

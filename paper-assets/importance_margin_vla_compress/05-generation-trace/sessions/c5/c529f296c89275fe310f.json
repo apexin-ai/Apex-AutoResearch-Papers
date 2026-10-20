@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_smolvla_libero_gap_deep_dive_20260517T001826_result.json",
     "occurrence": 1,
-    "bytes": 5749,
-    "sha256": "90b3a57e40aa0947d9d7bbe6cec992b60a50ef59c43be7ad36fafd1e879a992c"
+    "bytes": 5748,
+    "sha256": "6f77bf2bf3751db7634460ba863daf80f3db74686db64d604720abe1f550dc18"
   },
   "statistics": {
     "messages": 1,

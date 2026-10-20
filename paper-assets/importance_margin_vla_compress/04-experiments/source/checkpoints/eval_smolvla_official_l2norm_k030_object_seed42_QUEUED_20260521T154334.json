@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_smolvla_official_l2norm_k030_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:43:21.066Z",
+    "updated_at": "2026-05-21T15:43:33.960Z",
+    "hypothesis": "SmolVLA L2-norm k=0.3 on official checkpoint. Expected ~0% SR."
+  },
+  "timestamp": "2026-05-21T15:43:34.553409+00:00",
+  "trigger": "update_registry"
+}

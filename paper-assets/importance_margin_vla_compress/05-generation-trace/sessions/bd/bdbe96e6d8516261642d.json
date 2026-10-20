@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_w41-health-check_20260527T130839_result.json",
     "occurrence": 1,
-    "bytes": 619,
-    "sha256": "c5f67c257263b47b63889698ab20bb0bbc41e4db7aa02f792df442b8ea4bda14"
+    "bytes": 618,
+    "sha256": "d8e283cde666ba9a20823e638dd57d468adb9842e865d3132632acff763e32a4"
   },
   "statistics": {
     "messages": 1,

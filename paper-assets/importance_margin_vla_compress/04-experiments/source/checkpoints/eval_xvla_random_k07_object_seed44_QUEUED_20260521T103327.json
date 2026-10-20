@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_xvla_random_k07_object_seed44",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:33:18.734Z",
+    "updated_at": "2026-05-21T10:33:27.496Z",
+    "hypothesis": "X-VLA random k=0.7 seed44 3rd seed. seed42=65.2%, seed43=65.0%. Expect ~64-66%."
+  },
+  "timestamp": "2026-05-21T10:33:27.928601+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_xvla_l2norm_k07_object_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:36:31.607Z",
+    "updated_at": "2026-05-21T06:36:31.607Z"
+  },
+  "timestamp": "2026-05-21T06:36:32.124728+00:00",
+  "trigger": "update_registry"
+}

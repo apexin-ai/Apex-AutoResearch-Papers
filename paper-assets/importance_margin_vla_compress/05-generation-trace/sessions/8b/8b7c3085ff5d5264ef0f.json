@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_find_openvla_entropy_data_20260519T034504_result.json",
     "occurrence": 1,
-    "bytes": 1149,
-    "sha256": "344c341e94fffbfc54da4cd65e6f681f4802a33f0e42b486e09955e03525ff68"
+    "bytes": 1148,
+    "sha256": "09200c54278127191107636d9bcd3c947eaff9843d726facd686b256e34022cd"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_transfer_imm_100k_rsync_and_eval_20260517T003847_result.json",
     "occurrence": 1,
-    "bytes": 1018,
-    "sha256": "caecce4ea29eb725cba146060415e6b87153944859126eb0c7cf4a89eba31082"
+    "bytes": 1017,
+    "sha256": "46aaa1e602f7b4c14f8151f80ad323c952119cefb7a0e1835781280f8c8bede8"
   },
   "statistics": {
     "messages": 1,

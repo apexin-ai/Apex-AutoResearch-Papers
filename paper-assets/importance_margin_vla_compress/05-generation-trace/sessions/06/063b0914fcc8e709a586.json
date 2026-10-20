@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_fullft_seed0_100k_3suite_20260516T225158_result.json",
     "occurrence": 1,
-    "bytes": 128,
-    "sha256": "5138ace5922b0023114953858bd06832d5ca4b37b3acc7eb95c115a078f5b5fe"
+    "bytes": 127,
+    "sha256": "58652a04743c0e0fbbab6199afb83ffd619bf1183ba870afc2c6386f515d997c"
   },
   "statistics": {
     "messages": 1,

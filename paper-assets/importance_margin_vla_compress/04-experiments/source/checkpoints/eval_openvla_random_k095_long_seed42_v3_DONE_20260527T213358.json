@@ -1,0 +1,50 @@
+{
+  "exp_id": "eval_openvla_random_k095_long_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T12:26:54.075Z",
+    "updated_at": "2026-05-27T21:33:57.019Z",
+    "hypothesis": "OV Random k=0.95 Long v3 — 前次 v2/backup 因 8h timeout (EXIT_CODE=124) 中断在 Task 7 ep20。增加 timeout 到 12h 重跑。OV Long Random cliff curve 顶端最后缺口，跨架构对比需要",
+    "parent": "eval_openvla_random_k095_long_seed42_backup",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl timeout 43200 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10",
+      "server": "westd-38929",
+      "data_path": "libero_10",
+      "data_count": "10 tasks x 50 episodes",
+      "model_name": "openvla-7b-finetuned-libero-10",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/models/openvla-7b-finetuned-libero-10",
+      "eval_data": "libero_10 (Long suite, 10 tasks x 50 episodes)"
+    },
+    "gpu": "cuda:0",
+    "pid": 272022,
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.454,
+      "successes": 227,
+      "total": 500,
+      "time_min": 542.3,
+      "per_task": {
+        "T0": 36,
+        "T1": 35,
+        "T2": 25,
+        "T3": 11,
+        "T4": 9,
+        "T5": 41,
+        "T6": 19,
+        "T7": 32,
+        "T8": 11,
+        "T9": 8
+      }
+    },
+    "log_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42_v3.log",
+    "checkpoint_path": "N/A (eval only)",
+    "completed_at": "2026-05-27T21:33:57.019Z"
+  },
+  "timestamp": "2026-05-27T21:33:58.411252+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_fix-westd41074-gpu1-duplicate_20260524T110251_result.json",
     "occurrence": 1,
-    "bytes": 467,
-    "sha256": "5b5744f2338ae739c3602916b1717a0a19df0a340928b1e0aa39b2cc6f08b28a"
+    "bytes": 466,
+    "sha256": "dbb3ce6dc7c966be7a1a3e96b52ecf317eb7864fe99a4f0d43f226d4dfe77f5b"
   },
   "statistics": {
     "messages": 1,

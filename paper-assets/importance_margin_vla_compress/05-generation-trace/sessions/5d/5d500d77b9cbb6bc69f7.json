@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd41074-gpu1-openvla-baseline-spatial_20260520T235202_result.json",
     "occurrence": 1,
-    "bytes": 113,
-    "sha256": "7144cac52face4b0b47bb1e11aa91bc7bb6662fed986850668e9fd72415c33cf"
+    "bytes": 112,
+    "sha256": "474080bbdd1d3b18c2d0fd9d279b6686aef08d41ea7ee215061a0cdbe738b7ce"
   },
   "statistics": {
     "messages": 1,

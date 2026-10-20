@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd41074_gpu1_attn_k05_20260527T121343_result.json",
     "occurrence": 1,
-    "bytes": 356,
-    "sha256": "932bf24944e30b061c52dec0d170551ec70545ba6269f2bcd5aefd4ded1efaa6"
+    "bytes": 355,
+    "sha256": "e1fe9f6bc0f5e400ff728ce5069a77ed8e382adbe7239b71ef7556d97f4560c9"
   },
   "statistics": {
     "messages": 1,

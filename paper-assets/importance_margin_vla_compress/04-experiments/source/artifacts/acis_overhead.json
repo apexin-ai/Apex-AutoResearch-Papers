@@ -1,0 +1,17 @@
+{
+  "params": {"baseline": 451531488, "with_acis": 454992289, "acis_only": 3460801, "acis_pct": 0.7665},
+  "flops": {"baseline": 169869312000, "with_acis": 170279060480, "acis_only": 409748480, "acis_pct": 0.2412},
+  "latency_ms": {
+    "baseline": {"mean": 51.16, "std": 0.24},
+    "acis_scoring_only": {"mean": 0.32, "std": 0.01},
+    "with_acis_pruned": {"mean": 251.51, "std": 0.66}
+  },
+  "latency_analysis": {
+    "acis_overhead_pct": 0.634,
+    "acis_overhead_ms": 0.3243,
+    "note": "acis_scoring_only measures the marginal cost of ACIS; with_acis_pruned uses unoptimized wrapper training path"
+  },
+  "n_trials": 100,
+  "visual_tokens": 64,
+  "action_query_len": 50
+}

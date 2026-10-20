@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_goal_seed43_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T01:28:46.326Z",
+    "updated_at": "2026-05-25T01:29:01.702Z",
+    "hypothesis": "π0.5 L2norm k=0.85 Goal seed43 postfix — cliff zone k=0.85 Goal dual-seed。L2norm Goal 两个 seed 都缺失，此实验填补最大覆盖空白。"
+  },
+  "timestamp": "2026-05-25T01:29:02.827365+00:00",
+  "trigger": "update_registry"
+}

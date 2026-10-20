@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_disk-cleanup-westd41074_20260520T043151_result.json",
     "occurrence": 1,
-    "bytes": 324,
-    "sha256": "97264477c8431cc4485b32063bb7a0411c337671e38a772ea716a148c1f7e1b5"
+    "bytes": 323,
+    "sha256": "000883462b8c3c50ee13e20f9015fb75e7bf6f0a337868bb472395dabd232281"
   },
   "statistics": {
     "messages": 1,

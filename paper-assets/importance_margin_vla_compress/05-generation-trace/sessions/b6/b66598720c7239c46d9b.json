@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_d014_baseline_gate_20260515T210432_result.json",
     "occurrence": 1,
-    "bytes": 1864,
-    "sha256": "63ce46bf8507cbcd98d509a3e0e669fc533a5cdcb32930ee329db582d689ee46"
+    "bytes": 1863,
+    "sha256": "92f78e79847fa26e2bf619fa2de2057dd484ebc9b88bca27ceb7f53b122fb822"
   },
   "statistics": {
     "messages": 1,

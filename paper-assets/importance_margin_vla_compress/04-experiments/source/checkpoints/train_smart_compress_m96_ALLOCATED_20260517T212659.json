@@ -1,0 +1,16 @@
+{
+  "exp_id": "train_smart_compress_m96",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T21:26:45.277Z",
+    "updated_at": "2026-05-17T21:26:59.787Z",
+    "hypothesis": "Cross-attention pooling compression (128→96 tokens, 25% reduction) — the mildest compression point. Expected to retain near-full SR, establishing the upper bound of the compression-performance curve.",
+    "parent": "train_smart_compress_m64"
+  },
+  "timestamp": "2026-05-17T21:26:59.905064+00:00",
+  "trigger": "update_registry"
+}

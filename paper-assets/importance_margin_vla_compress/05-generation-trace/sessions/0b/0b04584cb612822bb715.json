@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_s47_cqa1_cuda0_refill_20260529T022632_result.json",
     "occurrence": 1,
-    "bytes": 514,
-    "sha256": "4410d0fa30345eda8fdf765b9698eaa706c1f7b3a47a97b121e98c21b63c09c4"
+    "bytes": 513,
+    "sha256": "12172385419fddf30383b367f1d7cf6e4d14ad1e26d7acc2af10e796ba469ce2"
   },
   "statistics": {
     "messages": 1,

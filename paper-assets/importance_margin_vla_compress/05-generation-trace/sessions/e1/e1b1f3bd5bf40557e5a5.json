@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_corl2026_template_20260518T172947_result.json",
     "occurrence": 1,
-    "bytes": 2221,
-    "sha256": "20b6a344a43d555df6e5199beaf67ea617e6bd84e39facb7b7d8e54848597576"
+    "bytes": 2220,
+    "sha256": "cd7e6ea67e888417d9ef43eeaa67ebf800f45efcb3b85150a295693571bf4d1d"
   },
   "statistics": {
     "messages": 1,

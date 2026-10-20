@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_smolvla_entropy_perlayer_fix_20260518T071428_result.json",
     "occurrence": 1,
-    "bytes": 1342,
-    "sha256": "89f28f166cf445d92131d00d723be385d082c14203d6551019d0ae92f55d519a"
+    "bytes": 1341,
+    "sha256": "335fe9d4765080b24e725df610e2899cae1897f29b3f334346c2fcb98dea190b"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,26 @@
+{
+  "config": {
+    "model": "pi05",
+    "ckpt": "pepijn223/pi05_libero_31_9_non_q",
+    "ckpt_path": "/root/autodl-tmp/pi05-libero-finetuned",
+    "suite": "libero_object",
+    "prune_ratio": 0.0,
+    "n_eps_per_task": 50,
+    "seed": 7,
+    "vision_fix": "bypass get_image_features, call vision_tower+multi_modal_projector directly, multiply by sqrt(hidden_size)",
+    "transformers_version": "4.53.2",
+    "eval_stopped_early": true,
+    "early_stop_reason": "0% SR after 60+ episodes across 2 tasks, well below 20% threshold"
+  },
+  "per_task": {
+    "pick up the alphabet soup and place it in the basket": {"id": 0, "sr": 0.0, "n": 0, "total": 50},
+    "pick up the cream cheese and place it in the basket": {"id": 1, "sr": 0.0, "n": 0, "total": 10, "partial": true}
+  },
+  "overall_sr": 0.0,
+  "total_successes": 0,
+  "total_episodes": 60,
+  "tasks_completed": 1,
+  "tasks_partial": 1,
+  "elapsed_min": 15.4,
+  "conclusion": "Checkpoint produces 0% success rate on LIBERO-Object. The vision embedding fix (bypassing transformers 4.53.2 get_image_features) was verified correct (model produces varying, reasonable-magnitude actions per episode), but no episodes succeed. Likely the checkpoint itself has quality issues or there is a remaining preprocessing mismatch. Pruning experiment skipped due to zero baseline."
+}

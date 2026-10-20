@@ -1,0 +1,147 @@
+dreams:
+  dream_20260516T075046:
+    dream_id: dream_20260516T075046
+    project: importance_margin_vla_compress
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: CoRL 2026
+    focus: 重点关注：(1) G3<1.0 denoising claim 是否能经受审稿质疑——pruning 后性能提升是否有足够的机理解释；(2)
+      只有 SmolVLA+aloha_sim_insertion 一个数据点时 story 是否 convincing；(3) two-stage training
+      的通用性——换模型/换 benchmark 后是否仍然 work；(4) formal bound 的 practical value——审稿人是否会认为
+      bound 太 loose 没有实际指导意义
+    what_if: []
+    pid: 552070
+    chat_id: oc_6ea0e93e255655758819bea2ab1f224d
+    card_message_id: om_x100b6fb653a6a0b0b4b90612721eb21
+    started_at: '2026-05-16T07:50:46+00:00'
+    updated_at: '2026-05-16T08:50:13+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 40d7259772c7d6781998e392f87d89b011351739124f6d7cfe02b475fe35867c
+  dream_20260520T155932:
+    dream_id: dream_20260520T155932
+    project: importance_margin_vla_compress
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: corl-2026
+    focus: ''
+    what_if: []
+    pid: 1447846
+    chat_id: oc_6ea0e93e255655758819bea2ab1f224d
+    card_message_id: om_x100b6fe9e88750a4b36bda752440d8b
+    started_at: '2026-05-20T15:59:32+00:00'
+    updated_at: '2026-05-20T16:59:58+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: ebcd42fbe5069194ce2112ef9b4d8e8bcba06b062d981d2a36feb3415c8ca3c6
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated
+  dream_20260525T022127:
+    dream_id: dream_20260525T022127
+    project: importance_margin_vla_compress
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: corl-2026
+    focus: ''
+    what_if: []
+    pid: 3150951
+    chat_id: oc_6ea0e93e255655758819bea2ab1f224d
+    card_message_id: om_x100b6e0f6cb638b0b1160819dc487c3
+    started_at: '2026-05-25T02:21:27+00:00'
+    updated_at: '2026-05-25T02:21:37+00:00'
+    stages_completed: []
+    error: 'phase1: Phase 1 failed: [Errno 7] Argument list too long: ''/usr/bin/claude'''
+    context_hash: c95f232aa49a2ecd72472ff08ad8b603e01e63236b5f9c8b947f8ce1e397c8f8
+  dream_20260525T024603:
+    dream_id: dream_20260525T024603
+    project: importance_margin_vla_compress
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: corl-2026
+    focus: ''
+    what_if: []
+    pid: 3153068
+    chat_id: oc_6ea0e93e255655758819bea2ab1f224d
+    card_message_id: om_x100b6e0f3071a564b1183aede7730bc
+    started_at: '2026-05-25T02:46:03+00:00'
+    updated_at: '2026-05-25T02:46:13+00:00'
+    stages_completed: []
+    error: 'phase1: Phase 1 failed: [Errno 7] Argument list too long: ''/usr/bin/claude'''
+    context_hash: c95f232aa49a2ecd72472ff08ad8b603e01e63236b5f9c8b947f8ce1e397c8f8
+  dream_20260525T024720:
+    dream_id: dream_20260525T024720
+    project: importance_margin_vla_compress
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: corl-2026
+    focus: ''
+    what_if: []
+    pid: 3153256
+    chat_id: oc_6ea0e93e255655758819bea2ab1f224d
+    card_message_id: om_x100b6e0fcd7d4c84b289735787f7b8a
+    started_at: '2026-05-25T02:47:20+00:00'
+    updated_at: '2026-05-25T02:47:32+00:00'
+    stages_completed: []
+    error: 'phase1: Phase 1 failed: [Errno 7] Argument list too long: ''/usr/bin/claude'''
+    context_hash: c95f232aa49a2ecd72472ff08ad8b603e01e63236b5f9c8b947f8ce1e397c8f8
+  dream_20260525T043013:
+    dream_id: dream_20260525T043013
+    project: importance_margin_vla_compress
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: corl-2026
+    focus: ''
+    what_if: []
+    pid: 3163488
+    chat_id: oc_6ea0e93e255655758819bea2ab1f224d
+    card_message_id: om_x100b6e094b43fca4b2797eacd65b78e
+    started_at: '2026-05-25T04:30:13+00:00'
+    updated_at: '2026-05-25T04:30:26+00:00'
+    stages_completed: []
+    error: 'phase1: Phase 1 failed: [Errno 7] Argument list too long: ''/usr/bin/claude'''
+    context_hash: 0b25d8493baf3cb4a9a97de7579286d49950f3ec81f5095dc9dd7f033cf899d8
+  dream_20260525T050917:
+    dream_id: dream_20260525T050917
+    project: importance_margin_vla_compress
+    status: reviewing
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: corl-2026
+    focus: ''
+    what_if: []
+    pid: 3168307
+    chat_id: oc_6ea0e93e255655758819bea2ab1f224d
+    card_message_id: om_x100b6e09d91008e0b21b732c8e0aeda
+    started_at: '2026-05-25T05:09:17+00:00'
+    updated_at: '2026-05-25T06:35:03+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: f197f52cd332bcea52203ab811ae7db23baaea6748fad1a42d416b3fab67568e
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated

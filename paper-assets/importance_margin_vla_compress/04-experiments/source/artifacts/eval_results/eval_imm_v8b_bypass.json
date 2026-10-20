@@ -1,0 +1,36 @@
+{
+  "eps0.0_pruneFalse": {
+    "action_loss": 0.018652127677109092
+  },
+  "eps0.0_pruneTrue": {
+    "action_loss": 0.017966068203561007
+  },
+  "eps0.01_pruneFalse": {
+    "action_loss": 0.019034796331077814
+  },
+  "eps0.01_pruneTrue": {
+    "action_loss": 0.017001907852478324
+  },
+  "eps0.02_pruneFalse": {
+    "action_loss": 0.019880538114346563
+  },
+  "eps0.02_pruneTrue": {
+    "action_loss": 0.020683766078902408
+  },
+  "eps0.05_pruneFalse": {
+    "action_loss": 0.03064089416991919
+  },
+  "eps0.05_pruneTrue": {
+    "action_loss": 0.02700737240584567
+  },
+  "_meta": {
+    "checkpoint": "checkpoints/imm_anchor_v8b_twostage/final",
+    "config": "configs/imm_anchor_v8b_twostage.yaml",
+    "imm_enabled": true,
+    "bypass_acis": true,
+    "lipschitz_empirical": 0.0,
+    "lipschitz_spectral": 0.0,
+    "max_batches": 500,
+    "seed": 42
+  }
+}

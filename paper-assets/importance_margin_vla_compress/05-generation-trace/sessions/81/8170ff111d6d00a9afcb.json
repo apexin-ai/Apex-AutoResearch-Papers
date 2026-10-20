@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_v7_2-sn-verify-step1000_20260515T192718_result.json",
     "occurrence": 1,
-    "bytes": 242,
-    "sha256": "49cb5cf45aef27db44265a9cfe2bfb0aaeac82dc6d4c1177bd357eef9216c101"
+    "bytes": 241,
+    "sha256": "b786423d46054103fc74e2c2e18adfc8985af3380d31730ecd539ca3dfb613c7"
   },
   "statistics": {
     "messages": 1,

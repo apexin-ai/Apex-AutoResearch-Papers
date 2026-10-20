@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_w41_kill_duplicate_deploy_random_k09_s45_20260528T004601_result.json",
     "occurrence": 1,
-    "bytes": 445,
-    "sha256": "23c2fbb72aed3c9e070438606cc54b76cbd65fc106331c0c755ad915b978a19c"
+    "bytes": 444,
+    "sha256": "62d9e9f3be9603c285365dcad537447e2efe636292e8f422fada9356a9686621"
   },
   "statistics": {
     "messages": 1,

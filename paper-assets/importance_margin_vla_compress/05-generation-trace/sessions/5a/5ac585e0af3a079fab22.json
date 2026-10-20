@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd38929_attn_k05_goal_20260526T161201_result.json",
     "occurrence": 1,
-    "bytes": 584,
-    "sha256": "34588d494a68b25d0e0187e3ef29fefbe52112e9a9c9689c2dd054e4e1b91ec6"
+    "bytes": 583,
+    "sha256": "2d0ce48ab288b4d69cf5f0e7e9e5d523bec887f2a4a95a6fcacffafa6a02f9e2"
   },
   "statistics": {
     "messages": 1,

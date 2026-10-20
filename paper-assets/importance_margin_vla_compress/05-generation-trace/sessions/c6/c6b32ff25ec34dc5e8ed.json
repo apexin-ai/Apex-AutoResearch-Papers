@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ssh_gpu_check_deploy_20260524T171704_result.json",
     "occurrence": 1,
-    "bytes": 2153,
-    "sha256": "e05491664a47f65f37b3b06e2801ef771c603ab665d0ca4d6907a2f89141a8ed"
+    "bytes": 2152,
+    "sha256": "a14a3152eae6c97667856de1c82528becbe44c8ad5d1eca9dddbf8e9a0a8f245"
   },
   "statistics": {
     "messages": 1,

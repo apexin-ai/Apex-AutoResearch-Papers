@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **43 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **44 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -11,6 +11,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [acr-vla-conformal-refinement](../paper-assets/acr-vla-conformal-refinement/05-generation-trace/README.md) | 1,796 | 2,883 | 2,064 | 371 | 391,607 | [Read](../paper-assets/acr-vla-conformal-refinement/05-generation-trace/readable/README.md) |
 | [action_cond_info_bottleneck](../paper-assets/action_cond_info_bottleneck/05-generation-trace/README.md) | 150 | 365 | 262 | 23 | 45,967 | [Read](../paper-assets/action_cond_info_bottleneck/05-generation-trace/readable/README.md) |
 | [be-idea-gen-0515](../paper-assets/be-idea-gen-0515/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/be-idea-gen-0515/05-generation-trace/readable/README.md) |
+| [be-idea-gen-0515-2](../paper-assets/be-idea-gen-0515-2/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/be-idea-gen-0515-2/05-generation-trace/readable/README.md) |
 | [be-idea-gen-0515-3](../paper-assets/be-idea-gen-0515-3/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/be-idea-gen-0515-3/05-generation-trace/readable/README.md) |
 | [causal_annot_error_attrib](../paper-assets/causal_annot_error_attrib/05-generation-trace/README.md) | 78 | 225 | 163 | 9 | 66,314 | [Read](../paper-assets/causal_annot_error_attrib/05-generation-trace/readable/README.md) |
 | [causal_style_decomp_judge](../paper-assets/causal_style_decomp_judge/05-generation-trace/README.md) | 69 | 221 | 211 | 5 | 73,378 | [Read](../paper-assets/causal_style_decomp_judge/05-generation-trace/readable/README.md) |

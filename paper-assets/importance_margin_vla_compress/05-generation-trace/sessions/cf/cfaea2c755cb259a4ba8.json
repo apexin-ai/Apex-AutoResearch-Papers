@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_extract-l2norm-k085-long-pertask_20260524T131757_result.json",
     "occurrence": 1,
-    "bytes": 738,
-    "sha256": "62f20036c8d9dad3b73dc65d3b81ade1f0a19ccb5de4f3e405e69429e51ce190"
+    "bytes": 737,
+    "sha256": "63a91fbd64c72c6591a552e2b8235e743b2458838fa000b4aba3d23c76619ea9"
   },
   "statistics": {
     "messages": 1,

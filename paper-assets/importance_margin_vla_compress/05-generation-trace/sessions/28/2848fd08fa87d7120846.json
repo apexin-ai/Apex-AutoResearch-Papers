@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_c4ext-20k-eval_20260520T071633_result.json",
     "occurrence": 1,
-    "bytes": 114,
-    "sha256": "56a2d6eacc6cae881bdbf7c8ed5c753a9b97d2e66cb31118919b652bc024d571"
+    "bytes": 113,
+    "sha256": "29d07405cdba727da05f0dbafb1335eac314e4471de065332f538feb6719fe74"
   },
   "statistics": {
     "messages": 1,

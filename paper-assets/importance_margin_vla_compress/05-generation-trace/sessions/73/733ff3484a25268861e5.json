@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_long_curve_data_collect_20260524T144020_result.json",
     "occurrence": 1,
-    "bytes": 1097,
-    "sha256": "528cb5fd62a6f4ea7ff2b155fe046f5fa371d77d3ddf5da2de6197e9aae2ad21"
+    "bytes": 1096,
+    "sha256": "599ea7ff773cc59198b9ad326fa2f50956f74c65e512d09a5dd6aee3360d87de"
   },
   "statistics": {
     "messages": 1,

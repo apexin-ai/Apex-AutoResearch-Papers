@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_figure_fig_pruning_overview_20260525T183305_result.json",
     "occurrence": 1,
-    "bytes": 392,
-    "sha256": "66e212fb6fb5faedcc043d4d519297dd7f871f3e62e6009c2ec3d71721ff1b58"
+    "bytes": 391,
+    "sha256": "41d0e7d3c2082d439551847fe4d179be0fad93d4df0912b1f851f19911d20e13"
   },
   "statistics": {
     "messages": 1,

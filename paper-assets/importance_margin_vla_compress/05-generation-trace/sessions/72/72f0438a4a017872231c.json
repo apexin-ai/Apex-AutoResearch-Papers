@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_registry_yaml_dedup_fix_20260522T205526_result.json",
     "occurrence": 1,
-    "bytes": 781,
-    "sha256": "c2d3980cb06cf7d8b048dbcbc05fcc934fd76d0ccc561508d8818dbe073cd29f"
+    "bytes": 780,
+    "sha256": "f26f8bbffbb39fd65a1c866d79ca5011fd5a7a6174a6fcd9f11fa98eefc6f513"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_m96_check_and_deploy_v1_20260522T092004_result.json",
     "occurrence": 1,
-    "bytes": 900,
-    "sha256": "8fcf122bbdb92d74c54e50efe1908e2f78106dbc168c2267954608b1c71cf6a6"
+    "bytes": 899,
+    "sha256": "bca9a6c958575a4723182c0433f41e165beba3aa0be9d090ca3e954fd5419e29"
   },
   "statistics": {
     "messages": 1,

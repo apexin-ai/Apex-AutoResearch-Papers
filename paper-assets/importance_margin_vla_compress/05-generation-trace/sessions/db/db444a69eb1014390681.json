@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_verify-westd-k095-duplicate_20260520T215023_result.json",
     "occurrence": 1,
-    "bytes": 1497,
-    "sha256": "c152a53f4c7175c70990c25afef7fa9c8d04a97ee55e2fe00b63516086afc4d3"
+    "bytes": 1496,
+    "sha256": "8596bcabfc79e64b2ea24bc2eaf3bc03ced11b2fd8ebf484ddb099a3ea1f1078"
   },
   "statistics": {
     "messages": 1,

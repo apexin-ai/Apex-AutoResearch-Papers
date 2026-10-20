@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-gpu3-openvla-l2norm-k03-seed43_20260521T121236_result.json",
     "occurrence": 1,
-    "bytes": 505,
-    "sha256": "fc8173865f4be3841e4bcb3564a0a4d477b09775c2e3e923c24c404a568175ab"
+    "bytes": 504,
+    "sha256": "343c7983a7854e2285f7c23ae7393e019ed4b609e798ccf09ace41068fc8e762"
   },
   "statistics": {
     "messages": 1,

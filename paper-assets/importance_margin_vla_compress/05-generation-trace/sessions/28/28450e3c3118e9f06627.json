@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_infra_check-m64-m96-status_20260520T030558_result.json",
     "occurrence": 1,
-    "bytes": 1211,
-    "sha256": "f3b0f13e6c53d52a232b4a4f8d3aab2d066e495168a00bed65c60e22b18cce8f"
+    "bytes": 1210,
+    "sha256": "8887e1199adc12cd6a7499c591861591ef325631af94b5fdd4b677c11160fa23"
   },
   "statistics": {
     "messages": 1,

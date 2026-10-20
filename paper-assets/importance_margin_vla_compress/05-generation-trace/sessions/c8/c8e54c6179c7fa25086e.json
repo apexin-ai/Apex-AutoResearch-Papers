@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_add-lip-monitor-v7_1_20260515T184055_result.json",
     "occurrence": 1,
-    "bytes": 565,
-    "sha256": "2f9577bcf09432c32580262e3eb511efbd88601b9e26d4ee012c4a1f1d40534c"
+    "bytes": 564,
+    "sha256": "38253fd6cd5e321bb203448eee7b7f231abb9e1d465b5829295ba305047d4511"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_pi05_random_k03_spatial_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:56:27.850Z",
+    "updated_at": "2026-05-22T11:00:34.089Z",
+    "hypothesis": "π0.5 random k=0.3 Spatial seed43: 双种子验证。与 Object seed43 random k=0.3 (32.2%) 配对。确认 random 极端压缩下 Spatial vs Object 的差异。",
+    "spec": {
+      "command": "python eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.3 --suite libero_spatial --n_episodes 500 --seed 43 --gpu 0",
+      "server": "westd-38929",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 500,
+      "model_name": "pi0.5",
+      "seed": 43,
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "westd-38929:/root/autodl-tmp/importance_margin_vla_compress/logs/"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_SR": 0.512,
+      "total_successes": 256,
+      "total_episodes": 500
+    },
+    "completed_at": "2026-05-22T11:00:34.089Z"
+  },
+  "timestamp": "2026-05-22T11:00:34.759424+00:00",
+  "trigger": "update_registry"
+}

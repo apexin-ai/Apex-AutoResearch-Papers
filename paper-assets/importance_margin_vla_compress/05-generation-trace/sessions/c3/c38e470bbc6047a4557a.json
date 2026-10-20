@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analyze_eval_pi05_attention_k05_goal_seed42_20260523T210642_result.json",
     "occurrence": 1,
-    "bytes": 1561,
-    "sha256": "75ae7756f2665d05c16de822777706b74ed5bac5c209e64aee4c374e698b9616"
+    "bytes": 1560,
+    "sha256": "70d59866805eaff590cac74e93c0759152fe91cad2734f92b393eb6e2cf751b4"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_train_libero_dual_launch_20260516T141300_result.json",
     "occurrence": 1,
-    "bytes": 171,
-    "sha256": "bedc03c519289ccefa5183f2fa2c8940a2ade03c027ecf6b901bd7ce3a60b9a7"
+    "bytes": 170,
+    "sha256": "9deea840703fc23fd940553239e5948977a9422268b2c6a609ee51174f1318a7"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diag_pruning_method_audit_20260518T150744_result.json",
     "occurrence": 1,
-    "bytes": 5752,
-    "sha256": "1eb57fdcdaab8f71b58b8fb52ea6f324e7bfd41a3c4d4511ee591f71f0bfdea2"
+    "bytes": 5751,
+    "sha256": "836e9878638a97e386b206ca0c51cca8bebc3297502e77d19ce18289bc5255f3"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_random_k09_goal_seed42_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:33:47.902Z",
+    "updated_at": "2026-05-24T07:34:08.915Z",
+    "hypothesis": "π0.5 Random k=0.9 Goal post-fix — Goal suite cliff zone 最低点探测。Object k=0.9 post-fix=9.0%（cliff zone 最低点），Spatial k=0.9=53.4%。Goal 是否也有类似的 disruption peak？Goal baseline=88.4%"
+  },
+  "timestamp": "2026-05-24T07:34:09.872362+00:00",
+  "trigger": "update_registry"
+}

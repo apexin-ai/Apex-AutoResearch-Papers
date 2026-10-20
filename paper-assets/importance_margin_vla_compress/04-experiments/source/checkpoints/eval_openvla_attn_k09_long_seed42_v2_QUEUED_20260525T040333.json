@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_openvla_attn_k09_long_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T04:03:17.660Z",
+    "updated_at": "2026-05-25T04:03:32.158Z",
+    "hypothesis": "OpenVLA Attn k=0.9 Long v2 — 用正确的 libero-10 模型重跑，crossover 表 Long 行 Attn k=0.9 数据点"
+  },
+  "timestamp": "2026-05-25T04:03:33.268197+00:00",
+  "trigger": "update_registry"
+}

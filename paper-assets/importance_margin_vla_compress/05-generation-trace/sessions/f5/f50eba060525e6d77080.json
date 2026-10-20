@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analyze_eval_openvla_baseline_long_seed42_20260523T234600_result.json",
     "occurrence": 1,
-    "bytes": 786,
-    "sha256": "f4ef6d390a4e65ecc70e9e83bc16999f03c8bb3b2fae4bd76e3c4319fd97ff97"
+    "bytes": 785,
+    "sha256": "3a8361046c37e557a4e949e9de5ef913d785b48a5bd1c56c6ad300bf8633b6a9"
   },
   "statistics": {
     "messages": 1,

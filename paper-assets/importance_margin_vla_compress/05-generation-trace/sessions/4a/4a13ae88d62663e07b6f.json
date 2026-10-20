@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_fullft_50k_libero_goal_20260516T204037_result.json",
     "occurrence": 1,
-    "bytes": 1237,
-    "sha256": "ea4b1ab3e5555586b328bc521e28ea13f5d16a8800643a2d5ba5d756465cfd89"
+    "bytes": 1236,
+    "sha256": "59afc23300959da6f399b1e05fabc1b72226bea1f2d2ee589b812ad8e1b384e2"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_debug_pi05_strict_code_sync_20260527T065937_result.json",
     "occurrence": 1,
-    "bytes": 1665,
-    "sha256": "260ab9343bc6d5058c94d04bd05cba5a73d454cf6b53b2bdd2cb8363226dc624"
+    "bytes": 1664,
+    "sha256": "c2a9ce9476d98e0c58ef9f12eeb246222e363e7d32063ec16bcd911048d67ffe"
   },
   "statistics": {
     "messages": 1,

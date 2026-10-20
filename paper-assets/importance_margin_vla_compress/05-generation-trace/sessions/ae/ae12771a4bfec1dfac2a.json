@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_k07_trained_prune_20260517T120426_result.json",
     "occurrence": 1,
-    "bytes": 178,
-    "sha256": "2fdd03250d2a45eb70d8734a6c24640e101e17bf8bf7ed19a6fc3b78b8611bc9"
+    "bytes": 177,
+    "sha256": "16d4ebe4f4ebaca3fd95502dbbef94f0a0a89dad9d64994addf9a4b1187b54f8"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k03_goal_seed42_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:44:41.347Z",
+    "updated_at": "2026-05-24T09:44:57.087Z",
+    "hypothesis": "π0.5 L2norm k=0.3 Goal post-fix — extreme importance margin。Random k=0.3 Goal (running on westd-41074)。Object L2norm k=0.3=30.4% vs Random k=0.3=32.2%。Goal 上 L2norm 极端压缩的 importance margin 大小。"
+  },
+  "timestamp": "2026-05-24T09:44:58.050069+00:00",
+  "trigger": "update_registry"
+}

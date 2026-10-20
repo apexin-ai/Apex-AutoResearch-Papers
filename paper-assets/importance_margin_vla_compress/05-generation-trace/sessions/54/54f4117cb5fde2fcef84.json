@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_attention_visualization_20260517T100421_result.json",
     "occurrence": 1,
-    "bytes": 1641,
-    "sha256": "2c6930c21b84fe8510369485991a93546f8e821fa20e27dfd27ae9ef677cb29f"
+    "bytes": 1640,
+    "sha256": "3623cf23a5c30fc63644994a8c247965f9723be4abe4e0ddf45bd0dc85eba5de"
   },
   "statistics": {
     "messages": 1,

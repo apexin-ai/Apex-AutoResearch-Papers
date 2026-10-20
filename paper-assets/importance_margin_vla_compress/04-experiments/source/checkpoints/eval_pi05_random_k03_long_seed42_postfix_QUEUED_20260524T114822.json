@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_random_k03_long_seed42_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T11:47:30.042Z",
+    "updated_at": "2026-05-24T11:48:19.621Z",
+    "hypothesis": "π0.5 Random k=0.3 Long post-fix — Long disruption curve 极端端点。Object k=0.3=32.2%, Goal k=0.3=52.8%。Long 是最复杂 suite，验证极端 pruning 下 Long 的 floor"
+  },
+  "timestamp": "2026-05-24T11:48:22.088486+00:00",
+  "trigger": "update_registry"
+}

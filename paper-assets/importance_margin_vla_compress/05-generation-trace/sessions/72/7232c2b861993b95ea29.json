@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill-westd38929-gpu2-dup_20260524T114615_result.json",
     "occurrence": 1,
-    "bytes": 131,
-    "sha256": "7d2723fa1769cf4ffc51b01d0b4bd12e374db9076730452c41ec06500b674525"
+    "bytes": 130,
+    "sha256": "bf72208883539f3677a6dfe2ca1fd0140dd5e0de2edb434d65fe850e2c96cab5"
   },
   "statistics": {
     "messages": 1,

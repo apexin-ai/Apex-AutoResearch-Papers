@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_urgent_westd41074_verify_registry_20260525T040159_result.json",
     "occurrence": 1,
-    "bytes": 913,
-    "sha256": "ec1f524ec887d7b125e33933181db610d091736e69d44aeef7f90affbd3aa05c"
+    "bytes": 912,
+    "sha256": "8cfc06b739b1d289d90c3e6407b1a5ce6ce0c5d881ee584404a13af3cde619ae"
   },
   "statistics": {
     "messages": 1,

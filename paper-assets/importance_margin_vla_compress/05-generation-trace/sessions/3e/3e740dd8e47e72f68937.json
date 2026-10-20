@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd38929_gpu123_redeploy_20260523T010915_result.json",
     "occurrence": 1,
-    "bytes": 1072,
-    "sha256": "cffe313f2ebfdb34acb90e3121167b056a540f486898bfaf38bef108bf8f4a09"
+    "bytes": 1071,
+    "sha256": "1bede74a4920be4617395a53476ba23599d2ae415fef82b88bf207ecd71fc073"
   },
   "statistics": {
     "messages": 1,

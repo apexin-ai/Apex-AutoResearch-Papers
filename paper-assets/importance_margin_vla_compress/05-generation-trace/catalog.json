@@ -7,7 +7,7 @@
     "messages": 413702,
     "user_turns": 11786,
     "tool_calls": 163280,
-    "unparsed_lines": 2111,
+    "unparsed_lines": 2113,
     "result": 2107,
     "worker": 2223,
     "conversation": 1235,
@@ -96022,7 +96022,7 @@
       "ended_at": null,
       "preview": "",
       "reported_errors": 0,
-      "unparsed_lines": 0,
+      "unparsed_lines": 1,
       "readable_path": "readable/task-results/paper-figure.md",
       "path": "sessions/5b/5beab30cf6d2cf42b803.json"
     },
@@ -96040,7 +96040,7 @@
       "ended_at": null,
       "preview": "",
       "reported_errors": 0,
-      "unparsed_lines": 0,
+      "unparsed_lines": 1,
       "readable_path": "readable/task-results/paper-figure-architecture-v2-paperbanana.md",
       "path": "sessions/67/67eb3ce088d329d05fa9.json"
     },

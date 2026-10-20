@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_official_smolvla_prune_k05_spatial",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:21:42.301Z",
+    "updated_at": "2026-05-19T14:22:45.899Z",
+    "hypothesis": "Official SmolVLA checkpoint (SR=43.8% on Spatial baseline) with k=0.5 random token pruning on LIBERO-Spatial. If 0% SR (matching LoRA-FT k=0.5 spatial=0% and official k=0.5 Object=0%), confirms pixel-shuffle cliff-edge is universal across checkpoint variants AND task suites — completing the \"all SmolVLA variants × all suites = cliff-edge\" claim (C2).",
+    "parent": "eval_smolvla_prune_k05_spatial_v2",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 python -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_spatial --num_episodes 50 --gpu 0 --mode random_prune --k_ratio 0.5 --seed 42\"",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "619830",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_spatial.log",
+      "submitted_at": "2026-05-19T14:22:23.073Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-19T14:22:46.128577+00:00",
+  "trigger": "update_registry"
+}

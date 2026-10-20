@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_goal_seed42_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:33:31.216Z",
+    "updated_at": "2026-05-24T07:34:24.595Z",
+    "hypothesis": "π0.5 L2norm k=0.85 Goal post-fix — 验证 pruning-as-denoising 效应是否跨 suite。L2norm k=0.85 Spatial=88.4% 超 baseline 78% (+10.4pp)，Goal baseline=88.4%，测试 L2norm 在 Goal 上是否也出现类似的性能提升。与 Random k=0.85 Goal（westd-38929 部署中）形成 importance margin 对照"
+  },
+  "timestamp": "2026-05-24T07:34:25.558788+00:00",
+  "trigger": "update_registry"
+}

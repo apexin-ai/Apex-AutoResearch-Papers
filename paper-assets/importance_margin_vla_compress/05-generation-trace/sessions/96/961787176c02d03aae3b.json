@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd41074_gpu3_pi05_zeromask_20260526T022142_result.json",
     "occurrence": 1,
-    "bytes": 763,
-    "sha256": "3d77197c4f52fb7ddff2cee1ac18be5d8a4621f830401ec57acbd9e430e54b89"
+    "bytes": 762,
+    "sha256": "e0fbd6ddd605d8bc2b7a831c1001f18e31c747bd27742b8dc884de5481e1f6f6"
   },
   "statistics": {
     "messages": 1,

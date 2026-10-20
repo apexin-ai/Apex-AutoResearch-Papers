@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_attention_k05_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T21:48:53.879Z",
+    "updated_at": "2026-05-23T21:49:28.235Z",
+    "hypothesis": "π0.5 attention k=0.5 Long (libero_10) seed42。Goal attention=70.2%(< Random)。Long baseline=91.6%，Random k=0.5 Long=46.8%。若 attention Long 也 ≤46.8%，attention 在 MLP connector 上全 suite 失效。"
+  },
+  "timestamp": "2026-05-23T21:49:29.127336+00:00",
+  "trigger": "update_registry"
+}

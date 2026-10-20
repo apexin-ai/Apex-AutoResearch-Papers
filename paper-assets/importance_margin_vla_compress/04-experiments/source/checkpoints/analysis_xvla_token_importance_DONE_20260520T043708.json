@@ -1,0 +1,37 @@
+{
+  "exp_id": "analysis_xvla_token_importance",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T04:33:25.537Z",
+    "updated_at": "2026-05-20T04:37:07.968Z",
+    "spec": {
+      "command": "python analyze_xvla_token_importance.py",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "74729",
+      "log_path": "~/runs/importance_margin_vla_compress/analysis_xvla_token_importance.log",
+      "submitted_at": "2026-05-20T04:34:35.248Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "N/A (analysis only)",
+      "model_name": "X-VLA-0.9B (lerobot/xvla-libero)",
+      "data_path": "LIBERO-Object (task_index 20-29)",
+      "data_count": 100,
+      "seed": 42,
+      "wall_clock_seconds": 152.7,
+      "gpu_hours": 0.04
+    },
+    "hypothesis": "X-VLA uses a linear projection connector (simpler than OpenVLA's 2-layer MLP), so its vision tokens may exhibit different compressibility patterns — potentially more uniform attention distribution and higher tolerance to pruning due to less non-linear feature mixing in the connector.",
+    "conclusion": "success",
+    "completed_at": "2026-05-20T04:37:07.968Z"
+  },
+  "timestamp": "2026-05-20T04:37:08.239098+00:00",
+  "trigger": "update_registry"
+}

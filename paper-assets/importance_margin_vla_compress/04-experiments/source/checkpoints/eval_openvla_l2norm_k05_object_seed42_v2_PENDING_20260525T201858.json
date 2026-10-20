@@ -1,0 +1,54 @@
+{
+  "exp_id": "eval_openvla_l2norm_k05_object_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "completed_at": "2026-05-21T12:10:30.050Z",
+    "created_at": "2026-05-21T07:25:01.420Z",
+    "hypothesis": "L2-norm based pruning at k=0.5 on OpenVLA libero_object will retain more task-critical parameters than random pruning, resulting in higher success rates due to importance-aware weight selection.",
+    "retry_count": 1,
+    "status": "PENDING",
+    "updated_at": "2026-05-25T20:18:56.210Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "elapsed_minutes": 279.3,
+          "overall_SR": 0.392,
+          "per_task_SR": {
+            "alphabet_soup": 0.56,
+            "bbq_sauce": 0.32,
+            "butter": 0.12,
+            "chocolate_pudding": 0.44,
+            "cream_cheese": 0.14,
+            "ketchup": 0.7,
+            "milk": 0.5,
+            "orange_juice": 0.44,
+            "salad_dressing": 0.38,
+            "tomato_sauce": 0.32
+          },
+          "seed": 42,
+          "total_episodes": 500,
+          "total_successes": 196
+        }
+      }
+    },
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYTHONUNBUFFERED=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python3 eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.5 --suite libero_object --num_episodes 50 --seed 42 --output results/openvla_l2norm_k05_object_seed42.json > /tmp/eval_openvla_l2norm_k05_object_seed42_v2.log 2>&1\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "4339",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_l2norm_k05_object_seed42_v2.log",
+      "submitted_at": "2026-05-25T18:25:38.246Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-25T20:18:58.418051+00:00",
+  "trigger": "update_registry"
+}

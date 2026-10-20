@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_d168_westd27271_xvla_v3_20260522T142011_result.json",
     "occurrence": 1,
-    "bytes": 1506,
-    "sha256": "8af928287b57508ee613b0efa96dac37214f6dbab201456e51bcd1cf166c3ea7"
+    "bytes": 1505,
+    "sha256": "32fd362523a0659a0e07d1f6403aff17b0a0bb75ddfa75e8ca6aaf4fd3b80431"
   },
   "statistics": {
     "messages": 1,

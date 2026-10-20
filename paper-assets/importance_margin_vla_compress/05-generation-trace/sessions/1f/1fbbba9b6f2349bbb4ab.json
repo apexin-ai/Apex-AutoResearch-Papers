@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_eval_pi05_l2norm_k085_long_seed42_v3_20260526T140201_result.json",
     "occurrence": 1,
-    "bytes": 184,
-    "sha256": "9b4a00ec4f4379c9493f1aced6df0686bae92a35e911508445e9a5a26756d556"
+    "bytes": 183,
+    "sha256": "e5d8207b279ec04a3bdbc1ca571ba47173f0309afcdd5b04f0a451f924b4b6da"
   },
   "statistics": {
     "messages": 1,

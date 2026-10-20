@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill_redeploy_all_v5_20260522T083003_result.json",
     "occurrence": 1,
-    "bytes": 3007,
-    "sha256": "4010d4a946b3fba79d653f389998ddfea1eb85cf3dad43682ef6a920e77a6662"
+    "bytes": 3006,
+    "sha256": "da4446c96c491172552572cfb9a3e9b1947855407f7224d27a8a88e29c66ff20"
   },
   "statistics": {
     "messages": 1,

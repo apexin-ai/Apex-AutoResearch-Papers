@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_harvest_and_deploy_s47_batch2_20260529T040515_result.json",
     "occurrence": 1,
-    "bytes": 1830,
-    "sha256": "08797943a187a93a145d322b0ba5f478ff4f2ddc6c57cc75114526b4999bda27"
+    "bytes": 1829,
+    "sha256": "ce3b802653dc5980d3c28918efff7b74bec7c6a3a3f493009dac81f7a5be31e5"
   },
   "statistics": {
     "messages": 1,

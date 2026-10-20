@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_batch64_v2_cron_20260517T072318_result.json",
     "occurrence": 1,
-    "bytes": 869,
-    "sha256": "c6c0717fe22b7bc43a82fcae29ea87f8d8d2d05937538c43368ad2f1956bab0a"
+    "bytes": 868,
+    "sha256": "e214b344fd424aff9917ab740d5021a76c7d2774bace8098eb4d14c6ebe97014"
   },
   "statistics": {
     "messages": 1,

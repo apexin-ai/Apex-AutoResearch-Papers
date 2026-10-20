@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd41074-cuda1-pi05-l2norm-k03_20260521T073050_result.json",
     "occurrence": 1,
-    "bytes": 447,
-    "sha256": "4e1db60ae5b452b1344466678876a7f0cf33d02055d90928737b62270bd048ea"
+    "bytes": 446,
+    "sha256": "5fdd155f1ae04e81235af36c61e7fe9396e767f3b0e2a1fdd2cd38915b8de30b"
   },
   "statistics": {
     "messages": 1,

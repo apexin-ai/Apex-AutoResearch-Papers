@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_c4ext_deploy_westd27271_20260519T174754_result.json",
     "occurrence": 1,
-    "bytes": 325,
-    "sha256": "f335782c08ae78b690aa33f3b547f3524730a6770f9c33d196cc9b1e22951212"
+    "bytes": 324,
+    "sha256": "61c7a75647ba662e0685a286bfc0697722572eca81b2789f27cd1f7612fe5e62"
   },
   "statistics": {
     "messages": 1,

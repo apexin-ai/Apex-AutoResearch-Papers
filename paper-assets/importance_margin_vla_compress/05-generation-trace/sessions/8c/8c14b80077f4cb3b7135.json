@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_monitor_v8-early-loss_20260515T232326_result.json",
     "occurrence": 1,
-    "bytes": 53,
-    "sha256": "3217b2605f45aa1cffedd2997b8f5d1984c27734b1c43ab98f133e5e48ac6112"
+    "bytes": 52,
+    "sha256": "a89c2c554adcbae06b99248d0e9ccd2b4e9508f20e09a1ed70ae16cb131bea24"
   },
   "statistics": {
     "messages": 1,

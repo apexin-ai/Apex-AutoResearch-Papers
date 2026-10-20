@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1_cuda1_redeploy_20260522T184548_result.json",
     "occurrence": 1,
-    "bytes": 281,
-    "sha256": "30777868abefee9515d2a0c766163d4a6bc1551e782da7d8deba0783c5c51d3f"
+    "bytes": 280,
+    "sha256": "77cf9175287fc70f82066191dbf1942c0959e16234546b253ae2362460c40e09"
   },
   "statistics": {
     "messages": 1,

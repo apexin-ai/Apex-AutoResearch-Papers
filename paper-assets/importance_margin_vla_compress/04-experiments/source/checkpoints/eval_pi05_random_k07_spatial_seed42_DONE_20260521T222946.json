@@ -1,0 +1,61 @@
+{
+  "exp_id": "eval_pi05_random_k07_spatial_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T20:55:22.277Z",
+    "updated_at": "2026-05-21T22:29:46.227Z",
+    "hypothesis": "π0.5 random k=0.7 on LIBERO-Spatial seed42. Object suite 上 random k=0.7=77.2% > L2norm k=0.7=55.0%。验证低 CV(0.055) 模型的 method preference (random > L2norm at k=0.7) 是否跨 suite 一致。",
+    "spec": {
+      "data_path": "libero_spatial (10 tasks x 50 eps)",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_spatial",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.7 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 0\"",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "788353",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k07_spatial_seed42.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T22:26:50.626Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T22:26:58.674174+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 74.4,
+      "total_episodes": 500,
+      "per_task_sr": {
+        "T0_between_plate": 90,
+        "T1_next_to_ramekin": 96,
+        "T2_table_center": 94,
+        "T3_on_cookie_box": 52,
+        "T4_in_top_drawer": 60,
+        "T5_on_ramekin": 42,
+        "T6_next_to_cookie": 58,
+        "T7_on_stove": 76,
+        "T8_next_to_plate": 80,
+        "T9_on_wooden_cab": 96
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/pi05_libero_finetuned",
+    "completed_at": "2026-05-21T22:29:46.227Z"
+  },
+  "timestamp": "2026-05-21T22:29:46.755232+00:00",
+  "trigger": "update_registry"
+}

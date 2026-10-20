@@ -1,0 +1,58 @@
+{
+  "exp_id": "eval_pi05_l2norm_k075_long_seed44_strict_w27",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T21:29:01.344Z",
+    "updated_at": "2026-05-27T23:53:56.438Z",
+    "hypothesis": "π0.5 L2norm k=0.75 Long strict seed44 — smooth degradation 肩部第三个种子。seed42=70.8%, seed43=73.2%, error bar ±1.2%。seed44 加固 L2norm graceful degradation vs Attn cliff 对比",
+    "parent": "eval_pi05_l2norm_k075_long_seed43_strict_w41",
+    "server": "westd-27271",
+    "gpu": "cuda:0",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\"",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "247822",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k075_long_seed44_strict_w27.log",
+      "submitted_at": "2026-05-27T21:30:43.349Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/autodl-tmp/pi05_libero_finetuned",
+      "wall_clock_seconds": 8593.1,
+      "gpu_hours": 2.39
+    },
+    "pid": "247822",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k075_long_seed44_strict_w27.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\""
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 67.4,
+      "total_episodes": 500,
+      "total_success": 337,
+      "per_task": {
+        "T0_alphabet_soup_tomato": 84,
+        "T1_cream_cheese_butter": 86,
+        "T2_stove_moka_pot": 82,
+        "T3_black_bowl_drawer": 70,
+        "T4_white_mug_plate": 62,
+        "T5_book_back_shelf": 70,
+        "T6_mug_plate_yellow": 44,
+        "T7_alphabet_soup_cream": 66,
+        "T8_moka_pots_stove": 22,
+        "T9_yellow_white_mug_microwave": 88
+      }
+    },
+    "completed_at": "2026-05-27T23:53:56.438Z"
+  },
+  "timestamp": "2026-05-27T23:53:58.268279+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1-verify-random-k085-code_20260521T042120_result.json",
     "occurrence": 1,
-    "bytes": 798,
-    "sha256": "2249d2d2feb31c3cf3aa2816dadd6f8f8273ede6284fd2b61060ed2bc84f7c9e"
+    "bytes": 797,
+    "sha256": "178ef0459f3cf9cb18b352518e2b5d06515ccb4e68f5bac44073f88c208ffc85"
   },
   "statistics": {
     "messages": 1,

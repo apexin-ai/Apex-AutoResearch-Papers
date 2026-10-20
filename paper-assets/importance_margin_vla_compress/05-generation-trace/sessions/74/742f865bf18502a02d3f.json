@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_diagnose_6_failures_and_analyzing_20260523T034556_result.json",
     "occurrence": 1,
-    "bytes": 1238,
-    "sha256": "6a00bbeef2103f674fc72a78c789e89b302102059ef8c46c07ed2f25f24fded4"
+    "bytes": 1237,
+    "sha256": "dad93aa07ef2ec41dad4e3001ca1c5b2e25a033bd18232da394068c6de2b1e91"
   },
   "statistics": {
     "messages": 1,

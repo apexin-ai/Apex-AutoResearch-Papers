@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_launch-xvla-baselines-spatial-goal-cqa1_20260520T225343_result.json",
     "occurrence": 1,
-    "bytes": 722,
-    "sha256": "7daacf8630d8ae4884b2c68a9fb8634448fc66249fab97fc34c7979cfa85b332"
+    "bytes": 721,
+    "sha256": "e58f5678122118de3aa3085ebe89df85db28f8448628bea81a8cf032295fe997"
   },
   "statistics": {
     "messages": 1,

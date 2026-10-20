@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_westd27271_pi05_model_20260527T100415_result.json",
     "occurrence": 1,
-    "bytes": 833,
-    "sha256": "ba300f3c7aaaa809eb8ead32355c21ab08b6d2c3ad7076f3b2d3bf174458407b"
+    "bytes": 832,
+    "sha256": "7c5bf9c0aa2dcc5a2ce1cadf73cc6130b0e9ce711c2156fb00613bfdab95c05c"
   },
   "statistics": {
     "messages": 1,

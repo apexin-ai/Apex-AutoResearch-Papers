@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_eval_pi05_zeromask_random_k09_object_seed42_v3_20260526T061035_result.json",
     "occurrence": 1,
-    "bytes": 420,
-    "sha256": "de8d6049785889eb9da6635161e08ffd1024684ff0030c8ace668e5fcc55b40c"
+    "bytes": 419,
+    "sha256": "0c158c83e0a3548cc51c51c122ba752ff7b92d38ba5ca2d43f7549f64780dfbc"
   },
   "statistics": {
     "messages": 1,

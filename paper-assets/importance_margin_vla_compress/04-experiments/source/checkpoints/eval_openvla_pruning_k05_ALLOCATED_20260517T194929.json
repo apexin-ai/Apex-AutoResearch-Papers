@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_openvla_pruning_k05",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T19:49:18.253Z",
+    "updated_at": "2026-05-17T19:49:29.029Z",
+    "hypothesis": "OpenVLA (7B) with random k=0.5 true_removal pruning on LIBERO-Object. Baseline=74%. Early signal Task 1: 7/10=70% (vs baseline 78%), suggesting graceful degradation rather than cliff-edge. If confirmed across all 10 tasks, proves model scale provides pruning robustness absent in SmolVLA (0.5B).",
+    "parent": "eval_openvla_crossmodel_pruning"
+  },
+  "timestamp": "2026-05-17T19:49:29.219327+00:00",
+  "trigger": "update_registry"
+}

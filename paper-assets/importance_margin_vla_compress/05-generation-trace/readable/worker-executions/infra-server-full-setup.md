@@ -5456,7 +5456,7 @@ _source line 66_
 ```json
 {
   "server": "westd-27271",
-  "command": "which python3 && python3 --version && pip3 --version 2>/dev/null || echo \"NO_PIP\"; nvcc --version 2>/dev/null | grep \"release\" || echo \"NO_NVCC\"; ls -d /root/miniconda3 ~/.conda 2>/dev/null || echo \"NO_CONDA\"; pip3 list --format=freeze 2>/dev/null | grep -iE \"torch|transformers|lerobot|peft|wandb|flash|einops|accelerate\" || echo \"NO_ML_PKGS\"; echo \"---ENV_VARS---\"; echo \"WANDB_API_KEY=${WANDB_API_KEY:+SET}\"; echo \"HF_TOKEN=${HF_TOKEN:+SET}\"; python3 -c \"import sysconfig; print(sysconfig.get_path('stdlib'))\" 2>/dev/null; ls /usr/lib/python*/EXTERNALLY-MANAGED 2>/dev/null && echo \"PEP668_MANAGED\" || echo \"PEP668_OK\"",
+  "command": "which python3 && python3 --version && pip3 --version 2>/dev/null || echo \"NO_PIP\"; nvcc --version 2>/dev/null | grep \"release\" || echo \"NO_NVCC\"; ls -d /root/miniconda3 ~/.conda 2>/dev/null || echo \"NO_CONDA\"; pip3 list --format=freeze 2>/dev/null | grep -iE \"torch|transformers|lerobot|peft|wandb|flash|einops|accelerate\" || echo \"NO_ML_PKGS\"; echo \"---ENV_VARS---\"; echo \"WANDB_API_KEY=[REDACTED]}\"; echo \"HF_TOKEN=${HF_TOKEN:+SET}\"; python3 -c \"import sysconfig; print(sysconfig.get_path('stdlib'))\" 2>/dev/null; ls /usr/lib/python*/EXTERNALLY-MANAGED 2>/dev/null && echo \"PEP668_MANAGED\" || echo \"PEP668_OK\"",
   "account": "root",
   "warn": true
 }
@@ -5509,7 +5509,7 @@ _source line 67 · 2026-05-15T11:51:41.250Z_
 <details><summary>↩ Tool result · `toolu_016MVFr7icyy4zHgtFQp2t1k`</summary>
 
 ```text
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"NO_PIP\\nNO_NVCC\\n/root/.conda\\n/root/miniconda3\\nNO_ML_PKGS\\n---ENV_VARS---\\nWANDB_API_KEY=\\nHF_TOKEN=\\nPEP668_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"NO_PIP\\nNO_NVCC\\n/root/.conda\\n/root/miniconda3\\nNO_ML_PKGS\\n---ENV_VARS---\\nWANDB_API_KEY=[REDACTED]", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
 ```
 
 </details>
@@ -5524,9 +5524,9 @@ _source line 67 · 2026-05-15T11:51:41.250Z_
   "session_id": "4c9935e6-fd22-4c55-a1f5-f88e8c4dd8b4",
   "uuid": "22b8b34a-47fe-4a50-856e-2e3ea25c3054",
   "tool_use_result": {
-    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"NO_PIP\\\\nNO_NVCC\\\\n/root/.conda\\\\n/root/miniconda3\\\\nNO_ML_PKGS\\\\n---ENV_VARS---\\\\nWANDB_API_KEY=\\\\nHF_TOKEN=\\\\nPEP668_OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"NO_PIP\\\\nNO_NVCC\\\\n/root/.conda\\\\n/root/miniconda3\\\\nNO_ML_PKGS\\\\n---ENV_VARS---\\\\nWANDB_API_KEY=[REDACTED]\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
     "structuredContent": {
-      "result": "{\"success\": true, \"data\": {\"stdout\": \"NO_PIP\\nNO_NVCC\\n/root/.conda\\n/root/miniconda3\\nNO_ML_PKGS\\n---ENV_VARS---\\nWANDB_API_KEY=\\nHF_TOKEN=\\nPEP668_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"NO_PIP\\nNO_NVCC\\n/root/.conda\\n/root/miniconda3\\nNO_ML_PKGS\\n---ENV_VARS---\\nWANDB_API_KEY=[REDACTED]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
     }
   }
 }

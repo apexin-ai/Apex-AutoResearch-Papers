@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_pi0-38929-gpu2_20260520T063634_result.json",
     "occurrence": 1,
-    "bytes": 1862,
-    "sha256": "07db989b7b896007a5b105e5920a46a0c6a8b15cfa64ca7688c262869bd0f65a"
+    "bytes": 1861,
+    "sha256": "c6b8221f70b0010517e33bf1af98c05f54459b6a53d40380202f93749272d40b"
   },
   "statistics": {
     "messages": 1,

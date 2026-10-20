@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_random-k085-s43-pertask_20260527T194340_result.json",
     "occurrence": 1,
-    "bytes": 282,
-    "sha256": "974e69d5e26db6bea1caa2e4719a434e6534df944d75e4678746192ef2a5a9c1"
+    "bytes": 281,
+    "sha256": "2951aaf1998702fd05f836de14337ef714e270e284b64db39159f6b898d1a907"
   },
   "statistics": {
     "messages": 1,

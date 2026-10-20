@@ -1,0 +1,47 @@
+{
+  "exp_id": "eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T14:25:34.482Z",
+    "updated_at": "2026-05-27T18:06:48.969Z",
+    "hypothesis": "π0.5 L2norm k=0.9 Long strict seed43 — seed42=80.0% 的 seed 复制，生成 error bar。验证 L2norm 在 k=0.9 的稳定性",
+    "parent": "eval_pi05_l2norm_k09_long_seed42_strict_cqa1",
+    "spec": {
+      "command": "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0",
+      "server": "cqa1-33015",
+      "gpu": "cuda:3",
+      "pid": "386864",
+      "data_path": "libero_10",
+      "data_count": "10 tasks x 50 episodes",
+      "model_name": "pi0.5",
+      "seed": 43,
+      "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.90_libero_10_seed43.json",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k09_long_seed43_strict_cqa1.log",
+      "checkpoint_source": "pi0.5 pretrained",
+      "eval_data": "libero_10 (Long)"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 81.2,
+      "per_task": {
+        "T0": 92,
+        "T1": 94,
+        "T2": 80,
+        "T3": 90,
+        "T4": 74,
+        "T5": 84,
+        "T6": 12,
+        "T7": 86,
+        "T8": 60,
+        "T9": 90
+      }
+    },
+    "completed_at": "2026-05-27T18:06:48.969Z"
+  },
+  "timestamp": "2026-05-27T18:06:50.446844+00:00",
+  "trigger": "update_registry"
+}

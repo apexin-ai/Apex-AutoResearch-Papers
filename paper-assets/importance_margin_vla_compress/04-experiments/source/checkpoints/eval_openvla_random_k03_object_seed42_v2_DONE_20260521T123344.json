@@ -1,0 +1,45 @@
+{
+  "exp_id": "eval_openvla_random_k03_object_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:24:56.943Z",
+    "updated_at": "2026-05-21T12:33:43.536Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.3 --suite libero_object --seed 42",
+      "server": "westd-38929",
+      "pid": 2478,
+      "log_path": "/tmp/eval_random_k03_seed42.log",
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "data_path": "libero_object",
+      "data_count": 500,
+      "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k03_object.json"
+    },
+    "hypothesis": "OpenVLA random k=0.3 seed42: extreme random pruning on high-CV model. Expected poor performance, confirming random is suboptimal for high-CV models.",
+    "conclusion": "success",
+    "metrics": {
+      "overall_SR": 0.214,
+      "per_task": {
+        "alphabet_soup": 0.14,
+        "cream_cheese": 0,
+        "salad_dressing": 0.56,
+        "bbq_sauce": 0.3,
+        "ketchup": 0.26,
+        "tomato_sauce": 0,
+        "butter": 0.02,
+        "milk": 0.14,
+        "chocolate_pudding": 0.16,
+        "orange_juice": 0.56
+      },
+      "elapsed_min": 304.1,
+      "seed": 42
+    },
+    "completed_at": "2026-05-21T12:33:43.536Z"
+  },
+  "timestamp": "2026-05-21T12:33:44.268830+00:00",
+  "trigger": "update_registry"
+}

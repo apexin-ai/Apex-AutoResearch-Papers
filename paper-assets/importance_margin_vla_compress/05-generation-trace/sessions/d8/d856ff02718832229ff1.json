@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_idle-gpu-audit-and-fill_20260521T011154_result.json",
     "occurrence": 1,
-    "bytes": 2545,
-    "sha256": "aca32da7a92e15930fa5bba7522985dfb06c9f09f24313d6db358486f0067c3a"
+    "bytes": 2544,
+    "sha256": "a01057ed690d9ad35a43dad2ff0d482b1d9baeb3250c5b09301704379914f9a1"
   },
   "statistics": {
     "messages": 1,

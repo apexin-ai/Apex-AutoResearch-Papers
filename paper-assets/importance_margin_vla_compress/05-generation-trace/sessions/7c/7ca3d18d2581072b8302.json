@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd41074-kill-spatial-download-pi05_20260521T022232_result.json",
     "occurrence": 1,
-    "bytes": 567,
-    "sha256": "58cfaadc588e3d12fb5609993e56eff20df178ffd29da46ec40f235907bd9c1f"
+    "bytes": 566,
+    "sha256": "c892947e707d54a03312aac7ac7dcbf8e823a9c227f488c1f1228d09142d5d42"
   },
   "statistics": {
     "messages": 1,

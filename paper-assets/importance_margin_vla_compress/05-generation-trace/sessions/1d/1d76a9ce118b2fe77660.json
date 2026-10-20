@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_sim_rollout_temp08_20260516T113930_result.json",
     "occurrence": 1,
-    "bytes": 1037,
-    "sha256": "14bb7d087ce18ce1a7ed2c37f260f90974ae192fb7ed3687b070800abef9930e"
+    "bytes": 1036,
+    "sha256": "cf94163b0306caad65667234adabd8f135a5e0c9a259ab5607ef710832aba4b3"
   },
   "statistics": {
     "messages": 1,

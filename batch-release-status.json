@@ -625,6 +625,38 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39369059488"
+    },
+    "importance_margin_vla_compress/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 767900607,
+        "etag": "\"3df2206e10a211d83176dba39b59dfa1-92\"",
+        "modified": "2026-05-31T17:29:09+00:00"
+      },
+      "archive_sha256": "46b4f6db4af27dd20f64793016b97a286c108655154a555432b53fa4ad20ede4",
+      "projects": [
+        "importance_margin_vla_compress",
+        "be-idea-gen-0515-2"
+      ],
+      "counts": [
+        {
+          "project": "importance_margin_vla_compress",
+          "title": "Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility",
+          "paper_pdf": "paper.pdf",
+          "code_count": 1165,
+          "data_count": 5903,
+          "trace_count": 5754
+        },
+        {
+          "project": "be-idea-gen-0515-2",
+          "title": "be idea gen 0515 2",
+          "paper_pdf": null,
+          "code_count": 0,
+          "data_count": 0,
+          "trace_count": 0
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39369059488"
     }
   }
 }

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_harvest_xvla-k085-goal-westd38929_20260524T022025_result.json",
     "occurrence": 1,
-    "bytes": 849,
-    "sha256": "39a8a9c4eada39636f513f3fb359a45d7efd15cfcf0583e14225249ce6be58d6"
+    "bytes": 848,
+    "sha256": "75328b9eeb1308635ee17043b54e9f66cbc060b17cbde0dd4d875067cfc60eda"
   },
   "statistics": {
     "messages": 1,

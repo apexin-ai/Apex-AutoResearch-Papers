@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_smart_compress_failures_20260518T004834_result.json",
     "occurrence": 1,
-    "bytes": 1697,
-    "sha256": "293390650fbf3b7fd3c2c52d1498f193a1f0da41dc4da684d7c48b9bd3b5db7b"
+    "bytes": 1696,
+    "sha256": "976b5242077baebdc572fb057500dcf9e501c4e0c6658293bdbc34de379e6d5f"
   },
   "statistics": {
     "messages": 1,

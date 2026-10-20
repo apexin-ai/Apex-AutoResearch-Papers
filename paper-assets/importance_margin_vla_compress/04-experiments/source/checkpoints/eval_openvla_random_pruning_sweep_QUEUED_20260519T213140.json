@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_openvla_random_pruning_sweep",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T21:31:36.150Z",
+    "updated_at": "2026-05-19T21:31:39.773Z",
+    "hypothesis": "OpenVLA (MLP projector) shows graded degradation under random pruning across k=0.30-0.95, confirming C3 claim that MLP projector architecture allows graceful compression unlike pixel-shuffle's cliff-edge."
+  },
+  "timestamp": "2026-05-19T21:31:40.044196+00:00",
+  "trigger": "update_registry"
+}

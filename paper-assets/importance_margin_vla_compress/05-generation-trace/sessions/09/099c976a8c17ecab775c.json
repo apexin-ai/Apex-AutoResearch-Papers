@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_m96_train_check_20260522T121832_result.json",
     "occurrence": 1,
-    "bytes": 550,
-    "sha256": "d63f9042645b5b38faaf989a00744954fe15d6f3210c45aa21b8c4e4e573c47b"
+    "bytes": 549,
+    "sha256": "1a318dca7d97590519fba638e2548854e3656255138f55c9f8cb897da21b3b86"
   },
   "statistics": {
     "messages": 1,

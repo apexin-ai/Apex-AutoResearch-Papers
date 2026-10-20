@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_diag-westd38929-mujoco_20260520T091124_result.json",
     "occurrence": 1,
-    "bytes": 2210,
-    "sha256": "0bc1edbf802f61facaad9a1ab63cc5987d7ac850c515f5cf53687d68ee66ac62"
+    "bytes": 2209,
+    "sha256": "c9baff65ee171629e4e1124ce4525b25042e252d9500527afef2c40d1f81407b"
   },
   "statistics": {
     "messages": 1,

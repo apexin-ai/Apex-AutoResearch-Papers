@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_harvest_ov-w38-completed_20260527T200806_result.json",
     "occurrence": 1,
-    "bytes": 509,
-    "sha256": "94320f48cf91ca8187d7376b2c6cd46c944b7365a5e51c4c585c2afa2f270567"
+    "bytes": 508,
+    "sha256": "2d9a754209d5ea6af6e077d764072848b381e78080b5559a80212a528ffbbaf9"
   },
   "statistics": {
     "messages": 1,

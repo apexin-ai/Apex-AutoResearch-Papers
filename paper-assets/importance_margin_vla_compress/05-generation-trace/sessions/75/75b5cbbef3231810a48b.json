@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_probe_cqa1-dead-experiments_20260521T225749_result.json",
     "occurrence": 1,
-    "bytes": 687,
-    "sha256": "a1eed3e3cd3c437a45daa6f5df5f8c7e805c243a4f861a97545724f53303f35c"
+    "bytes": 686,
+    "sha256": "e5efe38ce6de8fa4e8f9fb3e5e81422f89f802e75c6c0e7b3f07276a2b5d4616"
   },
   "statistics": {
     "messages": 1,

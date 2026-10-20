@@ -1,0 +1,64 @@
+{
+  "exp_id": "eval_stage1_only",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:27:01.664Z",
+    "updated_at": "2026-05-17T06:10:34.650Z",
+    "hypothesis": "Stage1 ACIS learned effective token importance ranking. Using stage1_done checkpoint (original expert + trained ACIS, k_ratio=0.5) for acis_prune eval should retain significant performance (SR >= 30%) if ACIS quality is good. SR < 10% indicates ACIS importance scoring is ineffective.",
+    "parent": "eval_imm100k_bypass",
+    "spec": {
+      "command": "python eval_success_rate_libero.py --checkpoint checkpoints/libero_imm_twostage_fullft/stage1_done/checkpoint.pt --config configs/libero_imm_twostage_fullft.yaml --suite libero_object --mode acis_prune --num_episodes 50 --gpu 0",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "961179",
+      "log_path": "eval_results/eval_stage1only_object.json",
+      "submitted_at": "2026-05-17T04:27:18.785Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_source": "checkpoints/libero_imm_twostage_fullft/stage1_done/checkpoint.pt",
+      "eval_data": "libero_object (10 tasks x 50 episodes)",
+      "data_path": "libero_object",
+      "data_count": 500,
+      "model_name": "smolvla_imm_stage1_only",
+      "seed": 42,
+      "checkpoint_path": "checkpoints/libero_imm_twostage_fullft/stage1_done/checkpoint.pt",
+      "wall_clock_seconds": 6195.9,
+      "gpu_hours": 1.72
+    },
+    "notes": "2026-05-17 ~12:00 UTC: westd-27271 不可达 (Unable to connect to port 27271 on 36.103.198.204)。实例可能已关机/回收。eval 结果未知——上次提交时间 04:27 UTC，距今 ~8h。需重启实例后检查 eval_results/eval_stage1only_object.json 是否已生成。",
+    "conclusion": "success",
+    "metrics": {
+      "overall_success_rate": 0.448,
+      "total_episodes": 500,
+      "total_successes": 224,
+      "wilson_ci_95": [
+        0.405,
+        0.4918
+      ],
+      "per_task_sr": [
+        0.22,
+        0.6,
+        0.42,
+        0.38,
+        0.58,
+        0.26,
+        0.62,
+        0.38,
+        0.5,
+        0.52
+      ],
+      "mode": "acis_prune",
+      "k_ratio": 0.5
+    },
+    "completed_at": "2026-05-17T06:10:34.650Z"
+  },
+  "timestamp": "2026-05-17T06:10:34.730546+00:00",
+  "trigger": "update_registry"
+}

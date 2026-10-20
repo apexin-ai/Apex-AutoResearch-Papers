@@ -1,0 +1,67 @@
+{
+  "exp_id": "eval_openvla_l2norm_k075_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T13:13:22.469Z",
+    "updated_at": "2026-05-26T18:07:36.554Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl python -u /root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.75 --suite libero_object --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/openvla-libero-object --unnorm_key libero_object",
+      "server": "westd-41074",
+      "gpu": "cuda:3",
+      "pid": 642253,
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_l2norm_k075_object_seed42.log",
+      "submitted_at": "2026-05-26T13:13:20.567Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_object",
+      "data_count": 50,
+      "model_name": "openvla-libero-object",
+      "seed": 42,
+      "checkpoint_path": "N/A (eval only)",
+      "checkpoint_source": "/root/autodl-tmp/openvla-libero-object",
+      "eval_data": "libero_object",
+      "wall_clock_seconds": 17656.0,
+      "gpu_hours": 4.9
+    },
+    "hypothesis": "OpenVLA L2norm k=0.75 Object seed42 — Object L2norm cliff curve 中间点。L2norm k=0.95=70.6%, k=0.9=70.6%, k=0.85=?。k=0.75 测试更深压缩下 Object 的降级模式",
+    "reproduce": {
+      "finished_at": "2026-05-26T18:04:55.103Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-26T18:05:10.481082+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_sr": 0.574,
+      "total_episodes": 500,
+      "successful_episodes": 287,
+      "task_sr": {
+        "alphabet_soup": 0.78,
+        "cream_cheese": 0.28,
+        "salad_dressing": 0.68,
+        "bbq_sauce": 0.46,
+        "ketchup": 0.86,
+        "tomato_sauce": 0.66,
+        "butter": 0.4,
+        "milk": 0.48,
+        "chocolate_pudding": 0.46,
+        "orange_juice": 0.68
+      },
+      "time_min": 289.4
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-26T18:07:36.554Z"
+  },
+  "timestamp": "2026-05-26T18:07:37.816072+00:00",
+  "trigger": "update_registry"
+}

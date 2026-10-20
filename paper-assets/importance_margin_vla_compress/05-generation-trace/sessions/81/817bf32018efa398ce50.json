@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_kill_westd27271-gpu0-pid551487_20260526T232238_result.json",
     "occurrence": 1,
-    "bytes": 324,
-    "sha256": "4b6dfe06bc59f158d36a39ad9e5cfa6f6ecd6d81fba0ec675822dc8c07f0515a"
+    "bytes": 323,
+    "sha256": "d8a28cbb6c824db7485d8502ba2ba01976d14f0c3f9b642c521351f19a5204b1"
   },
   "statistics": {
     "messages": 1,

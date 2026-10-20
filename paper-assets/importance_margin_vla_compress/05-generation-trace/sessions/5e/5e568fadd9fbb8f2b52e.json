@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd41074_cuda1_long_l2norm_k09_20260522T155555_result.json",
     "occurrence": 1,
-    "bytes": 67,
-    "sha256": "615419d44092cac98a340d1fb366e0df0561819f49de60fcaec46ba41d51ea0a"
+    "bytes": 66,
+    "sha256": "7e8c5585b5904044da9a8106c78d66235a8be502b254646ce4971773704cbaf3"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_debug_inference_pipeline_audit_20260516T122642_result.json",
     "occurrence": 1,
-    "bytes": 2812,
-    "sha256": "622eca6593c2671f475c6e98ef2a4b10bd73f1e2c88e5b4f32e2d263aa3ff660"
+    "bytes": 2811,
+    "sha256": "c1e5cf3a4758a0da70464eed56a750575586e619e59187cacc9ed712e0bf6b0e"
   },
   "statistics": {
     "messages": 1,

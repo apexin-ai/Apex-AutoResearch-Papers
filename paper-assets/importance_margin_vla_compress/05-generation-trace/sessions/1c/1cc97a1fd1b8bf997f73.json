@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_libero_50k_sr_20260516T183802_result.json",
     "occurrence": 1,
-    "bytes": 1070,
-    "sha256": "016f1862c512a1ae163ea712344bd928e15403ff0778cd42727cfc151543a599"
+    "bytes": 1069,
+    "sha256": "2c0eaa192284babc3567ef78599e1321c5fa7ac2ea01aa89c8443f1fef49cbd7"
   },
   "statistics": {
     "messages": 1,

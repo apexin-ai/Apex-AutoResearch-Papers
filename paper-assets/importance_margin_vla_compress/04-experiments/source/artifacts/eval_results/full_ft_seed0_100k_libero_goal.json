@@ -1,0 +1,99 @@
+{
+  "suite": "libero_goal",
+  "mode": "baseline",
+  "checkpoint": "checkpoints/libero_full_ft_seed0_100k/checkpoint.pt",
+  "config": "configs/libero_full_ft.yaml",
+  "total_episodes": 500,
+  "total_successes": 258,
+  "overall_success_rate": 0.516,
+  "wilson_ci_95": [
+    0.4722,
+    0.5595
+  ],
+  "num_episodes_per_task": 50,
+  "max_steps": 300,
+  "action_horizon": 50,
+  "seed": 42,
+  "per_task": {
+    "0": {
+      "task_id": 0,
+      "task_description": "open the middle drawer of the cabinet",
+      "success_count": 26,
+      "total_episodes": 50,
+      "success_rate": 0.52,
+      "mean_steps": 216.0
+    },
+    "1": {
+      "task_id": 1,
+      "task_description": "put the bowl on the stove",
+      "success_count": 49,
+      "total_episodes": 50,
+      "success_rate": 0.98,
+      "mean_steps": 91.9
+    },
+    "2": {
+      "task_id": 2,
+      "task_description": "put the wine bottle on top of the cabinet",
+      "success_count": 28,
+      "total_episodes": 50,
+      "success_rate": 0.56,
+      "mean_steps": 178.0
+    },
+    "3": {
+      "task_id": 3,
+      "task_description": "open the top drawer and put the bowl inside",
+      "success_count": 25,
+      "total_episodes": 50,
+      "success_rate": 0.5,
+      "mean_steps": 239.3
+    },
+    "4": {
+      "task_id": 4,
+      "task_description": "put the bowl on top of the cabinet",
+      "success_count": 19,
+      "total_episodes": 50,
+      "success_rate": 0.38,
+      "mean_steps": 230.5
+    },
+    "5": {
+      "task_id": 5,
+      "task_description": "push the plate to the front of the stove",
+      "success_count": 19,
+      "total_episodes": 50,
+      "success_rate": 0.38,
+      "mean_steps": 247.2
+    },
+    "6": {
+      "task_id": 6,
+      "task_description": "put the cream cheese in the bowl",
+      "success_count": 8,
+      "total_episodes": 50,
+      "success_rate": 0.16,
+      "mean_steps": 275.4
+    },
+    "7": {
+      "task_id": 7,
+      "task_description": "turn on the stove",
+      "success_count": 46,
+      "total_episodes": 50,
+      "success_rate": 0.92,
+      "mean_steps": 97.0
+    },
+    "8": {
+      "task_id": 8,
+      "task_description": "put the bowl on the plate",
+      "success_count": 24,
+      "total_episodes": 50,
+      "success_rate": 0.48,
+      "mean_steps": 194.3
+    },
+    "9": {
+      "task_id": 9,
+      "task_description": "put the wine bottle on the rack",
+      "success_count": 14,
+      "total_episodes": 50,
+      "success_rate": 0.28,
+      "mean_steps": 255.8
+    }
+  }
+}

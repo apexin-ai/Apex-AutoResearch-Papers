@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd38929_cuda2_goal_random_20260522T184557_result.json",
     "occurrence": 1,
-    "bytes": 778,
-    "sha256": "c252df256fc1138984494bab5b30752dfad40bb1a62c36188b0a017c6cc44b24"
+    "bytes": 777,
+    "sha256": "9a4755249fc1d194ae481c2ec022c759a940dae87a266fa4f83a8d67afac9540"
   },
   "statistics": {
     "messages": 1,

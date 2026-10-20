@@ -1,0 +1,48 @@
+{
+  "exp_id": "eval_pi05_l2norm_k095_long_seed42_strict",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T07:31:47.216Z",
+    "updated_at": "2026-05-27T10:05:49.006Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "262464",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k095_long_seed42_strict.log",
+      "submitted_at": "2026-05-27T07:31:43.381Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_10",
+      "checkpoint_path": "N/A (eval only)"
+    },
+    "hypothesis": "π0.5 L2norm k=0.95 Long strict — 原值 87.0% 需 strict 条件确认。k=0.95 是 L2norm cliff curve 顶端，接近 baseline 的关键端点",
+    "reproduce": {
+      "finished_at": "2026-05-27T09:45:02.671Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T09:45:19.025758+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-27T10:05:51.720945+00:00",
+  "trigger": "update_registry"
+}

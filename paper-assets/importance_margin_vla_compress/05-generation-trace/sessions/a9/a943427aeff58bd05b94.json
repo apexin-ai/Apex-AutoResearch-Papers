@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_lora-mode-collapse-fix_20260516T111218_result.json",
     "occurrence": 1,
-    "bytes": 714,
-    "sha256": "f49ce14e79c0de74d076b5f71659e5ce0600898fdd0b6e182352a92461f81c2c"
+    "bytes": 713,
+    "sha256": "50b086527ea903d001b29f50a179088ca38594755f11f57a1808023eb2216953"
   },
   "statistics": {
     "messages": 1,

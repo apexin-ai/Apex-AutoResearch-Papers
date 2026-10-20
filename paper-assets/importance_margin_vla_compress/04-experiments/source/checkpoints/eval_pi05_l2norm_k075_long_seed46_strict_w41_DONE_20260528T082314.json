@@ -1,0 +1,70 @@
+{
+  "exp_id": "eval_pi05_l2norm_k075_long_seed46_strict_w41",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-28T05:50:28.696Z",
+    "updated_at": "2026-05-28T08:23:12.668Z",
+    "hypothesis": "π0.5 L2norm k=0.75 Long strict seed46 — 第 5 seed 收窄最大 variance 点（range 67.4-73.2, ±2.9pp），shoulder 区域关键数据点",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 46 --gpu 0\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "697663",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k075_long_seed46_strict_w41.log",
+      "submitted_at": "2026-05-28T05:53:56.633Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 8956.0,
+      "gpu_hours": 2.49
+    },
+    "server": "westd-41074",
+    "gpu": "cuda:2",
+    "pid": "697663",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k075_long_seed46_strict_w41.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 46 --gpu 0\"",
+      "finished_at": "2026-05-28T08:18:21.741Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-28T08:18:45.747651+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 73.2,
+      "per_task": {
+        "T0_alphabet_soup_tomato": 88,
+        "T1_cream_cheese_butter": 86,
+        "T2_stove_moka_pot": 76,
+        "T3_black_bowl_drawer": 86,
+        "T4_white_mug_plate": 70,
+        "T5_book_back_shelf": 82,
+        "T6_mug_plate_combo": 54,
+        "T7_alphabet_soup_cream": 74,
+        "T8_both_moka_pots": 26,
+        "T9_yellow_white_mug_microwave": 90
+      },
+      "episodes": 50,
+      "suite": "libero_10",
+      "seed": 46,
+      "keep_ratio": 0.75,
+      "prune_mode": "l2norm"
+    },
+    "checkpoint_path": "N/A (eval-only)",
+    "completed_at": "2026-05-28T08:23:12.668Z"
+  },
+  "timestamp": "2026-05-28T08:23:14.207670+00:00",
+  "trigger": "update_registry"
+}

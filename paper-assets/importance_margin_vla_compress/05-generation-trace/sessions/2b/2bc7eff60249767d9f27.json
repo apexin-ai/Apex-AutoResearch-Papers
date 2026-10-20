@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_server_audit_and_deploy_20260528T062149_result.json",
     "occurrence": 1,
-    "bytes": 1449,
-    "sha256": "829bbd491b2e1c2239a5684bd9caa76d90f524250a5f4e3e47571b52345550e3"
+    "bytes": 1448,
+    "sha256": "a1bf1d25eebf5f501e8b434349cf2a7e3e82cdb354088b3648921c8daae4069b"
   },
   "statistics": {
     "messages": 1,

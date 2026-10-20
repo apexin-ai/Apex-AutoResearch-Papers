@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_fig5_method_gap_redraw_20260528T140851_result.json",
     "occurrence": 1,
-    "bytes": 683,
-    "sha256": "1e137f90cd6990643884ebababbc7e9438256313a03cb863293e2aed9722e75d"
+    "bytes": 682,
+    "sha256": "5d222f1e7f5cac69e6228ea79c312c041535749ab244818006e840b6bc5b08ae"
   },
   "statistics": {
     "messages": 1,

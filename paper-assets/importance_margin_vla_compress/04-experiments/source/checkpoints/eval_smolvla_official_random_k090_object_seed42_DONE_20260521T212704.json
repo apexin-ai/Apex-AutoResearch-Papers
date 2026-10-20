@@ -1,0 +1,50 @@
+{
+  "exp_id": "eval_smolvla_official_random_k090_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:43:22.230Z",
+    "updated_at": "2026-05-21T21:27:04.107Z",
+    "hypothesis": "SmolVLA official random k=0.9; k=0.95 已 0% SR，确认 cliff-edge 延续到 k=0.9",
+    "spec": {
+      "command": "python -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/hub/models--HuggingFaceVLA--smolvla_libero/snapshots/6721902bc4d61e50a3bfdb11dfb4cb626f05d102/ --mode random_prune --k_ratio 0.9 --suite libero_object --num_episodes 50 --gpu 0 --seed 42",
+      "server": "cqa1-33015",
+      "gpu_id": "0",
+      "model_name": "SmolVLA-LIBERO-official",
+      "seed": 42,
+      "data_path": "libero_object",
+      "data_count": 500,
+      "checkpoint_source": "HuggingFaceVLA/smolvla_libero",
+      "checkpoint_path": "N/A - eval only",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/"
+    },
+    "metrics": {
+      "overall_sr": 0,
+      "total_episodes": 500,
+      "total_successes": 0,
+      "wilson_ci_95": [
+        0,
+        0.0076
+      ],
+      "per_task_sr": {
+        "task0": 0,
+        "task1": 0,
+        "task2": 0,
+        "task3": 0,
+        "task4": 0,
+        "task5": 0,
+        "task6": 0,
+        "task7": 0,
+        "task8": 0,
+        "task9": 0
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T21:27:04.107Z"
+  },
+  "timestamp": "2026-05-21T21:27:04.858152+00:00",
+  "trigger": "update_registry"
+}

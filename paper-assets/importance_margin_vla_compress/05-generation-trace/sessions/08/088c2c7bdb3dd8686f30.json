@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diag_westd_env_sanity_check_20260518T194645_result.json",
     "occurrence": 1,
-    "bytes": 594,
-    "sha256": "4a8fdb351173107d9d049d18cfb526b1b5adeb2e1f5ff67282a834b6ca5b8f5c"
+    "bytes": 593,
+    "sha256": "0f02fd7e3b0d2ee02fed371167eab8ad5654951d83d71a1bc21cc7ce5c696e3c"
   },
   "statistics": {
     "messages": 1,

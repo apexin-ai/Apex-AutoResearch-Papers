@@ -1,0 +1,26 @@
+{
+  "exp_id": "eval_xvla_l2norm_k03_object_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:17:16.261Z",
+    "updated_at": "2026-05-21T13:17:33.672Z",
+    "hypothesis": "X-VLA l2_norm k=0.3 seed42 multi-seed; seed43=21.0% — expect similar severe degradation at 70% pruning",
+    "spec": {
+      "command": "python -u eval_xvla_pruning_libero.py --mode l2_norm --keep_ratio 0.3 --suite libero_object --seed 42 --gpu 1 --num_episodes 50 --model_path /root/autodl-tmp/X-VLA-Libero",
+      "server": "cqa1-33015",
+      "gpu_id": 1,
+      "seed": 42,
+      "model_name": "xvla",
+      "data_path": "libero_object",
+      "data_count": 500,
+      "checkpoint_source": "/root/autodl-tmp/X-VLA-Libero",
+      "eval_data": "libero_object"
+    }
+  },
+  "timestamp": "2026-05-21T13:17:34.090990+00:00",
+  "trigger": "update_registry"
+}

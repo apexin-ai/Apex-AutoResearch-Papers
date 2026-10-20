@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cleanup_smoke_test_westd38929_20260523T015334_result.json",
     "occurrence": 1,
-    "bytes": 563,
-    "sha256": "54322da93f9e85a1fd08cdef0f0564b2b0a30f646c263c74f639ba1aa7daad53"
+    "bytes": 562,
+    "sha256": "8bc177fa9bf44a5d705d2a68c7dd8abb88819cdc70ef0788cf19c9c8e9b1ac6b"
   },
   "statistics": {
     "messages": 1,

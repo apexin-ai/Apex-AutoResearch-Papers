@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill_deploy_westd38929_cqa1_v4_20260522T080627_result.json",
     "occurrence": 1,
-    "bytes": 1709,
-    "sha256": "d2e8a22395941e157553050e2e000e9a6c1989f0a02dce7bafe888fb9e64c44a"
+    "bytes": 1708,
+    "sha256": "215a445b20e05a4fd71b8372723aa63ae890c9131fcf40f4ca740d47d48a7dd9"
   },
   "statistics": {
     "messages": 1,

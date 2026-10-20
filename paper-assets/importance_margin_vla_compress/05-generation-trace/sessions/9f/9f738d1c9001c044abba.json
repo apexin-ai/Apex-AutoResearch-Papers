@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_westd41074-pi05-failures_20260521T091929_result.json",
     "occurrence": 1,
-    "bytes": 1127,
-    "sha256": "1211e9edff9016b5625f011bb5403e1136b30acb1e81dac55e2a3bae95150e65"
+    "bytes": 1126,
+    "sha256": "d04ea1480765cd755b8dd7dd483966bf3fa519d733962d00a9c9226a808d9674"
   },
   "statistics": {
     "messages": 1,

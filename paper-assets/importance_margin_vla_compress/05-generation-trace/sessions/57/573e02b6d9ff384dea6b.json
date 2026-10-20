@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_seed43-k07-k05-westd41074_20260520T131639_result.json",
     "occurrence": 1,
-    "bytes": 752,
-    "sha256": "7646d772091d525e8a0282b72d48ea1a67b1c09b541b69d3b716d9f24d4d73b6"
+    "bytes": 751,
+    "sha256": "f29f39544c8e9354f5610f06bbeb8bed9fbd10f2d3fe0e828d1265aa69207064"
   },
   "statistics": {
     "messages": 1,

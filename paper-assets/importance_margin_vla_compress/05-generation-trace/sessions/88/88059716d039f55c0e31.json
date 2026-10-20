@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_deploy-l2norm-long-remaining_20260524T132528_result.json",
     "occurrence": 1,
-    "bytes": 685,
-    "sha256": "8f834d16b2fde4c9cba57e67d95f23340b0a87493336c239e843b744c5db80e2"
+    "bytes": 684,
+    "sha256": "9eb29c42c6415f2fb9972f3246f59bbd0698a69e9410bee8e5f842ca911f2561"
   },
   "statistics": {
     "messages": 1,

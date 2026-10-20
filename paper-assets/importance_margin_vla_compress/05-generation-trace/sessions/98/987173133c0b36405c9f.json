@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1_gpu0_openvla_or_random_20260524T213121_result.json",
     "occurrence": 1,
-    "bytes": 461,
-    "sha256": "40753a4807b39047b3c08f701424260b23395f8735e24e12c32040e151e1f1ac"
+    "bytes": 460,
+    "sha256": "cf3f680e72a7daea3ec75fa5308925ed757899e0c5caba266df0f6254132fd75"
   },
   "statistics": {
     "messages": 1,

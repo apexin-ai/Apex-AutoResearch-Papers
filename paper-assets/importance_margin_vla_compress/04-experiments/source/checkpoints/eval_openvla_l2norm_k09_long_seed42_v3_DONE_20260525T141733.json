@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval_openvla_l2norm_k09_long_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "completed_at": "2026-05-25T05:08:45.587Z",
+    "created_at": "2026-05-25T04:50:16.600Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed (log check: failed to read log or log empty)",
+    "hypothesis": "L2-norm based importance pruning at k=0.9 keep ratio on OpenVLA preserves task performance on long-horizon LIBERO-10, providing an alternative importance metric to attention scores for visual token pruning",
+    "retry_count": 1,
+    "spec": {
+      "checkpoint_source": "openvla-7b-finetuned-libero-10",
+      "command": "python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.9 --suite libero_10 --num_episodes 50 --seed 42",
+      "data_count": 50,
+      "data_path": "/root/autodl-tmp/models/openvla-7b-finetuned-libero-10",
+      "eval_data": "libero_10_long",
+      "gpu": 3,
+      "log_path": "/root/autodl-tmp/logs/eval_openvla_l2norm_k09_long_seed42_v3.log",
+      "model_name": "openvla-7b-finetuned-libero-10",
+      "pid": 2944,
+      "seed": 42,
+      "server": "westd-38929"
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-25T14:17:32.772Z",
+    "reproduce": {
+      "finished_at": "2026-05-25T14:17:21.928Z"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-25T14:17:33.931418+00:00",
+  "trigger": "update_registry"
+}

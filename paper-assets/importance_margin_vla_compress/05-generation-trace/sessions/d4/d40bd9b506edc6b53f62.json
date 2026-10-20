@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_sim_env_prep_20260516T072124_result.json",
     "occurrence": 1,
-    "bytes": 3088,
-    "sha256": "cb20df0472701aebb8b22602050635ffea7a44bc4c2ec5fd5ab910f4d6c812a2"
+    "bytes": 3087,
+    "sha256": "e3b6861e3258cdea0c36e7ab6ecdd61bacd10f536d1904684a7dd26f78ddf77a"
   },
   "statistics": {
     "messages": 1,

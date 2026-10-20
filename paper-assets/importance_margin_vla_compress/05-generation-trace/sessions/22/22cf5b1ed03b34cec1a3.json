@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_eval_true_removal_k05_20260517T093949_result.json",
     "occurrence": 1,
-    "bytes": 1592,
-    "sha256": "1fa0fe59f49754072838f23000deaaed7be8932579053239b4df268e8e97fcc2"
+    "bytes": 1591,
+    "sha256": "095875d43534a1295847ca5bbcab28c615fb635810c6399744a4090ceda96ac4"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_pi05_random_k085_object_seed43_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T21:33:02.163Z",
+    "updated_at": "2026-05-25T00:24:11.280Z",
+    "hypothesis": "π0.5 Random k=0.85 Object seed43. Cliff zone k=0.85 dual-seed validation. seed42 Random k=0.85 Object needed for margin calculation.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_object --n_episodes 50 --seed 43 --gpu 0",
+      "server": "cqa1-33015",
+      "gpu": 0,
+      "data_path": "libero_object",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 43,
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_object_seed43_postfix.log",
+      "checkpoint_path": "/root/autodl-tmp/pi05_libero_finetuned",
+      "pid": 733129
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 0.048,
+      "total_successes": 24,
+      "total_episodes": 500,
+      "elapsed_min": 164.83
+    },
+    "completed_at": "2026-05-25T00:24:11.280Z"
+  },
+  "timestamp": "2026-05-25T00:24:13.619835+00:00",
+  "trigger": "update_registry"
+}

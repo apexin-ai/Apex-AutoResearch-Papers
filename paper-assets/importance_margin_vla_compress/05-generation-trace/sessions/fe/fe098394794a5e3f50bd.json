@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_fix-westd41074-seed43_20260520T132403_result.json",
     "occurrence": 1,
-    "bytes": 781,
-    "sha256": "a00db3d28cea016049ebe13025d8c1dd2325b0dd81e35d0de416300ddb625cdf"
+    "bytes": 780,
+    "sha256": "f9633e15c71b12cc5a048e88dd8dc9406aad610ca8ec1a2937dd00a64f4603d9"
   },
   "statistics": {
     "messages": 1,

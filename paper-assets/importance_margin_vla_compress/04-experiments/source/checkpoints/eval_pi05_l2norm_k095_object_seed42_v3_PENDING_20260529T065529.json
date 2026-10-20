@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_pi05_l2norm_k095_object_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "conclusion": "killed",
+    "created_at": "2026-05-23T07:55:24.845Z",
+    "extra": {
+      "hook_events": [
+        {
+          "action": "agent",
+          "event": "on_failed",
+          "ts": "2026-05-23T07:55:53.120840+00:00"
+        }
+      ]
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "notes": "失败原因: 从未实际提交，PREPARING 阶段即标记 failed，无日志文件。v2 (eval_pi05_l2norm_k095_object_seed42_v2) 已成功完成同一数据点 (SR=98.2%)，无需重跑。",
+    "reproduce": {
+      "finished_at": "2026-05-23T07:55:26.648Z"
+    },
+    "retry_count": 0,
+    "status": "PENDING",
+    "updated_at": "2026-05-29T06:55:27.536Z"
+  },
+  "timestamp": "2026-05-29T06:55:29.148443+00:00",
+  "trigger": "update_registry"
+}

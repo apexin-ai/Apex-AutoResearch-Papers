@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k09_long_seed46_strict_w27",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-28T06:22:18.620Z",
+    "updated_at": "2026-05-28T06:25:08.345Z",
+    "hypothesis": "5th seed for L2norm k=0.9 peak margin point — 4-seed mean=80.4%±0.57pp, adding s46 for publication-quality 5-seed error bar at the peak importance margin (46pp)"
+  },
+  "timestamp": "2026-05-28T06:25:15.327923+00:00",
+  "trigger": "update_registry"
+}

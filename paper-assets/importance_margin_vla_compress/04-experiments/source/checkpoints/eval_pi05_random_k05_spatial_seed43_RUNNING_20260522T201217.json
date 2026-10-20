@@ -1,0 +1,36 @@
+{
+  "exp_id": "eval_pi05_random_k05_spatial_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T05:40:55.533Z",
+    "updated_at": "2026-05-22T20:12:17.277Z",
+    "hypothesis": "π0.5 random k=0.5 Spatial seed43: seed42=71.6%。中等压缩率双种子验证。",
+    "spec": {
+      "command": "eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_spatial --seed 43",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "603678",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k05_spatial_seed43.log",
+      "submitted_at": "2026-05-22T05:41:03.001Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "seed": 43,
+      "model_name": "pi0-fast",
+      "data_path": "libero_spatial",
+      "data_count": 500,
+      "checkpoint_source": "pi0-fast-pruned-random-k05",
+      "eval_data": "libero_spatial"
+    },
+    "failure_reason": "stale RUNNING, no metrics after 14h",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-22T20:12:17.892468+00:00",
+  "trigger": "update_registry"
+}

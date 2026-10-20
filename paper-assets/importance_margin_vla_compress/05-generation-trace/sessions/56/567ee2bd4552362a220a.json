@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_m16_seed44_cron_pid_20260519T045121_result.json",
     "occurrence": 1,
-    "bytes": 450,
-    "sha256": "76308c423150fb27db89461016d276943ed7f2e2f70b9b3d02739202eb0a52fe"
+    "bytes": 449,
+    "sha256": "a3447a03ef26f0e054d92836e93d92aa68fa62677d1d421a26d4616b16bef3d9"
   },
   "statistics": {
     "messages": 1,

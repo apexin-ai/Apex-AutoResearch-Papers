@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-fix-gpu2-gpu3_20260521T072942_result.json",
     "occurrence": 1,
-    "bytes": 566,
-    "sha256": "1610317d41ceecd4c5ea451e014e2640e432cfda0da4640e4b9aa7c80158a2db"
+    "bytes": 565,
+    "sha256": "ec1c8427dfd12488bb80e2a0e5fc1a15474ec667017db650f24f7ed6fbe5832b"
   },
   "statistics": {
     "messages": 1,

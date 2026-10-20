@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check-harvest-westd38929-gpu0-spatial_20260523T201206_result.json",
     "occurrence": 1,
-    "bytes": 838,
-    "sha256": "0b81829e4d6107fa77ae1ea69b41ffbe1a49216909da15da6f9d45af5f7c46fd"
+    "bytes": 837,
+    "sha256": "b55b1404f71240e075998113f117e2ffe7fc44ba8a1e31fd374bb09c1551d429"
   },
   "statistics": {
     "messages": 1,

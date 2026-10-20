@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_infra_deploy-fix-c-restart-imm_20260515T172434_result.json",
     "occurrence": 1,
-    "bytes": 684,
-    "sha256": "c53304f6aad0797d44110b25dd6b91a81fe7f37062258771adafa662dbe4fce7"
+    "bytes": 683,
+    "sha256": "c913cbc94eff31fa6400c1aaa5daf6221baec90fddea6426d9eb84f30ec8ccaa"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_geometric_prior_k05",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T16:27:59.058Z",
+    "updated_at": "2026-05-17T16:28:10.022Z",
+    "hypothesis": "Geometric prior pruning (Sobel edge detection → keep tokens at object boundaries) with k=0.5 on SmolVLA LIBERO-Object. If spatially-aware token selection outperforms random/ACIS pruning, it demonstrates that informed pruning can bypass the cliff-edge. If still 0%, confirms pixel_shuffle pre-compression makes any inference-time pruning infeasible.",
+    "parent": "baseline_bypass_object"
+  },
+  "timestamp": "2026-05-17T16:28:10.130227+00:00",
+  "trigger": "update_registry"
+}

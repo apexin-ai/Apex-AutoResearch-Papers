@@ -1,0 +1,17 @@
+{
+  "exp_id": "eval_pi05_l2norm_k03_spatial_seed42_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T10:44:36.140Z",
+    "updated_at": "2026-05-24T10:45:06.375Z",
+    "hypothesis": "π0.5 L2norm k=0.3 Spatial post-fix — extreme pruning L2norm 对比。Random k=0.3 Spatial=41.8%。在 Object 上 L2norm k=0.3=30.4% vs Random k=0.3=32.2%（几乎无差异）。验证 Spatial 上极端压缩 L2norm 是否也无优势",
+    "server": "cqa1-33015",
+    "gpu": "cuda:0"
+  },
+  "timestamp": "2026-05-24T10:45:07.355317+00:00",
+  "trigger": "update_registry"
+}

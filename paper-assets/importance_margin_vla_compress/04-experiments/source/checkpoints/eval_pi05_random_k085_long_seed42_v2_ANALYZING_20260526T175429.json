@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_pi05_random_k085_long_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T13:16:45.282Z",
+    "updated_at": "2026-05-26T17:54:28.145Z",
+    "hypothesis": "π0.5 Random k=0.85 Long seed42 v2 — 重跑验证。v1 结果 SR=44.4%（negative），与 L2norm k=0.75=73.4% 差距过大，需确认是否正确",
+    "spec": {
+      "command": "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python -u /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0",
+      "server": "cqa1-33015",
+      "gpu": "cuda:0",
+      "pid": 384770,
+      "data_path": "libero_10",
+      "data_count": 50,
+      "model_name": "pi0.5",
+      "seed": 42,
+      "checkpoint_path": "N/A (eval only)",
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_10",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k085_long_seed42.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-26T17:54:25.017Z"
+    }
+  },
+  "timestamp": "2026-05-26T17:54:29.378271+00:00",
+  "trigger": "update_registry"
+}

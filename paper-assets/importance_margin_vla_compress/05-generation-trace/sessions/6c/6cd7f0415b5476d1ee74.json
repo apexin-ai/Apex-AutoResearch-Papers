@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_harvest-deploy_westd-27271_20260523T115550_result.json",
     "occurrence": 1,
-    "bytes": 1448,
-    "sha256": "46640bb17f07575ce0b1404a53699624816b693b135b3581538a648712ebae4a"
+    "bytes": 1447,
+    "sha256": "a04250800fbf9913ffd623023969021ae79f0462958d6bc3b12255ddcbdf7239"
   },
   "statistics": {
     "messages": 1,

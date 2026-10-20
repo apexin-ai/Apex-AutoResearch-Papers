@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_imm_twostage_data_scp_20260516T185913_result.json",
     "occurrence": 1,
-    "bytes": 291,
-    "sha256": "6f44e2af5d272fd628ea40c27b7c17b9cf183e2b393af45abb8ad70e2e2a3ead"
+    "bytes": 290,
+    "sha256": "2c45753e32331ab47c52590adc6befbee7049f68d3966258c0ef5a608fbc758d"
   },
   "statistics": {
     "messages": 1,

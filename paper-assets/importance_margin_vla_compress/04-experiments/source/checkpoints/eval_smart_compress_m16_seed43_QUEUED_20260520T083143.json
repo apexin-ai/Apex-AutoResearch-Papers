@@ -1,0 +1,41 @@
+{
+  "exp_id": "eval_smart_compress_m16_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T23:16:37.338Z",
+    "updated_at": "2026-05-20T08:31:42.860Z",
+    "hypothesis": "Eval Smart Compress M=16 seed43 on LIBERO-Object (500 eps). Third seed for extreme compression point (87.5%). Prior: seed42=55.8%.",
+    "metrics": {
+      "suite": "libero_object",
+      "M": 16,
+      "seed": 43,
+      "episodes_per_task": 500,
+      "overall_sr": 58.4,
+      "overall_sr_ci95": [
+        57,
+        59.8
+      ],
+      "total_success": 2920,
+      "total_episodes": 5000,
+      "per_task_sr": {
+        "task_0_alphabet_soup": 42.8,
+        "task_1_cream_cheese": 47.4,
+        "task_2_salad_dressing": 66.2,
+        "task_3_bbq_sauce": 48.4,
+        "task_4_ketchup": 74.2,
+        "task_5_tomato_sauce": 40,
+        "task_6_butter": 79.2,
+        "task_7_milk": 69.8,
+        "task_8_chocolate_pudding": 76.6,
+        "task_9_orange_juice": 39.4
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T08:31:43.134896+00:00",
+  "trigger": "update_registry"
+}

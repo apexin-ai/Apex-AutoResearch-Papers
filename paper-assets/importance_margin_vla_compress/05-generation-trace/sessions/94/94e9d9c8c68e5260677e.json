@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_westd27271_process_gone_20260525T165943_result.json",
     "occurrence": 1,
-    "bytes": 539,
-    "sha256": "cde616cd57db27cb349f6c1834747f7f0396ca5131dec308378789de27aa06ba"
+    "bytes": 538,
+    "sha256": "2b97930a272de7c82368d0df0f04ab7777be1f8cfdf16baedce937d4d235c6ff"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_acis-integration_20260515T113859_result.json",
     "occurrence": 1,
-    "bytes": 1062,
-    "sha256": "c64fe2ed460f9c9a5e7cf32405aae32e2c48909c932b597d6ba0edd5171abdcf"
+    "bytes": 1061,
+    "sha256": "2aa42dcd5a582ddcfea735de5a2996329671facae08ffbfd6b8c3a956b523505"
   },
   "statistics": {
     "messages": 1,

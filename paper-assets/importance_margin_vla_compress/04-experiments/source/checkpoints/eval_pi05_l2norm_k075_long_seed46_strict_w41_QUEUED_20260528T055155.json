@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k075_long_seed46_strict_w41",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-28T05:50:28.696Z",
+    "updated_at": "2026-05-28T05:51:54.419Z",
+    "hypothesis": "π0.5 L2norm k=0.75 Long strict seed46 — 第 5 seed 收窄最大 variance 点（range 67.4-73.2, ±2.9pp），shoulder 区域关键数据点"
+  },
+  "timestamp": "2026-05-28T05:51:55.862660+00:00",
+  "trigger": "update_registry"
+}

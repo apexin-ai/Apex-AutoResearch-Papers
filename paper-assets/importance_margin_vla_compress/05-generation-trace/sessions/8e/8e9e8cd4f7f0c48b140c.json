@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_libero_full_ft_baseline_100k_20260516T212904_result.json",
     "occurrence": 1,
-    "bytes": 2386601,
-    "sha256": "f5a8b91ff494caecb2b0631df9f62bd6fd5552237010a981816e617b10939ff9"
+    "bytes": 2386600,
+    "sha256": "7a759fe8e3b3088c1396d9c876150dae8b5d446d7841b20243c2ef843b43f327"
   },
   "statistics": {
     "messages": 1,
@@ -26,13 +26,32 @@
     {
       "number": 0,
       "boundary": "no_preceding_user_message_recorded",
-      "message_count": 1,
-      "chunks": [
+      "messages": [
         {
-          "path": "8e9e8cd4f7f0c48b140c-part-0001.json",
-          "message_count": 1
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2386620,
+                "serialized_sha256": "280f035bfdda4004870329d86cda6e2f5166d608628b801c891d5afcf2d08eb3",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
         }
-      ]
+      ],
+      "message_count": 1
     }
   ],
   "readable_path": "readable/task-results/analysis-libero-full-ft-baseline-100k.md"

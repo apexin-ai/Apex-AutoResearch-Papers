@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_baseline_control_script_20260518T121253_result.json",
     "occurrence": 1,
-    "bytes": 1446,
-    "sha256": "b2a57d2b4b609b18999b0f0a79f1fc9553b4692c3706c6f799e0fada8b98a337"
+    "bytes": 1445,
+    "sha256": "65bcf01d0c16b2f08ff538e47013635172e7e26a1ca67c5cbf44b44aed4dd05d"
   },
   "statistics": {
     "messages": 1,

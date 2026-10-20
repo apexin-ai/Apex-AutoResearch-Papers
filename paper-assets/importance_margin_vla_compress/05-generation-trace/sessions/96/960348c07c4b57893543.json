@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_cqa1-checkpoint-integrity_20260521T230226_result.json",
     "occurrence": 1,
-    "bytes": 2626,
-    "sha256": "c77d9919e00ac623d1188567b515cb607cb729d6b6fa03d53bf81a8517f97851"
+    "bytes": 2625,
+    "sha256": "52f58350e2c8309a013bfe0089bbd15c065515b917e2e4c9962945e7426eb605"
   },
   "statistics": {
     "messages": 1,

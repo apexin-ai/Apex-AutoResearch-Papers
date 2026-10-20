@@ -1,0 +1,27 @@
+{
+  "exp_id": "eval_xvla_prune_k095_seed44",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T19:57:35.290Z",
+    "updated_at": "2026-05-20T19:58:18.578Z",
+    "hypothesis": "X-VLA random pruning k=0.95 seed44 provides 3rd seed for high-retention curve extension. X-VLA baseline=99.2%, k=0.9 seed44=98.2%. Expected near-baseline SR, completing 3-seed k=0.95 data point.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_object --keep_ratio 0.95 --num_episodes 50 --seed 44 --domain_id 3 --gpu 0 --output eval_results/xvla_prune_k095_libero_object_seed44.json",
+      "server": "cqa1-33015",
+      "gpu": "cuda:3",
+      "pid": 961802,
+      "data_path": "libero_object",
+      "data_count": 500,
+      "model_name": "X-VLA-Libero",
+      "seed": 44,
+      "checkpoint_source": "/root/autodl-tmp/X-VLA-Libero",
+      "eval_data": "LIBERO-Object (10 tasks x 50 episodes)"
+    }
+  },
+  "timestamp": "2026-05-20T19:58:18.884176+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_openvla-download-w27_20260523T130020_result.json",
     "occurrence": 1,
-    "bytes": 376,
-    "sha256": "2a59f42f32a4c47408f86e952dfaf427742ccf4128b32f24bc0b11d5444d3486"
+    "bytes": 375,
+    "sha256": "b9a3310931007fe299d2739034f1c0f839f5ed65d0b36cb30e8e59ac2f0744f6"
   },
   "statistics": {
     "messages": 1,

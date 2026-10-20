@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_d108-k03-check-and-westd27271-fill_20260520T181234_result.json",
     "occurrence": 1,
-    "bytes": 950,
-    "sha256": "b0a0d5bb00fea15a076207af5e28ee13f207d4b982a64c4ab38c8df78a096337"
+    "bytes": 949,
+    "sha256": "3efa062af0b395670ed3ddd8888df9bf17120e95cae04c434f3b8e0ae0e7bb34"
   },
   "statistics": {
     "messages": 1,

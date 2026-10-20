@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_harvest_pi05-l2norm-k085-goal-s43_20260524T023321_result.json",
     "occurrence": 1,
-    "bytes": 977,
-    "sha256": "bef8b3f416de2db075bddbe7a942b8bb44acd0179da6cc013bbc64d95cc13a2e"
+    "bytes": 976,
+    "sha256": "3dc39ad1da52917fdcd501167728f381b8dc26fd18750137be5f23bc07852a2e"
   },
   "statistics": {
     "messages": 1,

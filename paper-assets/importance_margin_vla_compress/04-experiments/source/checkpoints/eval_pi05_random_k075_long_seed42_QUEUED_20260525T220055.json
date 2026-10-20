@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_random_k075_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T21:59:31.547Z",
+    "updated_at": "2026-05-25T22:00:53.379Z",
+    "hypothesis": "π0.5 Random k=0.75 Long seed42 — cliff curve 对比点。L2norm k=0.75 同时在 GPU1 跑。Random k=0.9=32%(已 cliff)，k=0.75 应更低。与 L2norm k=0.75 的差距量化 importance margin 在中等压缩率下的大小",
+    "parent": "eval_pi05_random_k0925_long_seed42_postfix"
+  },
+  "timestamp": "2026-05-25T22:00:55.091677+00:00",
+  "trigger": "update_registry"
+}

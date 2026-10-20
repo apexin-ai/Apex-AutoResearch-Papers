@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_registry_batch_register_completed_20260522T190707_result.json",
     "occurrence": 1,
-    "bytes": 907,
-    "sha256": "b3088666db77dd508c08d7517bd183ef25292f0b20edf35fcbc3d55d786ec987"
+    "bytes": 906,
+    "sha256": "7a55c53ed75f1469aeaf32007f6a3487cdf5fba78b11996b0af5a482847e8056"
   },
   "statistics": {
     "messages": 1,

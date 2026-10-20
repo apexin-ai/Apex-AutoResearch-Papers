@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k05_long_seed42_strict",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T11:58:57.974Z",
+    "updated_at": "2026-05-27T11:59:20.532Z",
+    "hypothesis": "π0.5 L2norm k=0.5 Long strict — lenient=50.0%，strict 重跑获取真实值。极端压缩点三方法对比：Attn k=0.5=49.8%, Random k=0.5=50.2%(running strict)。L2norm k=0.5 是否也收敛到~50%"
+  },
+  "timestamp": "2026-05-27T11:59:23.206245+00:00",
+  "trigger": "update_registry"
+}

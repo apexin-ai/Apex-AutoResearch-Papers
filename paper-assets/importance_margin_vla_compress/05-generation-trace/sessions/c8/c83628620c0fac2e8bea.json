@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd41074_kill_rsync_redeploy_20260526T001728_result.json",
     "occurrence": 1,
-    "bytes": 129,
-    "sha256": "7483dbc6f78dac81f6de745d3d9c27d61fcf260a401b03d9fa9dbf0aa1647f60"
+    "bytes": 128,
+    "sha256": "6a6445e3a7e1ba0dc7712965e86a519b3a52d87bd43fd87be92972ae97709d63"
   },
   "statistics": {
     "messages": 1,

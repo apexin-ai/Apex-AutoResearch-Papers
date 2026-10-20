@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cron_registration_w41_w27_20260527T102909_result.json",
     "occurrence": 1,
-    "bytes": 1190,
-    "sha256": "0f04ce03945a3947f27406ff54af4eb34aeb0a0aa343d40f69479860095fcddb"
+    "bytes": 1189,
+    "sha256": "3bac8a913d52cb44e1627f8976b818edf756589df4c7d848251111be913aa8eb"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_v8-eval-prep-dryrun_20260516T001824_result.json",
     "occurrence": 1,
-    "bytes": 1213,
-    "sha256": "4bdb098fa08594301c701bfce8d3055a9964244874e06eb35205acadb6411565"
+    "bytes": 1212,
+    "sha256": "5411dd95a6498f8b3430b9442ae5b21d736f2e9f4cb4d481344359cc761b3e94"
   },
   "statistics": {
     "messages": 1,

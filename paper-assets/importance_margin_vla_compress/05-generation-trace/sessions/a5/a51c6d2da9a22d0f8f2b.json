@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd41074_model_transfer_v3_20260525T060521_result.json",
     "occurrence": 1,
-    "bytes": 526,
-    "sha256": "977b21bb3b55fc59ce8500c204e1bbafc3626d4d750ff6b294c3e912639df3eb"
+    "bytes": 525,
+    "sha256": "a3c53fe11533d4634d4492aa70ca7eff6b8a608dda0f1cd365b2ffe68e48c044"
   },
   "statistics": {
     "messages": 1,

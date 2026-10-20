@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_official_smolvla_prune_k05",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "created_at": "2026-05-18T12:43:17.221Z",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "command": "bash -c \"source /root/miniconda3/bin/activate base && cd /root/autodl-tmp/importance_margin_vla_compress && MUJOCO_GL=egl PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 python eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --mode random_prune --k_ratio 0.5 --pruning_method true_removal --output eval_results/official_libero_object_random_prune_k05.json --seed 42\"",
+      "gpu": [
+        "cuda:1"
+      ],
+      "log_path": "~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05.log",
+      "pid": "79867",
+      "server": "westd-27271",
+      "submitted_at": "2026-05-18T12:51:19.230Z",
+      "submitted_via": "submit_training_job"
+    },
+    "status": "PREPARING",
+    "updated_at": "2026-05-29T06:37:33.286Z",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-29T06:37:36.338904+00:00",
+  "trigger": "update_registry"
+}

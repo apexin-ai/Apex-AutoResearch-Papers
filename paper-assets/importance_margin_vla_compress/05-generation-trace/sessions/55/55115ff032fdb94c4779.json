@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_dataset_scope_audit_20260519T154143_result.json",
     "occurrence": 1,
-    "bytes": 3955,
-    "sha256": "1755e8b64f580108246e0c62f74319476fedd7fe12a68922dcb268dad32c430b"
+    "bytes": 3954,
+    "sha256": "b46dda5f3adb9a22e2e301837930b36e3dfd1376c0b24adab8f684bc612ba8b5"
   },
   "statistics": {
     "messages": 1,

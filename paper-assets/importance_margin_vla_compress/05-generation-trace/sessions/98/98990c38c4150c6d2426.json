@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_writing_efficiency_subsection_20260525T192453_result.json",
     "occurrence": 1,
-    "bytes": 728,
-    "sha256": "a52610bab91cb0a691c3f02a83e1c454c5f498bfe2a49b18c0bd0b9bf615bb78"
+    "bytes": 727,
+    "sha256": "c3ff9425806e3623c4a3236ebe23777719bd934da976b55128127e52ec43d381"
   },
   "statistics": {
     "messages": 1,

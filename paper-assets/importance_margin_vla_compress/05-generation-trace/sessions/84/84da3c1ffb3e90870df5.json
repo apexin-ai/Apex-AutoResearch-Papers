@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_k0925-seed42-completion_20260521T235144_result.json",
     "occurrence": 1,
-    "bytes": 646,
-    "sha256": "01f3602e48f9ff279baf6679f5e9c9cfb1ff9b44669bf0224791dafff5c44167"
+    "bytes": 645,
+    "sha256": "957d5eb27e8586694f7a1bf926cbe68299d1224dafe8a43d26450a57a1ef98df"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_pi05_random_k09_long_seed42_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T11:34:14.545Z",
+    "updated_at": "2026-05-24T11:34:41.147Z"
+  },
+  "timestamp": "2026-05-24T11:34:42.212996+00:00",
+  "trigger": "update_registry"
+}

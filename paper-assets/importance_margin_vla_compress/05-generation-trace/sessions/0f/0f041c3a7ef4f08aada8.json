@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_westd-41074-tokenizer-redeploy_20260524T014920_result.json",
     "occurrence": 1,
-    "bytes": 805,
-    "sha256": "d2416f4aab26934195b87813ffba390a351f96a0b44276f3ba093174e8b47a1a"
+    "bytes": 804,
+    "sha256": "de9ea0fe57ea2214c929a9d61e8de993a6492b9075c9bd608842fe08ec2da475"
   },
   "statistics": {
     "messages": 1,

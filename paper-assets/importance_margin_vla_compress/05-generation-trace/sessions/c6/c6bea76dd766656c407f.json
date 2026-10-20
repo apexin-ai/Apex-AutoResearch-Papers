@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd-41074-object-zeromask_20260525T181624_result.json",
     "occurrence": 1,
-    "bytes": 649,
-    "sha256": "97484165f3c5311e531385daaa83ca12b1f5035d6cb3f75fb1c6c3b6459f2ddf"
+    "bytes": 648,
+    "sha256": "34bdb887c26078a792597fa1f15f681d9284cb02a1c9c82e0ced4953b85f2cc4"
   },
   "statistics": {
     "messages": 1,

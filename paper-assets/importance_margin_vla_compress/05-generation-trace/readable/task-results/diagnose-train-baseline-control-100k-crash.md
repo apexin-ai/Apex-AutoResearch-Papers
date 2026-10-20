@@ -26,7 +26,7 @@ _source line 1_
 
 根因：cqa1-33015 上没有 `~/.netrc`、没有 `~/.config/wandb/`、没有 `WANDB_API_KEY` 环境变量。训练命令也没传这个变量。
 
-**修复：** 在训练命令里加 `export WANDB_API_KEY=&lt;key>` 或 `export WANDB_MODE=offline`。另外建议加 `CUDA_VISIBLE_DEVICES=0`，因为 GPU 1 当前被 eval job 占用。
+**修复：** 在训练命令里加 `export WANDB_API_KEY=[REDACTED] 或 `export WANDB_MODE=offline`。另外建议加 `CUDA_VISIBLE_DEVICES=0`，因为 GPU 1 当前被 eval job 占用。
 
 报告已保存到 `artifacts/worker_output_baseline_control_crash.md`。
 

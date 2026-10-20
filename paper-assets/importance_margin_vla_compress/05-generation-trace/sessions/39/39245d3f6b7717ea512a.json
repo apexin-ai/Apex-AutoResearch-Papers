@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill-dup-deploy-p1_20260524T120733_result.json",
     "occurrence": 1,
-    "bytes": 729,
-    "sha256": "845cb03added3f50c04f5dae0dc02183628d53d4dc14881ef20d37247296d1eb"
+    "bytes": 728,
+    "sha256": "d45b4acd9d2c13a0f30979a739eba5553e6deebd7d3b6c6957192c23b1c3f898"
   },
   "statistics": {
     "messages": 1,

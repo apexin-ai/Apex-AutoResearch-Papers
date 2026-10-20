@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ssh_check_orphaned_experiments_20260517T013104_result.json",
     "occurrence": 1,
-    "bytes": 859,
-    "sha256": "68075a0536e656d6dae947d8a918a586c856cf247743133c314f808366141c76"
+    "bytes": 858,
+    "sha256": "9e03669d661476647b1763c8a221e2e536d4241c5830d270dceb1e2e62b9b172"
   },
   "statistics": {
     "messages": 1,

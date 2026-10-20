@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_profiling_script_prep_20260525T154407_result.json",
     "occurrence": 1,
-    "bytes": 1447,
-    "sha256": "091dbe18c1eea2782e74f847ebd7f25e4ce63e1e91893040e332de82e735eb97"
+    "bytes": 1446,
+    "sha256": "23c15620e6dc054bbf32a4a938c7f88c15ab959a4a874bbf8dc7e44f633dd701"
   },
   "statistics": {
     "messages": 1,

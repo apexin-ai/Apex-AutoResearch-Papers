@@ -9,30 +9,49 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_figure_20260524T073431_result.json",
     "occurrence": 1,
-    "bytes": 2121574,
-    "sha256": "68ee47750a040aac4576502f204333f964b2a93e3d4a31421982be20b29580cb"
+    "bytes": 2121610,
+    "sha256": "1a55916c766ac249bce09b8b3a12753cdd5970d299fe815e5236356535c8994d"
   },
   "statistics": {
     "messages": 1,
     "user_turns": 0,
     "tool_calls": 0,
     "roles": {
-      "result": 1
+      "log": 1
     },
-    "unparsed_lines_preserved": 0,
+    "unparsed_lines_preserved": 1,
     "reported_errors": 0
   },
   "rounds": [
     {
       "number": 0,
       "boundary": "no_preceding_user_message_recorded",
-      "message_count": 1,
-      "chunks": [
+      "messages": [
         {
-          "path": "5beab30cf6d2cf42b803-part-0001.json",
-          "message_count": 1
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2170286,
+                "serialized_sha256": "84ff3bd5b3b1b0f469d505eba6b6b7128f65611280f47b8e12ed0e78ef5ec814",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
         }
-      ]
+      ],
+      "message_count": 1
     }
   ],
   "readable_path": "readable/task-results/paper-figure.md"

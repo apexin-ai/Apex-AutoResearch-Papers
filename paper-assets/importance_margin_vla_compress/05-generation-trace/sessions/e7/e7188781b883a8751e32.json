@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy-westd38929-gpu1-l2norm-long-seed43_20260523T233254_result.json",
     "occurrence": 1,
-    "bytes": 505,
-    "sha256": "72d6bfa4224b28ee4e21df84d2971d00b50cb3fcfe83ab52000f7fd832052888"
+    "bytes": 504,
+    "sha256": "cb85c41409c4dc484015b9031f119801e59a8a574e879e946439b36b7759309e"
   },
   "statistics": {
     "messages": 1,

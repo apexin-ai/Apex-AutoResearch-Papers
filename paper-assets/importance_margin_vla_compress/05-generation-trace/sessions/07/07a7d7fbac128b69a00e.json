@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check-westd38929-batch-completion_20260520T232030_result.json",
     "occurrence": 1,
-    "bytes": 1280,
-    "sha256": "3a20c79c770567d68eee68d359de52d2ee6119325334517c2e6d69206eb947f7"
+    "bytes": 1279,
+    "sha256": "1db0080b7c490ad42e65ed697149e7828ce51724302c57bccea1153b0a341271"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_submit_openvla_l2norm_k09_spatial_20260524T230340_result.json",
     "occurrence": 1,
-    "bytes": 456,
-    "sha256": "043feabb6206516f570888f8edae004758c35a4fae866b8fbc791769d551b221"
+    "bytes": 455,
+    "sha256": "9e2a22298e95999d55256e052b16e3b7b62f2af44db2a0729d200b313a9bca7c"
   },
   "statistics": {
     "messages": 1,

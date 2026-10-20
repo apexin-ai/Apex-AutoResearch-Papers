@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_openvla_multisuite_feasibility_20260523T062832_result.json",
     "occurrence": 1,
-    "bytes": 1559,
-    "sha256": "6ef4a692ef2ebbea22e871069db38329d97aac6f68e64a5e45ea97e69bcc19b5"
+    "bytes": 1558,
+    "sha256": "d57b7ae9ec5837ee71db28bfb15397d8c96b3ef7c0e2831103c9dbe62667c2e9"
   },
   "statistics": {
     "messages": 1,

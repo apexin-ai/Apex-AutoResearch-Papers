@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_eval_imm_k07_result_20260517T032912_result.json",
     "occurrence": 1,
-    "bytes": 1159,
-    "sha256": "79f39f4336f9d3ea7e8760614fff19ff7e5928b81828338beb329b64526b7a21"
+    "bytes": 1158,
+    "sha256": "05d677cdbc0ec47a04530cd90ab408b84532a961b57f7b534d13c651efd8abdb"
   },
   "statistics": {
     "messages": 1,

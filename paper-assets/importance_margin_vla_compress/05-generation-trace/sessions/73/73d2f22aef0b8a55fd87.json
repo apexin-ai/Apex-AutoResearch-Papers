@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy-westd38929-gpu0-l2norm-spatial-seed43_20260523T225912_result.json",
     "occurrence": 1,
-    "bytes": 394,
-    "sha256": "f6d1402bae3be79b148a8e42dd27b30ef2f479bd18163d97e2e10db4303e1414"
+    "bytes": 393,
+    "sha256": "594b02f6f06dc4d8c89bbc30b7fe496943117a17e3232eceec5535d0d33e85d7"
   },
   "statistics": {
     "messages": 1,

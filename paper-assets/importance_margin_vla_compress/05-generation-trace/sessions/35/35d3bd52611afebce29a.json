@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_mvp_imm_v8b_twostage_20260516T070648_result.json",
     "occurrence": 1,
-    "bytes": 672,
-    "sha256": "7d95d6764349c48087d9e5c7a62f9f0b39d11961d9a52b36aa8fdfae1d8b6c6b"
+    "bytes": 671,
+    "sha256": "b930f6c520173221d8b7aac11ce73d7d3e70140cd9a7a96eae2bc6ec55ebfd75"
   },
   "statistics": {
     "messages": 1,

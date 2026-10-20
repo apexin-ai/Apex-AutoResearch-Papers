@@ -1,0 +1,43 @@
+{
+  "exp_id": "eval_pi05_l2norm_k09_object_seed43_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T19:46:28.426Z",
+    "updated_at": "2026-05-24T20:56:09.009Z",
+    "hypothesis": "π0.5 L2norm k=0.9 Object seed43 postfix — cliff zone k=0.9 跨 suite dual-seed 验证。Long suite seed42/43 差异 ±0.0pp（80.0% vs 80.0%）。验证 Object suite 是否同样 seed 稳定，增强 cliff zone immunity claim 的统计可信度",
+    "spec": {
+      "command": "eval pi05 l2norm k0.9 libero_object seed43 postfix",
+      "server": "westd-41074",
+      "gpu": "1",
+      "data_path": "libero_object",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 43,
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "logs/eval_pi05_l2norm_k09_object_seed43_postfix.log"
+    },
+    "metrics": {
+      "success_rate": 98.4,
+      "task_sr": {
+        "T0": 100,
+        "T1": 100,
+        "T2": 96,
+        "T3": 100,
+        "T4": 98,
+        "T5": 96,
+        "T6": 96,
+        "T7": 98,
+        "T8": 100,
+        "T9": 100
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-24T20:56:09.009Z"
+  },
+  "timestamp": "2026-05-24T20:56:10.904428+00:00",
+  "trigger": "update_registry"
+}

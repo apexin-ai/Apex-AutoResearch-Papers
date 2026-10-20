@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill_ghost_process_cqa1_20260528T182708_result.json",
     "occurrence": 1,
-    "bytes": 250,
-    "sha256": "4a956c642e4ad494169190f412164bb2b0d25635bdfd740a087fb630029330ca"
+    "bytes": 249,
+    "sha256": "572bb66cc4b7a040e060d26025ce3f0d8b0187cb78db1f46ad28e513a4d4efad"
   },
   "statistics": {
     "messages": 1,

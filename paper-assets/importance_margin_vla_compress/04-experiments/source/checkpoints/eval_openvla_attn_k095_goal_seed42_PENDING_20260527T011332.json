@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_openvla_attn_k095_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T01:11:04.089Z",
+    "updated_at": "2026-05-27T01:13:28.731Z",
+    "hypothesis": "OpenVLA Attention k=0.95 Goal seed42 — Goal Attn curve 顶端缺口。Attn k=0.9=73.2%, k=0.85=74.6%。k=0.95 补全曲线起始段",
+    "spec": {
+      "command": "cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.95 --suite libero_goal --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-goal --unnorm_key libero_goal",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "949244",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_attn_k095_goal_seed42.log",
+      "submitted_at": "2026-05-27T01:11:54.318Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-27T01:13:32.831692+00:00",
+  "trigger": "update_registry"
+}

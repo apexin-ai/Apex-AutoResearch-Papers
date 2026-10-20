@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_attention_pruning_recovery_20260522T124955_result.json",
     "occurrence": 1,
-    "bytes": 2255,
-    "sha256": "c5a256c465080a078c20437b7b48e01e9861ce8c6da11e815c35feb1b35291ad"
+    "bytes": 2254,
+    "sha256": "7cf2a64b7bb5fe97f679c587864e845f66e6028b918f837eda59e576f88fd1e2"
   },
   "statistics": {
     "messages": 1,

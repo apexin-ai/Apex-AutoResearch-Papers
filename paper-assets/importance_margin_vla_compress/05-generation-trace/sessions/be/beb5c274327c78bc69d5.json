@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy-cqa1-gpu3-pi05-random-object_20260523T215722_result.json",
     "occurrence": 1,
-    "bytes": 372,
-    "sha256": "8b60f5e6e97cd19cc00af7cc8a99e4866e74a920e724915b9021500117330624"
+    "bytes": 371,
+    "sha256": "9a723f4559593474f339db08d3265555111b834752ccb153d6e02e7e85a7d3b1"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd41074_object_cliff_20260526T195937_result.json",
     "occurrence": 1,
-    "bytes": 678,
-    "sha256": "d8e836e8be551ae41110d324bd1babb4ec6f2733af246badcf17270f2f78c652"
+    "bytes": 677,
+    "sha256": "ec3e119dfa47e4df0a5cf0c3980eafd46d4c93aab0ecd1f4a66dd66e2a99e490"
   },
   "statistics": {
     "messages": 1,

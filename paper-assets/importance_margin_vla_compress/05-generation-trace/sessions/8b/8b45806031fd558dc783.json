@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_debug_v7_2-train-eval-discrepancy_20260515T220153_result.json",
     "occurrence": 1,
-    "bytes": 1345,
-    "sha256": "d52bb1a0c1c4326948f07f686f0a168e846970c59e3874f1e51a2da827bb65c2"
+    "bytes": 1344,
+    "sha256": "57a13beb2ae3ec5b70cf2474ed70b4fb96725edf006f94f86bd49a75d8015a92"
   },
   "statistics": {
     "messages": 1,

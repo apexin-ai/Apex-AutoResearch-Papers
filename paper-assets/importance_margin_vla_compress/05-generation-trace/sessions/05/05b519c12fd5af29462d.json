@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_checkpoint_consistency_20260517T131749_result.json",
     "occurrence": 1,
-    "bytes": 1144,
-    "sha256": "37ab8308e88146571fc68bd4364fc8339ca579d6497f1bd1006aa7ea1bb333f6"
+    "bytes": 1143,
+    "sha256": "338aed7308b84386ce69eac59a59cbc67dff6e35783a330a87a08a392ea799c7"
   },
   "statistics": {
     "messages": 1,

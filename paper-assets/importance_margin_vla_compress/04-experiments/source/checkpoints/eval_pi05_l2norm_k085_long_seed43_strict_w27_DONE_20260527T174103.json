@@ -1,0 +1,26 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_long_seed43_strict_w27",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T13:51:58.605Z",
+    "updated_at": "2026-05-27T17:41:01.975Z",
+    "hypothesis": "π0.5 L2norm k=0.85 Long strict seed43 — seed42=77.6% 的 seed 复制，生成 L2norm cliff 中间段 error bar",
+    "parent": "eval_pi05_l2norm_k085_long_seed42_strict",
+    "spec": {
+      "checkpoint_path": "N/A (eval only)"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 0.786,
+      "per_task": "pending_detailed_breakdown"
+    },
+    "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k085_long_seed43_strict_w27.log",
+    "completed_at": "2026-05-27T17:41:01.975Z"
+  },
+  "timestamp": "2026-05-27T17:41:03.758043+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_pi05_random_k085_long_seed42_postfix_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T05:35:12.314Z",
+    "updated_at": "2026-05-25T08:03:44.651Z",
+    "hypothesis": "π0.5 Random k=0.85 Long seed42 postfix v3 — 重跑 cliff zone Long Random 数据点",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 42 --gpu 2\"",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "80233",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k085_long_seed42_postfix_v3.log",
+      "submitted_at": "2026-05-25T07:29:16.567Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-25T08:03:45.913275+00:00",
+  "trigger": "update_registry"
+}

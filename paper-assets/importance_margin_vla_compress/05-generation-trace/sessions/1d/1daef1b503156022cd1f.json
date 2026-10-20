@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_gpu-state-probe-all_20260521T210304_result.json",
     "occurrence": 1,
-    "bytes": 2819,
-    "sha256": "5448b56c140dfd07dacd6da963615af035462edeb00dc975d2b1f03acc1f8699"
+    "bytes": 2818,
+    "sha256": "cfb72698e7fbd2a59edcb843c67a08cc0c4508e5757dddcb2d497b501672a36c"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,50 @@
+{
+  "exp_id": "eval_e5_xvla_attn_rollout_obj_k07_w27",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T12:59:47.910Z",
+    "updated_at": "2026-05-23T13:25:33.757Z",
+    "spec": {
+      "command": "python -u eval_xvla_attention_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_object --keep_ratio 0.7 --mode attention_rollout --num_episodes 50 --seed 42 --gpu 0",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "992022",
+      "model_name": "X-VLA-Libero",
+      "data_path": "libero_object",
+      "data_count": 500,
+      "seed": 42
+    },
+    "hypothesis": "E5 attention_rollout Object k=0.7: attention_last k=0.7 Object=99.2%。rollout k=0.5 Object=97.4%。k=0.7 rollout 预期 ≥98%，验证 attention pruning 在高 keep ratio 下一致性。",
+    "metrics": {
+      "success_rate": 98.4,
+      "successes": 492,
+      "episodes": 500,
+      "wilson_ci_95": [
+        96.9,
+        99.2
+      ],
+      "per_task_sr": {
+        "T0": 100,
+        "T1": 100,
+        "T2": 96,
+        "T3": 96,
+        "T4": 100,
+        "T5": 98,
+        "T6": 100,
+        "T7": 94,
+        "T8": 100,
+        "T9": 100
+      },
+      "elapsed_min": 32.2
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T13:25:34.535529+00:00",
+  "trigger": "update_registry"
+}

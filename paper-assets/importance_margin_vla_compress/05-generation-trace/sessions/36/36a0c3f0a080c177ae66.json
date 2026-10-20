@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_probe_and_deploy_s47_pending_20260529T060229_result.json",
     "occurrence": 1,
-    "bytes": 1197,
-    "sha256": "613e5a9d179a54035004091e3f461fee86b34491c2ee59a016d70faa5776247c"
+    "bytes": 1196,
+    "sha256": "c9cd794e546116906b564060f4a5ab8b92acbfc2817a1f5e3be004554e2bcdb5"
   },
   "statistics": {
     "messages": 1,

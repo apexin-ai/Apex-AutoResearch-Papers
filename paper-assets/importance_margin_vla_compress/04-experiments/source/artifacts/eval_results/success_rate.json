@@ -1,0 +1,21 @@
+{
+  "baseline_step_029999": {
+    "mode": "baseline",
+    "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/checkpoints/baseline_v6_alpha16/step_029999/checkpoint.pt",
+    "config_path": "configs/baseline_v6_alpha16.yaml",
+    "n_episodes": 50,
+    "success_count": 0,
+    "success_rate": 0.0,
+    "wilson_ci_95": [
+      0.0,
+      0.0714
+    ],
+    "mean_episode_length_successful": NaN,
+    "mean_episode_length_all": 400.0,
+    "mean_reward": 0.0,
+    "temperature": 1.0,
+    "seed": 42,
+    "max_steps": 400,
+    "action_horizon": 50
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_random_k085_long_seed47_w38",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-28T11:18:36.803Z",
+    "updated_at": "2026-05-28T11:18:53.966Z",
+    "hypothesis": "π0.5 Random k=0.85 Long seed47 — 6th seed bonus data，high variance 点 (s42-s46 std ~1.6pp)。填充 w38 空闲 GPU，不在 CoRL deadline 内但可用于 revision"
+  },
+  "timestamp": "2026-05-28T11:18:55.547394+00:00",
+  "trigger": "update_registry"
+}

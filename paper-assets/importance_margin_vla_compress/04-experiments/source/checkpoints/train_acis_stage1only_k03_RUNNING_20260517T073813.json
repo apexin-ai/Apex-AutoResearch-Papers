@@ -1,0 +1,34 @@
+{
+  "exp_id": "train_acis_stage1only_k03",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T07:12:38.108Z",
+    "updated_at": "2026-05-17T07:38:13.885Z",
+    "spec": {
+      "command": "python train_twostage.py --config configs/libero_acis_stage1only_k03.yaml --gpu 0 --wandb_run acis_stage1only_k03_seed42",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "11338",
+      "log_path": "~/runs/importance_margin_vla_compress/train_acis_stage1only_k03.log",
+      "submitted_at": "2026-05-17T07:16:37.245Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "HuggingFaceVLA/libero",
+      "data_count": 10000,
+      "model_name": "smolvla",
+      "seed": 42,
+      "note": "Restarted at 15:16 UTC. At step 5000/10000 as of 15:37 UTC. ETA ~15:57 UTC."
+    },
+    "hypothesis": "Stage1-only ACIS (k=0.3, 保留 30% tokens) 训练。验证激进压缩的性能下界——如果 SR > 20% 则证明 ACIS 即使在 70% pruning 下仍有价值。",
+    "notes": "Cron误报退出。进程实际仍在运行(PID 11343, GPU 3)。当前实例启动于15:16 UTC(可能是重启的)，step 2000/10000, margin_loss~0.18, sps=4.3。预计~15:56 UTC完成。"
+  },
+  "timestamp": "2026-05-17T07:38:13.966499+00:00",
+  "trigger": "update_registry"
+}

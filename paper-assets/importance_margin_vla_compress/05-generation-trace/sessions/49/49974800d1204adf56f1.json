@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_cqa1-restart-random095-s44_20260527T224618_result.json",
     "occurrence": 1,
-    "bytes": 535,
-    "sha256": "c9f230a97d4194e18ea1f648aeeaf82b51d810ff850e1d87564fddd90ed47406"
+    "bytes": 534,
+    "sha256": "adf7dfb7e6c0763dc88d50b59ab6246f4b7488ea65335bcc221c89d556803171"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_pi05-random-k095-seed42-v2_20260521T200916_result.json",
     "occurrence": 1,
-    "bytes": 523,
-    "sha256": "e3d85d36495df88a9cde15c2fc77d341b3d1fb52dcddc5d0529f96cf876cb646"
+    "bytes": 522,
+    "sha256": "ab930088eef98966ac215038c9e58d44bbd47eefb483567a853114bb16894c85"
   },
   "statistics": {
     "messages": 1,

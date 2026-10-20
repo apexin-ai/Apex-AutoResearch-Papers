@@ -1,0 +1,169 @@
+{
+  "model": "pi0-3.3B (lerobot/pi0_libero_base)",
+  "dataset": "LIBERO-Object (task_index 20-29)",
+  "n_frames": 100,
+  "vision_tokens_per_image": 256,
+  "num_real_images": 2,
+  "total_real_vision_tokens": 512,
+  "n_layers": 18,
+  "analysis": "attention_entropy_per_layer",
+  "metrics_description": {
+    "entropy_vis2vis": "Normalized entropy of vision-to-vision attention (how uniformly vision tokens attend to each other)",
+    "entropy_suffix2vis": "Normalized entropy of suffix-to-vision attention (how uniformly action tokens attend to vision tokens)",
+    "attn_mass_on_vis": "Fraction of attention mass from suffix tokens directed at vision tokens",
+    "entropy_all": "Normalized entropy of full attention distribution (all tokens)"
+  },
+  "per_layer": {
+    "0": {
+      "entropy_vis2vis": 0.9291,
+      "entropy_suffix2vis": 0.9493,
+      "attn_mass_on_vis": 0.2169,
+      "entropy_all": 0.9019,
+      "std_entropy_vis2vis": 0.0306,
+      "std_entropy_suffix2vis": 0.0039
+    },
+    "1": {
+      "entropy_vis2vis": 0.8664,
+      "entropy_suffix2vis": 0.9831,
+      "attn_mass_on_vis": 0.5171,
+      "entropy_all": 0.9075,
+      "std_entropy_vis2vis": 0.0245,
+      "std_entropy_suffix2vis": 0.0192
+    },
+    "2": {
+      "entropy_vis2vis": 0.8791,
+      "entropy_suffix2vis": 0.9772,
+      "attn_mass_on_vis": 0.2424,
+      "entropy_all": 0.898,
+      "std_entropy_vis2vis": 0.0222,
+      "std_entropy_suffix2vis": 0.0319
+    },
+    "3": {
+      "entropy_vis2vis": 0.8399,
+      "entropy_suffix2vis": 0.9608,
+      "attn_mass_on_vis": 0.2435,
+      "entropy_all": 0.8776,
+      "std_entropy_vis2vis": 0.0086,
+      "std_entropy_suffix2vis": 0.0306
+    },
+    "4": {
+      "entropy_vis2vis": 0.8349,
+      "entropy_suffix2vis": 0.9606,
+      "attn_mass_on_vis": 0.1726,
+      "entropy_all": 0.8825,
+      "std_entropy_vis2vis": 0.0237,
+      "std_entropy_suffix2vis": 0.0355
+    },
+    "5": {
+      "entropy_vis2vis": 0.8714,
+      "entropy_suffix2vis": 0.9578,
+      "attn_mass_on_vis": 0.1298,
+      "entropy_all": 0.8771,
+      "std_entropy_vis2vis": 0.0247,
+      "std_entropy_suffix2vis": 0.0387
+    },
+    "6": {
+      "entropy_vis2vis": 0.8786,
+      "entropy_suffix2vis": 0.9672,
+      "attn_mass_on_vis": 0.1988,
+      "entropy_all": 0.8795,
+      "std_entropy_vis2vis": 0.0273,
+      "std_entropy_suffix2vis": 0.0389
+    },
+    "7": {
+      "entropy_vis2vis": 0.8646,
+      "entropy_suffix2vis": 0.9574,
+      "attn_mass_on_vis": 0.3538,
+      "entropy_all": 0.8745,
+      "std_entropy_vis2vis": 0.0144,
+      "std_entropy_suffix2vis": 0.0256
+    },
+    "8": {
+      "entropy_vis2vis": 0.8848,
+      "entropy_suffix2vis": 0.962,
+      "attn_mass_on_vis": 0.3368,
+      "entropy_all": 0.8914,
+      "std_entropy_vis2vis": 0.0118,
+      "std_entropy_suffix2vis": 0.0246
+    },
+    "9": {
+      "entropy_vis2vis": 0.8604,
+      "entropy_suffix2vis": 0.9552,
+      "attn_mass_on_vis": 0.3024,
+      "entropy_all": 0.8754,
+      "std_entropy_vis2vis": 0.0224,
+      "std_entropy_suffix2vis": 0.0343
+    },
+    "10": {
+      "entropy_vis2vis": 0.9197,
+      "entropy_suffix2vis": 0.9697,
+      "attn_mass_on_vis": 0.2006,
+      "entropy_all": 0.903,
+      "std_entropy_vis2vis": 0.0263,
+      "std_entropy_suffix2vis": 0.0352
+    },
+    "11": {
+      "entropy_vis2vis": 0.7955,
+      "entropy_suffix2vis": 0.931,
+      "attn_mass_on_vis": 0.4735,
+      "entropy_all": 0.8391,
+      "std_entropy_vis2vis": 0.0066,
+      "std_entropy_suffix2vis": 0.0112
+    },
+    "12": {
+      "entropy_vis2vis": 0.8651,
+      "entropy_suffix2vis": 0.9558,
+      "attn_mass_on_vis": 0.1915,
+      "entropy_all": 0.8694,
+      "std_entropy_vis2vis": 0.0105,
+      "std_entropy_suffix2vis": 0.0304
+    },
+    "13": {
+      "entropy_vis2vis": 0.8859,
+      "entropy_suffix2vis": 0.9715,
+      "attn_mass_on_vis": 0.3269,
+      "entropy_all": 0.8863,
+      "std_entropy_vis2vis": 0.0138,
+      "std_entropy_suffix2vis": 0.0219
+    },
+    "14": {
+      "entropy_vis2vis": 0.8641,
+      "entropy_suffix2vis": 0.9344,
+      "attn_mass_on_vis": 0.4794,
+      "entropy_all": 0.8715,
+      "std_entropy_vis2vis": 0.0018,
+      "std_entropy_suffix2vis": 0.0162
+    },
+    "15": {
+      "entropy_vis2vis": 0.8866,
+      "entropy_suffix2vis": 0.9725,
+      "attn_mass_on_vis": 0.457,
+      "entropy_all": 0.8841,
+      "std_entropy_vis2vis": 0.0198,
+      "std_entropy_suffix2vis": 0.0146
+    },
+    "16": {
+      "entropy_vis2vis": 0.8693,
+      "entropy_suffix2vis": 0.9582,
+      "attn_mass_on_vis": 0.4039,
+      "entropy_all": 0.8772,
+      "std_entropy_vis2vis": 0.0111,
+      "std_entropy_suffix2vis": 0.0215
+    },
+    "17": {
+      "entropy_vis2vis": 0.8928,
+      "entropy_suffix2vis": 0.9456,
+      "attn_mass_on_vis": 0.4701,
+      "entropy_all": 0.8922,
+      "std_entropy_vis2vis": 0.0167,
+      "std_entropy_suffix2vis": 0.0204
+    }
+  },
+  "summary": {
+    "mean_suffix2vis_entropy": 0.9594,
+    "std_suffix2vis_entropy": 0.0132,
+    "min_suffix2vis_entropy": 0.931,
+    "max_suffix2vis_entropy": 0.9831,
+    "mean_vis_attn_mass": 0.3176
+  }
+}

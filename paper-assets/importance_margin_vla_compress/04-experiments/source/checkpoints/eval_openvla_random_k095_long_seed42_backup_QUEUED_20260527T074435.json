@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_openvla_random_k095_long_seed42_backup",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T06:19:18.176Z",
+    "updated_at": "2026-05-27T07:44:33.951Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10 --gpu 0\"",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "112244",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42_backup.log",
+      "submitted_at": "2026-05-27T06:19:14.443Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "OV Random k=0.95 backup on westd-38929 — ensures result availability before C002 deadline in case westd-41074 primary fails or times out",
+    "parent": "eval_openvla_random_k095_long_seed42"
+  },
+  "timestamp": "2026-05-27T07:44:35.415356+00:00",
+  "trigger": "update_registry"
+}

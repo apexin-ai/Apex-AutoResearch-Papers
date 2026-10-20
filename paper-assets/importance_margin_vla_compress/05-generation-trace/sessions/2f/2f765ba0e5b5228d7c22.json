@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_replace-westd38929-gpu01-pi05-goal_20260524T073034_result.json",
     "occurrence": 1,
-    "bytes": 658,
-    "sha256": "bab06a9c0cde1d33046b4e299d5c0fb9d088d978c2a703dff5b0621588786d0d"
+    "bytes": 657,
+    "sha256": "158604bf3bdc674e33df989d1c6e69e46b62ceb211c34d2b98a304062a21e2b8"
   },
   "statistics": {
     "messages": 1,

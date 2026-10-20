@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_xvla_author_order_urgent_20260528T172455_result.json",
     "occurrence": 1,
-    "bytes": 615,
-    "sha256": "0fb899495c6a981695a5bb814abb63ea02decc3b91e3f177fc373bae0dfd289c"
+    "bytes": 614,
+    "sha256": "13189f8e4f25d0f6719ed4f3812f0c4b82b1c9af1a85f61d065e86335332cbf9"
   },
   "statistics": {
     "messages": 1,

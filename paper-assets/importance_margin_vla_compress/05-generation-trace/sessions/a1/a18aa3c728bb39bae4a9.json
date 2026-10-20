@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_metaworld_setup_20260524T154215_result.json",
     "occurrence": 1,
-    "bytes": 673,
-    "sha256": "3fdfb3babd12e4fdef6b00f98e4c521501144a6f49e823825b85bc16a79aa799"
+    "bytes": 672,
+    "sha256": "19ba3904419876a70f7ac2502c37cd1f48a8ba71c7ebee0ee8cc77b9bf120959"
   },
   "statistics": {
     "messages": 1,

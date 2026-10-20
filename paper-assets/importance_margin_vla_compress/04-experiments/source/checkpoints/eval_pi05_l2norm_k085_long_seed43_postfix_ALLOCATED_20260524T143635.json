@@ -1,0 +1,26 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_long_seed43_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T14:34:48.562Z",
+    "updated_at": "2026-05-24T14:36:34.483Z",
+    "hypothesis": "π0.5 L2norm k=0.85 Long seed43 post-fix — dual-seed 验证另一个 cliff zone 数据点。seed42 L2norm k=0.85 Long postfix 已完成（DONE）。k=0.85 是 Random disruption peak（Object=5.6%）。dual-seed 确认 L2norm 在 peak disruption k 值的跨 seed 稳定性",
+    "spec": {
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root",
+      "model_name": "pi05_libero_finetuned",
+      "seed": 43,
+      "data_path": "libero_10",
+      "data_count": 500
+    }
+  },
+  "timestamp": "2026-05-24T14:36:35.489284+00:00",
+  "trigger": "update_registry"
+}

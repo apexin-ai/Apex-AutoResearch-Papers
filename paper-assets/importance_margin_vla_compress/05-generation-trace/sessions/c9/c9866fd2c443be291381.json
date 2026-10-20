@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_openvla_lora_fallback_20260519T172518_result.json",
     "occurrence": 1,
-    "bytes": 841,
-    "sha256": "3f8e8c64a4a01c69bbed4d5b4857d608697dbbc6f3ce2daa1450c2da75635229"
+    "bytes": 840,
+    "sha256": "f25103607ead616e5cb31e0b611367e370b8aaaaa796b3c04998cd35bf700fff"
   },
   "statistics": {
     "messages": 1,

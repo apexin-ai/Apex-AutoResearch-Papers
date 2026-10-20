@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-msh-fix-batch2_20260520T112926_result.json",
     "occurrence": 1,
-    "bytes": 1060,
-    "sha256": "5bdb343847ab0cc3cde9e8a54f3ff6a009e170e0fd7aa51e6a6435722280aab6"
+    "bytes": 1059,
+    "sha256": "8f508b67be4efd60a4e5f74789378e4ae5ca102564a4c712b32f0e1228a465a3"
   },
   "statistics": {
     "messages": 1,

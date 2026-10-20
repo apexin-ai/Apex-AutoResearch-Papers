@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_train_v8_1-launch_20260516T030529_result.json",
     "occurrence": 1,
-    "bytes": 383,
-    "sha256": "ad1fcfaf75cf2e955f14605cf1a1c7d7c27310093fe1a9708fa1747eee8c37b0"
+    "bytes": 382,
+    "sha256": "86525b1b6d56c89f39aab71a0a776c929837bb62e4fe73be6ba392570799d0ba"
   },
   "statistics": {
     "messages": 1,

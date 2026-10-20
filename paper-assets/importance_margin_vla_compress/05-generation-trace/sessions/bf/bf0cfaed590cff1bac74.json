@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_cleanup_cqa1-33015_20260523T154835_result.json",
     "occurrence": 1,
-    "bytes": 624,
-    "sha256": "b593acdc42ea893355a89c1e71fa1bd00422b1fd95350c67b0f4ee0b8a773251"
+    "bytes": 623,
+    "sha256": "43e1d7ccc244bfb2ef7047b91736fbe0fed973f45587c444b54c7b5add0da2d6"
   },
   "statistics": {
     "messages": 1,

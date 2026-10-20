@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check-westd27271-m32-alive-v2_20260520T211624_result.json",
     "occurrence": 1,
-    "bytes": 802,
-    "sha256": "ef4b282ba0b84afdaf2b7cd69ceab79b183920bd38a8c7299bd783fe2070386d"
+    "bytes": 801,
+    "sha256": "2efce52fee077ba279deb3411d825b40ec2bf68164d73e487cbb5171435bca08"
   },
   "statistics": {
     "messages": 1,

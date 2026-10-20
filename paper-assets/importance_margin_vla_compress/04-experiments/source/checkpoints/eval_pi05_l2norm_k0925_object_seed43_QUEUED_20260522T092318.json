@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_pi05_l2norm_k0925_object_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T09:23:17.890Z",
+    "updated_at": "2026-05-22T09:23:17.890Z"
+  },
+  "timestamp": "2026-05-22T09:23:18.491593+00:00",
+  "trigger": "update_registry"
+}

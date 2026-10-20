@@ -9,30 +9,49 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_figure_architecture_v2_paperbanana_20260528T130129_result.json",
     "occurrence": 1,
-    "bytes": 2117658,
-    "sha256": "64937290a803a059bff648c722c98a17bb98ebb3aa474190afb42cadc84b57f9"
+    "bytes": 2117692,
+    "sha256": "7bf61b4f0bb853a99959f9414e3b3a1877a3ac7599a884d99bc0ccf3445dcfa1"
   },
   "statistics": {
     "messages": 1,
     "user_turns": 0,
     "tool_calls": 0,
     "roles": {
-      "result": 1
+      "log": 1
     },
-    "unparsed_lines_preserved": 0,
+    "unparsed_lines_preserved": 1,
     "reported_errors": 0
   },
   "rounds": [
     {
       "number": 0,
       "boundary": "no_preceding_user_message_recorded",
-      "message_count": 1,
-      "chunks": [
+      "messages": [
         {
-          "path": "67eb3ce088d329d05fa9-part-0001.json",
-          "message_count": 1
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2158731,
+                "serialized_sha256": "ac69ff138a41d85b066a8123d1a578a0d11d0466e36a23d3321dac51bf57cc2d",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
         }
-      ]
+      ],
+      "message_count": 1
     }
   ],
   "readable_path": "readable/task-results/paper-figure-architecture-v2-paperbanana.md"

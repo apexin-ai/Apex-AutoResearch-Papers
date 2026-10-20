@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1-xvla-filename-fix-urgent_20260521T090310_result.json",
     "occurrence": 1,
-    "bytes": 2233,
-    "sha256": "721b0ba849c6536f3f1cd4b7737d45b1773b909804f8eace9a8e8d5784d3bb0f"
+    "bytes": 2232,
+    "sha256": "07f94dbb997ddc8ff13c90e71ecb9a846df248387d2f7442bed50b24271ab5ec"
   },
   "statistics": {
     "messages": 1,

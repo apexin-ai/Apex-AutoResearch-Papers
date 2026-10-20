@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_smolvla-westd38929-gpu3-v3_20260521T172023_result.json",
     "occurrence": 1,
-    "bytes": 444,
-    "sha256": "34a7adc159f94e62e510b633a3506d609d995dccf6cb631eec0fab255bd3a197"
+    "bytes": 443,
+    "sha256": "5cc51db471d90bc88c3d3fc8f459663eb5a32e21b11826af8af6527481ccc145"
   },
   "statistics": {
     "messages": 1,

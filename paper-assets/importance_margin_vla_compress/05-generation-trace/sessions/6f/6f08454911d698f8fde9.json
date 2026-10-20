@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd41074-poll-seed43-collect-redeploy-v2_20260521T123210_result.json",
     "occurrence": 1,
-    "bytes": 264,
-    "sha256": "d6465cf7fa27fa41ea1d6be5a53f9374259ad7018221eb793f5d0a72c57348c2"
+    "bytes": 263,
+    "sha256": "fbbb6ae6ddb8c9fa449a67dada098a99f4936d41045c878754731712edcf0555"
   },
   "statistics": {
     "messages": 1,

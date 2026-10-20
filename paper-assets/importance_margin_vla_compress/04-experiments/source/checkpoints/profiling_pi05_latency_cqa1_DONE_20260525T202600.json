@@ -1,0 +1,39 @@
+{
+  "exp_id": "profiling_pi05_latency_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T20:21:52.624Z",
+    "updated_at": "2026-05-25T20:25:58.647Z",
+    "hypothesis": "L2norm token pruning reduces π0.5 single-step inference latency proportional to token reduction, with k=0.5 achieving ~1.5-2x speedup over baseline k=1.0",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python -u profile_pi05_latency.py --gpu 0",
+      "server": "cqa1-33015",
+      "data_path": "libero_10 task0 fixed episode",
+      "data_count": 1,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_10 task0",
+      "log_path": "/root/runs/importance_margin_vla_compress/profiling_pi05_latency.log"
+    },
+    "checkpoint_path": "N/A (profiling only)",
+    "metrics": {
+      "k_1.0_mean_ms": 200.06,
+      "k_1.0_std_ms": 26.33,
+      "k_0.9_mean_ms": 206.66,
+      "k_0.9_std_ms": 42.1,
+      "k_0.5_mean_ms": 185.95,
+      "k_0.5_std_ms": 20.01,
+      "speedup_k09": 0.968,
+      "speedup_k05": 1.076
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-25T20:25:58.647Z"
+  },
+  "timestamp": "2026-05-25T20:26:00.778512+00:00",
+  "trigger": "update_registry"
+}

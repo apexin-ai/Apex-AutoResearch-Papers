@@ -1,0 +1,31 @@
+{
+  "exp_id": "debug_obs_official",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "created_at": "2026-05-18T12:54:22.856Z",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "command": "bash -c \"source /root/miniconda3/bin/activate base && cd /root/autodl-tmp/importance_margin_vla_compress && MUJOCO_GL=egl PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 python debug_obs.py\"",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "~/runs/importance_margin_vla_compress/debug_obs_official.log",
+      "pid": "86969",
+      "server": "westd-27271",
+      "submitted_at": "2026-05-18T12:54:22.640Z",
+      "submitted_via": "submit_training_job",
+      "wall_clock_seconds": 930244.3,
+      "gpu_hours": 258.4
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-29T07:18:26.954Z",
+    "conclusion": "killed",
+    "completed_at": "2026-05-29T07:18:26.955Z"
+  },
+  "timestamp": "2026-05-29T07:18:30.177353+00:00",
+  "trigger": "update_registry"
+}

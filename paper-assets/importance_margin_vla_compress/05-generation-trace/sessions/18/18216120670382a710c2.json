@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_disk-cleanup-westd41074-retry_20260520T043457_result.json",
     "occurrence": 1,
-    "bytes": 418,
-    "sha256": "4b5d5d6448a69abe0e83964aaf9ed38af01fb4f21e5493476a7e550f4f3b57eb"
+    "bytes": 417,
+    "sha256": "8c7a33429a574f34d4f96a96e001f6dc9008deb26eb45500731d8e70e1d982b3"
   },
   "statistics": {
     "messages": 1,

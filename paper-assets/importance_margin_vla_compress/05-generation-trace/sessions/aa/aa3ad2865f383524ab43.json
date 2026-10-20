@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_m64-50k-eval-gate_20260521T023450_result.json",
     "occurrence": 1,
-    "bytes": 1303,
-    "sha256": "f88e75ccf17f6950ac0ce27af14665f692338bc57357826480219edc24350b92"
+    "bytes": 1302,
+    "sha256": "5479a2af64e12d7fde6c6776bc1880e809aee148287e78a8a40ffc3719c9a0db"
   },
   "statistics": {
     "messages": 1,

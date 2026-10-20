@@ -1,0 +1,26 @@
+# IMM v7.1: reduced lambda (0.2) + higher grad_clip (30.0)
+# Hypothesis: lower margin pressure reduces Lipschitz explosion
+# Parent: v7 (lambda=0.5, grad_clip=10.0) showed L_emp 0.096→0.606 in 4K steps
+
+_base_: baseline.yaml
+
+imm:
+  enabled: true
+  delta: 0.3              # hinge margin threshold (same as v7)
+  lambda_margin: 0.2      # v7=0.5, reduced to slow margin/Lipschitz growth
+  warmup_steps: 3000      # 10% of total_steps
+  temperature: 0.5        # SoftTopK temperature
+  soft_topk_method: "sigmoid"
+  k_ratio: 0.5            # retain 50% of visual tokens
+
+acis:
+  visual_dim: 960
+  action_dim: 720
+  num_heads: 8
+  dropout: 0.0
+
+training:
+  output_dir: "checkpoints/imm_anchor_v7_1"
+  eval_every: 999999           # skip in-training eval
+  save_every: 2000             # frequent checkpoints
+  grad_clip: 30.0              # v7=10.0, increased to reduce gradient direction distortion

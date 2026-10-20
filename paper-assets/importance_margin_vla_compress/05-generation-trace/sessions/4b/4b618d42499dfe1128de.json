@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_eval_pi05_attention_k085_long_seed42_v2_20260526T163015_result.json",
     "occurrence": 1,
-    "bytes": 920,
-    "sha256": "2ad37d83c6d950a5594d0b2506e4b07a6978fdc959e04470f44b52c622e1caa6"
+    "bytes": 919,
+    "sha256": "dab8e1f8926d00a10aad37db9c8bb0452720248eff96b42268aa11ce4d98b114"
   },
   "statistics": {
     "messages": 1,

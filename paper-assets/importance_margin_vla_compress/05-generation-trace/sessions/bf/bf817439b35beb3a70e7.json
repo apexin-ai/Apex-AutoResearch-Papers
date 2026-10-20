@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-d108-parallel_20260520T124728_result.json",
     "occurrence": 1,
-    "bytes": 878,
-    "sha256": "f504ffcdd24db65b9bbd9a5858e560b1e9861ef01111d0c2fdb7f277e43ebd43"
+    "bytes": 877,
+    "sha256": "d7848f521916f87ade5bd75312baa8f5888d4c1693a0bb632d42e024281410fe"
   },
   "statistics": {
     "messages": 1,

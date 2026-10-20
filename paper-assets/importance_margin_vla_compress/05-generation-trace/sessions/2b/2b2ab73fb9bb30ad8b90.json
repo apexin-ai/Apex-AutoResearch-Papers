@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_xvla-cv-analysis_20260520T094958_result.json",
     "occurrence": 1,
-    "bytes": 1150,
-    "sha256": "1d91e79bd155a67bac655a9654559620232fe5f67f982edeecaab49461d01616"
+    "bytes": 1149,
+    "sha256": "f93bbd31c360dc3a0f20ec3c078d00197aba6a76753a0cad5fba5ccc2b781eb7"
   },
   "statistics": {
     "messages": 1,

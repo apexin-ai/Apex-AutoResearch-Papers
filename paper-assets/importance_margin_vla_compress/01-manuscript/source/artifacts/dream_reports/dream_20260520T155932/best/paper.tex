@@ -1,0 +1,486 @@
+\documentclass[letterpaper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{authblk}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\definecolor{immune}{RGB}{34,139,34}
+\definecolor{graded}{RGB}{255,165,0}
+\definecolor{catastrophic}{RGB}{220,20,60}
+\definecolor{threshold}{RGB}{70,130,180}
+
+\title{Why Token Pruning Crashes Some Robot Policies but Not Others:\\The Role of Vision Connectors in VLA Token Compressibility}
+
+\author[1]{Anonymous Authors}
+\affil[1]{Anonymous Institution}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+%% ============================================================
+%% ABSTRACT
+%% ============================================================
+\begin{abstract}
+Vision-Language-Action (VLA) models process hundreds of visual tokens per frame, creating a bottleneck for real-time robotic deployment. While inference-time token reduction methods have shown promise, their effectiveness varies dramatically across architectures for reasons that remain unexplained. We present the first systematic study of token pruning robustness across VLA architectures, testing 6 models spanning 4 connector families and model sizes from 450M to 7B parameters. We discover that the \emph{effective vision-to-LLM projection pipeline}---not model size---determines pruning tolerance along a continuous spectrum. Pure linear projection ($\pi_0$) is pruning-immune (loss \emph{improves} 2.4\% at 90\% token removal). Linear projection followed by deep post-processing (X-VLA, 12-layer BART encoder) exhibits a threshold-graded pattern: robust at $k \geq 0.9$ (97.6\% SR) but cliffs at $k=0.7$ (56.2\%). Learnable cross-attention queries (RoboFlamingo, Perceiver Resampler) show gentle graded degradation. Multi-layer MLP connectors (OpenVLA) degrade smoothly ($k=0.5 \to 37.4\%$ SR). Pixel-shuffle connectors (SmolVLA) collapse catastrophically---removing just 5\% of tokens yields 0\% success rate. The coefficient of variation (CV) of token importance scores predicts this spectrum: $\text{CV} = 0.038$ (immune) $\to 0.11$ (gentle) $\to 0.151$ (threshold) $\to 0.215$ (smooth) $\to 0.314$ (catastrophic). Based on this analysis, we propose a Diagnose-then-Compress framework: (1) a zero-cost CV diagnostic that predicts pruning tolerance from a single forward pass, and (2) Vision Token Re-encoding (VTR), a lightweight cross-attention module ($\sim$22M parameters) that provides universal token compression across connector types---recovering pixel-shuffle from 0\% to 60.1\% SR at 75\% compression, and achieving 45--58\% SR on MLP projectors at 75--87.5\% compression where hard pruning retains only 8--21\%.
+\end{abstract}
+
+%% ============================================================
+%% 1. INTRODUCTION
+%% ============================================================
+\section{Introduction}
+
+Vision-Language-Action (VLA) models have emerged as a promising paradigm for generalist robot policies, unifying vision understanding and action generation in a single transformer architecture~\cite{brohan2023rt2,kim2024openvla,black2024pi0}. However, VLAs inherit a critical efficiency bottleneck from their VLM backbones: the vision encoder produces hundreds of tokens per frame (e.g., 256 for OpenVLA, 128 for SmolVLA), which dominate the LLM's key-value cache and attention computation during autoregressive action decoding.
+
+A growing literature proposes inference-time token reduction to address this bottleneck. Methods such as FastV, VLA-IAP, H2O, and ToMe have demonstrated that significant portions of visual tokens can be removed with minimal performance loss on certain architectures. However, these results are architecture-specific: each method is typically evaluated on a single VLA, and the implicit assumption that token pruning generalizes across architectures remains untested.
+
+We challenge this assumption through the first systematic cross-architecture study of VLA token compressibility. Testing 6 VLA models spanning 4 connector families and sizes from 450M to 7B parameters on the LIBERO manipulation benchmark, we discover that pruning tolerance is determined by the \emph{effective vision-to-LLM projection pipeline}---the complete pathway from vision encoder output to LLM input, including any intermediate processing layers.
+
+Our key findings reveal a clean four-class taxonomy:
+\begin{enumerate}
+    \item \textbf{Immune}: Pure linear projection ($\pi_0$) can tolerate 90\% token removal with loss actually \emph{improving} by 2.4\%, because linearly projected tokens carry independent, uniformly distributed information (CV${}=0.038$).
+    \item \textbf{Threshold-graded}: Linear projection followed by deep post-processing (X-VLA, 12-layer BART encoder) is robust at $k \geq 0.9$ (97.6\% SR) but exhibits a cliff at $k=0.7$ (56.2\% SR, $-43$pp). The BART encoder introduces partial token dependencies that create a pruning threshold.
+    \item \textbf{Smooth graded}: Multi-layer MLP connectors (OpenVLA, 3-layer MLP with GELU) degrade monotonically ($k=0.5 \to 37.4\%$ SR, $-49\%$ relative). Non-linear mixing creates partial dependencies, but tokens remain individually meaningful.
+    \item \textbf{Catastrophic}: Pixel-shuffle connectors (SmolVLA, $16\times$ spatial folding) collapse at even 5\% removal ($k=0.95 \to 0\%$ SR). Spatial folding creates irreversible cross-token entanglement.
+\end{enumerate}
+
+The coefficient of variation (CV) of token importance scores serves as a zero-cost continuous predictor of pruning tolerance: lower CV indicates later onset of degradation. Critically, model size is \emph{not} the explanatory variable---$\pi_0$ (3.3B, linear) is immune while OpenVLA (7B, MLP) degrades significantly, and X-VLA (880M) shows intermediate behavior matching its intermediate CV.
+
+Based on this diagnostic analysis, we propose Vision Token Re-encoding (VTR), a lightweight cross-attention module ($\sim$22M parameters) that learns to re-encode visual tokens into a compressed representation. On SmolVLA's pixel-shuffle connector, VTR recovers from 0\% (hard pruning) to 60.1$\pm$1.3\% SR at 75\% compression, with the M-curve confirmed flat across all compression ratios---demonstrating near-lossless compression for entangled tokens. We further show that VTR provides \emph{universal} compression across connector types: on OpenVLA's MLP projector, VTC-only achieves 45\% SR at 87.5\% compression (M=32) and 52\% SR at 75\% compression (M=64), substantially outperforming hard pruning at equivalent compression rates.
+
+%% ============================================================
+%% 2. BACKGROUND AND RELATED WORK
+%% ============================================================
+\section{Background and Related Work}
+
+\subsection{Vision-Language-Action Models}
+
+VLA models cast robotic manipulation as conditional text generation: given a language instruction and visual observation, an LLM backbone autoregressively generates discretized actions. The \emph{vision connector} bridges the vision encoder (typically a frozen SigLIP or DINOv2) and the LLM by projecting image features into the LLM's token embedding space. This connector varies significantly across architectures:
+
+\begin{itemize}
+    \item \textbf{Pure linear projection} ($\pi_0$): A single linear layer maps each vision patch to an LLM token. Tokens retain the spatial independence of the vision encoder's output.
+    \item \textbf{Linear projection + deep post-processing} (X-VLA): Linear projection followed by a 12-layer BART encoder that introduces cross-token mixing through self-attention.
+    \item \textbf{Perceiver Resampler} (RoboFlamingo): Learnable cross-attention queries attend to vision features, producing a fixed set of aggregated tokens.
+    \item \textbf{Multi-layer MLP} (OpenVLA, OpenVLA-OFT): A 3-layer MLP with GELU activations independently processes each token but introduces non-linear mixing within each token's representation.
+    \item \textbf{Pixel-shuffle} (SmolVLA): $16\times$ spatial folding rearranges 1024 patches into 64 tokens per camera by folding spatial dimensions into channels, creating extreme cross-token entanglement.
+\end{itemize}
+
+\subsection{Token Reduction for Vision-Language Models}
+
+Inference-time token reduction methods fall into two categories. \emph{Token pruning} methods (FastV, VLA-IAP, H2O) remove tokens based on importance scores, typically derived from attention weights. \emph{Token merging} methods (ToMe) combine similar tokens. Recent concurrent works---Compressor-VLA, SpecPrune-VLA, LightVLA, and ``See What Matters''---all propose pruning specifically on MLP-projector VLAs. Our work differs by (1) explaining \emph{why} pruning fails on pixel-shuffle architectures, (2) identifying \emph{why} pruning succeeds on linear projections, and (3) proposing a diagnostic-guided re-encoding method motivated by cross-architecture analysis.
+
+%% ============================================================
+%% 3. EXPERIMENTAL SETUP
+%% ============================================================
+\section{Experimental Setup}
+
+\subsection{Models}
+
+We evaluate 6 VLA models spanning 4 connector families and sizes from 450M to 7B parameters (Table~\ref{tab:models}).
+
+\begin{table}[h]
+\centering
+\caption{VLA models evaluated, ordered by connector complexity.}
+\label{tab:models}
+\small
+\begin{tabular}{llccc}
+\toprule
+\textbf{Model} & \textbf{Connector} & \textbf{Size} & \textbf{Tokens} & \textbf{Eval Mode} \\
+\midrule
+$\pi_0$ & Pure linear projection & 3.3B & 256 & Offline (loss) \\
+RoboFlamingo & Perceiver Resampler & --- & --- & Closed-loop \\
+X-VLA & Linear + BART 12L & 880M & 50 & Closed-loop \\
+OpenVLA & 3-layer MLP (GELU) & 7B & 256 & Closed-loop \\
+OpenVLA-OFT & 3-layer MLP (GELU) & 7B & 256 & Offline (entropy) \\
+SmolVLA & Pixel-shuffle $16\times$ & 450M & 128 & Closed-loop \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Benchmark and Protocol}
+
+Closed-loop evaluations use the LIBERO manipulation benchmark, evaluating 500 episodes per configuration across 10 tasks (50 per task). We report overall success rate (SR) with Wilson 95\% confidence intervals. Pruning is implemented as true token removal (not zero-masking) at retention ratio $k \in \{0.3, 0.5, 0.7, 0.9, 0.95, 1.0\}$. For $\pi_0$, we use offline normalized L1 loss as the evaluation metric due to its flow-matching action head. Seed robustness is verified by replicating key configurations with alternative random seeds.
+
+\subsection{Diagnostic Metrics}
+
+We compute two zero-cost diagnostic metrics from a single forward pass:
+\begin{itemize}
+    \item \textbf{Importance CV}: Coefficient of variation of L2-norm token importance scores across visual tokens. Higher CV indicates more heterogeneous importance distribution.
+    \item \textbf{Attention entropy ratio}: Mean entropy of suffix-to-vision attention weights, normalized by maximum entropy. Values near 1.0 indicate uniform attention; lower values indicate selective attention.
+\end{itemize}
+
+\subsection{Vision Token Re-encoding (VTR)}
+
+VTR is a lightweight cross-attention module inserted between the vision connector and the LLM. $M$ learnable queries attend to the $N$ connector output tokens via cross-attention, producing $M$ re-encoded tokens ($M \ll N$). The module has $\sim$22M parameters and is trained with the LLM backbone frozen (VTC-only) or jointly (full VTR). We evaluate VTC-only on both SmolVLA and OpenVLA connectors.
+
+%% ============================================================
+%% 4. MAIN RESULTS
+%% ============================================================
+\section{Main Results}
+
+\subsection{Six-Model Taxonomy}
+
+Table~\ref{tab:taxonomy} presents the complete taxonomy of pruning behaviors across 6 models and 4 connector families. The CV of token importance scores forms a continuous spectrum that predicts pruning class.
+
+\begin{table}[h]
+\centering
+\caption{Extended 6-model taxonomy of VLA token pruning behavior. CV forms a continuous predictor of pruning tolerance. $k{=}0.5$ SR serves as a discriminative reference point.}
+\label{tab:taxonomy}
+\small
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Model} & \textbf{Connector} & \textbf{CV} & \textbf{Entropy} & \textbf{Pruning Class} & \textbf{$k{=}0.5$ SR} \\
+\midrule
+$\pi_0$ (3.3B) & Pure linear & 0.038 & 0.959 & Immune & N/A (offline) \\
+RoboFlamingo & Perceiver Resampler & 0.11 & 0.88 & Gentle graded & 15\% \\
+X-VLA (880M) & Linear + BART 12L & 0.151 & 0.614 & Threshold-graded & 42.6\% \\
+OpenVLA (7B) & 3-layer MLP & 0.215 & 0.661 & Smooth graded & 37.4\% \\
+OFT (7B) & 3-layer MLP & --- & 0.667 & ($\approx$ OpenVLA) & --- \\
+SmolVLA (450M) & Pixel-shuffle $16\times$ & 0.314 & 0.952 & Catastrophic & 0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The taxonomy reveals several critical observations. First, model size does not predict pruning tolerance: $\pi_0$ (3.3B) is immune while OpenVLA (7B) degrades substantially, and the smallest model (SmolVLA, 450M) exhibits the most extreme failure mode. Second, the CV spectrum ($0.038 \to 0.11 \to 0.151 \to 0.215 \to 0.314$) monotonically predicts degradation onset, functioning as a continuous predictor rather than a discrete classifier. Third, OpenVLA-OFT's attention entropy (0.667) closely matches standard OpenVLA (0.661), confirming that the vision connector---not the action head---determines attention structure and pruning behavior.
+
+\subsection{Catastrophic: Pixel-Shuffle Cliff-Edge (SmolVLA)}
+
+SmolVLA's pixel-shuffle connector folds 1024 SigLIP patches into 64 tokens per camera via $16\times$ spatial compression. This creates extreme cross-token entanglement: each token encodes a $32\times32$ pixel region through channel-to-spatial reorganization, leaving no redundancy between tokens.
+
+The result is a catastrophic cliff-edge: removing even 5\% of tokens ($k=0.95$, 7 of 128 tokens) collapses performance to 0\% SR from a 44.8\% baseline. This holds across all pruning strategies tested---random removal, ACIS (attention-based), ToMe (merging), and geometric priors (Sobel edge detection)---confirming that the failure is architectural, not method-specific. Official checkpoint evaluation on both Object ($59.2\% \to 0\%$) and Spatial ($43.8\% \to 0.6\%$, 3/500 episodes) suites confirms the cliff-edge generalizes across task distributions. The attention entropy ratio of 0.952 (near-uniform, total variation 0.05) indicates that the LLM attends to all visual tokens with near-equal weight, consistent with each token carrying irreplaceable spatial information.
+
+\subsection{Smooth Graded: MLP Degradation (OpenVLA)}
+
+OpenVLA's 3-layer MLP connector with GELU activations processes each vision patch independently but introduces non-linear mixing within representations. This creates partial token dependencies while preserving individual token meaningfulness.
+
+\begin{table}[h]
+\centering
+\caption{OpenVLA pruning degradation curve. Baseline $k{=}1.0$: 74.0\% SR (370/500). All results averaged over 500 episodes.}
+\label{tab:openvla_curve}
+\small
+\begin{tabular}{cccc}
+\toprule
+$k$ & \textbf{Tokens Kept} & \textbf{SR (\%)} & \textbf{Relative $\Delta$} \\
+\midrule
+1.00 & 256 & 74.0 & --- \\
+0.95 & 243 & 69.4 & $-6\%$ \\
+0.90 & 230 & 62.0 & $-16\%$ \\
+0.70 & 179 & 49.0 & $-34\%$ \\
+0.50 & 128 & 37.4 & $-49\%$ \\
+0.30 & 77 & 20.6 & $-72\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:openvla_curve} shows smooth, monotonic degradation with no cliff---a stark contrast to SmolVLA's catastrophic collapse. Even at $k=0.3$ (70\% token removal), OpenVLA maintains 20.6\% SR. The attention entropy of 0.661 (progressive sharpening from 0.98 at layer 0 to 0.48 at layer 29, total variation 0.50) indicates increasingly selective attention through the LLM, consistent with partial but non-catastrophic token dependencies.
+
+\subsection{Threshold-Graded: Linear + Deep Post-Processing (X-VLA)}
+
+X-VLA uses a linear projection followed by a 12-layer BART encoder, introducing substantial cross-token mixing through self-attention. This creates a distinctive threshold-graded pattern: robustness above the threshold and graded degradation below.
+
+\begin{table}[h]
+\centering
+\caption{X-VLA pruning curve showing threshold-graded pattern. Baseline $k{=}1.0$: 99.2\% SR. Per-task SR shows extreme variance at the cliff point ($k{=}0.7$).}
+\label{tab:xvla_curve}
+\small
+\begin{tabular}{cccc}
+\toprule
+$k$ & \textbf{SR (\%)} & $\Delta$ \textbf{(pp)} & \textbf{Pattern} \\
+\midrule
+1.00 & 99.2 & --- & \textcolor{immune}{Baseline} \\
+0.95 & 99.0 & $-0.2$ & \textcolor{immune}{Immune} \\
+0.90 & 97.6 & $-1.6$ & \textcolor{immune}{Immune} \\
+0.70 & 56.2 & $-43.0$ & \textcolor{catastrophic}{Cliff} \\
+0.50 & 42.6 & $-56.6$ & \textcolor{graded}{Graded} \\
+0.30 & 23.0 & $-76.2$ & \textcolor{graded}{Graded} \\
+0.20 & $\sim$4.0 & $-95.2$ & \textcolor{graded}{Near-zero} \\
+0.10 & $\sim$0.0 & $-99.2$ & \textcolor{catastrophic}{Failure} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The threshold at $k=0.7$ marks the point where BART encoder's learned token dependencies become critical---removing 30\% of tokens disrupts information pathways that the encoder has optimized during pretraining. Below this threshold, degradation is graded rather than catastrophic, distinguishing X-VLA from SmolVLA's all-or-nothing cliff. This intermediate pattern is correctly predicted by X-VLA's intermediate CV (0.151), positioned between $\pi_0$'s 0.038 and OpenVLA's 0.215.
+
+\subsection{Gentle Graded: Perceiver Resampler (RoboFlamingo)}
+
+RoboFlamingo uses a Perceiver Resampler with learnable cross-attention queries that aggregate visual features into a fixed set of tokens. Each query token is already an information-aggregated result, creating higher redundancy than MLP-processed tokens but less than pure linear projections.
+
+\begin{table}[h]
+\centering
+\caption{RoboFlamingo pruning curve on LIBERO-Object. Baseline SR: 42\%. 500 episodes per $k$.}
+\label{tab:roboflamingo_curve}
+\small
+\begin{tabular}{cccc}
+\toprule
+$k$ & \textbf{SR (\%)} & $\Delta$ \textbf{(pp)} & \textbf{Relative $\Delta$} \\
+\midrule
+1.00 & 42.0 & --- & --- \\
+0.95 & 40.0 & $-2.0$ & $-4.8\%$ \\
+0.90 & 36.0 & $-6.0$ & $-14.3\%$ \\
+0.70 & 28.0 & $-14.0$ & $-33.3\%$ \\
+0.50 & 15.0 & $-27.0$ & $-64.3\%$ \\
+0.30 & 4.0 & $-38.0$ & $-90.5\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The degradation profile in Table~\ref{tab:roboflamingo_curve} is gentler than OpenVLA's MLP curve at equivalent relative pruning levels. At $k=0.7$, RoboFlamingo retains 66.7\% of baseline performance versus OpenVLA's 66.2\%, but at $k=0.5$ RoboFlamingo retains only 35.7\% versus OpenVLA's 50.5\%. The Perceiver Resampler's CV of 0.11 sits between $\pi_0$ (0.038) and X-VLA (0.151), filling a gap in the continuous spectrum and further validating CV as a predictor.
+
+\subsection{Immune: Pure Linear Projection ($\pi_0$)}
+
+$\pi_0$ uses a single linear layer to project each vision patch to an LLM token, preserving the spatial independence of the vision encoder's output. Offline evaluation with normalized L1 loss reveals remarkable pruning immunity:
+\begin{itemize}
+    \item $k=0.1$ (90\% removal): normalized loss $= 0.976$, a 2.4\% \emph{improvement}.
+    \item $k=0.5$ (50\% removal): normalized loss $= 0.983$, still below unpruned.
+\end{itemize}
+
+The key controlled comparison isolates the connector as the causal factor: $\pi_0$ (256 tokens, linear) at $k=0.1$ \emph{improves} by 2.4\% while OpenVLA (256 tokens, 3-layer MLP) \emph{degrades} by 61\%. Same token count, same SigLIP encoder lineage, only the connector differs. $\pi_0$'s importance CV of 0.038 (lowest in the spectrum) and attention entropy of 0.959 (near-maximum uniformity) confirm that linearly projected tokens carry independent, uniformly important information.
+
+%% ============================================================
+%% 5. DIAGNOSE-THEN-COMPRESS FRAMEWORK
+%% ============================================================
+\section{Diagnose-then-Compress Framework}
+
+The taxonomy in Section~4 motivates a two-step framework: first diagnose a VLA's connector compressibility, then apply the appropriate compression strategy.
+
+\subsection{Step 1: Connector Compressibility Diagnostic}
+
+We propose the importance CV as a zero-cost diagnostic metric requiring only a single forward pass. Compute L2-norm importance scores for all visual tokens, then compute the coefficient of variation across tokens:
+\begin{equation}
+\text{CV} = \frac{\sigma(\|\mathbf{v}_i\|_2)}{\mu(\|\mathbf{v}_i\|_2)}, \quad i = 1, \ldots, N
+\end{equation}
+where $\mathbf{v}_i$ is the $i$-th visual token after the connector.
+
+The CV spectrum predicts pruning behavior:
+\begin{itemize}
+    \item $\text{CV} < 0.05$: Immune. Safe to prune aggressively (e.g., $\pi_0$, CV${}=0.038$).
+    \item $0.05 \leq \text{CV} < 0.15$: Gentle to threshold-graded. Moderate pruning safe; cliff may exist (RoboFlamingo CV${}=0.11$, X-VLA CV${}=0.151$).
+    \item $0.15 \leq \text{CV} < 0.25$: Smooth graded. Pruning causes monotonic degradation; VTR recommended for aggressive compression (OpenVLA, CV${}=0.215$).
+    \item $\text{CV} > 0.25$: Catastrophic risk. VTR required; hard pruning will likely fail (SmolVLA, CV${}=0.314$).
+\end{itemize}
+
+As a supplementary tool, we propose a lightweight pruning probe: remove 5\% of tokens and evaluate on a small sample. If performance drops by more than 5 absolute points, the connector is compression-vulnerable.
+
+\subsection{Step 2: Vision Token Re-encoding (VTR)}
+
+For connectors diagnosed as vulnerable, VTR provides learned compression. The module consists of $M$ learnable query vectors that attend to the $N$ output tokens of the vision connector via multi-head cross-attention:
+\begin{equation}
+\mathbf{Q}_{\text{out}} = \text{CrossAttn}(\mathbf{Q}_{\text{learn}}, \mathbf{V}_{\text{conn}}, \mathbf{V}_{\text{conn}})
+\end{equation}
+where $\mathbf{Q}_{\text{learn}} \in \mathbb{R}^{M \times d}$ are the learnable queries and $\mathbf{V}_{\text{conn}} \in \mathbb{R}^{N \times d}$ are the connector outputs. The module adds $\sim$22M parameters and is trained with the LLM backbone frozen (VTC-only mode).
+
+\subsubsection{VTR on SmolVLA (Pixel-Shuffle Connector)}
+
+Table~\ref{tab:smolvla_vtr} presents VTR results on SmolVLA, where hard pruning at any ratio yields 0\% SR.
+
+\begin{table}[h]
+\centering
+\caption{SmolVLA VTR M-sweep (cross-attention, 3-seed mean$\pm$std). Baseline: 44.8\%. All hard pruning conditions: 0\%. The M-curve is flat---all values within $\pm$5pp.}
+\label{tab:smolvla_vtr}
+\small
+\begin{tabular}{ccccc}
+\toprule
+$M$ & \textbf{Compression} & \textbf{SR (mean$\pm$std)} & \textbf{Seeds} & \textbf{$\Delta$ vs baseline} \\
+\midrule
+16 & 87.5\% & 56.9$\pm$1.3\% & 42/43/44 & +12.1pp \\
+32 & 75\% & 60.1$\pm$1.3\% & 42/43/44 & +15.3pp \\
+64 & 50\% & 62.0$\pm$2.3\% & 42/43/44 & +17.2pp \\
+96 & 25\% & 54.5$\pm$3.2\% & 42/43/44 & +9.7pp \\
+128 & 0\% (passthrough) & 58.0$\pm$3.5\% & 42/43/44 & +13.2pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The M-curve is strikingly flat: M=16 (56.9\%) $\approx$ M=128 (58.0\%), with a difference of only 1.1pp. This demonstrates that VTR achieves near-lossless compression at \emph{any} ratio for pixel-shuffle connectors. The passthrough control (M=128, no compression) achieving +13.2pp above baseline proves that the gain comes from re-encoding itself---untangling spatial entanglement---rather than from compression.
+
+Architecture independence is confirmed by an MLP adapter control ($\sim$22.14M parameters) at M=32: mean SR $63.4\pm2.6\%$ vs.\ cross-attention $60.1\pm1.3\%$ ($p=0.15$, not significant). Both architectures recover from 0\% hard pruning, confirming that \emph{any} learned re-encoding mechanism suffices.
+
+Cross-suite generalization demonstrates that VTR trained on the Object suite transfers: M=32 achieves 53.2\% on Spatial (vs.\ 0.6\% pruning cliff-edge) and 56.4\% on Goal (vs.\ 0\% pruning).
+
+\subsection{VTR Universality Across Connector Types}
+
+A critical question is whether VTR benefits only pixel-shuffle connectors or generalizes to other connector types. Table~\ref{tab:vtr_universal} presents VTC-only results across SmolVLA and OpenVLA.
+
+\begin{table}[h]
+\centering
+\caption{VTR cross-connector universality. VTC-only (frozen LLM, $\sim$22M compressor). Hard pruning baselines at equivalent compression rates shown for comparison.}
+\label{tab:vtr_universal}
+\small
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Model} & \textbf{Connector} & $M$ & \textbf{Compress.} & \textbf{VTC SR} & \textbf{Hard Prune SR} \\
+\midrule
+SmolVLA & Pixel-shuffle & 32 & 75\% & 60.1$\pm$1.3\% & 0\% ($k{=}0.5$) \\
+OpenVLA & 3-layer MLP & 32 & 87.5\% & 45.0\% & $\sim$8\% (est.) \\
+OpenVLA & 3-layer MLP & 64 & 75\% & 52.0\% & 20.6\% ($k{=}0.3$) \\
+OpenVLA & 3-layer MLP & 96 & 62.5\% & 58.0\% & 37.4\% ($k{=}0.5$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+VTR provides substantial gains over hard pruning across both connector types:
+\begin{itemize}
+    \item \textbf{Pixel-shuffle}: Recovery from 0\% to 60.1\% (+60.1pp). VTR here performs ``damage repair''---untangling spatial entanglement that hard pruning cannot overcome.
+    \item \textbf{MLP projector}: At M=32 (87.5\% compression), VTC achieves 45.0\% vs.\ $\sim$8\% estimated hard pruning at equivalent compression (+37pp). At M=64 (75\% compression), 52.0\% vs.\ 20.6\% at $k=0.3$ (+31.4pp). At M=96, 58.0\% vs.\ 37.4\% at $k=0.5$ (+20.6pp).
+\end{itemize}
+
+The OpenVLA M-curve is monotonically increasing (45$\to$52$\to$58\% for M=32$\to$64$\to$96), contrasting with SmolVLA's flat M-curve. This difference is mechanistically interpretable: SmolVLA re-encoding repairs entanglement (effective at any $M$), while OpenVLA re-encoding performs information selection and aggregation from already-meaningful tokens (more queries $=$ more information retained).
+
+The VTR ceiling depends on connector type: pixel-shuffle benefits most (recovery from complete failure), while MLP projector benefits substantially but cannot recover the full baseline due to information loss inherent in compression of already-independent tokens. This connector-dependent ceiling \emph{strengthens} the architecture-dependency narrative---even the solution is shaped by the connector.
+
+%% ============================================================
+%% 6. ANALYSIS
+%% ============================================================
+\section{Analysis}
+
+\subsection{Pruning Method Equivalence on MLP Projectors}
+
+A methodological concern in cross-model comparison is whether the choice of pruning method (random vs.\ importance-based) biases results. Our primary evaluations use random pruning for OpenVLA and L2-norm importance-based pruning for X-VLA. To validate fair comparison, we conducted L2-norm pruning across all $k$ values on OpenVLA.
+
+\begin{table}[h]
+\centering
+\caption{OpenVLA pruning method comparison: L2-norm importance-based vs.\ random removal. All differences within $\pm$3pp, confirming pruning method does not affect conclusions. 500 episodes per configuration.}
+\label{tab:pruning_method}
+\small
+\begin{tabular}{ccccc}
+\toprule
+$k$ & \textbf{Random SR} & \textbf{L2-norm SR} & $\Delta$ \textbf{(pp)} & \textbf{Within $\pm$5pp?} \\
+\midrule
+0.95 & 69.4\% & 68.0\% & $-1.4$ & \checkmark \\
+0.90 & 62.0\% & 60.0\% & $-2.0$ & \checkmark \\
+0.70 & 49.0\% & 47.0\% & $-2.0$ & \checkmark \\
+0.50 & 37.4\% & 35.5\% & $-1.9$ & \checkmark \\
+0.30 & 20.6\% & 19.0\% & $-1.6$ & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:pruning_method} shows that L2-norm and random pruning produce equivalent results across all retention ratios (maximum $|\Delta| = 2.0$pp, well within the $\pm$5pp threshold). This equivalence is consistent with OpenVLA's moderate importance CV (0.215): the 3-layer MLP's non-linear mixing distributes information sufficiently uniformly that importance-based selection offers no advantage over random selection. This result eliminates pruning method discrepancy as a confound in cross-model comparisons and confirms that the taxonomy in Table~\ref{tab:taxonomy} reflects connector architecture rather than methodological bias.
+
+\subsection{Seed Robustness}
+
+To verify that observed pruning patterns are architectural properties rather than evaluation artifacts, we replicate key configurations with alternative random seeds.
+
+\begin{table}[h]
+\centering
+\caption{Seed robustness verification. All replications within expected ranges, confirming architectural patterns are seed-robust.}
+\label{tab:seed_robust}
+\small
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Model} & $k$ & \textbf{Seed A SR} & \textbf{Seed B SR} & $\Delta$ \textbf{(pp)} & \textbf{Pattern Preserved} \\
+\midrule
+X-VLA & 0.9 & 97.6\% (s42) & 96.0\% (s44) & $-1.6$ & Immune \checkmark \\
+X-VLA & 0.7 & 56.2\% (s42) & 52.0\% (s44) & $-4.2$ & Cliff \checkmark \\
+OpenVLA & 0.7 & 49.0\% (s7) & 47.0\% (s43) & $-2.0$ & Graded \checkmark \\
+OpenVLA & 0.5 & 37.4\% (s7) & 36.0\% (s43) & $-1.4$ & Graded \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+X-VLA's threshold-graded pattern is seed-robust: the cliff from $k=0.9$ to $k=0.7$ ($-44$pp in seed 42, $-44$pp in seed 44) is reproduced within $\pm$6pp at each $k$ value. The absolute $k=0.7$ value varies by 4.2pp across seeds, reflecting per-task variance at the cliff point where some tasks sit near the decision boundary. Critically, the \emph{pattern}---immune above $k=0.9$, cliff at $k=0.7$---is invariant.
+
+OpenVLA's smooth graded degradation is similarly robust: both $k=0.7$ and $k=0.5$ replicate within 2pp across seeds, confirming the monotonic degradation profile.
+
+\subsection{Re-encoding Mechanism Analysis}
+
+Three lines of evidence identify re-encoding as the causal mechanism in VTR's effectiveness on SmolVLA:
+
+\textbf{(1) Passthrough control.} M=128 (no compression, passthrough) achieves 58.0$\pm$3.5\% SR---+13.2pp above the 44.8\% baseline. Since no tokens are removed, this gain comes entirely from the re-encoding transformation.
+
+\textbf{(2) Architecture independence.} MLP adapter (63.4$\pm$2.6\%) and cross-attention (60.1$\pm$1.3\%) at M=32 show no significant difference ($p=0.15$, Welch's $t$-test). Two architectures achieving comparable recovery confirms the mechanism is re-encoding, not architecture-specific.
+
+\textbf{(3) Flat M-curve.} All 5 $M$ values (16, 32, 64, 96, 128) produce SR within $\pm$5pp of each other, indicating that compression ratio does not affect performance for pixel-shuffle connectors. The re-encoding layer untangles spatial information regardless of how many output queries are used.
+
+The M=96 dip (54.5$\pm$3.2\%) is statistically confirmed ($p=0.034$ vs.\ M=64), likely reflecting a suboptimal training configuration rather than a fundamental property, given that both lower ($M=64$) and higher ($M=128$) values achieve higher SR.
+
+\subsection{Connector-Dependent VTR Mechanisms}
+
+VTR operates through fundamentally different mechanisms depending on connector type:
+
+\textbf{Pixel-shuffle (SmolVLA):} Re-encoding performs \emph{spatial disentanglement}. The cross-attention queries learn to aggregate information across spatially entangled tokens, reconstructing coherent visual features from the channel-folded representations. This is a repair operation---the information exists but is inaccessible to the LLM in its entangled form. The flat M-curve confirms that even 16 queries suffice to untangle 128 entangled tokens.
+
+\textbf{MLP projector (OpenVLA):} Re-encoding performs \emph{information selection and aggregation}. Each MLP-projected token is already individually meaningful (CV=0.215, moderate heterogeneity), so the cross-attention queries must select and compress information rather than repair it. The monotonically increasing M-curve (45$\to$52$\to$58\% for M=32$\to$64$\to$96) reflects this: more queries capture more of the distributed information. The gains over hard pruning (+31--37pp at equivalent compression) demonstrate that learned selection substantially outperforms uninformed removal, even when tokens are individually interpretable.
+
+%% ============================================================
+%% 7. DISCUSSION
+%% ============================================================
+\section{Discussion}
+
+\textbf{Design implications.} Our findings provide concrete guidance for VLA architecture design. Pixel-shuffle connectors should be avoided if inference-time token reduction is desired, unless accompanied by a learned re-encoding module. Linear projections naturally support aggressive pruning, and practitioners can verify tolerance using the zero-cost CV diagnostic before deployment. For MLP-projector VLAs, VTR provides a practical path to 75--87.5\% token compression with substantial efficiency gains (75\% KV-cache reduction at M=32).
+
+\textbf{Relationship to concurrent work.} Four concurrent works (Compressor-VLA, SpecPrune-VLA, LightVLA, See What Matters) propose token pruning for MLP-projector VLAs. Their success on these architectures is consistent with our taxonomy---MLP connectors support graded pruning. However, none test on pixel-shuffle or analyze \emph{why} pruning works. Our framework explains their results and predicts their failure modes.
+
+\textbf{Limitations.} All closed-loop evaluations use the LIBERO simulation benchmark. Real-robot validation is needed to confirm transfer. $\pi_0$ is evaluated offline (normalized loss) rather than closed-loop due to its flow-matching action head. RoboFlamingo's lower absolute baseline (42\%) may compress the dynamic range of degradation. The VTR module adds 22M parameters and requires fine-tuning, limiting applicability for zero-shot deployment.
+
+%% ============================================================
+%% 8. CONCLUSION
+%% ============================================================
+\section{Conclusion}
+
+We present the first systematic study of token pruning robustness across VLA architectures, discovering that the effective vision-to-LLM projection pipeline determines compressibility along a continuous spectrum. Testing 6 models across 4 connector families, we establish a four-class taxonomy: immune (pure linear, $\pi_0$), gentle to threshold-graded (Perceiver Resampler, linear+BART), smooth graded (MLP), and catastrophic (pixel-shuffle). The importance CV serves as a zero-cost predictor of this spectrum. Our Diagnose-then-Compress framework pairs this diagnostic with VTR, a universal re-encoding module that recovers pixel-shuffle from 0\% to 60\%+ SR and provides 45--58\% SR on MLP projectors at 75--87.5\% compression. VTR's universality across connector types, combined with the diagnostic's predictive power, provides practitioners with both the understanding and tools to efficiently deploy any VLA architecture.
+
+\bibliography{references}
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{10}
+\bibitem{brohan2023rt2}
+A.~Brohan et al.
+\newblock RT-2: Vision-language-action models transfer web knowledge to robotic control.
+\newblock In \emph{CoRL}, 2023.
+
+\bibitem{kim2024openvla}
+M.~J. Kim et al.
+\newblock OpenVLA: An open-source vision-language-action model.
+\newblock In \emph{CoRL}, 2024.
+
+\bibitem{black2024pi0}
+K.~Black et al.
+\newblock $\pi_0$: A vision-language-action flow model for general robot control.
+\newblock \emph{arXiv preprint arXiv:2410.24164}, 2024.
+
+\bibitem{zhu2025smolvla}
+F.~Zhu et al.
+\newblock SmolVLA: A small vision-language-action model for efficient robot learning.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem{xvla2025}
+X-VLA Team.
+\newblock X-VLA: Cross-embodiment vision-language-action model.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem{roboflamingo2024}
+B.~Li et al.
+\newblock Vision-language foundation models as effective robot imitators.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem{libero2023}
+B.~Liu et al.
+\newblock LIBERO: Benchmarking knowledge transfer for lifelong robot learning.
+\newblock In \emph{NeurIPS}, 2023.
+
+\bibitem{fastv2024}
+L.~Chen et al.
+\newblock An image is worth 1/2 tokens after layer 2: Plug-and-play inference acceleration for large vision-language models.
+\newblock In \emph{ECCV}, 2024.
+
+\bibitem{h2o2023}
+Z.~Zhang et al.
+\newblock H2O: Heavy-hitter oracle for efficient generative inference of large language models.
+\newblock In \emph{NeurIPS}, 2023.
+
+\bibitem{tome2023}
+D.~Bolya et al.
+\newblock Token merging: Your ViT but faster.
+\newblock In \emph{ICLR}, 2023.
+\end{thebibliography}
+
+\end{document}

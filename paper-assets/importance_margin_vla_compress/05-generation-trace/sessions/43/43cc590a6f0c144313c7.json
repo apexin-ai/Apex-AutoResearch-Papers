@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_debug_vtc-m64v6-crash_20260521T174353_result.json",
     "occurrence": 1,
-    "bytes": 1355,
-    "sha256": "abad4d31628daae0e5de10fbc32f428dad8a690d98a9230e090ab2967a06fe3b"
+    "bytes": 1354,
+    "sha256": "04f81cf974fdec0098ae3cdd4f3cb029347a88a25acc225acd3fcf5c59ddfd2b"
   },
   "statistics": {
     "messages": 1,

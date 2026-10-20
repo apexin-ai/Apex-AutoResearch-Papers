@@ -1,0 +1,76 @@
+{
+  "exp_id": "eval_pi05_random_k05_spatial_seed42_postfix_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T02:17:21.105Z",
+    "updated_at": "2026-05-24T04:45:06.835Z",
+    "hypothesis": "π0.5 Spatial Random k=0.5 post-fix — CPU RNG bug 修复后重跑 Spatial 基线，50% token 移除对 Spatial suite 的影响",
+    "spec": {
+      "command": "eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 0",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "697716",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_spatial_seed42_postfix_v3.log",
+      "submitted_at": "2026-05-24T02:17:47.453Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_id": 0,
+      "data_path": "libero_spatial",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "checkpoint_path": "N/A (eval only)",
+      "eval_data": "libero_spatial (10 tasks x 50 episodes)",
+      "wall_clock_seconds": 8839.4,
+      "gpu_hours": 2.46
+    },
+    "reproduce": {
+      "finished_at": "2026-05-24T04:41:28.103Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-24T04:41:39.603077+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 71.8,
+      "total_episodes": 500,
+      "total_successes": 359,
+      "duration_min": 139.2,
+      "per_task_sr": {
+        "T0_between_plate_and_ramekin": 88,
+        "T1_next_to_ramekin": 88,
+        "T2_from_table_center": 88,
+        "T3_on_cookie_box": 48,
+        "T4_in_top_drawer": 40,
+        "T5_on_ramekin": 32,
+        "T6_next_to_cookie_box": 92,
+        "T7_on_stove": 86,
+        "T8_next_to_plate": 84,
+        "T9_on_wooden_cabinet": 72
+      },
+      "comparison": {
+        "vs_attention_k05": "-0.8pp (72.6% vs 71.8%)",
+        "vs_l2norm_k05": "+13.6pp (71.8% vs 58.2%)",
+        "vs_xvla_random_k05": "+0.4pp (71.8% vs 71.4%)"
+      }
+    },
+    "conclusion": "success",
+    "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_spatial_seed42_postfix_v3.log",
+    "completed_at": "2026-05-24T04:45:06.835Z"
+  },
+  "timestamp": "2026-05-24T04:45:07.778370+00:00",
+  "trigger": "update_registry"
+}

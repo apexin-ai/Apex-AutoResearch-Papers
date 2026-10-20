@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_random_k085_object_seed43_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T21:33:02.163Z",
+    "updated_at": "2026-05-24T21:33:27.609Z",
+    "hypothesis": "π0.5 Random k=0.85 Object seed43. Cliff zone k=0.85 dual-seed validation. seed42 Random k=0.85 Object needed for margin calculation."
+  },
+  "timestamp": "2026-05-24T21:33:29.562587+00:00",
+  "trigger": "update_registry"
+}

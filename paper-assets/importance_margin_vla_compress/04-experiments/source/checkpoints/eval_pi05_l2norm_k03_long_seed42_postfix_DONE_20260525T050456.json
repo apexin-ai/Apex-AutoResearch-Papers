@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval_pi05_l2norm_k03_long_seed42_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T14:34:39.150Z",
+    "updated_at": "2026-05-25T05:04:55.281Z",
+    "hypothesis": "π0.5 L2norm k=0.3 Long post-fix — L2norm Long curve extreme pruning endpoint。Pre-fix k=0.3 Long 已有数据。Random k=0.3 Long postfix 正在跑。补全 L2norm Long disruption curve 的极端端，与 Random k=0.3 对比验证 importance margin 在极端 pruning 下是否仍存在",
+    "spec": {
+      "command": "MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.3 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "564777",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_long_seed42_postfix.log",
+      "submitted_at": "2026-05-24T14:38:35.679Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 34587.3,
+      "gpu_hours": 9.61
+    },
+    "conclusion": "killed",
+    "failure_reason": "缺少环境变量 TRANSFORMERS_OFFLINE/HF_HOME/HF_HUB_OFFLINE 导致启动崩溃。已用 v2 重部署",
+    "metrics": {
+      "overall_sr": 36.6,
+      "total_episodes": 500
+    },
+    "completed_at": "2026-05-25T00:15:02.955Z"
+  },
+  "timestamp": "2026-05-25T05:04:56.393457+00:00",
+  "trigger": "update_registry"
+}

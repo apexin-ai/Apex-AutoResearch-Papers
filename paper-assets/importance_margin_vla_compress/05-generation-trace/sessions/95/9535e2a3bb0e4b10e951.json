@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd41074_gpu3_random_spatial_s43_v3_20260524T212943_result.json",
     "occurrence": 1,
-    "bytes": 411,
-    "sha256": "446c64a8e06973f1b57facc8f30cc10c4b98ab7642eb9d29f2a16097888d367d"
+    "bytes": 410,
+    "sha256": "5cece3ea29a578f430475d16ea3d303533df23433657f07cc9bbc1759d601947"
   },
   "statistics": {
     "messages": 1,

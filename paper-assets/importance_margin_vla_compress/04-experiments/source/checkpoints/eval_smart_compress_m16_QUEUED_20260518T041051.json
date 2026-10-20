@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_smart_compress_m16",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T04:10:44.382Z",
+    "updated_at": "2026-05-18T04:10:51.092Z",
+    "hypothesis": "Cross-attention pooling compression (128→16 tokens, 87.5% compression) is the most extreme reduction. Expected to show degradation vs M=32/M=64, establishing the lower bound of the compression curve and testing where soft compression begins to fail.",
+    "parent": "smart_compress_m16"
+  },
+  "timestamp": "2026-05-18T04:10:51.221656+00:00",
+  "trigger": "update_registry"
+}

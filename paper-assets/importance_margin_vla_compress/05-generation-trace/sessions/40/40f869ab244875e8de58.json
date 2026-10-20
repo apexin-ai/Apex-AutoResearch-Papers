@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_harvest_westd27271_zeromask_20260522T122853_result.json",
     "occurrence": 1,
-    "bytes": 968,
-    "sha256": "e8d02553936cf5eac7a7d7e825a6a293d8ab984b7780a294850dfc88196d343b"
+    "bytes": 967,
+    "sha256": "cf2bb88d7c67975913c7b23f715bbfd495cb1e5f7b4bbdf5e2f69feffe27afaa"
   },
   "statistics": {
     "messages": 1,

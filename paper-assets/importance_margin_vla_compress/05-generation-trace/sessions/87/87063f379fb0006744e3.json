@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_infra_verify-evaluate-deploy_20260515T172513_result.json",
     "occurrence": 1,
-    "bytes": 1059,
-    "sha256": "23e59e684b8923b5c04e965eff79267b038e61e8efe53febb72ec28dfacd0cf8"
+    "bytes": 1058,
+    "sha256": "2eb542bebf979cee64d2af42cd6776d77c62bdf40d8dcf5ccf614ccd758b920c"
   },
   "statistics": {
     "messages": 1,

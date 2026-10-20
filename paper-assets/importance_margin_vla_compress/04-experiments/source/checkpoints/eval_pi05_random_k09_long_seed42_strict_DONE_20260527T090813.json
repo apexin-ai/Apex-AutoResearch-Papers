@@ -1,0 +1,46 @@
+{
+  "exp_id": "eval_pi05_random_k09_long_seed42_strict",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T08:55:21.376Z",
+    "updated_at": "2026-05-27T09:08:09.141Z",
+    "hypothesis": "π0.5 Random k=0.9 Long strict — 当前值 ~32% 存在严重反单调性异常（k=0.85 strict=45.2%, k=0.75 strict=63.0%）。必须用 strict 条件在 westd-41074（非 cqa1）验证该值是否真实。如确认则 Random 在 k=0.9 存在 cliff",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": 340187,
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed42_strict.log",
+      "submitted_at": "2026-05-27T08:55:39.492Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_ids": [
+        0
+      ],
+      "seed": 42,
+      "model_name": "pi05_libero_finetuned",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "checkpoint_source": "pi05_libero_finetuned",
+      "eval_data": "libero_10 (Long, 10 tasks x 50 episodes)",
+      "checkpoint_path": "N/A (eval only)",
+      "wall_clock_seconds": 697.3,
+      "gpu_hours": 0.19
+    },
+    "reproduce": {
+      "finished_at": "2026-05-27T09:07:29.550Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-27T09:07:16.789Z"
+  },
+  "timestamp": "2026-05-27T09:08:13.648069+00:00",
+  "trigger": "update_registry"
+}

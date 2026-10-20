@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_libero_imm_twostage_prep_20260516T170818_result.json",
     "occurrence": 1,
-    "bytes": 1542,
-    "sha256": "0bc6de6aa9a93e12d6b79a22aa06e998f8b5b97a3d1447b4c52af31807e3cc8f"
+    "bytes": 1541,
+    "sha256": "246d353e3f5d4097697a4c9df4de2e26fb25cfc1efcdb9041f67b16f461daade"
   },
   "statistics": {
     "messages": 1,

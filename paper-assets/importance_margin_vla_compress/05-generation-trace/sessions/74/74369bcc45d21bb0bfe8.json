@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1-collect-l2norm-results_20260521T080536_result.json",
     "occurrence": 1,
-    "bytes": 1071,
-    "sha256": "490bb9274e0dc04502ac756455f2e39bdcd6583676cd1fbfff1f5a3ed82c1e56"
+    "bytes": 1070,
+    "sha256": "fa2acbbce5880a15828b4e0bfbff2d48c6a236da5b5bc6f871b9bb08407e3f37"
   },
   "statistics": {
     "messages": 1,

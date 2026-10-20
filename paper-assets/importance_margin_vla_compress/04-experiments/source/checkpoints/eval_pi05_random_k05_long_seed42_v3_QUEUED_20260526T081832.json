@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_random_k05_long_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T08:17:48.827Z",
+    "updated_at": "2026-05-26T08:18:31.250Z",
+    "hypothesis": "π0.5 Random k=0.5 Long seed42 v3 — 重跑。Random k=0.5 在 libero_10 上的 50% 压缩性能评估",
+    "parent": "eval_pi05_random_k05_long_seed42"
+  },
+  "timestamp": "2026-05-26T08:18:32.503109+00:00",
+  "trigger": "update_registry"
+}

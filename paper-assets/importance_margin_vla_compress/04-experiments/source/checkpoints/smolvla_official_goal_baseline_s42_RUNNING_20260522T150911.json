@@ -1,0 +1,28 @@
+{
+  "exp_id": "smolvla_official_goal_baseline_s42",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:08:13.920Z",
+    "updated_at": "2026-05-22T15:09:10.185Z",
+    "hypothesis": "SmolVLA official checkpoint establishes the baseline success rate on libero_goal without any pruning, providing the reference point for evaluating compression methods.",
+    "spec": {
+      "command": "eval_official_libero.py --mode baseline --suite libero_goal --num_episodes 50 --seed 42",
+      "server": "westd-38929",
+      "model_name": "smolvla_libero_official",
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/.hf_cache/smolvla_libero_official",
+      "checkpoint_path": "N/A",
+      "log_path": "logs/smolvla_baseline_goal_s42.log",
+      "eval_data": "libero_goal"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T15:09:11.124209+00:00",
+  "trigger": "update_registry"
+}

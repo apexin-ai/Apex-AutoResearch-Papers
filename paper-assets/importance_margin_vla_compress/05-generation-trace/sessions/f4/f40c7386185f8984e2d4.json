@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_debug_checkpoint_collapse_boundary_20260516T120050_result.json",
     "occurrence": 1,
-    "bytes": 1342,
-    "sha256": "4e09d083ef41c8b330ded69f4d084a25a05fa91d0acd5d24f8a0148368de64bd"
+    "bytes": 1341,
+    "sha256": "20e31c3b3085bb58507e74e512d377a29fdd00dbc6328a525781458bad6c7c68"
   },
   "statistics": {
     "messages": 1,

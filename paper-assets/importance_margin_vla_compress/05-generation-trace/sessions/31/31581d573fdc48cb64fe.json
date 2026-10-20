@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_baseline_control_prune_k05_20260518T222229_result.json",
     "occurrence": 1,
-    "bytes": 585,
-    "sha256": "8099a8bad25944df93ca35bf126a3eb1292981c3037c4be4103cf9f61536a206"
+    "bytes": 584,
+    "sha256": "4c81fe7f99b0e8fc3094d30c5471359bd9019acb3a6598fbc96465cebd86e322"
   },
   "statistics": {
     "messages": 1,

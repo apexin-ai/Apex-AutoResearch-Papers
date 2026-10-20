@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_debug_inference_time_fixes_20260516T111944_result.json",
     "occurrence": 1,
-    "bytes": 1858,
-    "sha256": "3c14be154bbb5dd1c7a0e19b038aad836fc5c2d7cb5a08fff2ab5c9788cef649"
+    "bytes": 1857,
+    "sha256": "d24391047f731cf8c74209191cef6092dbb1210a5208e7d88f251e0f22e02532"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_verify_libero_4gpu_status_20260516T155758_result.json",
     "occurrence": 1,
-    "bytes": 604,
-    "sha256": "01ece8cc45a8e4dc915ecd8d6726e033965f57a9990308a5443d366118e81c13"
+    "bytes": 603,
+    "sha256": "2418a8325cbf2724ef89422ddbb0c3b169d55721e16f6bd52cfb172e71bd38bf"
   },
   "statistics": {
     "messages": 1,

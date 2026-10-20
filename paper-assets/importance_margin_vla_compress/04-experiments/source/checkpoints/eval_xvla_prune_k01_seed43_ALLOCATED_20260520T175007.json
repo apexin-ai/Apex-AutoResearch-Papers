@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_xvla_prune_k01_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:29:14.767Z",
+    "updated_at": "2026-05-20T17:50:07.488Z",
+    "hypothesis": "X-VLA L2 norm pruning at k=0.1 with seed=43. Extends curve to 90% token removal. Seed42 k=0.2=5.2%. If k=0.1 ≈ 0-5%, confirms near-total collapse at extreme compression for linear projection connector."
+  },
+  "timestamp": "2026-05-20T17:50:07.793035+00:00",
+  "trigger": "update_registry"
+}

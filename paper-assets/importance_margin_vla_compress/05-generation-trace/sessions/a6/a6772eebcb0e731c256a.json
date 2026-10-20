@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analyze_w41_attn_k085_s43_20260527T205521_result.json",
     "occurrence": 1,
-    "bytes": 807,
-    "sha256": "88da3569e9d03bfb90384e4ae0855229698041dddc58f204881b1739dce201e5"
+    "bytes": 806,
+    "sha256": "cd46b1762043b472869cb49ed262591de7e4d03e5cf30b32af508eebd3998edb"
   },
   "statistics": {
     "messages": 1,

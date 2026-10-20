@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval_openvla_attn_k075_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T22:13:30.315Z",
+    "updated_at": "2026-05-26T22:14:49.763Z",
+    "hypothesis": "Attention-based pruning at k=0.75 on OpenVLA Goal suite will retain task performance by preserving the most important attention heads for goal-conditioned manipulation tasks.",
+    "spec": {
+      "command": "python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.75 --suite libero_goal --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/openvla-7b-finetuned-libero-goal --unnorm_key libero_goal",
+      "server": "westd-27271",
+      "gpu_ids": [
+        0
+      ],
+      "pid": 499267,
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "model_name": "openvla-7b-finetuned-libero-goal",
+      "seed": 42,
+      "checkpoint_path": "N/A (eval only)",
+      "checkpoint_source": "/root/autodl-tmp/openvla-7b-finetuned-libero-goal",
+      "eval_data": "libero_goal",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k075_goal_seed42.log"
+    }
+  },
+  "timestamp": "2026-05-26T22:14:51.013608+00:00",
+  "trigger": "update_registry"
+}

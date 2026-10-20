@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_metaworld_baseline_20260524T160423_result.json",
     "occurrence": 1,
-    "bytes": 1169,
-    "sha256": "03ca046ffda1c9f687be7d7d921bbe4a883d6474568c43b5147647c72db3f7aa"
+    "bytes": 1168,
+    "sha256": "82a682cb9d16544d63266cdfc8480e36897e048003efe1dcebfa8bd120964770"
   },
   "statistics": {
     "messages": 1,

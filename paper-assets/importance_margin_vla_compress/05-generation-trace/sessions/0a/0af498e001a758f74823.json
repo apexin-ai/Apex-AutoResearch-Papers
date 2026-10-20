@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_crossover_script_consistency_20260525T092836_result.json",
     "occurrence": 1,
-    "bytes": 5674,
-    "sha256": "7f9aa1fd50d6dee481460a10576918ac76c37e78fdf28c392c772a9799eb8b15"
+    "bytes": 5673,
+    "sha256": "7eee0d6ab43727f3444ee1dc43dbde135c5da238886fcb742321dbaeae4bafa7"
   },
   "statistics": {
     "messages": 1,

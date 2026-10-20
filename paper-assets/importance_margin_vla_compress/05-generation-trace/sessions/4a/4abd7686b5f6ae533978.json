@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_mask_ratio_annealing_prep_20260516T063114_result.json",
     "occurrence": 1,
-    "bytes": 909,
-    "sha256": "affa8ebdfb1f608e0cba2edf3f907ceb4b70167df65757c62c182cd77113d108"
+    "bytes": 908,
+    "sha256": "5b23c6f99bc117c1464f28b6aa40a2d38bab407f95aab600a9338af43898a1e8"
   },
   "statistics": {
     "messages": 1,

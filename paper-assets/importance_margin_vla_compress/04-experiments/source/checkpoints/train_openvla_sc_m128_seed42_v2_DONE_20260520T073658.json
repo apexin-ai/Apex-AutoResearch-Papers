@@ -1,0 +1,33 @@
+{
+  "exp_id": "train_openvla_sc_m128_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:26:58.293Z",
+    "updated_at": "2026-05-20T07:36:57.910Z",
+    "hypothesis": "VTC+LoRA variant: OpenVLA VTC re-encoding (M=128, 256→128 tokens) + LoRA (r=16, q_proj/v_proj) on westd-27271. Config had lora.enabled=true. If VTC+LoRA > VTC-only, backbone adaptation is complementary to re-encoding for MLP-projector architectures.",
+    "parent": "train_openvla_sc_m128_seed42",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 WANDB_MODE=offline python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m128.yaml'",
+      "server": "westd-27271",
+      "gpu": "cuda:0",
+      "pid": "841334",
+      "log_path": "~/runs/importance_margin_vla_compress/train_openvla_sc_m128_seed42_v2.log",
+      "data_path": "HuggingFaceVLA/libero",
+      "data_count": "273465",
+      "model_name": "openvla + VTC(M=128) + LoRA(r=16, q/v_proj)",
+      "seed": 42,
+      "checkpoint_path": "checkpoints/openvla_sc_m128_seed42/",
+      "checkpoint_source": "openvla/openvla-7b (libero finetuned)",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-20T07:36:57.910Z"
+  },
+  "timestamp": "2026-05-20T07:36:58.188008+00:00",
+  "trigger": "update_registry"
+}

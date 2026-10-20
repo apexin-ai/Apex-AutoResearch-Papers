@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval_pi05_l2norm_k05_long_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T22:04:40.235Z",
+    "updated_at": "2026-05-23T01:38:04.611Z",
+    "hypothesis": "π0.5 L2norm k=0.5 Long seed43: Long L2 k=0.7=60.0%, k=0.85=78.0%. k=0.5 填充中等压缩区间。seed43 作为 seed42 (westd-38929) 的重复实验。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\"",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "264006",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_long_seed43.log",
+      "submitted_at": "2026-05-22T23:28:35.501Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 7769.1,
+      "gpu_hours": 2.16
+    },
+    "metrics": {
+      "sr": 0.54,
+      "total_episodes": 500,
+      "total_successes": 270
+    },
+    "conclusion": "success",
+    "checkpoint_path": "n/a (inference-only eval)",
+    "completed_at": "2026-05-23T01:38:04.611Z"
+  },
+  "timestamp": "2026-05-23T01:38:05.246474+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_baseline_bypass_object_20260517T132204_result.json",
     "occurrence": 1,
-    "bytes": 998,
-    "sha256": "5186b8c3f318f4802dc7adc0b5529522d20aa80f6f9523d2390ded865f9c493d"
+    "bytes": 997,
+    "sha256": "daae4f04bcc1b37ff7dceba93c9041076ae75c44f98f07a909dcac04496978a3"
   },
   "statistics": {
     "messages": 1,

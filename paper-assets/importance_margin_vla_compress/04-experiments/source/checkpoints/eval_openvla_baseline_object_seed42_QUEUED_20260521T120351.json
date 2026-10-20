@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_openvla_baseline_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:03:41.128Z",
+    "updated_at": "2026-05-21T12:03:51.514Z",
+    "hypothesis": "OpenVLA baseline seed42: 当前 baseline 来自 seed=7 (74.0%)，需 seed=42 作为所有 degradation 计算的锚点。如果 seed42 ≈ 74%，数据一致；差异 >3pp 则需重算所有 degradation。"
+  },
+  "timestamp": "2026-05-21T12:03:51.960452+00:00",
+  "trigger": "update_registry"
+}

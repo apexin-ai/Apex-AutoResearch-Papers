@@ -1,0 +1,34 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_long_seed45_strict_w38",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-28T01:55:22.852Z",
+    "updated_at": "2026-05-28T04:38:44.999Z",
+    "hypothesis": "π0.5 L2norm k=0.85 Long strict seed45 — 第四 seed 加固 shoulder 关键点 (s42=78.6%, s43=77.6%, s44=76.6%, mean=77.6%±1.0pp)。收窄 error bar，验证 margin=32.0pp 稳定性",
+    "parent": "eval_pi05_l2norm_k085_long_seed44_strict_w38",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0\"",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "960626",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k085_long_seed45_strict_w38.log",
+      "data_path": "libero_10",
+      "data_count": "10 tasks x 50 episodes",
+      "model_name": "pi0.5",
+      "seed": 45,
+      "checkpoint_source": "pi0.5 pretrained",
+      "eval_data": "libero_10 (10 tasks x 50 episodes)",
+      "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.85_libero_10_seed45.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-28T04:38:44.999Z"
+  },
+  "timestamp": "2026-05-28T04:38:46.533096+00:00",
+  "trigger": "update_registry"
+}

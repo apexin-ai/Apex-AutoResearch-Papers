@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_knowledge_fix_experiment_plan_schema_20260519T204654_result.json",
     "occurrence": 1,
-    "bytes": 356,
-    "sha256": "5b75de96988c018b7b91ef70417463752a15a39d7fd97b5049603a9c1169e6c6"
+    "bytes": 355,
+    "sha256": "b40fd1eec67c25ac607497008257abb7265cb457098ee3e41b7057875a466bb1"
   },
   "statistics": {
     "messages": 1,

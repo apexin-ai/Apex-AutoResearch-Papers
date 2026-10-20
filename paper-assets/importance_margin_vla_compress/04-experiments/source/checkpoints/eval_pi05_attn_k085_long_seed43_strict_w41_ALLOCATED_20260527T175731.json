@@ -1,0 +1,18 @@
+{
+  "exp_id": "eval_pi05_attn_k085_long_seed43_strict_w41",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T17:55:12.802Z",
+    "updated_at": "2026-05-27T17:57:28.719Z",
+    "hypothesis": "π0.5 Attn k=0.85 Long strict seed43 — seed42=50.0% 的 seed 复制（w27 部署失败后重新部署到支持 attention 的 w41），验证 Attn step-function 降级可复现性",
+    "parent": "eval_pi05_attn_k085_long_seed42_strict",
+    "server": "westd-41074",
+    "gpu": "cuda:0"
+  },
+  "timestamp": "2026-05-27T17:57:31.363977+00:00",
+  "trigger": "update_registry"
+}

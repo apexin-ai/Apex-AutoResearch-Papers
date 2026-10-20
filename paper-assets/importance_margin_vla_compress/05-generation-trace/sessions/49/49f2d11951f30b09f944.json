@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-crash-diagnosis-restart_20260521T011901_result.json",
     "occurrence": 1,
-    "bytes": 1029,
-    "sha256": "43149d4bc236e183b1053b49f72d4840d799ec1a4d23d9649c858e0f80dcf6a2"
+    "bytes": 1028,
+    "sha256": "e2af73d51a86c2bdedfa47ec8e50ec162c573a86ac2331835cd244b32667bf54"
   },
   "statistics": {
     "messages": 1,

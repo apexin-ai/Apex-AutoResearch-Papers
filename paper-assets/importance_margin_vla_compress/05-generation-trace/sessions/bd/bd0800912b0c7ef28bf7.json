@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_healthcheck-cqa133015-v2_20260524T093544_result.json",
     "occurrence": 1,
-    "bytes": 2604,
-    "sha256": "9525a2a2d64156aae6e9d701d82ca22cee826ef9367681cef5c7311799d922a0"
+    "bytes": 2603,
+    "sha256": "1e184cccbcd8708fd0495db376e0b7cdd4f3fee2c29f1bb94e29474b25487bd8"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy-westd41074-gpu2-random-k085-spatial-postfix_20260523T230853_result.json",
     "occurrence": 1,
-    "bytes": 767,
-    "sha256": "a179682d8313ddd186f0558d335a9156bcbc17f39bfbb40a4fbaddbd631a258b"
+    "bytes": 766,
+    "sha256": "1e170236a7be8661743e59d6fb4ac7d28d39b71c00f6797757c2722b07240e0b"
   },
   "statistics": {
     "messages": 1,

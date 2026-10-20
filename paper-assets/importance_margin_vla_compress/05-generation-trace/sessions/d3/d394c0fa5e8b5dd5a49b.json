@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_urgent_check-deploy-free-gpus_20260524T023203_result.json",
     "occurrence": 1,
-    "bytes": 824,
-    "sha256": "d82a3f7d3b41839dae0a6a835c402e5d5090f399d48af5e7685cd808b85cf262"
+    "bytes": 823,
+    "sha256": "5ee2d8e70c77a7b223562b27157a5080c76e174a2eb53d8e1374f08625bac465"
   },
   "statistics": {
     "messages": 1,

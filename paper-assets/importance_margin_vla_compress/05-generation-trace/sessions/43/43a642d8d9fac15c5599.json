@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_harvest_eval_xvla_l2norm_k05_goal_seed43_20260523T225441_result.json",
     "occurrence": 1,
-    "bytes": 556,
-    "sha256": "a7d1abba18dbc29a125ce313411c4dc4c129a458e4bebdef7f1a2cfc33eba0f4"
+    "bytes": 555,
+    "sha256": "34b94decd2871ab3b990c57b0029c513f4ae83adc40654df3ed9344055c2b1cc"
   },
   "statistics": {
     "messages": 1,

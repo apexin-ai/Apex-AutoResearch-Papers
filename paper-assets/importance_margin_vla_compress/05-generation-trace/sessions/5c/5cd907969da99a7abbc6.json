@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_eval_openvla_attn_k07_goal_seed42_20260526T172945_result.json",
     "occurrence": 1,
-    "bytes": 1412,
-    "sha256": "8d4f5c15c8cd72d42d96c9477952fed144f435ddd22151a7128dff2b43d50677"
+    "bytes": 1411,
+    "sha256": "7f5027adcb61f427953ff414b7382069119eab9512ef54a53b869ff848aac4f7"
   },
   "statistics": {
     "messages": 1,

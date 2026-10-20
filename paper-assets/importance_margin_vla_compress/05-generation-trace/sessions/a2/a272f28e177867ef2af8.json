@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_westd38929_gpu3_kill_duplicate_20260527T122551_result.json",
     "occurrence": 1,
-    "bytes": 90,
-    "sha256": "fe25f4cd73917fd1e8e43134137fe80bbbc1109d37f5af0351f3d7c6b9e5021d"
+    "bytes": 89,
+    "sha256": "d6cbd3b0c166ebabc913040aa645cd9e3a322ee836d0b5751b52fa285a2c83a4"
   },
   "statistics": {
     "messages": 1,

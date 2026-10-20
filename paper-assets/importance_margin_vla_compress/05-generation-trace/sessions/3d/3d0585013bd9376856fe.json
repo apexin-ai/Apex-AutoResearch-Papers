@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd41074-m64-crash-fix_20260521T032717_result.json",
     "occurrence": 1,
-    "bytes": 1188,
-    "sha256": "3de23f6284df826d3e2af0746f233808c24aea02b8a2f4906076148662379e1e"
+    "bytes": 1187,
+    "sha256": "6c4e161c5bb18aadc6832d8a6e0471da54d65bf658ce4e138e8a5619db110887"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval_openvla_random_k05_object_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T18:24:20.591Z",
+    "updated_at": "2026-05-25T22:49:01.538Z",
+    "hypothesis": "Random pruning at k=0.5 on OpenVLA libero_object will show significant performance degradation compared to l2norm-based pruning, confirming that importance-aware pruning preserves more critical weights for task performance.",
+    "spec": {
+      "command": "python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.5 --suite libero_object --num_episodes 50 --seed 42",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "3978",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_random_k05_object_seed42_v2.log",
+      "submitted_at": "2026-05-25T18:25:30.390Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/importance_margin_vla_compress",
+      "data_count": 50,
+      "model_name": "openvla-7b-finetuned-libero-object",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/openvla-7b-finetuned-libero-object",
+      "eval_data": "libero_object",
+      "wall_clock_seconds": 15811.1,
+      "gpu_hours": 4.39
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-25T22:49:01.538Z"
+  },
+  "timestamp": "2026-05-25T22:49:03.557488+00:00",
+  "trigger": "update_registry"
+}

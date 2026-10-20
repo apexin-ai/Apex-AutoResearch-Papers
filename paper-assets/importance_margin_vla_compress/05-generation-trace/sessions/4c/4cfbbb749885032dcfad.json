@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cleanup_stale_running_s46_20260528T223033_result.json",
     "occurrence": 1,
-    "bytes": 945,
-    "sha256": "333e3bf529532c36f78fd9860679ea2fbc51d6c78a928f955aa91c19f10f14a0"
+    "bytes": 944,
+    "sha256": "70a3b103b3ecaee7faf39647aeb0b53b74fa0a56d887d205acbc97b82a21372a"
   },
   "statistics": {
     "messages": 1,

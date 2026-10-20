@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_investigate_westd-38929-all-gpus_20260522T015818_result.json",
     "occurrence": 1,
-    "bytes": 1317,
-    "sha256": "e4f01a1a07367bcd70fc6e6ee0b5094c9554aa6b4dc06d7009c7cc417899cc22"
+    "bytes": 1316,
+    "sha256": "7ece1c88e00f213fcb781e0f3cdeb5108f01c025cb8fe57ebd558df9430a0639"
   },
   "statistics": {
     "messages": 1,

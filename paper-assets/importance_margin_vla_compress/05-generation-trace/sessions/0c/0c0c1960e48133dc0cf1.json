@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1_kill_redeploy_20260522_20260522T205817_result.json",
     "occurrence": 1,
-    "bytes": 1010,
-    "sha256": "1be782882011ff36c75eacf065970a1c8bff0f84086148b89f394a8f3267c298"
+    "bytes": 1009,
+    "sha256": "e02cdf993ccaabfd6effab876ebb16c320633abfc74ef9aa5067858e9131fcc1"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd27271_gpu0_kill_v4_deploy_pi05_20260527T104101_result.json",
     "occurrence": 1,
-    "bytes": 397,
-    "sha256": "5171a5a933702225a8975b89ae967ba81009511fc7687ceb5c1bb85eaf689b76"
+    "bytes": 396,
+    "sha256": "203a8b3b9611b9a3fce9cbfd4471b47b6d4c3d05a13c98b85804b0147059209f"
   },
   "statistics": {
     "messages": 1,

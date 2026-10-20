@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_batch64_oom_root_cause_20260517T083148_result.json",
     "occurrence": 1,
-    "bytes": 3352,
-    "sha256": "d61171cc1e26a342256ad40f2a4664016c15d6c6de5fb9ad3d524cb549d5cba9"
+    "bytes": 3351,
+    "sha256": "c4ab3281a3a3de74979aed5166c39ccbb97108f9ee917e83a5244db6ff24f1aa"
   },
   "statistics": {
     "messages": 1,

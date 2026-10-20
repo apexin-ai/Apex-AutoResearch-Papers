@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_urgent_westd27271_harvest_and_submit_20260525T032146_result.json",
     "occurrence": 1,
-    "bytes": 397,
-    "sha256": "8ecd3359e2131c6faa4c294b68b5eba588f9357a6929597d7eeffabf8b7ec36f"
+    "bytes": 396,
+    "sha256": "fd81c6f5db5331090b01220621a44d48a5ceed164255bba4b75f2e05f2e770bf"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy-cqa1-gpu3-random-spatial_20260523T214706_result.json",
     "occurrence": 1,
-    "bytes": 483,
-    "sha256": "2d8b1e58358ce229e113557e018e59ef57f1cc159a12f96103ad7d1936d7f73d"
+    "bytes": 482,
+    "sha256": "f66b0d6d649267f04b19cc875b4900fa271aae9098cc0272533fa7379ce94bca"
   },
   "statistics": {
     "messages": 1,

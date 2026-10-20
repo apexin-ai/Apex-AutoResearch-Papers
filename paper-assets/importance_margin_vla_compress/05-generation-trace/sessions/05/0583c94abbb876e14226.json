@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd_41074_fix_openvla_lerobot_20260519T170408_result.json",
     "occurrence": 1,
-    "bytes": 1681,
-    "sha256": "43e9362f904b0219366d85b8d92e736d988ce702960382c07538adf922d28c8e"
+    "bytes": 1680,
+    "sha256": "3441794b003335e68726927c21ab64069d2e0f82e61da12ee94fd1eee5954087"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diag_westd-38929_20260527T012815_result.json",
     "occurrence": 1,
-    "bytes": 1612,
-    "sha256": "9034db3b09d67cc17fc556cc92aa0a3cc1753978b4da2be922cd3dd214512232"
+    "bytes": 1611,
+    "sha256": "9c180d64178cdedaa1d0f9f6715ae3dddead36f7e2ff4bd11f39a71d2e71cbc2"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_deploy_westd27271_attn_k05_20260526T155524_result.json",
     "occurrence": 1,
-    "bytes": 432,
-    "sha256": "d083a7ffe302b3e35e1ca22e866f50f4ab6c9e221688b7c521d6eef3325c37ac"
+    "bytes": 431,
+    "sha256": "e75682bbb0e85bf6d0960fa4ca172e8651a3e7ce5b385e3725f118ade5f375d8"
   },
   "statistics": {
     "messages": 1,

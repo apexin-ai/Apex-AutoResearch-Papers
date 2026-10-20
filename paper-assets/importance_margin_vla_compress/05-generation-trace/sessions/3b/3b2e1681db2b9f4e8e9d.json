@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_westd_m128_cleanup_v2_20260519T045020_result.json",
     "occurrence": 1,
-    "bytes": 358,
-    "sha256": "5e31bd23dc3d1334ae4f27d9b009fabde22e1c351c36f5f784d4d4d0be7bd636"
+    "bytes": 357,
+    "sha256": "fd38dae41761043004c2850a47a5a704d733d95ed7885a6e0956ecc7bd889464"
   },
   "statistics": {
     "messages": 1,

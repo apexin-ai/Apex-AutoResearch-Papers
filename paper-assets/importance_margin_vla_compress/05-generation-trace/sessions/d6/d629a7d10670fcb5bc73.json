@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_v7-progress-checkpoint-verify_20260515T200421_result.json",
     "occurrence": 1,
-    "bytes": 1254,
-    "sha256": "ef53598bd3f9a42901c3d54d97790a5e8d2796c571c28fa9b85d508ae4844f61"
+    "bytes": 1253,
+    "sha256": "9e4039511e272e6f8bf544bed8b172f2d324464fecf88633a975755878477ac2"
   },
   "statistics": {
     "messages": 1,

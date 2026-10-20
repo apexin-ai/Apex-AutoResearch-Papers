@@ -1,0 +1,15 @@
+{
+  "exp_id": "action_divergence_v2_clean",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:04:33.765Z",
+    "updated_at": "2026-05-17T13:13:19.087Z",
+    "hypothesis": "Closed-loop action divergence: bypass vs ACIS k=0.5 true-removal 在 sim rollout 中的逐步轨迹偏离。与 offline single-step error (111.5% relative) 互为补充——offline 证明每步误差大，closed-loop 展示实际轨迹如何快速分叉。"
+  },
+  "timestamp": "2026-05-17T13:13:19.194095+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,43 @@
+{
+  "exp_id": "eval_smolvla_official_l2norm_k095_object_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T17:26:19.909Z",
+    "updated_at": "2026-05-21T18:29:29.357Z",
+    "hypothesis": "SmolVLA L2norm k=0.95 seed43; seed42 sanity=0%, 多种子确认 pixel-shuffle cliff",
+    "parent": "eval_smolvla_official_baseline_object_seed43",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python3 -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --seed 43 --mode l2_norm --k_ratio 0.95",
+      "server": "westd-38929",
+      "gpu_id": 3,
+      "seed": 43,
+      "model_name": "smolvla",
+      "data_path": "libero_object",
+      "data_count": 500,
+      "checkpoint_source": "HuggingFaceVLA/smolvla_libero",
+      "eval_data": "libero_object",
+      "pid": 425135
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T18:23:55.969Z"
+    },
+    "failure_reason": "FALSE POSITIVE: Experiment completed successfully (0.0% SR, 0/500). Process exited normally after finishing all 500 episodes. Cron monitor misclassified normal exit as failure due to no W&B signal. Results saved to eval_results/official_libero_object_l2_norm_k0.95_true_removal.json",
+    "conclusion": "success",
+    "completed_at": "2026-05-21T18:24:00.157Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T18:24:05.907988+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-21T18:29:29.841659+00:00",
+  "trigger": "update_registry"
+}

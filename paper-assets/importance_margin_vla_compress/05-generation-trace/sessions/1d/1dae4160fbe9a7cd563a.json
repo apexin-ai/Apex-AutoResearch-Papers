@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_regen-fig-method-gap_20260523T214437_result.json",
     "occurrence": 1,
-    "bytes": 535,
-    "sha256": "81ea796a1286a435dc87ba12b8e3e809d6ff06f92871e887924b3990d3054c0a"
+    "bytes": 534,
+    "sha256": "9d5e773d461503b20d6ab3821b663395639f20311d48cfdd63b0098af337c4ed"
   },
   "statistics": {
     "messages": 1,

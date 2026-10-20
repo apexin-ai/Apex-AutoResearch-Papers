@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_xvla_random_k09_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:36:22.144Z",
+    "updated_at": "2026-05-22T21:12:47.838Z",
+    "hypothesis": "X-VLA Random k=0.9 Goal: k=0.95=54.0%。k=0.9 移除 5/50 tokens，预期进一步下降。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u eval_xvla_pruning_libero.py --mode random --keep_ratio 0.9 --suite libero_goal --num_episodes 50 --seed 42 --gpu 0 --model_path /root/autodl-tmp/X-VLA-Libero",
+      "server": "westd-27271",
+      "model_name": "X-VLA",
+      "seed": 42,
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_random_k0.9_libero_goal_seed42.json",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/xvla_random_k09_goal.log"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "overall_SR": 0.706,
+      "total_successes": 353,
+      "total_episodes": 500
+    },
+    "completed_at": "2026-05-22T21:12:47.838Z"
+  },
+  "timestamp": "2026-05-22T21:12:48.504997+00:00",
+  "trigger": "update_registry"
+}

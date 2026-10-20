@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval_pi05_random_k085_long_seed42_strict_w27",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T10:42:28.124Z",
+    "updated_at": "2026-05-27T13:42:39.049Z",
+    "hypothesis": "π0.5 Random k=0.85 Long strict 独立复制 — 验证反单调性 D255（k=0.75=63%→k=0.85=45%→k=0.9=32%）。westd-27271 独立服务器排除环境因素",
+    "spec": {
+      "command": "π0.5 Random k=0.85 Long strict eval",
+      "server": "westd-27271",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "gpu": "cuda:0"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-27T13:42:21.555Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed (log check: failed to read log or log empty)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-27T13:42:25.191Z"
+  },
+  "timestamp": "2026-05-27T13:42:45.778498+00:00",
+  "trigger": "update_registry"
+}

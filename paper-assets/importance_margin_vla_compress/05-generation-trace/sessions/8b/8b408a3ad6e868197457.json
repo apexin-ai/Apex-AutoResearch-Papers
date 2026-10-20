@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_westd41074-gpu0-fill_20260520T181831_result.json",
     "occurrence": 1,
-    "bytes": 458,
-    "sha256": "864a87337936c31caa4a7408577d3782288cea6504fb074a154cf974c6a54e3e"
+    "bytes": 457,
+    "sha256": "4cc6c76e2d9a8d53a2e63d3871216b39e76c716349b2743c343b070bfc1ef644"
   },
   "statistics": {
     "messages": 1,

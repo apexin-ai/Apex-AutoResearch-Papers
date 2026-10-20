@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_restart_k03_eval_20260518T052858_result.json",
     "occurrence": 1,
-    "bytes": 629,
-    "sha256": "ece9287ca29c60ce640d14382e82f427da8693b04abc171766c12e5a7f240bbc"
+    "bytes": 628,
+    "sha256": "b30fd7b57e125d2e29162aaa817821c0b4edd97d84cedac811b41645f6c5eff4"
   },
   "statistics": {
     "messages": 1,

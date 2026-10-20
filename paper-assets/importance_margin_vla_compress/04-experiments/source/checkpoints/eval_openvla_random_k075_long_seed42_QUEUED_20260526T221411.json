@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_openvla_random_k075_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T19:20:39.202Z",
+    "updated_at": "2026-05-26T22:14:08.789Z",
+    "hypothesis": "Random pruning at k=0.75 on OpenVLA Long suite serves as a baseline to quantify the importance margin of structured pruning methods over random token removal.",
+    "parent": "eval_openvla_random_k085_long_seed42_v3",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "856562",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_random_k075_long_seed42.log",
+      "submitted_at": "2026-05-26T19:21:17.740Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-26T22:14:11.276889+00:00",
+  "trigger": "update_registry"
+}

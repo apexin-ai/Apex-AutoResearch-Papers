@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analyze_eval_xvla_l2norm_k03_goal_seed42_v4_20260523T203008_result.json",
     "occurrence": 1,
-    "bytes": 364,
-    "sha256": "2726e244ecb77c639df0428d6f52394457ba59691d837a1182cd05fba0a8b0d4"
+    "bytes": 363,
+    "sha256": "3c4122dd78f0990c444f64756929e5b8e1cebf168295ee473d2c775175439542"
   },
   "statistics": {
     "messages": 1,

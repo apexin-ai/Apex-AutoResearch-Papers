@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_kill-deploy-westd38929-gpu1-random_20260523T201156_result.json",
     "occurrence": 1,
-    "bytes": 476,
-    "sha256": "8222b25ab30f190329cac89866ace61d3e03836192f35290f10e7d2b12310b70"
+    "bytes": 475,
+    "sha256": "d6d292bf3527d9c0a383810613c3976af9a258a271823818b63e7688f9fbeb10"
   },
   "statistics": {
     "messages": 1,

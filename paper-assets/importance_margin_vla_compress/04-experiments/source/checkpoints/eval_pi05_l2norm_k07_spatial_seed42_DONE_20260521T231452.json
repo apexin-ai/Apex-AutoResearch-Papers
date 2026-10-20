@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval_pi05_l2norm_k07_spatial_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T21:25:05.094Z",
+    "updated_at": "2026-05-21T23:14:51.202Z",
+    "hypothesis": "π0.5 L2norm k=0.7 on LIBERO-Spatial seed42。Object suite 上 V-shape: k=0.3=51.0%, k=0.5=33.4%(valley), k=0.7=55.0%。Spatial k=0.5=55.6%。验证 V-shape recovery 是否跨 suite 一致（k=0.7 > k=0.5?）",
+    "parent": "eval_pi05_l2norm_k05_spatial_seed42",
+    "spec": {
+      "command": "HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 0",
+      "server": "westd-38929",
+      "gpu": "cuda:1",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "eval_pi05_l2norm_k05_spatial_seed42",
+      "eval_data": "libero_spatial"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T23:14:47.829Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T23:14:51.202Z"
+  },
+  "timestamp": "2026-05-21T23:14:52.126848+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,53 @@
+{
+  "exp_id": "eval_openvla_random_k085_long_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T04:41:03.870Z",
+    "updated_at": "2026-05-26T14:31:54.773Z",
+    "hypothesis": "OpenVLA Random k=0.85 Long v3（重跑，正确模型）。Random k=0.9 Long=44%。k=0.85 测试 Random 在 15% 压缩下的 Long 性能",
+    "parent": "eval_openvla_random_k09_long_seed42",
+    "spec": {
+      "command": "python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.85 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/openvla-7b-finetuned-libero-10 --unnorm_key libero_10",
+      "server": "westd-41074",
+      "gpu": "cuda:0",
+      "pid": 415537,
+      "log_path": "/root/runs/importance_margin_vla_compress/eval_openvla_random_k085_long_seed42_v3.log",
+      "submitted_at": "2026-05-26T04:41:26.829Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/importance_margin_vla_compress",
+      "data_count": 500,
+      "model_name": "openvla-7b-finetuned-libero-10",
+      "seed": 42,
+      "checkpoint_source": "openvla-7b-finetuned-libero-10",
+      "eval_data": "libero_10",
+      "checkpoint_path": "N/A (eval only)",
+      "wall_clock_seconds": 35427.9,
+      "gpu_hours": 9.84
+    },
+    "reproduce": {
+      "finished_at": "2026-05-26T14:28:14.590Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-26T14:28:29.521303+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_sr": 45.2
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-26T14:31:54.773Z"
+  },
+  "timestamp": "2026-05-26T14:31:57.434209+00:00",
+  "trigger": "update_registry"
+}

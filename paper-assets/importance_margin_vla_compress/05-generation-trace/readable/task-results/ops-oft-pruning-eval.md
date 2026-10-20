@@ -12,8 +12,34 @@ This page is a human-readable rendering of one source record. It preserves the r
 - **Original source:** `logs/workers/worker_ops_oft-pruning-eval_20260520T111119_result.json`
 - **Structured JSON:** [`4cde2a4d25fb32e407d3.json`](../../sessions/4c/4cde2a4d25fb32e407d3.json)
 
-## Browse this transcript
+## Before a recorded user message
 
-This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
+1 recorded events
 
-[Part 1](ops-oft-pruning-eval/part-001.md) · [Part 2](ops-oft-pruning-eval/part-002.md) · [Part 3](ops-oft-pruning-eval/part-003.md) · [Part 4](ops-oft-pruning-eval/part-004.md) · [Part 5](ops-oft-pruning-eval/part-005.md)
+### Log line
+
+_source line 1_
+
+Large source content is retained in the sanitized trace archive.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "large_content_blocks": [
+    {
+      "index": 0,
+      "storage": "sanitized-trace-archive",
+      "source_line": 1,
+      "serialized_bytes": 2728269,
+      "serialized_sha256": "9b19b929c40c9f4e57d01697f2fbb18bcd368e683653d9a9e7aa84a18aff302a",
+      "note": "Complete sanitized source is retained in trace-files.tar.gz."
+    }
+  ]
+}
+```
+
+</details>
+
+---

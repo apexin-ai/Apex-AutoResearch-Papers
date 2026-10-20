@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_submit-msweep-m64-m96_20260520T033510_result.json",
     "occurrence": 1,
-    "bytes": 1454,
-    "sha256": "37b23abf2dc4b8584d14c594019298053cfa69e9b648f215eaacfecb2850b40a"
+    "bytes": 1453,
+    "sha256": "0b370502ad1ce33ed9e318f4b1afd916560146f3641d0a0794b08a04b8687dbd"
   },
   "statistics": {
     "messages": 1,

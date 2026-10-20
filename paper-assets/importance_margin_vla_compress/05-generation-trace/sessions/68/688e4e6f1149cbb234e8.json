@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diag_cqa1_training_health_check_20260518T162805_result.json",
     "occurrence": 1,
-    "bytes": 933,
-    "sha256": "4d9d946b851860f05c60d28824449132c6119eee693ca8b350aabb166f8f6627"
+    "bytes": 932,
+    "sha256": "5653529aaa28943164cdf68f716cc9d0f99383716e3c88bdc3279b401893b7ed"
   },
   "statistics": {
     "messages": 1,

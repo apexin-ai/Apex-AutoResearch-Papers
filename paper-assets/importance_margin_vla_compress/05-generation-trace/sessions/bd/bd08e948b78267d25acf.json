@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_deploy_goal_seed43_westd41074_20260523T032730_result.json",
     "occurrence": 1,
-    "bytes": 401,
-    "sha256": "00dec533d32ae950aaa6536a16d883b5e5fa021bff812b5ede13ae479e2bc81b"
+    "bytes": 400,
+    "sha256": "43ce5c007357eb79e8b0e607bc37bd79ec328cc4d0c3d3b4beca1b20a28c8c97"
   },
   "statistics": {
     "messages": 1,

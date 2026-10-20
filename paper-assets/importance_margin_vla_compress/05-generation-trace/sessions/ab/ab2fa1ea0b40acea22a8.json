@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_fix-logpaths-and-verify_20260524T140133_result.json",
     "occurrence": 1,
-    "bytes": 1782,
-    "sha256": "770f49b508d0b9e609d147e5cbbb3bba4a1eb3692fa82c3d9dfd2101ae93d737"
+    "bytes": 1781,
+    "sha256": "9a2a2be8d2927c29462d88b45c1683b6f9826cd2aac674f7c25f85df76cb66b3"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_cqa1_openvla_history_20260526T063958_result.json",
     "occurrence": 1,
-    "bytes": 4060,
-    "sha256": "ee130de0cbf21761aff51cafc178dd6fc752a8c7cc42578bfb8b4c430b5d279a"
+    "bytes": 4059,
+    "sha256": "8c25da535254cd43b56d2fcc74add36d0921470c6b52c8f9c77a5df9c69ad83a"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_infra_verify-gpu-warmup_20260515T143830_result.json",
     "occurrence": 1,
-    "bytes": 77,
-    "sha256": "2c9d5d39e43873d9112699ee6b8b8aaf91a4fe6fa0441205232f5f798e757cdd"
+    "bytes": 76,
+    "sha256": "d5e4de1355de1b6b62e84fdcedd6b7b48c44bd9f82036328b0064bf19565a5cf"
   },
   "statistics": {
     "messages": 1,

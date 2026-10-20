@@ -1,0 +1,25 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_spatial_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:35:08.345Z",
+    "updated_at": "2026-05-22T01:42:12.209Z",
+    "failure_reason": "never properly submitted — no spec/pid/command. Cron false positive. Will retry.",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T01:35:15.417166+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-22T01:42:12.771044+00:00",
+  "trigger": "update_registry"
+}

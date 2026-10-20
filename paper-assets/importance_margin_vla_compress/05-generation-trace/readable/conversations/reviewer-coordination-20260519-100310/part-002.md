@@ -13477,7 +13477,7 @@ called Read
 _source line 1135 · 2026-05-18T12:30:18.830911+00:00_
 
 1	{
-2	  "raw": "诊断完成。\n\n**崩溃原因：`wandb.init()` 失败，服务器上没有 W&B API key。** 模型/checkpoint/数据都加载成功了，但 line 473 的 `wandb.init()` 因为缺少认证直接抛异常退出。\n\n根因：cqa1-33015 上没有 `~/.netrc`、没有 `~/.config/wandb/`、没有 `WANDB_API_KEY` 环境变量。训练命令也没传这个变量。\n\n**修复：** 在训练命令里加 `export WANDB_API_KEY=&lt;key>` 或 `export WANDB_MODE=offline`。另外建议加 `CUDA_VISIBLE_DEVICES=0`，因为 GPU 1 当前被 eval job 占用。\n\n报告已保存到 `artifacts/worker_output_baseline_control_crash.md`。"
+2	  "raw": "诊断完成。\n\n**崩溃原因：`wandb.init()` 失败，服务器上没有 W&B API key。** 模型/checkpoint/数据都加载成功了，但 line 473 的 `wandb.init()` 因为缺少认证直接抛异常退出。\n\n根因：cqa1-33015 上没有 `~/.netrc`、没有 `~/.config/wandb/`、没有 `WANDB_API_KEY` 环境变量。训练命令也没传这个变量。\n\n**修复：** 在训练命令里加 `export WANDB_API_KEY=[REDACTED] 或 `export WANDB_MODE=offline`。另外建议加 `CUDA_VISIBLE_DEVICES=0`，因为 GPU 1 当前被 eval job 占用。\n\n报告已保存到 `artifacts/worker_output_baseline_control_crash.md`。"
 3	}
 
 <details><summary>Recorded metadata</summary>

@@ -1,0 +1,39 @@
+{
+  "exp_id": "plan_008_pruning_sweep_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T15:20:12.616Z",
+    "updated_at": "2026-05-16T16:18:40.100Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python eval_pruning_sweep.py --checkpoint checkpoints/imm_anchor_v8b_twostage/final/checkpoint.pt --num_batches 500 --output eval_results/pruning_sweep_v2.json",
+      "server": "westd-27271",
+      "data_path": "lerobot/aloha_sim_insertion_scripted_image",
+      "data_count": 500,
+      "model_name": "imm_anchor_v8b_twostage",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/imm_anchor_v8b_twostage/final/checkpoint.pt",
+      "eval_data": "lerobot/aloha_sim_insertion_scripted_image",
+      "hypothesis": "ACIS pruning 在不同 k_ratio (0.3-0.9) 下的 G3 曲线，验证 denoising effect 和 optimal compression point (v2 fix KeyError)",
+      "pid": 207411,
+      "log_path": "eval_results/pruning_sweep_v2.log",
+      "checkpoint_path": "eval_results/pruning_sweep_v2.json"
+    },
+    "hypothesis": "ACIS pruning 在不同 k_ratio (0.3-0.9) 下的 G3 曲线，验证 denoising effect 和 optimal compression point (v2 fix KeyError preprocess_batch)",
+    "conclusion": "success",
+    "metrics": {
+      "G3_best": 0.237,
+      "G3_best_k": 0.6,
+      "G3_k05": 0.24,
+      "improvement_pct": 76.2,
+      "sweet_spot": "k=0.5-0.6",
+      "source": "eval_results/pruning_sweep_v2.json"
+    },
+    "completed_at": "2026-05-16T16:18:40.100Z"
+  },
+  "timestamp": "2026-05-16T16:18:40.148857+00:00",
+  "trigger": "update_registry"
+}

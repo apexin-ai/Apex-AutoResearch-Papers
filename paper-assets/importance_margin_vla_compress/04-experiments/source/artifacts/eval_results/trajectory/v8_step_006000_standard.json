@@ -1,0 +1,36 @@
+{
+  "eps0.0_pruneFalse": {
+    "action_loss": 0.020403497570659967,
+    "margin_mean": 0.48768216371536255,
+    "margin_median": 0.3311038017272949,
+    "margin_std": 0.46187931299209595,
+    "margin_min": 0.0006837844848632812,
+    "margin_max": 2.5549464225769043,
+    "preservation_rate": 1.0,
+    "kendall_tau": 1.0,
+    "certified_bound_mean": 0.25240203738212585,
+    "certified_bound_max": 1.0,
+    "l_eps_delta_ratio_mean": 0.7630103230476379,
+    "l_eps_delta_ratio_median": 0.11906991899013519
+  },
+  "eps0.0_pruneTrue": {
+    "action_loss": 0.016553663786035032,
+    "margin_mean": 0.4393276572227478,
+    "margin_median": 0.2831130027770996,
+    "margin_std": 0.44281908869743347,
+    "margin_min": 8.463859558105469e-05,
+    "margin_max": 2.358820915222168,
+    "preservation_rate": 1.0,
+    "kendall_tau": 1.0,
+    "certified_bound_mean": 0.27564021944999695,
+    "certified_bound_max": 1.0,
+    "l_eps_delta_ratio_mean": 1.6352025270462036,
+    "l_eps_delta_ratio_median": 0.14218324422836304
+  },
+  "_meta": {
+    "checkpoint": "checkpoints/imm_anchor_v8/step_006000",
+    "bypass_acis": false,
+    "max_batches": 100,
+    "step": "step_006000"
+  }
+}

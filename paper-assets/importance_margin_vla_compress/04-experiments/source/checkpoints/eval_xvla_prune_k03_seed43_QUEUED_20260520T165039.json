@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_xvla_prune_k03_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:50:01.675Z",
+    "updated_at": "2026-05-20T16:50:39.455Z",
+    "hypothesis": "X-VLA L2 norm pruning at k=0.3 with seed=43. Seed42=23.0%. If seed43 ≈ 23%, confirms severe degradation at extreme compression is consistent across seeds."
+  },
+  "timestamp": "2026-05-20T16:50:39.748793+00:00",
+  "trigger": "update_registry"
+}

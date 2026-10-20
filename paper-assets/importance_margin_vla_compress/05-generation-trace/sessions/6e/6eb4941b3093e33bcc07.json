@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1-collect-and-fill-cuda1_20260521T034148_result.json",
     "occurrence": 1,
-    "bytes": 1352,
-    "sha256": "2f877532dcf3ce6c53cf04b97a80d4dc52f7b4c76de8f423869fca8889045a0b"
+    "bytes": 1351,
+    "sha256": "03e6e04e7843aecfa9a8a7faf23b0948fc83ff5955500cf09c23dc5957dc5573"
   },
   "statistics": {
     "messages": 1,

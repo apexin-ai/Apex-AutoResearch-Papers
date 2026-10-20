@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_openvla-attention-feasibility_20260524T014932_result.json",
     "occurrence": 1,
-    "bytes": 1870,
-    "sha256": "28dd7400d9cde3d05f23c612ebf95e29967a8dbfedf2741c2d55dde0d6724a77"
+    "bytes": 1869,
+    "sha256": "9e532acc07f3a56ad81f233934f3d73e8e8fd5365984bc3fa5863e7f37b68219"
   },
   "statistics": {
     "messages": 1,

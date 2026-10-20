@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_l2norm_k05_object_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T11:27:29.169Z",
+    "updated_at": "2026-05-21T11:27:51.056Z",
+    "hypothesis": "π0.5 L2norm k=0.5 seed43 multi-seed验证D141 valley; expect SR在30-35%范围（seed42=33.4%），确认valley是系统性而非噪声",
+    "parent": "eval_pi05_l2norm_k05_object_seed42"
+  },
+  "timestamp": "2026-05-21T11:27:52.127494+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,48 @@
+{
+  "exp_id": "eval_pi05_l2norm_k07_long_seed42_strict",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T11:59:13.922Z",
+    "updated_at": "2026-05-27T16:16:47.623Z",
+    "hypothesis": "π0.5 L2norm k=0.7 Long strict — lenient=63.2%，strict 重跑获取真实值。L2norm cliff curve 关键下降段：k=0.75 strict=73.4%(running)→k=0.7=?→k=0.5=50.0%(lenient)",
+    "parent": "eval_pi05_l2norm_k07_long_seed42",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0",
+      "server": "cqa1-33015",
+      "data_path": "/root/autodl-tmp/importance_margin_vla_compress",
+      "data_count": 0,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_10"
+    },
+    "conclusion": "success",
+    "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k07_long_seed42_strict.log",
+    "checkpoint_path": "N/A (eval only)",
+    "metrics": {
+      "avg_success_rate": 63.2,
+      "total_success": 316,
+      "total_episodes": 500,
+      "elapsed_min": 251.7,
+      "per_task": {
+        "T0_put_both_alphabet_soup_and_tomato": 76,
+        "T1_put_both_cream_cheese_and_butter": 90,
+        "T2_turn_on_stove_put_moka_pot": 72,
+        "T3_put_black_bowl_bottom_drawer": 46,
+        "T4_put_white_mug_left_plate": 56,
+        "T5_pick_up_book_place_back": 80,
+        "T6_put_white_mug_plate_and": 52,
+        "T7_put_both_alphabet_soup_and_cream": 58,
+        "T8_put_both_moka_pots_stove": 8,
+        "T9_put_yellow_white_mug_microwave": 94
+      }
+    },
+    "completed_at": "2026-05-27T16:16:47.623Z"
+  },
+  "timestamp": "2026-05-27T16:16:50.191867+00:00",
+  "trigger": "update_registry"
+}

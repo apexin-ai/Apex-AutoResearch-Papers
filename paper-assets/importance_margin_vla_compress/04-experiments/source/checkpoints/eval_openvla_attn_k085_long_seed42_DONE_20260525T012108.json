@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_openvla_attn_k085_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T21:25:20.002Z",
+    "updated_at": "2026-05-25T01:21:07.734Z",
+    "hypothesis": "OpenVLA Attention scoring k=0.85 on LIBERO-Long. Extending Attn scoring to Long suite. Attn k=0.9 and k=0.85 Object running on westd-38929, k=0.9 Goal+Spatial on westd-27271. Long suite tests attention scoring on most challenging multi-step tasks.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_10 --seed 42 --output eval_results/openvla_attn_prune_k085_long_seed42.json",
+      "server": "westd-41074",
+      "gpu": 1,
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_long_seed42.log",
+      "pid": 912556
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-25T01:21:07.734Z"
+  },
+  "timestamp": "2026-05-25T01:21:08.860844+00:00",
+  "trigger": "update_registry"
+}

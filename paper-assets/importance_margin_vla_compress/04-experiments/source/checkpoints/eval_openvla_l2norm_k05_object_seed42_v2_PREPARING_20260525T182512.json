@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval_openvla_l2norm_k05_object_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "completed_at": "2026-05-21T12:10:30.050Z",
+    "created_at": "2026-05-21T07:25:01.420Z",
+    "hypothesis": "L2norm k=0.5 Object 重跑——之前结果需验证。k=0.9 L2norm Object=70.6%，k=0.5 测试 cliff zone",
+    "retry_count": 1,
+    "status": "PREPARING",
+    "updated_at": "2026-05-25T18:25:10.975Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "elapsed_minutes": 279.3,
+          "overall_SR": 0.392,
+          "per_task_SR": {
+            "alphabet_soup": 0.56,
+            "bbq_sauce": 0.32,
+            "butter": 0.12,
+            "chocolate_pudding": 0.44,
+            "cream_cheese": 0.14,
+            "ketchup": 0.7,
+            "milk": 0.5,
+            "orange_juice": 0.44,
+            "salad_dressing": 0.38,
+            "tomato_sauce": 0.32
+          },
+          "seed": 42,
+          "total_episodes": 500,
+          "total_successes": 196
+        }
+      }
+    }
+  },
+  "timestamp": "2026-05-25T18:25:12.557455+00:00",
+  "trigger": "update_registry"
+}

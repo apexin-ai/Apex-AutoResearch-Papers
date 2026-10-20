@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_submit_fill_openvla_idle_gpus_batch_20260526T152129_result.json",
     "occurrence": 1,
-    "bytes": 652,
-    "sha256": "e5eaaafbb428d1c5db9aaa8e2f0cf3fc3d49d20b41f21bc8b8edc0f7521adc36"
+    "bytes": 651,
+    "sha256": "52ae52df371998903a60cb16f40d1f5c4291449427bb8470ffd1639695744782"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,54 @@
+{
+  "exp_id": "eval_xvla_l2norm_k03_goal_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T18:46:06.773Z",
+    "updated_at": "2026-05-24T04:44:29.566Z",
+    "spec": {
+      "command": "cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=2 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_goal --keep_ratio 0.3 --mode l2_norm --num_episodes 50 --seed 42 --domain_id 3 --gpu 0",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "16447",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_xvla_l2norm_k03_goal_seed42_v3.log",
+      "submitted_at": "2026-05-24T02:33:42.550Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "X-VLA",
+      "seed": 42,
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "wall_clock_seconds": 6742.9,
+      "gpu_hours": 1.87
+    },
+    "hypothesis": "X-VLA with aggressive L2-norm pruning (keep_ratio=0.3) on LIBERO Goal will show significant performance degradation compared to higher keep ratios, establishing the lower bound of viable compression for L2-norm strategy.",
+    "conclusion": "negative",
+    "reproduce": {
+      "finished_at": "2026-05-24T03:58:24.491Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-23T18:59:55.576658+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-24T03:58:35.947906+00:00"
+        }
+      ]
+    },
+    "completed_at": "2026-05-24T04:26:05.494Z"
+  },
+  "timestamp": "2026-05-24T04:44:30.527394+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_westd41074_code_sync_deploy_20260527T074153_result.json",
     "occurrence": 1,
-    "bytes": 1110,
-    "sha256": "e520262480b3670b7c6d03cc8ef5612c52aed38c6f1973a98ae240e82fb99770"
+    "bytes": 1109,
+    "sha256": "60eff3f31b4123c411ea483d0656b7a3798e96516341d054860d48b7bf7ef32a"
   },
   "statistics": {
     "messages": 1,

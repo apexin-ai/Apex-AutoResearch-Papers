@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_harvest_eval_pi05_random_k05_long_seed42_strict_cqa1_20260527T133212_result.json",
     "occurrence": 1,
-    "bytes": 461,
-    "sha256": "b2235dbadef5eee2c8d7bb0c69e383fc15748f944c4db5c8f05523a85e84a36b"
+    "bytes": 460,
+    "sha256": "4c44b7ebd02055400fb14a6da3ad82096e97e574fef1b66dfec9d31e7ac6d16b"
   },
   "statistics": {
     "messages": 1,

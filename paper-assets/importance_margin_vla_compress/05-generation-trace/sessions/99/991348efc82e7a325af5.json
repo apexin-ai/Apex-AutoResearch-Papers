@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_cron_pi05-l2norm-k05-seed43-check_20260525T201737_result.json",
     "occurrence": 1,
-    "bytes": 395,
-    "sha256": "11cd37defc18c7670a89c8d37007334df784b43af67593ce74d98bcd07c675e8"
+    "bytes": 394,
+    "sha256": "0de2a49cfd0838f23c5461bdbb31d8ec978df765a1b66286ce66f8a037fbf32e"
   },
   "statistics": {
     "messages": 1,

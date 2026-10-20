@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_openvla_l2norm_k085_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T07:52:33.834Z",
+    "updated_at": "2026-05-26T07:54:26.892Z",
+    "hypothesis": "OpenVLA L2norm k=0.85 Object seed42 — 补 Object L2norm cliff curve 中间点。已有 k=0.5=39.2%, k=0.7=done, k=0.9=70.6%, 缺 k=0.85。填补 fig_pruning_overview 和 tab_main_results 关键数据",
+    "parent": "eval_openvla_l2norm_k09_object_seed42"
+  },
+  "timestamp": "2026-05-26T07:54:28.425825+00:00",
+  "trigger": "update_registry"
+}

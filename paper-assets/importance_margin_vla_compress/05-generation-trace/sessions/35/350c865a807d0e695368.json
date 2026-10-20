@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_westd41074_426line_revert_20260527T091154_result.json",
     "occurrence": 1,
-    "bytes": 283,
-    "sha256": "5844a85c0ada65bdf2788b9ddabdb687b4cf0f16de1c0be706e8349a98224920"
+    "bytes": 282,
+    "sha256": "666831d547536dbe5dda851e87174a6adb6a4595fe0a93e077c74d6064b7fe81"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:56:47.765Z",
+    "updated_at": "2026-05-22T10:58:04.363Z",
+    "hypothesis": "π0.5 L2norm k=0.85 LIBERO-Goal seed42: Phase 2 cliff zone sweep。Object L2norm k=0.85=98.0%。Goal 上 L2norm k=0.85 也应 >90% → 跨 suite cliff 免疫。"
+  },
+  "timestamp": "2026-05-22T10:58:04.927595+00:00",
+  "trigger": "update_registry"
+}

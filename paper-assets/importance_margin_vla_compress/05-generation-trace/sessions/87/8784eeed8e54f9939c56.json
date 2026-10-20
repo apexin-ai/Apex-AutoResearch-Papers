@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_urgent-pi05-seed42-backup-and-filename-fix_20260521T115127_result.json",
     "occurrence": 1,
-    "bytes": 1412,
-    "sha256": "9e7900354ffedc1509373be0fc77d0f2fabca0d4fa68ba57eb20c08a9bc9125a"
+    "bytes": 1411,
+    "sha256": "13456c700b3223e17b8011accbff41f6e738a3c60ff52b3c3b46709afe5345c2"
   },
   "statistics": {
     "messages": 1,

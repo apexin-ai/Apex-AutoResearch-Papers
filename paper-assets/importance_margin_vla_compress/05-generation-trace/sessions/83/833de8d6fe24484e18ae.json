@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_oft-kill-cqa1-check_20260520T131035_result.json",
     "occurrence": 1,
-    "bytes": 1557,
-    "sha256": "2432820289e582bbfc9fb8a544e4abfbb5adc60119496ae5e73612669547f506"
+    "bytes": 1556,
+    "sha256": "17d0370c78c4f4ba75eb40a2e418ba58d9336b981968241b823120989cdc8353"
   },
   "statistics": {
     "messages": 1,

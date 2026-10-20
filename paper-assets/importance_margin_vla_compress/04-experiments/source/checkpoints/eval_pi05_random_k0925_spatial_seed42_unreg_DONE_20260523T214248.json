@@ -1,0 +1,62 @@
+{
+  "exp_id": "eval_pi05_random_k0925_spatial_seed42_unreg",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T21:12:37.229Z",
+    "updated_at": "2026-05-23T21:42:47.531Z",
+    "hypothesis": "π0.5 Random k=0.925 Spatial seed42（未注册进程，补录）。westd-41074 GPU 2 上的实际运行进程 PID 781247。",
+    "spec": {
+      "command": "eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.925 --suite libero_spatial --seed 42",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "781247",
+      "data_count": 500,
+      "data_path": "libero_spatial",
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k0925_spatial_seed42.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T21:23:34.336Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-23T21:23:45.545Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-23T21:24:12.796395+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_sr": 0.582,
+      "total_successes": 291,
+      "total_episodes": 500,
+      "elapsed_min": 89.1,
+      "per_task_sr": {
+        "T0": 0.96,
+        "T1": 0.46,
+        "T2": 0.8,
+        "T3": 0.32,
+        "T4": 0.16,
+        "T5": 0.7,
+        "T6": 0.72,
+        "T7": 0.54,
+        "T8": 0.88,
+        "T9": 0.28
+      }
+    }
+  },
+  "timestamp": "2026-05-23T21:42:48.411675+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_baseline_alignment_audit_20260522T122300_result.json",
     "occurrence": 1,
-    "bytes": 5444,
-    "sha256": "a87512de2e3bd9c61562c572b8b4dd2fa51d6586045e15dbbe166f144533ca4b"
+    "bytes": 5443,
+    "sha256": "cca1c999218581665c4bca33957e9934e4d5f079b7622efa704b71138ca73b85"
   },
   "statistics": {
     "messages": 1,

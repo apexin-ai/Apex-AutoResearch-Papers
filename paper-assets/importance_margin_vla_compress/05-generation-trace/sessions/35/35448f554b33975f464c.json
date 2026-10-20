@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_debug_westd38929-mujoco-egl_20260520T092712_result.json",
     "occurrence": 1,
-    "bytes": 1538,
-    "sha256": "9dc0c87083ccf8deca7044cbe072b56cd0fc5282e55779a0b1b17fdc4b223015"
+    "bytes": 1537,
+    "sha256": "960543898c56e0f5152348e67b62c8f880876f1ad8304e1d883aee9ebf087ca4"
   },
   "statistics": {
     "messages": 1,

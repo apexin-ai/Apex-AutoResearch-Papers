@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_westd-41074-gpu-status_20260525T193225_result.json",
     "occurrence": 1,
-    "bytes": 1476,
-    "sha256": "825422a62d9d7b952b07a0dfb498607aebd11295269d60c85e84a840100b4d70"
+    "bytes": 1475,
+    "sha256": "4062a6f79b52e1004337aacfd633c88e3b102bb0a4ad6c322fc25c4fed0a9fcf"
   },
   "statistics": {
     "messages": 1,

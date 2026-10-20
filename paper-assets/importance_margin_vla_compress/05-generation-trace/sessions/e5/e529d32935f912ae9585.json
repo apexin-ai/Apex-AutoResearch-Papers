@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_figure_fig_cliff_edge_20260517T112401_result.json",
     "occurrence": 1,
-    "bytes": 459,
-    "sha256": "ce88b14daedfb4a8e83bfd0ab9a15e7f1c84370dab8d2ba4933a7c74865e2e52"
+    "bytes": 458,
+    "sha256": "ee465cad73e7280d4705586f0def156c395186598dd46aa1c87c6bb009b4b0cc"
   },
   "statistics": {
     "messages": 1,

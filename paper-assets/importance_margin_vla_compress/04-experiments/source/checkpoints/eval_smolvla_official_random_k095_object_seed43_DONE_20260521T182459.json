@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_smolvla_official_random_k095_object_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T17:10:51.519Z",
+    "updated_at": "2026-05-21T18:24:59.542Z",
+    "hypothesis": "SmolVLA official checkpoint random k=0.95 seed43; prior seed42 showed near-zero SR at 5% removal, seed43 confirms catastrophic sensitivity to even minimal random pruning in SmolVLA linear connector",
+    "spec": {
+      "command": "python3 eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 1 --seed 43 --mode random_prune --k_ratio 0.95",
+      "server": "westd-38929",
+      "gpu_id": 1,
+      "model_name": "smolvla",
+      "seed": 43,
+      "data_path": "libero_object",
+      "data_count": 500,
+      "checkpoint_source": "HuggingFaceVLA/smolvla_libero",
+      "eval_data": "libero_object"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T18:24:56.164Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T18:24:59.542Z"
+  },
+  "timestamp": "2026-05-21T18:24:59.990212+00:00",
+  "trigger": "update_registry"
+}

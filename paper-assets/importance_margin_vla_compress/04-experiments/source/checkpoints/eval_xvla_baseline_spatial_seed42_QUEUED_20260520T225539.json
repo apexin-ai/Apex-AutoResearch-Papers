@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_xvla_baseline_spatial_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:55:31.536Z",
+    "updated_at": "2026-05-20T22:55:38.907Z",
+    "hypothesis": "X-VLA baseline on LIBERO-Spatial (keep_ratio=1.0) establishes unpruned performance reference for cross-suite pruning comparison"
+  },
+  "timestamp": "2026-05-20T22:55:39.289869+00:00",
+  "trigger": "update_registry"
+}

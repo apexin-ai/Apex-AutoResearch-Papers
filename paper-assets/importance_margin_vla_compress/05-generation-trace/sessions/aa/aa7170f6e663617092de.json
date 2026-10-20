@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_westd41074_pi05_random_k075_strict_crash_20260527T053318_result.json",
     "occurrence": 1,
-    "bytes": 735,
-    "sha256": "bb9b1360d6da2d5bd306c8cb5be5f4492a288e4b374acd0b3b27cf0af768a8dc"
+    "bytes": 734,
+    "sha256": "36e388b435e19b7cefb5a2a1e146ddc12cae1827e0900d40e1050418d5665206"
   },
   "statistics": {
     "messages": 1,

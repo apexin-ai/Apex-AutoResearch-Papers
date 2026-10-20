@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check-cqa1-k085-seed44-result_20260520T231459_result.json",
     "occurrence": 1,
-    "bytes": 943,
-    "sha256": "24d50f1ed3c9fd9b1f773ef69f3f510599c443aed875115793adc7b7f80ecbb6"
+    "bytes": 942,
+    "sha256": "0642aa9714afa02b252645b7e364528c83a5e8de455b0322d325b993a09cf12b"
   },
   "statistics": {
     "messages": 1,

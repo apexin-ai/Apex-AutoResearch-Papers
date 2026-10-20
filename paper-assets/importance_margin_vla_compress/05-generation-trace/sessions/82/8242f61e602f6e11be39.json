@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_viz_entropy_comparison_figure_20260519T040642_result.json",
     "occurrence": 1,
-    "bytes": 583,
-    "sha256": "ae7dfff269a7e555aed57538d5543e294d545f24ed5f4d86552d4c9fe098b68f"
+    "bytes": 582,
+    "sha256": "3f7da17ed59424a6f53a30ef4dd21d84f5ccae20f241bc85ff6b7f429f3a5646"
   },
   "statistics": {
     "messages": 1,

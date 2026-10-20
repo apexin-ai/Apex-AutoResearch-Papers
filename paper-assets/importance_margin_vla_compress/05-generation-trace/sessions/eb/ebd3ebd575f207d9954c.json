@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_smolvla_metaworld_sweep_failure_20260524T181755_result.json",
     "occurrence": 1,
-    "bytes": 1268,
-    "sha256": "59d834287793557f21f6c7769fb74038b75ad7d75a7746b70faeb0859c5b287e"
+    "bytes": 1267,
+    "sha256": "0d892535d1af8a395de068d113775f2142370c2d137beea08ec900e6011210ba"
   },
   "statistics": {
     "messages": 1,

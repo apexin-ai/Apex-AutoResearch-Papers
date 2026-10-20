@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_c5_log_fix_20260519T221251_result.json",
     "occurrence": 1,
-    "bytes": 907,
-    "sha256": "3ff3df9a7e1fb147fd4a346e9039ceb57cf41b1d92dacc74e709a502b2e9a6c6"
+    "bytes": 906,
+    "sha256": "28d2fd4e25655e38498ea681b18dbe1cd48c69b16103022ac88a0e65f2f628f5"
   },
   "statistics": {
     "messages": 1,

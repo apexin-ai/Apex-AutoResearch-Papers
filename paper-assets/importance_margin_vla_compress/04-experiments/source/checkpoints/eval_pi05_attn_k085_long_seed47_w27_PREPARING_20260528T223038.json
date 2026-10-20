@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_pi05_attn_k085_long_seed47_w27",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-28T22:30:36.305Z",
+    "updated_at": "2026-05-28T22:30:36.305Z"
+  },
+  "timestamp": "2026-05-28T22:30:38.927927+00:00",
+  "trigger": "update_registry"
+}

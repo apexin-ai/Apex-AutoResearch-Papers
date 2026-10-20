@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_urgent_deadline_check_all_servers_20260528T095908_result.json",
     "occurrence": 1,
-    "bytes": 3318,
-    "sha256": "ec0d9c36acfc8d564f7142f35321c7d6b15aa80ca732d77f70ae1ad138799712"
+    "bytes": 3317,
+    "sha256": "204b4ffab4fbce042c7134cf490fe830c6d617f6f69ef36299e86d1bd0e44baa"
   },
   "statistics": {
     "messages": 1,

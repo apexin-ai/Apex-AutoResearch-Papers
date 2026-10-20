@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval_pi05_random_k095_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T19:03:59.633Z",
+    "updated_at": "2026-05-21T20:04:42.353Z",
+    "hypothesis": "π0.5 random k=0.95 seed42: 定位 random pruning 单调性违反的精确转折点。k=0.9→10% vs k=0.7→75.5%，去除更少 token 反而更差。如果 k=0.95 也很低，问题在高 retention ratio 本身；如果正常(~95%+)，转折在(0.9,0.95)之间。",
+    "parent": "eval_pi05_random_k09_object_seed42_v2",
+    "spec": {
+      "command": "python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_object --n_episodes 50 --seed 42 --gpu 0",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "625487",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k095_object_seed42.log",
+      "submitted_at": "2026-05-21T19:55:38.624Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/importance_margin_vla_compress/",
+      "data_count": 50,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_object (50 episodes)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T20:04:39.571Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-21T20:04:43.374399+00:00",
+  "trigger": "update_registry"
+}

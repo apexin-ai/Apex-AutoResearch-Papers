@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_eval_stage1only_k09_20260517T091047_result.json",
     "occurrence": 1,
-    "bytes": 1730,
-    "sha256": "155d69f9faab77d02492f7749e0ce3322a7ba7a22ce4ca00b0386ed3f3516a1b"
+    "bytes": 1729,
+    "sha256": "7c7e94d0336a7852ee5772bb4f5c9ca82c250aa02b0b5d4469bce4a49d5c22ca"
   },
   "statistics": {
     "messages": 1,

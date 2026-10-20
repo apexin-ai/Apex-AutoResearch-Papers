@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_random_k085_spatial_seed42_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T23:11:42.724Z",
+    "updated_at": "2026-05-23T23:11:57.795Z",
+    "hypothesis": "π0.5 Random k=0.85 Spatial post-fix — 测试 D191 disruption peak（Goal k=0.85 Random=52.4%）是否跨 suite 复现。CPU RNG 修复后 random pruning 应产生可复现的结果。"
+  },
+  "timestamp": "2026-05-23T23:11:58.729649+00:00",
+  "trigger": "update_registry"
+}

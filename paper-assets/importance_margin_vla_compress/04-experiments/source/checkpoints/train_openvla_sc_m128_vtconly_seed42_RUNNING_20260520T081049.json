@@ -1,0 +1,27 @@
+{
+  "exp_id": "train_openvla_sc_m128_vtconly_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:45:06.745Z",
+    "updated_at": "2026-05-20T08:10:49.471Z",
+    "spec": {
+      "command": "python train_openvla_smart_compress.py --config configs/openvla_smart_compress_m128.yaml --output_dir checkpoints/openvla_vtc_m128_only_seed42 --seed 42",
+      "server": "westd-41074",
+      "gpu": "cuda:0",
+      "seed": 42,
+      "model_name": "openvla+VTC(M=128)",
+      "data_path": "HuggingFaceVLA/libero",
+      "data_count": 273465,
+      "pid": 26118,
+      "tmux_session": "train_openvla_sc_m128_seed42"
+    },
+    "hypothesis": "VTC-only (no LoRA) on OpenVLA M=128 (256→128 tokens, 50% compression). This is the C4-ext go/no-go gate experiment. If VTC re-encoding significantly outperforms k=0.5 random pruning (37.4% SR), demonstrates learned re-encoding generalizes from pixel-shuffle (SmolVLA) to MLP-projector architecture.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-20T08:10:49.951033+00:00",
+  "trigger": "update_registry"
+}

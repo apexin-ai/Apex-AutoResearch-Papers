@@ -12,8 +12,34 @@ This page is a human-readable rendering of one source record. It preserves the r
 - **Original source:** `logs/workers/worker_eval_pi05_crossmodel_fix_and_run_20260517T163437_result.json`
 - **Structured JSON:** [`39cca24bd22705f16515.json`](../../sessions/39/39cca24bd22705f16515.json)
 
-## Browse this transcript
+## Before a recorded user message
 
-This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
+1 recorded events
 
-[Part 1](eval-pi05-crossmodel-fix-and-run/part-001.md) · [Part 2](eval-pi05-crossmodel-fix-and-run/part-002.md) · [Part 3](eval-pi05-crossmodel-fix-and-run/part-003.md)
+### Task result
+
+_source line 1_
+
+Large source content is retained in the sanitized trace archive.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "large_content_blocks": [
+    {
+      "index": 0,
+      "storage": "sanitized-trace-archive",
+      "source_line": 1,
+      "serialized_bytes": 2348083,
+      "serialized_sha256": "a825bea5af21990b9f63f2a681f72269eca7e012d1079f0108ab8ef78b059f0c",
+      "note": "Complete sanitized source is retained in trace-files.tar.gz."
+    }
+  ]
+}
+```
+
+</details>
+
+---

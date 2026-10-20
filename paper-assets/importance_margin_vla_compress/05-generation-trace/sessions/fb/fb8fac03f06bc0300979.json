@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd38929_gpu3_attn_long_20260526T095509_result.json",
     "occurrence": 1,
-    "bytes": 68,
-    "sha256": "b14a6c72906154e94631a63262a81a422c504e3a113db1defa720bc330d87f13"
+    "bytes": 67,
+    "sha256": "0727a98a2340f5019ac233c4a786a3ff4105640e4eac63a559b258862fe4884d"
   },
   "statistics": {
     "messages": 1,

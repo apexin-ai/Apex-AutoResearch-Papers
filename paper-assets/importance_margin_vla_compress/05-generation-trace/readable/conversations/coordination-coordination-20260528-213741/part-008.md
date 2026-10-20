@@ -18261,7 +18261,7 @@ _source line 5380 · 2026-05-28T13:16:37.516479+00:00_
 [55] 56\t  paperbanana --version
 [59] 60\t如果 `paperbanana --version` 失败（命令不存在），必须先 `pip install paperbanana -q` 安装。版本需 ≥ 0.1.2。
 [61] 62\t**设计前必读** `skills/global/paper-visualization.skill.md` 的概念图 L1（防丑 7 条）+ L2（叙事 6 条）+ L3 Pattern + Checklist。统计图部分不适用于 PaperBanana。
-[113] 114\tGOOGLE_API_KEY=\"$GOOGLE_API_KEY\" paperbanana generate \\
+[113] 114\tGOOGLE_API_KEY=[REDACTED]"$GOOGLE_API_KEY\" paperbanana generate \\
 [184] 185\tPaperBanana 内部有 VLM Critic 迭代（`--iterations 5`），但这还不够。你必须做**外部迭代**：
 [187] 188\t运行 PaperBanana → Read PNG → 识别大方向问题（布局、配色、结构）
 [208] 209\t如果 PaperBanana 多次崩溃（API 错误、模型不兼容）：

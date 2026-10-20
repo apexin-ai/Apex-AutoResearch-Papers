@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_pi05-zeromask-support-and-deploy_20260525T195657_result.json",
     "occurrence": 1,
-    "bytes": 908,
-    "sha256": "4921491d1d0a6166fc09d9e17b7f206e9c1e55f1e1b95c9be51973e868c0ee7c"
+    "bytes": 907,
+    "sha256": "618d0494e44924a8e229bd6cca73a961be4c344bda5ed47684dd35dd2cca30e0"
   },
   "statistics": {
     "messages": 1,

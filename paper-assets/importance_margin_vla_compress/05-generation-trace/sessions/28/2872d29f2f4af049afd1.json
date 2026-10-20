@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-env-readiness_20260520T181750_result.json",
     "occurrence": 1,
-    "bytes": 992,
-    "sha256": "53f558e831728c266563143d33ce37e1839364570579f6cd20bbab6327624b45"
+    "bytes": 991,
+    "sha256": "2f2a8e4e7af1c6ed53947f4be0ef0a10b5b0dc6c09da4e6c6cdbbcaac1446885"
   },
   "statistics": {
     "messages": 1,

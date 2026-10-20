@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_infra_verify-gpu-usage_20260515T143732_result.json",
     "occurrence": 1,
-    "bytes": 693,
-    "sha256": "cbe7aaab67031d1efcd3a30ef511708ea280d0216ac2922ee68dfabacb129151"
+    "bytes": 692,
+    "sha256": "fd6ac97a8e966a627a7ae1a5ec24598f745d74dc23d824659a77bc8b01f5d514"
   },
   "statistics": {
     "messages": 1,

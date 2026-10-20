@@ -1,0 +1,43 @@
+{
+  "exp_id": "profiling_pi05_latency_westd41074",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T19:55:25.739Z",
+    "updated_at": "2026-05-25T23:28:35.366Z",
+    "hypothesis": "Profile π0.5 single-step inference latency across keep_ratios [1.0, 0.9, 0.5] to quantify speedup from vision token pruning",
+    "spec": {
+      "command": "python -u profile_pi05_latency.py",
+      "server": "westd-41074",
+      "gpu": "cuda:0",
+      "model_name": "pi05_libero_finetuned",
+      "data_path": "libero_object",
+      "data_count": 100,
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_object",
+      "checkpoint_path": "N/A",
+      "log_path": "~/runs/importance_margin_vla_compress/profiling_pi05_latency_westd41074.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "k1.0_median_ms": 209.88,
+      "k1.0_p5_ms": 197.76,
+      "k1.0_p95_ms": 221.67,
+      "k0.9_median_ms": 206.36,
+      "k0.9_p5_ms": 171.43,
+      "k0.9_p95_ms": 225.03,
+      "k0.5_median_ms": 201.87,
+      "k0.5_p5_ms": 189.21,
+      "k0.5_p95_ms": 211.31,
+      "k0.9_speedup_pct": 1.7,
+      "k0.5_speedup_pct": 4
+    },
+    "completed_at": "2026-05-25T23:28:35.367Z"
+  },
+  "timestamp": "2026-05-25T23:28:36.541665+00:00",
+  "trigger": "update_registry"
+}

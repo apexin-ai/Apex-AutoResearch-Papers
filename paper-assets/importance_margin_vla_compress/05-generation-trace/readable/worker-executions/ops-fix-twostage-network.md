@@ -1283,7 +1283,7 @@ _source line 28 · 2026-05-16T04:26:26.256Z_
 <details><summary>↩ Tool result · `toolu_01W9Ax8TocteQ113pDbCVYBE`</summary>
 
 ```text
-{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"env: 'WANDB_API_KEY': No such file or directory\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"env: 'WANDB_API_KEY': [REDACTED] such file or directory\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.5}}"}
 ```
 
 </details>
@@ -1298,9 +1298,9 @@ _source line 28 · 2026-05-16T04:26:26.256Z_
   "session_id": "4e49689f-4301-48a3-8d0b-7b5babb36089",
   "uuid": "a7450bd0-336b-4795-93c5-f870fbf94796",
   "tool_use_result": {
-    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"env: 'WANDB_API_KEY': No such file or directory\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"env: 'WANDB_API_KEY': [REDACTED] such file or directory\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
     "structuredContent": {
-      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"env: 'WANDB_API_KEY': No such file or directory\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.5}}"
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"env: 'WANDB_API_KEY': [REDACTED] such file or directory\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.5}}"
     }
   }
 }

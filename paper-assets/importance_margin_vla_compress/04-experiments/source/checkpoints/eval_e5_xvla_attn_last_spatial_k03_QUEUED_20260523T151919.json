@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_e5_xvla_attn_last_spatial_k03",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T14:09:01.448Z",
+    "updated_at": "2026-05-23T15:19:18.509Z",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_xvla_attention_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_spatial --keep_ratio 0.3 --mode attention_last --num_episodes 50 --seed 42 --gpu 0\"",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "967372",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_e5_xvla_attn_last_spatial_k03.log",
+      "submitted_at": "2026-05-23T14:09:00.235Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "E5 attention_last Spatial k=0.3: 极端剪枝。last Spatial k=0.5=88.8%。Spatial 对 pruning 更敏感（Object k=0.5=99.2%），k=0.3 预测退化更大。"
+  },
+  "timestamp": "2026-05-23T15:19:19.278411+00:00",
+  "trigger": "update_registry"
+}

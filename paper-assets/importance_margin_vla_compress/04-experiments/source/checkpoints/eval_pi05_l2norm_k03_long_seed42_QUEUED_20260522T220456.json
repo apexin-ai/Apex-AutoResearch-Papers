@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k03_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T22:04:38.176Z",
+    "updated_at": "2026-05-22T22:04:55.850Z",
+    "hypothesis": "π0.5 L2norm k=0.3 Long seed42: Long L2 k=0.5=🏃, k=0.7=60.0%. k=0.3 是极端压缩的 floor data point。Long suite 最后 L2 缺口。"
+  },
+  "timestamp": "2026-05-22T22:04:56.501179+00:00",
+  "trigger": "update_registry"
+}

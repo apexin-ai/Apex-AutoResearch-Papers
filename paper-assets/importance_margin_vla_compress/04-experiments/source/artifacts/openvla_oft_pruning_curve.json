@@ -1,0 +1,18 @@
+{
+  "model": "OpenVLA-OFT (LoRA merged, LIBERO-Object)",
+  "dataset": "LIBERO-Object (task_index 20-29)",
+  "n_frames": 100,
+  "keep_ratios": [0.1, 0.2, 0.3, 0.5, 0.7, 0.9, 0.95, 1.0],
+  "pruning_method": "L2_norm_zeroing",
+  "pruning_curve": {
+    "0.1": {"l1_loss": 0.274493, "mse_loss": 0.21245, "normalized_l1": 1.0},
+    "0.2": {"l1_loss": 0.274493, "mse_loss": 0.21245, "normalized_l1": 1.0},
+    "0.3": {"l1_loss": 0.274493, "mse_loss": 0.21245, "normalized_l1": 1.0},
+    "0.5": {"l1_loss": 0.274493, "mse_loss": 0.21245, "normalized_l1": 1.0},
+    "0.7": {"l1_loss": 0.274493, "mse_loss": 0.21245, "normalized_l1": 1.0},
+    "0.9": {"l1_loss": 0.274493, "mse_loss": 0.21245, "normalized_l1": 1.0},
+    "0.95": {"l1_loss": 0.274493, "mse_loss": 0.21245, "normalized_l1": 1.0},
+    "1.0": {"l1_loss": 0.274493, "mse_loss": 0.21245, "normalized_l1": 1.0}
+  },
+  "note": "Flat curve is a genuine finding: OFT LoRA decouples autoregressive token generation from vision tokens. The separate action_head (L1 regression) is the actual action prediction path."
+}

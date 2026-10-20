@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp_baseline_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:55:28.972Z",
+    "updated_at": "2026-05-15T14:55:36.283Z",
+    "hypothesis": "SmolVLA+LoRA baseline on aloha_sim_insertion establishes action loss reference for IMM comparison"
+  },
+  "timestamp": "2026-05-15T14:55:36.297843+00:00",
+  "trigger": "update_registry"
+}

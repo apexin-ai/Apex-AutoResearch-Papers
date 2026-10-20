@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_smolvla_base_compatibility_20260516T234059_result.json",
     "occurrence": 1,
-    "bytes": 1908,
-    "sha256": "165ee43acae43067579c48238e4fd9c970a41cd2756ef3ab9efb47c6b6180f1e"
+    "bytes": 1907,
+    "sha256": "3a73c20392041b69d4438a9472a1a7b9ee3794f4c6fd9ff9917719f082a2eef5"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval_openvla_random_k07_long_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T18:11:14.495Z",
+    "updated_at": "2026-05-26T02:51:44.654Z",
+    "hypothesis": "Random pruning at k=0.7 on Long suite — cliff zone 补充。k=0.9 Random=46.8%，k=0.7 测试 random baseline 的衰减速度",
+    "parent": "eval_openvla_random_k07_long_seed42",
+    "spec": {
+      "command": "python3 eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.7 --suite libero_10 --num_episodes 50 --seed 42",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "7375",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_random_k07_long_seed42_v2.log",
+      "submitted_at": "2026-05-25T18:12:24.503Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "openvla-7b-finetuned-libero-10",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/models/openvla-7b-finetuned-libero-10",
+      "eval_data": "libero_10"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-26T02:51:41.810Z"
+    }
+  },
+  "timestamp": "2026-05-26T02:51:45.973586+00:00",
+  "trigger": "update_registry"
+}

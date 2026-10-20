@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_pi05-pipeline-diagnostic_20260521T030016_result.json",
     "occurrence": 1,
-    "bytes": 4095,
-    "sha256": "320973416af83fc569f36ce129dfdacea7db10bd47ef4c6ea84b825d28d10bf7"
+    "bytes": 4094,
+    "sha256": "146700a18092c0b6a67a253980e60315ffc1a3dea51f31ef5afbe8a367e55206"
   },
   "statistics": {
     "messages": 1,

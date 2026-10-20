@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_e1_deploy_9_table_gaps_20260523T060827_result.json",
     "occurrence": 1,
-    "bytes": 1453,
-    "sha256": "9467fada9b44d4c1e299886b801cf0b9dd1e966aa8f8cd23b4b3918c22e8ba39"
+    "bytes": 1452,
+    "sha256": "5699bf33f325b0d72fae72ba22291ce8b4dd708f2550f642061736da1410c5a6"
   },
   "statistics": {
     "messages": 1,

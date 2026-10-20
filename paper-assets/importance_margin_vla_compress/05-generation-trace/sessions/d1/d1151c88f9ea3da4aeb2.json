@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1_attn_k095_long_and_gpu2_check_20260526T165103_result.json",
     "occurrence": 1,
-    "bytes": 931,
-    "sha256": "5f9e232a89a0d61d6167914361b2140b96a78ef8d4becf43bc713cac22eaf48e"
+    "bytes": 930,
+    "sha256": "211a649e3e8f47b2c817adedcd627fb19e178e91757df0d2bfc19454387528ca"
   },
   "statistics": {
     "messages": 1,

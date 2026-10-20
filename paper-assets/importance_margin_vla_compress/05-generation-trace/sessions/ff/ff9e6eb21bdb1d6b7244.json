@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_openvla-script-fix-and-checkpoint-download_20260520T231347_result.json",
     "occurrence": 1,
-    "bytes": 1771,
-    "sha256": "7e1e9d8bfb989d93adb005407b75ea16b56b6a8a0fc30352dc5ffbf93e356371"
+    "bytes": 1770,
+    "sha256": "f4d7492f17cfb03af826c610442dd60017a4dcf3c0b78015eebcda61ca388da6"
   },
   "statistics": {
     "messages": 1,

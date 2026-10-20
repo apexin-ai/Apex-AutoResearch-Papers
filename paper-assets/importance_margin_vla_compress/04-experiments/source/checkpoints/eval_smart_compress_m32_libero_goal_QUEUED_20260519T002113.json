@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_smart_compress_m32_libero_goal",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:01:35.491Z",
+    "updated_at": "2026-05-19T00:21:13.097Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 python -u eval_smart_compress_libero.py --n_queries 32 --checkpoint_path checkpoints/smart_compress_m32/checkpoint.pt --suite libero_goal --num_episodes 50 --gpu 0 --seed 42 --output eval_results/eval_smart_compress_m32_libero_goal.json 2>&1 | tee eval_smart_compress_m32_libero_goal.log\"",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "571598",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_smart_compress_m32_libero_goal.log",
+      "submitted_at": "2026-05-19T00:01:35.221Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Smart Compress M=32 (trained on LIBERO-Object) evaluated on LIBERO-Goal to test cross-suite generalization. Combined with LIBERO-Spatial (~56% partial), if LIBERO-Goal SR > 0%, establishes robust cross-suite generalization claim for the paper.",
+    "parent": "train_smart_compress_m32"
+  },
+  "timestamp": "2026-05-19T00:21:13.288844+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_openvla_random_k07_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T21:32:58.596Z",
+    "updated_at": "2026-05-25T21:32:58.596Z"
+  },
+  "timestamp": "2026-05-25T21:32:59.799781+00:00",
+  "trigger": "update_registry"
+}

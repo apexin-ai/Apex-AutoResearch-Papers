@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_openvla_l2norm_k075_goal_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T16:52:29.290Z",
+    "updated_at": "2026-05-26T16:52:29.290Z"
+  },
+  "timestamp": "2026-05-26T16:52:31.848685+00:00",
+  "trigger": "update_registry"
+}

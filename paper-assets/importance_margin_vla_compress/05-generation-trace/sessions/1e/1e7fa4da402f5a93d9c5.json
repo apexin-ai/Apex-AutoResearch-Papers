@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_verify_w41074_gpu01_status_20260527T102116_result.json",
     "occurrence": 1,
-    "bytes": 527,
-    "sha256": "20cdd555e51c36b352d352591a73f287d15c8d258c2b38e707d3fb33840505fa"
+    "bytes": 526,
+    "sha256": "76412619e7a01e5dc42aad2e3bb92b7ec074831482486777478fd645b1f713a6"
   },
   "statistics": {
     "messages": 1,

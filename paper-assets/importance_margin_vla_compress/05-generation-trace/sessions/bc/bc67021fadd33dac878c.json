@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_c5_roboflamingo_action_head_fix_20260519T184838_result.json",
     "occurrence": 1,
-    "bytes": 1931,
-    "sha256": "4bd8b794ed91de5f7a6c8fc2e0904a7f2107d0cd616e3a91b6062d36d0fbe6a6"
+    "bytes": 1930,
+    "sha256": "6374a87ca1893dc3ad7aac4f1406e632aed7431c1ff08b88441dd54242358df5"
   },
   "statistics": {
     "messages": 1,

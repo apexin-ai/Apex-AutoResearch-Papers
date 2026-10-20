@@ -1,0 +1,69 @@
+{
+  "exp_id": "eval_pi05_l2norm_k03_spatial_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T19:04:48.329Z",
+    "updated_at": "2026-05-21T21:04:27.021Z",
+    "spec": {
+      "command": "python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.3 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 3",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "590816",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log",
+      "submitted_at": "2026-05-21T19:09:50.353Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_spatial (10 tasks x 50 eps)",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_spatial"
+    },
+    "hypothesis": "π0.5 L2norm k=0.3 on LIBERO-Spatial seed42, 验证 k=0.3 处 method reversal (L2norm > random) 是否跨 suite 复现",
+    "reproduce": {
+      "finished_at": "2026-05-21T21:00:31.958Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T21:00:40.481357+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_sr": 57.2,
+      "total_successes": 286,
+      "total_episodes": 500,
+      "elapsed_min": 108.4,
+      "seed": 42,
+      "per_task_sr": {
+        "T0_bowl_between_plate": 62,
+        "T1_bowl_next_to_ramekin": 72,
+        "T2_bowl_from_table_center": 78,
+        "T3_bowl_on_cookie_box": 24,
+        "T4_bowl_in_top_drawer": 34,
+        "T5_bowl_on_ramekin": 26,
+        "T6_bowl_next_to_cookie": 74,
+        "T7_bowl_on_stove": 90,
+        "T8_bowl_next_to_plate": 66,
+        "T9_bowl_on_wooden_cabinet": 46
+      },
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log",
+      "checkpoint_path": "/root/autodl-tmp/pi05_libero_finetuned",
+      "result_json": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.30_libero_spatial_seed42.json"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-21T21:04:27.537022+00:00",
+  "trigger": "update_registry"
+}

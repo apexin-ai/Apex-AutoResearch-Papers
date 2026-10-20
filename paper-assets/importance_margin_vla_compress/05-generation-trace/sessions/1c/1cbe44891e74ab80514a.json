@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_libero_fullft_seed1_done_20260517T044437_result.json",
     "occurrence": 1,
-    "bytes": 445,
-    "sha256": "6cfa6ccb62581f61ae420f86f31c5da9fe62dce331e4ca3ff6f0280cdc69c658"
+    "bytes": 444,
+    "sha256": "d19aa450287e095150ddddd0253f29fecc1fc10e598a87532f4be94eab74afef"
   },
   "statistics": {
     "messages": 1,

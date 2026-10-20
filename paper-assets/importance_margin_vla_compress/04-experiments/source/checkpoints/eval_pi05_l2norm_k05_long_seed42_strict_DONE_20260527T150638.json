@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval_pi05_l2norm_k05_long_seed42_strict",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T11:58:57.974Z",
+    "updated_at": "2026-05-27T15:06:36.882Z",
+    "hypothesis": "L2norm pruning at k=0.5 (50% token retention) on π0.5 will show significant performance degradation on LIBERO-Long due to extreme compression removing task-critical visual information.",
+    "spec": {
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/pi05_l2norm_k05_long_strict.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "avg_success_rate": 49.2,
+      "total_episodes": 500,
+      "total_success": 246,
+      "elapsed_min": 181.6,
+      "per_task": {
+        "T0_put_both_alphabet_soup_and_tomato": 58,
+        "T1_put_both_cream_cheese_and_butter": 50,
+        "T2_turn_on_stove_put_moka_pot": 84,
+        "T3_put_black_bowl_in_bottom_drawer": 44,
+        "T4_put_white_mug_on_left_plate": 30,
+        "T5_pick_up_book_place_in_back": 56,
+        "T6_put_white_mug_on_plate": 22,
+        "T7_put_both_alphabet_soup_and_cream": 42,
+        "T8_put_both_moka_pots_on_stove": 22,
+        "T9_put_yellow_white_mug_in_microwave": 84
+      }
+    },
+    "completed_at": "2026-05-27T15:06:36.882Z"
+  },
+  "timestamp": "2026-05-27T15:06:38.277659+00:00",
+  "trigger": "update_registry"
+}

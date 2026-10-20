@@ -1,0 +1,34 @@
+{
+  "exp_id": "eval_pi05_random_k085_goal_seed42_postfix_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T05:35:04.803Z",
+    "updated_at": "2026-05-25T09:50:52.644Z",
+    "hypothesis": "π0.5 Random k=0.85 Goal seed42 postfix v3 — 重跑 cliff zone Goal dual-seed 数据点",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_goal --n_episodes 50 --seed 42 --gpu 0\"",
+      "server": "cqa1-33015",
+      "gpu": "cuda:0",
+      "pid": "79848",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k085_goal_seed42_postfix_v3.log",
+      "submitted_at": "2026-05-25T07:29:04.481Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "pi0.5",
+      "seed": 42,
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "eval_data": "libero_goal 10 tasks x 50 episodes"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-25T09:50:49.633Z"
+    }
+  },
+  "timestamp": "2026-05-25T09:50:53.795586+00:00",
+  "trigger": "update_registry"
+}

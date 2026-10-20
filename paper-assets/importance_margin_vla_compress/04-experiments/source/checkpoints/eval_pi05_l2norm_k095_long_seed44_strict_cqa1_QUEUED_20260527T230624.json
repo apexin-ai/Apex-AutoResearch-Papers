@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_l2norm_k095_long_seed44_strict_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T22:34:43.154Z",
+    "updated_at": "2026-05-27T23:06:22.850Z",
+    "hypothesis": "π0.5 L2norm k=0.95 Long strict seed44 — curve 起始参考点第三 seed (s42=85.8%, s43=86.2%, mean=86.0%±0.2pp)。margin 表顶端 L2norm 基准精度，最后未覆盖 s44 之一",
+    "parent": "eval_pi05_l2norm_k095_long_seed43_strict_w41"
+  },
+  "timestamp": "2026-05-27T23:06:24.254857+00:00",
+  "trigger": "update_registry"
+}

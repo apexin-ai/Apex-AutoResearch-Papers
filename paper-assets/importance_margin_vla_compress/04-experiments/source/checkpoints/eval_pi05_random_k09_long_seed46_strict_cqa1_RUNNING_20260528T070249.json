@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_pi05_random_k09_long_seed46_strict_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-28T06:33:12.158Z",
+    "updated_at": "2026-05-28T07:02:46.014Z",
+    "hypothesis": "5th seed for Random k=0.9 peak margin point — 4-seed mean=33.6%±1.37pp, adding s46 for 5-seed error bar at the Random baseline's worst performance (peak margin denominator)",
+    "server": "cqa1-33015",
+    "gpu": "cuda:0",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 46 --gpu 0\"",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "191022",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed46_strict_cqa1.log",
+      "submitted_at": "2026-05-28T07:02:30.044Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "191022",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed46_strict_cqa1.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 46 --gpu 0\""
+    }
+  },
+  "timestamp": "2026-05-28T07:02:49.536375+00:00",
+  "trigger": "update_registry"
+}

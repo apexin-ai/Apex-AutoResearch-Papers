@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_smolvla-official-sweep-setup_20260521T152236_result.json",
     "occurrence": 1,
-    "bytes": 2537,
-    "sha256": "777f4cea653d51bc951140fb8b6b7b4027992fd887f4906ffb270286b8034011"
+    "bytes": 2536,
+    "sha256": "dbd0904167c21eb460827dd60235c826888b6396b6dcee4a314e1326a6228a11"
   },
   "statistics": {
     "messages": 1,

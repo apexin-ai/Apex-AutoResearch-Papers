@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval_xvla_random_k07_object_seed43_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:27:59.620Z",
+    "updated_at": "2026-05-21T07:56:46.397Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u eval_xvla_pruning_libero.py --keep_ratio 0.70 --suite libero_object --seed 43 --num_episodes 50 --gpu 0 --mode random --model_path /root/autodl-tmp/X-VLA-Libero",
+      "server": "cqa1-33015",
+      "data_path": "libero_object",
+      "data_count": 500,
+      "model_name": "X-VLA-Libero",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/X-VLA-Libero",
+      "eval_data": "libero_object (10 tasks x 50 episodes)",
+      "checkpoint_path": "/root/autodl-tmp/X-VLA-Libero",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k0.7_libero_object.json"
+    },
+    "hypothesis": "X-VLA random k=0.7 seed43 v2: re-run with correct --mode random. seed42=65.2%. Multi-seed verification of non-monotonicity (k=0.5=70.6% > k=0.7=65.2%). If seed43 also shows k=0.7 < k=0.5, confirms non-monotonicity is reproducible.",
+    "parent": "eval_xvla_random_k07_object_seed42",
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.65,
+      "wilson_ci_95": [
+        0.6072,
+        0.6905
+      ],
+      "total_episodes": 500,
+      "total_successes": 325
+    },
+    "completed_at": "2026-05-21T07:56:46.397Z"
+  },
+  "timestamp": "2026-05-21T07:56:46.811896+00:00",
+  "trigger": "update_registry"
+}

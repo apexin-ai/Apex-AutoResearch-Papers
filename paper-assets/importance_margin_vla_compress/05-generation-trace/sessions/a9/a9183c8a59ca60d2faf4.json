@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_libero_eval_pipeline_verify_20260516T162347_result.json",
     "occurrence": 1,
-    "bytes": 5814,
-    "sha256": "0b3c04efa1426785ee8f526b2886520a7b660b92449b45b8cda26eb23abfac00"
+    "bytes": 5813,
+    "sha256": "9501a44463ed8bdb80712fa557df6612f7f389430cf1f1cc73b8be80c0a31f8f"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,14 @@
+status: running
+server: westd-27271
+gpu: 1
+pid: 3092
+checkpoint: checkpoints/libero_imm_twostage_fullft/stage1_done/checkpoint.pt
+config: configs/libero_imm_twostage_fullft_k07.yaml
+k_ratio: 0.7
+suite: libero_object
+mode: acis_prune
+num_episodes_per_task: 50
+log: logs/eval_stage1only_k07.log
+output: eval_results/eval_stage1only_k07_object.json
+baseline: k=0.5 stage1-only = 44.8% SR
+started: 2026-05-17T14:33:18

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_eval_m32_official_missing_20260519T094239_result.json",
     "occurrence": 1,
-    "bytes": 772,
-    "sha256": "853a098caff6965f12414106bdd7d926efe20e139ceff648f0ec36061a0711b9"
+    "bytes": 771,
+    "sha256": "ff03457a47be132fd74b0213e968e414716be053b4272996d3f526a78f2db6fc"
   },
   "statistics": {
     "messages": 1,

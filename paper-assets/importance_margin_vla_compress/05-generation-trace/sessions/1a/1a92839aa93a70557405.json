@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_pi05_spatial_crosstab_20260521T205726_result.json",
     "occurrence": 1,
-    "bytes": 1052,
-    "sha256": "9abcaca48b2b80d53d75045402de9e1275ded2d2602e756752f2c75ceae43a47"
+    "bytes": 1051,
+    "sha256": "2d35574410efc7135b79874013bc73e2eedeed2277a3f79fa3c7abbc6cf5a7e3"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_stop-oft-download-cqa1_20260520T085735_result.json",
     "occurrence": 1,
-    "bytes": 476,
-    "sha256": "413909af2cb1b7a0fa62aa210f81647594ff3aae3428dbbfa3c332b51db26ad1"
+    "bytes": 475,
+    "sha256": "e45e4f0650277b80fe61d9f55cd263702a89ac220a13c0ec333eb6e4ab6bd0c3"
   },
   "statistics": {
     "messages": 1,

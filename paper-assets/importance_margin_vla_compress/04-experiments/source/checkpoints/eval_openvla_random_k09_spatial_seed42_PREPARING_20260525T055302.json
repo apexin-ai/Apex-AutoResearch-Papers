@@ -1,0 +1,21 @@
+{
+  "exp_id": "eval_openvla_random_k09_spatial_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-24T23:03:38.545Z",
+    "updated_at": "2026-05-25T05:53:01.168Z",
+    "hypothesis": "OpenVLA Random k=0.9 Spatial seed42 — Random baseline for 三方 crossover (Random vs L2norm vs Attention) at k=0.9 on libero_spatial suite",
+    "completed_at": "2026-05-25T01:19:40.093Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed"
+      }
+    }
+  },
+  "timestamp": "2026-05-25T05:53:02.322028+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_deploy_e5_dryrun_and_check_openvla_downloads_20260523T080428_result.json",
     "occurrence": 1,
-    "bytes": 1315,
-    "sha256": "21c9ed18090f909d468eba94ee56ff9b4b2cc935b1182a0c3d7844d8d68c7b7f"
+    "bytes": 1314,
+    "sha256": "82727c4fdda6e309b59ce1defe2c9f73f79aa443c6110990f3a89090a67a7f68"
   },
   "statistics": {
     "messages": 1,

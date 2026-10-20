@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_verify_attn_k05_goal_and_w41074_gpu2_20260526T160706_result.json",
     "occurrence": 1,
-    "bytes": 1223,
-    "sha256": "6171f6ab9ba923dd93ac42eb605efd76957fbc953a98625a73d422608efead86"
+    "bytes": 1222,
+    "sha256": "bd8bbf8162a282ca633a9bd3432a0f730b5bbce5f46cd780f0e59c8766b6958e"
   },
   "statistics": {
     "messages": 1,

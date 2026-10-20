@@ -1,0 +1,67 @@
+{
+  "exp_id": "eval_pi05_l2norm_k09_long_seed46_strict_w27",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-28T06:22:18.620Z",
+    "updated_at": "2026-05-28T08:50:50.466Z",
+    "hypothesis": "π0.5 L2norm k=0.9 Long strict seed46 — peak margin 点第5个 seed。s42=80.0%, s43=81.2%, s44=80.4%, s45=80.4%。seed46 进一步收窄 L2norm k=0.9 error bar，加固 peak margin claim",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 46 --gpu 0\"",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "549654",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed46_strict_w27.log",
+      "submitted_at": "2026-05-28T06:25:16.159Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "pi05",
+      "seed": 46,
+      "checkpoint_source": "pi05_libero_finetuned",
+      "eval_data": "libero_10"
+    },
+    "server": "westd-27271",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "finished_at": "2026-05-28T08:44:19.086Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-28T08:45:14.360992+00:00"
+        }
+      ]
+    },
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed46_strict_w27.log",
+    "checkpoint_path": "N/A (eval-only)",
+    "metrics": {
+      "success_rate": 80.6,
+      "episodes": 500,
+      "per_task": {
+        "T0": 96,
+        "T1": 96,
+        "T2": 94,
+        "T3": 98,
+        "T4": 88,
+        "T5": 94,
+        "T6": 8,
+        "T7": 90,
+        "T8": 52,
+        "T9": 90
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-28T08:50:54.867706+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analyze_pi05_attn_k095_strict_w41_and_deploy_20260527T113744_result.json",
     "occurrence": 1,
-    "bytes": 1255,
-    "sha256": "e6a87c9d4fe4ed80dfbfb3db027e91ff698aef7b37e7c5386158727999f1e755"
+    "bytes": 1254,
+    "sha256": "478f542d7e3fa887cadae8cba6760f695196c9a2036e39dcd7f329192fe0ee6e"
   },
   "statistics": {
     "messages": 1,

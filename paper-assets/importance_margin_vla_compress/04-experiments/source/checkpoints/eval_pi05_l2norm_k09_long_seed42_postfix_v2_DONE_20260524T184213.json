@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_pi05_l2norm_k09_long_seed42_postfix_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T13:41:34.122Z",
+    "updated_at": "2026-05-24T18:42:12.778Z",
+    "hypothesis": "π0.5 L2norm k=0.9 Long post-fix v2 — cliff zone importance margin 关键数据。Random k=0.9 Object=9.0%（disruption peak）。L2norm k=0.9 pre-fix=81.0%。验证 L2norm 在 Long cliff zone 的免疫性",
+    "parent": "eval_pi05_l2norm_k09_long_seed42_postfix",
+    "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_long_postfix_v2.log",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0",
+      "server": "cqa1-33015",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "pid": 431403,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_10",
+      "checkpoint_path": "pi05_libero_finetuned (eval-only)",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_long_postfix_v2.log"
+    },
+    "metrics": {
+      "overall_sr": 80
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-24T18:42:12.778Z"
+  },
+  "timestamp": "2026-05-24T18:42:13.764206+00:00",
+  "trigger": "update_registry"
+}

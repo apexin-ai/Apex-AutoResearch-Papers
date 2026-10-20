@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_verify_l2norm_k075_goal_v2_gpu_check_20260526T165356_result.json",
     "occurrence": 1,
-    "bytes": 124,
-    "sha256": "90a67942ff629f7aa9f6f54205bc846e1441ecedf08f429af058d09eae5421e3"
+    "bytes": 123,
+    "sha256": "40eb46b3523a1ce80c06993d60ff5ba3d424d95f49889403b86116a51525a131"
   },
   "statistics": {
     "messages": 1,

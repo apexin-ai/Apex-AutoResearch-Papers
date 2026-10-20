@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_fix_twostage_network_20260516T042516_result.json",
     "occurrence": 1,
-    "bytes": 775,
-    "sha256": "5c9fe841145370dfa777e68d37876784cc807d7f350f24e173758ba931581b4e"
+    "bytes": 774,
+    "sha256": "fabf93bb538fb77f9a8e04a407203e0b99eea285dd6bfcf2bcaff25e9710b811"
   },
   "statistics": {
     "messages": 1,

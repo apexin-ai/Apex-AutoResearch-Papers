@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_progress_remaining_6_experiments_20260528T080247_result.json",
     "occurrence": 1,
-    "bytes": 779,
-    "sha256": "1c878496da044c9a05bfb9814f64bcca785721e0ae2491f0d70a6997296b5a50"
+    "bytes": 778,
+    "sha256": "1bf0b488adf00740451c5870adaadfa97469cdadf2a3b0b332fc552cb948a18b"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1_strict_attn_k095_long_20260527T031120_result.json",
     "occurrence": 1,
-    "bytes": 943,
-    "sha256": "312b5e461f918a352876fbcbd5b39b4639ccad203ab1298b4ef67c2ea5fbdf3d"
+    "bytes": 942,
+    "sha256": "6d8c834fda1a91486b0045c2272023d5aadc5cf40c559c27b5512c987f1c7604"
   },
   "statistics": {
     "messages": 1,

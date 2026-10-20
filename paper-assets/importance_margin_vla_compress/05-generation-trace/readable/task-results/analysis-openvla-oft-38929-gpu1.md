@@ -12,8 +12,34 @@ This page is a human-readable rendering of one source record. It preserves the r
 - **Original source:** `logs/workers/worker_analysis_openvla-oft-38929-gpu1_20260520T061643_result.json`
 - **Structured JSON:** [`583b0e54c393e132be27.json`](../../sessions/58/583b0e54c393e132be27.json)
 
-## Browse this transcript
+## Before a recorded user message
 
-This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
+1 recorded events
 
-[Part 1](analysis-openvla-oft-38929-gpu1/part-001.md) · [Part 2](analysis-openvla-oft-38929-gpu1/part-002.md) · [Part 3](analysis-openvla-oft-38929-gpu1/part-003.md) · [Part 4](analysis-openvla-oft-38929-gpu1/part-004.md) · [Part 5](analysis-openvla-oft-38929-gpu1/part-005.md)
+### Log line
+
+_source line 1_
+
+Large source content is retained in the sanitized trace archive.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "large_content_blocks": [
+    {
+      "index": 0,
+      "storage": "sanitized-trace-archive",
+      "source_line": 1,
+      "serialized_bytes": 2810071,
+      "serialized_sha256": "0ecd68bb8c3ae8bc959a8f785c7d9d7a5d042e6c7cc26ac2bad7a04a43ed8636",
+      "note": "Complete sanitized source is retained in trace-files.tar.gz."
+    }
+  ]
+}
+```
+
+</details>
+
+---

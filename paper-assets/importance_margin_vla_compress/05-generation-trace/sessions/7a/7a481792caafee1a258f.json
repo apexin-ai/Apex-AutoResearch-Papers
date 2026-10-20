@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_plan_005_formal_bound_20260516T150723_result.json",
     "occurrence": 1,
-    "bytes": 773,
-    "sha256": "eaf117949e3a9e6331eeff5e59b2e14dbb9e67f1c18c4574da4bd63c982d585d"
+    "bytes": 772,
+    "sha256": "43db5be6424f5bcaf4d6b4acc73a03a9af7454fb5a99bfb69d89e43f53100d07"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_fix_smart_compress_eval_episodes_20260518T013319_result.json",
     "occurrence": 1,
-    "bytes": 584,
-    "sha256": "2855f7b925dd3fb2dcd380235a439693c6d9d60447d04afe6f3e017b75249467"
+    "bytes": 583,
+    "sha256": "d415ec02f1894faaf9162358a277aafbe0b6bf36c450e2e0ef294713e96f33cc"
   },
   "statistics": {
     "messages": 1,

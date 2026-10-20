@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-gpu2-smolvla-baseline-spatial_20260521T003643_result.json",
     "occurrence": 1,
-    "bytes": 1083,
-    "sha256": "d919d2f862f54cc89a5fdf9c574922da3476c0829319d31f4047208b6ecd137b"
+    "bytes": 1082,
+    "sha256": "3a78da245fd0dbba1e178b4895751b6016a4f03eb0514dea60c86902f608c861"
   },
   "statistics": {
     "messages": 1,

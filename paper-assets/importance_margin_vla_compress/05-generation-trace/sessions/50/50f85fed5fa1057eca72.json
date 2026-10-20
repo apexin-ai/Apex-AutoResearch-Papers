@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_train_smart_compress_m96_seed44_20260519T011138_result.json",
     "occurrence": 1,
-    "bytes": 363,
-    "sha256": "4bbe76c8a92797271d19f7717f58c429d077f5d20c18cd3d4af99662c32cc4cd"
+    "bytes": 362,
+    "sha256": "8775b3c9d4b85102d9c7a015255c539b3eba73cd1b98092f7adea04a9fbea04c"
   },
   "statistics": {
     "messages": 1,

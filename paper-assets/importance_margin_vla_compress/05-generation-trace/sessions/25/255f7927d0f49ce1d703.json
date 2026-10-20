@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_vtc-health-check_20260521T152701_result.json",
     "occurrence": 1,
-    "bytes": 618,
-    "sha256": "613ad3d15f7bfb50a39debf6ca96651f9e3d78a9ceeff060a26f8307eb0c4d80"
+    "bytes": 617,
+    "sha256": "da5484e8089b2eb3f2e289455464a9ccc19f5ee8c841d01667188a6d2f8eda1f"
   },
   "statistics": {
     "messages": 1,

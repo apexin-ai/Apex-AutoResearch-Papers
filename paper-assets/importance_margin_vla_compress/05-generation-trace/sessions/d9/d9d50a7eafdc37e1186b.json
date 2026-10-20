@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd38929-pi05-cross-suite_20260521T184117_result.json",
     "occurrence": 1,
-    "bytes": 832,
-    "sha256": "c9acf3ba0aacdfffacefebeda07b36a03b23b6aec2325beef6abfd7b224ed849"
+    "bytes": 831,
+    "sha256": "85f2c3671903546fd7be8a89edb7fc6376c1daccbf14f5464c41dfd4450d42f5"
   },
   "statistics": {
     "messages": 1,

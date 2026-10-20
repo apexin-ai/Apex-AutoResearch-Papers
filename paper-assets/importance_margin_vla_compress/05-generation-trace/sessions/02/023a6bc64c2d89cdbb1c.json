@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_oft-eval-resume_20260520T124527_result.json",
     "occurrence": 1,
-    "bytes": 1094,
-    "sha256": "a534492f4918a5862439e0596b9d0d1193939382c74a7ec5cadcf4e8062dd158"
+    "bytes": 1093,
+    "sha256": "35d0412a4a2883ae2abe9a10a3fa242863973ff6eac86d323233eb88144a69e5"
   },
   "statistics": {
     "messages": 1,

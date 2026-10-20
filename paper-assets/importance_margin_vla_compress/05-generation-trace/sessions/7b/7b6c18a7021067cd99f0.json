@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_k095_endpoints_urgent_0527_20260527T010559_result.json",
     "occurrence": 1,
-    "bytes": 812,
-    "sha256": "1ef503e11c9ec2cb6718c752bab6995503ebf4ded814300bdef880f7bffbc90c"
+    "bytes": 811,
+    "sha256": "2a193afcd3b454c3fe539044f9168e7a62e047d2d2e86a0b2191492bc8871c61"
   },
   "statistics": {
     "messages": 1,

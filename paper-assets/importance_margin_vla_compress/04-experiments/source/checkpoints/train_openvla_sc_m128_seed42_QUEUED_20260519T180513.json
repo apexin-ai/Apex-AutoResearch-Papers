@@ -1,0 +1,28 @@
+{
+  "exp_id": "train_openvla_sc_m128_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:05:34.873Z",
+    "updated_at": "2026-05-19T18:05:12.911Z",
+    "hypothesis": "OpenVLA (MLP-projector, baseline 74% SR) + VTC cross-attention re-encoding (256→128 tokens, 50% compression). If VTC re-encoding significantly outperforms k=0.5 random pruning (37.4% SR) on OpenVLA, demonstrates learned re-encoding generalizes from pixel-shuffle (SmolVLA) to MLP-projector architecture, establishing C4-ext method universality.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && WANDB_MODE=offline python train_openvla_smart_compress.py --config configs/openvla_smart_compress_m128.yaml\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "21116",
+      "log_path": "~/runs/importance_margin_vla_compress/train_openvla_sc_m128_seed42.log",
+      "submitted_at": "2026-05-19T18:05:05.806Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-19T18:05:13.176956+00:00",
+  "trigger": "update_registry"
+}

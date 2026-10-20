@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_fill-westd41074-gpu0-gpu1-pi05-multiseed_20260521T112534_result.json",
     "occurrence": 1,
-    "bytes": 101,
-    "sha256": "a2a17d8af4c08e0682f2064885ccfd7ffc7ab375187d518820e66b5584814674"
+    "bytes": 100,
+    "sha256": "3c280b0c146c8df17aa68173f42cfe8341221bdaa5a7062461f4e85ffaaaebab"
   },
   "statistics": {
     "messages": 1,

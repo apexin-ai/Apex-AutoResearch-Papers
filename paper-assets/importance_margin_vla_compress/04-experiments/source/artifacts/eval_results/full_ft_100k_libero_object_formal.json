@@ -1,0 +1,99 @@
+{
+  "suite": "libero_object",
+  "mode": "baseline",
+  "checkpoint": "checkpoints/libero_full_ft_100k/checkpoint.pt",
+  "config": "configs/libero_full_ft.yaml",
+  "total_episodes": 500,
+  "total_successes": 224,
+  "overall_success_rate": 0.448,
+  "wilson_ci_95": [
+    0.405,
+    0.4918
+  ],
+  "num_episodes_per_task": 50,
+  "max_steps": 280,
+  "action_horizon": 50,
+  "seed": 42,
+  "per_task": {
+    "0": {
+      "task_id": 0,
+      "task_description": "pick up the alphabet soup and place it in the basket",
+      "success_count": 1,
+      "total_episodes": 50,
+      "success_rate": 0.02,
+      "mean_steps": 277.2
+    },
+    "1": {
+      "task_id": 1,
+      "task_description": "pick up the cream cheese and place it in the basket",
+      "success_count": 23,
+      "total_episodes": 50,
+      "success_rate": 0.46,
+      "mean_steps": 207.4
+    },
+    "2": {
+      "task_id": 2,
+      "task_description": "pick up the salad dressing and place it in the basket",
+      "success_count": 31,
+      "total_episodes": 50,
+      "success_rate": 0.62,
+      "mean_steps": 177.3
+    },
+    "3": {
+      "task_id": 3,
+      "task_description": "pick up the bbq sauce and place it in the basket",
+      "success_count": 37,
+      "total_episodes": 50,
+      "success_rate": 0.74,
+      "mean_steps": 161.5
+    },
+    "4": {
+      "task_id": 4,
+      "task_description": "pick up the ketchup and place it in the basket",
+      "success_count": 30,
+      "total_episodes": 50,
+      "success_rate": 0.6,
+      "mean_steps": 195.3
+    },
+    "5": {
+      "task_id": 5,
+      "task_description": "pick up the tomato sauce and place it in the basket",
+      "success_count": 16,
+      "total_episodes": 50,
+      "success_rate": 0.32,
+      "mean_steps": 227.8
+    },
+    "6": {
+      "task_id": 6,
+      "task_description": "pick up the butter and place it in the basket",
+      "success_count": 18,
+      "total_episodes": 50,
+      "success_rate": 0.36,
+      "mean_steps": 231.6
+    },
+    "7": {
+      "task_id": 7,
+      "task_description": "pick up the milk and place it in the basket",
+      "success_count": 24,
+      "total_episodes": 50,
+      "success_rate": 0.48,
+      "mean_steps": 206.6
+    },
+    "8": {
+      "task_id": 8,
+      "task_description": "pick up the chocolate pudding and place it in the basket",
+      "success_count": 17,
+      "total_episodes": 50,
+      "success_rate": 0.34,
+      "mean_steps": 234.0
+    },
+    "9": {
+      "task_id": 9,
+      "task_description": "pick up the orange juice and place it in the basket",
+      "success_count": 27,
+      "total_episodes": 50,
+      "success_rate": 0.54,
+      "mean_steps": 190.7
+    }
+  }
+}

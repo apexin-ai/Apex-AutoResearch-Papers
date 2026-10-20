@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_m103_scp_models_from_westd27271_20260525T011933_result.json",
     "occurrence": 1,
-    "bytes": 816,
-    "sha256": "6b0a30e419ba26b2132f5c138a971922d57c838905a57ca40a83584c41295bb3"
+    "bytes": 815,
+    "sha256": "1e2411e823a3c02ffa806d976c94acb48c39ae44f16032c3862542d300b1c822"
   },
   "statistics": {
     "messages": 1,

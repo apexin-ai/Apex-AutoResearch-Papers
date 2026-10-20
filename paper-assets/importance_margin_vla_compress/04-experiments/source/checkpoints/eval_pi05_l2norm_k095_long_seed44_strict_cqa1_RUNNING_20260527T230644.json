@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval_pi05_l2norm_k095_long_seed44_strict_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T22:34:43.154Z",
+    "updated_at": "2026-05-27T23:06:43.259Z",
+    "hypothesis": "π0.5 L2norm k=0.95 Long strict seed44 — curve 起始参考点第三 seed (s42=85.8%, s43=86.2%, mean=86.0%±0.2pp)。margin 表顶端 L2norm 基准精度，最后未覆盖 s44 之一",
+    "parent": "eval_pi05_l2norm_k095_long_seed43_strict_w41",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\"",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "797637",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k095_long_seed44_strict_cqa1.log",
+      "data_path": "libero_10",
+      "data_count": "10 tasks x 50 episodes",
+      "model_name": "pi0.5",
+      "seed": 44,
+      "checkpoint_source": "pi0.5 pretrained (no finetune)",
+      "eval_data": "libero_10 (10 tasks x 50 episodes)"
+    }
+  },
+  "timestamp": "2026-05-27T23:06:44.655638+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_pi05_random_k095_spatial_seed42_postfix_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:10:50.984Z",
+    "updated_at": "2026-05-24T07:11:28.611Z",
+    "hypothesis": "π0.5 Random k=0.95 Spatial post-fix v2 — 之前崩溃重试。k=0.95 是 near-baseline 数据点，Spatial baseline=78%",
+    "spec": {
+      "command": "python eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 0",
+      "server": "westd-41074",
+      "data_path": "libero_spatial",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "828215",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k095_spatial_seed42_postfix_v2.log"
+    }
+  },
+  "timestamp": "2026-05-24T07:11:29.596348+00:00",
+  "trigger": "update_registry"
+}

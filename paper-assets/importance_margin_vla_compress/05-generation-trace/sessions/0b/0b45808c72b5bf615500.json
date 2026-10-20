@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1_cuda2_goal_random_k03_20260522T190959_result.json",
     "occurrence": 1,
-    "bytes": 587,
-    "sha256": "ef8e07f70cf8dd38e6584f9ff675a2116d7ec4eec23ef80ba2351842f74e34ba"
+    "bytes": 586,
+    "sha256": "166702e25ff7cd8b5b3a93a76d053b45c3eb52fe150c996df4f64dea302e463d"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,56 @@
+{
+  "exp_id": "eval_pi05_random_k085_spatial_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:58:09.030Z",
+    "updated_at": "2026-05-22T20:51:19.332Z",
+    "spec": {
+      "command": "eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_spatial --n_episodes 50 --seed 42",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "48588",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k085_spatial_seed42.log",
+      "submitted_at": "2026-05-21T23:58:08.176Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "data_path": "libero_spatial",
+      "data_count": 500,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_spatial",
+      "wall_clock_seconds": 9800.1,
+      "gpu_hours": 2.72
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T01:49:08.902Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T01:49:19.291285+00:00"
+        }
+      ]
+    },
+    "hypothesis": "π0.5 random k=0.85 Spatial seed42: random pruning 在 cliff 最深处的 Spatial suite 表现。Object k=0.85=5.0%，Spatial 的 cliff 严重程度验证。",
+    "metrics": {
+      "success_rate": 0.584,
+      "suite": "libero_spatial",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.85_libero_spatial_seed42.json",
+    "completed_at": "2026-05-22T02:41:28.273Z"
+  },
+  "timestamp": "2026-05-22T20:51:19.939479+00:00",
+  "trigger": "update_registry"
+}

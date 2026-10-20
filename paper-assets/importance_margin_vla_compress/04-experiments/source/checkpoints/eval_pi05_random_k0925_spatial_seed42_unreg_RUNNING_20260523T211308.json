@@ -1,0 +1,27 @@
+{
+  "exp_id": "eval_pi05_random_k0925_spatial_seed42_unreg",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T21:12:37.229Z",
+    "updated_at": "2026-05-23T21:13:07.934Z",
+    "hypothesis": "π0.5 Random k=0.925 Spatial seed42（未注册进程，补录）。westd-41074 GPU 2 上的实际运行进程 PID 781247。",
+    "spec": {
+      "command": "eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.925 --suite libero_spatial --seed 42",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "781247",
+      "data_count": 500,
+      "data_path": "libero_spatial",
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-23T21:13:08.833519+00:00",
+  "trigger": "update_registry"
+}

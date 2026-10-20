@@ -1,0 +1,44 @@
+== Two-Stage ACIS-Only Dry-Run Results (2026-05-16) ==
+
+Config: configs/imm_two_stage.yaml
+Script: train_twostage.py (patched)
+GPU: cuda:1 (RTX PRO 6000 Blackwell, 97GB)
+
+=== Model Loading ===
+- SmolVLA base: /root/autodl-tmp/.hf_cache/lerobot/smolvla_base
+- LoRA: rank=32, alpha=64, trainable params: 1,485,312
+- Baseline checkpoint: checkpoints/baseline/step_029999/checkpoint.pt (step 29999)
+
+=== Parameter Freeze Verification ===
+- LoRA params: 74 total, 0 trainable (FROZEN)
+- ACIS params: 10 total, 10 trainable (ACTIVE)
+- Total params: 454,992,289
+- Trainable (ACIS): 3,460,801 (0.7606%)
+- Frozen: 451,531,488
+
+=== Gradient Verification (step 0, after backward) ===
+- LoRA with grad: 0 (expect 0) ✓
+- ACIS with grad: 7 (7/10 params have gradients, 3 are spectral_norm aux params) ✓
+
+=== Training Metrics (5 steps) ===
+- step=0: margin_loss=0.2969, lr=1.00e-06, grad_norm=15.07, sps=0.6
+
+=== Stage 2 Skip ===
+- stage2_steps=0, correctly skipped
+
+=== Result ===
+DRY RUN PASSED — ACIS-only training executed successfully
+
+=== Code Changes ===
+1. NEW: configs/imm_two_stage.yaml
+   - _base_: imm_anchor.yaml
+   - lambda_margin: 1.0, gradient_isolation: true
+   - stage1_steps: 30000, stage2_steps: 0
+   - stage1_lr: 5e-4, warmup: 500 steps
+   - baseline_checkpoint: checkpoints/baseline/step_029999/checkpoint.pt
+
+2. MODIFIED: train_twostage.py (4 patches)
+   a. Fix max_steps override: only override non-zero stages
+   b. Add baseline checkpoint loading after model creation
+   c. Add parameter count logging (total/trainable/frozen)
+   d. Add stage2_steps==0 early exit with proper dry-run messaging

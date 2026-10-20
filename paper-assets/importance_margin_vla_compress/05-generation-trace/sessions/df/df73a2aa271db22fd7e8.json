@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_critical_domain-id-audit_20260523T160853_result.json",
     "occurrence": 1,
-    "bytes": 2414,
-    "sha256": "fadad06075d30be531f0a602fa8cad0461ae42ca39e6523ff66733b2ebd7dbe8"
+    "bytes": 2413,
+    "sha256": "a475e188cbe2dc1ede9137d12ed80875334661433cc01023a8752197cd6ef74b"
   },
   "statistics": {
     "messages": 1,

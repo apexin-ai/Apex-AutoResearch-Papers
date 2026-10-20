@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd27271-kill-m128-deploy-pi05_20260521T075250_result.json",
     "occurrence": 1,
-    "bytes": 513,
-    "sha256": "45e2da7576aca90526619b159a3f1c346783514206532f748066dd91a43e573d"
+    "bytes": 512,
+    "sha256": "5b6a79dbfa388dc8f6e61b241c9287e9e39349c0bf41008a5be1ae223a97aaf0"
   },
   "statistics": {
     "messages": 1,

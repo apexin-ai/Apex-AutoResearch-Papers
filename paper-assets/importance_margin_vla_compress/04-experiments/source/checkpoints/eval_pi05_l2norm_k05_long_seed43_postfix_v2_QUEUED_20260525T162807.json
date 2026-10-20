@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval_pi05_l2norm_k05_long_seed43_postfix_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T16:27:38.641Z",
+    "updated_at": "2026-05-25T16:28:06.371Z",
+    "hypothesis": "π0.5 L2norm k=0.5 Long seed43 — moderate compression cross-seed 验证。seed42 L2norm k=0.5=50.2-51.4%。seed43 验证一致性",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0",
+      "server": "cqa1-33015",
+      "gpu_ids": [
+        "cuda:3"
+      ],
+      "seed": 43,
+      "model_name": "pi05_libero_finetuned",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_10",
+      "pid": 537516,
+      "log_path": "/tmp/eval_pi05_l2norm_k05_long_seed43.log"
+    }
+  },
+  "timestamp": "2026-05-25T16:28:07.517482+00:00",
+  "trigger": "update_registry"
+}

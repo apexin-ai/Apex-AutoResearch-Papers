@@ -1,0 +1,49 @@
+{
+  "exp_id": "eval_pi05_attn_k07_long_seed42_strict_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T12:35:27.573Z",
+    "updated_at": "2026-05-27T18:02:10.481Z",
+    "hypothesis": "π0.5 attention pruning at k=0.7 on Long suite (strict metric) will show further degradation below k=0.75, helping define the cliff point in the attention pruning performance curve.",
+    "parent": "eval_pi05_attn_k075_long_seed42_strict_cqa1",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0",
+      "server": "cqa1-33015",
+      "gpu": "cuda:1",
+      "pid": "328563",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_attn_k07_long_seed42_strict_cqa1.log",
+      "data_path": "/root/autodl-tmp/importance_margin_vla_compress",
+      "data_count": 500,
+      "model_name": "pi0.5",
+      "seed": 42,
+      "checkpoint_source": "pi0.5 pretrained",
+      "eval_data": "libero_10 (Long)",
+      "checkpoint_path": "N/A (eval only)"
+    },
+    "metrics": {
+      "overall_sr": 50.8,
+      "per_task": {
+        "T0": 72,
+        "T1": 70,
+        "T2": 58,
+        "T3": 46,
+        "T4": 36,
+        "T5": 32,
+        "T6": 58,
+        "T7": 48,
+        "T8": 6,
+        "T9": 82
+      },
+      "total_success": 254,
+      "total_episodes": 500
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-27T18:02:10.481Z"
+  },
+  "timestamp": "2026-05-27T18:02:13.187513+00:00",
+  "trigger": "update_registry"
+}

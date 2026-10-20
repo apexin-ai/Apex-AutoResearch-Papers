@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-fill-4gpu_20260521T050148_result.json",
     "occurrence": 1,
-    "bytes": 804,
-    "sha256": "231be173348cdca9f5c22e32e8fc6c429d270481fc5ba3a7f3493fedd839397d"
+    "bytes": 803,
+    "sha256": "dac447a01b05d181f912156040b4b647c4bf85e63deb7189978ab9864d94d24f"
   },
   "statistics": {
     "messages": 1,

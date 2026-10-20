@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diag_xvla-l2norm-domain-id-check_20260524T033041_result.json",
     "occurrence": 1,
-    "bytes": 1308,
-    "sha256": "3ddc60d0a742ba39850ad4eb2913c174ef2bac1b4f1aa5346682a6dbcd4e0bf6"
+    "bytes": 1307,
+    "sha256": "893e014318b3493da0793e5485c8f309694aefa6b1807c000ad0d48b4e65a3e6"
   },
   "statistics": {
     "messages": 1,

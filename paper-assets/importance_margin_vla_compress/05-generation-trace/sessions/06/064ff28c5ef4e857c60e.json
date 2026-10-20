@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_goal_long_phase1_deploy_20260522T093045_result.json",
     "occurrence": 1,
-    "bytes": 1982,
-    "sha256": "30a673bf484fcd86c2a8e6f055d2eeecb018e263a8dd42875fc16e95c265771d"
+    "bytes": 1981,
+    "sha256": "c191daadcb9ffd17325c568b9b38ca9b790e83fdadefddfa4fad0bd3f8f90e9d"
   },
   "statistics": {
     "messages": 1,

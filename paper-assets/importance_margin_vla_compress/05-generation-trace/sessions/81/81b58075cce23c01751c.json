@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_extract_m128_eval_results_20260518T105843_result.json",
     "occurrence": 1,
-    "bytes": 102,
-    "sha256": "c78b6d5cf60bb9208967cc07a038623e293012a82de8ca1030cda6a972a52cfc"
+    "bytes": 101,
+    "sha256": "4be9f4ef593e65c0e89d2c0729b62d1ffc7826a4b8283507d8eb369574c169a2"
   },
   "statistics": {
     "messages": 1,

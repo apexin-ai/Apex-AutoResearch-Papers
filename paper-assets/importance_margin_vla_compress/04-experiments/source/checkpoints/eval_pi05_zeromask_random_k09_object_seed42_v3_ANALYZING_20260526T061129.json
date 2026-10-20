@@ -1,0 +1,42 @@
+{
+  "exp_id": "eval_pi05_zeromask_random_k09_object_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T01:57:57.921Z",
+    "updated_at": "2026-05-26T06:11:28.527Z",
+    "hypothesis": "π0.5 zero_mask_random k=0.9 Object v3 — D225 P0 实验。从 cqa1 丢失后在 westd-41074 重部署。保留 token 位置但置 0，对比 hard-prune random。测试位置扰动 vs 信息丢失在 π0.5 linear connector 上的效应",
+    "parent": "eval_pi05_zeromask_random_k09_object_seed42_v2",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl python -u eval_pi05_zeromask_ablation.py --prune_mode zero_mask_random --keep_ratio 0.9 --suite libero_object --n_episodes 50 --seed 42 --gpu 0",
+      "server": "westd-41074",
+      "gpu": 3,
+      "pid": 308695,
+      "log_path": "/root/runs/importance_margin_vla_compress/eval_pi05_zeromask_random_k09_object_seed42_v3.log",
+      "data_path": "libero_object",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_object"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-26T03:57:10.120Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-26T03:57:29.185383+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-26T06:11:29.771542+00:00",
+  "trigger": "update_registry"
+}

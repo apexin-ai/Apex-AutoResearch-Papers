@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_full_server_audit_pre_deadline_20260528T061901_result.json",
     "occurrence": 1,
-    "bytes": 1945,
-    "sha256": "27e2e07bafaaf3ed0ff2f114687f0e52364e8fb801b9216b3b56648646b448d4"
+    "bytes": 1944,
+    "sha256": "5e72c79be618831642d0b544994da0f41e185dc062bf609c6a09b8ae138e33e0"
   },
   "statistics": {
     "messages": 1,

@@ -11124,7 +11124,7 @@ _source line 9320 · 2026-05-24T07:57:03.815295+00:00_
 ---
 22: {"type":"assistant","message":{"model":"claude-opus-4-6","id":"msg_01NFkX51837xANoL2wX9LPJd","type":"message","role":"assistant","content":[{"type":"text","text":"Secret tools not available as MCP too
 23: {"type":"assistant","message":{"model":"claude-opus-4-6","id":"msg_01NFkX51837xANoL2wX9LPJd","type":"message","role":"assistant","content":[{"type":"tool_use","id":"toolu_01GiMUxKn7LcfVb2Wtvr3vNW","na
-24: {"type":"user","message":{"role":"user","content":[{"tool_use_id":"toolu_01GiMUxKn7LcfVb2Wtvr3vNW","type":"tool_result","content":"GOOGLE_API_KEY=\nPAPERBANANA_NOT_INSTALLED","is_error":false}]},"pare
+24: {"type":"user","message":{"role":"user","content":[{"tool_use_id":"toolu_01GiMUxKn7LcfVb2Wtvr3vNW","type":"tool_result","content":"GOOGLE_API_KEY=[REDACTED]","is_error":false}]},"pare
 25: {"type":"assistant","message":{"model":"claude-opus-4-6","id":"msg_01NFkX51837xANoL2wX9LPJd","type":"message","role":"assistant","content":[{"type":"tool_use","id":"toolu_01CQB6Kj95i4CLGNx7E6WGHq","na
 26: {"type":"user","message":{"role":"user","content":[{"tool_use_id":"toolu_01CQB6Kj95i4CLGNx7E6WGHq","type":"tool_result","content":"total 2416\ndrwxr-xr-x 3 ubuntu ubuntu   4096 May 24 02:10 .\ndrw
 …[truncated 8240 chars]

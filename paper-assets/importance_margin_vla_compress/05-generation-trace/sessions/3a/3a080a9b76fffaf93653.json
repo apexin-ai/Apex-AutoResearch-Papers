@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_vla_compress_literature_20260522T103105_result.json",
     "occurrence": 1,
-    "bytes": 9151,
-    "sha256": "d50f11698bbe6a94d5eff87fa9d6da4a4bdd46b37284af1f2e57e0de4bebf889"
+    "bytes": 9150,
+    "sha256": "828b8fea6f2e2a67599cbbf233575418a90e18970c7e3a6b5a7b02a1de385776"
   },
   "statistics": {
     "messages": 1,

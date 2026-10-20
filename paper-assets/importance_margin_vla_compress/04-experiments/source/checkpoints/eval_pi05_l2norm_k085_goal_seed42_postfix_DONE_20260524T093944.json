@@ -1,0 +1,46 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_goal_seed42_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:33:31.216Z",
+    "updated_at": "2026-05-24T09:39:43.501Z",
+    "hypothesis": "π0.5 L2norm k=0.85 Goal post-fix — 验证 pruning-as-denoising 效应是否跨 suite。L2norm k=0.85 Spatial=88.4% 超 baseline 78% (+10.4pp)，Goal baseline=88.4%，测试 L2norm 在 Goal 上是否也出现类似的性能提升。与 Random k=0.85 Goal（westd-38929 部署中）形成 importance margin 对照",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_goal --n_episodes 50 --seed 42 --gpu 0",
+      "server": "westd-41074",
+      "gpu": "cuda:3",
+      "pid": 870366,
+      "data_path": "libero_goal",
+      "data_count": 50,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_goal",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k085_goal_seed42_postfix.log"
+    },
+    "metrics": {
+      "overall_sr": 87.4,
+      "total_episodes": 500,
+      "total_successes": 437,
+      "T0_open_drawer": 90,
+      "T1_bowl_stove": 92,
+      "T2_wine_cabinet": 98,
+      "T3_drawer_bowl": 84,
+      "T4_bowl_cabinet": 100,
+      "T5_push_plate": 94,
+      "T6_cream_bowl": 88,
+      "T7_turn_stove": 100,
+      "T8_bowl_plate": 84,
+      "T9_wine_rack": 44
+    },
+    "conclusion": "success",
+    "checkpoint_path": "eval_results/pi05_l2norm_k0.85_libero_goal_seed42.json",
+    "completed_at": "2026-05-24T09:39:43.501Z"
+  },
+  "timestamp": "2026-05-24T09:39:44.481998+00:00",
+  "trigger": "update_registry"
+}

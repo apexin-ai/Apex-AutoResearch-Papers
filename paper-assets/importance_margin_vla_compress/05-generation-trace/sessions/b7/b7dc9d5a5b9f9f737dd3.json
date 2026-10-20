@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_oft-importance-cv_20260520T202730_result.json",
     "occurrence": 1,
-    "bytes": 292,
-    "sha256": "858e14d8c403e6c389488e87fc0da56958656667baf837f88a0a9907ee63f731"
+    "bytes": 291,
+    "sha256": "de03cec8b04d0cc17266acaaf438fade89fa715eeeaa6d749c3f3ee40e90451e"
   },
   "statistics": {
     "messages": 1,

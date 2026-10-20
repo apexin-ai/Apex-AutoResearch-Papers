@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_train_openvla_sc_m64_seed42_20260520T040546_result.json",
     "occurrence": 1,
-    "bytes": 2519,
-    "sha256": "9dc6f82a2522b727c03d22c02e7db01efb5a89948834821ac15889a65b25ef82"
+    "bytes": 2518,
+    "sha256": "a9061ec1dcfe93047e4a21b29bd591d3228a4836242f2aae0f81ab985308f070"
   },
   "statistics": {
     "messages": 1,

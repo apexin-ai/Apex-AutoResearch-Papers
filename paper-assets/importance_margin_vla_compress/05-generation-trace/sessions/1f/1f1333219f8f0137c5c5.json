@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diag_eval_pi05_l2norm_k03_spatial_seed42_postfix_20260524T135009_result.json",
     "occurrence": 1,
-    "bytes": 430,
-    "sha256": "db577de831382b3ee122a2d36391da272f01082cb57321636a0a1dbb06801ea6"
+    "bytes": 429,
+    "sha256": "4c61fa0c8d1b484f39d188a90fbd453594facfec22da1b098fa4e61bf5b7e985"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_spatial_acis_prune_20260517T103759_result.json",
     "occurrence": 1,
-    "bytes": 618,
-    "sha256": "23a404c10edc853c3b7c6d4435294cf885ee74649e2b8e22f3fed3f7206e8e15"
+    "bytes": 617,
+    "sha256": "5738018ffc34c84f001fb07e9983474f74e1f0a37a75e914256eeb422db5c93a"
   },
   "statistics": {
     "messages": 1,

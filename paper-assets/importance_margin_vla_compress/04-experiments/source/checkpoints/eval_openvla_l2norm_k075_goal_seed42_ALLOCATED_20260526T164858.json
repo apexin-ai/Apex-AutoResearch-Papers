@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_openvla_l2norm_k075_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T16:48:31.843Z",
+    "updated_at": "2026-05-26T16:48:56.454Z",
+    "hypothesis": "OpenVLA L2norm k=0.75 Goal seed42 — Goal cliff curve 加密点。L2norm k=0.9=74.8%, k=0.85=75.4%, k=0.7=68.4%, k=0.5=43.4%。k=0.75 填补 k=0.85→0.7 之间的下降斜率（75.4%→68.4%=-7pp），判断是平滑退化还是存在 cliff"
+  },
+  "timestamp": "2026-05-26T16:48:58.737914+00:00",
+  "trigger": "update_registry"
+}

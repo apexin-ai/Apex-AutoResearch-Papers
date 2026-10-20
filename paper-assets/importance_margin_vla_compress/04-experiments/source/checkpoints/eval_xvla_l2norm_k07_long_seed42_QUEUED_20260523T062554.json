@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_xvla_l2norm_k07_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T06:11:48.575Z",
+    "updated_at": "2026-05-23T06:25:53.722Z",
+    "hypothesis": "X-VLA L2norm k=0.7 Long seed42: Table 2 gap. L2 k=0.9 Long=27.5%, L2 k=0.95 Long=47.0%. L2 在 Long 上非单调（k=0.9 < k=0.95），k=0.7 是否继续下降。"
+  },
+  "timestamp": "2026-05-23T06:25:54.395418+00:00",
+  "trigger": "update_registry"
+}

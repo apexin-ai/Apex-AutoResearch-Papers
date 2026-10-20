@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_official_smolvla_prune_k09",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:00:44.235Z",
+    "updated_at": "2026-05-18T17:27:31.849Z",
+    "hypothesis": "Official SmolVLA checkpoint with k=0.9 random pruning (remove only 10% visual tokens). If 0% SR like k=0.5, confirms extreme cliff-edge sensitivity where even minimal token removal destroys performance on the official checkpoint.",
+    "parent": "eval_official_smolvla_baseline",
+    "spec": {
+      "command": "python eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --mode random_prune --k_ratio 0.9 --output eval_results/official_libero_object_random_prune_k09.json --seed 42",
+      "server": "westd-27271",
+      "data_path": "libero_object (10 tasks x 50 episodes)",
+      "data_count": 500,
+      "model_name": "SmolVLA-LIBERO-official",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/.hf_cache/smolvla_libero_official",
+      "eval_data": "libero_object",
+      "log_path": "eval_results/official_libero_object_random_prune_k09.log",
+      "checkpoint_path": "/root/autodl-tmp/.hf_cache/smolvla_libero_official",
+      "gpu": "cuda:0",
+      "tmux_session": "eval_k09",
+      "pruning_method": "true_removal",
+      "k_ratio": 0.9
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "success",
+    "completed_at": "2026-05-18T16:26:04.562Z"
+  },
+  "timestamp": "2026-05-18T17:27:32.113722+00:00",
+  "trigger": "update_registry"
+}

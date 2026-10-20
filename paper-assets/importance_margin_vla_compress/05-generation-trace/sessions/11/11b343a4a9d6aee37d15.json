@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_v8_trajectory_22k_30k_20260516T014714_result.json",
     "occurrence": 1,
-    "bytes": 2415175,
-    "sha256": "eec98a10183c9f81da8a2d8a09dc4a1d62bc92fa4403e0e05584493d63316b8c"
+    "bytes": 2415174,
+    "sha256": "eb7c8d603bb1ad5630497f59264f108f27c9463cc35cd3e0d1afdf6907c248c3"
   },
   "statistics": {
     "messages": 1,
@@ -26,13 +26,32 @@
     {
       "number": 0,
       "boundary": "no_preceding_user_message_recorded",
-      "message_count": 1,
-      "chunks": [
+      "messages": [
         {
-          "path": "11b343a4a9d6aee37d15-part-0001.json",
-          "message_count": 1
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2415194,
+                "serialized_sha256": "290ce3c31dd0e6cd18dcbae0cf875e5eeafce9024846600c80d9d80b9615083a",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
         }
-      ]
+      ],
+      "message_count": 1
     }
   ],
   "readable_path": "readable/task-results/eval-v8-trajectory-22k-30k.md"

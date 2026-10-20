@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cleanup_stale_and_monitor_s47_20260528T223130_result.json",
     "occurrence": 1,
-    "bytes": 1486,
-    "sha256": "20f06a06eea7464e8f0f318a48229e42322f31d3ede7c709e6b6cfc1330aa8b9"
+    "bytes": 1485,
+    "sha256": "e624caad279f1ae131f2edaaff45b30e059e9122374ac15750ba538bd2bc7a5d"
   },
   "statistics": {
     "messages": 1,

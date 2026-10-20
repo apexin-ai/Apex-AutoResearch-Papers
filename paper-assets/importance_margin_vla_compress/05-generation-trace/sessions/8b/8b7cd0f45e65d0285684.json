@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_cqa1_seed0_registry_sync_20260516T183811_result.json",
     "occurrence": 1,
-    "bytes": 552,
-    "sha256": "8cb6333b4ce8474120755db2adc0b28659db4bf6bc68fe58a403fcb622b02251"
+    "bytes": 551,
+    "sha256": "75f065eb8330a96b05e54ecd237eb88fd442680b4e22d09353c0b97bde178982"
   },
   "statistics": {
     "messages": 1,

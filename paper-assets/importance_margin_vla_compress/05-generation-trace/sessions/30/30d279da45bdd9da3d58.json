@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check-cqa1-gpu2-xvla-k095_20260520T202614_result.json",
     "occurrence": 1,
-    "bytes": 683,
-    "sha256": "6cbd9d586787b45d72a515a72e99ea8c7545e526e3aa11534a8ba4ec2213c4ad"
+    "bytes": 682,
+    "sha256": "57e0918c7af2f35549e4bc8250f41669c416410f14a374e3b57fc0f6adde1cf7"
   },
   "statistics": {
     "messages": 1,

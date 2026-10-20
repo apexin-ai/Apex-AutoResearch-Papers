@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_compile_verify_audit_20260529T052139_result.json",
     "occurrence": 1,
-    "bytes": 1060,
-    "sha256": "5e3f8cb7d1e4821222baef10e3f6747510c6c2666d55b4861b76f3bfdce8e593"
+    "bytes": 1059,
+    "sha256": "491ecb253269883943e68caae59996044e781ccab8b4380d1ccb2707a6c45866"
   },
   "statistics": {
     "messages": 1,

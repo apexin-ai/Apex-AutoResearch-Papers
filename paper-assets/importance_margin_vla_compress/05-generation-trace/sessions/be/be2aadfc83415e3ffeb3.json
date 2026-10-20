@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_westd_27271_c4ext_feasibility_20260519T170422_result.json",
     "occurrence": 1,
-    "bytes": 2589,
-    "sha256": "8f4e27863158afe61b1745346cc5f2be90daa17a05589e0908f8d7e43b0d1673"
+    "bytes": 2588,
+    "sha256": "30e032b4294707daecf45ec234e2e0002c14f3f938d1c31e3a599879bc1a89b6"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_imm-v7-dryrun_20260515T174706_result.json",
     "occurrence": 1,
-    "bytes": 1329,
-    "sha256": "f4c5f3db156e2588becb51022fe3bf96ce4f7ba8e95a32695c4f8358674ecd46"
+    "bytes": 1328,
+    "sha256": "4db632b76256e1c9ad672a0629ba5100f4e1eb1abbbe374d305eabb2af054fb4"
   },
   "statistics": {
     "messages": 1,

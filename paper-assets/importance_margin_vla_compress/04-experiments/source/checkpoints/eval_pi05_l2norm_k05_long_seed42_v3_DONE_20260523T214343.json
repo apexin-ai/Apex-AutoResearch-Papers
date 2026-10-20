@@ -1,0 +1,55 @@
+{
+  "exp_id": "eval_pi05_l2norm_k05_long_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T18:52:11.839Z",
+    "updated_at": "2026-05-23T21:43:41.966Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "763832",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_long_seed42_v3.log",
+      "submitted_at": "2026-05-23T18:52:10.630Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_count": 500,
+      "data_path": "libero_10",
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_path": "N/A (eval only)",
+      "wall_clock_seconds": 10291.3,
+      "gpu_hours": 2.86
+    },
+    "hypothesis": "π0.5 L2norm k=0.5 Long seed42 重跑。v1(50.2%) 已有数据但被杀，验证 CPU RNG 修复后 L2norm k=0.5 在 Long 套件的表现。与 Random k=0.5 Long 对比计算 importance margin。",
+    "reproduce": {
+      "finished_at": "2026-05-23T21:29:09.575Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T21:29:21.758197+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 51.4,
+      "total_episodes": 500,
+      "total_successes": 257,
+      "elapsed_min": 154.8
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-23T21:43:41.966Z"
+  },
+  "timestamp": "2026-05-23T21:43:43.570327+00:00",
+  "trigger": "update_registry"
+}

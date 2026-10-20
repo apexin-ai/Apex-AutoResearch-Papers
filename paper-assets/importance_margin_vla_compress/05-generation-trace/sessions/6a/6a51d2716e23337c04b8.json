@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_westd_gpu_20260519_20260519T005434_result.json",
     "occurrence": 1,
-    "bytes": 640,
-    "sha256": "574e963ce6364b640442d46334333b7cd243fbb0d65ae230b881e98b82414ab9"
+    "bytes": 639,
+    "sha256": "d943bc5089081c7ef1c794f04d887e64c4c9de6e2d6f3029ba7a11da57539adc"
   },
   "statistics": {
     "messages": 1,

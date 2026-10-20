@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd41074_kill_and_redeploy_20260522T190942_result.json",
     "occurrence": 1,
-    "bytes": 43,
-    "sha256": "4afc6973c6d825d1df69098a0546f4e770f42ffa7e5991befb0cba796e22a4e2"
+    "bytes": 42,
+    "sha256": "8c3c7e3124e83fdf23eceba3497eb627e89afd05bd5f5acde7f95dc5a3849b99"
   },
   "statistics": {
     "messages": 1,

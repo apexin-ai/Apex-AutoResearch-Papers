@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_baseline-mid-checkpoints_20260515T222000_result.json",
     "occurrence": 1,
-    "bytes": 1459,
-    "sha256": "b222412da707729cce1d8105af03936f1d67f42fca50dbc38f4b8ff4cd925758"
+    "bytes": 1458,
+    "sha256": "5864fe527d636a2663a5be25c02311f7b321b93717c9ebacafec6829d127a205"
   },
   "statistics": {
     "messages": 1,

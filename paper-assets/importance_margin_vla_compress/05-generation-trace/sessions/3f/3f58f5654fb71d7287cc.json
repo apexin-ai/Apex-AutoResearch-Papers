@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_openvla-baseline-spatial-seed42-v3_20260521T222500_result.json",
     "occurrence": 1,
-    "bytes": 768,
-    "sha256": "997cf3cd87fbd7fbe71e8eee37eb0cc3718903df7b31110800f6faf3a526dcf3"
+    "bytes": 767,
+    "sha256": "9f0e9deff5ae7308a2e609331ab82f4a4b6f7ce4f6c6c80c8997362ac23a9fe1"
   },
   "statistics": {
     "messages": 1,

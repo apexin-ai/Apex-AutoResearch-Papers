@@ -1,0 +1,77 @@
+{
+  "exp_id": "eval_pi05_random_k07_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "completed_at": "2026-05-22T21:54:17.624Z",
+    "created_at": "2026-05-22T19:10:50.961Z",
+    "hypothesis": "Pi0.5 Random k=0.7 Long seed42 — Pi0.5 模型 Random pruning k=0.7 在 LIBERO-10 Long-horizon 上的性能评估",
+    "retry_count": 1,
+    "status": "DONE",
+    "updated_at": "2026-05-28T06:21:43.320Z",
+    "parent": "eval_pi05_random_k075_long_seed42",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "elapsed_min": 156.4,
+          "overall_sr": 0.646,
+          "total_episodes": 500,
+          "total_successes": 323
+        }
+      },
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T01:29:45.378230+00:00"
+        }
+      ]
+    },
+    "spec": {
+      "command": "python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0",
+      "server": "cqa1-33015",
+      "gpu": "cuda:3",
+      "pid": 732826,
+      "data_path": "libero_10",
+      "data_count": 50,
+      "model_name": "pi0.5",
+      "seed": 42,
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k07_long_seed42.log",
+      "checkpoint_source": "pi0.5-base",
+      "eval_data": "libero_10",
+      "checkpoint_path": "N/A (eval only)"
+    },
+    "metrics": {
+      "overall_sr": 62.4,
+      "suite": "libero_10",
+      "prune_method": "random",
+      "keep_ratio": 0.7,
+      "seed": 42,
+      "episodes_per_task": 50,
+      "per_task": {
+        "T0": 96,
+        "T1": 66,
+        "T2": 72,
+        "T3": 74,
+        "T4": 74,
+        "T5": 42,
+        "T6": 62,
+        "T7": 58,
+        "T8": 6,
+        "T9": 74
+      },
+      "time_min": 228.4
+    },
+    "conclusion": "success",
+    "reproduce": {
+      "finished_at": "2026-05-27T01:29:24.236Z"
+    },
+    "notes": "[CONTAMINATED: lenient success condition] cqa1 V-C code uses `if done or reward > 0.5:`. SR=62.4% is unreliable.",
+    "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k07_long_seed42.log",
+    "checkpoint_path": "/root/autodl-tmp/pi05_libero_finetuned"
+  },
+  "timestamp": "2026-05-28T06:21:45.102551+00:00",
+  "trigger": "update_registry"
+}

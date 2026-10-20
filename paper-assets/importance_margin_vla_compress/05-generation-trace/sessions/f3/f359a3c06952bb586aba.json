@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_westd41074_kill_stuck_gpu02_20260526T034125_result.json",
     "occurrence": 1,
-    "bytes": 321,
-    "sha256": "c768e21560bd74cbd98770928be91ea4885877257899c3013692e3f9f8469c6e"
+    "bytes": 320,
+    "sha256": "49f56c84834fbdf2718a0921b4c34432efdb7791ae9c8359388a10aa7c14daf6"
   },
   "statistics": {
     "messages": 1,

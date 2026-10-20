@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill_westd41074_lora_cleanup_20260519T184913_result.json",
     "occurrence": 1,
-    "bytes": 220,
-    "sha256": "cccb6d852a7ab97ff8b55c2bdca5c49af8305432f3da3285d41bdc63ccaf0679"
+    "bytes": 219,
+    "sha256": "74aed71f8dfc7901074f8e2f452539077d517a17efe1e440ad1eead31d694fd4"
   },
   "statistics": {
     "messages": 1,

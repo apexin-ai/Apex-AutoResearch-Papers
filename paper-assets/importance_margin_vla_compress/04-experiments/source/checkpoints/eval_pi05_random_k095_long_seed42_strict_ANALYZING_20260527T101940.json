@@ -1,0 +1,48 @@
+{
+  "exp_id": "eval_pi05_random_k095_long_seed42_strict",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T07:31:37.223Z",
+    "updated_at": "2026-05-27T10:19:37.760Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=2 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "262128",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k095_long_seed42_strict.log",
+      "submitted_at": "2026-05-27T07:31:33.951Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_10",
+      "checkpoint_path": "N/A (eval only)"
+    },
+    "hypothesis": "π0.5 Random k=0.95 Long strict — cqa1 宽松条件值 63.2% 是否被污染。strict 重跑获取真实值。k=0.95 是 cliff curve 顶端最接近 baseline 的点",
+    "reproduce": {
+      "finished_at": "2026-05-27T10:16:07.527Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T10:16:23.661743+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-27T10:19:40.502504+00:00",
+  "trigger": "update_registry"
+}

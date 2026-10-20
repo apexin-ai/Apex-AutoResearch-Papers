@@ -1,0 +1,31 @@
+{
+  "exp_id": "random_k07_seed43_object",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T07:57:34.854Z",
+    "updated_at": "2026-05-25T08:00:09.397Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.7 --suite libero_object --num_episodes 50 --seed 43\"",
+      "server": "westd-27271",
+      "gpu": "cuda:1",
+      "pid": "312527",
+      "log_path": "~/runs/importance_margin_vla_compress/random_k07_seed43_object.log",
+      "submitted_at": "2026-05-25T07:57:33.133Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "openvla-libero-object",
+      "seed": 43,
+      "data_path": "libero_object",
+      "data_count": 500,
+      "eval_data": "libero_object 10 tasks x 50 episodes"
+    },
+    "hypothesis": "OpenVLA Random k=0.7 Object seed43 — seed可重复性验证，seed7 k=0.7=49%。如seed43结果一致则确认退化模式跨seed稳定"
+  },
+  "timestamp": "2026-05-25T08:00:11.445032+00:00",
+  "trigger": "update_registry"
+}

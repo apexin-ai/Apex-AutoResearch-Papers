@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_urgent_cqa1_status_and_fill_20260525T034151_result.json",
     "occurrence": 1,
-    "bytes": 1038,
-    "sha256": "7e316fe7072cd57586515d5cb8407be7e3bda71317b3cf03d7c0621b33961864"
+    "bytes": 1037,
+    "sha256": "697eaf936f693bdc1588f1e16a36fbc7d9729c6a1fbf4c5c3a7f9fb43a8da2e9"
   },
   "statistics": {
     "messages": 1,

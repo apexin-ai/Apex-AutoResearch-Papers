@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1-path-fix-and-k08-collect_20260521T131336_result.json",
     "occurrence": 1,
-    "bytes": 2220,
-    "sha256": "6115d52d209445b179a18c708791abb9f7326b2c384fccc43322259ef5d0d2b5"
+    "bytes": 2219,
+    "sha256": "38d25001189e66d0dd20fd5283eac4f1f2118d0c7299b01a009eeca1ee083587"
   },
   "statistics": {
     "messages": 1,

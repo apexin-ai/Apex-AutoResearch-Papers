@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k07_long_seed46_strict_w38",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-28T06:33:02.780Z",
+    "updated_at": "2026-05-28T06:33:59.935Z",
+    "hypothesis": "5th seed for L2norm k=0.7 crossover point — 4-seed mean=63.5%±1.57pp, adding s46 for 5-seed error bar at the crossover where L2norm ≈ Random"
+  },
+  "timestamp": "2026-05-28T06:34:02.969752+00:00",
+  "trigger": "update_registry"
+}

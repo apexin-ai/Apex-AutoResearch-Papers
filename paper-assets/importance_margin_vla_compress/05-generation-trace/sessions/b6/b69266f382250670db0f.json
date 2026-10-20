@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_debug_c4ext_lora_check_20260519T184221_result.json",
     "occurrence": 1,
-    "bytes": 991,
-    "sha256": "6925fe2603d0d209c96da4e0900e9fc30cceafbb8de2ffac1c948e9b3450bae0"
+    "bytes": 990,
+    "sha256": "ffd8be5bf59d06989729c1052868394caa0d1df5810fd8f7745e576d096ebf20"
   },
   "statistics": {
     "messages": 1,

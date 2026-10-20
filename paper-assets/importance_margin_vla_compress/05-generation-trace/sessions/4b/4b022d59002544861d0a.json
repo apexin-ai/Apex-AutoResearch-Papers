@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_probe_westd38929-spatial-l2norm-k07_20260521T231402_result.json",
     "occurrence": 1,
-    "bytes": 1282,
-    "sha256": "0fad8667d68b1baea7d50b670667a906631e6836ce1376bce69064ac63eabf92"
+    "bytes": 1281,
+    "sha256": "5d3362923e26119a4ea050151aee9a2fea22513e862947dd86d2fd64edd2130d"
   },
   "statistics": {
     "messages": 1,

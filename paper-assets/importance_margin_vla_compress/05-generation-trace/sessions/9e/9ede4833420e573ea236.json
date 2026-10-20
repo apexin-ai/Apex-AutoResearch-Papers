@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_openvla-oft-westd38929_20260520T055650_result.json",
     "occurrence": 1,
-    "bytes": 2255891,
-    "sha256": "18485276eb85caebc617db2bca167b93f39eac2ebce1a968d2f0f658478de12c"
+    "bytes": 2255890,
+    "sha256": "54522ea87dd5e0b05afc8861e02ad806432d222c8a345da69a4df392e5ab35fc"
   },
   "statistics": {
     "messages": 1,
@@ -26,13 +26,32 @@
     {
       "number": 0,
       "boundary": "no_preceding_user_message_recorded",
-      "message_count": 1,
-      "chunks": [
+      "messages": [
         {
-          "path": "9ede4833420e573ea236-part-0001.json",
-          "message_count": 1
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2255910,
+                "serialized_sha256": "a3fc2e31b89577891cd497f9cc1cb169d395bd6ad0247ccf8562328f6f7f000b",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
         }
-      ]
+      ],
+      "message_count": 1
     }
   ],
   "readable_path": "readable/task-results/analysis-openvla-oft-westd38929.md"

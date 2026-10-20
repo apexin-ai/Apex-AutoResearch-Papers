@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_pi05_random_k09_long_seed43_strict_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T13:08:30.809Z",
+    "updated_at": "2026-05-27T13:41:17.645Z",
+    "hypothesis": "π0.5 Random k=0.9 Long strict seed43 cqa1 — seed42=34.2% valley 的独立服务器 seed 复制。westd-41074 已有一份在跑，cqa1 作为跨服务器验证",
+    "parent": "eval_pi05_random_k09_long_seed42_strict_v2",
+    "spec": {
+      "command": "python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0",
+      "server": "cqa1-33015",
+      "data_path": "libero_10",
+      "data_count": "10 tasks x 50 episodes",
+      "model_name": "pi0.5",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_10"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-27T13:41:06.934Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed (log check: no success markers found in log tail (path=/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_long_seed43_strict_cqa1.log))",
+    "conclusion": "failed",
+    "completed_at": "2026-05-27T13:41:17.645Z"
+  },
+  "timestamp": "2026-05-27T13:41:19.010947+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_missing_bib_entries_20260519T033709_result.json",
     "occurrence": 1,
-    "bytes": 3216,
-    "sha256": "90edf655aff5c0933098be5c67d0689bce7bf2498c3ab4284a5180642dacb9f2"
+    "bytes": 3215,
+    "sha256": "2f75c9af0696f8d3c4cb8983b51d0ff082b5879de6234790b1123a126c11ee8e"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,32 @@
+{
+  "exp_id": "libero_fullft_batch64_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T06:52:36.433Z",
+    "updated_at": "2026-05-17T14:30:36.191Z",
+    "spec": "overwrite",
+    "parent": "",
+    "hypothesis": "Increasing effective batch size from 4 to 64 (via gradient accumulation 16x) improves training stability and final performance for SmolVLA full expert fine-tuning on LIBERO, as larger batches provide more stable gradient estimates for the action expert parameters.",
+    "notes": "Run 4: PID=23996, cqa1 GPU 0. Cron confirms still alive (2026-05-17 12:50 UTC). Speed ~0.1 sps → ETA ~23 days. Previous 'conclusion=failed' was stale from prior crash, process is running normally. faulthandler enabled.",
+    "reproduce": {
+      "finished_at": "2026-05-17T08:10:31.565Z"
+    },
+    "failure_reason": "EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)",
+    "conclusion": "killed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T08:10:34.525154+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-17T14:30:36.316738+00:00",
+  "trigger": "update_registry"
+}

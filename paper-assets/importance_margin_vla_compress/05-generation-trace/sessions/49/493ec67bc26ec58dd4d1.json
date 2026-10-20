@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_random_prune_baseline_20260517T080830_result.json",
     "occurrence": 1,
-    "bytes": 845,
-    "sha256": "a40a09329d1dd6265794ccfe1d37ba5ad86cedbb7d2e6d53a1e01f4fec2874da"
+    "bytes": 844,
+    "sha256": "69171206001a443c91b2fea87dbcf80343262638965f4dfacebf4db059ae294a"
   },
   "statistics": {
     "messages": 1,

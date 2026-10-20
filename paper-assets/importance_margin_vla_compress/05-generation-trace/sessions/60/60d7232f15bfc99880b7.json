@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_diagnose-openvla-l2norm-k03-rerun-westd27271_20260521T125426_result.json",
     "occurrence": 1,
-    "bytes": 646,
-    "sha256": "529d23cd4dcbc6e5bd0d7fc076ab1b030ac0e7ce887acec656c4af78bd6d596f"
+    "bytes": 645,
+    "sha256": "21b607c5869a36efd05c731e083d8d4acb1342af6e8df2ab6fcf8cc51882bcf1"
   },
   "statistics": {
     "messages": 1,

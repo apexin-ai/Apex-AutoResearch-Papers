@@ -1,0 +1,15 @@
+{
+  "exp_id": "smolvla_random_k095_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:08:58.420Z",
+    "updated_at": "2026-05-22T19:09:24.291Z",
+    "hypothesis": "SmolVLA Random k=0.95 Long: 5% random removal on long-horizon tasks."
+  },
+  "timestamp": "2026-05-22T19:09:24.951517+00:00",
+  "trigger": "update_registry"
+}

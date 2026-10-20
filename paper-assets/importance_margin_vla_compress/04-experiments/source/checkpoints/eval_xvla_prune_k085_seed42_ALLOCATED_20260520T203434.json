@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_xvla_prune_k085_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:28:00.150Z",
+    "updated_at": "2026-05-20T20:34:33.493Z",
+    "hypothesis": "X-VLA random pruning k=0.85 seed42 further narrows the cliff between k=0.9 (97.8%) and k=0.8. If k=0.85 ≈ 97%, cliff is sharp at k=0.8; if k=0.85 ≈ 80%, degradation is more gradual."
+  },
+  "timestamp": "2026-05-20T20:34:34.360486+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1_and_westd41074_20260524T190218_result.json",
     "occurrence": 1,
-    "bytes": 1001,
-    "sha256": "e813b634aeb4c763c9430bc142a6d0512a6f1421417acf3136fa0c854ffc8dc7"
+    "bytes": 1000,
+    "sha256": "1a6d8f11d0b478830158cd7b2a51e50c2d3047ab5b8d21a5db5fb11bf708e40c"
   },
   "statistics": {
     "messages": 1,

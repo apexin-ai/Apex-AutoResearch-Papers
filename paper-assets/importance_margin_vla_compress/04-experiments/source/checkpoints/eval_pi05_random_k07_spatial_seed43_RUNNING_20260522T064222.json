@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_pi05_random_k07_spatial_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:39:23.035Z",
+    "updated_at": "2026-05-22T06:42:21.480Z",
+    "hypothesis": "π0.5 random k=0.7 Spatial seed43: seed42=74.4%。双种子验证。random k=0.7 在 Object 上已完全崩溃(~5%)，Spatial seed42 仍有 74.4%，验证 Spatial 的 cliff 是否在更低 k 处。",
+    "spec": {
+      "command": "eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.7 --suite libero_spatial --n_episodes 50 --seed 43 --gpu 0",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k07_spatial_seed43.log",
+      "data_path": "libero_spatial",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 43,
+      "pid": "119106"
+    }
+  },
+  "timestamp": "2026-05-22T06:42:22.170924+00:00",
+  "trigger": "update_registry"
+}

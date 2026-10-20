@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_investigate_process_gone_and_analyze_20260527T122616_result.json",
     "occurrence": 1,
-    "bytes": 985,
-    "sha256": "d912cb9c47d4f5d30d875bd49cc10cd6a81366b2890a4ab26a9b29f356a0be64"
+    "bytes": 984,
+    "sha256": "ef485ff415023337118a6f0c31992e370060dc769d8043f835d2908e3d59cccb"
   },
   "statistics": {
     "messages": 1,

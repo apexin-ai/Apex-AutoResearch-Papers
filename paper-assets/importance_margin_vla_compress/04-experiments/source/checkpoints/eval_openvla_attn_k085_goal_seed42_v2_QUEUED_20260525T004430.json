@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_openvla_attn_k085_goal_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T00:43:25.381Z",
+    "updated_at": "2026-05-25T00:44:29.311Z",
+    "hypothesis": "OpenVLA Attention k=0.85 Goal seed42 — v2: 修正 model_path 为 openvla-oft-libero-goal（原实验错用 openvla-libero-object）",
+    "parent": "eval_openvla_attn_k085_goal_seed42"
+  },
+  "timestamp": "2026-05-25T00:44:30.540844+00:00",
+  "trigger": "update_registry"
+}

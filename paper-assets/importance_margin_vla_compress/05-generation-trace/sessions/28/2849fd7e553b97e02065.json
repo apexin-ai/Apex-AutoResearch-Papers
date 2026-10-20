@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_mvp_imm_anchor_v7_final_20260515T202105_result.json",
     "occurrence": 1,
-    "bytes": 2918,
-    "sha256": "a54ecaf3525e05986d6a45619228af1fd79e4045a967496d4d46e69f02381893"
+    "bytes": 2917,
+    "sha256": "2f0f810ef38fcd9169a06b34536789402416cadf2091d5a46bc47361561e39f9"
   },
   "statistics": {
     "messages": 1,

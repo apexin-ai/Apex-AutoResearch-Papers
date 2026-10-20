@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_smolvla_entropy_missing_task_20260518T071144_result.json",
     "occurrence": 1,
-    "bytes": 924,
-    "sha256": "b85aad2c9e0e1670e2dc50f74c58b2ea9682b2f7950890e7719650fe8d0005b1"
+    "bytes": 923,
+    "sha256": "f9bfee890a55473c179fc23d0875274cdf917c3750087356e50b184189180a29"
   },
   "statistics": {
     "messages": 1,

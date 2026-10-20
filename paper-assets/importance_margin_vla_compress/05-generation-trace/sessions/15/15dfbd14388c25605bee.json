@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_train_smart_compress_m96_and_m16_20260518T041651_result.json",
     "occurrence": 1,
-    "bytes": 1615,
-    "sha256": "e6ced60497ce4353ecfb3efc2b07f1b8f346c77375e072da6526d1f38a7f6190"
+    "bytes": 1614,
+    "sha256": "c386751217caeeec780abdc2f28f5dd646553bd7d91018c0ab1251db25034586"
   },
   "statistics": {
     "messages": 1,

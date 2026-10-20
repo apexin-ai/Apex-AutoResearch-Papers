@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_urgent_kill_two_processes_20260528T070008_result.json",
     "occurrence": 1,
-    "bytes": 135,
-    "sha256": "0436e6ea9bc27268eece8b623145782ae666d2c102a5ffb9ff5e8a3d5d546503"
+    "bytes": 134,
+    "sha256": "a8e897ee3af59788744aa13dbd46cc007117cb69e47adb9553ea304512e5a980"
   },
   "statistics": {
     "messages": 1,

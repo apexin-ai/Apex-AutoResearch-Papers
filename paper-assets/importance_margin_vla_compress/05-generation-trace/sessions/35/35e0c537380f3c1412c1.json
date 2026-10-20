@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_deploy-cqa1-gpu0_20260524T104407_result.json",
     "occurrence": 1,
-    "bytes": 325,
-    "sha256": "fd308d5cf3ef62f50107d240be32efe3f3fd9e6db6ab03d85a0bd7493dfaa1d0"
+    "bytes": 324,
+    "sha256": "c4d2738135e88e67a739983279eac29ac1c0e19841d048cdc9317e7b4c1ee253"
   },
   "statistics": {
     "messages": 1,

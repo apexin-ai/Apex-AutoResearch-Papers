@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill_invalid_eval_20260518T011337_result.json",
     "occurrence": 1,
-    "bytes": 180,
-    "sha256": "cc312e08d296f440b85c3cb3e6cf6600b4c226051882957f9490e4f2e397dcc0"
+    "bytes": 179,
+    "sha256": "6ca2b72c1858e833e86447bc47b6a7d5bb44fce2b05f97eccc8522406635a6fe"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd-27271-cuda1-l2norm-goal-seed43_20260525T211334_result.json",
     "occurrence": 1,
-    "bytes": 372,
-    "sha256": "3e2fe81c58bdf32e9636af17740eeba871b02162310f5d7eb2f81c8f3cf60b8d"
+    "bytes": 371,
+    "sha256": "549b96f9363f31c7904f9a6e6ae3d3877d1eff9267ef9d151826bf96b1c426a9"
   },
   "statistics": {
     "messages": 1,

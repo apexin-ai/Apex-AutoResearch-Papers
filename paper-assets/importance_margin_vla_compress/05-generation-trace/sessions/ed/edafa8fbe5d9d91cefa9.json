@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_westd41074_kill_duplicates_20260527T093723_result.json",
     "occurrence": 1,
-    "bytes": 350,
-    "sha256": "858384c85113cca0c0451d9dc5ed27ce1a1bc79bb54e62d7cd451b336c49eaf2"
+    "bytes": 349,
+    "sha256": "acdf0de099d3e24bb80bebb809b5980a9ecc7f098899a9588fa4b97675ccd690"
   },
   "statistics": {
     "messages": 1,

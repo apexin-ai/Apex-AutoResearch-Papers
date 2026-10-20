@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_smolvla-cqa1-gpu0_20260521T155507_result.json",
     "occurrence": 1,
-    "bytes": 693,
-    "sha256": "5425f1cdb5cbc1e6bcf512de07b02bad1384243fc0562f22fafd554c42adfc98"
+    "bytes": 692,
+    "sha256": "bd8f5c4e730594c7a2ac054925d06c3a4f52ec817091c1105020328f24ff9b59"
   },
   "statistics": {
     "messages": 1,

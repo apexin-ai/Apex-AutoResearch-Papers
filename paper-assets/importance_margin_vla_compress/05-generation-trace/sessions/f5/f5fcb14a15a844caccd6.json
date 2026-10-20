@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_w38_attn_k05_s45_utilization_20260528T052237_result.json",
     "occurrence": 1,
-    "bytes": 499,
-    "sha256": "fa2ebb7f814e07f024b5b94f1468b12011621b8bbf52ca2ffe5e58604f57b6b8"
+    "bytes": 498,
+    "sha256": "f4609b9b17edf0b6e433903b90662cbf14627185dfbd9b770f21bb1b33b252fb"
   },
   "statistics": {
     "messages": 1,

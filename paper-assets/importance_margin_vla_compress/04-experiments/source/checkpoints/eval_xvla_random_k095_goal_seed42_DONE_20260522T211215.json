@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval_xvla_random_k095_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:46:33.526Z",
+    "updated_at": "2026-05-22T21:12:14.309Z",
+    "hypothesis": "X-VLA Random k=0.95 Goal: 仅移除 2.5/50 tokens 的 random pruning 对 Goal 的影响。baseline=98.4%。50 tokens 的 BART connector 对 random removal 极度敏感。",
+    "spec": {
+      "command": "python -u eval_xvla_pruning_libero.py --suite libero_goal --keep_ratio 0.95 --mode random --seed 42 --num_episodes 50 --gpu 0",
+      "server": "westd-27271",
+      "model_name": "X-VLA-Libero",
+      "seed": 42,
+      "data_path": "libero_goal",
+      "data_count": 50,
+      "checkpoint_source": "2toINF/X-VLA-Libero",
+      "eval_data": "libero_goal"
+    },
+    "metrics": {
+      "success_rate": 0.54,
+      "num_success": 270,
+      "num_episodes": 500,
+      "suite": "libero_goal",
+      "seed": 42,
+      "keep_ratio": 0.95,
+      "prune_mode": "random",
+      "elapsed_min": 71.6
+    },
+    "conclusion": "negative",
+    "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/xvla_random_k095_goal.log",
+    "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k0.95_libero_goal.json",
+    "completed_at": "2026-05-22T20:10:20.685Z"
+  },
+  "timestamp": "2026-05-22T21:12:15.003569+00:00",
+  "trigger": "update_registry"
+}

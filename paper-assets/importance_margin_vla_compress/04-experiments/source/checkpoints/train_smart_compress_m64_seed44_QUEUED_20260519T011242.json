@@ -1,0 +1,16 @@
+{
+  "exp_id": "train_smart_compress_m64_seed44",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:10:51.474Z",
+    "updated_at": "2026-05-19T01:12:42.057Z",
+    "hypothesis": "Third seed (seed=44) for Smart Compress M=64 to strengthen multi-seed robustness. Prior seeds: seed42=61.6%, seed43=60.0%. If seed44 yields ~60% SR, confirms M=64 matches M=32 performance with mean ~60% across 3 seeds.",
+    "parent": "train_smart_compress_m64_seed43"
+  },
+  "timestamp": "2026-05-19T01:12:42.270830+00:00",
+  "trigger": "update_registry"
+}

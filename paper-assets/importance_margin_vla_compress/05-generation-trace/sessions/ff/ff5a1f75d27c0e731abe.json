@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1-pi05-batch2_20260521T220116_result.json",
     "occurrence": 1,
-    "bytes": 662,
-    "sha256": "d623cc4b6e6ec14060d9489443fc4ad6465146f5f8a2eff73ba0ffe155da58f5"
+    "bytes": 661,
+    "sha256": "7b62add02ef0bca864fa4437cbb0e2d23e48a01aa48472f6a56563e61ab7d43c"
   },
   "statistics": {
     "messages": 1,

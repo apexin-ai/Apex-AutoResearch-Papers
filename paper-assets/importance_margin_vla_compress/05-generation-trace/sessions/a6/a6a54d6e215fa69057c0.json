@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_cqa1_identity_and_registry_20260522T180318_result.json",
     "occurrence": 1,
-    "bytes": 1464,
-    "sha256": "4d76554a41f4543e47fddfe890ae3bc284c2913bbc844df9930d4d76160108f4"
+    "bytes": 1463,
+    "sha256": "68ee649dd85f6761bef2ee0f0d2b1e0f9e0a312cab42675e7cf873c6d770f165"
   },
   "statistics": {
     "messages": 1,

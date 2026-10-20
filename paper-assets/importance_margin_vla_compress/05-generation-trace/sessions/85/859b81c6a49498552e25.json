@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_westd41074_cuda01_20260522T155209_result.json",
     "occurrence": 1,
-    "bytes": 1498,
-    "sha256": "a3e3cb7565e7d805388c9fb873ac84f92ab5830bb0d9dfa91b24e9d219c26188"
+    "bytes": 1497,
+    "sha256": "7326e57d6576657ff089aef9abcdc2a2a7f9e87e84e4c36101c2e37bcbd2f019"
   },
   "statistics": {
     "messages": 1,

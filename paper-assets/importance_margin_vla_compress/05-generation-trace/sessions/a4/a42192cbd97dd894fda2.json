@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_true_token_removal_20260517T083339_result.json",
     "occurrence": 1,
-    "bytes": 983,
-    "sha256": "9bbf229960057410a411ac83662250fd3660a2aa3e82846ffbb54981be536fa7"
+    "bytes": 982,
+    "sha256": "ee03640264e170d9c45ac2ad8d812950fcad3e89b64bd0ae5afe5c454e3d1296"
   },
   "statistics": {
     "messages": 1,

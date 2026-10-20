@@ -1,0 +1,66 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_long_seed43_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "created_at": "2026-05-23T03:50:15.603Z",
+    "hypothesis": "π0.5 L2Norm k=0.85 Long seed43 v3: seed42=78.0%。L2norm 单调下降验证，用 CUDA_VISIBLE_DEVICES=1 确保正确 GPU 映射",
+    "parent": "eval_pi05_l2norm_k085_long_seed43_v2",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "checkpoint_source": "pi0.5-pretrained",
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0",
+      "data_count": 50,
+      "data_path": "libero_10",
+      "eval_data": "libero_10",
+      "gpu": [
+        "cuda:1"
+      ],
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k085_long_seed43_v3.log",
+      "model_name": "pi0.5",
+      "pid": "252122",
+      "seed": 43,
+      "server": "cqa1-33015",
+      "submitted_at": "2026-05-25T17:58:03Z"
+    },
+    "status": "ANALYZING",
+    "updated_at": "2026-05-25T13:33:43.804Z",
+    "reproduce": {
+      "finished_at": "2026-05-25T13:29:42.629Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-25T13:30:12.617223+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 80,
+      "total_successes": 400,
+      "total_episodes": 500,
+      "per_task": {
+        "T0_put_both_alphabet_soup_and_tomato": 96,
+        "T1_put_both_cream_cheese_and_butter": 92,
+        "T2_turn_on_stove_put_moka_pot": 86,
+        "T3_put_black_bowl_in_bottom_drawer": 100,
+        "T4_put_white_mug_on_left_plate": 78,
+        "T5_pick_up_book_place_in_back": 98,
+        "T6_put_white_mug_on_plate_and_put": 14,
+        "T7_put_both_alphabet_soup_and_cream": 90,
+        "T8_put_both_moka_pots_on_stove": 52,
+        "T9_put_yellow_white_mug_in_microwave": 94
+      }
+    },
+    "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k085_long_seed43_v3.log",
+    "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.85_libero_10_seed43.json",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-25T13:33:45.813515+00:00",
+  "trigger": "update_registry"
+}

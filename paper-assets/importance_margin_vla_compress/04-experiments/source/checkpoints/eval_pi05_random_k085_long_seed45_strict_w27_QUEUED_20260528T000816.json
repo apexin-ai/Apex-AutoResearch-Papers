@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_random_k085_long_seed45_strict_w27",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-28T00:06:52.445Z",
+    "updated_at": "2026-05-28T00:08:13.547Z",
+    "hypothesis": "π0.5 Random k=0.85 Long strict seed45 — U-shape valley 方差 ±1.5pp，第四 seed 验证 valley 深度稳定性",
+    "parent": "eval_pi05_random_k085_long_seed44_strict_w41"
+  },
+  "timestamp": "2026-05-28T00:08:16.192712+00:00",
+  "trigger": "update_registry"
+}

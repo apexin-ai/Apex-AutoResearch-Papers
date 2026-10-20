@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_rsync_and_dryrun_prep_20260516T192913_result.json",
     "occurrence": 1,
-    "bytes": 1583,
-    "sha256": "08a6c6419acfcff6cb66494aa940b105e4d0c4d79e89aa77e36821787e7cab55"
+    "bytes": 1582,
+    "sha256": "43eae723b900a97ac356e18617e18df6a04a9c1f2612b7791cb5a0a962a0f24e"
   },
   "statistics": {
     "messages": 1,

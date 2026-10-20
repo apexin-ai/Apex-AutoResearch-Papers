@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_xvla_random_k095_object_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T23:09:50.683Z",
+    "updated_at": "2026-05-22T23:10:26.732Z",
+    "hypothesis": "X-VLA Random k=0.95 Object seed42 v2: 重部署。v1 在 westd-27271 启动即崩溃（transformers 5.5.4 与 Florence2 _tied_weights_keys 不兼容，已修复）。fig_method_gap 必需数据。L2norm k=0.95=97.6%, 预期 Random 也接近 → 确认 method-independence (Claim 3)。"
+  },
+  "timestamp": "2026-05-22T23:10:27.419689+00:00",
+  "trigger": "update_registry"
+}

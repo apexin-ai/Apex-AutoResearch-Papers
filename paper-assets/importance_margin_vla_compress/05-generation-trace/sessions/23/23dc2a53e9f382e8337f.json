@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_plan_009_token_importance_v3_20260516T164707_result.json",
     "occurrence": 1,
-    "bytes": 790,
-    "sha256": "55fe9a04644a38ddb39cb19f6553a3b69edc9296e1bbc959f937f12eef8ca975"
+    "bytes": 789,
+    "sha256": "027f82e675e5c6360c3a2b25f9c5bae976b67139bb632f31ac1028c4e54e8698"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check_m64_and_xvla_progress_20260523T035138_result.json",
     "occurrence": 1,
-    "bytes": 1246,
-    "sha256": "ef2f96e7cac7608e8577ccba2982d0227eefa6c8ac5ab69f4c36d3d7539a3c08"
+    "bytes": 1245,
+    "sha256": "26e0f6e0fd0415fcae1482b2f07160a356454fe3bf9d9cf698f09875de9b30f3"
   },
   "statistics": {
     "messages": 1,

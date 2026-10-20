@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_second_priority_batch_20260528T070145_result.json",
     "occurrence": 1,
-    "bytes": 1490,
-    "sha256": "44533d3177eda8c46fc483024c4651c7ed765eded482e0621644b57cebc61a47"
+    "bytes": 1489,
+    "sha256": "2bbc456c40e5c55e30b2c9a2694f035f6f642e5ae2ab565f1da00041580c2882"
   },
   "statistics": {
     "messages": 1,

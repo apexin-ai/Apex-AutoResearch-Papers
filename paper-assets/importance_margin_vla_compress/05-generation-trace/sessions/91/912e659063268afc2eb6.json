@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_cqa1-33015-retry_20260525T195417_result.json",
     "occurrence": 1,
-    "bytes": 1271,
-    "sha256": "2d20901fba73af293ed569354f9c2f91d1f3076fe0c3cc8a43794da5b8aed57a"
+    "bytes": 1270,
+    "sha256": "d3abda4cbc704f303ec1666af8d94ed5f28faf7a9037799900b8c729467fb5d0"
   },
   "statistics": {
     "messages": 1,

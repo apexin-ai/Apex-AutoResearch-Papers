@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1-kill-duplicates-redeploy-per-director_20260521T132122_result.json",
     "occurrence": 1,
-    "bytes": 133,
-    "sha256": "0b9c7adf2fa6bf1d020da3c11c6dd9c9d4c00abc8cf563967aeb877818c2952e"
+    "bytes": 132,
+    "sha256": "ab70c2cc7075c7800ca9e122755eec3af3fb733a6018a55b34bd41ca8f5bda18"
   },
   "statistics": {
     "messages": 1,

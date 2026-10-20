@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_xvla_prune_k08_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:27:57.915Z",
+    "updated_at": "2026-05-20T20:43:40.831Z",
+    "hypothesis": "X-VLA random pruning k=0.8 seed43 provides 2nd seed for cliff threshold localization. Combined with seed42, narrows the cliff to a 5pp interval."
+  },
+  "timestamp": "2026-05-20T20:43:41.130037+00:00",
+  "trigger": "update_registry"
+}

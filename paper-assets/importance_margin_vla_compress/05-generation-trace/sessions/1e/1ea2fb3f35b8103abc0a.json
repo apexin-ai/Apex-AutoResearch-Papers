@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_imm_fullft_dryrun_westd_20260516T200732_result.json",
     "occurrence": 1,
-    "bytes": 814,
-    "sha256": "250082b893f032ab15dc2e49529fb07eb2033b5a3a8b6de063074bcb0e0525ac"
+    "bytes": 813,
+    "sha256": "be23600d4890f7e035a0f719760fbfc2cef0fd20be91d304f500c5c9c088be9e"
   },
   "statistics": {
     "messages": 1,

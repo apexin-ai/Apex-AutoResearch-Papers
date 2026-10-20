@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_deploy-long-postfix-westd_20260524T113016_result.json",
     "occurrence": 1,
-    "bytes": 708,
-    "sha256": "4f88dc34b455193badc12657d0d89278fea131266b29d6603463e616ddbe6908"
+    "bytes": 707,
+    "sha256": "8792c963a6a243393f5ebabdf4dde32fb867a50f407714adb08cdfecc7d73c31"
   },
   "statistics": {
     "messages": 1,

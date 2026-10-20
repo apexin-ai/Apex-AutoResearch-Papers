@@ -1,0 +1,181 @@
+{
+  "exp_id": "libero_full_ft_baseline",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:20:17.482Z",
+    "updated_at": "2026-05-18T00:59:00.156Z",
+    "spec": {
+      "command": "python train.py --config configs/libero_full_ft.yaml",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "8985",
+      "log_path": "~/runs/importance_margin_vla_compress/libero_full_ft_baseline.log",
+      "submitted_at": "2026-05-16T14:20:17.428Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "HuggingFaceVLA/libero",
+      "data_count": 273465,
+      "model_name": "smolvla_base_full_ft",
+      "seed": 42,
+      "wall_clock_seconds": 124722.7,
+      "gpu_hours": 34.65
+    },
+    "hypothesis": "Full expert fine-tuning of SmolVLA (22.2% params trainable, 99.9M/450M) on LIBERO data for 100K steps with cosine LR decay should achieve reasonable manipulation SR as a baseline for compression experiments",
+    "metrics": {
+      "diversity_10k": {
+        "noise_diversity_std": 0.1987,
+        "pass": true,
+        "threshold": 0.05,
+        "per_obs": [
+          0.193,
+          0.192,
+          0.203,
+          0.193,
+          0.213
+        ]
+      },
+      "sr_50k": {
+        "overall": 0.33,
+        "n_episodes": 100,
+        "suite": "libero_object",
+        "wilson_ci_95": [
+          0.246,
+          0.427
+        ],
+        "per_task": [
+          0.1,
+          0.7,
+          0.5,
+          0.1,
+          0.3,
+          0.1,
+          0.5,
+          0.1,
+          0.4,
+          0.5
+        ]
+      },
+      "sr_50k_spatial": {
+        "overall": 0.34,
+        "n_episodes": 100,
+        "suite": "libero_spatial",
+        "wilson_ci_95": [
+          0.255,
+          0.437
+        ],
+        "per_task": [
+          0.8,
+          0.1,
+          0.3,
+          0.2,
+          0.2,
+          0.4,
+          0.3,
+          0.2,
+          0.6,
+          0.3
+        ]
+      },
+      "sr_50k_goal": {
+        "overall": 0.42,
+        "n_episodes": 100,
+        "suite": "libero_goal",
+        "wilson_ci_95": [
+          0.328,
+          0.518
+        ],
+        "per_task": [
+          0.2,
+          0.7,
+          0.5,
+          0.1,
+          0.6,
+          0.5,
+          0.2,
+          0.8,
+          0.5,
+          0.1
+        ]
+      },
+      "sr_100k_object": {
+        "overall": 0.36,
+        "n_episodes": 100,
+        "suite": "libero_object",
+        "per_task": [
+          0,
+          0.3,
+          0.4,
+          0.6,
+          0.5,
+          0.1,
+          0.3,
+          0.5,
+          0.4,
+          0.5
+        ]
+      },
+      "sr_100k_spatial": {
+        "overall": 0.48,
+        "n_episodes": 100,
+        "suite": "libero_spatial",
+        "per_task": [
+          0.8,
+          0.5,
+          0.4,
+          0.4,
+          0.3,
+          0.3,
+          0.6,
+          0.2,
+          0.9,
+          0.4
+        ]
+      },
+      "sr_100k_goal": {
+        "overall": 0.63,
+        "n_episodes": 100,
+        "suite": "libero_goal",
+        "per_task": [
+          0.5,
+          0.9,
+          0.7,
+          0.3,
+          1,
+          0.4,
+          0.4,
+          1,
+          0.8,
+          0.3
+        ]
+      },
+      "sr_100k_overall": 0.49
+    },
+    "notes": "100K training completed. Final: loss=0.04082, eval_loss=0.07811, lr=2.50e-06. Eval SR@100K: object=36%, spatial=48%, goal=63%, overall=49.0%. Improved from 50K (36.3%) by +12.7pp. Below 50% threshold but strong upward trend. Seed0 training in progress on cuda:3.",
+    "reproduce": {
+      "finished_at": "2026-05-16T21:26:33.907Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T21:26:39.366417+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "checkpoints/libero_full_ft/step_099999/checkpoint.pt",
+    "log_path": "~/runs/importance_margin_vla_compress/libero_full_ft_baseline.log",
+    "parent": "libero_lora_baseline",
+    "conclusion": "success",
+    "completed_at": "2026-05-18T00:59:00.156Z"
+  },
+  "timestamp": "2026-05-18T00:59:00.286222+00:00",
+  "trigger": "update_registry"
+}

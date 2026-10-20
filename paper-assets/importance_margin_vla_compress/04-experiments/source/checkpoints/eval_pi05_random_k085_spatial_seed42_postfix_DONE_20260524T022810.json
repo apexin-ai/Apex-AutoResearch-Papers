@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval_pi05_random_k085_spatial_seed42_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T23:11:42.724Z",
+    "updated_at": "2026-05-24T02:28:09.961Z",
+    "hypothesis": "π0.5 Random k=0.85 Spatial post-fix — 测试 D191 disruption peak（Goal k=0.85 Random=52.4%）是否跨 suite 复现。CPU RNG 修复后 random pruning 应产生可复现的结果。",
+    "spec": {
+      "command": "export CUDA_VISIBLE_DEVICES=2 && export MUJOCO_GL=egl && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/autodl-tmp/importance_margin_vla_compress && python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_spatial --seed 42 --gpu 0",
+      "server": "westd-41074",
+      "data_path": "libero_spatial",
+      "data_count": 500,
+      "model_name": "pi0.5",
+      "seed": 42,
+      "log_path": "/tmp/eval_pi05_random_k085_spatial_seed42_postfix.log",
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "checkpoint_path": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_spatial"
+    },
+    "conclusion": "failed",
+    "failure_reason": "Process killed (EXIT_CODE=129, SIGHUP). Needs retry.",
+    "completed_at": "2026-05-24T02:28:09.961Z"
+  },
+  "timestamp": "2026-05-24T02:28:10.898490+00:00",
+  "trigger": "update_registry"
+}

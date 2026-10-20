@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval_pi05_random_k07_object_seed42_v4",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T02:15:40.782Z",
+    "updated_at": "2026-05-24T02:16:27.113Z",
+    "hypothesis": "π0.5 Random k=0.7 Object seed42 — post-fix random pruning 基线，验证 30% token 移除对 Object suite 的影响",
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 74,
+      "num_episodes": 500,
+      "duration_min": 120.7,
+      "per_task": [
+        0.86,
+        0.86,
+        0.7,
+        0.76,
+        0.72,
+        0.3,
+        0.88,
+        0.76,
+        0.88,
+        0.68
+      ]
+    }
+  },
+  "timestamp": "2026-05-24T02:16:28.112932+00:00",
+  "trigger": "update_registry"
+}

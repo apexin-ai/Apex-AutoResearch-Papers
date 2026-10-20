@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cascade_w41_gpu0_cqa1_gpu1_20260527T122228_result.json",
     "occurrence": 1,
-    "bytes": 818,
-    "sha256": "b54d7dc3dfefe97113fd4305dadd59bd10f26368bc37397fd4c143c418182510"
+    "bytes": 817,
+    "sha256": "4c11f118f59df965bee63ded247459d590c5f31b091138da4a2b9bb5d7645eb9"
   },
   "statistics": {
     "messages": 1,

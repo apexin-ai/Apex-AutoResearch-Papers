@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_pi05-attention-entropy_20260521T103825_result.json",
     "occurrence": 1,
-    "bytes": 1492,
-    "sha256": "e2846c8e95bd358928f3303c54297d6e5f2b30cd8ae73b7966af7e43aa0d1fe4"
+    "bytes": 1491,
+    "sha256": "7a78f90b9f1b08b7fda31f29f2fddf9ee1078f699ae1e68054615ce85968fa3d"
   },
   "statistics": {
     "messages": 1,

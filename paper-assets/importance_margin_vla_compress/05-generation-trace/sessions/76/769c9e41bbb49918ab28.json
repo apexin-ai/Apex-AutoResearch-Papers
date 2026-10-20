@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_submit_cqa1_4gpu_cliff_batch_20260525T042418_result.json",
     "occurrence": 1,
-    "bytes": 1192,
-    "sha256": "c0b40b4f9eac9c2021de1bde308491a548a3c6e1e713cf9c7ed2a8e476318d6d"
+    "bytes": 1191,
+    "sha256": "83cfbf7d8073371341d9dce9fbbf6af70f445634dc756853f9fb7ff5133f0044"
   },
   "statistics": {
     "messages": 1,

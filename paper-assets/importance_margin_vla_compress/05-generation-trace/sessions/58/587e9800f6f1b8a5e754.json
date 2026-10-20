@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1-cuda0-xvla-spatial-random_20260521T032724_result.json",
     "occurrence": 1,
-    "bytes": 435,
-    "sha256": "189de1c4452845a07e43b90e0ae717be9d3843c0c793ba18e701040993388a21"
+    "bytes": 434,
+    "sha256": "0eee814f6553fab3f65889218626e5dc2b446f2f4ac0c77a9cad877fdc8f3bff"
   },
   "statistics": {
     "messages": 1,

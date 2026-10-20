@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_ref_tiebreak_verify_20260529T070204_result.json",
     "occurrence": 1,
-    "bytes": 1627,
-    "sha256": "03feaea78e9fc6c24f9f70979e4bbf3aa187954a67171935fcf0a26d171ae186"
+    "bytes": 1626,
+    "sha256": "7a53fb5689d16af6c7b1424f2e946ab358ef5398d5642bac7eebccd78b53a61f"
   },
   "statistics": {
     "messages": 1,

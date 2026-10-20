@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_train_baseline_control_100k_crash_20260518T122844_result.json",
     "occurrence": 1,
-    "bytes": 644,
-    "sha256": "9a14d658f1092651af0d1302bd3d382e30d4ee1485f2eeec84df7bebdba84ddc"
+    "bytes": 647,
+    "sha256": "5cd308be5c840c453072e61d719e4afe275730374a26a7dd3b3d9fd2dcfb740d"
   },
   "statistics": {
     "messages": 1,
@@ -33,7 +33,7 @@
           "content": [
             {
               "type": "text",
-              "text": "诊断完成。\n\n**崩溃原因：`wandb.init()` 失败，服务器上没有 W&B API key。** 模型/checkpoint/数据都加载成功了，但 line 473 的 `wandb.init()` 因为缺少认证直接抛异常退出。\n\n根因：cqa1-33015 上没有 `~/.netrc`、没有 `~/.config/wandb/`、没有 `WANDB_API_KEY` 环境变量。训练命令也没传这个变量。\n\n**修复：** 在训练命令里加 `export WANDB_API_KEY=<key>` 或 `export WANDB_MODE=offline`。另外建议加 `CUDA_VISIBLE_DEVICES=0`，因为 GPU 1 当前被 eval job 占用。\n\n报告已保存到 `artifacts/worker_output_baseline_control_crash.md`。"
+              "text": "诊断完成。\n\n**崩溃原因：`wandb.init()` 失败，服务器上没有 W&B API key。** 模型/checkpoint/数据都加载成功了，但 line 473 的 `wandb.init()` 因为缺少认证直接抛异常退出。\n\n根因：cqa1-33015 上没有 `~/.netrc`、没有 `~/.config/wandb/`、没有 `WANDB_API_KEY` 环境变量。训练命令也没传这个变量。\n\n**修复：** 在训练命令里加 `export WANDB_API_KEY=[REDACTED] 或 `export WANDB_MODE=offline`。另外建议加 `CUDA_VISIBLE_DEVICES=0`，因为 GPU 1 当前被 eval job 占用。\n\n报告已保存到 `artifacts/worker_output_baseline_control_crash.md`。"
             }
           ],
           "id": "event-000001"

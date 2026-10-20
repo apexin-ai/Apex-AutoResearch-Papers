@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_inspect_other_servers_health_20260526T013118_result.json",
     "occurrence": 1,
-    "bytes": 1190,
-    "sha256": "a18915308e121675652459e211a69ac98fbda2958a50fc6dda702fd4363d64e2"
+    "bytes": 1189,
+    "sha256": "3d7f2ec9eafd97f497a23b244b2fff3650073ddf1a259cb8c6781ec60fbc15d2"
   },
   "statistics": {
     "messages": 1,

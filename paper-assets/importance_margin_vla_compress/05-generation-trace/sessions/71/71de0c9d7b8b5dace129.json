@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cleanup-m128-all-servers_20260521T090503_result.json",
     "occurrence": 1,
-    "bytes": 553,
-    "sha256": "30797c366190a63ffaef7b55ea86a756b520ebd331e517631ff8cdedfef2cd66"
+    "bytes": 552,
+    "sha256": "4af1c85dc70d7f51f4692d307e40c38968f5591f964622114de4ac27705ec8bd"
   },
   "statistics": {
     "messages": 1,

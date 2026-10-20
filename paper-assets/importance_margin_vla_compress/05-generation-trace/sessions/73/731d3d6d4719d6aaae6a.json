@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_urgent_cqa1-harvest-deploy_20260524T021342_result.json",
     "occurrence": 1,
-    "bytes": 1209,
-    "sha256": "20f251decd8e3e7b1db24277f1790f530453ad8c80cf4a59e37e9ffaeab350aa"
+    "bytes": 1208,
+    "sha256": "f78126fe876365e278d456a561a44654cd0a638143c96d2669af776e38efa462"
   },
   "statistics": {
     "messages": 1,

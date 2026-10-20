@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval_openvla_random_k07_object_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:31:31.573Z",
+    "updated_at": "2026-05-21T11:59:17.864Z",
+    "hypothesis": "OpenVLA random k=0.7 seed42: D132 crossover. High-CV MLP connector → L2norm should outperform random. Comparing with L2norm k=0.7 on GPU0.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.7 --suite libero_object --seed 42 --device cuda:0",
+      "server": "westd-38929",
+      "model_name": "openvla-libero-object",
+      "seed": 42,
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_k07_seed42_v2.json",
+      "data_path": "libero_object",
+      "data_count": 500,
+      "checkpoint_path": "N/A (eval only)"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 0.444,
+      "total_successes": 222,
+      "total_episodes": 500
+    },
+    "completed_at": "2026-05-21T11:59:06.677Z",
+    "notes": "Cron 误判 process gone。日志显示实验完成: Overall SR 44.4% (222/500)。结果文件: /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k07_object.json"
+  },
+  "timestamp": "2026-05-21T11:59:18.295312+00:00",
+  "trigger": "update_registry"
+}

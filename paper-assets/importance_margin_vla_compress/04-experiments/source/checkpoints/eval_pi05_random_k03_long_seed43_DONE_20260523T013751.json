@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval_pi05_random_k03_long_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T22:57:54.075Z",
+    "updated_at": "2026-05-23T01:37:50.930Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.3 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "239581",
+      "log_path": "/tmp/eval_random_k03_long_s43.log",
+      "submitted_at": "2026-05-22T22:57:53.130Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "pi0.5",
+      "seed": 43,
+      "checkpoint_source": "pi0.5_pretrained",
+      "eval_data": "libero_10",
+      "checkpoint_path": "n/a (inference-only eval)",
+      "wall_clock_seconds": 9597.8,
+      "gpu_hours": 2.67
+    },
+    "hypothesis": "π0.5 Random k=0.3 Long seed43: seed42=29.0%，极端压缩 floor data point。Random k=0.5 seed42=50.2%。需要 seed43 验证 floor 是否可复现。",
+    "conclusion": "failed",
+    "completed_at": "2026-05-23T01:37:50.930Z"
+  },
+  "timestamp": "2026-05-23T01:37:51.575215+00:00",
+  "trigger": "update_registry"
+}

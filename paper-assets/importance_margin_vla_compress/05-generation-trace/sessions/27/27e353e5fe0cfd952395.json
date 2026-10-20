@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_k07_quantization_20260528T023215_result.json",
     "occurrence": 1,
-    "bytes": 1433,
-    "sha256": "6f39aef270bedd69d4f2cf6ce3c2ea1d802c96b8d9e37ca46abbc77cc9e085f0"
+    "bytes": 1432,
+    "sha256": "59b79c113096bb6def7b141a742a1a8eb18d50cc76ffe4b44091ef1bcaba63d1"
   },
   "statistics": {
     "messages": 1,

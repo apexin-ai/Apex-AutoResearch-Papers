@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_urgent_kill_cqa1_gpu0_random_k09_20260528T071950_result.json",
     "occurrence": 1,
-    "bytes": 213,
-    "sha256": "d63e9fb92b179de4945960d5aa9d9a6d6b1df1d3493f7fad1b5d643757147a5d"
+    "bytes": 212,
+    "sha256": "d188fed4999d903fcf5c584a159e12ae73585e20443662701c594a05bdb12b24"
   },
   "statistics": {
     "messages": 1,

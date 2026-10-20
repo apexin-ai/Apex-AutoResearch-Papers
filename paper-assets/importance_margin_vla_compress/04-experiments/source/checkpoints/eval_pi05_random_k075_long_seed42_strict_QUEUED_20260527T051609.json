@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_pi05_random_k075_long_seed42_strict",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T05:15:32.754Z",
+    "updated_at": "2026-05-27T05:16:07.753Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "155165",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k075_long_seed42_strict.log",
+      "submitted_at": "2026-05-27T05:15:30.890Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "π0.5 Random k=0.75 Long strict — cqa1 污染值 62.4% 呈 V-shape 回升（高于 k=0.85=45.2%），需 strict 验证。如 strict 值也显著 > 45.2%，确认 V-shape 真实；如接近或 < 45.2%，说明回升是 lenient 假象",
+    "parent": "eval_pi05_random_k085_long_seed42_strict"
+  },
+  "timestamp": "2026-05-27T05:16:09.202099+00:00",
+  "trigger": "update_registry"
+}

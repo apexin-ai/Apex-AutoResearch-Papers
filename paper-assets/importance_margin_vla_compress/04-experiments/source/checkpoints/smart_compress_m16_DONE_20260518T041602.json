@@ -1,0 +1,29 @@
+{
+  "exp_id": "smart_compress_m16",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T21:08:36.215Z",
+    "updated_at": "2026-05-18T04:16:02.545Z",
+    "hypothesis": "Compressing 128 vision tokens to 16 (87.5% compression) via learned queries will retain sufficient visual information for action prediction, though with expected performance degradation compared to higher token counts (M=32/64/96)",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 WANDB_MODE=offline python -u train_smart_compress.py --config configs/smart_compress_m16.yaml --wandb_run smart_compress_m16",
+      "server": "cqa1-33015",
+      "data_path": "/root/autodl-tmp/importance_margin_vla_compress/",
+      "data_count": null,
+      "model_name": "SmolVLM2-500M-Video-Instruct",
+      "seed": null,
+      "pid": 352025,
+      "gpu": 3,
+      "log_path": "train_M16.log",
+      "checkpoint_path": "checkpoints/smart_compress_m16/checkpoint.pt"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T04:16:02.545Z"
+  },
+  "timestamp": "2026-05-18T04:16:02.772634+00:00",
+  "trigger": "update_registry"
+}

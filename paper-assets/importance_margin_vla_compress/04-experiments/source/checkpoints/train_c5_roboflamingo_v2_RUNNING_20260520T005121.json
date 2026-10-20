@@ -1,0 +1,29 @@
+{
+  "exp_id": "train_c5_roboflamingo_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:24:24.260Z",
+    "updated_at": "2026-05-20T00:51:21.350Z",
+    "hypothesis": "RoboFlamingo (Perceiver Resampler) fine-tuned on LIBERO-Object with fixed gripper loss (BCE instead of BCE_with_logits, weight 0.1). Establishes 3rd connector architecture baseline for compression analysis (C5). Bug M029 fix: previous version had double sigmoid causing gripper to not learn.",
+    "parent": "train_c5_roboflamingo_libero_object",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl python -u train_libero.py --suite libero_object --data_dir /root/autodl-tmp/libero_data/datasets/libero_object --num_epochs 50 --batch_size 8 --lr 1e-4 --window_size 12 --gpu 0 --save_dir /root/autodl-tmp/checkpoints/roboflamingo_libero_c5_v2",
+      "server": "westd-41074",
+      "data_path": "/root/autodl-tmp/libero_data/datasets/libero_object",
+      "data_count": 500,
+      "model_name": "RoboFlamingo (OpenFlamingo-3B-vitl-mpt1b) + BCE fix",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/roboflamingo_libero_c5_v2",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/train_c5_roboflamingo_v2.log",
+      "checkpoint_source": "OpenFlamingo-3B-vitl-mpt1b-langinstruct (from scratch, no resume)",
+      "eval_data": "N/A (training)"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-20T00:51:21.667839+00:00",
+  "trigger": "update_registry"
+}

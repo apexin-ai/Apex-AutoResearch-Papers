@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_pi05_status_and_continue_20260517T172834_result.json",
     "occurrence": 1,
-    "bytes": 1146,
-    "sha256": "12de0cde018015f1341b780fcd1ef3dc15f4475985e34cb830d06a2544f84bf5"
+    "bytes": 1145,
+    "sha256": "8d9297e640023ed871c2e07901a1672d5f7e7647bfe21c8ef944c26f7f76a698"
   },
   "statistics": {
     "messages": 1,

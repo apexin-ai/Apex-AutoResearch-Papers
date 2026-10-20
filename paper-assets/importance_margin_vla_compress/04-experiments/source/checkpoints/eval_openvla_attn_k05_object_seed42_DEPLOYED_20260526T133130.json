@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_openvla_attn_k05_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DEPLOYED",
+  "previous_state": "DEPLOYING",
+  "experiment_data": {
+    "completed_at": "2026-05-24T06:14:36.513Z",
+    "conclusion": "failed",
+    "created_at": "2026-05-24T05:37:38.812Z",
+    "failure_reason": "代码 bug: AttentionPruningHook 中 layer.self_attn.rotary_emb 属性路径错误，'LlamaModel' object has no attribute 'rotary_emb'。需适配 OpenVLA 的 LlamaModel 结构。结果文件 openvla_attention_prune_k05_object_seed42.json 无效。",
+    "hypothesis": "OpenVLA Attention k=0.5 Object seed42 — Attn Object cliff curve 极端压缩点。Attn k=0.9=61.4%, k=0.85=55.0%, k=0.7=running。k=0.5 补全低端数据，测试 50% 压缩下 attention scoring 是否仍能保留关键 token",
+    "retry_count": 0,
+    "spec": {
+      "command": "cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.5 --suite libero_object --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/openvla-libero-object --unnorm_key libero_object",
+      "data_count": 50,
+      "data_path": "libero_object",
+      "model_name": "openvla-libero-object",
+      "seed": 42,
+      "server": "westd-41074",
+      "checkpoint_source": "/root/autodl-tmp/openvla-libero-object",
+      "eval_data": "libero_object"
+    },
+    "status": "DEPLOYED",
+    "updated_at": "2026-05-26T13:31:27.213Z",
+    "parent": "eval_openvla_attn_k085_object_seed42"
+  },
+  "timestamp": "2026-05-26T13:31:30.128285+00:00",
+  "trigger": "update_registry"
+}

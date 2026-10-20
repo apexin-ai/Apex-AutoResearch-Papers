@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_westd_collect_and_imm_v2_eval_20260516T233249_result.json",
     "occurrence": 1,
-    "bytes": 1561,
-    "sha256": "30a78a66d07c3b90dfcbaf7f51a4de6d0bf173010aaf6fe71812d16a7d44a6dc"
+    "bytes": 1560,
+    "sha256": "cc1bbc6efe0490b11b0b9868e1a23ce7a2c285df3c30d14dfd1afecdb068db20"
   },
   "statistics": {
     "messages": 1,

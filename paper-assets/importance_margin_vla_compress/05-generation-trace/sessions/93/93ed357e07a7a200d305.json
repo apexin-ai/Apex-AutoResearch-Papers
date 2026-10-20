@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_westd38929_cliff_zone_batch_20260525T165609_result.json",
     "occurrence": 1,
-    "bytes": 1255,
-    "sha256": "479fe0e54131c2516d93e89dc4925bd9956c488ce16b969e608e2df2d4c08014"
+    "bytes": 1254,
+    "sha256": "d5bae6688963fb5de48ac0b91b1f80fb1cc2404f2ba1085c2365d2521347bcae"
   },
   "statistics": {
     "messages": 1,

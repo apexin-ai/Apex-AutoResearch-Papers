@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_d015-g4-absolute-threshold_20260515T203457_result.json",
     "occurrence": 1,
-    "bytes": 1007,
-    "sha256": "ad1f5c5239dd7dd8930423ed215f2114ce210fa77171e34ebcfd929118952754"
+    "bytes": 1006,
+    "sha256": "815aa307c7128cd7e2f5f7490e8e8397c2209b3806993e3978baf538818802bd"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_d108-progress-check_20260520T181134_result.json",
     "occurrence": 1,
-    "bytes": 634,
-    "sha256": "d214925de592b0fb9d1623cea8de117becf95dd0d4c2caa0c2f9ba7fdd308680"
+    "bytes": 633,
+    "sha256": "b47d5dc86e928fc05637d59ad8dbfb1658d0435b9e09df25c2a238490e80bbdc"
   },
   "statistics": {
     "messages": 1,

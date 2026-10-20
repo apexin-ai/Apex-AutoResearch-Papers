@@ -1,0 +1,31 @@
+{
+  "exp_id": "mvp_baseline_v4",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:28:19.155Z",
+    "updated_at": "2026-05-15T15:32:16.908Z",
+    "hypothesis": "SmolVLA+LoRA baseline on aloha_sim_insertion establishes action loss reference for IMM comparison (fixed action_is_pad bug)",
+    "spec": {
+      "server": "westd-27271",
+      "gpu": "cuda:0",
+      "account": "root",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=0 WANDB_MODE=offline python3 train.py --config configs/baseline.yaml --gpu 0 --seed 42\"",
+      "pid": 30745,
+      "data_path": "lerobot/aloha_sim_insertion_scripted_image",
+      "data_count": 20000,
+      "model_name": "lerobot/smolvla_base + LoRA r=32 (baseline_forward fix)",
+      "seed": 42,
+      "log_path": "/tmp/baseline_v4.log",
+      "checkpoint_path": "N/A",
+      "failure_reason": "Killed for v5 restart with complete env template (network_turbo + SSL). Was healthy at step 600+."
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T15:32:16.909Z"
+  },
+  "timestamp": "2026-05-15T15:32:16.930302+00:00",
+  "trigger": "update_registry"
+}

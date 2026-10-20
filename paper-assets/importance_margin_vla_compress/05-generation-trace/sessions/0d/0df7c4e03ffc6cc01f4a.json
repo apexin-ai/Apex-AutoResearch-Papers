@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_kill_westd41074-redundant-procs_20260526T202702_result.json",
     "occurrence": 1,
-    "bytes": 973,
-    "sha256": "2ba1a125457e58c9acfe8211371d12d64a7daea7349853a9b942d277a60c5c84"
+    "bytes": 972,
+    "sha256": "9009b1fa0ddeed1a1af1e4c8aff61adb3c8ee8218da05c765e8ccb28313f8b6c"
   },
   "statistics": {
     "messages": 1,

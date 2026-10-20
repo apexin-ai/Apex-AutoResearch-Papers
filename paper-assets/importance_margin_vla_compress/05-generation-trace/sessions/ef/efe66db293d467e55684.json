@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_spatial_bypass_baseline_20260517T103617_result.json",
     "occurrence": 1,
-    "bytes": 978,
-    "sha256": "f75c8aa17c5f199ea09b93eec161600e7237a7cc991b3e89391ce770684cdc3e"
+    "bytes": 977,
+    "sha256": "1f9aaf758b86feafe6cd99e90325717ab934cb638c923cbc6d5c40747a2d533e"
   },
   "statistics": {
     "messages": 1,

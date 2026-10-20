@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_goal_seed42_w38929",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T13:22:54.323Z",
+    "updated_at": "2026-05-22T13:23:10.989Z",
+    "hypothesis": "π0.5 L2norm k=0.85 LIBERO-Goal seed42: Goal baseline=96.4%. L2norm k=0.85 在 Object=98.0%。Goal suite 补充 cliff zone sweep，测试 L2norm 在 Goal 上 k=0.85 是否仍保持高 SR。"
+  },
+  "timestamp": "2026-05-22T13:23:11.639905+00:00",
+  "trigger": "update_registry"
+}

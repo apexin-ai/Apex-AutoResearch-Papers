@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_verify-westd41074-gpu1-and-launch_20260521T002536_result.json",
     "occurrence": 1,
-    "bytes": 659,
-    "sha256": "0114c702489ca33220d4fbeaa0ec3fde2726fa9a93c28659a1e3a57af3c24d3c"
+    "bytes": 658,
+    "sha256": "07efe20bed6e8ea05ca0fbd3b0a11a265c0261be2cc6f3a1e5672ee7b5f380c6"
   },
   "statistics": {
     "messages": 1,

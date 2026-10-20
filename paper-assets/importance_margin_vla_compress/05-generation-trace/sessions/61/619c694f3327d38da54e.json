@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_v8b-twostage-prep_20260515T234505_result.json",
     "occurrence": 1,
-    "bytes": 1057,
-    "sha256": "846929429f855f68de046e60ac70b88f60f2ac4898e5350b1c8441e1802991e1"
+    "bytes": 1056,
+    "sha256": "fa4233fb697ffdbc1bd25bb13d46c155759e56395675846dedd6677acde1456b"
   },
   "statistics": {
     "messages": 1,

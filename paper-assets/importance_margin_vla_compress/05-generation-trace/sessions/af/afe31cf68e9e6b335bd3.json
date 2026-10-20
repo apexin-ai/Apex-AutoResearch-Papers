@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_fix-token-selection_20260515T114140_result.json",
     "occurrence": 1,
-    "bytes": 561,
-    "sha256": "d130258750f3defccfa924995b5fc1dd0e0b6610dc7696505f4cb93bc0f3bb89"
+    "bytes": 560,
+    "sha256": "f570786513e6f949f1e66e1563043480dfa2e424105e39345f79385cccf69051"
   },
   "statistics": {
     "messages": 1,

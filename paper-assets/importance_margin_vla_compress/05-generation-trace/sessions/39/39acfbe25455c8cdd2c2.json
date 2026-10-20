@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check_stale_westd38929_20260526T133722_result.json",
     "occurrence": 1,
-    "bytes": 1437,
-    "sha256": "4a648652c7cb3c00978874ae8ca3e9d9b3bb88d67e4e5dec0ddc8c700ccaf395"
+    "bytes": 1436,
+    "sha256": "0d1e50b0919aec0d52cbca32241bb4de164ad153798ecaef1c22994ea69e5aab"
   },
   "statistics": {
     "messages": 1,

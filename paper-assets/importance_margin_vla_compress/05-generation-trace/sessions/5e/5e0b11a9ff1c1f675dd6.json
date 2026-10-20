@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analyze_eval_mlp_adapter_seed44_20260519T143455_result.json",
     "occurrence": 1,
-    "bytes": 885,
-    "sha256": "5fbc07cdda2cb095a9d40dcbf737ebe2a7e8606507dd41712b8e67b8c9b23a11"
+    "bytes": 884,
+    "sha256": "cef62320306b59ac9d57bc2b1a15b7a9e4dbdd48a5eed63a209ac5d203f5e573"
   },
   "statistics": {
     "messages": 1,

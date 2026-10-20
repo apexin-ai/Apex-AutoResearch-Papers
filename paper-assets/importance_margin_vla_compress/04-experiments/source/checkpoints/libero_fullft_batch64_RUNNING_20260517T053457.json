@@ -1,0 +1,39 @@
+{
+  "exp_id": "libero_fullft_batch64",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T01:29:36.383Z",
+    "updated_at": "2026-05-17T05:34:57.784Z",
+    "hypothesis": "Batch size 4→64 (grad_accum=16) 是 87.3% SR gap 根因 (D055)。使用与 SmolVLA 官方相同 effective batch=64 训练 100K steps，预期 SR 从 49% 提升至接近官方水平 (~80%+)，为 IMM 实验提供强 baseline。",
+    "parent": "libero_full_ft_baseline",
+    "spec": {
+      "command": "python train.py --config configs/libero_full_ft_batch64.yaml --gpu 0",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "124908",
+      "data_path": "HuggingFaceVLA/libero",
+      "data_count": 273465,
+      "model_name": "smolvla_base_full_ft_batch64",
+      "seed": 42,
+      "log_path": "logs/fullft_batch64.log",
+      "tmux_session": "fullft_batch64",
+      "gradient_accumulation_steps": 16,
+      "effective_batch_size": 64,
+      "total_steps": 100000,
+      "trainable_params": "99.9M (22.2%)",
+      "checkpoint_source": "N/A (training from scratch, same architecture as libero_full_ft_baseline)",
+      "eval_data": "N/A (training experiment, will eval post-training)"
+    },
+    "notes": "2026-05-17 ~12:00 UTC: cqa1-33015 不可达 (Unable to connect to port 33015 on 58.144.141.28)。训练 100K steps 预计 ~3.8 天完成 (May 21)。当前进度未知。实例可能被回收——如数据未持久化，训练可能需要从头重跑。",
+    "failure_reason": "SSH check failed 5x — last error: [Errno None] Unable to connect to port 33015 on 58.144.141.28",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-17T05:34:57.925008+00:00",
+  "trigger": "update_registry"
+}

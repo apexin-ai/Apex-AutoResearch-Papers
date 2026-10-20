@@ -1,0 +1,26 @@
+{
+  "exp_id": "eval_smolvla_official_l2norm_k090_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:43:18.958Z",
+    "updated_at": "2026-05-22T06:35:37.795Z",
+    "hypothesis": "SmolVLA L2-norm k=0.9 on official checkpoint. Expected ~0% SR given cliff at k=0.95.",
+    "conclusion": "killed",
+    "metrics": {
+      "SR": 0,
+      "episodes": 500,
+      "note": "all 10 tasks 0% SR, mean_steps=280 (max)"
+    },
+    "spec": {
+      "checkpoint_path": "N/A",
+      "log_path": "cqa1:/root/autodl-tmp/importance_margin_vla_compress/eval_results/"
+    },
+    "completed_at": "2026-05-21T18:13:38.608Z"
+  },
+  "timestamp": "2026-05-22T06:35:38.432804+00:00",
+  "trigger": "update_registry"
+}

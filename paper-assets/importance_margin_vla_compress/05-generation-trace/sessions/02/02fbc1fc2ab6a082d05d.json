@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_harvest_xvla_l2norm_k07_long_and_redeploy_20260523T075350_result.json",
     "occurrence": 1,
-    "bytes": 1752,
-    "sha256": "3c8cbeee21f977ac2a1ed87d7fc5bb2cc488058236ee9a1beb0cb662df5ad4bf"
+    "bytes": 1751,
+    "sha256": "f5d8a2344a74ded32feabe09d97c6a42d7083cfbb1d97df449e129e37a51555f"
   },
   "statistics": {
     "messages": 1,

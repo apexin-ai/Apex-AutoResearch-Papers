@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_s44_freed_gpus_w38_w41_20260528T004002_result.json",
     "occurrence": 1,
-    "bytes": 733,
-    "sha256": "44c048722351efa9eb40700693b2015cddd5cb39e0d5e1eb3e9beb184c6a9267"
+    "bytes": 732,
+    "sha256": "840fdbe6b9760cbb622a517229490424052365c39d5d12d130e78d67a42eeac5"
   },
   "statistics": {
     "messages": 1,

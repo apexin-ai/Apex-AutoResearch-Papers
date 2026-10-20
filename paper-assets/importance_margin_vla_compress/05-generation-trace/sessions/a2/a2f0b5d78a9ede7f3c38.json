@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_spotcheck_all-servers_20260523T132049_result.json",
     "occurrence": 1,
-    "bytes": 57,
-    "sha256": "c5f1a046ab008c9ae57163841cb4b0c8455bde97f6019bcbafb698ac199224c9"
+    "bytes": 56,
+    "sha256": "9ed4aa98c5cb479cec3462b9214e31453c8c99acc3ab0693403e8b6fcb22be77"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,26 @@
+{
+  "exp_id": "mvp_baseline_v5",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:36:06.963Z",
+    "updated_at": "2026-05-15T17:42:45.434Z",
+    "spec": {
+      "server": "westd-27271",
+      "gpu": "cuda:0",
+      "pid": 31871,
+      "command": "CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline python3 train.py --config configs/baseline.yaml",
+      "data_path": "lerobot/aloha_sim_insertion_scripted_image",
+      "data_count": 20000,
+      "model_name": "lerobot/smolvla_base + LoRA r=32",
+      "seed": 42,
+      "log_path": "/tmp/baseline_v5.log"
+    },
+    "hypothesis": "SmolVLA+LoRA baseline on aloha_sim_insertion (baseline_forward fix, v5 clean env)"
+  },
+  "timestamp": "2026-05-15T17:42:45.484261+00:00",
+  "trigger": "update_registry"
+}

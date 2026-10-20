@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_research_lit_vla_efficiency_20260518T015546_result.json",
     "occurrence": 1,
-    "bytes": 556,
-    "sha256": "2d6f36a6d49f3c79d9f03dfe7d53cb5d267a1854586c5ea7e3d1a9726cf2f04c"
+    "bytes": 555,
+    "sha256": "e871af74ace53a14bdfc23410d3be01b58f244d5673c3f81436cb0d61d5b343e"
   },
   "statistics": {
     "messages": 1,

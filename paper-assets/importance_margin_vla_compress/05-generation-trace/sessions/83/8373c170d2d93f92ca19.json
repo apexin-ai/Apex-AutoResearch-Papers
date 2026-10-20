@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_fix-openvla-attention-rotary-v2_20260524T064354_result.json",
     "occurrence": 1,
-    "bytes": 1216,
-    "sha256": "f75428bf620fa82a96a44ce79dc39451f87b8816cb3255b209cb78d2a2a5b234"
+    "bytes": 1215,
+    "sha256": "80cb3865d97f41d54379737f839674d981bd82f790fb77f6711fa518eb8f3245"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_batch_s46_4gpu_20260528T085356_result.json",
     "occurrence": 1,
-    "bytes": 971,
-    "sha256": "0a839d16884e35434876ba29a0896595004cf8c9cc5eadd552f165e049b908df"
+    "bytes": 970,
+    "sha256": "35c175bd707d8b805d6e9bc7adc8280d39147905f5b852fdd58ccea82ad94db9"
   },
   "statistics": {
     "messages": 1,

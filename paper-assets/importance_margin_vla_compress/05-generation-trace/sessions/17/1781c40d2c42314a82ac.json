@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diag_eval_openvla_attn_k085_long_seed42_v3_20260525T133130_result.json",
     "occurrence": 1,
-    "bytes": 1608,
-    "sha256": "34ddd8e0e518caaae288213974abf1b46016fcbb14f2b3291ba049c9fba12e1b"
+    "bytes": 1607,
+    "sha256": "eb770f94eb1f23dbbdec3a5d2a523d89f9b6f8994cb33e8359aa9a99a360b9d6"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_critical-audit-random-k09-cpu-rng_20260524T003259_result.json",
     "occurrence": 1,
-    "bytes": 2497,
-    "sha256": "ce2a84ccb2d18a27f06178faf59d4cc8f97755313d828da7a1b7f7fd4c3eb764"
+    "bytes": 2496,
+    "sha256": "db72dbe0d4983da183566bd13d990de4c2f790f2e5fc0a5299d059fd57989d84"
   },
   "statistics": {
     "messages": 1,

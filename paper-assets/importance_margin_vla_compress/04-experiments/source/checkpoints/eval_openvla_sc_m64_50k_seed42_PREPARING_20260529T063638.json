@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_openvla_sc_m64_50k_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "created_at": "2026-05-21T02:38:11.573Z",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 python eval_openvla_smart_compress.py --n_queries 64 --checkpoint_path checkpoints/openvla_sc_m64_seed42/checkpoint_step50000.pt --model_path /root/autodl-tmp/openvla-libero-object --suite libero_object --num_episodes 50 --seed 42 --gpu 0\"",
+      "gpu": [
+        "cuda:1"
+      ],
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_sc_m64_50k_seed42.log",
+      "pid": "736865",
+      "server": "westd-41074",
+      "submitted_at": "2026-05-21T02:38:11.016Z",
+      "submitted_via": "submit_training_job"
+    },
+    "status": "PREPARING",
+    "updated_at": "2026-05-29T06:36:37.075Z",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-29T06:36:38.743501+00:00",
+  "trigger": "update_registry"
+}

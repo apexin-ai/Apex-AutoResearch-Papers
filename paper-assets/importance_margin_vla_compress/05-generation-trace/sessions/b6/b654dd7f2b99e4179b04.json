@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_provenance_and_notify_0527_20260527T004638_result.json",
     "occurrence": 1,
-    "bytes": 744,
-    "sha256": "208413007ab6f6df8af2bd7bdd94ed550d06cb345dafae808691ea00ec1c0faf"
+    "bytes": 743,
+    "sha256": "52928000a5ce663d1876da4d90ad62f51008ef1e72a6ce4f6c1dc372d8352f3b"
   },
   "statistics": {
     "messages": 1,

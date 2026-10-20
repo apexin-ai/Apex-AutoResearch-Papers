@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_xvla_random_k05_object_seed44",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:59:36.900Z",
+    "updated_at": "2026-05-21T07:59:43.218Z",
+    "hypothesis": "X-VLA random k=0.5 seed44: third seed for D132 verification. seed42=70.6%, seed43=71.0%. If seed44 ≈ 70%, confirms D132 gap (random >> L2norm at k=0.5) is robust across 3 seeds.",
+    "parent": "eval_xvla_random_k05_object_seed42"
+  },
+  "timestamp": "2026-05-21T07:59:43.961724+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,103 @@
+{
+  "exp_id": "eval_xvla_random_k05_goal_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T20:34:47.045Z",
+    "updated_at": "2026-05-23T21:47:55.082Z",
+    "hypothesis": "X-VLA Random k=0.5 Goal seed43。CV 统计补充（R6-C1）——seed42 SR=67.2%，seed43 提供第二个独立 seed。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_goal --keep_ratio 0.5 --mode random --num_episodes 50 --seed 43 --domain_id 3 --gpu 0",
+      "server": "westd-38929",
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "model_name": "X-VLA-Libero",
+      "seed": 43,
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_xvla_random_k05_goal_seed42_v2.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T21:23:02.855Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-23T21:23:05.087Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-23T21:23:20.845962+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_sr": 0.672,
+      "total_successes": 336,
+      "total_episodes": 500,
+      "wilson_ci_95": [
+        0.63,
+        0.712
+      ],
+      "elapsed_min": 58.2,
+      "per_task": {
+        "task_0_open_middle_drawer": {
+          "sr": 0.98,
+          "succ": 49,
+          "total": 50
+        },
+        "task_1_bowl_on_stove": {
+          "sr": 0.98,
+          "succ": 49,
+          "total": 50
+        },
+        "task_2_wine_on_cabinet": {
+          "sr": 0.9,
+          "succ": 45,
+          "total": 50
+        },
+        "task_3_open_drawer_bowl_inside": {
+          "sr": 0.6,
+          "succ": 30,
+          "total": 50
+        },
+        "task_4_bowl_on_cabinet": {
+          "sr": 0.98,
+          "succ": 49,
+          "total": 50
+        },
+        "task_5_push_plate": {
+          "sr": 0,
+          "succ": 0,
+          "total": 50
+        },
+        "task_6_cream_cheese_in_bowl": {
+          "sr": 0.4,
+          "succ": 20,
+          "total": 50
+        },
+        "task_7_turn_on_stove": {
+          "sr": 0.98,
+          "succ": 49,
+          "total": 50
+        },
+        "task_8_bowl_on_plate": {
+          "sr": 0.86,
+          "succ": 43,
+          "total": 50
+        },
+        "task_9_wine_on_rack": {
+          "sr": 0.04,
+          "succ": 2,
+          "total": 50
+        }
+      },
+      "note": "log=eval_xvla_random_k05_goal_seed42_v2.log; JSON overwritten by l2_norm run (known bug)"
+    }
+  },
+  "timestamp": "2026-05-23T21:47:56.108751+00:00",
+  "trigger": "update_registry"
+}

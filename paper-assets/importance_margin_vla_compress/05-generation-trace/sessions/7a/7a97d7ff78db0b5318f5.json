@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1_disk_cleanup_director_20260519T162200_result.json",
     "occurrence": 1,
-    "bytes": 1144,
-    "sha256": "f3a250d404d336b1580c5a512c5349100a63c9d87bc3dd3838f73b0107ca6ebc"
+    "bytes": 1143,
+    "sha256": "85ec94ae394187503003a196a403d4e69a496ce563b9900d73a2a70295c2bbd0"
   },
   "statistics": {
     "messages": 1,

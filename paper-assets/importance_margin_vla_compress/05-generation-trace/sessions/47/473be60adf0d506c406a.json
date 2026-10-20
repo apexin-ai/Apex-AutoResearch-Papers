@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_infra_register-baseline-v4_20260515T152810_result.json",
     "occurrence": 1,
-    "bytes": 941,
-    "sha256": "8e8622c5993f540a6e80c03b7fb74279d18311e2423d8591de88e9cdf1ecfdb2"
+    "bytes": 940,
+    "sha256": "759b1b6d0f186f906d069608e7122a92c0b91dee97c43ae32bd9e8bf4e8bbc7e"
   },
   "statistics": {
     "messages": 1,

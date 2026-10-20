@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_wrapper-rewrite-from-server-source_20260515T123209_result.json",
     "occurrence": 1,
-    "bytes": 3799,
-    "sha256": "e9817abb5fb697b325efc44eeed0feae4772635da55ab7d087327e6feb741dbb"
+    "bytes": 3798,
+    "sha256": "965bab6eab27e0b633508d151708a6bcf3048884e96e06052c6d4326af8dfadc"
   },
   "statistics": {
     "messages": 1,

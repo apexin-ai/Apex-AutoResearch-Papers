@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check-westd38929-l2norm-k09-seed43_20260520T231813_result.json",
     "occurrence": 1,
-    "bytes": 1347,
-    "sha256": "48aacef9140547f2bd15e7cc6d7be029d059816ee0254a72d90ea740f68e737e"
+    "bytes": 1346,
+    "sha256": "eb02e464b6dec28fdffc2670bfc757aca2abb103e7e1d79770548dcff125da6a"
   },
   "statistics": {
     "messages": 1,

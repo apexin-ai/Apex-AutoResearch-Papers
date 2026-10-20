@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_infra_dual-gpu-restart-v5_20260515T153156_result.json",
     "occurrence": 1,
-    "bytes": 561,
-    "sha256": "09ae3f6c8273e69d1a893be949259098e090d0f542e1c5afed010b724666ec59"
+    "bytes": 560,
+    "sha256": "95674acd2ca4e885fae159b932a5506b73bda2ffc2205e0a8c1a31015f72244a"
   },
   "statistics": {
     "messages": 1,

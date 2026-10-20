@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill_westd41074_lora_v2_20260519T184820_result.json",
     "occurrence": 1,
-    "bytes": 724,
-    "sha256": "b7084cba68bf01ff0ba1a3f14edde00ea1a8136c8d73485081a46842d167ec95"
+    "bytes": 723,
+    "sha256": "78cf4c79a1b32d326f7217d8113d8ace6aa413a464088af902254ac68b85c766"
   },
   "statistics": {
     "messages": 1,

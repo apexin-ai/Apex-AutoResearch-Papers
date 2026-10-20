@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_cqa1_gpu_mapping_and_deploy_20260525T101621_result.json",
     "occurrence": 1,
-    "bytes": 460,
-    "sha256": "1b1162b67b2e7b6d09482cde3efda8155513d4840f9b4dee2eed396ed4bef7fe"
+    "bytes": 459,
+    "sha256": "9bc7f88ae5760aea3dcbdc2de13b2b8c65ebc1347823423d107322bf8a5c4902"
   },
   "statistics": {
     "messages": 1,

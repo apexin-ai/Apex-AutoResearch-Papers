@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_long_postfix_failures_20260524T141423_result.json",
     "occurrence": 1,
-    "bytes": 664,
-    "sha256": "7d9c6aae4e67f43971430ebb6b9db7998545d88c72c2eaf3ce2a0a7311d0ca6b"
+    "bytes": 663,
+    "sha256": "d9e8f33ef1accb3d38565ec4a10633141755661e2a95bf6da6755d2498e5ac10"
   },
   "statistics": {
     "messages": 1,

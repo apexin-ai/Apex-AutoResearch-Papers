@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_vtc_m96_eval_prep_20260522T063803_result.json",
     "occurrence": 1,
-    "bytes": 2779,
-    "sha256": "4bee9aaa1a3c402f96a238f2ecfde7755b483111d3bbc26ebd44cd78141e234f"
+    "bytes": 2778,
+    "sha256": "ecb1cc1161251a0b0e462a1ec98ac3a24ef27da2a11bfc27cc2b5721c10fc9a2"
   },
   "statistics": {
     "messages": 1,

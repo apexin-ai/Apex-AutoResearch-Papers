@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_seed47_batch_w27_20260528T222919_result.json",
     "occurrence": 1,
-    "bytes": 268,
-    "sha256": "486850022ecfc412e6556b75566ff02e617e80e5a959b5c420d8420e09f6588e"
+    "bytes": 267,
+    "sha256": "6afd6f80ee0c1d0383a3bcbba7a4e1f68ef231ba4c7083ee209a5028115b71c5"
   },
   "statistics": {
     "messages": 1,

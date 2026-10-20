@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_knowledge_report-update_20260521T161459_result.json",
     "occurrence": 1,
-    "bytes": 599,
-    "sha256": "15a66274b55b0707397de74eb020d9f8905adf5ca78f776497403fa5648e898e"
+    "bytes": 598,
+    "sha256": "a1b588ff7411e21f6adf83707ae59251028c400dcc1c488ba6a1b3bdbdb38e87"
   },
   "statistics": {
     "messages": 1,

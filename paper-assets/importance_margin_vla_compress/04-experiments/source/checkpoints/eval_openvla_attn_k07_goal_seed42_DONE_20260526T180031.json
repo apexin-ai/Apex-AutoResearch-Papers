@@ -1,0 +1,56 @@
+{
+  "exp_id": "eval_openvla_attn_k07_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T13:13:16.749Z",
+    "updated_at": "2026-05-26T18:00:30.735Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 MUJOCO_GL=egl python -u /root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.7 --suite libero_goal --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-goal --unnorm_key libero_goal",
+      "server": "westd-38929",
+      "gpu": "cuda:2",
+      "pid": 601115,
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_attn_k07_goal_seed42.log",
+      "submitted_at": "2026-05-26T13:13:14.851Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_goal",
+      "data_count": 50,
+      "model_name": "openvla-7b-finetuned-libero-goal",
+      "seed": 42,
+      "checkpoint_path": "N/A (eval only)",
+      "checkpoint_source": "/root/autodl-tmp/models/openvla-7b-finetuned-libero-goal",
+      "eval_data": "libero_goal",
+      "wall_clock_seconds": 17235.9,
+      "gpu_hours": 4.79
+    },
+    "hypothesis": "OpenVLA Attn k=0.7 Goal seed42 — Goal Attn cliff curve 进一步压缩。Attn k=0.9=73.2%, k=0.85=74.6%（平稳）。k=0.7 测试 cliff 是否开始下降",
+    "reproduce": {
+      "finished_at": "2026-05-26T17:26:48.643Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-26T17:27:03.707946+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "overall_sr": 0.664,
+      "total_episodes": 500,
+      "total_successes": 332
+    },
+    "checkpoint_path": "N/A (eval only)",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_attn_k07_goal_seed42.log",
+    "completed_at": "2026-05-26T18:00:30.735Z"
+  },
+  "timestamp": "2026-05-26T18:00:31.996093+00:00",
+  "trigger": "update_registry"
+}

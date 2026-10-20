@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_launch-xvla-spatial-pruning-cqa1_20260520T231855_result.json",
     "occurrence": 1,
-    "bytes": 849,
-    "sha256": "92d97ca92686a652e643ac4272789de3f8116ed942ab099a0bdba9cfb08d61be"
+    "bytes": 848,
+    "sha256": "86a41606d0f47490d8759fe428a4e052ab0d90ea0cf9d3078290e1f98f936d3f"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_l2norm-k07-seed43-cqa1-gpu3_20260521T235000_result.json",
     "occurrence": 1,
-    "bytes": 376,
-    "sha256": "74c71e3899ff6a5be969c4b1e25543b4ac75e0006916e6f9dcfb61d97c4f8ab9"
+    "bytes": 375,
+    "sha256": "7d437b24c751006b1ccb5d3037f3d095ead25aded12579d2ddf6b01d0a071568"
   },
   "statistics": {
     "messages": 1,

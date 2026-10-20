@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_launch_attention_and_check_20260517T103253_result.json",
     "occurrence": 1,
-    "bytes": 854,
-    "sha256": "bac235ec463ca41c83e236b847b07dd68489175924ad08f406b35ad675b8d6f7"
+    "bytes": 853,
+    "sha256": "3dea94e8d2f3762b2f347419dee38172e57be56083a2dbddc50616cb30bb5b8e"
   },
   "statistics": {
     "messages": 1,

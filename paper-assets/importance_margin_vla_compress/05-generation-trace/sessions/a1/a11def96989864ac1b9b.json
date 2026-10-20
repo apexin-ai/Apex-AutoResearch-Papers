@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_cqa1-gpu2-check-and-deploy_20260525T215800_result.json",
     "occurrence": 1,
-    "bytes": 749,
-    "sha256": "402ad702ea2f18d4fd822f1e398b27b1056b1d48905cbada2c5af5516c689542"
+    "bytes": 748,
+    "sha256": "d8155b852750f4a7bcc4996dc581b92e7f939272ea9985346364d0d9da8840a5"
   },
   "statistics": {
     "messages": 1,

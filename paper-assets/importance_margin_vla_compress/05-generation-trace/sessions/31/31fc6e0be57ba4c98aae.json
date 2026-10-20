@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_openvla_reencoding_feasibility_20260519T161811_result.json",
     "occurrence": 1,
-    "bytes": 903,
-    "sha256": "69d72cb03ed067f09fc46fa4a5a425a4927a08c9a8dd99a6cf249dd7e11351fb"
+    "bytes": 902,
+    "sha256": "e6a20425ddad8aa85f343ec56d174dc3f27486815a1c1b9c916e50e9385d8754"
   },
   "statistics": {
     "messages": 1,

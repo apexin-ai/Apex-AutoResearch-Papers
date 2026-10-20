@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diag_eval_true_removal_k05_20260517T094307_result.json",
     "occurrence": 1,
-    "bytes": 859,
-    "sha256": "003856d57e83695d02381b2d2b81b41809cba3ae89c06e18e87f971741f547a3"
+    "bytes": 858,
+    "sha256": "59271b8dc7fe28158412ad3f49311b19aa46ad046a9da1787b430a3a0e476b00"
   },
   "statistics": {
     "messages": 1,

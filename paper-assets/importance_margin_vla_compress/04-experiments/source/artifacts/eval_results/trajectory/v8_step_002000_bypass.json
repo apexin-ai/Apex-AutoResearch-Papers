@@ -1,0 +1,14 @@
+{
+  "eps0.0_pruneFalse": {
+    "action_loss": 0.05842325538396835
+  },
+  "eps0.0_pruneTrue": {
+    "action_loss": 0.04250352913048119
+  },
+  "_meta": {
+    "checkpoint": "checkpoints/imm_anchor_v8/step_002000",
+    "bypass_acis": true,
+    "max_batches": 100,
+    "step": "step_002000"
+  }
+}

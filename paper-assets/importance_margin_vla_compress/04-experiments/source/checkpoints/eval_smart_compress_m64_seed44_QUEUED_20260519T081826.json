@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_smart_compress_m64_seed44",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T08:15:56.060Z",
+    "updated_at": "2026-05-19T08:18:26.655Z",
+    "hypothesis": "Third seed (seed=44) eval for Smart Compress M=64. Prior seeds: seed42=61.6%, seed43=60.0%. Expect ~60% SR on libero_object (500 episodes), confirming M=64 performance parity with M=32.",
+    "parent": "train_smart_compress_m64_seed44"
+  },
+  "timestamp": "2026-05-19T08:18:26.873535+00:00",
+  "trigger": "update_registry"
+}

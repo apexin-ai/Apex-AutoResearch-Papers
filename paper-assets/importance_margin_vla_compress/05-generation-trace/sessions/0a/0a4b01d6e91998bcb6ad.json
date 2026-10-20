@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd27271-cuda0-check-and-fill_20260521T025625_result.json",
     "occurrence": 1,
-    "bytes": 3759,
-    "sha256": "31d487b6ac1af70870db8b54fd3dec40b83adc686f0086a4c3c2cd9f4899f6ea"
+    "bytes": 3758,
+    "sha256": "b438cb228aede011b21ecf90459e47d4cb00b8ff3fa877b21e89a9ae1307ce3c"
   },
   "statistics": {
     "messages": 1,

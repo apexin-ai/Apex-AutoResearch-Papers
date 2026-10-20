@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd41074_gpu0_random_goal_s43_20260524T203939_result.json",
     "occurrence": 1,
-    "bytes": 426,
-    "sha256": "32ce59b06888614542c35f6ffcc713c0adca6149a67d845787b03ad3bc8cd052"
+    "bytes": 425,
+    "sha256": "f98a604b3bac8cfebadaca6d0e9cf2c8212fde2e1025b37209b532dcf143e4d4"
   },
   "statistics": {
     "messages": 1,

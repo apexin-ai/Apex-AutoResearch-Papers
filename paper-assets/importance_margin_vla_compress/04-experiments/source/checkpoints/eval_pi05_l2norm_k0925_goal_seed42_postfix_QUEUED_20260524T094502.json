@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k0925_goal_seed42_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:44:45.779Z",
+    "updated_at": "2026-05-24T09:45:01.490Z",
+    "hypothesis": "π0.5 L2norm k=0.925 Goal post-fix — cliff zone L2norm。Random k=0.925 Goal=70.0% (下降了 18pp vs baseline)。L2norm k=0.85 Goal=87.4%。如果 L2norm k=0.925 保持 ~87%+，cliff zone importance margin 进一步确认。"
+  },
+  "timestamp": "2026-05-24T09:45:02.592267+00:00",
+  "trigger": "update_registry"
+}

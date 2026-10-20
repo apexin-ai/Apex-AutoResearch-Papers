@@ -1,0 +1,66 @@
+{
+  "exp_id": "eval_pi05_random_k085_long_seed44_strict_w41",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T20:50:13.969Z",
+    "updated_at": "2026-05-28T06:32:27.700Z",
+    "hypothesis": "π0.5 Random k=0.85 Long strict seed44 — Random U-shape valley 的第三个种子。seed42=44.0%, seed43=47.2%, 当前 error bar ±1.6% 是所有 k 值中最大的。seed44 收窄 valley 误差，加固 U-shape 叙事",
+    "parent": "eval_pi05_random_k085_long_seed43_strict_w27",
+    "server": "westd-41074",
+    "gpu": "cuda:0",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "178679",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k085_long_seed44_strict_w41.log",
+      "submitted_at": "2026-05-27T20:51:16.193Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 34731.3,
+      "gpu_hours": 9.65
+    },
+    "pid": "178679",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k085_long_seed44_strict_w41.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\"",
+      "finished_at": "2026-05-27T23:44:42.597Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T23:44:59.551476+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 44.2,
+      "per_task": {
+        "T0": 34,
+        "T1": 52,
+        "T2": 54,
+        "T3": 72,
+        "T4": 12,
+        "T5": 34,
+        "T6": 50,
+        "T7": 48,
+        "T8": 20,
+        "T9": 66
+      }
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A (eval only)",
+    "completed_at": "2026-05-28T06:30:07.456Z"
+  },
+  "timestamp": "2026-05-28T06:32:31.451165+00:00",
+  "trigger": "update_registry"
+}

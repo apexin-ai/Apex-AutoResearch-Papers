@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analyze_3x_analyzing_s46_20260528T084835_result.json",
     "occurrence": 1,
-    "bytes": 1132,
-    "sha256": "5da1a9b9fea9cbce607966c4374db79b775ecfeec578893b5e6c114f9c7af563"
+    "bytes": 1131,
+    "sha256": "44d4d1db4ce1d1bff675a4ee768c719d8515ae57a58acc6166e4df03146c10ae"
   },
   "statistics": {
     "messages": 1,

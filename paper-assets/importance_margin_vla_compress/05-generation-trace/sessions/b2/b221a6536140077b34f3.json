@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_cqa1_gpu1_imm100k_status_20260517T010718_result.json",
     "occurrence": 1,
-    "bytes": 1666,
-    "sha256": "c0cc032f946b99b79a5103cc5518c5941ed42145f104a523de924eecd22e1ffa"
+    "bytes": 1665,
+    "sha256": "c1365c07cccb7fd2565889be6595b9104cb420aa3f9e2b4368026e280a3627bb"
   },
   "statistics": {
     "messages": 1,

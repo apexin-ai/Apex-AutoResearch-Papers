@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_debug_v7_1-spectral-norm_20260515T191109_result.json",
     "occurrence": 1,
-    "bytes": 3053,
-    "sha256": "a201097a08a291935f7a5728da92123e47504c1b23cc50235cac333549981811"
+    "bytes": 3052,
+    "sha256": "574d47ffcd27a031de1464c0dc817872cd469b8d3def4d25c5dd61c06f7823af"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_cqa1-s44-l2norm095-oom_20260527T224041_result.json",
     "occurrence": 1,
-    "bytes": 816,
-    "sha256": "201b0b111242d6aabfad56c9e2d8b78c0d06b50c3178ec018afae5d028f4aae1"
+    "bytes": 815,
+    "sha256": "676725a49e57a14e54be12b9bd81638df4c2446e38ff461dd0da4c6e04ec0099"
   },
   "statistics": {
     "messages": 1,

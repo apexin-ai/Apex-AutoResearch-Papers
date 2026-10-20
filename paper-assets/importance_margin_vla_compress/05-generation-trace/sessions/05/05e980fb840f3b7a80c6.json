@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_fix-cqa1-env-redeploy-pi05_20260521T231833_result.json",
     "occurrence": 1,
-    "bytes": 984,
-    "sha256": "a47a8e338e981ac37824981e84db67ef028165d00c4db37e87fdd471e6318001"
+    "bytes": 983,
+    "sha256": "aed6cacecec0ca1c088643f8e944990f4b8c2d94e3a3b1ea7ece88a654988bb3"
   },
   "statistics": {
     "messages": 1,

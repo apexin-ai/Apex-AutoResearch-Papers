@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1_pi05_strict_3gpu_20260527T075053_result.json",
     "occurrence": 1,
-    "bytes": 1229,
-    "sha256": "2b2143b0e842c73f91e9e709dc84a2b50db0ba0c3b019635816aaebdd919c14b"
+    "bytes": 1228,
+    "sha256": "213e82be8b918ce2ce74786718a2802953b2475b195b5a9b2f38bc98f9dadab0"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,97 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:background}{{2}{2}{Background and Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Vision-Language-Action Models.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Token Pruning for VLMs/VLAs.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{3}{section.3}\protected@file@percent }
+\newlabel{sec:setup}{{3}{3}{Experimental Setup}{section.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmark.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Pruning Protocol.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Diagnostic Metrics.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{VTR (Vision Token Re-encoding).}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{3}{section.4}\protected@file@percent }
+\newlabel{sec:results}{{4}{3}{Results}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Connector Compressibility Diagnostic Spectrum}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:diagnostic}{{4.1}{3}{Connector Compressibility Diagnostic Spectrum}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Pixel-Shuffle Creates Irreversible Token Entanglement}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:pixelshuffle}{{4.2}{3}{Pixel-Shuffle Creates Irreversible Token Entanglement}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Diagnostic spectrum across 6 VLA models. CV forms a continuous predictor of pruning behavior. Entropy clusters dissimilar models ($\pi $0.5, X-VLA, OpenVLA all $\sim $0.6--0.7) while CV correctly separates them.}}{4}{table.caption.8}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:diagnostic}{{1}{4}{Diagnostic spectrum across 6 VLA models. CV forms a continuous predictor of pruning behavior. Entropy clusters dissimilar models ($\pi $0.5, X-VLA, OpenVLA all $\sim $0.6--0.7) while CV correctly separates them}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces OFT \textit  {vs.}\ OpenVLA pruning comparison (Object suite, L2-norm). Relative SR retention is within 2\,\text  {pp}\ at all $k$ values despite different action heads, confirming connector determines pruning behavior.}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:oft_comparison}{{2}{4}{OFT \vs \ OpenVLA pruning comparison (Object suite, L2-norm). Relative SR retention is within 2\pp \ at all $k$ values despite different action heads, confirming connector determines pruning behavior}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}MLP Projector: Graded Degradation}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:mlp}{{4.3}{4}{MLP Projector: Graded Degradation}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}$\pi $0.5: Uniformly Critical Tokens}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:pi05}{{4.4}{4}{$\pi $0.5: Uniformly Critical Tokens}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces $\pi $0.5 L2-norm pruning across 4 LIBERO suites. A plateau ($k \geq 0.85$) is maintained on all suites, with gradual degradation at aggressive compression.}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:pi05_l2norm}{{3}{5}{$\pi $0.5 L2-norm pruning across 4 LIBERO suites. A plateau ($k \geq 0.85$) is maintained on all suites, with gradual degradation at aggressive compression}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces $\pi $0.5 random pruning across 4 LIBERO suites. A dramatic cliff appears on Object at $k\!=\!0.85$--$0.925$, with non-monotonic recovery at lower $k$.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:pi05_random}{{4}{5}{$\pi $0.5 random pruning across 4 LIBERO suites. A dramatic cliff appears on Object at $k\!=\!0.85$--$0.925$, with non-monotonic recovery at lower $k$}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Task Complexity Amplification}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:task_complexity}{{4.5}{5}{Task Complexity Amplification}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}CV Predicts Optimal Pruning Strategy: Scaling Law}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:scaling_law}{{4.6}{5}{CV Predicts Optimal Pruning Strategy: Scaling Law}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Attention-Based Pruning Rescues Entangling Connectors}{5}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:attention_pruning}{{4.7}{5}{Attention-Based Pruning Rescues Entangling Connectors}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Axis-2 amplification at $k\!=\!0.9$ (L2-norm). Token-entangling connectors (X-VLA, SmolVLA) show large amplification from Object to Goal ($\geq $27\,\text  {pp}), while token-independent connectors ($\pi $0.5) show $\leq $8\,\text  {pp}.}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:crosssuite_amplification}{{5}{6}{Axis-2 amplification at $k\!=\!0.9$ (L2-norm). Token-entangling connectors (X-VLA, SmolVLA) show large amplification from Object to Goal ($\geq $27\pp ), while token-independent connectors ($\pi $0.5) show $\leq $8\pp }{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces X-VLA cliff localization (L2-norm, 3-seed). SD $<$ 1\,\text  {pp}\ confirms deterministic architectural behavior. Non-monotonicity at $k\!=\!0.85$ reflects BART encoder's critical token density.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:xvla_cliff}{{6}{6}{X-VLA cliff localization (L2-norm, 3-seed). SD $<$ 1\pp \ confirms deterministic architectural behavior. Non-monotonicity at $k\!=\!0.85$ reflects BART encoder's critical token density}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}VTR: Near-Lossless Compression via Learned Re-Encoding}{6}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:vtr}{{4.8}{6}{VTR: Near-Lossless Compression via Learned Re-Encoding}{subsection.4.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-suite pruning sensitivity heatmap (SR\% at $k\!=\!0.5$, random pruning). $\dagger $: values from alternate seed or configuration.}}{7}{table.caption.14}\protected@file@percent }
+\newlabel{tab:crosssuite_heatmap}{{7}{7}{Cross-suite pruning sensitivity heatmap (SR\% at $k\!=\!0.5$, random pruning). $\dagger $: values from alternate seed or configuration}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces CV--strategy scaling law validated at two keep ratios. $\Delta (\text  {R}-\text  {L2})$ monotonically decreases with CV. $|\rho |\!=\!1.0$ (Spearman) at both $k$ values; zero exceptions.}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:scaling_law}{{8}{7}{CV--strategy scaling law validated at two keep ratios. $\Delta (\text {R}-\text {L2})$ monotonically decreases with CV. $|\rho |\!=\!1.0$ (Spearman) at both $k$ values; zero exceptions}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Perceiver Resampler: A Fourth Connector Family}{7}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:perceiver}{{4.9}{7}{Perceiver Resampler: A Fourth Connector Family}{subsection.4.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Analysis}{7}{section.5}\protected@file@percent }
+\newlabel{sec:analysis}{{5}{7}{Analysis}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Why Pixel-Shuffle Creates Entanglement}{7}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:why_entanglement}{{5.1}{7}{Why Pixel-Shuffle Creates Entanglement}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Entropy vs.\ CV as Diagnostic}{7}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:entropy_cv}{{5.2}{7}{Entropy vs.\ CV as Diagnostic}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Attention-based pruning \textit  {vs.}\ L2-norm on X-VLA at $k\!=\!0.5$. Attention metrics achieve near-baseline SR across all suites, with advantages of $+$30--57\,\text  {pp}\ over L2-norm.}}{8}{table.caption.16}\protected@file@percent }
+\newlabel{tab:attention_pruning}{{9}{8}{Attention-based pruning \vs \ L2-norm on X-VLA at $k\!=\!0.5$. Attention metrics achieve near-baseline SR across all suites, with advantages of $+$30--57\pp \ over L2-norm}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces SmolVLA VTR M-sweep (3-seed). The M-curve is flat: all $M$ values achieve near-baseline SR (59.2\%), including 87.5\% compression ($M\!=\!16$). Hard pruning at 50\% achieves 0\%.}}{8}{table.caption.17}\protected@file@percent }
+\newlabel{tab:vtr_msweep}{{10}{8}{SmolVLA VTR M-sweep (3-seed). The M-curve is flat: all $M$ values achieve near-baseline SR (59.2\%), including 87.5\% compression ($M\!=\!16$). Hard pruning at 50\% achieves 0\%}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Re-Encoding Mechanism}{8}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:reencoding}{{5.3}{8}{Re-Encoding Mechanism}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{8}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Design implications.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Diagnose-then-Compress framework.}{8}{section*.22}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{openvla2024}{{1}{}{{}}{{}}}
+\bibcite{pi02024}{{2}{}{{}}{{}}}
+\bibcite{pi052025}{{3}{}{{}}{{}}}
+\bibcite{smolvla2025}{{4}{}{{}}{{}}}
+\bibcite{xvla2025}{{5}{}{{}}{{}}}
+\bibcite{libero2023}{{6}{}{{}}{{}}}
+\bibcite{fastv2024}{{7}{}{{}}{{}}}
+\bibcite{vlaiap2024}{{8}{}{{}}{{}}}
+\bibcite{compressorvla2025}{{9}{}{{}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces VTR $M\!=\!32$ cross-suite recovery on SmolVLA. VTR consistently recovers from the 0\% hard-pruning cliff-edge to near-baseline on all suites, with recovery ratios near 1.0.}}{9}{table.caption.18}\protected@file@percent }
+\newlabel{tab:vtr_crosssuite}{{11}{9}{VTR $M\!=\!32$ cross-suite recovery on SmolVLA. VTR consistently recovers from the 0\% hard-pruning cliff-edge to near-baseline on all suites, with recovery ratios near 1.0}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces VTR connector-dependency summary. VTR rescues pixel-shuffle entanglement ($+$60.1\,\text  {pp}) but fails on MLP projectors ($-$37.4\,\text  {pp}\ vs hard pruning). For MLP, simple deletion works; for pixel-shuffle, only re-encoding works.}}{9}{table.caption.19}\protected@file@percent }
+\newlabel{tab:vtr_connector}{{12}{9}{VTR connector-dependency summary. VTR rescues pixel-shuffle entanglement ($+$60.1\pp ) but fails on MLP projectors ($-$37.4\pp \ vs hard pruning). For MLP, simple deletion works; for pixel-shuffle, only re-encoding works}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{9}{Conclusion}{section.7}{}}
+\bibcite{lightvla2025}{{10}{}{{}}{{}}}
+\bibcite{seewhatmatters2025}{{11}{}{{}}{{}}}
+\bibcite{specprunevla2025}{{12}{}{{}}{{}}}
+\bibcite{tome2023}{{13}{}{{}}{{}}}
+\bibcite{sparsevlm2024}{{14}{}{{}}{{}}}
+\bibcite{openvlaoft2024}{{15}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Perceiver Resampler pruning curve. CV$\approx $0.22 and steep graded degradation are consistent with the diagnostic spectrum---cross-attention-based entanglement falls between MLP and pixel-shuffle.}}{10}{table.caption.20}\protected@file@percent }
+\newlabel{tab:perceiver}{{13}{10}{Perceiver Resampler pruning curve. CV$\approx $0.22 and steep graded degradation are consistent with the diagnostic spectrum---cross-attention-based entanglement falls between MLP and pixel-shuffle}{table.caption.20}{}}
+\gdef \@abspage@last{10}

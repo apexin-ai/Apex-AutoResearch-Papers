@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_smolvla_libero_config_20260516T233302_result.json",
     "occurrence": 1,
-    "bytes": 2002,
-    "sha256": "786332225603bf2d7d4b82101215a696da37ff3e334410844f5d695f45a07451"
+    "bytes": 2001,
+    "sha256": "0fb0eae1f4036d9dcef414b8ae45dfe99bc1ab8a90924f45e23563227c373c0a"
   },
   "statistics": {
     "messages": 1,

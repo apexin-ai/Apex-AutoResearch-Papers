@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_submit_westd41074_gpu2_fill_20260525T001207_result.json",
     "occurrence": 1,
-    "bytes": 578,
-    "sha256": "9da7c749bc4858d892bf1b5dfdfa7674b59fa55fbb45f94d1a485592043fdccb"
+    "bytes": 577,
+    "sha256": "401cd978f7961ed030c21b6359dad3cb550bc96c7d0b5c8f248f0b1d3e74586a"
   },
   "statistics": {
     "messages": 1,

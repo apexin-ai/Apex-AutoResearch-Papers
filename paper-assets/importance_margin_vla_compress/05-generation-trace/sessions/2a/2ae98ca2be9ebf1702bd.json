@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_cqa1-gpu012-status_20260525T195118_result.json",
     "occurrence": 1,
-    "bytes": 1129,
-    "sha256": "0499a06cb57f4a2668a6b3082b59cff548f5644c0e49d756ecbf93767dd3fc90"
+    "bytes": 1128,
+    "sha256": "775ceee8fc71d2db01541e5219a5a276edc0d82857dc99c18fa3809bb6697dc6"
   },
   "statistics": {
     "messages": 1,

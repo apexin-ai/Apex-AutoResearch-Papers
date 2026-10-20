@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy-westd27271-gpu0-openvla-l2-goal-v2_20260524T001308_result.json",
     "occurrence": 1,
-    "bytes": 516,
-    "sha256": "28854a802aab5da9de7589704efb741f9367325bd05b4ecad767c6452f0571ed"
+    "bytes": 515,
+    "sha256": "74fb9d787612dae689ec93165c968f412c9526dc515b3d7b261331cc98a80ab4"
   },
   "statistics": {
     "messages": 1,

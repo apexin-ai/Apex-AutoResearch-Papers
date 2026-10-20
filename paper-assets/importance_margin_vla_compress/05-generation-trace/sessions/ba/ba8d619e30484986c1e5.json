@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_fig2_architecture_v4_paperbanana_20260528T163613.log",
     "occurrence": 1,
-    "bytes": 29550,
-    "sha256": "decaf8d62d0cc40d310e42f508f0fd5c67fd9b015e243dcea5fc5fcd413abaa4"
+    "bytes": 29552,
+    "sha256": "f048e6a617970d58fb7ac99073ed0e8403dcafabdf423231dd8e913674eee0d2"
   },
   "statistics": {
     "messages": 33,
@@ -1181,7 +1181,7 @@
               "id": "toolu_018CTfvVHZgQNZNxPMyXYKAF",
               "name": "Bash",
               "input": {
-                "command": "echo \"${GOOGLE_API_KEY:-NOT_SET}\"",
+                "command": "echo \"${GOOGLE_API_KEY:[REDACTED]}\"",
                 "description": "Check if GOOGLE_API_KEY is already set in environment"
               },
               "caller": {

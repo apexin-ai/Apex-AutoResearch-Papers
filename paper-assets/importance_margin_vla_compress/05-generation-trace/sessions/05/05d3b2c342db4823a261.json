@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_xvla-checkpoint-verify_20260520T092657_result.json",
     "occurrence": 1,
-    "bytes": 3681,
-    "sha256": "b16e079ab0481be6dc3f5ad7a4bb10fcac4e2828adab5d086e8f7b5388a656d0"
+    "bytes": 3680,
+    "sha256": "b150e508da989ad6b9f3faca963b32a4ad98b787d40f048a31941139fe1d4936"
   },
   "statistics": {
     "messages": 1,

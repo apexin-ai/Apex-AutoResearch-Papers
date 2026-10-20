@@ -1,0 +1,47 @@
+{
+  "exp_id": "eval_openvla_l2norm_k05_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "conclusion": "success",
+    "created_at": "2026-05-23T18:52:07.402Z",
+    "extra": {
+      "hook_events": [
+        {
+          "action": "agent",
+          "event": "on_failed",
+          "ts": "2026-05-23T18:53:20.667776+00:00"
+        }
+      ]
+    },
+    "failure_reason": null,
+    "hypothesis": "OpenVLA L2norm k=0.5 Goal seed42 — 50% L2norm pruning 在 Goal suite 的退化数据点。Object L2norm k=0.5≈43-45%，Goal baseline=74.8%。填退化曲线中间点。",
+    "metrics": null,
+    "reproduce": {
+      "finished_at": "2026-05-23T18:53:06.141Z"
+    },
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "command": "python -u /root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py --mode l2norm --k_ratio 0.5 --suite libero_goal --model_path /root/autodl-tmp/openvla-7b-finetuned-libero-goal --unnorm_key libero_goal --num_episodes 50 --seed 42",
+      "data_count": 500,
+      "data_path": "libero_goal",
+      "gpu": "cuda:1",
+      "gpu_hours": 22.12,
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_l2norm_k05_goal_seed42.log",
+      "model_name": "openvla-7b-finetuned-libero-goal",
+      "pid": "173920",
+      "seed": 42,
+      "server": "westd-41074",
+      "submitted_at": "2026-05-23T18:52:06.209Z",
+      "submitted_via": "submit_training_job",
+      "wall_clock_seconds": 79643.2
+    },
+    "status": "RUNNING",
+    "updated_at": "2026-05-25T16:55:17.342Z"
+  },
+  "timestamp": "2026-05-25T16:55:18.511765+00:00",
+  "trigger": "update_registry"
+}

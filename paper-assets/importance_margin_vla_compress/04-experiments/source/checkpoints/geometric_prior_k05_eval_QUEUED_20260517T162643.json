@@ -1,0 +1,15 @@
+{
+  "exp_id": "geometric_prior_k05_eval",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T16:26:30.314Z",
+    "updated_at": "2026-05-17T16:26:43.774Z",
+    "hypothesis": "Geometric prior pruning (Sobel edge scoring) at k=0.5 will fail catastrophically on SmolVLA LIBERO-Object, demonstrating that naive heuristic-based token removal causes cliff-edge degradation even though ACIS-based learned pruning maintains performance at the same ratio."
+  },
+  "timestamp": "2026-05-17T16:26:43.904640+00:00",
+  "trigger": "update_registry"
+}

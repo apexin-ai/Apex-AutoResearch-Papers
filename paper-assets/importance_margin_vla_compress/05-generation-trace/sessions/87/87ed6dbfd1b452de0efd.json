@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_openvla_vtc_m96_prep_41074_20260519T213458_result.json",
     "occurrence": 1,
-    "bytes": 2010,
-    "sha256": "0affb58fb9f2c3bfbd82ff76b8a0b0dc083774c5c62393ee51718c5a62d6f2c5"
+    "bytes": 2009,
+    "sha256": "aa97d5e11ad2a942a3c4a3818837bc269ba258ad8866b3e8958c654276287df3"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_figure_fig_architecture_20260519T212606_result.json",
     "occurrence": 1,
-    "bytes": 349,
-    "sha256": "79ccf8893cd351c577742b8edf4b9085cc84aa0b84c387b0a61f3649ac06d1c4"
+    "bytes": 348,
+    "sha256": "4419306ffb92ea9061736c556e24dfd1df763bb56845cd967c59210739229a19"
   },
   "statistics": {
     "messages": 1,

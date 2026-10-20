@@ -1,0 +1,16 @@
+{
+  "exp_id": "train_openvla_sc_m96_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T06:16:25.780Z",
+    "updated_at": "2026-05-20T07:16:14.836Z",
+    "hypothesis": "OpenVLA VTC-only M=96 (256→96 tokens, 62.5% compression). M-sweep data point. Retracked from orphan PID 68539 after config-missing failure. Training from step 0, currently at ~2000+. If M=96 SR falls between M=128 and M=64, confirms graded degradation for MLP-projector VTC re-encoding on OpenVLA.",
+    "parent": "train_openvla_sc_m128_vtconly_seed42"
+  },
+  "timestamp": "2026-05-20T07:16:15.198446+00:00",
+  "trigger": "update_registry"
+}

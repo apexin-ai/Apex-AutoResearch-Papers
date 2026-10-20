@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_sim_success_rate_20260516T072610_result.json",
     "occurrence": 1,
-    "bytes": 1308,
-    "sha256": "f60d1d81e4887e79cbbb8ef246b97881b1beef371e08129c482b2451ce58da5b"
+    "bytes": 1307,
+    "sha256": "73fbce5af5be470527f39f9d756603dca95d065e33ce4107c0b2d7a5f4ea7663"
   },
   "statistics": {
     "messages": 1,

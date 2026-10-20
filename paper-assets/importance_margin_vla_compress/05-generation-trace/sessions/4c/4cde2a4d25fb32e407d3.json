@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_oft-pruning-eval_20260520T111119_result.json",
     "occurrence": 1,
-    "bytes": 2282032,
-    "sha256": "360f6aa3ac816f6f701cf0144330eef9dc66c36e30fe991f7d451b89878fb4ac"
+    "bytes": 2282031,
+    "sha256": "9581635331532c6ccdb3383a75352ae89cd8fbe38b81daa1cdbb406f211dbb3b"
   },
   "statistics": {
     "messages": 1,
@@ -26,13 +26,32 @@
     {
       "number": 0,
       "boundary": "no_preceding_user_message_recorded",
-      "message_count": 1,
-      "chunks": [
+      "messages": [
         {
-          "path": "4cde2a4d25fb32e407d3-part-0001.json",
-          "message_count": 1
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2728269,
+                "serialized_sha256": "9b19b929c40c9f4e57d01697f2fbb18bcd368e683653d9a9e7aa84a18aff302a",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
         }
-      ]
+      ],
+      "message_count": 1
     }
   ],
   "readable_path": "readable/task-results/ops-oft-pruning-eval.md"

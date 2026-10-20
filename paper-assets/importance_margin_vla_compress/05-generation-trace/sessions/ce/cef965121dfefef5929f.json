@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_fix_twostage_s2_freeze_20260516T042059_result.json",
     "occurrence": 1,
-    "bytes": 1640,
-    "sha256": "9fcb408495df387d8b0fc8fa71124dc77ea232c7a520882d89e7cabc774b9718"
+    "bytes": 1639,
+    "sha256": "ddb82a01df030c1b22ffa9d42be1b21d69c4a5b9f09cba60f577b5eb76ab1633"
   },
   "statistics": {
     "messages": 1,

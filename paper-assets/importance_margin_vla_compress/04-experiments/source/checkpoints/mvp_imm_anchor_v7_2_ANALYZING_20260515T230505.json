@@ -1,0 +1,54 @@
+{
+  "exp_id": "mvp_imm_anchor_v7_2",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:18:02.766Z",
+    "updated_at": "2026-05-15T23:05:05.010Z",
+    "hypothesis": "v7.1 重跑 (metrics.py eval mode leak 修复后): lambda_margin=0.2, grad_clip=30.0",
+    "parent": null,
+    "spec": {
+      "checkpoint_path": "checkpoints/imm_anchor_v7_1/step_029999",
+      "log_path": "/tmp/imm_anchor_v7_2.log"
+    },
+    "notes": "v7.2 final eval (fixed soft forward + temperature): G1 PASS 64.25x, G2 PASS +47.46pp, G3 FAIL 3.19x (vs v7's 3.28x — barely better despite lambda 0.5→0.2), G4 PASS 0.323. Bypass-ACIS diagnostic: G3=1.91x >> 1.10 → 权重受损确认，不是 selection mechanism overhead。IMM 梯度回传通过 LoRA 污染了 VLM backbone。附注: pruneTrue 条件下 v7.2 远优于 baseline (0.24x ratio)，说明 IMM 训练确实提升了 token importance 鲁棒性，但代价是 clean performance。",
+    "metrics": {
+      "eval_500batch_soft": {
+        "clean_action_loss": 0.013,
+        "clean_margin_median": 0.6627,
+        "clean_preservation": 1,
+        "eps001_preservation": 0.9253,
+        "eps002_preservation": 0.8482,
+        "eps005_preservation": 0.6597,
+        "eps001_led_median": 0.162,
+        "eps002_led_median": 0.3232,
+        "eps005_led_median": 0.7656,
+        "lipschitz_empirical": 0.3393,
+        "lipschitz_spectral": 1.0672
+      },
+      "bypass_acis": {
+        "clean_action_loss": 0.0078,
+        "g3_ratio": 1.91,
+        "conclusion": "weights_damaged"
+      },
+      "gate_v7_2": {
+        "G1_margin_ratio": 64.25,
+        "G1_pass": true,
+        "G2_preservation_diff_pp": 47.46,
+        "G2_pass": true,
+        "G3_action_loss_ratio": 3.19,
+        "G3_pass": false,
+        "G4_led_median": 0.323,
+        "G4_pass": true,
+        "overall": "FAIL"
+      },
+      "source": "eval_results/eval_imm_v7_2_final.json + eval_results/eval_imm_v7_2_bypass_acis.json"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-15T23:05:05.036822+00:00",
+  "trigger": "update_registry"
+}

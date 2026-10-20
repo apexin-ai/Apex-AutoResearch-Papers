@@ -1,0 +1,9 @@
+Remote path: westd-38929:/root/autodl-tmp/importance_margin_vla_compress/artifacts/figures/fig_importance_histogram.pdf (.png also available)
+Size: PDF 23KB, PNG 82KB (1581x898 RGBA)
+Generated: 2026-05-24 23:36 by visualize_importance.py
+Content: Importance distribution histogram with cliff zone annotation
+  Data: 30 frames x 256 tokens from 10 LIBERO tasks (task indices 20-29)
+  Color coding: Green (kept at k=0.85), Red (cliff zone k=0.85-0.90), Gray (pruned at k=0.90)
+  Threshold lines: k=0.95 (blue dotted), k=0.90 (orange dashed), k=0.85 (red dashed)
+  Cliff Zone bracket annotation between k=0.85 and k=0.90
+Key insight: Sharp cliff in importance distribution between k=0.85-0.90 motivates the importance margin concept

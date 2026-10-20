@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_token-position-visualization_20260521T103129_result.json",
     "occurrence": 1,
-    "bytes": 1510,
-    "sha256": "0f4239ed43cfdf3e1b1bbc5827e82c36882499aa465bb1df0c958502bde31085"
+    "bytes": 1509,
+    "sha256": "6662789957fc83e86fa2f6d0db2736f8187331a07dbed026506f831b9dfc1114"
   },
   "statistics": {
     "messages": 1,

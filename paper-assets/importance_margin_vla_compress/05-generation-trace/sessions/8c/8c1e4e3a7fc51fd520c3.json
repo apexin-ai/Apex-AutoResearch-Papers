@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_s44_w27_l2norm_random_20260528T004236_result.json",
     "occurrence": 1,
-    "bytes": 460,
-    "sha256": "50c2b54ab0cdf6141fb0047e2c1a057115cd90f99b00bdd9845250c04db5fdc4"
+    "bytes": 459,
+    "sha256": "117cbe190487400a18a9bda10605e611af5c721030de60b85c6a43dd38b2e04e"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_d168_cqa1_pi05_goal_long_20260522T141031_result.json",
     "occurrence": 1,
-    "bytes": 1097,
-    "sha256": "ad49fb306392ae793503c3902b7b8faf7bfd9ae0a50b28e36c20a06946299e6a"
+    "bytes": 1096,
+    "sha256": "b54ff546894127836557942974f4fd1f6699f0bd8be33fcdf3480b3a8ff3e411"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_profiling-latency-v2-westd41074_20260525T202942_result.json",
     "occurrence": 1,
-    "bytes": 982,
-    "sha256": "b8b83b4e9a3f1eae9105e7dd2ec42221f8821a96f21b2fd5604bf4b29a4bc19a"
+    "bytes": 981,
+    "sha256": "1b8238cca24f4b4da31a2a171052c123ab73e5afa7a12364b3166abee1571c0a"
   },
   "statistics": {
     "messages": 1,

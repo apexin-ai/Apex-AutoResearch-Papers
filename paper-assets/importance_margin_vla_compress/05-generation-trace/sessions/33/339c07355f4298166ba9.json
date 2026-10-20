@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_urgent_full_scan_7gpu_idle_20260523T000330_result.json",
     "occurrence": 1,
-    "bytes": 2307,
-    "sha256": "de8db36d27058160f3bc8bc6743dd14bf2cc0ef018c1350c3015302af3466e41"
+    "bytes": 2306,
+    "sha256": "147299af57e6884fdbb6b70cf482842e41495eab5ea6a11e3ad96c16ca760d27"
   },
   "statistics": {
     "messages": 1,

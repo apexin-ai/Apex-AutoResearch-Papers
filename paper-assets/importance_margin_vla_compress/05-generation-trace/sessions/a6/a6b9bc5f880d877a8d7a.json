@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_urgent_full_scan_deploy_11gpu_20260523T012919_result.json",
     "occurrence": 1,
-    "bytes": 3193,
-    "sha256": "07b5b191496252b3a608e23cfaeddb2a55beed895c97f166ff8f83e9880415ac"
+    "bytes": 3192,
+    "sha256": "36d5c6c25cf2452ab428f43610e935bbb5129dc474e247ab4fa03510b5e0579f"
   },
   "statistics": {
     "messages": 1,

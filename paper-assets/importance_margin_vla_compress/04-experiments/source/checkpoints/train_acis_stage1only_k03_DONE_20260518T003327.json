@@ -1,0 +1,45 @@
+{
+  "exp_id": "train_acis_stage1only_k03",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-17T07:12:38.108Z",
+    "updated_at": "2026-05-18T00:33:27.605Z",
+    "hypothesis": "Stage1-only ACIS (k=0.3, 保留 30% tokens) 训练。验证激进压缩的性能下界——如果 SR > 20% 则证明 ACIS 即使在 70% pruning 下仍有价值。",
+    "notes": "Cron误报退出。进程实际仍在运行(PID 11343, GPU 3)。当前实例启动于15:16 UTC(可能是重启的)，step 2000/10000, margin_loss~0.18, sps=4.3。预计~15:56 UTC完成。",
+    "reproduce": {
+      "finished_at": "2026-05-17T07:39:58.151Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-17T07:40:00.078Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T07:40:03.011796+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "Cron误报退出。进程实际仍在运行(PID 11343, GPU 3)。当前实例启动于15:16 UTC(可能是重启的)，step 2000/10000, margin_loss~0.18, sps=4.3。预计~15:56 UTC完成。"
+      }
+    },
+    "spec": {
+      "command": "python train_twostage.py --config configs/libero_acis_stage1only_k03.yaml --gpu 0",
+      "server": "cqa1-33015",
+      "data_path": "HuggingFaceVLA/libero",
+      "data_count": "10K steps",
+      "model_name": "SmolVLA ACIS Stage1-only k=0.3",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/checkpoints/libero_acis_stage1only_k03/stage1_done/checkpoint.pt",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260517_151658-eqy9eh8c/"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-18T00:33:27.754824+00:00",
+  "trigger": "update_registry"
+}

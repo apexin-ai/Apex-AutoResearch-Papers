@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_fix-evaluate-d028_20260516T030248_result.json",
     "occurrence": 1,
-    "bytes": 1245,
-    "sha256": "51f007372a9712a87f9f10de0477dc7035d0d92a0582783354f1d1c9a229e1b6"
+    "bytes": 1244,
+    "sha256": "37962fd4d83e1728935d6b9d4aae4a8f06465fba885c255db0434d4ba44414f8"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose-xvla-random-goal-seed43-crash_20260523T222112_result.json",
     "occurrence": 1,
-    "bytes": 866,
-    "sha256": "5603376ee06fb78d07541688f88bd345fb975fb174926738ffc728cd23a2bb31"
+    "bytes": 865,
+    "sha256": "214bd069810a48434d85923939b09e0f305ff41a0f043d12a2e422318e0da9d7"
   },
   "statistics": {
     "messages": 1,

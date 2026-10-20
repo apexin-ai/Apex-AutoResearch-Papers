@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_check_attention_viz_status_20260517T111707_result.json",
     "occurrence": 1,
-    "bytes": 885,
-    "sha256": "b6ca096751a656b01cf77a28a2e86329521798eb1911a6aa4fa82b703ce79cd3"
+    "bytes": 884,
+    "sha256": "0e83fbbf887ea76af0e51f4a65569feabedca1ad5e38a058c883370545491a41"
   },
   "statistics": {
     "messages": 1,

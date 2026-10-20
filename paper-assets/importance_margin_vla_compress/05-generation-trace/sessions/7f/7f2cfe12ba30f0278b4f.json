@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_westd_kill_wrong_evals_start_correct_20260517T010748_result.json",
     "occurrence": 1,
-    "bytes": 909,
-    "sha256": "9cb2332f508c8d04bc8852fb5a34b827d9d2169da2bf188c885eb20840b24dd5"
+    "bytes": 908,
+    "sha256": "89a7aae1cd2c5d8a22f8478cd819c2f782010fadb3d5ccf83ade80d073d2801c"
   },
   "statistics": {
     "messages": 1,

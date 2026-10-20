@@ -1,0 +1,36 @@
+{
+  "exp_id": "eval_pi05_attn_k095_long_seed43_strict_w41",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T14:55:56.031Z",
+    "updated_at": "2026-05-27T14:58:30.304Z",
+    "hypothesis": "π0.5 Attn k=0.95 Long strict seed43 — seed42=78.4% 的 seed 复制，验证 k=0.95 三方法排序(L2norm 86.2% > Attn 78.4% > Random 60.6%)的 Attn 端 error bar（D268 claim 验证）",
+    "parent": "eval_pi05_attn_k095_long_seed42_strict_w41_v2",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "756250",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k095_long_seed43_strict_w41.log",
+      "submitted_at": "2026-05-27T14:58:18.168Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-41074",
+    "gpu": "cuda:1",
+    "pid": "756250",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k095_long_seed43_strict_w41.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\""
+    }
+  },
+  "timestamp": "2026-05-27T14:58:32.444884+00:00",
+  "trigger": "update_registry"
+}

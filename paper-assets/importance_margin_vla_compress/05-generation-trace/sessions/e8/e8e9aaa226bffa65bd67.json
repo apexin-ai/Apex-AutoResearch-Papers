@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_train_fullft_seed1_cqa1_20260516T213227_result.json",
     "occurrence": 1,
-    "bytes": 798,
-    "sha256": "c2c4938455aaa11b63ba68224040bef7c6274e9429902bafa3e8950623b60045"
+    "bytes": 797,
+    "sha256": "3a4ac87911d36339addbafca81b4e734bf08ef9339147d637f18defb3b167d32"
   },
   "statistics": {
     "messages": 1,

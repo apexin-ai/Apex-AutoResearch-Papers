@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_harvest_attn_k07_l2norm_k05_s47_20260529T024940_result.json",
     "occurrence": 1,
-    "bytes": 371,
-    "sha256": "277c7e2f07f8d3f952647f58304a9cb87ab8917b2118f8594bf2d3fa7bf49ede"
+    "bytes": 370,
+    "sha256": "f625d988f74c335b2238228cc2db7ca391ff645685f55e0227443cbbf753bc17"
   },
   "statistics": {
     "messages": 1,

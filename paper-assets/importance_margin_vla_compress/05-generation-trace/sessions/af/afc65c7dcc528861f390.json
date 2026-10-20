@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_train_batch64_restart_20260517T065140_result.json",
     "occurrence": 1,
-    "bytes": 601,
-    "sha256": "c449e18693a43eea2d64933f53f77cfc84ab61ff0fd4918e202169ff35b73f88"
+    "bytes": 600,
+    "sha256": "b7921446b5b188496006d88b5d220f01bee2edf602d2d1caf88e9bfd8d5ffa8e"
   },
   "statistics": {
     "messages": 1,

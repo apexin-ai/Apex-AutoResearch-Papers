@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_stage2_recovery_prep_20260517T094336_result.json",
     "occurrence": 1,
-    "bytes": 2451,
-    "sha256": "b203dd51e289a82e342b2fb9c5aad7c372fefc1d42e3b4fdb9b3e863097df28a"
+    "bytes": 2450,
+    "sha256": "7eaae0829cdc022d0570c03ec974229913e00c8c313dd3cecbeea95f111aa8f6"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,29 @@
+{
+  "exp_id": "mvp_imm_anchor_v6",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:30:47.843Z",
+    "updated_at": "2026-05-15T17:01:38.338Z",
+    "hypothesis": "IMM training (delta=0.3, lambda=0.5) - fixed token_selection squeeze bug",
+    "spec": {
+      "server": "westd-27271",
+      "gpu": "cuda:1",
+      "command": "CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline python3 train.py --config configs/imm_anchor.yaml",
+      "pid": 35412,
+      "data_path": "lerobot/aloha_sim_insertion_scripted_image",
+      "data_count": 20000,
+      "model_name": "lerobot/smolvla_base + LoRA r=32 + IMM(delta=0.3, lambda=0.5)",
+      "seed": 42,
+      "log_path": "/tmp/imm_anchor_v6.log"
+    },
+    "parent": "mvp_imm_anchor_v5",
+    "notes": "v5 crashed at step 2000 during eval due to token_selection.py squeeze bug (threshold_low.squeeze(-1) shape mismatch). v6 = fresh start with squeeze fix. Same config: imm_anchor.yaml (delta=0.3, lambda=0.5, k_ratio=0.5). batch_size=4 + FP32 to match baseline v5 for fair comparison.",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T17:01:38.415385+00:00",
+  "trigger": "update_registry"
+}

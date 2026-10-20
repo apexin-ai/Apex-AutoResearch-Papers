@@ -1,0 +1,54 @@
+{
+  "exp_id": "eval_pi05_random_k03_long_seed43_v4",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "created_at": "2026-05-23T03:50:12.434Z",
+    "hypothesis": "Random pruning at aggressive keep_ratio=0.3 on pi05 will show significant SR degradation on libero_10 since it discards tokens indiscriminately regardless of their information content.",
+    "parent": "eval_pi05_random_k03_long_seed43_v3",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=3 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.3 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\"",
+      "data_count": 500,
+      "data_path": "libero_10",
+      "eval_data": "libero_10 (Long) 10 tasks x 50 episodes",
+      "gpu": "cuda:3",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.30_libero_10_seed43.json",
+      "model_name": "pi0.5",
+      "pid": "313394",
+      "seed": 43,
+      "server": "cqa1-33015",
+      "submitted_at": "2026-05-25T19:05:00Z",
+      "submitted_via": "ssh_execute+tmux",
+      "checkpoint_path": "/root/autodl-tmp/pi05_libero_finetuned"
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-25T16:23:45.251Z",
+    "reproduce": {
+      "finished_at": "2026-05-25T16:03:14.145Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-25T16:03:28.890985+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_sr": 0.272,
+      "total_successes": 136,
+      "total_episodes": 500,
+      "elapsed_min": 284.7
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-25T16:23:45.251Z"
+  },
+  "timestamp": "2026-05-25T16:23:46.353703+00:00",
+  "trigger": "update_registry"
+}

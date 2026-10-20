@@ -1,0 +1,99 @@
+{
+  "exp_id": "eval_smart_compress_m128",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:08:14.626Z",
+    "updated_at": "2026-05-18T11:19:10.638Z",
+    "hypothesis": "Cross-attention pooling with M=128 queries (no compression, passthrough control) on LIBERO-Object. If SR similar to M=32/M=64 (61.6%), improvement comes from cross-attention architecture itself. If lower/equal to baseline (44.8%), compression bottleneck provides the benefit. Critical control experiment for paper framing.",
+    "parent": "train_smart_compress_m128_resume",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 WANDB_MODE=offline python eval_smart_compress_libero.py --checkpoint_path checkpoints/smart_compress_m128/checkpoint.pt --n_queries 128 --num_episodes 50 --suite libero_object --gpu 0\"",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "18074",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_smart_compress_m128.log",
+      "submitted_at": "2026-05-18T10:08:26.674Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 0.598,
+      "overall_sr_pct": "59.8%",
+      "total_episodes": 500,
+      "total_successes": 299,
+      "wilson_ci_95": [
+        0.554,
+        0.64
+      ],
+      "wilson_ci_95_pct": "[55.4%, 64.0%]",
+      "suite": "libero_object",
+      "n_queries": 128,
+      "num_episodes_per_task": 50,
+      "max_steps": 280,
+      "seed": 42,
+      "runtime_minutes": 54.4,
+      "per_task": {
+        "task_0_alphabet_soup": {
+          "sr": 0.62,
+          "successes": 31,
+          "mean_steps": 190.6
+        },
+        "task_1_cream_cheese": {
+          "sr": 0.58,
+          "successes": 29,
+          "mean_steps": 188.9
+        },
+        "task_2_salad_dressing": {
+          "sr": 0.54,
+          "successes": 27,
+          "mean_steps": 194.6
+        },
+        "task_3_bbq_sauce": {
+          "sr": 0.34,
+          "successes": 17,
+          "mean_steps": 228.8
+        },
+        "task_4_ketchup": {
+          "sr": 0.62,
+          "successes": 31,
+          "mean_steps": 193.9
+        },
+        "task_5_tomato_sauce": {
+          "sr": 0.5,
+          "successes": 25,
+          "mean_steps": 199.3
+        },
+        "task_6_butter": {
+          "sr": 0.82,
+          "successes": 41,
+          "mean_steps": 169.1
+        },
+        "task_7_milk": {
+          "sr": 0.56,
+          "successes": 28,
+          "mean_steps": 193.8
+        },
+        "task_8_chocolate_pudding": {
+          "sr": 0.82,
+          "successes": 41,
+          "mean_steps": 166.9
+        },
+        "task_9_orange_juice": {
+          "sr": 0.58,
+          "successes": 29,
+          "mean_steps": 184.4
+        }
+      }
+    }
+  },
+  "timestamp": "2026-05-18T11:19:10.784820+00:00",
+  "trigger": "update_registry"
+}

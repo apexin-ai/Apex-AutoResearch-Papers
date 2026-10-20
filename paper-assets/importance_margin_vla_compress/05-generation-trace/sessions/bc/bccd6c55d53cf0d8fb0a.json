@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_kill_lora_eval_cqa1_20260516T215439_result.json",
     "occurrence": 1,
-    "bytes": 481,
-    "sha256": "2d9e8fb6fbc280c83403f2a2fa0ed34be8bd3e0120db7cb0b7b56b8dcdfb0435"
+    "bytes": 480,
+    "sha256": "48d1dc81181e72e9c8b90787057b4620d7c0db527c8af8f2cf900809bf0b24cb"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,27 @@
+{
+  "exp_id": "eval_pi05_l2norm_k07_long_seed43_strict_w41",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T15:49:19.574Z",
+    "updated_at": "2026-05-27T15:49:59.405Z",
+    "hypothesis": "π0.5 L2norm k=0.7 Long strict seed43 — seed42 仍在跑（cqa1 GPU2），本实验提前部署确保截止前有 seed43 error bar。k=0.7 是 cliff curve 中间关键点",
+    "parent": "eval_pi05_l2norm_k07_long_seed42_strict",
+    "spec": {
+      "server": "westd-41074",
+      "gpu": "cuda:3",
+      "data_path": "/root/autodl-tmp/importance_margin_vla_compress",
+      "data_count": 500,
+      "model_name": "pi0.5",
+      "seed": 43,
+      "checkpoint_source": "pi0.5 pretrained",
+      "eval_data": "libero_10 (Long)",
+      "checkpoint_path": "N/A (eval only)"
+    }
+  },
+  "timestamp": "2026-05-27T15:50:00.755878+00:00",
+  "trigger": "update_registry"
+}

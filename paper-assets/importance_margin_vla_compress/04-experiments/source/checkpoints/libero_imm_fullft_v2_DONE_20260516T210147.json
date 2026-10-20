@@ -1,0 +1,42 @@
+{
+  "exp_id": "libero_imm_fullft_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T20:29:44.685Z",
+    "updated_at": "2026-05-16T21:01:47.531Z",
+    "hypothesis": "IMM two-stage (Full FT-based) on LIBERO: Stage1 训 ACIS selector (freeze expert), Stage2 训 expert (freeze ACIS). Base checkpoint: Full FT 50K (SR=33%). 目标: IMM 训练后 SR ≥ 33% 证明方法有效。Plan B 验证。",
+    "spec": {
+      "command": "python train_twostage.py --config configs/libero_imm_twostage_fullft.yaml --checkpoint checkpoints/libero_full_ft_50k/checkpoint.pt --gpu 0 --wandb_run libero_imm_fullft_v2_50k",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/importance_margin_vla_compress/libero_imm_fullft_v2.log",
+      "submitted_at": "2026-05-16T20:30:00.710Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "HuggingFaceVLA/libero",
+      "data_count": 273465,
+      "model_name": "smolvla_fullft_50k+IMM_twostage",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/libero_full_ft_50k/checkpoint.pt (50K Full FT baseline, SR=33%)",
+      "total_steps": 30000,
+      "stage1_steps": 10000,
+      "stage2_steps": 20000,
+      "wall_clock_seconds": 1906.8,
+      "gpu_hours": 0.53
+    },
+    "notes": "重提交成功 (20:50 UTC)。修复: conda激活+network_turbo+wandb offline。Stage 1 running: step 150/10000, margin_loss=0.2799, sps=5.5。预计完成 ~22:20 UTC (30K steps total)。checkpoint 路径在 config yaml 中配置（twostage.baseline_checkpoint），非命令行参数。",
+    "failure_reason": "EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T21:01:47.531Z"
+  },
+  "timestamp": "2026-05-16T21:01:47.586229+00:00",
+  "trigger": "update_registry"
+}

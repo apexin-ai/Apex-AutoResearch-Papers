@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_offline_singlestep_action_error_20260517T113724_result.json",
     "occurrence": 1,
-    "bytes": 1004,
-    "sha256": "da4611faa43e6cdbdf0a36feac991ebb4138b7ec66baeda720519fa0b15db66a"
+    "bytes": 1003,
+    "sha256": "fd46b9bf0878f245f14ca59a446381bf52121e1830ce616501d4130ccc7d7275"
   },
   "statistics": {
     "messages": 1,

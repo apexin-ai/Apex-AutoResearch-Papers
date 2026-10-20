@@ -1,0 +1,556 @@
+2026-05-17 18:41:36 [INFO] Suite: libero_spatial | Device: cuda:0 | Mode: acis_prune | Pruning: true_removal | Episodes/task: 50 | Max steps: 280
+2026-05-17 18:41:36 [INFO] Loading model from checkpoints/libero_acis_stage1only_k03/stage1_done/checkpoint.pt ...
+2026-05-17 18:41:49 [INFO] Updated state feature shape: (6,) -> (8,)
+2026-05-17 18:41:49 [INFO] Updated action feature shape: (6,) -> (7,)
+2026-05-17 18:41:49 [INFO] Updated cameras: ['observation.images.camera1', 'observation.images.camera2', 'observation.images.camera3'] -> ['observation.images.image', 'observation.images.image2'] (shape=(3, 256, 256))
+2026-05-17 18:41:49 [INFO] Full expert FT: trainable=99880992/450046176 (22.2%)
+2026-05-17 18:41:50 [INFO] Model loaded in 14.0s
+2026-05-17 18:41:50 [INFO] Overriding k_ratio to 0.50
+2026-05-17 18:41:50 [INFO] Connector found for acis_prune
+[robosuite WARNING] No private macro file found! (__init__.py:7)
+2026-05-17 18:41:50 [WARNING] No private macro file found!
+[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)
+2026-05-17 18:41:50 [WARNING] It is recommended to use a private macro file
+[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)
+2026-05-17 18:41:50 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py
+2026-05-17 18:41:50 [INFO] No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'
+2026-05-17 18:41:50 [INFO] Suite 'libero_spatial' has 10 tasks, evaluating 10: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+2026-05-17 18:41:50 [INFO] --- Task 0: pick up the black bowl between the plate and the ramekin and place it on the plate ---
+2026-05-17 18:41:59 [INFO]   Ep 1/50 | FAIL | steps=280
+2026-05-17 18:42:05 [INFO]   Ep 2/50 | FAIL | steps=280
+2026-05-17 18:42:11 [INFO]   Ep 3/50 | FAIL | steps=280
+2026-05-17 18:42:17 [INFO]   Ep 4/50 | FAIL | steps=280
+2026-05-17 18:42:23 [INFO]   Ep 5/50 | FAIL | steps=280
+2026-05-17 18:42:29 [INFO]   Ep 6/50 | FAIL | steps=280
+2026-05-17 18:42:35 [INFO]   Ep 7/50 | FAIL | steps=280
+2026-05-17 18:42:41 [INFO]   Ep 8/50 | FAIL | steps=280
+2026-05-17 18:42:47 [INFO]   Ep 9/50 | FAIL | steps=280
+2026-05-17 18:42:53 [INFO]   Ep 10/50 | FAIL | steps=280
+2026-05-17 18:42:59 [INFO]   Ep 11/50 | FAIL | steps=280
+2026-05-17 18:43:05 [INFO]   Ep 12/50 | FAIL | steps=280
+2026-05-17 18:43:11 [INFO]   Ep 13/50 | FAIL | steps=280
+2026-05-17 18:43:17 [INFO]   Ep 14/50 | FAIL | steps=280
+2026-05-17 18:43:23 [INFO]   Ep 15/50 | FAIL | steps=280
+2026-05-17 18:43:29 [INFO]   Ep 16/50 | FAIL | steps=280
+2026-05-17 18:43:35 [INFO]   Ep 17/50 | FAIL | steps=280
+2026-05-17 18:43:41 [INFO]   Ep 18/50 | FAIL | steps=280
+2026-05-17 18:43:47 [INFO]   Ep 19/50 | FAIL | steps=280
+2026-05-17 18:43:53 [INFO]   Ep 20/50 | FAIL | steps=280
+2026-05-17 18:43:59 [INFO]   Ep 21/50 | FAIL | steps=280
+2026-05-17 18:44:05 [INFO]   Ep 22/50 | FAIL | steps=280
+2026-05-17 18:44:11 [INFO]   Ep 23/50 | FAIL | steps=280
+2026-05-17 18:44:17 [INFO]   Ep 24/50 | FAIL | steps=280
+2026-05-17 18:44:23 [INFO]   Ep 25/50 | FAIL | steps=280
+2026-05-17 18:44:29 [INFO]   Ep 26/50 | FAIL | steps=280
+2026-05-17 18:44:35 [INFO]   Ep 27/50 | FAIL | steps=280
+2026-05-17 18:44:41 [INFO]   Ep 28/50 | FAIL | steps=280
+2026-05-17 18:44:47 [INFO]   Ep 29/50 | FAIL | steps=280
+2026-05-17 18:44:53 [INFO]   Ep 30/50 | FAIL | steps=280
+2026-05-17 18:44:59 [INFO]   Ep 31/50 | FAIL | steps=280
+2026-05-17 18:45:06 [INFO]   Ep 32/50 | FAIL | steps=280
+2026-05-17 18:45:12 [INFO]   Ep 33/50 | FAIL | steps=280
+2026-05-17 18:45:18 [INFO]   Ep 34/50 | FAIL | steps=280
+2026-05-17 18:45:24 [INFO]   Ep 35/50 | FAIL | steps=280
+2026-05-17 18:45:30 [INFO]   Ep 36/50 | FAIL | steps=280
+2026-05-17 18:45:36 [INFO]   Ep 37/50 | FAIL | steps=280
+2026-05-17 18:45:42 [INFO]   Ep 38/50 | FAIL | steps=280
+2026-05-17 18:45:48 [INFO]   Ep 39/50 | FAIL | steps=280
+2026-05-17 18:45:54 [INFO]   Ep 40/50 | FAIL | steps=280
+2026-05-17 18:46:00 [INFO]   Ep 41/50 | FAIL | steps=280
+2026-05-17 18:46:06 [INFO]   Ep 42/50 | FAIL | steps=280
+2026-05-17 18:46:12 [INFO]   Ep 43/50 | FAIL | steps=280
+2026-05-17 18:46:18 [INFO]   Ep 44/50 | FAIL | steps=280
+2026-05-17 18:46:24 [INFO]   Ep 45/50 | FAIL | steps=280
+2026-05-17 18:46:30 [INFO]   Ep 46/50 | FAIL | steps=280
+2026-05-17 18:46:36 [INFO]   Ep 47/50 | FAIL | steps=280
+2026-05-17 18:46:42 [INFO]   Ep 48/50 | FAIL | steps=280
+2026-05-17 18:46:48 [INFO]   Ep 49/50 | FAIL | steps=280
+2026-05-17 18:46:54 [INFO]   Ep 50/50 | FAIL | steps=280
+2026-05-17 18:46:54 [INFO]   Task 0 SR: 0/50 (0.0%)
+2026-05-17 18:46:54 [INFO] --- Task 1: pick up the black bowl next to the ramekin and place it on the plate ---
+2026-05-17 18:47:02 [INFO]   Ep 1/50 | FAIL | steps=280
+2026-05-17 18:47:08 [INFO]   Ep 2/50 | FAIL | steps=280
+2026-05-17 18:47:13 [INFO]   Ep 3/50 | FAIL | steps=280
+2026-05-17 18:47:19 [INFO]   Ep 4/50 | FAIL | steps=280
+2026-05-17 18:47:25 [INFO]   Ep 5/50 | FAIL | steps=280
+2026-05-17 18:47:31 [INFO]   Ep 6/50 | FAIL | steps=280
+2026-05-17 18:47:37 [INFO]   Ep 7/50 | FAIL | steps=280
+2026-05-17 18:47:43 [INFO]   Ep 8/50 | FAIL | steps=280
+2026-05-17 18:47:49 [INFO]   Ep 9/50 | FAIL | steps=280
+2026-05-17 18:47:55 [INFO]   Ep 10/50 | FAIL | steps=280
+2026-05-17 18:48:01 [INFO]   Ep 11/50 | FAIL | steps=280
+2026-05-17 18:48:07 [INFO]   Ep 12/50 | FAIL | steps=280
+2026-05-17 18:48:13 [INFO]   Ep 13/50 | FAIL | steps=280
+2026-05-17 18:48:19 [INFO]   Ep 14/50 | FAIL | steps=280
+2026-05-17 18:48:25 [INFO]   Ep 15/50 | FAIL | steps=280
+2026-05-17 18:48:31 [INFO]   Ep 16/50 | FAIL | steps=280
+2026-05-17 18:48:37 [INFO]   Ep 17/50 | FAIL | steps=280
+2026-05-17 18:48:43 [INFO]   Ep 18/50 | FAIL | steps=280
+2026-05-17 18:48:49 [INFO]   Ep 19/50 | FAIL | steps=280
+2026-05-17 18:48:55 [INFO]   Ep 20/50 | FAIL | steps=280
+2026-05-17 18:49:01 [INFO]   Ep 21/50 | FAIL | steps=280
+2026-05-17 18:49:07 [INFO]   Ep 22/50 | FAIL | steps=280
+2026-05-17 18:49:13 [INFO]   Ep 23/50 | FAIL | steps=280
+2026-05-17 18:49:19 [INFO]   Ep 24/50 | FAIL | steps=280
+2026-05-17 18:49:25 [INFO]   Ep 25/50 | FAIL | steps=280
+2026-05-17 18:49:31 [INFO]   Ep 26/50 | FAIL | steps=280
+2026-05-17 18:49:37 [INFO]   Ep 27/50 | FAIL | steps=280
+2026-05-17 18:49:43 [INFO]   Ep 28/50 | FAIL | steps=280
+2026-05-17 18:49:49 [INFO]   Ep 29/50 | FAIL | steps=280
+2026-05-17 18:49:55 [INFO]   Ep 30/50 | FAIL | steps=280
+2026-05-17 18:50:01 [INFO]   Ep 31/50 | FAIL | steps=280
+2026-05-17 18:50:06 [INFO]   Ep 32/50 | FAIL | steps=280
+2026-05-17 18:50:12 [INFO]   Ep 33/50 | FAIL | steps=280
+2026-05-17 18:50:18 [INFO]   Ep 34/50 | FAIL | steps=280
+2026-05-17 18:50:24 [INFO]   Ep 35/50 | FAIL | steps=280
+2026-05-17 18:50:30 [INFO]   Ep 36/50 | FAIL | steps=280
+2026-05-17 18:50:36 [INFO]   Ep 37/50 | FAIL | steps=280
+2026-05-17 18:50:42 [INFO]   Ep 38/50 | FAIL | steps=280
+2026-05-17 18:50:48 [INFO]   Ep 39/50 | FAIL | steps=280
+2026-05-17 18:50:54 [INFO]   Ep 40/50 | FAIL | steps=280
+2026-05-17 18:51:00 [INFO]   Ep 41/50 | FAIL | steps=280
+2026-05-17 18:51:06 [INFO]   Ep 42/50 | FAIL | steps=280
+2026-05-17 18:51:12 [INFO]   Ep 43/50 | FAIL | steps=280
+2026-05-17 18:51:18 [INFO]   Ep 44/50 | FAIL | steps=280
+2026-05-17 18:51:24 [INFO]   Ep 45/50 | FAIL | steps=280
+2026-05-17 18:51:30 [INFO]   Ep 46/50 | FAIL | steps=280
+2026-05-17 18:51:36 [INFO]   Ep 47/50 | FAIL | steps=280
+2026-05-17 18:51:42 [INFO]   Ep 48/50 | FAIL | steps=280
+2026-05-17 18:51:48 [INFO]   Ep 49/50 | FAIL | steps=280
+2026-05-17 18:51:54 [INFO]   Ep 50/50 | FAIL | steps=280
+2026-05-17 18:51:54 [INFO]   Task 1 SR: 0/50 (0.0%)
+2026-05-17 18:51:54 [INFO] --- Task 2: pick up the black bowl from table center and place it on the plate ---
+2026-05-17 18:52:02 [INFO]   Ep 1/50 | FAIL | steps=280
+2026-05-17 18:52:07 [INFO]   Ep 2/50 | FAIL | steps=280
+2026-05-17 18:52:13 [INFO]   Ep 3/50 | FAIL | steps=280
+2026-05-17 18:52:19 [INFO]   Ep 4/50 | FAIL | steps=280
+2026-05-17 18:52:25 [INFO]   Ep 5/50 | FAIL | steps=280
+2026-05-17 18:52:31 [INFO]   Ep 6/50 | FAIL | steps=280
+2026-05-17 18:52:37 [INFO]   Ep 7/50 | FAIL | steps=280
+2026-05-17 18:52:43 [INFO]   Ep 8/50 | FAIL | steps=280
+2026-05-17 18:52:49 [INFO]   Ep 9/50 | FAIL | steps=280
+2026-05-17 18:52:55 [INFO]   Ep 10/50 | FAIL | steps=280
+2026-05-17 18:53:01 [INFO]   Ep 11/50 | FAIL | steps=280
+2026-05-17 18:53:07 [INFO]   Ep 12/50 | FAIL | steps=280
+2026-05-17 18:53:13 [INFO]   Ep 13/50 | FAIL | steps=280
+2026-05-17 18:53:20 [INFO]   Ep 14/50 | FAIL | steps=280
+2026-05-17 18:53:25 [INFO]   Ep 15/50 | FAIL | steps=280
+2026-05-17 18:53:32 [INFO]   Ep 16/50 | FAIL | steps=280
+2026-05-17 18:53:38 [INFO]   Ep 17/50 | FAIL | steps=280
+2026-05-17 18:53:43 [INFO]   Ep 18/50 | FAIL | steps=280
+2026-05-17 18:53:49 [INFO]   Ep 19/50 | FAIL | steps=280
+2026-05-17 18:53:55 [INFO]   Ep 20/50 | FAIL | steps=280
+2026-05-17 18:54:01 [INFO]   Ep 21/50 | FAIL | steps=280
+2026-05-17 18:54:07 [INFO]   Ep 22/50 | FAIL | steps=280
+2026-05-17 18:54:13 [INFO]   Ep 23/50 | FAIL | steps=280
+2026-05-17 18:54:19 [INFO]   Ep 24/50 | FAIL | steps=280
+2026-05-17 18:54:25 [INFO]   Ep 25/50 | FAIL | steps=280
+2026-05-17 18:54:31 [INFO]   Ep 26/50 | FAIL | steps=280
+2026-05-17 18:54:37 [INFO]   Ep 27/50 | FAIL | steps=280
+2026-05-17 18:54:43 [INFO]   Ep 28/50 | FAIL | steps=280
+2026-05-17 18:54:49 [INFO]   Ep 29/50 | FAIL | steps=280
+2026-05-17 18:54:56 [INFO]   Ep 30/50 | FAIL | steps=280
+2026-05-17 18:55:02 [INFO]   Ep 31/50 | FAIL | steps=280
+2026-05-17 18:55:08 [INFO]   Ep 32/50 | FAIL | steps=280
+2026-05-17 18:55:14 [INFO]   Ep 33/50 | FAIL | steps=280
+2026-05-17 18:55:20 [INFO]   Ep 34/50 | FAIL | steps=280
+2026-05-17 18:55:26 [INFO]   Ep 35/50 | FAIL | steps=280
+2026-05-17 18:55:32 [INFO]   Ep 36/50 | FAIL | steps=280
+2026-05-17 18:55:38 [INFO]   Ep 37/50 | FAIL | steps=280
+2026-05-17 18:55:44 [INFO]   Ep 38/50 | FAIL | steps=280
+2026-05-17 18:55:50 [INFO]   Ep 39/50 | FAIL | steps=280
+2026-05-17 18:55:56 [INFO]   Ep 40/50 | FAIL | steps=280
+2026-05-17 18:56:02 [INFO]   Ep 41/50 | FAIL | steps=280
+2026-05-17 18:56:08 [INFO]   Ep 42/50 | FAIL | steps=280
+2026-05-17 18:56:14 [INFO]   Ep 43/50 | FAIL | steps=280
+2026-05-17 18:56:20 [INFO]   Ep 44/50 | FAIL | steps=280
+2026-05-17 18:56:26 [INFO]   Ep 45/50 | FAIL | steps=280
+2026-05-17 18:56:32 [INFO]   Ep 46/50 | FAIL | steps=280
+2026-05-17 18:56:39 [INFO]   Ep 47/50 | FAIL | steps=280
+2026-05-17 18:56:45 [INFO]   Ep 48/50 | FAIL | steps=280
+2026-05-17 18:56:51 [INFO]   Ep 49/50 | FAIL | steps=280
+2026-05-17 18:56:57 [INFO]   Ep 50/50 | FAIL | steps=280
+2026-05-17 18:56:57 [INFO]   Task 2 SR: 0/50 (0.0%)
+2026-05-17 18:56:57 [INFO] --- Task 3: pick up the black bowl on the cookie box and place it on the plate ---
+2026-05-17 18:57:05 [INFO]   Ep 1/50 | FAIL | steps=280
+2026-05-17 18:57:11 [INFO]   Ep 2/50 | FAIL | steps=280
+2026-05-17 18:57:18 [INFO]   Ep 3/50 | FAIL | steps=280
+2026-05-17 18:57:25 [INFO]   Ep 4/50 | FAIL | steps=280
+2026-05-17 18:57:31 [INFO]   Ep 5/50 | FAIL | steps=280
+2026-05-17 18:57:38 [INFO]   Ep 6/50 | FAIL | steps=280
+2026-05-17 18:57:44 [INFO]   Ep 7/50 | FAIL | steps=280
+2026-05-17 18:57:51 [INFO]   Ep 8/50 | FAIL | steps=280
+2026-05-17 18:57:58 [INFO]   Ep 9/50 | FAIL | steps=280
+2026-05-17 18:58:04 [INFO]   Ep 10/50 | FAIL | steps=280
+2026-05-17 18:58:11 [INFO]   Ep 11/50 | FAIL | steps=280
+2026-05-17 18:58:17 [INFO]   Ep 12/50 | FAIL | steps=280
+2026-05-17 18:58:24 [INFO]   Ep 13/50 | FAIL | steps=280
+2026-05-17 18:58:31 [INFO]   Ep 14/50 | FAIL | steps=280
+2026-05-17 18:58:37 [INFO]   Ep 15/50 | FAIL | steps=280
+2026-05-17 18:58:44 [INFO]   Ep 16/50 | FAIL | steps=280
+2026-05-17 18:58:50 [INFO]   Ep 17/50 | FAIL | steps=280
+2026-05-17 18:58:57 [INFO]   Ep 18/50 | FAIL | steps=280
+2026-05-17 18:59:04 [INFO]   Ep 19/50 | FAIL | steps=280
+2026-05-17 18:59:10 [INFO]   Ep 20/50 | FAIL | steps=280
+2026-05-17 18:59:17 [INFO]   Ep 21/50 | FAIL | steps=280
+2026-05-17 18:59:23 [INFO]   Ep 22/50 | FAIL | steps=280
+2026-05-17 18:59:30 [INFO]   Ep 23/50 | FAIL | steps=280
+2026-05-17 18:59:36 [INFO]   Ep 24/50 | FAIL | steps=280
+2026-05-17 18:59:43 [INFO]   Ep 25/50 | FAIL | steps=280
+2026-05-17 18:59:49 [INFO]   Ep 26/50 | FAIL | steps=280
+2026-05-17 18:59:56 [INFO]   Ep 27/50 | FAIL | steps=280
+2026-05-17 19:00:03 [INFO]   Ep 28/50 | FAIL | steps=280
+2026-05-17 19:00:10 [INFO]   Ep 29/50 | FAIL | steps=280
+2026-05-17 19:00:16 [INFO]   Ep 30/50 | FAIL | steps=280
+2026-05-17 19:00:23 [INFO]   Ep 31/50 | FAIL | steps=280
+2026-05-17 19:00:29 [INFO]   Ep 32/50 | FAIL | steps=280
+2026-05-17 19:00:36 [INFO]   Ep 33/50 | FAIL | steps=280
+2026-05-17 19:00:42 [INFO]   Ep 34/50 | FAIL | steps=280
+2026-05-17 19:00:49 [INFO]   Ep 35/50 | FAIL | steps=280
+2026-05-17 19:00:56 [INFO]   Ep 36/50 | FAIL | steps=280
+2026-05-17 19:01:02 [INFO]   Ep 37/50 | FAIL | steps=280
+2026-05-17 19:01:09 [INFO]   Ep 38/50 | FAIL | steps=280
+2026-05-17 19:01:15 [INFO]   Ep 39/50 | FAIL | steps=280
+2026-05-17 19:01:22 [INFO]   Ep 40/50 | FAIL | steps=280
+2026-05-17 19:01:29 [INFO]   Ep 41/50 | FAIL | steps=280
+2026-05-17 19:01:35 [INFO]   Ep 42/50 | FAIL | steps=280
+2026-05-17 19:01:42 [INFO]   Ep 43/50 | FAIL | steps=280
+2026-05-17 19:01:48 [INFO]   Ep 44/50 | FAIL | steps=280
+2026-05-17 19:01:55 [INFO]   Ep 45/50 | FAIL | steps=280
+2026-05-17 19:02:01 [INFO]   Ep 46/50 | FAIL | steps=280
+2026-05-17 19:02:08 [INFO]   Ep 47/50 | FAIL | steps=280
+2026-05-17 19:02:15 [INFO]   Ep 48/50 | FAIL | steps=280
+2026-05-17 19:02:21 [INFO]   Ep 49/50 | FAIL | steps=280
+2026-05-17 19:02:28 [INFO]   Ep 50/50 | FAIL | steps=280
+2026-05-17 19:02:28 [INFO]   Task 3 SR: 0/50 (0.0%)
+2026-05-17 19:02:28 [INFO] --- Task 4: pick up the black bowl in the top drawer of the wooden cabinet and place it on the plate ---
+2026-05-17 19:02:36 [INFO]   Ep 1/50 | FAIL | steps=280
+2026-05-17 19:02:43 [INFO]   Ep 2/50 | FAIL | steps=280
+2026-05-17 19:02:50 [INFO]   Ep 3/50 | FAIL | steps=280
+2026-05-17 19:02:57 [INFO]   Ep 4/50 | FAIL | steps=280
+2026-05-17 19:03:04 [INFO]   Ep 5/50 | FAIL | steps=280
+2026-05-17 19:03:11 [INFO]   Ep 6/50 | FAIL | steps=280
+2026-05-17 19:03:17 [INFO]   Ep 7/50 | FAIL | steps=280
+2026-05-17 19:03:24 [INFO]   Ep 8/50 | FAIL | steps=280
+2026-05-17 19:03:31 [INFO]   Ep 9/50 | FAIL | steps=280
+2026-05-17 19:03:38 [INFO]   Ep 10/50 | FAIL | steps=280
+2026-05-17 19:03:45 [INFO]   Ep 11/50 | FAIL | steps=280
+2026-05-17 19:03:52 [INFO]   Ep 12/50 | FAIL | steps=280
+2026-05-17 19:03:59 [INFO]   Ep 13/50 | FAIL | steps=280
+2026-05-17 19:04:05 [INFO]   Ep 14/50 | FAIL | steps=280
+2026-05-17 19:04:12 [INFO]   Ep 15/50 | FAIL | steps=280
+2026-05-17 19:04:19 [INFO]   Ep 16/50 | FAIL | steps=280
+2026-05-17 19:04:26 [INFO]   Ep 17/50 | FAIL | steps=280
+2026-05-17 19:04:33 [INFO]   Ep 18/50 | FAIL | steps=280
+2026-05-17 19:04:40 [INFO]   Ep 19/50 | FAIL | steps=280
+2026-05-17 19:04:47 [INFO]   Ep 20/50 | FAIL | steps=280
+2026-05-17 19:04:54 [INFO]   Ep 21/50 | FAIL | steps=280
+2026-05-17 19:05:00 [INFO]   Ep 22/50 | FAIL | steps=280
+2026-05-17 19:05:07 [INFO]   Ep 23/50 | FAIL | steps=280
+2026-05-17 19:05:14 [INFO]   Ep 24/50 | FAIL | steps=280
+2026-05-17 19:05:21 [INFO]   Ep 25/50 | FAIL | steps=280
+2026-05-17 19:05:28 [INFO]   Ep 26/50 | FAIL | steps=280
+2026-05-17 19:05:35 [INFO]   Ep 27/50 | FAIL | steps=280
+2026-05-17 19:05:42 [INFO]   Ep 28/50 | FAIL | steps=280
+2026-05-17 19:05:48 [INFO]   Ep 29/50 | FAIL | steps=280
+2026-05-17 19:05:55 [INFO]   Ep 30/50 | FAIL | steps=280
+2026-05-17 19:06:02 [INFO]   Ep 31/50 | FAIL | steps=280
+2026-05-17 19:06:09 [INFO]   Ep 32/50 | FAIL | steps=280
+2026-05-17 19:06:16 [INFO]   Ep 33/50 | FAIL | steps=280
+2026-05-17 19:06:23 [INFO]   Ep 34/50 | FAIL | steps=280
+2026-05-17 19:06:30 [INFO]   Ep 35/50 | FAIL | steps=280
+2026-05-17 19:06:36 [INFO]   Ep 36/50 | FAIL | steps=280
+2026-05-17 19:06:43 [INFO]   Ep 37/50 | FAIL | steps=280
+2026-05-17 19:06:50 [INFO]   Ep 38/50 | FAIL | steps=280
+2026-05-17 19:06:57 [INFO]   Ep 39/50 | FAIL | steps=280
+2026-05-17 19:07:04 [INFO]   Ep 40/50 | FAIL | steps=280
+2026-05-17 19:07:11 [INFO]   Ep 41/50 | FAIL | steps=280
+2026-05-17 19:07:17 [INFO]   Ep 42/50 | FAIL | steps=280
+2026-05-17 19:07:24 [INFO]   Ep 43/50 | FAIL | steps=280
+2026-05-17 19:07:31 [INFO]   Ep 44/50 | FAIL | steps=280
+2026-05-17 19:07:38 [INFO]   Ep 45/50 | FAIL | steps=280
+2026-05-17 19:07:45 [INFO]   Ep 46/50 | FAIL | steps=280
+2026-05-17 19:07:52 [INFO]   Ep 47/50 | FAIL | steps=280
+2026-05-17 19:07:59 [INFO]   Ep 48/50 | FAIL | steps=280
+2026-05-17 19:08:06 [INFO]   Ep 49/50 | FAIL | steps=280
+2026-05-17 19:08:13 [INFO]   Ep 50/50 | FAIL | steps=280
+2026-05-17 19:08:13 [INFO]   Task 4 SR: 0/50 (0.0%)
+2026-05-17 19:08:13 [INFO] --- Task 5: pick up the black bowl on the ramekin and place it on the plate ---
+2026-05-17 19:08:21 [INFO]   Ep 1/50 | FAIL | steps=280
+2026-05-17 19:08:27 [INFO]   Ep 2/50 | FAIL | steps=280
+2026-05-17 19:08:34 [INFO]   Ep 3/50 | FAIL | steps=280
+2026-05-17 19:08:41 [INFO]   Ep 4/50 | FAIL | steps=280
+2026-05-17 19:08:47 [INFO]   Ep 5/50 | FAIL | steps=280
+2026-05-17 19:08:54 [INFO]   Ep 6/50 | FAIL | steps=280
+2026-05-17 19:09:00 [INFO]   Ep 7/50 | FAIL | steps=280
+2026-05-17 19:09:07 [INFO]   Ep 8/50 | FAIL | steps=280
+2026-05-17 19:09:14 [INFO]   Ep 9/50 | FAIL | steps=280
+2026-05-17 19:09:20 [INFO]   Ep 10/50 | FAIL | steps=280
+2026-05-17 19:09:27 [INFO]   Ep 11/50 | FAIL | steps=280
+2026-05-17 19:09:33 [INFO]   Ep 12/50 | FAIL | steps=280
+2026-05-17 19:09:40 [INFO]   Ep 13/50 | FAIL | steps=280
+2026-05-17 19:09:47 [INFO]   Ep 14/50 | FAIL | steps=280
+2026-05-17 19:09:53 [INFO]   Ep 15/50 | FAIL | steps=280
+2026-05-17 19:10:00 [INFO]   Ep 16/50 | FAIL | steps=280
+2026-05-17 19:10:06 [INFO]   Ep 17/50 | FAIL | steps=280
+2026-05-17 19:10:13 [INFO]   Ep 18/50 | FAIL | steps=280
+2026-05-17 19:10:20 [INFO]   Ep 19/50 | FAIL | steps=280
+2026-05-17 19:10:26 [INFO]   Ep 20/50 | FAIL | steps=280
+2026-05-17 19:10:33 [INFO]   Ep 21/50 | FAIL | steps=280
+2026-05-17 19:10:40 [INFO]   Ep 22/50 | FAIL | steps=280
+2026-05-17 19:10:46 [INFO]   Ep 23/50 | FAIL | steps=280
+2026-05-17 19:10:53 [INFO]   Ep 24/50 | FAIL | steps=280
+2026-05-17 19:10:59 [INFO]   Ep 25/50 | FAIL | steps=280
+2026-05-17 19:11:06 [INFO]   Ep 26/50 | FAIL | steps=280
+2026-05-17 19:11:12 [INFO]   Ep 27/50 | FAIL | steps=280
+2026-05-17 19:11:19 [INFO]   Ep 28/50 | FAIL | steps=280
+2026-05-17 19:11:26 [INFO]   Ep 29/50 | FAIL | steps=280
+2026-05-17 19:11:32 [INFO]   Ep 30/50 | FAIL | steps=280
+2026-05-17 19:11:39 [INFO]   Ep 31/50 | FAIL | steps=280
+2026-05-17 19:11:45 [INFO]   Ep 32/50 | FAIL | steps=280
+2026-05-17 19:11:52 [INFO]   Ep 33/50 | FAIL | steps=280
+2026-05-17 19:11:58 [INFO]   Ep 34/50 | FAIL | steps=280
+2026-05-17 19:12:05 [INFO]   Ep 35/50 | FAIL | steps=280
+2026-05-17 19:12:11 [INFO]   Ep 36/50 | FAIL | steps=280
+2026-05-17 19:12:18 [INFO]   Ep 37/50 | FAIL | steps=280
+2026-05-17 19:12:25 [INFO]   Ep 38/50 | FAIL | steps=280
+2026-05-17 19:12:31 [INFO]   Ep 39/50 | FAIL | steps=280
+2026-05-17 19:12:38 [INFO]   Ep 40/50 | FAIL | steps=280
+2026-05-17 19:12:44 [INFO]   Ep 41/50 | FAIL | steps=280
+2026-05-17 19:12:51 [INFO]   Ep 42/50 | FAIL | steps=280
+2026-05-17 19:12:58 [INFO]   Ep 43/50 | FAIL | steps=280
+2026-05-17 19:13:04 [INFO]   Ep 44/50 | FAIL | steps=280
+2026-05-17 19:13:11 [INFO]   Ep 45/50 | FAIL | steps=280
+2026-05-17 19:13:18 [INFO]   Ep 46/50 | FAIL | steps=280
+2026-05-17 19:13:24 [INFO]   Ep 47/50 | FAIL | steps=280
+2026-05-17 19:13:31 [INFO]   Ep 48/50 | FAIL | steps=280
+2026-05-17 19:13:37 [INFO]   Ep 49/50 | FAIL | steps=280
+2026-05-17 19:13:44 [INFO]   Ep 50/50 | FAIL | steps=280
+2026-05-17 19:13:44 [INFO]   Task 5 SR: 0/50 (0.0%)
+2026-05-17 19:13:44 [INFO] --- Task 6: pick up the black bowl next to the cookie box and place it on the plate ---
+2026-05-17 19:13:52 [INFO]   Ep 1/50 | FAIL | steps=280
+2026-05-17 19:13:58 [INFO]   Ep 2/50 | FAIL | steps=280
+2026-05-17 19:14:04 [INFO]   Ep 3/50 | FAIL | steps=280
+2026-05-17 19:14:10 [INFO]   Ep 4/50 | FAIL | steps=280
+2026-05-17 19:14:16 [INFO]   Ep 5/50 | FAIL | steps=280
+2026-05-17 19:14:22 [INFO]   Ep 6/50 | FAIL | steps=280
+2026-05-17 19:14:28 [INFO]   Ep 7/50 | FAIL | steps=280
+2026-05-17 19:14:34 [INFO]   Ep 8/50 | FAIL | steps=280
+2026-05-17 19:14:40 [INFO]   Ep 9/50 | FAIL | steps=280
+2026-05-17 19:14:46 [INFO]   Ep 10/50 | FAIL | steps=280
+2026-05-17 19:14:52 [INFO]   Ep 11/50 | FAIL | steps=280
+2026-05-17 19:14:58 [INFO]   Ep 12/50 | FAIL | steps=280
+2026-05-17 19:15:04 [INFO]   Ep 13/50 | FAIL | steps=280
+2026-05-17 19:15:10 [INFO]   Ep 14/50 | FAIL | steps=280
+2026-05-17 19:15:16 [INFO]   Ep 15/50 | FAIL | steps=280
+2026-05-17 19:15:22 [INFO]   Ep 16/50 | FAIL | steps=280
+2026-05-17 19:15:28 [INFO]   Ep 17/50 | FAIL | steps=280
+2026-05-17 19:15:34 [INFO]   Ep 18/50 | FAIL | steps=280
+2026-05-17 19:15:40 [INFO]   Ep 19/50 | FAIL | steps=280
+2026-05-17 19:15:46 [INFO]   Ep 20/50 | FAIL | steps=280
+2026-05-17 19:15:52 [INFO]   Ep 21/50 | FAIL | steps=280
+2026-05-17 19:15:58 [INFO]   Ep 22/50 | FAIL | steps=280
+2026-05-17 19:16:04 [INFO]   Ep 23/50 | FAIL | steps=280
+2026-05-17 19:16:10 [INFO]   Ep 24/50 | FAIL | steps=280
+2026-05-17 19:16:16 [INFO]   Ep 25/50 | FAIL | steps=280
+2026-05-17 19:16:22 [INFO]   Ep 26/50 | FAIL | steps=280
+2026-05-17 19:16:28 [INFO]   Ep 27/50 | FAIL | steps=280
+2026-05-17 19:16:34 [INFO]   Ep 28/50 | FAIL | steps=280
+2026-05-17 19:16:40 [INFO]   Ep 29/50 | FAIL | steps=280
+2026-05-17 19:16:46 [INFO]   Ep 30/50 | FAIL | steps=280
+2026-05-17 19:16:52 [INFO]   Ep 31/50 | FAIL | steps=280
+2026-05-17 19:16:58 [INFO]   Ep 32/50 | FAIL | steps=280
+2026-05-17 19:17:04 [INFO]   Ep 33/50 | FAIL | steps=280
+2026-05-17 19:17:10 [INFO]   Ep 34/50 | FAIL | steps=280
+2026-05-17 19:17:16 [INFO]   Ep 35/50 | FAIL | steps=280
+2026-05-17 19:17:22 [INFO]   Ep 36/50 | FAIL | steps=280
+2026-05-17 19:17:28 [INFO]   Ep 37/50 | FAIL | steps=280
+2026-05-17 19:17:34 [INFO]   Ep 38/50 | FAIL | steps=280
+2026-05-17 19:17:40 [INFO]   Ep 39/50 | FAIL | steps=280
+2026-05-17 19:17:46 [INFO]   Ep 40/50 | FAIL | steps=280
+2026-05-17 19:17:52 [INFO]   Ep 41/50 | FAIL | steps=280
+2026-05-17 19:17:58 [INFO]   Ep 42/50 | FAIL | steps=280
+2026-05-17 19:18:04 [INFO]   Ep 43/50 | FAIL | steps=280
+2026-05-17 19:18:10 [INFO]   Ep 44/50 | FAIL | steps=280
+2026-05-17 19:18:16 [INFO]   Ep 45/50 | FAIL | steps=280
+2026-05-17 19:18:22 [INFO]   Ep 46/50 | FAIL | steps=280
+2026-05-17 19:18:29 [INFO]   Ep 47/50 | FAIL | steps=280
+2026-05-17 19:18:35 [INFO]   Ep 48/50 | FAIL | steps=280
+2026-05-17 19:18:41 [INFO]   Ep 49/50 | FAIL | steps=280
+2026-05-17 19:18:47 [INFO]   Ep 50/50 | FAIL | steps=280
+2026-05-17 19:18:47 [INFO]   Task 6 SR: 0/50 (0.0%)
+2026-05-17 19:18:47 [INFO] --- Task 7: pick up the black bowl on the stove and place it on the plate ---
+2026-05-17 19:18:55 [INFO]   Ep 1/50 | FAIL | steps=280
+2026-05-17 19:19:01 [INFO]   Ep 2/50 | FAIL | steps=280
+2026-05-17 19:19:08 [INFO]   Ep 3/50 | FAIL | steps=280
+2026-05-17 19:19:15 [INFO]   Ep 4/50 | FAIL | steps=280
+2026-05-17 19:19:21 [INFO]   Ep 5/50 | FAIL | steps=280
+2026-05-17 19:19:28 [INFO]   Ep 6/50 | FAIL | steps=280
+2026-05-17 19:19:34 [INFO]   Ep 7/50 | FAIL | steps=280
+2026-05-17 19:19:41 [INFO]   Ep 8/50 | FAIL | steps=280
+2026-05-17 19:19:48 [INFO]   Ep 9/50 | FAIL | steps=280
+2026-05-17 19:19:54 [INFO]   Ep 10/50 | FAIL | steps=280
+2026-05-17 19:20:01 [INFO]   Ep 11/50 | FAIL | steps=280
+2026-05-17 19:20:07 [INFO]   Ep 12/50 | FAIL | steps=280
+2026-05-17 19:20:14 [INFO]   Ep 13/50 | FAIL | steps=280
+2026-05-17 19:20:20 [INFO]   Ep 14/50 | FAIL | steps=280
+2026-05-17 19:20:27 [INFO]   Ep 15/50 | FAIL | steps=280
+2026-05-17 19:20:33 [INFO]   Ep 16/50 | FAIL | steps=280
+2026-05-17 19:20:40 [INFO]   Ep 17/50 | FAIL | steps=280
+2026-05-17 19:20:46 [INFO]   Ep 18/50 | FAIL | steps=280
+2026-05-17 19:20:53 [INFO]   Ep 19/50 | FAIL | steps=280
+2026-05-17 19:21:00 [INFO]   Ep 20/50 | FAIL | steps=280
+2026-05-17 19:21:06 [INFO]   Ep 21/50 | FAIL | steps=280
+2026-05-17 19:21:13 [INFO]   Ep 22/50 | FAIL | steps=280
+2026-05-17 19:21:19 [INFO]   Ep 23/50 | FAIL | steps=280
+2026-05-17 19:21:26 [INFO]   Ep 24/50 | FAIL | steps=280
+2026-05-17 19:21:33 [INFO]   Ep 25/50 | FAIL | steps=280
+2026-05-17 19:21:39 [INFO]   Ep 26/50 | FAIL | steps=280
+2026-05-17 19:21:46 [INFO]   Ep 27/50 | FAIL | steps=280
+2026-05-17 19:21:52 [INFO]   Ep 28/50 | FAIL | steps=280
+2026-05-17 19:21:59 [INFO]   Ep 29/50 | FAIL | steps=280
+2026-05-17 19:22:05 [INFO]   Ep 30/50 | FAIL | steps=280
+2026-05-17 19:22:12 [INFO]   Ep 31/50 | FAIL | steps=280
+2026-05-17 19:22:18 [INFO]   Ep 32/50 | FAIL | steps=280
+2026-05-17 19:22:25 [INFO]   Ep 33/50 | FAIL | steps=280
+2026-05-17 19:22:31 [INFO]   Ep 34/50 | FAIL | steps=280
+2026-05-17 19:22:38 [INFO]   Ep 35/50 | FAIL | steps=280
+2026-05-17 19:22:44 [INFO]   Ep 36/50 | FAIL | steps=280
+2026-05-17 19:22:51 [INFO]   Ep 37/50 | FAIL | steps=280
+2026-05-17 19:22:58 [INFO]   Ep 38/50 | FAIL | steps=280
+2026-05-17 19:23:04 [INFO]   Ep 39/50 | FAIL | steps=280
+2026-05-17 19:23:11 [INFO]   Ep 40/50 | FAIL | steps=280
+2026-05-17 19:23:17 [INFO]   Ep 41/50 | FAIL | steps=280
+2026-05-17 19:23:24 [INFO]   Ep 42/50 | FAIL | steps=280
+2026-05-17 19:23:30 [INFO]   Ep 43/50 | FAIL | steps=280
+2026-05-17 19:23:37 [INFO]   Ep 44/50 | FAIL | steps=280
+2026-05-17 19:23:43 [INFO]   Ep 45/50 | FAIL | steps=280
+2026-05-17 19:23:50 [INFO]   Ep 46/50 | FAIL | steps=280
+2026-05-17 19:23:56 [INFO]   Ep 47/50 | FAIL | steps=280
+2026-05-17 19:24:03 [INFO]   Ep 48/50 | FAIL | steps=280
+2026-05-17 19:24:09 [INFO]   Ep 49/50 | FAIL | steps=280
+2026-05-17 19:24:16 [INFO]   Ep 50/50 | FAIL | steps=280
+2026-05-17 19:24:16 [INFO]   Task 7 SR: 0/50 (0.0%)
+2026-05-17 19:24:16 [INFO] --- Task 8: pick up the black bowl next to the plate and place it on the plate ---
+2026-05-17 19:24:24 [INFO]   Ep 1/50 | FAIL | steps=280
+2026-05-17 19:24:30 [INFO]   Ep 2/50 | FAIL | steps=280
+2026-05-17 19:24:36 [INFO]   Ep 3/50 | FAIL | steps=280
+2026-05-17 19:24:42 [INFO]   Ep 4/50 | FAIL | steps=280
+2026-05-17 19:24:48 [INFO]   Ep 5/50 | FAIL | steps=280
+2026-05-17 19:24:54 [INFO]   Ep 6/50 | FAIL | steps=280
+2026-05-17 19:25:00 [INFO]   Ep 7/50 | FAIL | steps=280
+2026-05-17 19:25:06 [INFO]   Ep 8/50 | FAIL | steps=280
+2026-05-17 19:25:12 [INFO]   Ep 9/50 | FAIL | steps=280
+2026-05-17 19:25:18 [INFO]   Ep 10/50 | FAIL | steps=280
+2026-05-17 19:25:24 [INFO]   Ep 11/50 | FAIL | steps=280
+2026-05-17 19:25:30 [INFO]   Ep 12/50 | FAIL | steps=280
+2026-05-17 19:25:36 [INFO]   Ep 13/50 | FAIL | steps=280
+2026-05-17 19:25:43 [INFO]   Ep 14/50 | FAIL | steps=280
+2026-05-17 19:25:49 [INFO]   Ep 15/50 | FAIL | steps=280
+2026-05-17 19:25:55 [INFO]   Ep 16/50 | FAIL | steps=280
+2026-05-17 19:26:01 [INFO]   Ep 17/50 | FAIL | steps=280
+2026-05-17 19:26:07 [INFO]   Ep 18/50 | FAIL | steps=280
+2026-05-17 19:26:13 [INFO]   Ep 19/50 | FAIL | steps=280
+2026-05-17 19:26:19 [INFO]   Ep 20/50 | FAIL | steps=280
+2026-05-17 19:26:25 [INFO]   Ep 21/50 | FAIL | steps=280
+2026-05-17 19:26:32 [INFO]   Ep 22/50 | FAIL | steps=280
+2026-05-17 19:26:38 [INFO]   Ep 23/50 | FAIL | steps=280
+2026-05-17 19:26:44 [INFO]   Ep 24/50 | FAIL | steps=280
+2026-05-17 19:26:50 [INFO]   Ep 25/50 | FAIL | steps=280
+2026-05-17 19:26:56 [INFO]   Ep 26/50 | FAIL | steps=280
+2026-05-17 19:27:02 [INFO]   Ep 27/50 | FAIL | steps=280
+2026-05-17 19:27:08 [INFO]   Ep 28/50 | FAIL | steps=280
+2026-05-17 19:27:14 [INFO]   Ep 29/50 | FAIL | steps=280
+2026-05-17 19:27:20 [INFO]   Ep 30/50 | FAIL | steps=280
+2026-05-17 19:27:26 [INFO]   Ep 31/50 | FAIL | steps=280
+2026-05-17 19:27:32 [INFO]   Ep 32/50 | FAIL | steps=280
+2026-05-17 19:27:38 [INFO]   Ep 33/50 | FAIL | steps=280
+2026-05-17 19:27:44 [INFO]   Ep 34/50 | FAIL | steps=280
+2026-05-17 19:27:51 [INFO]   Ep 35/50 | FAIL | steps=280
+2026-05-17 19:27:57 [INFO]   Ep 36/50 | FAIL | steps=280
+2026-05-17 19:28:03 [INFO]   Ep 37/50 | FAIL | steps=280
+2026-05-17 19:28:10 [INFO]   Ep 38/50 | FAIL | steps=280
+2026-05-17 19:28:16 [INFO]   Ep 39/50 | FAIL | steps=280
+2026-05-17 19:28:22 [INFO]   Ep 40/50 | FAIL | steps=280
+2026-05-17 19:28:29 [INFO]   Ep 41/50 | FAIL | steps=280
+2026-05-17 19:28:35 [INFO]   Ep 42/50 | FAIL | steps=280
+2026-05-17 19:28:41 [INFO]   Ep 43/50 | FAIL | steps=280
+2026-05-17 19:28:47 [INFO]   Ep 44/50 | FAIL | steps=280
+2026-05-17 19:28:53 [INFO]   Ep 45/50 | FAIL | steps=280
+2026-05-17 19:28:59 [INFO]   Ep 46/50 | FAIL | steps=280
+2026-05-17 19:29:06 [INFO]   Ep 47/50 | FAIL | steps=280
+2026-05-17 19:29:12 [INFO]   Ep 48/50 | FAIL | steps=280
+2026-05-17 19:29:18 [INFO]   Ep 49/50 | FAIL | steps=280
+2026-05-17 19:29:24 [INFO]   Ep 50/50 | FAIL | steps=280
+2026-05-17 19:29:24 [INFO]   Task 8 SR: 0/50 (0.0%)
+2026-05-17 19:29:24 [INFO] --- Task 9: pick up the black bowl on the wooden cabinet and place it on the plate ---
+2026-05-17 19:29:32 [INFO]   Ep 1/50 | FAIL | steps=280
+2026-05-17 19:29:39 [INFO]   Ep 2/50 | FAIL | steps=280
+2026-05-17 19:29:46 [INFO]   Ep 3/50 | FAIL | steps=280
+2026-05-17 19:29:52 [INFO]   Ep 4/50 | FAIL | steps=280
+2026-05-17 19:29:59 [INFO]   Ep 5/50 | FAIL | steps=280
+2026-05-17 19:30:05 [INFO]   Ep 6/50 | FAIL | steps=280
+2026-05-17 19:30:12 [INFO]   Ep 7/50 | FAIL | steps=280
+2026-05-17 19:30:19 [INFO]   Ep 8/50 | FAIL | steps=280
+2026-05-17 19:30:25 [INFO]   Ep 9/50 | FAIL | steps=280
+2026-05-17 19:30:32 [INFO]   Ep 10/50 | FAIL | steps=280
+2026-05-17 19:30:38 [INFO]   Ep 11/50 | FAIL | steps=280
+2026-05-17 19:30:45 [INFO]   Ep 12/50 | FAIL | steps=280
+2026-05-17 19:30:52 [INFO]   Ep 13/50 | FAIL | steps=280
+2026-05-17 19:30:58 [INFO]   Ep 14/50 | FAIL | steps=280
+2026-05-17 19:31:05 [INFO]   Ep 15/50 | FAIL | steps=280
+2026-05-17 19:31:11 [INFO]   Ep 16/50 | FAIL | steps=280
+2026-05-17 19:31:18 [INFO]   Ep 17/50 | FAIL | steps=280
+2026-05-17 19:31:25 [INFO]   Ep 18/50 | FAIL | steps=280
+2026-05-17 19:31:31 [INFO]   Ep 19/50 | FAIL | steps=280
+2026-05-17 19:31:38 [INFO]   Ep 20/50 | FAIL | steps=280
+2026-05-17 19:31:44 [INFO]   Ep 21/50 | FAIL | steps=280
+2026-05-17 19:31:51 [INFO]   Ep 22/50 | FAIL | steps=280
+2026-05-17 19:31:57 [INFO]   Ep 23/50 | FAIL | steps=280
+2026-05-17 19:32:04 [INFO]   Ep 24/50 | FAIL | steps=280
+2026-05-17 19:32:11 [INFO]   Ep 25/50 | FAIL | steps=280
+2026-05-17 19:32:17 [INFO]   Ep 26/50 | FAIL | steps=280
+2026-05-17 19:32:24 [INFO]   Ep 27/50 | FAIL | steps=280
+2026-05-17 19:32:30 [INFO]   Ep 28/50 | FAIL | steps=280
+2026-05-17 19:32:37 [INFO]   Ep 29/50 | FAIL | steps=280
+2026-05-17 19:32:44 [INFO]   Ep 30/50 | FAIL | steps=280
+2026-05-17 19:32:50 [INFO]   Ep 31/50 | FAIL | steps=280
+2026-05-17 19:32:57 [INFO]   Ep 32/50 | FAIL | steps=280
+2026-05-17 19:33:03 [INFO]   Ep 33/50 | FAIL | steps=280
+2026-05-17 19:33:10 [INFO]   Ep 34/50 | FAIL | steps=280
+2026-05-17 19:33:16 [INFO]   Ep 35/50 | FAIL | steps=280
+2026-05-17 19:33:23 [INFO]   Ep 36/50 | FAIL | steps=280
+2026-05-17 19:33:30 [INFO]   Ep 37/50 | FAIL | steps=280
+2026-05-17 19:33:36 [INFO]   Ep 38/50 | FAIL | steps=280
+2026-05-17 19:33:43 [INFO]   Ep 39/50 | FAIL | steps=280
+2026-05-17 19:33:49 [INFO]   Ep 40/50 | FAIL | steps=280
+2026-05-17 19:33:56 [INFO]   Ep 41/50 | FAIL | steps=280
+2026-05-17 19:34:03 [INFO]   Ep 42/50 | FAIL | steps=280
+2026-05-17 19:34:10 [INFO]   Ep 43/50 | FAIL | steps=280
+2026-05-17 19:34:17 [INFO]   Ep 44/50 | FAIL | steps=280
+2026-05-17 19:34:24 [INFO]   Ep 45/50 | FAIL | steps=280
+2026-05-17 19:34:31 [INFO]   Ep 46/50 | FAIL | steps=280
+2026-05-17 19:34:38 [INFO]   Ep 47/50 | FAIL | steps=280
+2026-05-17 19:34:45 [INFO]   Ep 48/50 | FAIL | steps=280
+2026-05-17 19:34:52 [INFO]   Ep 49/50 | FAIL | steps=280
+2026-05-17 19:34:59 [INFO]   Ep 50/50 | FAIL | steps=280
+2026-05-17 19:35:00 [INFO]   Task 9 SR: 0/50 (0.0%)
+2026-05-17 19:35:00 [INFO] ============================================================
+2026-05-17 19:35:00 [INFO] SUITE: libero_spatial | MODE: acis_prune | PRUNING: true_removal
+2026-05-17 19:35:00 [INFO] Overall SR: 0/500 (0.0%)
+2026-05-17 19:35:00 [INFO] 95% Wilson CI: [0.0%, 0.8%]
+2026-05-17 19:35:00 [INFO]   Task 0: 0% (0/50) -- pick up the black bowl between the plate and the ramekin and place it on the plate
+2026-05-17 19:35:00 [INFO]   Task 1: 0% (0/50) -- pick up the black bowl next to the ramekin and place it on the plate
+2026-05-17 19:35:00 [INFO]   Task 2: 0% (0/50) -- pick up the black bowl from table center and place it on the plate
+2026-05-17 19:35:00 [INFO]   Task 3: 0% (0/50) -- pick up the black bowl on the cookie box and place it on the plate
+2026-05-17 19:35:00 [INFO]   Task 4: 0% (0/50) -- pick up the black bowl in the top drawer of the wooden cabinet and place it on the plate
+2026-05-17 19:35:00 [INFO]   Task 5: 0% (0/50) -- pick up the black bowl on the ramekin and place it on the plate
+2026-05-17 19:35:00 [INFO]   Task 6: 0% (0/50) -- pick up the black bowl next to the cookie box and place it on the plate
+2026-05-17 19:35:00 [INFO]   Task 7: 0% (0/50) -- pick up the black bowl on the stove and place it on the plate
+2026-05-17 19:35:00 [INFO]   Task 8: 0% (0/50) -- pick up the black bowl next to the plate and place it on the plate
+2026-05-17 19:35:00 [INFO]   Task 9: 0% (0/50) -- pick up the black bowl on the wooden cabinet and place it on the plate
+2026-05-17 19:35:00 [INFO] ============================================================
+2026-05-17 19:35:00 [INFO] Results saved to eval_results/eval_spatial_prune_k05.json
+Reducing the number of VLM layers to 16 ...
+Loading weights from local directory
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]

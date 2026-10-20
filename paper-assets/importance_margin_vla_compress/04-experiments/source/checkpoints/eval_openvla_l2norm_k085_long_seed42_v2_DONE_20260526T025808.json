@@ -1,0 +1,74 @@
+{
+  "exp_id": "eval_openvla_l2norm_k085_long_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T18:11:21.208Z",
+    "updated_at": "2026-05-26T02:58:06.146Z",
+    "hypothesis": "L2norm pruning at k=0.85 on Long suite — cliff zone 中间点。k=0.9=43.6%, k=0.7=?。k=0.85 填补中间数据点",
+    "parent": "eval_openvla_l2norm_k09_long_seed42_v3",
+    "spec": {
+      "command": "python3 eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.85 --suite libero_10 --num_episodes 50 --seed 42",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "8060",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_l2norm_k085_long_seed42_v2.log",
+      "submitted_at": "2026-05-25T18:12:31.455Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "openvla-7b-finetuned-libero-10",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/models/openvla-7b-finetuned-libero-10",
+      "eval_data": "libero_10",
+      "wall_clock_seconds": 31534.7,
+      "gpu_hours": 8.76
+    },
+    "reproduce": {
+      "finished_at": "2026-05-26T02:55:04.066Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-26T02:55:23.577970+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_sr": 0.388,
+      "total_episodes": 500,
+      "total_successes": 194,
+      "elapsed_minutes": 521.4,
+      "seed": 42,
+      "k_ratio": 0.85,
+      "suite": "libero_10_long",
+      "per_task_sr": {
+        "task1_alphabet_soup_tomato_sauce_basket": 0.62,
+        "task2_cream_cheese_butter_basket": 0.48,
+        "task3_stove_moka_pot": 0.44,
+        "task4_black_bowl_drawer_close": 0.28,
+        "task5_white_mug_left_yellow_mug_right": 0.18,
+        "task6_book_caddy": 0.84,
+        "task7_white_mug_plate_chocolate_pudding": 0.3,
+        "task8_alphabet_soup_cream_cheese_basket": 0.38,
+        "task9_both_moka_pots_stove": 0.2,
+        "task10_yellow_mug_microwave_close": 0.16
+      }
+    },
+    "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_l2norm_k085_long_seed42_v2.log",
+    "checkpoint_path": "N/A (eval only)",
+    "conclusion": "success",
+    "completed_at": "2026-05-26T02:58:06.146Z"
+  },
+  "timestamp": "2026-05-26T02:58:08.237441+00:00",
+  "trigger": "update_registry"
+}

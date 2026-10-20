@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_harvest_stale-running-cleanup_20260527T233143_result.json",
     "occurrence": 1,
-    "bytes": 1375,
-    "sha256": "c33c6866e5aadcab9626603d0ac6f9048af9c69d861c93b18db7fe35d8348e82"
+    "bytes": 1374,
+    "sha256": "ede0a64d43f7d33411caacf30a7f386379ee5709981a5e22bd9280451a86f175"
   },
   "statistics": {
     "messages": 1,

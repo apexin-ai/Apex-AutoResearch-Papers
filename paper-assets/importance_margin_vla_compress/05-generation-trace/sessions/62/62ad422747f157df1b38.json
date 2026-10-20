@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1-cliff-localization-full-status_20260520T213648_result.json",
     "occurrence": 1,
-    "bytes": 1313,
-    "sha256": "c1f5ac077736f4f9612c2404fcc6fdc978f9d0e988c1f3b4d97b8bff81a77a89"
+    "bytes": 1312,
+    "sha256": "9d55c7f454e2bf01319c20322786b7557d4dba589db2a87d73f99c4d7f7f801f"
   },
   "statistics": {
     "messages": 1,

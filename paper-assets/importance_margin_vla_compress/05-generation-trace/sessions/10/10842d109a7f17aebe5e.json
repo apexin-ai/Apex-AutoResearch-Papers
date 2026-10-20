@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_urgent_westd-27271-registry-update_20260525T224051_result.json",
     "occurrence": 1,
-    "bytes": 948,
-    "sha256": "2374cffde61d2a1f45e111b206b6be7bdbf62f010f1ad16aac23f5fd78d598a4"
+    "bytes": 947,
+    "sha256": "c89916d9a190bc48be5bc1284aab95be987fbacb66900a6d14479ad3c2dd5b4c"
   },
   "statistics": {
     "messages": 1,

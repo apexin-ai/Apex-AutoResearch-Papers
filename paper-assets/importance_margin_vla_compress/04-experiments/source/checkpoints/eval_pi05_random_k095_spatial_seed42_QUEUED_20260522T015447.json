@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_random_k095_spatial_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:54:42.181Z",
+    "updated_at": "2026-05-22T01:54:46.582Z",
+    "hypothesis": "Random pruning at k=0.95 on Spatial suite will underperform L2norm pruning, demonstrating that importance-based selection outperforms random baseline even at high keep ratios on spatial reasoning tasks."
+  },
+  "timestamp": "2026-05-22T01:54:47.170825+00:00",
+  "trigger": "update_registry"
+}

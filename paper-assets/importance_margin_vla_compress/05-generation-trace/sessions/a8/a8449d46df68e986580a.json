@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_v8-gradient-isolation_20260515T230802_result.json",
     "occurrence": 1,
-    "bytes": 2002,
-    "sha256": "4cf893191f63d31d8a1fbf31d8db565dacf3dbd88bc91d56c39cbe2a89e7368f"
+    "bytes": 2001,
+    "sha256": "03267864bb1a0a29717d3212bbc3b8caa380cd4ce1fda79340ffee0275f5bab4"
   },
   "statistics": {
     "messages": 1,

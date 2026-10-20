@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_w38_w41_cuda_visible_devices_20260528T003337_result.json",
     "occurrence": 1,
-    "bytes": 2323,
-    "sha256": "1648d856e81640b972a060164c33d55bf9bf8ab4150d59c066460d44e2342a7b"
+    "bytes": 2322,
+    "sha256": "09ca16fe27accb30a2ce7b3b5c1710ee945fba247c7a8cccf9312a52d9d48c71"
   },
   "statistics": {
     "messages": 1,

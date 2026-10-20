@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_xvla_l2norm_k05_long_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "conclusion": "killed",
+    "created_at": "2026-05-23T18:11:29.275Z",
+    "hypothesis": "X-VLA L2norm k=0.5 Long (libero_10)。填充论文表格 Long 列 L2norm 数据。Object 上 L2norm k=0.5=43.7% 远差于 random，验证 Long 是否同样反常。与 attention Long 数据对比评估三种方法在复杂任务上的差异。",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.5 --mode l2norm --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\"",
+      "gpu": [
+        "cuda:2"
+      ],
+      "log_path": "~/runs/importance_margin_vla_compress/eval_xvla_l2norm_k05_long_seed42_v2.log",
+      "pid": "152986",
+      "server": "westd-38929",
+      "submitted_at": "2026-05-23T18:11:28.098Z",
+      "submitted_via": "submit_training_job",
+      "wall_clock_seconds": 478344.9,
+      "gpu_hours": 132.87
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-29T07:03:53.003Z",
+    "completed_at": "2026-05-29T07:03:53.003Z"
+  },
+  "timestamp": "2026-05-29T07:03:55.890288+00:00",
+  "trigger": "update_registry"
+}

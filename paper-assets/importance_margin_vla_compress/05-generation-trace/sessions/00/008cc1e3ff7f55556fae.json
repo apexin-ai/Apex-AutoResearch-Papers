@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_vtc_training_progress_20260521T205736_result.json",
     "occurrence": 1,
-    "bytes": 1854,
-    "sha256": "fb160c99fcc1a81860eefeb75d50d2409087eb73527170dee6b4cae233790286"
+    "bytes": 1853,
+    "sha256": "264c2ced09f2ae115196360149dc0d329632e08d29a83156d353b59e037b600d"
   },
   "statistics": {
     "messages": 1,

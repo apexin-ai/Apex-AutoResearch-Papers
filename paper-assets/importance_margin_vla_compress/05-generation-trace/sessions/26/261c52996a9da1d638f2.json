@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_c4ext-eval-cqa1-retry_20260520T102758_result.json",
     "occurrence": 1,
-    "bytes": 1310,
-    "sha256": "a28007c25df6da2630c09fd64792317c4e61c5d50b71c5f4e684612dacab7741"
+    "bytes": 1309,
+    "sha256": "171573b54465219d69ed2981ab3b028789d47b5f5f71b2b45d3cb862bdddb389"
   },
   "statistics": {
     "messages": 1,

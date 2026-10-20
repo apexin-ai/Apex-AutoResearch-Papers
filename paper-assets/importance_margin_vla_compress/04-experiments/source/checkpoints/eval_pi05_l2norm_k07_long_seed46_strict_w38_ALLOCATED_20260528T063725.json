@@ -1,0 +1,27 @@
+{
+  "exp_id": "eval_pi05_l2norm_k07_long_seed46_strict_w38",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-28T06:33:02.780Z",
+    "updated_at": "2026-05-28T06:37:23.932Z",
+    "hypothesis": "5th seed for L2norm k=0.7 crossover point — 4-seed mean=63.5%±1.57pp, adding s46 for 5-seed error bar at the crossover where L2norm ≈ Random",
+    "server": "westd-38929",
+    "gpu": "cuda:1",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 46 --gpu 0\"",
+      "server": "westd-38929",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "pi05",
+      "seed": 46,
+      "checkpoint_source": "pi05_libero_finetuned",
+      "eval_data": "libero_10"
+    }
+  },
+  "timestamp": "2026-05-28T06:37:25.454601+00:00",
+  "trigger": "update_registry"
+}

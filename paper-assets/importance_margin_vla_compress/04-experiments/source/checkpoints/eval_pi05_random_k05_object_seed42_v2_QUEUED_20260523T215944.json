@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_random_k05_object_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T21:59:28.637Z",
+    "updated_at": "2026-05-23T21:59:43.589Z",
+    "hypothesis": "π0.5 Object Random k=0.5 post-fix 结果可能与 pre-fix (69.4%) 有显著差异，类似 Goal 的 26pp 偏移",
+    "parent": "eval_pi05_random_k05_object_seed42"
+  },
+  "timestamp": "2026-05-23T21:59:44.517298+00:00",
+  "trigger": "update_registry"
+}

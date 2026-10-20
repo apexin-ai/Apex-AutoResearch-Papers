@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd38929_refill_gpu013_20260526T054445_result.json",
     "occurrence": 1,
-    "bytes": 669,
-    "sha256": "78d7095e017a0d02b3a2f6e567e20c089571db1bd280a5fadff707109b53024c"
+    "bytes": 668,
+    "sha256": "415ea8e330d8f6dff190c50386b26ddaa2a4569fdd76fd8f9fc1e3e5c1560ea6"
   },
   "statistics": {
     "messages": 1,

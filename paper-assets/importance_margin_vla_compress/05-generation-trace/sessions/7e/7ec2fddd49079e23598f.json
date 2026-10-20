@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_smolvla_k095_pruning_20260518T121311_result.json",
     "occurrence": 1,
-    "bytes": 526,
-    "sha256": "c496415bb7e3b265aa591456c8c7f3af703704f59226e3f48677f721b36a9e52"
+    "bytes": 525,
+    "sha256": "5e9f821dc9d39cd4277577360d7088cc4bf8f2986b4237d780cabedde2fcb4e8"
   },
   "statistics": {
     "messages": 1,

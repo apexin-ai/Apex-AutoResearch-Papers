@@ -1,0 +1,16 @@
+{
+  "exp_id": "train_openvla_sc_m96_vtconly_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:08:23.577Z",
+    "updated_at": "2026-05-20T03:08:43.510Z",
+    "hypothesis": "OpenVLA VTC-only M=96 (256→96 tokens, 62.5% compression). M-sweep data point between M=128 and M=64. If M=96 SR falls between M=128 and M=64 SR, confirms graded degradation pattern for MLP-projector VTC re-encoding on OpenVLA.",
+    "parent": "train_openvla_sc_m128_vtconly_seed42"
+  },
+  "timestamp": "2026-05-20T03:08:43.787715+00:00",
+  "trigger": "update_registry"
+}

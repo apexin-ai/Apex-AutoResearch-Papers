@@ -1,0 +1,67 @@
+{
+  "exp_id": "eval_pi05_l2norm_k09_long_seed44_strict_cqa1",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T19:04:04.866Z",
+    "updated_at": "2026-05-27T22:36:43.220Z",
+    "hypothesis": "π0.5 L2norm k=0.9 Long strict seed44 — 峰值点 importance margin (46pp) 的第三个种子。seed42=80.0%, seed43=81.2%, seed44 将 n=2→3 加固核心 claim 可信度",
+    "parent": "eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+    "server": "cqa1-33015",
+    "gpu": "cuda:1",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\"",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "628418",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed44_strict_cqa1.log",
+      "submitted_at": "2026-05-27T19:06:50.615Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 12592.6,
+      "gpu_hours": 3.5
+    },
+    "pid": "628418",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed44_strict_cqa1.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\"",
+      "finished_at": "2026-05-27T22:32:59.599Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T22:33:27.758696+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 80.4,
+      "total": "402/500",
+      "per_task": {
+        "T0_alphabet_soup_tomato": 90,
+        "T1_cream_cheese_butter": 100,
+        "T2_stove_moka_pot": 90,
+        "T3_black_bowl_drawer": 100,
+        "T4_white_mug_plate": 90,
+        "T5_book_back": 92,
+        "T6_white_mug_plate_chocolate": 6,
+        "T7_alphabet_soup_cream": 90,
+        "T8_both_moka_pots_stove": 54,
+        "T9_yellow_white_mug_microwave": 92
+      }
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.90_libero_10_seed44.json",
+    "completed_at": "2026-05-27T22:36:43.220Z"
+  },
+  "timestamp": "2026-05-27T22:36:46.463737+00:00",
+  "trigger": "update_registry"
+}

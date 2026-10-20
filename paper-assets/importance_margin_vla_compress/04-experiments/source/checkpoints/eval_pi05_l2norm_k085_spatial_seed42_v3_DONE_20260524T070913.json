@@ -1,0 +1,55 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_spatial_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T16:57:54.401Z",
+    "updated_at": "2026-05-24T07:09:12.517Z",
+    "spec": {
+      "command": "python eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_spatial --n_episodes 50 --seed 42",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "525258",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k085_spatial_seed42_v3.log",
+      "submitted_at": "2026-05-23T16:57:53.257Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_spatial",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "wall_clock_seconds": 51079.3,
+      "gpu_hours": 14.19
+    },
+    "hypothesis": "π0.5 L2norm k=0.85 Spatial seed42 v3 — CPU RNG 修复后重跑 L2norm Spatial。对比 Random k=0.85 Spatial (60.2%) 验证 importance margin 在 Spatial suite。Spatial baseline=78%",
+    "metrics": {
+      "overall_sr": 88.4,
+      "total_success": 442,
+      "total_episodes": 500,
+      "elapsed_min": 63.1,
+      "per_task_sr": {
+        "T0_between_plate_ramekin": 98,
+        "T1_next_to_ramekin": 92,
+        "T2_table_center": 94,
+        "T3_on_cookie_box": 84,
+        "T4_top_drawer": 76,
+        "T5_on_ramekin": 82,
+        "T6_next_to_cookie_box": 98,
+        "T7_on_stove": 86,
+        "T8_next_to_plate": 98,
+        "T9_wooden_cabinet": 76
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/pi05_libero_finetuned",
+    "conclusion": "success",
+    "completed_at": "2026-05-24T07:09:12.517Z"
+  },
+  "timestamp": "2026-05-24T07:09:13.532368+00:00",
+  "trigger": "update_registry"
+}

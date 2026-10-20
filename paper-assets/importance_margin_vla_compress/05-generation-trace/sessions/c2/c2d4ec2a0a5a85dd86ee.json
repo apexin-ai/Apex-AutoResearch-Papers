@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_infra_fix-vlm-restart-training_20260515T144123_result.json",
     "occurrence": 1,
-    "bytes": 1039,
-    "sha256": "c493f471b8bb7500c15ad38131712e36fd8acc7e7479fe271c29904b1244626c"
+    "bytes": 1038,
+    "sha256": "8aceae9e5d8268308133fd9778e29d1c61da84d60ab235b7c9813cae82a90fda"
   },
   "statistics": {
     "messages": 1,

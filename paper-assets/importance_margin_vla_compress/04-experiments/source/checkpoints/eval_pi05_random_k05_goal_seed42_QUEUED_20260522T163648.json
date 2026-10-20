@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_random_k05_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:36:40.515Z",
+    "updated_at": "2026-05-22T16:36:48.007Z",
+    "hypothesis": "π0.5 Random k=0.5 on LIBERO-Goal: 50% random removal. Object Random k=0.5=36.4%. Goal should show even worse degradation given its higher sensitivity. Low-end data point for Goal random curve."
+  },
+  "timestamp": "2026-05-22T16:36:48.584740+00:00",
+  "trigger": "update_registry"
+}

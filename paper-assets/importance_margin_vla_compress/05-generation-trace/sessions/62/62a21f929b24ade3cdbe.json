@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_debug_pretrained_sim_sanity_20260516T115934_result.json",
     "occurrence": 1,
-    "bytes": 891,
-    "sha256": "0be643b9f1314ff842f3b61474de4e963a0c9ef7c76e8bf1bb3947ade9c596f5"
+    "bytes": 890,
+    "sha256": "4ac0e64dda4a4cd7736c1a3e1cc3a48d2be72a8a3bd1e2be0773a1c0933dfa63"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1-fix-deploy-abc_20260524T114609_result.json",
     "occurrence": 1,
-    "bytes": 895,
-    "sha256": "904cb2a62c34ea902479e9948d40527e4b23721e8ca6bc6f212c1a0f2fb0644a"
+    "bytes": 894,
+    "sha256": "00fca89871bfe17147a28e8438f82d49e90bb915ae83d946abe7323f1f800e30"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_verify-cliff-keep-ratio-params_20260520T214014_result.json",
     "occurrence": 1,
-    "bytes": 1741,
-    "sha256": "df5235940b7e319448e0b83ca974b52ca0dfab15c6541b7b0d5cef20ecd580ec"
+    "bytes": 1740,
+    "sha256": "ba86259ddd5f54c440cb5a84da4d41cc5cdcada1eb6bc2921191e19d2712ad87"
   },
   "statistics": {
     "messages": 1,

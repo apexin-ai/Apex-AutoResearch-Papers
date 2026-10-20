@@ -1,0 +1,49 @@
+{
+  "exp_id": "eval_openvla_attn_k075_long_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T12:13:07.834Z",
+    "updated_at": "2026-05-27T21:34:28.156Z",
+    "hypothesis": "OpenVLA Attention k=0.75 Long seed42 v3 — 当前 39.8% 是 partial 数据（†标记），需要完整重跑。Long Attn curve 中间段：k=0.85=45.8%, k=0.7=24.0%",
+    "parent": "eval_openvla_attn_k075_long_seed42",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10",
+      "server": "westd-38929",
+      "gpu": 1,
+      "pid": 266221,
+      "tmux_session": "ov_attn_k075_long",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_attn_k075_long_seed42_v3.log",
+      "fix_note": "v3: added conda activation (v2 failed with 'python: command not found'), removed invalid --gpu param"
+    },
+    "gpu": "cuda:1",
+    "pid": 266221,
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.342,
+      "total_success": 171,
+      "total_episodes": 500,
+      "time_min": 552.9,
+      "per_task": {
+        "T0": 19,
+        "T1": 26,
+        "T2": 24,
+        "T3": 17,
+        "T4": 9,
+        "T5": 27,
+        "T6": 13,
+        "T7": 25,
+        "T8": 6,
+        "T9": 5
+      }
+    },
+    "log_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_attn_k075_long_seed42_v3.log",
+    "checkpoint_path": "N/A (eval only)",
+    "completed_at": "2026-05-27T21:34:28.156Z"
+  },
+  "timestamp": "2026-05-27T21:34:30.878868+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_figure_fig2_degradation_curve_v5_20260519T005817_result.json",
     "occurrence": 1,
-    "bytes": 588,
-    "sha256": "d4aea73f03cca2fda5209c1c91d1cd06642f05f7b28633f7473ddf36998cd616"
+    "bytes": 587,
+    "sha256": "0929a212e28a387c8b980750fac8f761214d16f58ad80a5bfd277fc07cc5221e"
   },
   "statistics": {
     "messages": 1,

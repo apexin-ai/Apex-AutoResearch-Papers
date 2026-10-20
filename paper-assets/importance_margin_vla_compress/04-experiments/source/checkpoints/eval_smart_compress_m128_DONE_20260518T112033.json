@@ -1,0 +1,61 @@
+{
+  "exp_id": "eval_smart_compress_m128",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:08:14.626Z",
+    "updated_at": "2026-05-18T11:20:33.418Z",
+    "hypothesis": "Cross-attention pooling with M=128 queries (no compression, passthrough control) on LIBERO-Object. If SR similar to M=32/M=64 (61.6%), improvement comes from cross-attention architecture itself. If lower/equal to baseline (44.8%), compression bottleneck provides the benefit. Critical control experiment for paper framing.",
+    "parent": "train_smart_compress_m128_resume",
+    "spec": {
+      "command": "eval_smart_compress_libero.py --n_queries 128",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "18074",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_smart_compress_m128.log",
+      "submitted_at": "2026-05-18T10:08:26.674Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_object",
+      "data_count": 500,
+      "model_name": "smart_compress_m128",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/smart_compress_m128/checkpoint.pt",
+      "eval_data": "libero_object",
+      "wall_clock_seconds": 4326.7,
+      "gpu_hours": 1.2
+    },
+    "conclusion": "success",
+    "metrics": {
+      "libero_object_sr": 0.598,
+      "libero_object_sr_ci95": [
+        0.554,
+        0.64
+      ],
+      "total_episodes": 500,
+      "total_successes": 299,
+      "per_task_sr": {
+        "alphabet_soup": 0.62,
+        "cream_cheese": 0.58,
+        "salad_dressing": 0.54,
+        "bbq_sauce": 0.34,
+        "ketchup": 0.62,
+        "tomato_sauce": 0.5,
+        "butter": 0.82,
+        "milk": 0.56,
+        "chocolate_pudding": 0.82,
+        "orange_juice": 0.58
+      }
+    },
+    "checkpoint_path": "N/A (eval only)",
+    "completed_at": "2026-05-18T11:20:33.418Z"
+  },
+  "timestamp": "2026-05-18T11:20:33.563735+00:00",
+  "trigger": "update_registry"
+}

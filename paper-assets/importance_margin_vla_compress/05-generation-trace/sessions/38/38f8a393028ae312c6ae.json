@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill_batch64_v2_20260517T143027_result.json",
     "occurrence": 1,
-    "bytes": 303,
-    "sha256": "c0f2d31cd720d574d350f6eaa5c09469d41c7b1688b3a49a9f58bd63f2ef9d70"
+    "bytes": 302,
+    "sha256": "f47399f4d9f20d71228ae05c4dd2008dcbfd6eb17de133953628b5b57818f99f"
   },
   "statistics": {
     "messages": 1,

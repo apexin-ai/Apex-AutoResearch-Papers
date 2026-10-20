@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_train_imm_fullft_k07_cqa1_20260516T231150_result.json",
     "occurrence": 1,
-    "bytes": 733,
-    "sha256": "24198a68384f48fb0993358a1001e08872f0c7168d730861cb18c6c1600e812b"
+    "bytes": 732,
+    "sha256": "f44e942ffa70daeb3631fca5a3aa7ebf5d874bfb6100a764ace6e80ec9b888e8"
   },
   "statistics": {
     "messages": 1,

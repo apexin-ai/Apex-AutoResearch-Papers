@@ -1,0 +1,50 @@
+{
+  "exp_id": "eval_openvla_random_k085_object_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-26T05:20:50.970Z",
+    "updated_at": "2026-05-26T19:56:05.513Z",
+    "hypothesis": "OpenVLA Random k=0.85 Object v2（重跑被误杀实验）。Random k=0.9 Object=55.6%, k=0.7=44.4%。k=0.85 填补 cliff curve 中间点",
+    "reproduce": {
+      "finished_at": "2026-05-26T10:01:07.742Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-26T10:01:33.433536+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "overall_sr": 61.4,
+          "total_successes": 307,
+          "total_episodes": 500,
+          "per_task_sr": {
+            "T0_alphabet_soup": 74,
+            "T1_cream_cheese": 26,
+            "T2_salad_dressing": 74,
+            "T3_bbq_sauce": 48,
+            "T4_ketchup": 80,
+            "T5_tomato_sauce": 58,
+            "T6_butter": 38,
+            "T7_milk": 70,
+            "T8_chocolate_pudding": 56,
+            "T9_orange_juice": 90
+          },
+          "elapsed_minutes": 279.2,
+          "seed": 42
+        }
+      }
+    },
+    "completed_at": "2026-05-26T10:03:01.825Z"
+  },
+  "timestamp": "2026-05-26T19:56:06.745965+00:00",
+  "trigger": "update_registry"
+}

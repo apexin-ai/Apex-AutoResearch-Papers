@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_baseline_v6_mode_collapse_and_sr_20260516T105955_result.json",
     "occurrence": 1,
-    "bytes": 827,
-    "sha256": "b63e9436085cfb1555e1eada43b6224259bb843e6dde4c886f787e53f48eb79d"
+    "bytes": 826,
+    "sha256": "e2a67fc30e28f89affdc81197adc1cf443008847c774cf61bced4c93813c4593"
   },
   "statistics": {
     "messages": 1,

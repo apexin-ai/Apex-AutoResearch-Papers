@@ -1,0 +1,70 @@
+{
+  "conditions_evaluated": [
+    "eps0.01_pruneFalse",
+    "eps0.02_pruneFalse",
+    "eps0.05_pruneFalse"
+  ],
+  "per_condition": {
+    "eps0.01_pruneFalse": {
+      "margin_ratio": 110.08284378787005,
+      "bl_margin_median": 0.010328888893127441,
+      "imm_margin_median": 1.137033462524414,
+      "pres_diff": 0.6402047872543335,
+      "bl_preservation": 0.3352324962615967,
+      "imm_preservation": 0.9754372835159302,
+      "imm_led_median": 0.054505135864019394
+    },
+    "eps0.02_pruneFalse": {
+      "margin_ratio": 111.59133585345882,
+      "bl_margin_median": 0.010627388954162598,
+      "imm_margin_median": 1.1859245300292969,
+      "pres_diff": 0.6186454594135284,
+      "bl_preservation": 0.3362119495868683,
+      "imm_preservation": 0.9548574090003967,
+      "imm_led_median": 0.10464735329151154
+    },
+    "eps0.05_pruneFalse": {
+      "margin_ratio": 102.77148988551073,
+      "bl_margin_median": 0.010943293571472168,
+      "imm_margin_median": 1.1246585845947266,
+      "pres_diff": 0.5686858892440796,
+      "bl_preservation": 0.3380565047264099,
+      "imm_preservation": 0.9067423939704895,
+      "imm_led_median": 0.27554863691329956
+    }
+  },
+  "gate": {
+    "G1_margin_median_ratio": {
+      "value": 108.14855650894653,
+      "threshold": "\u2265 2.0",
+      "pass": true
+    },
+    "G2_preservation_rate_diff": {
+      "value": 0.6091787119706472,
+      "threshold": "\u2265 0.10",
+      "pass": true
+    },
+    "G3_deploy_ratio": {
+      "value": 2.040087003007243,
+      "threshold": "\u2264 1.10",
+      "pass": false,
+      "note": "D025 primary: ACIS+Prune(50%) action_loss / baseline"
+    },
+    "G3_standard_ratio": {
+      "value": 6.082422286014812,
+      "role": "reference",
+      "note": "Standard eval action_loss / baseline (non-blocking)"
+    },
+    "G4_led_ratio_median": {
+      "value": 0.10464735329151154,
+      "threshold": "< 1.0",
+      "pass": true
+    },
+    "G3a_bypass_ratio": {
+      "value": 5.9992013496215435,
+      "role": "reference",
+      "note": "Bypass action_loss / baseline (non-blocking, distribution mismatch confound)"
+    }
+  },
+  "overall_pass": false
+}

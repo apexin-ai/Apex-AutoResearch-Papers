@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_ov_attn_k05_goal_w27_20260527T095403_result.json",
     "occurrence": 1,
-    "bytes": 412,
-    "sha256": "796866a72560ca48fb39f8cc0bb4ccb8216d2c0858fd64b0a1a5e0d7affc3b9a"
+    "bytes": 411,
+    "sha256": "3d78775d8fce940aadaeec0da7739c6d2e6728583bcd4394121b83bd4ca41a0f"
   },
   "statistics": {
     "messages": 1,

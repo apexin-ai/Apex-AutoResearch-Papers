@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_gpu_probe_kill_deploy_s47_20260529T035751_result.json",
     "occurrence": 1,
-    "bytes": 136,
-    "sha256": "e690abf0ec540f0a691a95146665d9299b3a695a2ef928da0428c20236d35227"
+    "bytes": 135,
+    "sha256": "e78de4551c61e72f901b753e4475e8f54473ddf89b9c79c39bc2857513ed2b19"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_mvp_baseline_v2_20260515T145527_result.json",
     "occurrence": 1,
-    "bytes": 807,
-    "sha256": "a9cd282d97fc131406da3e138347f505fb9455e4adcef98b153176fb445d993a"
+    "bytes": 806,
+    "sha256": "bf08198b36e8d7e4cc9a89c96a667d49b7a6a059b5c1862320c64467f4a39281"
   },
   "statistics": {
     "messages": 1,

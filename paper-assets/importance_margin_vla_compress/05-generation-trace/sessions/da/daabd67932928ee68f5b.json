@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_verify_s47_running_check_20260529T032617_result.json",
     "occurrence": 1,
-    "bytes": 1092,
-    "sha256": "0b2a8ebcb171e0939f09a0314df152f8451c5f9a06aeadd251da1d71f9b18a95"
+    "bytes": 1091,
+    "sha256": "5013e844689ac8285d97439cedfc7bed28f6aa4975a864f24cb11c75a0fd1754"
   },
   "statistics": {
     "messages": 1,

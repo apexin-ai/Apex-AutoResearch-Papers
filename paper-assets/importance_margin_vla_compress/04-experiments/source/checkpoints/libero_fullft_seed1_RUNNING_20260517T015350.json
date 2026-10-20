@@ -1,0 +1,45 @@
+{
+  "exp_id": "libero_fullft_seed1",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 2,
+    "created_at": "2026-05-16T21:52:18.096Z",
+    "updated_at": "2026-05-17T01:53:50.843Z",
+    "hypothesis": "SmolVLA full expert FT on LIBERO seed=1, 第三 seed 用于论文统计完整性 (已有 seed=42, seed=0)",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-17T01:27:49.728Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "正常运行中 64,300/100K (64.3%), sps=4.2。之前 cron 误报进程退出，Reviewer 和诊断 Worker 均确认进程存活。预计 ~2h 完成。Log: /root/runs/importance_margin_vla_compress/libero_fullft_seed1.log"
+      },
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T01:51:30.586420+00:00"
+        }
+      ]
+    },
+    "notes": "正常运行中 64,300/100K (64.3%), sps=4.2。之前 cron 误报进程退出，Reviewer 和诊断 Worker 均确认进程存活。预计 ~2h 完成。Log: /root/runs/importance_margin_vla_compress/libero_fullft_seed1.log",
+    "reproduce": {
+      "finished_at": "2026-05-17T01:51:28.197Z"
+    },
+    "spec": {
+      "command": "python train.py --config configs/libero_full_ft_seed1.yaml --gpu 0 --seed 1",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "HuggingFaceVLA/libero",
+      "data_count": 273465,
+      "model_name": "smolvla_base_full_ft",
+      "seed": 1
+    }
+  },
+  "timestamp": "2026-05-17T01:53:50.927802+00:00",
+  "trigger": "update_registry"
+}

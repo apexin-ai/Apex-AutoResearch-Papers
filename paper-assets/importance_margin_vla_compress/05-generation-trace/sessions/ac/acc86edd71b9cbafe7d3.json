@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_token_importance_heatmap_20260522T064104_result.json",
     "occurrence": 1,
-    "bytes": 1680,
-    "sha256": "093b52a6b9bdb14eba2a7008fbae0f80e5917e717eb13c1566a412af3dc23361"
+    "bytes": 1679,
+    "sha256": "c005a88b097b817b6d902c49df61603ea1e799a031372640e956cddb6768fb76"
   },
   "statistics": {
     "messages": 1,

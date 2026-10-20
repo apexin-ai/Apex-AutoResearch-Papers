@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_openvla_l2norm_k075_goal_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T16:52:29.290Z",
+    "updated_at": "2026-05-26T16:53:05.012Z",
+    "hypothesis": "OpenVLA L2norm k=0.75 Goal seed42 v2 — Goal cliff curve 加密点（v1 因 python not found 失败，改用 /root/miniconda3/bin/python）。L2norm k=0.9=74.8%, k=0.85=75.4%, k=0.7=68.4%。k=0.75 填补 k=0.85→0.7 下降斜率"
+  },
+  "timestamp": "2026-05-26T16:53:07.351772+00:00",
+  "trigger": "update_registry"
+}

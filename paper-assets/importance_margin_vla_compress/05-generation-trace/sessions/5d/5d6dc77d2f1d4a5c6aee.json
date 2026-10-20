@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_harvest-westd41074_20260524T081702_result.json",
     "occurrence": 1,
-    "bytes": 1836,
-    "sha256": "3a98f4e7d2c272aa73e1491d37e1b7ff07b7f292e9886e0059177fb36810876c"
+    "bytes": 1835,
+    "sha256": "02747bc5543f32fbe273cdb35f7a509a0e5a3d641fff81514be0c51810e2430e"
   },
   "statistics": {
     "messages": 1,

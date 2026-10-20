@@ -1,0 +1,34 @@
+{
+  "exp_id": "eval_openvla_random_k09_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-24T23:03:29.619Z",
+    "updated_at": "2026-05-25T06:08:45.166Z",
+    "hypothesis": "OpenVLA Random k=0.9 Goal seed42 — Random baseline for 三方 crossover (Random vs L2norm vs Attention) at k=0.9 on libero_goal suite",
+    "completed_at": "2026-05-25T01:19:32.955Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_goal --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/openvla-7b-finetuned-libero-goal --unnorm_key libero_goal --gpu 0 --output eval_results/openvla_random_k09_goal_seed42.json\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "5196",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_random_k09_goal_seed42.log",
+      "submitted_at": "2026-05-25T06:06:23.139Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-25T06:08:46.920979+00:00",
+  "trigger": "update_registry"
+}

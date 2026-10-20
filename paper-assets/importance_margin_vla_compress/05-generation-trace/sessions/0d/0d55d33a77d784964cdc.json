@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_deploy-metrics-fix-start-v7_2_20260515T191834_result.json",
     "occurrence": 1,
-    "bytes": 598,
-    "sha256": "dfb01e596589975cbfb017e515d6dac4a394638f0cc7b2dc315e189fea4baaf7"
+    "bytes": 597,
+    "sha256": "2fb69c6dd4e782abd0c418058391a8cc039611d4c73c44b30e1e031556570c9c"
   },
   "statistics": {
     "messages": 1,

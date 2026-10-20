@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_train_c4ext_launch_now_20260519T182622_result.json",
     "occurrence": 1,
-    "bytes": 833,
-    "sha256": "34fdfb3a341878cb457d6c804db73608e8dc59691067023fead8fdddfa4a3a58"
+    "bytes": 832,
+    "sha256": "f5aaac5a1d859603852f955171e155da3abde714b061f808a770426c605aa6ab"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_spatial_heatmap_gen_20260522T080244_result.json",
     "occurrence": 1,
-    "bytes": 1517,
-    "sha256": "0d2ea600fbe4daa5fc71f1b801dc63224e76c02fbf8ecf3630b9424968da5f52"
+    "bytes": 1516,
+    "sha256": "dadeb222398ae6233d1cc97993ce66a996b42f465357b91bd030c8b913eb3de9"
   },
   "statistics": {
     "messages": 1,

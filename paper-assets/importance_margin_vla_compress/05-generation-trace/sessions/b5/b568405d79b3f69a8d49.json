@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_sync_westd_artifacts_to_local_20260517T114009_result.json",
     "occurrence": 1,
-    "bytes": 431,
-    "sha256": "3d931cbf5898cdacd41949f457e7ea4a5ee697878f23a01ca1973927b9338ac9"
+    "bytes": 430,
+    "sha256": "f00143e06091f43ef8d8ee56a0a2ce7703eba830a1b8fbbba297a51b087a973d"
   },
   "statistics": {
     "messages": 1,

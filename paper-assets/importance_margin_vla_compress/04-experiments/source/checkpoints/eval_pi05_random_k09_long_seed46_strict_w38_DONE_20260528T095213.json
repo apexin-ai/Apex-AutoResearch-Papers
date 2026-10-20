@@ -1,0 +1,47 @@
+{
+  "exp_id": "eval_pi05_random_k09_long_seed46_strict_w38",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-28T06:27:34.138Z",
+    "updated_at": "2026-05-28T09:52:11.187Z",
+    "spec": {
+      "checkpoint_path": "N/A",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed46_strict_w38.log"
+    },
+    "hypothesis": "π0.5 Random k=0.9 Long strict seed46 — peak margin 对应的 Random dip 点第5个 seed。s42=34.2%, s43=35.0%, s44=31.8%。seed46 收窄 Random k=0.9 error bar，加固 peak margin (46pp) claim",
+    "server": "westd-38929",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "finished_at": "2026-05-28T09:47:19.520Z"
+    },
+    "metrics": {
+      "success_rate": 33.4,
+      "episodes": 500,
+      "tasks": 10,
+      "episodes_per_task": 50,
+      "per_task_sr": {
+        "T0_alphabet_soup_tomato": 12,
+        "T1_cream_cheese_butter": 40,
+        "T2_stove_moka_pot": 40,
+        "T3_black_bowl_drawer": 52,
+        "T4_white_mug_left_plate": 24,
+        "T5_book_back_shelf": 26,
+        "T6_white_mug_plate": 12,
+        "T7_alphabet_soup_cream": 44,
+        "T8_moka_pots_stove": 8,
+        "T9_yellow_white_mug_microwave": 76
+      },
+      "kept_tokens": 230,
+      "total_tokens": 256,
+      "eval_time_min": 197.8
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-28T09:52:11.187Z"
+  },
+  "timestamp": "2026-05-28T09:52:13.559548+00:00",
+  "trigger": "update_registry"
+}

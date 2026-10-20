@@ -1,0 +1,18 @@
+{
+  "exp_id": "eval_pi05_random_k05_long_seed43_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "created_at": "2026-05-23T03:50:21.443Z",
+    "hypothesis": "π0.5 Random k=0.5 Long seed43 验证。seed42=50.2%。",
+    "parent": "eval_pi05_random_k05_long_seed43_v2",
+    "retry_count": 0,
+    "status": "DONE",
+    "updated_at": "2026-05-29T07:14:37.149Z",
+    "conclusion": "killed",
+    "completed_at": "2026-05-29T07:14:37.149Z"
+  },
+  "timestamp": "2026-05-29T07:14:40.065981+00:00",
+  "trigger": "update_registry"
+}

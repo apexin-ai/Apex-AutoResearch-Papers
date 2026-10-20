@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_deploy_entropy_measurement_20260518T052914_result.json",
     "occurrence": 1,
-    "bytes": 802,
-    "sha256": "91fc2861d02a276bccb4a86a76de16b8590ddedac8e838b0b8b1ea2946261c16"
+    "bytes": 801,
+    "sha256": "7d41bed85701a733eba61b829ad96aef38d9603eba9dfd63dd42da18d70b28c5"
   },
   "statistics": {
     "messages": 1,

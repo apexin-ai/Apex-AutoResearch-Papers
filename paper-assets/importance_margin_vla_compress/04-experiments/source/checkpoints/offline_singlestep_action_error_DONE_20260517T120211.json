@@ -1,0 +1,50 @@
+{
+  "exp_id": "offline_singlestep_action_error",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:36:40.871Z",
+    "updated_at": "2026-05-17T12:02:11.341Z",
+    "hypothesis": "Offline single-step action error analysis: 区分 pruning 导致的 per-step error 是小误差通过 compounding 放大（per-step L2 < 10% action norm → compounding 叙事），还是 pruning 直接摧毁 action prediction（per-step L2 很大 → pruning 本身就 catastrophic）。这是论文 mechanistic explanation 的关键证据。",
+    "parent": "eval_true_removal_k05",
+    "conclusion": "success",
+    "metrics": {
+      "bypass_vs_pruned_l2_mean": 1.284,
+      "bypass_vs_gt_l2_mean": 0.414,
+      "pruned_vs_gt_l2_mean": 1.391,
+      "relative_error_pct": 111.5,
+      "per_dim_position_xyz": [
+        0.2,
+        0.25,
+        0.3
+      ],
+      "per_dim_rotation_xyz": [
+        0.01,
+        0.02,
+        0.01
+      ],
+      "per_dim_gripper": 1.02,
+      "n_steps": 200,
+      "conclusion_type": "large_per_step_error",
+      "interpretation": "Pruning directly destroys action prediction at each step. Not a compounding issue."
+    },
+    "spec": {
+      "command": "python offline_singlestep_error.py",
+      "server": "westd-27271",
+      "data_path": "LIBERO demo dataset (libero_object)",
+      "data_count": 200,
+      "model_name": "SmolVLA Stage1-only (Full FT + ACIS k=0.5)",
+      "seed": 42,
+      "checkpoint_path": "checkpoints/libero_full_ft_100k/checkpoint.pt",
+      "log_path": "eval_results/offline_singlestep_error.json",
+      "checkpoint_source": "libero_full_ft_baseline (100K)",
+      "eval_data": "LIBERO demo observations (200 steps from libero_object)"
+    },
+    "completed_at": "2026-05-17T12:02:11.341Z"
+  },
+  "timestamp": "2026-05-17T12:02:11.455393+00:00",
+  "trigger": "update_registry"
+}

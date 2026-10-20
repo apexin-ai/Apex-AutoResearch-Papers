@@ -1,0 +1,28 @@
+{
+  "exp_id": "mvp_imm_anchor_v7_2",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:18:02.766Z",
+    "updated_at": "2026-05-15T22:04:33.653Z",
+    "hypothesis": "v7.1 重跑 (metrics.py eval mode leak 修复后): lambda_margin=0.2, grad_clip=30.0",
+    "parent": null,
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo 2>/dev/null; export CUDA_VISIBLE_DEVICES=0; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && WANDB_MODE=offline python3 train.py --config configs/imm_anchor_v7_1.yaml 2>&1 | tee /tmp/imm_anchor_v7_2.log\"",
+      "server": "westd-27271",
+      "gpu": "cuda:0",
+      "pid": "54978",
+      "log_path": "/tmp/imm_anchor_v7_2.log",
+      "data_path": "lerobot/aloha_sim_insertion_scripted_image",
+      "data_count": 20000,
+      "model_name": "lerobot/smolvla_base + LoRA r=32 + IMM(delta=0.3, lambda=0.2)",
+      "seed": 42
+    },
+    "notes": "metrics.py eval mode leak 修复验证 PASS。Step 500: SN=1.0143, L_emp=0.0432。Step 1000: SN=1.0007, L_emp=0.0638。Step 20K health check: action_loss=0.0028, margin=0.3959, L_emp=0.13-0.24 (stable), SN=1.0003-1.0004, margin_loss frequently 0 (margin exceeds delta=0.3). Training healthy, ETA ~54 min."
+  },
+  "timestamp": "2026-05-15T22:04:33.699963+00:00",
+  "trigger": "update_registry"
+}

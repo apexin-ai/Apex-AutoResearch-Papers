@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1_pi05_cliff_batch_20260525T053430_result.json",
     "occurrence": 1,
-    "bytes": 659,
-    "sha256": "25fbf8dca396e090f671a86237d223258ebb6eaf1808b9f08476dec0b751da62"
+    "bytes": 658,
+    "sha256": "f6d438b8a757e3e94ea078bdc813a564e647e85b9a7fa4c8fe9d334c303a57ad"
   },
   "statistics": {
     "messages": 1,

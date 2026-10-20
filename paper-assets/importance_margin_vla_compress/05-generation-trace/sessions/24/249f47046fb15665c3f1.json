@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_cron_log_judgment_20260527T070149_result.json",
     "occurrence": 1,
-    "bytes": 854,
-    "sha256": "86df24dab95dd0f61a9baed4ed201f6b5ca005552861fb3f5895bb0bb245fff5"
+    "bytes": 853,
+    "sha256": "a0db4eed8aa80dd459121e752ecb4fee23d3d163de3d2c58530e977c8afbcce5"
   },
   "statistics": {
     "messages": 1,

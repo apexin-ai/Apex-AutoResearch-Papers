@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_openvla_zeromask_l2norm_k09_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T18:24:47.976Z",
+    "updated_at": "2026-05-25T19:35:49.988Z",
+    "hypothesis": "OpenVLA zero_mask + l2norm k=0.9 Object — hard-prune l2norm k=0.9=70.6%。对比测试位置保留 vs 信息丢失在 OpenVLA MLP connector 上的效应",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYTHONUNBUFFERED=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python3 eval_openvla_zeromask_libero.py --mode l2norm_prune --ablation_mode zero_mask --k_ratio 0.9 --suite libero_object --num_episodes 50 --seed 42 --output results/openvla_zeromask_l2norm_k09_object_seed42.json > /tmp/eval_openvla_zeromask_l2norm_k09_object_seed42.log 2>&1\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "5507",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_zeromask_l2norm_k09_object_seed42.log",
+      "submitted_at": "2026-05-25T18:25:53.218Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-25T19:35:51.659998+00:00",
+  "trigger": "update_registry"
+}

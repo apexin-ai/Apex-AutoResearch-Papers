@@ -1,0 +1,26 @@
+{
+  "exp_id": "eval_pi05_attn_k05_long_seed47_w38",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-28T11:18:44.760Z",
+    "updated_at": "2026-05-28T11:20:45.542Z",
+    "hypothesis": "π0.5 Attn k=0.5 Long seed47 — 6th seed bonus data，plateau 区确认。填充 w38 空闲 GPU，不在 CoRL deadline 内但可用于 revision",
+    "spec": {
+      "command": "python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 47 --gpu 0",
+      "server": "westd-38929",
+      "gpu": "cuda:2",
+      "pid": 590036,
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed47_w38.log",
+      "model_name": "pi0.5",
+      "seed": 47,
+      "data_path": "libero_long",
+      "data_count": 500
+    }
+  },
+  "timestamp": "2026-05-28T11:20:47.629288+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_v8-checkpoint-trajectory_20260516T011205_result.json",
     "occurrence": 1,
-    "bytes": 276,
-    "sha256": "b5efaad69fbc0315a0477e31b021335ab24a867cfc956288d46939323bc52a02"
+    "bytes": 275,
+    "sha256": "2f435d749480913f28fed03278908f6045aad2d6d424a67784019cf43b5067ff"
   },
   "statistics": {
     "messages": 1,

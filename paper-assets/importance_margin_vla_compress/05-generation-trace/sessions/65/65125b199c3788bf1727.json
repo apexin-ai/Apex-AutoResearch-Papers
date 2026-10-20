@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_attn_k07_s44_trace_20260528T023617_result.json",
     "occurrence": 1,
-    "bytes": 1135,
-    "sha256": "7850a85696810aa169b935a7581082d2c07d14cd8285760c482b7f57d9edd5d2"
+    "bytes": 1134,
+    "sha256": "b26c2b5836cdcb2fa5b2e89cf239c7b7f9ce938eb6e7fb709927099e7d91863b"
   },
   "statistics": {
     "messages": 1,

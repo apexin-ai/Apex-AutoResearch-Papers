@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_eval_pi05_random_k085_object_seed42_v2_20260521T232037_result.json",
     "occurrence": 1,
-    "bytes": 2017,
-    "sha256": "33020fb4a9b3bd6660b233c9ef28f640cc9e31d27d6ef5d8c39fee7df02eea16"
+    "bytes": 2016,
+    "sha256": "d2529387c48a1348d62bc7bcbcf62102152856df73a2dde0784fe6618160dde8"
   },
   "statistics": {
     "messages": 1,

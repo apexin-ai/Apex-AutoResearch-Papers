@@ -1,0 +1,60 @@
+{
+  "exp_id": "eval_openvla_random_k05_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "completed_at": "2026-05-24T05:05:51.288Z",
+    "created_at": "2026-05-24T01:05:55.800Z",
+    "extra": {
+      "hook_events": [
+        {
+          "action": "agent",
+          "event": "on_failed",
+          "ts": "2026-05-24T05:06:08.081055+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "overall_sr": 0.522,
+          "per_task_sr": {
+            "bowl_on_cabinet": 0.74,
+            "bowl_on_plate": 0.46,
+            "bowl_on_stove": 0.64,
+            "cream_cheese_in_bowl": 0.48,
+            "open_drawer_put_bowl": 0.1,
+            "open_middle_drawer": 0.44,
+            "push_plate_front_stove": 0.54,
+            "turn_on_stove": 0.94,
+            "wine_bottle_on_cabinet": 0.64,
+            "wine_bottle_on_rack": 0.24
+          },
+          "total_episodes": 500,
+          "total_success": 261,
+          "wall_time_min": 230.7
+        }
+      }
+    },
+    "failure_reason": "cron误判(无W&B sentinel), 实际正常完成. SR=52.2%, 诊断Worker已确认",
+    "hypothesis": "OpenVLA Random k=0.5 Goal seed42 — 50% random pruning on Goal suite。Baseline=74.8%, L2norm k=0.9=74.8%。填充 Goal 退化曲线中间点。",
+    "reproduce": {
+      "finished_at": "2026-05-24T05:05:38.598Z"
+    },
+    "retry_count": 1,
+    "status": "RUNNING",
+    "updated_at": "2026-05-25T12:36:43.203Z",
+    "spec": {
+      "server": "westd-27271",
+      "gpu": "cuda:0",
+      "account": "root",
+      "command": "python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.5 --suite libero_goal --num_episodes 50 --seed 42",
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "model_name": "openvla-7b-finetuned-libero-goal",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-25T12:36:44.357680+00:00",
+  "trigger": "update_registry"
+}

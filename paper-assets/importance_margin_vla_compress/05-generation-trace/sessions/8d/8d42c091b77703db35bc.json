@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_pi05-official-checkpoint_20260521T044154_result.json",
     "occurrence": 1,
-    "bytes": 1339,
-    "sha256": "7a5994a148e107b57f2f479ccdd4e270f34c9564234885ed5273d9f5936e4b59"
+    "bytes": 1338,
+    "sha256": "901c1d1f7972f38f6225993dc75219b262d9c6eebbc0dff7291767552cd12451"
   },
   "statistics": {
     "messages": 1,

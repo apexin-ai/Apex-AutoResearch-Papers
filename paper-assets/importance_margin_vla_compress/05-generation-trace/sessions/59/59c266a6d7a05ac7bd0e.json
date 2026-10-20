@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_cqa1-gpu0-gpu2-xvla-k085-multiseed_20260521T120258_result.json",
     "occurrence": 1,
-    "bytes": 403,
-    "sha256": "23f5c86b18115699e68a1bff162b8eb3f6dfd7cdc26271f6cfd4710993e403bd"
+    "bytes": 402,
+    "sha256": "658766438285590aca34d2b133cf9d8d014480676b83a596b9c2a2e719118023"
   },
   "statistics": {
     "messages": 1,

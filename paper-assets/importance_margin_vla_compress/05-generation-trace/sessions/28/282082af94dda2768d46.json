@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_m128_cron_reregister_20260519T045532_result.json",
     "occurrence": 1,
-    "bytes": 273,
-    "sha256": "f612ddd64f5477c104fedbea78a6093319c7461f896a2f4a0ed874945db6768e"
+    "bytes": 272,
+    "sha256": "748f2eba0ffac249219215281f34fe0d5cf4fe3e14ec2ce2d513e1172e46af50"
   },
   "statistics": {
     "messages": 1,

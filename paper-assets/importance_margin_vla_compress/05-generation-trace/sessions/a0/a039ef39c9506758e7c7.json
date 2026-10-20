@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_redeploy_crashed_v2_20260524T145208_result.json",
     "occurrence": 1,
-    "bytes": 1009,
-    "sha256": "8b9c7b8d8662135bdabb4ecca35cd49bcf6dfc416ddbb8f8438edfccf125b360"
+    "bytes": 1008,
+    "sha256": "72cc15f470ffe5f0ec5bc9116b70fa0bc8b0485e9a74988bc4389a3937e4086f"
   },
   "statistics": {
     "messages": 1,

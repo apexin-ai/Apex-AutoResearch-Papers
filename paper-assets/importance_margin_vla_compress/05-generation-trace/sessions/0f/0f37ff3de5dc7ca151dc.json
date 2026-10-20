@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_investigate_pi05_attn_k09_strict_crash_20260527T063806_result.json",
     "occurrence": 1,
-    "bytes": 798,
-    "sha256": "b7e5d978ef88a587379c7f8742d454e6233da2db83bc5162605f05d65a619870"
+    "bytes": 797,
+    "sha256": "0c752b9e35393be3314551da4d969a150a3f68397952029077c0fc844a54f3d0"
   },
   "statistics": {
     "messages": 1,

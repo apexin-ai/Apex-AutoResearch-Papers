@@ -1,0 +1,36 @@
+{
+  "eps0.0_pruneFalse": {
+    "action_loss": 0.03167134068906307
+  },
+  "eps0.0_pruneTrue": {
+    "action_loss": 0.01542033368255943
+  },
+  "eps0.01_pruneFalse": {
+    "action_loss": 0.03302152003161609
+  },
+  "eps0.01_pruneTrue": {
+    "action_loss": 0.014616244210628793
+  },
+  "eps0.02_pruneFalse": {
+    "action_loss": 0.03241567859426141
+  },
+  "eps0.02_pruneTrue": {
+    "action_loss": 0.017068741056136788
+  },
+  "eps0.05_pruneFalse": {
+    "action_loss": 0.04219506029970944
+  },
+  "eps0.05_pruneTrue": {
+    "action_loss": 0.02923178145312704
+  },
+  "_meta": {
+    "checkpoint": "checkpoints/imm_anchor_v8/step_026000",
+    "config": "configs/imm_anchor_v8.yaml",
+    "imm_enabled": true,
+    "bypass_acis": true,
+    "lipschitz_empirical": 0.0,
+    "lipschitz_spectral": 0.0,
+    "max_batches": 100,
+    "seed": 42
+  }
+}

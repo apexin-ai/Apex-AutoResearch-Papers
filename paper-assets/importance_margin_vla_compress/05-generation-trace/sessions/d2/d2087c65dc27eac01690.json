@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_investigate_l2norm_k05_w38_process_gone_20260527T122736_result.json",
     "occurrence": 1,
-    "bytes": 677,
-    "sha256": "72a0f5008db9fe8491e44730580155cfbc642efc8d6429f9b5537bfcf3154278"
+    "bytes": 676,
+    "sha256": "8481043f8205da8a33e830309cb36d646f57693f40708758dd1def3960a3d4de"
   },
   "statistics": {
     "messages": 1,

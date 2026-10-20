@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check-m16-seed44-eval_20260520T094946_result.json",
     "occurrence": 1,
-    "bytes": 914,
-    "sha256": "bd95eba280f21b05e78e1408e10cd2dc916b7d2e0fe0d3081d19c515d15a02c9"
+    "bytes": 913,
+    "sha256": "a6069fe57b139ce72327f31da69f2c8b8086a808fd553470c5612bafab8d944a"
   },
   "statistics": {
     "messages": 1,

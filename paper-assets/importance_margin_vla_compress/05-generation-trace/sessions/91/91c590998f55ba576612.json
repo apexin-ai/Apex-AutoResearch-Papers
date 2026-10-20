@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd38929-gpu3-spatial-deploy_20260524T140502_result.json",
     "occurrence": 1,
-    "bytes": 205,
-    "sha256": "09fdb8a70f10cfbf782fb42264b540c9cefc6dcb3c5f6a9f626639a2d8d7a1f4"
+    "bytes": 204,
+    "sha256": "6ca4cd524e078f34332406ceba8792301abd6f6509168cb0ec42140848964a3d"
   },
   "statistics": {
     "messages": 1,

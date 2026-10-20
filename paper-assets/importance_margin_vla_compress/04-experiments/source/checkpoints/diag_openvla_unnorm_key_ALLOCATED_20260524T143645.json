@@ -1,0 +1,27 @@
+{
+  "exp_id": "diag_openvla_unnorm_key",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T14:15:20.529Z",
+    "updated_at": "2026-05-24T14:36:44.053Z",
+    "spec": {
+      "command": "bash -c \"grep -n 'UNNORM_KEY\\|unnorm_key\\|norm_stats\\|libero_object\\|libero_goal\\|libero_spatial\\|libero_10' /root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py | head -20; echo 'DONE'\"",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/importance_margin_vla_compress/diag_openvla_unnorm_key.log",
+      "submitted_at": "2026-05-23T14:15:19.361Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-24T14:36:45.055294+00:00",
+  "trigger": "update_registry"
+}

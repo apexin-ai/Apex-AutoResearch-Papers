@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_deploy_e3_xvla_openvla_westd27271_20260523T073129_result.json",
     "occurrence": 1,
-    "bytes": 1526,
-    "sha256": "4110ada4439e633745642f468f3a3e0a4d735a54f6e5d384dd55680d8b492e22"
+    "bytes": 1525,
+    "sha256": "d6017e123b50cdeaec3beaaba930695232896f2b310e02a903b9b9d043f8c3bd"
   },
   "statistics": {
     "messages": 1,

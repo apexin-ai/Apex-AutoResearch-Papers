@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_kill-westd27271-duplicates_20260520T175127_result.json",
     "occurrence": 1,
-    "bytes": 661,
-    "sha256": "b76fbc63d46adc50e8e3bf536b14d7f647710fa8fe23aa388fc98c6be6259dbb"
+    "bytes": 660,
+    "sha256": "ecfb8bd142b2c709bfeabffb9ba2fc4f752cb56f9084603f908db5c04e964d41"
   },
   "statistics": {
     "messages": 1,

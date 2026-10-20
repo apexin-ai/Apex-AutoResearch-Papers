@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd41074-disk-cleanup-m64-restart_20260521T024216_result.json",
     "occurrence": 1,
-    "bytes": 939,
-    "sha256": "22df57b384d489ed76997797bc3824864ffcf01a1d15bf98b36b7c787857710c"
+    "bytes": 938,
+    "sha256": "90bc74e537155544c2d50fe657afc50125f1779ebdc4bdf927a48e9429467ec6"
   },
   "statistics": {
     "messages": 1,

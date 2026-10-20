@@ -1,0 +1,60 @@
+{
+  "exp_id": "eval_openvla_l2norm_k05_object_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "completed_at": "2026-05-21T12:10:30.050Z",
+    "created_at": "2026-05-21T07:25:01.420Z",
+    "hypothesis": "L2-norm based pruning at k=0.5 on OpenVLA libero_object will retain more task-critical parameters than random pruning, resulting in higher success rates due to importance-aware weight selection.",
+    "retry_count": 1,
+    "status": "RUNNING",
+    "updated_at": "2026-05-25T20:20:07.001Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "elapsed_minutes": 279.3,
+          "overall_SR": 0.392,
+          "per_task_SR": {
+            "alphabet_soup": 0.56,
+            "bbq_sauce": 0.32,
+            "butter": 0.12,
+            "chocolate_pudding": 0.44,
+            "cream_cheese": 0.14,
+            "ketchup": 0.7,
+            "milk": 0.5,
+            "orange_juice": 0.44,
+            "salad_dressing": 0.38,
+            "tomato_sauce": 0.32
+          },
+          "seed": 42,
+          "total_episodes": 500,
+          "total_successes": 196
+        }
+      }
+    },
+    "spec": {
+      "command": "python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.5 --suite libero_object --num_episodes 50 --seed 42",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "4339",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_l2norm_k05_object_seed42_v2.log",
+      "submitted_at": "2026-05-25T18:25:38.246Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/importance_margin_vla_compress",
+      "data_count": 50,
+      "model_name": "openvla-7b-finetuned-libero-object",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/openvla-7b-finetuned-libero-object",
+      "eval_data": "libero_object"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-25T20:20:08.205274+00:00",
+  "trigger": "update_registry"
+}

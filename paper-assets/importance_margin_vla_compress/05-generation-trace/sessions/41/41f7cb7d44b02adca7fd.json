@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check-unmonitored-exps_20260524T132454_result.json",
     "occurrence": 1,
-    "bytes": 818,
-    "sha256": "f20be6decddb0b273a37be157c162f36391f4ccaecbbfbf1ad19e6b97fda1b8b"
+    "bytes": 817,
+    "sha256": "df63cbc9f072f3c1e8058b13ad8ada32a8e9631c6a24cf3dd37c3bcd66724f3c"
   },
   "statistics": {
     "messages": 1,

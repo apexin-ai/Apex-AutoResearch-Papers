@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval_pi05_random_k07_goal_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T15:02:00.632Z",
+    "updated_at": "2026-05-23T17:58:31.287Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.7 --suite libero_goal --n_episodes 50 --seed 42 --gpu 0\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "224299",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_random_k07_goal_seed42_v2.log",
+      "submitted_at": "2026-05-23T15:40:16.672Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 8294.6,
+      "gpu_hours": 2.3
+    },
+    "hypothesis": "CPU RNG 修复后 π0.5 Random k=0.7 Goal 重跑。修复前 cqa1-33015 数据=80.6%，现用 westd-41074 统一服务器。消除跨硬件 RNG 污染，建立干净的单服务器 Goal Random 降解曲线。",
+    "metrics": {
+      "success_rate": 78.2,
+      "total_episodes": 500,
+      "total_successes": 391,
+      "source": "westd-41074 diag harvested, CPU RNG fixed"
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "N/A (eval only)",
+    "completed_at": "2026-05-23T17:58:31.287Z"
+  },
+  "timestamp": "2026-05-23T17:58:32.150478+00:00",
+  "trigger": "update_registry"
+}

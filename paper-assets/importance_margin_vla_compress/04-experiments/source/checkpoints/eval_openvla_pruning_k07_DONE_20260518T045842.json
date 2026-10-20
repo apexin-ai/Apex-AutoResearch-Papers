@@ -1,0 +1,48 @@
+{
+  "exp_id": "eval_openvla_pruning_k07",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T00:07:29.205Z",
+    "updated_at": "2026-05-18T04:58:42.562Z",
+    "hypothesis": "OpenVLA (7B) with random k=0.7 true_removal (keep 70% tokens) on LIBERO-Object. k=0.5 showed 74%→37.4% (graceful). k=0.7 retains more tokens so should degrade less — establishing the degradation curve slope for OpenVLA.",
+    "parent": "eval_openvla_pruning_k05",
+    "spec": {
+      "command": "nohup python -u eval_openvla_libero.py --mode random_prune --k_ratio 0.7 --suite libero_object --num_episodes 50 --seed 7 > eval_results/openvla_random_prune_k07_object.log 2>&1 &",
+      "server": "westd-27271",
+      "data_path": "/root/autodl-tmp/libero/libero_object",
+      "data_count": 500,
+      "model_name": "openvla-7b-libero-object",
+      "seed": 7,
+      "checkpoint_source": "/root/autodl-tmp/openvla-libero-object",
+      "eval_data": "libero_object_10tasks_50eps"
+    },
+    "conclusion": "success",
+    "log_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k07_object.log",
+    "checkpoint_path": "N/A (eval only)",
+    "metrics": {
+      "overall_sr": 0.49,
+      "total_successes": 245,
+      "total_episodes": 500,
+      "per_task_sr": {
+        "alphabet_soup": 0.74,
+        "cream_cheese": 0.18,
+        "salad_dressing": 0.64,
+        "bbq_sauce": 0.46,
+        "ketchup": 0.68,
+        "tomato_sauce": 0.62,
+        "butter": 0.1,
+        "milk": 0.4,
+        "chocolate_pudding": 0.32,
+        "orange_juice": 0.76
+      },
+      "elapsed_minutes": 260.7
+    },
+    "completed_at": "2026-05-18T04:58:42.562Z"
+  },
+  "timestamp": "2026-05-18T04:58:42.701012+00:00",
+  "trigger": "update_registry"
+}

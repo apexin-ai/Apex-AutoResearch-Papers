@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_fill_cqa1_idle_gpus_20260528T110757_result.json",
     "occurrence": 1,
-    "bytes": 815535,
-    "sha256": "c501f1efcb7e728bdf89de188be4b22833f9e3d323ae4a7b4f1bff7d9d11e2ae"
+    "bytes": 815534,
+    "sha256": "3045f95096e38e3c510f35a5e616aa49b54d990ecf6b6c90c9b07c02cad48e8a"
   },
   "statistics": {
     "messages": 1,

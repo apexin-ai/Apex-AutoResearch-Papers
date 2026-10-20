@@ -1,0 +1,63 @@
+{
+  "exp_id": "eval_imm100k_bypass",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:35:41.235Z",
+    "updated_at": "2026-05-17T06:10:36.056Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python eval_success_rate_libero.py --checkpoint checkpoints/libero_imm_twostage_fullft/final/checkpoint.pt --config configs/libero_imm_twostage_fullft.yaml --suite libero_object --mode baseline --num_episodes 50 --gpu 0 --output eval_results/imm_100k_bypass_object.json",
+      "server": "westd-27271",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "882658",
+      "log_path": "eval_results/imm_100k_bypass_object.json",
+      "submitted_at": "2026-05-17T03:40:48.744Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_object",
+      "data_count": 50,
+      "model_name": "libero_imm_twostage_fullft",
+      "seed": 0,
+      "checkpoint_source": "checkpoints/libero_imm_twostage_fullft/final/checkpoint.pt",
+      "eval_data": "libero_object",
+      "checkpoint_path": "checkpoints/libero_imm_twostage_fullft/final/checkpoint.pt",
+      "wall_clock_seconds": 8987.3,
+      "gpu_hours": 2.5
+    },
+    "hypothesis": "IMM Stage2 full-FT training preserves expert weight quality: bypass eval (baseline mode, no pruning) of the IMM 100K checkpoint should recover baseline SR ~44% if weights are intact, or show SR < 20% if Stage2 damaged expert weights.",
+    "notes": "2026-05-17 ~12:00 UTC: westd-27271 不可达。已知部分结果：6/10 tasks 完成时全部 0% SR。服务器断联前可能已完成全部 10 tasks。需重启后检查 eval_results/imm_100k_bypass_object.json。",
+    "conclusion": "negative",
+    "metrics": {
+      "overall_success_rate": 0,
+      "total_episodes": 500,
+      "total_successes": 0,
+      "wilson_ci_95": [
+        0,
+        0.0076
+      ],
+      "per_task_sr": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mode": "baseline_bypass",
+      "note": "Stage2 completely destroyed expert weights"
+    },
+    "completed_at": "2026-05-17T06:10:36.056Z"
+  },
+  "timestamp": "2026-05-17T06:10:36.134424+00:00",
+  "trigger": "update_registry"
+}

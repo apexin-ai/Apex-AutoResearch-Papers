@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check_v8b_exit_and_eval_20260516T065813_result.json",
     "occurrence": 1,
-    "bytes": 1456,
-    "sha256": "de992a0f3bceaa870a82b266454aa3fdb1f1e6a85be94b66014bd5d16d430847"
+    "bytes": 1455,
+    "sha256": "12102763253592fbb9007e3db504b8b1cc9417f1db43d367d329683393d87c1b"
   },
   "statistics": {
     "messages": 1,

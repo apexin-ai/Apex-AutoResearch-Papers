@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_cogact_connector_20260518T115150_result.json",
     "occurrence": 1,
-    "bytes": 2473,
-    "sha256": "774a9b65b8274599a7ad6a9dba6261b2189defaaae0d1e592ac4e0c0336fe35f"
+    "bytes": 2472,
+    "sha256": "7fc50f066c1381af4cfe440cb32d2cab483432b085d32a76e73e918d9c2e6ee4"
   },
   "statistics": {
     "messages": 1,

@@ -1810,7 +1810,7 @@ _source line 49 · 2026-05-28T22:33:59.968245+00:00_
 51-        setup_parts = [f"cd {shlex.quote(work_dir)}"]
 52-        setup_parts.append(f"export CUDA_VISIBLE_DEVICES={shlex.quote(cvd)}")
 53-        if wandb_key:
-54-            setup_parts.append(f"export WANDB_API_KEY={shlex.quote(wandb_key)}")
+54-            setup_parts.append(f"export WANDB_API_KEY=[REDACTED]}")
 55-        if env_activate:
 56-            setup_parts.append(env_activate)
 57-        setup = " && ".join(setup_parts)

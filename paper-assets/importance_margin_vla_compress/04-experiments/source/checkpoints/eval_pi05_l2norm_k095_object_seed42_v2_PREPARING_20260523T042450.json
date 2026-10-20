@@ -1,0 +1,77 @@
+{
+  "exp_id": "eval_pi05_l2norm_k095_object_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-22T00:30:25.866Z",
+    "updated_at": "2026-05-23T04:24:49.531Z",
+    "hypothesis": "π0.5 L2norm k=0.95 Object seed42 v2: 补充 registry 缺失数据点。k=0.9 L2=98.2%, k=0.85 L2=98.0% 形成 plateau，k=0.95 预期 ≥98.0%。v1 卡在 PREPARING 从未执行。",
+    "reproduce": {
+      "finished_at": "2026-05-22T01:35:48.127Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T01:35:57.662928+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "success_rate": 98.2,
+          "total_success": 491,
+          "total_episodes": 500,
+          "per_task_sr": [
+            96,
+            98,
+            96,
+            96,
+            96,
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          "prune_method": "l2norm",
+          "keep_ratio": 0.95,
+          "tokens_kept": "243/256",
+          "suite": "libero_object",
+          "seed": 42,
+          "eval_episodes_per_task": 50,
+          "wall_time_min": 63.2
+        }
+      }
+    },
+    "completed_at": "2026-05-22T01:40:56.708Z",
+    "parent": "eval_pi05_l2norm_k095_object_seed42",
+    "metrics": {
+      "success_rate": 98.2,
+      "total_successes": 491,
+      "total_episodes": 500,
+      "per_task_sr": [
+        96,
+        98,
+        96,
+        96,
+        96,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "tokens_kept": 243,
+      "tokens_total": 256,
+      "wall_time_min": 63.2
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T04:24:50.199778+00:00",
+  "trigger": "update_registry"
+}

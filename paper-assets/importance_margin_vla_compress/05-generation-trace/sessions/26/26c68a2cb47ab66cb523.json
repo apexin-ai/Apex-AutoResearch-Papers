@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_cqa1_kill_openvla_deploy_pi05_20260526T052450_result.json",
     "occurrence": 1,
-    "bytes": 674,
-    "sha256": "e629c72340ea35af40c71d50a3952f9e27c593e0d0c2bfc1f97cb2b7960897d4"
+    "bytes": 673,
+    "sha256": "507b9b5c79c6fff64922bfc3fa101c8facf96ddd53668f451199fcb20a3ed100"
   },
   "statistics": {
     "messages": 1,

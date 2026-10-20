@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_train_openvla_sc_m128_seed42_20260519T180322_result.json",
     "occurrence": 1,
-    "bytes": 612,
-    "sha256": "6a48ce2f6ca1387a152e219a2526f0b7d3532db71a047f69c959ae63f18c9a2c"
+    "bytes": 611,
+    "sha256": "ba00009dda15e2ff35d7528fa5cd4373c739a0283d27a15649b4ebcf7899847b"
   },
   "statistics": {
     "messages": 1,

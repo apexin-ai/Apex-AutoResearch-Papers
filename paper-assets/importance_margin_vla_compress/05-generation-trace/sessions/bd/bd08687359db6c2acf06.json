@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_bugfix_eval_pruning_audit_20260517T071259_result.json",
     "occurrence": 1,
-    "bytes": 1355,
-    "sha256": "c4789f575eceb74e3e8a20842115f4a78f7a11149d61aaee91d02d86819930de"
+    "bytes": 1354,
+    "sha256": "4023ff16b465d32408b9194f49e8337f3e8230812c342a242b95358d1fa48b9b"
   },
   "statistics": {
     "messages": 1,

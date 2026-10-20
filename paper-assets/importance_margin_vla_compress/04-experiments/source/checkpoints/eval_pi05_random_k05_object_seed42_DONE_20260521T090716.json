@@ -1,0 +1,54 @@
+{
+  "exp_id": "eval_pi05_random_k05_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "created_at": "2026-05-21T05:45:27.000Z",
+    "updated_at": "2026-05-21T09:07:16.526Z",
+    "hypothesis": "π0.5 (CV=0.055, linear projection) random k=0.5: D132 predicts random pruning effective for low-CV models. If SR remains high (>90%), confirms immune class even at 50% token removal. If SR drops, establishes pruning threshold for near-uniform importance distributions.",
+    "parent": "eval_pi05_baseline_object_seed42",
+    "spec": {
+      "server": "westd-41074",
+      "model_name": "pi0.5",
+      "seed": 42,
+      "data_path": "libero_object",
+      "data_count": 500,
+      "command": "python eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_object --seed 42",
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "LIBERO-Object (10 tasks × 50 episodes)",
+      "checkpoint_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_object.json",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_object.json"
+    },
+    "notes": "Original PID 899206 crashed (Network unreachable, tokenizer download failed). Restarted as PID 912501→912506 on GPU 0 at 15:21 with HF_HUB_OFFLINE=1 and HF_HOME=/root/autodl-tmp/.hf_cache.",
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 0.694,
+      "total_successes": 347,
+      "total_episodes": 500,
+      "elapsed_min": 94.9,
+      "per_task_sr": {
+        "alphabet_soup": 0.92,
+        "cream_cheese": 0.78,
+        "salad_dressing": 0.68,
+        "bbq_sauce": 0.6,
+        "ketchup": 0.6,
+        "tomato_sauce": 0.58,
+        "butter": 0.88,
+        "milk": 0.54,
+        "chocolate_pudding": 0.78,
+        "orange_juice": 0.58
+      },
+      "comparison": {
+        "baseline_sr": 0.982,
+        "l2norm_k05_sr": 0.334,
+        "random_vs_l2norm_gap": "+36.0pp",
+        "retention_rate": "70.7%"
+      }
+    },
+    "completed_at": "2026-05-21T09:07:16.526Z"
+  },
+  "timestamp": "2026-05-21T09:07:16.977998+00:00",
+  "trigger": "update_registry"
+}

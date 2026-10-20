@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd41074-gpu3-k085-object-postfix_20260524T022430_result.json",
     "occurrence": 1,
-    "bytes": 647,
-    "sha256": "0a71a9975b62d0f486c80b3e89f58099b968f726ac10529d056a8a32dac5da77"
+    "bytes": 646,
+    "sha256": "de7fd9c890f35f33267be949fcc25bfc7c6061a47f7c399596a4411b1907bcfc"
   },
   "statistics": {
     "messages": 1,

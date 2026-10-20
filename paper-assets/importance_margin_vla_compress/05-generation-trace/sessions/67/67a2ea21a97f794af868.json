@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_cqa1_cuda3_random_k095_s44_20260528T000528_result.json",
     "occurrence": 1,
-    "bytes": 539,
-    "sha256": "8d3e8bcca37f3302db6d78ce4eb410088b4443a8fbef12a3bc20fbfd5227cd8b"
+    "bytes": 538,
+    "sha256": "0f225855cddcbbcfc528a8c8cad38f339e69c97e6099a6f52a8b8fabb46d77de"
   },
   "statistics": {
     "messages": 1,

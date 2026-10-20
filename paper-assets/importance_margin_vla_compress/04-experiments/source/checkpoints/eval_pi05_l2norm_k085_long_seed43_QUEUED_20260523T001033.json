@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_long_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:09:31.035Z",
+    "updated_at": "2026-05-23T00:10:33.176Z",
+    "hypothesis": "π0.5 L2norm k=0.85 Long seed43: L2norm k=0.85 Long seed42 在 cqa1 运行中。seed43 提供 multi-seed 验证。L2norm k=0.7 seed42=60.0%, k=0.95 seed42=已有数据。k=0.85 填充曲线 knee。"
+  },
+  "timestamp": "2026-05-23T00:10:33.830508+00:00",
+  "trigger": "update_registry"
+}

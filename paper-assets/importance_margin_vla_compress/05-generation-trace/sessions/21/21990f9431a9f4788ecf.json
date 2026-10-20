@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_8h_long_running_20260526T135542_result.json",
     "occurrence": 1,
-    "bytes": 1229,
-    "sha256": "b4b6e54fe8a664c3a3d69f90283565fda907a91044c0e71c5330d58bd8db1e40"
+    "bytes": 1228,
+    "sha256": "f29fb4c362afd065a51efc87527c6c5800ac188b317a50cb4cb051024a1457c5"
   },
   "statistics": {
     "messages": 1,

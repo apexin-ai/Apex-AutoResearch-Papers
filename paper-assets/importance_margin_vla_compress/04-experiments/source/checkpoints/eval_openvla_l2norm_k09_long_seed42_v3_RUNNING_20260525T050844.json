@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_openvla_l2norm_k09_long_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T04:50:16.600Z",
+    "updated_at": "2026-05-25T05:08:43.018Z",
+    "hypothesis": "OpenVLA L2norm k=0.9 Long v3 — crossover 表 Long 行 L2norm 数据点",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.9 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10",
+      "server": "westd-38929",
+      "gpu_ids": [
+        "cuda:3"
+      ],
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "openvla-7b-finetuned-libero-10",
+      "seed": 42,
+      "checkpoint_source": "openvla-7b-finetuned-libero-10",
+      "eval_data": "libero_10 (Long, 10 tasks x 50 episodes)",
+      "log_path": "/root/autodl-tmp/logs/eval_openvla_l2norm_k09_long_seed42_v3.log",
+      "checkpoint_path": "/root/autodl-tmp/models/openvla-7b-finetuned-libero-10"
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-25T05:08:44.074877+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_scp_divergence_data_20260517T131308_result.json",
     "occurrence": 1,
-    "bytes": 311,
-    "sha256": "a917cd462ae00794efc342b672e33dfd2f4f9996186c030d8b95e5e61ae755c2"
+    "bytes": 310,
+    "sha256": "d34509108e50e545d24fc96a5091e9c4a8837d547ac3ac6fd9cf1335bfb29414"
   },
   "statistics": {
     "messages": 1,

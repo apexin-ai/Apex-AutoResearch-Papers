@@ -1,0 +1,27 @@
+{
+  "exp_id": "eval_pi05_attn_k095_long_seed43_strict_w41",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T14:55:56.031Z",
+    "updated_at": "2026-05-27T14:57:34.872Z",
+    "hypothesis": "π0.5 Attn k=0.95 Long strict seed43 — seed42=78.4% 的 seed 复制，验证 k=0.95 三方法排序(L2norm 86.2% > Attn 78.4% > Random 60.6%)的 Attn 端 error bar（D268 claim 验证）",
+    "parent": "eval_pi05_attn_k095_long_seed42_strict_w41_v2",
+    "spec": {
+      "server": "westd-41074",
+      "gpu": "cuda:1",
+      "data_path": "/root/autodl-tmp/importance_margin_vla_compress",
+      "data_count": 500,
+      "model_name": "pi0.5",
+      "seed": 43,
+      "checkpoint_source": "pi0.5 pretrained",
+      "eval_data": "libero_10 (Long)",
+      "checkpoint_path": "N/A (eval only)"
+    }
+  },
+  "timestamp": "2026-05-27T14:57:37.383870+00:00",
+  "trigger": "update_registry"
+}

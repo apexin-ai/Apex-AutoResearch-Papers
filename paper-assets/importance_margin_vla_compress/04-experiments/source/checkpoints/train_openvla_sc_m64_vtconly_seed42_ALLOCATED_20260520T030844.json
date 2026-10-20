@@ -1,0 +1,16 @@
+{
+  "exp_id": "train_openvla_sc_m64_vtconly_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:08:25.152Z",
+    "updated_at": "2026-05-20T03:08:44.695Z",
+    "hypothesis": "OpenVLA VTC-only M=64 (256→64 tokens, 75% compression). M-sweep data point between M=96 and M=32. If M=64 SR > M=32 SR, confirms monotonic degradation for MLP-projector VTC re-encoding at higher compression ratios on OpenVLA.",
+    "parent": "train_openvla_sc_m128_vtconly_seed42"
+  },
+  "timestamp": "2026-05-20T03:08:44.976913+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_attention_visualization_v2_20260517T125037_result.json",
     "occurrence": 1,
-    "bytes": 1114,
-    "sha256": "b80dea0210f01a3e273d6460ff1be4724148346b1b572413dddfe04f0f84ef01"
+    "bytes": 1113,
+    "sha256": "b0d2b78a9d91f639221fc025c8001fd095c04df9416ae9e58867bba91c821d31"
   },
   "statistics": {
     "messages": 1,

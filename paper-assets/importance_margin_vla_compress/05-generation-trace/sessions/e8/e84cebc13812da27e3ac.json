@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_audit_attn_strict_prune_diag_20260527T125459_result.json",
     "occurrence": 1,
-    "bytes": 883,
-    "sha256": "b69fb01c00ee305470ca5148102422ec1210918b0407a94196f6d089457a56a4"
+    "bytes": 882,
+    "sha256": "5303ae6d830ffbad977baf98db01fa0ac09b6222594d80ad8b57e7aa539548ad"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1_goal_l2norm_k095_20260522T182451_result.json",
     "occurrence": 1,
-    "bytes": 1250,
-    "sha256": "7f163b7c2efa3553ee039ba37e50dd68129c03b9ccaba84098c9cffbec12c4f3"
+    "bytes": 1249,
+    "sha256": "b032430d6d48bad14ed5b7dbda8a650bbf02b36ae05c968fa9ea749c709467d0"
   },
   "statistics": {
     "messages": 1,

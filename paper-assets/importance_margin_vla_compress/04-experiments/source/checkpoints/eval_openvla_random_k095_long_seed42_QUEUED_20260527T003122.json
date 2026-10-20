@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_openvla_random_k095_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T00:29:13.098Z",
+    "updated_at": "2026-05-27T00:31:21.235Z",
+    "hypothesis": "OpenVLA Random k=0.95 Long seed42 — Long curve 顶端三方法都缺。Random k=0.9=46.8%。k=0.95 补全 Long cliff curve 起始段",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --seed 42 --gpu 0\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "32175",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42.log",
+      "submitted_at": "2026-05-27T00:29:27.567Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-27T00:31:22.512360+00:00",
+  "trigger": "update_registry"
+}

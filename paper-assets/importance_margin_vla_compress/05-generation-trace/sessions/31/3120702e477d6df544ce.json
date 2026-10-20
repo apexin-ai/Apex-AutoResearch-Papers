@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_gpu-status-scan-all-servers_20260524T005448_result.json",
     "occurrence": 1,
-    "bytes": 1544,
-    "sha256": "f8370636b993b97e973727f47ee4eb043e5cafa1c32eed51e223b6aaf29ccdc6"
+    "bytes": 1543,
+    "sha256": "9b9c45e2b0f4e2b889b7a21e8beefa30fc5fcadc00a49fd40e07fe23d53d51a5"
   },
   "statistics": {
     "messages": 1,

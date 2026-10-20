@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_kill-westd38929-gpu1-deploy-seed43_20260523T203159_result.json",
     "occurrence": 1,
-    "bytes": 453,
-    "sha256": "6c83fb4cb11efd0172962140d25901cb55437f306996b010b3d390de2bb206ac"
+    "bytes": 452,
+    "sha256": "fb172030aa364ae9b1fd4aa76ac7f5136d4edbde22a95a5384210e9ba878f8ab"
   },
   "statistics": {
     "messages": 1,

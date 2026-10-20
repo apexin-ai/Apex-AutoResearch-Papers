@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_deploy-cqa1-spatial-k05_20260524T070705_result.json",
     "occurrence": 1,
-    "bytes": 541,
-    "sha256": "a452b19215640244c39c20b4b54227a09869fca4fb92ab9dcc75dcf30229f162"
+    "bytes": 540,
+    "sha256": "4ffdb33804336a9c7264fd9a3276f0c22f18ee8ca2c88334f86e6f224f23fca1"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_westd41074_kill_dup_and_spatial_s43_20260524T205332_result.json",
     "occurrence": 1,
-    "bytes": 322,
-    "sha256": "2cc1a8f0d1223b23ccc10def3c4e8d610604945213bfa9ca077a274faa2c0846"
+    "bytes": 321,
+    "sha256": "45c0113a087935fea7f081116102e1ef22078275a6b024c0cea927fc4a656a0f"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_cqa1_gpu_state_and_restart_baseline_20260527T060137_result.json",
     "occurrence": 1,
-    "bytes": 1640,
-    "sha256": "06e2edaec9c0402868fd49b48bcdabe1eb6bee26251b0c3510555096fc75a387"
+    "bytes": 1639,
+    "sha256": "2b9e49168ea6fd5b1db6b03db8e5679c05389646b56381c8da62d22c23ad6494"
   },
   "statistics": {
     "messages": 1,

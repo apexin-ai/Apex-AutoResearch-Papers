@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_pi05_zeromask_l2norm_k09_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T18:18:56.378Z",
+    "updated_at": "2026-05-25T18:18:56.378Z"
+  },
+  "timestamp": "2026-05-25T18:18:58.360443+00:00",
+  "trigger": "update_registry"
+}

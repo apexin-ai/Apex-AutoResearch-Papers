@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_westd41074_gpu23_correct_deploy_20260526T003618_result.json",
     "occurrence": 1,
-    "bytes": 1687,
-    "sha256": "7d3ea8670a63e51390305e0e1add8fb1bd973f33548ef167d95319073196382a"
+    "bytes": 1686,
+    "sha256": "77680ad2f2f90088603aae486ec4e30a647b4f3930a67f601b0bcb48c8616157"
   },
   "statistics": {
     "messages": 1,

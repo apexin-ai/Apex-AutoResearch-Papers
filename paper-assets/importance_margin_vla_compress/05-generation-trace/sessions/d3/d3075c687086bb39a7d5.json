@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_eval_pi05_attn_k095_long_seed42_strict_w41_20260527T110319_result.json",
     "occurrence": 1,
-    "bytes": 683,
-    "sha256": "0b0123ef8c079772e72b9ea1811391cecf25b9251dd906840f8719a8cbd0ea94"
+    "bytes": 682,
+    "sha256": "ce4dd5ca3e8e610e734407fc12b180880e7fb5ffb3134504ec273a5154d191d4"
   },
   "statistics": {
     "messages": 1,

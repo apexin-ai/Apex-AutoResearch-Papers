@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_research_vit_pruning_gap_20260522T230243_result.json",
     "occurrence": 1,
-    "bytes": 983,
-    "sha256": "0d7df94dfc33dca997872e1e687dcde9a2927c207b2770d29aaa979e188fa763"
+    "bytes": 982,
+    "sha256": "17b9df95e804904d0c6d68ece350cb69599e5f974bd62d82a78ad84506cda048"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd27271-m128-lora-merge-fix_20260521T061537_result.json",
     "occurrence": 1,
-    "bytes": 494,
-    "sha256": "cd352c70b53323ec2c522abb1b650ed0c78c5ffb972b09f4385cfee0c21862cc"
+    "bytes": 493,
+    "sha256": "9405d0223a7697cea26c68d643193c1f7510605a0a9e28adfccaf650d0e51f7e"
   },
   "statistics": {
     "messages": 1,

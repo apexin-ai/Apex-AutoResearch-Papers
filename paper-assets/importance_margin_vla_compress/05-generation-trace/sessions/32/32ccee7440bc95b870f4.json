@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_verify-gate-analyzer-compat_20260515T202705_result.json",
     "occurrence": 1,
-    "bytes": 823,
-    "sha256": "b439971cfe27acc0cbef2dcdf1f44a4d697dcd677a4135453de8fb25a7ad63a7"
+    "bytes": 822,
+    "sha256": "d51dddcade81e060a7851120009e71c77a3bdad05acfbc15e3fc63a0c9187bda"
   },
   "statistics": {
     "messages": 1,

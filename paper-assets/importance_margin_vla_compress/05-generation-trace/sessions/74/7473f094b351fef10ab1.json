@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_cqa1_kill_and_deploy_attn_k05_20260526T173606_result.json",
     "occurrence": 1,
-    "bytes": 233,
-    "sha256": "f35c0d2d9e03e9ec9f28b0b6ae4b76d663ae8cb14ce275c8cc39d10f9996afb0"
+    "bytes": 232,
+    "sha256": "e6fef5cf651aca6ab57b03c5e5692b7a3dcc4d04443fde03fef63f4d4ca9cfe0"
   },
   "statistics": {
     "messages": 1,

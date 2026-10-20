@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_xvla-libero-pruning-eval_20260520T051640_result.json",
     "occurrence": 1,
-    "bytes": 2350487,
-    "sha256": "77029e3a3091eed8081d0a976a7358a14a28cc94b6b70597f37a5ba9e48e0165"
+    "bytes": 2350486,
+    "sha256": "2948444e9d44bb879732baf3e7e97bc35f7de8a3401840a27f8a725f78caca1c"
   },
   "statistics": {
     "messages": 1,
@@ -26,13 +26,32 @@
     {
       "number": 0,
       "boundary": "no_preceding_user_message_recorded",
-      "message_count": 1,
-      "chunks": [
+      "messages": [
         {
-          "path": "7b3a2103401fb7665b66-part-0001.json",
-          "message_count": 1
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2350506,
+                "serialized_sha256": "55f157ed97b6a86b077005f731271e97b0270015ab8504a076138572ed82a6a6",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
         }
-      ]
+      ],
+      "message_count": 1
     }
   ],
   "readable_path": "readable/task-results/code-xvla-libero-pruning-eval.md"

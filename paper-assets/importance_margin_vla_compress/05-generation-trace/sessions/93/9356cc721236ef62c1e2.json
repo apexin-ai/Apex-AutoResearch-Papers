@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_verify-running-register-crons_20260521T223320_result.json",
     "occurrence": 1,
-    "bytes": 1227,
-    "sha256": "19a77b0c3b9dc6725bbd85d6e8e9413a3730add728ed0a2845b7f372dd063aed"
+    "bytes": 1226,
+    "sha256": "270c7dc0a125ccaf1001f6edbbffcd34a452b549d9b94989a307267c09fcea73"
   },
   "statistics": {
     "messages": 1,

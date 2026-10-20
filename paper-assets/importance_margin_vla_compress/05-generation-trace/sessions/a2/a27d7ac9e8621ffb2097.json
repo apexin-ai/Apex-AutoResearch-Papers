@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_l2norm-k095-spatial-westd38929-gpu1_20260522T012954_result.json",
     "occurrence": 1,
-    "bytes": 256,
-    "sha256": "3d57d918d509e5cdf5cb599229f48808f7e10b7f83c807ad87640b8db8545721"
+    "bytes": 255,
+    "sha256": "a927318f313ec1297ad4739dca051a038ccc10d71bcc2b498bdfae6943a7d219"
   },
   "statistics": {
     "messages": 1,

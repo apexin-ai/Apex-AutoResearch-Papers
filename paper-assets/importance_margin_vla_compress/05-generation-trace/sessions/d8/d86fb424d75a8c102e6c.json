@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_diagnose_idle_gpus_batch_20260526_20260526T144549_result.json",
     "occurrence": 1,
-    "bytes": 1028,
-    "sha256": "522084f1445e74c7cf6682abfa5fbc0d3cc08cb800eba1c09ced4ff1c3690d66"
+    "bytes": 1027,
+    "sha256": "fcc86228518fc4f16816eb1169f169bbb0fd88b223ae03d4e843be872117c3a7"
   },
   "statistics": {
     "messages": 1,

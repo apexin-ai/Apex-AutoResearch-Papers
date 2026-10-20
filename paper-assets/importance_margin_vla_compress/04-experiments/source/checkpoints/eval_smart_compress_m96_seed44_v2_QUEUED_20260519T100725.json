@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_smart_compress_m96_seed44_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T10:06:47.264Z",
+    "updated_at": "2026-05-19T10:07:25.460Z",
+    "hypothesis": "Smart Compress M=96 seed=44 eval on LIBERO-Object (50 episodes/task, matching seed42 protocol). Prior seeds: seed42=52.6%, seed43=58.2%. If seed44 yields ~55-58%, confirms non-monotonic M-curve dip at M=96 is robust.",
+    "parent": "train_smart_compress_m96_seed44"
+  },
+  "timestamp": "2026-05-19T10:07:25.662198+00:00",
+  "trigger": "update_registry"
+}

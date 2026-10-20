@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_harvest_westd38929_spatial_20260522T122906_result.json",
     "occurrence": 1,
-    "bytes": 615,
-    "sha256": "c75f8533597c10502acdeb4deb84de1fe43e6a9f61408221b5d195efaa48c726"
+    "bytes": 614,
+    "sha256": "2c5b7ff36941e2f793bdf63d49e1d4ad4573f7b93b836f9547450abf6f1b01ef"
   },
   "statistics": {
     "messages": 1,

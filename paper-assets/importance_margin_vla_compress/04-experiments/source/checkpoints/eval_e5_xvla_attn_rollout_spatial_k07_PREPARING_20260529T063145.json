@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval_e5_xvla_attn_rollout_spatial_k07",
+  "project": "importance_margin_vla_compress",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "conclusion": "killed",
+    "created_at": "2026-05-23T12:57:09.259Z",
+    "hypothesis": "E5 attention_rollout Spatial k=0.7: k=0.5 rollout Spatial=92.8%（3 种模式中最优）。k=0.7 保留更多 token，预测 ≥95%。验证 attention pruning 在不同 keep ratio 下的 degradation curve。",
+    "metrics": {
+      "ci_95": [
+        90.4,
+        94.9
+      ],
+      "success_rate": 93,
+      "successes": 465,
+      "total": 500
+    },
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "command": "bash -c \"source /etc/network_turbo 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_xvla_attention_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_spatial --keep_ratio 0.7 --mode attention_rollout --num_episodes 50 --seed 42 --gpu 0\"",
+      "gpu": [
+        "cuda:3"
+      ],
+      "log_path": "~/runs/importance_margin_vla_compress/eval_e5_xvla_attn_rollout_spatial_k07.log",
+      "pid": "599877",
+      "server": "westd-38929",
+      "submitted_at": "2026-05-23T12:57:08.195Z",
+      "submitted_via": "submit_training_job"
+    },
+    "status": "PREPARING",
+    "updated_at": "2026-05-29T06:31:43.611Z"
+  },
+  "timestamp": "2026-05-29T06:31:45.374570+00:00",
+  "trigger": "update_registry"
+}

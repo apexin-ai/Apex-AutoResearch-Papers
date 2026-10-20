@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_openvla_entropy_real_libero_20260518T051251_result.json",
     "occurrence": 1,
-    "bytes": 1122,
-    "sha256": "c14a295d930beb562bc9efd09c97ccb210a1603b8e2efb09f281fc0e2523df59"
+    "bytes": 1121,
+    "sha256": "92127dd347cda52628ba3a49fb8208fa2b04ffcec8c0de0a8cfc543b0aad7e38"
   },
   "statistics": {
     "messages": 1,

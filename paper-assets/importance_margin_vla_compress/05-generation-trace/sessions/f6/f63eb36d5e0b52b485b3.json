@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_p0-2-fix-randperm_20260523T142628_result.json",
     "occurrence": 1,
-    "bytes": 1248,
-    "sha256": "d125178349c0096c4b97be46e7ad8280911a3ad0dafb6decde8b8a93eccf45af"
+    "bytes": 1247,
+    "sha256": "139689c38e74e19467020e3fb7b70f7900a4b01d227bbb1d915353eb24a928b2"
   },
   "statistics": {
     "messages": 1,

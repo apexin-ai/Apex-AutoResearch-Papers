@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy-westd38929-gpu023-xvla_20260523T235350_result.json",
     "occurrence": 1,
-    "bytes": 857,
-    "sha256": "85e5e9623a16ce7789e2a5c5a65e7ac5b0fad271f3c30d3c24a0879c1c82e29e"
+    "bytes": 856,
+    "sha256": "48139b0b41c09b24ec79356be02fc06739aeb873a2d455e29ebee98b5996fe87"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_cqa1_gpu2_transformers_20260527T074123_result.json",
     "occurrence": 1,
-    "bytes": 408,
-    "sha256": "1a6353d66f57d0cc6f624fca39d94ecf815ab15c41c959f4b2c6d48f4cbaea6c"
+    "bytes": 407,
+    "sha256": "cab794d50d63f007f9cdde7f5c9711f9efe811715d3a774cb3efc340ea122ab5"
   },
   "statistics": {
     "messages": 1,

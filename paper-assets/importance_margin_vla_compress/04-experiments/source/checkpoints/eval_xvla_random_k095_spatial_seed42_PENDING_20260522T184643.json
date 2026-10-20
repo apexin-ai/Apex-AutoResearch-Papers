@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_xvla_random_k095_spatial_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:46:35.052Z",
+    "updated_at": "2026-05-22T18:46:42.408Z",
+    "hypothesis": "X-VLA Random k=0.95 Spatial: random baseline for Spatial pruning. X-VLA Spatial baseline=78.4%."
+  },
+  "timestamp": "2026-05-22T18:46:43.000354+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_mlp_adapter_control",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T12:00:15.803Z",
+    "updated_at": "2026-05-19T12:00:30.550Z",
+    "hypothesis": "MLP+average-pooling compressor (no cross-attention, matched ~22M params) will achieve significantly lower success rate than VisionTokenCompressor (cross-attention) at M=32 on LIBERO-Object, proving that cross-attention re-encoding mechanism is critical for effective vision token compression, not merely parameter capacity.",
+    "parent": "train_mlp_adapter_control"
+  },
+  "timestamp": "2026-05-19T12:00:30.761292+00:00",
+  "trigger": "update_registry"
+}

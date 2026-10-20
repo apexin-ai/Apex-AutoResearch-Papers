@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_analysis_pi05_l2norm_k03_spatial_20260521T210255_result.json",
     "occurrence": 1,
-    "bytes": 1782,
-    "sha256": "5843eb6fc8e1cb96c1e4ce1529e27892590d3334eec0b3a96512583f743b0be5"
+    "bytes": 1781,
+    "sha256": "d0cf56f8c35516ebad750bd16d41d072621a8cd320acfe796c58ae397c09fe5f"
   },
   "statistics": {
     "messages": 1,

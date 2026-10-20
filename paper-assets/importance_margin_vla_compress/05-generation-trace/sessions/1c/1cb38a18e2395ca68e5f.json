@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_deploy_spatial_westd41074_20260522T015613_result.json",
     "occurrence": 1,
-    "bytes": 786,
-    "sha256": "e211f33895f2612f569e9e91e953cca19cbdf71963d124b445009950a4fcceee"
+    "bytes": 785,
+    "sha256": "afab7ef1c28f08bab9b9d5628d01536d2f2c983ba072e46c446cd3b5f288d9e7"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_openvla_zeromask_random_k09_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T18:24:43.230Z",
+    "updated_at": "2026-05-25T19:35:40.946Z",
+    "hypothesis": "OpenVLA zero_mask + random k=0.9 Object — hard-prune random k=0.9=62.8%。如果 zero_mask ≈ hard-prune，则信息丢失是主因。如果 zero_mask >> hard-prune，则位置扰动是主因",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYTHONUNBUFFERED=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python3 eval_openvla_zeromask_libero.py --mode random_prune --ablation_mode zero_mask --k_ratio 0.9 --suite libero_object --num_episodes 50 --seed 42 --output results/openvla_zeromask_random_k09_object_seed42.json > /tmp/eval_openvla_zeromask_random_k09_object_seed42.log 2>&1\"",
+      "server": "westd-41074",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "4675",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_openvla_zeromask_random_k09_object_seed42.log",
+      "submitted_at": "2026-05-25T18:25:44.124Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-25T19:35:43.067391+00:00",
+  "trigger": "update_registry"
+}

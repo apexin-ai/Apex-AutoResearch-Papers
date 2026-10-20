@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_fix_cqa1_gpu2_model_fix_20260526T042013_result.json",
     "occurrence": 1,
-    "bytes": 91,
-    "sha256": "a5347742a2331389d7827911a44c45de2af2803a66c650792d2cbedc31aa7912"
+    "bytes": 90,
+    "sha256": "b7dda5836d65cc0d07fe1cd049ef5418eedf979a3f27ee67ea3568f3662dd187"
   },
   "statistics": {
     "messages": 1,

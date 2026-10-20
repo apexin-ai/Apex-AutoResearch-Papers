@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_research_pi05-oft-compatibility_20260521T011136_result.json",
     "occurrence": 1,
-    "bytes": 6187,
-    "sha256": "cfd45e1ee27ba423f7aecda737653a87dd37dccbcea04dc539c0bbb25785c349"
+    "bytes": 6186,
+    "sha256": "f0ade2cff491c7a5fcaf6ae527028bda399f46d106e5c8467ea85b3136a9e601"
   },
   "statistics": {
     "messages": 1,

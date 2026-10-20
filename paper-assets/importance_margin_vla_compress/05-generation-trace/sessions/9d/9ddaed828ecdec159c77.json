@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_check-cqa1-k085-seed43-and-gpu-status_20260520T220833_result.json",
     "occurrence": 1,
-    "bytes": 988,
-    "sha256": "03ce8fb480bebb1984f9b8c69e0231d7e8103f19de7b70ccf74d188ae9caeb64"
+    "bytes": 987,
+    "sha256": "5f3d0a4a58715c4cb3002b0ef7b17b97b47fb8ca33ee5d2e698cb7e6c75c3e24"
   },
   "statistics": {
     "messages": 1,

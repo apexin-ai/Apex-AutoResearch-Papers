@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_smart_compress_m128_seed44_20260519T100337_result.json",
     "occurrence": 1,
-    "bytes": 552,
-    "sha256": "93ee3af2825ec221a0b89a37ff4e7b687f3dfc267e5e3cebf1c23666316cb5aa"
+    "bytes": 551,
+    "sha256": "407711ac0a705a62d8bdd8826fd9f2244bd3bd8f0fe0c742121aa1bced8c3fcd"
   },
   "statistics": {
     "messages": 1,

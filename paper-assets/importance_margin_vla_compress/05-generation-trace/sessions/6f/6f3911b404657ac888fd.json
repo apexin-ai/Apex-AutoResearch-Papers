@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_code_libero_rollout_verify_20260516T192250_result.json",
     "occurrence": 1,
-    "bytes": 1807,
-    "sha256": "2763443b52d1369f97d6cbf65e64a1a6cc4deab1f7a202a7d57dfc019fa08c8b"
+    "bytes": 1806,
+    "sha256": "87c7682c63f53a77039df8a5e182c2afaac45a3589b846fcf044faa507d940de"
   },
   "statistics": {
     "messages": 1,

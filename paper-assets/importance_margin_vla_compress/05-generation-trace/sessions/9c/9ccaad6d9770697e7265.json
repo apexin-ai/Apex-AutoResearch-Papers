@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_westd41074-pi05-random-k05_20260521T065724_result.json",
     "occurrence": 1,
-    "bytes": 587,
-    "sha256": "90f83f5829aaaef4202aae4bfc48ce965ef3eb6ec2483e46ba43393d3eea8057"
+    "bytes": 586,
+    "sha256": "78e8080870b3735faf50a01c35454d500ef3b3a92b894f923428df31b096a128"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_eval_vtc_m32_spatial_20260519T200623_result.json",
     "occurrence": 1,
-    "bytes": 800,
-    "sha256": "bdf145b7a82abae79098d31fafdf262e40a6151f8b085cc4ec1e193a3ceeab06"
+    "bytes": 799,
+    "sha256": "8c69c484a61d88b9b586bba9743d71689373ad7555e9ba63b43ba905cf6155c0"
   },
   "statistics": {
     "messages": 1,

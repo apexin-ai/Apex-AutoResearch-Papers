@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_ops_sync-w38-deploy-attn-k05-s43_20260527T182315_result.json",
     "occurrence": 1,
-    "bytes": 319,
-    "sha256": "7d7c7ff6e191e0ee5d6dadce3d30b0ddc965d163016bd89484e2e045c9b8ee13"
+    "bytes": 318,
+    "sha256": "01708354dca72b75e6770601387b29e977cde797b523eb8df14ba7bc3c277f0d"
   },
   "statistics": {
     "messages": 1,

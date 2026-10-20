@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_object_seed43_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T00:32:21.956Z",
+    "updated_at": "2026-05-25T00:34:46.159Z",
+    "hypothesis": "π0.5 L2norm k=0.85 Object seed43 postfix — cliff zone k=0.85 dual-seed validation for Object suite. seed42 L2norm k=0.85 Object = 98.0%. 验证 L2norm 在 cliff zone 的跨 seed 稳定性。"
+  },
+  "timestamp": "2026-05-25T00:34:47.336596+00:00",
+  "trigger": "update_registry"
+}

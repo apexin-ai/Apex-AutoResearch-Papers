@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval_xvla_prune_k03_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:50:01.675Z",
+    "updated_at": "2026-05-20T17:11:27.523Z",
+    "hypothesis": "X-VLA L2 norm pruning at k=0.3 with seed=43. Seed42=23.0%. If seed43 ≈ 23%, confirms severe degradation at extreme compression is consistent across seeds.",
+    "spec": {
+      "command": "python -u eval_xvla_pruning_libero.py --keep_ratio 0.3 --seed 43 --suite libero_object --num_episodes 50",
+      "server": "cqa1-33015",
+      "gpu": "cuda:3",
+      "pid": 344867,
+      "data_path": "libero_object",
+      "data_count": 500,
+      "model_name": "X-VLA-Libero",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/X-VLA-Libero",
+      "eval_data": "libero_object",
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k03_libero_object_seed43.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T17:11:27.523Z"
+  },
+  "timestamp": "2026-05-20T17:11:27.840471+00:00",
+  "trigger": "update_registry"
+}

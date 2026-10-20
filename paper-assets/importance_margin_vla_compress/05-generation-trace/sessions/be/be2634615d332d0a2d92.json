@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz.parts/",
     "member": "logs/workers/worker_paper_page_count_surgery_20260528T182642_result.json",
     "occurrence": 1,
-    "bytes": 1167,
-    "sha256": "6fea10998667f81ea4907b1b8eaa3d094ef0bddf61d50ff0b26eace2768dc3b9"
+    "bytes": 1166,
+    "sha256": "29564b2c82bb52f73796d21a0c98123be572135392fdd867a2a7f9f7660c1371"
   },
   "statistics": {
     "messages": 1,

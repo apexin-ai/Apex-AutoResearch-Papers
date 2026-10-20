@@ -1,0 +1,42 @@
+{
+  "exp_id": "eval_pi05_l2norm_k095_goal_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T15:49:27.316Z",
+    "updated_at": "2026-05-23T18:08:58.191Z",
+    "spec": {
+      "command": "eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_goal --n_episodes 50 --seed 42 --gpu 0",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "872508",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k095_goal_seed42_v2.log",
+      "submitted_at": "2026-05-23T15:49:26.137Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "model_name": "pi0.5",
+      "seed": 42,
+      "wall_clock_seconds": 8372.1,
+      "gpu_hours": 2.33
+    },
+    "hypothesis": "CPU RNG 修复后 π0.5 L2norm k=0.95 Goal。L2norm 在 Object 上表现稳定（无 cliff），验证 Goal 套件上 L2norm 是否也无 cliff，与 Random 对比确认 importance-based pruning 的优势。",
+    "metrics": {
+      "success_rate": 89.4,
+      "total_episodes": 500,
+      "source": "SSH log harvest by diagnostic worker"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A (eval only)",
+    "completed_at": "2026-05-23T18:08:58.191Z"
+  },
+  "timestamp": "2026-05-23T18:08:59.119106+00:00",
+  "trigger": "update_registry"
+}
