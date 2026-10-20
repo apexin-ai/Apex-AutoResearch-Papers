@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "5839456693ab850f92d0",
+  "project": "recursive_gen_depth_est--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: recursive_gen_depth_est ## 运行环境 - 服务器名: gpu-6000pro-2 - SSH 账户: root（调用 ssh_execute / submit_tra",
+  "task_key": "1bf9891f-97f3-40e6-82ea-9f40261e2c8e",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/1bf9891f-97f3-40e6-82ea-9f40261e2c8e.jsonl",
+    "occurrence": 1,
+    "bytes": 644765,
+    "sha256": "dc76ba84253b763a593d46e4e666d4f77122fcede18ed5b82a58905bd849b45e"
+  },
+  "statistics": {
+    "messages": 361,
+    "user_turns": 1,
+    "tool_calls": 106,
+    "roles": {
+      "record": 59,
+      "user": 1,
+      "assistant": 89,
+      "tool_call": 106,
+      "tool_result": 106
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "5839456693ab850f92d0-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 359,
+      "chunks": [
+        {
+          "path": "5839456693ab850f92d0-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "5839456693ab850f92d0-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5839456693ab850f92d0-part-0003.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-recursive-gen-depth-est-gpu-6000pro-2-ssh-root-ssh-execute-sub-copy-2.md"
+}

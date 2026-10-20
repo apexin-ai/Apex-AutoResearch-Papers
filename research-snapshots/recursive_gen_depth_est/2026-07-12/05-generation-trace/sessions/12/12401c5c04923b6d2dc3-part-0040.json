@@ -1,0 +1,321 @@
+{
+  "schema_version": "1.0",
+  "session_id": "12401c5c04923b6d2dc3",
+  "rounds": [
+    {
+      "number": 299,
+      "messages": [
+        {
+          "source_line": 6763,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Prepare paper submission and verify infrastructure",
+                "sessionId": "c2859d15-42da-4b70-9484-b6a50be64d5d"
+              }
+            }
+          ],
+          "id": "event-006763"
+        },
+        {
+          "source_line": 6764,
+          "timestamp": "2026-05-25T20:33:06.722Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TGGDuZ2sKuWrButJ9qLCkt",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/audit_appendix.md",
+                "offset": 279,
+                "limit": 200
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7857064f-5e12-45e4-b855-a799dbcffb62",
+            "isSidechain": false,
+            "requestId": "req_011CbPvZQ6CiWhW51uyRnj64",
+            "type": "assistant",
+            "uuid": "0bac7259-7e32-44e0-aa02-66f451d57852",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_7e0c4ba8",
+            "sessionId": "c2859d15-42da-4b70-9484-b6a50be64d5d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "structured-brewing-tower",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01273wDAufJM2FDVAW4oA8MV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6743,
+                "cache_read_input_tokens": 67675,
+                "output_tokens": 124,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6743,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 124,
+                    "cache_read_input_tokens": 67675,
+                    "cache_creation_input_tokens": 6743,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6743
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006764"
+        },
+        {
+          "source_line": 6765,
+          "timestamp": "2026-05-25T20:33:06.727Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TGGDuZ2sKuWrButJ9qLCkt",
+              "type": "tool_result",
+              "content": "279\t| 634 | Cross-ref mean: 44.1% | computed: 44.05% | 14b_cross_ref_001 | ✓ |\n280\t| 630 | Cross-ref nuc d0v1=0.702 | — | 14b_cross_ref_001 | ✓ |\n281\t| 631 | Cross-ref temp d0v1=0.739 | — | 14b_cross_ref_001 | ✓ |\n282\t| 632 | Cross-ref top-k d0v1=0.699 | — | 14b_cross_ref_001 | ✓ |\n283\t\n284\t---\n285\t\n286\t### B.20 Qwen2.5-7B Self-Reference (lines 654–677)\n287\t\n288\t| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n289\t|------|--------|-------------|---------|------|\n290\t| 672 | 52.1% [51.4, 52.7] | 52.05% [51.4, 52.7] | qwen25_7b_selfref_001 | ✓ |\n291\t| 673 | d0v1=0.697, d1v2=0.673, d2v3=0.659 | all match | qwen25_7b_selfref_001 | ✓ |\n292\t\n293\t---\n294\t\n295\t### B.21 Cross-Boundary Generalization (lines 678–709)\n296\t\n297\t| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n298\t|------|--------|-------------|---------|------|\n299\t| 688 | Forward chain: 84.75% [81.0, 88.25] | 84.75% [81.0, 88.25] | cross_model_recursive_chain_002 | ✓ |\n300\t| 688 | F1: d0=0.98, d1=0.88, d2=0.76, d3=0.76 | all match | cross_model_recursive_chain_002 | ✓ |\n301\t| 689 | d0v1=0.999, d2v3=0.841 | 0.999, 0.841 | cross_model_recursive_chain_002 | ✓ |\n302\t| 700 | Reverse chain: 85.75% [82.0, 89.25] | 85.75% [82.0, 89.25] | cross_model_reverse_chain_001 | ✓ |\n303\t| 706 | arXiv domain: 74.1%±2.0% | 74.1%±2.0% | domain_extension_001 | ✓ |\n304\t| 707 | F1: d0=1.00, d1=0.78, d2=0.52, d3=0.66 | all match | domain_extension_001 | ✓ |\n305\t\n306\t---\n307\t\n308\t### B.22 Cross-Seed Replication (lines 711–739)\n309\t\n310\t| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n311\t|------|--------|-------------|---------|------|\n312\t| 725 | Pythia seed42: 78.70% | **78.2% (0.782)** | pythia_seed43_001.seed42_baseline | **✗ 见不一致 #1** |\n313\t| 725 | Pythia seed42 CI: [78.10, 79.24] | — | — | ? |\n314\t| 726 | Pythia seed43: 78.84% [78.13, 79.52] | 78.84% [78.13, 79.52] | pythia_seed43_001 | ✓ |\n315\t| 726 | Δ=+0.14pp | **+0.64pp (0.0064)** | pythia_seed43_001.delta_vs_seed42 | **✗ 见不一致 #1** |\n316\t| 728 | OLMo seed42: 78.94% [78.38, 79.48] | 78.94% (0.7894) | olmo_seed43_001.seed42_baseline | ✓ |\n317\t| 729 | OLMo seed43: 82.11% [81.77, 82.54] | 82.11% [81.77, 82.54] | olmo_seed43_001 | ✓ |\n318\t| 729 | Δ=+3.17pp | 3.17pp (0.0317) | olmo_seed43_001.delta_vs_seed42 | ✓ |\n319\t| 731 | GPT-2 XL seed42: 84.28% | 84.28% | gpt2xl_seed43_001.seed42_rerun_acc | ✓ |\n320\t| 731 | GPT-2 XL seed42 CI: [83.78, 84.80] | **[83.89, 84.77]** | gpt2xl_seed43_001.seed42_rerun_ci | **✗ 见不一致 #2** |\n321\t| 732 | GPT-2 XL seed43: 86.32% [86.17, 86.49] | 86.32% [86.17, 86.49] | gpt2xl_seed43_001 | ✓ |\n322\t| 732 | Δ=+2.04pp | 2.04 | gpt2xl_seed43_001.delta_vs_seed42 | ✓ |\n323\t\n324\t---\n325\t\n326\t### B.23 Depth-4 Extension (lines 746–761)\n327\t\n328\t| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n329\t|------|--------|-------------|---------|------|\n330\t| 750 | OLMo 5-class: 80.5% | 80.53% | d4_extension_olmo_001 | ✓ |\n331\t| 750 | GPT-2 XL 5-class: 74.0% | 74.03% | d4_extension_gpt2xl_001 | ✓ |\n332\t| 750 | Pythia 5-class: 71.3% | 71.33% | d4_extension_pythia_001 | ✓ |\n333\t| 751 | Pythia d4 recall: 68.1% | 68.14% | d4_extension_pythia_001 | ✓ |\n334\t| 751 | GPT-2 XL d4 recall: 63.9% | 63.86% | d4_extension_gpt2xl_001 | ✓ |\n335\t| 752 | d3v4 AUC Pythia: 0.784 | 0.7837 | depth_extension_binary_pairwise_002 | ✓ (rounds) |\n336\t| 752 | d3v4 AUC OLMo: 0.765 | 0.765 | depth_extension_olmo_d4d5_002 | ✓ |\n337\t| 752 | d3v4 AUC GPT-2 XL: 0.750 | 0.75 | depth_extension_gpt2xl_d4d5_001 | ✓ |\n338\t| 755 | Pythia p90_ppl: 483.7→12.5 (d0→d4) | 483.74→12.49 | d4_extension_pythia_001 | ✓ |\n339\t| 755 | Pythia var_surprisal: 6.50→1.29 | 6.5→1.29 | d4_extension_pythia_001 | ✓ |\n340\t\n341\t---\n342\t\n343\t### B.24 Generation Length Ablation (lines 763–785)\n344\t\n345\t| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n346\t|------|--------|-------------|---------|------|\n347\t| 777 | 128 tokens: 68.35% | 68.35% | gen_length_ablation_001 | ✓ |\n348\t| 778 | 256 tokens: 73.80% | 73.8% | gen_length_ablation_001 | ✓ |\n349\t| 779 | 512 tokens: 77.82% | 77.82% | gen_length_ablation_001 | ✓ |\n350\t\n351\t---\n352\t\n353\t### B.25 Mixed-Depth Corpus (lines 787–791)\n354\t\n355\t| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n356\t|------|--------|-------------|---------|------|\n357\t| 790 | macro-recall Δ=-1.62pp | -1.62pp | mixed_depth_corpus_001 | ✓ |\n358\t\n359\t---\n360\t\n361\t### B.26 Learned Estimator Comparison (lines 793–818)\n362\t\n363\t| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n364\t|------|--------|-------------|---------|------|\n365\t| 810 | XGBoost: 63.7, 69.8, 68.1, Mean 67.2 | 63.72, 69.76, 68.05, 67.18 | learned_estimator_002 | ✓ |\n366\t| 811 | Ordinal MLP: 62.5, 69.7, 67.9, Mean 66.7 | 62.52, 69.69, 67.9, 66.7 | learned_estimator_002 | ✓ |\n367\t| 812 | Prototypical: 61.6, 70.0, 68.4, Mean 66.6 | 61.55, 70.01, 68.35, 66.64 | learned_estimator_002 | ✓ |\n368\t\n369\t---\n370\t\n371\t### B.27 Instruction-Tuned 1.5B (lines 820–831)\n372\t\n373\t| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n374\t|------|--------|-------------|---------|------|\n375\t| 825 | 47.4% [46.7, 48.1] | 47.42% [46.7, 48.11] | qwen25-1p5b-instruct-001 | ✓ |\n376\t| 826 | d0v1=0.653, d1v2=0.620, d2v3=0.664 | all match | qwen25-1p5b-instruct-001 | ✓ |\n377\t\n378\t---\n379\t\n380\t### B.28 Downstream Fine-Tuning Probe (lines 833–859)\n381\t\n382\t| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n383\t|------|--------|-------------|---------|------|\n384\t| 847–851 | PPL: 5.67, 5.65, 5.55, 5.56, 5.55 | — | — | ? |\n385\t| 858 | Training loss: 2.558, 1.920, 1.286 | — | — | ? |\n386\t\n387\t---\n388\t\n389\t### B.29 Feature Group Ablation (lines 861–906)\n390\t\n391\t| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n392\t|------|--------|-------------|---------|------|\n393\t| 876–881 | In-dist group ablation (6 rows) | — | — | ? |\n394\t| 895–901 | Cross-model group ablation (5 rows) | — | — | ? |\n395\t| 906 | p90_ppl 22.4%, var_surprisal 18.8% | — | — | ? |\n396\t\n397\t---\n398\t\n399\t### B.30 RF Seed Robustness (lines 908–931)\n400\t\n401\t| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n402\t|------|--------|-------------|---------|------|\n403\t| 922–926 | Seed 42/123/456: 66.4/66.5/66.5, mean 66.48±0.06 | — | — | ? |\n404\t\n405\t---\n406\t\n407\t### B.31 Binary Detector Baselines (lines 933–990)\n408\t\n409\t| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n410\t|------|--------|-------------|---------|------|\n411\t| 939 | Log-Rank 64.0%, Combined 74.2%, RF 78.7% | — | — | ? |\n412\t| 945 | DetectGPT 30.7% (28.8% best-of-3) | — | — | ? |\n413\t| 946 | Min-K% 33.2% | 33.2% | mink_ordinal_baseline_002 | ✓ |\n414\t| 946 | Min-K% d1-d3 BalAcc 40.4% | **37.24%** | mink_ordinal_baseline_002 | **✗ 见不一致 #7** |\n415\t| 954 | 21-feat: 78.90%, d1-d3 bal acc 72.20% | — | — | ? |\n416\t| 955 | Min-K% importance 0.095; p90_ppl 0.161; var_surprisal 0.126 | — | — | ? |\n417\t| 974–987 | Pairwise AUC detector table (36 values) | — | — | ? |\n418\t\n419\t---\n420\t\n421\t### B.32 Binoculars Feature Ablation (lines 992–1072)\n422\t\n423\t| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n424\t|------|--------|-------------|---------|------|\n425\t| 1006 | 6-overlap: 75.9% | 75.93% | feature_ablation_overlap_001 (9-cell mean) | ✓ |\n426\t| 1007 | 19-feat: 78.4% | — | (9-cell mean, no single exp) | ? |\n427\t| 1008 | Bino-11: 78.1% | — | — | ? |\n428\t| 1009 | Merged-30: 82.6% | 82.6% | feature_ablation_merged_001.9cell_mean_acc | ✓ |\n429\t| 1029 | Pythia nuc merged: 83.5 | 83.47 | feature_ablation_merged_001.pythia_nucleus | ✓ |\n430\t| 1032 | OLMo nuc merged: 84.2 | 84.2 | feature_ablation_merged_001.olmo_nucleus | ✓ |\n431\t| 1035 | GPT-2 XL nuc merged: 88.8 | 88.83 | feature_ablation_merged_001.gpt2xl_nucleus | ✓ |\n432\t| 1029 | Pythia nuc 6-overlap: 76.7 | 76.71 | feature_ablation_overlap_001.pythia_nucleus | ✓ |\n433\t| 1064 | 14B temp09 Bino-11: 42.6% | 42.58% | binoculars_14b_temp09 | ✓ |\n434\t| 1065 | 14B top-k Bino-11: 37.7% | 37.74% | binoculars_14b_topk50 | ✓ |\n435\t| 1064 | 14B temp09 merged: 54.2% | — | — | ? |\n436\t| 1065 | 14B top-k merged: 51.5% | — | — | ? |\n437\t\n438\t---\n439\t\n440\t### B.33 Prompted Generation (lines 1074–1106)\n441\t\n442\t| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n443\t|------|--------|-------------|---------|------|\n444\t| 1089 | 69.52% [68.9, 70.2] | 69.52% [68.9, 70.15] | prompted_gen_gpt2xl_001 | ✓ |\n445\t| 1090 | BOS baseline 83.3% | — | — | ? |\n446\t| 1093 | AUC d0v1=0.916 | 0.9162 | prompted_gen_gpt2xl_001 | ✓ |\n447\t| 1094 | AUC d1v2=0.782 | 0.7823 | prompted_gen_gpt2xl_001 | ✓ |\n448\t| 1095 | AUC d2v3=0.744 | 0.7444 | prompted_gen_gpt2xl_001 | ✓ |\n449\t\n450\t---\n451\t\n452\t### B.34 Extended Discussion (lines 1108–1125)\n453\t\n454\t| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n455\t|------|--------|-------------|---------|------|\n456\t| 1112 | 11.5pp recovery | — | — | ? |\n457\t| 1113 | Correct routing: 72.6%, misrouting: 68.0%, gap 4.6pp | — | — | ? |\n458\t| 1114 | Floor: 67.6% | — | — | ? |\n459\t\n460\t---\n461\t\n462\t### B.35 Computational Resources (lines 1127–1145)\n463\t\n464\t| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n465\t|------|--------|-------------|---------|------|\n466\t| 1132 | ~200 GPU·hours | — | — | ? |\n467\t| 1144 | ~2 min for 5000 passages (single GPU) | — | — | ? |\n468\t\n469\t---\n470\t\n471\t## 不一致清单 (Discrepancies)\n472\t\n473\t### ✗1. Pythia seed42 baseline accuracy（严重）\n474\t\n475\t- **位置**: B.22, line 725\n476\t- **论文值**: 78.70%, CI [78.10, 79.24], Δ=+0.14pp\n477\t- **Registry 值**: `pythia_seed43_001.seed42_baseline` = 0.782 (78.2%), `delta_vs_seed42` = 0.0064 (0.64pp)\n478\t- **差异**: 0.5pp (accuracy), 0.5pp (delta)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0bac7259-7e32-44e0-aa02-66f451d57852",
+            "isSidechain": false,
+            "promptId": "6a1e5747-d0e0-4696-aa3e-9f1e0d6aac82",
+            "type": "user",
+            "uuid": "3638a332-fcc9-4234-aded-028b045d31e0",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/audit_appendix.md",
+                "content": "| 634 | Cross-ref mean: 44.1% | computed: 44.05% | 14b_cross_ref_001 | ✓ |\n| 630 | Cross-ref nuc d0v1=0.702 | — | 14b_cross_ref_001 | ✓ |\n| 631 | Cross-ref temp d0v1=0.739 | — | 14b_cross_ref_001 | ✓ |\n| 632 | Cross-ref top-k d0v1=0.699 | — | 14b_cross_ref_001 | ✓ |\n\n---\n\n### B.20 Qwen2.5-7B Self-Reference (lines 654–677)\n\n| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n|------|--------|-------------|---------|------|\n| 672 | 52.1% [51.4, 52.7] | 52.05% [51.4, 52.7] | qwen25_7b_selfref_001 | ✓ |\n| 673 | d0v1=0.697, d1v2=0.673, d2v3=0.659 | all match | qwen25_7b_selfref_001 | ✓ |\n\n---\n\n### B.21 Cross-Boundary Generalization (lines 678–709)\n\n| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n|------|--------|-------------|---------|------|\n| 688 | Forward chain: 84.75% [81.0, 88.25] | 84.75% [81.0, 88.25] | cross_model_recursive_chain_002 | ✓ |\n| 688 | F1: d0=0.98, d1=0.88, d2=0.76, d3=0.76 | all match | cross_model_recursive_chain_002 | ✓ |\n| 689 | d0v1=0.999, d2v3=0.841 | 0.999, 0.841 | cross_model_recursive_chain_002 | ✓ |\n| 700 | Reverse chain: 85.75% [82.0, 89.25] | 85.75% [82.0, 89.25] | cross_model_reverse_chain_001 | ✓ |\n| 706 | arXiv domain: 74.1%±2.0% | 74.1%±2.0% | domain_extension_001 | ✓ |\n| 707 | F1: d0=1.00, d1=0.78, d2=0.52, d3=0.66 | all match | domain_extension_001 | ✓ |\n\n---\n\n### B.22 Cross-Seed Replication (lines 711–739)\n\n| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n|------|--------|-------------|---------|------|\n| 725 | Pythia seed42: 78.70% | **78.2% (0.782)** | pythia_seed43_001.seed42_baseline | **✗ 见不一致 #1** |\n| 725 | Pythia seed42 CI: [78.10, 79.24] | — | — | ? |\n| 726 | Pythia seed43: 78.84% [78.13, 79.52] | 78.84% [78.13, 79.52] | pythia_seed43_001 | ✓ |\n| 726 | Δ=+0.14pp | **+0.64pp (0.0064)** | pythia_seed43_001.delta_vs_seed42 | **✗ 见不一致 #1** |\n| 728 | OLMo seed42: 78.94% [78.38, 79.48] | 78.94% (0.7894) | olmo_seed43_001.seed42_baseline | ✓ |\n| 729 | OLMo seed43: 82.11% [81.77, 82.54] | 82.11% [81.77, 82.54] | olmo_seed43_001 | ✓ |\n| 729 | Δ=+3.17pp | 3.17pp (0.0317) | olmo_seed43_001.delta_vs_seed42 | ✓ |\n| 731 | GPT-2 XL seed42: 84.28% | 84.28% | gpt2xl_seed43_001.seed42_rerun_acc | ✓ |\n| 731 | GPT-2 XL seed42 CI: [83.78, 84.80] | **[83.89, 84.77]** | gpt2xl_seed43_001.seed42_rerun_ci | **✗ 见不一致 #2** |\n| 732 | GPT-2 XL seed43: 86.32% [86.17, 86.49] | 86.32% [86.17, 86.49] | gpt2xl_seed43_001 | ✓ |\n| 732 | Δ=+2.04pp | 2.04 | gpt2xl_seed43_001.delta_vs_seed42 | ✓ |\n\n---\n\n### B.23 Depth-4 Extension (lines 746–761)\n\n| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n|------|--------|-------------|---------|------|\n| 750 | OLMo 5-class: 80.5% | 80.53% | d4_extension_olmo_001 | ✓ |\n| 750 | GPT-2 XL 5-class: 74.0% | 74.03% | d4_extension_gpt2xl_001 | ✓ |\n| 750 | Pythia 5-class: 71.3% | 71.33% | d4_extension_pythia_001 | ✓ |\n| 751 | Pythia d4 recall: 68.1% | 68.14% | d4_extension_pythia_001 | ✓ |\n| 751 | GPT-2 XL d4 recall: 63.9% | 63.86% | d4_extension_gpt2xl_001 | ✓ |\n| 752 | d3v4 AUC Pythia: 0.784 | 0.7837 | depth_extension_binary_pairwise_002 | ✓ (rounds) |\n| 752 | d3v4 AUC OLMo: 0.765 | 0.765 | depth_extension_olmo_d4d5_002 | ✓ |\n| 752 | d3v4 AUC GPT-2 XL: 0.750 | 0.75 | depth_extension_gpt2xl_d4d5_001 | ✓ |\n| 755 | Pythia p90_ppl: 483.7→12.5 (d0→d4) | 483.74→12.49 | d4_extension_pythia_001 | ✓ |\n| 755 | Pythia var_surprisal: 6.50→1.29 | 6.5→1.29 | d4_extension_pythia_001 | ✓ |\n\n---\n\n### B.24 Generation Length Ablation (lines 763–785)\n\n| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n|------|--------|-------------|---------|------|\n| 777 | 128 tokens: 68.35% | 68.35% | gen_length_ablation_001 | ✓ |\n| 778 | 256 tokens: 73.80% | 73.8% | gen_length_ablation_001 | ✓ |\n| 779 | 512 tokens: 77.82% | 77.82% | gen_length_ablation_001 | ✓ |\n\n---\n\n### B.25 Mixed-Depth Corpus (lines 787–791)\n\n| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n|------|--------|-------------|---------|------|\n| 790 | macro-recall Δ=-1.62pp | -1.62pp | mixed_depth_corpus_001 | ✓ |\n\n---\n\n### B.26 Learned Estimator Comparison (lines 793–818)\n\n| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n|------|--------|-------------|---------|------|\n| 810 | XGBoost: 63.7, 69.8, 68.1, Mean 67.2 | 63.72, 69.76, 68.05, 67.18 | learned_estimator_002 | ✓ |\n| 811 | Ordinal MLP: 62.5, 69.7, 67.9, Mean 66.7 | 62.52, 69.69, 67.9, 66.7 | learned_estimator_002 | ✓ |\n| 812 | Prototypical: 61.6, 70.0, 68.4, Mean 66.6 | 61.55, 70.01, 68.35, 66.64 | learned_estimator_002 | ✓ |\n\n---\n\n### B.27 Instruction-Tuned 1.5B (lines 820–831)\n\n| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n|------|--------|-------------|---------|------|\n| 825 | 47.4% [46.7, 48.1] | 47.42% [46.7, 48.11] | qwen25-1p5b-instruct-001 | ✓ |\n| 826 | d0v1=0.653, d1v2=0.620, d2v3=0.664 | all match | qwen25-1p5b-instruct-001 | ✓ |\n\n---\n\n### B.28 Downstream Fine-Tuning Probe (lines 833–859)\n\n| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n|------|--------|-------------|---------|------|\n| 847–851 | PPL: 5.67, 5.65, 5.55, 5.56, 5.55 | — | — | ? |\n| 858 | Training loss: 2.558, 1.920, 1.286 | — | — | ? |\n\n---\n\n### B.29 Feature Group Ablation (lines 861–906)\n\n| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n|------|--------|-------------|---------|------|\n| 876–881 | In-dist group ablation (6 rows) | — | — | ? |\n| 895–901 | Cross-model group ablation (5 rows) | — | — | ? |\n| 906 | p90_ppl 22.4%, var_surprisal 18.8% | — | — | ? |\n\n---\n\n### B.30 RF Seed Robustness (lines 908–931)\n\n| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n|------|--------|-------------|---------|------|\n| 922–926 | Seed 42/123/456: 66.4/66.5/66.5, mean 66.48±0.06 | — | — | ? |\n\n---\n\n### B.31 Binary Detector Baselines (lines 933–990)\n\n| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n|------|--------|-------------|---------|------|\n| 939 | Log-Rank 64.0%, Combined 74.2%, RF 78.7% | — | — | ? |\n| 945 | DetectGPT 30.7% (28.8% best-of-3) | — | — | ? |\n| 946 | Min-K% 33.2% | 33.2% | mink_ordinal_baseline_002 | ✓ |\n| 946 | Min-K% d1-d3 BalAcc 40.4% | **37.24%** | mink_ordinal_baseline_002 | **✗ 见不一致 #7** |\n| 954 | 21-feat: 78.90%, d1-d3 bal acc 72.20% | — | — | ? |\n| 955 | Min-K% importance 0.095; p90_ppl 0.161; var_surprisal 0.126 | — | — | ? |\n| 974–987 | Pairwise AUC detector table (36 values) | — | — | ? |\n\n---\n\n### B.32 Binoculars Feature Ablation (lines 992–1072)\n\n| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n|------|--------|-------------|---------|------|\n| 1006 | 6-overlap: 75.9% | 75.93% | feature_ablation_overlap_001 (9-cell mean) | ✓ |\n| 1007 | 19-feat: 78.4% | — | (9-cell mean, no single exp) | ? |\n| 1008 | Bino-11: 78.1% | — | — | ? |\n| 1009 | Merged-30: 82.6% | 82.6% | feature_ablation_merged_001.9cell_mean_acc | ✓ |\n| 1029 | Pythia nuc merged: 83.5 | 83.47 | feature_ablation_merged_001.pythia_nucleus | ✓ |\n| 1032 | OLMo nuc merged: 84.2 | 84.2 | feature_ablation_merged_001.olmo_nucleus | ✓ |\n| 1035 | GPT-2 XL nuc merged: 88.8 | 88.83 | feature_ablation_merged_001.gpt2xl_nucleus | ✓ |\n| 1029 | Pythia nuc 6-overlap: 76.7 | 76.71 | feature_ablation_overlap_001.pythia_nucleus | ✓ |\n| 1064 | 14B temp09 Bino-11: 42.6% | 42.58% | binoculars_14b_temp09 | ✓ |\n| 1065 | 14B top-k Bino-11: 37.7% | 37.74% | binoculars_14b_topk50 | ✓ |\n| 1064 | 14B temp09 merged: 54.2% | — | — | ? |\n| 1065 | 14B top-k merged: 51.5% | — | — | ? |\n\n---\n\n### B.33 Prompted Generation (lines 1074–1106)\n\n| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n|------|--------|-------------|---------|------|\n| 1089 | 69.52% [68.9, 70.2] | 69.52% [68.9, 70.15] | prompted_gen_gpt2xl_001 | ✓ |\n| 1090 | BOS baseline 83.3% | — | — | ? |\n| 1093 | AUC d0v1=0.916 | 0.9162 | prompted_gen_gpt2xl_001 | ✓ |\n| 1094 | AUC d1v2=0.782 | 0.7823 | prompted_gen_gpt2xl_001 | ✓ |\n| 1095 | AUC d2v3=0.744 | 0.7444 | prompted_gen_gpt2xl_001 | ✓ |\n\n---\n\n### B.34 Extended Discussion (lines 1108–1125)\n\n| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n|------|--------|-------------|---------|------|\n| 1112 | 11.5pp recovery | — | — | ? |\n| 1113 | Correct routing: 72.6%, misrouting: 68.0%, gap 4.6pp | — | — | ? |\n| 1114 | Floor: 67.6% | — | — | ? |\n\n---\n\n### B.35 Computational Resources (lines 1127–1145)\n\n| 行号 | 论文值 | Registry 值 | 实验 ID | 状态 |\n|------|--------|-------------|---------|------|\n| 1132 | ~200 GPU·hours | — | — | ? |\n| 1144 | ~2 min for 5000 passages (single GPU) | — | — | ? |\n\n---\n\n## 不一致清单 (Discrepancies)\n\n### ✗1. Pythia seed42 baseline accuracy（严重）\n\n- **位置**: B.22, line 725\n- **论文值**: 78.70%, CI [78.10, 79.24], Δ=+0.14pp\n- **Registry 值**: `pythia_seed43_001.seed42_baseline` = 0.782 (78.2%), `delta_vs_seed42` = 0.0064 (0.64pp)\n- **差异**: 0.5pp (accuracy), 0.5pp (delta)",
+                "numLines": 200,
+                "startLine": 279,
+                "totalLines": 595
+              }
+            },
+            "sourceToolAssistantUUID": "0bac7259-7e32-44e0-aa02-66f451d57852",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_7e0c4ba8",
+            "sessionId": "c2859d15-42da-4b70-9484-b6a50be64d5d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "structured-brewing-tower"
+          },
+          "id": "event-006765"
+        },
+        {
+          "source_line": 6766,
+          "timestamp": "2026-05-25T20:33:12.828Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018WhoszVxgR4CQg9QYby6As",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/audit_appendix.md",
+                "offset": 478,
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3638a332-fcc9-4234-aded-028b045d31e0",
+            "isSidechain": false,
+            "requestId": "req_011CbPvZtwHaHotfi1rZCx9d",
+            "type": "assistant",
+            "uuid": "be492b3d-73c1-4104-b3b3-4180a17e6e93",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_7e0c4ba8",
+            "sessionId": "c2859d15-42da-4b70-9484-b6a50be64d5d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "structured-brewing-tower",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QkqDQbbaHwwJQFeXctJnvB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5212,
+                "cache_read_input_tokens": 74418,
+                "output_tokens": 124,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5212,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 124,
+                    "cache_read_input_tokens": 74418,
+                    "cache_creation_input_tokens": 5212,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5212
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006766"
+        },
+        {
+          "source_line": 6767,
+          "timestamp": "2026-05-25T20:33:12.834Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018WhoszVxgR4CQg9QYby6As",
+              "type": "tool_result",
+              "content": "478\t- **差异**: 0.5pp (accuracy), 0.5pp (delta)\n479\t- **影响**: 论文称 Pythia seed42→43 差异仅 +0.14pp 表明 seed 稳定；registry 数据显示 +0.64pp，仍在 noise 范围但叙述基调不同\n480\t- **可能原因**: 78.70% 可能来自不同实验管道（如 feature_ablation 或不同 RF 配置），与 `pythia_seed43_001` 记录的 seed42 baseline 不同\n481\t- **建议**: 确认 78.70% 的具体来源实验，统一 seed42 baseline 定义\n482\t\n483\t### ✗2. GPT-2 XL seed42 95% CI\n484\t\n485\t- **位置**: B.22, line 731\n486\t- **论文值**: [83.78, 84.80]\n487\t- **Registry 值**: `gpt2xl_seed43_001.seed42_rerun_ci` = [83.89, 84.77]\n488\t- **差异**: lower bound +0.11pp, upper bound −0.03pp\n489\t- **影响**: 不影响结论（seed42 和 seed43 CI 仍不重叠），但数值不一致\n490\t- **可能原因**: CI 计算方法不同（bootstrap B=10000 vs fold-based），或不同重跑版本\n491\t\n492\t### ✗3. RF d2 recall 内部矛盾\n493\t\n494\t- **位置**: B.14, line 352 vs B.6, line 147\n495\t- **论文内部两处报告不同值**:\n496\t  - B.14 (E2E 对比表): RF d2 recall = .596\n497\t  - B.6 (per-class recall 完整表): Pythia nuc d2 = 59.2% (0.592)\n498\t- **差异**: 0.4pp\n499\t- **Registry**: `pythia_seed43_001.per_class_recall.d2` = 0.5882 (seed43); 无 seed42 per-class recall\n500\t- **影响**: 同一文件两处引用同一指标但值不一致\n501\t- **建议**: 统一为 B.6 表中值 (59.2%)，或确认 .596 来源\n502\t\n503\t### ✗4. Curation PoC: dz vs d 系统性差异（中等）\n504\t\n505\t- **位置**: B.17, lines 454–461\n506\t- **描述**: 论文表标注 \"dz: Cohen's paired effect size\"，registry 存储字段名为 \"d\"\n507\t- **对比**:\n508\t\n509\t| Condition | Paper dz | Registry d | 比值 |\n510\t|-----------|----------|-----------|------|\n511\t| rf_soft | 0.41 | 0.792 | 1.93× |\n512\t| rf_moderate | 0.34 | 0.334 | ≈1× |\n513\t| rf_strict | −0.25 | −0.528 | 2.11× |\n514\t| oracle_moderate | −0.34 | −0.384 | 1.13× |\n515\t| oracle_strict | −0.66 | −1.004 | 1.52× |\n516\t| random_strict | −1.89 | −3.671 | 1.94× |\n517\t\n518\t- **影响**: 不属于数据错误——Cohen's dz (paired) 和 Cohen's d (independent) 是不同的效应量指标，适用场景不同。论文正确标注为 dz；registry 存为 d\n519\t- **建议**: 在 registry 中补充 dz 值，或添加 note 说明 d 与 dz 的区别，避免未来混淆\n520\t\n521\t### ✗5. Pythia self-reference accuracy 四舍五入偏差\n522\t\n523\t- **位置**: B.18, line 502\n524\t- **论文值**: 78.6% ± 0.6\n525\t- **Registry 值**: `ref_model_ablation_001.pythia_ref_acc` = 0.7854 (78.54%)\n526\t- **差异**: 0.06pp（78.54% 标准四舍五入应为 78.5%，而非 78.6%）\n527\t- **影响**: 微小但技术上不精确\n528\t- **建议**: 修正为 78.5%\n529\t\n530\t### ✗6. GPT-2 XL seed42 CI 与不一致 #2 相同（已在上方列出）\n531\t\n532\t### ✗7. Min-K% d1-d3 Balanced Accuracy（严重）\n533\t\n534\t- **位置**: B.31, line 946\n535\t- **论文值**: 40.4%\n536\t- **Registry 值**: `mink_ordinal_baseline_002` d1-d3 BalAcc = 37.24%\n537\t- **差异**: 3.16pp\n538\t- **影响**: 3.16pp 差异在 33-40% 范围内是显著的（相对差异 ~8%），影响对 Min-K% ordinal 能力的评估\n539\t- **可能原因**: 可能来自不同的 CORAL 校准版本或不同的 cell 集合\n540\t- **建议**: 核实 40.4% 的来源；若为 CORAL 校准后值，确认与 registry methodB K20 记录一致\n541\t\n542\t---\n543\t\n544\t## 无出处清单 (No-Source Values)\n545\t\n546\t以下数值在 registry 中未找到直接实验记录。部分可能来自中间计算、日志文件、或未注册的分析。\n547\t\n548\t| 章节 | 行号 | 内容 | 说明 |\n549\t|------|------|------|------|\n550\t| B.2 | 42 | Top-k 特征轨迹 (78%, 87%, 31%, 39%) | 从特征趋势数据计算的变化率 |\n551\t| B.5 | 118–126 | Per-cell Gini importance (81 个值) | 完整 9-cell Gini 表 |\n552\t| B.6 | 147–156 | Per-class recall (36 个值) | 完整 9-cell recall 表 |\n553\t| B.9 | 213, 215, 217 | Mix25 pairwise AUC (9 个值) | mix25 实验未记录 pairwise AUC |\n554\t| B.10 | 239–244 | DCOL 迭代结果 (31.5%, 64.5%) | DCOL 实验无 registry 条目 |\n555\t| B.12 | 276–277 | Training loss 轨迹 | 训练日志衍生值 |\n556\t| B.13 | 330 | TTR R²=0.85, negative R² | 线性探测分析 |\n557\t| B.14 | 349–350 | DeBERTa/RoBERTa per-class F1 | per-class F1 未在 registry 记录 |\n558\t| B.14 | 359 | SHAP 88.8% 贡献 | SHAP 分析汇总 |\n559\t| B.16 | 407–413 | Per-model C4/WikiText FPR (12 个值) | 单模型 wild-data 结果分散 |\n560\t| B.16 | 425 | ECE=0.052 | 校准分析 |\n561\t| B.16 | 427–428 | 阈值调整: 33.4%→2.8%, 78.0%→77.7% | 阈值实验 |\n562\t| B.28 | 847–858 | Downstream PPL 和训练损失 | 小规模 pilot 实验 |\n563\t| B.29 | 876–901 | Feature group ablation (两表共 11 行) | 消融结果未单独注册 |\n564\t| B.29 | 906 | p90_ppl 22.4%, var_surprisal 18.8% | Gini importance 汇总 |\n565\t| B.30 | 922–926 | RF seed robustness (3 seeds) | 未单独注册 |\n566\t| B.31 | 939–957 | Detector baselines (多个值) | 部分实验未注册 |\n567\t| B.31 | 974–987 | Pairwise AUC detector 表 (36 值) | 未注册 |\n568\t| B.32 | 1007–1008 | 19-feat 78.4%, Bino-11 78.1% (9-cell mean) | 从 per-cell 计算 |\n569\t| B.32 | 1064–1065 | 14B merged: 54.2%, 51.5% | 未注册 |\n570\t| B.33 | 1090 | BOS baseline 83.3% | 参考值来源不明确 |\n571\t| B.34 | 1112–1114 | Cross-strategy routing: 72.6%, 68.0%, 67.6% | 条件分解分析 |\n572\t\n573\t---\n574\t\n575\t## 与主文可能不一致\n576\t\n577\t### ⚠ RF d2 recall 内部矛盾"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be492b3d-73c1-4104-b3b3-4180a17e6e93",
+            "isSidechain": false,
+            "promptId": "6a1e5747-d0e0-4696-aa3e-9f1e0d6aac82",
+            "type": "user",
+            "uuid": "2ca5cb81-9060-481f-a993-9e8af2649889",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/audit_appendix.md",
+                "content": "- **差异**: 0.5pp (accuracy), 0.5pp (delta)\n- **影响**: 论文称 Pythia seed42→43 差异仅 +0.14pp 表明 seed 稳定；registry 数据显示 +0.64pp，仍在 noise 范围但叙述基调不同\n- **可能原因**: 78.70% 可能来自不同实验管道（如 feature_ablation 或不同 RF 配置），与 `pythia_seed43_001` 记录的 seed42 baseline 不同\n- **建议**: 确认 78.70% 的具体来源实验，统一 seed42 baseline 定义\n\n### ✗2. GPT-2 XL seed42 95% CI\n\n- **位置**: B.22, line 731\n- **论文值**: [83.78, 84.80]\n- **Registry 值**: `gpt2xl_seed43_001.seed42_rerun_ci` = [83.89, 84.77]\n- **差异**: lower bound +0.11pp, upper bound −0.03pp\n- **影响**: 不影响结论（seed42 和 seed43 CI 仍不重叠），但数值不一致\n- **可能原因**: CI 计算方法不同（bootstrap B=10000 vs fold-based），或不同重跑版本\n\n### ✗3. RF d2 recall 内部矛盾\n\n- **位置**: B.14, line 352 vs B.6, line 147\n- **论文内部两处报告不同值**:\n  - B.14 (E2E 对比表): RF d2 recall = .596\n  - B.6 (per-class recall 完整表): Pythia nuc d2 = 59.2% (0.592)\n- **差异**: 0.4pp\n- **Registry**: `pythia_seed43_001.per_class_recall.d2` = 0.5882 (seed43); 无 seed42 per-class recall\n- **影响**: 同一文件两处引用同一指标但值不一致\n- **建议**: 统一为 B.6 表中值 (59.2%)，或确认 .596 来源\n\n### ✗4. Curation PoC: dz vs d 系统性差异（中等）\n\n- **位置**: B.17, lines 454–461\n- **描述**: 论文表标注 \"dz: Cohen's paired effect size\"，registry 存储字段名为 \"d\"\n- **对比**:\n\n| Condition | Paper dz | Registry d | 比值 |\n|-----------|----------|-----------|------|\n| rf_soft | 0.41 | 0.792 | 1.93× |\n| rf_moderate | 0.34 | 0.334 | ≈1× |\n| rf_strict | −0.25 | −0.528 | 2.11× |\n| oracle_moderate | −0.34 | −0.384 | 1.13× |\n| oracle_strict | −0.66 | −1.004 | 1.52× |\n| random_strict | −1.89 | −3.671 | 1.94× |\n\n- **影响**: 不属于数据错误——Cohen's dz (paired) 和 Cohen's d (independent) 是不同的效应量指标，适用场景不同。论文正确标注为 dz；registry 存为 d\n- **建议**: 在 registry 中补充 dz 值，或添加 note 说明 d 与 dz 的区别，避免未来混淆\n\n### ✗5. Pythia self-reference accuracy 四舍五入偏差\n\n- **位置**: B.18, line 502\n- **论文值**: 78.6% ± 0.6\n- **Registry 值**: `ref_model_ablation_001.pythia_ref_acc` = 0.7854 (78.54%)\n- **差异**: 0.06pp（78.54% 标准四舍五入应为 78.5%，而非 78.6%）\n- **影响**: 微小但技术上不精确\n- **建议**: 修正为 78.5%\n\n### ✗6. GPT-2 XL seed42 CI 与不一致 #2 相同（已在上方列出）\n\n### ✗7. Min-K% d1-d3 Balanced Accuracy（严重）\n\n- **位置**: B.31, line 946\n- **论文值**: 40.4%\n- **Registry 值**: `mink_ordinal_baseline_002` d1-d3 BalAcc = 37.24%\n- **差异**: 3.16pp\n- **影响**: 3.16pp 差异在 33-40% 范围内是显著的（相对差异 ~8%），影响对 Min-K% ordinal 能力的评估\n- **可能原因**: 可能来自不同的 CORAL 校准版本或不同的 cell 集合\n- **建议**: 核实 40.4% 的来源；若为 CORAL 校准后值，确认与 registry methodB K20 记录一致\n\n---\n\n## 无出处清单 (No-Source Values)\n\n以下数值在 registry 中未找到直接实验记录。部分可能来自中间计算、日志文件、或未注册的分析。\n\n| 章节 | 行号 | 内容 | 说明 |\n|------|------|------|------|\n| B.2 | 42 | Top-k 特征轨迹 (78%, 87%, 31%, 39%) | 从特征趋势数据计算的变化率 |\n| B.5 | 118–126 | Per-cell Gini importance (81 个值) | 完整 9-cell Gini 表 |\n| B.6 | 147–156 | Per-class recall (36 个值) | 完整 9-cell recall 表 |\n| B.9 | 213, 215, 217 | Mix25 pairwise AUC (9 个值) | mix25 实验未记录 pairwise AUC |\n| B.10 | 239–244 | DCOL 迭代结果 (31.5%, 64.5%) | DCOL 实验无 registry 条目 |\n| B.12 | 276–277 | Training loss 轨迹 | 训练日志衍生值 |\n| B.13 | 330 | TTR R²=0.85, negative R² | 线性探测分析 |\n| B.14 | 349–350 | DeBERTa/RoBERTa per-class F1 | per-class F1 未在 registry 记录 |\n| B.14 | 359 | SHAP 88.8% 贡献 | SHAP 分析汇总 |\n| B.16 | 407–413 | Per-model C4/WikiText FPR (12 个值) | 单模型 wild-data 结果分散 |\n| B.16 | 425 | ECE=0.052 | 校准分析 |\n| B.16 | 427–428 | 阈值调整: 33.4%→2.8%, 78.0%→77.7% | 阈值实验 |\n| B.28 | 847–858 | Downstream PPL 和训练损失 | 小规模 pilot 实验 |\n| B.29 | 876–901 | Feature group ablation (两表共 11 行) | 消融结果未单独注册 |\n| B.29 | 906 | p90_ppl 22.4%, var_surprisal 18.8% | Gini importance 汇总 |\n| B.30 | 922–926 | RF seed robustness (3 seeds) | 未单独注册 |\n| B.31 | 939–957 | Detector baselines (多个值) | 部分实验未注册 |\n| B.31 | 974–987 | Pairwise AUC detector 表 (36 值) | 未注册 |\n| B.32 | 1007–1008 | 19-feat 78.4%, Bino-11 78.1% (9-cell mean) | 从 per-cell 计算 |\n| B.32 | 1064–1065 | 14B merged: 54.2%, 51.5% | 未注册 |\n| B.33 | 1090 | BOS baseline 83.3% | 参考值来源不明确 |\n| B.34 | 1112–1114 | Cross-strategy routing: 72.6%, 68.0%, 67.6% | 条件分解分析 |\n\n---\n\n## 与主文可能不一致\n\n### ⚠ RF d2 recall 内部矛盾",
+                "numLines": 100,
+                "startLine": 478,
+                "totalLines": 595
+              }
+            },
+            "sourceToolAssistantUUID": "be492b3d-73c1-4104-b3b3-4180a17e6e93",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_7e0c4ba8",
+            "sessionId": "c2859d15-42da-4b70-9484-b6a50be64d5d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "structured-brewing-tower"
+          },
+          "id": "event-006767"
+        },
+        {
+          "source_line": 6768,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[WORKER DONE] Worker worker_audit_verify-all-v2_20260525T202018 已完成（status=done）。用 `get_worker_status('worker_audit_verify-all-v2_20260525T202018')` 读取结果，然后处理。  - worker_id: worker_audit_verify-all-v2…",
+                "leafUuid": "2ca5cb81-9060-481f-a993-9e8af2649889",
+                "sessionId": "c2859d15-42da-4b70-9484-b6a50be64d5d"
+              }
+            }
+          ],
+          "id": "event-006768"
+        },
+        {
+          "source_line": 6769,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Prepare paper submission and verify infrastructure",
+                "sessionId": "c2859d15-42da-4b70-9484-b6a50be64d5d"
+              }
+            }
+          ],
+          "id": "event-006769"
+        },
+        {
+          "source_line": 6770,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[WORKER DONE] Worker worker_audit_verify-all-v2_20260525T202018 已完成（status=done）。用 `get_worker_status('worker_audit_verify-all-v2_20260525T202018')` 读取结果，然后处理。  - worker_id: worker_audit_verify-all-v2…",
+                "leafUuid": "2ca5cb81-9060-481f-a993-9e8af2649889",
+                "sessionId": "c2859d15-42da-4b70-9484-b6a50be64d5d"
+              }
+            }
+          ],
+          "id": "event-006770"
+        },
+        {
+          "source_line": 6771,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Prepare paper submission and verify infrastructure",
+                "sessionId": "c2859d15-42da-4b70-9484-b6a50be64d5d"
+              }
+            }
+          ],
+          "id": "event-006771"
+        }
+      ]
+    }
+  ]
+}

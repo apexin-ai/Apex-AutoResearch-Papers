@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "5a172751073590e42e34",
+  "project": "recursive_gen_depth_est--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> ## 19 Features Perplexity stats (9): mean_ppl, var_ppl, skewness_ppl, kurtosis_ppl, p10_ppl, p25_ppl, p5",
+  "task_key": "a21c132b-8560-455d-90ff-9c071332ea60",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/a21c132b-8560-455d-90ff-9c071332ea60.jsonl",
+    "occurrence": 1,
+    "bytes": 1010019,
+    "sha256": "fdf0f773f9094293bec0b8eed229d6b1395b0701752acc4a2170b4f30efea7d3"
+  },
+  "statistics": {
+    "messages": 398,
+    "user_turns": 1,
+    "tool_calls": 137,
+    "roles": {
+      "record": 77,
+      "user": 1,
+      "assistant": 46,
+      "tool_call": 137,
+      "tool_result": 137
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "5a172751073590e42e34-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 396,
+      "chunks": [
+        {
+          "path": "5a172751073590e42e34-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "5a172751073590e42e34-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5a172751073590e42e34-part-0003.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-19-features-perplexity-stats-9-mean-ppl-var-ppl-skewness-ppl-kur.md"
+}

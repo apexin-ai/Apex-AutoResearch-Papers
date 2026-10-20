@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.0",
+  "id": "0bc4d0fbb23e8b86c409",
+  "project": "recursive_gen_depth_est--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 系统通知：审稿审批已通过。请开始审稿。 [论文提交] - 项目: recursive_gen_depth_est - 论文路径: projects/recursive_gen_depth_est/docs/paper/main.tex - ",
+  "task_key": "3d6b8a68-bc59-4ecb-b922-708ecb2ec552",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/3d6b8a68-bc59-4ecb-b922-708ecb2ec552.jsonl",
+    "occurrence": 1,
+    "bytes": 634975,
+    "sha256": "7ff63d8ad80c89ffeb5b66edb2fa4124feda85528962b33bf974b4825ead73a1"
+  },
+  "statistics": {
+    "messages": 172,
+    "user_turns": 11,
+    "tool_calls": 39,
+    "roles": {
+      "record": 54,
+      "user": 11,
+      "assistant": 29,
+      "tool_call": 39,
+      "tool_result": 39
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "0bc4d0fbb23e8b86c409-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 102,
+      "chunks": [
+        {
+          "path": "0bc4d0fbb23e8b86c409-part-0001.json",
+          "message_count": 102
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "0bc4d0fbb23e8b86c409-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "0bc4d0fbb23e8b86c409-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "0bc4d0fbb23e8b86c409-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "0bc4d0fbb23e8b86c409-part-0001.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "0bc4d0fbb23e8b86c409-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "0bc4d0fbb23e8b86c409-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "0bc4d0fbb23e8b86c409-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 28,
+      "chunks": [
+        {
+          "path": "0bc4d0fbb23e8b86c409-part-0001.json",
+          "message_count": 17
+        },
+        {
+          "path": "0bc4d0fbb23e8b86c409-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "0bc4d0fbb23e8b86c409-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "0bc4d0fbb23e8b86c409-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-recursive-gen-depth-est-projects-recursive-gen-depth-est-docs-paper-main-tex-copy-8.md"
+}

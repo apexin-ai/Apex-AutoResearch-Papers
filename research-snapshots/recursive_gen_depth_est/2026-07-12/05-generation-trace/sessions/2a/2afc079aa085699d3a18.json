@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "2afc079aa085699d3a18",
+  "project": "recursive_gen_depth_est--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 3 套 AUC 数据互相矛盾。Director 决定以 pipeline pairwise_auc.json 为 ground truth。plot_atlas_figures.py 在服务器 /root/a",
+  "task_key": "d9d5c19e-3556-4b50-b270-54dba04fd70f",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/d9d5c19e-3556-4b50-b270-54dba04fd70f.jsonl",
+    "occurrence": 1,
+    "bytes": 629152,
+    "sha256": "589fc836d7bbaf2a085642b159686cb22326fec1604ff3afba378d2adf397726"
+  },
+  "statistics": {
+    "messages": 241,
+    "user_turns": 1,
+    "tool_calls": 74,
+    "roles": {
+      "record": 45,
+      "user": 1,
+      "assistant": 47,
+      "tool_call": 74,
+      "tool_result": 74
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2afc079aa085699d3a18-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 239,
+      "chunks": [
+        {
+          "path": "2afc079aa085699d3a18-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "2afc079aa085699d3a18-part-0002.json",
+          "message_count": 61
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-3-auc-director-pipeline-pairwise-auc-json-ground-truthplot-atlas.md"
+}

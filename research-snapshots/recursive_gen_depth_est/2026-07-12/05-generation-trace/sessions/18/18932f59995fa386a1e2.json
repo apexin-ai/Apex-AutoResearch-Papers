@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0",
+  "id": "18932f59995fa386a1e2",
+  "project": "recursive_gen_depth_est--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [系统通知 — worker_done:worker_writing_bib-integration-verified-refs_20260515T233017]: Worker worker_writing_bib-integration",
+  "task_key": "8ab2332d-74ca-4483-ab4b-2ba5b871bb77",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/8ab2332d-74ca-4483-ab4b-2ba5b871bb77.jsonl",
+    "occurrence": 1,
+    "bytes": 937231,
+    "sha256": "9a18a2c008c12c22b643d2e616df33f34b868aaa4277753168d5a574450f2067"
+  },
+  "statistics": {
+    "messages": 233,
+    "user_turns": 10,
+    "tool_calls": 51,
+    "roles": {
+      "record": 61,
+      "user": 10,
+      "assistant": 60,
+      "tool_call": 51,
+      "tool_result": 51
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "18932f59995fa386a1e2-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 72,
+      "chunks": [
+        {
+          "path": "18932f59995fa386a1e2-part-0001.json",
+          "message_count": 72
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "18932f59995fa386a1e2-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "18932f59995fa386a1e2-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 64,
+      "chunks": [
+        {
+          "path": "18932f59995fa386a1e2-part-0001.json",
+          "message_count": 64
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "18932f59995fa386a1e2-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 35,
+      "chunks": [
+        {
+          "path": "18932f59995fa386a1e2-part-0001.json",
+          "message_count": 4
+        },
+        {
+          "path": "18932f59995fa386a1e2-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "18932f59995fa386a1e2-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 27,
+      "chunks": [
+        {
+          "path": "18932f59995fa386a1e2-part-0002.json",
+          "message_count": 27
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "18932f59995fa386a1e2-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "18932f59995fa386a1e2-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-worker-done-worker-writing-bib-integration-verified-refs-20260515t233017-worke.md"
+}

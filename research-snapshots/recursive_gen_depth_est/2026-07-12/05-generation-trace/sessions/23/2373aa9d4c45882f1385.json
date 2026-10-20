@@ -1,0 +1,284 @@
+{
+  "schema_version": "1.0",
+  "id": "2373aa9d4c45882f1385",
+  "project": "recursive_gen_depth_est--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read the KVTC survey file at /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/kvt",
+  "task_key": "agent-ae11cdb486c92a588",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ae11cdb486c92a588.jsonl",
+    "occurrence": 1,
+    "bytes": 35821,
+    "sha256": "b4105841ba76ddbbeedfe0f0d63bcc4326ab75dc44d22854e392db4392de6808"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 1,
+    "tool_calls": 1,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 1,
+      "tool_result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T05:13:48.803Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read the KVTC survey file at /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/kvtc_survey.md to understand the KVTC API (function signatures, module structure, data structures). Report back the key API details: module paths, function signatures for compress/decompress/bit_allocation/PCA, and data structure definitions."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "408b9aa3-c2e6-4892-a0f1-7346e3d62a27",
+            "agentId": "ae11cdb486c92a588",
+            "type": "user",
+            "uuid": "06a6f99b-d42f-4e4e-a417-a428e43017dd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+            "sessionId": "fdf71b47-8f0f-4233-b6c0-f01ae22a3454",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T05:13:50.537Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read the KVTC survey file to extract the key API details for you."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "06a6f99b-d42f-4e4e-a417-a428e43017dd",
+            "isSidechain": true,
+            "agentId": "ae11cdb486c92a588",
+            "requestId": "req_011Cb1tZtkJq5MKwonDqZVG2",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "18d9551f-a2d1-4fa1-a79a-bf0ecddc9529",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+            "sessionId": "fdf71b47-8f0f-4233-b6c0-f01ae22a3454",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013Fa5Vd6hZhn6fAFomtBBgo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18454,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18454,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T05:13:50.724Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CFqZctQ3XZkUMBkdUFrvsy",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/kvtc_survey.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18d9551f-a2d1-4fa1-a79a-bf0ecddc9529",
+            "isSidechain": true,
+            "agentId": "ae11cdb486c92a588",
+            "requestId": "req_011Cb1tZtkJq5MKwonDqZVG2",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "71751ab7-cd1a-4b20-b697-a3fb88f14b99",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+            "sessionId": "fdf71b47-8f0f-4233-b6c0-f01ae22a3454",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013Fa5Vd6hZhn6fAFomtBBgo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18454,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 114,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18454
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 114,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 18454,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 18454,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T05:13:50.746Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CFqZctQ3XZkUMBkdUFrvsy",
+              "type": "tool_result",
+              "content": "1\t# KVTC 代码库深度调研报告\n2\t\n3\t> 仓库: https://github.com/OnlyTerp/kvtc  \n4\t> 论文: arXiv 2511.01815 (ICLR 2026)  \n5\t> 调研日期: 2026-05-14  \n6\t> 目的: 为 CompressLink RABA 修改方案提供代码级依据\n7\t\n8\t---\n9\t\n10\t## 1. 仓库概览\n11\t\n12\t### 1.1 项目结构\n13\t\n14\t```\n15\tkvtc/\n16\t├── src/\n17\t│   ├── common.py              # 核心数据结构 (CalibrationData, CompressedKVCache, PCAEntry 等)\n18\t│   ├── pca.py                 # PCA transform, RoPE undo/reapply, PCACalibrator\n19\t│   ├── quantize.py            # DP bit allocation (精确版), uniform quantize/dequantize\n20\t│   ├── gpu_ops.py             # greedy bit allocation (近似版), batch quantize/dequantize\n21\t│   ├── entropy.py             # zlib DEFLATE + bit packing/unpacking\n22\t│   ├── ans_entropy.py         # rANS entropy coding (triple-mode picker: zlib/LZMA/rANS)\n23\t│   ├── adaptive_budget.py     # 基于 eigenvalue entropy 的 per-layer adaptive bit budget\n24\t│   ├── fused_ops.py           # Fused PCA+Quantize 单 pass kernel\n25\t│   ├── pipeline.py            # 参考 pipeline (CPU, ~160 行)\n26\t│   ├── pipeline_fast.py       # GPU 加速 pipeline (~233 行)\n27\t│   ├── triton_kernels.py      # Triton GPU kernels (bit packing)\n28\t│   ├── cache.py               # HuggingFace DynamicCache 包装\n29\t│   ├── calibrate.py           # PCA calibration (从模型+数据集)\n30\t│   ├── calibrate_vllm.py      # vLLM 专用 calibration\n31\t│   ├── vllm_backend.py        # vLLM attention backend\n32\t│   ├── vllm_triton.py         # Fused Triton decode attention kernel\n33\t│   ├── test_kvtc.py           # 38 个单元测试\n34\t│   └── test_real_model.py     # TinyLlama 集成测试\n35\t├── cuda/\n36\t│   ├── kvtc.h                 # CUDA kernel C API header\n37\t│   ├── kvtc_kernels.cu        # CUDA kernel 实现\n38\t│   └── CMakeLists.txt\n39\t├── benchmarks/\n40\t│   ├── benchmark_v1-v4.py     # 各版本 benchmark\n41\t│   ├── results_v1-v4.json     # 结果数据\n42\t│   └── benchmark_perplexity.py\n43\t└── setup.py\n44\t```\n45\t\n46\t### 1.2 依赖\n47\t\n48\t- **核心**: `torch`, `numpy`, `transformers`\n49\t- **开发**: `pytest`\n50\t- **可选**: `triton` (GPU bit packing), CUDA toolkit (原生 kernels)\n51\t- Python 3.10+, PyTorch 2.10+\n52\t\n53\t### 1.3 支持模型\n54\t\n55\t代码通过 HuggingFace `transformers` 加载模型，理论上支持所有 causal LM。已验证:\n56\t- Qwen2.5-7B-Instruct (主要 benchmark 模型, 28 layers, 4 KV heads, dim=128)\n57\t- Llama-3.1-8B-Instruct\n58\t- TinyLlama (测试用)\n59\t- Mistral-7B-Instruct\n60\t\n61\tPCA calibration 按 `(layer, head_group, kind)` 存储，天然适配不同模型架构。\n62\t\n63\t---\n64\t\n65\t## 2. 数据流概览\n66\t\n67\t```\n68\t原始 KV cache [layers, tokens, heads, dim] FP16\n69\t  │\n70\t  ├── 前 4 tokens → sink buffer (FP16 保留)\n71\t  ├── 后 128 tokens → window buffer (FP16 保留)\n72\t  └── 中间 tokens → 压缩流水线:\n73\t        │\n74\t        ▼\n75\t      RoPE Undo (仅 keys, 用 -sin 反转旋转)\n76\t        │\n77\t        ▼\n78\t      PCA Transform: centered = x - mean; coeffs = centered @ Vh.T\n79\t        │\n80\t        ▼\n81\t      DP Bit Allocation: eigenvalues + budget → per-component bit widths [0-16]\n82\t        │\n83\t        ▼\n84\t      Uniform Quantize: per-component affine 量化\n85\t        │\n86\t        ▼\n87\t      Bit Packing → Entropy Coding (zlib/LZMA/rANS triple picker)\n88\t        │\n89\t        ▼\n90\t      CompressedKVCache (bytes + metadata)\n91\t```\n92\t\n93\t---\n94\t\n95\t## 3. PCA Pipeline 详解\n96\t\n97\t### 3.1 文件位置\n98\t\n99\t- `src/pca.py`: PCA transform/inverse, RoPE 操作, `PCACalibrator` 类\n100\t- `src/calibrate.py`: `KVTCCalibrator` 高层封装\n101\t\n102\t### 3.2 PCA 训练数据\n103\t\n104\t**离线 one-time calibration**, 流程:\n105\t1. 选取 ~10 个文本样本\n106\t2. 前向传播获取 `past_key_values`\n107\t3. 对 keys 先做 RoPE inverse (消除位置旋转)\n108\t4. 按 `(layer, head_group, kind)` 分组拼接\n109\t5. 对每组做 SVD: `U, S, Vh = torch.linalg.svd(centered, full_matrices=False)`\n110\t6. `eigenvalues = S² / (n-1)`, `eigenvectors = Vh`\n111\t\n112\t关键代码 (`pca.py:222-296`):\n113\t```python\n114\tdef compute(self, bit_budget_ratio: float = 0.25) -> CalibrationData:\n115\t    data = torch.cat(sample_list, dim=0)  # [total_rows, dim]\n116\t    mean = data.mean(dim=0)\n117\t    centered = data - mean\n118\t    _, singular_values, vh = torch.linalg.svd(centered, full_matrices=False)\n119\t    eigenvalues = singular_values.square() / max(centered.shape[0] - 1, 1)\n120\t    # ...\n121\t    bit_widths = dp_bit_allocation(eigenvalues, bit_budget=total_bits, max_bits=16)\n122\t```\n123\t\n124\t### 3.3 PCA 维度策略\n125\t\n126\t- **每层每头独立 PCA** (默认 `head_group_size=1`)，最大化 per-head decorrelation\n127\t- 保留全部 dim 个 PCA component，但通过 DP bit allocation 将低方差 component 的 bits 设为 0（等效剪枝）\n128\t- 不做显式维度裁剪——裁剪由 DP 自动发现\n129\t\n130\t### 3.4 RoPE 处理\n131\t\n132\t- Keys: 压缩前 `apply_rope_inverse` (rotation by -θ)，解压后 `apply_rope` (rotation by θ)\n133\t- Values: 不使用 RoPE，无需处理\n134\t- 逆变换精确 (误差 < 1e-5，旋转矩阵的逆就是转置)\n135\t\n136\t---\n137\t\n138\t## 4. DP Bit Allocation Solver 详解\n139\t\n140\t### 4.1 文件位置与行号\n141\t\n142\t**精确 DP 版本**: `src/quantize.py:16-56` (41 行)  \n143\t**贪心近似版本**: `src/gpu_ops.py:10-57` (48 行)\n144\t\n145\t### 4.2 精确 DP 版本 (`quantize.py:16-56`)\n146\t\n147\t#### 输入\n148\t- `eigenvalues: Tensor[d]` — PCA eigenvalues (方差), 从 calibration 获取\n149\t- `bit_budget: int` — 总 bit 预算 (e.g., `dim * 16 * bit_budget_ratio`)\n150\t- `max_bits: int = 16` — 每 component 最大 bit 宽度\n151\t- `group_size: int = 1` — component 分组大小\n152\t\n153\t#### 输出\n154\t- `widths: Tensor[d]` — per-component bit 分配, 每个值 ∈ [0, 16]\n155\t\n156\t#### Error Function (核心)\n157\t\n158\t```python\n159\terror = variance if bits == 0 else variance / (4 ** bits)\n160\t```\n161\t\n162\t即: `E(i, b) = λ_i / 4^b`\n163\t\n164\t- `λ_i` 是第 i 个 PCA component 的 eigenvalue (方差)\n165\t- `4^b` 是 b bits 量化带来的 MSE 降低因子 (每 bit 减半量化步长, MSE 减为 1/4)\n166\t- `bits == 0` 时 error 就是 variance 本身 (完全丢弃该 component)\n167\t\n168\t#### DP 状态转移\n169\t\n170\t```\n171\tdp[i][b] = min total MSE using components 0..i-1 with total budget b\n172\t```\n173\t\n174\t转移:\n175\t```\n176\tdp[i][cost] = min over w in {0..16}:  dp[i-1][used] + λ_group / 4^w\n177\t              where cost = used + w * group_width\n178\t```\n179\t\n180\t回溯得到每个 component 的 bit 分配。\n181\t\n182\t#### 复杂度\n183\t\n184\t`O(d × B × max_bits)` = O(128 × 512 × 16) ≈ 1M ops per entry. 足够快。\n185\t\n186\t#### 完整代码\n187\t\n188\t```python\n189\tdef dp_bit_allocation(eigenvalues, bit_budget, max_bits=16, group_size=1):\n190\t    values = eigenvalues.detach().to(torch.float64).flatten()\n191\t    groups = _component_groups(values, group_size)\n192\t    max_budget = max(int(bit_budget), 0)\n193\t    num_groups = len(groups)\n194\t    inf = float(\"inf\")\n195\t    dp = [[inf] * (max_budget + 1) for _ in range(num_groups + 1)]\n196\t    back = [[0] * (max_budget + 1) for _ in range(num_groups + 1)]\n197\t    dp[0][0] = 0.0\n198\t    for idx, group in enumerate(groups, start=1):\n199\t        variance = float(group.sum().item())\n200\t        width = group.numel()\n201\t        for used in range(max_budget + 1):\n202\t            if dp[idx - 1][used] == inf:\n203\t                continue\n204\t            for bits in range(0, max_bits + 1):\n205\t                cost = used + bits * width\n206\t                if cost > max_budget:\n207\t                    continue\n208\t                error = variance if bits == 0 else variance / (4 ** bits)\n209\t                candidate = dp[idx - 1][used] + error\n210\t                if candidate < dp[idx][cost]:\n211\t                    dp[idx][cost] = candidate\n212\t                    back[idx][cost] = bits\n213\t    best_budget = min(range(max_budget + 1), key=lambda b: dp[num_groups][b])\n214\t    # backtrack ...\n215\t    return widths\n216\t```\n217\t\n218\t### 4.3 贪心近似版本 (`gpu_ops.py:10-57`)\n219\t\n220\t生产管线 `pipeline_fast.py` 使用此版本。原理:\n221\t\n222\t```\n223\tgain(i, b) = λ_i × 3 / 4^b\n224\t```\n225\t\n226\t预计算所有 `(component, bit_level)` 的 marginal gain, flatten + topk 取 top-B 个, bincount 得 per-component bits。\n227\t\n228\t复杂度 `O(B log(d × max_bits))`, 远快于精确 DP。\n229\t\n230\t由于 gain 在 bit_level 上单调递减, 贪心解等价于最优解（标准可分离凸优化问题）。\n231\t\n232\t### 4.4 调用链\n233\t\n234\t1. **Calibration 时**: `pca.py:PCACalibrator.compute()` → `quantize.py:dp_bit_allocation()` → 存入 `PCAEntry.bit_widths`\n235\t2. **参考 pipeline**: `pipeline.py:compress()` → `quantize.py:dp_bit_allocation()` (每次压缩重新计算)\n236\t3. **GPU pipeline**: `pipeline_fast.py:compress()` → `gpu_ops.py:greedy_bit_allocation()` (用 calibration 的 bit_budget)\n237\t\n238\t---\n239\t\n240\t## 5. RABA 修改方案\n241\t\n242\t### 5.1 RABA 核心思想\n243\t\n244\t将 error function 从:\n245\t```\n246\tE(i, b) = λ_i / 4^b\n247\t```\n248\t修改为:\n249\t```\n250\tE(i, b, t) = (1 - p_r(t)) × λ_i / 4^b\n251\t```\n252\t\n253\t其中 `p_r(t)` 是 token t 被 RAG cache 恢复的概率。对于高概率被恢复的 token，其量化误差在最终重建时会被精确值覆盖，因此可以分配更少的 bits。\n254\t\n255\t### 5.2 需要修改的文件和函数\n256\t\n257\t#### 修改 1: `src/quantize.py` — `dp_bit_allocation()`\n258\t\n259\t**当前签名** (line 16):\n260\t```python\n261\tdef dp_bit_allocation(eigenvalues, bit_budget, max_bits=16, group_size=1):\n262\t```\n263\t\n264\t**RABA 签名**:\n265\t```python\n266\tdef dp_bit_allocation(eigenvalues, bit_budget, max_bits=16, group_size=1, \n267\t                      restoration_weights=None):\n268\t```\n269\t\n270\t**修改位置** (line 42):\n271\t```python\n272\t# 当前:\n273\terror = variance if bits == 0 else variance / (4 ** bits)\n274\t\n275\t# RABA:\n276\tif restoration_weights is not None:\n277\t    # weighted_variance = sum of (1 - p_r(t)) * lambda_i for tokens in group\n278\t    # 但注意: DP 是 per-component 的, p_r(t) 是 per-token 的\n279\t    # 这里需要将 per-token weights 聚合为 per-component weight\n280\t    weight = restoration_weights[idx - 1]  # 预计算的 weighted variance\n281\t    error = weight if bits == 0 else weight / (4 ** bits)\n282\telse:\n283\t    error = variance if bits == 0 else variance / (4 ** bits)\n284\t```\n285\t\n286\t**关键设计问题**: DP 是 per-PCA-component 的, 但 `p_r(t)` 是 per-token 的。需要决定聚合方式:\n287\t\n288\t- **方案 A (per-token DP)**: 将 DP 扩展为 per-token × per-component, 复杂度 O(T × d × B × 16), 对长序列不可行\n289\t- **方案 B (aggregate then DP)**: 将 weighted variance 预计算为 `weighted_λ_i = Σ_t (1 - p_r(t)) × pca_coeffs[t, i]²`, 替换 eigenvalue 输入 DP. 复杂度不变. **推荐方案**\n290\t- **方案 C (per-token bit allocation)**: 对每个 token 独立运行 DP (根据其 p_r), 复杂度 O(T × d × B × 16), 但 bit widths 变为 per-token, bit packing 变复杂\n291\t\n292\t**推荐方案 B 的实现**:\n293\t\n294\t```python\n295\tdef compute_restoration_weighted_eigenvalues(\n296\t    pca_coeffs: torch.Tensor,      # [num_tokens, dim]\n297\t    restoration_probs: torch.Tensor, # [num_tokens]\n298\t) -> torch.Tensor:\n299\t    \"\"\"计算 RABA weighted eigenvalues.\n300\t    \n301\t    weighted_λ_i = mean_t[(1 - p_r(t)) × pca_coeffs[t, i]²]\n302\t    \"\"\"\n303\t    weights = (1 - restoration_probs).unsqueeze(1)  # [T, 1]\n304\t    weighted_var = (weights * pca_coeffs ** 2).mean(dim=0)  # [dim]\n305\t    return weighted_var\n306\t```\n307\t\n308\t然后将 `weighted_eigenvalues` 传入 `dp_bit_allocation` 替代原始 `eigenvalues`。\n309\t\n310\t#### 修改 2: `src/gpu_ops.py` — `greedy_bit_allocation()`\n311\t\n312\t**当前签名** (line 10):\n313\t```python\n314\tdef greedy_bit_allocation(eigenvalues, bit_budget, max_bits=16):\n315\t```\n316\t\n317\t**RABA 修改**: 与精确 DP 类似, 传入 weighted eigenvalues 即可, gain 计算自动适配:\n318\t```python\n319\tgains_matrix = ev.unsqueeze(1) * 3.0 / (4.0 ** bit_levels.unsqueeze(0))\n320\t```\n321\t这里 `ev` 替换为 `weighted_ev` 即可。无需改内部逻辑。\n322\t\n323\t#### 修改 3: `src/pipeline.py` 和 `src/pipeline_fast.py` — `compress()`\n324\t\n325\t需要在 compress 方法中:\n326\t1. 新增 `restoration_probs` 参数 (per-token 概率向量)\n327\t2. 压缩前计算 `pca_coeffs`\n328\t3. 调用 `compute_restoration_weighted_eigenvalues` 得到 weighted eigenvalues\n329\t4. 将 weighted eigenvalues 传入 bit allocation\n330\t\n331\t**`pipeline.py` 修改** (line 23):\n332\t```python\n333\tdef compress(self, kv_cache, positions, restoration_probs=None):\n334\t```\n335\t\n336\t在 line 68 附近, PCA transform 之后:\n337\t```python\n338\tpca_values = pca_transform(centered, entry.eigenvectors.to(rows.device))\n339\t\n340\t# RABA: 如果提供了 restoration_probs, 用 weighted eigenvalues\n341\tif restoration_probs is not None:\n342\t    # restoration_probs shape: [middle_len]\n343\t    # rows shape: [middle_len * group_heads, dim]\n344\t    # 需要 expand p_r 到 group_heads\n345\t    pr_expanded = restoration_probs.repeat_interleave(group_heads)\n346\t    weighted_ev = compute_restoration_weighted_eigenvalues(pca_values, pr_expanded)\n347\t    bit_widths = dp_bit_allocation(weighted_ev, entry.bit_budget, group_size=1)\n348\telse:\n349\t    bit_widths = dp_bit_allocation(entry.eigenvalues.to(rows.device), entry.bit_budget, group_size=1)\n350\t```\n351\t\n352\t**`pipeline_fast.py` 修改** (line 37): 同理, 但用 `greedy_bit_allocation`。\n353\t\n354\t#### 修改 4: `src/calibrate.py` — 可选\n355\t\n356\tCalibration 阶段不需要 RABA (p_r 在推理时才知道)。但可以在 calibration 时额外存储 PCA coefficient 统计, 以加速运行时的 weighted eigenvalue 计算。\n357\t\n358\t### 5.3 额外传入参数\n359\t\n360\t- `restoration_probs: torch.Tensor` — shape `[middle_len]`, 值域 [0, 1]\n361\t  - p_r(t) = 0: token t 不会被恢复, 正常压缩\n362\t  - p_r(t) = 1: token t 必定被恢复, 可分配 0 bits (极端情况)\n363\t  - p_r(t) ∈ (0, 1): 按概率加权降低该 token 的 error 权重\n364\t\n365\t### 5.4 修改复杂度评估\n366\t\n367\t| 文件 | 函数 | 改动行数 | 难度 |\n368\t|------|------|---------|------|\n369\t| `quantize.py` | `dp_bit_allocation` | ~10 行 (新增 weighted_ev 路径) | 低 |\n370\t| `gpu_ops.py` | `greedy_bit_allocation` | ~5 行 (传入 weighted_ev) | 低 |\n371\t| `pipeline.py` | `compress` | ~15 行 (参数 + weighted_ev 计算) | 低 |\n372\t| `pipeline_fast.py` | `compress` | ~15 行 (同上) | 低 |\n373\t| 新增 | `compute_restoration_weighted_eigenvalues` | ~10 行 | 低 |\n374\t| `common.py` | 数据结构 | 0 行 (不需要改) | — |\n375\t| `entropy.py` | — | 0 行 | — |\n376\t\n377\t**总改动: ~55 行代码**, 主要集中在 bit allocation 调用处。不影响量化/编码/解码逻辑。\n378\t\n379\t### 5.5 代码 Diff 草稿\n380\t\n381\t```diff\n382\t--- a/src/quantize.py\n383\t+++ b/src/quantize.py\n384\t@@ -1,5 +1,6 @@\n385\t \"\"\"Quantization utilities for KVTC.\"\"\"\n386\t \n387\t+from __future__ import annotations\n388\t from typing import List\n389\t import torch\n390\t from .common import QuantizationParams\n391\t@@ -12,6 +13,20 @@\n392\t     return [eigenvalues[i : i + group_size] for i in range(0, eigenvalues.numel(), group_size)]\n393\t \n394\t \n395\t+def compute_restoration_weighted_eigenvalues(\n396\t+    pca_coeffs: torch.Tensor,\n397\t+    restoration_probs: torch.Tensor,\n398\t+) -> torch.Tensor:\n399\t+    \"\"\"Compute RABA weighted eigenvalues.\n400\t+    \n401\t+    weighted_lambda_i = mean_t[(1 - p_r(t)) * pca_coeffs[t, i]^2]\n402\t+    \"\"\"\n403\t+    weights = (1 - restoration_probs).unsqueeze(1)  # [T, 1]\n404\t+    weighted_var = (weights * pca_coeffs ** 2).mean(dim=0)  # [dim]\n405\t+    return weighted_var\n406\t+\n407\t+\n408\t def dp_bit_allocation(\n409\t     eigenvalues: torch.Tensor,\n410\t     bit_budget: int,\n411\t```\n412\t\n413\t```diff\n414\t--- a/src/pipeline_fast.py\n415\t+++ b/src/pipeline_fast.py\n416\t@@ -37,7 +37,7 @@\n417\t-    def compress(self, kv_cache, positions):\n418\t+    def compress(self, kv_cache, positions, restoration_probs=None):\n419\t         # ... (unchanged until after PCA transform) ...\n420\t \n421\t                         pca_values = pca_transform(centered, ev)\n422\t \n423\t+                        # RABA: use weighted eigenvalues if restoration probs provided\n424\t+                        if restoration_probs is not None:\n425\t+                            pr = restoration_probs.to(pca_values.device)\n426\t+                            pr_expanded = pr.repeat_interleave(group_heads)\n427\t+                            weighted_ev = compute_restoration_weighted_eigenvalues(\n428\t+                                pca_values, pr_expanded\n429\t+                            )\n430\t+                            bit_widths = greedy_bit_allocation(weighted_ev, entry.bit_budget)\n431\t+                        else:\n432\t-                        bit_widths = greedy_bit_allocation(\n433\t-                            entry.eigenvalues.to(rows.device), entry.bit_budget,\n434\t-                        )\n435\t+                            bit_widths = greedy_bit_allocation(\n436\t+                                entry.eigenvalues.to(rows.device), entry.bit_budget,\n437\t+                            )\n438\t```\n439\t\n440\t### 5.6 不影响的模块\n441\t\n442\t- **PCA transform/inverse**: 不受影响, 仍用相同 eigenvectors\n443\t- **Quantization**: 不受影响, 仍用 uniform affine quantization\n444\t- **Entropy coding**: 不受影响, 仍对量化后的 bytes 做压缩\n445\t- **RoPE**: 不受影响\n446\t- **Token protection** (sink/window): 不受影响\n447\t- **Decompression**: 不受影响, metadata 中已存储 bit_widths\n448\t\n449\t---\n450\t\n451\t## 6. 压缩比评估\n452\t\n453\t### 6.1 Benchmark 数据 (RTX 5090, Qwen2.5-7B)\n454\t\n455\t| Config | K bits | V bits | 压缩比 | K Cosine | V Cosine | 质量 |\n456\t|--------|--------|--------|:------:|:--------:|:--------:|------|\n457\t| K1V2-FULL | 1 | 2 | **12.8x** | 0.9925 | 0.9120 | 低 |\n458\t| K1V3-FULL | 1 | 3 | **8.9x** | 0.9925 | 0.9874 | 可用 |\n459\t| K1V4-FULL | 1 | 4 | **7.1x** | 0.9925 | 0.9974 | 优 |\n460\t| K2V3-FULL | 2 | 3 | **7.2x** | 0.9970 | 0.9874 | 可用 |\n461\t| K2V4-FULL | 2 | 4 | **5.9x** | 0.9970 | 0.9974 | 优 |\n462\t| K3V4-FULL | 3 | 4 | **5.0x** | 0.9993 | 0.9974 | 优 |\n463\t\n464\t### 6.2 8x 压缩比可达性评估\n465\t\n466\t**K1V3 配置达到 8.9x**, cosine similarity 0.987-0.993, 质量为 \"Good\"。\n467\t\n468\t**RABA 对 8x 目标的影响**:\n469\t- RABA 会让部分 token 分配更少 bits (高 p_r tokens) → 平均 bits 降低 → 压缩比提升\n470\t- 但总 bit budget 不变, 只是重分配: 高 p_r tokens 少分, 低 p_r tokens 多分\n471\t- 净效应: 如果大量 tokens 有高 p_r, 可以用更少的 bit budget 达到相同重建质量 → **提升有效压缩比**\n472\t- 在 K2V4 基础上 + RABA (假设 50% tokens 有 p_r > 0.5), 有效压缩比可达 7-9x 同时保持更高质量\n473\t\n474\t**结论**: 8x 在 KVTC 可达范围内。K1V3 直接达到 8.9x, K2V4 + RABA 可在保持更高质量的同时逼近 8x。\n475\t\n476\t### 6.3 Benchmark 脚本\n477\t\n478\t```bash\n479\t# 完整 benchmark\n480\tpython benchmarks/benchmark_v4.py --model Qwen/Qwen2.5-7B-Instruct --device cuda\n481\t\n482\t# 指定配置\n483\tpython benchmarks/benchmark_v3.py --model meta-llama/Llama-3.1-8B-Instruct --device cuda\n484\t\n485\t# 单元测试 (无需 GPU)\n486\tpytest src/test_kvtc.py -v\n487\t```\n488\t\n489\t---\n490\t\n491\t## 7. Entropy Coding 流程\n492\t\n493\t### 7.1 编码方法\n494\t\n495\t三种编码器, triple-mode picker 选最小:\n496\t\n497\t| 编码器 | 文件 | 说明 |\n498\t|--------|------|------|\n499\t| **zlib (DEFLATE)** | `entropy.py` | 默认, 压缩 level 6-9 |\n500\t| **LZMA2** | `ans_entropy.py:compress_best()` | Python `lzma` module |\n501\t| **rANS** | `ans_entropy.py:rans_encode()` | 纯 Python 实现, 16-bit precision |\n502\t\n503\tTriple picker (`ans_entropy.py:184-230`):\n504\t```python\n505\tdef compress_best(packed_bytes, level=6):\n506\t    candidates = []\n507\t    candidates.append((b\"Z\" + zlib.compress(packed_bytes, 9), \"zlib\"))\n508\t    candidates.append((b\"L\" + lzma.compress(packed_bytes, preset=6), \"lzma\"))\n509\t    candidates.append((b\"A\" + rans_encode(packed_bytes), \"rans\"))\n510\t    best = min(candidates, key=lambda x: len(x[0]))\n511\t    return best[0], ratio\n512\t```\n513\t\n514\t1-byte tag 前缀标识编码器: `Z`=zlib, `L`=LZMA, `A`=rANS.\n515\t\n516\t### 7.2 编解码 API\n517\t\n518\t**编码**:\n519\t```python\n520\tfrom src.entropy import pack_bits, compress\n521\tfrom src.ans_entropy import compress_best\n522\t\n523\t# Step 1: 将量化 indices 打包为 bytes\n524\tpacked = pack_bits(indices_list, bit_widths)\n525\t\n526\t# Step 2a: zlib 压缩\n527\tcompressed, ratio = compress(packed, level=6)\n528\t\n529\t# Step 2b: 或用 triple picker\n530\tcompressed, ratio = compress_best(packed, level=6)\n531\t```\n532\t\n533\t**解码**:\n534\t```python\n535\tfrom src.entropy import decompress, unpack_bits\n536\tfrom src.ans_entropy import decompress_best\n537\t\n538\t# Step 1: 解压\n539\tpacked = decompress(compressed, original_size)\n540\t# 或 triple picker\n541\tpacked = decompress_best(compressed, original_size)\n542\t\n543\t# Step 2: 解包\n544\tindices_list = unpack_bits(packed, bit_widths, lengths)\n545\t```\n546\t\n547\t### 7.3 Bit Packing\n548\t\n549\t`entropy.py:47-83`: 按 component 顺序逐个打包 (comp 0 所有 rows, 然后 comp 1, ...), 变宽 bit stream, 无对齐要求。\n550\t\n551\tGPU 加速版在 `gpu_ops.py:fast_pack_bits()` 和 `triton_kernels.py:gpu_pack_variable_width()`。\n552\t\n553\t---\n554\t\n555\t## 8. Adaptive Budget (per-layer)\n556\t\n557\t### 8.1 原理\n558\t\n559\t`adaptive_budget.py`: 不同 layer 的 PCA eigenvalue spectrum \"平坦度\"不同:\n560\t- 平坦 (high Shannon entropy) → 难压缩 → 分配更多 bits\n561\t- 陡峭 (low entropy) → 易压缩 → 分配更少 bits\n562\t\n563\t总预算守恒, 只做重分配。\n564\t\n565\t### 8.2 API\n566\t\n567\t```python\n568\tfrom src.adaptive_budget import apply_adaptive_budgets\n569\t\n570\tkey_diff, val_diff = apply_adaptive_budgets(\n571\t    calibration, key_bits_avg=2, value_bits_avg=4, strength=1.0\n572\t)\n573\t```\n574\t\n575\t`strength=0` 为均匀分配, `strength=1` 为完全自适应。\n576\t\n577\t---\n578\t\n579\t## 9. 集成风险和注意事项\n580\t\n581\t### 9.1 RABA 集成风险\n582\t\n583\t| 风险 | 说明 | 缓解 |\n584\t|------|------|------|\n585\t| **DP 粒度不匹配** | DP 是 per-component, p_r 是 per-token | 用方案 B: 预聚合 weighted eigenvalues |\n586\t| **p_r 精度要求** | p_r 误估可能导致分配不当 | 加 clamp(0.01, 0.99) 防极端值 |\n587\t| **与 adaptive budget 交互** | RABA 和 adaptive budget 都改 bit allocation | 两者正交: adaptive 改 per-layer budget, RABA 改 per-component allocation |\n588\t| **解压不需要 p_r** | metadata 中已存 bit_widths | 正确, 解压路径零改动 |\n589\t| **Calibration 兼容** | RABA 修改运行时 bit allocation, 不改 calibration | 完全兼容, 无需重新 calibrate |\n590\t\n591\t### 9.2 性能影响\n592\t\n593\t- 压缩时增加 `weighted_eigenvalue` 计算: 一次矩阵乘 `O(T × d)`, 可忽略\n594\t- Bit allocation (贪心版) 运行时间不变\n595\t- 解压路径零开销\n596\t\n597\t### 9.3 代码质量观察\n598\t\n599\t- 代码组织清晰, pipeline → pca → quantize → entropy 模块化良好\n600\t- 两个 pipeline (参考 + GPU) 保持接口一致, 修改一个的经验可直接复用\n601\t- 38 个测试覆盖所有核心功能, 添加 RABA 后应增加对应测试\n602\t- `group_size=1` 默认设置意味着 per-head PCA, 对 RABA 的 per-token weight 聚合较友好\n603\t\n604\t### 9.4 推荐实施顺序\n605\t\n606\t1. 在 `quantize.py` 新增 `compute_restoration_weighted_eigenvalues()` 函数\n607\t2. 修改 `pipeline.py` (参考版) 的 `compress()` 方法, 添加 RABA 支持\n608\t3. 编写单元测试: weighted eigenvalues 计算正确性, RABA bit allocation 向后兼容 (p_r=0 时等价原版)\n609\t4. 验证: p_r=0 应产生与原版完全相同的 bit allocation\n610\t5. 修改 `pipeline_fast.py` (GPU 版)\n611\t6. 端到端测试: 带 RABA 的压缩-解压 roundtrip\n612\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "71751ab7-cd1a-4b20-b697-a3fb88f14b99",
+            "isSidechain": true,
+            "promptId": "408b9aa3-c2e6-4892-a0f1-7346e3d62a27",
+            "agentId": "ae11cdb486c92a588",
+            "type": "user",
+            "uuid": "bd373ff5-4bb4-44b8-8779-ed18fd3e3272",
+            "sourceToolAssistantUUID": "71751ab7-cd1a-4b20-b697-a3fb88f14b99",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+            "sessionId": "fdf71b47-8f0f-4233-b6c0-f01ae22a3454",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T05:14:05.629Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on the KVTC survey file, here are the key API details:\n\n## Module Paths\n\n```\nsrc/\n├── common.py              # Core data structures\n├── pca.py                 # PCA transforms, RoPE operations\n├── quantize.py            # DP bit allocation (exact), uniform quantize/dequantize\n├── gpu_ops.py             # Greedy bit allocation (approximate), batch ops\n├── entropy.py             # zlib DEFLATE + bit packing/unpacking\n├── ans_entropy.py         # rANS entropy coding (triple-mode picker)\n├── pipeline.py            # Reference pipeline (CPU)\n├── pipeline_fast.py       # GPU accelerated pipeline\n├── calibrate.py           # PCA calibration\n```\n\n## Function Signatures\n\n### Compression/Decompression\n\n**Entropy (bit packing & compression)**:\n```python\n# src/entropy.py\npack_bits(indices_list, bit_widths) -> bytes\nunpack_bits(packed, bit_widths, lengths) -> list\ncompress(packed, level=6) -> (bytes, ratio)\ndecompress(compressed, original_size) -> bytes\n\n# src/ans_entropy.py\ncompress_best(packed_bytes, level=6) -> (bytes, ratio)  # Triple picker: zlib/LZMA/rANS\ndecompress_best(compressed, original_size) -> bytes\n```\n\n### Bit Allocation\n\n**Exact DP version** (`src/quantize.py:16-56`):\n```python\ndef dp_bit_allocation(eigenvalues, bit_budget, max_bits=16, group_size=1):\n    # Returns: widths[d] with each value in [0, 16]\n    # Error function: E(i, b) = λ_i / 4^b (if bits > 0) else λ_i\n```\n\n**Greedy approximate version** (`src/gpu_ops.py:10-57`):\n```python\ndef greedy_bit_allocation(eigenvalues, bit_budget, max_bits=16):\n    # Gain function: gain(i, b) = λ_i × 3 / 4^b\n    # Returns: per-component bit widths via topk selection\n```\n\n### PCA Operations\n\n**PCA Transform** (`src/pca.py`):\n```python\n# Transform\npca_transform(centered, eigenvectors) -> coefficients\n\n# RoPE handling (keys only)\napply_rope_inverse(keys, positions) -> unrotated_keys  # rotation by -θ\napply_rope(keys, positions) -> rotated_keys            # rotation by θ\napply_rope_undo(cos, sin) -> rotated_values            # for efficient inversion\n\n# Calibration\nclass PCACalibrator:\n    def compute(self, bit_budget_ratio: float = 0.25) -> CalibrationData\n        # SVD-based calibration: U, S, Vh = torch.linalg.svd(centered)\n        # eigenvalues = S² / (n-1)\n        # Returns CalibrationData with mean, eigenvectors, eigenvalues, bit_widths\n```\n\n### Pipeline Compression\n\n**Reference CPU pipeline** (`src/pipeline.py:23`):\n```python\ndef compress(self, kv_cache, positions):\n    # Returns CompressedKVCache with metadata and bytes\n```\n\n**GPU accelerated pipeline** (`src/pipeline_fast.py:37`):\n```python\ndef compress(self, kv_cache, positions):\n    # Uses greedy_bit_allocation instead of exact DP\n    # Returns CompressedKVCache\n```\n\n## Data Structure Definitions\n\n**Core data structures** (`src/common.py`):\n\n```python\nclass CalibrationData:\n    mean: torch.Tensor              # [dim] - per-component mean\n    eigenvectors: torch.Tensor      # [dim, dim] or [dim, kept_dims]\n    eigenvalues: torch.Tensor       # [dim] - variance spectrum\n    bit_widths: torch.Tensor        # [dim] - DP-allocated bit widths\n    bit_budget: int                 # Total bits available\n\nclass CompressedKVCache:\n    compressed_data: bytes          # Entropy-coded bit-packed data\n    metadata: dict                  # Stores bit_widths and dimensions\n    sink_k: torch.Tensor           # FP16 uncompressed (first 4 tokens)\n    sink_v: torch.Tensor\n    window_k: torch.Tensor         # FP16 uncompressed (last 128 tokens)\n    window_v: torch.Tensor\n\nclass PCAEntry:\n    mean: torch.Tensor\n    eigenvectors: torch.Tensor     # Vh from SVD\n    eigenvalues: torch.Tensor\n    bit_widths: torch.Tensor       # Per-component allocation\n    bit_budget: int\n\nclass QuantizationParams:\n    scale: torch.Tensor            # Per-component scale\n    zero_point: torch.Tensor       # Per-component offset\n```\n\n## Key Design Points\n\n1. **Data Flow**: Raw KV → RoPE undo (keys) → PCA transform → DP bit allocation → Uniform quantize → Bit packing → Entropy coding (triple picker: zlib/LZMA/rANS)\n\n2. **Bit Allocation Error Function**: `E(i, b) = λ_i / 4^b` where λ_i is eigenvalue and 4^b is MSE reduction factor (each bit halves quantization step)\n\n3. **Token Protection**: First 4 tokens (sink) + last 128 tokens (window) kept in FP16, middle tokens compressed\n\n4. **Per-Head PCA**: Default `group_size=1` means per-head independent PCA for maximum decorrelation\n\n5. **Entropy Coding**: Triple-mode picker with 1-byte prefix tag (`Z`=zlib, `L`=LZMA, `A`=rANS) selects smallest\n\n6. **Decompression**: No restoration probabilities needed—bit_widths stored in metadata"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd373ff5-4bb4-44b8-8779-ed18fd3e3272",
+            "isSidechain": true,
+            "agentId": "ae11cdb486c92a588",
+            "requestId": "req_011Cb1ta2yAqEGUZoDL8Soj9",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7da47ef2-703a-41d4-b0ca-1222af66140c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+            "sessionId": "fdf71b47-8f0f-4233-b6c0-f01ae22a3454",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BoHhnXs2s6KhxwAT4Mhp4L",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 11135,
+                "cache_read_input_tokens": 18454,
+                "output_tokens": 1489,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 11135
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 1489,
+                    "cache_read_input_tokens": 18454,
+                    "cache_creation_input_tokens": 11135,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 11135,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-the-kvtc-survey-file-at-home-ubuntu-agent-ml-research-idea-gen-0513-2-pro.md"
+}

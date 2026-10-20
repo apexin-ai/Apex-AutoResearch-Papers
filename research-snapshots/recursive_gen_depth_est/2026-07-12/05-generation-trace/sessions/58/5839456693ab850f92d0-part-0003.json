@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "session_id": "5839456693ab850f92d0",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Fix pipeline scripts and launch recursive generation",
+                "sessionId": "1bf9891f-97f3-40e6-82ea-9f40261e2c8e"
+              }
+            }
+          ],
+          "id": "event-000361"
+        }
+      ]
+    }
+  ]
+}
