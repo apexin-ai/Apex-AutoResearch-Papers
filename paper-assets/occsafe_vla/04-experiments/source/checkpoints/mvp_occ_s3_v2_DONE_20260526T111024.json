@@ -1,0 +1,46 @@
+{
+  "exp_id": "mvp_occ_s3_v2",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-25T17:35:32.900Z",
+    "updated_at": "2026-05-26T11:10:23.595Z",
+    "hypothesis": "从头训练（非resume），因旧checkpoint损坏+LR schedule重置问题。Full OCC BN (gradient flow ON, BatchNorm), seed 45. 4th seed for 2×2 factorial. Config identical to mvp_occ_s0/s1/s2.",
+    "parent": "mvp_occ_s3",
+    "reproduce": {
+      "finished_at": "2026-05-26T11:05:08.068Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-25T20:28:04.015Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-25T20:28:11.297038+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-26T11:05:15.070771+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/mvp_occ_s3_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--mvp_occ_s3_v2--50000_chkpt",
+      "log_path": "~/runs/occsafe_vla/mvp_occ_s3_v2.log"
+    },
+    "server": "westd-10894",
+    "gpu": "cuda:1",
+    "account": "root",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-26T11:10:24.238626+00:00",
+  "trigger": "update_registry"
+}

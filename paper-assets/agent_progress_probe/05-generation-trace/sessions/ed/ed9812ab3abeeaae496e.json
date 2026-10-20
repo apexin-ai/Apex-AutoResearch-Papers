@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "ed9812ab3abeeaae496e",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "analysis oh crossagent error analysis",
+  "task_key": "worker_analysis_oh-crossagent-error-analysis_20260515T010007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_oh-crossagent-error-analysis_20260515T010007.log",
+    "occurrence": 1,
+    "bytes": 676284,
+    "sha256": "6ce0ea1ca83a7e2c373ac4ca9a51ac4491f23df6e4ea78f1b3e733114cb2c99c"
+  },
+  "statistics": {
+    "messages": 323,
+    "user_turns": 1,
+    "tool_calls": 125,
+    "roles": {
+      "log": 1,
+      "system": 32,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 125,
+      "user": 1,
+      "tool_result": 125,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "ed9812ab3abeeaae496e-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 317,
+      "chunks": [
+        {
+          "path": "ed9812ab3abeeaae496e-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "ed9812ab3abeeaae496e-part-0002.json",
+          "message_count": 143
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-oh-crossagent-error-analysis.md"
+}

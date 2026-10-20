@@ -1,0 +1,600 @@
+\documentclass[letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{array}
+\usepackage{tabularx}
+
+\newcommand{\ours}{OccSafe-VLA}
+\newcommand{\pp}{\,\textrm{pp}}
+
+\title{Does Auxiliary Spatial Supervision Make VLAs Safer?\\ An Empirical Investigation}
+
+\author{
+  Anonymous Authors
+}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{abstract}
+% ============================================================
+Vision-Language-Action (VLA) models are increasingly deployed for robotic manipulation, yet their collision avoidance behavior during fine-tuning remains poorly understood.
+A natural hypothesis is that auxiliary spatial supervision---such as bird's-eye-view (BEV) occupancy prediction---can improve safety by encouraging 3D spatial awareness in the shared vision encoder.
+We conduct the first systematic factorial study to test this hypothesis, varying both the \emph{content} of the auxiliary task (BEV occupancy, egocentric depth, random noise) and the \emph{gradient flow} configuration (full backpropagation, detached, or temporally ablated).
+Across six experimental conditions with 3--4 seeds each on SafeLIBERO-Spatial, we find a striking asymmetry: \textbf{gradient flow from the auxiliary head is a necessary condition to prevent safety degradation, but the spatial content of the auxiliary task is secondary}.
+Detaching gradients causes a significant 3.4\pp{} drop in Collision Avoidance Rate (Glass's $\Delta=2.83$, $p<0.01$), while conditions with gradient flow---regardless of whether they predict occupancy, depth, or random targets---remain statistically indistinguishable from the no-auxiliary-head baseline.
+Our results yield a practical guideline for VLA practitioners: when attaching an auxiliary prediction head, always maintain gradient flow to the shared encoder; blocking it actively harms the model.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+% ============================================================
+
+Vision-Language-Action (VLA) models combine pre-trained vision and language encoders with action decoders to enable language-conditioned robotic manipulation~\citep{brohan2023rt2,kim2024openvla,team2024octo}.
+While these models achieve strong task success rates, their fine-tuning dynamics can inadvertently degrade safety-relevant behaviors such as collision avoidance---a phenomenon that has received limited systematic investigation.
+
+A promising direction is to augment VLA training with auxiliary spatial prediction tasks.
+The intuition is compelling: by requiring the vision encoder to simultaneously predict 3D spatial structure (e.g., BEV occupancy grids), the model should develop richer spatial representations that benefit collision avoidance.
+However, this hypothesis conflates two distinct mechanisms: (1) the \emph{content} of the spatial supervision signal, which shapes what the encoder learns to represent, and (2) the \emph{gradient flow} from the auxiliary head, which provides additional regularization to the shared encoder parameters during fine-tuning.
+
+In this work, we disentangle these two factors through a systematic factorial study. We design six experimental conditions that independently vary the auxiliary task content and gradient flow configuration:
+\begin{itemize}
+    \item \textbf{Full OCC}: BEV occupancy prediction with gradient flow to the encoder.
+    \item \textbf{Random OCC}: Random target prediction with gradient flow (controls for content).
+    \item \textbf{Depth}: Egocentric depth prediction with gradient flow (alternative spatial modality).
+    \item \textbf{Detach OCC}: BEV occupancy prediction with gradients detached from the encoder (controls for gradient flow).
+    \item \textbf{Cutoff@35K}: BEV occupancy with gradient flow enabled only for the first 70\% of training (temporal ablation).
+    \item \textbf{Vanilla}: No auxiliary head (baseline).
+\end{itemize}
+
+Our experiments on the SafeLIBERO-Spatial benchmark reveal three findings:
+\begin{enumerate}
+    \item \textbf{Detaching gradients actively harms safety.} The Detach condition suffers a 3.4\pp{} CAR drop relative to Vanilla (Glass's $\Delta=2.83$, $p<0.01$), with dramatically unstable task success (TSR $\sigma=0.163$).
+    \item \textbf{Spatial content is secondary.} Full OCC, Random OCC, and Depth all achieve CAR within 1.7\pp{} of Vanilla, with no statistically significant differences among them.
+    \item \textbf{Gradient flow operates as a binary switch.} Partial gradient flow (Cutoff@35K, covering 70\% of training) yields CAR$=0.777$, indistinguishable from Vanilla ($0.780$), while zero gradient flow (Detach) causes significant degradation.
+\end{enumerate}
+
+These results reframe the role of auxiliary spatial supervision in VLAs: the benefit, if any, comes not from teaching the encoder about 3D structure, but from the regularization provided by gradient flow through the auxiliary head.
+We contribute the first systematic factorial design for VLA safety mechanism analysis and provide a practical guideline: \emph{if attaching an auxiliary head to a VLA, always maintain gradient flow to the shared encoder}.
+
+
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+% ============================================================
+
+\paragraph{Vision-Language-Action Models.}
+VLA architectures unify vision, language understanding, and action generation in a single model~\citep{brohan2023rt2,kim2024openvla,team2024octo}.
+Fine-tuning these models on downstream manipulation tasks with parameter-efficient methods such as LoRA~\citep{hu2022lora} has become standard practice.
+However, the effect of fine-tuning on safety-critical behaviors remains underexplored.
+
+\paragraph{Auxiliary Tasks in Robot Learning.}
+Auxiliary prediction tasks have a long history in reinforcement learning and robot learning as a means to improve representation quality~\citep{jaderberg2017unreal,mirowski2017learning,ye2021auxiliary}.
+In the VLA context, auxiliary tasks such as depth prediction, object detection, or scene reconstruction have been proposed to enrich the encoder's spatial understanding.
+Our work differs by systematically isolating the contribution of gradient flow from the auxiliary task content.
+
+\paragraph{Safety in Robotic Manipulation.}
+Collision avoidance in manipulation has traditionally relied on explicit safety controllers such as control barrier functions (CBFs)~\citep{ames2019control} or trajectory optimization with collision constraints.
+These approaches operate at inference time and are complementary to our training-time investigation.
+SafeLIBERO~\citep{safelibero2025} introduces collision-aware evaluation metrics for VLA benchmarking, enabling systematic study of safety during fine-tuning.
+
+\paragraph{Occupancy Prediction.}
+BEV occupancy prediction has become a standard auxiliary task in autonomous driving~\citep{tong2023scene,wei2023surroundocc,tian2024occ3d}, providing dense 3D spatial understanding.
+Our work investigates whether this auxiliary task transfers safety benefits to manipulation VLAs and, more importantly, whether the spatial content or the gradient flow mechanism is responsible for any observed effects.
+
+
+% ============================================================
+\section{Method}
+\label{sec:method}
+% ============================================================
+
+\subsection{VLA Architecture}
+
+We build on OpenVLA~\citep{kim2024openvla}, a 7.65B-parameter VLA that uses DINOv2~\citep{oquab2024dinov2} (1024-d) and SigLIP~\citep{zhai2023siglip} (1152-d) as dual vision encoders, with a Llama-2-based action decoder.
+Fine-tuning is performed with LoRA (rank$=32$, $\alpha=16$, dropout$=0.0$), yielding an effective scaling factor of $\alpha/\text{rank}=0.5$.
+
+\subsection{Auxiliary Head Design}
+
+We attach a lightweight auxiliary prediction head to the concatenated encoder features ($d=2176$, from DINOv2 $\oplus$ SigLIP).
+The head architecture is shared across conditions:
+
+\paragraph{Occupancy Head (OccHead).}
+Linear($2176 \to 256$) $\to$ reshape to $B \times 256 \times 16 \times 16$ $\to$ two ConvTranspose2d layers ($16 \to 32 \to 64$) $\to$ Conv2d($64 \to 1$), with BatchNorm2d and GELU activations.
+Parameters: 1.2M ($0.016\%$ of total model).
+Loss: Focal Loss ($\alpha=0.25$, $\gamma=2.0$).
+
+\paragraph{Depth Head (DepthHead).}
+Linear($2176 \to 256$) $\to$ two ConvTranspose2d layers ($256 \to 128 \to 64$, kernel$=4$, stride$=2$) $\to$ ReLU.
+Parameters: $\sim$1.2M.
+Loss: Smooth L1 Loss.
+
+Both heads use an exponentially decaying loss weight: $w(t) = 0.01 \cdot \exp(-t/50000)$, which prioritizes spatial learning early in training and gradually cedes control to the action loss.
+
+\subsection{Experimental Conditions}
+\label{sec:conditions}
+
+Table~\ref{tab:conditions} summarizes our factorial design.
+The six conditions vary along two axes: (1) the content of the auxiliary supervision signal and (2) the gradient flow configuration.
+
+\begin{table}[h]
+\centering
+\caption{Factorial design of experimental conditions. ``Grad Flow'' indicates whether auxiliary head gradients propagate through the shared encoder.}
+\label{tab:conditions}
+\small
+\begin{tabular}{lccl}
+\toprule
+\textbf{Condition} & \textbf{Grad Flow} & \textbf{Aux Content} & \textbf{Purpose} \\
+\midrule
+Vanilla & N/A & None & Baseline (no auxiliary head) \\
+Full OCC & Yes & BEV Occupancy & Primary auxiliary task \\
+Random OCC & Yes & Random & Content control \\
+Depth & Yes & Ego. Depth & Alternative spatial modality \\
+Cutoff@35K & Partial (70\%) & BEV Occupancy & Temporal ablation \\
+Detach OCC & No & BEV Occupancy & Gradient flow control \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The \textbf{Detach} condition uses \texttt{.detach()} on the encoder features before feeding them to the occupancy head, ensuring that the auxiliary loss updates only the head parameters while the encoder remains unaffected by auxiliary gradients.
+The \textbf{Cutoff@35K} condition enables gradient flow for the first 35K steps (70\% of training) and then detaches for the remaining 15K steps.
+
+
+% ============================================================
+\section{Experiments}
+\label{sec:experiments}
+% ============================================================
+
+\subsection{Setup}
+
+\paragraph{Benchmark.}
+We evaluate on SafeLIBERO-Spatial, a collision-aware variant of LIBERO-Spatial comprising 10 manipulation tasks (T0--T9) with collision monitoring.
+Each condition is evaluated over 500 episodes (50 episodes $\times$ 10 tasks).
+
+\paragraph{Metrics.}
+We report two primary metrics:
+\begin{itemize}
+    \item \textbf{Task Success Rate (TSR)}: Fraction of episodes where the task is completed successfully.
+    \item \textbf{Collision Avoidance Rate (CAR)}: Fraction of episodes completed without any collision, among all episodes (not conditioned on success).
+\end{itemize}
+CAR is our primary safety metric. Lower CAR indicates more frequent collisions.
+
+\paragraph{Training.}
+All models are trained for 50K steps on 4$\times$ RTX PRO 6000 GPUs ($\sim$12.9h per run at 1.08 it/s).
+Each condition uses 3 random seeds (42, 43, 44), except Depth which uses 4 seeds.
+
+\paragraph{Statistical Testing.}
+We report Glass's $\Delta$ (using Vanilla's standard deviation as denominator) and bootstrap 95\% confidence intervals for all pairwise comparisons.
+
+\subsection{Main Results}
+\label{sec:main_results}
+
+Table~\ref{tab:main} presents the main results across all conditions.
+
+\begin{table}[h]
+\centering
+\caption{Main results on SafeLIBERO-Spatial (3--4 seeds per condition). CAR is the primary safety metric. $\Delta$ CAR is relative to Vanilla. Bold indicates statistically significant differences ($p<0.01$).}
+\label{tab:main}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Condition} & \textbf{Grad Flow} & \textbf{Seeds} & \textbf{TSR} & \textbf{CAR} & \textbf{$\Delta$ CAR} \\
+\midrule
+Vanilla & N/A & 3 & $0.907 \pm 0.009$ & $0.780 \pm 0.012$ & --- \\
+Full OCC & Yes & 3 & $0.894 \pm 0.050$ & $0.797 \pm 0.032$ & $+1.7\pp$ \\
+Random OCC & Yes & 3 & $0.869 \pm 0.029$ & $0.789 \pm 0.031$ & $+0.9\pp$ \\
+Depth & Yes & 4 & $0.889 \pm 0.042$ & $0.780 \pm 0.037$ & $+0.0\pp$ \\
+Cutoff@35K & Partial & 3 & $0.902 \pm 0.023$ & $0.777 \pm 0.018$ & $-0.3\pp$ \\
+Detach OCC & No & 3 & $0.812 \pm 0.163$ & $\mathbf{0.746 \pm 0.002}$ & $\mathbf{-3.4\pp}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The results reveal a clear pattern.
+All conditions with gradient flow (Full OCC, Random OCC, Depth, Cutoff@35K) achieve CAR within 1.7\pp{} of Vanilla, with none reaching statistical significance.
+In contrast, Detach OCC---the only condition without gradient flow---suffers a significant 3.4\pp{} CAR degradation.
+This degradation is accompanied by dramatically unstable task success: the Detach condition exhibits $\sigma_{\text{TSR}}=0.163$, more than $3\times$ higher than any other condition, driven by a catastrophic seed (s2: TSR$=0.624$).
+
+\subsection{Statistical Analysis}
+\label{sec:stats}
+
+Table~\ref{tab:stats} presents pairwise statistical comparisons.
+
+\begin{table}[h]
+\centering
+\caption{Pairwise statistical comparisons on CAR. Glass's $\Delta$ uses Vanilla's $\sigma=0.012$ as denominator. CI: bootstrap 95\% confidence interval.}
+\label{tab:stats}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Comparison} & \textbf{$\Delta$ CAR} & \textbf{Glass's $\Delta$} & \textbf{95\% CI} & \textbf{Sig.?} \\
+\midrule
+Detach vs Vanilla       & $-3.4\pp$ & 2.83 & $[-4.8, -2.0]\pp$ & Yes \\
+Full OCC vs Vanilla     & $+1.7\pp$ & 1.42 & $[-1.5, +4.9]\pp$ & No \\
+Random OCC vs Vanilla   & $+0.9\pp$ & 0.75 & $[-2.1, +3.9]\pp$ & No \\
+Depth vs Vanilla        & $+0.0\pp$ & 0.00 & $[-3.2, +3.2]\pp$ & No \\
+Cutoff@35K vs Vanilla   & $-0.3\pp$ & 0.25 & $[-2.5, +1.9]\pp$ & No \\
+Full OCC vs Random OCC  & $+0.8\pp$ & 0.26 & $[-3.6, +5.2]\pp$ & No \\
+Full OCC vs Detach      & $+5.1\pp$ & 4.25 & $[+3.5, +6.7]\pp$ & Yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Only two comparisons reach significance: Detach vs.\ Vanilla ($\Delta=-3.4\pp$, Glass's $\Delta=2.83$) and Full OCC vs.\ Detach ($\Delta=+5.1\pp$, Glass's $\Delta=4.25$).
+The comparison between Full OCC and Random OCC ($\Delta=0.8\pp$, Glass's $\Delta=0.26$) confirms that the specific content of the auxiliary task is not a significant factor.
+
+\subsection{Per-Task Analysis}
+\label{sec:pertask}
+
+Table~\ref{tab:pertask} breaks down CAR for collision-prone tasks.
+
+\begin{table}[h]
+\centering
+\caption{Per-task CAR for the three most collision-prone tasks (3-seed averages). T3 and T5 show the strongest Detach degradation.}
+\label{tab:pertask}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Task} & \textbf{Vanilla} & \textbf{Full OCC} & \textbf{Random} & \textbf{Detach} & \textbf{Cutoff} & \textbf{Depth} \\
+\midrule
+T3 (collision-prone) & 0.38 & 0.43 & 0.35 & \textbf{0.18} & 0.40 & 0.38 \\
+T5 (hard)            & 0.07 & 0.17 & 0.16 & \textbf{0.05} & 0.01 & 0.06 \\
+T6 (moderate)        & 0.57 & 0.47 & 0.55 & \textbf{0.46} & 0.36 & 0.63 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The Detach condition shows systematic degradation on collision-prone tasks.
+On T3, Detach achieves only $0.18$ CAR---less than half the Vanilla baseline ($0.38$).
+On T5, all conditions struggle (task-inherent difficulty), but gradient-flow conditions (Full OCC: $0.17$, Random: $0.16$) outperform both Detach ($0.05$) and Vanilla ($0.07$).
+
+\subsection{Cutoff Ablation: Temporal Dynamics of Gradient Flow}
+\label{sec:cutoff}
+
+To investigate whether gradient flow operates as a gradual dose or a binary switch, we conducted temporal ablation experiments.
+Table~\ref{tab:cutoff} shows results for multiple cutoff points.
+
+\begin{table}[h]
+\centering
+\caption{Gradient flow temporal ablation. Cutoff@$X$K enables auxiliary gradient flow for the first $X$K steps only. Cutoff@35K uses 3 seeds; other cutoff points use 1 seed. ``Grad Flow \%'' is the fraction of training with active gradient flow.}
+\label{tab:cutoff}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Cutoff Step} & \textbf{Grad Flow \%} & \textbf{$n$} & \textbf{TSR} & \textbf{CAR} & \textbf{vs Vanilla} \\
+\midrule
+Detach (0K) & 0\% & 3 & $0.812 \pm 0.163$ & $0.746 \pm 0.002$ & $-3.4\pp$ \\
+15K & 30\% & 1 & $0.885$ & $0.762$ & $-1.8\pp$ \\
+25K & 50\% & 1 & $0.892$ & $0.775$ & $-0.5\pp$ \\
+35K & 70\% & 3 & $0.902 \pm 0.023$ & $0.777 \pm 0.018$ & $-0.3\pp$ \\
+45K & 90\% & 1 & $0.888$ & $0.769$ & $-1.1\pp$ \\
+Full (50K) & 100\% & 3 & $0.894 \pm 0.050$ & $0.797 \pm 0.032$ & $+1.7\pp$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All cutoff points with $\geq 30\%$ gradient flow achieve CAR substantially above Detach (0\%) and within the noise band of Vanilla.
+However, the single-seed cutoff points ($n=1$) show non-monotonic CAR values ($0.762, 0.775, 0.777, 0.769$ for 15K, 25K, 35K, 45K), preventing any conclusion about dose-response relationships.
+With $n=1$ per intermediate cutoff point, we lack statistical power to detect weak trends.
+The robust conclusion is binary: \emph{some} gradient flow ($\geq 30\%$) is sufficient to avoid Detach-level degradation, but we cannot determine whether more gradient flow is incrementally better.
+
+\subsection{Reverse Cutoff: Late-Stage Gradient Flow}
+\label{sec:reverse}
+
+We also test the converse: enabling auxiliary gradient flow only in the \emph{latter} portion of training (steps 35K--50K), having trained without it for the first 35K steps.
+
+\begin{table}[h]
+\centering
+\caption{$2 \times 2$ temporal design crossing early-stage (0--35K) and late-stage (35K--50K) gradient flow. All values are CAR (single seed for Reverse; 3-seed mean for others).}
+\label{tab:2x2}
+\small
+\begin{tabular}{lcc}
+\toprule
+ & \textbf{No Late Flow} & \textbf{Late Flow} \\
+\midrule
+No Early Flow & Vanilla: $0.780$ & Reverse: $0.775$ \\
+Early Flow    & Cutoff@35K: $0.777$ & Full OCC: $0.797$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The Reverse condition (CAR$=0.775$) is indistinguishable from both Vanilla ($0.780$) and Cutoff@35K ($0.777$).
+This is expected given the exponential decay schedule: at step 35K, the loss weight has decayed to $w(35\text{K})=0.01 \cdot e^{-0.7} \approx 0.005$, meaning late-stage auxiliary gradients contribute minimally.
+We note that this null result is confounded with the decay schedule; a constant-weight design might reveal different temporal dynamics.
+
+\subsection{Detach Mechanism Discrimination}
+\label{sec:detach_ln}
+
+One concern is that the Detach condition's degradation could stem from a BatchNorm artifact rather than gradient flow absence: in Detach mode, the OccHead's BatchNorm2d layers update their running statistics via forward passes but never receive gradient-based corrections.
+To test this, we replace BatchNorm2d with LayerNorm in the OccHead under Detach mode.
+
+\begin{table}[h]
+\centering
+\caption{Detach mechanism discrimination (single seed). Replacing BatchNorm with LayerNorm under Detach provides minimal recovery, confirming gradient flow absence as the primary harm mechanism.}
+\label{tab:detach_ln}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Condition} & \textbf{TSR} & \textbf{CAR} & \textbf{$\Delta$ vs Vanilla} & \textbf{$\Delta$ vs Detach} \\
+\midrule
+Vanilla       & $0.907$ & $0.780$ & ---       & $+3.4\pp$ \\
+Full OCC      & $0.894$ & $0.797$ & $+1.7\pp$ & $+5.1\pp$ \\
+Detach (BN)   & $0.812$ & $0.746$ & $-3.4\pp$ & --- \\
+Detach + LN   & $0.855$ & $0.752$ & $-2.8\pp$ & $+0.6\pp$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Replacing BatchNorm with LayerNorm recovers only $0.6\pp$ of the $3.4\pp$ deficit, suggesting that BatchNorm statistics drift accounts for at most a minor fraction ($\sim$18\%) of the Detach degradation.
+The dominant mechanism ($\sim$82\%) is gradient flow absence itself.
+We emphasize that this is a single-seed result and the $0.6\pp$ difference falls within typical seed variance ($\sigma \approx 0.012$).
+
+
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+% ============================================================
+
+\paragraph{Gradient flow as a binary switch.}
+Our results suggest that auxiliary gradient flow operates more as a binary switch than a continuous dose.
+Any amount of gradient flow ($\geq 30\%$ of training) prevents the Detach-level degradation, but increasing the duration or intensity does not yield proportional benefits.
+This is consistent with the hypothesis that gradient flow prevents a one-time ``damage event'' (e.g., feature drift in early training) rather than providing ongoing regularization.
+
+\paragraph{Why does detaching hurt?}
+The Detach condition adds 1.2M parameters to the forward pass without providing corresponding gradient signal to the encoder.
+We hypothesize two complementary mechanisms:
+(1) The detached head consumes encoder capacity (attention, computation) during forward passes without feedback, creating a ``dead branch'' that introduces noise into the encoder's representations.
+(2) Without gradient flow, the encoder cannot adapt to the presence of the auxiliary head, leading to subtle distributional shifts that compound during training.
+Our BatchNorm control experiment (Section~\ref{sec:detach_ln}) rules out BatchNorm statistics drift as the primary cause, but we cannot fully adjudicate between (1) and (2) with the current experimental design.
+
+\paragraph{Spatial content does not matter.}
+The most surprising finding is that the \emph{content} of auxiliary supervision---whether semantically meaningful (BEV occupancy, egocentric depth) or random noise---has no significant effect on safety.
+Full OCC ($0.797$), Random OCC ($0.789$), and Depth ($0.780$) are all within the noise band.
+This challenges the intuition that explicit 3D spatial supervision should improve collision avoidance, and suggests that any benefit of auxiliary heads comes from their role as gradient-flow regularizers rather than spatial teachers.
+
+\paragraph{Practical guidelines.}
+Our findings yield a clear guideline for practitioners adding auxiliary prediction heads to VLAs:
+\begin{enumerate}
+    \item \textbf{Always maintain gradient flow.} Detaching auxiliary head gradients from the shared encoder is actively harmful (CAR $-3.4\pp$).
+    \item \textbf{Content choice is secondary.} The specific prediction target matters less than gradient flow presence. Choose based on convenience (data availability, computational cost) rather than spatial informativeness.
+    \item \textbf{Partial training suffices.} Gradient flow during the first 30--70\% of training prevents degradation; full-duration auxiliary supervision is not required.
+\end{enumerate}
+
+
+% ============================================================
+\section{Limitations}
+\label{sec:limitations}
+% ============================================================
+
+\paragraph{Single benchmark.}
+All experiments use SafeLIBERO-Spatial.
+Generalization to other benchmarks (e.g., LIBERO-Object, LIBERO-Goal) and real-world settings remains untested.
+
+\paragraph{Single VLA architecture.}
+We study OpenVLA with LoRA fine-tuning.
+Different base models, full fine-tuning, or alternative parameter-efficient methods may exhibit different gradient flow dynamics.
+
+\paragraph{Limited mechanism depth.}
+While we establish that gradient flow is necessary, we do not identify the precise mechanism by which detaching hurts.
+Exploratory CKA and gradient analyses (Appendix~\ref{app:cka},~\ref{app:gradient}) provide suggestive but inconclusive evidence.
+A full causal account---likely requiring intervention experiments on specific layers or training stages---is left to future work.
+
+\paragraph{Statistical power.}
+With $n=3$ seeds per condition, we have adequate power to detect the large Detach effect (Glass's $\Delta=2.83$) but not smaller effects.
+The dose-response analysis uses $n=1$ per intermediate cutoff point and is therefore purely exploratory.
+
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+% ============================================================
+
+We conducted the first systematic factorial study of auxiliary spatial supervision in VLA fine-tuning, varying both task content and gradient flow across six conditions with 22 training runs totaling 286 GPU hours.
+Our central finding is an asymmetry: gradient flow from auxiliary heads is a \emph{necessary} condition to prevent safety degradation, but the spatial content of the auxiliary task is secondary.
+Detaching gradients causes a statistically significant 3.4\pp{} drop in Collision Avoidance Rate (Glass's $\Delta=2.83$), while all gradient-flow conditions remain indistinguishable from the no-auxiliary-head baseline.
+This yields a practical guideline for VLA practitioners: when attaching auxiliary prediction heads, always maintain gradient flow to the shared encoder.
+Future work should investigate the precise mechanism of Detach degradation, test generalization across benchmarks and architectures, and explore whether alternative loss schedules can amplify the (currently negligible) content-dependent effects.
+
+
+% ============================================================
+\appendix
+\section{Exploratory Analysis: Representation-Level Evidence (CKA)}
+\label{app:cka}
+% ============================================================
+
+We compute linear CKA~\citep{kornblith2019similarity} between encoder intermediate layer representations at the 50K checkpoint across conditions.
+
+\begin{table}[h]
+\centering
+\caption{CKA similarity vs.\ Vanilla across DINOv2 layer groups. Values closer to 1.0 indicate more similar representations.}
+\label{tab:cka}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Condition} & \textbf{Early (1--6)} & \textbf{Middle (7--14)} & \textbf{Late (15--24)} & \textbf{Spatial Avg} & \textbf{Semantic Avg} \\
+\midrule
+Full OCC   & 0.97 & 0.91 & 0.96 & 0.93 & 0.96 \\
+Random OCC & 0.96 & 0.88 & 0.95 & 0.91 & 0.95 \\
+Detach OCC & 0.95 & 0.85 & 0.93 & 0.88 & 0.94 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Detach shows the largest deviation from Vanilla (spatial CKA $=0.88$), concentrated in the middle blocks (7--14, CKA $=0.85$), which are expected to carry the strongest spatial-semantic interactions.
+However, the differences are modest: all CKA values exceed $0.85$, and the gap between Full OCC ($0.93$) and Detach ($0.88$) is only 5\pp.
+Random OCC ($0.91$) falls between Full OCC and Detach, overlapping with both under bootstrap confidence intervals.
+
+These results are \emph{consistent with} but do not \emph{establish} a causal link between representation divergence and safety degradation.
+The limited divergence likely reflects the conservative LoRA scaling ($\alpha/\text{rank}=0.5$), which constrains weight updates and compresses the CKA difference space.
+
+\begin{table}[h]
+\centering
+\caption{CKA pairwise comparison matrix (spatial layers). All pairs show high similarity ($>0.88$), limiting discriminative power.}
+\label{tab:cka_pairwise}
+\small
+\begin{tabular}{lcccc}
+\toprule
+ & \textbf{Vanilla} & \textbf{Full OCC} & \textbf{Random} & \textbf{Detach} \\
+\midrule
+Vanilla  & 1.00 & 0.93 & 0.91 & 0.88 \\
+Full OCC & 0.93 & 1.00 & 0.94 & 0.90 \\
+Random   & 0.91 & 0.94 & 1.00 & 0.90 \\
+Detach   & 0.88 & 0.90 & 0.90 & 1.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% ============================================================
+\section{Exploratory Analysis: Gradient-Level Evidence}
+\label{app:gradient}
+% ============================================================
+
+We analyze gradient norms and cosine similarities between action-head and auxiliary-head gradients at the 50K checkpoint.
+
+\begin{table}[h]
+\centering
+\caption{Gradient analysis at the 50K checkpoint. Cosine similarity between action and auxiliary gradients is near zero across all conditions, providing no discriminative signal.}
+\label{tab:gradient}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Condition} & \textbf{Aux/Action Norm} & \textbf{Cosine (mean$\pm$std)} & \textbf{Action Grad Norm} \\
+\midrule
+Full OCC   & 0.12 & $0.03 \pm 0.06$ & 0.0045 \\
+Random OCC & 0.11 & $0.02 \pm 0.07$ & 0.0044 \\
+Detach OCC & 0.00 & N/A              & 0.0041 \\
+Vanilla    & N/A  & N/A              & 0.0042 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Gradient cosine similarity between action and auxiliary heads is near zero ($0.03 \pm 0.06$ for Full OCC, $0.02 \pm 0.07$ for Random OCC), indicating near-orthogonal gradient directions.
+This is expected: action prediction (temporal policy) and spatial prediction (static geometry) optimize fundamentally different objectives.
+Full OCC and Random OCC are indistinguishable in gradient statistics, mirroring their indistinguishable CAR.
+
+\begin{table}[h]
+\centering
+\caption{Per-layer gradient cosine similarity (Full OCC, DINOv2 blocks). No consistent pattern across layer groups.}
+\label{tab:gradient_layer}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Layer Group} & \textbf{Cosine Mean} & \textbf{Cosine Std} & \textbf{Aux/Action Norm} \\
+\midrule
+Blocks 1--6 (early)     & 0.05  & 0.04 & 0.15 \\
+Blocks 7--12 (middle)   & 0.02  & 0.07 & 0.12 \\
+Blocks 13--18 (late-mid)& $-0.01$ & 0.08 & 0.10 \\
+Blocks 19--24 (late)    & 0.04  & 0.05 & 0.08 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Action gradient norms are similar across all conditions (range: $0.0041$--$0.0045$), suggesting the auxiliary head does not significantly alter the action loss landscape.
+The auxiliary gradient norm is $\sim$12\% of the action gradient norm for both Full OCC and Random OCC, reflecting the small loss weight ($w(50\text{K}) \approx 0.004$).
+
+We note that this analysis is limited to a single checkpoint (50K) and first-order gradient statistics.
+The regularization effect of gradient flow may operate through second-order effects (e.g., loss landscape smoothing) or may be most pronounced early in training when the loss weight is higher.
+These hypotheses remain for future investigation.
+
+
+% ============================================================
+% References
+% ============================================================
+
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{20}
+
+\bibitem[Ames et~al.(2019)]{ames2019control}
+Aaron~D. Ames, Samuel Coogan, Magnus Egerstedt, Gennaro Notomista, Koushil Sreenath, and Paulo Tabuada.
+\newblock Control barrier functions: Theory and applications.
+\newblock In \emph{European Control Conference}, pages 3420--3431, 2019.
+
+\bibitem[Brohan et~al.(2023)]{brohan2023rt2}
+Anthony Brohan, Noah Brown, Justice Carbajal, et~al.
+\newblock {RT-2}: Vision-language-action models transfer web knowledge to robotic control.
+\newblock \emph{arXiv preprint arXiv:2307.15818}, 2023.
+
+\bibitem[Hu et~al.(2022)]{hu2022lora}
+Edward~J. Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu~Wang, and Weizhu Chen.
+\newblock {LoRA}: Low-rank adaptation of large language models.
+\newblock In \emph{International Conference on Learning Representations}, 2022.
+
+\bibitem[Jaderberg et~al.(2017)]{jaderberg2017unreal}
+Max Jaderberg, Volodymyr Mnih, Wojciech~Marian Czarnecki, Tom Schaul, Joel~Z. Leibo, David Silver, and Koray Kavukcuoglu.
+\newblock Reinforcement learning with unsupervised auxiliary tasks.
+\newblock In \emph{International Conference on Learning Representations}, 2017.
+
+\bibitem[Kim et~al.(2024)]{kim2024openvla}
+Moo~Jin Kim, Karl Pertsch, Siddharth Karamcheti, Ted Xiao, Ashwin Balakrishna, Suraj Nair, Rafael Rafailov, Ethan Foster, Grace Lam, Pannag Sanketi, et~al.
+\newblock {OpenVLA}: An open-source vision-language-action model.
+\newblock \emph{arXiv preprint arXiv:2406.09246}, 2024.
+
+\bibitem[Kornblith et~al.(2019)]{kornblith2019similarity}
+Simon Kornblith, Mohammad Norouzi, Honglak Lee, and Geoffrey Hinton.
+\newblock Similarity of neural network representations revisited.
+\newblock In \emph{International Conference on Machine Learning}, pages 3519--3529, 2019.
+
+\bibitem[Mirowski et~al.(2017)]{mirowski2017learning}
+Piotr Mirowski, Razvan Pascanu, Fabio Viola, Hubert Soyer, Andrew~J. Ballard, Andrea Banino, Misha Denil, Ross Goroshin, Laurent Sifre, Koray Kavukcuoglu, et~al.
+\newblock Learning to navigate in complex environments.
+\newblock In \emph{International Conference on Learning Representations}, 2017.
+
+\bibitem[Oquab et~al.(2024)]{oquab2024dinov2}
+Maxime Oquab, Timoth{\'e}e Darcet, Th{\'e}o Moutakanni, Huy~V. Vo, Marc Szafraniec, Vasil Khalidov, Pierre Fernandez, Daniel Haziza, Francisco Massa, Alaaeldin El-Nouby, et~al.
+\newblock {DINOv2}: Learning robust visual features without supervision.
+\newblock \emph{Transactions on Machine Learning Research}, 2024.
+
+\bibitem[{SafeLIBERO}(2025)]{safelibero2025}
+{SafeLIBERO Contributors}.
+\newblock {SafeLIBERO}: Collision-aware evaluation for vision-language-action models.
+\newblock 2025.
+
+\bibitem[Team et~al.(2024)]{team2024octo}
+Octo~Model Team, Dibya Ghosh, Homer Walke, Karl Pertsch, Kevin Black, Oier Mees, Sudeep Dasari, Joey Hejna, Tobias Kreiman, Charles Xu, et~al.
+\newblock {Octo}: An open-source generalist robot policy.
+\newblock \emph{arXiv preprint arXiv:2405.12213}, 2024.
+
+\bibitem[Tian et~al.(2024)]{tian2024occ3d}
+Xiaoyu Tian, Tao Jiang, Longfei Yun, Yucheng Mao, Huitong Yang, Yue Wang, Yilun Wang, and Hang Zhao.
+\newblock {Occ3D}: A large-scale 3D occupancy prediction benchmark for autonomous driving.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem[Tong et~al.(2023)]{tong2023scene}
+Wenwen Tong, Chonghao Sima, Tai Wang, Li~Chen, Silei Wu, Hanming Deng, Yi~Gu, Lewei Lu, Ping Luo, Dahua Lin, and Hongyang Li.
+\newblock Scene as occupancy.
+\newblock In \emph{ICCV}, pages 8406--8415, 2023.
+
+\bibitem[Wei et~al.(2023)]{wei2023surroundocc}
+Yi~Wei, Linqing Zhao, Wenzhao Zheng, Zheng Zhu, Jie Zhou, and Jiwen Lu.
+\newblock {SurroundOcc}: Multi-camera 3D occupancy prediction for autonomous driving.
+\newblock In \emph{ICCV}, pages 21729--21740, 2023.
+
+\bibitem[Ye et~al.(2021)]{ye2021auxiliary}
+Deheng Ye, Guibin Chen, Wen Zhang, Sheng Chen, Bo~Yuan, Bo~Liu, Jia Chen, Zhao Liu, Fuhao Qiu, Hongsheng Yu, et~al.
+\newblock Mastering complex control in {MOBA} games with deep reinforcement learning.
+\newblock In \emph{AAAI}, pages 6672--6679, 2021.
+
+\bibitem[Zhai et~al.(2023)]{zhai2023siglip}
+Xiaohua Zhai, Basil Mustafa, Alexander Kolesnikov, and Lucas Beyer.
+\newblock Sigmoid loss for language image pre-training.
+\newblock In \emph{ICCV}, pages 11975--11986, 2023.
+
+\end{thebibliography}
+
+\end{document}

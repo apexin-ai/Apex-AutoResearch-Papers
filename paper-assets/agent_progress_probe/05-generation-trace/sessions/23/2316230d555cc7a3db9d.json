@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "2316230d555cc7a3db9d",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "exp oh to swe reverse transfer",
+  "task_key": "worker_exp_oh-to-swe-reverse-transfer_20260516T044938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_oh-to-swe-reverse-transfer_20260516T044938.log",
+    "occurrence": 1,
+    "bytes": 938455,
+    "sha256": "2545a7e4fb38c5b3048571838510c5bfaa8bfe2dba65048c8fbf4a7a55a75775"
+  },
+  "statistics": {
+    "messages": 397,
+    "user_turns": 0,
+    "tool_calls": 152,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 89,
+      "tool_call": 152,
+      "tool_result": 152,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 397,
+      "chunks": [
+        {
+          "path": "2316230d555cc7a3db9d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2316230d555cc7a3db9d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2316230d555cc7a3db9d-part-0003.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-oh-to-swe-reverse-transfer.md"
+}

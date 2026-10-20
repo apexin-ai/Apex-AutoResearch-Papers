@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e982da48201da3d9013c",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "experiment e9 e10 p2 stats",
+  "task_key": "worker_experiment_e9-e10-p2-stats_20260515T142705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_e9-e10-p2-stats_20260515T142705_result.json",
+    "occurrence": 1,
+    "bytes": 1969,
+    "sha256": "473716cd30f27e910f0904cac363aa034f6a094fbed174ae16908f60259e63c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## E9: Multi-seed Statistical Tests\n\n| Comparison | Δ | t | p | Cohen's d | Sig |\n|---|---|---|---|---|---|\n| Struct GB vs GRU Probe (in-domain) | +0.077 | 11.71 | 0.007 | 6.76 | ** |\n| E5-large vs GRU Probe | +0.020 | 3.53 | 0.072 | 2.04 | ns |\n| BGE-M3 vs GRU Probe | −0.010 | −0.29 | 0.801 | −0.17 | ns |\n| E5-large vs BGE-M3 | +0.030 | 0.94 | 0.446 | 0.54 | ns |\n| Cross-agent GB vs Probe zero-shot | +0.368 | 268.4 | <0.001 | 120.0 | *** |\n\n**Gold set bootstrap (N=491):** GB vs MV (+4.2pp, p<0.001), GB vs Probe (+8.8pp, p<0.001), RF vs GB (−2.9pp, p<0.001), TWV-Probe vs GB (−2.3pp, p=0.056 ns).\n\n**Key findings:**\n- Structural GB significantly outperforms GRU Probe in-domain (p=0.007, d=6.76), but permutation test is non-significant (p=0.25) due to n=3 — low power caveat\n- Encoder choice (E5/BGE-M3 vs nomic) shows no significant difference with n=3 seeds\n- Cross-agent: GB (0.966) trivially dominates Probe zero-shot (0.598)\n- GB cross-agent extremely stable: CV=0.32%, 5-seed std=0.003\n\n## E10: Conf=1 Subset Evaluation\n\n| Subset | Model | Macro-F1 | F1(stag) | F1(prog) | N |\n|---|---|---|---|---|---|\n| conf≥2 test | GB | 0.997 ± 0.001 | 0.996 ± 0.001 | 0.998 ± 0.001 | 3,081 |\n| conf≥2 test | RF | 0.997 ± 0.001 | 0.996 ± 0.001 | 0.998 ± 0.001 | 3,081 |\n| **conf=1** | **GB** | **0.846 ± 0.001** | **0.774 ± 0.001** | **0.917 ± 0.001** | **39,408** |\n| **conf=1** | **RF** | **0.862 ± 0.003** | **0.801 ± 0.004** | **0.924 ± 0.002** | **39,408** |\n\n**Key findings:**\n- conf=1 performance drops ~15pp vs conf≥2 (GB: 0.997→0.846, RF: 0.997→0.862), p<0.001\n- RF slightly but significantly beats GB on conf=1 (Δ=+1.7pp, p=0.011)\n- conf=1 stag rate = 24.8% (vs 38.0% for conf≥2) — more class imbalance\n- GB-RF agreement on conf=1: 97.6–98.3% — both models largely agree even on ambiguous cases\n- Both models agree with silver MV labels ~88–89% of the time on conf=1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-e9-e10-p2-stats.md"
+}

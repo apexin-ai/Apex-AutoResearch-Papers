@@ -1,0 +1,33 @@
+{
+  "exp_id": "cutoff_s2",
+  "project": "occsafe_vla",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:08:58.631Z",
+    "updated_at": "2026-05-23T09:25:03.752Z",
+    "hypothesis": "Third seed (seed 44) replication of cutoff strategy (OCC loss cutoff at step 35000). Expands cutoff to 3-seed for statistical consistency with other conditions (Full OCC, Random OCC, Detach OCC all have 3 seeds).",
+    "parent": "cutoff_s0",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 WANDB_MODE=disabled torchrun --nproc_per_node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --dataset_name libero_spatial_no_noops --data_root_dir /root/autodl-tmp/data/modified_libero_rlds --occ_data_dir /root/occsafe_vla/occ_data --run_root_dir /root/autodl-tmp/checkpoints/cutoff_s2 --use_occ_head True --occ_loss_cutoff_step 35000 --save_freq 10000 --max_steps 50005 --seed 44",
+      "server": "westd-10894",
+      "gpu": "cuda:0",
+      "pid": "275630",
+      "log_path": "~/runs/occsafe_vla/cutoff_s2.log",
+      "submitted_at": "2026-05-23T08:38:00Z",
+      "submitted_via": "ssh_execute+tmux",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": "~25000 episodes",
+      "model_name": "openvla-7b",
+      "seed": 44,
+      "checkpoint_source": "openvla-7b (from scratch)",
+      "eval_data": "N/A (training)"
+    }
+  },
+  "timestamp": "2026-05-23T09:25:03.861491+00:00",
+  "trigger": "update_registry"
+}

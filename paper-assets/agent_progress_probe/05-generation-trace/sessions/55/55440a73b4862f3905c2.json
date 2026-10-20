@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55440a73b4862f3905c2",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "eval test set distribution",
+  "task_key": "worker_eval_test_set_distribution_20260514T083830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_test_set_distribution_20260514T083830_result.json",
+    "occurrence": 1,
+    "bytes": 1209,
+    "sha256": "3cd85d6389c7a3a7db344160539142e509029d633ff361774e99c1004ac24379"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Split 分布检查：\n\n| Split | Total | Progress | Stagnation | Unique Instances | Conf Dist |\n|-------|-------|----------|------------|------------------|-----------|\n| Train | 10,634 | 6,740 (63.4%) | 3,894 (36.6%) | 1,386 | {2: 10130, 3: 504} |\n| Val | 2,943 | 1,476 (50.2%) | 1,467 (49.8%) | 297 | {2: 2699, 3: 244} |\n| Test | 1,824 | 1,339 (73.4%) | 485 (26.6%) | 297 | {2: 1780, 3: 44} |\n\n**结论：分布存在显著偏差。**\n\n- **类别比例不一致**：Train 63.4% progress，Val 50.2%，Test 73.4%。三个 split 的 progress 比例差距超过 20 个百分点，Val 接近均衡而 Test 严重偏向 progress。\n- **原因**：按 instance_id 分组切分，不同 instance 的 progress/stagnation window 数量不同，导致样本级类别比例在 split 间不均匀。\n- **conf=3 分布也不均**：Train 有 504 个 conf=3 样本，Val 244 个，Test 仅 44 个。\n- **建议**：如果需要公平评估，应在切分后对 train 做类别重采样（或加 class weight），并注意 test 上的指标会因类别不均衡而偏高（accuracy 虚高）。评估时应关注 balanced accuracy、F1 或各类别的 precision/recall，而非 raw accuracy。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-test-set-distribution.md"
+}

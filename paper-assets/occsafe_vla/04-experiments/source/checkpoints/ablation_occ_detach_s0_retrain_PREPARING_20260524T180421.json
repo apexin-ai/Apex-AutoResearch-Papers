@@ -1,0 +1,21 @@
+{
+  "exp_id": "ablation_occ_detach_s0_retrain",
+  "project": "occsafe_vla",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-24T09:06:00.676Z",
+    "updated_at": "2026-05-24T18:04:21.706Z",
+    "hypothesis": "Detach OCC head with BN (same seed=42) retrain for gradient analysis: detaching OCC gradients from the backbone isolates occupancy learning effects, enabling same-seed 4-condition gradient comparison to quantify OCC head's backward contribution to VLA features.",
+    "completed_at": "2026-05-24T17:50:32.862Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-24T18:04:21.898914+00:00",
+  "trigger": "update_registry"
+}

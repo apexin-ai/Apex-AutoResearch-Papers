@@ -1,0 +1,15 @@
+{
+  "exp_id": "cka_full_occ_ln_s1",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T02:29:58.390Z",
+    "updated_at": "2026-05-25T02:31:11.175Z",
+    "hypothesis": "CKA analysis of Full OCC+LN seed 43 vs pretrained. Verifies whether DINOv2 representation drift (CKA=0.640 in s0) is consistent across seeds, confirming norm×gradient-flow interaction effect."
+  },
+  "timestamp": "2026-05-25T02:31:11.432549+00:00",
+  "trigger": "update_registry"
+}

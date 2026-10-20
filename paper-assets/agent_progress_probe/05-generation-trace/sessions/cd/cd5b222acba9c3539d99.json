@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd5b222acba9c3539d99",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "experiment e7 probe oh gold",
+  "task_key": "worker_experiment_e7-probe-oh-gold_20260515T141437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_e7-probe-oh-gold_20260515T141437_result.json",
+    "occurrence": 1,
+    "bytes": 501,
+    "sha256": "6b6a43323d3fdd27756e782f6220032f359809c9cf373cd2eb4ed633efe967d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Bottom line:** OH gold windows DO have embeddings (158/169 covered), but both probes essentially fail on OH — they predict almost everything as progress, achieving macro-F1 ≈ 0.48. This is due to (a) training only on SWE data and (b) OH having fundamentally different stagnation patterns. The 5 OH stagnation windows in the gold set are too few for reliable evaluation anyway. For the paper, probe results should be reported on SWE-only gold or clearly caveated when including OH."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-e7-probe-oh-gold.md"
+}

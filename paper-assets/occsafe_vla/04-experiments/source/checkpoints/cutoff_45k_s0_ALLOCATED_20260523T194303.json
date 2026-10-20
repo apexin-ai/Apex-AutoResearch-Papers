@@ -1,0 +1,16 @@
+{
+  "exp_id": "cutoff_45k_s0",
+  "project": "occsafe_vla",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T16:59:23.591Z",
+    "updated_at": "2026-05-23T19:43:03.789Z",
+    "hypothesis": "Cutoff at 45K steps (removing gradient flow only for last 5K of 50K steps) tests whether near-full-duration gradient flow is equivalent to continuous flow. If CAR matches Full OCC (~0.797), the final 5K steps of gradient flow are dispensable. Combined with 15K/25K/35K/reverse, completes the dose-response curve.",
+    "parent": "cutoff_s0"
+  },
+  "timestamp": "2026-05-23T19:43:03.911405+00:00",
+  "trigger": "update_registry"
+}

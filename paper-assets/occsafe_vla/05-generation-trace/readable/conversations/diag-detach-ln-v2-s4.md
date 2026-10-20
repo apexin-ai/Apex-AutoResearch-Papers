@@ -1,0 +1,1113 @@
+# diag detach ln v2 s4
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/chats/worker_diag_detach_ln_v2_s4_20260528T110837.jsonl`
+- **Structured JSON:** [`356399be950ae0977fa9.json`](../../sessions/35/356399be950ae0977fa9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+37 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-28T11:11:38.637497+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-28T11:11:38.637866+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-28T11:11:38.638076+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "tail -100 ~/runs/occsafe_vla/detach_ln_v2_s4.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-10894",
+    "command": "tail -100 ~/runs/occsafe_vla/detach_ln_v2_s4.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-28T11:11:38.638215+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "tail -50 ~/runs/occsafe_vla/vanilla_object_s2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-10894",
+    "command": "tail -50 ~/runs/occsafe_vla/vanilla_object_s2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-28T11:11:38.638340+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-10894",
+    "command": "nvidia-smi",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-28T11:11:38.638574+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  return func(*args, **kwargs)\\n\\r 80%|███████▉  | 40002/50005 [11:02:16<33:08:26, 11.93s/it]\\r 80%|███████▉  | 40003/50005 [11:02:17<23:58:43,  8.63s/it]\\r 80%|████████  | 40004/50005 [11:02:18<17:33:38,  6.32s/it]\\r 80%|████████  | 40005/50005 [11:02:18<13:04:04,  4.70s/it]\\r 80%|████████  | 40006/50005 [11:02:19<9:55:38,  3.57s/it] \\r 80%|████████  | 40007/50005 [11:02:20<7:44:16,  2.79s/it]\\r 80%|████████  | 40008/50005 [11:02:21<6:12:02,  2.23s/it]\\r 80%|████████  | 40009/50005 [11:02:22<5:07:41,  1.85s/it]\\r 80%|████████  | 40010/50005 [11:02:23<4:22:15,  1.57s/it]\\r 80%|████████  | 40011/50005 [11:02:24<3:50:43,  1.39s/it]\\r 80%|████████  | 40012/50005 [11:02:25<3:28:12,  1.25s/it]\\r 80%|████████  | 40013/50005 [11:02:26<3:14:09,  1.17s/it]\\r 80%|████████  | 40014/50005 [11:02:27<3:03:22,  1.10s/it]\\r 80%|████████  | 40015/50005 [11:02:28<2:55:48,  1.06s/it]\\r 80%|████████  | 40016/50005 [11:02:29<2:56:27,  1.06s/it]\\r 80%|████████  | 40017/50005 [11:02:30<2:50:21,  1.02s/it]\\r 80%|████████  | 40018/50005 [11:02:31<2:45:50,  1.00it/s]\\r 80%|████████  | 40019/50005 [11:02:32<2:43:31,  1.02it/s]\\r 80%|████████  | 40020/50005 [11:02:33<2:41:10,  1.03it/s]\\r 80%|████████  | 40021/50005 [11:02:34<2:39:08,  1.05it/s]\\r 80%|████████  | 40022/50005 [11:02:35<2:37:37,  1.06it/s]\\r 80%|████████  | 40023/50005 [11:02:36<2:36:38,  1.06it/s]\\r 80%|████████  | 40024/50005 [11:02:36<2:36:04,  1.07it/s]\\r 80%|████████  | 40025/50005 [11:02:37<2:35:22,  1.07it/s]\\r 80%|████████  | 40026/50005 [11:02:38<2:35:01,  1.07it/s]\\r 80%|████████  | 40027/50005 [11:02:39<2:34:53,  1.07it/s]\\r 80%|██��█████  | 40028/50005 [11:02:40<2:34:54,  1.07it/s]\\r 80%|████████  | 40029/50005 [11:02:41<2:34:50,  1.07it/s]\\r 80%|████████  | 40030/50005 [11:02:42<2:34:33,  1.08it/s]\\r 80%|████████  | 40031/50005 [11:02:43<2:34:35,  1.08it/s]\\r 80%|████████  | 40032/50005 [11:02:44<2:35:09,  1.07it/s]\\r 80%|██████
+…[truncated 6515 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-28T11:11:38.638891+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\u001b[A\\n\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  3.36it/s]\\u001b[A\\n\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  3.85it/s]\\u001b[A\\n\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  3.90it/s]\\u001b[A\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  3.83it/s]\\nSaved merged model for Step 20000 at: /root/autodl-tmp/checkpoints/vanilla_object_s2/openvla-7b+libero_object_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--vanilla_object_s2--20000_chkpt\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.\\n  return func(*args, **kwargs)\\n\\r 40%|████      | 20002/50005 [5:40:58<100:16:22, 12.03s/it]\\r 40%|████      | 20003/50005 [5:40:59<72:30:52,  8.70s/it] \\r 40%|████      | 20004/50005 [5:41:00<53:04:15,  6.37s/it]\\r 40%|████      | 20005/50005 [5:41:01<39:28:40,  4.74s/it]\\r 40%|████      | 20006/50005 [5:41:02<29:57:53,  3.60s/it]\\r 40%|████      | 20007/50005 [5:41:03<23:17:29,  2.80s/it]\\r 40%|████      | 20008/50005 [5:41:04<18:37:52,  2.24s/it]\\r 40%|████      | 20009/50005 [5:41:05<15:22:37,  1.85s/it]\\r 40%|████      | 20010/50005 [5:41:06<13:04:52,  1.57s/it]\\r 40%|████      | 20011/50005 [5:41:07<11:27:38,  1.38s/it]\\r 40%|████      | 20012/50005 [5:41:08<10:19:00,  1.24s/it]\\r 40%|████      | 20013/50005 [5:41:08<9:31:39,  1.14s/it] \\r 40%|████      | 20014/50005 [5:41:09<8:59:03,  1.08s/it]\\r 40%|████      | 20015/50005 [5:41:10<8:34:53,  1.03s/it]\\r 40%|████      | 20016/50005 [5:41:11<8:19:08,  1.00it/s]\\r 40%|████      | 20017/50005 [5:41:12<8:07:23,  1.03it/s]\\r 40%|████      | 20018/50005 [5:41:13<7:58:51,  1.04it/s]\\r 40%|████      | 20019/50
+…[truncated 6534 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-28T11:11:38.639063+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "ps -p 959808 -o pid,cmd=",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-10894",
+    "command": "ps -p 959808 -o pid,cmd=",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-28T11:11:38.639223+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Thu May 28 19:08:59 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:16:00.0 Off |                  Off |\\n| N/A   30C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:38:00.0 Off |                  Off |\\n| N/A   30C    P8             36W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:49:00.0 Off |                  Off |\\n| N/A   30C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:A8:00.0 Off |                  Off |\\n| N/A   31C    P8             
+…[truncated 1017 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-28T11:11:38.639376+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "tmux ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-10894",
+    "command": "tmux ls",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-28T11:11:38.639548+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"   PID \\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-28T11:11:38.639725+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-28T11:11:38.639862+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "filters": "{'exp_id': 'detach_ln_v2_s4'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "filters": "{'exp_id': 'detach_ln_v2_s4'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-28T11:11:38.639989+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5636}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-28T11:11:38.640150+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "dmesg | grep -i \"oom\\|killed\\|out of memory\" | tail -20",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-10894",
+    "command": "dmesg | grep -i \"oom\\|killed\\|out of memory\" | tail -20",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-28T11:11:38.640276+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"dmesg: read kernel buffer failed: Operation not permitted\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-28T11:11:38.640401+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "tmux ls 2>/dev/null; echo \"---\"; ps aux | grep -E \"finetune|torchrun\" | grep -v grep",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-10894",
+    "command": "tmux ls 2>/dev/null; echo \"---\"; ps aux | grep -E \"finetune|torchrun\" | grep -v grep",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-28T11:11:38.640525+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"---\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-28T11:11:38.640641+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-28T11:11:38.640783+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6326}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-28T11:11:38.640960+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "journalctl -k --since \"2026-05-28 18:50\" --until \"2026-05-28 19:10\" 2>/dev/null | grep -i \"kill\\|oom\\|memory\" | tail -20; echo \"===\"; ls -la ~/runs/occsafe_vla/*.sentinel 2>/dev/null || echo \"NO_SENTINELS\"; echo \"===\"; last reboot 2>/dev/null | head -3",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-10894",
+    "command": "journalctl -k --since \"2026-05-28 18:50\" --until \"2026-05-28 19:10\" 2>/dev/null | grep -i \"kill\\|oom\\|memory\" | tail -20; echo \"===\"; ls -la ~/runs/occsafe_vla/*.sentinel 2>/dev/null || echo \"NO_SENTINELS\"; echo \"===\"; last reboot 2>/dev/null | head -3",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-28T11:11:38.641088+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"===\\nNO_SENTINELS\\n===\\n\\nwtmp begins Mon Dec 15 21:00:30 2025\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-28T11:11:38.641206+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "limit": "20",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "limit": "20",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-28T11:11:38.641851+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"vanilla_object_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-28T05:00:14.377Z\", \"updated_at\": \"2026-05-28T11:07:18.899Z\", \"hypothesis\": \"Vanilla baseline on libero_object benchmark (seed 44): Third seed for cross-benchmark generalizability. Rebuttal storage — establishes vanilla baseline performance on LIBERO-Object to compare against future OCC variants if OCC labels become available.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_object_no_noops --use_l1_regression True --use_diffusion False --use_film False --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 --save_freq 5000 --image_aug True --lora_rank 32 --run_root_dir /root/autodl-tmp/checkpoints/vanilla_object_s2 --run_id_note vanilla_object_s2 --seed 44 --use_occ_head False\\\"\", \"server\": \"westd-10894\", \"gpu\": [\"cuda:3\"], \"pid\": \"959808\", \"log_path\": \"~/runs/occsafe_vla/vanilla_object_s2.log\", \"submitted_at\": \"2026-05-28T05:00:39.844Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_id\": \"cuda:3\", \"data_path\": \"/root/autodl-tmp/data/modified_libero_rlds/libero_object_no_noops\", \"data_count\": 454, \"model_name\": \"openvla-7b\", \"seed\": 44, \"wall_clock_seconds\": 21999.1, \"gpu_hours\": 6.11}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-28T11:07:18.899Z\"}, \"detach_ln_v2_s4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-27T22:39:44.949Z\", \"updated_at\": \"2026-05-28T11:06:36.352Z\", \"hypothe
+…[truncated 30727 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-28T11:11:38.642093+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__append_idea",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__append_idea",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-28T11:11:38.642230+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-28T11:11:38.642353+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-28T11:11:38.642563+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/memory.md\", \"content\": \"# OccSafe VLA Memory\\n\\n## [2026-05-28] libero_object 实验批量失败 — checkpoint 不完整\\n\\n### 失败模式\\n三个 libero_object 实验（full_occ_bn_object_s0, detach_bn_object_s0, vanilla_object_s0）全部因 checkpoint 目录缺少模型权重文件而失败。\\n\\n**模式 A（resume 启动崩溃）**: `--resume True --resume_step 5000` 时，5000_chkpt 目录无 pytorch_model.bin / model.safetensors → `from_pretrained` 在 finetune.py:912 抛 OSError。影响: full_occ_bn_object_s0, detach_bn_object_s0（westd-10894）。\\n\\n**模式 B（save checkpoint 崩溃）**: 训练正常到 35%，save_training_checkpoint（finetune.py:1265）尝试从 10000_chkpt 加载 base_vla 时失败 → HFValidationError（路径格式含 `+` 等特殊字符被 HF Hub 当 repo_id 验证）。影响: vanilla_object_s0（westd-34685）。\\n\\n### 教训\\n- libero_object 实验的 checkpoint 保存可能不完整（首次训练 0→5000 可能因某种原因未保存完整权重）\\n- save_training_checkpoint 函数对本地路径的处理可能有 bug（HF Hub 路径验证干扰本地路径解析）\\n- **resume 前必须验证 checkpoint 完整性**：至少检查目录下存在 model*.safetensors 或 pytorch_model.bin\\n\\n## [2026-05-28] full_occ_ln_v2_s3 失败诊断\\n\\n### 根因\\n**FileNotFoundError，非 SIGHUP/OOM。** 实际 exitcode=1（EXIT_CODE=129 由 wrapper 脚本打印，非真实信号）。\\n\\n训练在 step 40000 保存 checkpoint 时崩溃。`save_training_checkpoint`（finetune.py:1265→727）调用 `AutoModelForVision2Seq.from_pretrained()` 加载基础模型用于合并 LoRA 权重，但基础模型目录 `/root/autodl-tmp/models/openvla-7b/` 的 `model.safetensors.index.json` 被篡改：\\n\\n- **index.json 引用**: `model-00001-of-00004.safetensors`（4-shard 命名，total_size=15.08GB，对应 LoRA 合并后的模型大小）\\n- **实际文件**: `model-00001-of-00003.safetensors`（3-shard，总计 ~14.08GB，原始基础模型）\\n- **index.json 修改时间**: May 28 11:31（config.json 也在 11:30 被修改）\\n\\n推测原因：之前某次成功的 checkpoint 保存（可能是 step 35000 或同服务器其他实验）在合并 LoRA 后将 merged model 的 index.json 回写到了基础模型目录，覆盖了原始 3-shard index。这是 save_training_checkpoint 的一个 bug — **共享基础模型目录被 checkpoint save 过程污染**。\\n\\n### Traceback 关键行\\n```\\nfinetune.py:1265 → finetune.py:727 save_training_checkpoint\\n→ AutoModelForVision2Seq.from_pretrained(...)\
+…[truncated 5392 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-28T11:11:38.642838+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+````json
+{
+  "project": "occsafe_vla",
+  "file": "memory.md",
+  "content": "# OccSafe VLA Memory\n\n## [2026-05-28] libero_object 实验批量失败 — checkpoint 不完整\n\n### 失败模式\n三个 libero_object 实验（full_occ_bn_object_s0, detach_bn_object_s0, vanilla_object_s0）全部因 checkpoint 目录缺少模型权重文件而失败。\n\n**模式 A（resume 启动崩溃）**: `--resume True --resume_step 5000` 时，5000_chkpt 目录无 pytorch_model.bin / model.safetensors → `from_pretrained` 在 finetune.py:912 抛 OSError。影响: full_occ_bn_object_s0, detach_bn_object_s0（westd-10894）。\n\n**模式 B（save checkpoint 崩溃）**: 训练正常到 35%，save_training_checkpoint（finetune.py:1265）尝试从 10000_chkpt 加载 base_vla 时失败 → HFValidationError（路径格式含 `+` 等特殊字符被 HF Hub 当 repo_id 验证）。影响: vanilla_object_s0（westd-34685）。\n\n### 教训\n- libero_object 实验的 checkpoint 保存可能不完整（首次训练 0→5000 可能因某种原因未保存完整权重）\n- save_training_checkpoint 函数对本地路径的处理可能有 bug（HF Hub 路径验证干扰本地路径解析）\n- **resume 前必须验证 checkpoint 完整性**：至少检查目录下存在 model*.safetensors 或 pytorch_model.bin\n\n## [2026-05-28] full_occ_ln_v2_s3 失败诊断\n\n### 根因\n**FileNotFoundError，非 SIGHUP/OOM。** 实际 exitcode=1（EXIT_CODE=129 由 wrapper 脚本打印，非真实信号）。\n\n训练在 step 40000 保存 checkpoint 时崩溃。`save_training_checkpoint`（finetune.py:1265→727）调用 `AutoModelForVision2Seq.from_pretrained()` 加载基础模型用于合并 LoRA 权重，但基础模型目录 `/root/autodl-tmp/models/openvla-7b/` 的 `model.safetensors.index.json` 被篡改：\n\n- **index.json 引用**: `model-00001-of-00004.safetensors`（4-shard 命名，total_size=15.08GB，对应 LoRA 合并后的模型大小）\n- **实际文件**: `model-00001-of-00003.safetensors`（3-shard，总计 ~14.08GB，原始基础模型）\n- **index.json 修改时间**: May 28 11:31（config.json 也在 11:30 被修改）\n\n推测原因：之前某次成功的 checkpoint 保存（可能是 step 35000 或同服务器其他实验）在合并 LoRA 后将 merged model 的 index.json 回写到了基础模型目录，覆盖了原始 3-shard index。这是 save_training_checkpoint 的一个 bug — **共享基础模型目录被 checkpoint save 过程污染**。\n\n### Traceback 关键行\n```\nfinetune.py:1265 → finetune.py:727 save_training_checkpoint\n→ AutoModelForVision2Seq.from_pretrained(...)\n→ modeling_utils.py:4084 _load_pretrained_model\n→ modeling_utils.py:507 load_state_dict\n→ safe_open(\"model-00001-of-00004.safetensors\")\n→ FileNotFoundError\n```\n\n### Checkpoint 状态\n| Step | 状态 | 大小 | 说明 |\n|------|------|------|------|\n| 25000 | ✅ 存在 | 未检查 | — |\n| 30000 | ✅ 完整 | ~15GB | 日志确认保存成功，有 merged model |\n| 35000 | ✅ 完整 | ~15GB | 有 4 merged model shards + all heads |\n| 40000 | ❌ 不完整 | ~370MB | 仅 lora_adapter + head weights，无 merged model（崩溃在 merge 过程中） |\n\n### 最新可用 checkpoint\n**step 35000**（完整，有 merged model + LoRA adapter + all head weights）\n\n### cuda:2 当前状态\n**空闲**（3 MiB / 97887 MiB，0% utilization）。cuda:1/3 也空闲。cuda:0 被占用（62165 MiB, 99%）。\n\n### 是否可 resume\n**可以**（非 cutoff 实验，C002 不适用）。\n\n- 从 step 40000 resume：需确认 resume 逻辑是否使用 LoRA adapter（40000 有 adapter），预估 ~2.6h（10005 steps @ ~1.07 it/s）\n- 从 step 35000 resume：安全选项（完整 checkpoint），预估 ~3.9h（15005 steps @ ~1.07 it/s）\n- ⚠️ DDL 12:00 UTC 已无法赶上。40000 resume 预计 ~14:40 UTC 完成，超 DDL 约 2.6h\n\n### 修复前提（必须！）\n**恢复基础模型的 `model.safetensors.index.json`**：将 `/root/autodl-tmp/models/openvla-7b/model.safetensors.index.json` 还原为引用 3-shard 命名（model-0000X-of-00003），否则所有实验的后续 checkpoint save 都会失败。同时需检查 `config.json` 是否也需还原。\n\n### 建议\n1. **立即修复 index.json** — 从某个旧 backup 或 HuggingFace 原始模型重新获取正确的 index.json\n2. **从 step 35000 resume**（更安全），或从 40000 resume（如果确认 resume 逻辑用 LoRA adapter）\n3. **告知用户此实验将超 DDL ~2.6-3.9h** — \"允许少量超时\" 范围内由用户判断\n4. **长期修复 save_training_checkpoint**：不要修改共享基础模型目录的文件，merged model 只写到 checkpoint 目录\n\n## [2026-05-28] detach_ln_v2_s4 + vanilla_object_s2 + full_occ_bn_v2_s3 批量死亡诊断\n\n### 事件概要\nwestd-10894 上 3 个实验在 ~19:04 北京时间（11:04 UTC）几乎同时被杀：\n\n| 实验 | GPU | 信号 | 死亡时间 | 进度 | 运行时长 |\n|------|-----|------|----------|------|----------|\n| detach_ln_v2_s4 | cuda:1 | SIGTERM (-15) | 19:04:21 | 45085/50005 (90%) | 12h23m |\n| vanilla_object_s2 | cuda:3 | SIGKILL (-9) | 19:04:44 | 21378/50005 (43%) | 6h02m |\n| full_occ_bn_v2_s3 | cuda:2 | (killed) | ~19:04 | 未知 | ~6h |\n\n### 根因分析\n**最可能：系统 RAM OOM killer。** 依据：\n1. SIGKILL (-9) 是 OOM killer 的标志信号（vanilla_object_s2）\n2. 3 个进程在 <2 分钟内连续死亡——OOM killer 逐个 kill 释放内存\n3. 无服务器重启（last reboot 2025-12-15）\n4. dmesg 无权限读取，无法 100% 确认\n5. 所有 GPU 当前完全空闲（0MiB），无 tmux session，无残留进程\n\n**排除项：**\n- 非服务器重启（`last reboot` 确认）\n- 非 GPU OOM（GPU 显存 ~62GB/98GB，远未满）\n- 日志中无 Python 错误/异常，进程正常训练中被外部信号杀死\n\n### 影响\n- detach_ln_v2_s4：损失 ~2.6h 训练量（剩 4920 steps），90% 处有 45000_chkpt 可 resume\n- vanilla_object_s2：损失 ~6h 训练量（剩 28627 steps），43% 处有 20000_chkpt 可 resume\n- full_occ_bn_v2_s3：需检查最后可用 checkpoint\n\n### 建议\n如需重跑，先检查系统 RAM 用量（`free -h`），考虑减少同时运行实验数量（3→2）以避免系统 RAM 再次不足。\n\n## [2026-05-27] westd-10894 磁盘满诊断报告\n\n### 1. full_occ_ln_v2_s0d 失败原因\n**磁盘满 (os error 28)**，与 detach_ln_v2_s0c_r2 相同原因。在 step 20000 checkpoint 保存时，`tokenizer_utils_fast.py:682` 的 `backend_tokenizer.save()` 抛出 `Exception: No space left on device (os error 28)`。训练本身正常（~1.03 it/s），纯粹是磁盘空间不足导致保存失败。\n\n### 2. 磁盘使用明细\n\n**分区状态：**\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| /root/autodl-tmp (/dev/md0) | 250G | 250G | 1.7M | **100%** |\n| / (overlay) | 30G | 15G | 16G | 48% |\n\n**autodl-tmp 目录分布：**\n| 目录 | 大小 | 占比 |\n|------|------|------|\n| checkpoints | 229G | 91.6% |\n| models | 15G | 6.0% |\n| libero_datasets | 5.9G | 2.4% |\n| data | 2.0G | 0.8% |\n\n**Checkpoint 明细（按大小排序）：**\n| 目录 | 大小 | 状态 |\n|------|------|------|\n| full_occ_ln_v2_s1c | 30G | ⚡ **正在运行** (cuda:0, pid 481426) |\n| full_occ_ln_v2_s2 | 30G | ⚡ **正在运行** (cuda:1, pid 481643) |\n| reverse_cutoff_s2_v2 | 30G | 已完成（旧实验） |\n| detach_ln_v2_s0c | 20G | ❌ step 20000 失败，step 10000 有效 |\n| full_occ_ln_v2_s0d | 15G | ❌ step 20000 失败，step 10000 有效 |\n| ablation_occ_detach_s3_v2 | 15G | 旧实验 |\n| cutoff_45k_s2_v2 | 15G | 旧实验 |\n| detach_ln_s3 | 15G | 旧实验 |\n| full_occ_ln_s0 | 15G | 旧实验 |\n| full_occ_ln_s3_v2 | 15G | 旧实验 |\n| mvp_occ_s3_v2 | 15G | 旧实验 |\n| vanilla_v2_s1 | 15G | 旧实验 |\n| cutoff_15k_s1 | 463M | 旧实验 |\n| **小计** | **~126G** |\n\n**不可删：**\n- full_occ_ln_v2_s1c (30G) — 正在运行\n- full_occ_ln_v2_s2 (30G) — 正在运行\n- full_occ_ln_v2_s0d/10000_chkpt (~15G) — 有效，可能需要 resume\n- detach_ln_v2_s0c/10000_chkpt (~15G) — 有效，可能需要 resume\n\n### 6. 建议\n1. **立即删除两个不完整的 20000 step checkpoint**（释放 ~5G），防止影响在跑实验\n2. **5G 不够**——在跑实验下次保存 checkpoint 还需要 ~15G/个，必须清理旧实验 checkpoint\n3. **优先清理候选**：如果旧实验已有评估结果且不再需要，建议删除上述 ~126G 旧 checkpoint，可释放一半磁盘\n4. **清理后重跑** full_occ_ln_v2_s0d 和 detach_ln_v2_s0c_r2（两者 step 10000 checkpoint 有效，可从 10000 resume——但注意 C002 约束，cutoff/reverse_cutoff 实验不能 resume，这两个不是 cutoff 实验所以可以 resume）\n\n## 10894 诊断 (2026-05-27 ~18:30 UTC)\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 | 实验 | PID | 当前 step | 预计剩余 |\n|-----|--------|----------|------|-----|-----------|----------|\n| cuda:0 | 67% | 62203/97887 MiB | full_occ_ln_v2_s1c_r2 | 481426 | ~33835/50005 (68%) | ~4.3h |\n| cuda:1 | 99% | 62203/97887 MiB | full_occ_ln_v2_s2_r2 | 481643 | ~33974/50005 (68%) | ~4.1h |\n| cuda:2 | 99% | 62203/97887 MiB | detach_ln_v2_s0c_r3 | 543255 | ~5421/50005 (11%) | ~11.5h |\n| cuda:3 | 82% | 63037/97887 MiB | **full_occ_ln_s4** (新!) | 553813 | ~3534/50005 (7%) | ~12.1h |\n\n**所有 4 张 GPU 均在使用中。** cuda:3 并非空闲——有人启动了 full_occ_ln_s4（seed=46, --occ_detach false, 于 ~17:13 UTC 启动）。\n\n### 进程确认\n- PID 481426 (full_occ_ln_v2_s1c_r2, cuda:0): ✅ 存活\n- PID 481643 (full_occ_ln_v2_s2_r2, cuda:1): ✅ 存活\n- PID 543255 (detach_ln_v2_s0c_r3, cuda:2): ✅ 存活（日志写入 /root/autodl-tmp/checkpoints/detach_ln_v2_s0c_r3.log）\n- PID 553813 (full_occ_ln_s4, cuda:3): ✅ 存活（日志写入 /root/autodl-tmp/checkpoints/full_occ_ln_s4.log）\n\n### full_occ_ln_v2_s0d 失败原因\n**磁盘满 (os error 28)**。在 step 20000 保存 checkpoint 时，`tokenizer_utils_fast.py` 的 `backend_tokenizer.save()` 抛出 `No space left on device`。崩溃时间 2026-05-27 15:10:44 UTC。训练本身正常运行到 step ~15768（约 31%），完全是磁盘空间不足导致保存失败。\n\n### 磁盘空间\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| /root/autodl-tmp | 250G | 112G | 139G | 45% |\n| /root | 30G | 15G | 16G | 48% |\n| checkpoints 总计 | 90G | — | — | — |\n\n**磁盘已从 100% 恢复到 45%**——旧 checkpoint 已被清理约 139G。当前 139G 可用空间充足，足以支撑所有 4 个实验保存 checkpoint。\n\n### 预计完成时间（所有实验 ~1.05-1.08 it/s）\n- full_occ_ln_v2_s1c_r2: ~22:50 UTC May 27 ✅ DDL 前\n- full_occ_ln_v2_s2_r2: ~22:40 UTC May 27 ✅ DDL 前\n- detach_ln_v2_s0c_r3: ~06:00 UTC May 28 ✅ DDL 前\n- full_occ_ln_s4: ~06:40 UTC May 28 ✅ DDL 前"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "file": "memory.md",
+    "content": "# OccSafe VLA Memory\n\n## [2026-05-28] libero_object 实验批量失败 — checkpoint 不完整\n\n### 失败模式\n三个 libero_object 实验（full_occ_bn_object_s0, detach_bn_object_s0, vanilla_object_s0）全部因 checkpoint 目录缺少模型权重文件而失败。\n\n**模式 A（resume 启动崩溃）**: `--resume True --resume_step 5000` 时，5000_chkpt 目录无 pytorch_model.bin / model.safetensors → `from_pretrained` 在 finetune.py:912 抛 OSError。影响: full_occ_bn_object_s0, detach_bn_object_s0（westd-10894）。\n\n**模式 B（save checkpoint 崩溃）**: 训练正常到 35%，save_training_checkpoint（finetune.py:1265）尝试从 10000_chkpt 加载 base_vla 时失败 → HFValidationError（路径格式含 `+` 等特殊字符被 HF Hub 当 repo_id 验证）。影响: vanilla_object_s0（westd-34685）。\n\n### 教训\n- libero_object 实验的 checkpoint 保存可能不完整（首次训练 0→5000 可能因某种原因未保存完整权重）\n- save_training_checkpoint 函数对本地路径的处理可能有 bug（HF Hub 路径验证干扰本地路径解析）\n- **resume 前必须验证 checkpoint 完整性**：至少检查目录下存在 model*.safetensors 或 pytorch_model.bin\n\n## [2026-05-28] full_occ_ln_v2_s3 失败诊断\n\n### 根因\n**FileNotFoundError，非 SIGHUP/OOM。** 实际 exitcode=1（EXIT_CODE=129 由 wrapper 脚本打印，非真实信号）。\n\n训练在 step 40000 保存 checkpoint 时崩溃。`save_training_checkpoint`（finetune.py:1265→727）调用 `AutoModelForVision2Seq.from_pretrained()` 加载基础模型用于合并 LoRA 权重，但基础模型目录 `/root/autodl-tmp/models/openvla-7b/` 的 `model.safetensors.index.json` 被篡改：\n\n- **index.json 引用**: `model-00001-of-00004.safetensors`（4-shard 命名，total_size=15.08GB，对应 LoRA 合并后的模型大小）\n- **实际文件**: `model-00001-of-00003.safetensors`（3-shard，总计 ~14.08GB，原始基础模型）\n- **index.json 修改时间**: May 28 11:31（config.json 也在 11:30 被修改）\n\n推测原因：之前某次成功的 checkpoint 保存（可能是 step 35000 或同服务器其他实验）在合并 LoRA 后将 merged model 的 index.json 回写到了基础模型目录，覆盖了原始 3-shard index。这是 save_training_checkpoint 的一个 bug — **共享基础模型目录被 checkpoint save 过程污染**。\n\n### Traceback 关键行\n```\nfinetune.py:1265 → finetune.py:727 save_training_checkpoint\n→ AutoModelForVision2Seq.from_pretrained(...)\n→ modeling_utils.py:4084 _load_pretrained_model\n→ modeling_utils.py:507 load_state_dict\n→ safe_open(\"model-00001-of-00004.safetensors\")\n→ FileNotFoundError\n```\n\n### Checkpoint 状态\n| Step | 状态 | 大小 | 说明 |\n|------|------|------|------|\n| 25000 | ✅ 存在 | 未检查 | — |\n| 30000 | ✅ 完整 | ~15GB | 日志确认保存成功，有 merged model |\n| 35000 | ✅ 完整 | ~15GB | 有 4 merged model shards + all heads |\n| 40000 | ❌ 不完整 | ~370MB | 仅 lora_adapter + head weights，无 merged model（崩溃在 merge 过程中） |\n\n### 最新可用 checkpoint\n**step 35000**（完整，有 merged model + LoRA adapter + all head weights）\n\n### cuda:2 当前状态\n**空闲**（3 MiB / 97887 MiB，0% utilization）。cuda:1/3 也空闲。cuda:0 被占用（62165 MiB, 99%）。\n\n### 是否可 resume\n**可以**（非 cutoff 实验，C002 不适用）。\n\n- 从 step 40000 resume：需确认 resume 逻辑是否使用 LoRA adapter（40000 有 adapter），预估 ~2.6h（10005 steps @ ~1.07 it/s）\n- 从 step 35000 resume：安全选项（完整 checkpoint），预估 ~3.9h（15005 steps @ ~1.07 it/s）\n- ⚠️ DDL 12:00 UTC 已无法赶上。40000 resume 预计 ~14:40 UTC 完成，超 DDL 约 2.6h\n\n### 修复前提（必须！）\n**恢复基础模型的 `model.safetensors.index.json`**：将 `/root/autodl-tmp/models/openvla-7b/model.safetensors.index.json` 还原为引用 3-shard 命名（model-0000X-of-00003），否则所有实验的后续 checkpoint save 都会失败。同时需检查 `config.json` 是否也需还原。\n\n### 建议\n1. **立即修复 index.json** — 从某个旧 backup 或 HuggingFace 原始模型重新获取正确的 index.json\n2. **从 step 35000 resume**（更安全），或从 40000 resume（如果确认 resume 逻辑用 LoRA adapter）\n3. **告知用户此实验将超 DDL ~2.6-3.9h** — \"允许少量超时\" 范围内由用户判断\n4. **长期修复 save_training_checkpoint**：不要修改共享基础模型目录的文件，merged model 只写到 checkpoint 目录\n\n## [2026-05-28] detach_ln_v2_s4 + vanilla_object_s2 + full_occ_bn_v2_s3 批量死亡诊断\n\n### 事件概要\nwestd-10894 上 3 个实验在 ~19:04 北京时间（11:04 UTC）几乎同时被杀：\n\n| 实验 | GPU | 信号 | 死亡时间 | 进度 | 运行时长 |\n|------|-----|------|----------|------|----------|\n| detach_ln_v2_s4 | cuda:1 | SIGTERM (-15) | 19:04:21 | 45085/50005 (90%) | 12h23m |\n| vanilla_object_s2 | cuda:3 | SIGKILL (-9) | 19:04:44 | 21378/50005 (43%) | 6h02m |\n| full_occ_bn_v2_s3 | cuda:2 | (killed) | ~19:04 | 未知 | ~6h |\n\n### 根因分析\n**最可能：系统 RAM OOM killer。** 依据：\n1. SIGKILL (-9) 是 OOM killer 的标志信号（vanilla_object_s2）\n2. 3 个进程在 <2 分钟内连续死亡——OOM killer 逐个 kill 释放内存\n3. 无服务器重启（last reboot 2025-12-15）\n4. dmesg 无权限读取，无法 100% 确认\n5. 所有 GPU 当前完全空闲（0MiB），无 tmux session，无残留进程\n\n**排除项：**\n- 非服务器重启（`last reboot` 确认）\n- 非 GPU OOM（GPU 显存 ~62GB/98GB，远未满）\n- 日志中无 Python 错误/异常，进程正常训练中被外部信号杀死\n\n### 影响\n- detach_ln_v2_s4：损失 ~2.6h 训练量（剩 4920 steps），90% 处有 45000_chkpt 可 resume\n- vanilla_object_s2：损失 ~6h 训练量（剩 28627 steps），43% 处有 20000_chkpt 可 resume\n- full_occ_bn_v2_s3：需检查最后可用 checkpoint\n\n### 建议\n如需重跑，先检查系统 RAM 用量（`free -h`），考虑减少同时运行实验数量（3→2）以避免系统 RAM 再次不足。\n\n## [2026-05-27] westd-10894 磁盘满诊断报告\n\n### 1. full_occ_ln_v2_s0d 失败原因\n**磁盘满 (os error 28)**，与 detach_ln_v2_s0c_r2 相同原因。在 step 20000 checkpoint 保存时，`tokenizer_utils_fast.py:682` 的 `backend_tokenizer.save()` 抛出 `Exception: No space left on device (os error 28)`。训练本身正常（~1.03 it/s），纯粹是磁盘空间不足导致保存失败。\n\n### 2. 磁盘使用明细\n\n**分区状态：**\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| /root/autodl-tmp (/dev/md0) | 250G | 250G | 1.7M | **100%** |\n| / (overlay) | 30G | 15G | 16G | 48% |\n\n**autodl-tmp 目录分布：**\n| 目录 | 大小 | 占比 |\n|------|------|------|\n| checkpoints | 229G | 91.6% |\n| models | 15G | 6.0% |\n| libero_datasets | 5.9G | 2.4% |\n| data | 2.0G | 0.8% |\n\n**Checkpoint 明细（按大小排序）：**\n| 目录 | 大小 | 状态 |\n|------|------|------|\n| full_occ_ln_v2_s1c | 30G | ⚡ **正在运行** (cuda:0, pid 481426) |\n| full_occ_ln_v2_s2 | 30G | ⚡ **正在运行** (cuda:1, pid 481643) |\n| reverse_cutoff_s2_v2 | 30G | 已完成（旧实验） |\n| detach_ln_v2_s0c | 20G | ❌ step 20000 失败，step 10000 有效 |\n| full_occ_ln_v2_s0d | 15G | ❌ step 20000 失败，step 10000 有效 |\n| ablation_occ_detach_s3_v2 | 15G | 旧实验 |\n| cutoff_45k_s2_v2 | 15G | 旧实验 |\n| detach_ln_s3 | 15G | 旧实验 |\n| full_occ_ln_s0 | 15G | 旧实验 |\n| full_occ_ln_s3_v2 | 15G | 旧实验 |\n| mvp_occ_s3_v2 | 15G | 旧实验 |\n| vanilla_v2_s1 | 15G | 旧实验 |\n| cutoff_15k_s1 | 463M | 旧实验 |\n| **小计** | **~126G** |\n\n**不可删：**\n- full_occ_ln_v2_s1c (30G) — 正在运行\n- full_occ_ln_v2_s2 (30G) — 正在运行\n- full_occ_ln_v2_s0d/10000_chkpt (~15G) — 有效，可能需要 resume\n- detach_ln_v2_s0c/10000_chkpt (~15G) — 有效，可能需要 resume\n\n### 6. 建议\n1. **立即删除两个不完整的 20000 step checkpoint**（释放 ~5G），防止影响在跑实验\n2. **5G 不够**——在跑实验下次保存 checkpoint 还需要 ~15G/个，必须清理旧实验 checkpoint\n3. **优先清理候选**：如果旧实验已有评估结果且不再需要，建议删除上述 ~126G 旧 checkpoint，可释放一半磁盘\n4. **清理后重跑** full_occ_ln_v2_s0d 和 detach_ln_v2_s0c_r2（两者 step 10000 checkpoint 有效，可从 10000 resume——但注意 C002 约束，cutoff/reverse_cutoff 实验不能 resume，这两个不是 cutoff 实验所以可以 resume）\n\n## 10894 诊断 (2026-05-27 ~18:30 UTC)\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 | 实验 | PID | 当前 step | 预计剩余 |\n|-----|--------|----------|------|-----|-----------|----------|\n| cuda:0 | 67% | 62203/97887 MiB | full_occ_ln_v2_s1c_r2 | 481426 | ~33835/50005 (68%) | ~4.3h |\n| cuda:1 | 99% | 62203/97887 MiB | full_occ_ln_v2_s2_r2 | 481643 | ~33974/50005 (68%) | ~4.1h |\n| cuda:2 | 99% | 62203/97887 MiB | detach_ln_v2_s0c_r3 | 543255 | ~5421/50005 (11%) | ~11.5h |\n| cuda:3 | 82% | 63037/97887 MiB | **full_occ_ln_s4** (新!) | 553813 | ~3534/50005 (7%) | ~12.1h |\n\n**所有 4 张 GPU 均在使用中。** cuda:3 并非空闲——有人启动了 full_occ_ln_s4（seed=46, --occ_detach false, 于 ~17:13 UTC 启动）。\n\n### 进程确认\n- PID 481426 (full_occ_ln_v2_s1c_r2, cuda:0): ✅ 存活\n- PID 481643 (full_occ_ln_v2_s2_r2, cuda:1): ✅ 存活\n- PID 543255 (detach_ln_v2_s0c_r3, cuda:2): ✅ 存活（日志写入 /root/autodl-tmp/checkpoints/detach_ln_v2_s0c_r3.log）\n- PID 553813 (full_occ_ln_s4, cuda:3): ✅ 存活（日志写入 /root/autodl-tmp/checkpoints/full_occ_ln_s4.log）\n\n### full_occ_ln_v2_s0d 失败原因\n**磁盘满 (os error 28)**。在 step 20000 保存 checkpoint 时，`tokenizer_utils_fast.py` 的 `backend_tokenizer.save()` 抛出 `No space left on device`。崩溃时间 2026-05-27 15:10:44 UTC。训练本身正常运行到 step ~15768（约 31%），完全是磁盘空间不足导致保存失败。\n\n### 磁盘空间\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| /root/autodl-tmp | 250G | 112G | 139G | 45% |\n| /root | 30G | 15G | 16G | 48% |\n| checkpoints 总计 | 90G | — | — | — |\n\n**磁盘已从 100% 恢复到 45%**——旧 checkpoint 已被清理约 139G。当前 139G 可用空间充足，足以支撑所有 4 个实验保存 checkpoint。\n\n### 预计完成时间（所有实验 ~1.05-1.08 it/s）\n- full_occ_ln_v2_s1c_r2: ~22:50 UTC May 27 ✅ DDL 前\n- full_occ_ln_v2_s2_r2: ~22:40 UTC May 27 ✅ DDL 前\n- detach_ln_v2_s0c_r3: ~06:00 UTC May 28 ✅ DDL 前\n- full_occ_ln_s4: ~06:40 UTC May 28 ✅ DDL 前"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-28T11:11:38.643088+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-28T11:11:38.643223+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "detach_ln_v2_s4",
+  "field": "failure_reason",
+  "value": "SIGTERM (-15) at step 45085/50005 (90%). System RAM OOM suspected: 3 experiments on westd-10894 killed within 2 min (19:04:21-19:04:44 Beijing). vanilla_object_s2 got SIGKILL (-9, OOM killer signature). No server reboot, no Python error — external signal kill. 45000_chkpt may exist for resume.",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "detach_ln_v2_s4",
+    "field": "failure_reason",
+    "value": "SIGTERM (-15) at step 45085/50005 (90%). System RAM OOM suspected: 3 experiments on westd-10894 killed within 2 min (19:04:21-19:04:44 Beijing). vanilla_object_s2 got SIGKILL (-9, OOM killer signature). No server reboot, no Python error — external signal kill. 45000_chkpt may exist for resume.",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-28T11:11:38.643384+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"detach_ln_v2_s4\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-27T22:39:44.949Z\", \"updated_at\": \"2026-05-28T11:11:24.182Z\", \"hypothesis\": \"Cell 4 v2 n expansion (seed 46): Detach LN (gradient OFF + LayerNorm). Additional seed to maximize Cell 4 factorial ANOVA sample size before DDL. With gradient detached, LN norm should not impair safety — expect CAR in range 0.76-0.83 consistent with existing Cell 4 data (0.826).\", \"parent\": \"detach_ln_v2_s1_35\", \"spec\": {\"gpu_id\": \"cuda:1\"}, \"server\": \"westd-10894\", \"conclusion\": \"failed\", \"reproduce\": {\"finished_at\": \"2026-05-28T11:06:24.275Z\"}, \"failure_reason\": \"SIGTERM (-15) at step 45085/50005 (90%). System RAM OOM suspected: 3 experiments on westd-10894 killed within 2 min (19:04:21-19:04:44 Beijing). vanilla_object_s2 got SIGKILL (-9, OOM killer signature). No server reboot, no Python error — external signal kill. 45000_chkpt may exist for resume.\", \"completed_at\": \"2026-05-28T11:06:33.346Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-28T11:06:48.748002+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9781}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-28T11:11:38.643527+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "vanilla_object_s2",
+  "field": "failure_reason",
+  "value": "SIGKILL (-9) at step 21378/50005 (43%). System RAM OOM killer: 3 experiments on westd-10894 killed within 2 min. SIGKILL is OOM killer's signature signal. PID 959808 gone, no sentinel, no tmux session. 20000_chkpt saved successfully before kill.",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "vanilla_object_s2",
+    "field": "failure_reason",
+    "value": "SIGKILL (-9) at step 21378/50005 (43%). System RAM OOM killer: 3 experiments on westd-10894 killed within 2 min. SIGKILL is OOM killer's signature signal. PID 959808 gone, no sentinel, no tmux session. 20000_chkpt saved successfully before kill.",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-28T11:11:38.643722+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"vanilla_object_s2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-28T05:00:14.377Z\", \"updated_at\": \"2026-05-28T11:11:26.201Z\", \"hypothesis\": \"Vanilla baseline on libero_object benchmark (seed 44): Third seed for cross-benchmark generalizability. Rebuttal storage — establishes vanilla baseline performance on LIBERO-Object to compare against future OCC variants if OCC labels become available.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_object_no_noops --use_l1_regression True --use_diffusion False --use_film False --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 --save_freq 5000 --image_aug True --lora_rank 32 --run_root_dir /root/autodl-tmp/checkpoints/vanilla_object_s2 --run_id_note vanilla_object_s2 --seed 44 --use_occ_head False\\\"\", \"server\": \"westd-10894\", \"gpu\": [\"cuda:3\"], \"pid\": \"959808\", \"log_path\": \"~/runs/occsafe_vla/vanilla_object_s2.log\", \"submitted_at\": \"2026-05-28T05:00:39.844Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_id\": \"cuda:3\", \"data_path\": \"/root/autodl-tmp/data/modified_libero_rlds/libero_object_no_noops\", \"data_count\": 454, \"model_name\": \"openvla-7b\", \"seed\": 44, \"wall_clock_seconds\": 21999.1, \"gpu_hours\": 6.11}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-28T11:07:18.899Z\", \"failure_reason\": \"SIGKILL (-9) at step 21378/50005 (43%). System RAM OOM killer: 3 experiments on westd-10894 killed within 2 min. SIGKILL is OOM killer
+…[truncated 180 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-28T11:11:38.643894+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "full_occ_bn_v2_s3",
+  "field": "failure_reason",
+  "value": "Killed at ~19:04 Beijing time, same system RAM OOM event as detach_ln_v2_s4 and vanilla_object_s2. Three experiments on westd-10894 killed within 2 minutes.",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "full_occ_bn_v2_s3",
+    "field": "failure_reason",
+    "value": "Killed at ~19:04 Beijing time, same system RAM OOM event as detach_ln_v2_s4 and vanilla_object_s2. Three experiments on westd-10894 killed within 2 minutes.",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-28T11:11:38.644053+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"full_occ_bn_v2_s3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-28T05:00:12.710Z\", \"updated_at\": \"2026-05-28T11:11:27.724Z\", \"hypothesis\": \"Cell 1 v2 seed expansion (seed 45): Full OCC BN (gradient ON + BatchNorm). Third seed to increase Cell 1 from n=1 toward n=5 for factorial ANOVA. Expect CAR similar to s1 (~0.654).\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --use_diffusion False --use_film False --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 --save_freq 5000 --image_aug True --lora_rank 32 --run_root_dir /root/autodl-tmp/checkpoints/full_occ_bn_v2_s3 --run_id_note full_occ_bn_v2_s3 --seed 45 --use_occ_head True --occ_detach False --occ_norm_type bn\\\"\", \"server\": \"westd-10894\", \"gpu\": [\"cuda:2\"], \"pid\": \"959661\", \"log_path\": \"~/runs/occsafe_vla/full_occ_bn_v2_s3.log\", \"submitted_at\": \"2026-05-28T05:00:37.160Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_id\": \"cuda:2\", \"data_path\": \"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\", \"data_count\": 4600, \"model_name\": \"openvla-7b\", \"seed\": 45, \"wall_clock_seconds\": 21898.8, \"gpu_hours\": 6.08}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-28T11:05:35.995Z\", \"failure_reason\": \"Killed at ~19:04 Beijing time, same system RAM OOM event as detach_ln_v2_s4 and vanilla_object_s2. Three experiments on westd-10894 killed within 2 minutes.\"}}, \"e
+…[truncated 59 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-28T11:11:38.644244+00:00_
+
+诊断完成。总结：
+
+**根因：系统 RAM OOM killer（高度疑似）**
+
+westd-10894 上 3 个实验在 19:04 北京时间（11:04 UTC）2 分钟内连续被杀：
+
+| 实验 | GPU | 信号 | 进度 | 损失 |
+|------|-----|------|------|------|
+| detach_ln_v2_s4 | cuda:1 | SIGTERM (-15) | 90% (step 45085) | ~1.3h 训练量 |
+| vanilla_object_s2 | cuda:3 | SIGKILL (-9) | 43% (step 21378) | ~7.4h 训练量 |
+| full_occ_bn_v2_s3 | cuda:2 | killed | ~43% | ~7.4h 训练量 |
+
+判据：SIGKILL (-9) 是 OOM killer 标志信号；3 进程近乎同时死亡；无服务器重启；日志中无 Python 错误。dmesg 无权限无法 100% 确认。
+
+所有 GPU 当前完全空闲，无 tmux session，无残留进程。如需重跑，建议先 `free -h` 检查系统 RAM，考虑减少并发实验数（3→2）。已更新 registry（3 个实验的 failure_reason）和 memory.md。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diag_detach_ln_v2_s4_20260528T110837"
+}
+```
+
+</details>
+
+---

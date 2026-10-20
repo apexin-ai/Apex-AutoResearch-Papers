@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "632694ed7d3e0e0684dc",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "run quick probe",
+  "task_key": "worker_run_quick-probe_20260516T080007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_quick-probe_20260516T080007_result.json",
+    "occurrence": 1,
+    "bytes": 2379688,
+    "sha256": "45f9dd3702fb39bd8066dbdd7a551ea543cb2a9c4b0a1dd30c4d371a0b88d152"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2379708,
+                "serialized_sha256": "5c191c154fac042b0c27d980b31850abb90b19b3bb89f0e336a62bc2878c2485",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-quick-probe.md"
+}

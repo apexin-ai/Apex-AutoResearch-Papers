@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2dfe21aa6c3d24ae84b5",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "ops status check",
+  "task_key": "worker_ops_status-check_20260514T111121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status-check_20260514T111121_result.json",
+    "occurrence": 1,
+    "bytes": 2383,
+    "sha256": "7840981782137269c1437442cb1486a06e898953ae27b78d2e5f4a91bf230b40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总报告：\n\n---\n\n## 1. OpenHands Cross-Agent Embedding\n\n**正在运行中。** PID 24709，`dual_gpu_embeddings.py` 使用双 GPU 生成 OpenHands embedding。\n\n- **进度**: ~69% (49500/71528)，预计还需 ~24 分钟\n- **模型**: Qwen3-Embedding-0.6B，batch_size=192，max_length=512\n- **输入**: `/root/autodl-tmp/openhands_data/windows_labeled.jsonl` (55MB, ~71.5k windows)\n- **输出**: `/root/autodl-tmp/openhands_data/embeddings.pt`（尚未写入，有 checkpoint `embeddings.ckpt.pt` 20MB）\n- **相关文件**: 项目根目录有大量 OpenHands 相关脚本（`download_openhands*.py`, `inspect_openhands*.py`, `openhands_adapter.py`, `prepare_openhands_data.py`, `cross_agent_eval.py`）和数据（`openhands_samples_100.jsonl` 30MB, `openhands_trajectories.jsonl` 1.2GB）\n\n## 2. LLM Judge Baseline\n\n**也在运行中。** PID 27424，`baseline_llm_judge.py` zero-shot 评估。\n\n- **进度**: 130/1824 windows (~7%)\n- **当前 macro_f1**: 0.5644\n- **费用**: ~$0.82 / $50 budget\n- **无失败**: fails=0\n- **模型**: claude-sonnet-4.6\n\n## 3. Re-dream 状态\n\n**dream_20260514T095527 已完成。** 本地 artifacts 目录包含完整输出：\n- 3 个场景 (best/median/worst) 各含 paper.pdf、review_report.md\n- meta.yaml、orchestrator.log 等\n\n## 4. 服务器资源\n\n| 资源 | 状态 |\n|------|------|\n| **GPU 0** | RTX 5090, 28501/32607 MiB (87%), 100% util, 74°C |\n| **GPU 1** | RTX 5090, 30997/32607 MiB (95%), 17% util, 61°C |\n| **磁盘** | /root/autodl-tmp: 5.8G/250G used (3%) |\n| **内存** | 36Gi/754Gi used (5%) |\n\n两张 GPU 几乎被 embedding 任务占满。\n\n## 5. 代码结构\n\n21 个 Python 脚本，涵盖：数据下载/适配 (`download_openhands*.py`, `openhands_adapter.py`, `prepare_openhands_data.py`)、标注函数 (`labeling_functions.py`)、embedding 生成 (`generate_embeddings.py`, `dual_gpu_embeddings.py`)、probe 训练/评估 (`probe_model.py`, `train_probe.py`, `evaluate.py`)、baseline (`baselines.py`, `baseline_meanpool_lr.py`, `baseline_llm_judge.py`, `lf_oracle_baseline.py`)、cross-agent 评估 (`cross_agent_eval.py`)、误差分析 (`error_analysis.py`, `error_analysis_detailed.py`)。\n\n## 6. tmux\n\n`tmux ls` 被 read_only 白名单拒绝，无法检查。但从 `ps aux` 看，两个 nohup 后台进程都在正常运行，不依赖 tmux。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check.md"
+}

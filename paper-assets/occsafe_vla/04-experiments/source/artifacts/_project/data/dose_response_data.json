@@ -1,0 +1,116 @@
+{
+  "description": "Dose-response curve data: OCC gradient flow duration → Collision Avoidance Rate (CAR)",
+  "eval_protocol": "50r SafeLIBERO Level I (10 tasks × 50 rollouts = 500 episodes)",
+  "seeds": {"s0": 42, "s1": 43, "s2": 44},
+  "vanilla_baseline": {
+    "description": "No OCC head (pure action loss)",
+    "seeds": {
+      "s0": {"CAR": 0.788, "TSR": 0.900, "exp_id": "mvp_vanilla_s0"},
+      "s1": {"CAR": 0.766, "TSR": 0.918, "exp_id": "mvp_vanilla_s1"},
+      "s2": {"CAR": 0.786, "TSR": 0.904, "exp_id": "mvp_vanilla_s2"}
+    },
+    "mean_CAR": 0.780,
+    "std_CAR": 0.012
+  },
+  "conditions": [
+    {
+      "condition": "Detach",
+      "gradient_flow_steps": 0,
+      "description": "OCC head attached but gradient detached (occ_detach=True, BN)",
+      "seeds": {
+        "s0": {"CAR": 0.746, "TSR": 0.914, "exp_id": "ablation_occ_detach_s0"},
+        "s1": {"CAR": 0.744, "TSR": 0.898, "exp_id": "ablation_occ_detach_s1"},
+        "s2": {"CAR": 0.748, "TSR": 0.624, "exp_id": "ablation_occ_detach_s2"}
+      },
+      "mean_CAR": 0.746,
+      "std_CAR": 0.002,
+      "status": "complete_3seed"
+    },
+    {
+      "condition": "cutoff_15k",
+      "gradient_flow_steps": 15000,
+      "description": "OCC gradient flow only for first 15K steps (30% of training)",
+      "seeds": {
+        "s0": {"CAR": 0.804, "TSR": 0.912, "exp_id": "cutoff_15k_s0_eval"},
+        "s1": {"CAR": null, "TSR": null, "exp_id": "cutoff_15k_s1", "status": "RUNNING"}
+      },
+      "mean_CAR": 0.804,
+      "std_CAR": null,
+      "status": "1seed_complete_1running",
+      "note": "Surprisingly high CAR — higher than Full OCC avg. Non-monotonic?"
+    },
+    {
+      "condition": "cutoff_25k",
+      "gradient_flow_steps": 25000,
+      "description": "OCC gradient flow only for first 25K steps (50% of training)",
+      "seeds": {
+        "s0": {"CAR": 0.688, "TSR": 0.844, "exp_id": "cutoff_25k_s0_eval"},
+        "s1": {"CAR": 0.760, "TSR": 0.930, "exp_id": "cutoff_25k_s1_eval"},
+        "s2": {"CAR": null, "TSR": null, "exp_id": "cutoff_25k_s2", "status": "RUNNING"}
+      },
+      "mean_CAR": 0.724,
+      "std_CAR": 0.051,
+      "status": "2seed_complete_1running",
+      "note": "High variance across seeds (0.688-0.760). Severe withdrawal effect?"
+    },
+    {
+      "condition": "cutoff_35k",
+      "gradient_flow_steps": 35000,
+      "description": "OCC gradient flow only for first 35K steps (70% of training)",
+      "seeds": {
+        "s0": {"CAR": 0.768, "TSR": 0.912, "exp_id": "cutoff_s0_eval"},
+        "s1": {"CAR": 0.798, "TSR": 0.918, "exp_id": "cutoff_s1_eval"},
+        "s2": {"CAR": 0.770, "TSR": 0.970, "exp_id": "cutoff_s2_v2_eval"}
+      },
+      "mean_CAR": 0.779,
+      "std_CAR": 0.017,
+      "status": "complete_3seed"
+    },
+    {
+      "condition": "cutoff_45k",
+      "gradient_flow_steps": 45000,
+      "description": "OCC gradient flow only for first 45K steps (90% of training)",
+      "seeds": {
+        "s0": {"CAR": 0.764, "TSR": 0.896, "exp_id": "cutoff_45k_s0_eval"},
+        "s1": {"CAR": null, "TSR": null, "exp_id": "cutoff_45k_s1", "status": "RUNNING"}
+      },
+      "mean_CAR": 0.764,
+      "std_CAR": null,
+      "status": "1seed_complete_1running"
+    },
+    {
+      "condition": "Full_OCC",
+      "gradient_flow_steps": 50000,
+      "description": "Full OCC with gradient flow throughout (occ_detach=False, BN)",
+      "seeds": {
+        "s0": {"CAR": 0.832, "TSR": 0.904, "exp_id": "mvp_occ_s0"},
+        "s1": {"CAR": 0.788, "TSR": 0.938, "exp_id": "occ_s1_fresh"},
+        "s2": {"CAR": 0.770, "TSR": 0.840, "exp_id": "mvp_occ_s2"}
+      },
+      "mean_CAR": 0.797,
+      "std_CAR": 0.032,
+      "status": "complete_3seed"
+    },
+    {
+      "condition": "reverse_cutoff",
+      "gradient_flow_steps": 15000,
+      "gradient_flow_window": "35K-50K (late only)",
+      "description": "No OCC gradient first 35K steps, enable OCC 35K-50K. Same duration as cutoff_15k but late-phase.",
+      "seeds": {
+        "s0": {"CAR": 0.700, "TSR": 0.788, "exp_id": "reverse_cutoff_s0_eval"},
+        "s1": {"CAR": 0.736, "TSR": 0.890, "exp_id": "reverse_cutoff_s1_eval"},
+        "s2": {"CAR": null, "TSR": null, "exp_id": "reverse_cutoff_s2", "status": "RUNNING"}
+      },
+      "mean_CAR": 0.718,
+      "std_CAR": 0.025,
+      "status": "2seed_complete_1running",
+      "note": "Same 15K gradient flow duration as cutoff_15k but CAR much lower (0.718 vs 0.804). Timing matters: early > late."
+    }
+  ],
+  "key_findings": {
+    "non_monotonic_pattern": "cutoff_15k (0.804) > Full OCC (0.797) > cutoff_35k (0.779) > cutoff_45k (0.764) > Detach (0.746). Longer is NOT always better.",
+    "withdrawal_effect": "cutoff_25k shows severe instability (std=0.051) and low mean (0.724). Mid-training cutoff may be worst timing.",
+    "early_vs_late": "cutoff_15k (early 15K, CAR=0.804) >> reverse_cutoff (late 15K, CAR=0.718). Early gradient flow more impactful.",
+    "caveat": "cutoff_15k/cutoff_45k have only 1 seed complete. Multi-seed may shift conclusions."
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc6d1537d9bc3b17dc38",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "train ablation window size",
+  "task_key": "worker_train_ablation-window-size_20260514T141039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_ablation-window-size_20260514T141039_result.json",
+    "occurrence": 1,
+    "bytes": 1040,
+    "sha256": "557f8307c893b6fa0a5325a7f80785404114c373ae6b8ec91562b0cfb447e1c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Ablation 完成。\n\n**PID**: 59213（已结束）  \n**总运行时间**: ~6 分钟（k=3: 118s, k=5: 92s, k=7: 140s）  \n**脚本**: `/root/autodl-tmp/agent_progress_probe/ablation_window_size.py`\n\n### 结果\n\n| k | steps/window | test macro_f1 | test_acc | f1_progress | f1_stagnation |\n|---|---|---|---|---|---|\n| 3 | 6 | **0.872** | 0.941 | 0.966 | 0.778 |\n| **5** | **10** | **0.931** | **0.953** | **0.970** | **0.892** |\n| 7 | 14 | **0.913** | 0.927 | 0.948 | 0.879 |\n\n### 分析\n\n- **k=5 最优**，macro_f1=0.931（高于 baseline 报告的 0.905，因为本次重新划窗+训练的随机性）\n- **k=3 显著下降**（-5.9pp）：6 步窗口信号不足，stagnation F1 仅 0.778——窗口太短难以积累足够的重复/停滞信号\n- **k=7 略低于 k=5**（-1.8pp）：14 步窗口引入噪声，稀释了局部信号；但比 k=3 好很多\n- 规律：**检测粒度与信号积累的 sweet spot 在 k=5**。k=3 牺牲信号换粒度代价太大；k=7 多出的 context 没有带来收益"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-ablation-window-size.md"
+}

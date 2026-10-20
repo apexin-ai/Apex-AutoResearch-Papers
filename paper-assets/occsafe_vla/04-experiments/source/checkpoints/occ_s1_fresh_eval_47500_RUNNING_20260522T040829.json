@@ -1,0 +1,35 @@
+{
+  "exp_id": "occ_s1_fresh_eval_47500",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:06:21.875Z",
+    "updated_at": "2026-05-22T04:08:29.230Z",
+    "spec": {
+      "command": "evaluate_safelibero.py --pretrained_checkpoint .../occ_s1_fresh/...-47500_chkpt --num_rollouts 50 --seed 42",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "18262",
+      "log_path": "~/runs/occsafe_vla/occ_s1_fresh_eval_47500.log",
+      "submitted_at": "2026-05-22T04:06:21.787Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "SafeLIBERO Level I (10 tasks)",
+      "data_count": "500 episodes (50 rollouts x 10 tasks)",
+      "model_name": "openvla-7b + OCC head (seed 43)",
+      "seed": 42,
+      "checkpoint_source": "occ_s1_fresh 47500_chkpt",
+      "eval_data": "SafeLIBERO Level I"
+    },
+    "hypothesis": "50r evaluation of occ_s1_fresh at 47500_chkpt to complete 3-seed OCC aggregate data. Expect CAR comparable to occ_s0 (75.0%) and occ_s2 (78.8%) at 47500 step, providing the third seed for statistical comparison with vanilla baseline.",
+    "parent": "occ_s1_fresh"
+  },
+  "timestamp": "2026-05-22T04:08:29.297734+00:00",
+  "trigger": "update_registry"
+}

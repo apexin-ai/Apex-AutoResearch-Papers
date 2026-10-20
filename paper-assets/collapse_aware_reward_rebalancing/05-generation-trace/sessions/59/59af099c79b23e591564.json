@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59af099c79b23e591564",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "check qwen3 1 7b availability",
+  "task_key": "worker_check_qwen3-1_7b-availability_20260517T124200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_qwen3-1_7b-availability_20260517T124200_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "121a18b1a37d039d9a767e5a779b05b1cfa1cc5a06cee8db8208f283951b69f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**Qwen3-1.7B：不存在。** 服务器上没有 Qwen3-1.7B 或 Qwen3-1.8B。\n\n**现有 Qwen 模型：**\n- `/root/autodl-tmp/models/Qwen/Qwen3-0.6B` (Qwen3-0.6B，完整，含 config.json + model.safetensors + tokenizer)\n- `/root/autodl-tmp/models/Qwen/Qwen2.5-1.5B-Instruct` (Qwen2.5-1.5B-Instruct，完整)\n\n当前 `config.py` 中 `BASE_MODEL` 指向 Qwen3-0.6B。\n\n**GPU 显存：**\n- GPU 0: RTX 5090, 0MiB / 32607MiB (空闲)\n- GPU 1: RTX 5090, 0MiB / 32607MiB (空闲)\n\n**磁盘：** /root/autodl-tmp 总 250G，已用 127G，可用 124G (51%)\n\n如需 Qwen3-1.7B，需要从 HuggingFace 下载（约 3.4GB），磁盘空间充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen3-1-7b-availability.md"
+}

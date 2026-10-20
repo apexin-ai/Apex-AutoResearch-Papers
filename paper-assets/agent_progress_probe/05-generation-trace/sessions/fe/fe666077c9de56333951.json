@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe666077c9de56333951",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis d073 a1 conf1 decomposition",
+  "task_key": "worker_analysis_d073-a1-conf1-decomposition_20260516T022720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d073-a1-conf1-decomposition_20260516T022720_result.json",
+    "occurrence": 1,
+    "bytes": 693,
+    "sha256": "0fe135221d818c3cc549f4440a63cb700413843c41eb80c12fc56e881dedffd4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass. Output saved to `artifacts/d073/conf1_error_decomposition.json`.\n\nKey findings on conf=1 (N=172 SWE windows with gold):\n\n| Cell | Count | % |\n|---|---|---|\n| Both correct | 125 | 72.7% |\n| GB correct, MV wrong | 15 | 8.7% |\n| GB wrong, MV correct | 2 | 1.2% |\n| Both wrong | 30 | 17.4% |\n\n**GB net advantage: +13 windows** (corrects 15 MV errors, introduces only 2 new ones). The advantage is concentrated in **stagnation** detection (12 of 15 GB corrections are stagnation windows where MV called progress). This confirms GB learns structural patterns that LF majority voting misses, particularly for identifying stagnation in LF-disagreement cases."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d073-a1-conf1-decomposition.md"
+}

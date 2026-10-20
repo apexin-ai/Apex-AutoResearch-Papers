@@ -1,0 +1,97 @@
+===========================================================================
+  2x2 FACTORIAL ANOVA — v2 FINAL DATA (2026-05-28)
+===========================================================================
+
+--- DESCRIPTIVE STATISTICS ---
+Vanilla (No OCC)               n=3  mean=0.7453  sd=0.0241  95%CI=[0.685, 0.805]
+Cell 1: Full OCC BN (ON+BN)    n=3  mean=0.7253  sd=0.0636  95%CI=[0.567, 0.883]
+Cell 2: Full OCC LN (ON+LN)    n=4  mean=0.7710  sd=0.0284  95%CI=[0.726, 0.816]
+Cell 3: Detach BN (OFF+BN)     n=4  mean=0.7665  sd=0.0242  95%CI=[0.728, 0.805]
+Cell 4: Detach LN (OFF+LN)     n=2  mean=0.8140  sd=0.0170  95%CI=[0.662, 0.966]
+
+Marginal: Grad ON  mean=0.7514 (n=7)
+Marginal: Grad OFF mean=0.7823 (n=6)
+Marginal: BN       mean=0.7489 (n=7)
+Marginal: LN       mean=0.7853 (n=6)
+All OCC pooled:    mean=0.7657 (n=13)
+
+--- 2x2 FACTORIAL ANOVA (Type II SS) ---
+
+Source                                         SS   df        F        p   eta_p2
+------------------------------------------------------------------------------
+gradient_flow                             0.00537    1    3.848   0.0814    0.300  †
+norm_type                                 0.00658    1    4.718   0.0579    0.344  †
+gradient_flow x norm_type                 0.00000    1    0.002   0.9670    0.000  ns
+Residual                                  0.01255    9
+
+Total N = 13, Residual df = 9
+R² = 0.4351, Adj R² = 0.2468
+
+--- INTERACTION EFFECT ---
+Cell means: C1(ON+BN)=0.7253, C2(ON+LN)=0.7710, C3(OFF+BN)=0.7665, C4(OFF+LN)=0.8140
+BN-LN | Grad ON  = -0.0457
+BN-LN | Grad OFF = -0.0475
+Interaction = +0.0018
+ON-OFF | BN = -0.0412
+ON-OFF | LN = -0.0430
+
+--- PAIRWISE: Each Cell vs Vanilla (Welch's t-test) ---
+Bonferroni-corrected alpha = 0.0125
+  Cell 1 (ON+BN): Delta=-0.0200, t=-0.510, p=0.6510 ns, Cohen's d=-0.416 (small), Hedges' g=-0.333
+  Cell 2 (ON+LN): Delta=+0.0257, t=1.291, p=0.2551 ns, Cohen's d=+0.959 (large), Hedges' g=+0.807
+  Cell 3 (OFF+BN): Delta=+0.0212, t=1.147, p=0.3091 ns, Cohen's d=+0.875 (large), Hedges' g=+0.737
+  Cell 4 (OFF+LN): Delta=+0.0687, t=3.736, p=0.0357 ns, Cohen's d=+3.123 (large), Hedges' g=+2.271
+
+--- PAIRWISE: Each Cell vs Vanilla (Mann-Whitney U) ---
+  Cell 1 (ON+BN): U=4.0, p=1.0000
+  Cell 2 (ON+LN): U=9.0, p=0.4000
+  Cell 3 (OFF+BN): U=9.0, p=0.4000
+  Cell 4 (OFF+LN): U=6.0, p=0.2000
+
+--- POOLED COMPARISONS ---
+Grad OFF (pooled) vs Vanilla: mean=0.7823 vs 0.7453, Delta=+0.0370, t=1.944, p=0.1056, d=+1.241
+Grad ON  (pooled) vs Vanilla: mean=0.7514 vs 0.7453, Delta=+0.0061, t=0.265, p=0.7982, d=+0.140
+All OCC  (pooled) vs Vanilla: mean=0.7657 vs 0.7453, Delta=+0.0204, t=1.110, p=0.3129, d=+0.498
+Grad ON vs Grad OFF:          mean=0.7514 vs 0.7823, Delta=-0.0309, t=-1.377, p=0.1975, d=-0.741
+BN vs LN:                     mean=0.7489 vs 0.7853, Delta=-0.0365, t=-1.672, p=0.1237, d=-0.904
+
+--- CELL 4 (n=2) POWER & ROBUSTNESS ASSESSMENT ---
+Cell 4: mean=0.8140, sd=0.0170, n=2
+  Range: [0.802, 0.826]
+  Both replicates > vanilla mean (0.745): True
+  At alpha=0.05: min detectable |Delta|=0.0819, min |d|=3.93 (df≈2)
+  At alpha=0.1: min detectable |Delta|=0.0556, min |d|=2.67 (df≈2)
+  Observed: t=3.736, p=0.0357, d=+3.123
+  Interpretation: Cell 4 significantly different from Vanilla
+  Bootstrap 95% CI for Cell 4 mean: [0.802, 0.826]
+  Permutation test (Cell 4 vs Vanilla): Delta=+0.0687, p=0.1005
+
+--- ANOVA ASSUMPTION CHECKS ---
+Levene's test (homogeneity of variance): F=0.762, p=0.5434
+Shapiro-Wilk (Cell 1, n=3): W=0.921, p=0.4549
+Shapiro-Wilk (Cell 2, n=4): W=0.881, p=0.3443
+Shapiro-Wilk (Cell 3, n=4): W=0.994, p=0.9760
+Cell 4: n=2, Shapiro-Wilk not applicable
+
+--- KRUSKAL-WALLIS (non-parametric 1-way: all cells + vanilla) ---
+H=6.548, p=0.1618
+
+--- ANOVA TABLE (for paper) ---
+% gradient_flow                       SS=0.00537  df=1  F=3.848  p=0.0814  eta_p2=0.300
+% norm_type                           SS=0.00658  df=1  F=4.718  p=0.0579  eta_p2=0.344
+% gradient_flow x norm_type           SS=0.00000  df=1  F=0.002  p=0.9670  eta_p2=0.000
+% Residual                            SS=0.01255  df=9
+
+--- LaTeX TABLE 1 ---
+Vanilla (no OCC)  n=3  0.745 ± 0.024  ---
+ON + BN           n=3  0.725 ± 0.064  p=0.651
+ON + LN           n=4  0.771 ± 0.028  p=0.255
+OFF + BN          n=4  0.767 ± 0.024  p=0.309
+OFF + LN          n=2  0.814 ± 0.017  p=0.036
+
+SUMMARY:
+1. All OCC (n=13) vs Vanilla (n=3): mean=0.766 vs 0.745, Delta=+0.020
+2. Best cell: Cell 4 (Detach LN) mean=0.814 (+0.069 vs vanilla)
+3. Gradient flow main effect: ON=0.751 vs OFF=0.782
+4. Norm type main effect: BN=0.749 vs LN=0.785
+5. Cell 4 n=2 limitation: both replicates above vanilla mean, but low power

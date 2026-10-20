@@ -1,0 +1,6 @@
+% Section 7: Conclusion
+% Note: \section{} header is in main.tex
+
+This work systematically investigates reward curation effects on diversity in iterative self-training across 8 configurations and 3 generations. Our experiments reveal three findings. First, semantic diversity remains stable under all curated conditions (Vendi Score $\Delta$: $-0.27\%$ to $+0.91\%$), extending to extreme selection pressure ($K{=}16$, $\Delta = -0.19\%$). Second, format diversity collapses sharply regardless of curation strategy (opening entropy $-$0.75 bits; near-duplicate rate 37.9\% $\rightarrow$ 75.6\%), yet standard embedding-based metrics are blind to this degradation. Third, the diversity suppression observed under LoRA ($-3.40$ pp) reverses under Full-FT ($+0.63$ pp), a pattern consistent with LoRA's rank-16 bottleneck constraining distributional absorption rather than curation itself suppressing diversity.
+
+For practitioners: semantic diversity safeguards appear unnecessary for standard iterative curation; the real risk is format homogenization requiring dedicated monitoring. Conclusions from LoRA-based experiments should not generalize to full-parameter training without verification. Scaling to larger models, longer generation chains, and format-aware selection methods remain open directions.

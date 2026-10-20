@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "3810dfee74307875748d",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "experiment llm judge strengthened",
+  "task_key": "worker_experiment_llm-judge-strengthened_20260515T015354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_llm-judge-strengthened_20260515T015354_result.json",
+    "occurrence": 1,
+    "bytes": 2398881,
+    "sha256": "e2a611757718ff7723ad92a9e0ba46110f8d0357343902b54a1b30c8fb3efe88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 3000992,
+                "serialized_sha256": "a4b547d46f4bd96083503f62af66780abf6884f8ba62b8f1099f334fb1af923d",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-llm-judge-strengthened.md"
+}

@@ -1,0 +1,760 @@
+baseline: null
+experiments:
+  carr_quick_probe_01:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T08:00:24.881Z'
+    updated_at: '2026-05-16T09:41:27.678Z'
+    spec:
+      hypothesis: 单目标ArmoRM curation在3代iterative training内导致Vendi Score可观测下降(≥2-3%)，验证collapse可见性
+      condition: single_reward (ArmoRM top-1-of-4)
+      generations: 3
+      prompts: 2000
+      eval_prompts: 200
+      model_name: Qwen3-0.6B
+      server: bjb2-23165
+      gpu: cuda:0
+      command: cd /root/autodl-tmp/carr && CUDA_VISIBLE_DEVICES=0 python3 run_quick_probe.py
+      data_path: openbmb/UltraFeedback
+      data_count: 2200
+      seed: 42
+      pid: 488698
+      log_path: /root/autodl-tmp/carr/outputs/quick_probe.log
+      checkpoint_path: N/A
+      failure_reason: 'ImportError: LLAMA_INPUTS_DOCSTRING removed in transformers
+        4.57.6, ArmoRM modeling_custom.py incompatible'
+    conclusion: failed
+    completed_at: '2026-05-16T09:41:27.678Z'
+  carr_quick_probe_02:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T10:02:00.105Z'
+    updated_at: '2026-05-16T10:44:43.377Z'
+    spec:
+      hypothesis: 单目标ArmoRM curation在3代iterative training内导致Vendi Score可观测下降(≥2-3%)，验证collapse可见性
+      condition: single_reward (ArmoRM top-1-of-4)
+      generations: 3
+      prompts: 2000
+      eval_prompts: 200
+      model_name: Qwen3-0.6B
+      server: bjb2-23165
+      gpu: cuda:0
+      parent: carr_quick_probe_01
+      command: cd /root/autodl-tmp/carr && CUDA_VISIBLE_DEVICES=0 python3 run_quick_probe.py
+      data_path: openbmb/UltraFeedback
+      data_count: 2200
+      seed: 42
+      pid: 493974
+      log_path: /root/autodl-tmp/carr/outputs/quick_probe.log
+      checkpoint_path: N/A
+      failure_reason: 'ValueError: ArmoRM find_token_for_gating failed on malformed
+        response at sample 2204/8000'
+    conclusion: failed
+    completed_at: '2026-05-16T10:44:43.377Z'
+  carr_quick_probe_03:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T10:48:20.889Z'
+    updated_at: '2026-05-16T14:11:40.387Z'
+    spec:
+      hypothesis: 单目标ArmoRM curation在3代iterative training内导致Vendi Score可观测下降(≥2-3%)，验证collapse可见性
+      condition: single_reward (ArmoRM top-1-of-4)
+      generations: 3
+      prompts: 2000
+      eval_prompts: 200
+      model_name: Qwen3-0.6B
+      server: bjb2-23165
+      gpu: cuda:0
+      parent: carr_quick_probe_02
+      command: cd /root/autodl-tmp/carr && CUDA_VISIBLE_DEVICES=0 python3 run_quick_probe.py
+      data_path: openbmb/UltraFeedback
+      data_count: 2200
+      seed: 42
+      pid: 497183
+      log_path: /root/autodl-tmp/carr/outputs/quick_probe.log
+      checkpoint_path: /root/autodl-tmp/carr/outputs/gen_2/condition_0/merged
+    conclusion: negative
+    metrics:
+      gen0:
+        mean_quality: 0.1123
+        vendi_score: 107.54
+        self_bleu: 0.0059
+        mean_nn_distance: 0.7088
+        perplexity: 10.6
+      gen1:
+        mean_quality: 0.1138
+        vendi_score: 106.73
+        self_bleu: 0.0091
+        mean_nn_distance: 0.7065
+        perplexity: 9.73
+      gen2:
+        mean_quality: 0.1109
+        vendi_score: 107.25
+        self_bleu: 0.0062
+        mean_nn_distance: 0.7054
+        perplexity: 9.72
+      vendi_decline_pct: -0.28
+      p1_pass: false
+    completed_at: '2026-05-16T14:11:40.387Z'
+  carr_baseline_no_curation_01:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T12:26:06.034Z'
+    updated_at: '2026-05-16T15:48:08.655Z'
+    spec:
+      hypothesis: 无curation条件下3代iterative training的diversity变化趋势(baseline参照)
+      condition: no_curation (random 1-of-4)
+      generations: 3
+      prompts: 2000
+      eval_prompts: 200
+      model_name: Qwen3-0.6B
+      server: bjb2-23165
+      gpu: cuda:1
+      command: cd /root/autodl-tmp/carr && CUDA_VISIBLE_DEVICES=1 python3 run_baseline.py
+      data_path: openbmb/UltraFeedback
+      data_count: 2200
+      seed: 42
+      pid: 501406
+      log_path: /root/autodl-tmp/carr/outputs/baseline_no_curation.log
+      checkpoint_path: /root/autodl-tmp/carr/outputs/gen_2/condition_0/merged
+    conclusion: success
+    metrics:
+      gen0:
+        mean_quality: 0.1107
+        vendi_score: 105.42
+        self_bleu: 0.0044
+        perplexity: 9.19
+        mean_nn_distance: 0.7005
+        complexity_mean: 2.84
+      gen1:
+        mean_quality: 0.1099
+        vendi_score: 108.21
+        self_bleu: 0.0067
+        perplexity: 8.76
+        mean_nn_distance: 0.7121
+        complexity_mean: 2.76
+      gen2:
+        mean_quality: 0.1096
+        vendi_score: 108.72
+        self_bleu: 0.0067
+        perplexity: 11.18
+        mean_nn_distance: 0.7136
+        complexity_mean: 2.8
+    completed_at: '2026-05-16T15:48:08.655Z'
+  carr_quick_probe_k8_01:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T14:14:27.230Z'
+    updated_at: '2026-05-16T14:23:43.916Z'
+    spec:
+      hypothesis: K=8 (12.5%保留率) 的更强选择压力在3代内导致Vendi Score可观测下降(≥5%)
+      condition: single_reward (ArmoRM top-1-of-8)
+      generations: 3
+      prompts: 2000
+      eval_prompts: 200
+      model_name: Qwen3-0.6B
+      server: bjb2-23165
+      gpu: cuda:0
+      k_candidates: 8
+      parent: carr_quick_probe_03
+      data_path: openbmb/UltraFeedback
+      data_count: 2200
+      seed: 42
+      command: cd /root/autodl-tmp/carr && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1
+        CUDA_VISIBLE_DEVICES=0 python3 run_quick_probe_k8.py
+      pid: 506491
+    conclusion: killed
+    completed_at: '2026-05-16T14:23:43.917Z'
+  carr_quick_probe_k8_02:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T14:25:22.509Z'
+    updated_at: '2026-05-16T20:36:44.153Z'
+    spec:
+      command: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+        && cd /root/autodl-tmp/carr && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0
+        python3 run_quick_probe_k8.py
+      server: bjb2-23165
+      gpu: cuda:0
+      pid: 507603
+      log_path: ~/runs/collapse_aware_reward_rebalancing/carr_quick_probe_k8_02.log
+      submitted_at: '2026-05-16T14:26:05.571Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      hypothesis: K=8 (12.5%保留率) 的更强选择压力在3代内导致Vendi Score可观测下降(≥5%)
+      condition: single_reward (ArmoRM top-1-of-8)
+      generations: 3
+      prompts: 2000
+      eval_prompts: 200
+      model_name: Qwen3-0.6B
+      k_candidates: 8
+      gen_batch_size: 8
+      data_path: openbmb/UltraFeedback
+      data_count: 2200
+      seed: 42
+      metrics:
+        gen0:
+          mean_quality: 0.1146
+          vendi_score: 107.21
+          self_bleu: 0.0057
+          perplexity: 9.4
+          mean_nn_distance: 0.7097
+          complexity_mean: 2.8436
+        gen1:
+          mean_quality: 0.1136
+          vendi_score: 107.26
+          self_bleu: 0.0024
+          perplexity: 9.18
+          mean_nn_distance: 0.7086
+          complexity_mean: 2.7888
+        gen2:
+          mean_quality: 0.1143
+          vendi_score: 107.25
+          self_bleu: 0.0064
+          perplexity: 10.2
+          mean_nn_distance: 0.7095
+          complexity_mean: 2.7689
+        vendi_decline_pct: -0.03
+        p1_pass: false
+      checkpoint_path: /root/autodl-tmp/carr/outputs_k8/gen_2/condition_10/merged
+      elapsed_hours: 5.5
+      wall_clock_seconds: 22238.6
+      gpu_hours: 6.18
+    reproduce:
+      finished_at: '2026-05-16T19:54:30.580Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-16T19:54:31.660746+00:00'
+    conclusion: negative
+    completed_at: '2026-05-16T20:36:44.154Z'
+  carr_fullft_k4_probe_01:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T15:52:42.494Z'
+    updated_at: '2026-05-16T16:53:28.777Z'
+    spec:
+      command: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+        && cd /root/autodl-tmp/carr && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=1
+        python3 run_quick_probe_fullft.py
+      server: bjb2-23165
+      gpu: cuda:1
+      pid: 511226
+      log_path: ~/runs/collapse_aware_reward_rebalancing/carr_fullft_k4_probe_01.log
+      submitted_at: '2026-05-16T15:52:42.482Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      hypothesis: Full-FT (无LoRA约束) K=4在3代内导致Vendi Score可观测下降(≥5%)，验证LoRA是否是collapse约束因素
+      condition: single_reward (ArmoRM top-1-of-4) Full-FT
+      generations: 3
+      prompts: 2000
+      eval_prompts: 200
+      model_name: Qwen3-0.6B
+      k_candidates: 4
+      gen_batch_size: 16
+      lr: 5.0e-06
+      batch_size: 2
+      grad_accum: 4
+      use_lora: false
+      data_path: openbmb/UltraFeedback
+      data_count: 2200
+      seed: 42
+      output_dir: /root/autodl-tmp/carr/outputs_fullft_k4/
+      wall_clock_seconds: 3552.2
+      gpu_hours: 0.99
+      failure_reason: FP16 gradients + GradScaler conflict at Gen 0 training step
+        0. RTX 5090 needs bf16 not fp16.
+    reproduce:
+      finished_at: '2026-05-16T16:51:54.278Z'
+    failure_reason: 'ValueError: Attempting to unscale FP16 gradients — Full-FT 模式下模型参数/梯度均为
+      FP16，GradScaler 无法 unscale。需要改用 bf16=True（RTX 5090 支持）'
+    conclusion: failed
+    completed_at: '2026-05-16T16:51:54.732Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-16T16:51:55.384511+00:00'
+    notes: '失败原因: fp16 AMP + Full-FT 不兼容 (GradScaler 无法 unscale FP16 梯度) | 已有成果: Gen0
+      生成+打分+diversity完成，训练第1步崩溃 | 修复: train_sft.py Full-FT 时用 bf16=True 代替 fp16=True
+      | 自动修复中'
+  carr_fullft_k4_probe_02:
+    status: DONE
+    retry_count: 1
+    created_at: '2026-05-16T16:55:34.416Z'
+    updated_at: '2026-05-16T20:58:22.569Z'
+    reproduce:
+      finished_at: '2026-05-16T16:57:29.832Z'
+    failure_reason: null
+    completed_at: '2026-05-16T16:57:30.752Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-16T16:57:31.428879+00:00'
+      previous_failure:
+        conclusion: failed
+    spec:
+      command: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+        && cd /root/autodl-tmp/carr && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=1
+        python3 run_quick_probe_fullft.py
+      server: bjb2-23165
+      gpu_id: 1
+      data_path: openbmb/UltraFeedback
+      data_count: 2200
+      model_name: Qwen3-0.6B
+      seed: 42
+      failure_reason: 'OOM: 596M params full-FT on 32GB needs gradient checkpointing.
+        batch_size=2 too large.'
+    conclusion: failed
+  carr_fullft_k4_probe_03:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T17:01:20.476Z'
+    updated_at: '2026-05-16T20:58:33.610Z'
+    spec:
+      log_path: /root/autodl-tmp/carr/outputs_fullft_k4/training.log
+      checkpoint_path: /root/autodl-tmp/carr/outputs_fullft_k4/gen_2/condition_0/merged
+    reproduce:
+      finished_at: '2026-05-16T20:35:20.184Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-16T20:35:20.904508+00:00'
+    metrics:
+      gen0:
+        mean_quality: 0.1145
+        vendi_score: 107.1
+        self_bleu: 0.0038
+        perplexity: 9.1
+        mean_nn_distance: 0.7073
+        complexity_mean: 2.858
+      gen1:
+        mean_quality: 0.1141
+        vendi_score: 107.61
+        self_bleu: 0.006
+        perplexity: 8.66
+        mean_nn_distance: 0.7091
+        complexity_mean: 2.853
+      gen2:
+        mean_quality: 0.1131
+        vendi_score: 108.07
+        self_bleu: 0.0044
+        perplexity: 9.21
+        mean_nn_distance: 0.7108
+        complexity_mean: 2.813
+      vendi_decline_pct: 0.91
+      p1_pass: false
+    conclusion: negative
+    completed_at: '2026-05-16T20:58:33.611Z'
+  carr_fullft_nocuration_01:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T19:59:20.517Z'
+    updated_at: '2026-05-16T23:37:01.758Z'
+    spec:
+      command: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+        && cd /root/autodl-tmp/carr && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0
+        python3 run_fullft_nocuration.py
+      server: bjb2-23165
+      gpu: cuda:0
+      pid: 521921
+      log_path: ~/runs/collapse_aware_reward_rebalancing/carr_fullft_nocuration_01.log
+      submitted_at: '2026-05-16T19:59:20.497Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      hypothesis: 'Full-FT no_curation baseline: 随机选1-of-4不按reward排序，作为Full-FT curation的对照组'
+      condition: no_curation (random 1-of-4) Full-FT
+      generations: 3
+      prompts: 2000
+      eval_prompts: 200
+      model_name: Qwen3-0.6B
+      k_candidates: 4
+      gen_batch_size: 16
+      lr: 5.0e-06
+      per_device_train_batch_size: 1
+      gradient_accumulation_steps: 8
+      gradient_checkpointing: true
+      use_lora: false
+      data_path: openbmb/UltraFeedback
+      data_count: 2200
+      seed: 42
+      output_dir: /root/autodl-tmp/carr/outputs_fullft_nocuration/
+      checkpoint_path: /root/autodl-tmp/carr/outputs_fullft_nocuration/gen_2/condition_0/merged
+      wall_clock_seconds: 13061.3
+      gpu_hours: 3.63
+    reproduce:
+      finished_at: '2026-05-16T23:35:13.062Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-16T23:35:14.346551+00:00'
+    metrics:
+      gen0:
+        mean_quality: 0.1126
+        vendi_score: 107.17
+        self_bleu: 0.0045
+        perplexity: 8.77
+        mean_nn_distance: 0.7061
+        complexity_mean: 2.847
+      gen1:
+        mean_quality: 0.1111
+        vendi_score: 107.87
+        self_bleu: 0.0047
+        perplexity: 8.7
+        mean_nn_distance: 0.7094
+        complexity_mean: 2.793
+      gen2:
+        mean_quality: 0.1117
+        vendi_score: 108.64
+        self_bleu: 0.0065
+        perplexity: 8.82
+        mean_nn_distance: 0.7114
+        complexity_mean: 2.82
+      vendi_decline_pct: 1.38
+    conclusion: success
+    hypothesis: 'Full-FT no_curation baseline: random 1-of-4 selection without reward
+      sorting should show no systematic diversity decline across generations, serving
+      as null-effect control for the curation condition'
+    completed_at: '2026-05-16T23:37:01.758Z'
+  carr_fullft_lr2e5_probe_01:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T20:41:17.114Z'
+    updated_at: '2026-05-17T03:30:04.086Z'
+    spec:
+      command: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+        && cd /root/autodl-tmp/carr && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=1
+        python3 run_fullft_lr2e5.py
+      server: bjb2-23165
+      gpu: cuda:1
+      pid: 523802
+      log_path: ~/runs/collapse_aware_reward_rebalancing/carr_fullft_lr2e5_probe_01.log
+      submitted_at: '2026-05-16T20:41:17.089Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      hypothesis: Full-FT LR=2e-5 (4x提高) 使模型充分学习 curated data 分布，触发可观测的 diversity
+        decline
+      condition: single_reward (ArmoRM top-1-of-4) Full-FT LR=2e-5 epochs=3
+      generations: 3
+      prompts: 2000
+      eval_prompts: 200
+      model_name: Qwen3-0.6B
+      k_candidates: 4
+      gen_batch_size: 16
+      lr: 2.0e-05
+      num_epochs: 3
+      per_device_train_batch_size: 1
+      gradient_accumulation_steps: 8
+      gradient_checkpointing: true
+      use_lora: false
+      data_path: openbmb/UltraFeedback
+      data_count: 2200
+      seed: 42
+      output_dir: /root/autodl-tmp/carr/outputs_fullft_lr2e5/
+      metrics:
+        gen0:
+          mean_quality: 0.113
+          vendi_score: 107.81
+          self_bleu: 0.0046
+          perplexity: 9.57
+          mean_nn_distance: 0.7079
+          complexity_mean: 2.89
+        gen1:
+          mean_quality: 0.1154
+          vendi_score: 108.03
+          self_bleu: 0.0039
+          perplexity: 10.34
+          mean_nn_distance: 0.7107
+          complexity_mean: 2.868
+        gen2:
+          mean_quality: 0.1124
+          vendi_score: 108.54
+          self_bleu: 0.004
+          perplexity: 8.82
+          mean_nn_distance: 0.71
+          complexity_mean: 2.846
+        vendi_decline_pct: 0.68
+        p1_pass: false
+        training_loss_trend: 0.380 -> 0.212 -> 0.140
+      checkpoint_path: /root/autodl-tmp/carr/outputs_fullft_lr2e5/gen_2/condition_0/merged
+      elapsed_hours: 3.7
+      wall_clock_seconds: 24527.0
+      gpu_hours: 6.81
+    reproduce:
+      finished_at: '2026-05-17T00:24:10.752Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-17T00:24:12.107595+00:00'
+    conclusion: negative
+    hypothesis: Full-FT LR=2e-5 (4x提高) 使模型充分学习 curated data 分布，触发可观测的 diversity decline
+      — 若 Vendi 仍不降则证明 curation 本身不导致 collapse
+    completed_at: '2026-05-17T03:30:04.086Z'
+  carr_fullft_lr2e5_nocuration_01:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T23:41:21.750Z'
+    updated_at: '2026-05-17T10:37:40.198Z'
+    spec:
+      checkpoint_path: /root/autodl-tmp/carr/outputs_fullft_lr2e5_nocuration/gen_2/condition_0/merged
+      log_path: ~/runs/collapse_aware_reward_rebalancing/carr_fullft_lr2e5_nocuration_01.log
+    reproduce:
+      finished_at: '2026-05-17T03:28:39.850Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-17T03:28:41.089453+00:00'
+    conclusion: success
+    metrics:
+      gen0:
+        vendi_score: 108.08
+      gen1:
+        vendi_score: 107.85
+      gen2:
+        vendi_score: 108.13
+      vendi_decline_pct: 0.046
+    hypothesis: 'Full-FT LR=2e-5 no-curation baseline: random 1-of-4 selection at
+      aggressive learning rate shows diversity trajectory unaffected by reward signal,
+      isolating curation''s causal effect on C4'
+    completed_at: '2026-05-17T05:52:14.383Z'
+  carr_fullft_lr2e5_k16_probe_01:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T00:29:54.079Z'
+    updated_at: '2026-05-17T09:47:53.477Z'
+    spec:
+      command: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+        && cd /root/autodl-tmp/carr && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=1
+        python3 run_fullft_lr2e5_k16.py
+      server: bjb2-23165
+      gpu: cuda:1
+      pid: 534061
+      log_path: ~/runs/collapse_aware_reward_rebalancing/carr_fullft_lr2e5_k16_probe_01.log
+      submitted_at: '2026-05-17T00:29:54.047Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      hypothesis: K=16 (6.25%保留率) 的极端筛选使 surviving data 趋同，在 Full-FT LR=2e-5 下 3 代内触发可观测的
+        Vendi Score 下降
+      condition: single_reward (ArmoRM top-1-of-16) Full-FT LR=2e-5 epochs=3
+      generations: 3
+      prompts: 2000
+      eval_prompts: 200
+      model_name: Qwen3-0.6B
+      k_candidates: 16
+      gen_batch_size: 4
+      lr: 2.0e-05
+      num_epochs: 3
+      per_device_train_batch_size: 1
+      gradient_accumulation_steps: 8
+      gradient_checkpointing: true
+      use_lora: false
+      data_path: openbmb/UltraFeedback
+      data_count: 2200
+      seed: 42
+      output_dir: /root/autodl-tmp/carr/outputs_fullft_lr2e5_k16/
+      checkpoint_path: /root/autodl-tmp/carr/outputs_fullft_lr2e5_k16/gen_2/condition_0/merged
+      wall_clock_seconds: 33194
+      gpu_hours: 9.22
+    reproduce:
+      finished_at: '2026-05-17T09:44:17.757Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-17T09:44:18.989619+00:00'
+    metrics:
+      gen0:
+        mean_quality: 0.1162
+        vendi_score: 107.32
+        self_bleu: 0.0057
+        perplexity: 8.5
+        mean_nn_distance: 0.7057
+        complexity_mean: 2.887
+      gen1:
+        mean_quality: 0.1162
+        vendi_score: 106.73
+        self_bleu: 0.005
+        perplexity: 8.02
+        mean_nn_distance: 0.7065
+        complexity_mean: 2.848
+      gen2:
+        mean_quality: 0.1149
+        vendi_score: 107.11
+        self_bleu: 0.0058
+        perplexity: 7.71
+        mean_nn_distance: 0.7092
+        complexity_mean: 2.818
+      vendi_decline_pct: -0.19
+      p1_pass: false
+      training_loss_trend: 0.206 -> 0.129 -> 0.097
+    conclusion: negative
+    hypothesis: K=16 (6.25% retention) extreme selection pressure causes measurable
+      Vendi Score decline (≥5%) over 3 generations under Full-FT LR=2e-5, establishing
+      a collapse boundary absent at K≤8
+    completed_at: '2026-05-17T09:47:53.477Z'
+  c1-regen-lora-k4-curated:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T07:28:04.876Z'
+    updated_at: '2026-05-17T08:48:01.188Z'
+    spec:
+      command: bash -c "cd /root/autodl-tmp/carr && CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1
+        HF_HUB_OFFLINE=1 python3 run_c1_regen.py"
+      server: bjb2-23165
+      gpu:
+      - cuda:0
+      pid: '552767'
+      log_path: ~/runs/collapse_aware_reward_rebalancing/c1-regen-lora-k4-curated.log
+      submitted_at: '2026-05-17T07:28:04.841Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: openbmb/UltraFeedback
+      data_count: 2200
+      model_name: Qwen3-0.6B
+      seed: 42
+      checkpoint_path: N/A
+      failure_reason: OOM during Gen 1 LoRA training step 14/250. ArmoRM 8B not freed
+        before training. 28.59/31.36 GiB used on GPU 0.
+      wall_clock_seconds: 4796.3
+      gpu_hours: 1.33
+    conclusion: failed
+    completed_at: '2026-05-17T08:48:01.188Z'
+  c1-regen-v2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T09:07:56.797Z'
+    updated_at: '2026-05-17T10:26:45.515Z'
+    hypothesis: C1 LoRA K=4 curated 数据重新生成（原数据被 C5 覆盖），从 Gen 1 断点续跑。用于 format diversity
+      对比分析（C1 curated vs C5 random）
+    spec:
+      command: cd /root/autodl-tmp/carr && CUDA_VISIBLE_DEVICES=0 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+        HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python3 run_c1_regen_v2.py
+      server: bjb2-23165
+      data_path: openbmb/UltraFeedback
+      data_count: 2200
+      model_name: Qwen3-0.6B
+      seed: 42
+      gpu: cuda:0
+      output_dir: /root/autodl-tmp/carr/outputs_lora_k4_curated/
+      log_path: ~/runs/collapse_aware_reward_rebalancing/c1-regen-v2.log
+      checkpoint_path: /root/autodl-tmp/carr/outputs_lora_k4_curated/gen_2/condition_0/merged
+    metrics:
+      gen0:
+        mean_quality: 0.1133
+        vendi_score: 107.21
+        self_bleu: 0.00597
+        perplexity: 9.854
+        mean_nn_distance: 0.7058
+      gen1:
+        mean_quality: 0.1132
+        vendi_score: 106.87
+        self_bleu: 0.00623
+        perplexity: 8.618
+        mean_nn_distance: 0.7026
+      gen2:
+        mean_quality: 0.1142
+        vendi_score: 108.42
+        self_bleu: 0.0047
+        perplexity: 9.399
+        mean_nn_distance: 0.7126
+      vendi_decline_pct: 1.13
+    conclusion: success
+    completed_at: '2026-05-17T10:26:45.515Z'
+  carr_qwen25_1.5b_lora_k4_curated:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T12:44:37.697Z'
+    updated_at: '2026-05-17T13:10:29.232Z'
+    hypothesis: 'Semantic resilience to reward curation generalizes across model families
+      and scales: Qwen2.5-1.5B-Instruct (2.5x larger, different architecture family)
+      under LoRA K=4 curated top-1 ArmoRM shows Vendi Score change within ±5% over
+      3 generations, consistent with Qwen3-0.6B findings'
+    server: bjb2-23165
+    gpu: cuda:0
+    account: root
+    reproduce:
+      server: bjb2-23165
+      gpu: cuda:0
+      started_at: '2026-05-17T13:08:41.969Z'
+    conclusion: killed
+    notes: Replaced by carr_qwen25_1-5b_lora_k4_curated (dot in exp_id not allowed
+      by submit_training_job)
+    completed_at: '2026-05-17T13:10:29.232Z'
+  carr_qwen25_1.5b_lora_k4_random:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T12:44:38.371Z'
+    updated_at: '2026-05-17T13:10:29.754Z'
+    hypothesis: 'Random selection baseline for Qwen2.5-1.5B-Instruct LoRA K=4: establishes
+      diversity trajectory without reward signal at 1.5B scale, enabling curated vs
+      random gap measurement to test whether direction reversal or suppression patterns
+      differ from 0.6B'
+    server: bjb2-23165
+    gpu: cuda:1
+    account: root
+    reproduce:
+      server: bjb2-23165
+      gpu: cuda:1
+      started_at: '2026-05-17T13:08:42.871Z'
+    conclusion: killed
+    notes: Replaced by carr_qwen25_1-5b_lora_k4_random (dot in exp_id not allowed
+      by submit_training_job)
+    completed_at: '2026-05-17T13:10:29.754Z'
+  carr_qwen25_1-5b_lora_k4_curated:
+    status: RUNNING
+    retry_count: 0
+    created_at: '2026-05-17T13:10:01.714Z'
+    updated_at: '2026-05-17T13:53:14.534Z'
+    hypothesis: 'Semantic resilience to reward curation generalizes across model families
+      and scales: Qwen2.5-1.5B-Instruct (2.5x larger, different architecture family)
+      under LoRA K=4 curated top-1 ArmoRM shows Vendi Score change within ±5% over
+      3 generations, consistent with Qwen3-0.6B findings'
+    spec:
+      command: bash /root/autodl-tmp/carr/run_qwen25_curated.sh
+      server: bjb2-23165
+      gpu: cuda:0
+      pid: 571211
+      log_path: ~/runs/collapse_aware_reward_rebalancing/carr_qwen25_1-5b_lora_k4_curated.log
+      submitted_at: '2026-05-17T13:10:40.147Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/autodl-tmp/carr/prompts/ultrafeedback_2200.jsonl
+      data_count: 2200
+      model_name: Qwen2.5-1.5B-Instruct
+      seed: 42
+  carr_qwen25_1-5b_lora_k4_random:
+    status: RUNNING
+    retry_count: 0
+    created_at: '2026-05-17T13:10:34.975Z'
+    updated_at: '2026-05-17T13:53:16.228Z'
+    hypothesis: 'Random selection baseline for Qwen2.5-1.5B-Instruct LoRA K=4: establishes
+      diversity trajectory without reward signal at 1.5B scale, enabling curated vs
+      random gap measurement to test whether direction reversal or suppression patterns
+      differ from 0.6B'
+    spec:
+      command: bash /root/autodl-tmp/carr/run_qwen25_random.sh
+      server: bjb2-23165
+      gpu: cuda:1
+      pid: 571417
+      log_path: ~/runs/collapse_aware_reward_rebalancing/carr_qwen25_1-5b_lora_k4_random.log
+      submitted_at: '2026-05-17T13:10:46.785Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/autodl-tmp/carr/prompts/ultrafeedback_2200.jsonl
+      data_count: 2200
+      model_name: Qwen2.5-1.5B-Instruct
+      seed: 42

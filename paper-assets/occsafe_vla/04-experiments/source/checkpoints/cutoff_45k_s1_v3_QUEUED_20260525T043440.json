@@ -1,0 +1,16 @@
+{
+  "exp_id": "cutoff_45k_s1_v3",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T04:33:19.955Z",
+    "updated_at": "2026-05-25T04:34:39.937Z",
+    "hypothesis": "Seed 43 replication of cutoff_45k (gradient flow cutoff at 45K steps). Fresh start from pretrained weights. Previous v1 invalid (resume batch_idx bug), v2 killed by server reboot. Tests whether near-full gradient flow (90%) matches Full OCC performance.",
+    "parent": "cutoff_45k_s0"
+  },
+  "timestamp": "2026-05-25T04:34:40.190051+00:00",
+  "trigger": "update_registry"
+}

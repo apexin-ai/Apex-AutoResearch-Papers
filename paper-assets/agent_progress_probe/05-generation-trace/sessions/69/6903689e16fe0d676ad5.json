@@ -1,0 +1,209 @@
+{
+  "schema_version": "1.0",
+  "id": "6903689e16fe0d676ad5",
+  "project": "agent_progress_probe",
+  "kind": "conversation",
+  "title": "paper research bib sync",
+  "task_key": "worker_paper_research_bib_sync_20260514T204907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_research_bib_sync_20260514T204907.jsonl",
+    "occurrence": 1,
+    "bytes": 16267,
+    "sha256": "26264454d4d060e8302fe6811a7595985257990f5927b91e75c0a3dbcaf5cd2e"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T20:52:33.477246+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260514T204907",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/literature_map.yaml"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T20:52:33.477918+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Literature Map for Agent Progress Probe (EMNLP 2026 ARR)\n2\t# Generated: 2026-05-14\n3\t# Paper: Structural Signal Analysis for Progress Stagnation Detection in LLM Agents\n4\t#\n5\t# D039 Pivot: Empirical analysis paper. Central finding: stagnation signals are\n6\t# fundamentally structural (30 features → 0.995 in-domain, 0.967 cross-agent F1),\n7\t# decisively surpassing NL embeddings (0.906/0.751) and LLM-as-judge (+24.3pp).\n8\t# TLM is a well-motivated negative finding (3 implementations all fail to beat MV).\n9\t\n10\tpapers:\n11\t\n12\t  # ============================================================\n13\t  # CATEGORY: direct-competitor\n14\t  # ============================================================\n15\t\n16\t  - id: \"xi2025agentprm\"\n17\t    title: \"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\"\n18\t    authors: \"Zhiheng Xi, Chenyang Liao, Guanyu Li, Yajie Yang, Wenxiang Chen, Zhihao Zhang, Binghai Wang, Senjie Jin, Yuhao Zhou, Jian Guan, Wei Wu, Tao Ji, Tao Gui, Qi Zhang, Xuanjing Huang\"\n19\t    venue: \"arXiv preprint\"\n20\t    year: 2025\n21\t    arxiv: \"2511.08325\"\n22\t    category: \"direct-competitor\"\n23\t    role: \"主要竞争者：step-level PRM for agent guidance\"\n24\t    key_finding: \"用 promise（长期潜力）和 progress（即时进展）两个维度评估 agent 每步决策，实现 8x 计算效率提升\"\n25\t    our_differentiation: \"我们是 window-level monitoring（不是 step-level guidance），不需要 outcome labels，目标是 stagnation detection 不是 reward shaping\"\n26\t\n27\t  - id: \"choudhury2025prm\"\n28\t    title: \"Process Reward Models for LLM Agents: Practical Framework and Directions\"\n29\t    authors: \"Sanjiban Choudhury\"\n30\t    venue: \"arXiv preprint\"\n31\t    year: 2025\n32\t    arxiv: \"2502.10325\"\n33\t    category: \"direct-competitor\"\n34\t    role: \"PRM 框架综述 + InversePRM 方法\"\n35\t    key_finding: \"提出 AgentPRM（Monte Carlo rollout actor-critic）和 InversePRM（从 demonstrations 学习 process reward），3B 模型超越 GPT-4o\"\n36\t    our_differentiation: \"InversePRM 仍需 demonstration trajectories，我们用 programmatic LFs 替代人工标注；我们关注 monitoring 而非 training signal\"\n\n…[truncated 23223 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260514T204907",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T20:52:33.478269+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260514T204907",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/",
+              "description": "List paper directory"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T20:52:33.478423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260514T204907",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T20:52:33.478581+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260514T204907",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/references.bib",
+              "content": "% ==============================================================\n% CATEGORY: direct-competitor\n% ==============================================================\n\n@article{xi2025agentprm,\n  title   = {AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress},\n  author  = {Zhiheng Xi and Chenyang Liao and Guanyu Li and others},\n  journal = {arXiv preprint arXiv:2511.08325},\n  year    = {2025},\n}\n\n@article{choudhury2025prm,\n  title   = {Process Reward Models for LLM Agents: Practical Framework and Directions},\n  author  = {Sanjiban Choudhury},\n  journal = {arXiv preprint arXiv:2502.10325},\n  year    = {2025},\n}\n\n@article{li2026toolprmbench,\n  title   = {ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents},\n  author  = {Dawei Li and Yuguang Yao and Zhen Tan and Huan Liu and Ruocheng Guo},\n  journal = {arXiv preprint arXiv:2601.12294},\n  year    = {2026},\n}\n\n@article{wang2026planrewardbench,\n  title   = {Aligning Agents via Planning: A Benchmark for Trajectory-Level Reward Modeling},\n  author  = {Jiaxuan Wang and Yulan Hu and Wenjin Yang and others},\n  journal = {arXiv preprint arXiv:2604.08178},\n  year    = {2026},\n}\n\n@inproceedings{chen2025monitoring,\n  title     = {Monitoring LLM Agents for Sequentially Contextual Harm},\n  author    = {Yueh-Han Chen and Neelay Joshi and Yulin Chen and He He and Rico Angell},\n  booktitle = {ICLR 2025 Workshop on Building Trust in Language Models and Applications},\n  year      = {2025},\n}\n\n@article{kale2025weaktostrong,\n  title   = {Reliable Weak-to-Strong Monitoring of LLM Agents},\n  author  = {Neil Kale and Chen Bo Calvin Zhang and Kevin Zhu and others},\n  journal = {arXiv preprint arXiv:2508.19461},\n  year    = {2025},\n}\n\n@article{fan2026agentrm,\n  title   = {Exploring Reasoning Reward Model for Agents},\n  author  = {Kaixuan Fan and Kaituo Feng and Manyuan Zhang and others},\n  journal = {arXiv preprint arXiv:2601.22154},\n  year    = {2026},\n}\n\n@article{qiu2026dataprm,\n  title   = {Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis},\n  author  = {Zhisong Qiu and Shuofei Qiao and Kewei Xu and others},\n  journal = {arXiv preprint arXiv:2604.24198},\n  year    = {2026},\n}\n\n% ==============================================================\n% CATEGORY: method-component\n% ==============================================================\n\n@inproceedings{ratner2016dataprogramming,\n  title     = {Data Programming: Creating Large Training Sets, Quickly},\n  author    = {Alexander Ratner and Christopher De Sa and Sen Wu and Daniel Selsam and Christopher Re},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year      = {2016},\n}\n\n@article{ratner2017snorkel,\n  title   = {Snorkel: Rapid Training Data Creation with Weak Supervision},\n  author  = {Alexander Ratner and Stephen H. Bach and Henry Ehrenberg and others},\n  journal = {Proceedings of the VLDB Endowment},\n  year    = {2018},\n}\n\n@inproceedings{fu2020flyingsquid,\n  title     = {Fast and Three-rious: Speeding Up Weak Supervision with Triplet Methods},\n  author    = {Daniel Y. Fu and Mayee F. Chen and Frederic Sala and others},\n  booktitle = {International Conference on Machine Learning},\n  year      = {2020},\n}\n\n@inproceedings{zhang2021wrench,\n  title     = {WRENCH: A Comprehensive Benchmark for Weak Supervision},\n  author    = {Jieyu Zhang and Yue Yu and Yinghao Li and others},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year      = {2021},\n}\n\n@inproceedings{safranchik2020linkedhmm,\n  title     = {Weakly Supervised Sequence Tagging from Noisy Rules},\n  author    = {Esteban Safranchik and Shiying Luo and Stephen H. Bach},\n  booktitle = {AAAI Conference on Artificial Intelligence},\n  year      = {2020},\n}\n\n@inproceedings{sala2019multiresolution,\n  title     = {Multi-Resolution Weak Supervision for Sequential Data},\n  author    = {Frederic Sala and Paroma Varma and Jason Fries and others},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year      = {2019},\n}\n\n@article{dawid1979em,\n  title   = {Maximum Likelihood Estimation of Observer Error-Rates Using the EM Algorithm},\n  author  = {A. P. Dawid and A. M. Skene},\n  journal = {Journal of the Royal Statistical Society, Series C},\n  year    = {1979},\n}\n\n@inproceedings{nguyen2017hmmcrowd,\n  title     = {Aggregating and Predicting Sequence Labels from Crowd Annotations},\n  author    = {An Thanh Nguyen and Byron C. Wallace and Junyi Jessy Li and Ani Nenkova and Matthew Lease},\n  booktitle = {Annual Meeting of the Association for Computational Linguistics},\n  year      = {2017},\n}\n\n% ==============================================================\n% CATEGORY: evaluation\n% ==============================================================\n\n@article{orlanski2026slopcodebench,\n  title   = {SlopCodeBench: Benchmarking How Coding Agents Degrade Over Long-Horizon Iterative Tasks},\n  author  = {Gabriel Orlanski and Devjeet Roy and Alexander Yun and others},\n  journal = {arXiv preprint arXiv:2603.24755},\n  year    = {2026},\n}\n\n@inproceedings{jimenez2024swebench,\n  title     = {SWE-bench: Can Language Models Resolve Real-World GitHub Issues?},\n  author    = {Carlos E. Jimenez and John Yang and Alexander Wettig and others},\n  booktitle = {International Conference on Learning Representations},\n  year      = {2024},\n}\n\n@inproceedings{yang2024sweagent,\n  title     = {SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering},\n  author    = {John Yang and Carlos E. Jimenez and Alexander Wettig and others},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year      = {2024},\n}\n\n@inproceedings{wang2025openhands,\n  title     = {OpenHands: An Open Platform for AI Software Developers as Generalist Agents},\n  author    = {Xingyao Wang and Boxuan Li and Yufan Song and others},\n  booktitle = {International Conference on Learning Representations},\n  year      = {2025},\n}\n\n@inproceedings{zhou2024webarena,\n  title     = {WebArena: A Realistic Web Environment for Building Autonomous Agents},\n  author    = {Shuyan Zhou and Frank F. Xu and Hao Zhu and others},\n  booktitle = {International Conference on Learning Representations},\n  year      = {2024},\n}\n\n@inproceedings{wang2024mint,\n  title     = {MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback},\n  author    = {Xingyao Wang and Zihan Wang and Jiateng Liu and others},\n  booktitle = {International Conference on Learning Representations},\n  year      = {2024},\n}\n\n% ==============================================================\n% CATEGORY: background\n% ==============================================================\n\n@inproceedings{shinn2023reflexion,\n  title     = {Reflexion: Language Agents with Verbal Reinforcement Learning},\n  author    = {Noah Shinn and Federico Cassano and Ashwin Gopinath and Karthik Narasimhan and Shunyu Yao},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year      = {2023},\n}\n\n@inproceedings{zhou2024lats,\n  title     = {Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models},\n  author    = {Andy Zhou and Kai Yan and Michal Shlapentokh-Rothman and Haohan Wang and Yu-Xiong Wang},\n  booktitle = {International Conference on Machine Learning},\n  year      = {2024},\n}\n\n@inproceedings{yao2023tot,\n  title     = {Tree of Thoughts: Deliberate Problem Solving with Large Language Models},\n  author    = {Shunyu Yao and Dian Yu and Jeffrey Zhao and others},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year      = {2023},\n}\n\n@article{cemri2025multiagentfail,\n  title   = {Why Do Multi-Agent LLM Systems Fail?},\n  author  = {Mert Cemri and Melissa Z. Pan and Shuyi Yang and others},\n  journal = {arXiv preprint arXiv:2503.13657},\n  year    = {2025},\n}\n\n@article{zhu2025agentfail,\n  title   = {Where LLM Agents Fail and How They Can Learn From Failures},\n  author  = {Kunlun Zhu and Zijia Liu and Bingxuan Li and others},\n  journal = {arXiv preprint arXiv:2509.25370},\n  year    = {2025},\n}\n\n@article{george2025cycledetection,\n  title   = {Unsupervised Cycle Detection in Agentic Applications},\n  author  = {Felix George and Harshit Kumar and Divya Pathak and others},\n  journal = {arXiv preprint arXiv:2511.10650},\n  year    = {2025},\n}\n\n@article{pipis2025reasoningloop,\n  title   = {Wait, Wait, Wait... Why Do Reasoning Models Loop?},\n  author  = {Charilaos Pipis and Shivam Garg and Vasilis Kontonis and others},\n  journal = {arXiv preprint arXiv:2512.12895},\n  year    = {2025},\n}\n\n@inproceedings{huang2024selfcorrect,\n  title     = {Large Language Models Cannot Self-Correct Reasoning Yet},\n  author    = {Jie Huang and Xinyun Chen and Swaroop Mishra and others},\n  booktitle = {International Conference on Learning Representations},\n  year      = {2024},\n}\n\n@article{kamoi2024selfcorrection,\n  title   = {When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs},\n  author  = {Ryo Kamoi and Yusen Zhang and Nan Zhang and Jiawei Han and Rui Zhang},\n  journal = {Transactions of the Association for Computational Linguistics},\n  year    = {2024},\n}\n\n@article{liu2026trajad,\n  title   = {TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents},\n  author  = {Yibing Liu and Chong Zhang and Zhongyi Han and others},\n  journal = {arXiv preprint arXiv:2602.06443},\n  year    = {2026},\n}\n\n% ==============================================================\n% CATEGORY: technique\n% ==============================================================\n\n@inproceedings{cho2014gru,\n  title     = {Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation},\n  author    = {Kyunghyun Cho and Bart van Merrienboer and Caglar Gulcehre and others},\n  booktitle = {Conference on Empirical Methods in Natural Language Processing},\n  year      = {2014},\n}\n\n@inproceedings{bahdanau2015attention,\n  title     = {Neural Machine Translation by Jointly Learning to Align and Translate},\n  author    = {Dzmitry Bahdanau and Kyunghyun Cho and Yoshua Bengio},\n  booktitle = {International Conference on Learning Representations},\n  year      = {2015},\n}\n\n@inproceedings{khosla2020supcon,\n  title     = {Supervised Contrastive Learning},\n  author    = {Prannay Khosla and Piotr Teterwak and Chen Wang and others},\n  booktitle = {Advances in Neural Information Processing Systems},\n  year      = {2020},\n}\n\n@article{zhang2025qwen3embedding,\n  title   = {Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models},\n  author  = {Yanzhao Zhang and Mingxin Li and Dingkun Long and others},\n  journal = {arXiv preprint arXiv:2506.05176},\n  year    = {2025},\n}\n\n@article{wang2024e5,\n  title   = {Multilingual E5 Text Embeddings: A Technical Report},\n  author  = {Liang Wang and Nan Yang and Xiaolong Huang and others},\n  journal = {arXiv preprint arXiv:2402.05672},\n  year    = {2024},\n}\n\n@article{chen2024bgem3,\n  title   = {BGE M3-Embedding: Multi-Linguality, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation},\n  author  = {Jianlv Chen and Shitao Xiao and Peitian Zhang and others},\n  journal = {arXiv preprint arXiv:2402.03216},\n  year    = {2024},\n}\n"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T20:52:33.478893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260514T204907",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T20:52:33.479034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260514T204907",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "@",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/references.bib",
+              "output_mode": "count"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T20:52:33.479178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "38\n\nFound 0 total occurrences across 0 files."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260514T204907",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T20:52:33.479348+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "38 个 `@` 条目，对应 literature_map.yaml 中全部 38 篇论文。按 5 个 category 分组（direct-competitor 8, method-component 8, evaluation 6, background 10, technique 6），venue 已映射为全称，>5 作者截断为前 3 + others。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_bib_sync_20260514T204907"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/paper-research-bib-sync.md"
+}

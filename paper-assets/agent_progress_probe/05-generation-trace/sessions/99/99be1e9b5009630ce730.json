@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "99be1e9b5009630ce730",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "train non nlp baseline",
+  "task_key": "worker_train_non-nlp-baseline_20260514T155423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_non-nlp-baseline_20260514T155423.log",
+    "occurrence": 1,
+    "bytes": 628370,
+    "sha256": "13ead377ab9afd726b22adfbf80312a0b2e24d23ddeca68a4e0b17db44eef898"
+  },
+  "statistics": {
+    "messages": 161,
+    "user_turns": 0,
+    "tool_calls": 57,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 57,
+      "tool_result": 57,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 161,
+      "chunks": [
+        {
+          "path": "99be1e9b5009630ce730-part-0001.json",
+          "message_count": 145
+        },
+        {
+          "path": "99be1e9b5009630ce730-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-non-nlp-baseline.md"
+}

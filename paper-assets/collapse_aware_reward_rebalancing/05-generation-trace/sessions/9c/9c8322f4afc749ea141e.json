@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c8322f4afc749ea141e",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "paper figure fig4 format collapse v2",
+  "task_key": "worker_paper_figure_fig4_format_collapse_v2_20260517T111150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig4_format_collapse_v2_20260517T111150_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "2864f3adaacfc69d71b68b56c1f91909e99986d0a3d40667f0da0cd9c5c21e89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成，注释清晰无重叠。\n\n左 panel 清楚展示：C1 (curated K=4) 和 C5 (random K=4) 几乎完全重叠（0.757→0.477 vs 0.753→0.479），C2 (K=8) 下降更陡（0.701→0.367），支撑\"format collapse 是 iterative self-training 固有属性，K 是放大因子\"的叙事。右 panel 三条 Vendi Score 线均在 ±1% 带内，标注 \"Stable (blind spot)\"。\n\n输出文件：\n- `artifacts/figures/paper/fig4_format_collapse.pdf`\n- `artifacts/figures/paper/fig4_format_collapse.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig4-format-collapse-v2.md"
+}

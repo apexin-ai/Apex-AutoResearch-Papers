@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2236fe2870cd55fc55cf",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "analysis paper outline ab variants",
+  "task_key": "worker_analysis_paper_outline_ab_variants_20260517T035337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_paper_outline_ab_variants_20260517T035337_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "0b00dc9a4f344d0498a0d8f18f5ac741922b8cec3e9ef8ba9f54aa13da9bfccf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/paper_outline_ab.md`。\n\n两套 outline 的核心区别：\n\n- **Outline A** (纯 negative result): 贡献靠方法论 rigor + collapse 源头 taxonomy + LoRA artifact，故事是 \"the field is solving a non-problem in this regime\"，风险是 reviewer 觉得 scope 太小、insight 不够\n- **Outline B** (boundary finding): 故事更强，有 actionable threshold (K=16 / 6.25% retention)，贡献是正面的 practical guideline + failure mode characterization，但依赖 K=16 实验确实触发 collapse\n\n建议等 K=16 结果出来再决定走哪条线。如果 K=16 触发了 collapse，Outline B 明显更有竞争力（positive framing + actionable）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-paper-outline-ab-variants.md"
+}

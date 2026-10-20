@@ -1,0 +1,930 @@
+{
+  "schema_version": "1.0",
+  "session_id": "3f29c5df9f10e6c10c4c",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": "2026-05-14T17:20:25.867Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GRNmhqmtZq24WQNqDCz2xK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  conf>=2: stag=8626 (0.199), prog=34750 (0.801)\\\\n\\\\nExtracting OH features (all non-abstain)...\\\\n  Shape: (150652, 30)\\\\nExtracting OH features (conf>=2)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "cb7828f9-a5c0-4a9f-bc29-fa018932e645",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  conf>=2: stag=8626 (0.199), prog=34750 (0.801)\\\\n\\\\nExtracting OH features (all non-abstain)...\\\\n  Shape: (150652, 30)\\\\nExtracting OH features (conf>=2)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  conf>=2: stag=8626 (0.199), prog=34750 (0.801)\\n\\nExtracting OH features (all non-abstain)...\\n  Shape: (150652, 30)\\nExtracting OH features (conf>=2)...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LHKky6srTpZhdobsnrPoBh",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/cross_agent_structural.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "a1335b00-e673-4380-ada1-3ebf81f94605",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HHr6zHcngM9GvWjkvEeptD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 242,
+                "cache_read_input_tokens": 111557,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 242
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": "2026-05-14T17:20:29.176Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LHKky6srTpZhdobsnrPoBh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  conf>=2: stag=8626 (0.199), prog=34750 (0.801)\\\\n\\\\nExtracting OH features (all non-abstain)...\\\\n  Shape: (150652, 30)\\\\nExtracting OH features (conf>=2)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "e2c4832d-2de9-49d6-b6f3-84246bdfc72c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  conf>=2: stag=8626 (0.199), prog=34750 (0.801)\\\\n\\\\nExtracting OH features (all non-abstain)...\\\\n  Shape: (150652, 30)\\\\nExtracting OH features (conf>=2)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  conf>=2: stag=8626 (0.199), prog=34750 (0.801)\\n\\nExtracting OH features (all non-abstain)...\\n  Shape: (150652, 30)\\nExtracting OH features (conf>=2)...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jwg6aYWnWGmrKw4GUA8cSx",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/cross_agent_structural.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "e91ec500-ac7e-434b-b793-cc7a84b8a1d2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TRcvmT2b1fMWa6tvYKFJZ3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 242,
+                "cache_read_input_tokens": 111799,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 242
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": "2026-05-14T17:20:32.252Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jwg6aYWnWGmrKw4GUA8cSx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- Reference (Probe) ---\\\\n  In-domain probe macro_f1:        0.9055\\\\n  Cross-agent zero-shot probe:     0.5320\\\\n  Cross-agent full-finetune probe: 0.7510\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "35b38b9b-ac93-481c-abc2-5f6f46b5c436",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- Reference (Probe) ---\\\\n  In-domain probe macro_f1:        0.9055\\\\n  Cross-agent zero-shot probe:     0.5320\\\\n  Cross-agent full-finetune probe: 0.7510\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n--- Reference (Probe) ---\\n  In-domain probe macro_f1:        0.9055\\n  Cross-agent zero-shot probe:     0.5320\\n  Cross-agent full-finetune probe: 0.7510\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Looks like it's done. Let me read the full output and the results JSON."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "87a2a987-c990-4adb-b5c1-88a3e11320ee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FKVkxeUoegW63aNw83Zc8u",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 337,
+                "cache_read_input_tokens": 112041,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 337
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y1SYMFJAJsHhVeXnGcxiYq",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "cat /tmp/cross_agent_structural.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "695fd8c1-66fe-4782-ae4b-1a992000810f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FKVkxeUoegW63aNw83Zc8u",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 337,
+                "cache_read_input_tokens": 112041,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 337
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": "2026-05-14T17:20:36.570Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y1SYMFJAJsHhVeXnGcxiYq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"================================================================================\\\\nPART 1: SWE-Agent In-Domain Training\\\\n================================================================================\\\\nSplit sizes: train=10634, val=2943, test=1824\\\\nKeep indices (conf>=2): 15401\\\\nLoading SWE-Agent trajectories...\\\\n  5000 trajectories loaded\\\\nLoading SWE-Agent windows...\\\\n  59496 total windows\\\\n  54809 non-abstain\\\\n  15401 kept (conf>=2)\\\\nExtracting SWE-Agent features...\\\\n  Feature matrix: (15401, 30)\\\\n  Train: (10634, 30), Val: (2943, 30), Test: (1824, 30)\\\\n  Train labels: stag=3894, prog=6740\\\\n  Test labels:  stag=485, prog=1339\\\\n\\\\n=== Logistic Regression (C tuning) ===\\\\n  C=  0.001 -> val Macro-F1=0.9544\\\\n  C=  0.010 -> val Macro-F1=0.9813\\\\n  C=  0.100 -> val Macro-F1=0.9922\\\\n  C=  1.000 -> val Macro-F1=0.9935\\\\n  C= 10.000 -> val Macro-F1=0.9922\\\\n  C=100.000 -> val Macro-F1=0.9922\\\\n  Best C=1.0\\\\n  Test: macro_f1=0.9874\\\\n\\\\n=== Random Forest (n_estimators tuning) ===\\\\n  n=  50 -> val Macro-F1=0.9997\\\\n  n= 100 -> val Macro-F1=1.0000\\\\n  n= 200 -> val Macro-F1=0.9997\\\\n  n= 500 -> val Macro-F1=0.9997\\\\n  Best n_estimators=100\\\\n  Test: macro_f1=0.9951\\\\n\\\\n=== Gradient Boosting ===\\\\n  lr=0.01 -> val Macro-F1=0.9959\\\\n  lr=0.05 -> val Macro-F1=0.9993\\\\n  lr=0.10 -> val Macro-F1=0.9983\\\\n  lr=0.20 -> val Macro-F1=0.9983\\\\n  Best lr=0.05\\\\n  Test: macro_f1=0.9951\\\\n\\\\n--- SWE-Agent In-Domain Summary ---\\\\nModel                      MacroF1  F1_stag  F1_prog      Acc\\\\n-------------------------------------------------------------\\\\nStruct+LR                   0.9874   0.9815   0.9933   0.9901\\\\nStruct+RF                   0.9951   0.9928   0.9974   0.9962\\\\nStruct+GB                   0.9951   0.9928   0.9974   0.9962\\\\n\\\\n================================================================================\\\\nPART 2: OpenHands Cross-Agent Evaluation (Zero-Shot Transfer)\\\\n================================================================================\\\\nLoading OH trajectories (normalize assistant->ai)...\\\\n  5000 trajectories loaded\\\\nLoading OH windows...\\\\n  154743 total windows\\\\n  Non-abstain: 150652\\\\n  Conf>=2: 43376\\\\n  all non-abstain: stag=31440 (0.209), prog=119212 (0.791)\\\\n  conf>=2: stag=8626 (0.199), prog=34750 (0.801)\\\\n\\\\nExtracting OH features (all non-abstain)...\\\\n  Shape: (150652, 30)\\\\nExtracting OH features (conf>=2)...\\\\n  Shape: (43376, 30)\\\\n\\\\n================================================================================\\\\nFULL COMPARISON TABLE\\\\n================================================================================\\\\n\\\\n--- In-Domain (SWE-Agent test set) ---\\\\nModel                      MacroF1  F1_stag  F1_prog      Acc\\\\n-------------------------------------------------------------\\\\nStruct+LR                   0.9874   0.9815   0.9933   0.9901\\\\nStruct+RF                   0.9951   0.9928   0.9974   0.9962\\\\nStruct+GB                   0.9951   0.9928   0.9974   0.9962\\\\n\\\\n--- Cross-Agent: OH all non-abstain ---\\\\nModel                      MacroF1  F1_stag  F1_prog      Acc\\\\n-------------------------------------------------------------\\\\nStruct+LR                   0.7801   0.6842   0.8760   0.8219\\\\nStruct+RF                   0.9123   0.8658   0.9587   0.9368\\\\nStruct+GB                   0.9674   0.9479   0.9869   0.9790\\\\n\\\\n--- Cross-Agent: OH conf>=2 ---\\\\nModel                      MacroF1  F1_stag  F1_prog      Acc\\\\n-------------------------------------------------------------\\\\nStruct+LR                   0.9671   0.9477   0.9865   0.9785\\\\nStruct+RF                   0.9959   0.9935   0.9984   0.9974\\\\nStruct+GB                   0.9919   0.9869   0.9968   0.9949\\\\n\\\\n--- Reference (Probe) ---\\\\n  In-domain probe macro_f1:        0.9055\\\\n  Cross-agent zero-shot probe:     0.5320\\\\n  Cross-agent full-finetune probe: 0.7510\\\\n\\\\nResults saved to /root/autodl-tmp/agent_progress_probe/data/cross_agent_structural_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "8ca84b21-b027-45fe-bfc0-e4918b0dcdff",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"================================================================================\\\\nPART 1: SWE-Agent In-Domain Training\\\\n================================================================================\\\\nSplit sizes: train=10634, val=2943, test=1824\\\\nKeep indices (conf>=2): 15401\\\\nLoading SWE-Agent trajectories...\\\\n  5000 trajectories loaded\\\\nLoading SWE-Agent windows...\\\\n  59496 total windows\\\\n  54809 non-abstain\\\\n  15401 kept (conf>=2)\\\\nExtracting SWE-Agent features...\\\\n  Feature matrix: (15401, 30)\\\\n  Train: (10634, 30), Val: (2943, 30), Test: (1824, 30)\\\\n  Train labels: stag=3894, prog=6740\\\\n  Test labels:  stag=485, prog=1339\\\\n\\\\n=== Logistic Regression (C tuning) ===\\\\n  C=  0.001 -> val Macro-F1=0.9544\\\\n  C=  0.010 -> val Macro-F1=0.9813\\\\n  C=  0.100 -> val Macro-F1=0.9922\\\\n  C=  1.000 -> val Macro-F1=0.9935\\\\n  C= 10.000 -> val Macro-F1=0.9922\\\\n  C=100.000 -> val Macro-F1=0.9922\\\\n  Best C=1.0\\\\n  Test: macro_f1=0.9874\\\\n\\\\n=== Random Forest (n_estimators tuning) ===\\\\n  n=  50 -> val Macro-F1=0.9997\\\\n  n= 100 -> val Macro-F1=1.0000\\\\n  n= 200 -> val Macro-F1=0.9997\\\\n  n= 500 -> val Macro-F1=0.9997\\\\n  Best n_estimators=100\\\\n  Test: macro_f1=0.9951\\\\n\\\\n=== Gradient Boosting ===\\\\n  lr=0.01 -> val Macro-F1=0.9959\\\\n  lr=0.05 -> val Macro-F1=0.9993\\\\n  lr=0.10 -> val Macro-F1=0.9983\\\\n  lr=0.20 -> val Macro-F1=0.9983\\\\n  Best lr=0.05\\\\n  Test: macro_f1=0.9951\\\\n\\\\n--- SWE-Agent In-Domain Summary ---\\\\nModel                      MacroF1  F1_stag  F1_prog      Acc\\\\n-------------------------------------------------------------\\\\nStruct+LR                   0.9874   0.9815   0.9933   0.9901\\\\nStruct+RF                   0.9951   0.9928   0.9974   0.9962\\\\nStruct+GB                   0.9951   0.9928   0.9974   0.9962\\\\n\\\\n================================================================================\\\\nPART 2: OpenHands Cross-Agent Evaluation (Zero-Shot Transfer)\\\\n================================================================================\\\\nLoading OH trajectories (normalize assistant->ai)...\\\\n  5000 trajectories loaded\\\\nLoading OH windows...\\\\n  154743 total windows\\\\n  Non-abstain: 150652\\\\n  Conf>=2: 43376\\\\n  all non-abstain: stag=31440 (0.209), prog=119212 (0.791)\\\\n  conf>=2: stag=8626 (0.199), prog=34750 (0.801)\\\\n\\\\nExtracting OH features (all non-abstain)...\\\\n  Shape: (150652, 30)\\\\nExtracting OH features (conf>=2)...\\\\n  Shape: (43376, 30)\\\\n\\\\n================================================================================\\\\nFULL COMPARISON TABLE\\\\n================================================================================\\\\n\\\\n--- In-Domain (SWE-Agent test set) ---\\\\nModel                      MacroF1  F1_stag  F1_prog      Acc\\\\n-------------------------------------------------------------\\\\nStruct+LR                   0.9874   0.9815   0.9933   0.9901\\\\nStruct+RF                   0.9951   0.9928   0.9974   0.9962\\\\nStruct+GB                   0.9951   0.9928   0.9974   0.9962\\\\n\\\\n--- Cross-Agent: OH all non-abstain ---\\\\nModel                      MacroF1  F1_stag  F1_prog      Acc\\\\n-------------------------------------------------------------\\\\nStruct+LR                   0.7801   0.6842   0.8760   0.8219\\\\nStruct+RF                   0.9123   0.8658   0.9587   0.9368\\\\nStruct+GB                   0.9674   0.9479   0.9869   0.9790\\\\n\\\\n--- Cross-Agent: OH conf>=2 ---\\\\nModel                      MacroF1  F1_stag  F1_prog      Acc\\\\n-------------------------------------------------------------\\\\nStruct+LR                   0.9671   0.9477   0.9865   0.9785\\\\nStruct+RF                   0.9959   0.9935   0.9984   0.9974\\\\nStruct+GB                   0.9919   0.9869   0.9968   0.9949\\\\n\\\\n--- Reference (Probe) ---\\\\n  In-domain probe macro_f1:        0.9055\\\\n  Cross-agent zero-shot probe:     0.5320\\\\n  Cross-agent full-finetune probe: 0.7510\\\\n\\\\nResults saved to /root/autodl-tmp/agent_progress_probe/data/cross_agent_structural_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"================================================================================\\nPART 1: SWE-Agent In-Domain Training\\n================================================================================\\nSplit sizes: train=10634, val=2943, test=1824\\nKeep indices (conf>=2): 15401\\nLoading SWE-Agent trajectories...\\n  5000 trajectories loaded\\nLoading SWE-Agent windows...\\n  59496 total windows\\n  54809 non-abstain\\n  15401 kept (conf>=2)\\nExtracting SWE-Agent features...\\n  Feature matrix: (15401, 30)\\n  Train: (10634, 30), Val: (2943, 30), Test: (1824, 30)\\n  Train labels: stag=3894, prog=6740\\n  Test labels:  stag=485, prog=1339\\n\\n=== Logistic Regression (C tuning) ===\\n  C=  0.001 -> val Macro-F1=0.9544\\n  C=  0.010 -> val Macro-F1=0.9813\\n  C=  0.100 -> val Macro-F1=0.9922\\n  C=  1.000 -> val Macro-F1=0.9935\\n  C= 10.000 -> val Macro-F1=0.9922\\n  C=100.000 -> val Macro-F1=0.9922\\n  Best C=1.0\\n  Test: macro_f1=0.9874\\n\\n=== Random Forest (n_estimators tuning) ===\\n  n=  50 -> val Macro-F1=0.9997\\n  n= 100 -> val Macro-F1=1.0000\\n  n= 200 -> val Macro-F1=0.9997\\n  n= 500 -> val Macro-F1=0.9997\\n  Best n_estimators=100\\n  Test: macro_f1=0.9951\\n\\n=== Gradient Boosting ===\\n  lr=0.01 -> val Macro-F1=0.9959\\n  lr=0.05 -> val Macro-F1=0.9993\\n  lr=0.10 -> val Macro-F1=0.9983\\n  lr=0.20 -> val Macro-F1=0.9983\\n  Best lr=0.05\\n  Test: macro_f1=0.9951\\n\\n--- SWE-Agent In-Domain Summary ---\\nModel                      MacroF1  F1_stag  F1_prog      Acc\\n-------------------------------------------------------------\\nStruct+LR                   0.9874   0.9815   0.9933   0.9901\\nStruct+RF                   0.9951   0.9928   0.9974   0.9962\\nStruct+GB                   0.9951   0.9928   0.9974   0.9962\\n\\n================================================================================\\nPART 2: OpenHands Cross-Agent Evaluation (Zero-Shot Transfer)\\n================================================================================\\nLoading OH trajectories (normalize assistant->ai)...\\n  5000 trajectories loaded\\nLoading OH windows...\\n  154743 total windows\\n  Non-abstain: 150652\\n  Conf>=2: 43376\\n  all non-abstain: stag=31440 (0.209), prog=119212 (0.791)\\n  conf>=2: stag=8626 (0.199), prog=34750 (0.801)\\n\\nExtracting OH features (all non-abstain)...\\n  Shape: (150652, 30)\\nExtracting OH features (conf>=2)...\\n  Shape: (43376, 30)\\n\\n================================================================================\\nFULL COMPARISON TABLE\\n================================================================================\\n\\n--- In-Domain (SWE-Agent test set) ---\\nModel                      MacroF1  F1_stag  F1_prog      Acc\\n-------------------------------------------------------------\\nStruct+LR                   0.9874   0.9815   0.9933   0.9901\\nStruct+RF                   0.9951   0.9928   0.9974   0.9962\\nStruct+GB                   0.9951   0.9928   0.9974   0.9962\\n\\n--- Cross-Agent: OH all non-abstain ---\\nModel                      MacroF1  F1_stag  F1_prog      Acc\\n-------------------------------------------------------------\\nStruct+LR                   0.7801   0.6842   0.8760   0.8219\\nStruct+RF                   0.9123   0.8658   0.9587   0.9368\\nStruct+GB                   0.9674   0.9479   0.9869   0.9790\\n\\n--- Cross-Agent: OH conf>=2 ---\\nModel                      MacroF1  F1_stag  F1_prog      Acc\\n-------------------------------------------------------------\\nStruct+LR                   0.9671   0.9477   0.9865   0.9785\\nStruct+RF                   0.9959   0.9935   0.9984   0.9974\\nStruct+GB                   0.9919   0.9869   0.9968   0.9949\\n\\n--- Reference (Probe) ---\\n  In-domain probe macro_f1:        0.9055\\n  Cross-agent zero-shot probe:     0.5320\\n  Cross-agent full-finetune probe: 0.7510\\n\\nResults saved to /root/autodl-tmp/agent_progress_probe/data/cross_agent_structural_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000368"
+        },
+        {
+          "source_line": 369,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the saved JSON."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "49ca7ae1-ea07-41c6-8fb8-9946e793adaa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XnEvGHk2YpXBSZu6wqCLGD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1625,
+                "cache_read_input_tokens": 112378,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1625
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HFmKukMptzXvy4mSt2d5fH",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "cat /root/autodl-tmp/agent_progress_probe/data/cross_agent_structural_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "5e9dc3f4-caef-40ae-a7f0-5aafa34417e8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XnEvGHk2YpXBSZu6wqCLGD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1625,
+                "cache_read_input_tokens": 112378,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1625
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": "2026-05-14T17:20:40.369Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HFmKukMptzXvy4mSt2d5fH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"in_domain\\\\\\\": {\\\\n    \\\\\\\"Struct+LR\\\\\\\": {\\\\n      \\\\\\\"test_macro_f1\\\\\\\": 0.9874,\\\\n      \\\\\\\"test_accuracy\\\\\\\": 0.9901,\\\\n      \\\\\\\"test_precision_macro\\\\\\\": 0.9867,\\\\n      \\\\\\\"test_recall_macro\\\\\\\": 0.988,\\\\n      \\\\\\\"test_f1_stagnation\\\\\\\": 0.9815,\\\\n      \\\\\\\"test_f1_progress\\\\\\\": 0.9933\\\\n    },\\\\n    \\\\\\\"Struct+RF\\\\\\\": {\\\\n      \\\\\\\"test_macro_f1\\\\\\\": 0.9951,\\\\n      \\\\\\\"test_accuracy\\\\\\\": 0.9962,\\\\n      \\\\\\\"test_precision_macro\\\\\\\": 0.9929,\\\\n      \\\\\\\"test_recall_macro\\\\\\\": 0.9974,\\\\n      \\\\\\\"test_f1_stagnation\\\\\\\": 0.9928,\\\\n      \\\\\\\"test_f1_progress\\\\\\\": 0.9974\\\\n    },\\\\n    \\\\\\\"Struct+GB\\\\\\\": {\\\\n      \\\\\\\"test_macro_f1\\\\\\\": 0.9951,\\\\n      \\\\\\\"test_accuracy\\\\\\\": 0.9962,\\\\n      \\\\\\\"test_precision_macro\\\\\\\": 0.9929,\\\\n      \\\\\\\"test_recall_macro\\\\\\\": 0.9974,\\\\n      \\\\\\\"test_f1_stagnation\\\\\\\": 0.9928,\\\\n      \\\\\\\"test_f1_progress\\\\\\\": 0.9974\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_agent_oh_all\\\\\\\": {\\\\n    \\\\\\\"Struct+LR\\\\\\\": {\\\\n      \\\\\\\"test_macro_f1\\\\\\\": 0.7801,\\\\n      \\\\\\\"test_accuracy\\\\\\\": 0.8219,\\\\n      \\\\\\\"test_precision_macro\\\\\\\": 0.7593,\\\\n      \\\\\\\"test_recall_macro\\\\\\\": 0.8597,\\\\n      \\\\\\\"test_f1_stagnation\\\\\\\": 0.6842,\\\\n      \\\\\\\"test_f1_progress\\\\\\\": 0.876\\\\n    },\\\\n    \\\\\\\"Struct+RF\\\\\\\": {\\\\n      \\\\\\\"test_macro_f1\\\\\\\": 0.9123,\\\\n      \\\\\\\"test_accuracy\\\\\\\": 0.9368,\\\\n      \\\\\\\"test_precision_macro\\\\\\\": 0.8854,\\\\n      \\\\\\\"test_recall_macro\\\\\\\": 0.9517,\\\\n      \\\\\\\"test_f1_stagnation\\\\\\\": 0.8658,\\\\n      \\\\\\\"test_f1_progress\\\\\\\": 0.9587\\\\n    },\\\\n    \\\\\\\"Struct+GB\\\\\\\": {\\\\n      \\\\\\\"test_macro_f1\\\\\\\": 0.9674,\\\\n      \\\\\\\"test_accuracy\\\\\\\": 0.979,\\\\n      \\\\\\\"test_precision_macro\\\\\\\": 0.9812,\\\\n      \\\\\\\"test_recall_macro\\\\\\\": 0.955,\\\\n      \\\\\\\"test_f1_stagnation\\\\\\\": 0.9479,\\\\n      \\\\\\\"test_f1_progress\\\\\\\": 0.9869\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_agent_oh_conf2\\\\\\\": {\\\\n    \\\\\\\"Struct+LR\\\\\\\": {\\\\n      \\\\\\\"test_macro_f1\\\\\\\": 0.9671,\\\\n      \\\\\\\"test_accuracy\\\\\\\": 0.9785,\\\\n      \\\\\\\"test_precision_macro\\\\\\\": 0.9567,\\\\n      \\\\\\\"test_recall_macro\\\\\\\": 0.9784,\\\\n      \\\\\\\"test_f1_stagnation\\\\\\\": 0.9477,\\\\n      \\\\\\\"test_f1_progress\\\\\\\": 0.9865\\\\n    },\\\\n    \\\\\\\"Struct+RF\\\\\\\": {\\\\n      \\\\\\\"test_macro_f1\\\\\\\": 0.9959,\\\\n      \\\\\\\"test_accuracy\\\\\\\": 0.9974,\\\\n      \\\\\\\"test_precision_macro\\\\\\\": 0.9936,\\\\n      \\\\\\\"test_recall_macro\\\\\\\": 0.9983,\\\\n      \\\\\\\"test_f1_stagnation\\\\\\\": 0.9935,\\\\n      \\\\\\\"test_f1_progress\\\\\\\": 0.9984\\\\n    },\\\\n    \\\\\\\"Struct+GB\\\\\\\": {\\\\n      \\\\\\\"test_macro_f1\\\\\\\": 0.9919,\\\\n      \\\\\\\"test_accuracy\\\\\\\": 0.9949,\\\\n      \\\\\\\"test_precision_macro\\\\\\\": 0.996,\\\\n      \\\\\\\"test_recall_macro\\\\\\\": 0.9879,\\\\n      \\\\\\\"test_f1_stagnation\\\\\\\": 0.9869,\\\\n      \\\\\\\"test_f1_progress\\\\\\\": 0.9968\\\\n    }\\\\n  },\\\\n  \\\\\\\"reference\\\\\\\": {\\\\n    \\\\\\\"in_domain_probe_macro_f1\\\\\\\": 0.9055,\\\\n    \\\\\\\"cross_agent_zeroshot_probe_macro_f1\\\\\\\": 0.532,\\\\n    \\\\\\\"cross_agent_finetune_probe_macro_f1\\\\\\\": 0.751\\\\n  },\\\\n  \\\\\\\"oh_stats\\\\\\\": {\\\\n    \\\\\\\"total_windows\\\\\\\": 154743,\\\\n    \\\\\\\"non_abstain\\\\\\\": 150652,\\\\n    \\\\\\\"conf2\\\\\\\": 43376,\\\\n    \\\\\\\"stag_ratio_all\\\\\\\": 0.2087,\\\\n    \\\\\\\"stag_ratio_conf2\\\\\\\": 0.1989\\\\n  },\\\\n  \\\\\\\"hyperparams\\\\\\\": {\\\\n    \\\\\\\"LR_best_C\\\\\\\": 1.0,\\\\n    \\\\\\\"RF_best_n_estimators\\\\\\\": 100,\\\\n    \\\\\\\"GB_best_lr\\\\\\\": 0.05\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "bcfaa6a7-7447-42d1-adf4-607f35e07fd6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"in_domain\\\\\\\": {\\\\n    \\\\\\\"Struct+LR\\\\\\\": {\\\\n      \\\\\\\"test_macro_f1\\\\\\\": 0.9874,\\\\n      \\\\\\\"test_accuracy\\\\\\\": 0.9901,\\\\n      \\\\\\\"test_precision_macro\\\\\\\": 0.9867,\\\\n      \\\\\\\"test_recall_macro\\\\\\\": 0.988,\\\\n      \\\\\\\"test_f1_stagnation\\\\\\\": 0.9815,\\\\n      \\\\\\\"test_f1_progress\\\\\\\": 0.9933\\\\n    },\\\\n    \\\\\\\"Struct+RF\\\\\\\": {\\\\n      \\\\\\\"test_macro_f1\\\\\\\": 0.9951,\\\\n      \\\\\\\"test_accuracy\\\\\\\": 0.9962,\\\\n      \\\\\\\"test_precision_macro\\\\\\\": 0.9929,\\\\n      \\\\\\\"test_recall_macro\\\\\\\": 0.9974,\\\\n      \\\\\\\"test_f1_stagnation\\\\\\\": 0.9928,\\\\n      \\\\\\\"test_f1_progress\\\\\\\": 0.9974\\\\n    },\\\\n    \\\\\\\"Struct+GB\\\\\\\": {\\\\n      \\\\\\\"test_macro_f1\\\\\\\": 0.9951,\\\\n      \\\\\\\"test_accuracy\\\\\\\": 0.9962,\\\\n      \\\\\\\"test_precision_macro\\\\\\\": 0.9929,\\\\n      \\\\\\\"test_recall_macro\\\\\\\": 0.9974,\\\\n      \\\\\\\"test_f1_stagnation\\\\\\\": 0.9928,\\\\n      \\\\\\\"test_f1_progress\\\\\\\": 0.9974\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_agent_oh_all\\\\\\\": {\\\\n    \\\\\\\"Struct+LR\\\\\\\": {\\\\n      \\\\\\\"test_macro_f1\\\\\\\": 0.7801,\\\\n      \\\\\\\"test_accuracy\\\\\\\": 0.8219,\\\\n      \\\\\\\"test_precision_macro\\\\\\\": 0.7593,\\\\n      \\\\\\\"test_recall_macro\\\\\\\": 0.8597,\\\\n      \\\\\\\"test_f1_stagnation\\\\\\\": 0.6842,\\\\n      \\\\\\\"test_f1_progress\\\\\\\": 0.876\\\\n    },\\\\n    \\\\\\\"Struct+RF\\\\\\\": {\\\\n      \\\\\\\"test_macro_f1\\\\\\\": 0.9123,\\\\n      \\\\\\\"test_accuracy\\\\\\\": 0.9368,\\\\n      \\\\\\\"test_precision_macro\\\\\\\": 0.8854,\\\\n      \\\\\\\"test_recall_macro\\\\\\\": 0.9517,\\\\n      \\\\\\\"test_f1_stagnation\\\\\\\": 0.8658,\\\\n      \\\\\\\"test_f1_progress\\\\\\\": 0.9587\\\\n    },\\\\n    \\\\\\\"Struct+GB\\\\\\\": {\\\\n      \\\\\\\"test_macro_f1\\\\\\\": 0.9674,\\\\n      \\\\\\\"test_accuracy\\\\\\\": 0.979,\\\\n      \\\\\\\"test_precision_macro\\\\\\\": 0.9812,\\\\n      \\\\\\\"test_recall_macro\\\\\\\": 0.955,\\\\n      \\\\\\\"test_f1_stagnation\\\\\\\": 0.9479,\\\\n      \\\\\\\"test_f1_progress\\\\\\\": 0.9869\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_agent_oh_conf2\\\\\\\": {\\\\n    \\\\\\\"Struct+LR\\\\\\\": {\\\\n      \\\\\\\"test_macro_f1\\\\\\\": 0.9671,\\\\n      \\\\\\\"test_accuracy\\\\\\\": 0.9785,\\\\n      \\\\\\\"test_precision_macro\\\\\\\": 0.9567,\\\\n      \\\\\\\"test_recall_macro\\\\\\\": 0.9784,\\\\n      \\\\\\\"test_f1_stagnation\\\\\\\": 0.9477,\\\\n      \\\\\\\"test_f1_progress\\\\\\\": 0.9865\\\\n    },\\\\n    \\\\\\\"Struct+RF\\\\\\\": {\\\\n      \\\\\\\"test_macro_f1\\\\\\\": 0.9959,\\\\n      \\\\\\\"test_accuracy\\\\\\\": 0.9974,\\\\n      \\\\\\\"test_precision_macro\\\\\\\": 0.9936,\\\\n      \\\\\\\"test_recall_macro\\\\\\\": 0.9983,\\\\n      \\\\\\\"test_f1_stagnation\\\\\\\": 0.9935,\\\\n      \\\\\\\"test_f1_progress\\\\\\\": 0.9984\\\\n    },\\\\n    \\\\\\\"Struct+GB\\\\\\\": {\\\\n      \\\\\\\"test_macro_f1\\\\\\\": 0.9919,\\\\n      \\\\\\\"test_accuracy\\\\\\\": 0.9949,\\\\n      \\\\\\\"test_precision_macro\\\\\\\": 0.996,\\\\n      \\\\\\\"test_recall_macro\\\\\\\": 0.9879,\\\\n      \\\\\\\"test_f1_stagnation\\\\\\\": 0.9869,\\\\n      \\\\\\\"test_f1_progress\\\\\\\": 0.9968\\\\n    }\\\\n  },\\\\n  \\\\\\\"reference\\\\\\\": {\\\\n    \\\\\\\"in_domain_probe_macro_f1\\\\\\\": 0.9055,\\\\n    \\\\\\\"cross_agent_zeroshot_probe_macro_f1\\\\\\\": 0.532,\\\\n    \\\\\\\"cross_agent_finetune_probe_macro_f1\\\\\\\": 0.751\\\\n  },\\\\n  \\\\\\\"oh_stats\\\\\\\": {\\\\n    \\\\\\\"total_windows\\\\\\\": 154743,\\\\n    \\\\\\\"non_abstain\\\\\\\": 150652,\\\\n    \\\\\\\"conf2\\\\\\\": 43376,\\\\n    \\\\\\\"stag_ratio_all\\\\\\\": 0.2087,\\\\n    \\\\\\\"stag_ratio_conf2\\\\\\\": 0.1989\\\\n  },\\\\n  \\\\\\\"hyperparams\\\\\\\": {\\\\n    \\\\\\\"LR_best_C\\\\\\\": 1.0,\\\\n    \\\\\\\"RF_best_n_estimators\\\\\\\": 100,\\\\n    \\\\\\\"GB_best_lr\\\\\\\": 0.05\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"in_domain\\\": {\\n    \\\"Struct+LR\\\": {\\n      \\\"test_macro_f1\\\": 0.9874,\\n      \\\"test_accuracy\\\": 0.9901,\\n      \\\"test_precision_macro\\\": 0.9867,\\n      \\\"test_recall_macro\\\": 0.988,\\n      \\\"test_f1_stagnation\\\": 0.9815,\\n      \\\"test_f1_progress\\\": 0.9933\\n    },\\n    \\\"Struct+RF\\\": {\\n      \\\"test_macro_f1\\\": 0.9951,\\n      \\\"test_accuracy\\\": 0.9962,\\n      \\\"test_precision_macro\\\": 0.9929,\\n      \\\"test_recall_macro\\\": 0.9974,\\n      \\\"test_f1_stagnation\\\": 0.9928,\\n      \\\"test_f1_progress\\\": 0.9974\\n    },\\n    \\\"Struct+GB\\\": {\\n      \\\"test_macro_f1\\\": 0.9951,\\n      \\\"test_accuracy\\\": 0.9962,\\n      \\\"test_precision_macro\\\": 0.9929,\\n      \\\"test_recall_macro\\\": 0.9974,\\n      \\\"test_f1_stagnation\\\": 0.9928,\\n      \\\"test_f1_progress\\\": 0.9974\\n    }\\n  },\\n  \\\"cross_agent_oh_all\\\": {\\n    \\\"Struct+LR\\\": {\\n      \\\"test_macro_f1\\\": 0.7801,\\n      \\\"test_accuracy\\\": 0.8219,\\n      \\\"test_precision_macro\\\": 0.7593,\\n      \\\"test_recall_macro\\\": 0.8597,\\n      \\\"test_f1_stagnation\\\": 0.6842,\\n      \\\"test_f1_progress\\\": 0.876\\n    },\\n    \\\"Struct+RF\\\": {\\n      \\\"test_macro_f1\\\": 0.9123,\\n      \\\"test_accuracy\\\": 0.9368,\\n      \\\"test_precision_macro\\\": 0.8854,\\n      \\\"test_recall_macro\\\": 0.9517,\\n      \\\"test_f1_stagnation\\\": 0.8658,\\n      \\\"test_f1_progress\\\": 0.9587\\n    },\\n    \\\"Struct+GB\\\": {\\n      \\\"test_macro_f1\\\": 0.9674,\\n      \\\"test_accuracy\\\": 0.979,\\n      \\\"test_precision_macro\\\": 0.9812,\\n      \\\"test_recall_macro\\\": 0.955,\\n      \\\"test_f1_stagnation\\\": 0.9479,\\n      \\\"test_f1_progress\\\": 0.9869\\n    }\\n  },\\n  \\\"cross_agent_oh_conf2\\\": {\\n    \\\"Struct+LR\\\": {\\n      \\\"test_macro_f1\\\": 0.9671,\\n      \\\"test_accuracy\\\": 0.9785,\\n      \\\"test_precision_macro\\\": 0.9567,\\n      \\\"test_recall_macro\\\": 0.9784,\\n      \\\"test_f1_stagnation\\\": 0.9477,\\n      \\\"test_f1_progress\\\": 0.9865\\n    },\\n    \\\"Struct+RF\\\": {\\n      \\\"test_macro_f1\\\": 0.9959,\\n      \\\"test_accuracy\\\": 0.9974,\\n      \\\"test_precision_macro\\\": 0.9936,\\n      \\\"test_recall_macro\\\": 0.9983,\\n      \\\"test_f1_stagnation\\\": 0.9935,\\n      \\\"test_f1_progress\\\": 0.9984\\n    },\\n    \\\"Struct+GB\\\": {\\n      \\\"test_macro_f1\\\": 0.9919,\\n      \\\"test_accuracy\\\": 0.9949,\\n      \\\"test_precision_macro\\\": 0.996,\\n      \\\"test_recall_macro\\\": 0.9879,\\n      \\\"test_f1_stagnation\\\": 0.9869,\\n      \\\"test_f1_progress\\\": 0.9968\\n    }\\n  },\\n  \\\"reference\\\": {\\n    \\\"in_domain_probe_macro_f1\\\": 0.9055,\\n    \\\"cross_agent_zeroshot_probe_macro_f1\\\": 0.532,\\n    \\\"cross_agent_finetune_probe_macro_f1\\\": 0.751\\n  },\\n  \\\"oh_stats\\\": {\\n    \\\"total_windows\\\": 154743,\\n    \\\"non_abstain\\\": 150652,\\n    \\\"conf2\\\": 43376,\\n    \\\"stag_ratio_all\\\": 0.2087,\\n    \\\"stag_ratio_conf2\\\": 0.1989\\n  },\\n  \\\"hyperparams\\\": {\\n    \\\"LR_best_C\\\": 1.0,\\n    \\\"RF_best_n_estimators\\\": 100,\\n    \\\"GB_best_lr\\\": 0.05\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000371"
+        },
+        {
+          "source_line": 372,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "c6ec5353-e62a-46cd-b449-99dedc280809",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016Lmpipqn6UZnTB3zJG1Z4U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1791,
+                "cache_read_input_tokens": 114003,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1791
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000372"
+        },
+        {
+          "source_line": 373,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BpCqk1LQefRLcL1i2hKEUN",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "cross_agent_structural_results",
+                "type": "data",
+                "description": "Cross-agent structural baseline results: RF/GB/LR trained on SWE-Agent, evaluated on OpenHands. Structural features transfer extremely well cross-agent.",
+                "project": "agent_progress_probe",
+                "content_filename": "cross_agent_structural_results.json",
+                "content": "{\n  \"in_domain\": {\n    \"Struct+LR\": {\"test_macro_f1\": 0.9874, \"test_f1_stagnation\": 0.9815, \"test_f1_progress\": 0.9933},\n    \"Struct+RF\": {\"test_macro_f1\": 0.9951, \"test_f1_stagnation\": 0.9928, \"test_f1_progress\": 0.9974},\n    \"Struct+GB\": {\"test_macro_f1\": 0.9951, \"test_f1_stagnation\": 0.9928, \"test_f1_progress\": 0.9974}\n  },\n  \"cross_agent_oh_all\": {\n    \"Struct+LR\": {\"test_macro_f1\": 0.7801, \"test_f1_stagnation\": 0.6842, \"test_f1_progress\": 0.876},\n    \"Struct+RF\": {\"test_macro_f1\": 0.9123, \"test_f1_stagnation\": 0.8658, \"test_f1_progress\": 0.9587},\n    \"Struct+GB\": {\"test_macro_f1\": 0.9674, \"test_f1_stagnation\": 0.9479, \"test_f1_progress\": 0.9869}\n  },\n  \"cross_agent_oh_conf2\": {\n    \"Struct+LR\": {\"test_macro_f1\": 0.9671, \"test_f1_stagnation\": 0.9477, \"test_f1_progress\": 0.9865},\n    \"Struct+RF\": {\"test_macro_f1\": 0.9959, \"test_f1_stagnation\": 0.9935, \"test_f1_progress\": 0.9984},\n    \"Struct+GB\": {\"test_macro_f1\": 0.9919, \"test_f1_stagnation\": 0.9869, \"test_f1_progress\": 0.9968}\n  },\n  \"reference\": {\n    \"in_domain_probe_macro_f1\": 0.9055,\n    \"cross_agent_zeroshot_probe_macro_f1\": 0.532,\n    \"cross_agent_finetune_probe_macro_f1\": 0.751\n  }\n}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "ee7f0f33-4e4f-4983-b688-7dd3448f18f9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016Lmpipqn6UZnTB3zJG1Z4U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1791,
+                "cache_read_input_tokens": 114003,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1791
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000373"
+        },
+        {
+          "source_line": 374,
+          "timestamp": "2026-05-14T17:20:50.660Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'in_domain': {'Struct+LR...probe_macro_f1': 0.751}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01BpCqk1LQefRLcL1i2hKEUN"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "43fce5ff-926b-4e2d-a93c-5aa1ede1da8d",
+            "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'in_domain': {'Struct+LR...probe_macro_f1': 0.751}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+          },
+          "id": "event-000374"
+        },
+        {
+          "source_line": 375,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Un3rzwZ1DDXGoZ6oYLcXNc",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "cross_agent_structural_results",
+                "type": "data",
+                "description": "Cross-agent structural baseline results: RF/GB/LR trained on SWE-Agent, evaluated on OpenHands. Structural features transfer extremely well cross-agent.",
+                "project": "agent_progress_probe",
+                "content_filename": "cross_agent_structural_results.json",
+                "content": "{\"in_domain\":{\"Struct+LR\":{\"test_macro_f1\":0.9874},\"Struct+RF\":{\"test_macro_f1\":0.9951},\"Struct+GB\":{\"test_macro_f1\":0.9951}},\"cross_agent_oh_all\":{\"Struct+LR\":{\"test_macro_f1\":0.7801},\"Struct+RF\":{\"test_macro_f1\":0.9123},\"Struct+GB\":{\"test_macro_f1\":0.9674}},\"cross_agent_oh_conf2\":{\"Struct+LR\":{\"test_macro_f1\":0.9671},\"Struct+RF\":{\"test_macro_f1\":0.9959},\"Struct+GB\":{\"test_macro_f1\":0.9919}},\"reference\":{\"in_domain_probe\":0.9055,\"cross_agent_zeroshot_probe\":0.532,\"cross_agent_finetune_probe\":0.751}}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "7af9ae65-1fe5-48a6-bdab-2ec444262186",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017yZTi1Bhvocdrv1w17aNr7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 912,
+                "cache_read_input_tokens": 115794,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 912
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000375"
+        },
+        {
+          "source_line": 376,
+          "timestamp": "2026-05-14T17:20:56.599Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'in_domain': {'Struct+LR...finetune_probe': 0.751}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01Un3rzwZ1DDXGoZ6oYLcXNc"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "ad7564f2-7935-415b-8bbb-aebaf850a09a",
+            "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'in_domain': {'Struct+LR...finetune_probe': 0.751}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+          },
+          "id": "event-000376"
+        },
+        {
+          "source_line": 377,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L4mow7pu1HMXnak1YMNEz2",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "cross_agent_structural_results",
+                "type": "data",
+                "description": "Cross-agent structural baseline results: RF/GB/LR trained on SWE-Agent, evaluated on OpenHands. Structural features transfer extremely well.",
+                "project": "agent_progress_probe",
+                "source_path": "/root/autodl-tmp/agent_progress_probe/data/cross_agent_structural_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "442dc370-4f28-4a25-b9c2-65894b82b5e6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013Mnqun1UvhFpUvBwYE32Kc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 556,
+                "cache_read_input_tokens": 116706,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 556
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000377"
+        },
+        {
+          "source_line": 378,
+          "timestamp": "2026-05-14T17:21:00.385Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L4mow7pu1HMXnak1YMNEz2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/agent_progress_probe/data/cross_agent_structural_results.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "7fed3197-b715-47e1-a426-bca7feddee62",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/agent_progress_probe/data/cross_agent_structural_results.json\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/agent_progress_probe/data/cross_agent_structural_results.json\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000378"
+        },
+        {
+          "source_line": 379,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The source_path is on the remote server, not local. Let me use content as a string.",
+              "signature": "Eo4CClkIDRgCKkA9syLFemYq8nn3+ma/lUoxieUgb/BUzvv/cJk62vdDJXIQBwJVpw8Den9dIh2wm1J9oOwoP9Uf13cP4Szi26vVMg9jbGF1ZGUtb3B1cy00LTY4ABIM3pOTG/bntgS3XokWGgzjSgUKhwq5ENRZxgAiML4tz7XprHf9VOQAUbJ87a2Q1aXMgz4DLAzEVFhk7euuk2RFuc9l5H34VSLdsrLZsipj650s800OBLZQwIRl8QhtPr4vpK/H2EbJHKIyj+7tmaFqq0Y/FCB2eBcHylK+LgvZNJDbLxUOmNtx7zCOhVIyNT/AYNR8Zjr9OISvYHyC8QNgiJ9y56UXtEya37uM8McRoIWBGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "54f3cdc0-a35e-4564-b157-858dfb630fd2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G4jwoP24mjWG6uoJuLsFTX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 270,
+                "cache_read_input_tokens": 117262,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 270
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000379"
+        },
+        {
+          "source_line": 380,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KTXnoFvTGcNn6Rh3WNf8e7",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "cross_agent_structural_results",
+                "type": "data",
+                "description": "Cross-agent structural baseline: RF/GB/LR trained on SWE-Agent, zero-shot evaluated on OpenHands. GB achieves 0.9674 macro_f1 on OH (all), RF 0.9959 on OH (conf>=2).",
+                "project": "agent_progress_probe",
+                "content": "See server: /root/autodl-tmp/agent_progress_probe/data/cross_agent_structural_results.json\n\nKey results (macro_f1):\n- In-domain: LR=0.9874, RF=0.9951, GB=0.9951\n- Cross-agent OH all: LR=0.7801, RF=0.9123, GB=0.9674\n- Cross-agent OH conf>=2: LR=0.9671, RF=0.9959, GB=0.9919\n- Reference probe: in-domain=0.9055, zero-shot=0.532, finetune=0.751",
+                "content_filename": "cross_agent_structural_results_summary.txt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "b75dd0e9-b0ca-48e7-b133-61955ca38e6a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G4jwoP24mjWG6uoJuLsFTX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 270,
+                "cache_read_input_tokens": 117262,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 270
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000380"
+        },
+        {
+          "source_line": 381,
+          "timestamp": "2026-05-14T17:21:10.136Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KTXnoFvTGcNn6Rh3WNf8e7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_c4fb17\\\", \\\"name\\\": \\\"cross_agent_structural_results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Cross-agent structural baseline: RF/GB/LR trained on SWE-Agent, zero-shot evaluated on OpenHands. GB achieves 0.9674 macro_f1 on OH (all), RF 0.9959 on OH (conf>=2).\\\", \\\"path\\\": \\\"projects/agent_progress_probe/artifacts/_project/data/cross_agent_structural_results_summary.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"agent_progress_probe\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T17:21:10.037541+00:00\\\", \\\"tags\\\": []}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "e9bc8c18-f636-4304-9348-2bab3f0a43ab",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_c4fb17\\\", \\\"name\\\": \\\"cross_agent_structural_results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Cross-agent structural baseline: RF/GB/LR trained on SWE-Agent, zero-shot evaluated on OpenHands. GB achieves 0.9674 macro_f1 on OH (all), RF 0.9959 on OH (conf>=2).\\\", \\\"path\\\": \\\"projects/agent_progress_probe/artifacts/_project/data/cross_agent_structural_results_summary.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"agent_progress_probe\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T17:21:10.037541+00:00\\\", \\\"tags\\\": []}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_c4fb17\", \"name\": \"cross_agent_structural_results\", \"type\": \"data\", \"description\": \"Cross-agent structural baseline: RF/GB/LR trained on SWE-Agent, zero-shot evaluated on OpenHands. GB achieves 0.9674 macro_f1 on OH (all), RF 0.9959 on OH (conf>=2).\", \"path\": \"projects/agent_progress_probe/artifacts/_project/data/cross_agent_structural_results_summary.txt\", \"url\": null, \"project\": \"agent_progress_probe\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T17:21:10.037541+00:00\", \"tags\": []}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000381"
+        },
+        {
+          "source_line": 382,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果：\n\n## Cross-Agent Structural Baseline 结果\n\n| 设置 | Model | Macro F1 | F1_stag | F1_prog |\n|------|-------|----------|---------|---------|\n| **In-domain (SWE-Agent test)** | LR | 0.9874 | 0.9815 | 0.9933 |\n| | RF | 0.9951 | 0.9928 | 0.9974 |\n| | GB | 0.9951 | 0.9928 | 0.9974 |\n| **Cross-agent OH (all, N=150652)** | LR | 0.7801 | 0.6842 | 0.8760 |\n| | RF | 0.9123 | 0.8658 | 0.9587 |\n| | GB | **0.9674** | 0.9479 | 0.9869 |\n| **Cross-agent OH (conf≥2, N=43376)** | LR | 0.9671 | 0.9477 | 0.9865 |\n| | RF | **0.9959** | 0.9935 | 0.9984 |\n| | GB | 0.9919 | 0.9869 | 0.9968 |\n\n### 对比 Probe\n\n| Method | In-domain | Cross-agent (zero-shot) |\n|--------|-----------|------------------------|\n| GRU Probe | 0.9055 | 0.5320 |\n| Probe (full-finetune) | - | 0.7510 |\n| **Struct+GB** | **0.9951** | **0.9674** (all) |\n| **Struct+RF** | **0.9951** | **0.9959** (conf≥2) |\n\n### 关键结论\n\n结构特征的跨域迁移**远优于** probe：\n- Struct+GB 在 OH 全量数据上 macro_f1=0.9674，比 probe full-finetune (0.751) 高 **+0.216**\n- Struct+RF 在 OH conf≥2 上 macro_f1=0.9959，几乎完美\n- 这说明**停滞检测任务的大部分信号存在于结构特征中**（命令重复、相似度、类型分布），而非语义内容\n- In-domain 数字完全匹配 `non_nlp_baseline_results.json`（LR=0.9874, RF/GB=0.9951）\n\nJSON 已保存到 `/root/autodl-tmp/agent_progress_probe/data/cross_agent_structural_results.json`"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "uuid": "9f887e24-64c2-43b5-bc10-5689f8150590",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011exUkR1agMTtG5TuLXDY8s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 707,
+                "cache_read_input_tokens": 117532,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 707
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000382"
+        },
+        {
+          "source_line": 383,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果：\n\n## Cross-Agent Structural Baseline 结果\n\n| 设置 | Model | Macro F1 | F1_stag | F1_prog |\n|------|-------|----------|---------|---------|\n| **In-domain (SWE-Agent test)** | LR | 0.9874 | 0.9815 | 0.9933 |\n| | RF | 0.9951 | 0.9928 | 0.9974 |\n| | GB | 0.9951 | 0.9928 | 0.9974 |\n| **Cross-agent OH (all, N=150652)** | LR | 0.7801 | 0.6842 | 0.8760 |\n| | RF | 0.9123 | 0.8658 | 0.9587 |\n| | GB | **0.9674** | 0.9479 | 0.9869 |\n| **Cross-agent OH (conf≥2, N=43376)** | LR | 0.9671 | 0.9477 | 0.9865 |\n| | RF | **0.9959** | 0.9935 | 0.9984 |\n| | GB | 0.9919 | 0.9869 | 0.9968 |\n\n### 对比 Probe\n\n| Method | In-domain | Cross-agent (zero-shot) |\n|--------|-----------|------------------------|\n| GRU Probe | 0.9055 | 0.5320 |\n| Probe (full-finetune) | - | 0.7510 |\n| **Struct+GB** | **0.9951** | **0.9674** (all) |\n| **Struct+RF** | **0.9951** | **0.9959** (conf≥2) |\n\n### 关键结论\n\n结构特征的跨域迁移**远优于** probe：\n- Struct+GB 在 OH 全量数据上 macro_f1=0.9674，比 probe full-finetune (0.751) 高 **+0.216**\n- Struct+RF 在 OH conf≥2 上 macro_f1=0.9959，几乎完美\n- 这说明**停滞检测任务的大部分信号存在于结构特征中**（命令重复、相似度、类型分布），而非语义内容\n- In-domain 数字完全匹配 `non_nlp_baseline_results.json`（LR=0.9874, RF/GB=0.9951）\n\nJSON 已保存到 `/root/autodl-tmp/agent_progress_probe/data/cross_agent_structural_results.json`"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 922047,
+            "duration_api_ms": 814735,
+            "num_turns": 166,
+            "stop_reason": "end_turn",
+            "session_id": "667e636b-a729-4382-bf1f-8f119b9f31a7",
+            "total_cost_usd": 8.4941865,
+            "usage": {
+              "input_tokens": 160,
+              "cache_creation_input_tokens": 106398,
+              "cache_read_input_tokens": 13787820,
+              "output_tokens": 37280,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 106398,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 708,
+                  "cache_read_input_tokens": 117532,
+                  "cache_creation_input_tokens": 707,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 707
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2414,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002489,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 160,
+                "outputTokens": 37280,
+                "cacheReadInputTokens": 13787820,
+                "cacheCreationInputTokens": 106398,
+                "webSearchRequests": 0,
+                "costUSD": 8.4916975,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "5a1c0454-d19e-4f58-b40e-f457c21afd7d"
+          },
+          "id": "event-000383"
+        }
+      ]
+    }
+  ]
+}

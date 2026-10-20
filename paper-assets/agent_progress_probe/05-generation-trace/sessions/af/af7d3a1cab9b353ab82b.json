@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af7d3a1cab9b353ab82b",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "code e5large seed42 cleanup",
+  "task_key": "worker_code_e5large-seed42-cleanup_20260516T042315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_e5large-seed42-cleanup_20260516T042315_result.json",
+    "occurrence": 1,
+    "bytes": 975,
+    "sha256": "444de4d2cb0500faa93c29b35425c78c08a0cf7fc2a74841d3d40846df782baf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**已完成：**\n1. **清理伪造文件** — 删除 `checkpoints_ablation_e5large_s123` 和 `checkpoints_ablation_e5large_s456`（与真实目录的完全拷贝）；`results_encoder_multiseed_e5.json` 此前已被删除\n2. **补跑 seed 42** — 训练完成，epoch 9 early stop，best val F1=0.9596\n3. **生成真实 3-seed JSON** — 写入 `results_encoder_multiseed_e5.json`，统计值由 numpy 验证\n4. **更新 registry** — `encoder-ablation-probe-e5large` 的 `multiseed_metrics` 已更新\n\n**真实 E5-large 3-seed 结果：**\n\n| Metric | Mean | Std |\n|--------|------|-----|\n| macro_f1 | 0.9405 | 0.0030 |\n| accuracy | 0.9484 | 0.0013 |\n| f1_stagnation | 0.9192 | 0.0089 |\n| f1_progress | 0.9617 | 0.0030 |\n\n注意：旧 registry 中残留的 `metrics.multiseed` 字段仍有旧伪造值（mean_macro_f1=0.9381），新的真实值在 `multiseed_metrics` 字段中。如需清理旧字段请告知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-e5large-seed42-cleanup.md"
+}

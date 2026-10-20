@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94ad9f97f37e6d034ef2",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "fix bgem3 multiseed verify",
+  "task_key": "worker_fix_bgem3-multiseed-verify_20260516T042959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_bgem3-multiseed-verify_20260516T042959_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "f7741811026dd8c4c78c105da51e2acd5800d9ade0062ac5406d52665193fbac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both evaluations complete. Results match registry values exactly.\n\n```\nBGE-M3 Seed Verification Report\n================================\nSeed 123:\n  Registry: macro_f1=0.8474, f1_stag=0.8173, f1_prog=0.8775, size=2216\n  Re-eval:  macro_f1=0.8474, f1_stag=0.8173, f1_prog=0.8775, size=2216\n  Match: ✅ exact match\n\nSeed 456:\n  Registry: macro_f1=0.9364, f1_stag=0.9183, f1_prog=0.9545, size=2343\n  Re-eval:  macro_f1=0.9364, f1_stag=0.9183, f1_prog=0.9545, size=2343\n  Match: ✅ exact match\n\nOverall: PASS — all three BGE-M3 seeds verified (42 via d073, 123/456 via this re-eval)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-bgem3-multiseed-verify.md"
+}

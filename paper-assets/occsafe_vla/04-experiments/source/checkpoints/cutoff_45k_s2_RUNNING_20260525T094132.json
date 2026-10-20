@@ -1,0 +1,37 @@
+{
+  "exp_id": "cutoff_45k_s2",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T09:31:51.012Z",
+    "updated_at": "2026-05-25T09:41:32.203Z",
+    "hypothesis": "Seed 44 replication of cutoff_45k (OCC gradient flow cutoff at 45K steps). Fresh start from pretrained weights — C002 prohibits resume. Only 1 seed (s0=0.764) completed so far (s1_v3 training on 34685). 3rd seed needed to reach ≥3 seeds for dose-response statistical claims at the 45K time point.",
+    "parent": "cutoff_45k_s0",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_loss_cutoff_step 45000 --occ_loss_cutoff_mode after --run_root_dir /root/autodl-tmp/checkpoints/cutoff_45k_s2 --seed 44 --run_id_note cutoff_45k_s2\"",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "74225",
+      "log_path": "~/runs/occsafe_vla/cutoff_45k_s2.log",
+      "submitted_at": "2026-05-25T09:41:30.703Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-10894",
+    "gpu": "cuda:0",
+    "pid": "74225",
+    "log_path": "~/runs/occsafe_vla/cutoff_45k_s2.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_loss_cutoff_step 45000 --occ_loss_cutoff_mode after --run_root_dir /root/autodl-tmp/checkpoints/cutoff_45k_s2 --seed 44 --run_id_note cutoff_45k_s2\"",
+      "code_commit": "e4287e94541f459edc4feabc4e181f537cd569a8"
+    }
+  },
+  "timestamp": "2026-05-25T09:41:32.858115+00:00",
+  "trigger": "update_registry"
+}

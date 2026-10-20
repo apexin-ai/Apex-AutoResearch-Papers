@@ -1,0 +1,1353 @@
+# cron hook reverse cutoff s2 20260526T122906 640392
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 36
+- **Recorded user turns:** 2
+- **Tool calls:** 16
+- **Original source:** `logs/chats/archive/cron_hook_reverse_cutoff_s2_20260526T122906_640392.jsonl`
+- **Structured JSON:** [`55cf90ba53c66f59e0ba.json`](../../sessions/55/55cf90ba53c66f59e0ba.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+34 recorded events
+
+### User
+
+_source line 1 · 2026-05-25T20:22:56.108904+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #4。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-10894:cuda:0-3 + westd-34685:cuda:0-3，共 8 张，其他一律不能用
+- cutoff 系列实验禁止 resume（C002 约束，M052 教训）——必须从头训练
+- westd-34685 SSH 端口是 34685（非标准），连接失败时可能是 AutoDL 实例重启换端口
+- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`
+- GPU 编号始终从 0 开始（CUDA_VISIBLE_DEVICES 自动映射）
+
+### 2. 🖥️ 基础设施快照
+- **westd-34685**：AutoDL 实例，IP 36.103.198.204:34685，root 账号
+  - conda env: `occsafe`（/root/miniconda3）
+  - 代码：/root/occsafe_vla/openvla-oft
+  - 模型：/root/autodl-tmp/models/openvla-7b
+  - 数据：/root/autodl-tmp/data/modified_libero_rlds/
+  - OCC 数据：/root/occsafe_vla/occ_data
+  - Checkpoints：/root/autodl-tmp/checkpoints/{exp_id}/
+  - Logs：~/runs/occsafe_vla/{exp_id}.log
+- **westd-10894**：同样 AutoDL，配置类似
+- **W&B**：WANDB_MODE=disabled（所有实验都禁用 W&B，靠 log 和 eval 脚本取指标）
+
+### 3. 📊 当前状态
+**刚发生**：cron 标记 reverse_cutoff_s2 和 cutoff_25k_s2 为 failed（SSH 连接 westd-34685 失败 5 次）。两实验当时约 77% 进度。这是连接问题而非真正崩溃——已派 Worker (`worker_diagnose_ssh_failure_34685_20260525T042058`) SSH 进去诊断实际进程状态。
+
+**Registry RUNNING**：
+- `cutoff_45k_s1_v2` — westd-34685:cuda:0, seed 43, 从头训练 45K cutoff（C002 合规重跑）
+- `cutoff_15k_s2` — westd-34685:cuda:1, seed 44, 15K cutoff 第 3 seed
+- `full_occ_retrain_s0_eval` — westd-10894:cuda:1, Full OCC BN 500-episode eval
+
+**等待中**：
+- Worker 回调：diagnose Worker 检查 34685 连接和进程存活状态
+- 如果进程还活着 → 需要把 registry 改回 RUNNING + 重注册 cron
+- 如果进程已死 → 需要重新提交（都在 77%，约 3h 就能跑完）
+
+### 4. 📋 待办
+- diagnose Worker 回调 → 进程存活：update_registry 改回 RUNNING + register_cron；进程已死：重新 submit_training_job 在同一 GPU 重跑
+- cutoff_25k_s2 同理（cuda:2，PID 998208）
+- full_occ_retrain_s0_eval 完成 → 更新 registry + 与其他 seed 对比
+- cutoff_15k_s2 完成 → eval → 3-seed 均值确认 dose-response
+- cutoff_45k_s1_v2 完成 → eval → 第 2 seed（C002 合规）
+- 10894:0,2,3 空闲 → Director P0 指令要求填满，待 diagnose 结果后安排
+
+### 5. 🎯 战略上下文
+- **核心结论**：BN×gradient flow 交叉交互显著（D042, ANOVA p=0.025, η²=0.484）。LN 导致 DINOv2 梯度抑制 3.5×，SigLIP 放大 2.5×——BN-mediated gradient calibration 是论文核心机制
+- **目标会议**：CoRL 2026，Abstract May 26（明天），Paper May 29
+- **当前阶段**：dose-response 3-seed 复现（cutoff_15k/25k/45k/reverse），填论文最后的 coverage gap
+- **论文状态**：v42 版本 23/24 coverage，D042 patch 已完成
+- **易错点**：
+  - SSH 连接失败 ≠ 实验失败，westd-34685 是 AutoDL 实例，网络偶尔抖动
+  - cutoff 实验绝不能 resume（会导致 cutoff 永远不触发，M052 血泪教训）
+  - reverse_cutoff 的 2-seed 结果本身就 unstable（std=0.025），第 3 seed 是为了确认 pattern 而非期待 success
+
+## 项目硬约束 (memory.md 节选)
+
+## 决策与约束
+
+### 🚨 D050: 代码版本与归一化类型完全共线 (2026-05-25)
+
+**2×2 factorial 的代码版本审计结果：所有 BN 实验 = v1 代码，所有 LN 实验 = v2 代码。**
+
+```
+              BN (v1, May21)    LN (v2, May24)
+Grad ON      Cell1: 可用        Cell2: 可用
+Grad OFF     Cell3: ⚠️存疑      Cell4: 可用
+```
+
+- Cell 1 (Full OCC BN):
+  - mvp_occ_s0 (v1, seed 42): **TSR=0.904, CAR=0.832**
+  - full_occ_retrain_s0_eval_v2 (v2, seed 42): **TSR=0.802, CAR=0.746**
+  - **⚠️ v1 vs v2 差异巨大：CAR 差 8.6pp, TSR 差 10.2pp。v1≠v2，代码版本显著影响 Full OCC BN 结果。**
+  - full_occ_retrain_s0 已确认为 fresh train（非 resume），step=0 → 50005, 14h12m, 501 行 [AUX]
+- Cell 3 (Detach BN, v1): **0 行 OCC/AUX 日志**，detach 实现无法验证，CKA 数据矛盾
+- **2×2 ANOVA p=0.025 交互效应不可信**——代码版本是混淆变量
+- **D046 s3 experiments（当前训练）全部 v2 代码**——首次 clean cross-cell 数据
+
+### ⚠️ CKA 数据可靠性问题 (2026-05-25, D048)
+
+**原始 CKA 数据 (cka_analysis, May 23) 不可复现，很可能基于 buggy 代码。**
+
+| 分析 | Detach+BN DINOv2 CKA | Detach+BN SigLIP CKA | checkpoint |
+|------|----------------------|---------------------|------------|
+| cka_analysis (May 23) | **0.539** | **0.312** | ablation_occ_detach_s0（已删除）|
+| cka_same_seed_4cond (May 25) | **0.964** | **0.953** | ablation_occ_detach_s0_retrain |
+
+**根因**：May 21 原始训练使用 occ_head.py v1（早期代码），May 23 代码大改。原始训练可能缺少正确的 detach 实现。
+- s0/s1/s2 checkpoint 全部删除，无法复现
+- **s3（seed 45, v2 代码从头训练）是唯一验证点**
+- CKA 分析脚本已准备（含 JSON 输出），run_command.sh 在 10894 就绪
+
+### ⚠️ v1/v2 代码对 Full OCC BN 结果不等价 (2026-05-25, 修正)
+
+**同种子 (seed 42) Full OCC BN 比较：**
+| 实验 | 代码版本 | TSR | CAR |
+|------|---------|-----|-----|
+| mvp_occ_s0 | v1 | 0.904 | 0.832 |
+| full_occ_retrain_s0_eval_v2 | v2 | 0.802 | 0.746 |
+| **差异** | | **-10.2pp** | **-8.6pp** |
+
+之前 memory.md 声称 "v1/v2 功能等价" 是**错误的**。v2 代码引入了 DepthHead、norm_type 参数等变更，即使 Full OCC BN 条件也受到显著影响。
+
+**影响**：
+- D051 门控 mvp_occ_s3 (v2, seed 45) 的判定阈值需重新考虑
+- v1 Full OCC BN 数据 (mean CAR=0.797) 不能与 v2 Full OCC BN 数据直接比较
+- 所有跨代码版本的 factorial 比较均不可靠
+
+### Full OCC LN 3-seed 结果（v2 代码）(2026-05-25)
+
+| Seed | TSR | CAR |
+|------|-----|-----|
+| s0 (42) | 0.930 | 0.766 |
+| s1 (43) | 0.894 | 0.718 |
+| s2 (44) | 0.866 | 0.744 |
+| **Mean** | **0.897** | **0.743** |
+
+vs Full OCC BN v1 baseline (mean CAR=0.797): **-5.4pp**。
+⚠️ 但 v1/v2 不等价（见上），需 v2 Full OCC BN 数据才能做有效对比。full_occ_retrain_s0_eval_v2 (v2 BN, seed 42) CAR=0.746 ≈ Full OCC LN mean，暗示 LN vs BN 可能在 v2 下无差异。
+
+### Detach+LN 揭示 Dual-Mechanism（Scenario C）(2026-05-24)
+
+⚠️ 注意：Detach BN 数据 (CAR=0.746) 来自 v1 代码，detach 实现存疑。Detach LN 数据 (CAR=0.765) 来自 v2 代码，可信。两者差异 (1.9pp) 可能部分或全部来自代码版本差异而非 BN/LN 差异。
+
+| 条件 | CAR (mean±std) | 代码版本 |
+|------|----------------|---------|
+| Full OCC | 0.797±0.032 | v1 |
+| Random OCC | 0.789±0.031 | v1 |
+| Vanilla | 0.780±0.012 | v1 |
+| **Detach+LN** | **0.765±0.023** | v2 |
+| Detach OCC (BN) | 0.746±0.002 | v1 ⚠️ |
+
+### CKA 分析 — 同种子 4 条件对比 (2026-05-25, 修正)
+
+⚠️ 使用 cka_same_seed_4cond（May 25, retrain checkpoint, v2 代码）数据。
+
+| 条件 | DINOv2 CKA | SigLIP CKA | CAR |
+|------|-----------|-----------|-----|
+| Vanilla | 0.968 | 0.953 | 0.780 |
+| Full OCC (BN) | 0.959 | 0.959 | 0.797 |
+| **Detach+BN** | **0.964** | **0.953** | 0.746 |
+| Full OCC (LN) | 0.640 | 0.950 | 0.766 |
+
+Full OCC LN DINOv2 CKA=0.640 是 s0 seed-specific 异常（s1/s2=0.965）。
+
+### Dose-response 完整 s0 结果 (2026-05-24)
+
+| 条件 | 梯度流时段 | CAR | vs Vanilla s0 |
+|------|----------|-----|------------|
+| Full OCC s0 | 0-50K | 0.832 | +4.4pp |
+| cutoff_15k_s0 | 0-15K | 0.804 | +1.6pp |
+| Vanilla s0 | 无辅助任务 | 0.788 | baseline |
+| cutoff_35k_s0 | 0-35K | 0.768 | -2.0pp |
+| cutoff_45k_s0 | 0-45K | 0.764 | -2.4pp |
+| reverse_cutoff_s0 | 35K-50K | 0.700 | -8.8pp |
+| cutoff_25k_s0 | 0-25K | 0.688 | -10.0pp |
+
+**注意**: 以上 dose-response 全部为 v1 代码（cutoff 系列），数据内部一致但不可与 v2 实验直接比较。
+
+### 核心诊断结论 (2026-05-22)
+
+3-seed 50r 排序：Random(0.789) > OCC(0.797) > Depth(0.782, 2-seed) ≈ Vanilla(0.780) > Detach(0.746)
+注：所有 v1 代码。Random/Full OCC/Vanilla 的相对排序可信（均为 gradient-on + BN 条件，代码行为一致）。
+
+## 可查的历史
+前 23 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-25T20:23:08.212130+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-25T20:23:08.363578+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-25T20:23:11.893452+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "limit": "0",
+  "filters": "{'status': 'RUNNING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "limit": "0",
+    "filters": "{'status': 'RUNNING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-25T20:23:12.319710+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-25T20:23:12.662809+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-25T20:23:12.718610+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"ablation_occ_detach_s3_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-25T17:35:36.141Z\", \"updated_at\": \"2026-05-25T19:27:29.667Z\", \"hypothesis\": \"Resume of ablation_occ_detach_s3 from 20K checkpoint after process kill. Detach BN (gradient flow OFF, BatchNorm), seed 45. 4th seed for 2×2 factorial.\", \"parent\": \"ablation_occ_detach_s3\"}, \"full_occ_ln_s3_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-25T17:35:34.764Z\", \"updated_at\": \"2026-05-25T19:27:28.433Z\", \"hypothesis\": \"Resume of full_occ_ln_s3 from 20K checkpoint after process kill. Full OCC LN (gradient flow ON, LayerNorm), seed 45. 4th seed for 2×2 factorial.\", \"parent\": \"full_occ_ln_s3\"}, \"mvp_occ_s3_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-25T17:35:32.900Z\", \"updated_at\": \"2026-05-25T19:27:27.127Z\", \"hypothesis\": \"D051 v2 rebuild: Full OCC BN (gradient flow ON, BatchNorm), seed 45, from scratch. Replaces killed mvp_occ_s3 (cluster reboot at 41%). Same config as mvp_occ_s0/s1/s2. Critical for narrative decision point — s3 CAR determines Branch A/B/C.\", \"parent\": \"mvp_occ_s3\"}, \"cutoff_45k_s2_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-25T17:35:37.759Z\", \"updated_at\": \"2026-05-25T19:27:25.669Z\", \"hypothesis\": \"Restart of cutoff_45k_s2 after process kill. OCC gradient flow cutoff at 45K steps, seed 44. C002 prohibits resume — fresh start from pretrained weights.\", \"parent\": \"cutoff_45k_s2\"}, \"full_occ_bn_v2_s1\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-25T12:27:46.948Z\", \"updated_at\": \"2026-05-25T18:03:03.237Z\", \"hypothesis\": \"D051 v2 code rebuild: Full OCC BN (gradient flow ON, BatchNorm) with confirmed v2 code. Seed 43. V1 equivalent (occ_s1_fresh) had CAR=0.788. If v2 result ≈ v1 → confirms Full OCC BN is code-version invariant. Combined with detach_bn_v2 results enables clean 2×2 factorial under single code version.\", \"
+…[truncated 1671 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 825
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-25T20:23:12.719071+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-25T20:23:29.035931+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 8, \"results\": [{\"exp_id\": \"detach_bn_v2_s1\", \"success\": true, \"actions\": [\"Job still running (pid=2786)\"]}, {\"exp_id\": \"detach_bn_v2_s2\", \"success\": true, \"actions\": [\"Job still running (pid=3003)\"]}, {\"exp_id\": \"detach_bn_v2_s0\", \"success\": true, \"actions\": [\"Job still running (pid=5086)\"]}, {\"exp_id\": \"full_occ_bn_v2_s1\", \"success\": true, \"actions\": [\"Job still running (pid=7347)\"]}, {\"exp_id\": \"cutoff_45k_s2_v2\", \"success\": true, \"actions\": [\"Job still running (pid=4212)\"]}, {\"exp_id\": \"mvp_occ_s3_v2\", \"success\": true, \"actions\": [\"Job still running (pid=11641)\"]}, {\"exp_id\": \"full_occ_ln_s3_v2\", \"success\": true, \"actions\": [\"Job still running (pid=6947)\"]}, {\"exp_id\": \"ablation_occ_detach_s3_v2\", \"success\": true, \"actions\": [\"Job still running (pid=7161)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 16716
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-25T20:23:29.036552+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/report.md\", \"content\": \"# Handover — 2026-05-25\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| ablation_occ_detach_s3_v2 | Resume of ablation_occ_detach_s3 from 20K checkpoint after process kill. Detach BN (gradient flow OFF, BatchNorm), seed 45. 4th seed for 2×2 factorial. | — | — | — |\\n| full_occ_ln_s3_v2 | Resume of full_occ_ln_s3 from 20K checkpoint after process kill. Full OCC LN (gradient flow ON, LayerNorm), seed 45. 4th seed for 2×2 factorial. | — | — | — |\\n| mvp_occ_s3_v2 | D051 v2 rebuild: Full OCC BN (gradient flow ON, BatchNorm), seed 45, from scratch. Replaces killed mvp_occ_s3 (cluster reboot at 41%). Same config as mvp_occ_s0/s1/s2. Critical for narrative decision point — s3 CAR determines Branch A/B/C. | — | — | — |\\n\\n## 待处理\\n- reverse_cutoff_s2_v2: Seed 44 replication of reverse_cutoff (no OCC first 35K steps, enable 35K-50K). Resume from 30K checkpoint after server reboot + batch_idx bug fix. 2-seed results show instability (0.700-0.736). 3rd seed needed to confirm late-onset gradient flow instability and T7 variance pattern.（排队等待 GPU）\\n- detach_ln_s4: Factorial n=5 expansion: Detach LN (gradient flow OFF, LayerNorm), seed 46. 5th seed to complete 2×2 ANOVA expansion from n=3 to n=5 per cell. Config identical to detach_ln_s0/s1/s2/s3.（准备中）\\n- ablation_occ_detach_s4: Factorial n=5 expansion: Detach BN (gradient flow OFF, BatchNorm), seed 46. 5th seed to complete 2×2 ANOVA expansion from n=3 to n=5 per cell. Config identical to ablation_occ_detach_s0/s1/s2/s3.（准备中）\\n- full_occ_ln_s4: Factorial n=5 expansion: Full OCC LN (gradient flow ON, LayerNorm), seed 46. 5th seed to complete 2×2 ANOVA expansion from n=3 to n=5 per cell. Config identical to full_occ_ln_s0/s1/s2/s3.（准备中）\\n- mvp_occ_s4: Factorial n=5 expansion: Full OCC BN (gra
+…[truncated 2167 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 16373
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-25T20:23:29.087408+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/ROADMAP.md\", \"content\": \"# occsafe_vla — Research Dashboard\\n\\n> 最后更新: 2026-05-25 18:04 UTC | 更新原因: 8/8 GPU 全满确认 + 时间线锁定\\n\\n> 核心方向详见 paper_framing.md\\n\\n## 核心方向\\nBN×gradient flow factorial study。D050 共线 → D051 v2 rebuild + D052 v1≠v2 确认。\\n交互效应存活概率 ~10-15%，Plan B 替代 framing 已准备。\\n\\n## 目标会议\\n- **CoRL 2026**: Abstract ✅, Paper May 29（4 天）\\n\\n## 当前进展\\n- **8/8 GPU 全满** ✅ — D053 执行完成\\n- Resume bug 已修复，所有实验训练正常\\n- ⚠️ Resume 实验 eval 时需取 local step=30000 checkpoint（= 总 50K steps）\\n\\n### GPU 状态（Agent 确认 ~18:30 UTC）\\n\\n| 服务器:GPU | 实验 | PID | ETA (UTC) |\\n|-----------|------|-----|-----------|\\n| 34685:0 | detach_bn_v2_s0 (D051) | 5086 | ~May 26 07:00 |\\n| 34685:1 | detach_bn_v2_s1 (D051) | 2786 | ~May 26 07:00 |\\n| 34685:2 | detach_bn_v2_s2 (D051) | 3003 | ~May 26 07:00 |\\n| 34685:3 | full_occ_bn_v2_s1 (D051) ⭐ | 7347 | ~May 26 07:30 |\\n| 10894:0 | cutoff_45k_s2_v2 (从头) | — | ~May 26 06:30 |\\n| 10894:1 | mvp_occ_s3_v2 resume ⭐ | — | ~May 26 02:00 |\\n| 10894:2 | full_occ_ln_s3_v2 resume | — | ~May 26 02:00 |\\n| 10894:3 | ablation_occ_detach_s3_v2 resume ⭐ | — | ~May 26 02:00 |\\n\\n## 时间线\\n- May 26 ~02:00: s3 resume 完成 → eval (50r) + CKA\\n- May 26 ~04:00: s3 eval 完成 → **叙事门控决策**\\n- May 26 ~07:00: D051 完成 → eval (50r)\\n- May 26 ~10:00: D051 eval + v2 ANOVA → **framing 决策 (Plan A vs B)**\\n- May 26-28: 论文重写\\n- May 29: 提交\\n\\n## 叙事门控（s3 eval 后，~May 26 04:00）\\nablation_occ_detach_s3 CAR 决定论文走向：\\n- CAR < 0.750 → Branch A \\\"Aux heads hurt safety\\\"\\n- CAR 0.770-0.780 → Branch B \\\"Gradient flow hurts\\\"\\n- CAR > 0.780 → Branch C \\\"Detach helps via regularization\\\"\\n\\n## Plan B 替代 Framing（v2 ANOVA 无交互时）\\n- **B1**: Mechanism analysis of aux head failure modes\\n- **B2**: Normalization as hidden variable\\n- **B3**: Cautionary study\\n- 决策点 ~May 26 10:00\\n\\n## 近期任务\\n- [x] 8/8 GPU 填满\\n- [x] Resume bug 修复\\n- [ 
+…[truncated 1778 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 16368
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-25T20:23:52.095512+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__update_registry",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__update_registry",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-25T20:23:52.146139+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-25T20:23:55.508243+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "status": "running",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "status": "running",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-25T20:23:56.060566+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 552
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-25T20:23:56.061029+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "filters": "{'status': 'DONE'}",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "filters": "{'status': 'DONE'}",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-25T20:23:56.513803+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"cutoff_45k_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T09:31:51.012Z\", \"updated_at\": \"2026-05-25T17:33:26.306Z\", \"hypothesis\": \"Seed 44 replication of cutoff_45k (OCC gradient flow cutoff at 45K steps). Fresh start from pretrained weights — C002 prohibits resume. Only 1 seed (s0=0.764) completed so far (s1_v3 training on 34685). 3rd seed needed to reach ≥3 seeds for dose-response statistical claims at the 45K time point.\", \"parent\": \"cutoff_45k_s0\", \"conclusion\": \"failed\"}, \"full_occ_ln_s3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T11:10:52.629Z\", \"updated_at\": \"2026-05-25T17:33:25.071Z\", \"hypothesis\": \"Factorial n=5 expansion: Full OCC LN (gradient flow ON, LayerNorm), seed 45. 4th seed to strengthen 2×2 ANOVA from n=3 to n=5 per cell. Config identical to full_occ_ln_s0/s1/s2.\", \"parent\": \"full_occ_ln_s0\", \"conclusion\": \"failed\"}, \"ablation_occ_detach_s3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T11:10:53.689Z\", \"updated_at\": \"2026-05-25T17:33:23.914Z\", \"hypothesis\": \"Factorial n=5 expansion: Detach BN (gradient flow OFF, BatchNorm), seed 45. 4th seed to strengthen 2×2 ANOVA from n=3 to n=5 per cell. Config identical to ablation_occ_detach_s0/s1/s2.\", \"parent\": \"ablation_occ_detach_s0\", \"conclusion\": \"failed\"}, \"mvp_occ_s3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T11:10:51.551Z\", \"updated_at\": \"2026-05-25T17:33:22.479Z\", \"hypothesis\": \"Factorial n=5 expansion: Full OCC BN (gradient flow ON, BatchNorm), seed 45. 4th seed to strengthen 2×2 ANOVA from n=3 to n=5 per cell. Config identical to mvp_occ_s0/s1/s2.\", \"parent\": \"mvp_occ_s0\", \"conclusion\": \"failed\"}, \"cutoff_15k_s2_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-25T04:33:18.892Z\", \"updated_at\": \"2026-05-25T17:32:15.909Z\", \"hypothesis\": \"Seed 44 replication of cutoff_15k (gradient flow cutoff at 15K steps). Fresh 
+…[truncated 360 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-25T20:24:24.828808+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/skills/resource-saturation.skill.md",
+  "limit": "60"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/skills/resource-saturation.skill.md",
+    "limit": "60"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-25T20:24:24.829472+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/sessions/agent_f080641d.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-25T20:24:24.879908+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "date -u '+%Y-%m-%d %H:%M UTC'",
+  "description": "Get current UTC time"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "date -u '+%Y-%m-%d %H:%M UTC'",
+    "description": "Get current UTC time"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-25T20:24:25.030827+00:00_
+
+2026-05-25 20:24 UTC
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "Bash",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-25T20:24:28.706483+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+  "limit": "60"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+    "limit": "60"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-25T20:24:28.757818+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-25T20:25:04.430934+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 8/8 在跑 | Worker 0 (正在铺非 GPU 任务) | 磁盘: 待查\n\n**Session-start 状态汇报 (Loop #4, 20:24 UTC)**\n\n**8 实验全部 RUNNING，cron 确认进程存活：**\n\n| 服务器:GPU | 实验 | PID | ETA (UTC) |\n|-----------|------|-----|-----------|\n| 10894:0 | cutoff_45k_s2_v2 (从头) | 4212 | ~May 26 06:30 |\n| 10894:1 | mvp_occ_s3_v2 resume ⭐ | 11641 | ~May 26 02:00 |\n| 10894:2 | full_occ_ln_s3_v2 resume | 6947 | ~May 26 02:00 |\n| 10894:3 | ablation_occ_detach_s3_v2 resume ⭐ | 7161 | ~May 26 02:00 |\n| 34685:0 | detach_bn_v2_s0 (D051) | 5086 | ~May 26 07:00 |\n| 34685:1 | detach_bn_v2_s1 (D051) | 2786 | ~May 26 07:00 |\n| 34685:2 | detach_bn_v2_s2 (D051) | 3003 | ~May 26 07:00 |\n| 34685:3 | full_occ_bn_v2_s1 (D051) ⭐ | 7347 | ~May 26 07:30 |\n\n**关键时间线：**\n- ~02:00: s3 resumes 完成 → eval (50r, ckpt=local 30000) + CKA → **叙事门控决策**\n- ~07:00: D051 完成 → eval (50r, ckpt=50000) → **v2 ANOVA + framing 决策**\n- 之前 handoff 提到的 SSH 连接问题已完全恢复，无需干预\n\n**正在铺：** 派 Worker 预检 eval 脚本 + CKA 脚本就绪状态，确保实验完成后零延迟进入 eval。",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 8/8 在跑 | Worker 0 (正在铺非 GPU 任务) | 磁盘: 待查\n\n**Session-start 状态汇报 (Loop #4, 20:24 UTC)**\n\n**8 实验全部 RUNNING，cron 确认进程存活：**\n\n| 服务器:GPU | 实验 | PID | ETA (UTC) |\n|-----------|------|-----|-----------|\n| 10894:0 | cutoff_45k_s2_v2 (从头) | 4212 | ~May 26 06:30 |\n| 10894:1 | mvp_occ_s3_v2 resume ⭐ | 11641 | ~May 26 02:00 |\n| 10894:2 | full_occ_ln_s3_v2 resume | 6947 | ~May 26 02:00 |\n| 10894:3 | ablation_occ_detach_s3_v2 resume ⭐ | 7161 | ~May 26 02:00 |\n| 34685:0 | detach_bn_v2_s0 (D051) | 5086 | ~May 26 07:00 |\n| 34685:1 | detach_bn_v2_s1 (D051) | 2786 | ~May 26 07:00 |\n| 34685:2 | detach_bn_v2_s2 (D051) | 3003 | ~May 26 07:00 |\n| 34685:3 | full_occ_bn_v2_s1 (D051) ⭐ | 7347 | ~May 26 07:30 |\n\n**关键时间线：**\n- ~02:00: s3 resumes 完成 → eval (50r, ckpt=local 30000) + CKA → **叙事门控决策**\n- ~07:00: D051 完成 → eval (50r, ckpt=50000) → **v2 ANOVA + framing 决策**\n- 之前 handoff 提到的 SSH 连接问题已完全恢复，无需干预\n\n**正在铺：** 派 Worker 预检 eval 脚本 + CKA 脚本就绪状态，确保实验完成后零延迟进入 eval。",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-25T20:25:07.945505+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3514
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-25T20:25:20.769027+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-25T20:25:20.819727+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-25T20:25:56.935621+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "infra:eval-prestage-s3-d051",
+  "project": "occsafe_vla",
+  "task_prompt": "## 任务：预检 eval 和 CKA 脚本就绪状态\n\n当前 8 个实验正在训练，预计 May 26 02:00-07:30 UTC 陆续完成。你的任务是确保实验完成后可以零延迟进入 eval 阶段。\n\n### 需要检查的内容\n\n**服务器 westd-10894**（4 个实验）：\n- `mvp_occ_s3_v2` (cuda:1, PID 11641) — resume from 20K, 完成后 checkpoint 在 local step 30000\n- `full_occ_ln_s3_v2` (cuda:2, PID 6947) — resume from 20K, checkpoint 在 local step 30000\n- `ablation_occ_detach_s3_v2` (cuda:3, PID 7161) — resume from 20K, checkpoint 在 local step 30000\n- `cutoff_45k_s2_v2` (cuda:0, PID 4212) — 从头训练, checkpoint 在 step 50000 (不是 50005!)\n\n**服务器 westd-34685**（4 个实验）：\n- `detach_bn_v2_s0` (cuda:0, PID 5086) — 从头, ckpt step 50000\n- `detach_bn_v2_s1` (cuda:1, PID 2786) — 从头, ckpt step 50000\n- `detach_bn_v2_s2` (cuda:2, PID 3003) — 从头, ckpt step 50000\n- `full_occ_bn_v2_s1` (cuda:3, PID 7347) — 从头, ckpt step 50000\n\n### 检查清单\n\n1. **eval 脚本**：确认两台服务器上 eval 脚本的位置和可运行性\n   - 代码目录：/root/occsafe_vla/openvla-oft\n   - 找到 eval 相关脚本（可能是 run_libero_eval.py 或类似），确认可以 `python script.py --help` 不报错\n   - 确认 eval 数据路径存在\n\n2. **CKA 脚本**：在 10894 上确认 CKA 分析脚本就绪\n   - ROADMAP 提到 \"CKA 分析脚本已准备（含 JSON 输出），run_command.sh 在 10894 就绪\"\n   - 找到 run_command.sh 或 CKA 分析脚本，确认路径和参数格式\n   - 确认它能接受 checkpoint 路径参数\n\n3. **磁盘空间**：两台服务器执行 `df -h /root/autodl-tmp` 确认有足够空间存 eval 产出\n\n4. **Checkpoint 目录**：确认 checkpoint 保存目录结构\n   - 10894 的 resume 实验：找到 checkpoint 保存位置，确认 step 30000 会写到哪里\n   - 34685 的从头实验：/root/autodl-tmp/checkpoints/{exp_id}/ 确认目录存在\n\n### 环境\n- conda env: `occsafe`\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n- 代码路径：/root/occsafe_vla/openvla-oft\n\n### 产出\n写一份简洁的 readiness report（save_project_file 到 artifacts/eval_readiness_report.md），包含：\n- eval 命令模板（给每个实验的具体 eval 命令，填好 checkpoint 路径）\n- CKA 命令模板\n- 磁盘状态\n- 任何发现的问题或缺失",
+  "tool_groups": "['ssh', 'knowledge']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "infra:eval-prestage-s3-d051",
+    "project": "occsafe_vla",
+    "task_prompt": "## 任务：预检 eval 和 CKA 脚本就绪状态\n\n当前 8 个实验正在训练，预计 May 26 02:00-07:30 UTC 陆续完成。你的任务是确保实验完成后可以零延迟进入 eval 阶段。\n\n### 需要检查的内容\n\n**服务器 westd-10894**（4 个实验）：\n- `mvp_occ_s3_v2` (cuda:1, PID 11641) — resume from 20K, 完成后 checkpoint 在 local step 30000\n- `full_occ_ln_s3_v2` (cuda:2, PID 6947) — resume from 20K, checkpoint 在 local step 30000\n- `ablation_occ_detach_s3_v2` (cuda:3, PID 7161) — resume from 20K, checkpoint 在 local step 30000\n- `cutoff_45k_s2_v2` (cuda:0, PID 4212) — 从头训练, checkpoint 在 step 50000 (不是 50005!)\n\n**服务器 westd-34685**（4 个实验）：\n- `detach_bn_v2_s0` (cuda:0, PID 5086) — 从头, ckpt step 50000\n- `detach_bn_v2_s1` (cuda:1, PID 2786) — 从头, ckpt step 50000\n- `detach_bn_v2_s2` (cuda:2, PID 3003) — 从头, ckpt step 50000\n- `full_occ_bn_v2_s1` (cuda:3, PID 7347) — 从头, ckpt step 50000\n\n### 检查清单\n\n1. **eval 脚本**：确认两台服务器上 eval 脚本的位置和可运行性\n   - 代码目录：/root/occsafe_vla/openvla-oft\n   - 找到 eval 相关脚本（可能是 run_libero_eval.py 或类似），确认可以 `python script.py --help` 不报错\n   - 确认 eval 数据路径存在\n\n2. **CKA 脚本**：在 10894 上确认 CKA 分析脚本就绪\n   - ROADMAP 提到 \"CKA 分析脚本已准备（含 JSON 输出），run_command.sh 在 10894 就绪\"\n   - 找到 run_command.sh 或 CKA 分析脚本，确认路径和参数格式\n   - 确认它能接受 checkpoint 路径参数\n\n3. **磁盘空间**：两台服务器执行 `df -h /root/autodl-tmp` 确认有足够空间存 eval 产出\n\n4. **Checkpoint 目录**：确认 checkpoint 保存目录结构\n   - 10894 的 resume 实验：找到 checkpoint 保存位置，确认 step 30000 会写到哪里\n   - 34685 的从头实验：/root/autodl-tmp/checkpoints/{exp_id}/ 确认目录存在\n\n### 环境\n- conda env: `occsafe`\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n- 代码路径：/root/occsafe_vla/openvla-oft\n\n### 产出\n写一份简洁的 readiness report（save_project_file 到 artifacts/eval_readiness_report.md），包含：\n- eval 命令模板（给每个实验的具体 eval 命令，填好 checkpoint 路径）\n- CKA 命令模板\n- 磁盘状态\n- 任何发现的问题或缺失",
+    "tool_groups": "['ssh', 'knowledge']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-25T20:26:18.935929+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_infra_eval-prestage-s3-d051_20260525T202557\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/logs/workers/worker_infra_eval-prestage-s3-d051_20260525T202557.log\", \"setup_data\": {}, \"message\": \"Worker worker_infra_eval-prestage-s3-d051_20260525T202557 started. Use get_worker_status('worker_infra_eval-prestage-s3-d051_20260525T202557') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 22000
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-25T20:26:20.090873+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "research:paper-data-aggregation",
+  "project": "occsafe_vla",
+  "task_prompt": "## 任务：汇总当前已有实验数据 + 预测完成后的 factorial 表格\n\n论文 deadline May 29，需要在 May 26-28 写论文。你的任务是整理所有已完成实验的 metrics，构建 v2 代码下的 2×2 factorial 数据表格（含当前在跑的实验完成后的预期表格）。\n\n### 背景\n\n核心研究问题：BN × gradient flow 交互效应。2×2 factorial 设计：\n- Factor A: Normalization type (BN vs LN)\n- Factor B: Gradient flow (ON=Full OCC vs OFF=Detach)\n\n| | Gradient ON | Gradient OFF |\n|---|---|---|\n| BN | Full OCC BN (mvp_occ) | Detach BN (ablation_occ_detach) |\n| LN | Full OCC LN (full_occ_ln) | Detach LN (detach_ln) |\n\n**关键约束**：v1 和 v2 代码不等价（D050/D052），只有 v2 代码的数据可以跨 cell 比较。\n\n### 你需要做的\n\n1. **读 registry**（read_registry，filters={\"status\": \"DONE\", \"conclusion\": \"success\"}）获取所有成功实验\n2. **按 cell 分类**，标注代码版本（v1 还是 v2）\n3. **构建两张表**：\n   - 表 A：v2 代码下已完成的数据（可直接用于 ANOVA）\n   - 表 B：当前在跑的 8 个实验完成后，v2 factorial 将覆盖的 seeds\n\n4. **V2 数据源头**：\n   - Full OCC LN: s0(seed42), s1(seed43), s2(seed44) 已完成（3-seed），s3(seed45) 在跑\n   - Detach LN: s0(42), s1(43), s2(44) 已完成（3-seed）\n   - Full OCC BN: full_occ_retrain_s0_eval_v2 (seed42, CAR=0.746, TSR=0.802) 已完成, s1 在跑, s3 在跑\n   - Detach BN: s0/s1/s2 在跑, s3 在跑\n\n5. **生成 summary 文件**（save_project_file 到 artifacts/factorial_data_summary.md），包含：\n   - 完整的 per-seed metrics 表格（TSR, CAR, 含 exp_id 来源）\n   - v2 cell 均值 + std（已有的）\n   - 在跑实验完成后的预期覆盖率\n   - 论文 table 1 草稿（格式：条件 | n | CAR mean±std | TSR mean±std）\n   - 标注哪些 cell 还不够 3 seeds\n\n### 数据来源\n- Registry: read_registry 获取 metrics 和 conclusion\n- Memory: read_project_file(file=\"memory.md\") 获取历史决策和已知数据点\n\n### 注意\n- 只用 v2 代码数据做跨 cell 比较\n- v1 数据仍有价值（dose-response 内部一致），单独列出但标注不可跨版本比较\n- Full OCC BN v2 seed42 CAR=0.746（远低于 v1 的 0.832），这是已确认的代码版本效应",
+  "tool_groups": "['knowledge', 'registry']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "research:paper-data-aggregation",
+    "project": "occsafe_vla",
+    "task_prompt": "## 任务：汇总当前已有实验数据 + 预测完成后的 factorial 表格\n\n论文 deadline May 29，需要在 May 26-28 写论文。你的任务是整理所有已完成实验的 metrics，构建 v2 代码下的 2×2 factorial 数据表格（含当前在跑的实验完成后的预期表格）。\n\n### 背景\n\n核心研究问题：BN × gradient flow 交互效应。2×2 factorial 设计：\n- Factor A: Normalization type (BN vs LN)\n- Factor B: Gradient flow (ON=Full OCC vs OFF=Detach)\n\n| | Gradient ON | Gradient OFF |\n|---|---|---|\n| BN | Full OCC BN (mvp_occ) | Detach BN (ablation_occ_detach) |\n| LN | Full OCC LN (full_occ_ln) | Detach LN (detach_ln) |\n\n**关键约束**：v1 和 v2 代码不等价（D050/D052），只有 v2 代码的数据可以跨 cell 比较。\n\n### 你需要做的\n\n1. **读 registry**（read_registry，filters={\"status\": \"DONE\", \"conclusion\": \"success\"}）获取所有成功实验\n2. **按 cell 分类**，标注代码版本（v1 还是 v2）\n3. **构建两张表**：\n   - 表 A：v2 代码下已完成的数据（可直接用于 ANOVA）\n   - 表 B：当前在跑的 8 个实验完成后，v2 factorial 将覆盖的 seeds\n\n4. **V2 数据源头**：\n   - Full OCC LN: s0(seed42), s1(seed43), s2(seed44) 已完成（3-seed），s3(seed45) 在跑\n   - Detach LN: s0(42), s1(43), s2(44) 已完成（3-seed）\n   - Full OCC BN: full_occ_retrain_s0_eval_v2 (seed42, CAR=0.746, TSR=0.802) 已完成, s1 在跑, s3 在跑\n   - Detach BN: s0/s1/s2 在跑, s3 在跑\n\n5. **生成 summary 文件**（save_project_file 到 artifacts/factorial_data_summary.md），包含：\n   - 完整的 per-seed metrics 表格（TSR, CAR, 含 exp_id 来源）\n   - v2 cell 均值 + std（已有的）\n   - 在跑实验完成后的预期覆盖率\n   - 论文 table 1 草稿（格式：条件 | n | CAR mean±std | TSR mean±std）\n   - 标注哪些 cell 还不够 3 seeds\n\n### 数据来源\n- Registry: read_registry 获取 metrics 和 conclusion\n- Memory: read_project_file(file=\"memory.md\") 获取历史决策和已知数据点\n\n### 注意\n- 只用 v2 代码数据做跨 cell 比较\n- v1 数据仍有价值（dose-response 内部一致），单独列出但标注不可跨版本比较\n- Full OCC BN v2 seed42 CAR=0.746（远低于 v1 的 0.832），这是已确认的代码版本效应",
+    "tool_groups": "['knowledge', 'registry']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-25T20:26:23.364373+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_paper-data-aggregation_20260525T202620\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/logs/workers/worker_research_paper-data-aggregation_20260525T202620.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_paper-data-aggregation_20260525T202620 started. Use get_worker_status('worker_research_paper-data-aggregation_20260525T202620') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3273
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-25T20:26:36.289335+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-25T20:26:36.340149+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-25T20:26:52.722416+00:00_
+
+Session-start 初始化完成：
+
+- **8/8 GPU 全部 RUNNING**，cron 确认所有进程存活
+- **2 Workers 已派出**：eval 预检 + 论文数据汇总
+- **Director 已通知**当前状态
+- **时间线**：s3 resumes ~May 26 02:00 UTC → eval + 叙事门控；D051 ~07:00 UTC → v2 ANOVA + framing 决策
+
+等待 Worker 回调和 cron 实验完成通知。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:reverse_cutoff_s2"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 35 · 2026-05-26T12:28:19.699351+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:reverse_cutoff_s2",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-26T12:29:06.637372+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-10894:cuda:0-3 + westd-34685:cuda:0-3，共 8 张，其他一律不能用
+- cutoff 系列实验禁止 resume（C002 约束，M052 教训）——必须从头训练
+- westd-34685 SSH 端口是 34685（非标准），连接失败时可能是 AutoDL 实例重启换端口
+- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`
+- GPU 编号始终从 0 开始（CUDA_VISIBLE_DEVICES 自动映射）
+- Resume 实验 eval 时取 local step=30000 checkpoint（= 总 50K steps），不是 step 50000
+- v1 和 v2 代码不等价（D050/D052），跨代码版本的 factorial 比较无效
+
+### 2. 🖥️ 基础设施快照
+- **westd-34685**：AutoDL，IP 36.103.198.204:34685，root
+  - conda env: `occsafe`（/root/miniconda3）
+  - 代码：/root/occsafe_vla/openvla-oft
+  - 模型：/root/autodl-tmp/models/openvla-7b
+  - 数据：/root/autodl-tmp/data/modified_libero_rlds/，OCC 数据：/root/occsafe_vla/occ_data
+  - Checkpoints：/root/autodl-tmp/checkpoints/{exp_id}/
+  - Logs：~/runs/occsafe_vla/{exp_id}.log
+- **westd-10894**：AutoDL，配置同上
+- **W&B**：WANDB_MODE=disabled，所有实验靠 log + eval 脚本取指标
+
+### 3. 📊 当前状态
+Session-start 初始化完成（20:24 UTC）。8/8 GPU 全满，reconcile_crons 确认所有 8 个进程存活。已向 Director 汇报。
+
+**RUNNING（8 个，cron 监控中）：**
+
+| 服务器:GPU | 实验 | PID | ETA (UTC) |
+|-----------|------|-----|-----------|
+| 10894:0 | cutoff_45k_s2_v2（从头） | 4212 | ~May 26 06:30 |
+| 10894:1 | mvp_occ_s3_v2 resume ⭐ | 11641 | ~May 26 02:00 |
+| 10894:2 | full_occ_ln_s3_v2 resume | 6947 | ~May 26 02:00 |
+| 10894:3 | ablation_occ_detach_s3_v2 resume ⭐ | 7161 | ~May 26 02:00 |
+| 34685:0 | detach_bn_v2_s0（D051） | 5086 | ~May 26 07:00 |
+| 34685:1 | detach_bn_v2_s1（D051） | 2786 | ~May 26 07:00 |
+| 34685:2 | detach_bn_v2_s2（D051） | 3003 | ~May 26 07:00 |
+| 34685:3 | full_occ_bn_v2_s1（D051）⭐ | 7347 | ~May 26 07:30 |
+
+**2 Workers 运行中：**
+- `worker_infra_eval-prestage-s3-d051_20260525T202557`：预检 eval + CKA 脚本就绪状态
+- `worker_research_paper-data-aggregation_20260525T202620`：汇总 v2 factorial 数据表格
+
+### 4. 📋 待办
+- 2 个 Worker 回调 → 读产出，整合 eval 命令模板和 factorial 数据表到知识文件
+- 10894 s3 resumes 完成（~02:00）→ 立即派 Worker 跑 50r eval（ckpt=local step 30000）+ CKA（ablation_occ_detach_s3_v2）→ 叙事门控决策（Branch A/B/C 取决于 detach_s3 CAR）
+- 34685 D051 完成（~07:00）→ 派 Worker 跑 50r eval（ckpt=step 50000）→ v2 ANOVA 计算 → framing 决策（Plan A vs B）
+- cutoff_45k_s2_v2 完成（~06:30）→ eval → dose-response 补充数据点
+- 所有 eval 完成 → v2 2×2 ANOVA → 交互效应存活？Plan A（BN-mediated gradient calibration）vs Plan B（替代 framing）
+- GPU 释放后 → dose-response 剩余 seeds（cutoff_15k_s2、cutoff_25k_s2、reverse_cutoff_s2）排队等 GPU
+
+### 5. 🎯 战略上下文
+- **核心问题**：D050 发现 v1/v2 代码完全共线（所有 BN=v1，所有 LN=v2），之前的 ANOVA p=0.025 交互效应不可信。当前 D051 用 v2 代码重建所有 4 个 cell，是唯一能产出 clean factorial 数据的机会
+- **交互效应存活概率 ~10-15%**（Director 估计），Plan B 替代 framing 已准备（B1 mechanism analysis / B2 normalization as hidden variable / B3 cautionary study）
+- **叙事门控**：ablation_occ_detach_s3_v2 的 CAR 决定论文走向——<0.750 Branch A, 0.770-0.780 Branch B, >0.780 Branch C
+- **目标会议**：CoRL 2026，Abstract May 26（今天），Paper May 29
+- **易错点**：
+  - Full OCC BN v2 seed42 CAR=0.746（v1 同种子是 0.832），差距巨大——不要用 v1 数据预期 v2 结果
+  - CKA 旧数据（May 23, cka_analysis）不可信，只用 cka_same_seed_4cond（May 25）数据
+  - reverse_cutoff 本身 unstable（std=0.025），第 3 seed 是确认 pattern 不是期待 success
+  - Detach BN v1 数据（Cell 3）有 0 行 OCC/AUX 日志，detach 实现无法验证——D051 的 v2 Detach BN 是第一次有可信的 detach 数据
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:reverse_cutoff_s2"
+}
+```
+
+</details>
+
+---

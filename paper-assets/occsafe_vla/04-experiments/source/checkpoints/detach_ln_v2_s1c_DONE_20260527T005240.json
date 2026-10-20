@@ -1,0 +1,27 @@
+{
+  "exp_id": "detach_ln_v2_s1c",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T00:36:37.812Z",
+    "updated_at": "2026-05-27T00:52:40.102Z",
+    "hypothesis": "v2 rebuild of Detach LN (gradient flow OFF, LayerNorm), seed 43. Cell 4 currently n=1 v2, this is the 3rd parallel attempt to reach n=4 for robust ANOVA. Running on 10894:cuda:3.",
+    "spec": {
+      "pid": "482336",
+      "actual_child_pid": "482336",
+      "note": "parent PID 482192 dead, child 482336 is actual training process"
+    },
+    "parent": "detach_ln_v2_s1",
+    "conclusion": "failed",
+    "reproduce": {
+      "finished_at": "2026-05-27T00:52:37.709Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-27T00:52:40.102Z"
+  },
+  "timestamp": "2026-05-27T00:52:40.437900+00:00",
+  "trigger": "update_registry"
+}

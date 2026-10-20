@@ -1,0 +1,55 @@
+dreams:
+  dream_20260523T025401:
+    dream_id: dream_20260523T025401
+    project: occsafe_vla
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: corl-2026
+    focus: 'MVP negative result pivoted to mechanism analysis paper. Core finding:
+      gradient flow is necessary to prevent auxiliary head harm (Detach -3.4pp), spatial
+      content type irrelevant. Key risk: single VLA + single benchmark generalizability,
+      and whether a negative-finding + mechanism-analysis paper is strong enough for
+      AAAI main track. Evaluate whether P1 experiments (multi-cutoff dose-response,
+      reverse cutoff) would meaningfully strengthen the paper.'
+    what_if: []
+    pid: null
+    chat_id: oc_b45732a3472ce0c59e675f5c8a4a4b8e
+    card_message_id: om_x100b6e252255c4b8c4ac2af9ead11fa
+    started_at: '2026-05-23T02:54:01+00:00'
+    updated_at: '2026-05-23T03:40:11+00:00'
+    stages_completed:
+    - imagine
+    error: 'zombie: orchestrator process crashed'
+    context_hash: d4faeaf66894575da2a57d8fce0375abc59b4a1849c764d31250761f2c3a1c83
+  dream_20260523T034027:
+    dream_id: dream_20260523T034027
+    project: occsafe_vla
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: corl-2026
+    focus: 'MVP negative result pivoted to mechanism analysis paper. Core finding:
+      gradient flow is necessary to prevent auxiliary head harm (Detach -3.4pp), spatial
+      content type irrelevant. Key risk: single VLA + single benchmark generalizability,
+      and whether a negative-finding + mechanism-analysis paper is strong enough for
+      AAAI main track. Evaluate whether P1 experiments (multi-cutoff dose-response,
+      reverse cutoff) would meaningfully strengthen the paper.'
+    what_if: []
+    pid: 1542383
+    chat_id: oc_b45732a3472ce0c59e675f5c8a4a4b8e
+    card_message_id: om_x100b6e26540cc8b4c36d9d3277717b0
+    started_at: '2026-05-23T03:40:27+00:00'
+    updated_at: '2026-05-23T04:50:46+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 2f0008c3ccced16a379c155a5472b8e0a86dfe5a57e44fac4f524354329220c9
+    review_quality:
+      best: simulated
+      median: simulated
+      worst: simulated

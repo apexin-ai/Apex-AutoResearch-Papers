@@ -1,0 +1,57 @@
+{
+  "exp_id": "ablation_occ_detach_s3_v2",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-25T17:35:36.141Z",
+    "updated_at": "2026-05-26T11:10:07.317Z",
+    "hypothesis": "从头训练（非resume），因旧checkpoint损坏+LR schedule重置问题。Detach BN (gradient flow OFF, BatchNorm), seed 45. 4th seed for 2×2 factorial. Config identical to ablation_occ_detach_s0/s1/s2.",
+    "parent": "ablation_occ_detach_s3",
+    "reproduce": {
+      "finished_at": "2026-05-26T11:10:03.775Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-25T20:26:16.296Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-25T20:26:22.936751+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach true --occ_norm_type bn --run_root_dir /root/autodl-tmp/checkpoints/ablation_occ_detach_s3_v2 --seed 45 --run_id_note ablation_occ_detach_s3_v2",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "34443",
+      "log_path": "~/runs/occsafe_vla/ablation_occ_detach_s3_v2.log",
+      "submitted_at": "2026-05-26T04:42:46Z",
+      "backend": "nohup",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 25000,
+      "model_name": "openvla-7b",
+      "seed": 45,
+      "checkpoint_source": "pretrained:openvla-7b (fresh start)",
+      "eval_data": "N/A (training run)",
+      "wall_clock_seconds": 23241.3,
+      "gpu_hours": 6.46
+    },
+    "server": "westd-10894",
+    "gpu": "cuda:3",
+    "account": "root",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-26T11:10:07.585007+00:00",
+  "trigger": "update_registry"
+}

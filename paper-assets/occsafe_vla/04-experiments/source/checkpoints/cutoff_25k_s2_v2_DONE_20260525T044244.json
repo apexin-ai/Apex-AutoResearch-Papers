@@ -1,0 +1,29 @@
+{
+  "exp_id": "cutoff_25k_s2_v2",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T04:36:34.372Z",
+    "updated_at": "2026-05-25T04:42:44.137Z",
+    "hypothesis": "Seed 44 replication of cutoff_25k (OCC gradient cutoff at 25K steps). Resume from 30K checkpoint after server reboot + batch_idx bug fix. Bug fix ensures gradient_step_idx correctly tracks cumulative steps for cutoff logic. 2-seed results show high instability (0.688-0.760). 3rd seed needed for withdrawal pattern confirmation.",
+    "parent": "cutoff_25k_s1",
+    "conclusion": "killed",
+    "spec": {
+      "command": "torchrun finetune.py --resume True --resume_step 30000 --occ_loss_cutoff_step 25000 --occ_loss_cutoff_mode after --seed 44",
+      "server": "westd-34685",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 50000,
+      "model_name": "openvla-7b",
+      "seed": 44,
+      "checkpoint_source": "resume from 30K",
+      "checkpoint_path": "N/A - killed before producing output",
+      "log_path": "~/runs/occsafe_vla/cutoff_25k_s2_v2.log"
+    },
+    "completed_at": "2026-05-25T04:42:44.137Z"
+  },
+  "timestamp": "2026-05-25T04:42:44.378439+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6852ac07138c7454999c",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "paper writing appendix",
+  "task_key": "worker_paper_writing_appendix_20260514T221502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_appendix_20260514T221502_result.json",
+    "occurrence": 1,
+    "bytes": 780,
+    "sha256": "266da8d34a7b5f06b3c8adcbf878010b83d8397b9ad240940b89f62a6f0bf9ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `docs/paper/sections/appendix.tex` 并注册为 artifact。\n\n6 个 subsection 全部完成：\n- **A. Encoder Ablation** — 3 encoder × multi-seed 表格，含 BGE-M3 seed 123 outlier 说明\n- **B. Window Size** — k=3/5/7 完整指标 + delta\n- **C. LF Temporal Dynamics** — lag 分布表 + Kruskal-Wallis + Bonferroni 校正 pairwise 表\n- **D. Structural Features** — 30 features 按类别分组列出，注明 importance ranking pending\n- **E. Data Scaling** — embedding probe 四档 + structural baseline 四档（后者带 circular eval caveat 加粗警告）\n- **F. Error Analysis** — 两张表：按 confidence/outcome/position 分层统计 + LF conflict/FP pattern/error concentration\n\n所有数字与 registry 数据一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-appendix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9e2467239d92b4f9efb",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "audit framing reaudit tex scan",
+  "task_key": "worker_audit_framing-reaudit-tex-scan_20260515T005515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_framing-reaudit-tex-scan_20260515T005515_result.json",
+    "occurrence": 1,
+    "bytes": 934,
+    "sha256": "2d6ff542e05bac408da3309f4fea9c16d24c912581ac2c27a45833ec065e8f8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。报告已写入 `artifacts/framing-reaudit/inconsistency_list.md` 并注册。\n\n**核心发现**：\n\n- **P0 — 必须删除的 INVALID claims**: +17.6pp cmd_rep removal 效果（5处）、71% FP rate（3处）、\"cmd_rep corrupts labels\" 叙事链\n- **P0 — 核心数字错误**: OH stag rate 6.6%→21.45%（4处）、probe FT 0.751→0.9763（5处）、cmd_rep fire rate 92.2%→5.39%（5处）、cross-agent gap 21.6pp→2.21pp（1处）\n- **P1 — Framing**: \"fundamentally structural\" → \"zero-shot transfer dominance\"（4处）\n- **P1 — probe ZS**: 0.528/0.530 → 0.5984（3处）\n- **P2 — 支持文件**: writing_plan.yaml 8处旧值、SlopCodeBench 90%/80%→77%/75.5%\n\n总计 40+ 处需修改，覆盖 abstract/introduction/method/experiments/analysis/conclusion/appendix 全部章节 + writing_plan.yaml。experiments.tex §5.5 (Command Repetition Ablation) 需整段重写。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-framing-reaudit-tex-scan.md"
+}

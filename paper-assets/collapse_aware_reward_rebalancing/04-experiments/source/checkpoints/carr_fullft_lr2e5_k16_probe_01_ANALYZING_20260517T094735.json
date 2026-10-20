@@ -1,0 +1,85 @@
+{
+  "exp_id": "carr_fullft_lr2e5_k16_probe_01",
+  "project": "collapse_aware_reward_rebalancing",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T00:29:54.079Z",
+    "updated_at": "2026-05-17T09:47:35.669Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/carr && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 python3 run_fullft_lr2e5_k16.py",
+      "server": "bjb2-23165",
+      "gpu": "cuda:1",
+      "pid": 534061,
+      "log_path": "~/runs/collapse_aware_reward_rebalancing/carr_fullft_lr2e5_k16_probe_01.log",
+      "submitted_at": "2026-05-17T00:29:54.047Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "K=16 (6.25%保留率) 的极端筛选使 surviving data 趋同，在 Full-FT LR=2e-5 下 3 代内触发可观测的 Vendi Score 下降",
+      "condition": "single_reward (ArmoRM top-1-of-16) Full-FT LR=2e-5 epochs=3",
+      "generations": 3,
+      "prompts": 2000,
+      "eval_prompts": 200,
+      "model_name": "Qwen3-0.6B",
+      "k_candidates": 16,
+      "gen_batch_size": 4,
+      "lr": 2e-05,
+      "num_epochs": 3,
+      "per_device_train_batch_size": 1,
+      "gradient_accumulation_steps": 8,
+      "gradient_checkpointing": true,
+      "use_lora": false,
+      "data_path": "openbmb/UltraFeedback",
+      "data_count": 2200,
+      "seed": 42,
+      "output_dir": "/root/autodl-tmp/carr/outputs_fullft_lr2e5_k16/"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T09:44:17.757Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T09:44:18.989619+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "gen0": {
+        "mean_quality": 0.1162,
+        "vendi_score": 107.32,
+        "self_bleu": 0.0057,
+        "perplexity": 8.5,
+        "mean_nn_distance": 0.7057,
+        "complexity_mean": 2.887
+      },
+      "gen1": {
+        "mean_quality": 0.1162,
+        "vendi_score": 106.73,
+        "self_bleu": 0.005,
+        "perplexity": 8.02,
+        "mean_nn_distance": 0.7065,
+        "complexity_mean": 2.848
+      },
+      "gen2": {
+        "mean_quality": 0.1149,
+        "vendi_score": 107.11,
+        "self_bleu": 0.0058,
+        "perplexity": 7.71,
+        "mean_nn_distance": 0.7092,
+        "complexity_mean": 2.818
+      },
+      "vendi_decline_pct": -0.19,
+      "p1_pass": false,
+      "training_loss_trend": "0.206 -> 0.129 -> 0.097"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-17T09:47:35.703056+00:00",
+  "trigger": "update_registry"
+}

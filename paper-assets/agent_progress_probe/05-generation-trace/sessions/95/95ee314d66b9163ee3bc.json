@@ -1,0 +1,482 @@
+{
+  "schema_version": "1.0",
+  "id": "95ee314d66b9163ee3bc",
+  "project": "agent_progress_probe",
+  "kind": "conversation",
+  "title": "fetch bootstrap ohfix results",
+  "task_key": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_fetch_bootstrap-ohfix-results_20260515T093958.jsonl",
+    "occurrence": 1,
+    "bytes": 14484,
+    "sha256": "9b41fba4d078468a44278eb8c4dd2f90750117e55d8a52b057bc9caa1c2dee0c"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T09:40:54.684464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T09:40:54.684808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T09:40:54.684980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-23165",
+              "command": "cat /root/autodl-tmp/agent_progress_probe/artifacts/gold_set/bootstrap_ci_ohfix.json"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T09:40:54.685113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-23165",
+              "command": "grep -n \"oh_trajectories\\|openhands\\|trajectory_id\\|is_oh\" /root/autodl-tmp/agent_progress_probe/gold_bootstrap_ci.py"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T09:40:54.685300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"tests\\\\\\\": {\\\\n    \\\\\\\"gb_vs_mv\\\\\\\": {\\\\n      \\\\\\\"model_a\\\\\\\": \\\\\\\"Structural GB\\\\\\\",\\\\n      \\\\\\\"model_b\\\\\\\": \\\\\\\"MV Labels\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 195,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"f1_a_on_shared\\\\\\\": 0.764361,\\\\n      \\\\\\\"f1_b_on_shared\\\\\\\": 0.718383,\\\\n      \\\\\\\"observed_delta\\\\\\\": 0.045978,\\\\n      \\\\\\\"ci_95_lo\\\\\\\": 0.006214,\\\\n      \\\\\\\"ci_95_hi\\\\\\\": 0.088402,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0121,\\\\n      \\\\\\\"significant_005\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"gb_vs_gru_probe\\\\\\\": {\\\\n      \\\\\\\"model_a\\\\\\\": \\\\\\\"Structural GB\\\\\\\",\\\\n      \\\\\\\"model_b\\\\\\\": \\\\\\\"GRU Probe\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 132,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"f1_a_on_shared\\\\\\\": 0.784716,\\\\n      \\\\\\\"f1_b_on_shared\\\\\\\": 0.734833,\\\\n      \\\\\\\"observed_delta\\\\\\\": 0.049882,\\\\n      \\\\\\\"ci_95_lo\\\\\\\": -0.015686,\\\\n      \\\\\\\"ci_95_hi\\\\\\\": 0.120116,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0698,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"rf_vs_gb\\\\\\\": {\\\\n      \\\\\\\"model_a\\\\\\\": \\\\\\\"Structural RF\\\\\\\",\\\\n      \\\\\\\"model_b\\\\\\\": \\\\\\\"Structural GB\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 195,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"f1_a_on_shared\\\\\\\": 0.751621,\\\\n      \\\\\\\"f1_b_on_shared\\\\\\\": 0.764361,\\\\n      \\\\\\\"observed_delta\\\\\\\": -0.01274,\\\\n      \\\\\\\"ci_95_lo\\\\\\\": -0.037209,\\\\n      \\\\\\\"ci_95_hi\\\\\\\": 0.00933,\\\\n      \\\\\\\"p_value\\\\\\\": 0.136,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"twv_probe_vs_gb\\\\\\\": {\\\\n      \\\\\\\"model_a\\\\\\\": \\\\\\\"TWV Probe\\\\\\\",\\\\n      \\\\\\\"model_b\\\\\\\": \\\\\\\"Structural GB\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 132,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"f1_a_on_shared\\\\\\\": 0.768421,\\\\n      \\\\\\\"f1_b_on_shared\\\\\\\": 0.784716,\\\\n      \\\\\\\"observed_delta\\\\\\\": -0.016295,\\\\n      \\\\\\\"ci_95_lo\\\\\\\": -0.066553,\\\\n      \\\\\\\"ci_95_hi\\\\\\\": 0.030622,\\\\n      \\\\\\\"p_value\\\\\\\": 0.2536,\\\\n      \\\\\\\"significant_005\\\\\\\": fal\n…[truncated 600 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T09:40:54.685460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T09:40:54.685628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-23165",
+              "command": "grep -nE \"oh_trajectories|openhands|trajectory_id|is_oh\" /root/autodl-tmp/agent_progress_probe/gold_bootstrap_ci.py"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T09:40:54.685805+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T09:40:54.685931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/gold_set/",
+              "description": "Check local gold_set directory exists"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T09:40:54.686050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "annotation_unknown_2026-05-15.csv\nbootstrap_ci_canonical.json\nbootstrap_ci_results.json\neval_canonical\neval_report.md\neval_report_full.md\neval_results.json\neval_results_full.json\ngold_labels_unknown.csv\nmodel_consistency_report.md\noh_fix_report.md\npaper_draft_gold_section.md\nquality_report.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T09:40:54.686178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-23165",
+              "command": "grep -nE \"oh_trajectories|openhands|trajectory_id|is_oh\" /root/autodl-tmp/agent_progress_probe/gold_bootstrap_ci.py"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T09:40:54.686295+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T09:40:54.686434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-23165",
+              "command": "grep -n \"oh_trajectories\" /root/autodl-tmp/agent_progress_probe/gold_bootstrap_ci.py"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T09:40:54.686553+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"322:    parser.add_argument(\\\\\\\"--oh_trajectories\\\\\\\", type=str, default=None)\\\\n365:    if args.oh_trajectories:\\\\n366:        oh_traj_index = build_trajectory_index(str(base_dir / args.oh_trajectories))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T09:40:54.686684+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-23165",
+              "command": "grep -n \"trajectory_id\" /root/autodl-tmp/agent_progress_probe/gold_bootstrap_ci.py"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T09:40:54.686824+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"181:    return f\\\\\\\"{w['trajectory_id']}__w{w['window_idx']}\\\\\\\"\\\\n374:        is_oh = \\\\\\\"__openhands__\\\\\\\" in w.get(\\\\\\\"trajectory_id\\\\\\\", \\\\\\\"\\\\\\\")\\\\n429:            twv_wid_to_emb_idx[f\\\\\\\"{w['trajectory_id']}__w{w['window_idx']}\\\\\\\"] = i\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T09:40:54.686945+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-23165",
+              "command": "grep -n \"openhands\" /root/autodl-tmp/agent_progress_probe/gold_bootstrap_ci.py"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T09:40:54.687063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"374:        is_oh = \\\\\\\"__openhands__\\\\\\\" in w.get(\\\\\\\"trajectory_id\\\\\\\", \\\\\\\"\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T09:40:54.687260+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-23165",
+              "command": "grep -n \"is_oh\" /root/autodl-tmp/agent_progress_probe/gold_bootstrap_ci.py"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T09:40:54.687405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"374:        is_oh = \\\\\\\"__openhands__\\\\\\\" in w.get(\\\\\\\"trajectory_id\\\\\\\", \\\\\\\"\\\\\\\")\\\\n375:        if is_oh and oh_traj_index:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T09:40:54.687553+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/gold_set/bootstrap_ci_ohfix.json",
+              "content": "{\n  \"n_bootstrap\": 10000,\n  \"seed\": 42,\n  \"tests\": {\n    \"gb_vs_mv\": {\n      \"model_a\": \"Structural GB\",\n      \"model_b\": \"MV Labels\",\n      \"n_samples\": 195,\n      \"n_bootstrap\": 10000,\n      \"f1_a_on_shared\": 0.764361,\n      \"f1_b_on_shared\": 0.718383,\n      \"observed_delta\": 0.045978,\n      \"ci_95_lo\": 0.006214,\n      \"ci_95_hi\": 0.088402,\n      \"p_value\": 0.0121,\n      \"significant_005\": true\n    },\n    \"gb_vs_gru_probe\": {\n      \"model_a\": \"Structural GB\",\n      \"model_b\": \"GRU Probe\",\n      \"n_samples\": 132,\n      \"n_bootstrap\": 10000,\n      \"f1_a_on_shared\": 0.784716,\n      \"f1_b_on_shared\": 0.734833,\n      \"observed_delta\": 0.049882,\n      \"ci_95_lo\": -0.015686,\n      \"ci_95_hi\": 0.120116,\n      \"p_value\": 0.0698,\n      \"significant_005\": false\n    },\n    \"rf_vs_gb\": {\n      \"model_a\": \"Structural RF\",\n      \"model_b\": \"Structural GB\",\n      \"n_samples\": 195,\n      \"n_bootstrap\": 10000,\n      \"f1_a_on_shared\": 0.751621,\n      \"f1_b_on_shared\": 0.764361,\n      \"observed_delta\": -0.01274,\n      \"ci_95_lo\": -0.037209,\n      \"ci_95_hi\": 0.00933,\n      \"p_value\": 0.136,\n      \"significant_005\": false\n    },\n    \"twv_probe_vs_gb\": {\n      \"model_a\": \"TWV Probe\",\n      \"model_b\": \"Structural GB\",\n      \"n_samples\": 132,\n      \"n_bootstrap\": 10000,\n      \"f1_a_on_shared\": 0.768421,\n      \"f1_b_on_shared\": 0.784716,\n      \"observed_delta\": -0.016295,\n      \"ci_95_lo\": -0.066553,\n      \"ci_95_hi\": 0.030622,\n      \"p_value\": 0.2536,\n      \"significant_005\": false\n    },\n    \"twv_probe_vs_gru_probe\": {\n      \"model_a\": \"TWV Probe\",\n      \"model_b\": \"GRU Probe\",\n      \"n_samples\": 132,\n      \"n_bootstrap\": 10000,\n      \"f1_a_on_shared\": 0.768421,\n      \"f1_b_on_shared\": 0.734833,\n      \"observed_delta\": 0.033588,\n      \"ci_95_lo\": -0.029252,\n      \"ci_95_hi\": 0.099071,\n      \"p_value\": 0.1499,\n      \"significant_005\": false\n    }\n  }\n}\n"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T09:40:54.687723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/gold_set/bootstrap_ci_ohfix.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T09:40:54.687887+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**已拉取文件**：`artifacts/gold_set/bootstrap_ci_ohfix.json`\n\n**OH 判断逻辑确认**（第374行）：\n```python\nis_oh = \"__openhands__\" in w.get(\"trajectory_id\", \"\")\n```\nWorker 用的是 `trajectory_id` 字段中是否包含 `__openhands__` 来判断 OpenHands 轨迹，而非文件路径。\n\n**关键结果摘要**：\n| 对比 | n | ΔF1 | 95% CI | p | sig |\n|------|---|-----|--------|---|-----|\n| GB vs MV | 195 | +0.046 | [0.006, 0.088] | 0.012 | **yes** |\n| GB vs GRU Probe | 132 | +0.050 | [−0.016, 0.120] | 0.070 | no |\n| RF vs GB | 195 | −0.013 | [−0.037, 0.009] | 0.136 | no |\n| TWV Probe vs GB | 132 | −0.016 | [−0.067, 0.031] | 0.254 | no |\n| TWV Probe vs GRU | 132 | +0.034 | [−0.029, 0.099] | 0.150 | no |\n\n唯一显著的仍是 GB vs MV（p=0.012）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fetch_bootstrap-ohfix-results_20260515T093958"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/fetch-bootstrap-ohfix-results.md"
+}

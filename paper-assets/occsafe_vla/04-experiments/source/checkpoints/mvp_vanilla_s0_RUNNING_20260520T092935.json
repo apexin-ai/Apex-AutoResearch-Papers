@@ -1,0 +1,53 @@
+{
+  "exp_id": "mvp_vanilla_s0",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 2,
+    "created_at": "2026-05-20T07:08:55.262Z",
+    "updated_at": "2026-05-20T09:29:35.821Z",
+    "hypothesis": "OpenVLA-OFT fine-tuned on LIBERO-Spatial without occupancy supervision will exhibit low collision avoidance (~15% CAR) on SafeLIBERO Level I, establishing the baseline that standard VLA lacks spatial safety awareness despite high task success rate",
+    "server": "westd-10894",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-10894",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T07:16:08.691Z",
+      "command": "bash -c \"source /etc/network_turbo; source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && WANDB_MODE=disabled MUJOCO_GL=egl torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --use_diffusion False --use_film False --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --run_root_dir /root/autodl-tmp/checkpoints/vanilla_s0 --seed 42\"",
+      "finished_at": "2026-05-20T09:15:32.774Z",
+      "training_hours": 1.99
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "completed_at": "2026-05-20T07:24:25.073Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T07:24:26.290129+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T09:15:37.266248+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "torchrun finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --dataset_name libero_spatial_no_noops --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --lora_rank 32 --seed 42",
+      "server": "westd-10894",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": "~25000 episodes",
+      "model_name": "openvla-7b (local)",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-20T09:29:35.835750+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "carr_qwen25_1-5b_lora_k4_random",
+  "project": "collapse_aware_reward_rebalancing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:10:34.975Z",
+    "updated_at": "2026-05-17T13:10:34.975Z"
+  },
+  "timestamp": "2026-05-17T13:10:35.009353+00:00",
+  "trigger": "update_registry"
+}

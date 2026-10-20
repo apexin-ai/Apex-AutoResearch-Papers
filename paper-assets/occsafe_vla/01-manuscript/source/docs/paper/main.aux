@@ -1,0 +1,169 @@
+\relax 
+\bibstyle{corlabbrvnat}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{brohan2023rt2,kim2024openvla,kim2025oft}
+\citation{hu2025vlsa}
+\citation{li2026spatialforcing,yuan2025depthvla,wu2025spatialvla,liu2025occvla}
+\citation{wu2026stvla,chen2026gstvla,tu2026sgvla,xiao2026stemvla,li2025pointvla,sun2025geovla,bhat20253dcavla,li2025qdepthvla,abouzeid2025geoaware,rao2026augvla3d,li2026corridorvla}
+\citation{hu2025vlsa,zhai2026cofreevla,raja2024ogmcbf}
+\citation{zhang2025safevla}
+\citation{li2026vlasafety}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{kim2024openvla}
+\citation{hu2022lora}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {Training setup and factorial design.} \textbf  {(a)}~OpenVLA-7B with dual vision encoders (DINOv2 + SigLIP) and an auxiliary spatial head (bird's-eye view occupancy or depth), discarded at inference. \textbf  {(b)}~$2{\times }2$ factorial crossing gradient flow (ON/OFF) and normalization (BN/LN), plus Vanilla baseline and 7 single-factor ablations probing label content, reference frame, and temporal extent.}}{2}{figure.caption.2}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:overview}{{1}{2}{\textbf {Training setup and factorial design.} \textbf {(a)}~OpenVLA-7B with dual vision encoders (DINOv2 + SigLIP) and an auxiliary spatial head (bird's-eye view occupancy or depth), discarded at inference. \textbf {(b)}~$2{\times }2$ factorial crossing gradient flow (ON/OFF) and normalization (BN/LN), plus Vanilla baseline and 7 single-factor ablations probing label content, reference frame, and temporal extent}{figure.caption.2}{}}
+\citation{black2024pi0,team2024octo}
+\citation{hu2025vlsa,zhai2026cofreevla,raja2024ogmcbf,zhang2025safevla}
+\citation{yuan2025depthvla,li2025qdepthvla,rao2026augvla3d,bhat20253dcavla,abouzeid2025geoaware,yang2024depthanything,li2026spatialforcing,wu2025spatialvla,li2025pointvla,sun2025geovla,wu2026stvla,chen2026gstvla,tu2026sgvla,xiao2026stemvla,li2026corridorvla,liu2025occvla,li2022bevformer,sima2023occnet,tian2023occ3d}
+\citation{li2022bevformer,sima2023occnet,tian2023occ3d}
+\citation{liu2025occvla}
+\citation{wu2025spatialvla}
+\citation{yuan2025depthvla}
+\citation{caruana1997multitask,ruder2017overview}
+\citation{bilen2017universal}
+\citation{maninis2019astmt}
+\citation{rebuffi2018adapters}
+\citation{chen2018gradnorm,yu2020pcgrad,liu2021cagrad,navon2022nashmtl,jiang2023forkmerge}
+\citation{yu2020pcgrad}
+\citation{liu2021cagrad}
+\citation{ioffe2015batchnorm}
+\citation{ioffe2017renorm}
+\citation{schneider2020bn,li2017adabn}
+\citation{ba2016layernorm}
+\citation{hu2022lora}
+\citation{kim2024openvla}
+\citation{kim2025oft}
+\citation{oquab2024dinov2}
+\citation{zhai2023siglip}
+\citation{hu2022lora}
+\citation{lin2017focal}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}VLA Safety and Spatial Representations}{3}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Auxiliary Tasks and Multi-Task Gradient Dynamics}{3}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\citation{hu2025vlsa}
+\citation{liu2023libero}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Ablation design: each comparison isolates one factor.}}{4}{table.caption.3}\protected@file@percent }
+\newlabel{tab:ablation_design}{{1}{4}{Ablation design: each comparison isolates one factor}{table.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Ablation Design}{4}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:ablation}{{3.1}{4}{Ablation Design}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Evaluation}{4}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{4}{section.4}\protected@file@percent }
+\newlabel{sec:results}{{4}{4}{Results}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Main Results}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Results on SafeLIBERO Level~I (10 tasks, 50 rollouts/seed). Mean $\pm $ SD across seeds. $\Delta $CAR vs.\ v2 Vanilla ($0.745$) for factorial conditions; vs.\ v1 Vanilla ($0.780$) for supplementary. $^{a}$Highest variance. $^\ddagger $2 seeds. $^\star $v1 code.}}{5}{table.caption.4}\protected@file@percent }
+\newlabel{tab:main_results}{{2}{5}{Results on SafeLIBERO Level~I (10 tasks, 50 rollouts/seed). Mean $\pm $ SD across seeds. $\Delta $CAR vs.\ v2 Vanilla ($0.745$) for factorial conditions; vs.\ v1 Vanilla ($0.780$) for supplementary. $^{a}$Highest variance. $^\ddagger $2 seeds. $^\star $v1 code}{table.caption.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces $2{\times }2$ factorial: normalization type $\times $ gradient flow (all v2 data). Two main effects: gradient flow under BN $g{=}0.78$ (large); normalization effect $g{=}0.88$--$1.24$ (large to very large). BN + gradient flow is the sole cell below Vanilla. Interaction $p_\text  {perm}{=}0.794$. $\text  {BF}_{01}{=}3.50$ (moderate evidence for additivity).}}{6}{table.caption.5}\protected@file@percent }
+\newlabel{tab:factorial}{{3}{6}{$2{\times }2$ factorial: normalization type $\times $ gradient flow (all v2 data). Two main effects: gradient flow under BN $g{=}0.78$ (large); normalization effect $g{=}0.88$--$1.24$ (large to very large). BN + gradient flow is the sole cell below Vanilla. Interaction $p_\text {perm}{=}0.794$. $\text {BF}_{01}{=}3.50$ (moderate evidence for additivity)}{table.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces (a)~Only BN + gradient flow falls below Vanilla. Detach+LN achieves the highest CAR ($0.802{\pm }0.024$, $n{=}3$), consistently outperforming Vanilla ($0.745$; Hedges' $g{=}1.89$). Error bars: cross-seed SD. (b)~Classic interaction plot: near-parallel lines indicate negligible interaction ($p_\text  {perm}{=}0.794$). LN consistently outperforms BN by 3.5--4.8\,pp regardless of gradient flow. Only BN + gradient ON falls below Vanilla.}}{6}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:car_factorial}{{2}{6}{(a)~Only BN + gradient flow falls below Vanilla. Detach+LN achieves the highest CAR ($0.802{\pm }0.024$, $n{=}3$), consistently outperforming Vanilla ($0.745$; Hedges' $g{=}1.89$). Error bars: cross-seed SD. (b)~Classic interaction plot: near-parallel lines indicate negligible interaction ($p_\text {perm}{=}0.794$). LN consistently outperforms BN by 3.5--4.8\,pp regardless of gradient flow. Only BN + gradient ON falls below Vanilla}{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Factorial Interpretation}{6}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Gradient Dynamics}{6}{subsection.4.3}\protected@file@percent }
+\citation{kornblith2019similarity}
+\citation{yu2020pcgrad}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Gradient dynamics (v2, seed 42, 200 batches at 50K; Random OCC data obtained under v1 codebase). Action gradient norms are comparable across conditions, ruling out amplification. Action--auxiliary cosine similarity is near zero (${\approx }$46\% conflict rate), consistent with orthogonality.}}{7}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:gradient_analysis}{{3}{7}{Gradient dynamics (v2, seed 42, 200 batches at 50K; Random OCC data obtained under v1 codebase). Action gradient norms are comparable across conditions, ruling out amplification. Action--auxiliary cosine similarity is near zero (${\approx }$46\% conflict rate), consistent with orthogonality}{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{7}{Discussion}{section.5}{}}
+\citation{li2026spatialforcing,yuan2025depthvla,wu2025spatialvla,liu2025occvla}
+\citation{kendall2018uncertainty}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{8}{section.7}\protected@file@percent }
+\bibdata{references}
+\bibcite{brohan2023rt2}{{1}{2023}{{Brohan et~al.}}{{Brohan, Brown, Carbajal, et~al.}}}
+\bibcite{kim2024openvla}{{2}{2024}{{Kim et~al.}}{{Kim, Pertsch, Karamcheti, Xiao, Balakrishna, Nair, Rafailov, Foster, Lam, Sanketi, Vuong, Kollar, Burchfiel, Tedrake, Sadigh, Levine, Liang, and Finn}}}
+\bibcite{kim2025oft}{{3}{2025}{{Kim et~al.}}{{}}}
+\bibcite{hu2025vlsa}{{4}{2025}{{Hu et~al.}}{{Hu, Liu, Liu, Cen, Meng, and He}}}
+\bibcite{li2026spatialforcing}{{5}{2026}{{Li et~al.}}{{}}}
+\bibcite{yuan2025depthvla}{{6}{2025}{{Yuan et~al.}}{{}}}
+\bibcite{wu2025spatialvla}{{7}{2025}{{Qu et~al.}}{{}}}
+\bibcite{liu2025occvla}{{8}{2025}{{Liu et~al.}}{{}}}
+\bibcite{wu2026stvla}{{9}{2026}{{Wu et~al.}}{{}}}
+\bibcite{chen2026gstvla}{{10}{2026}{{Sarowar et~al.}}{{}}}
+\bibcite{tu2026sgvla}{{11}{2026}{{Tu et~al.}}{{}}}
+\bibcite{xiao2026stemvla}{{12}{2026}{{Xiao et~al.}}{{}}}
+\bibcite{li2025pointvla}{{13}{2025}{{Li et~al.}}{{}}}
+\bibcite{sun2025geovla}{{14}{2025}{{Sun et~al.}}{{}}}
+\bibcite{bhat20253dcavla}{{15}{2025}{{Bhat et~al.}}{{}}}
+\bibcite{li2025qdepthvla}{{16}{2025}{{Li et~al.}}{{}}}
+\bibcite{abouzeid2025geoaware}{{17}{2025}{{Abouzeid et~al.}}{{}}}
+\bibcite{rao2026augvla3d}{{18}{2026}{{Rao et~al.}}{{}}}
+\bibcite{li2026corridorvla}{{19}{2026}{{Li et~al.}}{{}}}
+\bibcite{zhai2026cofreevla}{{20}{2026}{{Zhai et~al.}}{{}}}
+\bibcite{raja2024ogmcbf}{{21}{2024}{{Raja et~al.}}{{Raja, M{\"o}kk{\"o}nen, and Ghabcheloo}}}
+\bibcite{zhang2025safevla}{{22}{2025}{{Zhang et~al.}}{{}}}
+\bibcite{li2026vlasafety}{{23}{2026}{{Li et~al.}}{{}}}
+\bibcite{hu2022lora}{{24}{2022}{{Hu et~al.}}{{Hu, Shen, Wallis, Allen-Zhu, Li, Wang, Wang, and Chen}}}
+\bibcite{black2024pi0}{{25}{2024}{{Black et~al.}}{{Black, Brown, Driess, Esmail, Equi, Finn, Fusai, Gould, Hausman, Ichter, Levine, Li, Mothukuri, Nair, Pertsch, Shi, Tanner, Vuong, Walling, Wang, and Zhilinsky}}}
+\bibcite{team2024octo}{{26}{2024}{{{Octo Model Team} et~al.}}{{{Octo Model Team}, Ghosh, Walke, Pertsch, Black, Mees, Dasari, Hejna, Kreiman, Xu, Luo, Tan, Sanketi, Vuong, Xiao, Sadigh, Finn, and Levine}}}
+\bibcite{yang2024depthanything}{{27}{2024}{{Yang et~al.}}{{Yang, Kang, Huang, Xu, Feng, and Zhao}}}
+\bibcite{li2022bevformer}{{28}{2022}{{Li et~al.}}{{Li, Wang, Li, Xie, Sima, Lu, Qiao, and Dai}}}
+\bibcite{sima2023occnet}{{29}{2023}{{Sima et~al.}}{{Sima, Tong, Wang, Chen, Wu, Deng, Gu, Lu, Luo, Lin, and Li}}}
+\bibcite{tian2023occ3d}{{30}{2023}{{Tian et~al.}}{{Tian, Jiang, Yun, Mao, Yang, Wang, Wang, and Zhao}}}
+\bibcite{caruana1997multitask}{{31}{1997}{{Caruana}}{{}}}
+\bibcite{ruder2017overview}{{32}{2017}{{Ruder}}{{}}}
+\bibcite{bilen2017universal}{{33}{2017}{{Bilen and Vedaldi}}{{}}}
+\bibcite{maninis2019astmt}{{34}{2019}{{Maninis et~al.}}{{Maninis, Radosavovic, and Kokkinos}}}
+\bibcite{rebuffi2018adapters}{{35}{2018}{{Rebuffi et~al.}}{{Rebuffi, Bilen, and Vedaldi}}}
+\bibcite{chen2018gradnorm}{{36}{2018}{{Chen et~al.}}{{Chen, Badrinarayanan, Lee, and Rabinovich}}}
+\bibcite{yu2020pcgrad}{{37}{2020}{{Yu et~al.}}{{Yu, Kumar, Gupta, Levine, Hausman, and Finn}}}
+\bibcite{liu2021cagrad}{{38}{2021}{{Liu et~al.}}{{Liu, Liu, Jin, Stone, and Liu}}}
+\bibcite{navon2022nashmtl}{{39}{2022}{{Navon et~al.}}{{Navon, Shamsian, Achituve, Maron, Kawaguchi, Chechik, and Fetaya}}}
+\bibcite{jiang2023forkmerge}{{40}{2023}{{Jiang et~al.}}{{Jiang, Chen, Pan, Wang, Liu, Jiang, and Long}}}
+\bibcite{ioffe2015batchnorm}{{41}{2015}{{Ioffe and Szegedy}}{{}}}
+\bibcite{ioffe2017renorm}{{42}{2017}{{Ioffe}}{{}}}
+\bibcite{schneider2020bn}{{43}{2020}{{Schneider et~al.}}{{Schneider, Rusak, Eck, Bringmann, Brendel, and Bethge}}}
+\bibcite{li2017adabn}{{44}{2017}{{Li et~al.}}{{Li, Wang, Shi, Liu, and Hou}}}
+\bibcite{ba2016layernorm}{{45}{2016}{{Ba et~al.}}{{Ba, Kiros, and Hinton}}}
+\bibcite{oquab2024dinov2}{{46}{2024}{{Oquab et~al.}}{{Oquab, Darcet, Moutakanni, Vo, Szafraniec, Khalidov, Fernandez, Haziza, Massa, El-Nouby, Assran, Ballas, Galuba, Howes, Huang, Li, Misra, Rabbat, Sharma, Synnaeve, Xu, J\'{e}gou, Mairal, Labatut, Joulin, and Bojanowski}}}
+\bibcite{zhai2023siglip}{{47}{2023}{{Zhai et~al.}}{{Zhai, Mustafa, Kolesnikov, and Beyer}}}
+\bibcite{lin2017focal}{{48}{2017}{{Lin et~al.}}{{Lin, Goyal, Girshick, He, and Doll\'{a}r}}}
+\bibcite{liu2023libero}{{49}{2023}{{Liu et~al.}}{{Liu, Zhu, Gao, Feng, Liu, Zhu, and Stone}}}
+\bibcite{kornblith2019similarity}{{50}{2019}{{Kornblith et~al.}}{{Kornblith, Norouzi, Lee, and Hinton}}}
+\bibcite{kendall2018uncertainty}{{51}{2018}{{Kendall et~al.}}{{Kendall, Gal, and Cipolla}}}
+\bibcite{anderson2001permanova}{{52}{2001}{{Anderson}}{{}}}
+\bibcite{montgomery2017doe}{{53}{2017}{{Montgomery}}{{}}}
+\bibcite{wagenmakers2007practical}{{54}{2007}{{Wagenmakers}}{{}}}
+\citation{kim2024openvla}
+\citation{kim2025oft}
+\citation{kornblith2019similarity}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Extended Per-Task Results}{13}{appendix.A}\protected@file@percent }
+\newlabel{app:per_task}{{A}{13}{Extended Per-Task Results}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Per-task mean CAR across seeds (50 rollouts per seed, v1 code). This table reports v1 codebase results retained for completeness; all main analyses use v2 data (Table~\ref {tab:main_results}). All conditions use 3 seeds except Depth (4). Detach+LN per-task uses 2 seeds (s1, s2; s0 lacks per-task breakdown).}}{13}{table.caption.9}\protected@file@percent }
+\newlabel{tab:per_task}{{4}{13}{Per-task mean CAR across seeds (50 rollouts per seed, v1 code). This table reports v1 codebase results retained for completeness; all main analyses use v2 data (Table~\ref {tab:main_results}). All conditions use 3 seeds except Depth (4). Detach+LN per-task uses 2 seeds (s1, s2; s0 lacks per-task breakdown)}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Training Details}{13}{appendix.B}\protected@file@percent }
+\newlabel{app:training}{{B}{13}{Training Details}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Training hyperparameters.}}{14}{table.caption.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {C}Extended Analysis}{14}{appendix.C}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {C.1}Temporal Dynamics}{14}{subsection.C.1}\protected@file@percent }
+\newlabel{app:temporal}{{C.1}{14}{Temporal Dynamics}{subsection.C.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Per-layer gradient analysis decomposed into amplitude and direction (v1 codebase checkpoint, seed 42, 200 batches). \textbf  {Top (a--b):} Action gradient norm heatmap (log scale). Gradient-flow conditions (Vanilla, Full OCC, Random OCC) maintain comparable norms; Detach shows substantially reduced norms across all layers, a v1-specific artifact not reproduced under v2 (see Appendix~\ref {app:codebase}). \textbf  {Bottom (c--d):} Gradient conflict rate between action and auxiliary losses. DINOv2 maintains $\sim $46\% conflict (near-orthogonal), while SigLIP late layers drop to 19--25\% (cooperative alignment). Both amplitude and directional patterns are identical for Full OCC and Random OCC, confirming architectural rather than label-dependent structure. Directional findings are confirmed under v2; the Detach amplitude suppression (a--b) is a v1 code-path artifact. Conflict rates approach ${\approx }$46\% in early and middle layers; late SigLIP layers show lower conflict rates (${\approx }$25\%), consistent with weak alignment rather than conflict.}}{15}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:per_layer_combined}{{4}{15}{Per-layer gradient analysis decomposed into amplitude and direction (v1 codebase checkpoint, seed 42, 200 batches). \textbf {Top (a--b):} Action gradient norm heatmap (log scale). Gradient-flow conditions (Vanilla, Full OCC, Random OCC) maintain comparable norms; Detach shows substantially reduced norms across all layers, a v1-specific artifact not reproduced under v2 (see Appendix~\ref {app:codebase}). \textbf {Bottom (c--d):} Gradient conflict rate between action and auxiliary losses. DINOv2 maintains $\sim $46\% conflict (near-orthogonal), while SigLIP late layers drop to 19--25\% (cooperative alignment). Both amplitude and directional patterns are identical for Full OCC and Random OCC, confirming architectural rather than label-dependent structure. Directional findings are confirmed under v2; the Detach amplitude suppression (a--b) is a v1 code-path artifact. Conflict rates approach ${\approx }$46\% in early and middle layers; late SigLIP layers show lower conflict rates (${\approx }$25\%), consistent with weak alignment rather than conflict}{figure.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Additional Observations}{15}{appendix.D}\protected@file@percent }
+\newlabel{app:additional}{{D}{15}{Additional Observations}{appendix.D}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Dose-response: CAR vs.\ OCC gradient flow duration (v1 codebase, all conditions). Filled circles: early-cutoff conditions with all 3 seeds completed; open circles: conditions with $\leq $2 seeds (counts annotated as $n$). Diamond ($\diamond $): Reverse Cutoff (gradient flow restricted to the last 15K steps). Dashed line: Vanilla 3-seed mean (v1); shaded band: $\pm \,$1\,SE. The ``+0.2\%'' annotation marks the Cutoff@15K--Vanilla gap. Intermediate cutoff conditions cluster near Vanilla, while Cutoff@25K and Reverse Cutoff fall substantially below.}}{16}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:dose_response}{{5}{16}{Dose-response: CAR vs.\ OCC gradient flow duration (v1 codebase, all conditions). Filled circles: early-cutoff conditions with all 3 seeds completed; open circles: conditions with $\leq $2 seeds (counts annotated as $n$). Diamond ($\diamond $): Reverse Cutoff (gradient flow restricted to the last 15K steps). Dashed line: Vanilla 3-seed mean (v1); shaded band: $\pm \,$1\,SE. The ``+0.2\%'' annotation marks the Cutoff@15K--Vanilla gap. Intermediate cutoff conditions cluster near Vanilla, while Cutoff@25K and Reverse Cutoff fall substantially below}{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Codebase Sensitivity (v1 vs.\ v2)}{16}{appendix.E}\protected@file@percent }
+\newlabel{app:codebase}{{E}{16}{Codebase Sensitivity (v1 vs.\ v2)}{appendix.E}{}}
+\citation{anderson2001permanova}
+\citation{montgomery2017doe}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Statistical Power Analysis}{17}{appendix.F}\protected@file@percent }
+\newlabel{app:stat_power}{{F}{17}{Statistical Power Analysis}{appendix.F}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces $2{\times }2$ factorial ANOVA (Type~II SS). The interaction is negligible; the normalization main effect approaches significance ($p{=}0.060$).}}{17}{table.caption.13}\protected@file@percent }
+\newlabel{tab:anova}{{6}{17}{$2{\times }2$ factorial ANOVA (Type~II SS). The interaction is negligible; the normalization main effect approaches significance ($p{=}0.060$)}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Pairwise Hedges' $g$ (bias-corrected) for factorial cells and Vanilla.}}{17}{table.caption.14}\protected@file@percent }
+\newlabel{tab:pairwise}{{7}{17}{Pairwise Hedges' $g$ (bias-corrected) for factorial cells and Vanilla}{table.caption.14}{}}
+\citation{wagenmakers2007practical}
+\@writefile{toc}{\contentsline {section}{\numberline {G}Permutation-Based ANOVA}{18}{appendix.G}\protected@file@percent }
+\newlabel{app:permutation}{{G}{18}{Permutation-Based ANOVA}{appendix.G}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Permutation-based ANOVA for the $2{\times }2$ factorial (10{,}000 permutations). Both main effects are significant or near-significant; the interaction remains negligible.}}{18}{table.caption.15}\protected@file@percent }
+\newlabel{tab:permanova}{{8}{18}{Permutation-based ANOVA for the $2{\times }2$ factorial (10{,}000 permutations). Both main effects are significant or near-significant; the interaction remains negligible}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Per-Task Factorial Analysis}{18}{appendix.H}\protected@file@percent }
+\newlabel{app:per_task_factorial}{{H}{18}{Per-Task Factorial Analysis}{appendix.H}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Per-task normalization effect by task difficulty (v2 data, seed-weighted means). The LN advantage amplifies ${\approx }4{\times }$ on physically constrained tasks. T4 excluded (medium difficulty).}}{19}{table.caption.16}\protected@file@percent }
+\newlabel{tab:per_task_norm}{{9}{19}{Per-task normalization effect by task difficulty (v2 data, seed-weighted means). The LN advantage amplifies ${\approx }4{\times }$ on physically constrained tasks. T4 excluded (medium difficulty)}{table.caption.16}{}}
+\gdef \@abspage@last{19}

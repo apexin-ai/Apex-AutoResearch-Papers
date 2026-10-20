@@ -1,0 +1,45 @@
+{
+  "exp_id": "carr_fullft_nocuration_01",
+  "project": "collapse_aware_reward_rebalancing",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:59:20.517Z",
+    "updated_at": "2026-05-16T23:35:13.109Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/carr && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 python3 run_fullft_nocuration.py",
+      "server": "bjb2-23165",
+      "gpu": "cuda:0",
+      "pid": 521921,
+      "log_path": "~/runs/collapse_aware_reward_rebalancing/carr_fullft_nocuration_01.log",
+      "submitted_at": "2026-05-16T19:59:20.497Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "Full-FT no_curation baseline: 随机选1-of-4不按reward排序，作为Full-FT curation的对照组",
+      "condition": "no_curation (random 1-of-4) Full-FT",
+      "generations": 3,
+      "prompts": 2000,
+      "eval_prompts": 200,
+      "model_name": "Qwen3-0.6B",
+      "k_candidates": 4,
+      "gen_batch_size": 16,
+      "lr": 5e-06,
+      "per_device_train_batch_size": 1,
+      "gradient_accumulation_steps": 8,
+      "gradient_checkpointing": true,
+      "use_lora": false,
+      "data_path": "openbmb/UltraFeedback",
+      "data_count": 2200,
+      "seed": 42,
+      "output_dir": "/root/autodl-tmp/carr/outputs_fullft_nocuration/"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T23:35:13.062Z"
+    }
+  },
+  "timestamp": "2026-05-16T23:35:13.182149+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c80b9d2e4b114183278",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "paper figure",
+  "task_key": "worker_paper_figure_20260514T184849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_20260514T184849_result.json",
+    "occurrence": 1,
+    "bytes": 448,
+    "sha256": "3756e87d5cff2ed4dd0c562a900bcdff93cf06bf54ac4a3b00b8fc474004a209"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成并注册：\n\n- **PDF**: `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/figures/paper/fig_pipeline.pdf` (43KB)\n- **PNG**: `fig_pipeline.png` (217KB, 3264×1300px)\n- **Artifact ID**: `art_20260514_0f0e7a`\n\n三段式布局：Data Preparation → Weak Supervision (3 LFs + Majority Vote) → Detection Methods，三条检测路线用绿/蓝/灰区分粗细，Structural Features 最醒目。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-copy-3.md"
+}

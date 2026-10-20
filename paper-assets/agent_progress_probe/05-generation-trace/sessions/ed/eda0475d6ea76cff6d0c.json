@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eda0475d6ea76cff6d0c",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "experiment feature overlap lf only",
+  "task_key": "worker_experiment_feature-overlap-lf-only_20260515T031743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_feature-overlap-lf-only_20260515T031743_result.json",
+    "occurrence": 1,
+    "bytes": 730,
+    "sha256": "500b56da1eb64864003af38b56562f8894b48817c57625f38d1ec2736eb59f25"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。3 行对比表 (GB):\n\n| Feature Set | #Feat | In-Dom. macro_F1 | Cross-Ag. macro_F1 |\n|---|---|---|---|\n| Full (all 30) | 30 | 0.9951 | 0.9674 |\n| **LF-overlap only** | **11** | **0.9937** | **0.9770** |\n| Residual only | 19 | 0.9515 | 0.5656 |\n\n关键发现：11 个 LF-overlap 特征**单独**就能达到 cross-agent 0.977，甚至高于 full 30 的 0.967（+1.0pp）。而 19 个 residual 特征 cross-agent 仅 0.566。这说明 cross-agent 泛化能力几乎完全来自 LF-overlap 特征，residual 特征不仅没有帮助，反而在 full 模型中引入了噪声，轻微拖累了跨 agent 性能。\n\n验证一致性：full_30 和 residual_19 的数字与原始 ablation 完全匹配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-feature-overlap-lf-only.md"
+}

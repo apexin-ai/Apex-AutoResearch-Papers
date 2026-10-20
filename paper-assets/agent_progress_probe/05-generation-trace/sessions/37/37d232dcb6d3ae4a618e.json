@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37d232dcb6d3ae4a618e",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "paper figure",
+  "task_key": "worker_paper_figure_20260514T190818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_20260514T190818_result.json",
+    "occurrence": 1,
+    "bytes": 266,
+    "sha256": "17961407fb0b2436f5bc14c9235b2dbe0b9b3ac240606fcd2f322a3341aea049"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n**输出文件**:\n- PDF: `figures/paper/fig_lf_temporal.pdf` (31 KB)\n- PNG: `figures/paper/fig_lf_temporal.png` (168 KB, 1743×1280)\n- 生成脚本: `figures/paper/gen_fig_lf_temporal.py`\n- Artifact 已注册: `art_20260514_4dc42b`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure.md"
+}

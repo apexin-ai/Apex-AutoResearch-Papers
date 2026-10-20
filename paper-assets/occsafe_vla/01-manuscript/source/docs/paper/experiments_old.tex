@@ -1,0 +1,32 @@
+\section{Experiments}
+
+\subsection{Benchmark and Tasks}
+
+We evaluate on the SafeLIBERO benchmark~\cite{hu2025vlsa}, which augments the LIBERO-Spatial suite with collision-aware evaluation. SafeLIBERO comprises 32 scenarios across 10 tabletop manipulation tasks organized into two difficulty levels: Level~I (basic spatial reasoning) and Level~II (complex multi-step manipulation). Each task requires the agent to reach, grasp, and place objects among surrounding obstacles. Several tasks deliberately position objects in close proximity (e.g., a bowl resting on a ramekin), creating natural collision challenges that test whether the agent can complete the instructed task without disturbing nearby objects.
+
+\subsection{Evaluation Protocol}
+
+We measure two complementary metrics aligned with the VLSA-AEGIS protocol~\cite{hu2025vlsa}. \textbf{Task Success Rate (TSR)} is the fraction of episodes in which the robot completes the instructed task. \textbf{Collision Avoidance Rate (CAR)} is the fraction of episodes with zero unintended object displacement, computed as $\text{CAR} = 1 - n_{\text{collide}} / N$, where $n_{\text{collide}}$ counts episodes whose maximum L1 \texttt{body\_xpos} displacement exceeds a threshold of $0.001$. For each of the 10 tasks, we run 50 rollouts per seed (500 episodes per seed). Seeds vary by condition (2--4 seeds; see Table~\ref{tab:main_results}). We report mean and standard deviation across seeds.
+
+\subsection{Experimental Conditions}
+
+We design six conditions that form a mechanism ablation chain, progressively isolating the role of occupancy-grounded gradient flow:
+
+\begin{itemize}[nosep,leftmargin=*]
+  \item \textbf{Vanilla}: OpenVLA-OFT fine-tuned without any auxiliary supervision (baseline).
+  \item \textbf{Full OCC}: BEV occupancy auxiliary head with gradients flowing into the vision encoder (\texttt{occ\_detach=False}).
+  \item \textbf{Detach OCC}: Occupancy head with detached gradients (\texttt{occ\_detach=True}), testing whether gradient flow to the encoder is necessary.
+  \item \textbf{Depth}: Depth prediction auxiliary head (same architecture, labels from MuJoCo simulator depth rendering at $64{\times}64$ resolution), testing whether collision avoidance is specific to occupancy or arises from any geometric auxiliary task.
+  \item \textbf{Random OCC}: Occupancy head trained with randomized labels, controlling for the regularization effect of an auxiliary loss.
+  \item \textbf{Cutoff}: Occupancy head with gradient flow active for the first 35{,}000 steps, then disabled for the remaining 15{,}000 steps, testing whether early-phase gradient flow is sufficient or continuous auxiliary supervision is required.
+\end{itemize}
+
+\noindent The chain Vanilla $\to$ Random OCC $\to$ Depth $\to$ Detach OCC $\to$ Full OCC isolates, in turn, auxiliary regularization, geometric supervision, and occupancy-specific gradient flow. The Cutoff condition additionally isolates the temporal requirement of auxiliary supervision.
+
+Each pairwise comparison isolates a single experimental factor. Vanilla vs.\ Full OCC tests whether occupancy supervision affects collision behavior. Full OCC vs.\ Detach OCC holds architecture and labels constant while toggling gradient flow, isolating the causal role of encoder-level gradient routing. Full OCC vs.\ Random OCC preserves architecture and gradient flow while replacing structured labels with random binary targets, isolating the contribution of label content. Full OCC vs.\ Depth substitutes the allocentric BEV reference frame with egocentric depth supervision, isolating the spatial representation. The Cutoff condition selectively disables gradient flow partway through training, isolating the temporal extent of auxiliary supervision. This factorial structure ensures that each mechanism (gradient flow, label content, spatial reference frame, temporal duration) is tested by exactly one controlled comparison.
+
+\subsection{Implementation Details}
+
+All conditions share the same base model: OpenVLA-OFT 7B~\cite{kim2025oft}, pre-trained on Open X-Embodiment. We fine-tune with LoRA (rank 32, $\alpha{=}16$) for 50K steps using AdamW (weight decay $0.01$), a batch size of 8, a constant learning rate of $5 \times 10^{-4}$, and 2--4 random seeds per condition (see Table~\ref{tab:main_results}). The LoRA adapter adds 110.8M trainable parameters (1.45\% of 7.65B total).
+
+The occupancy head (1.2M parameters) is a convolutional decoder that maps concatenated DINOv2+SigLIP patch features (2176 dimensions) to a $64{\times}64$ BEV occupancy grid. The first 256 patch tokens from the primary camera view are selected and projected via a linear layer ($2176{\to}256$), then reshaped into a $16{\times}16$ spatial map. Two transposed convolutions ($256{\to}128{\to}64$, kernel 4, stride 2) with BatchNorm and GELU upsample this map to $64{\times}64$, and a $1{\times}1$ convolution produces the binary occupancy logits. The head is trained with Focal Loss ($\alpha{=}0.25$, $\gamma{=}2.0$); the occupancy loss weight $\lambda_{\text{occ}}$ starts at $0.01$ and decays exponentially as $\lambda_{\text{occ}}(t) = 0.01 \cdot \exp(-t/\tau)$ with $\tau{=}50$K steps. The depth head uses the same decoder architecture with continuous regression targets. Each run trains in approximately 12.9 hours on a single NVIDIA RTX PRO 6000 GPU (98\,GB). Evaluation uses \texttt{MUJOCO\_GL=egl} for headless rendering with deterministic rollout seeds.

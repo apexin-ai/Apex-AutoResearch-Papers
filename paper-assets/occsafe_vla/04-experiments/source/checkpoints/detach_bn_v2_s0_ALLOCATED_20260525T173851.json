@@ -1,0 +1,16 @@
+{
+  "exp_id": "detach_bn_v2_s0",
+  "project": "occsafe_vla",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T12:27:43.616Z",
+    "updated_at": "2026-05-25T17:38:51.588Z",
+    "hypothesis": "D051 v2 code rebuild: Detach BN (gradient flow OFF, BatchNorm) with confirmed v2 code (correct detach implementation). Replaces ablation_occ_detach_s0 (v1 code, detach implementation unverified). Seed 42. If CAR ≈ v1 result (0.746) → v1 detach was functional despite code differences. If CAR significantly different → v1 detach was broken.",
+    "notes": "code_version: v2 | replaces: ablation_occ_detach_s0 (v1) | D051 factorial rebuild"
+  },
+  "timestamp": "2026-05-25T17:38:51.847477+00:00",
+  "trigger": "update_registry"
+}

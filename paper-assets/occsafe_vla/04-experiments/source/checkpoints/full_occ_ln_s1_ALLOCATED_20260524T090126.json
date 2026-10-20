@@ -1,0 +1,23 @@
+{
+  "exp_id": "full_occ_ln_s1",
+  "project": "occsafe_vla",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:00:18.665Z",
+    "updated_at": "2026-05-24T09:01:26.112Z",
+    "hypothesis": "Full OCC + LN seed 43, same hypothesis as full_occ_ln_s0. 2×2 factorial completion: gradient flow × normalization type interaction.",
+    "spec": {
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 25000,
+      "model_name": "openvla-7b",
+      "seed": 43,
+      "checkpoint_source": "openvla-7b (from scratch)",
+      "eval_data": "N/A (training)"
+    }
+  },
+  "timestamp": "2026-05-24T09:01:26.266094+00:00",
+  "trigger": "update_registry"
+}

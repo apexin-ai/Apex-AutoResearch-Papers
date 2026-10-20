@@ -1,0 +1,51 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model Collapse in Self-Consuming Loops.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Diversity in Alignment Training.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LoRA and Training Capacity.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Pipeline Overview}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Configurations}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model Scale.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training Method.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Selection Pressure.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Curation Strategy.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Learning Rate.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Metrics}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Semantic Diversity.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Format Diversity.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Claim 1: Semantic Diversity is Resilient}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Semantic diversity metrics across 0.6B configurations over 3 generations. $\Delta $Vendi reports the percentage change from Gen 0 to Gen 2.}}{4}{table.caption.11}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main_results}{{1}{4}{Semantic diversity metrics across 0.6B configurations over 3 generations. $\Delta $Vendi reports the percentage change from Gen 0 to Gen 2}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Qwen2.5-1.5B LoRA K=4 diversity metrics over 5 generations.}}{4}{table.caption.13}\protected@file@percent }
+\newlabel{tab:1.5b_results}{{2}{4}{Qwen2.5-1.5B LoRA K=4 diversity metrics over 5 generations}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Model Verification at 1.5B Scale.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Claim 2: Format Collapse is Primarily Iteration-Driven}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale-Dependent Nuance at 1.5B.}{4}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Claim 3: LoRA Capacity Artifact and Direction Reversal}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Format metrics comparison at 0.6B scale (LoRA K=4). Curated and random conditions show identical degradation, establishing that format collapse is inherent to iterative training.}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:format_06b}{{3}{5}{Format metrics comparison at 0.6B scale (LoRA K=4). Curated and random conditions show identical degradation, establishing that format collapse is inherent to iterative training}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Format metrics at 1.5B scale (LoRA K=4, 5 generations). A 0.35-bit gap emerges between curated and random, indicating curation becomes a secondary amplifier at larger scale.}}{5}{table.caption.16}\protected@file@percent }
+\newlabel{tab:format_15b}{{4}{5}{Format metrics at 1.5B scale (LoRA K=4, 5 generations). A 0.35-bit gap emerges between curated and random, indicating curation becomes a secondary amplifier at larger scale}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {paragraph}{Note on Scale.}{5}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Training Dynamics}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Quality and Complexity}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why Does Semantic Diversity Survive?}{5}{section*.21}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Direction reversal: curated-vs-random Vendi gap across training regimes (0.6B, K=4). The effect reverses from suppression under LoRA to promotion under Full-FT.}}{6}{table.caption.17}\protected@file@percent }
+\newlabel{tab:reversal}{{5}{6}{Direction reversal: curated-vs-random Vendi gap across training regimes (0.6B, K=4). The effect reverses from suppression under LoRA to promotion under Full-FT}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Training loss trajectories across generations, confirming genuine learning.}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:training_loss}{{6}{6}{Training loss trajectories across generations, confirming genuine learning}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{The LoRA Capacity Artifact.}{6}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale-Dependent Format Effects.}{6}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{6}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{6}{section.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Quality and perplexity at final generation.}}{7}{table.caption.20}\protected@file@percent }
+\newlabel{tab:quality}{{7}{7}{Quality and perplexity at final generation}{table.caption.20}{}}
+\gdef \@abspage@last{7}

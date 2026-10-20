@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4060a71e82fcb75803bf",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis d073 d figures",
+  "task_key": "worker_analysis_d073-d-figures_20260516T024507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d073-d-figures_20260516T024507_result.json",
+    "occurrence": 1,
+    "bytes": 1262,
+    "sha256": "458f246d7840b3b867dc26f68bbbb35d4bc92e17c639b6a4e88ea15e6cea324e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Files are on the remote server (register_artifact expects local paths). All three figures generated successfully:\n\n**B3: Pareto Curve** — `artifacts/d072/pareto_curve.pdf` (20 KB)\n- Compute Saved (%) vs Task Success Preserved (%) for 4 models (3-LF GB, 2-LF RF, Oracle, Random) across k=1,2,3,5,7,10\n- Error bars from 3-seed simulation\n- k-value annotations on each point\n\n**D1: SHAP Feature Importance** — `artifacts/d073/shap_feature_importance.pdf` (230 KB)\n- Beeswarm plot of top 20 features from GB classifier (200 trees, lr=0.05, depth=5)\n- Trained on 15,401 SWE conf≥2 windows (5,846 stag / 9,555 prog)\n- Feature names colored: **blue bold** = LF-overlap (11), **red** = structural (19)\n- Dot color = feature value (RdBu colormap, low→high)\n- Colorbar + group legend\n\n**D2: Trajectory Visualization** — `artifacts/d073/trajectory_visualization.pdf` (26 KB)\n- Selected trajectory: `keras-team__keras-nlp-131__swe-agent-llama-70b__r161` (57 steps, 13 windows)\n- Upper panel: 3-row binary LF activation heatmap (Cmd Repetition, File Diff Delta, Outcome BP)\n- Lower panel: GB P(progress) curve with decision boundary at 0.5\n- Annotated: stagnation onset (green), model detection (orange), early termination k=3 (red)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d073-d-figures.md"
+}

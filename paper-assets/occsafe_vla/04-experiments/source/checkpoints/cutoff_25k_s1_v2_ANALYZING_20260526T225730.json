@@ -1,0 +1,34 @@
+{
+  "exp_id": "cutoff_25k_s1_v2",
+  "project": "occsafe_vla",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T09:08:51.501Z",
+    "updated_at": "2026-05-26T22:57:29.413Z",
+    "hypothesis": "Cutoff@25K 2nd seed (seed 43, v2 code). OCC ON first 25K steps then OFF. Current dose-response 25K has only n=1 (CAR=0.688), weakest data point. 2nd seed to strengthen dose-response curve.",
+    "parent": "cutoff_25k_s0",
+    "server": "westd-34685",
+    "gpu": "cuda:3",
+    "account": "root",
+    "spec": {
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 25000,
+      "model_name": "openvla-7b",
+      "seed": 43,
+      "checkpoint_source": "pretrained:openvla-7b (fresh start)",
+      "eval_data": "N/A (training run)"
+    },
+    "pid": "453581",
+    "log_path": "~/runs/occsafe_vla/cutoff_25k_s1_v2.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MUJOCO_EGL_DEVICE_ID=3 WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --occ_loss_cutoff_step 25000 --occ_loss_cutoff_mode after --run_root_dir /root/autodl-tmp/checkpoints/cutoff_25k_s1_v2 --seed 43 --run_id_note cutoff_25k_s1_v2\"",
+      "code_commit": "bdaee754bfccb386cfdd277a0410314daf32f374",
+      "finished_at": "2026-05-26T22:57:27.872Z"
+    }
+  },
+  "timestamp": "2026-05-26T22:57:30.059745+00:00",
+  "trigger": "update_registry"
+}

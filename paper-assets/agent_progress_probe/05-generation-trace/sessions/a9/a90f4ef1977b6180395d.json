@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "a90f4ef1977b6180395d",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "experiment gold 3annotator eval",
+  "task_key": "worker_experiment_gold-3annotator-eval_20260515T121516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_gold-3annotator-eval_20260515T121516.log",
+    "occurrence": 1,
+    "bytes": 1455184,
+    "sha256": "2b6cb915732e02ea2d28915deaa3de50637ee2daab02760f86a048ba934df39b"
+  },
+  "statistics": {
+    "messages": 922,
+    "user_turns": 1,
+    "tool_calls": 384,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 146,
+      "tool_call": 384,
+      "tool_result": 384,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 302,
+      "chunks": [
+        {
+          "path": "a90f4ef1977b6180395d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a90f4ef1977b6180395d-part-0002.json",
+          "message_count": 122
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 620,
+      "chunks": [
+        {
+          "path": "a90f4ef1977b6180395d-part-0002.json",
+          "message_count": 58
+        },
+        {
+          "path": "a90f4ef1977b6180395d-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a90f4ef1977b6180395d-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "a90f4ef1977b6180395d-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "a90f4ef1977b6180395d-part-0006.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-gold-3annotator-eval.md"
+}

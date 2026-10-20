@@ -1,0 +1,123 @@
+paper_key: "an2025depthvla"
+title: "DepthVLA: Enhancing Vision-Language-Action Models with Depth-Aware Spatial Reasoning"
+venue: "arXiv preprint 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Diffusion Policy"
+    - "Octo-Base"
+    - "OpenVLA"
+    - "SpatialVLA"
+    - "CoT-VLA"
+    - "MolmoACT"
+    - "DreamVLA"
+    - "π₀ (re-implemented)"
+  metrics:
+    - {name: "Success Rate (%)", direction: "higher_better"}
+    - {name: "Progress Score (%)", direction: "higher_better"}
+  datasets:
+    - {name: "BridgeData V2", size: "60k+ trajectories, WidowX robot, 24 environments"}
+    - {name: "LIBERO", size: "4 suites × 10 tasks, 500 demos each, Franka Panda"}
+    - {name: "Simpler WidowX", size: "4 task suites, 120 trials per task"}
+    - {name: "Galaxea Open-World Dataset", size: "100k trajectories, 150 task categories, 50 scenes"}
+    - {name: "WildRGB-D (depth pretraining)", size: "N/A"}
+    - {name: "ScanNet (depth pretraining)", size: "N/A"}
+    - {name: "ScanNet++ (depth pretraining)", size: "N/A"}
+    - {name: "HyperSim (depth pretraining)", size: "N/A"}
+  ablation_dimensions:
+    - "depth expert pretraining (pretrained vs from scratch)"
+    - "depth loss during VLA training (with vs without)"
+    - "depth expert freezing (frozen vs trainable)"
+    - "block-wise attention mask (with vs without)"
+    - "predicted depth vs ground-truth depth input"
+  training_recipe:
+    optimizer: "AdamW"
+    lr: "2.5e-5 (VLA), 5e-5 (depth pretraining)"
+    weight_decay: "1e-4"
+    batch_size: "1024 (large datasets), 64 (small datasets)"
+    hardware: "32× NVIDIA H100 GPUs"
+    precision: "BF16"
+    schedule: "cosine annealing"
+    depth_pretrain_steps: "50k"
+    bridgedata_steps: "20k (~12 epochs)"
+    libero_steps: "30k (~8 epochs)"
+    galaxea_pretrain_steps: "80k (~4 epochs)"
+    real_finetune_steps: "4k (100 trajectories)"
+  method_family: "Mixture-of-Transformers VLA with depth expert"
+
+positioning:
+  core_claim: "将预训练深度预测专家以 Mixture-of-Transformers 架构集成到 VLA 中，通过逐层空间推理（而非仅提供最终深度图）显著提升精确操作能力，且几乎不增加推理延迟"
+  key_results: "Simpler WidowX: 74.8% vs π₀ 58.8% (+16pp); LIBERO: 94.9% vs π₀ 93.6% (+1.3pp); Real-world: 78.5% vs 65.0% progress (+13.5pp); Few-shot: 63% vs 45% (+18pp); 推理延迟仅增加 20ms (210ms vs 190ms)"
+  limitations:
+    - "单目深度预测本质是不适定问题，在微小边缘、反光/透明物体、无纹理表面场景下深度专家表现退化"
+    - "仅支持单目深度，未探索多视角深度或点图预测"
+    - "深度专家增加 600M 参数和 1.3GB 显存"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "VLA 模型继承了 VLM 强大的语义能力，但空间推理能力不足——导致抓取小物体、精确操作和避碰任务表现差"
+  tension: "现有方案要么缺乏显式 3D 知识（纯 VLM 路线），要么引入超过 2 秒的推理延迟（CoT 路线、生成式世界模型路线），无法在空间感知精度和推理速度之间取得平衡"
+  key_insight: "通过 Mixture-of-Transformers 设计，让深度专家在每一层 transformer block 中进行空间推理并与动作专家共享注意力，而非仅提供最终深度图——这使得 action tokens 在所有中间层都能获取丰富的几何线索"
+  argument_chain: "VLA 空间感知弱 → 现有增强方案（世界模型/CoT）延迟高或无显式 3D → 利用 3D 基础模型的进步 → MoT 架构集成预训练深度专家 → 逐层共享注意力+block-wise mask 保留预训练能力 → 模拟+真实世界大幅提升 → 消融验证每个组件必要性"
+  contribution_framing: "三条贡献：(1) 架构创新（MoT + depth expert），(2) 训练策略（per-expert pretraining），(3) 广泛验证（模拟+真实世界+消融）。措辞强调 novel、per-expert pretraining strategy、extensive validation"
+  intro_structure: "5 段：P1 VLA 背景和优势 → P2 VLA 空间推理不足的问题 → P3 现有方案的局限（世界模型延迟、CoT 延迟） → P4 提出 DepthVLA（MoT 架构、三专家设计） → P5 性能数字和主要发现"
+  notable_technique: "在 intro 最后一段直接给出三组基准测试的绝对数字对比（78.5% vs 65.0%、94.9% vs 93.6%、74.8% vs 58.8%），用具体数字而非模糊表述说服读者；同时在消融中发现 predicted depth 优于 ground-truth depth 的反直觉结论，增强论文记忆点"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "Mixture-of-Transformers 框架图，展示三个专家（VLM/depth/action）的集成方式。VLM 处理观测和语言得到语义特征，depth expert 处理观测得到几何特征，action expert 条件于两者生成连续动作。三个专家共享注意力层但有独立权重，通过 block-wise mask 控制注意力范围"
+    narrative_role: "在方法介绍之初建立读者对整体架构的直觉理解，清晰展示三流融合机制"
+    design_elements:
+      - "三流并行架构图"
+      - "block-wise mask 示意"
+      - "attention 共享连线"
+      - "模块内部结构标注"
+    visual_style: "标准架构图布局，模块用方框+颜色区分，箭头表示信息流，辅以数学符号标注"
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      what_compared: "DepthVLA vs π₀ 在三个真实世界双臂任务上的 progress score（标准微调 + few-shot）"
+      how_gain_highlighted: "并排柱状图对比，DepthVLA 在空间感知要求高的任务上优势明显"
+      design_note: "将标准微调和 few-shot 两种设置放在同一图中，既展示绝对性能又展示数据效率优势"
+    - figure_id: "Figure 5"
+      viz_type: "qualitative_comparison"
+      what_compared: "不同场景下的深度预测可视化（真实世界+模拟环境）"
+      how_gain_highlighted: "展示 depth expert 在杂乱场景、避碰场景、精确抓取场景中的细粒度几何感知能力"
+      design_note: "用多行多列格式展示多样化场景，RGB 图和深度图并排"
+  ablation_figures: []
+  figure_narrative_role: "Figure 2（方法架构）→ Figure 3（实验平台）→ Figure 4（真实世界定量结果）→ Figure 5（深度预测定性可视化）：从方法理解 → 平台设置 → 定量验证 → 定性分析的叙事流"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table I + Table II"
+    row_axis: "methods"
+    col_axis: "tasks (grouped by benchmark suite)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "单次运行结果（模拟用 120 trials/2000 trials 平均）"
+    num_baselines: 8
+    design_note: "两张主结果表分别对应两个基准（Simpler WidowX 和 LIBERO），每张表内按任务子集分列。LIBERO 表覆盖面广（8 个 baseline），Simpler WidowX 聚焦核心对比（5 个 baseline）。用分表策略避免单表过密"
+  ablation_tables:
+    - table_id: "Table III"
+      what_varied:
+        - "depth expert pretraining"
+        - "depth loss during training"
+        - "frozen vs trainable depth expert"
+        - "block-wise attention mask"
+      variation_style: "full_numbers"
+      design_note: "每行是一种消融配置，每列是一个任务，最后一列是平均值。用逐行对比展示每个设计选择的影响，full model 作为最后一行锚定"
+    - table_id: "Table IV"
+      what_varied:
+        - "predicted depth vs ground-truth depth"
+      variation_style: "full_numbers"
+      design_note: "专门用一张独立表格展示 predicted > ground-truth 的反直觉发现，给予这个发现独立的视觉空间，增强记忆点"
+  supplementary_tables:
+    in_appendix: false
+    content: "无附录表，所有结果在主文中呈现"
+    reason: "论文表格数量适中（4张），消融设计紧凑，无需拆分到附录"

@@ -1,0 +1,36 @@
+{
+  "exp_id": "full_occ_ln_v2_s2",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T00:36:32.823Z",
+    "updated_at": "2026-05-27T01:11:03.162Z",
+    "hypothesis": "v2 rebuild of Full OCC LN (gradient flow ON, LayerNorm), seed 44. Cell 2 currently n=1 v2, this is the 3rd parallel attempt to reach n=4 for robust ANOVA. Running on 10894:cuda:1.",
+    "spec": {
+      "pid": "481643",
+      "actual_child_pid": "481643",
+      "note": "parent PID 481496 dead, child 481643 is actual training process"
+    },
+    "parent": "full_occ_ln_s3_v2",
+    "conclusion": "success",
+    "reproduce": {
+      "finished_at": "2026-05-27T00:52:18.926Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-27T00:52:21.408Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-27T00:52:25.738172+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-27T01:11:03.484251+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,59 @@
+{
+  "exp_id": "carr_fullft_k4_probe_01",
+  "project": "collapse_aware_reward_rebalancing",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T15:52:42.494Z",
+    "updated_at": "2026-05-16T16:53:24.505Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/carr && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 python3 run_quick_probe_fullft.py",
+      "server": "bjb2-23165",
+      "gpu": "cuda:1",
+      "pid": 511226,
+      "log_path": "~/runs/collapse_aware_reward_rebalancing/carr_fullft_k4_probe_01.log",
+      "submitted_at": "2026-05-16T15:52:42.482Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "Full-FT (无LoRA约束) K=4在3代内导致Vendi Score可观测下降(≥5%)，验证LoRA是否是collapse约束因素",
+      "condition": "single_reward (ArmoRM top-1-of-4) Full-FT",
+      "generations": 3,
+      "prompts": 2000,
+      "eval_prompts": 200,
+      "model_name": "Qwen3-0.6B",
+      "k_candidates": 4,
+      "gen_batch_size": 16,
+      "lr": 5e-06,
+      "batch_size": 2,
+      "grad_accum": 4,
+      "use_lora": false,
+      "data_path": "openbmb/UltraFeedback",
+      "data_count": 2200,
+      "seed": 42,
+      "output_dir": "/root/autodl-tmp/carr/outputs_fullft_k4/",
+      "wall_clock_seconds": 3552.2,
+      "gpu_hours": 0.99,
+      "failure_reason": "FP16 gradients + GradScaler conflict at Gen 0 training step 0. RTX 5090 needs bf16 not fp16."
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T16:51:54.278Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T16:51:54.732Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T16:51:55.384511+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-16T16:53:24.520038+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "370974c31bf6cff9eb46",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "fix data integrity e5",
+  "task_key": "worker_fix_data-integrity-e5_20260516T042316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_data-integrity-e5_20260516T042316_result.json",
+    "occurrence": 1,
+    "bytes": 1699,
+    "sha256": "0b9f0ed1865f188e801ee5c7219e913dc30833247b045748315dc3882de7abd8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。汇总报告：\n\n---\n\n### 完成报告\n\n**1. 污染文件已删除** — `results_encoder_multiseed_e5.json` 已确认删除（文件不存在）。\n\n**2. GPU 0 状态** — 空闲（0MiB / 32607MiB，0% 利用率）。GPU 1 也空闲。无任何 GPU 进程。\n\n**3. Seed 123/456 真实 test macro_f1**（从 `multiseed_e5.log` 提取）：\n- seed 123: **0.9433** (0.9433012409695034) ✓ 与 Director 预期一致\n- seed 456: **0.9418** (0.9417748206340936) ✓ 与 Director 预期一致\n\n**4. 训练脚本与数据路径**：\n- 训练脚本: `train_probe.py`\n- 评估脚本: `eval_probe_only.py`\n- 数据路径: `data_e5/` (symlink → `ablation_embeddings/e5-large_embeddings.pt`)\n- 原始运行脚本: `run_e5_multiseed.sh`\n\n**5. 训练配置**（从 `run_e5_multiseed.sh` 提取）：\n- `--data_dir data_e5`\n- `--min_confidence 2`\n- `--lr 1e-3`\n- `--batch_size 32`\n- `--epochs 20`\n- `CUDA_VISIBLE_DEVICES=0`\n\n**6. Seed 42 完整训练命令**（bash -c 包裹，可直接用于 submit_training_job）：\n\n```bash\nbash -c \"cd /root/autodl-tmp/agent_progress_probe && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=0 && python3 train_probe.py --data_dir data_e5 --output_dir checkpoints_ablation_e5_s42 --min_confidence 2 --lr 1e-3 --batch_size 32 --epochs 20 --seed 42 && python3 eval_probe_only.py --checkpoint checkpoints_ablation_e5_s42/best_model.pt --data_dir data_e5 --split_info checkpoints_ablation_e5_s42/split_info.json\"\n```\n\n**7. GPU**: cuda:0 (RTX 5090)\n\n**8. 预计训练时长**: ~3 分钟（两个 seed 总共 343 秒，单 seed 约 170 秒）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-data-integrity-e5.md"
+}

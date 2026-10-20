@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7cc30e63ab055167776",
+  "project": "agent_progress_probe",
+  "kind": "history",
+  "title": "director / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_1.md",
+    "occurrence": 1,
+    "bytes": 4109,
+    "sha256": "78a04807fb9231de30380e40ccd74bc7d95db51264e8c6329c6ef433002afe2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_messages\nupdated: '2026-05-14T10:00:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 gpu-5090-2x-2 的 cuda:0 和 cuda:1（RTX 5090 32G × 2）\n- autodl-5090 和 gpu-5090-2x-2 是同一台机器的两个 SSH alias，不要当两台用\n- temporal-label-model 实验有门禁：gold set 上 accuracy 提升 ≥5pp vs majority vote，否则需 fallback\n- human-annotation 已升为 P0（Reviewer 建议）——Claim 1 和 Claim 2 都依赖 gold set，必须向用户确认可行性\n- Re-dream (dream_20260514T095527) 结果出来前，不批准 temporal-label-model 和 flyingsquid-baseline\n\n### 2. 🖥️ 基础设施快照\n- 服务器：gpu-5090-2x-2 (connect.bjb2.seetacloud.com)，工作目录 /root/autodl-tmp/agent_progress_probe\n- Python：conda base 环境，/root/miniconda3/bin/python\n- Embedding 模型：Qwen3-Embedding-0.6B（服务器本地已缓存）\n- Embeddings 数据：/root/autodl-tmp/agent_progress_probe/embeddings/（1.1GB, 54,809 windows）\n- Checkpoints：checkpoints/（conf≥2 probe-001）、checkpoints_full/（conf≥0 probe-002）\n- 活跃进程：probe-002 和 baseline-meanpool-lr 均已完成，当前无 RUNNING 进程\n- GPU 状态：cuda:0 和 cuda:1 均空闲\n\n### 3. 📊 当前状态\n**刚完成**：\n- Dream 审稿分析（D009）：三档全 3/6 Weak Reject → framing pivot 到 temporal label model\n- probe-002 全量数据结果（D010）：0.8468 macro-F1，LF All-Agreement (0.8543) 仍略高 0.75pp\n- baseline-meanpool-lr 完成：GRU vs MeanPool gap = 4.83pp (conf≥2) / 12.74pp (全量)\n- paper_framing.md 和 experiment_plan.yaml 已更新（temporal label model 为核心贡献）\n\n**等待中**：\n- Re-dream dream_20260514T095527（验证新 framing）—— 完成后会注入 [DREAM] 回调\n- Agent 正在处理三个并行任务：(1) cross-agent OpenHands 数据准备 + embedding (2) lf-temporal-dynamics 分析 (3) error-analysis\n- 两个 GPU 空闲！Agent 应该用 cross-agent 的 embedding 任务占满\n\n### 4. 📋 待办\n- Re-dream 回调到达 → Read dream-report-action skill → 按协议分析，目标 best ≥ 4/6\n- Re-dream best ≥ Weak Accept → 批准 temporal-label-model + flyingsquid-baseline\n- Re-dream 仍 Weak Reject → 回头再调 framing（考虑 HMM temporal label model 或更强的方法创新）\n- Agent 回复 cross-agent 数据准备完成 → approve_experiment + director_allocate_gpus 分配两张卡\n- Agent 回复 lf-temporal-dynamics 完成 → 验证 LF lead/lag 数字是否稳定（temporal model 的前提）\n- FlyingSquid baseline 尽早跑（Reviewer warning：如果 FlyingSquid 已解决 LF correlation 问题，temporal model 需要在其基础上再提升）\n- 向用户确认：(1) EMNLP 5/25 vs ACL 8月 deadline (2) human-annotation 400 windows × 3 annotators 是否可行\n- baseline-llm-judge 需要 API key（Claude/GPT-4o）→ feishu_send_tum_key_request_card\n\n### 5. 🎯 战略上下文\n**决策链**：D001(MVP方案) → D007(MVP通过) → D008(LF Oracle发现：command_repetition > probe on conf≥2) → D009(Dream Weak Reject → temporal label model pivot) → D010(probe-002: LF All-Agreement仍>probe on full data)\n\n**核心判断**：Probe 无法超越其自身标签来源（majority vote LF ensemble）。这不是 probe 的问题，是标签质量的瓶颈。temporal label model 是打破瓶颈的路径。cross-agent（OpenHands 迁移）是论文最关键的实验——在 LF 不可用的场景下 probe 是唯一选择。\n\n**易错点**：\n- 不要混淆 conf≥2 和 conf≥0 的结果——两个 test set 不同，不能跨数据集比较\n- LF All-Agreement > Probe 仅在全量数据上成立（0.8543 vs 0.8468），在 conf≥2 上 probe 领先\n- Dream 报告中的实验数据是想象的——通用建议（novelty/related work）可信，数据依赖建议需跨档验证\n- paper_framing.md 中的 headline numbers（\"improves by X%\"）是占位符，待真实实验填充\n- Reviewer 正确指出 \"student exceeds teacher\" 是两步假设链：temporal model 好标签 → probe 超 LF。任一环节失败都要调叙事\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1.md"
+}

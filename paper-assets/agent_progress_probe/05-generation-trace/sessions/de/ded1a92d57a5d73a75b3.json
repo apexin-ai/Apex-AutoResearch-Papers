@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "ded1a92d57a5d73a75b3",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "analysis multiseed gb crossagent fixed",
+  "task_key": "worker_analysis_multiseed-gb-crossagent-fixed_20260515T000528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_multiseed-gb-crossagent-fixed_20260515T000528.log",
+    "occurrence": 1,
+    "bytes": 650625,
+    "sha256": "feace6a225e0ed6c110f4c1a1ab639739bb24046d323023ad5ec1dfa12eef2f9"
+  },
+  "statistics": {
+    "messages": 387,
+    "user_turns": 1,
+    "tool_calls": 141,
+    "roles": {
+      "log": 1,
+      "system": 54,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 141,
+      "user": 1,
+      "tool_result": 141,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "ded1a92d57a5d73a75b3-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 380,
+      "chunks": [
+        {
+          "path": "ded1a92d57a5d73a75b3-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "ded1a92d57a5d73a75b3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ded1a92d57a5d73a75b3-part-0003.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-multiseed-gb-crossagent-fixed.md"
+}

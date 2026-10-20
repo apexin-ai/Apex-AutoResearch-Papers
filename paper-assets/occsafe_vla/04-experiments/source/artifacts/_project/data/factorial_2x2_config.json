@@ -1,0 +1,70 @@
+{
+  "description": "2×2 factorial design: Gradient Flow (ON/OFF) × Normalization (BN/LN)",
+  "factors": {
+    "gradient_flow": {"levels": ["ON (Full OCC)", "OFF (Detach)"]},
+    "normalization": {"levels": ["BatchNorm", "LayerNorm"]}
+  },
+  "cells": {
+    "flow_ON_BN": {
+      "description": "Full OCC + BatchNorm (gradient flow enabled, standard BN in OccHead)",
+      "exp_ids": ["mvp_occ_s0", "occ_s1_fresh", "mvp_occ_s2"],
+      "eval_exp_ids": ["mvp_occ_s0", "occ_s1_fresh_eval_50000", "mvp_occ_s2"],
+      "seeds": {
+        "s0": {"CAR": 0.832, "TSR": 0.904},
+        "s1": {"CAR": 0.788, "TSR": 0.938},
+        "s2": {"CAR": 0.770, "TSR": 0.840}
+      },
+      "mean_CAR": 0.797,
+      "std_CAR": 0.032,
+      "status": "DONE_3seed"
+    },
+    "flow_ON_LN": {
+      "description": "Full OCC + LayerNorm (gradient flow enabled, LN replaces BN in OccHead)",
+      "exp_ids": ["full_occ_ln_s0", "full_occ_ln_s1", "full_occ_ln_s2"],
+      "eval_exp_ids": [],
+      "seeds": {
+        "s0": {"CAR": null, "TSR": null},
+        "s1": {"CAR": null, "TSR": null},
+        "s2": {"CAR": null, "TSR": null}
+      },
+      "mean_CAR": null,
+      "std_CAR": null,
+      "status": "RUNNING_3seed",
+      "note": "All 3 seeds currently training. Eval pending."
+    },
+    "flow_OFF_BN": {
+      "description": "Detach OCC + BatchNorm (gradient detached, standard BN in OccHead)",
+      "exp_ids": ["ablation_occ_detach_s0", "ablation_occ_detach_s1", "ablation_occ_detach_s2"],
+      "eval_exp_ids": ["ablation_occ_detach_s0", "ablation_occ_detach_s1", "ablation_occ_detach_s2_eval"],
+      "seeds": {
+        "s0": {"CAR": 0.746, "TSR": 0.914},
+        "s1": {"CAR": 0.744, "TSR": 0.898},
+        "s2": {"CAR": 0.748, "TSR": 0.624}
+      },
+      "mean_CAR": 0.746,
+      "std_CAR": 0.002,
+      "status": "DONE_3seed"
+    },
+    "flow_OFF_LN": {
+      "description": "Detach OCC + LayerNorm (gradient detached, LN replaces BN in OccHead)",
+      "exp_ids": ["detach_ln_s0", "detach_ln_s1", "detach_ln_s2"],
+      "eval_exp_ids": ["detach_ln_s0_eval", "detach_ln_s1_eval", "detach_ln_s2_eval"],
+      "seeds": {
+        "s0": {"CAR": 0.792, "TSR": 0.914},
+        "s1": {"CAR": 0.756, "TSR": 0.906},
+        "s2": {"CAR": 0.748, "TSR": 0.884}
+      },
+      "mean_CAR": 0.765,
+      "std_CAR": 0.023,
+      "status": "DONE_3seed"
+    }
+  },
+  "analysis_plan": {
+    "main_effects": {
+      "gradient_flow": "Compare (flow_ON_BN + flow_ON_LN)/2 vs (flow_OFF_BN + flow_OFF_LN)/2",
+      "normalization": "Compare (flow_ON_BN + flow_OFF_BN)/2 vs (flow_ON_LN + flow_OFF_LN)/2"
+    },
+    "interaction": "Does the effect of gradient flow depend on normalization type?",
+    "preliminary_finding": "With BN: gradient flow improves CAR by +5.1pp (0.797 vs 0.746). With LN: gradient detach already achieves 0.765 (close to Vanilla 0.780). If flow_ON_LN ≈ flow_OFF_LN, then BN is the confound — gradient flow compensates for BN damage rather than providing intrinsic benefit."
+  }
+}

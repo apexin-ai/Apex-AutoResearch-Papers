@@ -1,0 +1,44 @@
+# ops 10894 gpu0 utilization
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_ops_10894_gpu0_utilization_20260524T090251_result.json`
+- **Structured JSON:** [`75c1aaba99a67dada334.json`](../../sessions/75/75c1aaba99a67dada334.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+汇报结果：
+
+## 10894 检查结果
+
+**方案 A — cutoff eval：不可行**
+- 10894 上没有 cutoff_15k_s0 / cutoff_45k_s0 checkpoint
+- 34685 上这两个训练还在跑，目前到 40000_chkpt，50000_chkpt 尚未生成
+
+**方案 B — same-seed 梯度分析支持：部分可行但缺 detach_s0 (BN版)**
+- 34685 上已有：vanilla_retrain_s0 ✅、full_occ_retrain_s0 ✅、detach_ln_s0 ✅
+- **detach_s0（BN版，即 ablation_occ_detach_s0）两台机器都没有**
+  - 10894 上没有 ablation_occ_detach_s0（有 detach_ln_s0 但那是 LN 版）
+  - 34685 上只有 ablation_occ_detach_**s2**，没有 s0
+- 因此 4 条件梯度分析缺一条，10894 无法直接支持
+
+**方案 C — 10894:0 可做的事**
+1. **训练 ablation_occ_detach_s0**（BN版 detach, seed 0）— 补齐梯度分析缺少的第 4 个条件
+2. 等 cutoff 训练完后从 34685 拉 checkpoint 到 10894 跑 eval（但要等 ~50000 step 完成）
+
+**建议**：在 10894:0 上启动 ablation_occ_detach_s0 训练，这样 cutoff 训练完成时 detach_s0 可能也接近完成，4 条件梯度分析就齐了。需要确认是否执行？
+
+---

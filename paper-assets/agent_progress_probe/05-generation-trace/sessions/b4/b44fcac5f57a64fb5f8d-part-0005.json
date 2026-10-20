@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "session_id": "b44fcac5f57a64fb5f8d",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All deliverables complete. Summary:\n\n**Lag-Aware HMM — Final Results**\n\n| Method | MV-conf≥2 F1 | Delta vs Old HMM |\n|--------|-------------|-----------------|\n| MV baseline | 0.8946 | — |\n| TWV | 0.9003 | — |\n| Old HMM | 0.7502 | — |\n| **Lag-HMM** | **0.8936** | **+0.1434** |\n\nKey design decisions:\n- **Lag offsets**: cmd_rep=-2, file_diff=-1, outcome_bp=+7 (from `DEFAULT_LAG_PROFILES`)\n- **Confidence anchoring**: conf≥2 windows fixed to MV labels during EM E-step — prevents stagnation drift\n- **MAP prior on A** (strength=5000) — stabilizes transition matrix\n- **Pi fixed** at [0.285, 0.715] from data distribution\n- **Posterior threshold=0.3** — empirically optimal; lower threshold enriches stagnation training signal for conf=1 windows (thresh=0.8 with better distribution match actually hurt probe performance: 0.8475 vs 0.8936)\n\nThe lag-aware HMM eliminates the old HMM's catastrophic stagnation overpredict (53.2% → 41.2% stag), recovering conf≥2 F1 to within 0.1pp of the MV baseline. TWV remains the best TLM method at 0.9003."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 2654873,
+            "duration_api_ms": 2236622,
+            "num_turns": 291,
+            "stop_reason": "end_turn",
+            "session_id": "45b340c2-79f6-45e9-a557-3e89baec5aa5",
+            "total_cost_usd": 17.787057500000003,
+            "usage": {
+              "input_tokens": 295,
+              "cache_creation_input_tokens": 254808,
+              "cache_read_input_tokens": 26796617,
+              "output_tokens": 103953,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 254808,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 376,
+                  "cache_read_input_tokens": 110149,
+                  "cache_creation_input_tokens": 1270,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1270
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1581,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001671,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 1796,
+                "outputTokens": 108055,
+                "cacheReadInputTokens": 26963688,
+                "cacheCreationInputTokens": 254910,
+                "webSearchRequests": 0,
+                "costUSD": 17.785386500000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "25bd4873-b9aa-4e36-ab69-f496a245c7b1"
+          },
+          "id": "event-000721"
+        }
+      ]
+    }
+  ]
+}

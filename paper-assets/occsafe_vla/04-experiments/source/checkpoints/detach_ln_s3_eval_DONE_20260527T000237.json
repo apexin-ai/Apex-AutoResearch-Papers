@@ -1,0 +1,50 @@
+{
+  "exp_id": "detach_ln_s3_eval",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T22:44:19.389Z",
+    "updated_at": "2026-05-27T00:02:37.387Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=2 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=2 python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/detach_ln_s3/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_ln_s3--50000_chkpt --num_rollouts 50 --seed 42 --task_suite_name libero_spatial\"",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "565727",
+      "log_path": "/tmp/detach_ln_s3_eval.log",
+      "submitted_at": "2026-05-27T07:09:41Z",
+      "submitted_via": "submit_training_job",
+      "backend": "nohup",
+      "account": "root",
+      "model_name": "openvla-7b",
+      "data_path": "/root/autodl-tmp/checkpoints/detach_ln_s3",
+      "data_count": 50,
+      "seed": 42,
+      "checkpoint_source": "detach_ln_s3",
+      "eval_data": "libero_spatial"
+    },
+    "hypothesis": "50-rollout SafeLIBERO eval of detach_ln_s3 (Detach LN, seed 45, v2 code). First v2 data point for Cell 4 of 2×2 factorial. Expect TSR comparable to other detach_ln seeds.",
+    "parent": "detach_ln_s3",
+    "reproduce": {
+      "finished_at": "2026-05-26T23:54:55.455Z"
+    },
+    "failure_reason": "EXIT_CODE=2 (shell misuse / syntax)",
+    "conclusion": "success",
+    "completed_at": "2026-05-26T23:54:58.544Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-26T23:55:02.796623+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-27T00:02:37.735317+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,45 @@
+{
+  "exp_id": "occ_s1_fresh",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T14:31:11.815Z",
+    "updated_at": "2026-05-21T14:49:40.141Z",
+    "hypothesis": "Fresh from-scratch OCC training with seed 43 (s1) to obtain clean 3-seed aggregate data. Previous occ_s1 suffered permanent damage from resume at 17500 (D013 excluded it). This replication eliminates resume confound and provides apple-to-apple comparison with s0/s2 at 47500_chkpt.",
+    "parent": "mvp_occ_s1",
+    "server": "westd-34685",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-34685",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-21T14:32:36.589Z",
+      "command": "bash -c \"source /etc/network_turbo; source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && WANDB_MODE=disabled MUJOCO_GL=egl torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --use_diffusion False --use_film False --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 --save_freq 5000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --run_root_dir /root/autodl-tmp/checkpoints/occ_s1_fresh --seed 43\""
+    },
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo; source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && WANDB_MODE=disabled MUJOCO_GL=egl torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --use_diffusion False --use_film False --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 --save_freq 5000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --run_root_dir /root/autodl-tmp/checkpoints/occ_s1_fresh --seed 43\"",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "480459",
+      "log_path": "~/runs/occsafe_vla/occ_s1_fresh.log",
+      "submitted_at": "2026-05-21T14:32:38.218Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 1021.9,
+      "gpu_hours": 0.28
+    },
+    "pid": "480459",
+    "log_path": "~/runs/occsafe_vla/occ_s1_fresh.log",
+    "notes": "Worker killed process (PID 480459) and cleared checkpoint dir. Reason: restart with save_freq=2500 (was 5000). cuda:0 on westd-34685 freed. 需要重新提交。",
+    "conclusion": "killed",
+    "completed_at": "2026-05-21T14:49:40.141Z"
+  },
+  "timestamp": "2026-05-21T14:49:40.186811+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "31d8479dcef41800f203",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "analysis bootstrap crossdomain fix",
+  "task_key": "worker_analysis_bootstrap-crossdomain-fix_20260514T214206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-crossdomain-fix_20260514T214206.log",
+    "occurrence": 1,
+    "bytes": 1221147,
+    "sha256": "ce7e5d7054a77bafc8e1485016c49a8979b04260729f02010f8fe93cf85a418f"
+  },
+  "statistics": {
+    "messages": 487,
+    "user_turns": 1,
+    "tool_calls": 172,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 134,
+      "tool_call": 172,
+      "tool_result": 172,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 338,
+      "chunks": [
+        {
+          "path": "31d8479dcef41800f203-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "31d8479dcef41800f203-part-0002.json",
+          "message_count": 158
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 149,
+      "chunks": [
+        {
+          "path": "31d8479dcef41800f203-part-0002.json",
+          "message_count": 22
+        },
+        {
+          "path": "31d8479dcef41800f203-part-0003.json",
+          "message_count": 127
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-bootstrap-crossdomain-fix.md"
+}

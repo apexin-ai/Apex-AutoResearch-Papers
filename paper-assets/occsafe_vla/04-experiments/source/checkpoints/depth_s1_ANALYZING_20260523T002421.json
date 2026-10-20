@@ -1,0 +1,66 @@
+{
+  "exp_id": "depth_s1",
+  "project": "occsafe_vla",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 1,
+    "created_at": "2026-05-22T02:57:07.425Z",
+    "updated_at": "2026-05-23T00:24:21.558Z",
+    "hypothesis": "Seed 43 replication of depth_s0. Monocular depth auxiliary supervision as alternative to BEV occupancy — tests whether depth's per-pixel geometric signal provides regularization benefit without BEV's harmful spatial inductive bias. 2-seed comparison needed to assess variance (OCC showed high seed instability).",
+    "parent": "ablation_random_occ_s0",
+    "notes": "cuda:2 westd-34685, tmux session depth_s1, PID 13286. ~1.08 it/s, ETA ~13h (finish ~May 23 00:00 UTC). Step 300: depth_loss=0.1303, action_loss=0.3691. Same bug fix as depth_s0. Task 9 zero fallback. save_freq=2500.",
+    "reproduce": {
+      "finished_at": "2026-05-23T00:21:32.226Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-22T07:26:22.652Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T07:26:24.883082+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T00:21:34.711259+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "cuda:2 westd-34685, tmux session depth_s1, PID 13286. ~1.08 it/s, ETA ~13h (finish ~May 23 00:00 UTC). Step 300: depth_loss=0.1303, action_loss=0.3691. Same bug fix as depth_s0. Task 9 zero fallback. save_freq=2500."
+      }
+    },
+    "spec": {
+      "command": "torchrun finetune.py --use_depth_head True --depth_data_dir /root/occsafe_vla/depth_data --seed 43 --save_freq 10000 --max_steps 50005 --master_port 29502 (WANDB_MODE=disabled, from scratch after disk-full crash)",
+      "server": "westd-34685",
+      "gpu": "cuda:2",
+      "pid": "131682",
+      "log_path": "~/runs/occsafe_vla/depth_s1.log",
+      "submitted_at": "2026-05-22T07:33:33.748Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": "~25000 episodes (9/10 tasks with depth labels)",
+      "model_name": "openvla-7b",
+      "seed": 43,
+      "checkpoint_source": "openvla-7b (from scratch)",
+      "eval_data": "N/A (training)"
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/depth_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+    "log_path": "/root/runs/occsafe_vla/depth_s1.log",
+    "metrics": {
+      "final_step": 50005,
+      "depth_loss": 0.0128,
+      "action_loss": 0.052,
+      "occ_loss": 0
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T00:24:21.654469+00:00",
+  "trigger": "update_registry"
+}

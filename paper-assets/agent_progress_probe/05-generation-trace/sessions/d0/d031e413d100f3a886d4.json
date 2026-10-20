@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d031e413d100f3a886d4",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "paper writing abstract",
+  "task_key": "worker_paper_writing_abstract_20260514T224905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_abstract_20260514T224905_result.json",
+    "occurrence": 1,
+    "bytes": 733,
+    "sha256": "b3b690fca6b4aed67798aa32f2fd1193f7b47990e45a6ee67b12123d37bd90ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Word count verification:\n\n| Section | Target | Actual |\n|---------|--------|--------|\n| Problem | ~40 | 42 |\n| Approach | ~50 | 46 |\n| Finding 1 (Structural) | ~60 | 73 |\n| Finding 2 (LF Dynamics) | ~50 | 43 |\n| Finding 3 (TLM Negative) | ~30 | 33 |\n| **Total** | **≤250** | **237** |\n\nConstraints met:\n- No \"significantly\", \"state-of-the-art\", \"consistently outperforms\"\n- Circular evaluation caveat present (\"In-domain evaluation reflects circular agreement with LF-derived silver labels\")\n- All numbers exact match (0.9951, 0.9674, 0.9055, 0.6625, 205K+, 1.87, 17.6pp, >0.987, 10%)\n- No `\\begin{abstract}` / `\\end{abstract}`\n- `\\goldset` placeholder at end\n- 237 words, under 250 limit"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-abstract.md"
+}

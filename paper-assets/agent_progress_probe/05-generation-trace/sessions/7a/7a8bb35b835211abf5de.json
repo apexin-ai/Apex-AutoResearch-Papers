@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a8bb35b835211abf5de",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260514T215352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_20260514T215352_result.json",
+    "occurrence": 1,
+    "bytes": 1213,
+    "sha256": "785926ef46e95c3a07a5d0dabecf4113af43487f53cd2958e26e848cff2b8fdc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction 已写入 `artifacts/_project/paper/introduction.tex` 并注册。\n\n结构概览：\n1. **Hook** — SlopCodeBench 记录的 silent stagnation 问题，77% 结构退化，75.5% 冗余增长\n2. **Gap** — 三类现有方法的局限：repetition detectors（漏语义停滞）、PRM（step-level 丢时序）、self-reflection（循环依赖 stuck model）\n3. **Setup** — 弱监督框架，SWE-Agent 54K + OpenHands 150K windows，三个 LF + majority vote\n4. **Core finding** — 30 结构特征 0.9951 in-domain / 0.967 cross-agent，+33.3pp vs LLM judge，encoder-agnostic（3 encoders >0.90），<5ms/window\n5. **Temporal dynamics** — cmd_rep leading -1.87 步（SWE-Agent）→ lagging +3.32 步（OH），去掉后 FT F1 +17.6pp\n6. **TLM negative** — TWV/HMM/lag-HMM 均未超 MV，TWV 下游 -2.57pp\n7. **Contributions** — C1 structural signal, C2 LF temporal dynamics + circular evaluation, C3 TLM negative finding\n\n待处理：1 个红色引用标记（ICLR 2025 Workshop monitoring paper），需确认后替换为 `\\citep{}`；新增引用（orlanski2026slopcodebench, xi2025agentprm, shinn2023reflexion, yao2023tot, zhou2024lats）需加入 bib 文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-introduction-copy-2.md"
+}

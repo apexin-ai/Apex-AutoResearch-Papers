@@ -1,0 +1,46 @@
+{
+  "exp_id": "detach_ln_v2_s2",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-27T15:25:21.093Z",
+    "updated_at": "2026-05-28T02:12:24.341Z",
+    "hypothesis": "Cell 4 v2 seed 44 (Detach+LN, gradient OFF + LN). Replacement for invalidated detach_ln_s4 (v1 early-layer LoRA anomaly). Insurance alongside s0c_r3 (10894) to ensure Cell 4 v2 n≥3 for factorial ANOVA.",
+    "reproduce": {
+      "finished_at": "2026-05-28T02:12:20.827Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-28T01:54:03.231Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-28T01:54:09.299709+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "torchrun finetune.py --vla_path 30000_chkpt --seed 44 --use_occ_head True --occ_detach True --occ_norm_type ln --max_steps 20005 --resume True --resume_step 30000",
+      "server": "westd-34685",
+      "gpu_id": "cuda:0",
+      "pid": "45380",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 4600,
+      "model_name": "openvla-7b",
+      "seed": 44,
+      "run_root_dir": "/root/autodl-tmp/checkpoints/detach_ln_v2_s2",
+      "checkpoint_source": "detach_ln_v2_s2--30000_chkpt",
+      "eval_data": "N/A-training"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-28T02:12:24.740290+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "01a9ae7015644dc8c610",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "experiment e3 conf stratified gold",
+  "task_key": "worker_experiment_e3-conf-stratified-gold_20260515T141408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_e3-conf-stratified-gold_20260515T141408.log",
+    "occurrence": 1,
+    "bytes": 718431,
+    "sha256": "f40a7532e9c6c5aea4ff0805832e115d2940ce7639a82d9528bd97b35f8aa33e"
+  },
+  "statistics": {
+    "messages": 213,
+    "user_turns": 1,
+    "tool_calls": 72,
+    "roles": {
+      "log": 1,
+      "system": 36,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 72,
+      "user": 1,
+      "tool_result": 72,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "01a9ae7015644dc8c610-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 206,
+      "chunks": [
+        {
+          "path": "01a9ae7015644dc8c610-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "01a9ae7015644dc8c610-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-e3-conf-stratified-gold.md"
+}

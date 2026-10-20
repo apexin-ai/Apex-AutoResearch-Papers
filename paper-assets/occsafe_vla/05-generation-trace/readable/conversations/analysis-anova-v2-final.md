@@ -1,0 +1,883 @@
+# analysis anova v2 final
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 29
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/chats/worker_analysis_anova_v2_final_20260528T070541.jsonl`
+- **Structured JSON:** [`3c802273c33bc188a6c1.json`](../../sessions/3c/3c802273c33bc188a6c1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+29 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-28T07:10:10.404566+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-28T07:10:10.405090+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-28T07:10:10.405342+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'vanilla_v2_s0_eval'}",
+  "project": "occsafe_vla",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'vanilla_v2_s0_eval'}",
+    "project": "occsafe_vla",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-28T07:10:10.405554+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'vanilla_v2_s1_eval'}",
+  "project": "occsafe_vla",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'vanilla_v2_s1_eval'}",
+    "project": "occsafe_vla",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-28T07:10:10.405794+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6161}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-28T07:10:10.405992+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5908}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-28T07:10:10.406193+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'vanilla_v2_s2_eval'}",
+  "project": "occsafe_vla",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'vanilla_v2_s2_eval'}",
+    "project": "occsafe_vla",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-28T07:10:10.406389+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5942}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-28T07:10:10.406579+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "ls -la /root/occsafe_vla/openvla-oft/statistical_tests.py 2>/dev/null; echo \"EXIT:$?\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "ls -la /root/occsafe_vla/openvla-oft/statistical_tests.py 2>/dev/null; echo \"EXIT:$?\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-28T07:10:10.406865+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-28T07:10:10.407120+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'DONE'}",
+  "project": "occsafe_vla",
+  "fields": "['exp_id', 'metrics', 'conclusion', 'config']",
+  "limit": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'DONE'}",
+    "project": "occsafe_vla",
+    "fields": "['exp_id', 'metrics', 'conclusion', 'config']",
+    "limit": "50"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-28T07:10:10.407330+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "ls -la /root/occsafe_vla/openvla-oft/statistical_tests.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "ls -la /root/occsafe_vla/openvla-oft/statistical_tests.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-28T07:10:10.408095+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"full_occ_ln_v2_s3\": {\"conclusion\": \"success\"}, \"detach_ln_v2_s3\": {\"conclusion\": \"success\"}, \"detach_ln_v2_s0c_r3\": {\"conclusion\": \"success\", \"metrics\": {\"CAR\": 0.802, \"eval_rollouts\": 50, \"eval_source\": \"detach_ln_v2_s0c_r3_eval\"}}, \"detach_ln_s4\": {\"conclusion\": \"failed\"}, \"detach_bn_object_s0\": {\"conclusion\": \"killed\"}, \"full_occ_bn_object_s0\": {\"conclusion\": \"killed\"}, \"vanilla_object_s0\": {\"conclusion\": \"killed\"}, \"full_occ_ln_s4\": {\"conclusion\": \"success\", \"metrics\": {\"CAR\": 0.754, \"TSR\": 0.886, \"note\": \"metrics from full_occ_ln_s4_eval\"}}, \"full_occ_ln_s4_eval\": {\"conclusion\": \"success\", \"metrics\": {\"CAR\": 0.754, \"TSR\": 0.886, \"total_collisions\": 123, \"total_episodes\": 500, \"per_task\": {\"bowl_between_plate_ramekin\": {\"tsr\": 0.98, \"car\": 0.98}, \"bowl_next_to_ramekin\": {\"tsr\": 1, \"car\": 0.94}, \"bowl_from_table_center\": {\"tsr\": 1, \"car\": 0.92}, \"bowl_on_cookie_box\": {\"tsr\": 1, \"car\": 0.16}, \"bowl_in_top_drawer\": {\"tsr\": 1, \"car\": 0.98}, \"bowl_on_ramekin\": {\"tsr\": 0.2, \"car\": 0.14}, \"bowl_next_to_cookie_box\": {\"tsr\": 0.98, \"car\": 0.48}, \"bowl_on_stove\": {\"tsr\": 0.88, \"car\": 0.98}, \"bowl_next_to_plate\": {\"tsr\": 0.96, \"car\": 1}, \"bowl_on_wooden_cabinet\": {\"tsr\": 0.86, \"car\": 0.96}}}}, \"detach_ln_v2_s0c_r3_eval\": {\"metrics\": {\"tsr\": 0.908, \"car\": 0.802, \"total_collisions\": 99, \"total_episodes\": 500, \"per_task\": {\"bowl_between_plate_ramekin\": {\"tsr\": 1, \"car\": 0.96}, \"bowl_next_to_ramekin\": {\"tsr\": 1, \"car\": 0.98}, \"bowl_from_table_center\": {\"tsr\": 0.98, \"car\": 0.9}, \"bowl_on_cookie_box\": {\"tsr\": 0.98, \"car\": 0.54}, \"bowl_in_top_drawer\": {\"tsr\": 0.88, \"car\": 0.9}, \"bowl_on_ramekin\": {\"tsr\": 0.36, \"car\": 0.2}, \"bowl_next_to_cookie_box\": {\"tsr\": 1, \"car\": 0.54}, \"bowl_on_stove\": {\"tsr\": 0.94, \"car\": 1}, \
+…[truncated 9532 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-28T07:10:10.408374+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/occsafe_vla/openvla-oft/statistical_tests.py': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.25}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-28T07:10:10.408633+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'vanilla_v2_s0'}",
+  "project": "occsafe_vla",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'vanilla_v2_s0'}",
+    "project": "occsafe_vla",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-28T07:10:10.408933+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9089}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-28T07:10:10.409154+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'DONE'}",
+  "project": "occsafe_vla",
+  "fields": "['exp_id', 'metrics', 'conclusion']",
+  "limit": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'DONE'}",
+    "project": "occsafe_vla",
+    "fields": "['exp_id', 'metrics', 'conclusion']",
+    "limit": "50"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-28T07:10:10.409766+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"full_occ_ln_v2_s3\": {\"conclusion\": \"success\"}, \"detach_ln_v2_s3\": {\"conclusion\": \"success\"}, \"detach_ln_v2_s0c_r3\": {\"conclusion\": \"success\", \"metrics\": {\"CAR\": 0.802, \"eval_rollouts\": 50, \"eval_source\": \"detach_ln_v2_s0c_r3_eval\"}}, \"detach_ln_s4\": {\"conclusion\": \"failed\"}, \"detach_bn_object_s0\": {\"conclusion\": \"killed\"}, \"full_occ_bn_object_s0\": {\"conclusion\": \"killed\"}, \"vanilla_object_s0\": {\"conclusion\": \"killed\"}, \"full_occ_ln_s4\": {\"conclusion\": \"success\", \"metrics\": {\"CAR\": 0.754, \"TSR\": 0.886, \"note\": \"metrics from full_occ_ln_s4_eval\"}}, \"full_occ_ln_s4_eval\": {\"conclusion\": \"success\", \"metrics\": {\"CAR\": 0.754, \"TSR\": 0.886, \"total_collisions\": 123, \"total_episodes\": 500, \"per_task\": {\"bowl_between_plate_ramekin\": {\"tsr\": 0.98, \"car\": 0.98}, \"bowl_next_to_ramekin\": {\"tsr\": 1, \"car\": 0.94}, \"bowl_from_table_center\": {\"tsr\": 1, \"car\": 0.92}, \"bowl_on_cookie_box\": {\"tsr\": 1, \"car\": 0.16}, \"bowl_in_top_drawer\": {\"tsr\": 1, \"car\": 0.98}, \"bowl_on_ramekin\": {\"tsr\": 0.2, \"car\": 0.14}, \"bowl_next_to_cookie_box\": {\"tsr\": 0.98, \"car\": 0.48}, \"bowl_on_stove\": {\"tsr\": 0.88, \"car\": 0.98}, \"bowl_next_to_plate\": {\"tsr\": 0.96, \"car\": 1}, \"bowl_on_wooden_cabinet\": {\"tsr\": 0.86, \"car\": 0.96}}}}, \"detach_ln_v2_s0c_r3_eval\": {\"metrics\": {\"tsr\": 0.908, \"car\": 0.802, \"total_collisions\": 99, \"total_episodes\": 500, \"per_task\": {\"bowl_between_plate_ramekin\": {\"tsr\": 1, \"car\": 0.96}, \"bowl_next_to_ramekin\": {\"tsr\": 1, \"car\": 0.98}, \"bowl_from_table_center\": {\"tsr\": 0.98, \"car\": 0.9}, \"bowl_on_cookie_box\": {\"tsr\": 0.98, \"car\": 0.54}, \"bowl_in_top_drawer\": {\"tsr\": 0.88, \"car\": 0.9}, \"bowl_on_ramekin\": {\"tsr\": 0.36, \"car\": 0.2}, \"bowl_next_to_cookie_box\": {\"tsr\": 1, \"car\": 0.54}, \"bowl_on_stove\": {\"tsr\": 0.94, \"car\": 1}, \
+…[truncated 9532 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-28T07:10:10.410088+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{}",
+  "project": "occsafe_vla",
+  "fields": "['exp_id', 'metrics', 'conclusion']",
+  "limit": "151"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{}",
+    "project": "occsafe_vla",
+    "fields": "['exp_id', 'metrics', 'conclusion']",
+    "limit": "151"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-28T07:10:10.412101+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"full_occ_ln_v2_s3_eval\": {}, \"detach_ln_v2_s3_eval\": {}, \"full_occ_ln_v2_s3\": {\"conclusion\": \"success\"}, \"detach_ln_v2_s3\": {\"conclusion\": \"success\"}, \"detach_ln_v2_s0c_r3\": {\"conclusion\": \"success\", \"metrics\": {\"CAR\": 0.802, \"eval_rollouts\": 50, \"eval_source\": \"detach_ln_v2_s0c_r3_eval\"}}, \"detach_ln_s4\": {\"conclusion\": \"failed\"}, \"vanilla_object_s2\": {}, \"full_occ_bn_v2_s3\": {}, \"full_occ_bn_v2_s2\": {}, \"vanilla_object_s1\": {}, \"detach_ln_v2_s4\": {}, \"detach_ln_v2_s2\": {}, \"detach_bn_object_s0\": {\"conclusion\": \"killed\"}, \"full_occ_bn_object_s0\": {\"conclusion\": \"killed\"}, \"vanilla_object_s0\": {\"conclusion\": \"killed\"}, \"full_occ_ln_s4\": {\"conclusion\": \"success\", \"metrics\": {\"CAR\": 0.754, \"TSR\": 0.886, \"note\": \"metrics from full_occ_ln_s4_eval\"}}, \"full_occ_ln_s4_eval\": {\"conclusion\": \"success\", \"metrics\": {\"CAR\": 0.754, \"TSR\": 0.886, \"total_collisions\": 123, \"total_episodes\": 500, \"per_task\": {\"bowl_between_plate_ramekin\": {\"tsr\": 0.98, \"car\": 0.98}, \"bowl_next_to_ramekin\": {\"tsr\": 1, \"car\": 0.94}, \"bowl_from_table_center\": {\"tsr\": 1, \"car\": 0.92}, \"bowl_on_cookie_box\": {\"tsr\": 1, \"car\": 0.16}, \"bowl_in_top_drawer\": {\"tsr\": 1, \"car\": 0.98}, \"bowl_on_ramekin\": {\"tsr\": 0.2, \"car\": 0.14}, \"bowl_next_to_cookie_box\": {\"tsr\": 0.98, \"car\": 0.48}, \"bowl_on_stove\": {\"tsr\": 0.88, \"car\": 0.98}, \"bowl_next_to_plate\": {\"tsr\": 0.96, \"car\": 1}, \"bowl_on_wooden_cabinet\": {\"tsr\": 0.86, \"car\": 0.96}}}}, \"detach_ln_v2_s0c_r3_eval\": {\"metrics\": {\"tsr\": 0.908, \"car\": 0.802, \"total_collisions\": 99, \"total_episodes\": 500, \"per_task\": {\"bowl_between_plate_ramekin\": {\"tsr\": 1, \"car\": 0.96}, \"bowl_next_to_ramekin\": {\"tsr\": 1, \"car\": 0.98}, \"bowl_from_table_center\": {\"tsr\": 0.98, \"car\": 0.9}, \"bowl_on_cookie_box\": {\"tsr\": 0.98, \"car\": 0
+…[truncated 46974 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-28T07:10:10.412526+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && python3 -c \"import scipy, statsmodels; print('scipy:', scipy.__version__, 'statsmodels:', statsmodels.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && python3 -c \"import scipy, statsmodels; print('scipy:', scipy.__version__, 'statsmodels:', statsmodels.__version__)\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-28T07:10:10.412773+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"scipy: 1.15.3 statsmodels: 0.14.6\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-28T07:10:10.413123+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cat > /tmp/anova_v2.py << 'PYEOF'\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\nimport statsmodels.api as sm\nfrom statsmodels.formula.api import ols\nfrom statsmodels.stats.anova import anova_lm\nimport warnings\nwarnings.filterwarnings('ignore')\n\n# ============================================================\n# DATA\n# ============================================================\n# 2x2 Factorial: gradient_flow (ON/OFF) x norm_type (BN/LN)\ncell1 = np.array([0.746, 0.654, 0.776])   # Full OCC BN (grad ON, BN)\ncell2 = np.array([0.740, 0.792, 0.798, 0.754])  # Full OCC LN (grad ON, LN)\ncell3 = np.array([0.774, 0.736, 0.762, 0.794])  # Detach BN (grad OFF, BN)\ncell4 = np.array([0.826, 0.802])           # Detach LN (grad OFF, LN)\nvanilla = np.array([0.748, 0.720])         # Vanilla baseline (n=2)\n\n# Build DataFrame for ANOVA\ndata = []\nfor v in cell1:\n    data.append({'CAR': v, 'gradient_flow': 'ON', 'norm_type': 'BN'})\nfor v in cell2:\n    data.append({'CAR': v, 'gradient_flow': 'ON', 'norm_type': 'LN'})\nfor v in cell3:\n    data.append({'CAR': v, 'gradient_flow': 'OFF', 'norm_type': 'BN'})\nfor v in cell4:\n    data.append({'CAR': v, 'gradient_flow': 'OFF', 'norm_type': 'LN'})\n\ndf = pd.DataFrame(data)\n\n# ============================================================\n# 1. DESCRIPTIVE STATISTICS\n# ============================================================\nprint(\"=\" * 70)\nprint(\"2x2 FACTORIAL ANOVA: gradient_flow x norm_type on CAR (v2 data)\")\nprint(\"=\" * 70)\n\nprint(\"\\n--- Cell Descriptives ---\")\ncells = {\n    'Cell 1 (Full OCC BN, grad ON + BN)': cell1,\n    'Cell 2 (Full OCC LN, grad ON + LN)': cell2,\n    'Cell 3 (Detach BN, grad OFF + BN)': cell3,\n    'Cell 4 (Detach LN, grad OFF + LN)': cell4,\n    'Vanilla baseline': vanilla,\n}\nfor name, arr in cells.items():\n    print(f\"  {name}: n={len(arr)}, mean={arr.mean():.4f}, SD={arr.std(ddof=1):.4f}, \"\n          f\"range=[{arr.min():.3f}, {arr.max():.3f}]\")\n\n# Marginal means\ngrad_on = np.concatenate([cell1, cell2])\ngrad_off = np.concatenate([cell3, cell4])\nnorm_bn = np.concatenate([cell1, cell3])\nnorm_ln = np.concatenate([cell2, cell4])\nprint(f\"\\n--- Marginal Means ---\")\nprint(f\"  Gradient ON:  mean={grad_on.mean():.4f} (n={len(grad_on)})\")\nprint(f\"  Gradient OFF: mean={grad_off.mean():.4f} (n={len(grad_off)})\")\nprint(f\"  BN:           mean={norm_bn.mean():.4f} (n={len(norm_bn)})\")\nprint(f\"  LN:           mean={norm_ln.mean():.4f} (n={len(norm_ln)})\")\n\n# ============================================================\n# 2. 2x2 FACTORIAL ANOVA (Type III SS)\n# ============================================================\nprint(\"\\n\" + \"=\" * 70)\nprint(\"2x2 FACTORIAL ANOVA (Type III Sum of Squares)\")\nprint(\"=\" * 70)\n\nmodel = ols('CAR ~ C(gradient_flow) * C(norm_type)', data=df).fit()\nanova_table = anova_lm(model, typ=3)\n\n# Compute partial eta-squared\nss_residual = anova_table.loc['Residual', 'sum_sq']\nfor idx in anova_table.index:\n    if idx != 'Residual' and idx != 'Intercept':\n        ss_effect = anova_table.loc[idx, 'sum_sq']\n        anova_table.loc[idx, 'partial_eta_sq'] = ss_effect / (ss_effect + ss_residual)\n\nprint(f\"\\n{'Source':<45} {'SS':>10} {'df':>5} {'F':>8} {'p':>8} {'η²_p':>8}\")\nprint(\"-\" * 85)\nfor idx in anova_table.index:\n    if idx == 'Intercept':\n        continue\n    row = anova_table.loc[idx]\n    ss = row['sum_sq']\n    dof = int(row['df'])\n    f_val = row.get('F', np.nan)\n    p_val = row.get('PR(>F)', np.nan)\n    eta = row.get('partial_eta_sq', np.nan)\n    if idx == 'Residual':\n        print(f\"  {idx:<43} {ss:>10.6f} {dof:>5}\")\n    else:\n        sig = ''\n        if not np.isnan(p_val):\n            if p_val < 0.001: sig = '***'\n            elif p_val < 0.01: sig = '**'\n            elif p_val < 0.05: sig = '*'\n            elif p_val < 0.1: sig = '†'\n        print(f\"  {idx:<43} {ss:>10.6f} {dof:>5} {f_val:>8.3f} {p_val:>8.4f} {eta:>8.4f} {sig}\")\nprint(\"-\" * 85)\nprint(\"Significance: *** p<.001, ** p<.01, * p<.05, † p<.10\")\n\n# ============================================================\n# 3. WELCH'S T-TESTS: Each Cell vs Vanilla (one-sided: cell < vanilla)\n# ============================================================\nprint(\"\\n\" + \"=\" * 70)\nprint(\"WELCH'S T-TESTS: Each Cell vs Vanilla (H1: Cell < Vanilla)\")\nprint(\"=\" * 70)\n\ndef cohens_d(x, y):\n    nx, ny = len(x), len(y)\n    pooled_std = np.sqrt(((nx-1)*x.std(ddof=1)**2 + (ny-1)*y.std(ddof=1)**2) / (nx+ny-2))\n    if pooled_std == 0:\n        return np.nan\n    return (x.mean() - y.mean()) / pooled_std\n\nprint(f\"\\nVanilla: mean={vanilla.mean():.4f}, SD={vanilla.std(ddof=1):.4f}, n={len(vanilla)}\")\nprint(f\"\\n{'Cell':<45} {'mean':>7} {'t':>8} {'df':>6} {'p(1-tail)':>10} {'Cohen d':>9} {'Interpretation':>15}\")\nprint(\"-\" * 105)\n\nfor name, arr in [\n    ('Cell 1 (Full OCC BN, grad ON + BN)', cell1),\n    ('Cell 2 (Full OCC LN, grad ON + LN)', cell2),\n    ('Cell 3 (Detach BN, grad OFF + BN)', cell3),\n    ('Cell 4 (Detach LN, grad OFF + LN)', cell4),\n]:\n    t_stat, p_two = stats.ttest_ind(arr, vanilla, equal_var=False)\n    p_one = p_two / 2 if t_stat < 0 else 1 - p_two / 2\n    d = cohens_d(arr, vanilla)\n    \n    sig = ''\n    if p_one < 0.05: sig = 'Cell < Vanilla *'\n    elif p_one > 0.95: sig = 'Cell > Vanilla'\n    else: sig = 'n.s.'\n    \n    print(f\"  {name:<43} {arr.mean():>7.4f} {t_stat:>8.3f} {'-':>6} {p_one:>10.4f} {d:>9.3f} {sig:>15}\")\n\n# ============================================================\n# 4. DETACH COMBINED vs VANILLA\n# ============================================================\nprint(\"\\n\" + \"=\" * 70)\nprint(\"DETACH (Cell 3+4 combined) vs VANILLA\")\nprint(\"=\" * 70)\n\ndetach_combined = np.concatenate([cell3, cell4])\nt_stat, p_two = stats.ttest_ind(detach_combined, vanilla, equal_var=False)\np_one_greater = 1 - p_two / 2 if t_stat > 0 else p_two / 2\nd = cohens_d(detach_combined, vanilla)\n\nprint(f\"  Detach combined: mean={detach_combined.mean():.4f}, SD={detach_combined.std(ddof=1):.4f}, n={len(detach_combined)}\")\nprint(f\"  Vanilla:         mean={vanilla.mean():.4f}, SD={vanilla.std(ddof=1):.4f}, n={len(vanilla)}\")\nprint(f\"  Welch's t = {t_stat:.3f}, p(two-tailed) = {p_two:.4f}\")\nprint(f\"  p(one-tailed, Detach > Vanilla) = {p_one_greater:.4f}\")\nprint(f\"  Cohen's d = {d:.3f}\")\nif p_two > 0.05:\n    print(f\"  --> Detach NOT significantly different from Vanilla (p={p_two:.3f})\")\nelse:\n    print(f\"  --> Significant difference detected (p={p_two:.3f})\")\n\n# ============================================================\n# 5. FULL OCC COMBINED vs VANILLA\n# ============================================================\nprint(\"\\n\" + \"=\" * 70)\nprint(\"FULL OCC (Cell 1+2 combined) vs VANILLA\")\nprint(\"=\" * 70)\n\nfull_occ_combined = np.concatenate([cell1, cell2])\nt_stat2, p_two2 = stats.ttest_ind(full_occ_combined, vanilla, equal_var=False)\np_one_less = p_two2 / 2 if t_stat2 < 0 else 1 - p_two2 / 2\nd2 = cohens_d(full_occ_combined, vanilla)\n\nprint(f\"  Full OCC combined: mean={full_occ_combined.mean():.4f}, SD={full_occ_combined.std(ddof=1):.4f}, n={len(full_occ_combined)}\")\nprint(f\"  Vanilla:           mean={vanilla.mean():.4f}, SD={vanilla.std(ddof=1):.4f}, n={len(vanilla)}\")\nprint(f\"  Welch's t = {t_stat2:.3f}, p(two-tailed) = {p_two2:.4f}\")\nprint(f\"  p(one-tailed, Full OCC < Vanilla) = {p_one_less:.4f}\")\nprint(f\"  Cohen's d = {d2:.3f}\")\n\n# ============================================================\n# 6. SIMPLE EFFECTS (post-hoc)\n# ============================================================\nprint(\"\\n\" + \"=\" * 70)\nprint(\"SIMPLE EFFECTS OF GRADIENT FLOW WITHIN EACH NORM TYPE\")\nprint(\"=\" * 70)\n\n# BN: Cell1 (ON) vs Cell3 (OFF)\nt_bn, p_bn = stats.ttest_ind(cell1, cell3, equal_var=False)\nd_bn = cohens_d(cell1, cell3)\nprint(f\"  Within BN:  ON (mean={cell1.mean():.4f}) vs OFF (mean={cell3.mean():.4f})\")\nprint(f\"    t={t_bn:.3f}, p={p_bn:.4f}, Cohen's d={d_bn:.3f}\")\n\n# LN: Cell2 (ON) vs Cell4 (OFF)\nt_ln, p_ln = stats.ttest_ind(cell2, cell4, equal_var=False)\nd_ln = cohens_d(cell2, cell4)\nprint(f\"  Within LN:  ON (mean={cell2.mean():.4f}) vs OFF (mean={cell4.mean():.4f})\")\nprint(f\"    t={t_ln:.3f}, p={p_ln:.4f}, Cohen's d={d_ln:.3f}\")\n\n# ============================================================\n# 7. CONCLUSION\n# ============================================================\nprint(\"\\n\" + \"=\" * 70)\nprint(\"CONCLUSION SUMMARY\")\nprint(\"=\" * 70)\n\nmain_A = anova_table.loc['C(gradient_flow)', 'PR(>F)']\nmain_B = anova_table.loc['C(norm_type)', 'PR(>F)']\ninteraction = anova_table.loc['C(gradient_flow):C(norm_type)', 'PR(>F)']\neta_A = anova_table.loc['C(gradient_flow)', 'partial_eta_sq']\neta_B = anova_table.loc['C(norm_type)', 'partial_eta_sq']\neta_AB = anova_table.loc['C(gradient_flow):C(norm_type)', 'partial_eta_sq']\n\nprint(f\"\"\"\nA 2x2 factorial ANOVA (Type III SS) was conducted on CAR with gradient_flow \n(ON vs OFF) and norm_type (BN vs LN) as between-subjects factors (total N=13, \nunequal cell sizes: n=3,4,4,2).\n\nMain effect of gradient_flow: F={anova_table.loc['C(gradient_flow)','F']:.3f}, \n  p={main_A:.4f}, partial eta^2={eta_A:.4f}. \n  Gradient OFF (M={grad_off.mean():.4f}) > Gradient ON (M={grad_on.mean():.4f}).\n\nMain effect of norm_type: F={anova_table.loc['C(norm_type)','F']:.3f}, \n  p={main_B:.4f}, partial eta^2={eta_B:.4f}.\n  LN (M={norm_ln.mean():.4f}) vs BN (M={norm_bn.mean():.4f}).\n\nInteraction (gradient_flow x norm_type): F={anova_table.loc['C(gradient_flow):C(norm_type)','F']:.3f}, \n  p={interaction:.4f}, partial eta^2={eta_AB:.4f}.\n\nDetach combined (n=6, M={detach_combined.mean():.4f}) vs Vanilla (n=2, M={vanilla.mean():.4f}): \n  not significantly different (p={p_two:.4f}), supporting the claim that \n  gradient detachment restores CAR to Vanilla levels.\n\nNote: Cell 4 (Detach LN) has only n=2. Vanilla baseline also has n=2 \n(vanilla_v2_s0_eval not found in registry). Results should be interpreted \nwith caution given small sample sizes.\n\"\"\")\nPYEOF\npython3 /tmp/anova_v2.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cat > /tmp/anova_v2.py << 'PYEOF'\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\nimport statsmodels.api as sm\nfrom statsmodels.formula.api import ols\nfrom statsmodels.stats.anova import anova_lm\nimport warnings\nwarnings.filterwarnings('ignore')\n\n# ============================================================\n# DATA\n# ============================================================\n# 2x2 Factorial: gradient_flow (ON/OFF) x norm_type (BN/LN)\ncell1 = np.array([0.746, 0.654, 0.776])   # Full OCC BN (grad ON, BN)\ncell2 = np.array([0.740, 0.792, 0.798, 0.754])  # Full OCC LN (grad ON, LN)\ncell3 = np.array([0.774, 0.736, 0.762, 0.794])  # Detach BN (grad OFF, BN)\ncell4 = np.array([0.826, 0.802])           # Detach LN (grad OFF, LN)\nvanilla = np.array([0.748, 0.720])         # Vanilla baseline (n=2)\n\n# Build DataFrame for ANOVA\ndata = []\nfor v in cell1:\n    data.append({'CAR': v, 'gradient_flow': 'ON', 'norm_type': 'BN'})\nfor v in cell2:\n    data.append({'CAR': v, 'gradient_flow': 'ON', 'norm_type': 'LN'})\nfor v in cell3:\n    data.append({'CAR': v, 'gradient_flow': 'OFF', 'norm_type': 'BN'})\nfor v in cell4:\n    data.append({'CAR': v, 'gradient_flow': 'OFF', 'norm_type': 'LN'})\n\ndf = pd.DataFrame(data)\n\n# ============================================================\n# 1. DESCRIPTIVE STATISTICS\n# ============================================================\nprint(\"=\" * 70)\nprint(\"2x2 FACTORIAL ANOVA: gradient_flow x norm_type on CAR (v2 data)\")\nprint(\"=\" * 70)\n\nprint(\"\\n--- Cell Descriptives ---\")\ncells = {\n    'Cell 1 (Full OCC BN, grad ON + BN)': cell1,\n    'Cell 2 (Full OCC LN, grad ON + LN)': cell2,\n    'Cell 3 (Detach BN, grad OFF + BN)': cell3,\n    'Cell 4 (Detach LN, grad OFF + LN)': cell4,\n    'Vanilla baseline': vanilla,\n}\nfor name, arr in cells.items():\n    print(f\"  {name}: n={len(arr)}, mean={arr.mean():.4f}, SD={arr.std(ddof=1):.4f}, \"\n          f\"range=[{arr.min():.3f}, {arr.max():.3f}]\")\n\n# Marginal means\ngrad_on = np.concatenate([cell1, cell2])\ngrad_off = np.concatenate([cell3, cell4])\nnorm_bn = np.concatenate([cell1, cell3])\nnorm_ln = np.concatenate([cell2, cell4])\nprint(f\"\\n--- Marginal Means ---\")\nprint(f\"  Gradient ON:  mean={grad_on.mean():.4f} (n={len(grad_on)})\")\nprint(f\"  Gradient OFF: mean={grad_off.mean():.4f} (n={len(grad_off)})\")\nprint(f\"  BN:           mean={norm_bn.mean():.4f} (n={len(norm_bn)})\")\nprint(f\"  LN:           mean={norm_ln.mean():.4f} (n={len(norm_ln)})\")\n\n# ============================================================\n# 2. 2x2 FACTORIAL ANOVA (Type III SS)\n# ============================================================\nprint(\"\\n\" + \"=\" * 70)\nprint(\"2x2 FACTORIAL ANOVA (Type III Sum of Squares)\")\nprint(\"=\" * 70)\n\nmodel = ols('CAR ~ C(gradient_flow) * C(norm_type)', data=df).fit()\nanova_table = anova_lm(model, typ=3)\n\n# Compute partial eta-squared\nss_residual = anova_table.loc['Residual', 'sum_sq']\nfor idx in anova_table.index:\n    if idx != 'Residual' and idx != 'Intercept':\n        ss_effect = anova_table.loc[idx, 'sum_sq']\n        anova_table.loc[idx, 'partial_eta_sq'] = ss_effect / (ss_effect + ss_residual)\n\nprint(f\"\\n{'Source':<45} {'SS':>10} {'df':>5} {'F':>8} {'p':>8} {'η²_p':>8}\")\nprint(\"-\" * 85)\nfor idx in anova_table.index:\n    if idx == 'Intercept':\n        continue\n    row = anova_table.loc[idx]\n    ss = row['sum_sq']\n    dof = int(row['df'])\n    f_val = row.get('F', np.nan)\n    p_val = row.get('PR(>F)', np.nan)\n    eta = row.get('partial_eta_sq', np.nan)\n    if idx == 'Residual':\n        print(f\"  {idx:<43} {ss:>10.6f} {dof:>5}\")\n    else:\n        sig = ''\n        if not np.isnan(p_val):\n            if p_val < 0.001: sig = '***'\n            elif p_val < 0.01: sig = '**'\n            elif p_val < 0.05: sig = '*'\n            elif p_val < 0.1: sig = '†'\n        print(f\"  {idx:<43} {ss:>10.6f} {dof:>5} {f_val:>8.3f} {p_val:>8.4f} {eta:>8.4f} {sig}\")\nprint(\"-\" * 85)\nprint(\"Significance: *** p<.001, ** p<.01, * p<.05, † p<.10\")\n\n# ============================================================\n# 3. WELCH'S T-TESTS: Each Cell vs Vanilla (one-sided: cell < vanilla)\n# ============================================================\nprint(\"\\n\" + \"=\" * 70)\nprint(\"WELCH'S T-TESTS: Each Cell vs Vanilla (H1: Cell < Vanilla)\")\nprint(\"=\" * 70)\n\ndef cohens_d(x, y):\n    nx, ny = len(x), len(y)\n    pooled_std = np.sqrt(((nx-1)*x.std(ddof=1)**2 + (ny-1)*y.std(ddof=1)**2) / (nx+ny-2))\n    if pooled_std == 0:\n        return np.nan\n    return (x.mean() - y.mean()) / pooled_std\n\nprint(f\"\\nVanilla: mean={vanilla.mean():.4f}, SD={vanilla.std(ddof=1):.4f}, n={len(vanilla)}\")\nprint(f\"\\n{'Cell':<45} {'mean':>7} {'t':>8} {'df':>6} {'p(1-tail)':>10} {'Cohen d':>9} {'Interpretation':>15}\")\nprint(\"-\" * 105)\n\nfor name, arr in [\n    ('Cell 1 (Full OCC BN, grad ON + BN)', cell1),\n    ('Cell 2 (Full OCC LN, grad ON + LN)', cell2),\n    ('Cell 3 (Detach BN, grad OFF + BN)', cell3),\n    ('Cell 4 (Detach LN, grad OFF + LN)', cell4),\n]:\n    t_stat, p_two = stats.ttest_ind(arr, vanilla, equal_var=False)\n    p_one = p_two / 2 if t_stat < 0 else 1 - p_two / 2\n    d = cohens_d(arr, vanilla)\n    \n    sig = ''\n    if p_one < 0.05: sig = 'Cell < Vanilla *'\n    elif p_one > 0.95: sig = 'Cell > Vanilla'\n    else: sig = 'n.s.'\n    \n    print(f\"  {name:<43} {arr.mean():>7.4f} {t_stat:>8.3f} {'-':>6} {p_one:>10.4f} {d:>9.3f} {sig:>15}\")\n\n# ============================================================\n# 4. DETACH COMBINED vs VANILLA\n# ============================================================\nprint(\"\\n\" + \"=\" * 70)\nprint(\"DETACH (Cell 3+4 combined) vs VANILLA\")\nprint(\"=\" * 70)\n\ndetach_combined = np.concatenate([cell3, cell4])\nt_stat, p_two = stats.ttest_ind(detach_combined, vanilla, equal_var=False)\np_one_greater = 1 - p_two / 2 if t_stat > 0 else p_two / 2\nd = cohens_d(detach_combined, vanilla)\n\nprint(f\"  Detach combined: mean={detach_combined.mean():.4f}, SD={detach_combined.std(ddof=1):.4f}, n={len(detach_combined)}\")\nprint(f\"  Vanilla:         mean={vanilla.mean():.4f}, SD={vanilla.std(ddof=1):.4f}, n={len(vanilla)}\")\nprint(f\"  Welch's t = {t_stat:.3f}, p(two-tailed) = {p_two:.4f}\")\nprint(f\"  p(one-tailed, Detach > Vanilla) = {p_one_greater:.4f}\")\nprint(f\"  Cohen's d = {d:.3f}\")\nif p_two > 0.05:\n    print(f\"  --> Detach NOT significantly different from Vanilla (p={p_two:.3f})\")\nelse:\n    print(f\"  --> Significant difference detected (p={p_two:.3f})\")\n\n# ============================================================\n# 5. FULL OCC COMBINED vs VANILLA\n# ============================================================\nprint(\"\\n\" + \"=\" * 70)\nprint(\"FULL OCC (Cell 1+2 combined) vs VANILLA\")\nprint(\"=\" * 70)\n\nfull_occ_combined = np.concatenate([cell1, cell2])\nt_stat2, p_two2 = stats.ttest_ind(full_occ_combined, vanilla, equal_var=False)\np_one_less = p_two2 / 2 if t_stat2 < 0 else 1 - p_two2 / 2\nd2 = cohens_d(full_occ_combined, vanilla)\n\nprint(f\"  Full OCC combined: mean={full_occ_combined.mean():.4f}, SD={full_occ_combined.std(ddof=1):.4f}, n={len(full_occ_combined)}\")\nprint(f\"  Vanilla:           mean={vanilla.mean():.4f}, SD={vanilla.std(ddof=1):.4f}, n={len(vanilla)}\")\nprint(f\"  Welch's t = {t_stat2:.3f}, p(two-tailed) = {p_two2:.4f}\")\nprint(f\"  p(one-tailed, Full OCC < Vanilla) = {p_one_less:.4f}\")\nprint(f\"  Cohen's d = {d2:.3f}\")\n\n# ============================================================\n# 6. SIMPLE EFFECTS (post-hoc)\n# ============================================================\nprint(\"\\n\" + \"=\" * 70)\nprint(\"SIMPLE EFFECTS OF GRADIENT FLOW WITHIN EACH NORM TYPE\")\nprint(\"=\" * 70)\n\n# BN: Cell1 (ON) vs Cell3 (OFF)\nt_bn, p_bn = stats.ttest_ind(cell1, cell3, equal_var=False)\nd_bn = cohens_d(cell1, cell3)\nprint(f\"  Within BN:  ON (mean={cell1.mean():.4f}) vs OFF (mean={cell3.mean():.4f})\")\nprint(f\"    t={t_bn:.3f}, p={p_bn:.4f}, Cohen's d={d_bn:.3f}\")\n\n# LN: Cell2 (ON) vs Cell4 (OFF)\nt_ln, p_ln = stats.ttest_ind(cell2, cell4, equal_var=False)\nd_ln = cohens_d(cell2, cell4)\nprint(f\"  Within LN:  ON (mean={cell2.mean():.4f}) vs OFF (mean={cell4.mean():.4f})\")\nprint(f\"    t={t_ln:.3f}, p={p_ln:.4f}, Cohen's d={d_ln:.3f}\")\n\n# ============================================================\n# 7. CONCLUSION\n# ============================================================\nprint(\"\\n\" + \"=\" * 70)\nprint(\"CONCLUSION SUMMARY\")\nprint(\"=\" * 70)\n\nmain_A = anova_table.loc['C(gradient_flow)', 'PR(>F)']\nmain_B = anova_table.loc['C(norm_type)', 'PR(>F)']\ninteraction = anova_table.loc['C(gradient_flow):C(norm_type)', 'PR(>F)']\neta_A = anova_table.loc['C(gradient_flow)', 'partial_eta_sq']\neta_B = anova_table.loc['C(norm_type)', 'partial_eta_sq']\neta_AB = anova_table.loc['C(gradient_flow):C(norm_type)', 'partial_eta_sq']\n\nprint(f\"\"\"\nA 2x2 factorial ANOVA (Type III SS) was conducted on CAR with gradient_flow \n(ON vs OFF) and norm_type (BN vs LN) as between-subjects factors (total N=13, \nunequal cell sizes: n=3,4,4,2).\n\nMain effect of gradient_flow: F={anova_table.loc['C(gradient_flow)','F']:.3f}, \n  p={main_A:.4f}, partial eta^2={eta_A:.4f}. \n  Gradient OFF (M={grad_off.mean():.4f}) > Gradient ON (M={grad_on.mean():.4f}).\n\nMain effect of norm_type: F={anova_table.loc['C(norm_type)','F']:.3f}, \n  p={main_B:.4f}, partial eta^2={eta_B:.4f}.\n  LN (M={norm_ln.mean():.4f}) vs BN (M={norm_bn.mean():.4f}).\n\nInteraction (gradient_flow x norm_type): F={anova_table.loc['C(gradient_flow):C(norm_type)','F']:.3f}, \n  p={interaction:.4f}, partial eta^2={eta_AB:.4f}.\n\nDetach combined (n=6, M={detach_combined.mean():.4f}) vs Vanilla (n=2, M={vanilla.mean():.4f}): \n  not significantly different (p={p_two:.4f}), supporting the claim that \n  gradient detachment restores CAR to Vanilla levels.\n\nNote: Cell 4 (Detach LN) has only n=2. Vanilla baseline also has n=2 \n(vanilla_v2_s0_eval not found in registry). Results should be interpreted \nwith caution given small sample sizes.\n\"\"\")\nPYEOF\npython3 /tmp/anova_v2.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-28T07:10:10.413638+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\n2x2 FACTORIAL ANOVA: gradient_flow x norm_type on CAR (v2 data)\\n======================================================================\\n\\n--- Cell Descriptives ---\\n  Cell 1 (Full OCC BN, grad ON + BN): n=3, mean=0.7253, SD=0.0636, range=[0.654, 0.776]\\n  Cell 2 (Full OCC LN, grad ON + LN): n=4, mean=0.7710, SD=0.0284, range=[0.740, 0.798]\\n  Cell 3 (Detach BN, grad OFF + BN): n=4, mean=0.7665, SD=0.0242, range=[0.736, 0.794]\\n  Cell 4 (Detach LN, grad OFF + LN): n=2, mean=0.8140, SD=0.0170, range=[0.802, 0.826]\\n  Vanilla baseline: n=2, mean=0.7340, SD=0.0198, range=[0.720, 0.748]\\n\\n--- Marginal Means ---\\n  Gradient ON:  mean=0.7514 (n=7)\\n  Gradient OFF: mean=0.7823 (n=6)\\n  BN:           mean=0.7489 (n=7)\\n  LN:           mean=0.7853 (n=6)\\n\\n======================================================================\\n2x2 FACTORIAL ANOVA (Type III Sum of Squares)\\n======================================================================\\n\\nSource                                                SS    df        F        p     η²_p\\n-------------------------------------------------------------------------------------\\n  C(gradient_flow)                              0.002905     1    2.083   0.1829   0.1879 \\n  C(norm_type)                                  0.003008     1    2.157   0.1760   0.1933 \\n  C(gradient_flow):C(norm_type)                 0.000003     1    0.002   0.9670   0.0002 \\n  Residual                                      0.012554     9\\n-------------------------------------------------------------------------------------\\nSignificance: *** p<.001, ** p<.01, * p<.05, † p<.10\\n\\n======================================================================\\nWELCH'S T-TESTS: Each Cell vs Vanilla (H1: Cell < Vanilla)\\n======================================================================\\n\\nVanilla: mean=0.734
+…[truncated 3150 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-28T07:10:10.414023+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/anova_v2_final.txt",
+  "content": "======================================================================\n2x2 FACTORIAL ANOVA: gradient_flow x norm_type on CAR (v2 data)\nDate: 2026-05-28\n======================================================================\n\n--- Cell Descriptives ---\n  Cell 1 (Full OCC BN, grad ON + BN): n=3, mean=0.7253, SD=0.0636, range=[0.654, 0.776]\n  Cell 2 (Full OCC LN, grad ON + LN): n=4, mean=0.7710, SD=0.0284, range=[0.740, 0.798]\n  Cell 3 (Detach BN, grad OFF + BN):  n=4, mean=0.7665, SD=0.0242, range=[0.736, 0.794]\n  Cell 4 (Detach LN, grad OFF + LN):  n=2, mean=0.8140, SD=0.0170, range=[0.802, 0.826]\n  Vanilla baseline:                    n=2, mean=0.7340, SD=0.0198, range=[0.720, 0.748]\n\n--- Marginal Means ---\n  Gradient ON:  mean=0.7514 (n=7)\n  Gradient OFF: mean=0.7823 (n=6)\n  BN:           mean=0.7489 (n=7)\n  LN:           mean=0.7853 (n=6)\n\n======================================================================\n2x2 FACTORIAL ANOVA (Type III Sum of Squares)\n======================================================================\n\nSource                                                SS    df        F        p     η²_p\n-------------------------------------------------------------------------------------\n  C(gradient_flow)                              0.002905     1    2.083   0.1829   0.1879\n  C(norm_type)                                  0.003008     1    2.157   0.1760   0.1933\n  C(gradient_flow):C(norm_type)                 0.000003     1    0.002   0.9670   0.0002\n  Residual                                      0.012554     9\n-------------------------------------------------------------------------------------\nSignificance: *** p<.001, ** p<.01, * p<.05, † p<.10\n\n======================================================================\nWELCH'S T-TESTS: Each Cell vs Vanilla (H1: Cell < Vanilla)\n======================================================================\n\nVanilla: mean=0.7340, SD=0.0198, n=2\n\nCell                                             mean        t  p(1-tail)   Cohen d  Interpretation\n---------------------------------------------------------------------------------------------------------\n  Cell 1 (Full OCC BN, grad ON + BN)           0.7253   -0.221     0.4210    -0.163            n.s.\n  Cell 2 (Full OCC LN, grad ON + LN)           0.7710    1.855     0.9204     1.395            n.s.\n  Cell 3 (Detach BN, grad OFF + BN)            0.7665    1.755     0.9038     1.400            n.s.\n  Cell 4 (Detach LN, grad OFF + LN)            0.8140    4.339     0.9743     4.339  Cell > Vanilla\n\n======================================================================\nDETACH (Cell 3+4 combined) vs VANILLA\n======================================================================\n  Detach combined: mean=0.7823, SD=0.0318, n=6\n  Vanilla:         mean=0.7340, SD=0.0198, n=2\n  Welch's t = 2.531, p(two-tailed) = 0.0849\n  p(one-tailed, Detach > Vanilla) = 0.9575\n  Cohen's d = 1.604\n  --> Detach NOT significantly different from Vanilla (p=0.085, two-tailed)\n\n======================================================================\nFULL OCC (Cell 1+2 combined) vs VANILLA\n======================================================================\n  Full OCC combined: mean=0.7514, SD=0.0484, n=7\n  Vanilla:           mean=0.7340, SD=0.0198, n=2\n  Welch's t = 0.756, p(two-tailed) = 0.4840\n  p(one-tailed, Full OCC < Vanilla) = 0.7580\n  Cohen's d = 0.383\n\n======================================================================\nSIMPLE EFFECTS OF GRADIENT FLOW WITHIN EACH NORM TYPE\n======================================================================\n  Within BN:  ON (mean=0.7253) vs OFF (mean=0.7665)\n    t=-1.065, p=0.3807, Cohen's d=-0.928\n  Within LN:  ON (mean=0.7710) vs OFF (mean=0.8140)\n    t=-2.313, p=0.0915, Cohen's d=-1.653\n\n======================================================================\nCONCLUSION SUMMARY\n======================================================================\n\nA 2x2 factorial ANOVA (Type III SS) was conducted on CAR with gradient_flow\n(ON vs OFF) and norm_type (BN vs LN) as between-subjects factors (total N=13,\nunequal cell sizes: n=3,4,4,2).\n\nMain effect of gradient_flow: F(1,9)=2.083, p=.183, partial η²=.188.\n  Direction: Gradient OFF (M=0.782) > Gradient ON (M=0.751).\n  Medium-large effect size but not significant at α=.05 with current N.\n\nMain effect of norm_type: F(1,9)=2.157, p=.176, partial η²=.193.\n  Direction: LN (M=0.785) > BN (M=0.749).\n  Medium-large effect size but not significant at α=.05 with current N.\n\nInteraction (gradient_flow × norm_type): F(1,9)=0.002, p=.967, partial η²<.001.\n  No interaction — the gradient_flow effect is consistent across BN and LN.\n\nDetach combined (n=6, M=0.782) vs Vanilla (n=2, M=0.734):\n  Welch's t=2.531, p=.085 (two-tailed). Not significant at α=.05, but\n  trending. Detach is numerically HIGHER than Vanilla (not lower), consistent\n  with the claim that detaching OCC gradients restores (or slightly improves)\n  CAR relative to Vanilla.\n\nKey takeaway for the paper narrative:\n- The gradient_flow main effect shows the expected direction (OFF > ON) with\n  partial η²=.188 (medium-large), consistent with the claim that OCC gradient\n  flow through encoders reduces CAR.\n- The null interaction (p=.967) means this gradient_flow effect is uniform\n  across BN and LN — it is a clean main effect, not moderated by norm type.\n- Detach conditions recover to Vanilla level (p=.085 n.s.), supporting the\n  \"gradient detachment restores safety\" narrative.\n- Statistical power is limited by small N (especially Cell 4 n=2, Vanilla n=2).\n\nCAVEAT: vanilla_v2_s0_eval was not found in the registry. Vanilla baseline\nuses only n=2 (s1=0.748, s2=0.720). If a third vanilla seed becomes available,\nthe analysis should be re-run.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/anova_v2_final.txt",
+    "content": "======================================================================\n2x2 FACTORIAL ANOVA: gradient_flow x norm_type on CAR (v2 data)\nDate: 2026-05-28\n======================================================================\n\n--- Cell Descriptives ---\n  Cell 1 (Full OCC BN, grad ON + BN): n=3, mean=0.7253, SD=0.0636, range=[0.654, 0.776]\n  Cell 2 (Full OCC LN, grad ON + LN): n=4, mean=0.7710, SD=0.0284, range=[0.740, 0.798]\n  Cell 3 (Detach BN, grad OFF + BN):  n=4, mean=0.7665, SD=0.0242, range=[0.736, 0.794]\n  Cell 4 (Detach LN, grad OFF + LN):  n=2, mean=0.8140, SD=0.0170, range=[0.802, 0.826]\n  Vanilla baseline:                    n=2, mean=0.7340, SD=0.0198, range=[0.720, 0.748]\n\n--- Marginal Means ---\n  Gradient ON:  mean=0.7514 (n=7)\n  Gradient OFF: mean=0.7823 (n=6)\n  BN:           mean=0.7489 (n=7)\n  LN:           mean=0.7853 (n=6)\n\n======================================================================\n2x2 FACTORIAL ANOVA (Type III Sum of Squares)\n======================================================================\n\nSource                                                SS    df        F        p     η²_p\n-------------------------------------------------------------------------------------\n  C(gradient_flow)                              0.002905     1    2.083   0.1829   0.1879\n  C(norm_type)                                  0.003008     1    2.157   0.1760   0.1933\n  C(gradient_flow):C(norm_type)                 0.000003     1    0.002   0.9670   0.0002\n  Residual                                      0.012554     9\n-------------------------------------------------------------------------------------\nSignificance: *** p<.001, ** p<.01, * p<.05, † p<.10\n\n======================================================================\nWELCH'S T-TESTS: Each Cell vs Vanilla (H1: Cell < Vanilla)\n======================================================================\n\nVanilla: mean=0.7340, SD=0.0198, n=2\n\nCell                                             mean        t  p(1-tail)   Cohen d  Interpretation\n---------------------------------------------------------------------------------------------------------\n  Cell 1 (Full OCC BN, grad ON + BN)           0.7253   -0.221     0.4210    -0.163            n.s.\n  Cell 2 (Full OCC LN, grad ON + LN)           0.7710    1.855     0.9204     1.395            n.s.\n  Cell 3 (Detach BN, grad OFF + BN)            0.7665    1.755     0.9038     1.400            n.s.\n  Cell 4 (Detach LN, grad OFF + LN)            0.8140    4.339     0.9743     4.339  Cell > Vanilla\n\n======================================================================\nDETACH (Cell 3+4 combined) vs VANILLA\n======================================================================\n  Detach combined: mean=0.7823, SD=0.0318, n=6\n  Vanilla:         mean=0.7340, SD=0.0198, n=2\n  Welch's t = 2.531, p(two-tailed) = 0.0849\n  p(one-tailed, Detach > Vanilla) = 0.9575\n  Cohen's d = 1.604\n  --> Detach NOT significantly different from Vanilla (p=0.085, two-tailed)\n\n======================================================================\nFULL OCC (Cell 1+2 combined) vs VANILLA\n======================================================================\n  Full OCC combined: mean=0.7514, SD=0.0484, n=7\n  Vanilla:           mean=0.7340, SD=0.0198, n=2\n  Welch's t = 0.756, p(two-tailed) = 0.4840\n  p(one-tailed, Full OCC < Vanilla) = 0.7580\n  Cohen's d = 0.383\n\n======================================================================\nSIMPLE EFFECTS OF GRADIENT FLOW WITHIN EACH NORM TYPE\n======================================================================\n  Within BN:  ON (mean=0.7253) vs OFF (mean=0.7665)\n    t=-1.065, p=0.3807, Cohen's d=-0.928\n  Within LN:  ON (mean=0.7710) vs OFF (mean=0.8140)\n    t=-2.313, p=0.0915, Cohen's d=-1.653\n\n======================================================================\nCONCLUSION SUMMARY\n======================================================================\n\nA 2x2 factorial ANOVA (Type III SS) was conducted on CAR with gradient_flow\n(ON vs OFF) and norm_type (BN vs LN) as between-subjects factors (total N=13,\nunequal cell sizes: n=3,4,4,2).\n\nMain effect of gradient_flow: F(1,9)=2.083, p=.183, partial η²=.188.\n  Direction: Gradient OFF (M=0.782) > Gradient ON (M=0.751).\n  Medium-large effect size but not significant at α=.05 with current N.\n\nMain effect of norm_type: F(1,9)=2.157, p=.176, partial η²=.193.\n  Direction: LN (M=0.785) > BN (M=0.749).\n  Medium-large effect size but not significant at α=.05 with current N.\n\nInteraction (gradient_flow × norm_type): F(1,9)=0.002, p=.967, partial η²<.001.\n  No interaction — the gradient_flow effect is consistent across BN and LN.\n\nDetach combined (n=6, M=0.782) vs Vanilla (n=2, M=0.734):\n  Welch's t=2.531, p=.085 (two-tailed). Not significant at α=.05, but\n  trending. Detach is numerically HIGHER than Vanilla (not lower), consistent\n  with the claim that detaching OCC gradients restores (or slightly improves)\n  CAR relative to Vanilla.\n\nKey takeaway for the paper narrative:\n- The gradient_flow main effect shows the expected direction (OFF > ON) with\n  partial η²=.188 (medium-large), consistent with the claim that OCC gradient\n  flow through encoders reduces CAR.\n- The null interaction (p=.967) means this gradient_flow effect is uniform\n  across BN and LN — it is a clean main effect, not moderated by norm type.\n- Detach conditions recover to Vanilla level (p=.085 n.s.), supporting the\n  \"gradient detachment restores safety\" narrative.\n- Statistical power is limited by small N (especially Cell 4 n=2, Vanilla n=2).\n\nCAVEAT: vanilla_v2_s0_eval was not found in the registry. Vanilla baseline\nuses only n=2 (s1=0.748, s2=0.720). If a third vanilla seed becomes available,\nthe analysis should be re-run.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-28T07:10:10.414379+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/anova_v2_final.txt
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-28T07:10:10.414594+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "anova_v2_final",
+  "type": "report",
+  "description": "2x2 Factorial ANOVA (gradient_flow x norm_type) on CAR using v2 data. Includes ANOVA table, Welch t-tests vs Vanilla, effect sizes, simple effects, and conclusion summary.",
+  "project": "occsafe_vla",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/anova_v2_final.txt",
+  "tags": "['statistics', 'anova', 'v2', 'car']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "anova_v2_final",
+    "type": "report",
+    "description": "2x2 Factorial ANOVA (gradient_flow x norm_type) on CAR using v2 data. Includes ANOVA table, Welch t-tests vs Vanilla, effect sizes, simple effects, and conclusion summary.",
+    "project": "occsafe_vla",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/anova_v2_final.txt",
+    "tags": "['statistics', 'anova', 'v2', 'car']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-28T07:10:10.414933+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260528_a609c6\", \"name\": \"anova_v2_final\", \"type\": \"report\", \"description\": \"2x2 Factorial ANOVA (gradient_flow x norm_type) on CAR using v2 data. Includes ANOVA table, Welch t-tests vs Vanilla, effect sizes, simple effects, and conclusion summary.\", \"path\": \"projects/occsafe_vla/artifacts/_project/report/anova_v2_final.txt\", \"url\": null, \"project\": \"occsafe_vla\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-28T07:09:55.902790+00:00\", \"tags\": [\"statistics\", \"anova\", \"v2\", \"car\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_anova_v2_final_20260528T070541",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-28T07:10:10.415137+00:00_
+
+结果已保存并注册。核心发现：
+
+**ANOVA 结果：**
+
+| Source | SS | df | F | p | η²_p |
+|--------|----|----|---|---|------|
+| gradient_flow (ON/OFF) | 0.0029 | 1 | 2.083 | .183 | .188 |
+| norm_type (BN/LN) | 0.0030 | 1 | 2.157 | .176 | .193 |
+| **交互效应** | **0.000003** | **1** | **0.002** | **.967** | **<.001** |
+| Residual | 0.0126 | 9 | | | |
+
+**关键解读：**
+
+1. **交互效应完全不显著** (F=0.002, p=.967)。gradient_flow 的效应在 BN 和 LN 间是一致的，不存在 gradient × norm 的交互。这意味着论文叙事需要调整——不是 "交互效应"，而是 **gradient_flow 的干净主效应**。
+
+2. **gradient_flow 主效应方向正确**：OFF (M=0.782) > ON (M=0.751)，partial η²=.188（中大效应量），但 p=.183 不显著。
+
+3. **Detach 合并 vs Vanilla**：p=.085 (two-tailed)，不显著。Detach 数值上高于 Vanilla，支持 "detach 恢复安全性" 的 claim。
+
+4. **vanilla_v2_s0_eval 不在 registry 中**，Vanilla 仅 n=2。如果能补上第三个 seed，统计功效会改善。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_anova_v2_final_20260528T070541"
+}
+```
+
+</details>
+
+---

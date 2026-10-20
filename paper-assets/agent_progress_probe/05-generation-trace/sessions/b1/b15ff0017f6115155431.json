@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "b15ff0017f6115155431",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis d073 a4 llm on oh",
+  "task_key": "worker_analysis_d073-a4-llm-on-oh_20260516T022806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d073-a4-llm-on-oh_20260516T022806_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "856ca7cf0f96db6cd85f9b9548e5e861bcfabed4a4723d48dda1e6d3a28a8f0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: {\"type\":\"error\",\"error\":{\"details\":null,\"type\":\"overloaded_error\",\"message\":\"Overloaded\"},\"request_id\":\"req_011Cb5VHHb7EMA1JnfQTgpsn\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "details": null,
+                "type": "overloaded_error",
+                "message": "Overloaded"
+              },
+              "request_id": "req_011Cb5VHHb7EMA1JnfQTgpsn"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d073-a4-llm-on-oh-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9960380061ec4ae2ec47",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "experiment instance level isolation",
+  "task_key": "worker_experiment_instance-level-isolation_20260515T024202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_instance-level-isolation_20260515T024202_result.json",
+    "occurrence": 1,
+    "bytes": 1464,
+    "sha256": "3e909ea6170d1974807badd6753057fd46c858b90f5dbbbb1e1316ee2ffc9f4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果汇总：\n\n---\n\n## Instance-Level Cross-Agent Isolation 结果\n\n### Instance Overlap\n| | Count |\n|---|---|\n| SWE-Agent training instances | 1,683 |\n| OpenHands instances | 3,409 |\n| **Overlap** | **356 (10.4% of OH)** |\n| OH non-abstain windows in overlap | 13,805 |\n| OH non-abstain windows unseen | 136,847 |\n| OH conf≥2 windows in overlap | 4,044 |\n| OH conf≥2 windows unseen | 39,332 |\n\n### Cross-Agent Evaluation\n\n| Setting | Subset | N | GB macro_f1 | RF macro_f1 |\n|---------|--------|-------|-------------|-------------|\n| Full | all | 150,652 | 0.9035 | 0.9657 |\n| Unseen-only | all | 136,847 | 0.9035 | 0.9651 |\n| Full | conf≥2 | 43,376 | 0.9974 | 0.9984 |\n| Unseen-only | conf≥2 | 39,332 | 0.9977 | 0.9987 |\n\n### Delta (unseen - full)\n\n| Subset | GB | RF |\n|--------|------|------|\n| all | **+0.01pp** | **-0.06pp** |\n| conf≥2 | **+0.03pp** | **+0.03pp** |\n\n### 结论\n\nInstance overlap 确实存在（356 instances, 10.4%），但**完全不影响 cross-agent F1**。所有 delta 均 <0.1pp，且方向不一致（有正有负），说明 overlap instances 上的性能与 unseen instances 无统计差异。这直接反驳了 dream review 关于 instance-level 数据泄露的质疑。\n\n脚本：`/root/autodl-tmp/agent_progress_probe/src/analysis/instance_level_isolation.py`\n结果：`/root/autodl-tmp/agent_progress_probe/artifacts/instance-isolation/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-instance-level-isolation.md"
+}

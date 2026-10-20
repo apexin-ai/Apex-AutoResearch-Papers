@@ -1,0 +1,36 @@
+{
+  "exp_id": "detach_ln_v2_s0c_r2",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T03:13:58.311Z",
+    "updated_at": "2026-05-27T07:13:25.444Z",
+    "hypothesis": "Rerun of detach_ln_v2_s0c: Detach LN (gradient flow OFF, LayerNorm) v2 rebuild, seed 42. Cell 4 data expansion for factorial ANOVA. Process restarted on 10894:cuda:2 after prior run marked DONE prematurely.",
+    "parent": "detach_ln_v2_s0c",
+    "spec": {
+      "command": "v2 Detach LN training (same config as detach_ln_v2_s0c)",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "481988",
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "data_path": "/root/occsafe_vla",
+      "data_count": 50005,
+      "checkpoint_source": "training_rerun (not eval)",
+      "eval_data": "N/A (training)",
+      "note": "Training rerun, not eval. Process restarted on 10894 after driver fix. ~step 8600/50005.",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/detach_ln_v2_s0c/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_ln_v2_s0c--10000_chkpt",
+      "log_path": "/root/runs/occsafe_vla/detach_ln_v2_s0c.log",
+      "failure_reason": "Disk full (os error 28) at step 20000 checkpoint save. /root/autodl-tmp 250G/250G 100%. Step 20000 checkpoint incomplete (1/4 shards). Only step 10000 valid."
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-27T07:13:25.444Z"
+  },
+  "timestamp": "2026-05-27T07:13:25.764170+00:00",
+  "trigger": "update_registry"
+}

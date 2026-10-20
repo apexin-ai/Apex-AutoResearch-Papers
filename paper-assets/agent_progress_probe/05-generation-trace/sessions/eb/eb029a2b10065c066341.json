@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "eb029a2b10065c066341",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "code structural on twv",
+  "task_key": "worker_code_structural-on-twv_20260514T173953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_structural-on-twv_20260514T173953.log",
+    "occurrence": 1,
+    "bytes": 1486899,
+    "sha256": "1928a620650fb34b5d696daec583b416cccb23bd8664ba37c4d9b87baecae51b"
+  },
+  "statistics": {
+    "messages": 1119,
+    "user_turns": 1,
+    "tool_calls": 511,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 88,
+      "tool_call": 511,
+      "tool_result": 511,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 921,
+      "chunks": [
+        {
+          "path": "eb029a2b10065c066341-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb029a2b10065c066341-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb029a2b10065c066341-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb029a2b10065c066341-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb029a2b10065c066341-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb029a2b10065c066341-part-0006.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 198,
+      "chunks": [
+        {
+          "path": "eb029a2b10065c066341-part-0006.json",
+          "message_count": 159
+        },
+        {
+          "path": "eb029a2b10065c066341-part-0007.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-structural-on-twv.md"
+}

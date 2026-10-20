@@ -1,0 +1,28 @@
+{
+  "exp_id": "cka_analysis",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T03:01:41.642Z",
+    "updated_at": "2026-05-24T00:02:34.647Z",
+    "hypothesis": "Detach OCC's encoder representations will show lower CKA similarity to the pretrained baseline compared to Full OCC and Vanilla, indicating that forward-pass interference without compensating gradients causes representational drift. Full OCC and Vanilla should maintain higher similarity to pretrained features, supporting the damage-prevention interpretation.",
+    "spec": {
+      "command": "python cka_analysis.py",
+      "server": "westd-34685",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 200,
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_source": "vanilla_retrain_s0 + full_occ_retrain_s0 + ablation_occ_detach_s0(seed44)",
+      "eval_data": "libero_spatial_no_noops (200 batches)",
+      "checkpoint_path": "westd-34685:/root/autodl-tmp/analysis/cka/",
+      "log_path": "westd-34685:/root/autodl-tmp/analysis/cka/cka_results.json"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T00:02:34.773836+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,31 @@
+{
+  "exp_id": "full_occ_bn_v2_s2_r5",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-28T23:11:17.181Z",
+    "updated_at": "2026-05-28T23:11:53.079Z",
+    "hypothesis": "Cell 1 (Full OCC BN) seed 44 expansion. Corrected: --occ_data_dir + WANDB_MODE=disabled + orphan child process cleanup. occ_loss=0.1422@step0 confirmed.",
+    "parent": "full_occ_bn_v2_s2_r4",
+    "spec": {
+      "command": "torchrun ... --occ_data_dir /root/occsafe_vla/occ_data",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "30149",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 4600,
+      "model_name": "openvla-7b",
+      "seed": 44,
+      "log_path": "/root/runs/occsafe_vla/full_occ_bn_v2_s2_r5.log",
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "N/A (training experiment)"
+    }
+  },
+  "timestamp": "2026-05-28T23:11:53.470687+00:00",
+  "trigger": "update_registry"
+}

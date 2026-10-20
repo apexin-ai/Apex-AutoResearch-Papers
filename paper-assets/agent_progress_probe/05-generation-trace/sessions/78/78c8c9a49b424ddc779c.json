@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "78c8c9a49b424ddc779c",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "experiment d073 a2 probe bge m3",
+  "task_key": "worker_experiment_d073-a2-probe-bge-m3_20260516T022739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_d073-a2-probe-bge-m3_20260516T022739.log",
+    "occurrence": 1,
+    "bytes": 1243807,
+    "sha256": "5009f9c7c7812b488b26d2ee707738f65a8c85ae0a3d2fe83c846595278be37c"
+  },
+  "statistics": {
+    "messages": 1096,
+    "user_turns": 1,
+    "tool_calls": 497,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 94,
+      "tool_call": 497,
+      "tool_result": 497,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1081,
+      "chunks": [
+        {
+          "path": "78c8c9a49b424ddc779c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "78c8c9a49b424ddc779c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "78c8c9a49b424ddc779c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "78c8c9a49b424ddc779c-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "78c8c9a49b424ddc779c-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "78c8c9a49b424ddc779c-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "78c8c9a49b424ddc779c-part-0007.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "78c8c9a49b424ddc779c-part-0007.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-d073-a2-probe-bge-m3.md"
+}

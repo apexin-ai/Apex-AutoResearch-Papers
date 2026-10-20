@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "0c2ceb68272750070459",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "worker",
+  "title": "code fix c1 regen oom",
+  "task_key": "worker_code_fix_c1_regen_oom_20260517T084841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_c1_regen_oom_20260517T084841.log",
+    "occurrence": 1,
+    "bytes": 596938,
+    "sha256": "9a63eda774650f7a0ccf94c0a4dfb4b3c3006a8bf09debc6b66836f75ef5457e"
+  },
+  "statistics": {
+    "messages": 435,
+    "user_turns": 0,
+    "tool_calls": 180,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 71,
+      "tool_call": 180,
+      "tool_result": 180,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 435,
+      "chunks": [
+        {
+          "path": "0c2ceb68272750070459-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0c2ceb68272750070459-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0c2ceb68272750070459-part-0003.json",
+          "message_count": 75
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-c1-regen-oom.md"
+}

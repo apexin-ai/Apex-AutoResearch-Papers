@@ -1,0 +1,69 @@
+{
+  "exp_id": "cutoff_s1",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-22T06:09:35.253Z",
+    "updated_at": "2026-05-23T00:54:55.726Z",
+    "hypothesis": "Seed 43 replication of cutoff_s0 (OCC loss cutoff at step 35000). 2-seed needed to assess variance of cutoff strategy, given OCC's demonstrated high seed sensitivity (std 2.2x vanilla).",
+    "parent": "cutoff_s0",
+    "reproduce": {
+      "finished_at": "2026-05-23T00:16:23.934Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-22T07:26:29.513Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T07:26:32.372296+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T00:16:26.403499+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "torchrun finetune.py --use_occ_head True --occ_loss_cutoff_step 35000 --seed 43 --save_freq 10000 --max_steps 50005 --master_port 29503 (WANDB_MODE=disabled, from scratch after disk-full crash)",
+      "server": "westd-34685",
+      "gpu": "cuda:3",
+      "pid": "131898",
+      "log_path": "~/runs/occsafe_vla/cutoff_s1.log",
+      "submitted_at": "2026-05-22T07:33:37.325Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": "~25000 episodes",
+      "model_name": "openvla-7b",
+      "seed": 43,
+      "checkpoint_source": "openvla-7b (from scratch)",
+      "eval_data": "N/A (training)",
+      "wall_clock_seconds": 62478.4,
+      "gpu_hours": 17.36
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/cutoff_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+    "log_path": "~/runs/occsafe_vla/cutoff_s1.log",
+    "conclusion": "success",
+    "metrics": {
+      "action_loss_final": 0.0547,
+      "occ_loss_final": 0.0129,
+      "action_loss_at_cutoff_30k": 0.0713,
+      "occ_loss_at_cutoff_30k": 0.0101,
+      "occ_loss_post_cutoff_40k": 0.0149,
+      "total_steps": 50005,
+      "occ_loss_cutoff_step": 35000
+    }
+  },
+  "timestamp": "2026-05-23T00:54:55.841078+00:00",
+  "trigger": "update_registry"
+}

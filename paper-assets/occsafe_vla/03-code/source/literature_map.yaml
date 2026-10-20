@@ -1,0 +1,371 @@
+# Literature Map for OccSafe-VLA (AAAI 2027)
+# Generated: 2026-05-20
+# Paper: OccSafe-VLA: Occupancy-Conditioned Safety for VLA via Systematic Spatial-Safety Interaction Analysis
+#
+# Core gap: No work studies the interaction between spatial representations and safety
+# mechanisms in VLAs. 15+ spatial-VLA papers never evaluate collision metrics;
+# all safety-VLA methods ignore spatial representation advances.
+
+papers:
+
+  # ============================================================
+  # CATEGORY: direct-competitor (spatial-safety intersection)
+  # ============================================================
+
+  - id: "liu2025occvla"
+    title: "OccVLA: Vision-Language-Action Model with Implicit 3D Occupancy Supervision"
+    authors: "Liu et al."
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2509.05578"
+    category: "direct-competitor"
+    role: "最近概念：occupancy + VLA，但面向自动驾驶"
+    key_finding: "将 3D 占据预测作为 VLA 辅助任务，学习空间结构，推理时可跳过（零开销）。在 nuScenes 轨迹规划上达到 SOTA"
+    our_differentiation: "OccVLA 仅验证自动驾驶；我们将占据辅助迁移到 manipulation，需解决精度尺度（厘米级 vs 米级）和动作空间差异"
+
+  - id: "hu2025aegis"
+    title: "VLSA: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer"
+    authors: "Hu et al."
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2512.11891"
+    category: "direct-competitor"
+    role: "唯一发表的 manipulation safety-VLA，plug-in CBF 方案"
+    key_finding: "AEGIS plug-in 安全约束层用 CBF + 开放集检测 + 深度图，SafeLIBERO 上 CAR 提升 59.16%"
+    our_differentiation: "AEGIS 是 plug-in 后处理，不影响 VLA 内部空间理解；我们将占据感知内化到 VLA 架构，实现预见性避障而非事后修正"
+
+  - id: "zhan2025safevla"
+    title: "SafeVLA: Towards Safety Alignment of Vision-Language-Action Model via Constrained Learning"
+    authors: "Zhan et al."
+    venue: "NeurIPS 2025 Spotlight"
+    year: 2025
+    arxiv: "2503.03480"
+    category: "direct-competitor"
+    role: "RL-based VLA 安全对齐，NeurIPS 2025 Spotlight"
+    key_finding: "用约束马尔可夫决策过程进行 VLA 安全对齐"
+    our_differentiation: "SafeVLA 用 RL 方法，不涉及几何/占据表征；我们是几何驱动的空间-安全交互方案"
+
+  - id: "chen2026cofreevla"
+    title: "CoFreeVLA: Collision-Free Dual-Arm Manipulation via VLA Model and Risk Estimation"
+    authors: "Chen et al."
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "2601.21712"
+    category: "direct-competitor"
+    role: "半内化风险估计器 + collision labels"
+    key_finding: "半内化风险估计器结合模型生成的碰撞标签实现无碰撞双臂操作"
+    our_differentiation: "CoFreeVLA 不使用占据表征，风险估计不利用空间结构；我们的 OCC-CBF 基于占据特征做语义碰撞推理"
+
+  # ============================================================
+  # CATEGORY: spatial-vla (3D representation for VLA, no safety eval)
+  # ============================================================
+
+  - id: "li2025spatialforcing"
+    title: "Spatial Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model"
+    authors: "Li et al."
+    venue: "ICLR 2026"
+    year: 2025
+    arxiv: "2510.12276"
+    category: "spatial-vla"
+    role: "隐式 3D 对齐 SOTA，factorial study 的 general-purpose 3D 条件参考"
+    key_finding: "将 VLA 中间层视觉嵌入与冻结 3D 基础模型对齐，超越所有 2D/3D VLA 基线，训练加速 3.8x"
+    our_differentiation: "Spatial Forcing 不产生显式占据场，未评估碰撞安全；我们的 factorial study 将其作为 general-purpose 3D 条件之一"
+
+  - id: "an2025depthvla"
+    title: "DepthVLA: Enhancing Vision-Language-Action Models with Depth-Aware Spatial Reasoning"
+    authors: "An et al."
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2510.13375"
+    category: "spatial-vla"
+    role: "深度辅助监督，factorial study 的 general-purpose 3D 条件参考"
+    key_finding: "通过 mixture-of-transformers 添加深度 transformer，真实世界 78.5% 成功率"
+    our_differentiation: "DepthVLA 未评估碰撞指标；我们将其与 Spatial Forcing 合并为 factorial 中的 general-purpose 3D 条件"
+
+  - id: "chen2026gstvla"
+    title: "GST-VLA: Structured Gaussian Spatial Tokens for 3D Depth-Aware VLA Models"
+    authors: "Chen et al."
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "2603.09079"
+    category: "spatial-vla"
+    role: "最精致的结构化空间表征，LIBERO 96.4%，无安全评估"
+    key_finding: "128 个各向异性 3D 高斯原语 + DA-CoT 推理，LIBERO 96.4%"
+    our_differentiation: "GST-VLA 是 ICRA 2027 扩展版的候选条件（Gaussian 空间表征 vs 体素占据）；AAAI 版暂不含"
+
+  # ============================================================
+  # CATEGORY: safety-mechanism (barrier functions / occupancy-based safety)
+  # ============================================================
+
+  - id: "ji2024ogmcbf"
+    title: "OGM-CBF: Safe Robot Control using Occupancy Grid Map-based Control Barrier Function"
+    authors: "Ji et al."
+    venue: "arXiv preprint"
+    year: 2024
+    arxiv: "2405.10703"
+    category: "safety-mechanism"
+    role: "OCC-CBF 的古典机器人学前身：离散占据网格 + SDF → CBF"
+    key_finding: "从占据网格图构建 CBF，比原始距离更有效地处理任意障碍物形状"
+    our_differentiation: "OGM-CBF 用离散网格 + SDF；我们的 OCC-CBF 在 VLA 连续学习特征空间操作，支持语义碰撞推理"
+
+  - id: "kwon2026learningnudge"
+    title: "Learning to Nudge: A Scalable Barrier Function Framework for Safe Robot Interaction in Dense Clutter"
+    authors: "Kwon et al."
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "2601.02686"
+    category: "safety-mechanism"
+    role: "学习型可组合 barrier function，manipulation 密集场景"
+    key_finding: "Dense Contact Barrier Functions (DCBF) — 学习型、可组合、以物体为中心的 barrier function，线性扩展到任意物体集"
+    our_differentiation: "DCBF 以物体为中心需显式物体分解；OCC-CBF 基于体积占据特征，推理连续空间结构含遮挡区域"
+
+  # ============================================================
+  # CATEGORY: infrastructure (base architecture / benchmarks / recipes)
+  # ============================================================
+
+  - id: "kim2025openvlaoft"
+    title: "OpenVLA-OFT: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success"
+    authors: "Kim et al."
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2502.19645"
+    category: "infrastructure"
+    role: "MVP 和 factorial study 的 base architecture"
+    key_finding: "优化微调配方，LIBERO 97.1%，26x 加速"
+    our_differentiation: "OpenVLA-OFT 是我们的受控基准架构，不是对比对象"
+
+  - id: "ma2026vlanext"
+    title: "VLANeXt: Recipes for Building Strong VLA Models"
+    authors: "Ma et al."
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "2602.18532"
+    category: "infrastructure"
+    role: "系统性 VLA 设计空间探索，我们工作的正交互补"
+    key_finding: "12 个关键发现覆盖基础/感知/动作维度，但不研究 3D 空间表征和安全机制"
+    our_differentiation: "VLANeXt 给出任务性能配方；我们给出安全 VLA 设计配方。正交维度"
+
+  # ============================================================
+  # CATEGORY: spatial-vla (additional — 3D/depth/occupancy for VLA)
+  # ============================================================
+
+  - id: "wu2025spatialvla"
+    title: "SpatialVLA: Exploring Spatial Representations for Visual-Language-Action Model"
+    authors: "Wu et al."
+    venue: "RSS 2026"
+    year: 2025
+    arxiv: "2501.15830"
+    category: "spatial-vla"
+    role: "大规模空间 VLA 预训练代表作，Ego3D Position Encoding"
+    key_finding: "Ego3D Position Encoding + Adaptive Action Grids，1.1M episodes 预训练，零样本跨机器人泛化"
+    our_differentiation: "SpatialVLA 无任何安全评估；我们首次研究空间表征与碰撞安全的交互"
+
+  - id: "qdepthvla2025"
+    title: "QDepth-VLA: Quantized Depth Prediction as Auxiliary Supervision for Vision-Language-Action Models"
+    authors: "Li et al."
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2510.14836"
+    category: "spatial-vla"
+    role: "VQ-VAE 量化深度辅助监督方案，factorial study 参考"
+    key_finding: "深度专家预测 VQ-VAE 量化深度 token，学习深度感知表征提升精细操作"
+    our_differentiation: "QDepth-VLA 不产生占据场，未评估碰撞安全；我们将占据辅助与安全机制联合优化"
+
+  - id: "geoaware2025"
+    title: "GeoAware-VLA: Implicit Geometry Aware Vision-Language-Action Model"
+    authors: "Abouzeid et al."
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2509.14117"
+    category: "spatial-vla"
+    role: "冻结几何视觉模型注入 3D 先验，视角泛化 +35pp"
+    key_finding: "冻结预训练几何模型作为特征提取器，LIBERO 未见视角成功率提升 35 个百分点"
+    our_differentiation: "GeoAware-VLA 关注视角鲁棒性而非安全；我们关注空间表征如何改善碰撞避免"
+
+  - id: "augvla3d2026"
+    title: "AugVLA-3D: Depth-Driven Feature Augmentation for Vision-Language-Action Models"
+    authors: "Rao et al."
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "2602.10698"
+    category: "spatial-vla"
+    role: "VGGT 驱动的 3D 特征增强，action assistant 约束"
+    key_finding: "VGGT 提取几何感知 3D 线索 + action assistant 模块约束深度特征与动作一致性"
+    our_differentiation: "AugVLA-3D 用 VGGT 增强任务性能；我们研究 VGGT 类 3D 特征能否同时改善安全指标"
+
+  - id: "evo02025"
+    title: "Evo-0: Vision-Language-Action Model with Implicit Spatial Understanding"
+    authors: "Lin et al."
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2507.00416"
+    category: "spatial-vla"
+    role: "VGGT 即插即用隐式 3D 模块，无额外传感器"
+    key_finding: "即插即用模块利用视觉几何基础模型隐式注入 3D 几何特征，无需深度传感器"
+    our_differentiation: "Evo-0 不评估安全；我们首次系统研究此类隐式 3D 特征对碰撞安全的影响"
+
+  - id: "sgvla2026"
+    title: "SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation"
+    authors: "Tu et al."
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "2603.22760"
+    category: "spatial-vla"
+    role: "深度线索 + 辅助解码器用于移动操作 13 维动作空间"
+    key_finding: "多视角 RGB+深度+时间历史，辅助解码器重建全局位置/关节/抓取可供性/分割掩码"
+    our_differentiation: "SG-VLA 面向移动操作泛化；我们聚焦空间表征对固定基座 manipulation 碰撞安全的影响"
+
+  - id: "stemvla2026"
+    title: "StemVLA: An Open-Source VLA with Future 3D Spatial Geometry Knowledge and 4D Historical Representation"
+    authors: "Xiao et al."
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "2602.23721"
+    category: "spatial-vla"
+    role: "未来 3D 几何预测 + VideoFormer 4D 时空表征"
+    key_finding: "预测未来 3D 空间几何 + 时序注意力聚合历史 4D 时空表征，增强长时决策"
+    our_differentiation: "StemVLA 无碰撞评估；我们研究此类时空表征是否为安全 VLA 提供可利用的空间信号"
+
+  - id: "3dcavla2025"
+    title: "3D-CAVLA: Leveraging Depth and 3D Context to Generalize VLA for Unseen Tasks"
+    authors: "Bhat et al."
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2505.05800"
+    category: "spatial-vla"
+    role: "深度+3D 上下文+CoT 推理，LIBERO 98.1%"
+    key_finding: "链式推理+深度感知+任务目标 ROI 检测，LIBERO 98.1%，未见任务 +8.8%"
+    our_differentiation: "3D-CAVLA 无碰撞评估；我们首次将类似 3D 上下文与安全机制结合"
+
+  - id: "stvla2026"
+    title: "ST-VLA: Enabling 4D-Aware Spatiotemporal Understanding for General Robot Manipulation"
+    authors: "Wu et al."
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "2603.13788"
+    category: "spatial-vla"
+    role: "4D 时空 VLA，2D 引导转 3D 轨迹，零样本 +44.6%"
+    key_finding: "统一 3D-4D 表征，2D 引导转 3D 轨迹 + 时空掩码，RLBench 零样本 +44.6%"
+    our_differentiation: "ST-VLA 关注任务泛化；我们关注 4D 时空表征能否被安全机制利用来预见碰撞"
+
+  - id: "corridorvla2026"
+    title: "CorridorVLA: Explicit Spatial Constraints for Generative Action Heads via Sparse Anchors"
+    authors: "Li et al."
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "2604.21241"
+    category: "spatial-vla"
+    role: "空间锚点定义 action corridors，模糊空间-安全边界但未评估碰撞"
+    key_finding: "稀疏空间锚点定义容差走廊约束 flow-matching action head，LIBERO-Plus +3.4-12.4%"
+    our_differentiation: "CorridorVLA 的空间约束面向轨迹质量而非碰撞避免；我们的占据 CBF 显式优化安全"
+
+  - id: "geovla2025"
+    title: "GeoVLA: Empowering 3D Representations in Vision-Language-Action Models"
+    authors: "Sun et al."
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2508.09071"
+    category: "spatial-vla"
+    role: "点云编码器 + 3D 增强动作专家"
+    key_finding: "深度转点云 + Point Embedding Network + 3D-enhanced Action Expert，LIBERO/ManiSkill2 SOTA"
+    our_differentiation: "GeoVLA 无碰撞评估；我们研究点云表征能否被占据 CBF 利用来改善安全"
+
+  - id: "pointvla2025"
+    title: "PointVLA: Injecting the 3D World into Vision-Language-Action Models"
+    authors: "Li et al."
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2503.07511"
+    category: "spatial-vla"
+    role: "轻量级 3D 点云特征注入，skip-block 分析定位注入层"
+    key_finding: "冻结原始动作专家，通过 skip-block 分析选择性注入 3D 特征，少样本多任务泛化"
+    our_differentiation: "PointVLA 关注数据效率和视角鲁棒性；我们研究 3D 注入是否同时改善碰撞安全"
+
+  - id: "savla2026"
+    title: "SA-VLA: Spatially-Aware Flow-Matching for Vision-Language-Action Reinforcement Learning"
+    authors: "Pan et al."
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "2602.00743"
+    category: "spatial-vla"
+    role: "空间表征+空间奖励+空间探索，最接近空间-安全连接"
+    key_finding: "隐式空间表征融合+几何进度密集奖励+空间条件退火探索，解决 RL 微调空间偏移"
+    our_differentiation: "SA-VLA 关注 RL 微调分布偏移鲁棒性而非碰撞安全；我们直接优化碰撞避免指标"
+
+  # ============================================================
+  # CATEGORY: direct-competitor (additional — safety-VLA methods)
+  # ============================================================
+
+  - id: "safenightvla2026"
+    title: "Safe-Night VLA: Seeing the Unseen via Thermal-Perceptive Vision-Language-Action Models for Safety-Critical Manipulation"
+    authors: "Yu et al."
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "2603.05754"
+    category: "direct-competitor"
+    role: "热成像+CBF 安全约束，不同感知模态的安全 VLA"
+    key_finding: "长波红外热成像融合语义推理 + CBF 安全滤波器，温度条件操作/遮挡目标定位"
+    our_differentiation: "Safe-Night VLA 依赖热成像特殊模态；我们利用 RGB 空间表征进步实现安全，无需额外传感器"
+
+  - id: "vlasafetysurvey2026"
+    title: "Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms"
+    authors: "Li et al."
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "2604.23775"
+    category: "direct-competitor"
+    role: "VLA 安全综述，按攻击/防御时间线分类，不研究空间表征维度"
+    key_finding: "沿攻击时间轴和防御时间轴组织 VLA 安全文献，覆盖数据投毒/对抗补丁/语义越狱等"
+    our_differentiation: "该综述确认空间表征-安全交互维度尚未被研究，支撑我们的核心 gap 声明"
+
+  # ============================================================
+  # CATEGORY: safety-mechanism (additional — barrier functions)
+  # ============================================================
+
+  - id: "neuralcsbf2025"
+    title: "Neural Configuration-Space Barriers for Manipulation Planning and Control"
+    authors: "Long et al."
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2503.04929"
+    category: "safety-mechanism"
+    role: "学习 CDF barrier for manipulation，分布鲁棒公式"
+    key_finding: "学习配置空间距离函数 (CDF) barrier，分布鲁棒公式处理建模误差和传感器噪声"
+    our_differentiation: "Neural CS-BF 在配置空间操作需显式机器人模型；OCC-CBF 在占据特征空间操作，端到端与 VLA 联合"
+
+  # ============================================================
+  # CATEGORY: infrastructure (additional — base models / benchmarks)
+  # ============================================================
+
+  - id: "kim2024openvla"
+    title: "OpenVLA: An Open-Source Vision-Language-Action Model"
+    authors: "Kim et al."
+    venue: "arXiv preprint"
+    year: 2024
+    arxiv: "2406.09246"
+    category: "infrastructure"
+    role: "开源 VLA 基础架构，OpenVLA-OFT 的前身"
+    key_finding: "Llama 2 + DINOv2/SigLIP 视觉编码器，首个大规模开源 VLA，支持高效微调"
+    our_differentiation: "OpenVLA 是 VLA 生态基础设施；我们在其微调变体 OFT 上构建实验"
+
+  - id: "smolvla2025"
+    title: "SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics"
+    authors: "Shukor et al."
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2506.01844"
+    category: "infrastructure"
+    role: "0.45B 轻量 VLA，单 GPU 训练，消费级部署"
+    key_finding: "0.45B 参数 + 异步推理栈，单 GPU 训练，性能比肩 10x 大模型"
+    our_differentiation: "SmolVLA 是轻量 VLA 基线；我们的方法可适配不同规模 VLA 架构"
+
+  - id: "vlaeval2026"
+    title: "vla-eval: A Unified Evaluation Harness for Vision-Language-Action Models"
+    authors: "Choi et al."
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "2603.13966"
+    category: "infrastructure"
+    role: "统一 VLA 评估框架，WebSocket+Docker 隔离"
+    key_finding: "WebSocket+msgpack 协议解耦模型推理与 benchmark 执行，47x 吞吐提升"
+    our_differentiation: "vla-eval 是评估基础设施；我们的安全评估指标可集成到此类统一框架"

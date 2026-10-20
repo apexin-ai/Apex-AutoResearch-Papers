@@ -1,0 +1,1607 @@
+{
+  "schema_version": "1.0",
+  "id": "54c638ebba5fb2b95ad0",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260514T202752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_20260514T202752.log",
+    "occurrence": 1,
+    "bytes": 173400,
+    "sha256": "c5d363c85002c37cdde944ff9b15f70a63a5fe8a5a8d0c09a70193a12a831a2b"
+  },
+  "statistics": {
+    "messages": 30,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe",
+                "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__bootstrap_provenance",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__overleaf_init",
+                  "mcp__agent-ml-research__overleaf_pull",
+                  "mcp__agent-ml-research__overleaf_push",
+                  "mcp__agent-ml-research__overleaf_status",
+                  "mcp__agent-ml-research__overleaf_sync",
+                  "mcp__agent-ml-research__paper_agent_post_to_director",
+                  "mcp__agent-ml-research__paper_agent_request_review",
+                  "mcp__agent-ml-research__paper_compile_and_check",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "26dcb6ac-782c-4472-a069-93f0d5cfa986",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-agent-progress-probe/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778800200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "313d004f-2a2d-4c61-b1ca-7993d64c73b2",
+                "session_id": "b70e06a0-6988-409b-be37-d7c666188d79"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for the papers and then update the literature map. Let me start by reading the current file and searching for papers in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "a6aab1b8-9e19-4cd4-9c24-375f29709054",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DEtBhLCbyUn98HGiKfJzo6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11688,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11688
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XT49LidPLAdfV8Q5uHwwqL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/literature_map.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "e84ea529-a550-423b-8f24-e8755efb7b66",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DEtBhLCbyUn98HGiKfJzo6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11688,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11688
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T20:28:03.859Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XT49LidPLAdfV8Q5uHwwqL",
+              "type": "tool_result",
+              "content": "1\t# Literature Map for Agent Progress Probe (EMNLP 2026 ARR)\n2\t# Generated: 2026-05-14\n3\t# Paper: Structural Signal Analysis for Progress Stagnation Detection in LLM Agents\n4\t#\n5\t# D039 Pivot: Empirical analysis paper. Central finding: stagnation signals are\n6\t# fundamentally structural (30 features → 0.995 in-domain, 0.967 cross-agent F1),\n7\t# decisively surpassing NL embeddings (0.906/0.751) and LLM-as-judge (+24.3pp).\n8\t# TLM is a well-motivated negative finding (3 implementations all fail to beat MV).\n9\t\n10\tpapers:\n11\t\n12\t  # ============================================================\n13\t  # CATEGORY: direct-competitor\n14\t  # ============================================================\n15\t\n16\t  - id: \"xi2025agentprm\"\n17\t    title: \"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\"\n18\t    authors: \"Zhiheng Xi, Chenyang Liao, Guanyu Li, Yajie Yang, Wenxiang Chen, Zhihao Zhang, Binghai Wang, Senjie Jin, Yuhao Zhou, Jian Guan, Wei Wu, Tao Ji, Tao Gui, Qi Zhang, Xuanjing Huang\"\n19\t    venue: \"arXiv preprint\"\n20\t    year: 2025\n21\t    arxiv: \"2511.08325\"\n22\t    category: \"direct-competitor\"\n23\t    role: \"主要竞争者：step-level PRM for agent guidance\"\n24\t    key_finding: \"用 promise（长期潜力）和 progress（即时进展）两个维度评估 agent 每步决策，实现 8x 计算效率提升\"\n25\t    our_differentiation: \"我们是 window-level monitoring（不是 step-level guidance），不需要 outcome labels，目标是 stagnation detection 不是 reward shaping\"\n26\t\n27\t  - id: \"choudhury2025prm\"\n28\t    title: \"Process Reward Models for LLM Agents: Practical Framework and Directions\"\n29\t    authors: \"Sanjiban Choudhury\"\n30\t    venue: \"arXiv preprint\"\n31\t    year: 2025\n32\t    arxiv: \"2502.10325\"\n33\t    category: \"direct-competitor\"\n34\t    role: \"PRM 框架综述 + InversePRM 方法\"\n35\t    key_finding: \"提出 AgentPRM（Monte Carlo rollout actor-critic）和 InversePRM（从 demonstrations 学习 process reward），3B 模型超越 GPT-4o\"\n36\t    our_differentiation: \"InversePRM 仍需 demonstration trajectories，我们用 programmatic LFs 替代人工标注；我们关注 monitoring 而非 training signal\"\n37\t\n38\t  - id: \"li2026toolprmbench\"\n39\t    title: \"ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents\"\n40\t    authors: \"Dawei Li, Yuguang Yao, Zhen Tan, Huan Liu, Ruocheng Guo\"\n41\t    venue: \"arXiv preprint\"\n42\t    year: 2026\n43\t    arxiv: \"2601.12294\"\n44\t    category: \"direct-competitor\"\n45\t    role: \"Tool-use PRM 评测基准\"\n46\t    key_finding: \"大规模 benchmark 评测 PRM 在 tool-use 场景的效果，发现专用 PRM 显著优于通用 PRM\"\n47\t    our_differentiation: \"我们的 empirical analysis 揭示 structural features 足以检测 stagnation（0.995 F1），无需 step-level reward labels；关注 stagnation pattern 而非 step correctness\"\n48\t\n49\t  - id: \"wang2026planrewardbench\"\n50\t    title: \"Aligning Agents via Planning: A Benchmark for Trajectory-Level Reward Modeling\"\n51\t    authors: \"Jiaxuan Wang, Yulan Hu, Wenjin Yang, Zheng Pan, Xin Li, Lan-Zhe Guo\"\n52\t    venue: \"arXiv preprint\"\n53\t    year: 2026\n54\t    arxiv: \"2604.08178\"\n55\t    category: \"direct-competitor\"\n56\t    role: \"Trajectory-level reward model 评测\"\n57\t    key_finding: \"所有 reward model 类别（generative, discriminative, LLM-as-Judge）在长 horizon trajectory 上性能显著下降\"\n58\t    our_differentiation: \"验证了长 trajectory 评估的难度——我们的 window-level 方法通过局部化避免了这个问题\"\n59\t\n60\t  - id: \"chen2025monitoring\"\n61\t    title: \"Monitoring LLM Agents for Sequentially Contextual Harm\"\n62\t    authors: \"Yueh-Han Chen, Neelay Joshi, Yulin Chen, He He, Rico Angell\"\n63\t    venue: \"ICLR 2025 Workshop on Building Trust in Language Models and Applications\"\n64\t    year: 2025\n65\t    arxiv: null\n66\t    openreview: \"LC0XQ6ufbr\"\n67\t    category: \"direct-competitor\"\n68\t    role: \"Agent monitoring 安全方向\"\n69\t    key_finding: \"将有害任务分解为单独无害的子任务可将 refusal rate 从 50% 降至 10%，现有 monitor 难以检测 sequentially contextual harm\"\n70\t    our_differentiation: \"他们关注 safety monitoring（harmful behavior），我们关注 progress monitoring（stagnation）；互补方向\"\n71\t\n72\t  - id: \"kale2025weaktostrong\"\n73\t    title: \"Reliable Weak-to-Strong Monitoring of LLM Agents\"\n74\t    authors: \"Neil Kale, Chen Bo Calvin Zhang, Kevin Zhu, Ankit Aich, Paula Rodriguez, Scale Red Team, Christina Q. Knight, Zifan Wang\"\n75\t    venue: \"arXiv preprint\"\n76\t    year: 2025\n77\t    arxiv: \"2508.19461\"\n78\t    category: \"direct-competitor\"\n79\t    role: \"Weak-to-strong agent monitoring 方法论\"\n80\t    key_finding: \"Monitor scaffolding 比 monitor 能力更重要，弱模型可以可靠监控强模型；targeted human-in-the-loop 提升 TPR ~15%\"\n81\t    our_differentiation: \"他们用 LLM 作为 monitor，我们发现 30 个 structural features 即可达 0.967 跨域 F1，不依赖另一个 LLM；更轻量（<5ms）且可解释\"\n82\t\n83\t  - id: \"fan2026agentrm\"\n84\t    title: \"Exploring Reasoning Reward Model for Agents\"\n85\t    authors: \"Kaixuan Fan, Kaituo Feng, Manyuan Zhang, Tianshuo Peng, Zhixun Li, Yilei Jiang, Shuang Chen, Peng Pei, Xunliang Cai, Xiangyu Yue\"\n86\t    venue: \"arXiv preprint\"\n87\t    year: 2026\n88\t    arxiv: \"2601.22154\"\n89\t    category: \"direct-competitor\"\n90\t    verified: true\n91\t    role: \"Agent trajectory 的多维度 reasoning reward model\"\n92\t    key_finding: \"Agent-RRM 通过 reasoning trace + critique + overall score 三维结构化反馈评估 agent trajectory，在 12 个 benchmark 上显著提升（GAIA 43.7%, WebWalkerQA 46.2%）\"\n93\t    our_differentiation: \"他们用 LLM-based reward model 生成结构化反馈用于 agent 改进，我们的 empirical analysis 表明轻量 structural features 即可高精度检测 stagnation（0.995 F1），不依赖大模型推理\"\n94\t\n95\t  - id: \"qiu2026dataprm\"\n96\t    title: \"Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis\"\n97\t    authors: \"Zhisong Qiu, Shuofei Qiao, Kewei Xu, Yuqi Zhu, Lun Du, Ningyu Zhang, Huajun Chen\"\n98\t    venue: \"arXiv preprint\"\n99\t    year: 2026\n100\t    arxiv: \"2604.24198\"\n101\t    category: \"direct-competitor\"\n102\t    verified: true\n103\t    role: \"Agentic data analysis 场景的 process-level reward model\"\n104\t    key_finding: \"传统 PRM 无法检测 silent errors 且误判 exploratory steps；DataPRM 通过 environment-aware probing + ternary reward 策略在 ScienceAgentBench 提升 7.21%\"\n105\t    our_differentiation: \"DataPRM 针对数据分析 agent 的 step correctness，我们针对通用 agent 的 stagnation pattern；他们需要 execution state probing，我们用 structural LFs 无需环境交互\"\n106\t\n107\t  # ============================================================\n108\t  # CATEGORY: method-component\n109\t  # ============================================================\n110\t\n111\t  - id: \"ratner2016dataprogramming\"\n112\t    title: \"Data Programming: Creating Large Training Sets, Quickly\"\n113\t    authors: \"Alexander Ratner, Christopher De Sa, Sen Wu, Daniel Selsam, Christopher Re\"\n114\t    venue: \"NeurIPS 2016\"\n115\t    year: 2016\n116\t    arxiv: \"1605.07723\"\n117\t    category: \"method-component\"\n118\t    role: \"核心方法论基础：data programming 范式\"\n119\t    key_finding: \"用户编写 labeling functions（噪声启发式），generative model 学习 LF 准确率生成概率训练标签\"\n120\t    our_differentiation: \"我们在 agent trajectory 上应用 data programming，发现 structural features 主导检测能力；同时揭示 LFs 的时序动态和 temporal label model 的负面结果\"\n121\t\n122\t  - id: \"ratner2017snorkel\"\n123\t    title: \"Snorkel: Rapid Training Data Creation with Weak Supervision\"\n124\t    authors: \"Alexander Ratner, Stephen H. Bach, Henry Ehrenberg, Jason Fries, Sen Wu, Christopher Re\"\n125\t    venue: \"VLDB 2018\"\n126\t    year: 2018\n127\t    arxiv: \"1711.10160\"\n128\t    category: \"method-component\"\n129\t    role: \"Data programming 系统实现，label model 基础\"\n130\t    key_finding: \"端到端弱监督系统：LFs → generative label model（建模 LF dependency）→ discriminative end model\"\n131\t    our_differentiation: \"Snorkel 假设数据点 i.i.d.，我们发现 agent trajectory 上 LFs 展现系统性时序动态（violating i.i.d.），但 temporal label model 未能超越 MV（negative finding）\"\n132\t\n133\t  - id: \"fu2020flyingsquid\"\n134\t    title: \"Fast and Three-rious: Speeding Up Weak Supervision with Triplet Methods\"\n135\t    authors: \"Daniel Y. Fu, Mayee F. Chen, Frederic Sala, Sarah M. Hooper, Kayvon Fatahalian, Christopher Re\"\n136\t    venue: \"ICML 2020\"\n137\t    year: 2020\n138\t    arxiv: \"2002.11955\"\n139\t    category: \"method-component\"\n140\t    role: \"快速 label model，triplet method of moments\"\n141\t    key_finding: \"用 triplet method 闭式求解 label model 参数，比 SGD 快 170x\"\n142\t    our_differentiation: \"FlyingSquid 同样假设 i.i.d.；我们的 empirical analysis 揭示 i.i.d. violation 虽系统性存在，但 temporal correction 在低冲突 regime 下无收益（negative finding）\"\n143\t\n144\t  - id: \"zhang2021wrench\"\n145\t    title: \"WRENCH: A Comprehensive Benchmark for Weak Supervision\"\n146\t    authors: \"Jieyu Zhang, Yue Yu, Yinghao Li, Yujing Wang, Yaming Yang, Mao Yang, Alexander Ratner\"\n147\t    venue: \"NeurIPS 2021 Datasets and Benchmarks Track\"\n148\t    year: 2021\n149\t    arxiv: \"2109.11377\"\n150\t    category: \"method-component\"\n151\t    role: \"弱监督评测基准\"\n152\t    key_finding: \"22 个真实数据集 + 120+ 方法变体评测，标准化弱监督研究\"\n153\t    our_differentiation: \"WRENCH 数据集全是 i.i.d. 分类/序列标注，没有 temporal stagnation detection 任务\"\n154\t\n155\t  - id: \"safranchik2020linkedhmm\"\n156\t    title: \"Weakly Supervised Sequence Tagging from Noisy Rules\"\n157\t    authors: \"Esteban Safranchik, Shiying Luo, Stephen H. Bach\"\n158\t    venue: \"AAAI 2020\"\n159\t    year: 2020\n160\t    arxiv: null\n161\t    category: \"method-component\"\n162\t    role: \"最近的方法论前驱：linked HMM for sequence tagging weak supervision\"\n163\t    key_finding: \"将 HMM 引入弱监督序列标注（NER），加入 linking rules 建模 span 结构，比 i.i.d. label model +7 F1\"\n164\t    our_differentiation: \"他们是 token-level NER（BIO 约束），我们是 window-level temporal classification；我们建模的是 stagnation temporal dynamics 而非 entity boundary\"\n165\t\n166\t  - id: \"sala2019multiresolution\"\n167\t    title: \"Multi-Resolution Weak Supervision for Sequential Data\"\n168\t    authors: \"Frederic Sala, Paroma Varma, Jason Fries, Daniel Y. Fu, Stefano Sagawa, Christopher Re\"\n169\t    venue: \"NeurIPS 2019\"\n170\t    year: 2019\n171\t    arxiv: \"1910.09505\"\n172\t    category: \"method-component\"\n173\t    role: \"最近的方法论前驱：multi-resolution WS for sequential data\"\n174\t    key_finding: \"处理不同时间分辨率的 LFs（如 frame-level vs span-level），建模 multi-resolution LF correlations\"\n175\t    our_differentiation: \"他们关注 resolution mismatch，我们关注 temporal label transitions；互补视角\"\n176\t\n177\t  - id: \"dawid1979em\"\n178\t    title: \"Maximum Likelihood Estimation of Observer Error-Rates Using the EM Algorithm\"\n179\t    authors: \"A. P. Dawid, A. M. Skene\"\n180\t    venue: \"Journal of the Royal Statistical Society, Series C\"\n181\t    year: 1979\n182\t    arxiv: null\n183\t    category: \"method-component\"\n184\t    role: \"Label aggregation 奠基工作\"\n185\t    key_finding: \"用 EM 算法估计标注者混淆矩阵，无需 ground truth\"\n186\t    our_differentiation: \"经典 i.i.d. 假设；我们测试了 temporal extension（HMM-TLM, lag-aware HMM）但发现在 3-LF 低冲突 regime 下未超越 MV——约束未来 temporal label model 研究\"\n187\t\n188\t  - id: \"nguyen2017hmmcrowd\"\n189\t    title: \"Aggregating and Predicting Sequence Labels from Crowd Annotations\"\n190\t    authors: \"An Thanh Nguyen, Byron C. Wallace, Junyi Jessy Li, Ani Nenkova, Matthew Lease\"\n191\t    venue: \"ACL 2017\"\n192\t    year: 2017\n193\t    arxiv: null\n194\t    category: \"method-component\"\n195\t    role: \"HMM + crowdsourcing label aggregation\"\n196\t    key_finding: \"HMM-Crowd：扩展 Dawid-Skene 到序列数据，加入 one-step Markov structure over true labels\"\n197\t    our_differentiation: \"他们用于 crowdsourcing（人类标注者），我们用于 programmatic LFs（自动化）；他们是 NER/IE，我们是 agent progress monitoring\"\n198\t\n199\t  # ============================================================\n200\t  # CATEGORY: evaluation\n201\t  # ============================================================\n202\t\n203\t  - id: \"orlanski2026slopcodebench\"\n204\t    title: \"SlopCodeBench: Benchmarking How Coding Agents Degrade Over Long-Horizon Iterative Tasks\"\n205\t    authors: \"Gabriel Orlanski, Devjeet Roy, Alexander Yun, Changho Shin, Alex Gu, Albert Ge, Dyah Adila, Nicholas Roberts, Frederic Sala, Aws Albarghouthi\"\n206\t    venue: \"arXiv preprint\"\n207\t    year: 2026\n208\t    arxiv: \"2603.24755\"\n209\t    category: \"evaluation\"\n210\t    role: \"Agent degradation 基准——直接支持我们的 problem motivation\"\n211\t    key_finding: \"Agent 代码质量在迭代任务中持续退化：比人类代码 2.3x 更冗余、2.0x 更结构侵蚀，75-77% trajectory 呈现退化趋势\"\n212\t    our_differentiation: \"SlopCodeBench 量化了 degradation 现象，我们提供了检测方法；他们是 post-hoc 评测，我们是 online monitoring\"\n213\t\n214\t  - id: \"jimenez2024swebench\"\n215\t    title: \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\"\n216\t    authors: \"Carlos E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, Karthik Narasimhan\"\n217\t    venue: \"ICLR 2024\"\n218\t    year: 2024\n219\t    arxiv: \"2310.06770\"\n220\t    category: \"evaluation\"\n221\t    role: \"Agent 数据来源之一\"\n222\t    key_finding: \"2294 个真实 GitHub issue 任务，标准化 agent 评测\"\n223\t    our_differentiation: \"我们使用 SWE-bench agent trajectories 作为实验数据源之一\"\n224\t\n225\t  - id: \"yang2024sweagent\"\n226\t    title: \"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\"\n227\t    authors: \"John Yang, Carlos E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan, Ofir Press\"\n228\t    venue: \"NeurIPS 2024\"\n229\t    year: 2024\n230\t    arxiv: \"2405.15793\"\n231\t    category: \"evaluation\"\n232\t    role: \"Agent 系统——trajectory 数据来源\"\n233\t    key_finding: \"提出 agent-computer interface (ACI)，GPT-4 Turbo 在 SWE-bench 达 12.47% resolve rate\"\n234\t    our_differentiation: \"SWE-agent trajectories 是我们分析 stagnation 的数据来源之一\"\n235\t\n236\t  - id: \"wang2025openhands\"\n237\t    title: \"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\"\n238\t    authors: \"Xingyao Wang, Boxuan Li, Yufan Song, Frank F. Xu, Xiangru Tang, et al.\"\n239\t    venue: \"ICLR 2025\"\n240\t    year: 2025\n241\t    arxiv: \"2407.16741\"\n242\t    category: \"evaluation\"\n243\t    role: \"Agent 平台——主要数据来源\"\n244\t    key_finding: \"开源 agent 平台，sandbox 执行环境，15+ benchmarks 评测\"\n245\t    our_differentiation: \"OpenHands trajectories 是我们的主要实验数据来源\"\n246\t\n247\t  # ============================================================\n248\t  # CATEGORY: background\n249\t  # ============================================================\n250\t\n251\t  - id: \"shinn2023reflexion\"\n252\t    title: \"Reflexion: Language Agents with Verbal Reinforcement Learning\"\n253\t    authors: \"Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, Shunyu Yao\"\n254\t    venue: \"NeurIPS 2023\"\n255\t    year: 2023\n256\t    arxiv: \"2303.11366\"\n257\t    category: \"background\"\n258\t    role: \"Agent self-reflection 代表工作\"\n259\t    key_finding: \"通过 verbal feedback 强化 agent，反思文本存入 episodic memory 用于后续 trial\"\n260\t    our_differentiation: \"Reflexion 是 agent 自我改进机制，我们是外部 monitoring；self-reflection 可能失效时我们的 monitor 仍能检测 stagnation\"\n261\t\n262\t  - id: \"zhou2024lats\"\n263\t    title: \"Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models\"\n264\t    authors: \"Andy Zhou, Kai Yan, Michal Shlapentokh-Rothman, Haohan Wang, Yu-Xiong Wang\"\n265\t    venue: \"ICML 2024\"\n266\t    year: 2024\n267\t    arxiv: \"2310.04406\"\n268\t    category: \"background\"\n269\t    role: \"Agent planning + self-reflection\"\n270\t    key_finding: \"结合 MCTS 与 LM value function 和 self-reflection，支持 backtracking\"\n271\t    our_differentiation: \"LATS 通过搜索避免 stagnation，但计算开销大；我们的 monitor 可作为 LATS 的早期终止信号\"\n272\t\n273\t  - id: \"yao2023tot\"\n274\t    title: \"Tree of Thoughts: Deliberate Problem Solving with Large Language Models\"\n275\t    authors: \"Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Thomas L. Griffiths, Yuan Cao, Karthik Narasimhan\"\n276\t    venue: \"NeurIPS 2023\"\n277\t    year: 2023\n278\t    arxiv: \"2305.10601\"\n279\t    category: \"background\"\n280\t    role: \"Deliberate reasoning 框架\"\n281\t    key_finding: \"将 CoT 泛化为树结构，LM 自我评估中间 thought 并 backtrack\"\n282\t    our_differentiation: \"ToT 的自评估是 single-step 的；我们捕捉 multi-step temporal patterns\"\n283\t\n284\t  - id: \"cemri2025multiagentfail\"\n285\t    title: \"Why Do Multi-Agent LLM Systems Fail?\"\n286\t    authors: \"Mert Cemri, Melissa Z. Pan, Shuyi Yang, Lakshya A. Agrawal, et al.\"\n287\t    venue: \"arXiv preprint\"\n288\t    year: 2025\n289\t    arxiv: \"2503.13657\"\n290\t    category: \"background\"\n291\t    role: \"Agent failure taxonomy——problem motivation\"\n292\t    key_finding: \"MAST taxonomy：14 种失败模式，其中 Step Repetition 被识别为具体失败症状\"\n293\t    our_differentiation: \"他们提供 taxonomy（what fails），我们提供 detection method（how to detect）\"\n294\t\n295\t  - id: \"zhu2025agentfail\"\n296\t    title: \"Where LLM Agents Fail and How They Can Learn From Failures\"\n297\t    authors: \"Kunlun Zhu, Zijia Liu, Bingxuan Li, et al.\"\n298\t    venue: \"arXiv preprint\"\n299\t    year: 2025\n300\t    arxiv: \"2509.25370\"\n301\t    category: \"background\"\n302\t    role: \"Agent failure 分析 + cascading failure 发现\"\n303\t    key_finding: \"Cascading failures（单一 root cause 传播到后续决策）是长 horizon 任务的主要失败模式\"\n304\t    our_differentiation: \"Cascading failure 正是我们 temporal model 可以捕捉的 pattern——stagnation 往往是 cascade 的表现\"\n305\t\n306\t  - id: \"george2025cycledetection\"\n307\t    title: \"Unsupervised Cycle Detection in Agentic Applications\"\n308\t    authors: \"Felix George, Harshit Kumar, Divya Pathak, Kaustabha Ray, Mudit Verma, Pratibha Moogi\"\n309\t    venue: \"arXiv preprint (IBM Research)\"\n310\t    year: 2025\n311\t    arxiv: \"2511.10650\"\n312\t    category: \"background\"\n313\t    role: \"Cycle detection——最相关的 stagnation detection 前驱\"\n314\t    key_finding: \"混合方法：call-stack 分析（结构重复）+ embedding 语义相似度确认\"\n315\t    our_differentiation: \"他们只检测 exact/near-exact cycles，我们检测更广义的 stagnation（包括非重复性的停滞）；我们的 empirical analysis 表明 30 个 structural features（含但不限于 cycle 特征）即可达 0.995 F1\"\n316\t\n317\t  - id: \"pipis2025reasoningloop\"\n318\t    title: \"Wait, Wait, Wait... Why Do Reasoning Models Loop?\"\n319\t    authors: \"Charilaos Pipis, Shivam Garg, Vasilis Kontonis, Vaishnavi Shrivastava, Akshay Krishnamurthy, Dimitris Papailiopoulos\"\n320\t    venue: \"arXiv preprint\"\n321\t    year: 2025\n322\t    arxiv: \"2512.12895\"\n323\t    category: \"background\"\n324\t    role: \"Reasoning model looping 分析\"\n325\t    key_finding: \"Looping 是 risk-aversion 的表现：模型选择简单循环动作而非推进；用 30-gram 重复检测\"\n326\t    our_differentiation: \"他们分析 reasoning model 内部循环的原因，我们检测 agent trajectory 级别的 stagnation；n-gram 是我们 LFs 之一\"\n327\t\n328\t  - id: \"huang2024selfcorrect\"\n329\t    title: \"Large Language Models Cannot Self-Correct Reasoning Yet\"\n330\t    authors: \"Jie Huang, Xinyun Chen, Swaroop Mishra, Huaixiu Steven Zheng, Adams Wei Yu, Xinying Song, Denny Zhou\"\n331\t    venue: \"ICLR 2024\"\n332\t    year: 2024\n333\t    arxiv: \"2310.01798\"\n334\t    category: \"background\"\n335\t    verified: true\n336\t    role: \"Self-correction 失败的关键证据——支持 external monitoring 必要性\"\n337\t    key_finding: \"LLM 在无外部反馈时无法自我纠错推理错误，intrinsic self-correction 甚至导致性能下降\"\n338\t    our_differentiation: \"直接支持我们的核心论点：agent 不能可靠地自我检测 stagnation，需要外部 monitor；我们的 structural features 提供了轻量（<5ms）且高精度（0.995 F1）的外部检测方案\"\n339\t\n340\t  - id: \"kamoi2024selfcorrection\"\n341\t    title: \"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs\"\n342\t    authors: \"Ryo Kamoi, Yusen Zhang, Nan Zhang, Jiawei Han, Rui Zhang\"\n343\t    venue: \"TACL 2024\"\n344\t    year: 2024\n345\t    arxiv: \"2406.01297\"\n346\t    category: \"background\"\n347\t    verified: true\n348\t    role: \"Self-correction 条件的系统性综述——外部反馈是成功的必要条件\"\n349\t    key_finding: \"无外部反馈的 prompted self-correction 均未成功；self-correction 仅在有可靠外部反馈或大规模微调时有效\"\n350\t    our_differentiation: \"综述证实 self-correction 需要外部信号，我们的 empirical analysis 表明 structural features 即可提供高精度外部 stagnation 信号，无需复杂的语义理解\"\n351\t\n352\t  # ============================================================\n353\t  # CATEGORY: technique\n354\t  # ============================================================\n355\t\n356\t  - id: \"cho2014gru\"\n357\t    title: \"Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation\"\n358\t    authors: \"Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, Yoshua Bengio\"\n359\t    venue: \"EMNLP 2014\"\n360\t    year: 2014\n361\t    arxiv: \"1406.1078\"\n362\t    category: \"technique\"\n363\t    role: \"GRU 原始论文——我们 probe model 的序列编码器\"\n364\t    key_finding: \"提出 GRU hidden unit，自适应门控信息流\"\n365\t\n366\t  - id: \"bahdanau2015attention\"\n367\t    title: \"Neural Machine Translation by Jointly Learning to Align and Translate\"\n368\t    authors: \"Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio\"\n369\t    venue: \"ICLR 2015\"\n370\t    year: 2015\n371\t    arxiv: \"1409.0473\"\n372\t    category: \"technique\"\n373\t    role: \"Attention mechanism——我们 probe model 的 attention 组件\"\n374\t    key_finding: \"注意力机制允许 decoder 选择性关注输入序列不同位置\"\n375\t\n376\t  - id: \"khosla2020supcon\"\n377\t    title: \"Supervised Contrastive Learning\"\n378\t    authors: \"Prannay Khosla, Piotr Teterwak, Chen Wang, Aaron Sarna, Yonglong Tian, Phillip Isola, Aaron Maschinot, Ce Liu, Dilip Krishnan\"\n379\t    venue: \"NeurIPS 2020\"\n380\t    year: 2020\n381\t    arxiv: \"2004.11362\"\n382\t    category: \"technique\"\n383\t    role: \"SupCon loss——我们的辅助训练目标\"\n384\t    key_finding: \"扩展自监督对比学习到有监督设置，同类样本拉近、异类推远，提升鲁棒性\"\n385\t\n386\t  - id: \"zhang2025qwen3embedding\"\n387\t    title: \"Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models\"\n388\t    authors: \"Yanzhao Zhang, Mingxin Li, Dingkun Long, Xin Zhang, Huan Lin, Baosong Yang, Pengjun Xie, An Yang, Dayiheng Liu, Junyang Lin, Fei Huang, Jingren Zhou\"\n389\t    venue: \"arXiv preprint\"\n390\t    year: 2025\n391\t    arxiv: \"2506.05176\"\n392\t    category: \"technique\"\n393\t    role: \"Embedding model——我们用于生成 trajectory window embeddings\"\n394\t    key_finding: \"基于 Qwen3 的 embedding 模型（0.6B/4B/8B），多阶段训练，MTEB 多语言 SOTA\"\n395\t\n396\t# ============================================================\n397\t# NOVELTY ANALYSIS SUMMARY (D039 Pivot — Empirical Analysis)\n398\t# ============================================================\n399\t#\n400\t# Primary novelty: 首次系统性实证分析 agent stagnation 检测中 structural vs\n401\t# semantic signal 的有效性。30 个结构特征达 0.995 in-domain / 0.967 cross-agent F1，\n402\t# 全面优于 NL embedding (0.906/0.751) 和 LLM-as-judge (+24.3pp)。\n403\t#\n404\t# 三层贡献：\n405\t# 1. Structural Signal Discovery (primary) — 改变社区对 agent monitoring 方法选型认知\n406\t# 2. LF Temporal Dynamics Analysis — 量化 LFs 时序角色 + agent-specific 迁移分析\n407\t# 3. TLM Negative Finding — 3 种实现 (TWV/HMM/lag-aware HMM) 均未超越 MV\n408\t#\n409\t# 方法论前驱（TLM negative finding 的参照）：\n410\t# 1. Safranchik AAAI 2020 (linked HMM) — NER-specific，BIO 约束，token-level\n411\t# 2. Sala NeurIPS 2019 (multi-resolution WS) — 处理分辨率不匹配，不建模 label transition\n412\t# 3. Nguyen ACL 2017 (HMM-Crowd) — crowdsourcing 场景，不是 programmatic LFs\n413\t#\n414\t# 核心差异化：不是 \"method paper proposing TLM\"，而是 \"empirical study revealing\n415\t# structural signals dominate stagnation detection, with temporal modeling as\n416\t# well-motivated negative finding\".\n417\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "8c0dedf8-da0b-4d28-969c-a7893186ac36",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/literature_map.yaml",
+                "content": "# Literature Map for Agent Progress Probe (EMNLP 2026 ARR)\n# Generated: 2026-05-14\n# Paper: Structural Signal Analysis for Progress Stagnation Detection in LLM Agents\n#\n# D039 Pivot: Empirical analysis paper. Central finding: stagnation signals are\n# fundamentally structural (30 features → 0.995 in-domain, 0.967 cross-agent F1),\n# decisively surpassing NL embeddings (0.906/0.751) and LLM-as-judge (+24.3pp).\n# TLM is a well-motivated negative finding (3 implementations all fail to beat MV).\n\npapers:\n\n  # ============================================================\n  # CATEGORY: direct-competitor\n  # ============================================================\n\n  - id: \"xi2025agentprm\"\n    title: \"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\"\n    authors: \"Zhiheng Xi, Chenyang Liao, Guanyu Li, Yajie Yang, Wenxiang Chen, Zhihao Zhang, Binghai Wang, Senjie Jin, Yuhao Zhou, Jian Guan, Wei Wu, Tao Ji, Tao Gui, Qi Zhang, Xuanjing Huang\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2511.08325\"\n    category: \"direct-competitor\"\n    role: \"主要竞争者：step-level PRM for agent guidance\"\n    key_finding: \"用 promise（长期潜力）和 progress（即时进展）两个维度评估 agent 每步决策，实现 8x 计算效率提升\"\n    our_differentiation: \"我们是 window-level monitoring（不是 step-level guidance），不需要 outcome labels，目标是 stagnation detection 不是 reward shaping\"\n\n  - id: \"choudhury2025prm\"\n    title: \"Process Reward Models for LLM Agents: Practical Framework and Directions\"\n    authors: \"Sanjiban Choudhury\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2502.10325\"\n    category: \"direct-competitor\"\n    role: \"PRM 框架综述 + InversePRM 方法\"\n    key_finding: \"提出 AgentPRM（Monte Carlo rollout actor-critic）和 InversePRM（从 demonstrations 学习 process reward），3B 模型超越 GPT-4o\"\n    our_differentiation: \"InversePRM 仍需 demonstration trajectories，我们用 programmatic LFs 替代人工标注；我们关注 monitoring 而非 training signal\"\n\n  - id: \"li2026toolprmbench\"\n    title: \"ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents\"\n    authors: \"Dawei Li, Yuguang Yao, Zhen Tan, Huan Liu, Ruocheng Guo\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2601.12294\"\n    category: \"direct-competitor\"\n    role: \"Tool-use PRM 评测基准\"\n    key_finding: \"大规模 benchmark 评测 PRM 在 tool-use 场景的效果，发现专用 PRM 显著优于通用 PRM\"\n    our_differentiation: \"我们的 empirical analysis 揭示 structural features 足以检测 stagnation（0.995 F1），无需 step-level reward labels；关注 stagnation pattern 而非 step correctness\"\n\n  - id: \"wang2026planrewardbench\"\n    title: \"Aligning Agents via Planning: A Benchmark for Trajectory-Level Reward Modeling\"\n    authors: \"Jiaxuan Wang, Yulan Hu, Wenjin Yang, Zheng Pan, Xin Li, Lan-Zhe Guo\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2604.08178\"\n    category: \"direct-competitor\"\n    role: \"Trajectory-level reward model 评测\"\n    key_finding: \"所有 reward model 类别（generative, discriminative, LLM-as-Judge）在长 horizon trajectory 上性能显著下降\"\n    our_differentiation: \"验证了长 trajectory 评估的难度——我们的 window-level 方法通过局部化避免了这个问题\"\n\n  - id: \"chen2025monitoring\"\n    title: \"Monitoring LLM Agents for Sequentially Contextual Harm\"\n    authors: \"Yueh-Han Chen, Neelay Joshi, Yulin Chen, He He, Rico Angell\"\n    venue: \"ICLR 2025 Workshop on Building Trust in Language Models and Applications\"\n    year: 2025\n    arxiv: null\n    openreview: \"LC0XQ6ufbr\"\n    category: \"direct-competitor\"\n    role: \"Agent monitoring 安全方向\"\n    key_finding: \"将有害任务分解为单独无害的子任务可将 refusal rate 从 50% 降至 10%，现有 monitor 难以检测 sequentially contextual harm\"\n    our_differentiation: \"他们关注 safety monitoring（harmful behavior），我们关注 progress monitoring（stagnation）；互补方向\"\n\n  - id: \"kale2025weaktostrong\"\n    title: \"Reliable Weak-to-Strong Monitoring of LLM Agents\"\n    authors: \"Neil Kale, Chen Bo Calvin Zhang, Kevin Zhu, Ankit Aich, Paula Rodriguez, Scale Red Team, Christina Q. Knight, Zifan Wang\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2508.19461\"\n    category: \"direct-competitor\"\n    role: \"Weak-to-strong agent monitoring 方法论\"\n    key_finding: \"Monitor scaffolding 比 monitor 能力更重要，弱模型可以可靠监控强模型；targeted human-in-the-loop 提升 TPR ~15%\"\n    our_differentiation: \"他们用 LLM 作为 monitor，我们发现 30 个 structural features 即可达 0.967 跨域 F1，不依赖另一个 LLM；更轻量（<5ms）且可解释\"\n\n  - id: \"fan2026agentrm\"\n    title: \"Exploring Reasoning Reward Model for Agents\"\n    authors: \"Kaixuan Fan, Kaituo Feng, Manyuan Zhang, Tianshuo Peng, Zhixun Li, Yilei Jiang, Shuang Chen, Peng Pei, Xunliang Cai, Xiangyu Yue\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2601.22154\"\n    category: \"direct-competitor\"\n    verified: true\n    role: \"Agent trajectory 的多维度 reasoning reward model\"\n    key_finding: \"Agent-RRM 通过 reasoning trace + critique + overall score 三维结构化反馈评估 agent trajectory，在 12 个 benchmark 上显著提升（GAIA 43.7%, WebWalkerQA 46.2%）\"\n    our_differentiation: \"他们用 LLM-based reward model 生成结构化反馈用于 agent 改进，我们的 empirical analysis 表明轻量 structural features 即可高精度检测 stagnation（0.995 F1），不依赖大模型推理\"\n\n  - id: \"qiu2026dataprm\"\n    title: \"Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis\"\n    authors: \"Zhisong Qiu, Shuofei Qiao, Kewei Xu, Yuqi Zhu, Lun Du, Ningyu Zhang, Huajun Chen\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2604.24198\"\n    category: \"direct-competitor\"\n    verified: true\n    role: \"Agentic data analysis 场景的 process-level reward model\"\n    key_finding: \"传统 PRM 无法检测 silent errors 且误判 exploratory steps；DataPRM 通过 environment-aware probing + ternary reward 策略在 ScienceAgentBench 提升 7.21%\"\n    our_differentiation: \"DataPRM 针对数据分析 agent 的 step correctness，我们针对通用 agent 的 stagnation pattern；他们需要 execution state probing，我们用 structural LFs 无需环境交互\"\n\n  # ============================================================\n  # CATEGORY: method-component\n  # ============================================================\n\n  - id: \"ratner2016dataprogramming\"\n    title: \"Data Programming: Creating Large Training Sets, Quickly\"\n    authors: \"Alexander Ratner, Christopher De Sa, Sen Wu, Daniel Selsam, Christopher Re\"\n    venue: \"NeurIPS 2016\"\n    year: 2016\n    arxiv: \"1605.07723\"\n    category: \"method-component\"\n    role: \"核心方法论基础：data programming 范式\"\n    key_finding: \"用户编写 labeling functions（噪声启发式），generative model 学习 LF 准确率生成概率训练标签\"\n    our_differentiation: \"我们在 agent trajectory 上应用 data programming，发现 structural features 主导检测能力；同时揭示 LFs 的时序动态和 temporal label model 的负面结果\"\n\n  - id: \"ratner2017snorkel\"\n    title: \"Snorkel: Rapid Training Data Creation with Weak Supervision\"\n    authors: \"Alexander Ratner, Stephen H. Bach, Henry Ehrenberg, Jason Fries, Sen Wu, Christopher Re\"\n    venue: \"VLDB 2018\"\n    year: 2018\n    arxiv: \"1711.10160\"\n    category: \"method-component\"\n    role: \"Data programming 系统实现，label model 基础\"\n    key_finding: \"端到端弱监督系统：LFs → generative label model（建模 LF dependency）→ discriminative end model\"\n    our_differentiation: \"Snorkel 假设数据点 i.i.d.，我们发现 agent trajectory 上 LFs 展现系统性时序动态（violating i.i.d.），但 temporal label model 未能超越 MV（negative finding）\"\n\n  - id: \"fu2020flyingsquid\"\n    title: \"Fast and Three-rious: Speeding Up Weak Supervision with Triplet Methods\"\n    authors: \"Daniel Y. Fu, Mayee F. Chen, Frederic Sala, Sarah M. Hooper, Kayvon Fatahalian, Christopher Re\"\n    venue: \"ICML 2020\"\n    year: 2020\n    arxiv: \"2002.11955\"\n    category: \"method-component\"\n    role: \"快速 label model，triplet method of moments\"\n    key_finding: \"用 triplet method 闭式求解 label model 参数，比 SGD 快 170x\"\n    our_differentiation: \"FlyingSquid 同样假设 i.i.d.；我们的 empirical analysis 揭示 i.i.d. violation 虽系统性存在，但 temporal correction 在低冲突 regime 下无收益（negative finding）\"\n\n  - id: \"zhang2021wrench\"\n    title: \"WRENCH: A Comprehensive Benchmark for Weak Supervision\"\n    authors: \"Jieyu Zhang, Yue Yu, Yinghao Li, Yujing Wang, Yaming Yang, Mao Yang, Alexander Ratner\"\n    venue: \"NeurIPS 2021 Datasets and Benchmarks Track\"\n    year: 2021\n    arxiv: \"2109.11377\"\n    category: \"method-component\"\n    role: \"弱监督评测基准\"\n    key_finding: \"22 个真实数据集 + 120+ 方法变体评测，标准化弱监督研究\"\n    our_differentiation: \"WRENCH 数据集全是 i.i.d. 分类/序列标注，没有 temporal stagnation detection 任务\"\n\n  - id: \"safranchik2020linkedhmm\"\n    title: \"Weakly Supervised Sequence Tagging from Noisy Rules\"\n    authors: \"Esteban Safranchik, Shiying Luo, Stephen H. Bach\"\n    venue: \"AAAI 2020\"\n    year: 2020\n    arxiv: null\n    category: \"method-component\"\n    role: \"最近的方法论前驱：linked HMM for sequence tagging weak supervision\"\n    key_finding: \"将 HMM 引入弱监督序列标注（NER），加入 linking rules 建模 span 结构，比 i.i.d. label model +7 F1\"\n    our_differentiation: \"他们是 token-level NER（BIO 约束），我们是 window-level temporal classification；我们建模的是 stagnation temporal dynamics 而非 entity boundary\"\n\n  - id: \"sala2019multiresolution\"\n    title: \"Multi-Resolution Weak Supervision for Sequential Data\"\n    authors: \"Frederic Sala, Paroma Varma, Jason Fries, Daniel Y. Fu, Stefano Sagawa, Christopher Re\"\n    venue: \"NeurIPS 2019\"\n    year: 2019\n    arxiv: \"1910.09505\"\n    category: \"method-component\"\n    role: \"最近的方法论前驱：multi-resolution WS for sequential data\"\n    key_finding: \"处理不同时间分辨率的 LFs（如 frame-level vs span-level），建模 multi-resolution LF correlations\"\n    our_differentiation: \"他们关注 resolution mismatch，我们关注 temporal label transitions；互补视角\"\n\n  - id: \"dawid1979em\"\n    title: \"Maximum Likelihood Estimation of Observer Error-Rates Using the EM Algorithm\"\n    authors: \"A. P. Dawid, A. M. Skene\"\n    venue: \"Journal of the Royal Statistical Society, Series C\"\n    year: 1979\n    arxiv: null\n    category: \"method-component\"\n    role: \"Label aggregation 奠基工作\"\n    key_finding: \"用 EM 算法估计标注者混淆矩阵，无需 ground truth\"\n    our_differentiation: \"经典 i.i.d. 假设；我们测试了 temporal extension（HMM-TLM, lag-aware HMM）但发现在 3-LF 低冲突 regime 下未超越 MV——约束未来 temporal label model 研究\"\n\n  - id: \"nguyen2017hmmcrowd\"\n    title: \"Aggregating and Predicting Sequence Labels from Crowd Annotations\"\n    authors: \"An Thanh Nguyen, Byron C. Wallace, Junyi Jessy Li, Ani Nenkova, Matthew Lease\"\n    venue: \"ACL 2017\"\n    year: 2017\n    arxiv: null\n    category: \"method-component\"\n    role: \"HMM + crowdsourcing label aggregation\"\n    key_finding: \"HMM-Crowd：扩展 Dawid-Skene 到序列数据，加入 one-step Markov structure over true labels\"\n    our_differentiation: \"他们用于 crowdsourcing（人类标注者），我们用于 programmatic LFs（自动化）；他们是 NER/IE，我们是 agent progress monitoring\"\n\n  # ============================================================\n  # CATEGORY: evaluation\n  # ============================================================\n\n  - id: \"orlanski2026slopcodebench\"\n    title: \"SlopCodeBench: Benchmarking How Coding Agents Degrade Over Long-Horizon Iterative Tasks\"\n    authors: \"Gabriel Orlanski, Devjeet Roy, Alexander Yun, Changho Shin, Alex Gu, Albert Ge, Dyah Adila, Nicholas Roberts, Frederic Sala, Aws Albarghouthi\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2603.24755\"\n    category: \"evaluation\"\n    role: \"Agent degradation 基准——直接支持我们的 problem motivation\"\n    key_finding: \"Agent 代码质量在迭代任务中持续退化：比人类代码 2.3x 更冗余、2.0x 更结构侵蚀，75-77% trajectory 呈现退化趋势\"\n    our_differentiation: \"SlopCodeBench 量化了 degradation 现象，我们提供了检测方法；他们是 post-hoc 评测，我们是 online monitoring\"\n\n  - id: \"jimenez2024swebench\"\n    title: \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\"\n    authors: \"Carlos E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, Karthik Narasimhan\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    arxiv: \"2310.06770\"\n    category: \"evaluation\"\n    role: \"Agent 数据来源之一\"\n    key_finding: \"2294 个真实 GitHub issue 任务，标准化 agent 评测\"\n    our_differentiation: \"我们使用 SWE-bench agent trajectories 作为实验数据源之一\"\n\n  - id: \"yang2024sweagent\"\n    title: \"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\"\n    authors: \"John Yang, Carlos E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan, Ofir Press\"\n    venue: \"NeurIPS 2024\"\n    year: 2024\n    arxiv: \"2405.15793\"\n    category: \"evaluation\"\n    role: \"Agent 系统——trajectory 数据来源\"\n    key_finding: \"提出 agent-computer interface (ACI)，GPT-4 Turbo 在 SWE-bench 达 12.47% resolve rate\"\n    our_differentiation: \"SWE-agent trajectories 是我们分析 stagnation 的数据来源之一\"\n\n  - id: \"wang2025openhands\"\n    title: \"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\"\n    authors: \"Xingyao Wang, Boxuan Li, Yufan Song, Frank F. Xu, Xiangru Tang, et al.\"\n    venue: \"ICLR 2025\"\n    year: 2025\n    arxiv: \"2407.16741\"\n    category: \"evaluation\"\n    role: \"Agent 平台——主要数据来源\"\n    key_finding: \"开源 agent 平台，sandbox 执行环境，15+ benchmarks 评测\"\n    our_differentiation: \"OpenHands trajectories 是我们的主要实验数据来源\"\n\n  # ============================================================\n  # CATEGORY: background\n  # ============================================================\n\n  - id: \"shinn2023reflexion\"\n    title: \"Reflexion: Language Agents with Verbal Reinforcement Learning\"\n    authors: \"Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, Shunyu Yao\"\n    venue: \"NeurIPS 2023\"\n    year: 2023\n    arxiv: \"2303.11366\"\n    category: \"background\"\n    role: \"Agent self-reflection 代表工作\"\n    key_finding: \"通过 verbal feedback 强化 agent，反思文本存入 episodic memory 用于后续 trial\"\n    our_differentiation: \"Reflexion 是 agent 自我改进机制，我们是外部 monitoring；self-reflection 可能失效时我们的 monitor 仍能检测 stagnation\"\n\n  - id: \"zhou2024lats\"\n    title: \"Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models\"\n    authors: \"Andy Zhou, Kai Yan, Michal Shlapentokh-Rothman, Haohan Wang, Yu-Xiong Wang\"\n    venue: \"ICML 2024\"\n    year: 2024\n    arxiv: \"2310.04406\"\n    category: \"background\"\n    role: \"Agent planning + self-reflection\"\n    key_finding: \"结合 MCTS 与 LM value function 和 self-reflection，支持 backtracking\"\n    our_differentiation: \"LATS 通过搜索避免 stagnation，但计算开销大；我们的 monitor 可作为 LATS 的早期终止信号\"\n\n  - id: \"yao2023tot\"\n    title: \"Tree of Thoughts: Deliberate Problem Solving with Large Language Models\"\n    authors: \"Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Thomas L. Griffiths, Yuan Cao, Karthik Narasimhan\"\n    venue: \"NeurIPS 2023\"\n    year: 2023\n    arxiv: \"2305.10601\"\n    category: \"background\"\n    role: \"Deliberate reasoning 框架\"\n    key_finding: \"将 CoT 泛化为树结构，LM 自我评估中间 thought 并 backtrack\"\n    our_differentiation: \"ToT 的自评估是 single-step 的；我们捕捉 multi-step temporal patterns\"\n\n  - id: \"cemri2025multiagentfail\"\n    title: \"Why Do Multi-Agent LLM Systems Fail?\"\n    authors: \"Mert Cemri, Melissa Z. Pan, Shuyi Yang, Lakshya A. Agrawal, et al.\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2503.13657\"\n    category: \"background\"\n    role: \"Agent failure taxonomy——problem motivation\"\n    key_finding: \"MAST taxonomy：14 种失败模式，其中 Step Repetition 被识别为具体失败症状\"\n    our_differentiation: \"他们提供 taxonomy（what fails），我们提供 detection method（how to detect）\"\n\n  - id: \"zhu2025agentfail\"\n    title: \"Where LLM Agents Fail and How They Can Learn From Failures\"\n    authors: \"Kunlun Zhu, Zijia Liu, Bingxuan Li, et al.\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2509.25370\"\n    category: \"background\"\n    role: \"Agent failure 分析 + cascading failure 发现\"\n    key_finding: \"Cascading failures（单一 root cause 传播到后续决策）是长 horizon 任务的主要失败模式\"\n    our_differentiation: \"Cascading failure 正是我们 temporal model 可以捕捉的 pattern——stagnation 往往是 cascade 的表现\"\n\n  - id: \"george2025cycledetection\"\n    title: \"Unsupervised Cycle Detection in Agentic Applications\"\n    authors: \"Felix George, Harshit Kumar, Divya Pathak, Kaustabha Ray, Mudit Verma, Pratibha Moogi\"\n    venue: \"arXiv preprint (IBM Research)\"\n    year: 2025\n    arxiv: \"2511.10650\"\n    category: \"background\"\n    role: \"Cycle detection——最相关的 stagnation detection 前驱\"\n    key_finding: \"混合方法：call-stack 分析（结构重复）+ embedding 语义相似度确认\"\n    our_differentiation: \"他们只检测 exact/near-exact cycles，我们检测更广义的 stagnation（包括非重复性的停滞）；我们的 empirical analysis 表明 30 个 structural features（含但不限于 cycle 特征）即可达 0.995 F1\"\n\n  - id: \"pipis2025reasoningloop\"\n    title: \"Wait, Wait, Wait... Why Do Reasoning Models Loop?\"\n    authors: \"Charilaos Pipis, Shivam Garg, Vasilis Kontonis, Vaishnavi Shrivastava, Akshay Krishnamurthy, Dimitris Papailiopoulos\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2512.12895\"\n    category: \"background\"\n    role: \"Reasoning model looping 分析\"\n    key_finding: \"Looping 是 risk-aversion 的表现：模型选择简单循环动作而非推进；用 30-gram 重复检测\"\n    our_differentiation: \"他们分析 reasoning model 内部循环的原因，我们检测 agent trajectory 级别的 stagnation；n-gram 是我们 LFs 之一\"\n\n  - id: \"huang2024selfcorrect\"\n    title: \"Large Language Models Cannot Self-Correct Reasoning Yet\"\n    authors: \"Jie Huang, Xinyun Chen, Swaroop Mishra, Huaixiu Steven Zheng, Adams Wei Yu, Xinying Song, Denny Zhou\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    arxiv: \"2310.01798\"\n    category: \"background\"\n    verified: true\n    role: \"Self-correction 失败的关键证据——支持 external monitoring 必要性\"\n    key_finding: \"LLM 在无外部反馈时无法自我纠错推理错误，intrinsic self-correction 甚至导致性能下降\"\n    our_differentiation: \"直接支持我们的核心论点：agent 不能可靠地自我检测 stagnation，需要外部 monitor；我们的 structural features 提供了轻量（<5ms）且高精度（0.995 F1）的外部检测方案\"\n\n  - id: \"kamoi2024selfcorrection\"\n    title: \"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs\"\n    authors: \"Ryo Kamoi, Yusen Zhang, Nan Zhang, Jiawei Han, Rui Zhang\"\n    venue: \"TACL 2024\"\n    year: 2024\n    arxiv: \"2406.01297\"\n    category: \"background\"\n    verified: true\n    role: \"Self-correction 条件的系统性综述——外部反馈是成功的必要条件\"\n    key_finding: \"无外部反馈的 prompted self-correction 均未成功；self-correction 仅在有可靠外部反馈或大规模微调时有效\"\n    our_differentiation: \"综述证实 self-correction 需要外部信号，我们的 empirical analysis 表明 structural features 即可提供高精度外部 stagnation 信号，无需复杂的语义理解\"\n\n  # ============================================================\n  # CATEGORY: technique\n  # ============================================================\n\n  - id: \"cho2014gru\"\n    title: \"Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation\"\n    authors: \"Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, Yoshua Bengio\"\n    venue: \"EMNLP 2014\"\n    year: 2014\n    arxiv: \"1406.1078\"\n    category: \"technique\"\n    role: \"GRU 原始论文——我们 probe model 的序列编码器\"\n    key_finding: \"提出 GRU hidden unit，自适应门控信息流\"\n\n  - id: \"bahdanau2015attention\"\n    title: \"Neural Machine Translation by Jointly Learning to Align and Translate\"\n    authors: \"Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio\"\n    venue: \"ICLR 2015\"\n    year: 2015\n    arxiv: \"1409.0473\"\n    category: \"technique\"\n    role: \"Attention mechanism——我们 probe model 的 attention 组件\"\n    key_finding: \"注意力机制允许 decoder 选择性关注输入序列不同位置\"\n\n  - id: \"khosla2020supcon\"\n    title: \"Supervised Contrastive Learning\"\n    authors: \"Prannay Khosla, Piotr Teterwak, Chen Wang, Aaron Sarna, Yonglong Tian, Phillip Isola, Aaron Maschinot, Ce Liu, Dilip Krishnan\"\n    venue: \"NeurIPS 2020\"\n    year: 2020\n    arxiv: \"2004.11362\"\n    category: \"technique\"\n    role: \"SupCon loss——我们的辅助训练目标\"\n    key_finding: \"扩展自监督对比学习到有监督设置，同类样本拉近、异类推远，提升鲁棒性\"\n\n  - id: \"zhang2025qwen3embedding\"\n    title: \"Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models\"\n    authors: \"Yanzhao Zhang, Mingxin Li, Dingkun Long, Xin Zhang, Huan Lin, Baosong Yang, Pengjun Xie, An Yang, Dayiheng Liu, Junyang Lin, Fei Huang, Jingren Zhou\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2506.05176\"\n    category: \"technique\"\n    role: \"Embedding model——我们用于生成 trajectory window embeddings\"\n    key_finding: \"基于 Qwen3 的 embedding 模型（0.6B/4B/8B），多阶段训练，MTEB 多语言 SOTA\"\n\n# ============================================================\n# NOVELTY ANALYSIS SUMMARY (D039 Pivot — Empirical Analysis)\n# ============================================================\n#\n# Primary novelty: 首次系统性实证分析 agent stagnation 检测中 structural vs\n# semantic signal 的有效性。30 个结构特征达 0.995 in-domain / 0.967 cross-agent F1，\n# 全面优于 NL embedding (0.906/0.751) 和 LLM-as-judge (+24.3pp)。\n#\n# 三层贡献：\n# 1. Structural Signal Discovery (primary) — 改变社区对 agent monitoring 方法选型认知\n# 2. LF Temporal Dynamics Analysis — 量化 LFs 时序角色 + agent-specific 迁移分析\n# 3. TLM Negative Finding — 3 种实现 (TWV/HMM/lag-aware HMM) 均未超越 MV\n#\n# 方法论前驱（TLM negative finding 的参照）：\n# 1. Safranchik AAAI 2020 (linked HMM) — NER-specific，BIO 约束，token-level\n# 2. Sala NeurIPS 2019 (multi-resolution WS) — 处理分辨率不匹配，不建模 label transition\n# 3. Nguyen ACL 2017 (HMM-Crowd) — crowdsourcing 场景，不是 programmatic LFs\n#\n# 核心差异化：不是 \"method paper proposing TLM\"，而是 \"empirical study revealing\n# structural signals dominate stagnation detection, with temporal modeling as\n# well-motivated negative finding\".\n",
+                "numLines": 417,
+                "startLine": 1,
+                "totalLines": 417
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GXNSXgLcWSSy5RQehHnCPV",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "dd7997fc-20f9-430b-b28f-604a3521a555",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DEtBhLCbyUn98HGiKfJzo6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11688,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11688
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T20:28:04.169Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01GXNSXgLcWSSy5RQehHnCPV",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "e5ff1bb2-60cd-40f2-9b1a-986333176ed2",
+            "tool_use_result": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 50
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the file content and the WebSearch tool. Let me search for the papers in parallel.",
+              "signature": "EpgCClkIDRgCKkAnpmzvlDbq7I4VnTvnYLgSx163CE5YtMstfdqPL2V4yH4YyEIFlxU7HcARNg5UQLTZ0UaE8/nkkmAwXNcXq6kZMg9jbGF1ZGUtb3B1cy00LTY4ABIMEp1cy9s9K73iICPfGgw64EXdY7Cf1elE3nYiMD8GRp9P8MVxnm2l6JMvHsenWy1TyDSZGbTNaYDOneE19D4FUKTUeK6AaU1hHbffOyptEk97a876a0egzf+Gs3wiE3krLLvLqVWPZlkT+3eerAP4GhhcGWFGGY40MQKTzI0wlprJIZaOUNYQF3RQ4N7KIcfU7ppzL4crdDHeMDqBxrxSCsMCiNvWdjEP5F1qkXv0SzQhWbZ4NmjT34BmJhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "035415ca-d19c-4b6a-9fb4-25962fee8825",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0179eHh5xcUkj7g7NY8a91iH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 10031,
+                "cache_read_input_tokens": 23529,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10031
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Searching for papers now."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "7325848a-3a9d-485c-8cd2-157bda16b26b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0179eHh5xcUkj7g7NY8a91iH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 10031,
+                "cache_read_input_tokens": 23529,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10031
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HHqHy3KuAJuGbVFbgXvBs2",
+              "name": "WebSearch",
+              "input": {
+                "query": "WebArena benchmark agent evaluation arxiv 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "8bb894f0-8714-408e-bfc2-8bf502a4fb59",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0179eHh5xcUkj7g7NY8a91iH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 10031,
+                "cache_read_input_tokens": 23529,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10031
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P9M4x292zR5dMmWRdYNfTb",
+              "name": "WebSearch",
+              "input": {
+                "query": "MINT benchmark multi-turn interaction agent evaluation arxiv 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "9749b861-ca32-41f8-8e3a-3f936342f9fd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0179eHh5xcUkj7g7NY8a91iH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 10031,
+                "cache_read_input_tokens": 23529,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10031
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qxde12NZyd1sBbGvEpME4R",
+              "name": "WebSearch",
+              "input": {
+                "query": "agent trajectory anomaly detection loop detection 2025 arxiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "95087cbb-8a67-4693-aa16-5f4d93a31893",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0179eHh5xcUkj7g7NY8a91iH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 10031,
+                "cache_read_input_tokens": 23529,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10031
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T20:28:16.774Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HHqHy3KuAJuGbVFbgXvBs2",
+              "type": "tool_result",
+              "content": "Web search results for query: \"WebArena benchmark agent evaluation arxiv 2024\"\n\nLinks: [{\"title\":\"[2307.13854] WebArena: A Realistic Web Environment for Building Autonomous Agents\",\"url\":\"https://arxiv.org/abs/2307.13854\"},{\"title\":\"ST-WebAgentBench: A Benchmark for Evaluating Safety and Trustworthiness in Web Agents\",\"url\":\"https://arxiv.org/html/2410.06703v5\"},{\"title\":\"Published as a conference paper at ICLR 2024\",\"url\":\"https://arxiv.org/pdf/2307.13854\"},{\"title\":\"WebArena Benchmark: Evaluating Web Agents\",\"url\":\"https://www.emergentmind.com/topics/webarena-benchmark\"},{\"title\":\"WebArena Benchmark and the State of Agentic AI | by Adnan Masood, PhD. | Medium\",\"url\":\"https://medium.com/@adnanmasood/webarena-benchmark-and-the-state-of-agentic-ai-c22697e8e192\"},{\"title\":\"WebArena: A Realistic Web Environment for Building Autonomous Agents - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2023arXiv230713854Z/abstract\"},{\"title\":\"GitHub - web-arena-x/visualwebarena: VisualWebArena is a benchmark for multimodal agents. · GitHub\",\"url\":\"https://github.com/web-arena-x/visualwebarena\"},{\"title\":\"WebArena: A Realistic Web Environment for Building Autonomous Agents\",\"url\":\"https://arxiv.org/html/2307.13854v4\"},{\"title\":\"WebArena-x\",\"url\":\"https://webarena.dev/\"},{\"title\":\"BrowserArena: Evaluating LLM Agents on Real-World Web Navigation Tasks\",\"url\":\"https://arxiv.org/html/2510.02418v2\"}]\n\nI've found comprehensive information about the WebArena benchmark for agent evaluation. Here are the key findings:\n\n## Overview\n\nWebArena is an environment for language-guided agents that is highly realistic and reproducible, focusing on agents that perform tasks on the web and creating an environment with fully functional websites from four common domains: e-commerce, social forum discussions, collaborative software development, and content management.\n\n## Benchmark Details\n\nThe benchmark includes 812 long-horizon web-based tasks, with each task described as a high-level natural language intent, emulating the abstract language usage patterns typically employed by humans. The evaluation focuses on functional correctness of these tasks, assessing whether the result of the execution actually achieves the desired goal.\n\n## Key Findings\n\nThe results demonstrate that solving complex tasks is challenging: the best GPT-4-based agent only achieves an end-to-end task success rate of 14.41%, significantly lower than the human performance of 78.24%. However, in just two years, AI agents have leaped from a 14% to a ~60% success rate on the complex WebArena web-task benchmark.\n\n## Extensions and Related Work\n\nThe momentum has produced several web-agent systems including AgentE, AgentQ, WebPilot, and others, in parallel with benchmarks such as Mind2Web, WebVoyager, VisualWebArena, and WorkArena. Additionally, ST-WebAgentBench extends WebArena with explicit safety and trust templates and policy-compliance metrics.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "78c59e6c-8100-4ab3-8a42-ec362b8c319b",
+            "tool_use_result": {
+              "query": "WebArena benchmark agent evaluation arxiv 2024",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01Q1VQfwxK1CXtcJbAATMbrs",
+                  "content": [
+                    {
+                      "title": "[2307.13854] WebArena: A Realistic Web Environment for Building Autonomous Agents",
+                      "url": "https://arxiv.org/abs/2307.13854"
+                    },
+                    {
+                      "title": "ST-WebAgentBench: A Benchmark for Evaluating Safety and Trustworthiness in Web Agents",
+                      "url": "https://arxiv.org/html/2410.06703v5"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2024",
+                      "url": "https://arxiv.org/pdf/2307.13854"
+                    },
+                    {
+                      "title": "WebArena Benchmark: Evaluating Web Agents",
+                      "url": "https://www.emergentmind.com/topics/webarena-benchmark"
+                    },
+                    {
+                      "title": "WebArena Benchmark and the State of Agentic AI | by Adnan Masood, PhD. | Medium",
+                      "url": "https://medium.com/@adnanmasood/webarena-benchmark-and-the-state-of-agentic-ai-c22697e8e192"
+                    },
+                    {
+                      "title": "WebArena: A Realistic Web Environment for Building Autonomous Agents - ADS",
+                      "url": "https://ui.adsabs.harvard.edu/abs/2023arXiv230713854Z/abstract"
+                    },
+                    {
+                      "title": "GitHub - web-arena-x/visualwebarena: VisualWebArena is a benchmark for multimodal agents. · GitHub",
+                      "url": "https://github.com/web-arena-x/visualwebarena"
+                    },
+                    {
+                      "title": "WebArena: A Realistic Web Environment for Building Autonomous Agents",
+                      "url": "https://arxiv.org/html/2307.13854v4"
+                    },
+                    {
+                      "title": "WebArena-x",
+                      "url": "https://webarena.dev/"
+                    },
+                    {
+                      "title": "BrowserArena: Evaluating LLM Agents on Real-World Web Navigation Tasks",
+                      "url": "https://arxiv.org/html/2510.02418v2"
+                    }
+                  ]
+                },
+                "I've found comprehensive information about the WebArena benchmark for agent evaluation. Here are the key findings:\n\n## Overview\n\nWebArena is an environment for language-guided agents that is highly realistic and reproducible, focusing on agents that perform tasks on the web and creating an environment with fully functional websites from four common domains: e-commerce, social forum discussions, collaborative software development, and content management.\n\n## Benchmark Details\n\nThe benchmark includes 812 long-horizon web-based tasks, with each task described as a high-level natural language intent, emulating the abstract language usage patterns typically employed by humans. The evaluation focuses on functional correctness of these tasks, assessing whether the result of the execution actually achieves the desired goal.\n\n## Key Findings\n\nThe results demonstrate that solving complex tasks is challenging: the best GPT-4-based agent only achieves an end-to-end task success rate of 14.41%, significantly lower than the human performance of 78.24%. However, in just two years, AI agents have leaped from a 14% to a ~60% success rate on the complex WebArena web-task benchmark.\n\n## Extensions and Related Work\n\nThe momentum has produced several web-agent systems including AgentE, AgentQ, WebPilot, and others, in parallel with benchmarks such as Mind2Web, WebVoyager, VisualWebArena, and WorkArena. Additionally, ST-WebAgentBench extends WebArena with explicit safety and trust templates and policy-compliance metrics."
+              ],
+              "durationSeconds": 8.062053145000002
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T20:28:17.300Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qxde12NZyd1sBbGvEpME4R",
+              "type": "tool_result",
+              "content": "Web search results for query: \"agent trajectory anomaly detection loop detection 2025 arxiv\"\n\nLinks: [{\"title\":\"TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents\",\"url\":\"https://arxiv.org/html/2602.06443\"},{\"title\":\"Trajectory Guard - A Lightweight, Sequence-Aware Model for Real-Time Anomaly Detection in Agentic AI\",\"url\":\"https://arxiv.org/html/2601.00516\"},{\"title\":\"Unsupervised Anomaly Detection in Multi-Agent Trajectory Prediction via Transformer-Based Models\",\"url\":\"https://arxiv.org/html/2601.20367\"},{\"title\":\"Graph Enhanced Trajectory Anomaly Detection Jonathan Kabala Mbuya\",\"url\":\"https://arxiv.org/pdf/2509.18386\"},{\"title\":\"Graph Enhanced Trajectory Anomaly Detection\",\"url\":\"https://arxiv.org/html/2509.18386v1\"},{\"title\":\"[2601.20367] Unsupervised Anomaly Detection in Multi-Agent Trajectory Prediction via Transformer-Based Models\",\"url\":\"https://arxiv.org/abs/2601.20367\"},{\"title\":\"[2509.18386] Graph Enhanced Trajectory Anomaly Detection\",\"url\":\"https://arxiv.org/abs/2509.18386\"},{\"title\":\"Detecting Silent Failures in Multi-Agentic AI Trajectories\",\"url\":\"https://arxiv.org/html/2511.04032\"},{\"title\":\"Context-Aware Trajectory Anomaly Detection\",\"url\":\"https://arxiv.org/pdf/2410.19136\"},{\"title\":\"[2602.06443] TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents\",\"url\":\"https://arxiv.org/abs/2602.06443\"}]\n\nBased on the search results, I found several recent 2025 arxiv papers on agent trajectory anomaly detection that include loop detection:\n\n## Key Papers Found:\n\n1. **TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents** (February 2026, arxiv 2602.06443)\n   \n   TrajAD is a specialized auditing framework for detecting and localizing anomalies by modeling the global context of execution traces to achieve precise step-level localization of errors. Notably, the framework is designed to detect logical errors inherent to the sequence, such as infinite loops or redundant actions. This capability enables efficient error recovery through a \"rollback-and-retry\" mechanism.\n\n2. **Trajectory Guard - A Lightweight, Sequence-Aware Model for Real-Time Anomaly Detection in Agentic AI** (January 2026, arxiv 2601.00516)\n   \n   Trajectory Guard uses a Siamese Recurrent Autoencoder with a hybrid loss function that jointly learns task-trajectory alignment via contrastive learning and sequential validity via reconstruction.\n\n3. **Detecting Silent Failures in Multi-Agentic AI Trajectories** (November 2025, arxiv 2511.04032)\n   \n   This work addresses silent failures in Multi-Agentic AI systems, including drift, cycles, and missing details in outputs, and introduces the task of anomaly detection in agentic trajectories. For cycles, a strict criterion is defined: no agent or tool should be invoked more than once within a single execution.\n\nThese papers represent the latest research on detecting anomalies and loops in agent execution trajectories for trustworthy LLM-based agents.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "9dc9d187-471d-4bb1-aa55-ed1387fe050a",
+            "tool_use_result": {
+              "query": "agent trajectory anomaly detection loop detection 2025 arxiv",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01LswUUUjSFeNj1NaMzYJuAZ",
+                  "content": [
+                    {
+                      "title": "TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents",
+                      "url": "https://arxiv.org/html/2602.06443"
+                    },
+                    {
+                      "title": "Trajectory Guard - A Lightweight, Sequence-Aware Model for Real-Time Anomaly Detection in Agentic AI",
+                      "url": "https://arxiv.org/html/2601.00516"
+                    },
+                    {
+                      "title": "Unsupervised Anomaly Detection in Multi-Agent Trajectory Prediction via Transformer-Based Models",
+                      "url": "https://arxiv.org/html/2601.20367"
+                    },
+                    {
+                      "title": "Graph Enhanced Trajectory Anomaly Detection Jonathan Kabala Mbuya",
+                      "url": "https://arxiv.org/pdf/2509.18386"
+                    },
+                    {
+                      "title": "Graph Enhanced Trajectory Anomaly Detection",
+                      "url": "https://arxiv.org/html/2509.18386v1"
+                    },
+                    {
+                      "title": "[2601.20367] Unsupervised Anomaly Detection in Multi-Agent Trajectory Prediction via Transformer-Based Models",
+                      "url": "https://arxiv.org/abs/2601.20367"
+                    },
+                    {
+                      "title": "[2509.18386] Graph Enhanced Trajectory Anomaly Detection",
+                      "url": "https://arxiv.org/abs/2509.18386"
+                    },
+                    {
+                      "title": "Detecting Silent Failures in Multi-Agentic AI Trajectories",
+                      "url": "https://arxiv.org/html/2511.04032"
+                    },
+                    {
+                      "title": "Context-Aware Trajectory Anomaly Detection",
+                      "url": "https://arxiv.org/pdf/2410.19136"
+                    },
+                    {
+                      "title": "[2602.06443] TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents",
+                      "url": "https://arxiv.org/abs/2602.06443"
+                    }
+                  ]
+                },
+                "Based on the search results, I found several recent 2025 arxiv papers on agent trajectory anomaly detection that include loop detection:\n\n## Key Papers Found:\n\n1. **TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents** (February 2026, arxiv 2602.06443)\n   \n   TrajAD is a specialized auditing framework for detecting and localizing anomalies by modeling the global context of execution traces to achieve precise step-level localization of errors. Notably, the framework is designed to detect logical errors inherent to the sequence, such as infinite loops or redundant actions. This capability enables efficient error recovery through a \"rollback-and-retry\" mechanism.\n\n2. **Trajectory Guard - A Lightweight, Sequence-Aware Model for Real-Time Anomaly Detection in Agentic AI** (January 2026, arxiv 2601.00516)\n   \n   Trajectory Guard uses a Siamese Recurrent Autoencoder with a hybrid loss function that jointly learns task-trajectory alignment via contrastive learning and sequential validity via reconstruction.\n\n3. **Detecting Silent Failures in Multi-Agentic AI Trajectories** (November 2025, arxiv 2511.04032)\n   \n   This work addresses silent failures in Multi-Agentic AI systems, including drift, cycles, and missing details in outputs, and introduces the task of anomaly detection in agentic trajectories. For cycles, a strict criterion is defined: no agent or tool should be invoked more than once within a single execution.\n\nThese papers represent the latest research on detecting anomalies and loops in agent execution trajectories for trustworthy LLM-based agents."
+              ],
+              "durationSeconds": 7.690077016999999
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T20:28:20.985Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P9M4x292zR5dMmWRdYNfTb",
+              "type": "tool_result",
+              "content": "Web search results for query: \"MINT benchmark multi-turn interaction agent evaluation arxiv 2024\"\n\nLinks: [{\"title\":\"GitHub - xingyaoww/mint-bench: Official Repo for ICLR 2024 paper MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback by Xingyao Wang*, Zihan Wang*, Jiateng Liu, Yangyi Chen, Lifan Yuan, Hao Peng and Heng Ji. · GitHub\",\"url\":\"https://github.com/xingyaoww/mint-bench\"},{\"title\":\"[2309.10691] MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback\",\"url\":\"https://arxiv.org/abs/2309.10691\"},{\"title\":\"MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback\",\"url\":\"https://xwang.dev/mint-bench/\"},{\"title\":\"mint: evaluating llms in multi-turn inter\",\"url\":\"https://zihanwang314.github.io/pdf/mint.pdf\"},{\"title\":\"AgentBoard: An Analytical Evaluation Board of Multi-turn LLM Agents Chang Ma∗♠\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/877b40688e330a0e2a3fc24084208dfa-Paper-Datasets_and_Benchmarks_Track.pdf\"},{\"title\":\"MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback | OpenReview\",\"url\":\"https://openreview.net/forum?id=jp3gWrMuIZ\"},{\"title\":\"Evaluating Memory in LLM Agents via Incremental Multi-Turn Interactions\",\"url\":\"https://arxiv.org/html/2507.05257v3\"},{\"title\":\"\\\\scalerel*X MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback\",\"url\":\"https://arxiv.org/html/2309.10691v1\"},{\"title\":\"Published as a conference paper at ICLR 2024 MINTREC2.0: A LARGE-SCALE\",\"url\":\"https://arxiv.org/pdf/2403.10943\"},{\"title\":\"[PDF] MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/MINT:-Evaluating-LLMs-in-Multi-turn-Interaction-and-Wang-Wang/12b233752c7097ea6525622bed238ae2d2193c5a\"}]\n\nI found relevant information about the MINT benchmark. Here's what the search revealed:\n\n## MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback\n\nMINT is an ICLR 2024 paper that evaluates LLMs' ability to solve tasks with multi-turn interactions by (1) using tools and (2) leveraging natural language feedback.\n\n### Key Purpose\nLarge language models often require multiple rounds of interactions with users, sometimes assisted by external tools. However, current evaluation protocols emphasize single-turn exchanges, neglecting the nuanced interactions among users, LLMs, and external tools, while underestimating the importance of natural language feedback. These oversights contribute to discrepancies between research benchmark evaluations and real-world use cases.\n\n### Evaluation Framework\nThe benchmark provides an evaluation framework where LLMs can access tools by executing Python code and receive users' natural language feedback simulated by GPT-4.\n\n### Coverage\nThe benchmark includes test instances from several sources: HumanEval, MBPP, GSM8K, HotpotQA, MATH, MMLU, TheoremQA, and AlfWorld.\n\n### Key Findings\nLLMs generally benefit from tools and language feedback, with performance gains of 1-8% for each turn of tool use and 2-17% with natural language feedback.\n\nThe paper was initially posted on arXiv in September 2023 (arXiv:2309.10691) and was published at ICLR 2024.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "7badb252-d6ea-4aa1-be9c-feb8c7407ba9",
+            "tool_use_result": {
+              "query": "MINT benchmark multi-turn interaction agent evaluation arxiv 2024",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_0161jr6FgNuKaycgPKCnqTY9",
+                  "content": [
+                    {
+                      "title": "GitHub - xingyaoww/mint-bench: Official Repo for ICLR 2024 paper MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback by Xingyao Wang*, Zihan Wang*, Jiateng Liu, Yangyi Chen, Lifan Yuan, Hao Peng and Heng Ji. · GitHub",
+                      "url": "https://github.com/xingyaoww/mint-bench"
+                    },
+                    {
+                      "title": "[2309.10691] MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback",
+                      "url": "https://arxiv.org/abs/2309.10691"
+                    },
+                    {
+                      "title": "MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback",
+                      "url": "https://xwang.dev/mint-bench/"
+                    },
+                    {
+                      "title": "mint: evaluating llms in multi-turn inter",
+                      "url": "https://zihanwang314.github.io/pdf/mint.pdf"
+                    },
+                    {
+                      "title": "AgentBoard: An Analytical Evaluation Board of Multi-turn LLM Agents Chang Ma∗♠",
+                      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/877b40688e330a0e2a3fc24084208dfa-Paper-Datasets_and_Benchmarks_Track.pdf"
+                    },
+                    {
+                      "title": "MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback | OpenReview",
+                      "url": "https://openreview.net/forum?id=jp3gWrMuIZ"
+                    },
+                    {
+                      "title": "Evaluating Memory in LLM Agents via Incremental Multi-Turn Interactions",
+                      "url": "https://arxiv.org/html/2507.05257v3"
+                    },
+                    {
+                      "title": "\\scalerel*X MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback",
+                      "url": "https://arxiv.org/html/2309.10691v1"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2024 MINTREC2.0: A LARGE-SCALE",
+                      "url": "https://arxiv.org/pdf/2403.10943"
+                    },
+                    {
+                      "title": "[PDF] MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/MINT:-Evaluating-LLMs-in-Multi-turn-Interaction-and-Wang-Wang/12b233752c7097ea6525622bed238ae2d2193c5a"
+                    }
+                  ]
+                },
+                "I found relevant information about the MINT benchmark. Here's what the search revealed:\n\n## MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback\n\nMINT is an ICLR 2024 paper that evaluates LLMs' ability to solve tasks with multi-turn interactions by (1) using tools and (2) leveraging natural language feedback.\n\n### Key Purpose\nLarge language models often require multiple rounds of interactions with users, sometimes assisted by external tools. However, current evaluation protocols emphasize single-turn exchanges, neglecting the nuanced interactions among users, LLMs, and external tools, while underestimating the importance of natural language feedback. These oversights contribute to discrepancies between research benchmark evaluations and real-world use cases.\n\n### Evaluation Framework\nThe benchmark provides an evaluation framework where LLMs can access tools by executing Python code and receive users' natural language feedback simulated by GPT-4.\n\n### Coverage\nThe benchmark includes test instances from several sources: HumanEval, MBPP, GSM8K, HotpotQA, MATH, MMLU, TheoremQA, and AlfWorld.\n\n### Key Findings\nLLMs generally benefit from tools and language feedback, with performance gains of 1-8% for each turn of tool use and 2-17% with natural language feedback.\n\nThe paper was initially posted on arXiv in September 2023 (arXiv:2309.10691) and was published at ICLR 2024."
+              ],
+              "durationSeconds": 11.808716173
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I found good candidates. Let me get more details on the specific papers I want to add:\n\n1. **WebArena** (zhou2024webarena) - arxiv 2307.13854, ICLR 2024\n2. **MINT** (wang2024mint) - arxiv 2309.10691, ICLR 2024 - but wait, the first author is Xingyao Wang, same as OpenHands. Let me check.\n\nActually, looking at the MINT paper, the authors are Xingyao Wang*, Zihan Wang*, Jiateng Liu, Yangyi Chen, Lifan Yuan, Hao Peng and Heng Ji. \n\nXingyao Wang appears on both papers, but they're distinct works so that's fine.\n\n3. For cycle and anomaly detection, I'm looking at several options: **TrajAD** for trajectory anomaly detection in LLM agents, **Trajectory Guard** for lightweight real-time detection, and **Detecting Silent Failures** for multi-agent trajectories. TrajAD seems most directly relevant since it handles both loop detection and trajectory anomalies specifically for LLM agents, so I'll dig into that one further.\n\nNow I'm verifying the paper details—authors, publication venues, and dates.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "9148197f-81e2-4d67-85d8-2cac11329aba",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BNjDDbsiASsM28amVeSucn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 872,
+                "cache_creation_input_tokens": 2072,
+                "cache_read_input_tokens": 33560,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2072
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good results. Let me get more details on the top candidates."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "d916335f-0183-4d1e-91e7-db14968b3de4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BNjDDbsiASsM28amVeSucn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 872,
+                "cache_creation_input_tokens": 2072,
+                "cache_read_input_tokens": 33560,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2072
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JFBB2GGk4HaNnfeZrJGYKJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv 2307.13854 WebArena authors Shunyu Zhou ICLR 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "ec952212-e3a0-46f5-a975-c9a78293f7c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BNjDDbsiASsM28amVeSucn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 872,
+                "cache_creation_input_tokens": 2072,
+                "cache_read_input_tokens": 33560,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2072
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A2htate2ZrYtKZspaHHamo",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv 2602.06443 TrajAD trajectory anomaly detection LLM agents authors 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "342eeb6e-02bb-41ec-8134-8c6ea747d00e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BNjDDbsiASsM28amVeSucn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 872,
+                "cache_creation_input_tokens": 2072,
+                "cache_read_input_tokens": 33560,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2072
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T20:28:41.211Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JFBB2GGk4HaNnfeZrJGYKJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv 2307.13854 WebArena authors Shunyu Zhou ICLR 2024\"\n\nLinks: [{\"title\":\"[2307.13854] WebArena: A Realistic Web Environment for Building Autonomous Agents\",\"url\":\"https://arxiv.org/abs/2307.13854\"},{\"title\":\"Published as a conference paper at ICLR 2024\",\"url\":\"https://arxiv.org/pdf/2307.13854\"},{\"title\":\"[PDF] WebArena: A Realistic Web Environment for Building Autonomous Agents | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/WebArena:-A-Realistic-Web-Environment-for-Building-Zhou-Xu/e41482f4ee984f17382f6cdd900df094d928be06\"},{\"title\":\"GitHub - web-arena-x/webarena: Code repo for \\\"WebArena: A Realistic Web Environment for Building Autonomous Agents\\\" · GitHub\",\"url\":\"https://github.com/web-arena-x/webarena\"},{\"title\":\"WebArena: A Realistic Web Environment for Building Autonomous Agents\",\"url\":\"https://arxiv.org/html/2307.13854.pdf\"},{\"title\":\"WebArena: A Realistic Web Environment for Building Autonomous Agents - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2023arXiv230713854Z/abstract\"},{\"title\":\"(PDF) WebArena: A Realistic Web Environment for Building Autonomous Agents\",\"url\":\"https://www.researchgate.net/publication/372654539_WebArena_A_Realistic_Web_Environment_for_Building_Autonomous_Agents\"},{\"title\":\"Published as a conference paper at ICLR 2025\",\"url\":\"https://arxiv.org/pdf/2411.02337\"},{\"title\":\"Learning representations of learning representations\",\"url\":\"https://arxiv.org/html/2404.08403v1\"},{\"title\":\"Computer Science Mar 2024\",\"url\":\"https://arxiv.org/list/cs/2024-03?skip=8100&show=2000\"}]\n\nBased on the search results, I can provide you with information about the WebArena paper:\n\n## WebArena Paper Details\n\nThe authors of the WebArena paper (arXiv 2307.13854) are Shuyan Zhou, Frank F. Xu, Hao Zhu, Xuhui Zhou, Robert Lo, Abishek Sridhar, Xianyi Cheng, Tianyue Ou, Yonatan Bisk, Daniel Fried, Uri Alon, and Graham Neubig.\n\nThe paper was published as a conference paper at ICLR 2024.\n\n## Paper Summary\n\nThe paper focuses on agents that perform tasks on the web, creating an environment with fully functional websites from four common domains: e-commerce, social forum discussions, collaborative software development, and content management. The environment is enriched with tools (e.g., a map) and external knowledge bases (e.g., user manuals) to encourage human-like task-solving.\n\nAlong with WebArena, they release a ready-to-use benchmark with 812 long-horizon web-based tasks. Their best GPT-4-based agent only achieves an end-to-end task success rate of 14.41%, significantly lower than the human performance of 78.24%.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "e10a3f5e-8182-42d3-b299-f15cad60f9ed",
+            "tool_use_result": {
+              "query": "arxiv 2307.13854 WebArena authors Shunyu Zhou ICLR 2024",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01V6vQrrNB5UoBfWLwXihwkL",
+                  "content": [
+                    {
+                      "title": "[2307.13854] WebArena: A Realistic Web Environment for Building Autonomous Agents",
+                      "url": "https://arxiv.org/abs/2307.13854"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2024",
+                      "url": "https://arxiv.org/pdf/2307.13854"
+                    },
+                    {
+                      "title": "[PDF] WebArena: A Realistic Web Environment for Building Autonomous Agents | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/WebArena:-A-Realistic-Web-Environment-for-Building-Zhou-Xu/e41482f4ee984f17382f6cdd900df094d928be06"
+                    },
+                    {
+                      "title": "GitHub - web-arena-x/webarena: Code repo for \"WebArena: A Realistic Web Environment for Building Autonomous Agents\" · GitHub",
+                      "url": "https://github.com/web-arena-x/webarena"
+                    },
+                    {
+                      "title": "WebArena: A Realistic Web Environment for Building Autonomous Agents",
+                      "url": "https://arxiv.org/html/2307.13854.pdf"
+                    },
+                    {
+                      "title": "WebArena: A Realistic Web Environment for Building Autonomous Agents - ADS",
+                      "url": "https://ui.adsabs.harvard.edu/abs/2023arXiv230713854Z/abstract"
+                    },
+                    {
+                      "title": "(PDF) WebArena: A Realistic Web Environment for Building Autonomous Agents",
+                      "url": "https://www.researchgate.net/publication/372654539_WebArena_A_Realistic_Web_Environment_for_Building_Autonomous_Agents"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2025",
+                      "url": "https://arxiv.org/pdf/2411.02337"
+                    },
+                    {
+                      "title": "Learning representations of learning representations",
+                      "url": "https://arxiv.org/html/2404.08403v1"
+                    },
+                    {
+                      "title": "Computer Science Mar 2024",
+                      "url": "https://arxiv.org/list/cs/2024-03?skip=8100&show=2000"
+                    }
+                  ]
+                },
+                "Based on the search results, I can provide you with information about the WebArena paper:\n\n## WebArena Paper Details\n\nThe authors of the WebArena paper (arXiv 2307.13854) are Shuyan Zhou, Frank F. Xu, Hao Zhu, Xuhui Zhou, Robert Lo, Abishek Sridhar, Xianyi Cheng, Tianyue Ou, Yonatan Bisk, Daniel Fried, Uri Alon, and Graham Neubig.\n\nThe paper was published as a conference paper at ICLR 2024.\n\n## Paper Summary\n\nThe paper focuses on agents that perform tasks on the web, creating an environment with fully functional websites from four common domains: e-commerce, social forum discussions, collaborative software development, and content management. The environment is enriched with tools (e.g., a map) and external knowledge bases (e.g., user manuals) to encourage human-like task-solving.\n\nAlong with WebArena, they release a ready-to-use benchmark with 812 long-horizon web-based tasks. Their best GPT-4-based agent only achieves an end-to-end task success rate of 14.41%, significantly lower than the human performance of 78.24%."
+              ],
+              "durationSeconds": 6.440699249999998
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T20:28:41.835Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A2htate2ZrYtKZspaHHamo",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv 2602.06443 TrajAD trajectory anomaly detection LLM agents authors 2026\"\n\nLinks: [{\"title\":\"[2602.06443] TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents\",\"url\":\"https://arxiv.org/abs/2602.06443\"},{\"title\":\"TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents\",\"url\":\"https://arxiv.org/html/2602.06443\"},{\"title\":\"Graph Enhanced Trajectory Anomaly Detection\",\"url\":\"https://arxiv.org/html/2509.18386v1\"},{\"title\":\"Trajectory Anomaly Detection with By-Design Complementary Detectors Shurui Cao∗\",\"url\":\"https://www.andrew.cmu.edu/user/lakoglu/pubs/25-sdm-TrajAD.pdf\"},{\"title\":\"[2509.18386] Graph Enhanced Trajectory Anomaly Detection\",\"url\":\"https://arxiv.org/abs/2509.18386\"},{\"title\":\"Trajectory Anomaly Detection with Language Models\",\"url\":\"https://arxiv.org/html/2409.15366v1\"},{\"title\":\"Context-Aware Trajectory Anomaly Detection\",\"url\":\"https://arxiv.org/html/2410.19136v1\"},{\"title\":\"[2409.15366] Trajectory Anomaly Detection with Language Models\",\"url\":\"https://arxiv.org/abs/2409.15366\"},{\"title\":\"Unsupervised Anomaly Detection in Multi-Agent Trajectory Prediction via Transformer-Based Models\",\"url\":\"https://arxiv.org/html/2601.20367\"},{\"title\":\"[2303.05000] Learning Representation for Anomaly Detection of Vehicle Trajectories\",\"url\":\"https://arxiv.org/abs/2303.05000\"}]\n\nBased on the search results, I found the paper you're looking for. Here's the information about arxiv 2602.06443:\n\n## TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents\n\n**Authors:** Yibing Liu, Chong Zhang, Zhongyi Han, Hansong Liu, Yong Wang, Yang Yu, Xiaoyan Wang, and Yilong Yin\n\n**Paper ID:** arxiv 2602.06443  \n**Submitted:** February 6, 2026\n\n### Overview\n\nThe paper addresses runtime trajectory anomaly detection, a critical capability for enabling trustworthy LLM agents. The goal is not merely detection, but precise error localization, which is essential for enabling efficient rollback-and-retry.\n\n### Key Contributions\n\n- TrajBench: a dataset synthesized via a perturb-and-complete strategy to cover diverse procedural anomalies\n- TrajAD: a specialized verifier trained with fine-grained process supervision\n- Coverage of three representative anomaly categories: Task Failure, Process Inefficiency, and Unwarranted Continuation\n\n### Main Findings\n\nGeneral-purpose LLMs, even with zero-shot prompting, struggle to identify and localize these anomalies. In contrast, TrajAD achieves superior performance in both detection and localization.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "0f3cc72a-813b-49fe-a141-c8305a4e3993",
+            "tool_use_result": {
+              "query": "arxiv 2602.06443 TrajAD trajectory anomaly detection LLM agents authors 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_017mPV8mywcST9PFN7gS3Wt8",
+                  "content": [
+                    {
+                      "title": "[2602.06443] TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents",
+                      "url": "https://arxiv.org/abs/2602.06443"
+                    },
+                    {
+                      "title": "TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents",
+                      "url": "https://arxiv.org/html/2602.06443"
+                    },
+                    {
+                      "title": "Graph Enhanced Trajectory Anomaly Detection",
+                      "url": "https://arxiv.org/html/2509.18386v1"
+                    },
+                    {
+                      "title": "Trajectory Anomaly Detection with By-Design Complementary Detectors Shurui Cao∗",
+                      "url": "https://www.andrew.cmu.edu/user/lakoglu/pubs/25-sdm-TrajAD.pdf"
+                    },
+                    {
+                      "title": "[2509.18386] Graph Enhanced Trajectory Anomaly Detection",
+                      "url": "https://arxiv.org/abs/2509.18386"
+                    },
+                    {
+                      "title": "Trajectory Anomaly Detection with Language Models",
+                      "url": "https://arxiv.org/html/2409.15366v1"
+                    },
+                    {
+                      "title": "Context-Aware Trajectory Anomaly Detection",
+                      "url": "https://arxiv.org/html/2410.19136v1"
+                    },
+                    {
+                      "title": "[2409.15366] Trajectory Anomaly Detection with Language Models",
+                      "url": "https://arxiv.org/abs/2409.15366"
+                    },
+                    {
+                      "title": "Unsupervised Anomaly Detection in Multi-Agent Trajectory Prediction via Transformer-Based Models",
+                      "url": "https://arxiv.org/html/2601.20367"
+                    },
+                    {
+                      "title": "[2303.05000] Learning Representation for Anomaly Detection of Vehicle Trajectories",
+                      "url": "https://arxiv.org/abs/2303.05000"
+                    }
+                  ]
+                },
+                "Based on the search results, I found the paper you're looking for. Here's the information about arxiv 2602.06443:\n\n## TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents\n\n**Authors:** Yibing Liu, Chong Zhang, Zhongyi Han, Hansong Liu, Yong Wang, Yang Yu, Xiaoyan Wang, and Yilong Yin\n\n**Paper ID:** arxiv 2602.06443  \n**Submitted:** February 6, 2026\n\n### Overview\n\nThe paper addresses runtime trajectory anomaly detection, a critical capability for enabling trustworthy LLM agents. The goal is not merely detection, but precise error localization, which is essential for enabling efficient rollback-and-retry.\n\n### Key Contributions\n\n- TrajBench: a dataset synthesized via a perturb-and-complete strategy to cover diverse procedural anomalies\n- TrajAD: a specialized verifier trained with fine-grained process supervision\n- Coverage of three representative anomaly categories: Task Failure, Process Inefficiency, and Unwarranted Continuation\n\n### Main Findings\n\nGeneral-purpose LLMs, even with zero-shot prompting, struggle to identify and localize these anomalies. In contrast, TrajAD achieves superior performance in both detection and localization."
+              ],
+              "durationSeconds": 7.061290387000001
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the details for all three papers:\n\n1. **WebArena** - zhou2024webarena\n   - Title: \"WebArena: A Realistic Web Environment for Building Autonomous Agents\"\n   - Authors: Shuyan Zhou, Frank F. Xu, Hao Zhu, Xuhui Zhou, Robert Lo, Abishek Sridhar, Xianyi Cheng, Tianyue Ou, Yonatan Bisk, Daniel Fried, Uri Alon, Graham Neubig\n   - Venue: ICLR 2024\n   - arxiv: 2307.13854\n   - category: evaluation\n\n2. **MINT** - wang2024mint\n   - Title: \"MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback\"\n   - Authors: Xingyao Wang, Zihan Wang, Jiateng Liu, Yangyi Chen, Lifan Yuan, Hao Peng, Heng Ji\n   - Venue: ICLR 2024\n   - arxiv: 2309.10691\n   - category: evaluation\n\n3. **TrajAD** - liu2026trajad\n   - Title: \"TrajAD: Trajectory Anomaly Detection for Trustworthy\" - the title appears to be cut off, but I have the basic citation information for this paper as well.\n\nI'm looking at where to place these entries in the bibliography. The TrajAD paper should go in the background section after the kamoi2024selfcorrection entry, while the other two papers fit into the evaluation section after wang2025openhands. I need to insert the agent benchmark papers into the evaluation section after wang2025openhands, and then add the cycle detection paper to the background section after kamoi2024selfcorrection. Let me prepare those edits now.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "934e1f1e-b718-4f4e-8c04-ea7c2bf8ba50",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MSeWkLd8yeZwbC38EZrRBt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3127,
+                "cache_read_input_tokens": 35632,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3127
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found all 3 papers. Now appending to the literature map."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "4f7c36cc-47ad-4228-98dc-28a17f325c51",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MSeWkLd8yeZwbC38EZrRBt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3127,
+                "cache_read_input_tokens": 35632,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3127
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01947pi6M4KGDxfw8TwbePWW",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/literature_map.yaml",
+                "old_string": "  - id: \"wang2025openhands\"\n    title: \"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\"\n    authors: \"Xingyao Wang, Boxuan Li, Yufan Song, Frank F. Xu, Xiangru Tang, et al.\"\n    venue: \"ICLR 2025\"\n    year: 2025\n    arxiv: \"2407.16741\"\n    category: \"evaluation\"\n    role: \"Agent 平台——主要数据来源\"\n    key_finding: \"开源 agent 平台，sandbox 执行环境，15+ benchmarks 评测\"\n    our_differentiation: \"OpenHands trajectories 是我们的主要实验数据来源\"\n\n  # ============================================================\n  # CATEGORY: background\n  # ============================================================",
+                "new_string": "  - id: \"wang2025openhands\"\n    title: \"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\"\n    authors: \"Xingyao Wang, Boxuan Li, Yufan Song, Frank F. Xu, Xiangru Tang, et al.\"\n    venue: \"ICLR 2025\"\n    year: 2025\n    arxiv: \"2407.16741\"\n    category: \"evaluation\"\n    role: \"Agent 平台——主要数据来源\"\n    key_finding: \"开源 agent 平台，sandbox 执行环境，15+ benchmarks 评测\"\n    our_differentiation: \"OpenHands trajectories 是我们的主要实验数据来源\"\n\n  - id: \"zhou2024webarena\"\n    title: \"WebArena: A Realistic Web Environment for Building Autonomous Agents\"\n    authors: \"Shuyan Zhou, Frank F. Xu, Hao Zhu, Xuhui Zhou, Robert Lo, Abishek Sridhar, Xianyi Cheng, Tianyue Ou, Yonatan Bisk, Daniel Fried, Uri Alon, Graham Neubig\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    arxiv: \"2307.13854\"\n    category: \"evaluation\"\n    verified: true\n    role: \"Web agent 评测基准——long-horizon 任务评估\"\n    key_finding: \"812 个真实网站上的 long-horizon 任务，GPT-4 agent 仅 14.41% 成功率 vs 人类 78.24%，揭示 agent 在复杂任务上的巨大差距\"\n    our_differentiation: \"WebArena 的 long-horizon 任务正是 stagnation 高发场景；我们的 monitor 可作为此类任务的早期终止/干预信号\"\n\n  - id: \"wang2024mint\"\n    title: \"MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback\"\n    authors: \"Xingyao Wang, Zihan Wang, Jiateng Liu, Yangyi Chen, Lifan Yuan, Hao Peng, Heng Ji\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    arxiv: \"2309.10691\"\n    category: \"evaluation\"\n    verified: true\n    role: \"Multi-turn agent 评测基准——tool use + feedback 交互评估\"\n    key_finding: \"评估 LLM 在多轮交互中使用工具和接收自然语言反馈的能力，每轮 tool use 提升 1-8%，NL feedback 提升 2-17%\"\n    our_differentiation: \"MINT 量化了 multi-turn 交互中的性能变化，我们的 stagnation detection 关注多轮交互中进展停滞的检测；MINT 的 multi-turn 设定与我们的 window-level 分析天然对齐\"\n\n  # ============================================================\n  # CATEGORY: background\n  # ============================================================"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "20750874-38d7-497b-aaea-41b3d530d7c2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MSeWkLd8yeZwbC38EZrRBt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3127,
+                "cache_read_input_tokens": 35632,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3127
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T20:29:17.962Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01947pi6M4KGDxfw8TwbePWW",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/literature_map.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "2a7869a9-ea6e-4905-aeff-a983d211df8e",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/literature_map.yaml",
+              "oldString": "  - id: \"wang2025openhands\"\n    title: \"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\"\n    authors: \"Xingyao Wang, Boxuan Li, Yufan Song, Frank F. Xu, Xiangru Tang, et al.\"\n    venue: \"ICLR 2025\"\n    year: 2025\n    arxiv: \"2407.16741\"\n    category: \"evaluation\"\n    role: \"Agent 平台——主要数据来源\"\n    key_finding: \"开源 agent 平台，sandbox 执行环境，15+ benchmarks 评测\"\n    our_differentiation: \"OpenHands trajectories 是我们的主要实验数据来源\"\n\n  # ============================================================\n  # CATEGORY: background\n  # ============================================================",
+              "newString": "  - id: \"wang2025openhands\"\n    title: \"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\"\n    authors: \"Xingyao Wang, Boxuan Li, Yufan Song, Frank F. Xu, Xiangru Tang, et al.\"\n    venue: \"ICLR 2025\"\n    year: 2025\n    arxiv: \"2407.16741\"\n    category: \"evaluation\"\n    role: \"Agent 平台——主要数据来源\"\n    key_finding: \"开源 agent 平台，sandbox 执行环境，15+ benchmarks 评测\"\n    our_differentiation: \"OpenHands trajectories 是我们的主要实验数据来源\"\n\n  - id: \"zhou2024webarena\"\n    title: \"WebArena: A Realistic Web Environment for Building Autonomous Agents\"\n    authors: \"Shuyan Zhou, Frank F. Xu, Hao Zhu, Xuhui Zhou, Robert Lo, Abishek Sridhar, Xianyi Cheng, Tianyue Ou, Yonatan Bisk, Daniel Fried, Uri Alon, Graham Neubig\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    arxiv: \"2307.13854\"\n    category: \"evaluation\"\n    verified: true\n    role: \"Web agent 评测基准——long-horizon 任务评估\"\n    key_finding: \"812 个真实网站上的 long-horizon 任务，GPT-4 agent 仅 14.41% 成功率 vs 人类 78.24%，揭示 agent 在复杂任务上的巨大差距\"\n    our_differentiation: \"WebArena 的 long-horizon 任务正是 stagnation 高发场景；我们的 monitor 可作为此类任务的早期终止/干预信号\"\n\n  - id: \"wang2024mint\"\n    title: \"MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback\"\n    authors: \"Xingyao Wang, Zihan Wang, Jiateng Liu, Yangyi Chen, Lifan Yuan, Hao Peng, Heng Ji\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    arxiv: \"2309.10691\"\n    category: \"evaluation\"\n    verified: true\n    role: \"Multi-turn agent 评测基准——tool use + feedback 交互评估\"\n    key_finding: \"评估 LLM 在多轮交互中使用工具和接收自然语言反馈的能力，每轮 tool use 提升 1-8%，NL feedback 提升 2-17%\"\n    our_differentiation: \"MINT 量化了 multi-turn 交互中的性能变化，我们的 stagnation detection 关注多轮交互中进展停滞的检测；MINT 的 multi-turn 设定与我们的 window-level 分析天然对齐\"\n\n  # ============================================================\n  # CATEGORY: background\n  # ============================================================",
+              "originalFile": "# Literature Map for Agent Progress Probe (EMNLP 2026 ARR)\n# Generated: 2026-05-14\n# Paper: Structural Signal Analysis for Progress Stagnation Detection in LLM Agents\n#\n# D039 Pivot: Empirical analysis paper. Central finding: stagnation signals are\n# fundamentally structural (30 features → 0.995 in-domain, 0.967 cross-agent F1),\n# decisively surpassing NL embeddings (0.906/0.751) and LLM-as-judge (+24.3pp).\n# TLM is a well-motivated negative finding (3 implementations all fail to beat MV).\n\npapers:\n\n  # ============================================================\n  # CATEGORY: direct-competitor\n  # ============================================================\n\n  - id: \"xi2025agentprm\"\n    title: \"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\"\n    authors: \"Zhiheng Xi, Chenyang Liao, Guanyu Li, Yajie Yang, Wenxiang Chen, Zhihao Zhang, Binghai Wang, Senjie Jin, Yuhao Zhou, Jian Guan, Wei Wu, Tao Ji, Tao Gui, Qi Zhang, Xuanjing Huang\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2511.08325\"\n    category: \"direct-competitor\"\n    role: \"主要竞争者：step-level PRM for agent guidance\"\n    key_finding: \"用 promise（长期潜力）和 progress（即时进展）两个维度评估 agent 每步决策，实现 8x 计算效率提升\"\n    our_differentiation: \"我们是 window-level monitoring（不是 step-level guidance），不需要 outcome labels，目标是 stagnation detection 不是 reward shaping\"\n\n  - id: \"choudhury2025prm\"\n    title: \"Process Reward Models for LLM Agents: Practical Framework and Directions\"\n    authors: \"Sanjiban Choudhury\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2502.10325\"\n    category: \"direct-competitor\"\n    role: \"PRM 框架综述 + InversePRM 方法\"\n    key_finding: \"提出 AgentPRM（Monte Carlo rollout actor-critic）和 InversePRM（从 demonstrations 学习 process reward），3B 模型超越 GPT-4o\"\n    our_differentiation: \"InversePRM 仍需 demonstration trajectories，我们用 programmatic LFs 替代人工标注；我们关注 monitoring 而非 training signal\"\n\n  - id: \"li2026toolprmbench\"\n    title: \"ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents\"\n    authors: \"Dawei Li, Yuguang Yao, Zhen Tan, Huan Liu, Ruocheng Guo\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2601.12294\"\n    category: \"direct-competitor\"\n    role: \"Tool-use PRM 评测基准\"\n    key_finding: \"大规模 benchmark 评测 PRM 在 tool-use 场景的效果，发现专用 PRM 显著优于通用 PRM\"\n    our_differentiation: \"我们的 empirical analysis 揭示 structural features 足以检测 stagnation（0.995 F1），无需 step-level reward labels；关注 stagnation pattern 而非 step correctness\"\n\n  - id: \"wang2026planrewardbench\"\n    title: \"Aligning Agents via Planning: A Benchmark for Trajectory-Level Reward Modeling\"\n    authors: \"Jiaxuan Wang, Yulan Hu, Wenjin Yang, Zheng Pan, Xin Li, Lan-Zhe Guo\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2604.08178\"\n    category: \"direct-competitor\"\n    role: \"Trajectory-level reward model 评测\"\n    key_finding: \"所有 reward model 类别（generative, discriminative, LLM-as-Judge）在长 horizon trajectory 上性能显著下降\"\n    our_differentiation: \"验证了长 trajectory 评估的难度——我们的 window-level 方法通过局部化避免了这个问题\"\n\n  - id: \"chen2025monitoring\"\n    title: \"Monitoring LLM Agents for Sequentially Contextual Harm\"\n    authors: \"Yueh-Han Chen, Neelay Joshi, Yulin Chen, He He, Rico Angell\"\n    venue: \"ICLR 2025 Workshop on Building Trust in Language Models and Applications\"\n    year: 2025\n    arxiv: null\n    openreview: \"LC0XQ6ufbr\"\n    category: \"direct-competitor\"\n    role: \"Agent monitoring 安全方向\"\n    key_finding: \"将有害任务分解为单独无害的子任务可将 refusal rate 从 50% 降至 10%，现有 monitor 难以检测 sequentially contextual harm\"\n    our_differentiation: \"他们关注 safety monitoring（harmful behavior），我们关注 progress monitoring（stagnation）；互补方向\"\n\n  - id: \"kale2025weaktostrong\"\n    title: \"Reliable Weak-to-Strong Monitoring of LLM Agents\"\n    authors: \"Neil Kale, Chen Bo Calvin Zhang, Kevin Zhu, Ankit Aich, Paula Rodriguez, Scale Red Team, Christina Q. Knight, Zifan Wang\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2508.19461\"\n    category: \"direct-competitor\"\n    role: \"Weak-to-strong agent monitoring 方法论\"\n    key_finding: \"Monitor scaffolding 比 monitor 能力更重要，弱模型可以可靠监控强模型；targeted human-in-the-loop 提升 TPR ~15%\"\n    our_differentiation: \"他们用 LLM 作为 monitor，我们发现 30 个 structural features 即可达 0.967 跨域 F1，不依赖另一个 LLM；更轻量（<5ms）且可解释\"\n\n  - id: \"fan2026agentrm\"\n    title: \"Exploring Reasoning Reward Model for Agents\"\n    authors: \"Kaixuan Fan, Kaituo Feng, Manyuan Zhang, Tianshuo Peng, Zhixun Li, Yilei Jiang, Shuang Chen, Peng Pei, Xunliang Cai, Xiangyu Yue\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2601.22154\"\n    category: \"direct-competitor\"\n    verified: true\n    role: \"Agent trajectory 的多维度 reasoning reward model\"\n    key_finding: \"Agent-RRM 通过 reasoning trace + critique + overall score 三维结构化反馈评估 agent trajectory，在 12 个 benchmark 上显著提升（GAIA 43.7%, WebWalkerQA 46.2%）\"\n    our_differentiation: \"他们用 LLM-based reward model 生成结构化反馈用于 agent 改进，我们的 empirical analysis 表明轻量 structural features 即可高精度检测 stagnation（0.995 F1），不依赖大模型推理\"\n\n  - id: \"qiu2026dataprm\"\n    title: \"Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis\"\n    authors: \"Zhisong Qiu, Shuofei Qiao, Kewei Xu, Yuqi Zhu, Lun Du, Ningyu Zhang, Huajun Chen\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2604.24198\"\n    category: \"direct-competitor\"\n    verified: true\n    role: \"Agentic data analysis 场景的 process-level reward model\"\n    key_finding: \"传统 PRM 无法检测 silent errors 且误判 exploratory steps；DataPRM 通过 environment-aware probing + ternary reward 策略在 ScienceAgentBench 提升 7.21%\"\n    our_differentiation: \"DataPRM 针对数据分析 agent 的 step correctness，我们针对通用 agent 的 stagnation pattern；他们需要 execution state probing，我们用 structural LFs 无需环境交互\"\n\n  # ============================================================\n  # CATEGORY: method-component\n  # ============================================================\n\n  - id: \"ratner2016dataprogramming\"\n    title: \"Data Programming: Creating Large Training Sets, Quickly\"\n    authors: \"Alexander Ratner, Christopher De Sa, Sen Wu, Daniel Selsam, Christopher Re\"\n    venue: \"NeurIPS 2016\"\n    year: 2016\n    arxiv: \"1605.07723\"\n    category: \"method-component\"\n    role: \"核心方法论基础：data programming 范式\"\n    key_finding: \"用户编写 labeling functions（噪声启发式），generative model 学习 LF 准确率生成概率训练标签\"\n    our_differentiation: \"我们在 agent trajectory 上应用 data programming，发现 structural features 主导检测能力；同时揭示 LFs 的时序动态和 temporal label model 的负面结果\"\n\n  - id: \"ratner2017snorkel\"\n    title: \"Snorkel: Rapid Training Data Creation with Weak Supervision\"\n    authors: \"Alexander Ratner, Stephen H. Bach, Henry Ehrenberg, Jason Fries, Sen Wu, Christopher Re\"\n    venue: \"VLDB 2018\"\n    year: 2018\n    arxiv: \"1711.10160\"\n    category: \"method-component\"\n    role: \"Data programming 系统实现，label model 基础\"\n    key_finding: \"端到端弱监督系统：LFs → generative label model（建模 LF dependency）→ discriminative end model\"\n    our_differentiation: \"Snorkel 假设数据点 i.i.d.，我们发现 agent trajectory 上 LFs 展现系统性时序动态（violating i.i.d.），但 temporal label model 未能超越 MV（negative finding）\"\n\n  - id: \"fu2020flyingsquid\"\n    title: \"Fast and Three-rious: Speeding Up Weak Supervision with Triplet Methods\"\n    authors: \"Daniel Y. Fu, Mayee F. Chen, Frederic Sala, Sarah M. Hooper, Kayvon Fatahalian, Christopher Re\"\n    venue: \"ICML 2020\"\n    year: 2020\n    arxiv: \"2002.11955\"\n    category: \"method-component\"\n    role: \"快速 label model，triplet method of moments\"\n    key_finding: \"用 triplet method 闭式求解 label model 参数，比 SGD 快 170x\"\n    our_differentiation: \"FlyingSquid 同样假设 i.i.d.；我们的 empirical analysis 揭示 i.i.d. violation 虽系统性存在，但 temporal correction 在低冲突 regime 下无收益（negative finding）\"\n\n  - id: \"zhang2021wrench\"\n    title: \"WRENCH: A Comprehensive Benchmark for Weak Supervision\"\n    authors: \"Jieyu Zhang, Yue Yu, Yinghao Li, Yujing Wang, Yaming Yang, Mao Yang, Alexander Ratner\"\n    venue: \"NeurIPS 2021 Datasets and Benchmarks Track\"\n    year: 2021\n    arxiv: \"2109.11377\"\n    category: \"method-component\"\n    role: \"弱监督评测基准\"\n    key_finding: \"22 个真实数据集 + 120+ 方法变体评测，标准化弱监督研究\"\n    our_differentiation: \"WRENCH 数据集全是 i.i.d. 分类/序列标注，没有 temporal stagnation detection 任务\"\n\n  - id: \"safranchik2020linkedhmm\"\n    title: \"Weakly Supervised Sequence Tagging from Noisy Rules\"\n    authors: \"Esteban Safranchik, Shiying Luo, Stephen H. Bach\"\n    venue: \"AAAI 2020\"\n    year: 2020\n    arxiv: null\n    category: \"method-component\"\n    role: \"最近的方法论前驱：linked HMM for sequence tagging weak supervision\"\n    key_finding: \"将 HMM 引入弱监督序列标注（NER），加入 linking rules 建模 span 结构，比 i.i.d. label model +7 F1\"\n    our_differentiation: \"他们是 token-level NER（BIO 约束），我们是 window-level temporal classification；我们建模的是 stagnation temporal dynamics 而非 entity boundary\"\n\n  - id: \"sala2019multiresolution\"\n    title: \"Multi-Resolution Weak Supervision for Sequential Data\"\n    authors: \"Frederic Sala, Paroma Varma, Jason Fries, Daniel Y. Fu, Stefano Sagawa, Christopher Re\"\n    venue: \"NeurIPS 2019\"\n    year: 2019\n    arxiv: \"1910.09505\"\n    category: \"method-component\"\n    role: \"最近的方法论前驱：multi-resolution WS for sequential data\"\n    key_finding: \"处理不同时间分辨率的 LFs（如 frame-level vs span-level），建模 multi-resolution LF correlations\"\n    our_differentiation: \"他们关注 resolution mismatch，我们关注 temporal label transitions；互补视角\"\n\n  - id: \"dawid1979em\"\n    title: \"Maximum Likelihood Estimation of Observer Error-Rates Using the EM Algorithm\"\n    authors: \"A. P. Dawid, A. M. Skene\"\n    venue: \"Journal of the Royal Statistical Society, Series C\"\n    year: 1979\n    arxiv: null\n    category: \"method-component\"\n    role: \"Label aggregation 奠基工作\"\n    key_finding: \"用 EM 算法估计标注者混淆矩阵，无需 ground truth\"\n    our_differentiation: \"经典 i.i.d. 假设；我们测试了 temporal extension（HMM-TLM, lag-aware HMM）但发现在 3-LF 低冲突 regime 下未超越 MV——约束未来 temporal label model 研究\"\n\n  - id: \"nguyen2017hmmcrowd\"\n    title: \"Aggregating and Predicting Sequence Labels from Crowd Annotations\"\n    authors: \"An Thanh Nguyen, Byron C. Wallace, Junyi Jessy Li, Ani Nenkova, Matthew Lease\"\n    venue: \"ACL 2017\"\n    year: 2017\n    arxiv: null\n    category: \"method-component\"\n    role: \"HMM + crowdsourcing label aggregation\"\n    key_finding: \"HMM-Crowd：扩展 Dawid-Skene 到序列数据，加入 one-step Markov structure over true labels\"\n    our_differentiation: \"他们用于 crowdsourcing（人类标注者），我们用于 programmatic LFs（自动化）；他们是 NER/IE，我们是 agent progress monitoring\"\n\n  # ============================================================\n  # CATEGORY: evaluation\n  # ============================================================\n\n  - id: \"orlanski2026slopcodebench\"\n    title: \"SlopCodeBench: Benchmarking How Coding Agents Degrade Over Long-Horizon Iterative Tasks\"\n    authors: \"Gabriel Orlanski, Devjeet Roy, Alexander Yun, Changho Shin, Alex Gu, Albert Ge, Dyah Adila, Nicholas Roberts, Frederic Sala, Aws Albarghouthi\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2603.24755\"\n    category: \"evaluation\"\n    role: \"Agent degradation 基准——直接支持我们的 problem motivation\"\n    key_finding: \"Agent 代码质量在迭代任务中持续退化：比人类代码 2.3x 更冗余、2.0x 更结构侵蚀，75-77% trajectory 呈现退化趋势\"\n    our_differentiation: \"SlopCodeBench 量化了 degradation 现象，我们提供了检测方法；他们是 post-hoc 评测，我们是 online monitoring\"\n\n  - id: \"jimenez2024swebench\"\n    title: \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\"\n    authors: \"Carlos E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, Karthik Narasimhan\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    arxiv: \"2310.06770\"\n    category: \"evaluation\"\n    role: \"Agent 数据来源之一\"\n    key_finding: \"2294 个真实 GitHub issue 任务，标准化 agent 评测\"\n    our_differentiation: \"我们使用 SWE-bench agent trajectories 作为实验数据源之一\"\n\n  - id: \"yang2024sweagent\"\n    title: \"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\"\n    authors: \"John Yang, Carlos E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan, Ofir Press\"\n    venue: \"NeurIPS 2024\"\n    year: 2024\n    arxiv: \"2405.15793\"\n    category: \"evaluation\"\n    role: \"Agent 系统——trajectory 数据来源\"\n    key_finding: \"提出 agent-computer interface (ACI)，GPT-4 Turbo 在 SWE-bench 达 12.47% resolve rate\"\n    our_differentiation: \"SWE-agent trajectories 是我们分析 stagnation 的数据来源之一\"\n\n  - id: \"wang2025openhands\"\n    title: \"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\"\n    authors: \"Xingyao Wang, Boxuan Li, Yufan Song, Frank F. Xu, Xiangru Tang, et al.\"\n    venue: \"ICLR 2025\"\n    year: 2025\n    arxiv: \"2407.16741\"\n    category: \"evaluation\"\n    role: \"Agent 平台——主要数据来源\"\n    key_finding: \"开源 agent 平台，sandbox 执行环境，15+ benchmarks 评测\"\n    our_differentiation: \"OpenHands trajectories 是我们的主要实验数据来源\"\n\n  # ============================================================\n  # CATEGORY: background\n  # ============================================================\n\n  - id: \"shinn2023reflexion\"\n    title: \"Reflexion: Language Agents with Verbal Reinforcement Learning\"\n    authors: \"Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, Shunyu Yao\"\n    venue: \"NeurIPS 2023\"\n    year: 2023\n    arxiv: \"2303.11366\"\n    category: \"background\"\n    role: \"Agent self-reflection 代表工作\"\n    key_finding: \"通过 verbal feedback 强化 agent，反思文本存入 episodic memory 用于后续 trial\"\n    our_differentiation: \"Reflexion 是 agent 自我改进机制，我们是外部 monitoring；self-reflection 可能失效时我们的 monitor 仍能检测 stagnation\"\n\n  - id: \"zhou2024lats\"\n    title: \"Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models\"\n    authors: \"Andy Zhou, Kai Yan, Michal Shlapentokh-Rothman, Haohan Wang, Yu-Xiong Wang\"\n    venue: \"ICML 2024\"\n    year: 2024\n    arxiv: \"2310.04406\"\n    category: \"background\"\n    role: \"Agent planning + self-reflection\"\n    key_finding: \"结合 MCTS 与 LM value function 和 self-reflection，支持 backtracking\"\n    our_differentiation: \"LATS 通过搜索避免 stagnation，但计算开销大；我们的 monitor 可作为 LATS 的早期终止信号\"\n\n  - id: \"yao2023tot\"\n    title: \"Tree of Thoughts: Deliberate Problem Solving with Large Language Models\"\n    authors: \"Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Thomas L. Griffiths, Yuan Cao, Karthik Narasimhan\"\n    venue: \"NeurIPS 2023\"\n    year: 2023\n    arxiv: \"2305.10601\"\n    category: \"background\"\n    role: \"Deliberate reasoning 框架\"\n    key_finding: \"将 CoT 泛化为树结构，LM 自我评估中间 thought 并 backtrack\"\n    our_differentiation: \"ToT 的自评估是 single-step 的；我们捕捉 multi-step temporal patterns\"\n\n  - id: \"cemri2025multiagentfail\"\n    title: \"Why Do Multi-Agent LLM Systems Fail?\"\n    authors: \"Mert Cemri, Melissa Z. Pan, Shuyi Yang, Lakshya A. Agrawal, et al.\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2503.13657\"\n    category: \"background\"\n    role: \"Agent failure taxonomy——problem motivation\"\n    key_finding: \"MAST taxonomy：14 种失败模式，其中 Step Repetition 被识别为具体失败症状\"\n    our_differentiation: \"他们提供 taxonomy（what fails），我们提供 detection method（how to detect）\"\n\n  - id: \"zhu2025agentfail\"\n    title: \"Where LLM Agents Fail and How They Can Learn From Failures\"\n    authors: \"Kunlun Zhu, Zijia Liu, Bingxuan Li, et al.\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2509.25370\"\n    category: \"background\"\n    role: \"Agent failure 分析 + cascading failure 发现\"\n    key_finding: \"Cascading failures（单一 root cause 传播到后续决策）是长 horizon 任务的主要失败模式\"\n    our_differentiation: \"Cascading failure 正是我们 temporal model 可以捕捉的 pattern——stagnation 往往是 cascade 的表现\"\n\n  - id: \"george2025cycledetection\"\n    title: \"Unsupervised Cycle Detection in Agentic Applications\"\n    authors: \"Felix George, Harshit Kumar, Divya Pathak, Kaustabha Ray, Mudit Verma, Pratibha Moogi\"\n    venue: \"arXiv preprint (IBM Research)\"\n    year: 2025\n    arxiv: \"2511.10650\"\n    category: \"background\"\n    role: \"Cycle detection——最相关的 stagnation detection 前驱\"\n    key_finding: \"混合方法：call-stack 分析（结构重复）+ embedding 语义相似度确认\"\n    our_differentiation: \"他们只检测 exact/near-exact cycles，我们检测更广义的 stagnation（包括非重复性的停滞）；我们的 empirical analysis 表明 30 个 structural features（含但不限于 cycle 特征）即可达 0.995 F1\"\n\n  - id: \"pipis2025reasoningloop\"\n    title: \"Wait, Wait, Wait... Why Do Reasoning Models Loop?\"\n    authors: \"Charilaos Pipis, Shivam Garg, Vasilis Kontonis, Vaishnavi Shrivastava, Akshay Krishnamurthy, Dimitris Papailiopoulos\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2512.12895\"\n    category: \"background\"\n    role: \"Reasoning model looping 分析\"\n    key_finding: \"Looping 是 risk-aversion 的表现：模型选择简单循环动作而非推进；用 30-gram 重复检测\"\n    our_differentiation: \"他们分析 reasoning model 内部循环的原因，我们检测 agent trajectory 级别的 stagnation；n-gram 是我们 LFs 之一\"\n\n  - id: \"huang2024selfcorrect\"\n    title: \"Large Language Models Cannot Self-Correct Reasoning Yet\"\n    authors: \"Jie Huang, Xinyun Chen, Swaroop Mishra, Huaixiu Steven Zheng, Adams Wei Yu, Xinying Song, Denny Zhou\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    arxiv: \"2310.01798\"\n    category: \"background\"\n    verified: true\n    role: \"Self-correction 失败的关键证据——支持 external monitoring 必要性\"\n    key_finding: \"LLM 在无外部反馈时无法自我纠错推理错误，intrinsic self-correction 甚至导致性能下降\"\n    our_differentiation: \"直接支持我们的核心论点：agent 不能可靠地自我检测 stagnation，需要外部 monitor；我们的 structural features 提供了轻量（<5ms）且高精度（0.995 F1）的外部检测方案\"\n\n  - id: \"kamoi2024selfcorrection\"\n    title: \"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs\"\n    authors: \"Ryo Kamoi, Yusen Zhang, Nan Zhang, Jiawei Han, Rui Zhang\"\n    venue: \"TACL 2024\"\n    year: 2024\n    arxiv: \"2406.01297\"\n    category: \"background\"\n    verified: true\n    role: \"Self-correction 条件的系统性综述——外部反馈是成功的必要条件\"\n    key_finding: \"无外部反馈的 prompted self-correction 均未成功；self-correction 仅在有可靠外部反馈或大规模微调时有效\"\n    our_differentiation: \"综述证实 self-correction 需要外部信号，我们的 empirical analysis 表明 structural features 即可提供高精度外部 stagnation 信号，无需复杂的语义理解\"\n\n  # ============================================================\n  # CATEGORY: technique\n  # ============================================================\n\n  - id: \"cho2014gru\"\n    title: \"Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation\"\n    authors: \"Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, Yoshua Bengio\"\n    venue: \"EMNLP 2014\"\n    year: 2014\n    arxiv: \"1406.1078\"\n    category: \"technique\"\n    role: \"GRU 原始论文——我们 probe model 的序列编码器\"\n    key_finding: \"提出 GRU hidden unit，自适应门控信息流\"\n\n  - id: \"bahdanau2015attention\"\n    title: \"Neural Machine Translation by Jointly Learning to Align and Translate\"\n    authors: \"Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio\"\n    venue: \"ICLR 2015\"\n    year: 2015\n    arxiv: \"1409.0473\"\n    category: \"technique\"\n    role: \"Attention mechanism——我们 probe model 的 attention 组件\"\n    key_finding: \"注意力机制允许 decoder 选择性关注输入序列不同位置\"\n\n  - id: \"khosla2020supcon\"\n    title: \"Supervised Contrastive Learning\"\n    authors: \"Prannay Khosla, Piotr Teterwak, Chen Wang, Aaron Sarna, Yonglong Tian, Phillip Isola, Aaron Maschinot, Ce Liu, Dilip Krishnan\"\n    venue: \"NeurIPS 2020\"\n    year: 2020\n    arxiv: \"2004.11362\"\n    category: \"technique\"\n    role: \"SupCon loss——我们的辅助训练目标\"\n    key_finding: \"扩展自监督对比学习到有监督设置，同类样本拉近、异类推远，提升鲁棒性\"\n\n  - id: \"zhang2025qwen3embedding\"\n    title: \"Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models\"\n    authors: \"Yanzhao Zhang, Mingxin Li, Dingkun Long, Xin Zhang, Huan Lin, Baosong Yang, Pengjun Xie, An Yang, Dayiheng Liu, Junyang Lin, Fei Huang, Jingren Zhou\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2506.05176\"\n    category: \"technique\"\n    role: \"Embedding model——我们用于生成 trajectory window embeddings\"\n    key_finding: \"基于 Qwen3 的 embedding 模型（0.6B/4B/8B），多阶段训练，MTEB 多语言 SOTA\"\n\n# ============================================================\n# NOVELTY ANALYSIS SUMMARY (D039 Pivot — Empirical Analysis)\n# ============================================================\n#\n# Primary novelty: 首次系统性实证分析 agent stagnation 检测中 structural vs\n# semantic signal 的有效性。30 个结构特征达 0.995 in-domain / 0.967 cross-agent F1，\n# 全面优于 NL embedding (0.906/0.751) 和 LLM-as-judge (+24.3pp)。\n#\n# 三层贡献：\n# 1. Structural Signal Discovery (primary) — 改变社区对 agent monitoring 方法选型认知\n# 2. LF Temporal Dynamics Analysis — 量化 LFs 时序角色 + agent-specific 迁移分析\n# 3. TLM Negative Finding — 3 种实现 (TWV/HMM/lag-aware HMM) 均未超越 MV\n#\n# 方法论前驱（TLM negative finding 的参照）：\n# 1. Safranchik AAAI 2020 (linked HMM) — NER-specific，BIO 约束，token-level\n# 2. Sala NeurIPS 2019 (multi-resolution WS) — 处理分辨率不匹配，不建模 label transition\n# 3. Nguyen ACL 2017 (HMM-Crowd) — crowdsourcing 场景，不是 programmatic LFs\n#\n# 核心差异化：不是 \"method paper proposing TLM\"，而是 \"empirical study revealing\n# structural signals dominate stagnation detection, with temporal modeling as\n# well-motivated negative finding\".\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 244,
+                  "oldLines": 6,
+                  "newStart": 244,
+                  "newLines": 30,
+                  "lines": [
+                    "     key_finding: \"开源 agent 平台，sandbox 执行环境，15+ benchmarks 评测\"",
+                    "     our_differentiation: \"OpenHands trajectories 是我们的主要实验数据来源\"",
+                    " ",
+                    "+  - id: \"zhou2024webarena\"",
+                    "+    title: \"WebArena: A Realistic Web Environment for Building Autonomous Agents\"",
+                    "+    authors: \"Shuyan Zhou, Frank F. Xu, Hao Zhu, Xuhui Zhou, Robert Lo, Abishek Sridhar, Xianyi Cheng, Tianyue Ou, Yonatan Bisk, Daniel Fried, Uri Alon, Graham Neubig\"",
+                    "+    venue: \"ICLR 2024\"",
+                    "+    year: 2024",
+                    "+    arxiv: \"2307.13854\"",
+                    "+    category: \"evaluation\"",
+                    "+    verified: true",
+                    "+    role: \"Web agent 评测基准——long-horizon 任务评估\"",
+                    "+    key_finding: \"812 个真实网站上的 long-horizon 任务，GPT-4 agent 仅 14.41% 成功率 vs 人类 78.24%，揭示 agent 在复杂任务上的巨大差距\"",
+                    "+    our_differentiation: \"WebArena 的 long-horizon 任务正是 stagnation 高发场景；我们的 monitor 可作为此类任务的早期终止/干预信号\"",
+                    "+",
+                    "+  - id: \"wang2024mint\"",
+                    "+    title: \"MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback\"",
+                    "+    authors: \"Xingyao Wang, Zihan Wang, Jiateng Liu, Yangyi Chen, Lifan Yuan, Hao Peng, Heng Ji\"",
+                    "+    venue: \"ICLR 2024\"",
+                    "+    year: 2024",
+                    "+    arxiv: \"2309.10691\"",
+                    "+    category: \"evaluation\"",
+                    "+    verified: true",
+                    "+    role: \"Multi-turn agent 评测基准——tool use + feedback 交互评估\"",
+                    "+    key_finding: \"评估 LLM 在多轮交互中使用工具和接收自然语言反馈的能力，每轮 tool use 提升 1-8%，NL feedback 提升 2-17%\"",
+                    "+    our_differentiation: \"MINT 量化了 multi-turn 交互中的性能变化，我们的 stagnation detection 关注多轮交互中进展停滞的检测；MINT 的 multi-turn 设定与我们的 window-level 分析天然对齐\"",
+                    "+",
+                    "   # ============================================================",
+                    "   # CATEGORY: background",
+                    "   # ============================================================"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015NdSVKHHprsbo7FaU3SChf",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/literature_map.yaml",
+                "old_string": "  - id: \"kamoi2024selfcorrection\"\n    title: \"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs\"\n    authors: \"Ryo Kamoi, Yusen Zhang, Nan Zhang, Jiawei Han, Rui Zhang\"\n    venue: \"TACL 2024\"\n    year: 2024\n    arxiv: \"2406.01297\"\n    category: \"background\"\n    verified: true\n    role: \"Self-correction 条件的系统性综述——外部反馈是成功的必要条件\"\n    key_finding: \"无外部反馈的 prompted self-correction 均未成功；self-correction 仅在有可靠外部反馈或大规模微调时有效\"\n    our_differentiation: \"综述证实 self-correction 需要外部信号，我们的 empirical analysis 表明 structural features 即可提供高精度外部 stagnation 信号，无需复杂的语义理解\"\n\n  # ============================================================\n  # CATEGORY: technique\n  # ============================================================",
+                "new_string": "  - id: \"kamoi2024selfcorrection\"\n    title: \"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs\"\n    authors: \"Ryo Kamoi, Yusen Zhang, Nan Zhang, Jiawei Han, Rui Zhang\"\n    venue: \"TACL 2024\"\n    year: 2024\n    arxiv: \"2406.01297\"\n    category: \"background\"\n    verified: true\n    role: \"Self-correction 条件的系统性综述——外部反馈是成功的必要条件\"\n    key_finding: \"无外部反馈的 prompted self-correction 均未成功；self-correction 仅在有可靠外部反馈或大规模微调时有效\"\n    our_differentiation: \"综述证实 self-correction 需要外部信号，我们的 empirical analysis 表明 structural features 即可提供高精度外部 stagnation 信号，无需复杂的语义理解\"\n\n  - id: \"liu2026trajad\"\n    title: \"TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents\"\n    authors: \"Yibing Liu, Chong Zhang, Zhongyi Han, Hansong Liu, Yong Wang, Yang Yu, Xiaoyan Wang, Yilong Yin\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2602.06443\"\n    category: \"background\"\n    verified: true\n    role: \"Agent trajectory 异常检测——stagnation detection 的直接前驱\"\n    key_finding: \"TrajAD 通过 fine-grained process supervision 训练 verifier 检测 agent trajectory 中的异常（task failure, process inefficiency, unwarranted continuation），通用 LLM zero-shot 表现差\"\n    our_differentiation: \"TrajAD 需要训练专用 verifier + 合成数据（perturb-and-complete），我们用 30 个 structural features 无需训练即达 0.995 F1；他们覆盖多种异常类型，我们专注 stagnation pattern 的深度分析\"\n\n  # ============================================================\n  # CATEGORY: technique\n  # ============================================================"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "219e1620-2cc8-4df0-af4b-31d0564e6eda",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GovC2kmYAgFvubuuXGaFU3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2010,
+                "cache_read_input_tokens": 38759,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2010
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T20:29:36.906Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015NdSVKHHprsbo7FaU3SChf",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/literature_map.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "024e07ea-8f21-4502-a4a7-fc9917e40e72",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/literature_map.yaml",
+              "oldString": "  - id: \"kamoi2024selfcorrection\"\n    title: \"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs\"\n    authors: \"Ryo Kamoi, Yusen Zhang, Nan Zhang, Jiawei Han, Rui Zhang\"\n    venue: \"TACL 2024\"\n    year: 2024\n    arxiv: \"2406.01297\"\n    category: \"background\"\n    verified: true\n    role: \"Self-correction 条件的系统性综述——外部反馈是成功的必要条件\"\n    key_finding: \"无外部反馈的 prompted self-correction 均未成功；self-correction 仅在有可靠外部反馈或大规模微调时有效\"\n    our_differentiation: \"综述证实 self-correction 需要外部信号，我们的 empirical analysis 表明 structural features 即可提供高精度外部 stagnation 信号，无需复杂的语义理解\"\n\n  # ============================================================\n  # CATEGORY: technique\n  # ============================================================",
+              "newString": "  - id: \"kamoi2024selfcorrection\"\n    title: \"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs\"\n    authors: \"Ryo Kamoi, Yusen Zhang, Nan Zhang, Jiawei Han, Rui Zhang\"\n    venue: \"TACL 2024\"\n    year: 2024\n    arxiv: \"2406.01297\"\n    category: \"background\"\n    verified: true\n    role: \"Self-correction 条件的系统性综述——外部反馈是成功的必要条件\"\n    key_finding: \"无外部反馈的 prompted self-correction 均未成功；self-correction 仅在有可靠外部反馈或大规模微调时有效\"\n    our_differentiation: \"综述证实 self-correction 需要外部信号，我们的 empirical analysis 表明 structural features 即可提供高精度外部 stagnation 信号，无需复杂的语义理解\"\n\n  - id: \"liu2026trajad\"\n    title: \"TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents\"\n    authors: \"Yibing Liu, Chong Zhang, Zhongyi Han, Hansong Liu, Yong Wang, Yang Yu, Xiaoyan Wang, Yilong Yin\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2602.06443\"\n    category: \"background\"\n    verified: true\n    role: \"Agent trajectory 异常检测——stagnation detection 的直接前驱\"\n    key_finding: \"TrajAD 通过 fine-grained process supervision 训练 verifier 检测 agent trajectory 中的异常（task failure, process inefficiency, unwarranted continuation），通用 LLM zero-shot 表现差\"\n    our_differentiation: \"TrajAD 需要训练专用 verifier + 合成数据（perturb-and-complete），我们用 30 个 structural features 无需训练即达 0.995 F1；他们覆盖多种异常类型，我们专注 stagnation pattern 的深度分析\"\n\n  # ============================================================\n  # CATEGORY: technique\n  # ============================================================",
+              "originalFile": "# Literature Map for Agent Progress Probe (EMNLP 2026 ARR)\n# Generated: 2026-05-14\n# Paper: Structural Signal Analysis for Progress Stagnation Detection in LLM Agents\n#\n# D039 Pivot: Empirical analysis paper. Central finding: stagnation signals are\n# fundamentally structural (30 features → 0.995 in-domain, 0.967 cross-agent F1),\n# decisively surpassing NL embeddings (0.906/0.751) and LLM-as-judge (+24.3pp).\n# TLM is a well-motivated negative finding (3 implementations all fail to beat MV).\n\npapers:\n\n  # ============================================================\n  # CATEGORY: direct-competitor\n  # ============================================================\n\n  - id: \"xi2025agentprm\"\n    title: \"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\"\n    authors: \"Zhiheng Xi, Chenyang Liao, Guanyu Li, Yajie Yang, Wenxiang Chen, Zhihao Zhang, Binghai Wang, Senjie Jin, Yuhao Zhou, Jian Guan, Wei Wu, Tao Ji, Tao Gui, Qi Zhang, Xuanjing Huang\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2511.08325\"\n    category: \"direct-competitor\"\n    role: \"主要竞争者：step-level PRM for agent guidance\"\n    key_finding: \"用 promise（长期潜力）和 progress（即时进展）两个维度评估 agent 每步决策，实现 8x 计算效率提升\"\n    our_differentiation: \"我们是 window-level monitoring（不是 step-level guidance），不需要 outcome labels，目标是 stagnation detection 不是 reward shaping\"\n\n  - id: \"choudhury2025prm\"\n    title: \"Process Reward Models for LLM Agents: Practical Framework and Directions\"\n    authors: \"Sanjiban Choudhury\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2502.10325\"\n    category: \"direct-competitor\"\n    role: \"PRM 框架综述 + InversePRM 方法\"\n    key_finding: \"提出 AgentPRM（Monte Carlo rollout actor-critic）和 InversePRM（从 demonstrations 学习 process reward），3B 模型超越 GPT-4o\"\n    our_differentiation: \"InversePRM 仍需 demonstration trajectories，我们用 programmatic LFs 替代人工标注；我们关注 monitoring 而非 training signal\"\n\n  - id: \"li2026toolprmbench\"\n    title: \"ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents\"\n    authors: \"Dawei Li, Yuguang Yao, Zhen Tan, Huan Liu, Ruocheng Guo\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2601.12294\"\n    category: \"direct-competitor\"\n    role: \"Tool-use PRM 评测基准\"\n    key_finding: \"大规模 benchmark 评测 PRM 在 tool-use 场景的效果，发现专用 PRM 显著优于通用 PRM\"\n    our_differentiation: \"我们的 empirical analysis 揭示 structural features 足以检测 stagnation（0.995 F1），无需 step-level reward labels；关注 stagnation pattern 而非 step correctness\"\n\n  - id: \"wang2026planrewardbench\"\n    title: \"Aligning Agents via Planning: A Benchmark for Trajectory-Level Reward Modeling\"\n    authors: \"Jiaxuan Wang, Yulan Hu, Wenjin Yang, Zheng Pan, Xin Li, Lan-Zhe Guo\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2604.08178\"\n    category: \"direct-competitor\"\n    role: \"Trajectory-level reward model 评测\"\n    key_finding: \"所有 reward model 类别（generative, discriminative, LLM-as-Judge）在长 horizon trajectory 上性能显著下降\"\n    our_differentiation: \"验证了长 trajectory 评估的难度——我们的 window-level 方法通过局部化避免了这个问题\"\n\n  - id: \"chen2025monitoring\"\n    title: \"Monitoring LLM Agents for Sequentially Contextual Harm\"\n    authors: \"Yueh-Han Chen, Neelay Joshi, Yulin Chen, He He, Rico Angell\"\n    venue: \"ICLR 2025 Workshop on Building Trust in Language Models and Applications\"\n    year: 2025\n    arxiv: null\n    openreview: \"LC0XQ6ufbr\"\n    category: \"direct-competitor\"\n    role: \"Agent monitoring 安全方向\"\n    key_finding: \"将有害任务分解为单独无害的子任务可将 refusal rate 从 50% 降至 10%，现有 monitor 难以检测 sequentially contextual harm\"\n    our_differentiation: \"他们关注 safety monitoring（harmful behavior），我们关注 progress monitoring（stagnation）；互补方向\"\n\n  - id: \"kale2025weaktostrong\"\n    title: \"Reliable Weak-to-Strong Monitoring of LLM Agents\"\n    authors: \"Neil Kale, Chen Bo Calvin Zhang, Kevin Zhu, Ankit Aich, Paula Rodriguez, Scale Red Team, Christina Q. Knight, Zifan Wang\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2508.19461\"\n    category: \"direct-competitor\"\n    role: \"Weak-to-strong agent monitoring 方法论\"\n    key_finding: \"Monitor scaffolding 比 monitor 能力更重要，弱模型可以可靠监控强模型；targeted human-in-the-loop 提升 TPR ~15%\"\n    our_differentiation: \"他们用 LLM 作为 monitor，我们发现 30 个 structural features 即可达 0.967 跨域 F1，不依赖另一个 LLM；更轻量（<5ms）且可解释\"\n\n  - id: \"fan2026agentrm\"\n    title: \"Exploring Reasoning Reward Model for Agents\"\n    authors: \"Kaixuan Fan, Kaituo Feng, Manyuan Zhang, Tianshuo Peng, Zhixun Li, Yilei Jiang, Shuang Chen, Peng Pei, Xunliang Cai, Xiangyu Yue\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2601.22154\"\n    category: \"direct-competitor\"\n    verified: true\n    role: \"Agent trajectory 的多维度 reasoning reward model\"\n    key_finding: \"Agent-RRM 通过 reasoning trace + critique + overall score 三维结构化反馈评估 agent trajectory，在 12 个 benchmark 上显著提升（GAIA 43.7%, WebWalkerQA 46.2%）\"\n    our_differentiation: \"他们用 LLM-based reward model 生成结构化反馈用于 agent 改进，我们的 empirical analysis 表明轻量 structural features 即可高精度检测 stagnation（0.995 F1），不依赖大模型推理\"\n\n  - id: \"qiu2026dataprm\"\n    title: \"Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis\"\n    authors: \"Zhisong Qiu, Shuofei Qiao, Kewei Xu, Yuqi Zhu, Lun Du, Ningyu Zhang, Huajun Chen\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2604.24198\"\n    category: \"direct-competitor\"\n    verified: true\n    role: \"Agentic data analysis 场景的 process-level reward model\"\n    key_finding: \"传统 PRM 无法检测 silent errors 且误判 exploratory steps；DataPRM 通过 environment-aware probing + ternary reward 策略在 ScienceAgentBench 提升 7.21%\"\n    our_differentiation: \"DataPRM 针对数据分析 agent 的 step correctness，我们针对通用 agent 的 stagnation pattern；他们需要 execution state probing，我们用 structural LFs 无需环境交互\"\n\n  # ============================================================\n  # CATEGORY: method-component\n  # ============================================================\n\n  - id: \"ratner2016dataprogramming\"\n    title: \"Data Programming: Creating Large Training Sets, Quickly\"\n    authors: \"Alexander Ratner, Christopher De Sa, Sen Wu, Daniel Selsam, Christopher Re\"\n    venue: \"NeurIPS 2016\"\n    year: 2016\n    arxiv: \"1605.07723\"\n    category: \"method-component\"\n    role: \"核心方法论基础：data programming 范式\"\n    key_finding: \"用户编写 labeling functions（噪声启发式），generative model 学习 LF 准确率生成概率训练标签\"\n    our_differentiation: \"我们在 agent trajectory 上应用 data programming，发现 structural features 主导检测能力；同时揭示 LFs 的时序动态和 temporal label model 的负面结果\"\n\n  - id: \"ratner2017snorkel\"\n    title: \"Snorkel: Rapid Training Data Creation with Weak Supervision\"\n    authors: \"Alexander Ratner, Stephen H. Bach, Henry Ehrenberg, Jason Fries, Sen Wu, Christopher Re\"\n    venue: \"VLDB 2018\"\n    year: 2018\n    arxiv: \"1711.10160\"\n    category: \"method-component\"\n    role: \"Data programming 系统实现，label model 基础\"\n    key_finding: \"端到端弱监督系统：LFs → generative label model（建模 LF dependency）→ discriminative end model\"\n    our_differentiation: \"Snorkel 假设数据点 i.i.d.，我们发现 agent trajectory 上 LFs 展现系统性时序动态（violating i.i.d.），但 temporal label model 未能超越 MV（negative finding）\"\n\n  - id: \"fu2020flyingsquid\"\n    title: \"Fast and Three-rious: Speeding Up Weak Supervision with Triplet Methods\"\n    authors: \"Daniel Y. Fu, Mayee F. Chen, Frederic Sala, Sarah M. Hooper, Kayvon Fatahalian, Christopher Re\"\n    venue: \"ICML 2020\"\n    year: 2020\n    arxiv: \"2002.11955\"\n    category: \"method-component\"\n    role: \"快速 label model，triplet method of moments\"\n    key_finding: \"用 triplet method 闭式求解 label model 参数，比 SGD 快 170x\"\n    our_differentiation: \"FlyingSquid 同样假设 i.i.d.；我们的 empirical analysis 揭示 i.i.d. violation 虽系统性存在，但 temporal correction 在低冲突 regime 下无收益（negative finding）\"\n\n  - id: \"zhang2021wrench\"\n    title: \"WRENCH: A Comprehensive Benchmark for Weak Supervision\"\n    authors: \"Jieyu Zhang, Yue Yu, Yinghao Li, Yujing Wang, Yaming Yang, Mao Yang, Alexander Ratner\"\n    venue: \"NeurIPS 2021 Datasets and Benchmarks Track\"\n    year: 2021\n    arxiv: \"2109.11377\"\n    category: \"method-component\"\n    role: \"弱监督评测基准\"\n    key_finding: \"22 个真实数据集 + 120+ 方法变体评测，标准化弱监督研究\"\n    our_differentiation: \"WRENCH 数据集全是 i.i.d. 分类/序列标注，没有 temporal stagnation detection 任务\"\n\n  - id: \"safranchik2020linkedhmm\"\n    title: \"Weakly Supervised Sequence Tagging from Noisy Rules\"\n    authors: \"Esteban Safranchik, Shiying Luo, Stephen H. Bach\"\n    venue: \"AAAI 2020\"\n    year: 2020\n    arxiv: null\n    category: \"method-component\"\n    role: \"最近的方法论前驱：linked HMM for sequence tagging weak supervision\"\n    key_finding: \"将 HMM 引入弱监督序列标注（NER），加入 linking rules 建模 span 结构，比 i.i.d. label model +7 F1\"\n    our_differentiation: \"他们是 token-level NER（BIO 约束），我们是 window-level temporal classification；我们建模的是 stagnation temporal dynamics 而非 entity boundary\"\n\n  - id: \"sala2019multiresolution\"\n    title: \"Multi-Resolution Weak Supervision for Sequential Data\"\n    authors: \"Frederic Sala, Paroma Varma, Jason Fries, Daniel Y. Fu, Stefano Sagawa, Christopher Re\"\n    venue: \"NeurIPS 2019\"\n    year: 2019\n    arxiv: \"1910.09505\"\n    category: \"method-component\"\n    role: \"最近的方法论前驱：multi-resolution WS for sequential data\"\n    key_finding: \"处理不同时间分辨率的 LFs（如 frame-level vs span-level），建模 multi-resolution LF correlations\"\n    our_differentiation: \"他们关注 resolution mismatch，我们关注 temporal label transitions；互补视角\"\n\n  - id: \"dawid1979em\"\n    title: \"Maximum Likelihood Estimation of Observer Error-Rates Using the EM Algorithm\"\n    authors: \"A. P. Dawid, A. M. Skene\"\n    venue: \"Journal of the Royal Statistical Society, Series C\"\n    year: 1979\n    arxiv: null\n    category: \"method-component\"\n    role: \"Label aggregation 奠基工作\"\n    key_finding: \"用 EM 算法估计标注者混淆矩阵，无需 ground truth\"\n    our_differentiation: \"经典 i.i.d. 假设；我们测试了 temporal extension（HMM-TLM, lag-aware HMM）但发现在 3-LF 低冲突 regime 下未超越 MV——约束未来 temporal label model 研究\"\n\n  - id: \"nguyen2017hmmcrowd\"\n    title: \"Aggregating and Predicting Sequence Labels from Crowd Annotations\"\n    authors: \"An Thanh Nguyen, Byron C. Wallace, Junyi Jessy Li, Ani Nenkova, Matthew Lease\"\n    venue: \"ACL 2017\"\n    year: 2017\n    arxiv: null\n    category: \"method-component\"\n    role: \"HMM + crowdsourcing label aggregation\"\n    key_finding: \"HMM-Crowd：扩展 Dawid-Skene 到序列数据，加入 one-step Markov structure over true labels\"\n    our_differentiation: \"他们用于 crowdsourcing（人类标注者），我们用于 programmatic LFs（自动化）；他们是 NER/IE，我们是 agent progress monitoring\"\n\n  # ============================================================\n  # CATEGORY: evaluation\n  # ============================================================\n\n  - id: \"orlanski2026slopcodebench\"\n    title: \"SlopCodeBench: Benchmarking How Coding Agents Degrade Over Long-Horizon Iterative Tasks\"\n    authors: \"Gabriel Orlanski, Devjeet Roy, Alexander Yun, Changho Shin, Alex Gu, Albert Ge, Dyah Adila, Nicholas Roberts, Frederic Sala, Aws Albarghouthi\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2603.24755\"\n    category: \"evaluation\"\n    role: \"Agent degradation 基准——直接支持我们的 problem motivation\"\n    key_finding: \"Agent 代码质量在迭代任务中持续退化：比人类代码 2.3x 更冗余、2.0x 更结构侵蚀，75-77% trajectory 呈现退化趋势\"\n    our_differentiation: \"SlopCodeBench 量化了 degradation 现象，我们提供了检测方法；他们是 post-hoc 评测，我们是 online monitoring\"\n\n  - id: \"jimenez2024swebench\"\n    title: \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\"\n    authors: \"Carlos E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, Karthik Narasimhan\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    arxiv: \"2310.06770\"\n    category: \"evaluation\"\n    role: \"Agent 数据来源之一\"\n    key_finding: \"2294 个真实 GitHub issue 任务，标准化 agent 评测\"\n    our_differentiation: \"我们使用 SWE-bench agent trajectories 作为实验数据源之一\"\n\n  - id: \"yang2024sweagent\"\n    title: \"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\"\n    authors: \"John Yang, Carlos E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan, Ofir Press\"\n    venue: \"NeurIPS 2024\"\n    year: 2024\n    arxiv: \"2405.15793\"\n    category: \"evaluation\"\n    role: \"Agent 系统——trajectory 数据来源\"\n    key_finding: \"提出 agent-computer interface (ACI)，GPT-4 Turbo 在 SWE-bench 达 12.47% resolve rate\"\n    our_differentiation: \"SWE-agent trajectories 是我们分析 stagnation 的数据来源之一\"\n\n  - id: \"wang2025openhands\"\n    title: \"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\"\n    authors: \"Xingyao Wang, Boxuan Li, Yufan Song, Frank F. Xu, Xiangru Tang, et al.\"\n    venue: \"ICLR 2025\"\n    year: 2025\n    arxiv: \"2407.16741\"\n    category: \"evaluation\"\n    role: \"Agent 平台——主要数据来源\"\n    key_finding: \"开源 agent 平台，sandbox 执行环境，15+ benchmarks 评测\"\n    our_differentiation: \"OpenHands trajectories 是我们的主要实验数据来源\"\n\n  - id: \"zhou2024webarena\"\n    title: \"WebArena: A Realistic Web Environment for Building Autonomous Agents\"\n    authors: \"Shuyan Zhou, Frank F. Xu, Hao Zhu, Xuhui Zhou, Robert Lo, Abishek Sridhar, Xianyi Cheng, Tianyue Ou, Yonatan Bisk, Daniel Fried, Uri Alon, Graham Neubig\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    arxiv: \"2307.13854\"\n    category: \"evaluation\"\n    verified: true\n    role: \"Web agent 评测基准——long-horizon 任务评估\"\n    key_finding: \"812 个真实网站上的 long-horizon 任务，GPT-4 agent 仅 14.41% 成功率 vs 人类 78.24%，揭示 agent 在复杂任务上的巨大差距\"\n    our_differentiation: \"WebArena 的 long-horizon 任务正是 stagnation 高发场景；我们的 monitor 可作为此类任务的早期终止/干预信号\"\n\n  - id: \"wang2024mint\"\n    title: \"MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback\"\n    authors: \"Xingyao Wang, Zihan Wang, Jiateng Liu, Yangyi Chen, Lifan Yuan, Hao Peng, Heng Ji\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    arxiv: \"2309.10691\"\n    category: \"evaluation\"\n    verified: true\n    role: \"Multi-turn agent 评测基准——tool use + feedback 交互评估\"\n    key_finding: \"评估 LLM 在多轮交互中使用工具和接收自然语言反馈的能力，每轮 tool use 提升 1-8%，NL feedback 提升 2-17%\"\n    our_differentiation: \"MINT 量化了 multi-turn 交互中的性能变化，我们的 stagnation detection 关注多轮交互中进展停滞的检测；MINT 的 multi-turn 设定与我们的 window-level 分析天然对齐\"\n\n  # ============================================================\n  # CATEGORY: background\n  # ============================================================\n\n  - id: \"shinn2023reflexion\"\n    title: \"Reflexion: Language Agents with Verbal Reinforcement Learning\"\n    authors: \"Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, Shunyu Yao\"\n    venue: \"NeurIPS 2023\"\n    year: 2023\n    arxiv: \"2303.11366\"\n    category: \"background\"\n    role: \"Agent self-reflection 代表工作\"\n    key_finding: \"通过 verbal feedback 强化 agent，反思文本存入 episodic memory 用于后续 trial\"\n    our_differentiation: \"Reflexion 是 agent 自我改进机制，我们是外部 monitoring；self-reflection 可能失效时我们的 monitor 仍能检测 stagnation\"\n\n  - id: \"zhou2024lats\"\n    title: \"Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models\"\n    authors: \"Andy Zhou, Kai Yan, Michal Shlapentokh-Rothman, Haohan Wang, Yu-Xiong Wang\"\n    venue: \"ICML 2024\"\n    year: 2024\n    arxiv: \"2310.04406\"\n    category: \"background\"\n    role: \"Agent planning + self-reflection\"\n    key_finding: \"结合 MCTS 与 LM value function 和 self-reflection，支持 backtracking\"\n    our_differentiation: \"LATS 通过搜索避免 stagnation，但计算开销大；我们的 monitor 可作为 LATS 的早期终止信号\"\n\n  - id: \"yao2023tot\"\n    title: \"Tree of Thoughts: Deliberate Problem Solving with Large Language Models\"\n    authors: \"Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Thomas L. Griffiths, Yuan Cao, Karthik Narasimhan\"\n    venue: \"NeurIPS 2023\"\n    year: 2023\n    arxiv: \"2305.10601\"\n    category: \"background\"\n    role: \"Deliberate reasoning 框架\"\n    key_finding: \"将 CoT 泛化为树结构，LM 自我评估中间 thought 并 backtrack\"\n    our_differentiation: \"ToT 的自评估是 single-step 的；我们捕捉 multi-step temporal patterns\"\n\n  - id: \"cemri2025multiagentfail\"\n    title: \"Why Do Multi-Agent LLM Systems Fail?\"\n    authors: \"Mert Cemri, Melissa Z. Pan, Shuyi Yang, Lakshya A. Agrawal, et al.\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2503.13657\"\n    category: \"background\"\n    role: \"Agent failure taxonomy——problem motivation\"\n    key_finding: \"MAST taxonomy：14 种失败模式，其中 Step Repetition 被识别为具体失败症状\"\n    our_differentiation: \"他们提供 taxonomy（what fails），我们提供 detection method（how to detect）\"\n\n  - id: \"zhu2025agentfail\"\n    title: \"Where LLM Agents Fail and How They Can Learn From Failures\"\n    authors: \"Kunlun Zhu, Zijia Liu, Bingxuan Li, et al.\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2509.25370\"\n    category: \"background\"\n    role: \"Agent failure 分析 + cascading failure 发现\"\n    key_finding: \"Cascading failures（单一 root cause 传播到后续决策）是长 horizon 任务的主要失败模式\"\n    our_differentiation: \"Cascading failure 正是我们 temporal model 可以捕捉的 pattern——stagnation 往往是 cascade 的表现\"\n\n  - id: \"george2025cycledetection\"\n    title: \"Unsupervised Cycle Detection in Agentic Applications\"\n    authors: \"Felix George, Harshit Kumar, Divya Pathak, Kaustabha Ray, Mudit Verma, Pratibha Moogi\"\n    venue: \"arXiv preprint (IBM Research)\"\n    year: 2025\n    arxiv: \"2511.10650\"\n    category: \"background\"\n    role: \"Cycle detection——最相关的 stagnation detection 前驱\"\n    key_finding: \"混合方法：call-stack 分析（结构重复）+ embedding 语义相似度确认\"\n    our_differentiation: \"他们只检测 exact/near-exact cycles，我们检测更广义的 stagnation（包括非重复性的停滞）；我们的 empirical analysis 表明 30 个 structural features（含但不限于 cycle 特征）即可达 0.995 F1\"\n\n  - id: \"pipis2025reasoningloop\"\n    title: \"Wait, Wait, Wait... Why Do Reasoning Models Loop?\"\n    authors: \"Charilaos Pipis, Shivam Garg, Vasilis Kontonis, Vaishnavi Shrivastava, Akshay Krishnamurthy, Dimitris Papailiopoulos\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2512.12895\"\n    category: \"background\"\n    role: \"Reasoning model looping 分析\"\n    key_finding: \"Looping 是 risk-aversion 的表现：模型选择简单循环动作而非推进；用 30-gram 重复检测\"\n    our_differentiation: \"他们分析 reasoning model 内部循环的原因，我们检测 agent trajectory 级别的 stagnation；n-gram 是我们 LFs 之一\"\n\n  - id: \"huang2024selfcorrect\"\n    title: \"Large Language Models Cannot Self-Correct Reasoning Yet\"\n    authors: \"Jie Huang, Xinyun Chen, Swaroop Mishra, Huaixiu Steven Zheng, Adams Wei Yu, Xinying Song, Denny Zhou\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    arxiv: \"2310.01798\"\n    category: \"background\"\n    verified: true\n    role: \"Self-correction 失败的关键证据——支持 external monitoring 必要性\"\n    key_finding: \"LLM 在无外部反馈时无法自我纠错推理错误，intrinsic self-correction 甚至导致性能下降\"\n    our_differentiation: \"直接支持我们的核心论点：agent 不能可靠地自我检测 stagnation，需要外部 monitor；我们的 structural features 提供了轻量（<5ms）且高精度（0.995 F1）的外部检测方案\"\n\n  - id: \"kamoi2024selfcorrection\"\n    title: \"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs\"\n    authors: \"Ryo Kamoi, Yusen Zhang, Nan Zhang, Jiawei Han, Rui Zhang\"\n    venue: \"TACL 2024\"\n    year: 2024\n    arxiv: \"2406.01297\"\n    category: \"background\"\n    verified: true\n    role: \"Self-correction 条件的系统性综述——外部反馈是成功的必要条件\"\n    key_finding: \"无外部反馈的 prompted self-correction 均未成功；self-correction 仅在有可靠外部反馈或大规模微调时有效\"\n    our_differentiation: \"综述证实 self-correction 需要外部信号，我们的 empirical analysis 表明 structural features 即可提供高精度外部 stagnation 信号，无需复杂的语义理解\"\n\n  # ============================================================\n  # CATEGORY: technique\n  # ============================================================\n\n  - id: \"cho2014gru\"\n    title: \"Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation\"\n    authors: \"Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, Yoshua Bengio\"\n    venue: \"EMNLP 2014\"\n    year: 2014\n    arxiv: \"1406.1078\"\n    category: \"technique\"\n    role: \"GRU 原始论文——我们 probe model 的序列编码器\"\n    key_finding: \"提出 GRU hidden unit，自适应门控信息流\"\n\n  - id: \"bahdanau2015attention\"\n    title: \"Neural Machine Translation by Jointly Learning to Align and Translate\"\n    authors: \"Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio\"\n    venue: \"ICLR 2015\"\n    year: 2015\n    arxiv: \"1409.0473\"\n    category: \"technique\"\n    role: \"Attention mechanism——我们 probe model 的 attention 组件\"\n    key_finding: \"注意力机制允许 decoder 选择性关注输入序列不同位置\"\n\n  - id: \"khosla2020supcon\"\n    title: \"Supervised Contrastive Learning\"\n    authors: \"Prannay Khosla, Piotr Teterwak, Chen Wang, Aaron Sarna, Yonglong Tian, Phillip Isola, Aaron Maschinot, Ce Liu, Dilip Krishnan\"\n    venue: \"NeurIPS 2020\"\n    year: 2020\n    arxiv: \"2004.11362\"\n    category: \"technique\"\n    role: \"SupCon loss——我们的辅助训练目标\"\n    key_finding: \"扩展自监督对比学习到有监督设置，同类样本拉近、异类推远，提升鲁棒性\"\n\n  - id: \"zhang2025qwen3embedding\"\n    title: \"Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models\"\n    authors: \"Yanzhao Zhang, Mingxin Li, Dingkun Long, Xin Zhang, Huan Lin, Baosong Yang, Pengjun Xie, An Yang, Dayiheng Liu, Junyang Lin, Fei Huang, Jingren Zhou\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2506.05176\"\n    category: \"technique\"\n    role: \"Embedding model——我们用于生成 trajectory window embeddings\"\n    key_finding: \"基于 Qwen3 的 embedding 模型（0.6B/4B/8B），多阶段训练，MTEB 多语言 SOTA\"\n\n# ============================================================\n# NOVELTY ANALYSIS SUMMARY (D039 Pivot — Empirical Analysis)\n# ============================================================\n#\n# Primary novelty: 首次系统性实证分析 agent stagnation 检测中 structural vs\n# semantic signal 的有效性。30 个结构特征达 0.995 in-domain / 0.967 cross-agent F1，\n# 全面优于 NL embedding (0.906/0.751) 和 LLM-as-judge (+24.3pp)。\n#\n# 三层贡献：\n# 1. Structural Signal Discovery (primary) — 改变社区对 agent monitoring 方法选型认知\n# 2. LF Temporal Dynamics Analysis — 量化 LFs 时序角色 + agent-specific 迁移分析\n# 3. TLM Negative Finding — 3 种实现 (TWV/HMM/lag-aware HMM) 均未超越 MV\n#\n# 方法论前驱（TLM negative finding 的参照）：\n# 1. Safranchik AAAI 2020 (linked HMM) — NER-specific，BIO 约束，token-level\n# 2. Sala NeurIPS 2019 (multi-resolution WS) — 处理分辨率不匹配，不建模 label transition\n# 3. Nguyen ACL 2017 (HMM-Crowd) — crowdsourcing 场景，不是 programmatic LFs\n#\n# 核心差异化：不是 \"method paper proposing TLM\"，而是 \"empirical study revealing\n# structural signals dominate stagnation detection, with temporal modeling as\n# well-motivated negative finding\".\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 373,
+                  "oldLines": 6,
+                  "newStart": 373,
+                  "newLines": 18,
+                  "lines": [
+                    "     key_finding: \"无外部反馈的 prompted self-correction 均未成功；self-correction 仅在有可靠外部反馈或大规模微调时有效\"",
+                    "     our_differentiation: \"综述证实 self-correction 需要外部信号，我们的 empirical analysis 表明 structural features 即可提供高精度外部 stagnation 信号，无需复杂的语义理解\"",
+                    " ",
+                    "+  - id: \"liu2026trajad\"",
+                    "+    title: \"TrajAD: Trajectory Anomaly Detection for Trustworthy LLM Agents\"",
+                    "+    authors: \"Yibing Liu, Chong Zhang, Zhongyi Han, Hansong Liu, Yong Wang, Yang Yu, Xiaoyan Wang, Yilong Yin\"",
+                    "+    venue: \"arXiv preprint\"",
+                    "+    year: 2026",
+                    "+    arxiv: \"2602.06443\"",
+                    "+    category: \"background\"",
+                    "+    verified: true",
+                    "+    role: \"Agent trajectory 异常检测——stagnation detection 的直接前驱\"",
+                    "+    key_finding: \"TrajAD 通过 fine-grained process supervision 训练 verifier 检测 agent trajectory 中的异常（task failure, process inefficiency, unwarranted continuation），通用 LLM zero-shot 表现差\"",
+                    "+    our_differentiation: \"TrajAD 需要训练专用 verifier + 合成数据（perturb-and-complete），我们用 30 个 structural features 无需训练即达 0.995 F1；他们覆盖多种异常类型，我们专注 stagnation pattern 的深度分析\"",
+                    "+",
+                    "   # ============================================================",
+                    "   # CATEGORY: technique",
+                    "   # ============================================================"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已添加 3 篇论文：\n\n- **evaluation**: `zhou2024webarena` (WebArena, ICLR 2024, arxiv 2307.13854), `wang2024mint` (MINT, ICLR 2024, arxiv 2309.10691)\n- **background**: `liu2026trajad` (TrajAD, arXiv 2026, arxiv 2602.06443)"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "uuid": "8258df14-50a1-4136-8736-d0defbe97b73",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S2MbHBhKqewMvwqwZEgL9L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1075,
+                "cache_read_input_tokens": 40769,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1075
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已添加 3 篇论文：\n\n- **evaluation**: `zhou2024webarena` (WebArena, ICLR 2024, arxiv 2307.13854), `wang2024mint` (MINT, ICLR 2024, arxiv 2309.10691)\n- **background**: `liu2026trajad` (TrajAD, arXiv 2026, arxiv 2602.06443)"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 100572,
+            "duration_api_ms": 124876,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "b70e06a0-6988-409b-be37-d7c666188d79",
+            "total_cost_usd": 0.52894275,
+            "usage": {
+              "input_tokens": 880,
+              "cache_creation_input_tokens": 30003,
+              "cache_read_input_tokens": 184090,
+              "output_tokens": 3948,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 30003,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 110,
+                  "cache_read_input_tokens": 40769,
+                  "cache_creation_input_tokens": 1075,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1075
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 83809,
+                "outputTokens": 2494,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 5,
+                "costUSD": 0.146279,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 880,
+                "outputTokens": 3948,
+                "cacheReadInputTokens": 184090,
+                "cacheCreationInputTokens": 30003,
+                "webSearchRequests": 0,
+                "costUSD": 0.38266375,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "a82168e1-ddfa-497f-bd0b-b6cd10c161d3"
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-research.md"
+}

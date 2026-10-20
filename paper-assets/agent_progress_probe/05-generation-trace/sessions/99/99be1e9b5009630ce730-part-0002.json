@@ -1,0 +1,713 @@
+{
+  "schema_version": "1.0",
+  "session_id": "99be1e9b5009630ce730",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-14T16:11:00.204Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011YZoC2hc5UtrY1D3xpsc8v",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"non-nlp-baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T16:10:54.050Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:10:59.871Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python non_nlp_baseline.py --data_dir data --split_info checkpoints/split_info.json --trajectories data/swe_agent_trajectories_5000.jsonl\\\", \\\"server\\\": \\\"bjb2-23165\\\", \\\"data_path\\\": \\\"data/windows_labeled.jsonl\\\", \\\"data_count\\\": 15401, \\\"model_name\\\": \\\"LogisticRegression+RandomForest+GradientBoosting\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"data/non_nlp_baseline_results.json\\\", \\\"log_path\\\": \\\"/tmp/non_nlp_baseline.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4885}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a70438da-405c-4bc1-93dd-d71fa67e66bd",
+            "uuid": "c92e91b5-705b-4347-9f30-e91e82b9f07e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"non-nlp-baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T16:10:54.050Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:10:59.871Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python non_nlp_baseline.py --data_dir data --split_info checkpoints/split_info.json --trajectories data/swe_agent_trajectories_5000.jsonl\\\", \\\"server\\\": \\\"bjb2-23165\\\", \\\"data_path\\\": \\\"data/windows_labeled.jsonl\\\", \\\"data_count\\\": 15401, \\\"model_name\\\": \\\"LogisticRegression+RandomForest+GradientBoosting\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"data/non_nlp_baseline_results.json\\\", \\\"log_path\\\": \\\"/tmp/non_nlp_baseline.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4885}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"non-nlp-baseline\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:10:54.050Z\", \"updated_at\": \"2026-05-14T16:10:59.871Z\", \"spec\": {\"command\": \"python non_nlp_baseline.py --data_dir data --split_info checkpoints/split_info.json --trajectories data/swe_agent_trajectories_5000.jsonl\", \"server\": \"bjb2-23165\", \"data_path\": \"data/windows_labeled.jsonl\", \"data_count\": 15401, \"model_name\": \"LogisticRegression+RandomForest+GradientBoosting\", \"seed\": 42, \"checkpoint_path\": \"data/non_nlp_baseline_results.json\", \"log_path\": \"/tmp/non_nlp_baseline.log\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4885}}"
+              }
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M5wiaSEgrqR31tB6afq2EG",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "non-nlp-baseline",
+                "field": "status",
+                "value": "DONE",
+                "project": "agent_progress_probe"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a70438da-405c-4bc1-93dd-d71fa67e66bd",
+            "uuid": "e9c93f9c-3f2a-46d1-bcaf-5cc32825fd4f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AxDH8t21V7zybUXQUGGQM5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 597,
+                "cache_read_input_tokens": 154674,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 597
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-14T16:11:04.168Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M5wiaSEgrqR31tB6afq2EG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0957}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a70438da-405c-4bc1-93dd-d71fa67e66bd",
+            "uuid": "808de08b-dcb7-4fda-9ca5-d9df82a773ef",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0957}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.0957}}"
+              }
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016jxGipGkDMEq6UosGu2Sjg",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "non-nlp-baseline",
+                "field": "conclusion",
+                "value": "NEGATIVE — Hypothesis rejected. Structural features alone achieve macro_f1=0.9951 (RF/GB), far exceeding the GRU Probe (0.9055) and MeanPool+LR (0.8435). This reveals that the weak labels are highly correlated with structural signals because the labeling functions (file_diff_delta, command_repetition, outcome_backpropagation) are themselves structural heuristics. The structural baseline essentially reverse-engineers the LFs. Key features: max_consecutive_similar (-5.53 LR coef), avg_adjacent_cmd_sim, num_edit_cmds, unique_cmd_ratio. This does NOT invalidate NL embeddings for real progress detection, but shows the current weak labels are saturated by structural information.",
+                "project": "agent_progress_probe"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a70438da-405c-4bc1-93dd-d71fa67e66bd",
+            "uuid": "005fdbf2-7bc3-4a38-9983-111ad1b30f8b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HznKtX2zSpkEzEoS6DJbS1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 194,
+                "cache_read_input_tokens": 155271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 194
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": "2026-05-14T16:11:11.352Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016jxGipGkDMEq6UosGu2Sjg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'NEGATIVE — Hypothesis rejected. Structural features alone achieve macro_f1=0.9951 (RF/GB), far exceeding the GRU Probe (0.9055) and MeanPool+LR (0.8435). This reveals that the weak labels are highly correlated with structural signals because the labeling functions (file_diff_delta, command_repetition, outcome_backpropagation) are themselves structural heuristics. The structural baseline essentially reverse-engineers the LFs. Key features: max_consecutive_similar (-5.53 LR coef), avg_adjacent_cmd_sim, num_edit_cmds, unique_cmd_ratio. This does NOT invalidate NL embeddings for real progress detection, but shows the current weak labels are saturated by structural information.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.105}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a70438da-405c-4bc1-93dd-d71fa67e66bd",
+            "uuid": "2460f14e-6cef-408c-9e93-12ffca6bb1cc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'NEGATIVE — Hypothesis rejected. Structural features alone achieve macro_f1=0.9951 (RF/GB), far exceeding the GRU Probe (0.9055) and MeanPool+LR (0.8435). This reveals that the weak labels are highly correlated with structural signals because the labeling functions (file_diff_delta, command_repetition, outcome_backpropagation) are themselves structural heuristics. The structural baseline essentially reverse-engineers the LFs. Key features: max_consecutive_similar (-5.53 LR coef), avg_adjacent_cmd_sim, num_edit_cmds, unique_cmd_ratio. This does NOT invalidate NL embeddings for real progress detection, but shows the current weak labels are saturated by structural information.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.105}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'NEGATIVE — Hypothesis rejected. Structural features alone achieve macro_f1=0.9951 (RF/GB), far exceeding the GRU Probe (0.9055) and MeanPool+LR (0.8435). This reveals that the weak labels are highly correlated with structural signals because the labeling functions (file_diff_delta, command_repetition, outcome_backpropagation) are themselves structural heuristics. The structural baseline essentially reverse-engineers the LFs. Key features: max_consecutive_similar (-5.53 LR coef), avg_adjacent_cmd_sim, num_edit_cmds, unique_cmd_ratio. This does NOT invalidate NL embeddings for real progress detection, but shows the current weak labels are saturated by structural information.'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.105}}"
+              }
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017GN9DEDmpZj8qvp8bbtyRV",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "non-nlp-baseline",
+                "field": "conclusion",
+                "value": "negative",
+                "project": "agent_progress_probe"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a70438da-405c-4bc1-93dd-d71fa67e66bd",
+            "uuid": "d06c4ac8-b1b6-4b90-b49d-ad8d6e8d970d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P9zHNgJ5ymnDioVAxEC2vg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 550,
+                "cache_read_input_tokens": 155465,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 550
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-14T16:11:16.232Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017GN9DEDmpZj8qvp8bbtyRV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"non-nlp-baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T16:10:54.050Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:11:16.155Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python non_nlp_baseline.py --data_dir data --split_info checkpoints/split_info.json --trajectories data/swe_agent_trajectories_5000.jsonl\\\", \\\"server\\\": \\\"bjb2-23165\\\", \\\"data_path\\\": \\\"data/windows_labeled.jsonl\\\", \\\"data_count\\\": 15401, \\\"model_name\\\": \\\"LogisticRegression+RandomForest+GradientBoosting\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"data/non_nlp_baseline_results.json\\\", \\\"log_path\\\": \\\"/tmp/non_nlp_baseline.log\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1827}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a70438da-405c-4bc1-93dd-d71fa67e66bd",
+            "uuid": "8d4e933f-f928-4600-84cb-2b11ca56067d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"non-nlp-baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T16:10:54.050Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:11:16.155Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python non_nlp_baseline.py --data_dir data --split_info checkpoints/split_info.json --trajectories data/swe_agent_trajectories_5000.jsonl\\\", \\\"server\\\": \\\"bjb2-23165\\\", \\\"data_path\\\": \\\"data/windows_labeled.jsonl\\\", \\\"data_count\\\": 15401, \\\"model_name\\\": \\\"LogisticRegression+RandomForest+GradientBoosting\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"data/non_nlp_baseline_results.json\\\", \\\"log_path\\\": \\\"/tmp/non_nlp_baseline.log\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1827}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"non-nlp-baseline\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:10:54.050Z\", \"updated_at\": \"2026-05-14T16:11:16.155Z\", \"spec\": {\"command\": \"python non_nlp_baseline.py --data_dir data --split_info checkpoints/split_info.json --trajectories data/swe_agent_trajectories_5000.jsonl\", \"server\": \"bjb2-23165\", \"data_path\": \"data/windows_labeled.jsonl\", \"data_count\": 15401, \"model_name\": \"LogisticRegression+RandomForest+GradientBoosting\", \"seed\": 42, \"checkpoint_path\": \"data/non_nlp_baseline_results.json\", \"log_path\": \"/tmp/non_nlp_baseline.log\"}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1827}}"
+              }
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Mg7c1RXZDES6vJ2BxEjt9d",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "non-nlp-baseline",
+                "field": "status",
+                "value": "DONE",
+                "project": "agent_progress_probe"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a70438da-405c-4bc1-93dd-d71fa67e66bd",
+            "uuid": "18cf40bc-518e-4baa-a867-619cdbd33eda",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017hST3iQ9few82kyLdeBo8a",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 439,
+                "cache_read_input_tokens": 156015,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 439
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-14T16:11:21.342Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Mg7c1RXZDES6vJ2BxEjt9d",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"non-nlp-baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T16:10:54.050Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:11:21.035Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python non_nlp_baseline.py --data_dir data --split_info checkpoints/split_info.json --trajectories data/swe_agent_trajectories_5000.jsonl\\\", \\\"server\\\": \\\"bjb2-23165\\\", \\\"data_path\\\": \\\"data/windows_labeled.jsonl\\\", \\\"data_count\\\": 15401, \\\"model_name\\\": \\\"LogisticRegression+RandomForest+GradientBoosting\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"data/non_nlp_baseline_results.json\\\", \\\"log_path\\\": \\\"/tmp/non_nlp_baseline.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-14T16:11:21.035Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3927}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a70438da-405c-4bc1-93dd-d71fa67e66bd",
+            "uuid": "71e80a67-c86f-429c-a1f8-014438c69f82",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"non-nlp-baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T16:10:54.050Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:11:21.035Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python non_nlp_baseline.py --data_dir data --split_info checkpoints/split_info.json --trajectories data/swe_agent_trajectories_5000.jsonl\\\", \\\"server\\\": \\\"bjb2-23165\\\", \\\"data_path\\\": \\\"data/windows_labeled.jsonl\\\", \\\"data_count\\\": 15401, \\\"model_name\\\": \\\"LogisticRegression+RandomForest+GradientBoosting\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"data/non_nlp_baseline_results.json\\\", \\\"log_path\\\": \\\"/tmp/non_nlp_baseline.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-14T16:11:21.035Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3927}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"non-nlp-baseline\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:10:54.050Z\", \"updated_at\": \"2026-05-14T16:11:21.035Z\", \"spec\": {\"command\": \"python non_nlp_baseline.py --data_dir data --split_info checkpoints/split_info.json --trajectories data/swe_agent_trajectories_5000.jsonl\", \"server\": \"bjb2-23165\", \"data_path\": \"data/windows_labeled.jsonl\", \"data_count\": 15401, \"model_name\": \"LogisticRegression+RandomForest+GradientBoosting\", \"seed\": 42, \"checkpoint_path\": \"data/non_nlp_baseline_results.json\", \"log_path\": \"/tmp/non_nlp_baseline.log\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T16:11:21.035Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3927}}"
+              }
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "注册 artifact。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a70438da-405c-4bc1-93dd-d71fa67e66bd",
+            "uuid": "b0e4bbc0-1bbb-4494-b12b-e30dcd04a56a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KHK1bYuhEkw5EsF1dGUEdT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 497,
+                "cache_read_input_tokens": 156454,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 497
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KuzDzeHUjUnykddLr1Z9yy",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "non-nlp-baseline-results",
+                "type": "report",
+                "description": "Non-NLP structural baseline results: 30 hand-crafted features + LR/RF/GB classifiers. Hypothesis rejected — structural features (macro_f1=0.9951) far exceed NL embedding probe (0.9055), revealing weak labels are saturated by structural signals from the labeling functions.",
+                "project": "agent_progress_probe",
+                "exp_id": "non-nlp-baseline",
+                "content": "# Non-NLP Baseline Results\n\n## Hypothesis\nPure structural/numerical features should NOT match NL embedding probe performance, proving embedding necessity.\n\n## Result: HYPOTHESIS REJECTED\n\nStructural features alone achieve macro_f1=0.9951, **far exceeding** both:\n- GRU Probe (NL embedding): 0.9055\n- MeanPool+LR (NL embedding): 0.8435\n\n## Metrics\n\n| Method | Macro-F1 | Accuracy | F1(stag) | F1(prog) |\n|--------|----------|----------|----------|----------|\n| GRU Probe (ref) | 0.9055 | — | — | — |\n| MeanPool+LR (ref) | 0.8435 | — | — | — |\n| **Struct + LR** | **0.9874** | 0.9901 | 0.9815 | 0.9933 |\n| **Struct + RF** | **0.9951** | 0.9962 | 0.9928 | 0.9974 |\n| **Struct + GB** | **0.9951** | 0.9962 | 0.9928 | 0.9974 |\n\n## Top Features (by LR coefficient magnitude)\n1. max_consecutive_similar: -5.53 (most predictive of stagnation)\n2. avg_adjacent_cmd_sim: -3.13\n3. num_search_cmds: -2.32\n4. search_ratio: -2.20\n5. max_adjacent_cmd_sim: +1.87\n6. unique_cmd_ratio: +1.49\n7. max_repeat_ratio: -1.28\n8. max_cmd_len: +0.82\n9. num_nav_cmds: -0.81\n10. num_edit_cmds: +0.75\n\n## Root Cause Analysis\nThe labeling functions are structural heuristics:\n- **LF1 (file_diff_delta)**: counts edit commands → captured by num_edit_cmds, edit_ratio\n- **LF2 (command_repetition)**: checks consecutive similar commands → captured by avg_adjacent_cmd_sim, max_consecutive_similar, unique_cmd_ratio\n- **LF3 (outcome_backpropagation)**: trajectory-level outcome → partially captured by structural patterns\n\nThe structural baseline essentially **reverse-engineers the labeling functions**.\n\n## Implication\nThis does NOT invalidate NL embeddings for real progress detection. It shows:\n1. Current weak labels are saturated by structural information\n2. NL embeddings capture something different/complementary that the structural features miss\n3. The probe's lower F1 may indicate it's learning a more nuanced/generalizable signal\n\n## Data\n- 15,401 windows (conf≥2), 30 features, same train/val/test split as probe_001\n- Best hyperparams: LR C=1.0, RF n_estimators=100 max_depth=10, GB lr=0.05 n_estimators=200\n",
+                "content_filename": "non_nlp_baseline_report.md",
+                "tags": [
+                  "baseline",
+                  "structural-features",
+                  "negative-result"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a70438da-405c-4bc1-93dd-d71fa67e66bd",
+            "uuid": "1332e8f4-88fa-41a0-a862-46d829fd6330",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KHK1bYuhEkw5EsF1dGUEdT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 497,
+                "cache_read_input_tokens": 156454,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 497
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-14T16:11:40.730Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KuzDzeHUjUnykddLr1Z9yy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_304b41\\\", \\\"name\\\": \\\"non-nlp-baseline-results\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Non-NLP structural baseline results: 30 hand-crafted features + LR/RF/GB classifiers. Hypothesis rejected — structural features (macro_f1=0.9951) far exceed NL embedding probe (0.9055), revealing weak labels are saturated by structural signals from the labeling functions.\\\", \\\"path\\\": \\\"projects/agent_progress_probe/artifacts/non-nlp-baseline/report/non_nlp_baseline_report.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"agent_progress_probe\\\", \\\"exp_id\\\": \\\"non-nlp-baseline\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T16:11:40.628275+00:00\\\", \\\"tags\\\": [\\\"baseline\\\", \\\"structural-features\\\", \\\"negative-result\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a70438da-405c-4bc1-93dd-d71fa67e66bd",
+            "uuid": "ef421368-62b9-4523-8eb6-31beb5c1c6ab",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_304b41\\\", \\\"name\\\": \\\"non-nlp-baseline-results\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Non-NLP structural baseline results: 30 hand-crafted features + LR/RF/GB classifiers. Hypothesis rejected — structural features (macro_f1=0.9951) far exceed NL embedding probe (0.9055), revealing weak labels are saturated by structural signals from the labeling functions.\\\", \\\"path\\\": \\\"projects/agent_progress_probe/artifacts/non-nlp-baseline/report/non_nlp_baseline_report.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"agent_progress_probe\\\", \\\"exp_id\\\": \\\"non-nlp-baseline\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T16:11:40.628275+00:00\\\", \\\"tags\\\": [\\\"baseline\\\", \\\"structural-features\\\", \\\"negative-result\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_304b41\", \"name\": \"non-nlp-baseline-results\", \"type\": \"report\", \"description\": \"Non-NLP structural baseline results: 30 hand-crafted features + LR/RF/GB classifiers. Hypothesis rejected — structural features (macro_f1=0.9951) far exceed NL embedding probe (0.9055), revealing weak labels are saturated by structural signals from the labeling functions.\", \"path\": \"projects/agent_progress_probe/artifacts/non-nlp-baseline/report/non_nlp_baseline_report.md\", \"url\": null, \"project\": \"agent_progress_probe\", \"exp_id\": \"non-nlp-baseline\", \"skill\": \"\", \"created_at\": \"2026-05-14T16:11:40.628275+00:00\", \"tags\": [\"baseline\", \"structural-features\", \"negative-result\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01131R8T6BXgcigATLZZyMmp",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Write non_nlp_baseline.py script",
+                    "status": "completed",
+                    "activeForm": "Writing non_nlp_baseline.py script"
+                  },
+                  {
+                    "content": "Upload and run on bjb2-23165",
+                    "status": "completed",
+                    "activeForm": "Uploading and running on bjb2-23165"
+                  },
+                  {
+                    "content": "Register results in experiment registry",
+                    "status": "completed",
+                    "activeForm": "Registering results in experiment registry"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a70438da-405c-4bc1-93dd-d71fa67e66bd",
+            "uuid": "262288cf-f607-4e2e-a617-4e82964fbd9b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S7xFHTPNKNUSCQzSto8BFU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1518,
+                "cache_read_input_tokens": 156951,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1518
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-14T16:11:45.140Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01131R8T6BXgcigATLZZyMmp",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a70438da-405c-4bc1-93dd-d71fa67e66bd",
+            "uuid": "472fd44d-3c5b-4e90-ab91-207b75160534",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Write non_nlp_baseline.py script",
+                  "status": "completed",
+                  "activeForm": "Writing non_nlp_baseline.py script"
+                },
+                {
+                  "content": "Upload and run on bjb2-23165",
+                  "status": "completed",
+                  "activeForm": "Uploading and running on bjb2-23165"
+                },
+                {
+                  "content": "Register results in experiment registry",
+                  "status": "in_progress",
+                  "activeForm": "Registering results in experiment registry"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Write non_nlp_baseline.py script",
+                  "status": "completed",
+                  "activeForm": "Writing non_nlp_baseline.py script"
+                },
+                {
+                  "content": "Upload and run on bjb2-23165",
+                  "status": "completed",
+                  "activeForm": "Uploading and running on bjb2-23165"
+                },
+                {
+                  "content": "Register results in experiment registry",
+                  "status": "completed",
+                  "activeForm": "Registering results in experiment registry"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验完成\n\n### 结果\n\n| Method | Macro-F1 | Accuracy | F1(stag) | F1(prog) |\n|--------|----------|----------|----------|----------|\n| GRU Probe (ref) | 0.9055 | — | — | — |\n| MeanPool+LR (ref) | 0.8435 | — | — | — |\n| **Struct + LR** | **0.9874** | 0.9901 | 0.9815 | 0.9933 |\n| **Struct + RF** | **0.9951** | 0.9962 | 0.9928 | 0.9974 |\n| **Struct + GB** | **0.9951** | 0.9962 | 0.9928 | 0.9974 |\n\n### 假设被否定\n\n纯结构特征（30维）macro_f1=0.9951，远超 NL embedding probe 的 0.9055。原因是 labeling functions 本身就是结构启发式规则（edit 命令计数、命令重复检测、轨迹结果回溯），结构特征本质上在逆向工程这些 LF。\n\n最强预测特征：`max_consecutive_similar` (LR coef=-5.53), `avg_adjacent_cmd_sim` (-3.13), `num_search_cmds` (-2.32)——这些直接对应 LF2 (command_repetition) 的判定逻辑。\n\n### 产出\n- 脚本：`non_nlp_baseline.py` (服务器)\n- 结果：`data/non_nlp_baseline_results.json`\n- Registry: `non-nlp-baseline` (DONE, conclusion=negative)\n- Artifact: `non-nlp-baseline-results` (report)"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a70438da-405c-4bc1-93dd-d71fa67e66bd",
+            "uuid": "f874b734-a9ed-49c6-addd-4fbe786e910d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U4PEirMGgsvUHGTM8VCmMg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 202,
+                "cache_read_input_tokens": 158469,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 202
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验完成\n\n### 结果\n\n| Method | Macro-F1 | Accuracy | F1(stag) | F1(prog) |\n|--------|----------|----------|----------|----------|\n| GRU Probe (ref) | 0.9055 | — | — | — |\n| MeanPool+LR (ref) | 0.8435 | — | — | — |\n| **Struct + LR** | **0.9874** | 0.9901 | 0.9815 | 0.9933 |\n| **Struct + RF** | **0.9951** | 0.9962 | 0.9928 | 0.9974 |\n| **Struct + GB** | **0.9951** | 0.9962 | 0.9928 | 0.9974 |\n\n### 假设被否定\n\n纯结构特征（30维）macro_f1=0.9951，远超 NL embedding probe 的 0.9055。原因是 labeling functions 本身就是结构启发式规则（edit 命令计数、命令重复检测、轨迹结果回溯），结构特征本质上在逆向工程这些 LF。\n\n最强预测特征：`max_consecutive_similar` (LR coef=-5.53), `avg_adjacent_cmd_sim` (-3.13), `num_search_cmds` (-2.32)——这些直接对应 LF2 (command_repetition) 的判定逻辑。\n\n### 产出\n- 脚本：`non_nlp_baseline.py` (服务器)\n- 结果：`data/non_nlp_baseline_results.json`\n- Registry: `non-nlp-baseline` (DONE, conclusion=negative)\n- Artifact: `non-nlp-baseline-results` (report)"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1045904,
+            "duration_api_ms": 923508,
+            "num_turns": 58,
+            "stop_reason": "end_turn",
+            "session_id": "a70438da-405c-4bc1-93dd-d71fa67e66bd",
+            "total_cost_usd": 4.906926000000001,
+            "usage": {
+              "input_tokens": 57,
+              "cache_creation_input_tokens": 146830,
+              "cache_read_input_tokens": 5462217,
+              "output_tokens": 50249,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 146830,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 485,
+                  "cache_read_input_tokens": 158469,
+                  "cache_creation_input_tokens": 202,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 202
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1535,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00162,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 57,
+                "outputTokens": 50249,
+                "cacheReadInputTokens": 5462217,
+                "cacheCreationInputTokens": 146830,
+                "webSearchRequests": 0,
+                "costUSD": 4.905306000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "c15b5b6d-e8bb-4dc4-b7d4-3ab556981caf"
+          },
+          "id": "event-000161"
+        }
+      ]
+    }
+  ]
+}

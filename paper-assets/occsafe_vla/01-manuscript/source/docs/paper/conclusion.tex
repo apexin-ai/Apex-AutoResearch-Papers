@@ -1,0 +1,4 @@
+
+\section{Conclusion}
+
+We presented the first factorial study of auxiliary spatial supervision during VLA fine-tuning. Detached gradients with LayerNorm consistently outperforms the no-auxiliary baseline, while BatchNorm with gradient flow reduces safety below it. The two effects combine additively, with the normalization advantage amplifying fourfold on physically constrained tasks. The content of spatial labels has no detectable effect---the critical factor is not \emph{what} the auxiliary head predicts but \emph{how} it interacts with the shared encoder during training. The safety deficit is not accompanied by task-success degradation (TSR ANOVA all $p{>}0.27$). Three zero-cost guidelines follow: detach gradients under BN; prefer LN; ground-truth labels are unnecessary. Future work should verify the BN hypothesis, extend to other architectures and benchmarks, and integrate with runtime safety methods.

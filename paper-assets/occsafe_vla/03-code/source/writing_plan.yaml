@@ -1,0 +1,244 @@
+meta:
+  venue: CoRL 2026
+  track: main
+  template: corl_2026
+  template_note: "CoRL 2026 template (corl_2026.sty), 8 pages main + unlimited refs/appendix"
+  page_limit: 8
+  abstract_deadline: 2026-05-26
+  deadline: 2026-05-29
+  core_claim: >
+    Auxiliary spatial supervision during VLA fine-tuning does NOT improve collision
+    avoidance — all configurations perform at or below Vanilla. A 2×2 factorial
+    (gradient flow × normalization) reveals an ordinal interaction: gradient flow
+    is detrimental to safety (Δ=-4.2pp within BN), and BatchNorm amplifies the
+    damage while increasing training instability (σ=0.064, 3× other cells).
+    Spatial label content (structured, random, depth) does not affect outcomes.
+    Practitioners should not add auxiliary spatial heads for safety purposes.
+  framing: "Option B (cautionary analysis paper, Plan B ordinal interaction)"
+  title: "Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? An Empirical Investigation"
+  created_at: 2026-05-20T20:00:00Z
+  updated_at: 2026-05-26T14:00:00Z
+
+paper_outline:
+  - section: abstract
+    word_budget: 200
+    core_bullets:
+      - "Problem: VLAs achieve high task success but remain behaviorally unsafe"
+      - "Method: Systematic factorial study — 12 conditions varying gradient flow, label content, normalization, reference frame, temporal extent"
+      - "Finding: ALL auxiliary spatial head configurations ≤ Vanilla — auxiliary spatial supervision does not improve safety"
+      - "Ordinal interaction: gradient flow detrimental (Δ=-4.2pp within BN), BN amplifies damage + instability"
+      - "Spatial content irrelevant: Full OCC ≈ Random OCC ≈ Depth ≈ Vanilla"
+      - "Practical: do not add auxiliary spatial heads for safety; if forced, use Detach+LN"
+    dependencies: [results, discussion]
+
+  - section: introduction
+    word_budget: 900
+    core_bullets:
+      - "Hook: VLAs achieve high task success but collision avoidance lags substantially"
+      - "Context: Spatial-VLA (15+) and safety-VLA (4+) threads are disconnected — no spatial method evaluates collision safety"
+      - "Question: Does auxiliary spatial supervision affect collision avoidance? If so, positively or negatively?"
+      - "C1 (core finding): Ordinal interaction — gradient flow × normalization. All configurations ≤ Vanilla. Gradient flow detrimental (Δ=-4.2pp within BN), BN amplifies"
+      - "C2 (methodology): First 2×2 factorial design for VLA auxiliary head mechanism analysis — reveals interaction hidden from single-factor ablations"
+      - "C3 (practical): Do not add auxiliary spatial heads. If required, Detach+LN safest; never BN+gradient flow (worst + unstable)"
+    dependencies: [results]
+    figures: [fig1_overview]
+    citation_hints:
+      - "OpenVLA, OpenVLA-OFT for base architecture"
+      - "VLSA/AEGIS for benchmark and CAR metric"
+      - "Representative spatial-VLA and safety-VLA methods for gap"
+
+  - section: related_work
+    word_budget: 900
+    core_bullets:
+      - "§2.1 VLA Safety and Spatial Representations (~500w): spatial-VLA methods (15+) improve task success but none evaluates collision; safety-VLA methods (4+) add runtime constraints but none studies spatial representations"
+      - "§2.2 Auxiliary Tasks and Multi-Task Gradient Dynamics (~400w): multi-task learning, gradient regularization, BN sensitivity to distribution shift — context for understanding why auxiliary heads can harm"
+      - "Gap: No work isolates whether auxiliary spatial supervision affects VLA collision avoidance, or through what interaction mechanism"
+    dependencies: [introduction]
+
+  - section: method
+    word_budget: 1100
+    core_bullets:
+      - "§3 Base setup: OpenVLA-OFT + LoRA, L_total = L_action + λ(t)·L_aux, exponential decay"
+      - "BEV occ head: 1.2M params, conv decoder, FocalLoss, zero inference cost"
+      - "Depth head: same arch, SmoothL1, egocentric reference frame"
+      - "§3.1 Ablation Design: 12 conditions — Vanilla, Full OCC, Full OCC+LN, Random OCC, Detach OCC, Detach+LN, Depth, Cutoff@{15K,25K,35K,45K}, Reverse Cutoff"
+      - "Table: each pairwise comparison isolates one factor (gradient flow, label content, normalization, reference frame, temporal extent)"
+      - "§3.2 Evaluation: SafeLIBERO Level I, TSR + CAR, 50 rollouts × 10 tasks × 3+ seeds, bootstrap 95% CI"
+    dependencies: []
+
+  - section: results
+    word_budget: 1500
+    core_bullets:
+      - "§4.1 Main Results: Table with all conditions — ALL ≤ Vanilla. Gradient flow conditions cluster below Detach conditions"
+      - "§4.2 Normalization–Gradient Flow Interaction: 2×2 ANOVA (v2 data). Ordinal interaction — gradient flow detrimental (Δ=-4.2pp BN, -2.5pp LN), BN amplifies. Cell 1 high variance (std=0.064) = training instability finding"
+      - "§4.3 Label Content and Reference Frame: Full OCC ≈ Random OCC ≈ Depth ≈ Vanilla — spatial content irrelevant when gradient flow maintained; gradient orthogonality (cosine≈0) rules out direct gradient conflict"
+      - "§4.4 Temporal Dynamics (preliminary): continuous flow best among aux conditions, reverse cutoff consistently worst (timing > duration)"
+    dependencies: []
+    registry_refs:
+      - full_occ_bn_v2_s0, full_occ_bn_v2_s1, full_occ_bn_v2_s2
+      - detach_bn_v2_s0, detach_bn_v2_s1, detach_bn_v2_s2, detach_bn_v2_s3
+      - full_occ_ln_v2, detach_ln_s0, detach_ln_s1, detach_ln_s2
+      - vanilla_v2
+    tables: [tab_main_results, tab_factorial, tab_ablation_design]
+    figures: [fig_factorial]
+    data_status: "v2 factorial partial — Cell 1/3 complete, Cell 2/4 pending v2 seeds. ANOVA placeholder until all v2 data in"
+
+  - section: discussion
+    word_budget: 500
+    core_bullets:
+      - "Synthesis: ordinal interaction means gradient flow is uniformly detrimental, BN is a risk amplifier"
+      - "Why gradient flow hurts: dual-objective optimization alters LoRA trajectory (acknowledge as speculation, not mechanistic claim)"
+      - "Gradient orthogonality rules out direct conflict — mechanism is indirect (optimization landscape, not gradient interference)"
+      - "Training instability: BN+gradient flow Cell 1 std=0.064 vs <0.025 others — BN running stats sensitivity"
+      - "Practical guideline: do not add aux spatial heads; if required, Detach+LN; never BN+gradient flow"
+      - "Limitations: single arch (OpenVLA-OFT + LoRA), MuJoCo only, static obstacles, binary collision metric, limited seeds"
+    dependencies: [results]
+
+  - section: conclusion
+    word_budget: 150
+    core_bullets:
+      - "Systematic factorial study — auxiliary spatial supervision does not improve VLA collision avoidance"
+      - "Ordinal interaction: gradient flow detrimental, BN amplifies"
+      - "Practical: avoid auxiliary spatial heads for safety; Detach+LN if forced"
+      - "Future: other VLA architectures, dynamic obstacles, real-world"
+    dependencies: [results, discussion]
+
+  - section: appendix
+    word_budget: 2500
+    core_bullets:
+      - "Training details, hyperparameter table"
+      - "Per-task breakdown (easy vs hard tasks)"
+      - "v1/v2 data discrepancy discussion (code sensitivity)"
+      - "Temporal dynamics extended (dose-response, cutoff implementation)"
+      - "Gradient orthogonality analysis details"
+      - "Limitations (expanded)"
+    dependencies: [results]
+
+visualization_plan:
+  - fig_id: fig1_overview
+    type: conceptual
+    tool: matplotlib
+    description: "Cautionary factorial study overview: setup + key finding that all conditions ≤ Vanilla"
+    narrative_intent: "Show the factorial design and the negative finding — auxiliary spatial supervision does not help safety"
+    design_notes:
+      - "Panel a: VLA + auxiliary head setup (schematic)"
+      - "Panel b: 2×2 factorial design matrix (gradient flow × normalization)"
+      - "Panel c: Bar chart showing all conditions ≤ Vanilla (key result summary)"
+    placement: introduction
+    aspect_ratio: "16:6"
+    status: needs_update
+    note: "v1 overview figure needs complete redesign for Plan B framing"
+
+  - fig_id: fig_factorial
+    type: statistical
+    tool: matplotlib
+    description: "2×2 factorial interaction plot: ordinal pattern (gradient flow hurts, BN amplifies)"
+    narrative_intent: "Visualize ordinal interaction — both lines slope downward (gradient flow detrimental), BN line steeper"
+    design_notes:
+      - "Interaction plot with CAR on y-axis, gradient flow ON/OFF on x-axis, BN/LN as separate lines"
+      - "Both lines slope down (not crossing = ordinal, not crossover)"
+      - "Vanilla baseline as dashed horizontal line"
+      - "Error bars: cross-seed SD"
+    data_source: "registry: v2 factorial cells 1-4 + vanilla"
+    placement: results
+    aspect_ratio: "4:3"
+    status: done_partial_v2
+    note: "Redrawn 2026-05-26 with v2 partial data (ordinal pattern). Will update with full v2 data when available (ETA May 27)."
+
+  - fig_id: fig_dose_response
+    type: statistical
+    tool: matplotlib
+    description: "Dose-response: CAR vs gradient flow duration"
+    narrative_intent: "Continuous flow best among aux conditions, reverse worst (timing > duration)"
+    data_source: "registry: cutoff conditions"
+    placement: appendix
+    aspect_ratio: "4:3"
+    status: done
+    path: figures/dose_response.pdf
+    note: "May need minor update with new seed data"
+
+table_plan:
+  - table_id: tab_main_results
+    caption: "Overall results on SafeLIBERO Level I (10 tasks). All auxiliary head configurations perform at or below Vanilla."
+    placement: results
+    type: comparison
+    columns: [Condition, Seeds, Code, TSR, CAR, 95% CI, ΔCAR]
+    data_source: "registry: all conditions, v2 data preferred"
+    status: needs_update
+    note: "Must include v1/v2 code version column. Placeholder until all v2 data in"
+
+  - table_id: tab_factorial
+    caption: "2×2 factorial: normalization type × gradient flow. Ordinal interaction — gradient flow detrimental, BN amplifies."
+    placement: results
+    type: factorial
+    columns: [Gradient ON, Gradient OFF, Δ(ON-OFF)]
+    data_source: "registry: v2 factorial cells 1-4"
+    status: needs_update
+    note: "Placeholder until Cell 2/4 v2 complete"
+
+  - table_id: tab_ablation_design
+    caption: "Ablation design: each comparison isolates one factor."
+    placement: method
+    type: design
+    columns: [Comparison, Isolated Factor]
+    status: done
+
+literature_strategy:
+  citation_budget: 40
+  macro_context:
+    - "3D spatial representations for VLAs (task success, not safety)"
+    - "safety and collision avoidance for robot manipulation VLAs"
+    - "auxiliary task effects and gradient dynamics in deep learning"
+  micro_clusters:
+    - cluster_name: "spatial-vla"
+      target_count: 12
+      must_cite:
+        - "SpatialVLA (RSS 2026)"
+        - "Spatial Forcing (ICLR 2026)"
+        - "DepthVLA"
+      status: done
+
+    - cluster_name: "safety-vla"
+      target_count: 5
+      must_cite:
+        - "AEGIS/VLSA"
+        - "SafeVLA (NeurIPS 2025)"
+        - "CoFreeVLA"
+      status: done
+
+    - cluster_name: "auxiliary-tasks-gradient-dynamics"
+      target_count: 8
+      must_cite:
+        - "Caruana 1997 (multi-task learning)"
+        - "GradNorm, PCGrad, CAGrad (gradient manipulation)"
+        - "Lippl & Lindsey 2024 (implicit regularization)"
+        - "BN sensitivity: Li 2017 AdaBN, Schneider 2020"
+      status: done
+
+    - cluster_name: "infrastructure"
+      target_count: 5
+      must_cite:
+        - "OpenVLA"
+        - "OpenVLA-OFT"
+        - "LIBERO"
+      status: done
+
+writing_order:
+  - method            # independent of final ANOVA
+  - related_work      # independent of final ANOVA
+  - introduction      # independent of final ANOVA, frames the question
+  - results           # skeleton now, data fill after v2 complete
+  - discussion        # after results skeleton
+  - conclusion        # after discussion
+  - abstract          # last, depends on all
+  - appendix          # parallel with results updates
+
+color_palette:
+  vanilla: "#4C72B0"
+  full_occ_bn: "#C44E52"
+  full_occ_ln: "#E69F00"
+  random_occ: "#55A868"
+  detach_bn: "#8172B3"
+  detach_ln: "#937860"
+  depth: "#CCB974"
+  cutoff: "#64B5CD"

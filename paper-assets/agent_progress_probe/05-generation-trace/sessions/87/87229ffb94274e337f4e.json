@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "87229ffb94274e337f4e",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "code oh full finetune",
+  "task_key": "worker_code_oh-full-finetune_20260514T150345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_oh-full-finetune_20260514T150345.log",
+    "occurrence": 1,
+    "bytes": 1502688,
+    "sha256": "7cd10f7d6f381d061974af44250186fa99c6d1f76558000263c0d68436112d9a"
+  },
+  "statistics": {
+    "messages": 1053,
+    "user_turns": 1,
+    "tool_calls": 435,
+    "roles": {
+      "log": 1,
+      "system": 36,
+      "record": 2,
+      "assistant": 134,
+      "tool_call": 435,
+      "tool_result": 435,
+      "user": 1,
+      "result": 9
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 814,
+      "chunks": [
+        {
+          "path": "87229ffb94274e337f4e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "87229ffb94274e337f4e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "87229ffb94274e337f4e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "87229ffb94274e337f4e-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "87229ffb94274e337f4e-part-0005.json",
+          "message_count": 94
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 239,
+      "chunks": [
+        {
+          "path": "87229ffb94274e337f4e-part-0005.json",
+          "message_count": 86
+        },
+        {
+          "path": "87229ffb94274e337f4e-part-0006.json",
+          "message_count": 153
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-oh-full-finetune.md"
+}

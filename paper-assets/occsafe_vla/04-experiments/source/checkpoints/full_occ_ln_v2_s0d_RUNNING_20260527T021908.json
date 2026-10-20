@@ -1,0 +1,35 @@
+{
+  "exp_id": "full_occ_ln_v2_s0d",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T01:16:38.450Z",
+    "updated_at": "2026-05-27T02:19:07.937Z",
+    "hypothesis": "Cell 2 (Full OCC LN, gradient ON + LN) v2 rebuild, seed 42. 4th attempt after s0/s0b/s0c failures (10894 stall + 34685 crash). On 10894:cuda:3 now that driver issue resolved. Fills Cell 2 v2 data gap for factorial ANOVA.",
+    "parent": "full_occ_ln_v2_s0c",
+    "spec": {
+      "command": "torchrun finetune.py --use_occ_head True --occ_detach false --occ_norm_type ln --seed 42 --run_id_note full_occ_ln_v2_s0d",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "490803",
+      "log_path": "~/runs/occsafe_vla/full_occ_ln_v2_s0d.log",
+      "submitted_at": "2026-05-27T01:17:02.653Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 55370,
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_source": "n/a (training, not eval)",
+      "eval_data": "n/a (training, not eval)"
+    }
+  },
+  "timestamp": "2026-05-27T02:19:08.309248+00:00",
+  "trigger": "update_registry"
+}

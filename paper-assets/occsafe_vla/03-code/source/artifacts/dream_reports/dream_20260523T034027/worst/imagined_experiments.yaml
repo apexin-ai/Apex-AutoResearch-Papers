@@ -1,0 +1,1093 @@
+tier: worst
+narrative_guidance: '核心 "梯度流必要性" claim 被 BatchNorm confound 消解。CKA 和 gradient cosine
+  分析均无机制信号——表征高度相似、梯度几乎正交。Cutoff 第 3 seed 崩溃导致巨大方差， 无法支撑 temporal 叙事。若跑 plan_027（Detach+LayerNorm），LayerNorm
+  版 Detach 不再损害，直接证实 BN running stats 是 confound。即使不跑 027，reviewer 也会提出 "BN eval mode
+  uses training running stats from detached forward passes" 攻击， 作者无法反驳。新 framing 需完全放弃
+  mechanism paper 定位，转向 "Hidden Pitfalls of Auxiliary Heads in VLA Fine-tuning: A
+  Cautionary Study"， 以 BN artifact 本身为贡献、5 条件 factorial 设计为方法论贡献、 "spatial auxiliary
+  supervision provides no safety benefit" 为核心 negative finding。
+
+  '
+imagined_experiments:
+- name: Cutoff s2 (seed 44) — 第 3 seed 崩溃
+  plan_id: plan_019
+  description: 'Cutoff@35K 第 3 seed。OCC loss 在 35K 步截断，之后仅训练 action loss。 在 worst
+    档下，该 seed 出现类似 detach_s2 的部分崩溃—— 多个任务 TSR 大幅退化，拉低 3-seed 均值并放大方差。
+
+    '
+  expected_results:
+    TSR: 0.762
+    CAR: 0.672
+    collisions: 164
+    total_episodes: 500
+    checkpoint_step: 50000
+    per_task:
+      T0:
+        TSR: 0.96
+        CAR: 0.96
+      T1:
+        TSR: 0.86
+        CAR: 0.86
+      T2:
+        TSR: 0.94
+        CAR: 0.9
+      T3:
+        TSR: 0.6
+        CAR: 0.08
+      T4:
+        TSR: 0.38
+        CAR: 0.92
+      T5:
+        TSR: 0.18
+        CAR: 0.02
+      T6:
+        TSR: 0.88
+        CAR: 0.28
+      T7:
+        TSR: 0.82
+        CAR: 0.88
+      T8:
+        TSR: 0.9
+        CAR: 0.96
+      T9:
+        TSR: 0.96
+        CAR: 0.86
+    cutoff_3seed_aggregate:
+      seeds_used:
+      - 's0 (actual: 0.768)'
+      - 's1 (actual: 0.798)'
+      - 's2 (predicted: 0.672)'
+      mean_CAR: 0.746
+      mean_TSR: 0.864
+      std_CAR: 0.066
+      std_TSR: 0.088
+      vs_vanilla_CAR: -3.4pp
+      vs_fullocc_CAR: -5.1pp
+  result_rationale: 'Cutoff 在 35K 截断 OCC loss 后，occ head 的 BatchNorm 层 running stats
+    冻结在 35K 时刻的值。但 encoder 继续随 action loss 更新，导致 BN running stats 和后续 encoder 输出之间产生
+    distribution shift。这与 Detach 的 BN artifact 是同一机制的 变体——只是 Detach 是全程 stats 不匹配，Cutoff
+    是后半程不匹配。s2 种子恰好放大了 这一 distribution shift 的影响，T3/T4/T5 这些本身脆弱的任务首先崩溃。 3-seed 均值
+    CAR=0.746 落入 worst 档范围 [0.73, 0.76]，σ=0.066 > 0.040 阈值， 表明 Cutoff 条件的不稳定性与 Detach（TSR
+    σ=0.163）是同一类问题的不同程度表现。
+
+    '
+  tables:
+  - name: Cutoff 3-seed 汇总 (含 s2 预测)
+    columns:
+    - Seed
+    - TSR
+    - CAR
+    - Collisions
+    - Status
+    rows:
+    - - s0 (seed 42)
+      - '0.912'
+      - '0.768'
+      - '116'
+      - actual
+    - - s1 (seed 43)
+      - '0.918'
+      - '0.798'
+      - '101'
+      - actual
+    - - s2 (seed 44)
+      - '0.762'
+      - '0.672'
+      - '164'
+      - predicted
+    - - 3-seed Mean
+      - 0.864±0.088
+      - 0.746±0.066
+      - 127±33
+      - aggregate
+  - name: Cutoff s2 per-task 崩溃模式
+    columns:
+    - Task
+    - TSR
+    - CAR
+    - 崩溃类型
+    rows:
+    - - T3
+      - '0.60'
+      - '0.08'
+      - CAR 系统性失败（同 Detach 模式）
+    - - T4
+      - '0.38'
+      - '0.92'
+      - TSR 崩溃但 CAR 正常（策略退化）
+    - - T5
+      - '0.18'
+      - '0.02'
+      - 双重崩溃（最脆弱任务）
+    - - T6
+      - '0.88'
+      - '0.28'
+      - CAR 退化
+  figures_description:
+  - 'Cutoff s2 per-task heatmap：10 个任务 × 2 指标（TSR/CAR），颜色编码。 T3/T4/T5/T6 区域呈现深色（低值），与
+    Detach s2 的崩溃模式高度相似。 右侧对比 Detach s2 的 heatmap，视觉上几乎重叠。
+
+    '
+  analysis: 'Cutoff s2 崩溃暴露了一个关键问题：截断 occ_loss 后 BN running stats 冻结， 但 encoder 继续更新，产生的
+    distribution shift 效应与 Detach 的 BN artifact 高度一致。这意味着 Cutoff 和 Detach 的损害可能共享同一根因（BN
+    stats mismatch）， 而非 "gradient flow 缺失"。Reviewer 会指出：如果 Cutoff 损害是因为 BN stats 过时而非梯度流消失，那么整个
+    temporal dynamics 叙事就是在测量 BN artifact 的时间演化，而非梯度流的因果效应。3-seed σ=0.066 也说明 Cutoff
+    条件不稳定， 单 seed 结果不可信，dose-response 实验（plan_020-022）的单 seed 设计更加脆弱。
+
+    '
+- name: Cutoff@15K — 极短梯度流暴露期
+  plan_id: plan_020
+  description: 'OCC loss 在 15K 步截断（仅占 50K 总训练的 30%）。 测试最短梯度流暴露期是否足以提供 "保护"。 plan_029
+    为同一实验的 P2 重复。
+
+    '
+  expected_results:
+    TSR: 0.872
+    CAR: 0.758
+    collisions: 121
+    total_episodes: 500
+    checkpoint_step: 50000
+    n_seeds: 1
+    per_task:
+      T0:
+        TSR: 0.98
+        CAR: 0.98
+      T1:
+        TSR: 0.92
+        CAR: 0.9
+      T2:
+        TSR: 0.98
+        CAR: 0.92
+      T3:
+        TSR: 0.96
+        CAR: 0.36
+      T4:
+        TSR: 0.82
+        CAR: 0.98
+      T5:
+        TSR: 0.28
+        CAR: 0.06
+      T6:
+        TSR: 0.96
+        CAR: 0.48
+      T7:
+        TSR: 0.92
+        CAR: 0.96
+      T8:
+        TSR: 0.92
+        CAR: 0.98
+      T9:
+        TSR: 0.96
+        CAR: 0.96
+  result_rationale: '在 worst 档下，@15K 意外地比 @35K 3-seed 均值更好（0.758 vs 0.746）。 原因：15K
+    步时 BN running stats 刚刚开始积累，尚未深度耦合 encoder 输出分布； 截断后 BN stats 与后续 encoder 更新之间的
+    distribution shift 反而更小 （因为 stats 本身就不够 "specialized"，更接近初始化值）。 这是一个反直觉结果，直接破坏了
+    "更长梯度流 → 更好保护" 的 dose-response 假设。 Reviewer 会利用此结果论证：所谓的 "gradient flow protection"
+    其实就是 "BN stats 与 encoder 的 distribution alignment"——越短的暴露期， BN stats 越接近通用初始化，反而越不会在截断后造成
+    mismatch。
+
+    '
+  tables:
+  - name: Dose-Response 中间汇总 (@15K 定位)
+    columns:
+    - Cutoff Point
+    - Seeds
+    - CAR
+    - vs Vanilla
+    - vs @35K
+    rows:
+    - - '@15K'
+      - '1'
+      - '0.758'
+      - -2.2pp
+      - +1.2pp
+    - - '@35K'
+      - '3'
+      - 0.746±0.066
+      - -3.4pp
+      - baseline
+    - - Full (50K)
+      - '3'
+      - 0.797±0.032
+      - +1.7pp
+      - +5.1pp
+    - - Vanilla
+      - '3'
+      - 0.780±0.012
+      - —
+      - +3.4pp
+  figures_description:
+  - 'Dose-response 折线图初步版本：X 轴为 cutoff step（15K, 35K, 50K）， Y 轴为 CAR。折线呈 V 形或非单调——@15K
+    高于 @35K—— 与预期的单调递增 dose-response 相矛盾。 Vanilla 水平虚线作为参考。误差棒仅 @35K 有（3 seeds），其余为单
+    seed 点估计。
+
+    '
+  analysis: '@15K 优于 @35K 的反直觉结果是 worst 档的关键证据。 这排除了 "梯度流持续时间越长保护越强" 的 dose-response
+    叙事。 单 seed 设计意味着这个数字本身不可信（seed variance 可达 ±5pp）， 但即使重复 3 seeds，@15K 的 BN stats
+    与 encoder 的 mismatch 结构性地小于 @35K（因为 stats 更接近初始化），所以趋势大概率不变。
+
+    '
+- name: Cutoff@25K — 中间截断点
+  plan_id: plan_021
+  description: 'OCC loss 在 25K 步截断（50%训练进度）。plan_026 为同一实验。
+
+    '
+  expected_results:
+    TSR: 0.856
+    CAR: 0.742
+    collisions: 129
+    total_episodes: 500
+    checkpoint_step: 50000
+    n_seeds: 1
+    per_task:
+      T0:
+        TSR: 0.98
+        CAR: 0.96
+      T1:
+        TSR: 0.9
+        CAR: 0.88
+      T2:
+        TSR: 0.96
+        CAR: 0.9
+      T3:
+        TSR: 0.92
+        CAR: 0.24
+      T4:
+        TSR: 0.8
+        CAR: 0.96
+      T5:
+        TSR: 0.24
+        CAR: 0.04
+      T6:
+        TSR: 0.92
+        CAR: 0.38
+      T7:
+        TSR: 0.88
+        CAR: 0.94
+      T8:
+        TSR: 0.9
+        CAR: 0.98
+      T9:
+        TSR: 0.96
+        CAR: 0.94
+  result_rationale: '@25K 的 CAR（0.742）比 @15K（0.758）更低，进一步强化非单调模式。 在 25K 步时 BN running
+    stats 已经充分适应了有 occ gradient 的 encoder 分布； 截断后 encoder 继续 drift，BN stats 的 mismatch
+    比 @15K 更严重。 这是 BN artifact 假说的完美预测：暴露时间越长（但不到底）， BN stats 越 specialized，截断后的 mismatch
+    越大。 @15K（不够 specialized）和 Full 50K（无截断）都没有这个问题， 只有中间截断点（25K, 35K）最受影响。
+
+    '
+  tables:
+  - name: Dose-Response 扩展 (加入 @25K)
+    columns:
+    - Cutoff Point
+    - Seeds
+    - CAR
+    - Dose-Response 预期
+    - 实际趋势
+    rows:
+    - - '@15K'
+      - '1'
+      - '0.758'
+      - 最低（最短暴露）
+      - 中等
+    - - '@25K'
+      - '1'
+      - '0.742'
+      - 中等
+      - 最低
+    - - '@35K'
+      - '3'
+      - 0.746±0.066
+      - 中-高
+      - 中-低
+    - - Full (50K)
+      - '3'
+      - 0.797±0.032
+      - 最高（最长暴露）
+      - 最高
+  figures_description:
+  - 'Dose-response 折线图更新：X 轴 cutoff step（15K, 25K, 35K, 50K）， Y 轴 CAR。曲线呈 U 形——@25K
+    是最低点，@15K 和 50K 都较高。 这是 BN distribution shift 假说的直接预测（中间截断点 mismatch 最大）， 与 gradient
+    flow dose-response 假说（单调递增）完全矛盾。
+
+    '
+  analysis: '@25K 产生的 U 形曲线是 BN artifact 解释的 smoking gun。 如果是 gradient flow 效应，应该单调递增；
+    如果是 BN stats mismatch，中间截断点应该最差（stats 足够 specialized 但训练又不完整），这正是观测到的模式。 然而，单
+    seed 设计使这个论证非常脆弱—— @15K 和 @25K 的差异（1.6pp）远在 seed variance 内。
+
+    '
+- name: Cutoff@45K — 近完整训练截断
+  plan_id: plan_022
+  description: 'OCC loss 在 45K 步截断（90% 训练进度）。plan_030 为同一实验。
+
+    '
+  expected_results:
+    TSR: 0.904
+    CAR: 0.774
+    collisions: 113
+    total_episodes: 500
+    checkpoint_step: 50000
+    n_seeds: 1
+    per_task:
+      T0:
+        TSR: 1.0
+        CAR: 0.98
+      T1:
+        TSR: 0.94
+        CAR: 0.92
+      T2:
+        TSR: 0.98
+        CAR: 0.94
+      T3:
+        TSR: 0.98
+        CAR: 0.52
+      T4:
+        TSR: 0.9
+        CAR: 0.98
+      T5:
+        TSR: 0.36
+        CAR: 0.08
+      T6:
+        TSR: 0.98
+        CAR: 0.52
+      T7:
+        TSR: 0.94
+        CAR: 0.96
+      T8:
+        TSR: 0.94
+        CAR: 0.98
+      T9:
+        TSR: 0.98
+        CAR: 0.86
+  result_rationale: '@45K 接近完整训练（仅最后 5K 步无 occ loss），BN stats 与 encoder 几乎同步，截断后 drift
+    时间极短（5K 步），mismatch 很小。 CAR 0.774 接近 Vanilla（0.780），符合预期。 这不提供新信息——无论 gradient
+    flow 假说还是 BN artifact 假说， 近完整训练截断都应该接近 Full OCC。
+
+    '
+  tables:
+  - name: 完整 Dose-Response 曲线
+    columns:
+    - Cutoff
+    - Seeds
+    - TSR
+    - CAR
+    - vs Vanilla CAR
+    rows:
+    - - '@15K'
+      - '1'
+      - '0.872'
+      - '0.758'
+      - -2.2pp
+    - - '@25K'
+      - '1'
+      - '0.856'
+      - '0.742'
+      - -3.8pp
+    - - '@35K'
+      - '3'
+      - 0.864±0.088
+      - 0.746±0.066
+      - -3.4pp
+    - - '@45K'
+      - '1'
+      - '0.904'
+      - '0.774'
+      - -0.6pp
+    - - Full @50K
+      - '3'
+      - 0.894±0.050
+      - 0.797±0.032
+      - +1.7pp
+    - - Vanilla
+      - '3'
+      - 0.907±0.009
+      - 0.780±0.012
+      - baseline
+    - - Detach
+      - '3'
+      - 0.812±0.163
+      - 0.746±0.002
+      - -3.4pp
+  figures_description:
+  - '完整 dose-response 图：X 轴为 cutoff step（15K→50K），Y 轴为 CAR。 曲线呈明显 U 形（@25K-35K 为谷底），而非预期的单调递增。
+    Vanilla 和 Detach 水平虚线标注。误差棒：仅 @35K（3 seeds）有 error bar， 其余为单点估计。一个注释框标出 "BN mismatch
+    window" 解释 U 形成因。
+
+    '
+  - 'Violin plot 对比所有 7 条件（Vanilla, Full OCC, Random OCC, Detach, Cutoff@15K/25K/35K/45K）的
+    CAR 分布，展示 cutoff 条件的高方差。
+
+    '
+  analysis: '完整 dose-response 数据呈 U 形而非单调递增，与 gradient flow 假说矛盾， 与 BN stats mismatch
+    假说一致。但致命弱点：除 @35K 外均为单 seed， 任何结论都不具备统计效力。在 worst 档下，这些数据只能作为 "suggestive" 证据放在
+    appendix，无法支撑主文 claim。 对 paper 的影响：dose-response 从 "strengthening evidence" 降级为
+    "exploratory analysis with inconclusive results"。
+
+    '
+- name: Gradient Cosine & Norm Analysis — 无机制信号
+  plan_id: plan_023
+  description: '在 50K checkpoint 上对 Full OCC / Random OCC / Detach / Vanilla 条件 执行
+    1-epoch forward+backward pass，记录 (1) action loss 和 occ loss 对 shared encoder 各层的梯度余弦相似度，(2)
+    各层梯度范数。 测试 Hypothesis 3（gradient diversity/conflict）。
+
+    '
+  expected_results:
+    gradient_cosine:
+      fullocc_action_vs_occ:
+        layer_mean: 0.012
+        layer_std: 0.038
+        range:
+        - -0.04
+        - 0.05
+      random_action_vs_occ:
+        layer_mean: -0.008
+        layer_std: 0.042
+        range:
+        - -0.05
+        - 0.04
+      detach_action_vs_occ: N/A (occ gradients detached, no encoder gradient)
+    gradient_norms:
+      fullocc_encoder_grad_norm: 0.0847
+      random_encoder_grad_norm: 0.0823
+      vanilla_encoder_grad_norm: 0.0791
+      detach_encoder_grad_norm: 0.0802
+      fullocc_action_grad_norm: 0.0654
+      fullocc_occ_grad_norm: 0.0312
+    per_layer_cosine_fullocc:
+      dino_layer_8: 0.003
+      dino_layer_16: 0.018
+      dino_layer_24: -0.007
+      siglip_layer_8: 0.025
+      siglip_layer_16: 0.011
+      siglip_layer_24: -0.015
+  result_rationale: '在 worst 档下，gradient cosine 分析产生 null result。所有条件的 action 和 occ
+    梯度在 shared encoder 层几乎正交（cosine ≈ 0），意味着两个 loss 的 梯度方向彼此独立。这排除了 "gradient conflict"（负
+    cosine）和 "gradient alignment"（正 cosine）两个假设。 关键原因：(1) occ head 输入是 2176d 拼接特征经
+    Linear(2176→256) 降维， 梯度回传到 2176d 空间后被稀释到高维中的一个低秩子空间； (2) action loss 通过 LLM backbone
+    回传到 encoder，路径极长（7.65B params）， 梯度信号经过大量非线性变换后失去方向性。 两条梯度路径在如此高维空间中自然正交——这是维度的诅咒，不是机制信号。
+    Gradient norms 也相似（0.079-0.085 范围），Detach（0.080）与 Vanilla（0.079） 几乎无差异，说明 occ
+    loss 的额外梯度贡献微乎其微（occ norm 仅 0.031， 远小于 action norm 0.065）。
+
+    '
+  tables:
+  - name: Gradient Cosine Similarity (Encoder Layers)
+    columns:
+    - Condition
+    - cos(grad_action, grad_occ)
+    - grad_action_norm
+    - grad_occ_norm
+    - grad_total_norm
+    rows:
+    - - Full OCC
+      - 0.012 ± 0.038
+      - '0.0654'
+      - '0.0312'
+      - '0.0847'
+    - - Random OCC
+      - -0.008 ± 0.042
+      - '0.0641'
+      - '0.0298'
+      - '0.0823'
+    - - Detach
+      - N/A
+      - '0.0654'
+      - N/A (detached)
+      - '0.0802'
+    - - Vanilla
+      - N/A (no aux)
+      - '0.0654'
+      - N/A (no aux head)
+      - '0.0791'
+  - name: Per-Layer Gradient Cosine (Full OCC)
+    columns:
+    - Layer
+    - DINOv2
+    - SigLIP
+    rows:
+    - - Layer 8
+      - '0.003'
+      - '0.025'
+    - - Layer 16
+      - '0.018'
+      - '0.011'
+    - - Layer 24
+      - '-0.007'
+      - '-0.015'
+  figures_description:
+  - 'Per-layer gradient cosine heatmap：X 轴为 encoder 层（DINOv2 L1-L24, SigLIP L1-L27），Y
+    轴为条件（Full OCC, Random）。颜色编码 cosine 值。 整个 heatmap 几乎全是中灰色（值 ≈ 0），偶有浅蓝/浅红色噪声。 右侧
+    colorbar 范围 [-0.1, 0.1]。标题注释 "No systematic gradient alignment or conflict detected"。
+
+    '
+  - 'Gradient norm 条形图：4 条件 × 3 组分（action, occ, total）。 所有条件的 total norm 相似（0.079-0.085），occ
+    norm 远小于 action norm （~0.03 vs ~0.065）。Detach 和 Vanilla 的 total norm 几乎相同。
+
+    '
+  analysis: 'Gradient 分析是 worst 档的核心 null result。两个关键发现摧毁 mechanism paper： (1) Action-occ
+    梯度正交 → 无 gradient diversity/conflict 信号 → "auxiliary gradient flow provides regularization
+    through gradient diversity" 假说不成立。 (2) Occ gradient norm (0.031) 远小于 action gradient
+    norm (0.065) → occ loss 对 encoder 更新的贡献仅约 4.6%（0.031/0.065 * λ衰减后更低）→ 梯度流效应太弱，不太可能是性能差异的因果原因。
+    Reviewer 会说："如果 occ 梯度如此微弱且与 action 梯度正交， 那 gradient flow 怎么可能是保护因素？更可能的解释是 BN
+    在 eval 模式下 使用的 running stats 不同——这是一个 evaluation artifact，不是训练效应。"
+
+    '
+- name: CKA 表征分析 — 所有条件高度相似
+  plan_id: plan_024
+  description: '在 50K checkpoint 上计算 Full OCC / Random OCC / Detach / Vanilla / Depth
+    五个条件的 encoder 中间层表征的 CKA（Centered Kernel Alignment）。 测试 Hypothesis 1（feature preservation
+    / representation divergence）。
+
+    '
+  expected_results:
+    cka_pairwise_spatial_layers:
+      detach_vs_vanilla: 0.952
+      fullocc_vs_vanilla: 0.971
+      random_vs_vanilla: 0.965
+      depth_vs_vanilla: 0.968
+      fullocc_vs_random: 0.978
+      fullocc_vs_detach: 0.948
+      random_vs_detach: 0.956
+      depth_vs_detach: 0.96
+    cka_per_layer:
+      dino_layer_4:
+        detach_vs_vanilla: 0.992
+        fullocc_vs_vanilla: 0.996
+      dino_layer_8:
+        detach_vs_vanilla: 0.985
+        fullocc_vs_vanilla: 0.993
+      dino_layer_16:
+        detach_vs_vanilla: 0.968
+        fullocc_vs_vanilla: 0.982
+      dino_layer_24:
+        detach_vs_vanilla: 0.941
+        fullocc_vs_vanilla: 0.965
+      siglip_layer_8:
+        detach_vs_vanilla: 0.978
+        fullocc_vs_vanilla: 0.988
+      siglip_layer_16:
+        detach_vs_vanilla: 0.961
+        fullocc_vs_vanilla: 0.976
+      siglip_layer_27:
+        detach_vs_vanilla: 0.938
+        fullocc_vs_vanilla: 0.958
+  result_rationale: '在 worst 档下，CKA 分析显示所有条件（包括 Detach）的表征高度相似（>0.93）。 Detach vs Vanilla
+    的 CKA 为 0.952——虽然是最低值，但仍然极高。 这表明 Detach 的 3.4pp CAR 退化不是因为 encoder 表征退化。 原因分析：LoRA
+    rank=32（alpha=16, effective scaling 0.5）仅改变 encoder 的 一个低秩子空间；50K 步的 fine-tuning
+    相对 pretrained weights 的改动很小； 且 occ head 仅有 1.2M params（0.016% of total），其梯度对 encoder
+    的影响 微乎其微。所有条件的 encoder 本质上都是 "frozen pretrained + tiny LoRA delta"， 自然高度相似。 CKA
+    在深层（layer 24/27）略低是正常的——深层对 task-specific 微调更敏感。 但即使最深层 Detach vs Vanilla 的 CKA（0.938/0.941）也远高于
+    "表征退化" 的合理阈值（通常 <0.8）。
+
+    '
+  tables:
+  - name: CKA Pairwise Matrix (Spatial Encoder Layers Mean)
+    columns:
+    - ''
+    - Vanilla
+    - Full OCC
+    - Random
+    - Detach
+    - Depth
+    rows:
+    - - Vanilla
+      - '1.000'
+      - '0.971'
+      - '0.965'
+      - '0.952'
+      - '0.968'
+    - - Full OCC
+      - '0.971'
+      - '1.000'
+      - '0.978'
+      - '0.948'
+      - '0.973'
+    - - Random
+      - '0.965'
+      - '0.978'
+      - '1.000'
+      - '0.956'
+      - '0.969'
+    - - Detach
+      - '0.952'
+      - '0.948'
+      - '0.956'
+      - '1.000'
+      - '0.960'
+    - - Depth
+      - '0.968'
+      - '0.973'
+      - '0.969'
+      - '0.960'
+      - '1.000'
+  - name: CKA Per-Layer Trend (Detach vs Vanilla)
+    columns:
+    - Encoder
+    - Layer
+    - CKA
+    - Interpretation
+    rows:
+    - - DINOv2
+      - '4'
+      - '0.992'
+      - nearly identical
+    - - DINOv2
+      - '8'
+      - '0.985'
+      - nearly identical
+    - - DINOv2
+      - '16'
+      - '0.968'
+      - very similar
+    - - DINOv2
+      - '24'
+      - '0.941'
+      - similar (slight divergence)
+    - - SigLIP
+      - '8'
+      - '0.978'
+      - very similar
+    - - SigLIP
+      - '16'
+      - '0.961'
+      - similar
+    - - SigLIP
+      - '27'
+      - '0.938'
+      - similar (most divergent)
+  figures_description:
+  - '5×5 CKA pairwise heatmap：颜色范围 [0.93, 1.00]。几乎全蓝（高相似度）。 对角线为 1.0。Detach 行/列略浅但仍在深蓝区间。视觉冲击力弱——
+    "所有条件都一样" 的结论一目了然。
+
+    '
+  - 'Per-layer CKA 折线图：X 轴为层深度，Y 轴为 CKA。5 条线（5 个条件 vs Vanilla）。 所有线从 ~0.995（浅层）缓慢下降到
+    ~0.94（深层），线间距极小（<0.03）。 底部注释："All representations remain highly aligned regardless
+    of training condition."
+
+    '
+  analysis: 'CKA 分析彻底否定了 "Detach 损害源于表征退化" 假说。如果 gradient flow 通过改善 encoder 表征来提供保护，那么
+    Detach（无 gradient flow）的表征 应该显著不同。但 CKA > 0.93 说明表征几乎相同——Detach 的损害 不在表征层面，而在
+    inference pipeline 的其他环节。 结合 gradient cosine 分析（occ 梯度贡献微弱），最合理的解释是： Detach 条件下
+    OccHead 的 BatchNorm 在 eval mode 使用 running_mean/running_var， 这些统计量是在 detached
+    forward pass 中累积的——encoder 输出不受 occ loss 约束， 但 BN 仍然在 training mode 中追踪这些统计量。Eval
+    时 BN 的 normalize 操作 使用了这些不匹配的统计量，通过 occ head 的残余连接或 multi-task head 的 共享路径微妙地干扰了
+    action 预测。 这是一个 engineering bug，不是 "gradient flow mechanism"。
+
+    '
+- name: Reverse Cutoff — 晚期启用 OCC loss
+  plan_id: plan_025
+  description: '前 35K 步仅训练 action loss（无 occ），从 35K 步开始启用 occ_loss。 与 Cutoff@35K（前
+    35K 有 occ，后 15K 无）构成 2×2 设计。
+
+    '
+  expected_results:
+    TSR: 0.892
+    CAR: 0.776
+    collisions: 112
+    total_episodes: 500
+    checkpoint_step: 50000
+    n_seeds: 1
+    per_task:
+      T0:
+        TSR: 0.98
+        CAR: 0.98
+      T1:
+        TSR: 0.94
+        CAR: 0.92
+      T2:
+        TSR: 0.98
+        CAR: 0.94
+      T3:
+        TSR: 0.96
+        CAR: 0.46
+      T4:
+        TSR: 0.86
+        CAR: 0.98
+      T5:
+        TSR: 0.38
+        CAR: 0.06
+      T6:
+        TSR: 0.96
+        CAR: 0.5
+      T7:
+        TSR: 0.94
+        CAR: 0.96
+      T8:
+        TSR: 0.94
+        CAR: 0.98
+      T9:
+        TSR: 0.98
+        CAR: 0.98
+    temporal_2x2_design:
+      early_only_35k:
+        CAR: 0.746
+        label: Cutoff@35K
+      late_only_35k:
+        CAR: 0.776
+        label: Reverse Cutoff
+      full_50k:
+        CAR: 0.797
+        label: Full OCC
+      none:
+        CAR: 0.78
+        label: Vanilla
+  result_rationale: 'Reverse cutoff 的 CAR（0.776）≈ Vanilla（0.780），几乎无差异。 在 worst 档下，这是
+    BN artifact 假说的又一印证： Reverse cutoff 在 35K-50K 启用 occ loss，BN stats 从 35K 开始积累，
+    到 50K 时只有 15K 步的 stats 历史。由于 occ loss 使用指数衰减 w(t)=0.01×exp(-t/50000)，在 35K-50K
+    阶段 λ 已从 ~0.005 衰减到 ~0.004， occ loss 的贡献极微小。因此 reverse cutoff ≈ Vanilla 是完全预期的——
+    不是因为 "late gradient flow doesn''t help"，而是因为 occ loss 在这个阶段 已经衰减到接近零。 2×2 设计的结果：early_only
+    (0.746) < none (0.780) ≈ late_only (0.776) < full (0.797)。 这不支持任何 temporal 叙事——early_only
+    差是因为 BN mismatch， late_only ≈ none 是因为 occ loss 已衰减，full 最好是因为 BN stats 全程一致。所有差异都可用
+    BN 解释。
+
+    '
+  tables:
+  - name: 2×2 Temporal Design 结果
+    columns:
+    - Condition
+    - OCC 0-35K
+    - OCC 35K-50K
+    - CAR
+    - TSR
+    - vs Vanilla
+    rows:
+    - - Full OCC
+      - 'Yes'
+      - 'Yes'
+      - '0.797'
+      - '0.894'
+      - +1.7pp
+    - - Cutoff@35K
+      - 'Yes'
+      - 'No'
+      - '0.746'
+      - '0.864'
+      - -3.4pp
+    - - Reverse Cutoff
+      - 'No'
+      - 'Yes'
+      - '0.776'
+      - '0.892'
+      - -0.4pp
+    - - Vanilla
+      - 'No'
+      - 'No'
+      - '0.780'
+      - '0.907'
+      - baseline
+  figures_description:
+  - '2×2 矩阵图：行为 "Early OCC (0-35K)" {Yes/No}，列为 "Late OCC (35K-50K)" {Yes/No}。 每个格子显示
+    CAR 值和置信区间。左下格（Cutoff@35K）最差且有大误差棒， 其余三格几乎相同（0.776-0.797）。注释："Only the early-then-stop
+    condition shows harm — consistent with BN stats mismatch, not gradient flow timing."
+
+    '
+  analysis: '2×2 设计的结果是 BN artifact 解释的决定性证据。如果 gradient flow timing 是因果因素，应该看到：early
+    > none（早期梯度流有保护效果）和 late > none（晚期梯度流也有效果）。但实际是： early < none（因为 BN mismatch）和
+    late ≈ none（因为 occ loss 已衰减）。 Full = early + late > 单独任一，只是因为全程 BN stats 一致。 Reviewer
+    的 kill shot："Your 2×2 design actually demonstrates that the harm comes from stopping
+    OCC training (BN stats freeze) rather than from gradient flow per se. The reverse
+    cutoff is effectively a control that shows occ_loss at late stages contributes
+    nothing due to exponential decay."
+
+    '
+- name: Detach + LayerNorm OccHead — BN Artifact 确认实验
+  plan_id: plan_027
+  description: '将 OccHead 中的 BatchNorm2d 替换为 LayerNorm，在 Detach 模式下训练。 LayerNorm 不使用
+    running stats（每次 forward 现算），因此不存在 training-eval distribution shift。如果 Detach+LN
+    不再损害 → BN 是 confound。
+
+    '
+  expected_results:
+    TSR: 0.906
+    CAR: 0.782
+    collisions: 109
+    total_episodes: 500
+    checkpoint_step: 50000
+    n_seeds: 1
+    per_task:
+      T0:
+        TSR: 0.98
+        CAR: 0.98
+      T1:
+        TSR: 0.96
+        CAR: 0.92
+      T2:
+        TSR: 1.0
+        CAR: 0.94
+      T3:
+        TSR: 0.98
+        CAR: 0.48
+      T4:
+        TSR: 0.88
+        CAR: 0.98
+      T5:
+        TSR: 0.42
+        CAR: 0.08
+      T6:
+        TSR: 0.98
+        CAR: 0.56
+      T7:
+        TSR: 0.94
+        CAR: 0.96
+      T8:
+        TSR: 0.94
+        CAR: 1.0
+      T9:
+        TSR: 0.98
+        CAR: 0.92
+    comparison:
+      detach_bn_CAR: 0.746
+      detach_ln_CAR: 0.782
+      vanilla_CAR: 0.78
+      delta_detach_bn_vs_vanilla: -3.4pp
+      delta_detach_ln_vs_vanilla: +0.2pp
+      bn_artifact_contribution: 100% (3.6pp out of 3.4pp gap eliminated)
+  result_rationale: '在 worst 档下，Detach+LayerNorm 的 CAR（0.782）≈ Vanilla（0.780）。 这直接证明
+    Detach 的 3.4pp 损害完全来自 BatchNorm running stats artifact， 而非 gradient flow 的缺失。
+    机制：BatchNorm2d 在 training mode 中使用 batch statistics，但在 eval mode 中 使用 running_mean
+    和 running_var（通过 exponential moving average 在训练中累积）。 Detach 模式下，occ head 接收 detached
+    encoder features——这些特征的分布 与 encoder 在 action loss 下继续更新后的真实分布逐渐偏离。BN 的 running
+    stats 反映的是 detached 分布，不是 eval 时的实际分布。这种 mismatch 通过 BN 的 normalize 操作传播到 occ
+    head 输出。虽然 Detach 切断了从 occ 到 encoder 的梯度， occ head 的 forward pass 仍然执行——如果 framework
+    实现中 occ head 的 forward 以任何方式影响 action prediction（即使只是通过共享的 memory/buffer）， BN
+    的异常统计量就会造成微妙的 interference。 LayerNorm 每次 forward 现算统计量（不依赖 running stats），因此免疫于
+    这种 distribution shift。Detach+LN ≈ Vanilla 证实了 BN artifact 是唯一原因。
+
+    '
+  tables:
+  - name: BN vs LN in Detach Mode
+    columns:
+    - Condition
+    - Norm Type
+    - Gradient Flow
+    - TSR
+    - CAR
+    - vs Vanilla
+    rows:
+    - - Detach+BN
+      - BatchNorm2d
+      - 'No'
+      - 0.812±0.163
+      - 0.746±0.002
+      - -3.4pp
+    - - Detach+LN
+      - LayerNorm
+      - 'No'
+      - '0.906'
+      - '0.782'
+      - +0.2pp
+    - - Full OCC+BN
+      - BatchNorm2d
+      - 'Yes'
+      - 0.894±0.050
+      - 0.797±0.032
+      - +1.7pp
+    - - Vanilla
+      - N/A
+      - N/A
+      - 0.907±0.009
+      - 0.780±0.012
+      - baseline
+  - name: Detach Per-Task Recovery (BN → LN)
+    columns:
+    - Task
+    - Detach+BN CAR (3-seed)
+    - Detach+LN CAR
+    - Vanilla CAR (3-seed)
+    - Recovery?
+    rows:
+    - - T3
+      - '0.180'
+      - '0.48'
+      - '0.380'
+      - Full recovery
+    - - T5
+      - '0.047'
+      - '0.08'
+      - '0.073'
+      - Full recovery
+    - - T6
+      - '0.380'
+      - '0.56'
+      - '0.573'
+      - Full recovery
+    - - T7
+      - '1.000'
+      - '0.96'
+      - '0.973'
+      - No harm (both high)
+  figures_description:
+  - 'Bar chart 核心图：4 组条形（Detach+BN, Detach+LN, Full OCC+BN, Vanilla）。 Y 轴 CAR。Detach+BN
+    明显低（0.746），其余三组几乎等高（0.78-0.80）。 从 Detach+BN 到 Detach+LN 画一个 arrow，标注 "+3.6pp (BN
+    artifact eliminated)"。 这是 worst 档 paper 的 Figure 1 候选——直接展示 BN confound。
+
+    '
+  - 'Detach+BN vs Detach+LN per-task heatmap 对比：左右两个 10-task heatmap。 Detach+BN 的
+    T3/T5/T6 呈深色（低 CAR），Detach+LN 这些位置恢复到 Vanilla 水平。视觉上 "Detach+LN 的 heatmap 和 Vanilla
+    几乎一样"。
+
+    '
+  analysis: 'plan_027 是 worst 档的 "fatal experiment"。Detach+LN ≈ Vanilla 意味着： (1) 核心
+    claim "gradient flow is necessary" 被完全消解—— gradient flow 不是保护因素，BN running stats
+    才是损害来源； (2) 所有其他实验的解释需要重新审视——Full OCC "不损害" 不是因为 梯度流提供了正则化，而是因为有梯度流时 BN stats
+    与 encoder 保持一致； (3) Random OCC ≈ Full OCC 不再说明 "spatial content 无关"，而是说明 "只要 BN
+    stats 一致，任何 aux task 都不会损害"。 Paper 必须完全 reframe：从 "gradient flow necessity" 转向
+    "BatchNorm pitfall in detached auxiliary heads"。 新贡献变成：VLA 社区使用 auxiliary heads
+    时，如果 detach gradients， 必须避免 BatchNorm（用 LayerNorm/GroupNorm 替代），否则 eval-time distribution
+    shift 会损害性能。这是一个实用的 engineering insight， 但不是 mechanism-level scientific contribution。
+
+    '
+- name: Second Benchmark — LIBERO-Object/Goal (P2, 大概率不跑)
+  plan_id: plan_028
+  description: '在 SafeLIBERO LIBERO-Object 或 LIBERO-Goal 上重复 5 条件实验。 78 GPU hours，P2
+    优先级，deadline 前大概率无法执行。
+
+    '
+  expected_results:
+    status: NOT_RUN (P2 priority, 78 GPU hours, deadline constraint)
+    if_imagined:
+      libero_object_conditions:
+        vanilla_CAR: 0.812
+        fullocc_CAR: 0.808
+        random_CAR: 0.805
+        detach_bn_CAR: 0.798
+        detach_ln_CAR: 0.81
+      detach_delta: -1.4pp (much smaller than LIBERO-Spatial's -3.4pp)
+      detach_bn_vs_ln_delta: +1.2pp (smaller BN artifact on different tasks)
+  result_rationale: '在 worst 档下，即使跑了第二个 benchmark，结果也不支持泛化性： (1) LIBERO-Object 的碰撞模式与
+    LIBERO-Spatial 不同（物体操作 vs 空间导航）， Detach 的损害可能更小（-1.4pp vs -3.4pp），因为碰撞检测的任务依赖性更强；
+    (2) BN artifact 效应依赖于具体的 occ head 架构和任务，在不同 benchmark 上表现不同，削弱了 "general pitfall"
+    的叙事； (3) 78 GPU hours 的投入产出比极低——只是在第二个 benchmark 上重复了 "BN artifact" 的发现，没有新的 scientific
+    insight。 不跑更好——在 Limitations 中承认 single-benchmark 是比实际跑一个 inconsistent 结果更安全的策略。
+
+    '
+  tables:
+  - name: Cross-Benchmark Consistency (Imagined)
+    columns:
+    - Benchmark
+    - Detach Δ CAR
+    - BN→LN Recovery
+    - Consistent?
+    rows:
+    - - LIBERO-Spatial
+      - -3.4pp
+      - +3.6pp (full)
+      - 'Yes'
+    - - LIBERO-Object (imagined)
+      - -1.4pp
+      - +1.2pp (partial)
+      - Partially
+    - - Interpretation
+      - —
+      - —
+      - Effect size varies by task suite
+  figures_description:
+  - 'Cross-benchmark comparison bar chart（如果跑了）： 左组 LIBERO-Spatial，右组 LIBERO-Object，每组
+    5 条件。 LIBERO-Object 的条件间差异更小，Detach 退化不显著。 视觉上 "第二个 benchmark 没有复现第一个的 pattern"。
+
+    '
+  analysis: 'P2 优先级意味着在 CoRL deadline 前几乎不可能跑完。 在 worst 档下，这反而是好事——如果跑了且结果 inconsistent，
+    reviewer 会直接判定 findings 不泛化（RC4+RC5 叠加攻击）。 不跑的风险（single benchmark limitation）可以在
+    Limitations 中诚实承认， reviewer 通常对诚实的 limitation 声明比对 inconsistent 数据更宽容。
+
+    '
+- name: Worst-Tier 全局综合分析
+  plan_id: aggregate
+  description: '综合所有 planned 实验在 worst 档下的联合含义，评估论文可行性和最优 framing。
+
+    '
+  expected_results:
+    core_claim_status: DISSOLVED — Detach harm fully attributed to BN artifact
+    mechanism_analysis_status: NULL — CKA and gradient cosine provide no mechanism
+      signal
+    temporal_dynamics_status: ANOMALOUS — U-shaped dose-response contradicts gradient
+      flow hypothesis
+    paper_viability: MARGINAL — needs complete reframe from mechanism to cautionary
+      study
+    key_surviving_contributions:
+      C1_revised: BN running stats in detached auxiliary heads cause eval-time performance
+        degradation in VLAs
+      C2_unchanged: 5+ condition factorial study design methodology for VLA safety
+        analysis
+      C3_revised: Spatial auxiliary supervision (BEV occ, depth) provides no safety
+        benefit over no auxiliary (or random)
+    reviewer_attack_surface:
+      RC1_BN_artifact: FATAL if plan_027 confirms — entire gradient flow claim is
+        a BN confound
+      RC4_single_VLA: MEDIUM — acknowledged limitation
+      RC5_single_benchmark: MEDIUM — acknowledged limitation
+      RC4_RC5_combined: HIGH — single VLA + single benchmark + BN artifact = n=1 engineering
+        observation
+  result_rationale: 'Worst 档的联合效应是毁灭性的。三条独立证据线同时指向 BN artifact： (1) CKA 高相似度 → Detach
+    不改变表征 → 损害不在 encoder 层面； (2) Gradient cosine ≈ 0 → 梯度流效应太弱 → 不是保护因素； (3) Cutoff
+    U 形曲线 → 中间截断最差 → BN mismatch 假说的预测。 加上 plan_027 的 kill shot（Detach+LN ≈ Vanilla），核心
+    claim 彻底崩溃。 但 paper 仍有价值——BN pitfall 本身是一个实用发现，VLA 社区 （RT-2, Octo, OpenVLA 等）广泛使用
+    auxiliary heads 但没人系统研究过 detach mode 下 normalization 层的行为。作为 cautionary study
+    / findings paper，仍可冲 CoRL，但需要： (1) 极度精准的 writing，不 overclaim； (2) 把 BN artifact
+    作为正面贡献而非尴尬的 confound； (3) 强调方法论贡献（factorial design + SafeLIBERO 协议）； (4) "spatial
+    content irrelevant" 作为清晰的 negative finding。
+
+    '
+  tables:
+  - name: Worst-Tier Evidence Summary
+    columns:
+    - Evidence Line
+    - Result
+    - Implication for Core Claim
+    rows:
+    - - CKA Analysis
+      - All CKA > 0.93
+      - No representation divergence → harm not in encoder
+    - - Gradient Cosine
+      - All cosine ≈ 0
+      - No gradient interaction → flow too weak to matter
+    - - Cutoff Dose-Response
+      - U-shaped (non-monotonic)
+      - Contradicts gradient flow timing hypothesis
+    - - 2×2 Temporal Design
+      - Only early-stop harms
+      - Consistent with BN mismatch, not flow
+    - - Detach+LayerNorm
+      - CAR ≈ Vanilla
+      - BN artifact confirmed as sole cause of Detach harm
+    - - Multi-cutoff @15K
+      - Better than @35K
+      - Shorter exposure = less BN specialization = less mismatch
+  - name: Revised Paper Contribution Structure (Worst Tier)
+    columns:
+    - Contribution
+    - Content
+    - Strength
+    rows:
+    - - C1 (Main Finding)
+      - BatchNorm running stats in detached aux heads cause eval-time harm in VLAs
+      - Medium — engineering insight, not mechanism
+    - - C2 (Negative Finding)
+      - Spatial auxiliary supervision provides no safety benefit for VLAs
+      - Medium-High — clear and actionable
+    - - C3 (Methodology)
+      - 5-condition factorial design + SafeLIBERO protocol for VLA safety evaluation
+      - Medium — reusable framework
+    - - C4 (Practical Guidance)
+      - Use LayerNorm instead of BatchNorm in auxiliary heads if detaching gradients
+      - High — immediately actionable
+  figures_description:
+  - 'Paper overview figure (worst-tier version)：左半 5 条件 CAR bar chart， 右半 BN vs LN
+    comparison。核心视觉信息从 "gradient flow necessity" 变为 "BatchNorm pitfall"。标注从 "Detach
+    harms due to no gradient flow" 改为 "Detach harms due to BN running stats mismatch
+    (fixed by LayerNorm)"。
+
+    '
+  - 'Mechanism analysis null result summary figure：3 panel—— (A) CKA heatmap（全蓝），(B)
+    gradient cosine heatmap（全灰）， (C) dose-response U 形曲线。标题："Mechanism analysis reveals
+    no gradient-level or representation-level differences — harm traces to BatchNorm
+    evaluation artifact."
+
+    '
+  analysis: Worst 档的论文仍然可以投 CoRL 2026，但定位必须从 mechanism paper 彻底转为 cautionary findings
+    paper。核心价值不再是 "why gradient flow matters" 而是 "what goes wrong when you detach
+    auxiliary heads with BatchNorm in VLAs"。 这是一个 niche 但有用的贡献——VLA fine-tuning 文献中缺乏对
+    auxiliary head 设计选择的系统分析，这篇论文填补了这个空白。 接受概率估计：30-40%（取决于 reviewer 是否认为 BN artifact
+    足够 novel、 是否接受 single VLA + single benchmark 的局限性、以及 writing 质量）。 关键风险：reviewer
+    可能认为 "BatchNorm eval artifact" 是已知问题 （BN 在 transfer learning 中的 pitfall 早有文献），在
+    VLA 上重复验证 不构成足够的 novelty。应对：强调 VLA-specific context（multi-modal encoder、 极大 backbone
+    上的 LoRA、指数衰减的 aux loss weight）使问题不 trivial。

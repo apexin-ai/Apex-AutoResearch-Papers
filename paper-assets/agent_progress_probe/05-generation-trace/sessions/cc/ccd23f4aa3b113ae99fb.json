@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ccd23f4aa3b113ae99fb",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "infra tmux and submit emb001",
+  "task_key": "worker_infra_tmux_and_submit_emb001_20260514T063932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_tmux_and_submit_emb001_20260514T063932_result.json",
+    "occurrence": 1,
+    "bytes": 360,
+    "sha256": "63154d9f6128efb7063b0fc7f518c4a3cf593a272dd2cea04cbd6c6608d5c200"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n**结果：**\n- **tmux**: 安装成功，版本 3.2a\n- **emb_001 session**: 运行中（SESSION_ALIVE）\n- **日志**: 模型 `Qwen/Qwen3-Embedding-0.6B` 已加载（embed_dim=1024），索引了 5000 条 trajectories，54809 个 windows 开始 embedding，进度条已启动\n- **GPU**: python3 进程占用 ~11.4GB 显存"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-tmux-and-submit-emb001.md"
+}

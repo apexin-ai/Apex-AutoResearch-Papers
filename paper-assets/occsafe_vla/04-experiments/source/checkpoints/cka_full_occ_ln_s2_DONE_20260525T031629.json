@@ -1,0 +1,28 @@
+{
+  "exp_id": "cka_full_occ_ln_s2",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T03:14:38.139Z",
+    "updated_at": "2026-05-25T03:16:29.524Z",
+    "hypothesis": "CKA analysis of Full OCC+LN seed 44 vs pretrained. Third data point to confirm s0 DINOv2 drift (CKA=0.640) is seed-specific outlier (s1=0.965 normal).",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python analysis/cka_analysis.py --pretrained_path /root/autodl-tmp/models/openvla-7b --checkpoint_paths /root/autodl-tmp/checkpoints/full_occ_ln_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --condition_names 'Full OCC+LN s2' --libero_data_dir /root/autodl-tmp/libero_datasets/libero_spatial --output_dir /root/autodl-tmp/analysis/cka_full_occ_ln_s2 --gpu 0 --num_samples 200",
+      "server": "westd-10894",
+      "data_path": "/root/autodl-tmp/libero_datasets/libero_spatial",
+      "data_count": 200,
+      "model_name": "openvla-7b",
+      "seed": 44,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/full_occ_ln_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt"
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/full_occ_ln_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+    "log_path": "/root/autodl-tmp/analysis/cka_full_occ_ln_s2/run.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-25T03:16:29.524Z"
+  },
+  "timestamp": "2026-05-25T03:16:29.769841+00:00",
+  "trigger": "update_registry"
+}

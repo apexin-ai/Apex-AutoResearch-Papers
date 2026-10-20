@@ -1,0 +1,31 @@
+{
+  "exp_id": "gradient_analysis",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T03:01:41.119Z",
+    "updated_at": "2026-05-23T19:43:31.546Z",
+    "hypothesis": "Full OCC's auxiliary gradient flow provides an independent gradient direction through the encoder that Detach/Vanilla lack. Gradient cosine similarity between action and OCC heads will show low correlation (diverse gradients), while per-layer gradient norms will show that Full OCC encoder receives substantially larger total gradient magnitude than Vanilla/Detach, supporting the gradient diversity/regularization hypothesis.",
+    "spec": {
+      "checkpoint_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/figures/gradient_analysis_combined.pdf",
+      "log_path": "~/runs/occsafe_vla/gradient_analysis.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "conditions_analyzed": 4,
+      "batches_per_condition": 201,
+      "key_finding": "collapse_prevention_not_amplification",
+      "detach_vanilla_ratio": "0.01-0.13",
+      "full_occ_vanilla_ratio": "0.87-0.93",
+      "random_occ_vanilla_ratio": "1.00-1.14",
+      "cosine_similarity": "~0 (orthogonal)",
+      "figure": "gradient_analysis_combined.pdf"
+    },
+    "completed_at": "2026-05-23T19:43:31.547Z"
+  },
+  "timestamp": "2026-05-23T19:43:31.670184+00:00",
+  "trigger": "update_registry"
+}

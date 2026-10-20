@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "440561a106acb1c33caf",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "code quick probe adjust",
+  "task_key": "worker_code_quick-probe-adjust_20260516T074701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_quick-probe-adjust_20260516T074701_result.json",
+    "occurrence": 1,
+    "bytes": 614,
+    "sha256": "1d2bce21c38c4bfbc88b9ad8a27ab3824facd5cb7d5f862f40bbee0630ee2519"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。修改摘要：\n\n| 文件 | 变更 |\n|------|------|\n| `config.py` | `BASE_MODEL` → `/root/autodl-tmp/models/Qwen/Qwen3-0___6B`（权重下载中，目录已建立） |\n| `evaluate.py` | 新增 `compute_mean_nn_distance()` 函数，`evaluate()` 返回值多了 `mean_nn_distance` 字段 |\n| `run_quick_probe.py` | 新建，single_reward × 3 代，输出 JSON 到 `outputs/quick_probe_results.json`，结尾分析 Vendi Score 下降百分比 |\n| `pipeline.py` | 添加 VRAM 优化 TODO 注释（当前保持分时加载策略不变）；metrics 打印新增 `nn_dist` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-quick-probe-adjust.md"
+}

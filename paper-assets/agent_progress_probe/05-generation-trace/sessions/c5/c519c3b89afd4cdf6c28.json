@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c519c3b89afd4cdf6c28",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "experiment d073 b1b2 early term sim",
+  "task_key": "worker_experiment_d073-b1b2-early-term-sim_20260516T022819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_d073-b1b2-early-term-sim_20260516T022819_result.json",
+    "occurrence": 1,
+    "bytes": 1547,
+    "sha256": "784468ad8df708c9d002083a6029a9fadb58f2e12960be5050554d04268a54be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Both tasks done. Here's the summary:\n\n---\n\n## D073-B1: Early Termination Simulation\n\n**Setup**: Train on SWE conf≥2, cross-agent eval on OH (4969 trajectories, 43376 windows, 19.9% stag prevalence). 3 seeds.\n\n| Model | k | Precision | Recall | Compute Saved |\n|-------|---|-----------|--------|---------------|\n| **3lf_gb** | 1 | 0.995±0.000 | 1.000±0.000 | **40.4%** |\n| **3lf_gb** | 2 | 0.998±0.000 | 0.772±0.000 | 29.7% |\n| **3lf_gb** | 3 | 1.000±0.000 | 0.451±0.000 | 16.3% |\n| 2lf_rf | 1 | 0.848±0.142 | 1.000±0.000 | 40.6% |\n| 2lf_rf | 3 | 0.972±0.035 | 0.451±0.000 | 16.3% |\n| oracle | 1 | 1.000 | 1.000 | 40.4% |\n| random | 1 | 0.261 | 0.814 | 38.1% |\n\n**Key finding**: 3-LF GB is near-oracle — at k=1 it saves 40.4% compute with 99.5% precision. At k≥3 it achieves perfect precision (zero false terminations that matter).\n\n---\n\n## D073-B2: Compute Waste Audit\n\n| Metric | All | SWE-Agent | OpenHands |\n|--------|-----|-----------|-----------|\n| Total trajectories | 10,000 | 5,000 | 5,000 |\n| With stagnation tail | 1,096 (11%) | 863 (17.3%) | 233 (4.7%) |\n| Mean tail ratio | 35.1% | 38.5% | 22.5% |\n| Median tail ratio | 19.3% | 22.0% | 12.2% |\n\n**Key finding**: SWE-Agent wastes significantly more compute on stagnation tails than OpenHands (17.3% vs 4.7% affected, and 38.5% vs 22.5% wasted per affected trajectory).\n\n---\n\nOutput files on server: `/root/autodl-tmp/agent_progress_probe/artifacts/d072/{early_termination_sim,compute_waste_audit}.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-d073-b1b2-early-term-sim.md"
+}

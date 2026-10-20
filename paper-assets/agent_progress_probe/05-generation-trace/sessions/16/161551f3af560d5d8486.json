@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "161551f3af560d5d8486",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "code oh full finetune",
+  "task_key": "worker_code_oh-full-finetune_20260514T150345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_oh-full-finetune_20260514T150345_result.json",
+    "occurrence": 1,
+    "bytes": 1343,
+    "sha256": "bb0969730bfc74e752a72991e4e2bc2b24139cddf092c1f45b5187f1d51f866c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## oh-full-finetune 完成\n\n### 核心结果\n\n| 数据比例 | Macro-F1 | F1(stag) | F1(prog) |\n|---------|----------|----------|----------|\n| 0% (zero-shot) | 0.532 | 0.200 | 0.864 |\n| 5% | 0.570 | — | — |\n| 10% | 0.574 | — | — |\n| 20% | 0.611 | — | — |\n| 50% | 0.688 | — | — |\n| **100%** | **0.751** | **0.544** | **0.959** |\n| SWE-Agent in-domain | 0.906 | — | — |\n\n### 关键发现\n\n1. **100% > 50%，曲线未饱和**：100% OH macro_f1=0.751 比 50% 的 0.688 提升 +0.063，说明 50% 时并非数据量饱和，更多数据仍能持续提升性能。\n\n2. **但距离 in-domain 仍有大差距**：0.751 vs SWE-Agent in-domain 0.906，差距 0.155。这个 gap 可归因于 LF 噪声标签的可靠性上限——即使用全部数据，噪声标签的质量限制了模型能学到的信号。\n\n3. **严重的灾难性遗忘**：OH 微调后在 SWE-Agent 测试集上 macro_f1 从 0.789 降到 0.600（Δ=-0.189），需要 EWC/replay 等正则化手段。\n\n### 对 reviewer 的回应\n\n50%→100% 的持续提升说明 LF 可靠性天花板高于 0.688 但低于 0.906。Few-shot 曲线的增长趋势（log-linear）表明瓶颈同时来自数据量和 LF 噪声，非单一因素。Best epoch=20（达到上限），模型在当前训练配置下可能仍未完全收敛。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-oh-full-finetune.md"
+}

@@ -1,0 +1,48 @@
+{
+  "exp_id": "cutoff_25k_s0",
+  "project": "occsafe_vla",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T05:23:26.502Z",
+    "updated_at": "2026-05-23T20:30:11.648Z",
+    "hypothesis": "Cutoff at 25K steps (vs 35K in standard cutoff) tests the minimum duration of auxiliary gradient flow needed for collision avoidance. If CAR degrades vs cutoff@35K, the encoder needs sustained gradient flow beyond 25K steps to maintain safety-relevant features.",
+    "parent": "cutoff_s0",
+    "spec": {
+      "command": "torchrun finetune.py --use_occ_head True --occ_loss_cutoff_step 25000 --occ_loss_cutoff_mode after --seed 42",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "408207",
+      "log_path": "~/runs/occsafe_vla/cutoff_25k_s0.log",
+      "submitted_at": "2026-05-23T05:28:24.307Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 25000,
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_source": "openvla-7b (from scratch)",
+      "eval_data": "N/A (training)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T20:28:56.534Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T20:28:59.161927+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T20:30:11.769999+00:00",
+  "trigger": "update_registry"
+}

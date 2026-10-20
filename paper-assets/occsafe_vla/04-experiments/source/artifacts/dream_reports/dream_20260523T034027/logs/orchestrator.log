@@ -1,0 +1,5 @@
+2026-05-23 04:25:40,726 INFO    core.tools.feishu  create_chat: name='审稿-occsafe_vla' → chat_id=oc_faa96524df7d6444f5c8cbc48d5a616b
+2026-05-23 04:25:40,729 INFO    core.tools.dream  [dream] auto-created Group C for project=occsafe_vla: oc_faa96524df7d6444f5c8cbc48d5a616b
+2026-05-23 04:34:54,640 INFO    core.tools.dream  [dream] appended reference check results for occsafe_vla/best
+2026-05-23 04:42:34,448 INFO    core.tools.dream  [dream] appended reference check results for occsafe_vla/median
+2026-05-23 04:50:46,300 INFO    core.tools.dream  [dream] appended reference check results for occsafe_vla/worst

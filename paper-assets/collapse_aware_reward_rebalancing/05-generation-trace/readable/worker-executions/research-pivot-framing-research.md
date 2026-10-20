@@ -1,0 +1,2898 @@
+# research pivot framing research
+
+**Does Reward Curation Kill Diversity? Systematic Evidence of Surprising Resilience in Iterative Self-Training** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 44
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/workers/worker_research_pivot_framing_research_20260516T210031.log`
+- **Structured JSON:** [`dd605c121644e44fc687.json`](../../sessions/dd/dd605c121644e44fc687.json)
+
+## Before a recorded user message
+
+44 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing",
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "1def6860-5f55-4cd2-98ed-e303335fa228",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-collapse-aware-reward-rebalancing/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778979000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a58dbece-ac93-4982-8f3b-dba41c5ed501",
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to research the academic framing feasibility of "diversity stagnation" vs "diversity collapse" for their CARR project. They need me to search for relevant papers and assess whether reframing their contribution is viable.
+
+Let me start by searching the web for relevant papers and then compile the findings.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "55730503-9073-45bc-a71e-dafc210945c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V3frPaTt3MC6krZmxEp5Dk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11539,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11539
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Y2rmRGXnPyBWMMWx1F78Th`</summary>
+
+```json
+{
+  "query": "select:WebSearch,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "f0f48ecb-fe0a-41f4-a3cb-bbb5b02f5e00",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V3frPaTt3MC6krZmxEp5Dk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11539,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11539
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T21:00:45.258Z_
+
+<details><summary>↩ Tool result · `toolu_01Y2rmRGXnPyBWMMWx1F78Th`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "09c805de-5fa4-43c2-838d-9d707b7246e4",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:WebSearch,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me first read the current memory.md to understand what's already there, then do web searches for the relevant topics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "10e37346-4088-4665-8af2-937d5d1051da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015bH7PxPs3J6nE4qcccwzxu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1283,
+      "cache_read_input_tokens": 23380,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1283
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+开始调研。先读取现有 memory.md，然后并行搜索多个关键词。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "ea1e1d82-d06b-4c8e-91cf-edbb3bc7f3bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015bH7PxPs3J6nE4qcccwzxu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1283,
+      "cache_read_input_tokens": 23380,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1283
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_017fMQq6BV1hzLde7ttPF3hb`</summary>
+
+```json
+{
+  "project": "collapse_aware_reward_rebalancing",
+  "file": "memory.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "bb9dfef2-e504-4782-bf38-b57a72e5e17b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015bH7PxPs3J6nE4qcccwzxu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1283,
+      "cache_read_input_tokens": 23380,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1283
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T21:00:50.861Z_
+
+<details><summary>↩ Tool result · `toolu_017fMQq6BV1hzLde7ttPF3hb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/memory.md\", \"content\": \"# Memory — collapse_aware_reward_rebalancing\\n\\n## 环境经验\\n\\n### ArmoRM transformers 兼容性 (2026-05-16)\\n- **问题**: ArmoRM-Llama3-8B-v0.1 的 `modeling_custom.py` 导入 `LLAMA_INPUTS_DOCSTRING`，该符号在 transformers ≥4.42 中已移除\\n- **修复**: 将 import 替换为 `LLAMA_INPUTS_DOCSTRING = None`（只用于 docstring 装饰器，不影响推理）\\n- **注意**: transformers 加载 `trust_remote_code=True` 时从多个位置读取自定义代码，需要 patch 所有副本（模型目录 + .hf_cache/modules/ + .cache/huggingface/modules/）\\n- **教训**: 用 `trust_remote_code=True` 的模型，先测试 import 兼容性再启动长时间实验\\n\\n### ArmoRM gating token 容错 (2026-05-16)\\n- **问题**: ArmoRM `find_token_for_gating` 期望 LLaMA-3 chat template 的 `<|eot_id|>` token，Qwen3 生成的部分空/异常 response 缺少此 token\\n- **修复**: score_quality 中 batch forward 加 try/except，fallback 逐样本打分，异常样本赋 0.0\\n- **影响**: 仅 2/8000 batch fallback，0 样本丢失\\n\\n### AutoDL 目录名转义 (2026-05-16)\\n- HuggingFace `snapshot_download(local_dir=...)` 创建目录时，模型名中的 `.` 和 `-` 会被转义为 `___` 和 `_hyphen_`\\n- config.py 路径必须用实际目录名（如 `Qwen3-0___6B`），不是逻辑名\\n\\n### K 值变更时的关键约束 (2026-05-16)\\n- **GEN_BATCH_SIZE 必须同步调整**: `GEN_BATCH_SIZE = max(1, 64 // K_CANDIDATES)`，否则 OOM\\n  - K=4 → batch=16 (16×4=64 seq)\\n  - K=8 → batch=8 (8×8=64 seq)\\n  - K=16 → batch=4 (4×16=64 seq)\\n- **输出目录必须独立**: 每个 K 配置用独立 output dir（outputs_k8/, outputs_k16/ 等），避免 checkpoint 交叉污染\\n- **HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1**: 所有实验启动命令必须包含（网络不通）\\n\\n### Full-FT 训练显存约束 (2026-05-16)\\n- **RTX 5090 32GB 上 Qwen3-0.6B (596M params) full-FT**:\\n  - fp16 不可用（GradScaler 冲突），必须 bf16\\n  - batch_size=2 OOM，需要 gradient_checkpointing=True + per_device_train_batch_size=1 + gradient_accumulation_steps=8\\n  - Generation 阶段 gen_batch_size=16 × K=4 = 64 seq 在独占 GPU 时约占 ~25GB（可行）\\n- **generate.py:10 仍用 torch.float16**：目前不阻塞（generation 用 fp16 推理比 bf16 快且显存够），但若 generation OOM 则需改为 bf16\\n- **重要**: cuda:1 上启动新实验前必须确认无残留进程（之前出现过双进程占满显存导致 OOM）\\n\\n## 决策上下文\\n\\n### P1 诊断阶梯全面 FAIL (2026-05-16)\\n\\n**核心发现：3代迭代训练不产生绝对 diversity collapse，只产生 relative suppression。**\\n\\n| 条件 | Vendi 变化 | 结论 |\\n|------|-----------|------|\\n| K=4 LoRA | -0.27% | FAIL |\\n| K=8 LoRA | -0.03% | FAIL |\\n| K=4 Full-FT | +0.91% | FAIL |\\n| No-curation baseline (LoRA) | +3.13% | 对照 |\\n\\n**关键洞察：**\\n1. LoRA 不是 collapse 的约束因素（Full-FT 同样不 collapse）\\n2. 选择压力大小 (K=4 vs K=8) 在 LoRA 下不影响 diversity 轨迹\\n3. 迭代训练本身使 diversity 上升；curation 抑制这种上升，但不导致下降\\n4. Relative gap ~3pp/3代 存在，但 narrative 需从 \\\"collapse reversal\\\" 转向 \\\"suppression prevention\\\"\\n\\n**待定：** Full-FT no-curation baseline 正在跑(cuda:0)，将确认 Full-FT 下 relative gap 大小\\n\\n**已提交 Framing 调整提案给 Director，等待决策。**\\n\", \"total_chars\": 2438, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "5a0350b8-c1e5-487a-a348-795e6511aebc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/memory.md\\\", \\\"content\\\": \\\"# Memory — collapse_aware_reward_rebalancing\\\\n\\\\n## 环境经验\\\\n\\\\n### ArmoRM transformers 兼容性 (2026-05-16)\\\\n- **问题**: ArmoRM-Llama3-8B-v0.1 的 `modeling_custom.py` 导入 `LLAMA_INPUTS_DOCSTRING`，该符号在 transformers ≥4.42 中已移除\\\\n- **修复**: 将 import 替换为 `LLAMA_INPUTS_DOCSTRING = None`（只用于 docstring 装饰器，不影响推理）\\\\n- **注意**: transformers 加载 `trust_remote_code=True` 时从多个位置读取自定义代码，需要 patch 所有副本（模型目录 + .hf_cache/modules/ + .cache/huggingface/modules/）\\\\n- **教训**: 用 `trust_remote_code=True` 的模型，先测试 import 兼容性再启动长时间实验\\\\n\\\\n### ArmoRM gating token 容错 (2026-05-16)\\\\n- **问题**: ArmoRM `find_token_for_gating` 期望 LLaMA-3 chat template 的 `<|eot_id|>` token，Qwen3 生成的部分空/异常 response 缺少此 token\\\\n- **修复**: score_quality 中 batch forward 加 try/except，fallback 逐样本打分，异常样本赋 0.0\\\\n- **影响**: 仅 2/8000 batch fallback，0 样本丢失\\\\n\\\\n### AutoDL 目录名转义 (2026-05-16)\\\\n- HuggingFace `snapshot_download(local_dir=...)` 创建目录时，模型名中的 `.` 和 `-` 会被转义为 `___` 和 `_hyphen_`\\\\n- config.py 路径必须用实际目录名（如 `Qwen3-0___6B`），不是逻辑名\\\\n\\\\n### K 值变更时的关键约束 (2026-05-16)\\\\n- **GEN_BATCH_SIZE 必须同步调整**: `GEN_BATCH_SIZE = max(1, 64 // K_CANDIDATES)`，否则 OOM\\\\n  - K=4 → batch=16 (16×4=64 seq)\\\\n  - K=8 → batch=8 (8×8=64 seq)\\\\n  - K=16 → batch=4 (4×16=64 seq)\\\\n- **输出目录必须独立**: 每个 K 配置用独立 output dir（outputs_k8/, outputs_k16/ 等），避免 checkpoint 交叉污染\\\\n- **HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1**: 所有实验启动命令必须包含（网络不通）\\\\n\\\\n### Full-FT 训练显存约束 (2026-05-16)\\\\n- **RTX 5090 32GB 上 Qwen3-0.6B (596M params) full-FT**:\\\\n  - fp16 不可用（GradScaler 冲突），必须 bf16\\\\n  - batch_size=2 OOM，需要 gradient_checkpointing=True + per_device_train_batch_size=1 + gradient_accumulation_steps=8\\\\n  - Generation 阶段 gen_batch_size=16 × K=4 = 64 seq 在独占 GPU 时约占 ~25GB（可行）\\\\n- **generate.py:10 仍用 torch.float16**：目前不阻塞（generation 用 fp16 推理比 bf16 快且显存够），但若 generation OOM 则需改为 bf16\\\\n- **重要**: cuda:1 上启动新实验前必须确认无残留进程（之前出现过双进程占满显存导致 OOM）\\\\n\\\\n## 决策上下文\\\\n\\\\n### P1 诊断阶梯全面 FAIL (2026-05-16)\\\\n\\\\n**核心发现：3代迭代训练不产生绝对 diversity collapse，只产生 relative suppression。**\\\\n\\\\n| 条件 | Vendi 变化 | 结论 |\\\\n|------|-----------|------|\\\\n| K=4 LoRA | -0.27% | FAIL |\\\\n| K=8 LoRA | -0.03% | FAIL |\\\\n| K=4 Full-FT | +0.91% | FAIL |\\\\n| No-curation baseline (LoRA) | +3.13% | 对照 |\\\\n\\\\n**关键洞察：**\\\\n1. LoRA 不是 collapse 的约束因素（Full-FT 同样不 collapse）\\\\n2. 选择压力大小 (K=4 vs K=8) 在 LoRA 下不影响 diversity 轨迹\\\\n3. 迭代训练本身使 diversity 上升；curation 抑制这种上升，但不导致下降\\\\n4. Relative gap ~3pp/3代 存在，但 narrative 需从 \\\\\\\"collapse reversal\\\\\\\" 转向 \\\\\\\"suppression prevention\\\\\\\"\\\\n\\\\n**待定：** Full-FT no-curation baseline 正在跑(cuda:0)，将确认 Full-FT 下 relative gap 大小\\\\n\\\\n**已提交 Framing 调整提案给 Director，等待决策。**\\\\n\\\", \\\"total_chars\\\": 2438, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/memory.md\", \"content\": \"# Memory — collapse_aware_reward_rebalancing\\n\\n## 环境经验\\n\\n### ArmoRM transformers 兼容性 (2026-05-16)\\n- **问题**: ArmoRM-Llama3-8B-v0.1 的 `modeling_custom.py` 导入 `LLAMA_INPUTS_DOCSTRING`，该符号在 transformers ≥4.42 中已移除\\n- **修复**: 将 import 替换为 `LLAMA_INPUTS_DOCSTRING = None`（只用于 docstring 装饰器，不影响推理）\\n- **注意**: transformers 加载 `trust_remote_code=True` 时从多个位置读取自定义代码，需要 patch 所有副本（模型目录 + .hf_cache/modules/ + .cache/huggingface/modules/）\\n- **教训**: 用 `trust_remote_code=True` 的模型，先测试 import 兼容性再启动长时间实验\\n\\n### ArmoRM gating token 容错 (2026-05-16)\\n- **问题**: ArmoRM `find_token_for_gating` 期望 LLaMA-3 chat template 的 `<|eot_id|>` token，Qwen3 生成的部分空/异常 response 缺少此 token\\n- **修复**: score_quality 中 batch forward 加 try/except，fallback 逐样本打分，异常样本赋 0.0\\n- **影响**: 仅 2/8000 batch fallback，0 样本丢失\\n\\n### AutoDL 目录名转义 (2026-05-16)\\n- HuggingFace `snapshot_download(local_dir=...)` 创建目录时，模型名中的 `.` 和 `-` 会被转义为 `___` 和 `_hyphen_`\\n- config.py 路径必须用实际目录名（如 `Qwen3-0___6B`），不是逻辑名\\n\\n### K 值变更时的关键约束 (2026-05-16)\\n- **GEN_BATCH_SIZE 必须同步调整**: `GEN_BATCH_SIZE = max(1, 64 // K_CANDIDATES)`，否则 OOM\\n  - K=4 → batch=16 (16×4=64 seq)\\n  - K=8 → batch=8 (8×8=64 seq)\\n  - K=16 → batch=4 (4×16=64 seq)\\n- **输出目录必须独立**: 每个 K 配置用独立 output dir（outputs_k8/, outputs_k16/ 等），避免 checkpoint 交叉污染\\n- **HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1**: 所有实验启动命令必须包含（网络不通）\\n\\n### Full-FT 训练显存约束 (2026-05-16)\\n- **RTX 5090 32GB 上 Qwen3-0.6B (596M params) full-FT**:\\n  - fp16 不可用（GradScaler 冲突），必须 bf16\\n  - batch_size=2 OOM，需要 gradient_checkpointing=True + per_device_train_batch_size=1 + gradient_accumulation_steps=8\\n  - Generation 阶段 gen_batch_size=16 × K=4 = 64 seq 在独占 GPU 时约占 ~25GB（可行）\\n- **generate.py:10 仍用 torch.float16**：目前不阻塞（generation 用 fp16 推理比 bf16 快且显存够），但若 generation OOM 则需改为 bf16\\n- **重要**: cuda:1 上启动新实验前必须确认无残留进程（之前出现过双进程占满显存导致 OOM）\\n\\n## 决策上下文\\n\\n### P1 诊断阶梯全面 FAIL (2026-05-16)\\n\\n**核心发现：3代迭代训练不产生绝对 diversity collapse，只产生 relative suppression。**\\n\\n| 条件 | Vendi 变化 | 结论 |\\n|------|-----------|------|\\n| K=4 LoRA | -0.27% | FAIL |\\n| K=8 LoRA | -0.03% | FAIL |\\n| K=4 Full-FT | +0.91% | FAIL |\\n| No-curation baseline (LoRA) | +3.13% | 对照 |\\n\\n**关键洞察：**\\n1. LoRA 不是 collapse 的约束因素（Full-FT 同样不 collapse）\\n2. 选择压力大小 (K=4 vs K=8) 在 LoRA 下不影响 diversity 轨迹\\n3. 迭代训练本身使 diversity 上升；curation 抑制这种上升，但不导致下降\\n4. Relative gap ~3pp/3代 存在，但 narrative 需从 \\\"collapse reversal\\\" 转向 \\\"suppression prevention\\\"\\n\\n**待定：** Full-FT no-curation baseline 正在跑(cuda:0)，将确认 Full-FT 下 relative gap 大小\\n\\n**已提交 Framing 调整提案给 Director，等待决策。**\\n\", \"total_chars\": 2438, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QSrHj9CnS88vKpSHdXssSs`</summary>
+
+```json
+{
+  "query": "\"diversity stagnation\" reward model RLHF iterative training 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "a4c535ba-57dd-446f-9615-f07a77fc7179",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015bH7PxPs3J6nE4qcccwzxu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1283,
+      "cache_read_input_tokens": 23380,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1283
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DcPpiKSqgEmEJXHmY9JXkT`</summary>
+
+```json
+{
+  "query": "\"mode consolidation\" language model diversity reward 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "9ae87ea8-41fc-4183-86fe-e321c08fa9bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015bH7PxPs3J6nE4qcccwzxu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1283,
+      "cache_read_input_tokens": 23380,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1283
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AcXXyPYhZeU53HEJCNpToR`</summary>
+
+```json
+{
+  "query": "iterative RLHF DPO \"output diversity\" decrease stagnation 2024 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "1c0996ce-59c9-402e-aa46-c0e6fd120404",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015bH7PxPs3J6nE4qcccwzxu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1283,
+      "cache_read_input_tokens": 23380,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1283
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T21:00:59.060Z_
+
+<details><summary>↩ Tool result · `toolu_01QSrHj9CnS88vKpSHdXssSs`</summary>
+
+```text
+Web search results for query: ""diversity stagnation" reward model RLHF iterative training 2024 2025"
+
+Links: [{"title":"Introduction to Reinforcement Learning from Human Feedback: A Review of Current Developments[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202503.1159"},{"title":"GitHub - RLHFlow/RLHF-Reward-Modeling: Recipes to train reward model for RLHF. · GitHub","url":"https://github.com/RLHFlow/RLHF-Reward-Modeling"},{"title":"A Comparison of Reinforcement Learning (RL) and RLHF | IntuitionLabs","url":"https://intuitionlabs.ai/articles/reinforcement-learning-vs-rlhf"},{"title":"Published as a conference paper at ICLR 2025","url":"https://openreview.net/pdf?id=WWXjMYZxfH"},{"title":"RLHF Deciphered: A Critical Analysis of Reinforcement Learning from Human Feedback for LLMs | ACM Computing Surveys","url":"https://dl.acm.org/doi/10.1145/3743127"},{"title":"Curiosity-Driven Reinforcement Learning from Human ...","url":"https://aclanthology.org/2025.acl-long.1146.pdf"},{"title":"[2310.06452] Understanding the Effects of RLHF on LLM Generalisation and Diversity","url":"https://arxiv.org/abs/2310.06452"},{"title":"Understanding the Effects of RLHF on LLM Generalisation ...","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/5a68d05006d5b05dd9463dd9c0219db0-Paper-Conference.pdf"},{"title":"Does RLHF Scale? Exploring the Impacts from Data, Model, and Method","url":"https://arxiv.org/html/2412.06000v1"},{"title":"Journal of Artificial Intelligence Research 82 (2025) 2595-2661","url":"http://www.columbia.edu/~wt2319/Preference_survey.pdf"}]
+
+Based on the web search results, I found relevant information about diversity stagnation, reward models, and RLHF iterative training in recent research (2024-2025):
+
+## Key Findings on Diversity and RLHF
+
+**Diversity Reduction Challenge:**
+RLHF significantly reduces output diversity compared to SFT across a variety of measures, implying a tradeoff in current LLM fine-tuning methods between generalisation and diversity. This is a critical finding that addresses the diversity stagnation issue in your query.
+
+**Mode Collapse Phenomenon:**
+There is evidence of the phenomena of "mode collapse" hypothesised to occur under RLHF fine-tuning. This refers to the tendency of RLHF to narrow the model's output distribution despite improvements in task performance.
+
+## Recent Advances (2024-2025)
+
+**Iterative Training Improvements:**
+A major development in 2025 is the widespread adoption of Online Iterative RLHF, which involves continuous feedback collection and model updates, enabling dynamic adaptation to evolving human preferences.
+
+**Reward Model Enhancements:**
+Reward modeling has seen significant improvements in 2025, with the introduction of contrastive learning and meta-learning techniques to enhance the generalization capabilities of reward models. Additionally, meta-learning has been employed to maintain the reward model's ability to differentiate subtle differences during iterative RLHF optimization.
+
+**Addressing Diversity:**
+Recent work like CD-RLHF (Curiosity-Driven RLHF) is specifically designed to address output diversity issues through curiosity-driven exploration mechanisms.
+
+The search results indicate that diversity stagnation remains a recognized challenge in RLHF, with researchers actively developing solutions through meta-learning, online iterative approaches, and curiosity-driven methods in 2024-2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "ca18e3ac-6baf-4959-9234-8ce7e54180a1",
+  "tool_use_result": {
+    "query": "\"diversity stagnation\" reward model RLHF iterative training 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NCkPyib7yTikLw5QWpFmkh",
+        "content": [
+          {
+            "title": "Introduction to Reinforcement Learning from Human Feedback: A Review of Current Developments[v1] | Preprints.org",
+            "url": "https://www.preprints.org/manuscript/202503.1159"
+          },
+          {
+            "title": "GitHub - RLHFlow/RLHF-Reward-Modeling: Recipes to train reward model for RLHF. · GitHub",
+            "url": "https://github.com/RLHFlow/RLHF-Reward-Modeling"
+          },
+          {
+            "title": "A Comparison of Reinforcement Learning (RL) and RLHF | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/reinforcement-learning-vs-rlhf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://openreview.net/pdf?id=WWXjMYZxfH"
+          },
+          {
+            "title": "RLHF Deciphered: A Critical Analysis of Reinforcement Learning from Human Feedback for LLMs | ACM Computing Surveys",
+            "url": "https://dl.acm.org/doi/10.1145/3743127"
+          },
+          {
+            "title": "Curiosity-Driven Reinforcement Learning from Human ...",
+            "url": "https://aclanthology.org/2025.acl-long.1146.pdf"
+          },
+          {
+            "title": "[2310.06452] Understanding the Effects of RLHF on LLM Generalisation and Diversity",
+            "url": "https://arxiv.org/abs/2310.06452"
+          },
+          {
+            "title": "Understanding the Effects of RLHF on LLM Generalisation ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/5a68d05006d5b05dd9463dd9c0219db0-Paper-Conference.pdf"
+          },
+          {
+            "title": "Does RLHF Scale? Exploring the Impacts from Data, Model, and Method",
+            "url": "https://arxiv.org/html/2412.06000v1"
+          },
+          {
+            "title": "Journal of Artificial Intelligence Research 82 (2025) 2595-2661",
+            "url": "http://www.columbia.edu/~wt2319/Preference_survey.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant information about diversity stagnation, reward models, and RLHF iterative training in recent research (2024-2025):\n\n## Key Findings on Diversity and RLHF\n\n**Diversity Reduction Challenge:**\nRLHF significantly reduces output diversity compared to SFT across a variety of measures, implying a tradeoff in current LLM fine-tuning methods between generalisation and diversity. This is a critical finding that addresses the diversity stagnation issue in your query.\n\n**Mode Collapse Phenomenon:**\nThere is evidence of the phenomena of \"mode collapse\" hypothesised to occur under RLHF fine-tuning. This refers to the tendency of RLHF to narrow the model's output distribution despite improvements in task performance.\n\n## Recent Advances (2024-2025)\n\n**Iterative Training Improvements:**\nA major development in 2025 is the widespread adoption of Online Iterative RLHF, which involves continuous feedback collection and model updates, enabling dynamic adaptation to evolving human preferences.\n\n**Reward Model Enhancements:**\nReward modeling has seen significant improvements in 2025, with the introduction of contrastive learning and meta-learning techniques to enhance the generalization capabilities of reward models. Additionally, meta-learning has been employed to maintain the reward model's ability to differentiate subtle differences during iterative RLHF optimization.\n\n**Addressing Diversity:**\nRecent work like CD-RLHF (Curiosity-Driven RLHF) is specifically designed to address output diversity issues through curiosity-driven exploration mechanisms.\n\nThe search results indicate that diversity stagnation remains a recognized challenge in RLHF, with researchers actively developing solutions through meta-learning, online iterative approaches, and curiosity-driven methods in 2024-2025."
+    ],
+    "durationSeconds": 7.750240299999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T21:00:59.764Z_
+
+<details><summary>↩ Tool result · `toolu_01AcXXyPYhZeU53HEJCNpToR`</summary>
+
+```text
+Web search results for query: "iterative RLHF DPO "output diversity" decrease stagnation 2024 2025 2026"
+
+Links: [{"title":"ITERATIVE DPO WITH AN IMPROVEMENT MODEL FOR ...","url":"https://openreview.net/pdf/4b644558ef2ca3478f977cce5afd6a8f788ee804.pdf"},{"title":"Understanding the Performance Gap in Preference Learning: A Dichotomy of RLHF and DPO","url":"https://arxiv.org/html/2505.19770v1"},{"title":"What is direct preference optimization (DPO)? | SuperAnnotate","url":"https://www.superannotate.com/blog/direct-preference-optimization-dpo"},{"title":"DPO Meets PPO: Reinforced Token Optimization for RLHF Han Zhong∗† Zikang Shan†","url":"https://arxiv.org/pdf/2404.18922"},{"title":"Understanding the Effects of RLHF on LLM Generalisation ...","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/5a68d05006d5b05dd9463dd9c0219db0-Paper-Conference.pdf"},{"title":"DPO Meets PPO: Reinforced Token Optimization for RLHF","url":"https://arxiv.org/html/2404.18922v4"},{"title":"[2310.06452] Understanding the Effects of RLHF on LLM Generalisation and Diversity","url":"https://arxiv.org/abs/2310.06452"},{"title":"Curiosity-Driven Reinforcement Learning from Human ...","url":"https://aclanthology.org/2025.acl-long.1146.pdf"},{"title":"1 A Survey of Direct Preference Optimization","url":"https://www.arxiv.org/pdf/2503.11701"},{"title":"RLHF vs DPO in LLM fine-tuning: 60+ patent analysis | PatSnap","url":"https://www.patsnap.com/resources/blog/articles/rlhf-vs-dpo-in-llm-fine-tuning-60-patent-analysis-2/"}]
+
+I found several research papers and analyses relevant to your query on iterative RLHF/DPO and output diversity issues. Here are the key findings:
+
+## Output Diversity Concerns with RLHF
+
+RLHF significantly reduces output diversity compared to SFT across a variety of measures, implying a tradeoff in current LLM fine-tuning methods between generalisation and diversity. This is a documented problem in preference learning approaches.
+
+## Iterative DPO Approaches
+
+Recent research has been exploring iterative improvements to DPO. The iterative online version of DPO has been shown to have better convergence rates and milder coverage conditions than vanilla DPO. Additionally, approaches enabling online learning without the need for extra annotations provide a mechanism for continuous improvement, with experiments demonstrating improvements in preference alignment with better diversity compared with baseline fine-tuning methods.
+
+## Hybrid and Next-Generation Approaches
+
+More recent work is addressing the limitations of both methods. Methods merging DPO and PPO represent the next generation of alignment training. Iterative self-training DPO partially simulates RLHF's online dynamics, where the model generates and scores its own candidate answers, though these approaches do not fully replicate RLHF's online feedback dynamics.
+
+## Emerging Solutions
+
+Google LLC's Posterior Preference Optimization takes a Bayesian approach, training the model to predict posterior token probabilities conditioned on human preferences, preserving pre-trained distributions.
+
+The research indicates ongoing efforts to balance alignment quality with output diversity, particularly through hybrid approaches combining DPO and PPO methods, and newer techniques that explicitly preserve model diversity.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "aaa37167-5799-4f9a-8768-3e26a6d5df17",
+  "tool_use_result": {
+    "query": "iterative RLHF DPO \"output diversity\" decrease stagnation 2024 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RiY3uSk7CkUQ9bmrUCJgfN",
+        "content": [
+          {
+            "title": "ITERATIVE DPO WITH AN IMPROVEMENT MODEL FOR ...",
+            "url": "https://openreview.net/pdf/4b644558ef2ca3478f977cce5afd6a8f788ee804.pdf"
+          },
+          {
+            "title": "Understanding the Performance Gap in Preference Learning: A Dichotomy of RLHF and DPO",
+            "url": "https://arxiv.org/html/2505.19770v1"
+          },
+          {
+            "title": "What is direct preference optimization (DPO)? | SuperAnnotate",
+            "url": "https://www.superannotate.com/blog/direct-preference-optimization-dpo"
+          },
+          {
+            "title": "DPO Meets PPO: Reinforced Token Optimization for RLHF Han Zhong∗† Zikang Shan†",
+            "url": "https://arxiv.org/pdf/2404.18922"
+          },
+          {
+            "title": "Understanding the Effects of RLHF on LLM Generalisation ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/5a68d05006d5b05dd9463dd9c0219db0-Paper-Conference.pdf"
+          },
+          {
+            "title": "DPO Meets PPO: Reinforced Token Optimization for RLHF",
+            "url": "https://arxiv.org/html/2404.18922v4"
+          },
+          {
+            "title": "[2310.06452] Understanding the Effects of RLHF on LLM Generalisation and Diversity",
+            "url": "https://arxiv.org/abs/2310.06452"
+          },
+          {
+            "title": "Curiosity-Driven Reinforcement Learning from Human ...",
+            "url": "https://aclanthology.org/2025.acl-long.1146.pdf"
+          },
+          {
+            "title": "1 A Survey of Direct Preference Optimization",
+            "url": "https://www.arxiv.org/pdf/2503.11701"
+          },
+          {
+            "title": "RLHF vs DPO in LLM fine-tuning: 60+ patent analysis | PatSnap",
+            "url": "https://www.patsnap.com/resources/blog/articles/rlhf-vs-dpo-in-llm-fine-tuning-60-patent-analysis-2/"
+          }
+        ]
+      },
+      "I found several research papers and analyses relevant to your query on iterative RLHF/DPO and output diversity issues. Here are the key findings:\n\n## Output Diversity Concerns with RLHF\n\nRLHF significantly reduces output diversity compared to SFT across a variety of measures, implying a tradeoff in current LLM fine-tuning methods between generalisation and diversity. This is a documented problem in preference learning approaches.\n\n## Iterative DPO Approaches\n\nRecent research has been exploring iterative improvements to DPO. The iterative online version of DPO has been shown to have better convergence rates and milder coverage conditions than vanilla DPO. Additionally, approaches enabling online learning without the need for extra annotations provide a mechanism for continuous improvement, with experiments demonstrating improvements in preference alignment with better diversity compared with baseline fine-tuning methods.\n\n## Hybrid and Next-Generation Approaches\n\nMore recent work is addressing the limitations of both methods. Methods merging DPO and PPO represent the next generation of alignment training. Iterative self-training DPO partially simulates RLHF's online dynamics, where the model generates and scores its own candidate answers, though these approaches do not fully replicate RLHF's online feedback dynamics.\n\n## Emerging Solutions\n\nGoogle LLC's Posterior Preference Optimization takes a Bayesian approach, training the model to predict posterior token probabilities conditioned on human preferences, preserving pre-trained distributions.\n\nThe research indicates ongoing efforts to balance alignment quality with output diversity, particularly through hybrid approaches combining DPO and PPO methods, and newer techniques that explicitly preserve model diversity."
+    ],
+    "durationSeconds": 7.114945605999997
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T21:01:00.633Z_
+
+<details><summary>↩ Tool result · `toolu_01DcPpiKSqgEmEJXHmY9JXkT`</summary>
+
+```text
+Web search results for query: ""mode consolidation" language model diversity reward 2024 2025"
+
+Links: [{"title":"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019","url":"https://openreview.net/pdf/2512cb80080d770cef9221a8e9f43b219af01d22.pdf"},{"title":"Enhancing Diversity in Large Language Models via Determinantal Point Processes","url":"https://www.arxiv.org/pdf/2509.04784"},{"title":"Jointly Reinforcing Diversity and Quality in Language Model Generations","url":"https://arxiv.org/html/2509.02534v1"},{"title":"Modifying Large Language Model Post-Training for Diverse ...","url":"https://openreview.net/pdf?id=1Pmuw08LoM"},{"title":"The State Of LLMs 2025: Progress, Progress, and Predictions","url":"https://magazine.sebastianraschka.com/p/state-of-llms-2025"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/3df1eca840e82b11bbc33f68c773c38e-Paper-Conference.pdf"},{"title":"preserving diversity in supervised fine-tuning","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/a548ef984f30bca3abdc09f43743827f-Paper-Conference.pdf"},{"title":"Top LLM Trends 2025: What's the Future of LLMs","url":"https://www.turing.com/resources/top-llm-trends"},{"title":"2025: 6 Key Insights into the Year of Large Models","url":"https://eu.36kr.com/en/p/3608026572030976"},{"title":"Evaluating the Diversity and Quality of LLM Generated ...","url":"https://openreview.net/pdf?id=O7bF6nlSOD"}]
+
+I've found several relevant research papers and discussions on "mode consolidation" in language models related to diversity and reward mechanisms in 2024-2025. Here's what the search revealed:
+
+## Key Findings
+
+**Mode Collapse and Diversity Loss:**
+Recent research notes that RL improves generation factuality and alignment but often reduces output diversity, leading to mode collapse. A recurring observation is that optimizing for quality (task reward or accuracy) typically sharpens the model's output distribution, thereby reducing diversity (coverage of plausible alternatives).
+
+**Quality-Diversity Tradeoff:**
+In creative and exploratory domains such as brainstorming, creative writing, and scientific discovery, this tension is consequential: a language model that attains high average quality but collapses onto a narrow portion of the solution space can miss novel, high-value candidates.
+
+**Recent Solutions (2024-2025):**
+Several approaches have emerged to address mode consolidation:
+
+1. Diversity-Aware Reinforcement Learning (Darling), an online RL objective that measures diversity at the semantic level via a learned classifier, and fuses diversity and quality to condition gradient updates on "usefully different" trajectories.
+
+2. Models trained with SFT or RLHF tend to converge toward a narrow set of canonical responses. Diversity directly benefits test-time applications: it improves best-of-n performance, mitigates the effects of distribution shift between training and test rewards, and ensures better coverage of multiple modes in the reward landscape.
+
+3. GEM, a method that not only increases output diversity but also enables the generation of higher-quality responses.
+
+These developments represent significant research efforts to balance reward optimization with output diversity in language model training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "02b358e0-f57e-4720-b396-16e5c57ebdb3",
+  "tool_use_result": {
+    "query": "\"mode consolidation\" language model diversity reward 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0124LR5Laf68xwYGS2NPaoaL",
+        "content": [
+          {
+            "title": "000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019",
+            "url": "https://openreview.net/pdf/2512cb80080d770cef9221a8e9f43b219af01d22.pdf"
+          },
+          {
+            "title": "Enhancing Diversity in Large Language Models via Determinantal Point Processes",
+            "url": "https://www.arxiv.org/pdf/2509.04784"
+          },
+          {
+            "title": "Jointly Reinforcing Diversity and Quality in Language Model Generations",
+            "url": "https://arxiv.org/html/2509.02534v1"
+          },
+          {
+            "title": "Modifying Large Language Model Post-Training for Diverse ...",
+            "url": "https://openreview.net/pdf?id=1Pmuw08LoM"
+          },
+          {
+            "title": "The State Of LLMs 2025: Progress, Progress, and Predictions",
+            "url": "https://magazine.sebastianraschka.com/p/state-of-llms-2025"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/3df1eca840e82b11bbc33f68c773c38e-Paper-Conference.pdf"
+          },
+          {
+            "title": "preserving diversity in supervised fine-tuning",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/a548ef984f30bca3abdc09f43743827f-Paper-Conference.pdf"
+          },
+          {
+            "title": "Top LLM Trends 2025: What's the Future of LLMs",
+            "url": "https://www.turing.com/resources/top-llm-trends"
+          },
+          {
+            "title": "2025: 6 Key Insights into the Year of Large Models",
+            "url": "https://eu.36kr.com/en/p/3608026572030976"
+          },
+          {
+            "title": "Evaluating the Diversity and Quality of LLM Generated ...",
+            "url": "https://openreview.net/pdf?id=O7bF6nlSOD"
+          }
+        ]
+      },
+      "I've found several relevant research papers and discussions on \"mode consolidation\" in language models related to diversity and reward mechanisms in 2024-2025. Here's what the search revealed:\n\n## Key Findings\n\n**Mode Collapse and Diversity Loss:**\nRecent research notes that RL improves generation factuality and alignment but often reduces output diversity, leading to mode collapse. A recurring observation is that optimizing for quality (task reward or accuracy) typically sharpens the model's output distribution, thereby reducing diversity (coverage of plausible alternatives).\n\n**Quality-Diversity Tradeoff:**\nIn creative and exploratory domains such as brainstorming, creative writing, and scientific discovery, this tension is consequential: a language model that attains high average quality but collapses onto a narrow portion of the solution space can miss novel, high-value candidates.\n\n**Recent Solutions (2024-2025):**\nSeveral approaches have emerged to address mode consolidation:\n\n1. Diversity-Aware Reinforcement Learning (Darling), an online RL objective that measures diversity at the semantic level via a learned classifier, and fuses diversity and quality to condition gradient updates on \"usefully different\" trajectories.\n\n2. Models trained with SFT or RLHF tend to converge toward a narrow set of canonical responses. Diversity directly benefits test-time applications: it improves best-of-n performance, mitigates the effects of distribution shift between training and test rewards, and ensures better coverage of multiple modes in the reward landscape.\n\n3. GEM, a method that not only increases output diversity but also enables the generation of higher-quality responses.\n\nThese developments represent significant research efforts to balance reward optimization with output diversity in language model training."
+    ],
+    "durationSeconds": 8.389489009
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+找到一些关键线索。继续搜索更具体的论文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "ae470c93-ecf1-4160-b4ee-1d6a50b5802c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A4oKA3Vsutd6ujpoV6fXtc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 968,
+      "cache_creation_input_tokens": 3946,
+      "cache_read_input_tokens": 24663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3946
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XrpBuMs4gpVF12W9NrL5AG`</summary>
+
+```json
+{
+  "query": "\"reward hacking\" diversity \"best-of-n\" iterative curation selection pressure 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "80f5b951-2782-4a60-8923-4ed059347dea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A4oKA3Vsutd6ujpoV6fXtc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 968,
+      "cache_creation_input_tokens": 3946,
+      "cache_read_input_tokens": 24663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3946
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01E4MT3fShJtXe3q4iyJs2nY`</summary>
+
+```json
+{
+  "query": "arxiv \"Jointly Reinforcing Diversity and Quality\" language model 2509.02534"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "6394fb34-dd9c-42b5-90b4-9a8b4c114037",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A4oKA3Vsutd6ujpoV6fXtc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 968,
+      "cache_creation_input_tokens": 3946,
+      "cache_read_input_tokens": 24663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3946
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MnNTBjejECxtdzkNdJkNrB`</summary>
+
+```json
+{
+  "query": "arxiv \"Understanding the Effects of RLHF on LLM Generalisation and Diversity\" Kirk 2024 ICLR"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "06470941-5f41-4755-9f21-10f009399ff4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A4oKA3Vsutd6ujpoV6fXtc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 968,
+      "cache_creation_input_tokens": 3946,
+      "cache_read_input_tokens": 24663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3946
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T7B9Ly9Pp528PxQHnT7oQk`</summary>
+
+```json
+{
+  "query": "\"Curiosity-Driven Reinforcement Learning from Human Feedback\" CD-RLHF diversity ACL 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "13e29bb1-ead5-4b44-a435-d4e6e92b505e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A4oKA3Vsutd6ujpoV6fXtc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 968,
+      "cache_creation_input_tokens": 3946,
+      "cache_read_input_tokens": 24663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3946
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T21:01:11.527Z_
+
+<details><summary>↩ Tool result · `toolu_01MnNTBjejECxtdzkNdJkNrB`</summary>
+
+```text
+Web search results for query: "arxiv "Understanding the Effects of RLHF on LLM Generalisation and Diversity" Kirk 2024 ICLR"
+
+Links: [{"title":"[2310.06452] Understanding the Effects of RLHF on LLM Generalisation and Diversity","url":"https://arxiv.org/abs/2310.06452"},{"title":"Understanding the Effects of RLHF on LLM Generalisation and Diversity","url":"https://arxiv.org/html/2310.06452v2"},{"title":"Understanding the Effects of RLHF on LLM Generalisation ...","url":"https://iclr.cc/media/iclr-2024/Slides/18704.pdf"},{"title":"[2310.06452v1] Understanding the Effects of RLHF on LLM Generalisation and Diversity","url":"https://arxiv.org/abs/2310.06452v1"},{"title":"[2310.06452] Understanding the Effects of RLHF on LLM Generalisation and Diversity","url":"https://ar5iv.labs.arxiv.org/html/2310.06452"},{"title":"[PDF] Understanding the Effects of RLHF on LLM Generalisation and Diversity | Semantic Scholar","url":"https://www.semanticscholar.org/paper/cb3968152f7d93f53d24b00279a90d5071ddc85a"},{"title":"Understanding the Effects of RLHF on LLM Generalisation ...","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/5a68d05006d5b05dd9463dd9c0219db0-Paper-Conference.pdf"},{"title":"Understanding the Effects of RLHF on LLM Generalisation and Diversity | OpenReview","url":"https://openreview.net/forum?id=PXD3FAVHJT"},{"title":"Understanding the Effects of RLHF on LLM Generalisation and Diversity | Trending arXiv papers – Ribbit Ribbit","url":"https://ribbitribbit.co/paper/arxiv.2310.06452-Understanding-the-Effects-of-RLHF-on-LLM-Generalisation"},{"title":"ICLR Poster Understanding the Effects of RLHF on LLM Generalisation and Diversity","url":"https://iclr.cc/virtual/2024/poster/18704"}]
+
+I found the paper you're looking for! Here's a summary of the search results:
+
+## Paper Details
+
+The paper "Understanding the Effects of RLHF on LLM Generalisation and Diversity" was authored by Robert Kirk, Ishita Mediratta, Christoforos Nalmpantis, Jelena Luketina, Eric Hambro, Edward Grefenstette, and Roberta Raileanu.
+
+**ArXiv ID:** 2310.06452
+
+## Key Findings
+
+The study finds that RLHF generalises better than SFT to new inputs, particularly as the distribution shift between train and test becomes larger. However, RLHF significantly reduces output diversity compared to SFT across a variety of measures, implying a tradeoff in current LLM fine-tuning methods between generalisation and diversity.
+
+## Research Scope
+
+The research presents an extensive analysis of how each stage of the process (supervised fine-tuning (SFT), reward modelling, and RLHF) affects two key properties: out-of-distribution (OOD) generalisation and output diversity. The analysis was performed across two base models on both summarisation and instruction following tasks.
+
+The paper was presented at ICLR 2024 and is available on arXiv at https://arxiv.org/abs/2310.06452
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "a41d35d5-f7da-46ab-bdc2-e073b026ae92",
+  "tool_use_result": {
+    "query": "arxiv \"Understanding the Effects of RLHF on LLM Generalisation and Diversity\" Kirk 2024 ICLR",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01K5KQ8ffrXJSkNCWd4VXTtg",
+        "content": [
+          {
+            "title": "[2310.06452] Understanding the Effects of RLHF on LLM Generalisation and Diversity",
+            "url": "https://arxiv.org/abs/2310.06452"
+          },
+          {
+            "title": "Understanding the Effects of RLHF on LLM Generalisation and Diversity",
+            "url": "https://arxiv.org/html/2310.06452v2"
+          },
+          {
+            "title": "Understanding the Effects of RLHF on LLM Generalisation ...",
+            "url": "https://iclr.cc/media/iclr-2024/Slides/18704.pdf"
+          },
+          {
+            "title": "[2310.06452v1] Understanding the Effects of RLHF on LLM Generalisation and Diversity",
+            "url": "https://arxiv.org/abs/2310.06452v1"
+          },
+          {
+            "title": "[2310.06452] Understanding the Effects of RLHF on LLM Generalisation and Diversity",
+            "url": "https://ar5iv.labs.arxiv.org/html/2310.06452"
+          },
+          {
+            "title": "[PDF] Understanding the Effects of RLHF on LLM Generalisation and Diversity | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/cb3968152f7d93f53d24b00279a90d5071ddc85a"
+          },
+          {
+            "title": "Understanding the Effects of RLHF on LLM Generalisation ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/5a68d05006d5b05dd9463dd9c0219db0-Paper-Conference.pdf"
+          },
+          {
+            "title": "Understanding the Effects of RLHF on LLM Generalisation and Diversity | OpenReview",
+            "url": "https://openreview.net/forum?id=PXD3FAVHJT"
+          },
+          {
+            "title": "Understanding the Effects of RLHF on LLM Generalisation and Diversity | Trending arXiv papers – Ribbit Ribbit",
+            "url": "https://ribbitribbit.co/paper/arxiv.2310.06452-Understanding-the-Effects-of-RLHF-on-LLM-Generalisation"
+          },
+          {
+            "title": "ICLR Poster Understanding the Effects of RLHF on LLM Generalisation and Diversity",
+            "url": "https://iclr.cc/virtual/2024/poster/18704"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's a summary of the search results:\n\n## Paper Details\n\nThe paper \"Understanding the Effects of RLHF on LLM Generalisation and Diversity\" was authored by Robert Kirk, Ishita Mediratta, Christoforos Nalmpantis, Jelena Luketina, Eric Hambro, Edward Grefenstette, and Roberta Raileanu.\n\n**ArXiv ID:** 2310.06452\n\n## Key Findings\n\nThe study finds that RLHF generalises better than SFT to new inputs, particularly as the distribution shift between train and test becomes larger. However, RLHF significantly reduces output diversity compared to SFT across a variety of measures, implying a tradeoff in current LLM fine-tuning methods between generalisation and diversity.\n\n## Research Scope\n\nThe research presents an extensive analysis of how each stage of the process (supervised fine-tuning (SFT), reward modelling, and RLHF) affects two key properties: out-of-distribution (OOD) generalisation and output diversity. The analysis was performed across two base models on both summarisation and instruction following tasks.\n\nThe paper was presented at ICLR 2024 and is available on arXiv at https://arxiv.org/abs/2310.06452"
+    ],
+    "durationSeconds": 4.916230220999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T21:01:11.618Z_
+
+<details><summary>↩ Tool result · `toolu_01E4MT3fShJtXe3q4iyJs2nY`</summary>
+
+```text
+Web search results for query: "arxiv "Jointly Reinforcing Diversity and Quality" language model 2509.02534"
+
+Links: [{"title":"[2509.02534] Jointly Reinforcing Diversity and Quality in Language Model Generations","url":"https://arxiv.org/abs/2509.02534"},{"title":"Jointly Reinforcing Diversity and Quality in Language Model Generations","url":"https://arxiv.org/pdf/2509.02534"},{"title":"Paper page - Jointly Reinforcing Diversity and Quality in Language Model Generations","url":"https://huggingface.co/papers/2509.02534"},{"title":"Jointly Reinforcing Diversity and Quality in Language ...","url":"https://www.alphaxiv.org/overview/2509.02534"},{"title":"Jointly Reinforcing Diversity and Quality in Language Model Generations | Request PDF","url":"https://www.researchgate.net/publication/395213889_Jointly_Reinforcing_Diversity_and_Quality_in_Language_Model_Generations"},{"title":"DSDR: Dual-Scale Diversity Regularization for Exploration in LLM Reasoning","url":"https://arxiv.org/html/2602.19895v1"},{"title":"GitHub - facebookresearch/darling: Official Implementation of the paper \"Jointly Reinforcing Diversity and Quality in Language Model Generations\" · GitHub","url":"https://github.com/facebookresearch/darling"},{"title":"Jointly Reinforcing Diversity and Quality in Language Model Generations","url":"https://arxiviq.substack.com/p/jointly-reinforcing-diversity-and"},{"title":"Polychromic Objectives for Reinforcement Learning","url":"https://arxiv.org/html/2509.25424v1"},{"title":"[Literature Review] Jointly Reinforcing Diversity and Quality in Language Model Generations","url":"https://www.themoonlight.io/en/review/jointly-reinforcing-diversity-and-quality-in-language-model-generations"}]
+
+I found the paper! Here are the key details about arxiv 2509.02534:
+
+## Paper Summary
+
+The paper introduces Diversity-Aware Reinforcement Learning (DARLING), a framework that jointly optimizes for response quality and semantic diversity.
+
+## Problem Statement
+
+Post-training of Large Language Models (LMs) often prioritizes accuracy and helpfulness at the expense of diversity. This creates a tension: while post-training improves response quality, it also sharpens output distributions and reduces the range of ideas, limiting the usefulness of LMs in creative and exploratory tasks such as brainstorming, storytelling, or problem solving.
+
+## Core Innovation
+
+DARLING introduces a learned partition function to measure diversity beyond surface-level lexical variations. This diversity signal is then combined with a quality reward during online reinforcement learning, encouraging models to generate outputs that are both high-quality and distinct.
+
+## Authors & Publication
+
+The paper was authored by Tianjian Li, Yiming Zhang, Ping Yu, Swarnadeep Saha, Daniel Khashabi, Jason Weston, Jack Lanchantin, and Tianlu Wang, and was submitted on September 2, 2025. The official implementation is available on GitHub at facebookresearch/darling.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "5a0fd838-6c4d-4f43-a1b3-b4feecd660d5",
+  "tool_use_result": {
+    "query": "arxiv \"Jointly Reinforcing Diversity and Quality\" language model 2509.02534",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y8mUhVTh4vjxfDxrCZteFZ",
+        "content": [
+          {
+            "title": "[2509.02534] Jointly Reinforcing Diversity and Quality in Language Model Generations",
+            "url": "https://arxiv.org/abs/2509.02534"
+          },
+          {
+            "title": "Jointly Reinforcing Diversity and Quality in Language Model Generations",
+            "url": "https://arxiv.org/pdf/2509.02534"
+          },
+          {
+            "title": "Paper page - Jointly Reinforcing Diversity and Quality in Language Model Generations",
+            "url": "https://huggingface.co/papers/2509.02534"
+          },
+          {
+            "title": "Jointly Reinforcing Diversity and Quality in Language ...",
+            "url": "https://www.alphaxiv.org/overview/2509.02534"
+          },
+          {
+            "title": "Jointly Reinforcing Diversity and Quality in Language Model Generations | Request PDF",
+            "url": "https://www.researchgate.net/publication/395213889_Jointly_Reinforcing_Diversity_and_Quality_in_Language_Model_Generations"
+          },
+          {
+            "title": "DSDR: Dual-Scale Diversity Regularization for Exploration in LLM Reasoning",
+            "url": "https://arxiv.org/html/2602.19895v1"
+          },
+          {
+            "title": "GitHub - facebookresearch/darling: Official Implementation of the paper \"Jointly Reinforcing Diversity and Quality in Language Model Generations\" · GitHub",
+            "url": "https://github.com/facebookresearch/darling"
+          },
+          {
+            "title": "Jointly Reinforcing Diversity and Quality in Language Model Generations",
+            "url": "https://arxiviq.substack.com/p/jointly-reinforcing-diversity-and"
+          },
+          {
+            "title": "Polychromic Objectives for Reinforcement Learning",
+            "url": "https://arxiv.org/html/2509.25424v1"
+          },
+          {
+            "title": "[Literature Review] Jointly Reinforcing Diversity and Quality in Language Model Generations",
+            "url": "https://www.themoonlight.io/en/review/jointly-reinforcing-diversity-and-quality-in-language-model-generations"
+          }
+        ]
+      },
+      "I found the paper! Here are the key details about arxiv 2509.02534:\n\n## Paper Summary\n\nThe paper introduces Diversity-Aware Reinforcement Learning (DARLING), a framework that jointly optimizes for response quality and semantic diversity.\n\n## Problem Statement\n\nPost-training of Large Language Models (LMs) often prioritizes accuracy and helpfulness at the expense of diversity. This creates a tension: while post-training improves response quality, it also sharpens output distributions and reduces the range of ideas, limiting the usefulness of LMs in creative and exploratory tasks such as brainstorming, storytelling, or problem solving.\n\n## Core Innovation\n\nDARLING introduces a learned partition function to measure diversity beyond surface-level lexical variations. This diversity signal is then combined with a quality reward during online reinforcement learning, encouraging models to generate outputs that are both high-quality and distinct.\n\n## Authors & Publication\n\nThe paper was authored by Tianjian Li, Yiming Zhang, Ping Yu, Swarnadeep Saha, Daniel Khashabi, Jason Weston, Jack Lanchantin, and Tianlu Wang, and was submitted on September 2, 2025. The official implementation is available on GitHub at facebookresearch/darling."
+    ],
+    "durationSeconds": 5.858606402999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T21:01:13.303Z_
+
+<details><summary>↩ Tool result · `toolu_01T7B9Ly9Pp528PxQHnT7oQk`</summary>
+
+```text
+Web search results for query: ""Curiosity-Driven Reinforcement Learning from Human Feedback" CD-RLHF diversity ACL 2025"
+
+Links: [{"title":"Curiosity-Driven Reinforcement Learning from Human Feedback - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.1146/"},{"title":"[2501.11463] Curiosity-Driven Reinforcement Learning from Human Feedback","url":"https://arxiv.org/abs/2501.11463"},{"title":"Curiosity-Driven Reinforcement Learning from Human ...","url":"https://aclanthology.org/2025.acl-long.1146.pdf"},{"title":"Curiosity-Driven Reinforcement Learning from Human Feedback CD-RLHF: An AI Framework that Mitigates the Diversity Alignment Trade-off In Language Models - MarkTechPost","url":"https://www.marktechpost.com/2025/01/31/curiosity-driven-reinforcement-learning-from-human-feedback-cd-rlhf-an-ai-framework-that-mitigates-the-diversity-alignment-trade-off-in-language-models/"},{"title":"Curiosity-Driven Reinforcement Learning from Human Feedback","url":"https://arxiv.org/html/2501.11463v2"},{"title":"Curiosity-Driven Reinforcement Learning from Human Feedback - Paper Detail","url":"https://deeplearn.org/arxiv/569178/curiosity-driven-reinforcement-learning-from-human-feedback"},{"title":"Paper page - Curiosity-Driven Reinforcement Learning from Human Feedback","url":"https://huggingface.co/papers/2501.11463"},{"title":"[Literature Review] Curiosity-Driven Reinforcement Learning from Human Feedback","url":"https://www.themoonlight.io/en/review/curiosity-driven-reinforcement-learning-from-human-feedback"},{"title":"Curiosity-Driven Reinforcement Learning from Human Feedback","url":"https://openreview.net/pdf?id=JDA4G5xfD3"},{"title":"Curiosity-Driven Reinforcement Learning from Human ...","url":"https://arxiv.org/pdf/2501.11463"}]
+
+Based on the search results, I found detailed information about the "Curiosity-Driven Reinforcement Learning from Human Feedback" (CD-RLHF) paper published at ACL 2025.
+
+## Overview
+
+CD-RLHF is a framework that incorporates intrinsic rewards for novel states, alongside traditional sparse extrinsic rewards, to optimize both output diversity and alignment quality.
+
+## The Problem Being Addressed
+
+Reinforcement learning from human feedback (RLHF) has proven effective in aligning large language models (LLMs) with human preferences, but often at the cost of reduced output diversity. This trade-off between diversity and alignment quality remains a significant challenge.
+
+## Key Technical Approach
+
+The approach incorporates curiosity as an intrinsic reward mechanism during the RLHF training stage, working alongside traditional extrinsic rewards from the reward model. CD-RLHF uses forward dynamics to compute prediction errors of state representations, which helps estimate curiosity levels.
+
+## Experimental Results
+
+The framework demonstrates effectiveness through extensive experiments on a range of tasks, including text summarization and instruction following, achieving significant gains in diversity on multiple diversity-oriented metrics while maintaining alignment with human preferences comparable to standard RLHF.
+
+## Publication Details
+
+The paper was published in the Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics in 2025. The code is publicly available at https://github.com/ernie-research/CD-RLHF.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "7497c5da-82e1-41cc-81a6-c589e72dea0a",
+  "tool_use_result": {
+    "query": "\"Curiosity-Driven Reinforcement Learning from Human Feedback\" CD-RLHF diversity ACL 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01S3LzAjhGx4exWGwRCgvqPf",
+        "content": [
+          {
+            "title": "Curiosity-Driven Reinforcement Learning from Human Feedback - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-long.1146/"
+          },
+          {
+            "title": "[2501.11463] Curiosity-Driven Reinforcement Learning from Human Feedback",
+            "url": "https://arxiv.org/abs/2501.11463"
+          },
+          {
+            "title": "Curiosity-Driven Reinforcement Learning from Human ...",
+            "url": "https://aclanthology.org/2025.acl-long.1146.pdf"
+          },
+          {
+            "title": "Curiosity-Driven Reinforcement Learning from Human Feedback CD-RLHF: An AI Framework that Mitigates the Diversity Alignment Trade-off In Language Models - MarkTechPost",
+            "url": "https://www.marktechpost.com/2025/01/31/curiosity-driven-reinforcement-learning-from-human-feedback-cd-rlhf-an-ai-framework-that-mitigates-the-diversity-alignment-trade-off-in-language-models/"
+          },
+          {
+            "title": "Curiosity-Driven Reinforcement Learning from Human Feedback",
+            "url": "https://arxiv.org/html/2501.11463v2"
+          },
+          {
+            "title": "Curiosity-Driven Reinforcement Learning from Human Feedback - Paper Detail",
+            "url": "https://deeplearn.org/arxiv/569178/curiosity-driven-reinforcement-learning-from-human-feedback"
+          },
+          {
+            "title": "Paper page - Curiosity-Driven Reinforcement Learning from Human Feedback",
+            "url": "https://huggingface.co/papers/2501.11463"
+          },
+          {
+            "title": "[Literature Review] Curiosity-Driven Reinforcement Learning from Human Feedback",
+            "url": "https://www.themoonlight.io/en/review/curiosity-driven-reinforcement-learning-from-human-feedback"
+          },
+          {
+            "title": "Curiosity-Driven Reinforcement Learning from Human Feedback",
+            "url": "https://openreview.net/pdf?id=JDA4G5xfD3"
+          },
+          {
+            "title": "Curiosity-Driven Reinforcement Learning from Human ...",
+            "url": "https://arxiv.org/pdf/2501.11463"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the \"Curiosity-Driven Reinforcement Learning from Human Feedback\" (CD-RLHF) paper published at ACL 2025.\n\n## Overview\n\nCD-RLHF is a framework that incorporates intrinsic rewards for novel states, alongside traditional sparse extrinsic rewards, to optimize both output diversity and alignment quality.\n\n## The Problem Being Addressed\n\nReinforcement learning from human feedback (RLHF) has proven effective in aligning large language models (LLMs) with human preferences, but often at the cost of reduced output diversity. This trade-off between diversity and alignment quality remains a significant challenge.\n\n## Key Technical Approach\n\nThe approach incorporates curiosity as an intrinsic reward mechanism during the RLHF training stage, working alongside traditional extrinsic rewards from the reward model. CD-RLHF uses forward dynamics to compute prediction errors of state representations, which helps estimate curiosity levels.\n\n## Experimental Results\n\nThe framework demonstrates effectiveness through extensive experiments on a range of tasks, including text summarization and instruction following, achieving significant gains in diversity on multiple diversity-oriented metrics while maintaining alignment with human preferences comparable to standard RLHF.\n\n## Publication Details\n\nThe paper was published in the Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics in 2025. The code is publicly available at https://github.com/ernie-research/CD-RLHF."
+    ],
+    "durationSeconds": 6.295945268000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T21:01:13.799Z_
+
+<details><summary>↩ Tool result · `toolu_01XrpBuMs4gpVF12W9NrL5AG`</summary>
+
+```text
+Web search results for query: ""reward hacking" diversity "best-of-n" iterative curation selection pressure 2024 2025"
+
+Links: [{"title":"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges","url":"https://arxiv.org/html/2604.13602v1"},{"title":"Inference-Time Reward Hacking in Large Language Models | OpenReview","url":"https://openreview.net/forum?id=hSX7Dd8dxy"},{"title":"Large Language Model Hacking","url":"https://www.emergentmind.com/topics/large-language-model-hacking"},{"title":"Avoiding Reward Hacking","url":"https://www.emergentmind.com/topics/avoiding-reward-hacking"},{"title":"Reward Hacking in Reinforcement Learning | Lil'Log","url":"https://lilianweng.github.io/posts/2024-11-28-reward-hacking/"},{"title":"(PDF) Reward Shaping to Mitigate Reward Hacking in RLHF","url":"https://www.researchgate.net/publication/389392526_Reward_Shaping_to_Mitigate_Reward_Hacking_in_RLHF"},{"title":"Published as a conference paper at ICLR 2025","url":"https://openreview.net/pdf?id=88AS5MQnmC"},{"title":"Inference-Time Reward Hacking in Large Language Models Hadi Khalaf","url":"https://openreview.net/pdf?id=hSX7Dd8dxy"},{"title":"Reward Shaping to Mitigate Reward Hacking in RLHF","url":"https://arxiv.org/html/2502.18770v3"},{"title":"Skywork-Reward-V2: Scaling Preference Data Curation via ...","url":"https://arxiv.org/pdf/2507.01352"}]
+
+I've found comprehensive research on reward hacking, diversity, best-of-n selection, and selection pressure from 2024-2025. Here are the key findings:
+
+## Core Concepts and Mechanisms
+
+Khalaf et al. characterize reward hacking in Best-of-N sampling and related inference-time mechanisms, showing that the characteristic pattern of initial improvement followed by decline is inevitable for a broad class of such methods.
+
+Over-optimization or sampling-based selection (Best-of-n, Soft Best-of-n, or Best-of-Poisson) produces "winner's curse" dynamics and characteristic collapse in true reward beyond an optimal tuning threshold.
+
+## Iterative Curation and Selection Pressure
+
+While repeatedly retraining reward models with updated human feedback can slow down the rate of overoptimization, the performance gains inherently diminish over successive iterations.
+
+RL training employs expert iteration, that is, iterative fine-tuning on best-of-n samples. Training GPT-3.5 on a set of reward-hackable environments can lead to generalization of reward hacking behavior in holdout environments.
+
+## Diversity and Artifact Patterns
+
+There are more reward hacking patterns beyond length, such as format (markdowns, bold-faces) and patterns (certain n-grams or emojis). This is largely due to the large output space of language with limited preference data, as well as the diverse and subjective nature of human preferences.
+
+Liu et al. curate diverse pairwise data for robust reward model training.
+
+## Mitigation Strategies
+
+Hedged selection (HedgeTune) finds the optimal best-of-n or Poisson-parameter at evaluation, avoiding the reward hacking threshold beyond which alignment collapses. Regularized Best-of-N via Minimum Bayes Risk (MBR-BoN) adds a proximity penalty, which ensures high-proxy outputs remain close to the reference policy.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "26c5ef77-0f6f-4ee6-a049-c2c2dc704547",
+  "tool_use_result": {
+    "query": "\"reward hacking\" diversity \"best-of-n\" iterative curation selection pressure 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MSR4r53XxzsN6Dgq8VsF88",
+        "content": [
+          {
+            "title": "Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges",
+            "url": "https://arxiv.org/html/2604.13602v1"
+          },
+          {
+            "title": "Inference-Time Reward Hacking in Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=hSX7Dd8dxy"
+          },
+          {
+            "title": "Large Language Model Hacking",
+            "url": "https://www.emergentmind.com/topics/large-language-model-hacking"
+          },
+          {
+            "title": "Avoiding Reward Hacking",
+            "url": "https://www.emergentmind.com/topics/avoiding-reward-hacking"
+          },
+          {
+            "title": "Reward Hacking in Reinforcement Learning | Lil'Log",
+            "url": "https://lilianweng.github.io/posts/2024-11-28-reward-hacking/"
+          },
+          {
+            "title": "(PDF) Reward Shaping to Mitigate Reward Hacking in RLHF",
+            "url": "https://www.researchgate.net/publication/389392526_Reward_Shaping_to_Mitigate_Reward_Hacking_in_RLHF"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://openreview.net/pdf?id=88AS5MQnmC"
+          },
+          {
+            "title": "Inference-Time Reward Hacking in Large Language Models Hadi Khalaf",
+            "url": "https://openreview.net/pdf?id=hSX7Dd8dxy"
+          },
+          {
+            "title": "Reward Shaping to Mitigate Reward Hacking in RLHF",
+            "url": "https://arxiv.org/html/2502.18770v3"
+          },
+          {
+            "title": "Skywork-Reward-V2: Scaling Preference Data Curation via ...",
+            "url": "https://arxiv.org/pdf/2507.01352"
+          }
+        ]
+      },
+      "I've found comprehensive research on reward hacking, diversity, best-of-n selection, and selection pressure from 2024-2025. Here are the key findings:\n\n## Core Concepts and Mechanisms\n\nKhalaf et al. characterize reward hacking in Best-of-N sampling and related inference-time mechanisms, showing that the characteristic pattern of initial improvement followed by decline is inevitable for a broad class of such methods.\n\nOver-optimization or sampling-based selection (Best-of-n, Soft Best-of-n, or Best-of-Poisson) produces \"winner's curse\" dynamics and characteristic collapse in true reward beyond an optimal tuning threshold.\n\n## Iterative Curation and Selection Pressure\n\nWhile repeatedly retraining reward models with updated human feedback can slow down the rate of overoptimization, the performance gains inherently diminish over successive iterations.\n\nRL training employs expert iteration, that is, iterative fine-tuning on best-of-n samples. Training GPT-3.5 on a set of reward-hackable environments can lead to generalization of reward hacking behavior in holdout environments.\n\n## Diversity and Artifact Patterns\n\nThere are more reward hacking patterns beyond length, such as format (markdowns, bold-faces) and patterns (certain n-grams or emojis). This is largely due to the large output space of language with limited preference data, as well as the diverse and subjective nature of human preferences.\n\nLiu et al. curate diverse pairwise data for robust reward model training.\n\n## Mitigation Strategies\n\nHedged selection (HedgeTune) finds the optimal best-of-n or Poisson-parameter at evaluation, avoiding the reward hacking threshold beyond which alignment collapses. Regularized Best-of-N via Minimum Bayes Risk (MBR-BoN) adds a proximity penalty, which ensures high-proxy outputs remain close to the reference policy."
+    ],
+    "durationSeconds": 8.686004497000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014qmEEh2p4K8QeyVA9jHVH4`</summary>
+
+```json
+{
+  "query": "\"preserving diversity\" \"supervised fine-tuning\" ICLR 2025 SFT alignment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "9e5628e0-5bad-4f93-ab1a-48ee43b89693",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VYPwujW2NGusAJLknsPjpr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2707,
+      "cache_creation_input_tokens": 2328,
+      "cache_read_input_tokens": 28609,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2328
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EMHCnNrBbBWGEJ15fpC7pQ`</summary>
+
+```json
+{
+  "query": "\"iterative self-play\" OR \"iterative preference\" diversity reduction collapse reward model training rounds 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "bfe1289e-a55c-449d-86eb-2a29009be625",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VYPwujW2NGusAJLknsPjpr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2707,
+      "cache_creation_input_tokens": 2328,
+      "cache_read_input_tokens": 28609,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2328
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T21:01:25.158Z_
+
+<details><summary>↩ Tool result · `toolu_014qmEEh2p4K8QeyVA9jHVH4`</summary>
+
+```text
+Web search results for query: ""preserving diversity" "supervised fine-tuning" ICLR 2025 SFT alignment"
+
+Links: [{"title":"preserving diversity in supervised fine-tuning","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/a548ef984f30bca3abdc09f43743827f-Paper-Conference.pdf"},{"title":"Preserving Diversity in Supervised Fine-Tuning of Large Language Models | OpenReview","url":"https://openreview.net/forum?id=NQEe7B7bSw"},{"title":"Preserving Diversity in Supervised Fine-Tuning of Large Language Models","url":"https://arxiv.org/html/2408.16673v2"},{"title":"[2408.16673] Preserving Diversity in Supervised Fine-Tuning of Large Language Models","url":"https://arxiv.org/abs/2408.16673"},{"title":"GitHub - liziniu/GEM: Code for Paper (Preserving Diversity in Supervised Fine-tuning of Large Language Models)","url":"https://github.com/liziniu/GEM"},{"title":"Revision History for Preserving Diversity in Supervised...","url":"https://openreview.net/revisions?id=NQEe7B7bSw"},{"title":"[Quick Review] Preserving Diversity in Supervised Fine-Tuning of Large Language Models","url":"https://liner.com/review/preserving-diversity-in-supervised-finetuning-of-large-language-models"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/8cb240de90aa20207db944c6c88a7cc0-Paper-Conference.pdf"},{"title":"[PDF] Preserving Diversity in Supervised Fine-Tuning of Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/37f621bbb60248c73db182d9c653f4c3aa62f790"},{"title":"BOOSTER: TACKLING HARMFUL FINE-TUNING FOR ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/a7ac8a21e5a27e7ab31a5f42a0117bdb-Paper-Conference.pdf"}]
+
+I found the research paper you're looking for! Here are the key findings:
+
+## Overview
+
+The paper "Preserving Diversity in Supervised Fine-tuning of Large Language Models" was introduced as an ICLR 2025 paper. Large Language Models typically rely on Supervised Fine-Tuning (SFT) to specialize in downstream tasks, with Cross Entropy (CE) loss being the de facto choice. However, CE maximizes the likelihood of observed data without accounting for alternative possibilities, and usually leads to reduced diversity in the model's outputs, which hinders development that requires sampling to explore better responses.
+
+## The Proposed Solution
+
+To address this limitation, the paper introduces a new game-theoretic formulation for SFT. In this framework, an auxiliary variable is introduced to regulate the learning process. The game-theoretic approach connects to the problem of reverse KL minimization with entropy regularization, which prevents over-memorization of training data and promotes output diversity.
+
+The authors develop GEM, a new training algorithm that is computationally efficient as CE by leveraging some unique properties of LLMs.
+
+## Key Results
+
+GEM enhances the model's ability to generate more diverse responses, which translates into improved performance in test-time scaling. For example, when fine-tuning Llama-3.1-8B, GEM outperforms CE by achieving a 5-point improvement in chatting and an 8-point improvement in code generation tasks through repeated sampling.
+
+By preserving output diversity, GEM also mitigates forgetting, demonstrating an 83% reduction in alignment tax.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "14a0f8ee-065d-413f-b226-fe4e2c855be1",
+  "tool_use_result": {
+    "query": "\"preserving diversity\" \"supervised fine-tuning\" ICLR 2025 SFT alignment",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01F62FbjRin3HAjxyPtmPFpp",
+        "content": [
+          {
+            "title": "preserving diversity in supervised fine-tuning",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/a548ef984f30bca3abdc09f43743827f-Paper-Conference.pdf"
+          },
+          {
+            "title": "Preserving Diversity in Supervised Fine-Tuning of Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=NQEe7B7bSw"
+          },
+          {
+            "title": "Preserving Diversity in Supervised Fine-Tuning of Large Language Models",
+            "url": "https://arxiv.org/html/2408.16673v2"
+          },
+          {
+            "title": "[2408.16673] Preserving Diversity in Supervised Fine-Tuning of Large Language Models",
+            "url": "https://arxiv.org/abs/2408.16673"
+          },
+          {
+            "title": "GitHub - liziniu/GEM: Code for Paper (Preserving Diversity in Supervised Fine-tuning of Large Language Models)",
+            "url": "https://github.com/liziniu/GEM"
+          },
+          {
+            "title": "Revision History for Preserving Diversity in Supervised...",
+            "url": "https://openreview.net/revisions?id=NQEe7B7bSw"
+          },
+          {
+            "title": "[Quick Review] Preserving Diversity in Supervised Fine-Tuning of Large Language Models",
+            "url": "https://liner.com/review/preserving-diversity-in-supervised-finetuning-of-large-language-models"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/8cb240de90aa20207db944c6c88a7cc0-Paper-Conference.pdf"
+          },
+          {
+            "title": "[PDF] Preserving Diversity in Supervised Fine-Tuning of Large Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/37f621bbb60248c73db182d9c653f4c3aa62f790"
+          },
+          {
+            "title": "BOOSTER: TACKLING HARMFUL FINE-TUNING FOR ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/a7ac8a21e5a27e7ab31a5f42a0117bdb-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "I found the research paper you're looking for! Here are the key findings:\n\n## Overview\n\nThe paper \"Preserving Diversity in Supervised Fine-tuning of Large Language Models\" was introduced as an ICLR 2025 paper. Large Language Models typically rely on Supervised Fine-Tuning (SFT) to specialize in downstream tasks, with Cross Entropy (CE) loss being the de facto choice. However, CE maximizes the likelihood of observed data without accounting for alternative possibilities, and usually leads to reduced diversity in the model's outputs, which hinders development that requires sampling to explore better responses.\n\n## The Proposed Solution\n\nTo address this limitation, the paper introduces a new game-theoretic formulation for SFT. In this framework, an auxiliary variable is introduced to regulate the learning process. The game-theoretic approach connects to the problem of reverse KL minimization with entropy regularization, which prevents over-memorization of training data and promotes output diversity.\n\nThe authors develop GEM, a new training algorithm that is computationally efficient as CE by leveraging some unique properties of LLMs.\n\n## Key Results\n\nGEM enhances the model's ability to generate more diverse responses, which translates into improved performance in test-time scaling. For example, when fine-tuning Llama-3.1-8B, GEM outperforms CE by achieving a 5-point improvement in chatting and an 8-point improvement in code generation tasks through repeated sampling.\n\nBy preserving output diversity, GEM also mitigates forgetting, demonstrating an 83% reduction in alignment tax."
+    ],
+    "durationSeconds": 7.762087733
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T21:01:28.365Z_
+
+<details><summary>↩ Tool result · `toolu_01EMHCnNrBbBWGEJ15fpC7pQ`</summary>
+
+```text
+Web search results for query: ""iterative self-play" OR "iterative preference" diversity reduction collapse reward model training rounds 2024 2025"
+
+Links: [{"title":"DIVE: Diversified Iterative Self-Improvement","url":"https://arxiv.org/html/2501.00747"},{"title":"Iterative Self-Play Policy Optimization","url":"https://www.emergentmind.com/topics/iterative-self-play-policy-optimization-iterative-spo"},{"title":"Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable","url":"https://arxiv.org/pdf/2603.02218"},{"title":"Self-Play in Reinforcement Learning","url":"https://www.emergentmind.com/topics/self-play-methods-in-reinforcement-learning"},{"title":"Self-Rewarding Language Models Weizhe Yuan1,2 Richard Yuanzhe Pang1,2","url":"https://arxiv.org/pdf/2401.10020"},{"title":"Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain","url":"https://arxiv.org/html/2603.02218"},{"title":"Your Self-Play Algorithm is Secretly an Adversarial Imitator: Understanding LLM Self-Play through the Lens of Imitation Learning","url":"https://arxiv.org/html/2602.01357"},{"title":"Semi-Supervised Reward Modeling via Iterative Self-Training","url":"https://arxiv.org/html/2409.06903v1"},{"title":"IRIS: Interpolative Rényi Iterative Self-play for Large Language Model Fine-Tuning","url":"https://arxiv.org/html/2604.20933"},{"title":"Online Iterative Reinforcement Learning from Human ...","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/94d13c2401fe119e57ba325b6fe526e0-Paper-Conference.pdf"}]
+
+Based on the web search results, I found several highly relevant recent papers and research on iterative self-play, iterative preference learning, diversity reduction, and reward model training from 2024-2025:
+
+## Key Findings:
+
+### Diversity Collapse in Iterative Settings
+
+Preference learning often leads to a reduction in diversity, a problem that is exacerbated in iterative settings due to the accumulation of this effect over time. Model collapse is a critical challenge when training models on self-generated data, where models progressively lose information about the underlying distribution. In RL and preference learning settings, this issue manifests as reduced diversity in generated responses, as the model increasingly focuses on a narrow set of high-reward patterns.
+
+### Solutions and Methods
+
+**DIVE (Diversified Iterative Self-Improvement)**: DIVE is the first study focused on diversity loss in iterative self-improvement. It operates through two complementary strategies: Sample Pool Expansion (which encourages the model to explore a broader set of potential solutions by sampling more responses per question) and Data Selection (which applies outlier detection techniques to filter responses for quality while using greedy selection algorithms to maximize diversity).
+
+### Reward Model Training Over Multiple Rounds
+
+Recent methods include iterative DPO (Tu et al., 2025) which refines both generator and reward model over multiple rounds with verifiable rewards, and Cooper (Hong et al., 2025a) which co-optimises both using hybrid rule-based and model-based rewards to prevent reward hacking.
+
+### Self-Play and Preference Alignment Challenges
+
+These methods lack explicit strong-to-weak synchronisation to ensure the Verifier tracks Solver improvements or expands the task distribution beyond the initial corpus.
+
+### Iterative Self-Play Policy Optimization
+
+Self-Play Iteration alternates agent training against a curated repository of past or concurrent policies, with periodic updates of the policy archive and meta-strategy.
+
+These recent papers (2024-2025) focus on addressing fundamental challenges in iterative self-improvement and preference learning systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "97c64516-13d0-4bc0-a610-f16f6b91c7b4",
+  "tool_use_result": {
+    "query": "\"iterative self-play\" OR \"iterative preference\" diversity reduction collapse reward model training rounds 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018dhGWCLeCR9yEBDfduUyGC",
+        "content": [
+          {
+            "title": "DIVE: Diversified Iterative Self-Improvement",
+            "url": "https://arxiv.org/html/2501.00747"
+          },
+          {
+            "title": "Iterative Self-Play Policy Optimization",
+            "url": "https://www.emergentmind.com/topics/iterative-self-play-policy-optimization-iterative-spo"
+          },
+          {
+            "title": "Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable",
+            "url": "https://arxiv.org/pdf/2603.02218"
+          },
+          {
+            "title": "Self-Play in Reinforcement Learning",
+            "url": "https://www.emergentmind.com/topics/self-play-methods-in-reinforcement-learning"
+          },
+          {
+            "title": "Self-Rewarding Language Models Weizhe Yuan1,2 Richard Yuanzhe Pang1,2",
+            "url": "https://arxiv.org/pdf/2401.10020"
+          },
+          {
+            "title": "Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain",
+            "url": "https://arxiv.org/html/2603.02218"
+          },
+          {
+            "title": "Your Self-Play Algorithm is Secretly an Adversarial Imitator: Understanding LLM Self-Play through the Lens of Imitation Learning",
+            "url": "https://arxiv.org/html/2602.01357"
+          },
+          {
+            "title": "Semi-Supervised Reward Modeling via Iterative Self-Training",
+            "url": "https://arxiv.org/html/2409.06903v1"
+          },
+          {
+            "title": "IRIS: Interpolative Rényi Iterative Self-play for Large Language Model Fine-Tuning",
+            "url": "https://arxiv.org/html/2604.20933"
+          },
+          {
+            "title": "Online Iterative Reinforcement Learning from Human ...",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/94d13c2401fe119e57ba325b6fe526e0-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, I found several highly relevant recent papers and research on iterative self-play, iterative preference learning, diversity reduction, and reward model training from 2024-2025:\n\n## Key Findings:\n\n### Diversity Collapse in Iterative Settings\n\nPreference learning often leads to a reduction in diversity, a problem that is exacerbated in iterative settings due to the accumulation of this effect over time. Model collapse is a critical challenge when training models on self-generated data, where models progressively lose information about the underlying distribution. In RL and preference learning settings, this issue manifests as reduced diversity in generated responses, as the model increasingly focuses on a narrow set of high-reward patterns.\n\n### Solutions and Methods\n\n**DIVE (Diversified Iterative Self-Improvement)**: DIVE is the first study focused on diversity loss in iterative self-improvement. It operates through two complementary strategies: Sample Pool Expansion (which encourages the model to explore a broader set of potential solutions by sampling more responses per question) and Data Selection (which applies outlier detection techniques to filter responses for quality while using greedy selection algorithms to maximize diversity).\n\n### Reward Model Training Over Multiple Rounds\n\nRecent methods include iterative DPO (Tu et al., 2025) which refines both generator and reward model over multiple rounds with verifiable rewards, and Cooper (Hong et al., 2025a) which co-optimises both using hybrid rule-based and model-based rewards to prevent reward hacking.\n\n### Self-Play and Preference Alignment Challenges\n\nThese methods lack explicit strong-to-weak synchronisation to ensure the Verifier tracks Solver improvements or expands the task distribution beyond the initial corpus.\n\n### Iterative Self-Play Policy Optimization\n\nSelf-Play Iteration alternates agent training against a curated repository of past or concurrent policies, with periodic updates of the policy archive and meta-strategy.\n\nThese recent papers (2024-2025) focus on addressing fundamental challenges in iterative self-improvement and preference learning systems."
+    ],
+    "durationSeconds": 10.230407024
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! I've found very relevant papers. Let me now compile the findings. The key papers are:
+
+1. **Kirk et al., "Understanding the Effects of RLHF on LLM Generalisation and Diversity"** (ICLR 2024) - Shows RLHF reduces diversity vs SFT, establishes the diversity-alignment tradeoff.
+
+2. **Li et al., "Jointly Reinforcing Diversity and Quality in Language Model Generations" (DARLING)** (arXiv 2509.02534, Sep 2025) - Facebook Research. Directly addresses quality-diversity tradeoff in RL training. 
+
+I'm also finding several other highly relevant approaches: curiosity-driven methods that inject intrinsic rewards to maintain diversity during RLHF, game-theoretic approaches for preserving diversity in supervised fine-tuning, and a particularly promising iterative self-improvement framework that directly tackles this problem.
+
+The key distinction I'm noticing is that most existing work addresses absolute diversity collapse, but what CARR seems to be targeting is something more subtle—the stagnation of diversity growth during iterative curation, where the model fails to explore new capabilities rather than losing existing ones. This framing appears to be a meaningful gap in the current literature.
+
+That said, the novelty space is getting crowded with DARLING, CD-RLHF, and DIVE all tackling diversity maintenance under reward optimization. The "stagnation" angle is inherently weaker than "collapse" for motivating urgency, though CARR's specific approach of using iterative curation with reward rebalancing could still carve out a complementary position. Let me dig deeper into what DIVE actually says about this distinction.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "64907dbf-0732-464b-ba91-634bba6683b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Co5gBUsXRuo6NpzGGX6ib7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4815,
+      "cache_read_input_tokens": 30937,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4815
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XN3QZDqM5cUJMqKuJcqBpP`</summary>
+
+```json
+{
+  "query": "arxiv DIVE \"Diversified Iterative Self-Improvement\" 2501.00747 diversity loss iterative"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "e03a3fbf-c44e-491f-a6ce-70890f30387d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Co5gBUsXRuo6NpzGGX6ib7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4815,
+      "cache_read_input_tokens": 30937,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4815
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EVft7GkEsf9zWk92wndKwv`</summary>
+
+```json
+{
+  "query": "\"Darling\" \"diversity-aware reinforcement learning\" Facebook quality diversity tradeoff NeurIPS ICML 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "d0620327-290f-4628-ade3-eb580d529735",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Co5gBUsXRuo6NpzGGX6ib7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4815,
+      "cache_read_input_tokens": 30937,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4815
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T21:01:52.714Z_
+
+<details><summary>↩ Tool result · `toolu_01XN3QZDqM5cUJMqKuJcqBpP`</summary>
+
+```text
+Web search results for query: "arxiv DIVE "Diversified Iterative Self-Improvement" 2501.00747 diversity loss iterative"
+
+Links: [{"title":"[2501.00747] DIVE: Diversified Iterative Self-Improvement","url":"https://arxiv.org/abs/2501.00747"},{"title":"DIVE: Diversified Iterative Self-Improvement","url":"https://arxiv.org/html/2501.00747v1"},{"title":"Diverse Preference Optimization","url":"https://arxiv.org/html/2501.18101v3"},{"title":"Diverse, not Short: A Length-Controlled Self-Learning Framework for Improving Response Diversity of Language Models","url":"https://arxiv.org/html/2505.16245v1"},{"title":"[2501.18101] Diverse Preference Optimization","url":"https://arxiv.org/abs/2501.18101"},{"title":"Published as a conference paper at ICLR 2023 DIVERSIFY AND DISAMBIGUATE:","url":"https://arxiv.org/pdf/2202.03418"},{"title":"Iterative Batch Reinforcement Learning via Safe Diversified Model-based Policy Search","url":"https://arxiv.org/html/2411.09722v1"},{"title":"Diversity-Centric Data Selection with Iterative Refinement","url":"https://arxiv.org/pdf/2409.11378"},{"title":"Image Generation Diversity Issues and How to Tame Them","url":"https://arxiv.org/html/2411.16171v2"},{"title":"DIDI: Diffusion-Guided Diversity for Offline Behavioral Generation","url":"https://arxiv.org/html/2405.14790v1"}]
+
+Based on the search results, here's what I found about DIVE (Diversified Iterative Self-Improvement) arxiv paper 2501.00747:
+
+## Overview
+
+DIVE (Diversified Iterative Self-Improvement) is a novel framework that addresses diversity challenges through two key components: Sample Pool Expansion for broader solution exploration, and Data Selection for balancing diversity and quality in preference pairs.
+
+## Problem It Addresses
+
+Continuous training on self-generated data leads to reduced output diversity, a limitation particularly critical in reasoning tasks where diverse solution paths are essential.
+
+## Results
+
+Experiments on MATH and GSM8k datasets show that DIVE achieves a 10% to 45% relative increase in output diversity metrics while maintaining performance quality compared to vanilla ISI.
+
+## Related Work
+
+The paper appears in the context of other recent work on diversity in preference optimization. A related method called Diverse Preference Optimization (DivPO) learns to generate more diverse responses by selecting preference pairs based on a pool of responses and a measure of diversity among them, selecting chosen examples as being more rare but high quality, while rejected examples are more common but low quality.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "2336be9e-efff-4372-ac89-3c6046704c76",
+  "tool_use_result": {
+    "query": "arxiv DIVE \"Diversified Iterative Self-Improvement\" 2501.00747 diversity loss iterative",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011Qz6rSiRqVwaX4BXYzNwdx",
+        "content": [
+          {
+            "title": "[2501.00747] DIVE: Diversified Iterative Self-Improvement",
+            "url": "https://arxiv.org/abs/2501.00747"
+          },
+          {
+            "title": "DIVE: Diversified Iterative Self-Improvement",
+            "url": "https://arxiv.org/html/2501.00747v1"
+          },
+          {
+            "title": "Diverse Preference Optimization",
+            "url": "https://arxiv.org/html/2501.18101v3"
+          },
+          {
+            "title": "Diverse, not Short: A Length-Controlled Self-Learning Framework for Improving Response Diversity of Language Models",
+            "url": "https://arxiv.org/html/2505.16245v1"
+          },
+          {
+            "title": "[2501.18101] Diverse Preference Optimization",
+            "url": "https://arxiv.org/abs/2501.18101"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2023 DIVERSIFY AND DISAMBIGUATE:",
+            "url": "https://arxiv.org/pdf/2202.03418"
+          },
+          {
+            "title": "Iterative Batch Reinforcement Learning via Safe Diversified Model-based Policy Search",
+            "url": "https://arxiv.org/html/2411.09722v1"
+          },
+          {
+            "title": "Diversity-Centric Data Selection with Iterative Refinement",
+            "url": "https://arxiv.org/pdf/2409.11378"
+          },
+          {
+            "title": "Image Generation Diversity Issues and How to Tame Them",
+            "url": "https://arxiv.org/html/2411.16171v2"
+          },
+          {
+            "title": "DIDI: Diffusion-Guided Diversity for Offline Behavioral Generation",
+            "url": "https://arxiv.org/html/2405.14790v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about DIVE (Diversified Iterative Self-Improvement) arxiv paper 2501.00747:\n\n## Overview\n\nDIVE (Diversified Iterative Self-Improvement) is a novel framework that addresses diversity challenges through two key components: Sample Pool Expansion for broader solution exploration, and Data Selection for balancing diversity and quality in preference pairs.\n\n## Problem It Addresses\n\nContinuous training on self-generated data leads to reduced output diversity, a limitation particularly critical in reasoning tasks where diverse solution paths are essential.\n\n## Results\n\nExperiments on MATH and GSM8k datasets show that DIVE achieves a 10% to 45% relative increase in output diversity metrics while maintaining performance quality compared to vanilla ISI.\n\n## Related Work\n\nThe paper appears in the context of other recent work on diversity in preference optimization. A related method called Diverse Preference Optimization (DivPO) learns to generate more diverse responses by selecting preference pairs based on a pool of responses and a measure of diversity among them, selecting chosen examples as being more rare but high quality, while rejected examples are more common but low quality."
+    ],
+    "durationSeconds": 6.002403810000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T21:01:53.013Z_
+
+<details><summary>↩ Tool result · `toolu_01EVft7GkEsf9zWk92wndKwv`</summary>
+
+```text
+Web search results for query: ""Darling" "diversity-aware reinforcement learning" Facebook quality diversity tradeoff NeurIPS ICML 2025 2026"
+
+Links: [{"title":"DARLING: Diversity-Aware Reinforcement Learning","url":"https://www.emergentmind.com/topics/diversity-aware-reinforcement-learning-darling"},{"title":"Celebrating Diversity in Shared Multi-Agent Reinforcement Learning","url":"https://proceedings.neurips.cc/paper/2021/file/20aee3a5f4643755a79ee5f6a73050ac-Paper.pdf"},{"title":"[2509.02534] Jointly Reinforcing Diversity and Quality in Language Model Generations","url":"https://arxiv.org/abs/2509.02534"},{"title":"Jointly Reinforcing Diversity and Quality in Language Model Generations","url":"https://arxiv.org/html/2509.02534v1"},{"title":"Promoting Exploration of Ensemble Policies in Continuous ...","url":"https://proceedings.neurips.cc/paper_files/paper/2023/file/10cb15f4559b3d578b7f24966d48a137-Paper-Conference.pdf"},{"title":"Improving Deep Reinforcement Learning via Quality Diversity, Open-Ended and AI-Generating Algorithms | The Center for Brains, Minds & Machines","url":"https://cbmm.mit.edu/video/improving-deep-reinforcement-learning-quality-diversity-open-ended-and-ai-generating"},{"title":"GitHub - facebookresearch/darling: Official Implementation of the paper \"Jointly Reinforcing Diversity and Quality in Language Model Generations\" · GitHub","url":"https://github.com/facebookresearch/darling"},{"title":"Publications","url":"https://mig-ai.github.io/publications.html"},{"title":"Paper page - Jointly Reinforcing Diversity and Quality in Language Model Generations","url":"https://huggingface.co/papers/2509.02534"},{"title":"Celebrating Diversity in Shared Multi-Agent Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=CO87OIEOGU8"}]
+
+Based on the search results, I found comprehensive information about DARLING and the quality-diversity tradeoff in reinforcement learning:
+
+## DARLING: Diversity-Aware Reinforcement Learning
+
+DARLING (Diversity-Aware Reinforcement Learning) is a framework that jointly optimizes for response quality and semantic diversity. This is the official implementation of the paper "Jointly Reinforcing Diversity and Quality in Language Model Generations" from Facebook Research.
+
+### Core Approach
+
+At its core, DARLING introduces a learned partition function to measure diversity beyond surface-level lexical variations, which is then combined with a quality reward during online reinforcement learning to encourage models to generate outputs that are both high-quality and distinct.
+
+### Quality-Diversity Tradeoff Resolution
+
+The paper demonstrates that explicitly optimizing for diversity does not trade off accuracy, but rather enlarges the effective solution frontier—improving both quality and novelty. On five benchmarks in the first setting, DARLING consistently outperforms quality-only RL baselines, producing outputs that are simultaneously of higher quality and novelty, and in the second setting, DARLING achieves higher pass@1 (solution quality) and pass@k (solution variety).
+
+### Results
+
+Empirical evaluations in creative writing and competition mathematics show DARLING improves both solution quality and diversity compared to quality-only methods.
+
+The paper was published on arXiv in September 2025 (arXiv:2509.02534) and is associated with Facebook Research.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "75a59db8-06ff-4f6a-b306-90ee74f8fa38",
+  "tool_use_result": {
+    "query": "\"Darling\" \"diversity-aware reinforcement learning\" Facebook quality diversity tradeoff NeurIPS ICML 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XTCvWJPPDkh9EZ2hycvsZA",
+        "content": [
+          {
+            "title": "DARLING: Diversity-Aware Reinforcement Learning",
+            "url": "https://www.emergentmind.com/topics/diversity-aware-reinforcement-learning-darling"
+          },
+          {
+            "title": "Celebrating Diversity in Shared Multi-Agent Reinforcement Learning",
+            "url": "https://proceedings.neurips.cc/paper/2021/file/20aee3a5f4643755a79ee5f6a73050ac-Paper.pdf"
+          },
+          {
+            "title": "[2509.02534] Jointly Reinforcing Diversity and Quality in Language Model Generations",
+            "url": "https://arxiv.org/abs/2509.02534"
+          },
+          {
+            "title": "Jointly Reinforcing Diversity and Quality in Language Model Generations",
+            "url": "https://arxiv.org/html/2509.02534v1"
+          },
+          {
+            "title": "Promoting Exploration of Ensemble Policies in Continuous ...",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/10cb15f4559b3d578b7f24966d48a137-Paper-Conference.pdf"
+          },
+          {
+            "title": "Improving Deep Reinforcement Learning via Quality Diversity, Open-Ended and AI-Generating Algorithms | The Center for Brains, Minds & Machines",
+            "url": "https://cbmm.mit.edu/video/improving-deep-reinforcement-learning-quality-diversity-open-ended-and-ai-generating"
+          },
+          {
+            "title": "GitHub - facebookresearch/darling: Official Implementation of the paper \"Jointly Reinforcing Diversity and Quality in Language Model Generations\" · GitHub",
+            "url": "https://github.com/facebookresearch/darling"
+          },
+          {
+            "title": "Publications",
+            "url": "https://mig-ai.github.io/publications.html"
+          },
+          {
+            "title": "Paper page - Jointly Reinforcing Diversity and Quality in Language Model Generations",
+            "url": "https://huggingface.co/papers/2509.02534"
+          },
+          {
+            "title": "Celebrating Diversity in Shared Multi-Agent Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=CO87OIEOGU8"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about DARLING and the quality-diversity tradeoff in reinforcement learning:\n\n## DARLING: Diversity-Aware Reinforcement Learning\n\nDARLING (Diversity-Aware Reinforcement Learning) is a framework that jointly optimizes for response quality and semantic diversity. This is the official implementation of the paper \"Jointly Reinforcing Diversity and Quality in Language Model Generations\" from Facebook Research.\n\n### Core Approach\n\nAt its core, DARLING introduces a learned partition function to measure diversity beyond surface-level lexical variations, which is then combined with a quality reward during online reinforcement learning to encourage models to generate outputs that are both high-quality and distinct.\n\n### Quality-Diversity Tradeoff Resolution\n\nThe paper demonstrates that explicitly optimizing for diversity does not trade off accuracy, but rather enlarges the effective solution frontier—improving both quality and novelty. On five benchmarks in the first setting, DARLING consistently outperforms quality-only RL baselines, producing outputs that are simultaneously of higher quality and novelty, and in the second setting, DARLING achieves higher pass@1 (solution quality) and pass@k (solution variety).\n\n### Results\n\nEmpirical evaluations in creative writing and competition mathematics show DARLING improves both solution quality and diversity compared to quality-only methods.\n\nThe paper was published on arXiv in September 2025 (arXiv:2509.02534) and is associated with Facebook Research."
+    ],
+    "durationSeconds": 5.646628789999988
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to compile a comprehensive assessment. Let me synthesize everything.
+
+Key findings:
+
+1. **Kirk et al. (ICLR 2024)** - "Understanding the Effects of RLHF on LLM Generalisation and Diversity" - Documents that RLHF reduces diversity vs SFT (absolute reduction, not just stagnation). This is the foundational work in this space.
+
+2. **DARLING (Facebook, Sep 2025, arXiv 2509.02534)** - "Jointly Reinforcing Diversity and Quality in Language Model Generations" - Directly addresses quality-diversity tradeoff via diversity-aware RL. 
+
+3. **CD-RLHF (ACL 2025)** - "Curiosity-Driven Reinforcement Learning from Human Feedback" - Adds intrinsic curiosity reward to maintain diversity. Published at ACL 2025.
+
+4. **GEM (ICLR 2025)** - "Preserving Diversity in Supervised Fine-Tuning" - Game-theoretic approach for SFT diversity preservation.
+
+5. **DIVE (Jan** - This is the most directly relevant work, as it frames the quality-diversity sharpening effect as an inherent consequence of post-training rather than a general phenomenon, which aligns closely with what we're observing through iterative curation.
+
+Now I'm looking at whether anyone has explicitly distinguished between diversity reduction versus suppressed diversity growth. Most existing work focuses on absolute diversity loss, but DIVE specifically examines how iterative self-improvement rounds lead to this decline—though their setting with model self-training differs from our reward-based curation approach. The key question is whether preventing stagnation in diversity growth is a weaker claim than preventing outright collapse.
+
+Framing it as "maintaining diversity growth under curation pressure" is defensible and has precedent in work like DARLING and GEM, but it requires solid empirical support. Our current data shows the baseline growing by 3% while curation stagnates near zero, so CARR would need to demonstrate that adding our method restores that growth trajectory. The challenge is we haven't run CARR yet, and there's real risk that it only partially recovers growth rather than fully matching the baseline's improvement rate.
+
+The core observation about diversity stagnation under iterative curation isn't entirely novel—reward optimization suppressing diversity is well-documented across Kirk et al., DARLING, and CD-RLHF. What could differentiate us is either the specific mechanism of reward-based curation, the iterative amplification pattern, or showing CARR's efficiency compared to those existing solutions. But DARLING and CD-RLHF from 2025 already tackle this problem more comprehensively, which puts us in a weaker position. I'm landing on B- level work here—the stagnation framing is workable but doesn't have the same punch as a collapse narrative would.
+
+Now I need to be strategic about what comes next. I have to clearly separate our approach from DARLING and CD-RLHF, demonstrate that CARR actually reverses the diversity decline—though I don't have that empirical evidence yet—and lean into the iterative curation angle as our specific contribution. The effect size is still nagging at me though: a 3 percentage point difference across three rounds feels marginal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "f2a4893a-88ba-49ba-a599-cf33259a1230",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01798ZvSk4MetsHTfCsVUVkN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2481,
+      "cache_read_input_tokens": 35752,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2481
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+调研基本完成。现在综合分析并写入 memory.md。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "c0b46bc1-8347-4276-9850-818ac63d93fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01798ZvSk4MetsHTfCsVUVkN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2481,
+      "cache_read_input_tokens": 35752,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2481
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01DeQ6ZVJ5v6trvZwR3EWSHK`</summary>
+
+```json
+{
+  "project": "collapse_aware_reward_rebalancing",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "4e94fe6e-e75a-4189-848b-11402afe5123",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01798ZvSk4MetsHTfCsVUVkN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2481,
+      "cache_read_input_tokens": 35752,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2481
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T21:02:20.111Z_
+
+<details><summary>↩ Tool result · `toolu_01DeQ6ZVJ5v6trvZwR3EWSHK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/memory.md\", \"content\": \"# Memory — collapse_aware_reward_rebalancing\\n\\n## 环境经验\\n\\n### ArmoRM transformers 兼容性 (2026-05-16)\\n- **问题**: ArmoRM-Llama3-8B-v0.1 的 `modeling_custom.py` 导入 `LLAMA_INPUTS_DOCSTRING`，该符号在 transformers ≥4.42 中已移除\\n- **修复**: 将 import 替换为 `LLAMA_INPUTS_DOCSTRING = None`（只用于 docstring 装饰器，不影响推理）\\n- **注意**: transformers 加载 `trust_remote_code=True` 时从多个位置读取自定义代码，需要 patch 所有副本（模型目录 + .hf_cache/modules/ + .cache/huggingface/modules/）\\n- **教训**: 用 `trust_remote_code=True` 的模型，先测试 import 兼容性再启动长时间实验\\n\\n### ArmoRM gating token 容错 (2026-05-16)\\n- **问题**: ArmoRM `find_token_for_gating` 期望 LLaMA-3 chat template 的 `<|eot_id|>` token，Qwen3 生成的部分空/异常 response 缺少此 token\\n- **修复**: score_quality 中 batch forward 加 try/except，fallback 逐样本打分，异常样本赋 0.0\\n- **影响**: 仅 2/8000 batch fallback，0 样本丢失\\n\\n### AutoDL 目录名转义 (2026-05-16)\\n- HuggingFace `snapshot_download(local_dir=...)` 创建目录时，模型名中的 `.` 和 `-` 会被转义为 `___` 和 `_hyphen_`\\n- config.py 路径必须用实际目录名（如 `Qwen3-0___6B`），不是逻辑名\\n\\n### K 值变更时的关键约束 (2026-05-16)\\n- **GEN_BATCH_SIZE 必须同步调整**: `GEN_BATCH_SIZE = max(1, 64 // K_CANDIDATES)`，否则 OOM\\n  - K=4 → batch=16 (16×4=64 seq)\\n  - K=8 → batch=8 (8×8=64 seq)\\n  - K=16 → batch=4 (4×16=64 seq)\\n- **输出目录必须独立**: 每个 K 配置用独立 output dir（outputs_k8/, outputs_k16/ 等），避免 checkpoint 交叉污染\\n- **HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1**: 所有实验启动命令必须包含（网络不通）\\n\\n### Full-FT 训练显存约束 (2026-05-16)\\n- **RTX 5090 32GB 上 Qwen3-0.6B (596M params) full-FT**:\\n  - fp16 不可用（GradScaler 冲突），必须 bf16\\n  - batch_size=2 OOM，需要 gradient_checkpointing=True + per_device_train_batch_size=1 + gradient_accumulation_steps=8\\n  - Generation 阶段 gen_batch_size=16 × K=4 = 64 seq 在独占 GPU 时约占 ~25GB（可行）\\n- **generate.py:10 仍用 torch.float16**：目前不阻塞（generation 用 fp16 推理比 bf16 快且显存够），但若 generation OOM 则需改为 bf16\\n- **重要**: cuda:1 上启动新实验前必须确认无残留进程（之前出现过双进程占满显存导致 OOM）\\n\\n## 决策上下文\\n\\n### P1 诊断阶梯全面 FAIL (2026-05-16)\\n\\n**核心发现：3代迭代训练不产生绝对 diversity collapse，只产生 relative suppression。**\\n\\n| 条件 | Vendi 变化 | 结论 |\\n|------|-----------|------|\\n| K=4 LoRA | -0.27% | FAIL |\\n| K=8 LoRA | -0.03% | FAIL |\\n| K=4 Full-FT LR=5e-6 | +0.91% | FAIL |\\n| No-curation baseline (LoRA) | +3.13% | 对照 |\\n\\n**关键洞察：**\\n1. LoRA 不是 collapse 的约束因素（Full-FT 同样不 collapse）\\n2. 选择压力大小 (K=4 vs K=8) 在 LoRA 下不影响 diversity 轨迹\\n3. 迭代训练本身使 diversity 上升；curation 抑制这种上升，但不导致下降\\n4. Relative gap ~3pp/3代 存在，但 narrative 需从 \\\"collapse reversal\\\" 转向 \\\"suppression prevention\\\"\\n\\n### LR=2e-5 假设 (2026-05-16)\\n- **动机**: Full-FT K=4 LR=5e-6 的 Vendi 反而上升（+0.91%），与 baseline 趋势一致。怀疑 LR=5e-6 太低导致模型几乎没学到 curated 分布的偏好\\n- **实验**: carr_fullft_lr2e5_probe_01, LR 提高 4x 到 2e-5，其余配置不变\\n- **预期**: 如果 underfitting 是问题，更高 LR 应让模型充分学习 top-1 筛选偏好，从而在后续代看到 diversity 下降\\n- **如果仍然 FAIL**: 说明 0.6B 模型 + 2200 prompts + 3 代在此 task 上根本无法触发 collapse，需要 pivot narrative\\n\\n### Pivot 候选方向 (2026-05-16，待 Director 决策)\\n- A) 换更大模型/更多数据 → 更多参数空间去 overfit（风险：GPU 时间不够）\\n- B) 换度量 → embedding cluster concentration 或 response mode collapse（风险：ad-hoc）\\n- C) Reframe 为 \\\"diversity stagnation prevention\\\" → CARR 的价值是促进增长而非逆转下降（最有前景，已有 baseline 数据支撑 relative gap 存在）\\n- D) 增加代数 T=3→T=10 → 让 compounding 效应累积（风险：GPU 时间 3x）\\n\\n**已提交 Framing 调整提案给 Director，等待决策。**\\n\", \"total_chars\": 3063, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "418900ff-a13e-41a2-9f19-b2c6f7253b51",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/memory.md\\\", \\\"content\\\": \\\"# Memory — collapse_aware_reward_rebalancing\\\\n\\\\n## 环境经验\\\\n\\\\n### ArmoRM transformers 兼容性 (2026-05-16)\\\\n- **问题**: ArmoRM-Llama3-8B-v0.1 的 `modeling_custom.py` 导入 `LLAMA_INPUTS_DOCSTRING`，该符号在 transformers ≥4.42 中已移除\\\\n- **修复**: 将 import 替换为 `LLAMA_INPUTS_DOCSTRING = None`（只用于 docstring 装饰器，不影响推理）\\\\n- **注意**: transformers 加载 `trust_remote_code=True` 时从多个位置读取自定义代码，需要 patch 所有副本（模型目录 + .hf_cache/modules/ + .cache/huggingface/modules/）\\\\n- **教训**: 用 `trust_remote_code=True` 的模型，先测试 import 兼容性再启动长时间实验\\\\n\\\\n### ArmoRM gating token 容错 (2026-05-16)\\\\n- **问题**: ArmoRM `find_token_for_gating` 期望 LLaMA-3 chat template 的 `<|eot_id|>` token，Qwen3 生成的部分空/异常 response 缺少此 token\\\\n- **修复**: score_quality 中 batch forward 加 try/except，fallback 逐样本打分，异常样本赋 0.0\\\\n- **影响**: 仅 2/8000 batch fallback，0 样本丢失\\\\n\\\\n### AutoDL 目录名转义 (2026-05-16)\\\\n- HuggingFace `snapshot_download(local_dir=...)` 创建目录时，模型名中的 `.` 和 `-` 会被转义为 `___` 和 `_hyphen_`\\\\n- config.py 路径必须用实际目录名（如 `Qwen3-0___6B`），不是逻辑名\\\\n\\\\n### K 值变更时的关键约束 (2026-05-16)\\\\n- **GEN_BATCH_SIZE 必须同步调整**: `GEN_BATCH_SIZE = max(1, 64 // K_CANDIDATES)`，否则 OOM\\\\n  - K=4 → batch=16 (16×4=64 seq)\\\\n  - K=8 → batch=8 (8×8=64 seq)\\\\n  - K=16 → batch=4 (4×16=64 seq)\\\\n- **输出目录必须独立**: 每个 K 配置用独立 output dir（outputs_k8/, outputs_k16/ 等），避免 checkpoint 交叉污染\\\\n- **HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1**: 所有实验启动命令必须包含（网络不通）\\\\n\\\\n### Full-FT 训练显存约束 (2026-05-16)\\\\n- **RTX 5090 32GB 上 Qwen3-0.6B (596M params) full-FT**:\\\\n  - fp16 不可用（GradScaler 冲突），必须 bf16\\\\n  - batch_size=2 OOM，需要 gradient_checkpointing=True + per_device_train_batch_size=1 + gradient_accumulation_steps=8\\\\n  - Generation 阶段 gen_batch_size=16 × K=4 = 64 seq 在独占 GPU 时约占 ~25GB（可行）\\\\n- **generate.py:10 仍用 torch.float16**：目前不阻塞（generation 用 fp16 推理比 bf16 快且显存够），但若 generation OOM 则需改为 bf16\\\\n- **重要**: cuda:1 上启动新实验前必须确认无残留进程（之前出现过双进程占满显存导致 OOM）\\\\n\\\\n## 决策上下文\\\\n\\\\n### P1 诊断阶梯全面 FAIL (2026-05-16)\\\\n\\\\n**核心发现：3代迭代训练不产生绝对 diversity collapse，只产生 relative suppression。**\\\\n\\\\n| 条件 | Vendi 变化 | 结论 |\\\\n|------|-----------|------|\\\\n| K=4 LoRA | -0.27% | FAIL |\\\\n| K=8 LoRA | -0.03% | FAIL |\\\\n| K=4 Full-FT LR=5e-6 | +0.91% | FAIL |\\\\n| No-curation baseline (LoRA) | +3.13% | 对照 |\\\\n\\\\n**关键洞察：**\\\\n1. LoRA 不是 collapse 的约束因素（Full-FT 同样不 collapse）\\\\n2. 选择压力大小 (K=4 vs K=8) 在 LoRA 下不影响 diversity 轨迹\\\\n3. 迭代训练本身使 diversity 上升；curation 抑制这种上升，但不导致下降\\\\n4. Relative gap ~3pp/3代 存在，但 narrative 需从 \\\\\\\"collapse reversal\\\\\\\" 转向 \\\\\\\"suppression prevention\\\\\\\"\\\\n\\\\n### LR=2e-5 假设 (2026-05-16)\\\\n- **动机**: Full-FT K=4 LR=5e-6 的 Vendi 反而上升（+0.91%），与 baseline 趋势一致。怀疑 LR=5e-6 太低导致模型几乎没学到 curated 分布的偏好\\\\n- **实验**: carr_fullft_lr2e5_probe_01, LR 提高 4x 到 2e-5，其余配置不变\\\\n- **预期**: 如果 underfitting 是问题，更高 LR 应让模型充分学习 top-1 筛选偏好，从而在后续代看到 diversity 下降\\\\n- **如果仍然 FAIL**: 说明 0.6B 模型 + 2200 prompts + 3 代在此 task 上根本无法触发 collapse，需要 pivot narrative\\\\n\\\\n### Pivot 候选方向 (2026-05-16，待 Director 决策)\\\\n- A) 换更大模型/更多数据 → 更多参数空间去 overfit（风险：GPU 时间不够）\\\\n- B) 换度量 → embedding cluster concentration 或 response mode collapse（风险：ad-hoc）\\\\n- C) Reframe 为 \\\\\\\"diversity stagnation prevention\\\\\\\" → CARR 的价值是促进增长而非逆转下降（最有前景，已有 baseline 数据支撑 relative gap 存在）\\\\n- D) 增加代数 T=3→T=10 → 让 compounding 效应累积（风险：GPU 时间 3x）\\\\n\\\\n**已提交 Framing 调整提案给 Director，等待决策。**\\\\n\\\", \\\"total_chars\\\": 3063, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/memory.md\", \"content\": \"# Memory — collapse_aware_reward_rebalancing\\n\\n## 环境经验\\n\\n### ArmoRM transformers 兼容性 (2026-05-16)\\n- **问题**: ArmoRM-Llama3-8B-v0.1 的 `modeling_custom.py` 导入 `LLAMA_INPUTS_DOCSTRING`，该符号在 transformers ≥4.42 中已移除\\n- **修复**: 将 import 替换为 `LLAMA_INPUTS_DOCSTRING = None`（只用于 docstring 装饰器，不影响推理）\\n- **注意**: transformers 加载 `trust_remote_code=True` 时从多个位置读取自定义代码，需要 patch 所有副本（模型目录 + .hf_cache/modules/ + .cache/huggingface/modules/）\\n- **教训**: 用 `trust_remote_code=True` 的模型，先测试 import 兼容性再启动长时间实验\\n\\n### ArmoRM gating token 容错 (2026-05-16)\\n- **问题**: ArmoRM `find_token_for_gating` 期望 LLaMA-3 chat template 的 `<|eot_id|>` token，Qwen3 生成的部分空/异常 response 缺少此 token\\n- **修复**: score_quality 中 batch forward 加 try/except，fallback 逐样本打分，异常样本赋 0.0\\n- **影响**: 仅 2/8000 batch fallback，0 样本丢失\\n\\n### AutoDL 目录名转义 (2026-05-16)\\n- HuggingFace `snapshot_download(local_dir=...)` 创建目录时，模型名中的 `.` 和 `-` 会被转义为 `___` 和 `_hyphen_`\\n- config.py 路径必须用实际目录名（如 `Qwen3-0___6B`），不是逻辑名\\n\\n### K 值变更时的关键约束 (2026-05-16)\\n- **GEN_BATCH_SIZE 必须同步调整**: `GEN_BATCH_SIZE = max(1, 64 // K_CANDIDATES)`，否则 OOM\\n  - K=4 → batch=16 (16×4=64 seq)\\n  - K=8 → batch=8 (8×8=64 seq)\\n  - K=16 → batch=4 (4×16=64 seq)\\n- **输出目录必须独立**: 每个 K 配置用独立 output dir（outputs_k8/, outputs_k16/ 等），避免 checkpoint 交叉污染\\n- **HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1**: 所有实验启动命令必须包含（网络不通）\\n\\n### Full-FT 训练显存约束 (2026-05-16)\\n- **RTX 5090 32GB 上 Qwen3-0.6B (596M params) full-FT**:\\n  - fp16 不可用（GradScaler 冲突），必须 bf16\\n  - batch_size=2 OOM，需要 gradient_checkpointing=True + per_device_train_batch_size=1 + gradient_accumulation_steps=8\\n  - Generation 阶段 gen_batch_size=16 × K=4 = 64 seq 在独占 GPU 时约占 ~25GB（可行）\\n- **generate.py:10 仍用 torch.float16**：目前不阻塞（generation 用 fp16 推理比 bf16 快且显存够），但若 generation OOM 则需改为 bf16\\n- **重要**: cuda:1 上启动新实验前必须确认无残留进程（之前出现过双进程占满显存导致 OOM）\\n\\n## 决策上下文\\n\\n### P1 诊断阶梯全面 FAIL (2026-05-16)\\n\\n**核心发现：3代迭代训练不产生绝对 diversity collapse，只产生 relative suppression。**\\n\\n| 条件 | Vendi 变化 | 结论 |\\n|------|-----------|------|\\n| K=4 LoRA | -0.27% | FAIL |\\n| K=8 LoRA | -0.03% | FAIL |\\n| K=4 Full-FT LR=5e-6 | +0.91% | FAIL |\\n| No-curation baseline (LoRA) | +3.13% | 对照 |\\n\\n**关键洞察：**\\n1. LoRA 不是 collapse 的约束因素（Full-FT 同样不 collapse）\\n2. 选择压力大小 (K=4 vs K=8) 在 LoRA 下不影响 diversity 轨迹\\n3. 迭代训练本身使 diversity 上升；curation 抑制这种上升，但不导致下降\\n4. Relative gap ~3pp/3代 存在，但 narrative 需从 \\\"collapse reversal\\\" 转向 \\\"suppression prevention\\\"\\n\\n### LR=2e-5 假设 (2026-05-16)\\n- **动机**: Full-FT K=4 LR=5e-6 的 Vendi 反而上升（+0.91%），与 baseline 趋势一致。怀疑 LR=5e-6 太低导致模型几乎没学到 curated 分布的偏好\\n- **实验**: carr_fullft_lr2e5_probe_01, LR 提高 4x 到 2e-5，其余配置不变\\n- **预期**: 如果 underfitting 是问题，更高 LR 应让模型充分学习 top-1 筛选偏好，从而在后续代看到 diversity 下降\\n- **如果仍然 FAIL**: 说明 0.6B 模型 + 2200 prompts + 3 代在此 task 上根本无法触发 collapse，需要 pivot narrative\\n\\n### Pivot 候选方向 (2026-05-16，待 Director 决策)\\n- A) 换更大模型/更多数据 → 更多参数空间去 overfit（风险：GPU 时间不够）\\n- B) 换度量 → embedding cluster concentration 或 response mode collapse（风险：ad-hoc）\\n- C) Reframe 为 \\\"diversity stagnation prevention\\\" → CARR 的价值是促进增长而非逆转下降（最有前景，已有 baseline 数据支撑 relative gap 存在）\\n- D) 增加代数 T=3→T=10 → 让 compounding 效应累积（风险：GPU 时间 3x）\\n\\n**已提交 Framing 调整提案给 Director，等待决策。**\\n\", \"total_chars\": 3063, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me compose the research findings and append them to memory.md.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "24c04c44-7e69-459c-a56c-ec084475ffa0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQPHsXmiSzcJ9xjEMNm44g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3205,
+      "cache_read_input_tokens": 38233,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3205
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+现在将调研结果追加到 memory.md。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "adf5358b-4cd1-43a3-8977-ed2a2c99053a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQPHsXmiSzcJ9xjEMNm44g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3205,
+      "cache_read_input_tokens": 38233,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3205
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01KRuNZBf2QTd8ZSD1L38yZA`</summary>
+
+```json
+{
+  "project": "collapse_aware_reward_rebalancing",
+  "file": "memory.md",
+  "content": "# Memory — collapse_aware_reward_rebalancing\n\n## 环境经验\n\n### ArmoRM transformers 兼容性 (2026-05-16)\n- **问题**: ArmoRM-Llama3-8B-v0.1 的 `modeling_custom.py` 导入 `LLAMA_INPUTS_DOCSTRING`，该符号在 transformers ≥4.42 中已移除\n- **修复**: 将 import 替换为 `LLAMA_INPUTS_DOCSTRING = None`（只用于 docstring 装饰器，不影响推理）\n- **注意**: transformers 加载 `trust_remote_code=True` 时从多个位置读取自定义代码，需要 patch 所有副本（模型目录 + .hf_cache/modules/ + .cache/huggingface/modules/）\n- **教训**: 用 `trust_remote_code=True` 的模型，先测试 import 兼容性再启动长时间实验\n\n### ArmoRM gating token 容错 (2026-05-16)\n- **问题**: ArmoRM `find_token_for_gating` 期望 LLaMA-3 chat template 的 `<|eot_id|>` token，Qwen3 生成的部分空/异常 response 缺少此 token\n- **修复**: score_quality 中 batch forward 加 try/except，fallback 逐样本打分，异常样本赋 0.0\n- **影响**: 仅 2/8000 batch fallback，0 样本丢失\n\n### AutoDL 目录名转义 (2026-05-16)\n- HuggingFace `snapshot_download(local_dir=...)` 创建目录时，模型名中的 `.` 和 `-` 会被转义为 `___` 和 `_hyphen_`\n- config.py 路径必须用实际目录名（如 `Qwen3-0___6B`），不是逻辑名\n\n### K 值变更时的关键约束 (2026-05-16)\n- **GEN_BATCH_SIZE 必须同步调整**: `GEN_BATCH_SIZE = max(1, 64 // K_CANDIDATES)`，否则 OOM\n  - K=4 → batch=16 (16×4=64 seq)\n  - K=8 → batch=8 (8×8=64 seq)\n  - K=16 → batch=4 (4×16=64 seq)\n- **输出目录必须独立**: 每个 K 配置用独立 output dir（outputs_k8/, outputs_k16/ 等），避免 checkpoint 交叉污染\n- **HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1**: 所有实验启动命令必须包含（网络不通）\n\n### Full-FT 训练显存约束 (2026-05-16)\n- **RTX 5090 32GB 上 Qwen3-0.6B (596M params) full-FT**:\n  - fp16 不可用（GradScaler 冲突），必须 bf16\n  - batch_size=2 OOM，需要 gradient_checkpointing=True + per_device_train_batch_size=1 + gradient_accumulation_steps=8\n  - Generation 阶段 gen_batch_size=16 × K=4 = 64 seq 在独占 GPU 时约占 ~25GB（可行）\n- **generate.py:10 仍用 torch.float16**：目前不阻塞（generation 用 fp16 推理比 bf16 快且显存够），但若 generation OOM 则需改为 bf16\n- **重要**: cuda:1 上启动新实验前必须确认无残留进程（之前出现过双进程占满显存导致 OOM）\n\n## 决策上下文\n\n### P1 诊断阶梯全面 FAIL (2026-05-16)\n\n**核心发现：3代迭代训练不产生绝对 diversity collapse，只产生 relative suppression。**\n\n| 条件 | Vendi 变化 | 结论 |\n|------|-----------|------|\n| K=4 LoRA | -0.27% | FAIL |\n| K=8 LoRA | -0.03% | FAIL |\n| K=4 Full-FT LR=5e-6 | +0.91% | FAIL |\n| No-curation baseline (LoRA) | +3.13% | 对照 |\n\n**关键洞察：**\n1. LoRA 不是 collapse 的约束因素（Full-FT 同样不 collapse）\n2. 选择压力大小 (K=4 vs K=8) 在 LoRA 下不影响 diversity 轨迹\n3. 迭代训练本身使 diversity 上升；curation 抑制这种上升，但不导致下降\n4. Relative gap ~3pp/3代 存在，但 narrative 需从 \"collapse reversal\" 转向 \"suppression prevention\"\n\n### LR=2e-5 假设 (2026-05-16)\n- **动机**: Full-FT K=4 LR=5e-6 的 Vendi 反而上升（+0.91%），与 baseline 趋势一致。怀疑 LR=5e-6 太低导致模型几乎没学到 curated 分布的偏好\n- **实验**: carr_fullft_lr2e5_probe_01, LR 提高 4x 到 2e-5，其余配置不变\n- **预期**: 如果 underfitting 是问题，更高 LR 应让模型充分学习 top-1 筛选偏好，从而在后续代看到 diversity 下降\n- **如果仍然 FAIL**: 说明 0.6B 模型 + 2200 prompts + 3 代在此 task 上根本无法触发 collapse，需要 pivot narrative\n\n### Pivot 候选方向 (2026-05-16，待 Director 决策)\n- A) 换更大模型/更多数据 → 更多参数空间去 overfit（风险：GPU 时间不够）\n- B) 换度量 → embedding cluster concentration 或 response mode collapse（风险：ad-hoc）\n- C) Reframe 为 \"diversity stagnation prevention\" → CARR 的价值是促进增长而非逆转下降（最有前景，已有 baseline 数据支撑 relative gap 存在）\n- D) 增加代数 T=3→T=10 → 让 compounding 效应累积（风险：GPU 时间 3x）\n\n**已提交 Framing 调整提案给 Director，等待决策。**\n\n## Pivot Framing Research (2026-05-16)\n\n### 调研结论：Stagnation Framing 可行性评估 = B-（可行但有显著风险）\n\n### 1. 最相关论文（5篇）\n\n| # | 论文 | Venue | 核心发现 | 与 CARR 关系 |\n|---|------|-------|---------|-------------|\n| 1 | **DIVE: Diversified Iterative Self-Improvement** (arXiv 2501.00747, Jan 2025) | 未确认venue | 首个研究 iterative self-improvement 中 diversity loss 的工作；提出 Sample Pool Expansion + Diversity-aware Data Selection，在 MATH/GSM8k 上 diversity +10-45% | **最直接竞争者**。同样关注 iterative 训练中 diversity 下降，但 focus 在 reasoning tasks 的 self-play 而非 reward curation。CARR 需明确区分：我们是 reward-model-guided curation（外部信号），DIVE 是 self-play（内部信号）|\n| 2 | **DARLING: Jointly Reinforcing Diversity and Quality** (Facebook, arXiv 2509.02534, Sep 2025) | 未确认venue | 在 online RL 中引入 learned diversity partition function，同时优化 quality 和 diversity。创意写作+数学上均优于 quality-only RL | **强竞争者**。方法更通用（任何 RL 训练），CARR 更 lightweight（只调 reward rebalancing 权重）。区分点：CARR 是 curation-time 干预，DARLING 是 training-time objective 修改 |\n| 3 | **CD-RLHF: Curiosity-Driven RLHF** (ACL 2025, arXiv 2501.11463) | ACL 2025 | 在 RLHF 中加 curiosity intrinsic reward，缓解 diversity-alignment tradeoff | 中等相关。方法层面不同（intrinsic reward vs reward rebalancing），但 motivation 完全重叠。需在 related work 中仔细 position |\n| 4 | **GEM: Preserving Diversity in Supervised Fine-Tuning** (ICLR 2025, arXiv 2408.16673) | ICLR 2025 | Game-theoretic SFT，替代 CE loss 以保持 diversity。Llama-3.1-8B 上 +5pt chat / +8pt code | 间接相关。GEM 解决 SFT 阶段问题，我们解决 iterative curation 阶段。可作为 related work 中的 complementary approach |\n| 5 | **Understanding the Effects of RLHF on LLM Generalisation and Diversity** (Kirk et al., ICLR 2024, arXiv 2310.06452) | ICLR 2024 | 首次系统证明 RLHF 显著降低 output diversity（vs SFT），建立 diversity-alignment tradeoff | **foundational reference**。为整个领域奠基。注意：他们观测到的是 *absolute* diversity reduction，我们观测到的是 relative stagnation——这是区分点 |\n\n### 2. 核心问题回答\n\n**Q1: 有没有论文已经指出 \"iterative curation 抑制 diversity 增长\"？**\n- **没有精确匹配。** DIVE 最接近，但它研究的是 iterative self-improvement（模型在自己生成的数据上训练），观测到 absolute diversity decline。我们的 observation 更微妙：diversity 不下降，只是增长被抑制。这个 \"stagnation vs decline\" 的区分目前无人明确提出。\n- **Novelty 空间存在但狭窄。** 如果只讲 \"curation 导致 stagnation\"，novelty 薄弱（Kirk 2024 已经建立了 alignment 降低 diversity 的大方向）。需要 CARR 方法本身足够有差异化。\n\n**Q2: \"防止 stagnation\" 作为 contribution 是否比 \"防止 collapse\" 弱？**\n- **是的，显著更弱。** \"Collapse\" 暗示系统失败，urgency 强；\"stagnation\" 暗示 suboptimal，urgency 弱。\n- **但有先例可循：** DARLING 和 GEM 都没有 claim \"preventing collapse\"，而是 \"jointly improving quality AND diversity\" 或 \"preserving diversity\"。这种 positive framing（\"我们让它更好\"而非\"我们修复了问题\"）在顶会是可以接受的。\n- **关键转换**：不要说 \"prevents stagnation\"（消极），而说 **\"maintains diversity growth under reward-guided curation\"**（积极）或更强的 **\"unlocks diversity-quality co-improvement in iterative reward curation\"**（对标 DARLING 的 framing）。\n\n**Q3: \"maintains diversity growth under curation pressure\" 是否被现有数据支撑？**\n- **目前数据不足。** 现有数据只证明了 *问题存在*（curation stagnates, baseline grows）。CARR 方法尚未实际运行，无法证明它 *恢复了增长*。\n- **需要的数据**：Curation + CARR 条件下 Vendi Score 上升（理想 ≥ baseline 的 +3%）。\n- **风险**：如果 CARR 只恢复到 +1-1.5%，effect size 太小（3pp gap 中只补回一半），reviewer 会质疑 practical significance。\n\n### 3. Framing 可行性评估\n\n**总体评级：B-（可行但需额外实验 + 精确定位）**\n\n**支撑因素（+）：**\n- \"Diversity preservation under iterative optimization\" 是 2024-2025 热点话题（5+ 顶会论文）\n- 我们的 specific setting（reward-guided curation with selection pressure K）尚无直接研究\n- \"Stagnation\" 观察本身是 novel empirical finding\n- CARR 作为 lightweight reward rebalancing（vs DARLING 的 learned partition / CD-RLHF 的 curiosity module）有 simplicity 优势\n\n**风险因素（-）：**\n- 竞争激烈：DARLING (Facebook)、CD-RLHF (ACL 2025)、DIVE、GEM 都在相邻空间\n- Effect size concern：3pp relative gap / 3 rounds → 如果 CARR 补回 1-2pp，practical significance 存疑\n- 缺失关键实验：CARR 实际效果数据为零\n- \"Stagnation\" narrative 的 reviewer appeal 弱于 \"collapse\"\n- EMNLP DDL 2026-05-25 仅剩 9 天，时间极紧\n\n**如果走这条路，必须满足的条件：**\n1. CARR 实验显示 curation + CARR ≥ baseline diversity growth（+3% 或更多）\n2. 同时 quality 不下降（否则 trivial solution 是不做 curation）\n3. Framing 必须是 positive（\"unlocks co-improvement\"）而非 defensive（\"prevents stagnation\"）\n4. Related work 必须精确 position vs DARLING/CD-RLHF/DIVE，强调 setting 和 method 差异\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "5efdc0e8-f1a2-4c84-bb41-0890a53a0622",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQPHsXmiSzcJ9xjEMNm44g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3205,
+      "cache_read_input_tokens": 38233,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3205
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T21:03:30.521Z_
+
+<details><summary>↩ Tool result · `toolu_01KRuNZBf2QTd8ZSD1L38yZA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "fccda04e-5f1b-4eca-b4e1-6b2050957169",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+调研完成，已写入 memory.md。核心结论：
+
+---
+
+**评级：B-（可行但有显著风险）**
+
+**关键发现：**
+
+1. **"Stagnation" 精确观察无人提出**，但相邻空间已很拥挤——DIVE（iterative self-improvement diversity loss）、DARLING（Facebook，quality-diversity co-optimization via RL）、CD-RLHF（ACL 2025，curiosity-driven diversity）都在打这个方向。
+
+2. **"Stagnation" 比 "collapse" 弱**，但有先例：DARLING/GEM 都用 positive framing（"jointly improve" / "preserve"），不需要 claim failure mode。建议 framing：**"unlocks diversity-quality co-improvement under iterative reward curation"**。
+
+3. **现有数据只证明问题存在，不证明 CARR 有效**。必须跑 CARR 实验并且 diversity growth ≥ baseline 的 +3%。如果 CARR 只补回 1-2pp，effect size 太小。
+
+4. **时间风险**：DDL 9 天，CARR 效果实验 + 论文撰写压力极大。
+
+**最直接竞争者需仔细区分：**
+- vs DIVE：我们是 external reward signal curation，他们是 self-play
+- vs DARLING：我们是 curation-time 权重调节（lightweight），他们是 training objective 修改
+- vs CD-RLHF：我们是 iterative multi-round，他们是 single-round intrinsic reward
+
+Sources:
+- [DIVE: Diversified Iterative Self-Improvement](https://arxiv.org/abs/2501.00747)
+- [DARLING: Jointly Reinforcing Diversity and Quality](https://arxiv.org/abs/2509.02534)
+- [CD-RLHF: Curiosity-Driven RLHF](https://arxiv.org/abs/2501.11463)
+- [GEM: Preserving Diversity in Supervised Fine-Tuning](https://arxiv.org/abs/2408.16673)
+- [Kirk et al.: Understanding Effects of RLHF on Diversity](https://arxiv.org/abs/2310.06452)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "uuid": "eef4d9b5-1865-4e5e-ba4b-4ce65595cd84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CywgsnY4LjVVLzzFUnTK7C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4155,
+      "cache_read_input_tokens": 41438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4155
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 44_
+
+调研完成，已写入 memory.md。核心结论：
+
+---
+
+**评级：B-（可行但有显著风险）**
+
+**关键发现：**
+
+1. **"Stagnation" 精确观察无人提出**，但相邻空间已很拥挤——DIVE（iterative self-improvement diversity loss）、DARLING（Facebook，quality-diversity co-optimization via RL）、CD-RLHF（ACL 2025，curiosity-driven diversity）都在打这个方向。
+
+2. **"Stagnation" 比 "collapse" 弱**，但有先例：DARLING/GEM 都用 positive framing（"jointly improve" / "preserve"），不需要 claim failure mode。建议 framing：**"unlocks diversity-quality co-improvement under iterative reward curation"**。
+
+3. **现有数据只证明问题存在，不证明 CARR 有效**。必须跑 CARR 实验并且 diversity growth ≥ baseline 的 +3%。如果 CARR 只补回 1-2pp，effect size 太小。
+
+4. **时间风险**：DDL 9 天，CARR 效果实验 + 论文撰写压力极大。
+
+**最直接竞争者需仔细区分：**
+- vs DIVE：我们是 external reward signal curation，他们是 self-play
+- vs DARLING：我们是 curation-time 权重调节（lightweight），他们是 training objective 修改
+- vs CD-RLHF：我们是 iterative multi-round，他们是 single-round intrinsic reward
+
+Sources:
+- [DIVE: Diversified Iterative Self-Improvement](https://arxiv.org/abs/2501.00747)
+- [DARLING: Jointly Reinforcing Diversity and Quality](https://arxiv.org/abs/2509.02534)
+- [CD-RLHF: Curiosity-Driven RLHF](https://arxiv.org/abs/2501.11463)
+- [GEM: Preserving Diversity in Supervised Fine-Tuning](https://arxiv.org/abs/2408.16673)
+- [Kirk et al.: Understanding Effects of RLHF on Diversity](https://arxiv.org/abs/2310.06452)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 186294,
+  "duration_api_ms": 235321,
+  "num_turns": 16,
+  "stop_reason": "end_turn",
+  "session_id": "887abd05-b6ed-47f6-83b0-df208a3885d5",
+  "total_cost_usd": 0.8786684999999999,
+  "usage": {
+    "input_tokens": 3685,
+    "cache_creation_input_tokens": 33752,
+    "cache_read_input_tokens": 234853,
+    "output_tokens": 7637,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 33752,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 612,
+        "cache_read_input_tokens": 41438,
+        "cache_creation_input_tokens": 4155,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4155
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 202857,
+      "outputTokens": 5617,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 11,
+      "costUSD": 0.3409420000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 3685,
+      "outputTokens": 7637,
+      "cacheReadInputTokens": 234853,
+      "cacheCreationInputTokens": 33752,
+      "webSearchRequests": 0,
+      "costUSD": 0.5377265,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e4aaef9f-3d88-4422-a6c7-b27ddc81329e"
+}
+```
+
+</details>
+
+---

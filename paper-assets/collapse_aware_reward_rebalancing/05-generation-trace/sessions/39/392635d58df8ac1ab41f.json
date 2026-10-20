@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "392635d58df8ac1ab41f",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "run fullft k4 probe",
+  "task_key": "worker_run_fullft_k4_probe_20260516T155107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_fullft_k4_probe_20260516T155107_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "aefbc5e7862e5672ccb3f709b1454091f3a72b5089c76ca77078f8e9995568da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程正常运行。Full-FT K=4 Probe 已在 cuda:1 上启动：\n\n- **exp_id**: `carr_fullft_k4_probe_01`\n- **日志**: `~/runs/collapse_aware_reward_rebalancing/carr_fullft_k4_probe_01.log`\n- 已确认模型加载成功、数据集读取正常、正在生成第 0 代 candidates（16/2000）\n\n修改总结：\n- `train_sft.py`：添加 `config.USE_LORA` 条件分支，Full-FT 模式跳过 peft，直接训练所有参数并保存完整模型；LoRA 模式行为不变\n- `run_quick_probe_fullft.py`：设置 `USE_LORA=False`, `LR=5e-6`, `BATCH_SIZE=2`, `GRAD_ACCUM=4`，输出到 `outputs_fullft_k4/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-fullft-k4-probe.md"
+}

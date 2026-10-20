@@ -1,0 +1,282 @@
+{
+  "schema_version": "1.0",
+  "id": "133b61aa282cedc70eaf",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "conversation",
+  "title": "research verify competitor papers",
+  "task_key": "worker_research_verify_competitor_papers_20260517T012158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_verify_competitor_papers_20260517T012158.jsonl",
+    "occurrence": 1,
+    "bytes": 16421,
+    "sha256": "d241605fb62fd0af777caae11f0c9a92e828c72d3ae5ba19261fd9397ca96a81"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T01:22:53.678340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_competitor_papers_20260517T012158",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch,WebFetch",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T01:22:53.678628+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_competitor_papers_20260517T012158",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T01:22:53.678842+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_competitor_papers_20260517T012158",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2501.00747 DIVE Diversified Iterative Self-Improvement"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T01:22:53.679000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_competitor_papers_20260517T012158",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2509.02534 DARLING Jointly Reinforcing Diversity Quality"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T01:22:53.679131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_competitor_papers_20260517T012158",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2501.11463 CD-RLHF Curiosity-Driven RLHF"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T01:22:53.679252+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_competitor_papers_20260517T012158",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2408.16673 GEM Preserving Diversity Supervised Fine-Tuning"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T01:22:53.679369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_competitor_papers_20260517T012158",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2310.06452 Kirk Understanding Effects RLHF Diversity"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T01:22:53.679528+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2509.02534 DARLING Jointly Reinforcing Diversity Quality\"\n\nLinks: [{\"title\":\"[2509.02534] Jointly Reinforcing Diversity and Quality in Language Model Generations\",\"url\":\"https://arxiv.org/abs/2509.02534\"},{\"title\":\"Jointly Reinforcing Diversity and Quality in Language Model Generations\",\"url\":\"https://arxiv.org/pdf/2509.02534\"},{\"title\":\"Paper page - Jointly Reinforcing Diversity and Quality in Language Model Generations\",\"url\":\"https://huggingface.co/papers/2509.02534\"},{\"title\":\"GitHub - facebookresearch/darling: Official Implementation of the paper \\\"Jointly Reinforcing Diversity and Quality in Language Model Generations\\\" · GitHub\",\"url\":\"https://github.com/facebookresearch/darling\"},{\"title\":\"Jointly Reinforcing Diversity and Quality in Language Model Generations\",\"url\":\"https://arxiviq.substack.com/p/jointly-reinforcing-diversity-and\"},{\"title\":\"[Literature Review] Jointly Reinforcing Diversity and Quality in Language Model Generations\",\"url\":\"https://www.themoonlight.io/en/review/jointly-reinforcing-diversity-and-quality-in-language-model-generations\"},{\"title\":\"Quality & Diversity in LLM Generations\",\"url\":\"https://www.emergentmind.com/papers/2509.02534\"},{\"title\":\"Jointly Reinforcing Diversity and Quality in Language Model Generations | Request PDF\",\"url\":\"https://www.researchgate.net/publication/395213889_Jointly_Reinforcing_Diversity_and_Quality_in_Language_Model_Generations\"},{\"title\":\"Jointly Reinforcing Diversity and Quality in Language ...\",\"url\":\"https://www.alphaxiv.org/overview/2509.02534\"},{\"title\":\"RLVR DARLING: Reinforcing Diversity & Quality in LLM Generations (Paper Club Oct 15) - YouTube\",\"url\":\"https://www.youtube.com/watch?v=OXRxUZ-0XFo\"}]\n\nBased on the search results, here's what I found about arxiv paper 2509.02534:\n\n## Paper Overview\n\nThe paper introduces Diversity-Aware Reinforcement Learning (DARLING), a framework that jointly optimizes for response quality and semantic diversity.\n\n## The Problem\n\nP\n…[truncated 1439 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_competitor_papers_20260517T012158",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T01:22:53.679731+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2501.00747 DIVE Diversified Iterative Self-Improvement\"\n\nLinks: [{\"title\":\"[2501.00747] DIVE: Diversified Iterative Self-Improvement\",\"url\":\"https://arxiv.org/abs/2501.00747\"},{\"title\":\"DIVE: Diversified Iterative Self-Improvement\",\"url\":\"https://arxiv.org/html/2501.00747v1\"},{\"title\":\"DIVE: Diversified Iterative Self-Improvement\",\"url\":\"https://openreview.net/pdf?id=tb0kyytZqF\"},{\"title\":\"Diverse, not Short: A Length-Controlled Self-Learning Framework for Improving Response Diversity of Language Models\",\"url\":\"https://arxiv.org/html/2505.16245v1\"},{\"title\":\"DIVER: Reinforced Diffusion Breaks Imitation Bottlenecks in End-to-End Autonomous Driving\",\"url\":\"https://arxiv.org/html/2507.04049v3\"},{\"title\":\"[2303.12743] Diversified and Realistic 3D Augmentation via Iterative Construction, Random Placement, and HPR Occlusion\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2303.12743\"},{\"title\":\"[2501.05707] Multiagent Finetuning: Self Improvement with Diverse Reasoning Chains\",\"url\":\"https://arxiv.org/abs/2501.05707\"},{\"title\":\"Agent-R\\\\xspace: Training Language Model Agents to Reflect via Iterative Self-Training\",\"url\":\"https://arxiv.org/html/2501.11425v3\"},{\"title\":\"Computer Science Jan 2025\",\"url\":\"https://www.arxiv.org/list/cs/2025-01?skip=8100&show=2000\"},{\"title\":\"[2501.05707v1] Multiagent Finetuning: Self Improvement with Diverse Reasoning Chains\",\"url\":\"https://arxiv.org/abs/2501.05707v1\"}]\n\nBased on the search results, here's what I found about the paper arxiv 2501.00747:\n\nDIVE (Diversified Iterative Self-Improvement) is a novel framework that addresses the challenge of diversity loss in iterative self-improvement through two key components: Sample Pool Expansion for broader solution exploration, and Data Selection for balancing diversity and quality in preference pairs.\n\nThe paper identifies that continuous training on self-generated data leads to reduced output diversity, which is particularly critical in reasoning tasks where dive\n…[truncated 856 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_competitor_papers_20260517T012158",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T01:22:53.679924+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2310.06452 Kirk Understanding Effects RLHF Diversity\"\n\nLinks: [{\"title\":\"[2310.06452] Understanding the Effects of RLHF on LLM Generalisation and Diversity\",\"url\":\"https://arxiv.org/abs/2310.06452\"},{\"title\":\"[2310.06452] Understanding the Effects of RLHF on LLM Generalisation and Diversity\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2310.06452\"},{\"title\":\"Understanding the Effects of RLHF on LLM Generalisation and Diversity | Trending arXiv papers – Ribbit Ribbit\",\"url\":\"https://ribbitribbit.co/paper/arxiv.2310.06452-Understanding-the-Effects-of-RLHF-on-LLM-Generalisation\"},{\"title\":\"[2310.06452v1] Understanding the Effects of RLHF on LLM Generalisation and Diversity\",\"url\":\"https://arxiv.org/abs/2310.06452v1\"},{\"title\":\"Understanding the Effects of RLHF on LLM Generalisation and Diversity\",\"url\":\"https://arxiv.org/html/2310.06452v2\"},{\"title\":\"Understanding the Effects of RLHF on LLM Generalisation ...\",\"url\":\"https://arxiv.org/pdf/2310.06452\"},{\"title\":\"[PDF] Understanding the Effects of RLHF on LLM Generalisation and Diversity | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Understanding-the-Effects-of-RLHF-on-LLM-and-Kirk-Mediratta/cb3968152f7d93f53d24b00279a90d5071ddc85a\"},{\"title\":\"Understanding the Effects of RLHF on LLM Generalisation and - a UCL-DARK Collection\",\"url\":\"https://huggingface.co/collections/UCL-DARK/understanding-the-effects-of-rlhf-on-llm-generalisation-and\"},{\"title\":\"Understanding the Effects of RLHF on LLM Generalisation and Diversity | OpenReview\",\"url\":\"https://openreview.net/forum?id=PXD3FAVHJT\"},{\"title\":\"RLHF Effects on LLM Generalisation & Diversity\",\"url\":\"https://www.emergentmind.com/papers/2310.06452\"}]\n\nBased on the search results, here's information about arxiv 2310.06452:\n\n## Paper Overview\n\nThis paper is titled \"Understanding the Effects of RLHF on LLM Generalisation and Diversity\" and was authored by Robert Kirk, Ishita Mediratta, Christoforos Nalmpantis, Jelena Luketina, Er\n…[truncated 1006 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_competitor_papers_20260517T012158",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T01:22:53.680100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2501.11463 CD-RLHF Curiosity-Driven RLHF\"\n\nLinks: [{\"title\":\"[2501.11463] Curiosity-Driven Reinforcement Learning from Human Feedback\",\"url\":\"https://arxiv.org/abs/2501.11463\"},{\"title\":\"GitHub - ernie-research/CD-RLHF: Official code of curiosity-driven RLHF\",\"url\":\"https://github.com/ernie-research/CD-RLHF\"},{\"title\":\"Curiosity-Driven Reinforcement Learning from Human Feedback\",\"url\":\"https://arxiv.org/html/2501.11463\"},{\"title\":\"Curiosity-Driven Reinforcement Learning from Human ...\",\"url\":\"https://arxiv.org/pdf/2501.11463\"},{\"title\":\"Paper page - Curiosity-Driven Reinforcement Learning from Human Feedback\",\"url\":\"https://huggingface.co/papers/2501.11463\"},{\"title\":\"The Hidden Link Between RLHF and Contrastive Learning\",\"url\":\"https://arxiv.org/html/2506.22578v1\"},{\"title\":\"[2504.12501] Reinforcement Learning from Human Feedback\",\"url\":\"https://arxiv.org/abs/2504.12501\"},{\"title\":\"Reinforcement Learning from Human Feedback\",\"url\":\"https://arxiv.org/html/2504.12501v3\"},{\"title\":\"Investigating Curiosity-Driven Behavior in Virtual ...\",\"url\":\"https://arxiv.org/pdf/2501.04905\"},{\"title\":\"[1808.04355] Large-Scale Study of Curiosity-Driven Learning\",\"url\":\"https://arxiv.org/abs/1808.04355\"}]\n\nI found the paper arxiv 2501.11463 \"Curiosity-Driven Reinforcement Learning from Human Feedback.\" Here's what I found:\n\n## Overview\n\nThis paper addresses a key challenge in RLHF: while it effectively aligns large language models with human preferences, it often reduces output diversity. This trade-off between diversity and alignment quality is a significant challenge.\n\n## The CD-RLHF Framework\n\nThe researchers introduce curiosity-driven RLHF (CD-RLHF), a framework that incorporates intrinsic rewards for novel states, alongside traditional sparse extrinsic rewards, to optimize both output diversity and alignment quality.\n\nCuriosities are implemented as intrinsic rewards and assigned along the trajectory. Combining intrinsic rewards with the extri\n…[truncated 894 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_competitor_papers_20260517T012158",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T01:22:53.680265+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2408.16673 GEM Preserving Diversity Supervised Fine-Tuning\"\n\nLinks: [{\"title\":\"[2408.16673] Preserving Diversity in Supervised Fine-Tuning of Large Language Models\",\"url\":\"https://arxiv.org/abs/2408.16673\"},{\"title\":\"Preserving Diversity in Supervised Fine-Tuning of Large Language Models\",\"url\":\"https://arxiv.org/html/2408.16673v2\"},{\"title\":\"Preserving Diversity in Supervised Fine-Tuning of Large Language Models | alphaXiv\",\"url\":\"https://www.alphaxiv.org/abs/2408.16673\"},{\"title\":\"GitHub - liziniu/GEM: Code for Paper (Preserving Diversity in Supervised Fine-tuning of Large Language Models)\",\"url\":\"https://github.com/liziniu/GEM\"},{\"title\":\"Entropic Distribution Matching in Supervised Fine-tuning of LLMs: Less Overfitting and Better Diversity\",\"url\":\"https://arxiv.org/html/2408.16673v1\"},{\"title\":\"[2408.16673v1] Entropic Distribution Matching in Supervised Fine-tuning of LLMs: Less Overfitting and Better Diversity\",\"url\":\"http://www.arxiv.org/abs/2408.16673v1\"},{\"title\":\"SED-SFT: Selectively Encouraging Diversity in Supervised Fine-Tuning\",\"url\":\"https://arxiv.org/html/2602.07464\"},{\"title\":\"Preserving Diversity in Supervised Fine-Tuning of Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=NQEe7B7bSw\"},{\"title\":\"Entropic Distribution Matching in Supervised Fine-tuning of ...\",\"url\":\"https://arxiv.org/pdf/2408.16673\"},{\"title\":\"Proximal Supervised Fine-Tuning\",\"url\":\"https://arxiv.org/html/2508.17784v1\"}]\n\nBased on the search results, I found the arXiv paper you requested. Here's what I found:\n\n## Paper Overview\n\nThe paper titled \"Preserving Diversity in Supervised Fine-Tuning of Large Language Models\" is arXiv paper 2408.16673.\n\n## Key Contributions\n\nLarge Language Models (LLMs) typically rely on Supervised Fine-Tuning (SFT) to specialize in downstream tasks, with the Cross Entropy (CE) loss being the de facto choice. However, CE maximizes the likelihood of observed data without accounting for alternativ\n…[truncated 1369 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_competitor_papers_20260517T012158",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T01:22:53.680484+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 篇论文验证完毕，结果如下：\n\n---\n\n## 验证结果\n\n### 1. DIVE: Diversified Iterative Self-Improvement — arXiv 2501.00747\n**✅ 真实**\n\n- 实际标题：*DIVE: Diversified Iterative Self-Improvement*（完全匹配）\n- 作者：Yiwei Qin, Yixiu Liu, Pengfei Liu\n- 日期：2025年1月\n- Venue：也见于 OpenReview\n- 相关性：直接竞品——解决迭代自改进中多样性丧失问题，通过 Sample Pool Expansion + Data Selection 平衡多样性与质量\n\n### 2. DARLING: Jointly Reinforcing Diversity and Quality — arXiv 2509.02534\n**✅ 真实**\n\n- 实际标题：*Jointly Reinforcing Diversity and Quality in Language Model Generations*（DARLING = Diversity-Aware Reinforcement Learning）\n- 来源：Facebook Research（有官方 GitHub: facebookresearch/darling）\n- 日期：2025年9月（当前2026年5月，时间合理）\n- 相关性：**最直接的竞品**——在 online RL 阶段联合优化质量和语义多样性，用 learned partition function 度量多样性\n\n### 3. CD-RLHF: Curiosity-Driven RLHF — arXiv 2501.11463\n**✅ 真实**\n\n- 实际标题：*Curiosity-Driven Reinforcement Learning from Human Feedback*（完全匹配）\n- 来源：Ernie Research (Baidu)，有官方 GitHub: ernie-research/CD-RLHF\n- 日期：2025年1月\n- 相关性：直接竞品——用 intrinsic curiosity reward 在 RLHF 中保持多样性，同时维持对齐质量\n\n### 4. GEM: Preserving Diversity in Supervised Fine-Tuning — arXiv 2408.16673\n**⚠️ 真实，但标题表述略有出入**\n\n- 实际标题 v2：*Preserving Diversity in Supervised Fine-Tuning of Large Language Models*\n- 实际标题 v1：*Entropic Distribution Matching in Supervised Fine-tuning of LLMs: Less Overfitting and Better Diversity*\n- GEM 是算法名称，非论文标题的一部分\n- 有官方 GitHub: liziniu/GEM\n- 日期：2024年8月\n- 相关性：高度相关——game-theoretic formulation 用 reverse KL + entropy regularization 在 SFT 阶段保留多样性\n\n### 5. Kirk et al.: Understanding Effects of RLHF on Diversity — arXiv 2310.06452\n**✅ 真实**\n\n- 实际标题：*Understanding the Effects of RLHF on LLM Generalisation and Diversity*（完全匹配）\n- 作者：Robert Kirk, Ishita Mediratta, Christoforos Nalmpantis, Jelena Luketina, Eric Hambro, Edward Grefenstette, Roberta Raileanu\n- 日期：2023年10月，发表于 ICLR（见 OpenReview）\n- 相关性：基础性分析论文——实证发现 RLHF 显著降低输出多样性，建立了 generalisation vs. diversity 的 tradeoff，是我们工作的动机来源之一\n\n---\n\n## 总结\n\n5/5 论文均真实存在，无幻觉。仅 GEM 的标题表述需微调（GEM 是算法名而非论文标题的一部分）。DARLING 的 2509 时间戳确认合理（2025年9月，Facebook Research 出品）。\n\nSources:\n- [DIVE](https://arxiv.org/abs/2501.00747)\n- [DARLING](https://arxiv.org/abs/2509.02534)\n- [CD-RLHF](https://arxiv.org/abs/2501.11463)\n- [GEM](https://arxiv.org/abs/2408.16673)\n- [Kirk et al.](https://arxiv.org/abs/2310.06452)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_competitor_papers_20260517T012158"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/research-verify-competitor-papers.md"
+}

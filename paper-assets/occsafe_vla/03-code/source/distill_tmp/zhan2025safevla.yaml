@@ -1,0 +1,104 @@
+paper_key: "zhan2025safevla"
+title: "SafeVLA: Towards Safety Alignment of Vision-Language-Action Model via Constrained Learning"
+venue: "NeurIPS 2025 Spotlight"
+full_text_available: true
+
+research:
+  baselines:
+    - SPOC-DINOv2
+    - SPOC-SigLip-S
+    - SPOC-SigLip-L
+    - SPOC w/GT
+    - FLaRe (standard RL fine-tuning)
+    - FLaRe-RS (reward shaping variant)
+    - Poliformer (end-to-end RL)
+  metrics:
+    - {name: "Task Success Rate (SR)", direction: "higher_better"}
+    - {name: "Cumulative Cost (CC)", direction: "lower_better"}
+  datasets:
+    - {name: "Safety-CHORES", size: "3 task suites (ObjNav/PickUp/Fetch), 150K ProcTHOR scenes, 800K Objaverse 3D assets, AI2THOR simulator"}
+  ablation_dimensions:
+    - "Risk elicitation (with vs without safety-critical components)"
+    - "Lagrangian multiplier strategy (dynamic vs fixed penalty coefficients)"
+    - "Cost threshold impact (strict vs relaxed)"
+    - "VLA backbone generalization (EmbCLIP, Embodied-Codebook, DINOv2, SigLip-S, SigLip-L)"
+  training_recipe:
+    optimizer: "PPO-based (inspired by Safe-RLHF)"
+    lr: "not specified in main text (Appendix C.2)"
+    hardware: "not explicitly stated"
+    method: "Lagrangian min-max optimization, alternating θ and λ updates"
+    simulation: "AI2THOR with ProcTHOR procedural generation"
+  method_family: "Constrained RL / Safe RL with CMDP formulation for VLA alignment"
+
+positioning:
+  core_claim: "首个将 CMDP-based Safe RL 系统性地集成到 VLA 安全对齐中的方法，通过建模安全需求、诱发潜在风险、约束策略优化、安全保障评估四步流程实现安全-性能的有效权衡"
+  key_results: "CC 降低 83.58%（vs FLaRe），SR 提升 3.85%；极端失败场景中 CC 仅 2.20 vs FLaRe 71.68（32倍更安全）；OOD 扰动下安全收益基本保持"
+  limitations:
+    - "轨迹级谓词的 credit assignment 仍待探索"
+    - "仅在仿真中验证（移动操作），真实世界适用性需进一步研究"
+    - "安全约束是预定义的，自动发现安全需求是开放问题"
+    - "Safety-critical components 可通过社区反馈进一步扩展"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "VLA 模型在 embodied AI 中取得重大进展，但安全对齐严重缺失——最先进模型尚未将安全显式纳入设计"
+  tension: "LLM/VLM 的安全方法（RLHF、内容审核等）无法直接迁移到 VLA，因为存在从抽象意图安全到物理世界安全的巨大鸿沟；现有 VLA 训练（IL 或标准 RL）缺乏显式安全约束机制"
+  key_insight: "将安全视为约束优化问题（CMDP），而非奖励信号的一部分；通过 Lagrangian relaxation 将约束问题转化为可优化的 min-max 问题，实现安全与任务性能的解耦"
+  argument_chain: "VLA 安全缺失 → LLM 安全方法不可迁移 → 提出 ISA 四步框架（建模→诱发→约束→保障）→ Safety-CHORES benchmark 暴露漏洞 → CMDP+Lagrangian 实现 83.58% 安全提升 → OOD/极端场景验证鲁棒性"
+  contribution_framing: "三个贡献：(1) ISA 方法论探索（四子步骤）；(2) Safety-CHORES benchmark；(3) 实证验证（三维度：安全-性能权衡、长尾安全、极端失败安全）。措辞为 exploration 而非 solution，语气审慎"
+  intro_structure: "5段：P1 VLA 背景与重要性 → P2 安全对齐的紧迫性 → P3 核心研究问题 → P4 现有安全方法（LLM/VLM）不可迁移 → P5 现有 VLA 缺乏显式安全设计"
+  notable_technique: "用极端失败场景（任务不可能完成时的行为）作为安全压力测试，这比常规评估更有说服力——FLaRe CC=71.68 vs ISA CC=2.20 的 32 倍差距极具冲击力"
+
+figures:
+  figure_count: 10  # 主文，附录中额外有更多
+  figure1:
+    type: "method_overview"
+    description: "ISA 完整流程图：从安全建模（定义安全关键组件）→ 风险诱发（大规模场景生成）→ 策略约束（CMDP+Lagrangian）→ 安全保障（测试时/长尾/极端评估），四个阶段依次连接"
+    narrative_role: "在论文开头建立全局框架认知，让读者一图理解整个方法论流程"
+    design_elements: ["四阶段流程", "每阶段配有子步骤说明", "箭头连接逻辑链"]
+    visual_style: "横向流程布局，颜色区分四个阶段，每阶段内含具体操作步骤"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "distribution_plot"
+      what_compared: "ISA vs FLaRe 的累积成本分布（全部轨迹/成功时/失败时三面板）"
+      how_gain_highlighted: "ISA 消除了 CC>10 的极端轨迹，上界降至 FLaRe 的 1/35；通过条件分布（成功/失败）展示 ISA 安全性与任务结果解耦"
+      design_note: "三面板条件分布是亮点——不仅展示整体安全提升，还展示安全行为的一致性（不随任务成败波动），这比单一平均数更有说服力"
+    - figure_id: "Figure 4"
+      viz_type: "grouped_bar"
+      what_compared: "ISA 在不同 VLA 模型和 benchmark 上的泛化效果"
+      how_gain_highlighted: "跨模型一致性改善"
+      design_note: "展示方法的通用性而非仅在一个模型上有效"
+    - figure_id: "Figure 5"
+      viz_type: "grouped_bar"
+      what_compared: "VLA 模型在多个 benchmark 上的 SR 和 CC"
+      how_gain_highlighted: "双指标（SR 和 CC）并列对比"
+      design_note: "同时展示任务性能和安全指标的双轴对比"
+  ablation_figures:
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      dimensions_varied: ["fixed penalty coefficient values"]
+      design_note: "展示 dynamic Lagrangian multiplier 相对固定惩罚系数的优势，多条线对应不同固定值"
+    - figure_id: "Figure 7"
+      viz_type: "multi_panel (bar + line)"
+      dimensions_varied: ["risk elicitation component", "cost threshold", "extreme failure scenarios"]
+      design_note: "三面板组合：左-消融风险诱发（CC 从 1.854 升至 5.01）；中-成本阈值影响；右-极端失败场景（FLaRe 71.68 vs ISA 2.20）"
+  figure_narrative_role: "Fig1(方法全景) → Fig2(安全组件可视化) → Fig3(安全分布分析) → Fig4-5(跨模型/benchmark 泛化) → Fig6(Lagrangian消融) → Fig7(多维消融+极端测试) → Fig8(成功-成本相关性) → Fig9(per-room分析) → Fig10(定性轨迹对比)"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "tasks (Safety-ObjNav, Safety-PickUp, Safety-Fetch) × metrics (SR, CC)"
+    row_organization: "by_category"  # IL+RL / IL / RL-Only 分组
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "best results highlighted (具体标注方式未详述)"
+    statistical_reporting: "单次值，无 mean ± std"
+    num_baselines: 7
+    design_note: "按方法类型（IL+RL / IL / RL-Only）分组排列 baseline，让读者清楚各方法范式的定位；双指标（SR+CC）并列展示安全-性能权衡"
+  ablation_tables: []  # 消融主要用图而非表
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 3 相关性分析（任务成功与累积成本的相关系数和 p 值）；Table 4-5 GPT-4 安全评估 prompt 和响应示例"
+    reason: "相关性统计分析和 GPT-4 评估细节属于支撑性证据，不影响主结论理解，放入附录减轻主文负担"

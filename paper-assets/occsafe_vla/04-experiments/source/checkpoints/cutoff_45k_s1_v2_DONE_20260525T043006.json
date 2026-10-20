@@ -1,0 +1,35 @@
+{
+  "exp_id": "cutoff_45k_s1_v2",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T03:51:32.789Z",
+    "updated_at": "2026-05-25T04:30:06.454Z",
+    "hypothesis": "Seed 43 replication of cutoff_45k (gradient flow cutoff at 45K steps, from scratch). Previous cutoff_45k_s1 was invalid due to resume batch_idx bug — cutoff never triggered. This run starts from pretrained weights with no resume.",
+    "parent": "cutoff_45k_s0",
+    "spec": {
+      "command": "torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_loss_cutoff_step 45000 --occ_loss_cutoff_mode after --run_root_dir /root/autodl-tmp/checkpoints/cutoff_45k_s1_v2 --seed 43 --run_id_note cutoff_45k_s1_v2",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "96645",
+      "log_path": "/root/runs/occsafe_vla/cutoff_45k_s1_v2.log",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 25000,
+      "model_name": "openvla-7b",
+      "seed": 43,
+      "checkpoint_source": "pretrained openvla-7b (from scratch, no resume)",
+      "eval_data": "N/A (training run)"
+    },
+    "conclusion": "failed",
+    "failure_reason": "server reboot",
+    "completed_at": "2026-05-25T04:30:06.454Z"
+  },
+  "timestamp": "2026-05-25T04:30:06.670242+00:00",
+  "trigger": "update_registry"
+}

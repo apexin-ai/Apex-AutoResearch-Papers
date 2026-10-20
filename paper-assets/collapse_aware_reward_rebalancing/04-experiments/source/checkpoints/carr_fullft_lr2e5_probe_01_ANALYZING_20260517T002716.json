@@ -1,0 +1,87 @@
+{
+  "exp_id": "carr_fullft_lr2e5_probe_01",
+  "project": "collapse_aware_reward_rebalancing",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T20:41:17.114Z",
+    "updated_at": "2026-05-17T00:27:16.583Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/carr && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 python3 run_fullft_lr2e5.py",
+      "server": "bjb2-23165",
+      "gpu": "cuda:1",
+      "pid": 523802,
+      "log_path": "~/runs/collapse_aware_reward_rebalancing/carr_fullft_lr2e5_probe_01.log",
+      "submitted_at": "2026-05-16T20:41:17.089Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "Full-FT LR=2e-5 (4x提高) 使模型充分学习 curated data 分布，触发可观测的 diversity decline",
+      "condition": "single_reward (ArmoRM top-1-of-4) Full-FT LR=2e-5 epochs=3",
+      "generations": 3,
+      "prompts": 2000,
+      "eval_prompts": 200,
+      "model_name": "Qwen3-0.6B",
+      "k_candidates": 4,
+      "gen_batch_size": 16,
+      "lr": 2e-05,
+      "num_epochs": 3,
+      "per_device_train_batch_size": 1,
+      "gradient_accumulation_steps": 8,
+      "gradient_checkpointing": true,
+      "use_lora": false,
+      "data_path": "openbmb/UltraFeedback",
+      "data_count": 2200,
+      "seed": 42,
+      "output_dir": "/root/autodl-tmp/carr/outputs_fullft_lr2e5/",
+      "metrics": {
+        "gen0": {
+          "mean_quality": 0.113,
+          "vendi_score": 107.81,
+          "self_bleu": 0.0046,
+          "perplexity": 9.57,
+          "mean_nn_distance": 0.7079,
+          "complexity_mean": 2.89
+        },
+        "gen1": {
+          "mean_quality": 0.1154,
+          "vendi_score": 108.03,
+          "self_bleu": 0.0039,
+          "perplexity": 10.34,
+          "mean_nn_distance": 0.7107,
+          "complexity_mean": 2.868
+        },
+        "gen2": {
+          "mean_quality": 0.1124,
+          "vendi_score": 108.54,
+          "self_bleu": 0.004,
+          "perplexity": 8.82,
+          "mean_nn_distance": 0.71,
+          "complexity_mean": 2.846
+        },
+        "vendi_decline_pct": 0.68,
+        "p1_pass": false,
+        "training_loss_trend": "0.380 -> 0.212 -> 0.140"
+      },
+      "checkpoint_path": "/root/autodl-tmp/carr/outputs_fullft_lr2e5/gen_2/condition_0/merged",
+      "elapsed_hours": 3.7
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T00:24:10.752Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T00:24:12.107595+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-17T00:27:16.634831+00:00",
+  "trigger": "update_registry"
+}

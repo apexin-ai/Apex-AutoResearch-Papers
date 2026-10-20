@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e276f2bb6328a6ca053e",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "experiment d073 a2 probe bge m3",
+  "task_key": "worker_experiment_d073-a2-probe-bge-m3_20260516T022739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_d073-a2-probe-bge-m3_20260516T022739_result.json",
+    "occurrence": 1,
+    "bytes": 463,
+    "sha256": "885edc94ae8f0fbab0c80ab3ea5e3834b1a229bab50c1d366feb24fa5235439d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results file doesn't exist yet — script still running. At the current rate (~53s/chunk), embedding generation will finish in ~35 minutes, followed by ~5-10 minutes for GRU training and evaluation. Total estimated completion: ~45 minutes from now.\n\nI'll check progress again shortly. The script will automatically proceed through all remaining steps (merge chunks → train GRU on SWE conf≥2 → evaluate on OH conf≥2 → save results.json)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-d073-a2-probe-bge-m3.md"
+}

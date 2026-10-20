@@ -1,0 +1,31 @@
+{
+  "exp_id": "ablation_occ_detach_s4_eval",
+  "project": "occsafe_vla",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T14:07:24.136Z",
+    "updated_at": "2026-05-27T14:08:57.285Z",
+    "hypothesis": "50-rollout SafeLIBERO eval of ablation_occ_detach_s4 (Detach BN, seed 46). Cell 3 n=5 data expansion for factorial ANOVA statistical power.",
+    "parent": "ablation_occ_detach_s4",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=2 python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/ablation_occ_detach_s4/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--ablation_occ_detach_s4--50000_chkpt --task_suite_name libero_spatial --num_rollouts 50 --seed 42\"",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "873426",
+      "log_path": "~/runs/occsafe_vla/ablation_occ_detach_s4_eval.log",
+      "data_path": "libero_spatial (SafeLIBERO Level I)",
+      "data_count": 500,
+      "checkpoint_source": "ablation_occ_detach_s4",
+      "eval_data": "50 rollouts x 10 tasks",
+      "model_name": "openvla-7b-oft-detach-bn-s4",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-27T14:08:57.606204+00:00",
+  "trigger": "update_registry"
+}

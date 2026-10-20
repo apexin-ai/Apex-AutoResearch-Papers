@@ -1,0 +1,46 @@
+# code carr pipeline
+
+**Does Reward Curation Kill Diversity? Systematic Evidence of Surprising Resilience in Iterative Self-Training** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_code_carr-pipeline_20260516T074158_result.json`
+- **Structured JSON:** [`34951cfb358883b4e61b.json`](../../sessions/34/34951cfb358883b4e61b.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+全部完成。代码结构：
+
+```
+/root/autodl-tmp/carr/
+├── __init__.py        (0B)
+├── config.py          (934B)  - 路径、超参数集中配置
+├── generate.py        (3.0KB) - batch 生成 K=4 候选，逐 prompt 采样
+├── score.py           (5.6KB) - 三维打分: ArmoRM + embedding NN + complexity
+├── curate.py          (1.0KB) - 4 种选择策略
+├── carr_algo.py       (2.4KB) - MWU + Fixed Share 权重更新
+├── train_sft.py       (4.0KB) - LoRA SFT + merge adapter
+├── evaluate.py        (6.3KB) - Vendi Score, Self-BLEU, PPL, Mean Quality
+├── pipeline.py        (4.5KB) - 单条件 5 代循环编排
+└── run_mvp.py         (4.4KB) - 4 条件串行入口，结果汇总表格
+```
+
+关键设计决策：
+1. **显存分时复用** — 每步加载→推理→`del model; torch.cuda.empty_cache()` 释放，避免 1.5B + 8B 同时占用
+2. **ArmoRM 用 `AutoModelForSequenceClassification`** — 兼容 `.score` 和 `.logits` 两种输出格式
+3. **Self-BLEU 采样计算** — 对最多 100 条 × 10 条 reference 计算，避免 O(n²) 太慢
+4. **串行而非并行** — 单 GPU 下 4 条件串行，每条件内步骤也串行以控制显存
+5. **Perplexity 固定用 gen-0 基座** — 衡量各代模型偏离原始分布的程度
+
+---

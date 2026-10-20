@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f023468b67832eca22b",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "train oh full finetune",
+  "task_key": "worker_train_oh-full-finetune_20260514T150243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_oh-full-finetune_20260514T150243_result.json",
+    "occurrence": 1,
+    "bytes": 1096,
+    "sha256": "c759241e5465d29ddacc98b53090a756687a1e47f6c40522b5bf9f90639ccd9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常进行。每个 epoch ~10 分钟，当前在 epoch 3。预计 early stopping 在 ~epoch 7-10，总共约 1-2 小时。\n\n训练已在后台正常运行，当前状态汇总：\n\n**已完成**:\n- `oh_full_finetune.py` 脚本编写、上传、dry-run 验证通过\n- 训练 job 已提交并在 bjb2-23165 的 cuda:0 上运行 (PID 66366)\n- Registry 已注册 exp_id=`oh-full-finetune`\n\n**训练进度** (实时):\n| Epoch | Loss | Val macro_f1 | Val f1_stag | Val f1_prog |\n|-------|------|-------------|-------------|-------------|\n| 0 (zero-shot) | - | 0.5318 | 0.2001 | 0.8635 |\n| 1 | 0.0734 | 0.5484 | 0.2727 | 0.8241 |\n| 2 | 0.0584 | 0.6218 | 0.3479 | 0.8957 |\n\n**参数**:\n- 101,713 训练 windows (143k 总计, 70/15/15 split)\n- pos_weight=0.0695 (匹配 fewshot_probe.py)\n- lr=1e-4, batch_size=32, epochs=20, patience=5\n\n**监控**: 输出在 `/proc/66366/fd/1`（log 文件被意外删除，但进程 fd 仍可读）。每个 epoch ~10 分钟，预计 early stopping 后总时长 1-2 小时。完成后会输出 `METRICS_JSON` 和 SUMMARY 表。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-oh-full-finetune.md"
+}

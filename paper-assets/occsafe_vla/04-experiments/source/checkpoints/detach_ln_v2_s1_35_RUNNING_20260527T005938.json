@@ -1,0 +1,29 @@
+{
+  "exp_id": "detach_ln_v2_s1_35",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T00:50:57.162Z",
+    "updated_at": "2026-05-27T00:59:38.406Z",
+    "hypothesis": "Detach LN (gradient OFF + LN) v2 rebuild seed 43 on westd-34685. Previously unregistered instance running since ~23:34 UTC, currently at step 4608/50005. Provides Cell 4 v2 data for factorial ANOVA.",
+    "spec": {
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:0"
+      ],
+      "account": "root",
+      "command": "bash -c \"export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach true --occ_norm_type ln --run_root_dir /root/autodl-tmp/checkpoints/detach_ln_v2_s1_35 --seed 43 --run_id_note detach_ln_v2_s1_35\"",
+      "pid": "681124",
+      "log_path": "~/runs/occsafe_vla/detach_ln_v2_s1_35.log",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 55370,
+      "model_name": "openvla-7b",
+      "seed": 43
+    }
+  },
+  "timestamp": "2026-05-27T00:59:38.724958+00:00",
+  "trigger": "update_registry"
+}

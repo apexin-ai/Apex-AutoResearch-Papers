@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "703859e7810fb28095cb",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "fix gold pipeline and artifacts",
+  "task_key": "worker_fix_gold-pipeline-and-artifacts_20260514T192745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gold-pipeline-and-artifacts_20260514T192745_result.json",
+    "occurrence": 1,
+    "bytes": 1369,
+    "sha256": "afaddacd1957ad67d0d9a2014d095314316838cb9797e544cb93464183cdd8d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 个任务完成。汇总：\n\n---\n\n### Task 1: Gold pipeline 泄漏修复 ✓\n**问题**：`evaluate_structural` 用 `split_info[\"train_indices\"]` 训练，dry-run gold 全部 15401 conf>=2 窗口中有 10634 在训练集中（69% 泄漏）。\n\n**修复**：排除 gold 窗口出训练集；若训练集清空（dry-run 场景），fallback 到原始 train split 训练 + 仅评估 held-out gold。\n\n**验证**：full 15401 dry run RF 0.9994→**0.9983**（4767 held-out），GB 0.9991→**0.9972**。\n\n### Task 2: 650 规模 dry run ✓\n3 seeds (42/123/456) 结果（macro_f1 mean±std）:\n| Model | Mean | Std |\n|-------|------|-----|\n| Probe | 0.9544 | ±0.0064 |\n| RF | 0.9961 | ±0.0034 |\n| GB | 0.9961 | ±0.0034 |\n| TWV | 0.9508 | ±0.0099 |\n| TWV Probe | 0.9481 | ±0.0077 |\n\n方差可控（Probe <1pp, TWV ~1pp）。\n\n### Task 3: --device 默认值 ✓\n改为 `\"cuda:0\"`，简化 device 选择逻辑。\n\n### Task 4: Registry ✓\n- `gold_dryrun_v1`, `gold_dryrun_v2` → killed\n- `gold_dryrun_v3` → conclusion=success + 写入修复后 metrics（含 full 和 650x3 seeds）\n\n### Task 5: FP/FN 命名统一 ✓\n`analysis_f1_stag_conf_stratified.json` 和 `.md` 统一为 **stagnation-positive**：TP=pred stag+actual stag, FP=pred stag+actual prog, FN=pred prog+actual stag, TN=pred prog+actual prog。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-gold-pipeline-and-artifacts.md"
+}

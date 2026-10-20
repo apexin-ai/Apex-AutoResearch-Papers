@@ -1,0 +1,1309 @@
+{
+  "schema_version": "1.0",
+  "id": "fc9a8b4d57d7d585b519",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "worker",
+  "title": "paper figure fig3 direction reversal",
+  "task_key": "worker_paper_figure_fig3_direction_reversal_20260517T082355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig3_direction_reversal_20260517T082355.log",
+    "occurrence": 1,
+    "bytes": 62420,
+    "sha256": "5323db55f00982228fdf9aff26108375e651746a1c068a4e192e35ac739df555"
+  },
+  "statistics": {
+    "messages": 28,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513",
+                "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__bootstrap_provenance",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__overleaf_init",
+                  "mcp__agent-ml-research__overleaf_pull",
+                  "mcp__agent-ml-research__overleaf_push",
+                  "mcp__agent-ml-research__overleaf_status",
+                  "mcp__agent-ml-research__overleaf_sync",
+                  "mcp__agent-ml-research__paper_agent_post_to_director",
+                  "mcp__agent-ml-research__paper_agent_request_review",
+                  "mcp__agent-ml-research__paper_compile_and_check",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "d65aa1eb-4ab9-4477-a590-f6f12e0abda1",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0513/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779018000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "eb8ecd5c-2222-4103-b97b-102438f62e12",
+                "session_id": "766be918-59f3-475b-85ed-be597b05ce9b"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read the skill file first, then generate the figure."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "952f7429-37b3-4403-a714-50f5a3873769",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NkU6T8hV8FHQgCk7SX5Nbd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7114,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7114
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KDs9Qz7bZZ2vQgrsiaVMg1",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "f19af3e8-06c4-41f1-9697-e8e0b4a0ed00",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NkU6T8hV8FHQgCk7SX5Nbd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7114,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7114
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T08:24:07.593Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KDs9Qz7bZZ2vQgrsiaVMg1",
+              "type": "tool_result",
+              "content": "1\t---\n2\tdescription: 生成学术论文级 matplotlib 图表——reliability diagrams、ECE heatmap、T* scatter plot、模型对比图，直接在 A6000 服务器上执行，输出 PDF/PNG\n3\tname: draw-paper-figure\n4\tscope: global\n5\ttags:\n6\t  - research\n7\t  - visualization\n8\t  - paper\n9\t  - matplotlib\n10\tversion: 1\n11\ttools:\n12\t  - ssh_execute\n13\t---\n14\t\n15\t# Draw Paper Figure — 学术图表生成\n16\t\n17\t为 ML 论文生成发表级图表。通过 SSH 在 A6000 上运行 matplotlib 脚本，直接输出到实验目录。\n18\t\n19\t## 触发条件\n20\t\n21\t- 用户说\"画个图\"、\"生成 reliability diagram\"、\"做个 heatmap\"\n22\t- 论文写作阶段需要插图\n23\t- 实验结果需要可视化汇总\n24\t\n25\t## 通用样式标准（所有图表必须遵守）\n26\t\n27\t```python\n28\timport matplotlib\n29\tmatplotlib.use('Agg')\n30\timport matplotlib.pyplot as plt\n31\timport matplotlib.patches as mpatches\n32\timport numpy as np\n33\t\n34\t# 字体和全局样式\n35\tplt.rcParams.update({\n36\t    'font.family': 'DejaVu Sans',\n37\t    'font.size': 11,\n38\t    'axes.titlesize': 13,\n39\t    'axes.labelsize': 12,\n40\t    'xtick.labelsize': 10,\n41\t    'ytick.labelsize': 10,\n42\t    'legend.fontsize': 10,\n43\t    'figure.dpi': 300,\n44\t    'savefig.dpi': 300,\n45\t    'savefig.bbox': 'tight',\n46\t    'savefig.pad_inches': 0.05,\n47\t    'axes.spines.top': False,\n48\t    'axes.spines.right': False,\n49\t    'lines.linewidth': 1.8,\n50\t})\n51\t\n52\t# 色盲友好配色（Okabe-Ito）\n53\tCOLORS = {\n54\t    'fp16':   '#E69F00',  # 橙黄\n55\t    'nf4':    '#56B4E9',  # 天蓝\n56\t    'int8':   '#009E73',  # 绿\n57\t    'gptq':   '#F0E442',  # 黄\n58\t    'awq':    '#CC79A7',  # 粉紫\n59\t    'llama':  '#0072B2',  # 深蓝\n60\t    'qwen3':  '#D55E00',  # 橙红\n61\t    'gemma':  '#009E73',  # 绿\n62\t    'mistral':'#CC79A7',  # 粉紫\n63\t    'phi3':   '#F0E442',  # 黄\n64\t}\n65\t\n66\t# 方法标签\n67\tMETHOD_LABELS = {\n68\t    'fp16': 'FP16', 'nf4': 'BNB-NF4',\n69\t    'int8': 'BNB-INT8', 'gptq': 'GPTQ-4bit', 'awq': 'AWQ-4bit'\n70\t}\n71\t```\n72\t\n73\t---\n74\t\n75\t## 1. Reliability Diagram（校准图）\n76\t\n77\t**用途**：显示模型 confidence bin vs accuracy，对角线 = 完美校准。\n78\t\n79\t```python\n80\tdef plot_reliability_diagram(confidences, accuracies, n_bins=10,\n81\t                              label='', color='#0072B2',\n82\t                              title='Reliability Diagram',\n83\t                              outpath='reliability.pdf'):\n84\t    \"\"\"\n85\t    confidences, accuracies: 各样本的 confidence 和 binary correct (0/1)\n86\t    \"\"\"\n87\t    bin_edges = np.linspace(0, 1, n_bins + 1)\n88\t    bin_accs, bin_confs, bin_counts = [], [], []\n89\t\n90\t    for i in range(n_bins):\n91\t        lo, hi = bin_edges[i], bin_edges[i+1]\n92\t        mask = (confidences >= lo) & (confidences < hi)\n93\t        if mask.sum() > 0:\n94\t            bin_accs.append(accuracies[mask].mean())\n95\t            bin_confs.append(confidences[mask].mean())\n96\t            bin_counts.append(mask.sum())\n97\t        else:\n98\t            bin_accs.append(float('nan'))\n99\t            bin_confs.append((lo + hi) / 2)\n100\t            bin_counts.append(0)\n101\t\n102\t    bin_accs = np.array(bin_accs)\n103\t    bin_confs = np.array(bin_confs)\n104\t\n105\t    fig, (ax_main, ax_hist) = plt.subplots(\n106\t        2, 1, figsize=(4, 4.5), gridspec_kw={'height_ratios': [3, 1]},\n107\t        sharex=True\n108\t    )\n109\t\n110\t    # 主图：gaps\n111\t    ax_main.bar(bin_edges[:-1], bin_accs, width=1/n_bins, align='edge',\n112\t                color=color, alpha=0.7, label='Accuracy', zorder=2)\n113\t    ax_main.bar(bin_edges[:-1], bin_confs - bin_accs, width=1/n_bins, align='edge',\n114\t                bottom=bin_accs, color='red', alpha=0.3, label='Gap', zorder=2)\n115\t    ax_main.plot([0, 1], [0, 1], 'k--', linewidth=1, zorder=3, label='Perfect')\n116\t    ax_main.set_xlim(0, 1); ax_main.set_ylim(0, 1)\n117\t    ax_main.set_ylabel('Accuracy')\n118\t    ax_main.set_title(title)\n119\t    ax_main.legend(loc='upper left', fontsize=9)\n120\t    ax_main.grid(True, alpha=0.3, zorder=1)\n121\t\n122\t    # ECE annotation\n123\t    ece = np.nansum(np.array(bin_counts) / sum(bin_counts) *\n124\t                    np.abs(bin_accs - bin_confs))\n125\t    ax_main.text(0.98, 0.02, f'ECE={ece:.3f}', transform=ax_main.transAxes,\n126\t                 ha='right', va='bottom', fontsize=9,\n127\t                 bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8))\n128\t\n129\t    # 直方图（样本密度）\n130\t    ax_hist.bar(bin_edges[:-1], bin_counts, width=1/n_bins, align='edge',\n131\t                color=color, alpha=0.5)\n132\t    ax_hist.set_ylabel('Count', fontsize=9)\n133\t    ax_hist.set_xlabel('Confidence')\n134\t\n135\t    plt.tight_layout()\n136\t    plt.savefig(outpath)\n137\t    plt.close()\n138\t    print(f'Saved: {outpath}')\n139\t```\n140\t\n141\t### 批量生成 6 张对比图（EMNLP 论文用）\n142\t\n143\t选图策略：每 Regime 选最大 ΔECE 的量化方法 vs FP16，LLaMA + Qwen3 各一。\n144\t\n145\t```python\n146\t# 在 A6000 服务器上执行\n147\tFIGURE_PLAN = [\n148\t    # (dataset, model, quant, regime, title)\n149\t    ('hellaswag',   'llama',  'nf4',  'A', 'HellaSwag (Regime A) — LLaMA'),\n150\t    ('hellaswag',   'qwen3',  'nf4',  'A', 'HellaSwag (Regime A) — Qwen3'),\n151\t    ('arc_c',       'llama',  'gptq', 'B', 'ARC-C (Regime B) — LLaMA'),\n152\t    ('arc_c',       'qwen3',  'gptq', 'B', 'ARC-C (Regime B) — Qwen3'),\n153\t    ('truthfulqa',  'llama',  'awq',  'C', 'TruthfulQA (Regime C) — LLaMA'),\n154\t    ('truthfulqa',  'qwen3',  'awq',  'C', 'TruthfulQA (Regime C) — Qwen3'),\n155\t]\n156\t```\n157\t\n158\t---\n159\t\n160\t## 2. ECE Heatmap（方法 × 数据集 ΔECE）\n161\t\n162\t**用途**：Main Results Table 的可视化版本，颜色 = ΔECE（红=恶化，蓝=改善）。\n163\t\n164\t```python\n165\tdef plot_ece_heatmap(delta_ece_matrix, methods, datasets,\n166\t                     title='ΔECE Heatmap (vs FP16)',\n167\t                     outpath='ece_heatmap.pdf'):\n168\t    \"\"\"\n169\t    delta_ece_matrix: shape (n_methods, n_datasets), 正=ECE 恶化, 负=改善\n170\t    \"\"\"\n171\t    import matplotlib.colors as mcolors\n172\t\n173\t    fig, ax = plt.subplots(figsize=(len(datasets) * 1.2, len(methods) * 0.8 + 1))\n174\t\n175\t    # 发散色图（中心=0, 红=恶化, 蓝=改善）\n176\t    vmax = np.nanmax(np.abs(delta_ece_matrix))\n177\t    norm = mcolors.TwoSlopeNorm(vmin=-vmax, vcenter=0, vmax=vmax)\n178\t    cmap = plt.cm.RdBu_r\n179\t\n180\t    im = ax.imshow(delta_ece_matrix, cmap=cmap, norm=norm, aspect='auto')\n181\t\n182\t    # 数值标注\n183\t    for i in range(len(methods)):\n184\t        for j in range(len(datasets)):\n185\t            val = delta_ece_matrix[i, j]\n186\t            if not np.isnan(val):\n187\t                color = 'white' if abs(val) > vmax * 0.6 else 'black'\n188\t                sign = '+' if val > 0 else ''\n189\t                ax.text(j, i, f'{sign}{val:.1%}', ha='center', va='center',\n190\t                        fontsize=9, color=color, fontweight='bold')\n191\t\n192\t    ax.set_xticks(range(len(datasets)))\n193\t    ax.set_yticks(range(len(methods)))\n194\t    ax.set_xticklabels(datasets, rotation=30, ha='right')\n195\t    ax.set_yticklabels(methods)\n196\t    ax.set_title(title)\n197\t\n198\t    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)\n199\t    cbar.set_label('ΔECE (quantized − FP16)')\n200\t    cbar.ax.axhline(0, color='k', linewidth=0.8)\n201\t\n202\t    plt.tight_layout()\n203\t    plt.savefig(outpath)\n204\t    plt.close()\n205\t    print(f'Saved: {outpath}')\n206\t```\n207\t\n208\t---\n209\t\n210\t## 3. T* Scatter Plot（任务 Regime 可视化）\n211\t\n212\t**用途**：展示 5 个模型的 FP16 T* 分布，证明 Regime 跨模型一致性。\n213\t\n214\t```python\n215\tdef plot_tstar_scatter(tstar_data, outpath='tstar_scatter.pdf'):\n216\t    \"\"\"\n217\t    tstar_data: dict of {model_name: {dataset: T*_value}}\n218\t    \"\"\"\n219\t    DATASETS = ['HellaSwag', 'ARC-C', 'MMLU', 'BoolQ', 'TruthfulQA', 'NQ-Open']\n220\t    MODELS = ['LLaMA-3.1-8B', 'Qwen3-4B', 'Gemma-3-12B', 'Mistral-7B', 'Phi-3-mini']\n221\t    REGIME_BANDS = [\n222\t        (0, 1,    '#EBF5FB', 'Regime A\\n(T*<1)'),\n223\t        (1, 5,    '#EAFAF1', 'Regime B\\n(1≤T*<5)'),\n224\t        (5, 10.5, '#FDF2F8', 'Regime C\\n(T*≥5)'),\n225\t    ]\n226\t\n227\t    fig, ax = plt.subplots(figsize=(8, 4))\n228\t\n229\t    # 背景色区\n230\t    for lo, hi, color, label in REGIME_BANDS:\n231\t        ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n232\t        ax.text(5.8, (lo + hi) / 2, label, va='center', fontsize=9,\n233\t                color='gray', zorder=1)\n234\t\n235\t    model_colors = [COLORS.get(m.split('-')[0].lower(), '#333333') for m in MODELS]\n236\t\n237\t    x = np.arange(len(DATASETS))\n238\t    for mi, (model, color) in enumerate(zip(MODELS, model_colors)):\n239\t        y = [tstar_data.get(model, {}).get(ds, np.nan) for ds in DATASETS]\n240\t        ax.plot(x, y, 'o-', color=color, label=model,\n241\t                markersize=7, alpha=0.85, zorder=2)\n242\t\n243\t    ax.set_xticks(x)\n244\t    ax.set_xticklabels(DATASETS, rotation=15, ha='right')\n245\t    ax.set_ylabel('T* (FP16)')\n246\t    ax.set_ylim(0, 10.5)\n247\t    ax.set_title('Calibration Regime by Task — 5 Models (FP16)')\n248\t    ax.axhline(1, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n249\t    ax.axhline(5, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n250\t    ax.legend(loc='upper left', fontsize=9, ncol=2)\n251\t    ax.grid(True, alpha=0.2, axis='y', zorder=1)\n252\t\n253\t    plt.tight_layout()\n254\t    plt.savefig(outpath)\n255\t    plt.close()\n256\t    print(f'Saved: {outpath}')\n257\t```\n258\t\n259\t---\n260\t\n261\t## 4. 生成流程（SSH 执行）\n262\t\n263\t```python\n264\t# Step 1: 写脚本到服务器\n265\tssh_execute(\"\"\"cat > /tmp/gen_figures.py << 'PYEOF'\n266\t# ... 粘贴上方代码 + 调用逻辑 ...\n267\tPYEOF\"\"\")\n268\t\n269\t# Step 2: 安装依赖（如有）\n270\tssh_execute(\"pip install matplotlib numpy -q\")\n271\t\n272\t# Step 3: 执行\n273\tssh_execute(\"cd ~/quant-calibration-gap && python /tmp/gen_figures.py\")\n274\t\n275\t# Step 4: PNG → PDF（LaTeX 用 PDF 更清晰）\n276\tssh_execute(\"\"\"\n277\tfor f in ~/quant-calibration-gap/figures/paper/*.png; do\n278\t    convert \"$f\" \"${f%.png}.pdf\" 2>/dev/null || \\\n279\t    python3 -c \"\n280\timport matplotlib.pyplot as plt\n281\timport matplotlib.image as mpimg\n282\timg = mpimg.imread('$f')\n283\tfig = plt.figure(figsize=(img.shape[1]/300, img.shape[0]/300))\n284\tax = fig.add_axes([0,0,1,1])\n285\tax.imshow(img); ax.axis('off')\n286\tplt.savefig('${f%.png}.pdf', dpi=300, bbox_inches='tight', pad_inches=0)\n287\tplt.close()\"\n288\tdone\n289\t\"\"\")\n290\t\n291\t# Step 5: 验证\n292\tssh_execute(\"ls ~/quant-calibration-gap/figures/paper/\")\n293\t```\n294\t\n295\t---\n296\t\n297\t## 5. 图表 Checklist（提交前）\n298\t\n299\t- [ ] 300 DPI（`savefig.dpi=300`）\n300\t- [ ] 色盲友好配色（Okabe-Ito）\n301\t- [ ] 所有轴有标签（xlabel/ylabel）\n302\t- [ ] Legend 不遮挡数据\n303\t- [ ] 字号 ≥ 10pt（缩小到 column width 后仍可读）\n304\t- [ ] PDF 格式（矢量，LaTeX 直接用）\n305\t- [ ] Caption 完整（`\\caption{...}`）\n306\t- [ ] Error bar 或置信区间标注（如适用）\n307\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "ade640cd-1704-4ef6-9bf0-5f726d8c7bed",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md",
+                "content": "---\ndescription: 生成学术论文级 matplotlib 图表——reliability diagrams、ECE heatmap、T* scatter plot、模型对比图，直接在 A6000 服务器上执行，输出 PDF/PNG\nname: draw-paper-figure\nscope: global\ntags:\n  - research\n  - visualization\n  - paper\n  - matplotlib\nversion: 1\ntools:\n  - ssh_execute\n---\n\n# Draw Paper Figure — 学术图表生成\n\n为 ML 论文生成发表级图表。通过 SSH 在 A6000 上运行 matplotlib 脚本，直接输出到实验目录。\n\n## 触发条件\n\n- 用户说\"画个图\"、\"生成 reliability diagram\"、\"做个 heatmap\"\n- 论文写作阶段需要插图\n- 实验结果需要可视化汇总\n\n## 通用样式标准（所有图表必须遵守）\n\n```python\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport numpy as np\n\n# 字体和全局样式\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# 色盲友好配色（Okabe-Ito）\nCOLORS = {\n    'fp16':   '#E69F00',  # 橙黄\n    'nf4':    '#56B4E9',  # 天蓝\n    'int8':   '#009E73',  # 绿\n    'gptq':   '#F0E442',  # 黄\n    'awq':    '#CC79A7',  # 粉紫\n    'llama':  '#0072B2',  # 深蓝\n    'qwen3':  '#D55E00',  # 橙红\n    'gemma':  '#009E73',  # 绿\n    'mistral':'#CC79A7',  # 粉紫\n    'phi3':   '#F0E442',  # 黄\n}\n\n# 方法标签\nMETHOD_LABELS = {\n    'fp16': 'FP16', 'nf4': 'BNB-NF4',\n    'int8': 'BNB-INT8', 'gptq': 'GPTQ-4bit', 'awq': 'AWQ-4bit'\n}\n```\n\n---\n\n## 1. Reliability Diagram（校准图）\n\n**用途**：显示模型 confidence bin vs accuracy，对角线 = 完美校准。\n\n```python\ndef plot_reliability_diagram(confidences, accuracies, n_bins=10,\n                              label='', color='#0072B2',\n                              title='Reliability Diagram',\n                              outpath='reliability.pdf'):\n    \"\"\"\n    confidences, accuracies: 各样本的 confidence 和 binary correct (0/1)\n    \"\"\"\n    bin_edges = np.linspace(0, 1, n_bins + 1)\n    bin_accs, bin_confs, bin_counts = [], [], []\n\n    for i in range(n_bins):\n        lo, hi = bin_edges[i], bin_edges[i+1]\n        mask = (confidences >= lo) & (confidences < hi)\n        if mask.sum() > 0:\n            bin_accs.append(accuracies[mask].mean())\n            bin_confs.append(confidences[mask].mean())\n            bin_counts.append(mask.sum())\n        else:\n            bin_accs.append(float('nan'))\n            bin_confs.append((lo + hi) / 2)\n            bin_counts.append(0)\n\n    bin_accs = np.array(bin_accs)\n    bin_confs = np.array(bin_confs)\n\n    fig, (ax_main, ax_hist) = plt.subplots(\n        2, 1, figsize=(4, 4.5), gridspec_kw={'height_ratios': [3, 1]},\n        sharex=True\n    )\n\n    # 主图：gaps\n    ax_main.bar(bin_edges[:-1], bin_accs, width=1/n_bins, align='edge',\n                color=color, alpha=0.7, label='Accuracy', zorder=2)\n    ax_main.bar(bin_edges[:-1], bin_confs - bin_accs, width=1/n_bins, align='edge',\n                bottom=bin_accs, color='red', alpha=0.3, label='Gap', zorder=2)\n    ax_main.plot([0, 1], [0, 1], 'k--', linewidth=1, zorder=3, label='Perfect')\n    ax_main.set_xlim(0, 1); ax_main.set_ylim(0, 1)\n    ax_main.set_ylabel('Accuracy')\n    ax_main.set_title(title)\n    ax_main.legend(loc='upper left', fontsize=9)\n    ax_main.grid(True, alpha=0.3, zorder=1)\n\n    # ECE annotation\n    ece = np.nansum(np.array(bin_counts) / sum(bin_counts) *\n                    np.abs(bin_accs - bin_confs))\n    ax_main.text(0.98, 0.02, f'ECE={ece:.3f}', transform=ax_main.transAxes,\n                 ha='right', va='bottom', fontsize=9,\n                 bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8))\n\n    # 直方图（样本密度）\n    ax_hist.bar(bin_edges[:-1], bin_counts, width=1/n_bins, align='edge',\n                color=color, alpha=0.5)\n    ax_hist.set_ylabel('Count', fontsize=9)\n    ax_hist.set_xlabel('Confidence')\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n### 批量生成 6 张对比图（EMNLP 论文用）\n\n选图策略：每 Regime 选最大 ΔECE 的量化方法 vs FP16，LLaMA + Qwen3 各一。\n\n```python\n# 在 A6000 服务器上执行\nFIGURE_PLAN = [\n    # (dataset, model, quant, regime, title)\n    ('hellaswag',   'llama',  'nf4',  'A', 'HellaSwag (Regime A) — LLaMA'),\n    ('hellaswag',   'qwen3',  'nf4',  'A', 'HellaSwag (Regime A) — Qwen3'),\n    ('arc_c',       'llama',  'gptq', 'B', 'ARC-C (Regime B) — LLaMA'),\n    ('arc_c',       'qwen3',  'gptq', 'B', 'ARC-C (Regime B) — Qwen3'),\n    ('truthfulqa',  'llama',  'awq',  'C', 'TruthfulQA (Regime C) — LLaMA'),\n    ('truthfulqa',  'qwen3',  'awq',  'C', 'TruthfulQA (Regime C) — Qwen3'),\n]\n```\n\n---\n\n## 2. ECE Heatmap（方法 × 数据集 ΔECE）\n\n**用途**：Main Results Table 的可视化版本，颜色 = ΔECE（红=恶化，蓝=改善）。\n\n```python\ndef plot_ece_heatmap(delta_ece_matrix, methods, datasets,\n                     title='ΔECE Heatmap (vs FP16)',\n                     outpath='ece_heatmap.pdf'):\n    \"\"\"\n    delta_ece_matrix: shape (n_methods, n_datasets), 正=ECE 恶化, 负=改善\n    \"\"\"\n    import matplotlib.colors as mcolors\n\n    fig, ax = plt.subplots(figsize=(len(datasets) * 1.2, len(methods) * 0.8 + 1))\n\n    # 发散色图（中心=0, 红=恶化, 蓝=改善）\n    vmax = np.nanmax(np.abs(delta_ece_matrix))\n    norm = mcolors.TwoSlopeNorm(vmin=-vmax, vcenter=0, vmax=vmax)\n    cmap = plt.cm.RdBu_r\n\n    im = ax.imshow(delta_ece_matrix, cmap=cmap, norm=norm, aspect='auto')\n\n    # 数值标注\n    for i in range(len(methods)):\n        for j in range(len(datasets)):\n            val = delta_ece_matrix[i, j]\n            if not np.isnan(val):\n                color = 'white' if abs(val) > vmax * 0.6 else 'black'\n                sign = '+' if val > 0 else ''\n                ax.text(j, i, f'{sign}{val:.1%}', ha='center', va='center',\n                        fontsize=9, color=color, fontweight='bold')\n\n    ax.set_xticks(range(len(datasets)))\n    ax.set_yticks(range(len(methods)))\n    ax.set_xticklabels(datasets, rotation=30, ha='right')\n    ax.set_yticklabels(methods)\n    ax.set_title(title)\n\n    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)\n    cbar.set_label('ΔECE (quantized − FP16)')\n    cbar.ax.axhline(0, color='k', linewidth=0.8)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n---\n\n## 3. T* Scatter Plot（任务 Regime 可视化）\n\n**用途**：展示 5 个模型的 FP16 T* 分布，证明 Regime 跨模型一致性。\n\n```python\ndef plot_tstar_scatter(tstar_data, outpath='tstar_scatter.pdf'):\n    \"\"\"\n    tstar_data: dict of {model_name: {dataset: T*_value}}\n    \"\"\"\n    DATASETS = ['HellaSwag', 'ARC-C', 'MMLU', 'BoolQ', 'TruthfulQA', 'NQ-Open']\n    MODELS = ['LLaMA-3.1-8B', 'Qwen3-4B', 'Gemma-3-12B', 'Mistral-7B', 'Phi-3-mini']\n    REGIME_BANDS = [\n        (0, 1,    '#EBF5FB', 'Regime A\\n(T*<1)'),\n        (1, 5,    '#EAFAF1', 'Regime B\\n(1≤T*<5)'),\n        (5, 10.5, '#FDF2F8', 'Regime C\\n(T*≥5)'),\n    ]\n\n    fig, ax = plt.subplots(figsize=(8, 4))\n\n    # 背景色区\n    for lo, hi, color, label in REGIME_BANDS:\n        ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n        ax.text(5.8, (lo + hi) / 2, label, va='center', fontsize=9,\n                color='gray', zorder=1)\n\n    model_colors = [COLORS.get(m.split('-')[0].lower(), '#333333') for m in MODELS]\n\n    x = np.arange(len(DATASETS))\n    for mi, (model, color) in enumerate(zip(MODELS, model_colors)):\n        y = [tstar_data.get(model, {}).get(ds, np.nan) for ds in DATASETS]\n        ax.plot(x, y, 'o-', color=color, label=model,\n                markersize=7, alpha=0.85, zorder=2)\n\n    ax.set_xticks(x)\n    ax.set_xticklabels(DATASETS, rotation=15, ha='right')\n    ax.set_ylabel('T* (FP16)')\n    ax.set_ylim(0, 10.5)\n    ax.set_title('Calibration Regime by Task — 5 Models (FP16)')\n    ax.axhline(1, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n    ax.axhline(5, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n    ax.legend(loc='upper left', fontsize=9, ncol=2)\n    ax.grid(True, alpha=0.2, axis='y', zorder=1)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n---\n\n## 4. 生成流程（SSH 执行）\n\n```python\n# Step 1: 写脚本到服务器\nssh_execute(\"\"\"cat > /tmp/gen_figures.py << 'PYEOF'\n# ... 粘贴上方代码 + 调用逻辑 ...\nPYEOF\"\"\")\n\n# Step 2: 安装依赖（如有）\nssh_execute(\"pip install matplotlib numpy -q\")\n\n# Step 3: 执行\nssh_execute(\"cd ~/quant-calibration-gap && python /tmp/gen_figures.py\")\n\n# Step 4: PNG → PDF（LaTeX 用 PDF 更清晰）\nssh_execute(\"\"\"\nfor f in ~/quant-calibration-gap/figures/paper/*.png; do\n    convert \"$f\" \"${f%.png}.pdf\" 2>/dev/null || \\\n    python3 -c \"\nimport matplotlib.pyplot as plt\nimport matplotlib.image as mpimg\nimg = mpimg.imread('$f')\nfig = plt.figure(figsize=(img.shape[1]/300, img.shape[0]/300))\nax = fig.add_axes([0,0,1,1])\nax.imshow(img); ax.axis('off')\nplt.savefig('${f%.png}.pdf', dpi=300, bbox_inches='tight', pad_inches=0)\nplt.close()\"\ndone\n\"\"\")\n\n# Step 5: 验证\nssh_execute(\"ls ~/quant-calibration-gap/figures/paper/\")\n```\n\n---\n\n## 5. 图表 Checklist（提交前）\n\n- [ ] 300 DPI（`savefig.dpi=300`）\n- [ ] 色盲友好配色（Okabe-Ito）\n- [ ] 所有轴有标签（xlabel/ylabel）\n- [ ] Legend 不遮挡数据\n- [ ] 字号 ≥ 10pt（缩小到 column width 后仍可读）\n- [ ] PDF 格式（矢量，LaTeX 直接用）\n- [ ] Caption 完整（`\\caption{...}`）\n- [ ] Error bar 或置信区间标注（如适用）\n",
+                "numLines": 307,
+                "startLine": 1,
+                "totalLines": 307
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the skill file. Let me write the Python script for Figure 3 and execute it locally.",
+              "signature": "EpkCClkIDRgCKkDSgaKDvll1rYoLY9bMKEZSpHWkXs9w+6GGO3UKE2CECcb9TswwpMFfyi4N7NOreI0YPlecuL/B7X42lJZSzMxqMg9jbGF1ZGUtb3B1cy00LTY4ABIMqyvtq3cBeLkER4IqGgzu+npcjZA2fVKu1OoiMG2x0Kow+fgzKsDmZxCjiOEo2Tqxmff22u2+AXPRDfpvIF01vEj07/LmEsxNgI6XvypujCyZFKQzv7D0oC4fEK+IUoBwjELEZy9pn2RZpuimSlmPFp7h9HnRsq4zL5hm98a5S2I30ZKDmPCiwE4Ih9XhEk5LESfC5/uA1DoGHsx+hijDp88nzJgDlQuuPKW/JZb0m+sIifKNIMDdnL/KJ3MYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "68f54bbe-eb9d-4619-963c-7a7c78216b1c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UDb9GkNBE3GWFm8MJbJnaD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4910,
+                "cache_read_input_tokens": 18955,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4910
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Writing the script and executing it."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "ec3887e6-7010-44b9-ac3a-ae371336ba13",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UDb9GkNBE3GWFm8MJbJnaD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4910,
+                "cache_read_input_tokens": 18955,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4910
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LPgrnZJqBixcG4xxaH1apV",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper/gen_fig3.py",
+                "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'axes.linewidth': 0.8,\n})\n\nregimes = ['LoRA (r=16)', 'Full-FT\\nlr=5e-6', 'Full-FT\\nlr=2e-5']\ncuration_gaps = [-3.40, -0.46, +0.63]\n\nbar_colors = ['#D55E00', '#E69F00', '#0072B2']\nedge_colors = ['#A34800', '#B87E00', '#005A8C']\n\nfig, ax = plt.subplots(figsize=(5, 3.5))\n\nx = np.arange(len(regimes))\nbars = ax.bar(x, curation_gaps, width=0.6, color=bar_colors,\n              edgecolor=edge_colors, linewidth=1.0, zorder=2)\n\nax.axhline(0, color='black', linestyle='--', linewidth=0.8, zorder=1)\n\nfor i, (bar, val) in enumerate(zip(bars, curation_gaps)):\n    offset = 0.15 if val >= 0 else -0.15\n    va = 'bottom' if val >= 0 else 'top'\n    sign = '+' if val > 0 else ''\n    ax.text(bar.get_x() + bar.get_width() / 2, val + offset,\n            f'{sign}{val:.2f}', ha='center', va=va,\n            fontsize=10, fontweight='bold')\n\nparam_labels = ['1.67%', '100%', '100%']\nfor i, (xi, lbl) in enumerate(zip(x, param_labels)):\n    ax.text(xi, ax.get_ylim()[0], f'Params: {lbl}',\n            ha='center', va='top', fontsize=8.5, color='#555555',\n            style='italic')\n\nax.set_xticks(x)\nax.set_xticklabels(regimes)\nax.set_ylabel('Curation gap (pp)')\nax.set_ylim(-4.5, 1.8)\n\nfor i, (xi, lbl) in enumerate(zip(x, param_labels)):\n    ax.text(xi, -4.3, f'Params: {lbl}',\n            ha='center', va='top', fontsize=8.5, color='#555555',\n            style='italic')\n\nax.grid(False)\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper'\nplt.savefig(f'{outdir}/fig3_direction_reversal.pdf')\nplt.savefig(f'{outdir}/fig3_direction_reversal.png')\nplt.close()\nprint('Done: fig3_direction_reversal.pdf + .png')\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "06c0d73f-2d99-4335-91aa-b367c95821bd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UDb9GkNBE3GWFm8MJbJnaD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4910,
+                "cache_read_input_tokens": 18955,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4910
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T08:24:26.946Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LPgrnZJqBixcG4xxaH1apV",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper/gen_fig3.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "a6ae3822-1a1f-40e1-9a3a-6874fe6a5769",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper/gen_fig3.py",
+              "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'axes.linewidth': 0.8,\n})\n\nregimes = ['LoRA (r=16)', 'Full-FT\\nlr=5e-6', 'Full-FT\\nlr=2e-5']\ncuration_gaps = [-3.40, -0.46, +0.63]\n\nbar_colors = ['#D55E00', '#E69F00', '#0072B2']\nedge_colors = ['#A34800', '#B87E00', '#005A8C']\n\nfig, ax = plt.subplots(figsize=(5, 3.5))\n\nx = np.arange(len(regimes))\nbars = ax.bar(x, curation_gaps, width=0.6, color=bar_colors,\n              edgecolor=edge_colors, linewidth=1.0, zorder=2)\n\nax.axhline(0, color='black', linestyle='--', linewidth=0.8, zorder=1)\n\nfor i, (bar, val) in enumerate(zip(bars, curation_gaps)):\n    offset = 0.15 if val >= 0 else -0.15\n    va = 'bottom' if val >= 0 else 'top'\n    sign = '+' if val > 0 else ''\n    ax.text(bar.get_x() + bar.get_width() / 2, val + offset,\n            f'{sign}{val:.2f}', ha='center', va=va,\n            fontsize=10, fontweight='bold')\n\nparam_labels = ['1.67%', '100%', '100%']\nfor i, (xi, lbl) in enumerate(zip(x, param_labels)):\n    ax.text(xi, ax.get_ylim()[0], f'Params: {lbl}',\n            ha='center', va='top', fontsize=8.5, color='#555555',\n            style='italic')\n\nax.set_xticks(x)\nax.set_xticklabels(regimes)\nax.set_ylabel('Curation gap (pp)')\nax.set_ylim(-4.5, 1.8)\n\nfor i, (xi, lbl) in enumerate(zip(x, param_labels)):\n    ax.text(xi, -4.3, f'Params: {lbl}',\n            ha='center', va='top', fontsize=8.5, color='#555555',\n            style='italic')\n\nax.grid(False)\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper'\nplt.savefig(f'{outdir}/fig3_direction_reversal.pdf')\nplt.savefig(f'{outdir}/fig3_direction_reversal.png')\nplt.close()\nprint('Done: fig3_direction_reversal.pdf + .png')\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012Z9dqjjwCZ5QGQjuxECkuy",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper && python3 gen_fig3.py",
+                "description": "Generate fig3 bar chart"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "30201c1c-a719-4731-bc4d-c7e7b0ee3b83",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0172hBWmGHZoNBm8579dkhns",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1106,
+                "cache_read_input_tokens": 23865,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1106
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T08:24:30.750Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012Z9dqjjwCZ5QGQjuxECkuy",
+              "type": "tool_result",
+              "content": "Done: fig3_direction_reversal.pdf + .png",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "e62269f7-bd48-4f1a-abab-7ab5d7261519",
+            "tool_use_result": {
+              "stdout": "Done: fig3_direction_reversal.pdf + .png",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019MEFoZ4bumnxt15wAqBbZW",
+              "name": "Bash",
+              "input": {
+                "command": "ls -lh /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper/fig3_direction_reversal.*",
+                "description": "Verify output files"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "5fab94a6-c891-4e9f-a0fe-8dfec4223576",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AYtjwM8azCYfJKiJy3f32z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 145,
+                "cache_read_input_tokens": 24971,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 145
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T08:24:33.117Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019MEFoZ4bumnxt15wAqBbZW",
+              "type": "tool_result",
+              "content": "-rw-r--r-- 1 ubuntu ubuntu 22K May 17 08:24 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper/fig3_direction_reversal.pdf\n-rw-r--r-- 1 ubuntu ubuntu 65K May 17 08:24 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper/fig3_direction_reversal.png",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "cde47a08-b728-4429-91f9-b1346fc1d165",
+            "tool_use_result": {
+              "stdout": "-rw-r--r-- 1 ubuntu ubuntu 22K May 17 08:24 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper/fig3_direction_reversal.pdf\n-rw-r--r-- 1 ubuntu ubuntu 65K May 17 08:24 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper/fig3_direction_reversal.png",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014SFj5RoEqn7BCWuf3Cww2g",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper/fig3_direction_reversal.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "def4c92e-2e99-448d-8808-ab0708c1b026",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AF1UutC4UArU59MxqYnTws",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 270,
+                "cache_read_input_tokens": 25116,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 270
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T08:24:35.295Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014SFj5RoEqn7BCWuf3Cww2g",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "939dc874-c582-400e-a0ef-ebb003cdc15d",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 66401,
+                "dimensions": {
+                  "originalWidth": 1347,
+                  "originalHeight": 958,
+                  "displayWidth": 1347,
+                  "displayHeight": 958
+                }
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The figure has two issues:\n1. The \"Params:\" labels appear twice (duplicated) - once at the bottom of bars and once below the axis\n2. The \"-3.40\" value label overlaps with the \"Params: 1.67%\" text on the first bar\n\nLet me fix the script to remove the duplicate params labels and fix the positioning.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "bfce2caf-3d20-429d-a2a5-90d03af1a67e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MCoHX1PQHrdpQ4fsz1SyqZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7916,
+                "cache_read_input_tokens": 25386,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7916
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "图有两个问题：Params 标注重复了两行，且第一个 bar 的 \"-3.40\" 和 \"Params: 1.67%\" 文字重叠。修复脚本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "005d0994-5676-4784-a537-bbe172913b7c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MCoHX1PQHrdpQ4fsz1SyqZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7916,
+                "cache_read_input_tokens": 25386,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7916
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KVeBXif6QhDiY1DjKztMtM",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper/gen_fig3.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "dfc763b0-e710-4195-9698-ba4ae0f2d454",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MCoHX1PQHrdpQ4fsz1SyqZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7916,
+                "cache_read_input_tokens": 25386,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7916
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T08:24:42.696Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KVeBXif6QhDiY1DjKztMtM",
+              "type": "tool_result",
+              "content": "1\timport matplotlib\n2\tmatplotlib.use('Agg')\n3\timport matplotlib.pyplot as plt\n4\timport numpy as np\n5\t\n6\tplt.rcParams.update({\n7\t    'font.family': 'DejaVu Sans',\n8\t    'font.size': 11,\n9\t    'axes.titlesize': 13,\n10\t    'axes.labelsize': 12,\n11\t    'xtick.labelsize': 10,\n12\t    'ytick.labelsize': 10,\n13\t    'figure.dpi': 300,\n14\t    'savefig.dpi': 300,\n15\t    'savefig.bbox': 'tight',\n16\t    'savefig.pad_inches': 0.05,\n17\t    'axes.spines.top': False,\n18\t    'axes.spines.right': False,\n19\t    'axes.linewidth': 0.8,\n20\t})\n21\t\n22\tregimes = ['LoRA (r=16)', 'Full-FT\\nlr=5e-6', 'Full-FT\\nlr=2e-5']\n23\tcuration_gaps = [-3.40, -0.46, +0.63]\n24\t\n25\tbar_colors = ['#D55E00', '#E69F00', '#0072B2']\n26\tedge_colors = ['#A34800', '#B87E00', '#005A8C']\n27\t\n28\tfig, ax = plt.subplots(figsize=(5, 3.5))\n29\t\n30\tx = np.arange(len(regimes))\n31\tbars = ax.bar(x, curation_gaps, width=0.6, color=bar_colors,\n32\t              edgecolor=edge_colors, linewidth=1.0, zorder=2)\n33\t\n34\tax.axhline(0, color='black', linestyle='--', linewidth=0.8, zorder=1)\n35\t\n36\tfor i, (bar, val) in enumerate(zip(bars, curation_gaps)):\n37\t    offset = 0.15 if val >= 0 else -0.15\n38\t    va = 'bottom' if val >= 0 else 'top'\n39\t    sign = '+' if val > 0 else ''\n40\t    ax.text(bar.get_x() + bar.get_width() / 2, val + offset,\n41\t            f'{sign}{val:.2f}', ha='center', va=va,\n42\t            fontsize=10, fontweight='bold')\n43\t\n44\tparam_labels = ['1.67%', '100%', '100%']\n45\tfor i, (xi, lbl) in enumerate(zip(x, param_labels)):\n46\t    ax.text(xi, ax.get_ylim()[0], f'Params: {lbl}',\n47\t            ha='center', va='top', fontsize=8.5, color='#555555',\n48\t            style='italic')\n49\t\n50\tax.set_xticks(x)\n51\tax.set_xticklabels(regimes)\n52\tax.set_ylabel('Curation gap (pp)')\n53\tax.set_ylim(-4.5, 1.8)\n54\t\n55\tfor i, (xi, lbl) in enumerate(zip(x, param_labels)):\n56\t    ax.text(xi, -4.3, f'Params: {lbl}',\n57\t            ha='center', va='top', fontsize=8.5, color='#555555',\n58\t            style='italic')\n59\t\n60\tax.grid(False)\n61\t\n62\toutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper'\n63\tplt.savefig(f'{outdir}/fig3_direction_reversal.pdf')\n64\tplt.savefig(f'{outdir}/fig3_direction_reversal.png')\n65\tplt.close()\n66\tprint('Done: fig3_direction_reversal.pdf + .png')\n67\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "174ec5f5-0158-4e3c-bef9-369fab80f109",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper/gen_fig3.py",
+                "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'axes.linewidth': 0.8,\n})\n\nregimes = ['LoRA (r=16)', 'Full-FT\\nlr=5e-6', 'Full-FT\\nlr=2e-5']\ncuration_gaps = [-3.40, -0.46, +0.63]\n\nbar_colors = ['#D55E00', '#E69F00', '#0072B2']\nedge_colors = ['#A34800', '#B87E00', '#005A8C']\n\nfig, ax = plt.subplots(figsize=(5, 3.5))\n\nx = np.arange(len(regimes))\nbars = ax.bar(x, curation_gaps, width=0.6, color=bar_colors,\n              edgecolor=edge_colors, linewidth=1.0, zorder=2)\n\nax.axhline(0, color='black', linestyle='--', linewidth=0.8, zorder=1)\n\nfor i, (bar, val) in enumerate(zip(bars, curation_gaps)):\n    offset = 0.15 if val >= 0 else -0.15\n    va = 'bottom' if val >= 0 else 'top'\n    sign = '+' if val > 0 else ''\n    ax.text(bar.get_x() + bar.get_width() / 2, val + offset,\n            f'{sign}{val:.2f}', ha='center', va=va,\n            fontsize=10, fontweight='bold')\n\nparam_labels = ['1.67%', '100%', '100%']\nfor i, (xi, lbl) in enumerate(zip(x, param_labels)):\n    ax.text(xi, ax.get_ylim()[0], f'Params: {lbl}',\n            ha='center', va='top', fontsize=8.5, color='#555555',\n            style='italic')\n\nax.set_xticks(x)\nax.set_xticklabels(regimes)\nax.set_ylabel('Curation gap (pp)')\nax.set_ylim(-4.5, 1.8)\n\nfor i, (xi, lbl) in enumerate(zip(x, param_labels)):\n    ax.text(xi, -4.3, f'Params: {lbl}',\n            ha='center', va='top', fontsize=8.5, color='#555555',\n            style='italic')\n\nax.grid(False)\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper'\nplt.savefig(f'{outdir}/fig3_direction_reversal.pdf')\nplt.savefig(f'{outdir}/fig3_direction_reversal.png')\nplt.close()\nprint('Done: fig3_direction_reversal.pdf + .png')\n",
+                "numLines": 67,
+                "startLine": 1,
+                "totalLines": 67
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FuDTz1UsfMMrcdxxnPhxDL",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper/gen_fig3.py",
+                "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'axes.linewidth': 0.8,\n})\n\nregimes = ['LoRA (r=16)', 'Full-FT\\nlr=5e-6', 'Full-FT\\nlr=2e-5']\ncuration_gaps = [-3.40, -0.46, +0.63]\n\nbar_colors = ['#D55E00', '#E69F00', '#0072B2']\nedge_colors = ['#A34800', '#B87E00', '#005A8C']\n\nfig, ax = plt.subplots(figsize=(5, 3.5))\n\nx = np.arange(len(regimes))\nbars = ax.bar(x, curation_gaps, width=0.6, color=bar_colors,\n              edgecolor=edge_colors, linewidth=1.0, zorder=2)\n\nax.axhline(0, color='black', linestyle='--', linewidth=0.8, zorder=1)\n\nax.set_ylim(-4.5, 1.8)\n\nfor i, (bar, val) in enumerate(zip(bars, curation_gaps)):\n    offset = 0.18 if val >= 0 else -0.18\n    va = 'bottom' if val >= 0 else 'top'\n    sign = '+' if val > 0 else ''\n    ax.text(bar.get_x() + bar.get_width() / 2, val + offset,\n            f'{sign}{val:.2f}', ha='center', va=va,\n            fontsize=10, fontweight='bold')\n\nparam_labels = ['Params: 1.67%', 'Params: 100%', 'Params: 100%']\nregime_labels = ['LoRA (r=16)', 'Full-FT\\nlr=5e-6', 'Full-FT\\nlr=2e-5']\ncombined_labels = [f'{r}\\n{p}' for r, p in zip(regime_labels, param_labels)]\n\nax.set_xticks(x)\nax.set_xticklabels(combined_labels, fontsize=9.5)\n\nax.set_ylabel('Curation gap (pp)')\nax.grid(False)\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper'\nplt.savefig(f'{outdir}/fig3_direction_reversal.pdf')\nplt.savefig(f'{outdir}/fig3_direction_reversal.png')\nplt.close()\nprint('Done: fig3_direction_reversal.pdf + .png')\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "5750924f-f767-4174-b92e-2eda39659ddc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HS7pi6r4NFmyjVm27oLzxa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1297,
+                "cache_read_input_tokens": 33302,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1297
+                },
+                "output_tokens": 54,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T08:24:52.188Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FuDTz1UsfMMrcdxxnPhxDL",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper/gen_fig3.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "dff8de59-47d9-47ce-ac33-1e9182cfb8e3",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper/gen_fig3.py",
+              "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'axes.linewidth': 0.8,\n})\n\nregimes = ['LoRA (r=16)', 'Full-FT\\nlr=5e-6', 'Full-FT\\nlr=2e-5']\ncuration_gaps = [-3.40, -0.46, +0.63]\n\nbar_colors = ['#D55E00', '#E69F00', '#0072B2']\nedge_colors = ['#A34800', '#B87E00', '#005A8C']\n\nfig, ax = plt.subplots(figsize=(5, 3.5))\n\nx = np.arange(len(regimes))\nbars = ax.bar(x, curation_gaps, width=0.6, color=bar_colors,\n              edgecolor=edge_colors, linewidth=1.0, zorder=2)\n\nax.axhline(0, color='black', linestyle='--', linewidth=0.8, zorder=1)\n\nax.set_ylim(-4.5, 1.8)\n\nfor i, (bar, val) in enumerate(zip(bars, curation_gaps)):\n    offset = 0.18 if val >= 0 else -0.18\n    va = 'bottom' if val >= 0 else 'top'\n    sign = '+' if val > 0 else ''\n    ax.text(bar.get_x() + bar.get_width() / 2, val + offset,\n            f'{sign}{val:.2f}', ha='center', va=va,\n            fontsize=10, fontweight='bold')\n\nparam_labels = ['Params: 1.67%', 'Params: 100%', 'Params: 100%']\nregime_labels = ['LoRA (r=16)', 'Full-FT\\nlr=5e-6', 'Full-FT\\nlr=2e-5']\ncombined_labels = [f'{r}\\n{p}' for r, p in zip(regime_labels, param_labels)]\n\nax.set_xticks(x)\nax.set_xticklabels(combined_labels, fontsize=9.5)\n\nax.set_ylabel('Curation gap (pp)')\nax.grid(False)\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper'\nplt.savefig(f'{outdir}/fig3_direction_reversal.pdf')\nplt.savefig(f'{outdir}/fig3_direction_reversal.png')\nplt.close()\nprint('Done: fig3_direction_reversal.pdf + .png')\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 33,
+                  "oldLines": 30,
+                  "newStart": 33,
+                  "newLines": 24,
+                  "lines": [
+                    " ",
+                    " ax.axhline(0, color='black', linestyle='--', linewidth=0.8, zorder=1)",
+                    " ",
+                    "+ax.set_ylim(-4.5, 1.8)",
+                    "+",
+                    " for i, (bar, val) in enumerate(zip(bars, curation_gaps)):",
+                    "-    offset = 0.15 if val >= 0 else -0.15",
+                    "+    offset = 0.18 if val >= 0 else -0.18",
+                    "     va = 'bottom' if val >= 0 else 'top'",
+                    "     sign = '+' if val > 0 else ''",
+                    "     ax.text(bar.get_x() + bar.get_width() / 2, val + offset,",
+                    "             f'{sign}{val:.2f}', ha='center', va=va,",
+                    "             fontsize=10, fontweight='bold')",
+                    " ",
+                    "-param_labels = ['1.67%', '100%', '100%']",
+                    "-for i, (xi, lbl) in enumerate(zip(x, param_labels)):",
+                    "-    ax.text(xi, ax.get_ylim()[0], f'Params: {lbl}',",
+                    "-            ha='center', va='top', fontsize=8.5, color='#555555',",
+                    "-            style='italic')",
+                    "+param_labels = ['Params: 1.67%', 'Params: 100%', 'Params: 100%']",
+                    "+regime_labels = ['LoRA (r=16)', 'Full-FT\\nlr=5e-6', 'Full-FT\\nlr=2e-5']",
+                    "+combined_labels = [f'{r}\\n{p}' for r, p in zip(regime_labels, param_labels)]",
+                    " ",
+                    " ax.set_xticks(x)",
+                    "-ax.set_xticklabels(regimes)",
+                    "-ax.set_ylabel('Curation gap (pp)')",
+                    "-ax.set_ylim(-4.5, 1.8)",
+                    "+ax.set_xticklabels(combined_labels, fontsize=9.5)",
+                    " ",
+                    "-for i, (xi, lbl) in enumerate(zip(x, param_labels)):",
+                    "-    ax.text(xi, -4.3, f'Params: {lbl}',",
+                    "-            ha='center', va='top', fontsize=8.5, color='#555555',",
+                    "-            style='italic')",
+                    "-",
+                    "+ax.set_ylabel('Curation gap (pp)')",
+                    " ax.grid(False)",
+                    " ",
+                    " outdir = '/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper'"
+                  ]
+                }
+              ],
+              "originalFile": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'axes.linewidth': 0.8,\n})\n\nregimes = ['LoRA (r=16)', 'Full-FT\\nlr=5e-6', 'Full-FT\\nlr=2e-5']\ncuration_gaps = [-3.40, -0.46, +0.63]\n\nbar_colors = ['#D55E00', '#E69F00', '#0072B2']\nedge_colors = ['#A34800', '#B87E00', '#005A8C']\n\nfig, ax = plt.subplots(figsize=(5, 3.5))\n\nx = np.arange(len(regimes))\nbars = ax.bar(x, curation_gaps, width=0.6, color=bar_colors,\n              edgecolor=edge_colors, linewidth=1.0, zorder=2)\n\nax.axhline(0, color='black', linestyle='--', linewidth=0.8, zorder=1)\n\nfor i, (bar, val) in enumerate(zip(bars, curation_gaps)):\n    offset = 0.15 if val >= 0 else -0.15\n    va = 'bottom' if val >= 0 else 'top'\n    sign = '+' if val > 0 else ''\n    ax.text(bar.get_x() + bar.get_width() / 2, val + offset,\n            f'{sign}{val:.2f}', ha='center', va=va,\n            fontsize=10, fontweight='bold')\n\nparam_labels = ['1.67%', '100%', '100%']\nfor i, (xi, lbl) in enumerate(zip(x, param_labels)):\n    ax.text(xi, ax.get_ylim()[0], f'Params: {lbl}',\n            ha='center', va='top', fontsize=8.5, color='#555555',\n            style='italic')\n\nax.set_xticks(x)\nax.set_xticklabels(regimes)\nax.set_ylabel('Curation gap (pp)')\nax.set_ylim(-4.5, 1.8)\n\nfor i, (xi, lbl) in enumerate(zip(x, param_labels)):\n    ax.text(xi, -4.3, f'Params: {lbl}',\n            ha='center', va='top', fontsize=8.5, color='#555555',\n            style='italic')\n\nax.grid(False)\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper'\nplt.savefig(f'{outdir}/fig3_direction_reversal.pdf')\nplt.savefig(f'{outdir}/fig3_direction_reversal.png')\nplt.close()\nprint('Done: fig3_direction_reversal.pdf + .png')\n",
+              "userModified": false
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WTGhNpDUXMRRGsXkZJGFPH",
+              "name": "Bash",
+              "input": {
+                "command": "python3 gen_fig3.py",
+                "description": "Regenerate fig3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "e0b7579c-7564-4c87-9074-6d68f3ec0f68",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SpY9Sy2bQsEPXs5ZcxYLfk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1111,
+                "cache_read_input_tokens": 34599,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1111
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T08:24:57.265Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WTGhNpDUXMRRGsXkZJGFPH",
+              "type": "tool_result",
+              "content": "Done: fig3_direction_reversal.pdf + .png",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "182b02b0-3e60-4141-b4ef-4b8264ae4a94",
+            "tool_use_result": {
+              "stdout": "Done: fig3_direction_reversal.pdf + .png",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014EQLLKP2RoDRLAAFSTfajT",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/artifacts/figures/paper/fig3_direction_reversal.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "1a39b2db-fb95-42c9-a25c-b475d070c435",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DqkoYhwtwfU6HSq5YT71WP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 107,
+                "cache_read_input_tokens": 35710,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 107
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T08:24:59.683Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014EQLLKP2RoDRLAAFSTfajT",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "f7aec12d-7cb9-4b66-967e-1bf437405621",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 59258,
+                "dimensions": {
+                  "originalWidth": 1347,
+                  "originalHeight": 1000,
+                  "displayWidth": 1347,
+                  "displayHeight": 1000
+                }
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 3 已生成，重复标注和重叠问题已修复。PDF 和 PNG 均在 `artifacts/figures/paper/fig3_direction_reversal.{pdf,png}`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "uuid": "51905636-7675-4e28-bfec-84369951e28c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FLNT3nQgVoSv2odWFHtFUo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1687,
+                "cache_read_input_tokens": 35817,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1687
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 3 已生成，重复标注和重叠问题已修复。PDF 和 PNG 均在 `artifacts/figures/paper/fig3_direction_reversal.{pdf,png}`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 59617,
+            "duration_api_ms": 57956,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "766be918-59f3-475b-85ed-be597b05ce9b",
+            "total_cost_usd": 0.37031575,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 25663,
+              "cache_read_input_tokens": 269562,
+              "output_tokens": 2937,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 25663,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 55,
+                  "cache_read_input_tokens": 35817,
+                  "cache_creation_input_tokens": 1687,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1687
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1556,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0016460000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 2937,
+                "cacheReadInputTokens": 269562,
+                "cacheCreationInputTokens": 25663,
+                "webSearchRequests": 0,
+                "costUSD": 0.36866974999999996,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "0acd8235-1837-4d36-b469-cd69307abf52"
+          },
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 28
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-figure-fig3-direction-reversal.md"
+}

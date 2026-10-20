@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d661164425c1c8a085cb",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260514T200749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_20260514T200749_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "3e5d2e745f90de7827686e1a0d62ec593061b1150e7daa3ebe60d88f26655900"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已添加 2 篇论文到 `background` 类别末尾：\n\n1. **huang2024selfcorrect** — \"Large Language Models Cannot Self-Correct Reasoning Yet\" (ICLR 2024, `2310.01798`)  \n   核心证据：LLM 无外部反馈时 intrinsic self-correction 失败甚至降低性能。\n\n2. **kamoi2024selfcorrection** — \"When Can LLMs Actually Correct Their Own Mistakes?\" (TACL 2024, `2406.01297`)  \n   系统性综述确认：prompted self-correction 无一成功，self-correction 仅在有可靠外部反馈时有效。\n\n两篇都直接支持我们的 \"external monitoring > self-reflection\" 论点——agent 不能可靠自检 stagnation，需要外部 monitor（即 TLM）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-copy-2.md"
+}

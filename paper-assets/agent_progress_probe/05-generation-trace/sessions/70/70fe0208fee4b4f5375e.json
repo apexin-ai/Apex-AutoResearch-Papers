@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70fe0208fee4b4f5375e",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "eval lf oracle run",
+  "task_key": "worker_eval_lf_oracle_run_20260514T090024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_lf_oracle_run_20260514T090024_result.json",
+    "occurrence": 1,
+    "bytes": 1539,
+    "sha256": "3320306f48fa04cd40f7748022980bf6433f0961210a576538d8c34c7eddf90d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完成。结果：\n\n### LF Coverage (Test Set)\n| LF | Coverage |\n|---|---|\n| file_diff_delta | 90.1% |\n| command_repetition | 97.4% |\n| outcome_backpropagation | 42.4% |\n| All non-abstain agree | 72.5% |\n\n### 评估结果\n\n| Method | Macro-F1 | Accuracy | F1(stag) | F1(prog) |\n|---|---|---|---|---|\n| **GRU Probe (ref)** | **0.9055** | — | — | — |\n| LF Majority Vote | 1.0000 | 1.0000 | 1.0000 | 1.0000 |\n| **Single LF: command_repetition** | **0.9451** | **0.9589** | 0.9175 | 0.9726 |\n| LF Any-Stagnation | 0.8544 | 0.8712 | 0.8050 | 0.9038 |\n| LF All-Agreement | 0.7659 | 0.8542 | 0.6222 | 0.9096 |\n| Single LF: file_diff_delta | 0.7636 | 0.8531 | 0.6182 | 0.9090 |\n| Single LF: outcome_backpropagation | 0.7510 | 0.7955 | 0.6458 | 0.8563 |\n\n### 关键发现\n\n- **LF Majority Vote = 1.0** — 如预期，这是 tautological ceiling（ground truth 就是 majority_label）\n- **command_repetition 单个 LF (0.9451) 超过了 GRU Probe (0.9055)**，差距 +0.0396。这意味着仅靠\"命令是否重复\"这一个启发式规则就能比训练出的 GRU 探针更准\n- 其他 LF 变体（Any-Stagnation 0.8544, All-Agreement 0.7659, file_diff_delta 0.7636, outcome_backpropagation 0.7510）均低于 GRU Probe\n\ncommand_repetition 的压倒性表现值得关注——97.4% 的 coverage + 0.9451 的 macro-F1，说明在 conf≥2 的高置信子集上，命令重复模式本身就是一个极强的 stagnation 信号。GRU Probe 在这个子集上并未超越这个简单规则。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-lf-oracle-run.md"
+}

@@ -1,0 +1,40 @@
+{
+  "exp_id": "gradient_analysis_same_seed",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T03:21:20.318Z",
+    "updated_at": "2026-05-25T04:10:34.971Z",
+    "hypothesis": "Same-seed (seed=42) 4-condition gradient analysis eliminates cross-seed confound. Compares Vanilla vs Full OCC vs Detach+BN vs Full OCC+LN gradient properties at 50K checkpoint. Tests whether gradient flow patterns (norm, cosine, conflict rate) are consistent with mixed-seed results.",
+    "spec": {
+      "command": "python gradient_analysis_same_seed.py (4 conditions: Vanilla/Full OCC BN/Detach BN/Full OCC LN, all seed=42, 200 batches)",
+      "server": "westd-10894",
+      "data_path": "/root/autodl-tmp/libero_datasets/libero_spatial",
+      "data_count": 200,
+      "model_name": "openvla-7b (4 fine-tuned variants)",
+      "seed": 42,
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "9218"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "full_occ_ln_dinov2_action_grad": 0.0477,
+      "full_occ_ln_siglip_action_grad": 0.2057,
+      "full_occ_bn_dinov2_action_grad": 0.1675,
+      "full_occ_bn_siglip_action_grad": 0.0812,
+      "ln_dinov2_suppression": "3.5x vs BN",
+      "ln_siglip_amplification": "2.5x vs BN",
+      "note": "LN redistributes gradients: suppresses DINOv2, amplifies SigLIP. BN distributes more evenly."
+    },
+    "checkpoint_path": "/root/autodl-tmp/analysis/gradient_same_seed/gradient_results.json",
+    "log_path": "/root/autodl-tmp/analysis/gradient_same_seed/gradient_analysis.pdf",
+    "completed_at": "2026-05-25T04:10:34.971Z"
+  },
+  "timestamp": "2026-05-25T04:10:35.183233+00:00",
+  "trigger": "update_registry"
+}

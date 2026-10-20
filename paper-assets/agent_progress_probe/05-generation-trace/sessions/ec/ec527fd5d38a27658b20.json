@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec527fd5d38a27658b20",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis d073 s1b acr adapted lf",
+  "task_key": "worker_analysis_d073-s1b-acr-adapted-lf_20260516T033555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d073-s1b-acr-adapted-lf_20260516T033555_result.json",
+    "occurrence": 1,
+    "bytes": 2049,
+    "sha256": "932b8587116ac928e3e09dc56db56fc067e6f2ba39a475b71896009e4de4e34f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment `d073-s1b-acr-adapted` registered as DONE. Here's the analysis:\n\n## Results Summary\n\n### Phase 1: ACR LF Statistics (1946 windows)\n| LF | Stag | Coverage | Trigger Rate |\n|---|---|---|---|\n| command_repetition | 29 | 81.7% | 1.5% |\n| **action_entropy** | **771** | **39.6%** | **39.6%** |\n| output_stagnation | 0 | 0% | 0% |\n| error_repetition | 0 | 0% | 0% |\n\n**output_stagnation and error_repetition have zero coverage on ACR** — ACR trajectories never produce consecutive similar observations or repeated errors in the patterns these LFs detect. The adapted label set is effectively driven by **action_entropy alone** (plus cmd_rep's small contribution).\n\n### Phase 3: Cross-Agent Transfer Delta (all non-abstain)\n| Model | Orig macro_f1 | Adapted macro_f1 | Delta | Orig f1_stag | Adapted f1_stag | Delta |\n|---|---|---|---|---|---|---|\n| GB | 0.6078 | 0.5719 | **-3.6pp** | 0.2613 | 0.2094 | -5.2pp |\n| **RF** | **0.6645** | **0.7686** | **+10.4pp** | **0.4155** | **0.6049** | **+18.9pp** |\n| LR | 0.6561 | 0.6746 | +1.9pp | 0.3630 | 0.4074 | +4.4pp |\n\n### Phase 4: LF Contribution\n- action_entropy is the **sole stag trigger** on 219/248 (88.3%) adapted stagnation windows\n- Adapted 3-LF = Adapted 4-LF (error_repetition adds nothing)\n- conf≥2 subset is degenerate: only 27 windows, all stagnation (no progress class to evaluate)\n\n### Key Takeaways\n1. **RF benefits strongly from adapted labels** (+10.4pp macro_f1), confirming that LF portability matters for cross-agent transfer\n2. **GB degrades** — it was already overfitting to the original label distribution pattern; the shifted stag rate (10.1%→13.7%) hurts its calibration\n3. **action_entropy is doing all the heavy lifting** — output_stagnation contributes nothing on ACR, meaning the adapted 3-LF set is effectively a 2-LF system (cmd_rep + action_entropy)\n4. The improvement is real but model-specific — not a universal transfer ceiling lift, but rather RF's ensemble structure handles the relabeled signal better"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d073-s1b-acr-adapted-lf.md"
+}

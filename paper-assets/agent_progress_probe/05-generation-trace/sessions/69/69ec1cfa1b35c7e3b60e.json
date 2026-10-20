@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69ec1cfa1b35c7e3b60e",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "multiseed e5large probe",
+  "task_key": "worker_multiseed_e5large-probe_20260514T215551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_multiseed_e5large-probe_20260514T215551_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "163992361922c086e4dbf1316ae22caee0267708d2abd752a2fa4244bd31c05d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 seed 都训练和评估完成。汇总结果：\n\n## E5-large Probe 3-Seed 结果\n\n| Seed | best_epoch | macro_f1 | f1_stagnation | f1_progress |\n|------|-----------|----------|---------------|-------------|\n| 42   | -         | 0.9363   | 0.9067        | 0.9660      |\n| 123  | 7         | 0.9433   | 0.9268        | 0.9598      |\n| 456  | 6         | 0.9418   | 0.9242        | 0.9593      |\n\n### Mean ± Std\n\n| Metric | Mean | Std |\n|--------|------|-----|\n| macro_f1 | 0.9405 | ±0.0037 |\n| f1_stagnation | 0.9192 | ±0.0109 |\n| f1_progress | 0.9617 | ±0.0038 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/multiseed-e5large-probe.md"
+}

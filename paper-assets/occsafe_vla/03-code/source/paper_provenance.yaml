@@ -1,0 +1,679 @@
+paper:
+  title: Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer?\\
+    An Empirical Investigation
+  version: 68
+  generated_at: '2026-05-27T22:42:54.592894+00:00'
+  source: auto-bootstrap from existing tex files
+claims:
+- text: 'Dose-response: gradient flow duration vs.\ CAR (v1 data).'
+  type: quantitative
+  location:
+    section: appendix
+    context: bold
+  id: C001
+  evidence: []
+  deprecated: false
+- text: Egocentric depth matches Vanilla (v1 data).
+  type: quantitative
+  location:
+    section: appendix
+    context: bold
+  id: C002
+  evidence: []
+  deprecated: false
+- text: Temporal dynamics (preliminary, v1 data).
+  type: quantitative
+  location:
+    section: appendix
+    context: bold
+  id: C003
+  evidence: []
+  deprecated: false
+- text: 'Table~tab:per_task reports per-task mean CAR across seeds for each condition.
+    Seven tasks achieve CAR $$ 0.92 under Vanilla, while three physically constrained
+    tasks (T3, T5, T6) fall below 0.58. The '
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C004
+  evidence: []
+  deprecated: false
+- text: Ceiling effects. On the seven easy tasks (T0--T2, T4, T7--T9), all conditions
+    achieve CAR $$ 0.89, leaving minimal room for auxiliary training to improve performance.
+    The obstacle is spatially separat
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C005
+  evidence: []
+  deprecated: false
+- text: 'Hard task patterns. On Task~5 (Vanilla CAR 0.07), gradient-flow conditions
+    (Random OCC 0.23, Full OCC 0.17) exceed Vanilla and Detach (0.05), but all values
+    remain below 0.23. Cutoff@35K achieves the '
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C006
+  evidence: []
+  deprecated: false
+- text: Aux.\ loss weight $_0$ & 0.01 \\
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C007
+  evidence: []
+  deprecated: false
+- text: Focal loss $$ / $$ & 0.25 / 2.0 \\
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C008
+  evidence: []
+  deprecated: false
+- text: Statistical tests. Pairwise comparisons against Vanilla use two-tailed paired
+    $t$-tests on per-seed mean CARs with Cohen's $d$ for effect size. With $n{=3$
+    seeds, statistical power is limited; we repo
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C009
+  evidence: []
+  deprecated: false
+- text: The Detach+LN ablation replaces BatchNorm2d with LayerNorm in the auxiliary
+    head while retaining stop\_gradient. Results (3 seeds) are reported in Table~tab:main_results
+    and analyzed in Section~sec:wh
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C010
+  evidence: []
+  deprecated: false
+- text: 'Per-layer gradient analysis. Figure~fig:per_layer_combined decomposes auxiliary
+    gradient flow into two dimensions: amplitude (top row) and direction (bottom row).
+    The amplitude heatmap (panels a--b) s'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C011
+  evidence: []
+  deprecated: false
+- text: 'Dose-response: gradient flow duration vs.\ CAR (v1 data). Figure~fig:dose_response
+    plots CAR against the number of OCC gradient flow steps for the cutoff series
+    (15K--45K, plus Detach at 0K and Full O'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C012
+  evidence: []
+  deprecated: false
+- text: 'Dose-response: CAR vs.\ OCC gradient flow duration (v1 codebase, all conditions).
+    Filled circles: early-cutoff conditions with all 3 seeds completed; open circles:
+    conditions with $$2 seeds (counts an'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C013
+  evidence: []
+  deprecated: false
+- text: Per-task concentration. Seven of ten tasks achieve CAR $$ 0.92 under Vanilla;
+    overall CAR is dominated by three physically constrained tasks (T3, T5, T6; Section~app:per_task).
+    Detach shows the lowest
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C014
+  evidence: []
+  deprecated: false
+- text: Egocentric depth matches Vanilla (v1 data). Depth (4 seeds) achieves CAR 0.780
+    $$ 0.039, identical to Vanilla (v1, 0.780), despite providing per-pixel geometric
+    information. Three label types (structu
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C015
+  evidence: []
+  deprecated: false
+- text: Temporal dynamics (preliminary, v1 data). Cutoff@35K (3 seeds) achieves CAR
+    0.779, statistically indistinguishable from Vanilla (v1, $ = -$0.1\,pp), which
+    confirms that 35K steps of gradient flow full
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C016
+  evidence: []
+  deprecated: false
+- text: Behavioral shift. Under v1, Full OCC achieved a mean CAR of 0.797 (3 seeds,
+    per-task Table~tab:per_task); under v2, the same condition yields 0.725 $$ 0.064
+    (Table~tab:main_results). Same-seed compari
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C017
+  evidence: []
+  deprecated: false
+- text: 'Gradient analysis shift. The v1 codebase exhibited a Detach gradient suppression
+    artifact: Detach action-loss gradient norms were only $$4\% of Vanilla norms across
+    all encoder layers. In v2, this sup'
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C018
+  evidence: []
+  deprecated: false
+- text: Interaction pattern shift. Under v1, the normalization $$ gradient flow interaction
+    appeared as a crossover pattern ($p{=0.025$); under v2, the pattern is ordinal
+    (both lines slope downward without cr
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C019
+  evidence: []
+  deprecated: false
+- text: However, the study's evidential strength does not rest on any single pairwise
+    comparison. The directional consistency across all twelve conditions---every configuration
+    performs at or below Vanilla---
+  type: quantitative
+  location:
+    section: appendix
+    context: result_statement
+  id: C020
+  evidence: []
+  deprecated: false
+- text: 'We presented a systematic factorial study asking whether auxiliary spatial
+    supervision during VLA fine-tuning improves collision avoidance. The answer is
+    no: all twelve configurations perform at or be'
+  type: quantitative
+  location:
+    section: conclusion
+    context: result_statement
+  id: C021
+  evidence: []
+  deprecated: false
+- text: CKA analysis confirms that encoder representations remain intact under all
+    conditions (CKA $$ 0.95), localizing the safety degradation to the optimization
+    trajectory rather than representational capac
+  type: quantitative
+  location:
+    section: conclusion
+    context: result_statement
+  id: C022
+  evidence: []
+  deprecated: false
+- text: 'BatchNorm is not inherently harmful---Detach OCC (BN, gradient OFF) is indistinguishable
+    from Vanilla ($d{=-0.04$). The damage emerges when auxiliary gradients flow through
+    the shared encoders. Under '
+  type: quantitative
+  location:
+    section: discussion
+    context: result_statement
+  id: C023
+  evidence: []
+  deprecated: false
+- text: '\textbf{Normalization type independently affects safety.} The normalization
+    column differences in Table~\ref{tab:factorial}---BN below LN by 5.2\,pp under
+    gradient flow ($d{=}1.03$, large) and 5.9\,pp without (Cell~4 preliminary)---are
+    comparable in magnitude to the gradient flow simple effects. Full OCC+LN (0.777)
+    not only avoids the safety deficit of Full OCC BN (0.725) but exceeds Vanilla
+    ($\Delta{=}+3.2$\,pp, $d{=}+1.11$). For practitioners who must retain auxiliary
+    gradient flow, LayerNorm is strictly preferable to BatchNorm: it converts a safety
+    deficit into a gain. This advantage arises from the normalization architecture---LayerNorm''s
+    per-token computation avoids the batch-level distributional coupling that makes
+    BatchNorm sensitive to auxiliary gradient flow---not from better spatial information
+    extraction, since label content does not detectably affect outcomes.
+
+
+    Gradient analysis confirms orthogonality between action and auxiliary gradients
+    (cosine $$ 0, conflict rate $$ 50\%), ruling out direct gradient conflict~yu2020pcgrad,
+    liu2021cagrad. The detrimental e'
+  type: quantitative
+  location:
+    section: discussion
+    context: result_statement
+  id: C024
+  evidence: []
+  deprecated: false
+- text: The $2{2$ factorial design prioritizes breadth (12 conditions, 5 factors)
+    over per-cell statistical power. With $n{4$ seeds per cell, post-hoc power for
+    pairwise tests is limited ($$0.3--0.4)~cohen198
+  type: quantitative
+  location:
+    section: discussion
+    context: result_statement
+  id: C025
+  evidence: []
+  deprecated: false
+- text: We measure two complementary metrics aligned with the VLSA-AEGIS protocol~hu2025vlsa.
+    Task Success Rate (TSR) is the fraction of episodes in which the robot completes
+    the instructed task. Collision Av
+  type: quantitative
+  location:
+    section: experiments_old
+    context: result_statement
+  id: C026
+  evidence: []
+  deprecated: false
+- text: 'All conditions share the same base model: OpenVLA-OFT 7B~kim2025oft, pre-trained
+    on Open X-Embodiment. We fine-tune with LoRA (rank 32, $=16$) for 50K steps using
+    AdamW (weight decay $0.01$), a batch '
+  type: quantitative
+  location:
+    section: experiments_old
+    context: result_statement
+  id: C027
+  evidence: []
+  deprecated: false
+- text: The occupancy head (1.2M parameters) is a convolutional decoder that maps
+    concatenated DINOv2+SigLIP patch features (2176 dimensions) to a $64{64$ BEV occupancy
+    grid. The first 256 patch tokens from t
+  type: quantitative
+  location:
+    section: experiments_old
+    context: result_statement
+  id: C028
+  evidence: []
+  deprecated: false
+- text: Vision-language-action (VLA) models map visual observations and language instructions
+    to robot actions, and recent fine-tuning recipes achieve high task success on
+    standard manipulation benchmarks~bro
+  type: quantitative
+  location:
+    section: introduction
+    context: result_statement
+  id: C029
+  evidence: []
+  deprecated: false
+- text: Auxiliary spatial supervision does not improve VLA collision avoidance. (a)~A
+    fine-tuned OpenVLA-OFT achieves 90.7\% Task Success Rate but only 78.0\% Collision
+    Avoidance Rate on SafeLIBERO Level~I; p
+  type: quantitative
+  location:
+    section: introduction
+    context: result_statement
+  id: C030
+  evidence: []
+  deprecated: false
+- text: 'The central result is negative: all auxiliary spatial head configurations
+    perform at or below the Vanilla baseline on Collision Avoidance Rate. Auxiliary
+    spatial supervision does not improve VLA colli'
+  type: quantitative
+  location:
+    section: introduction
+    context: result_statement
+  id: C031
+  evidence: []
+  deprecated: false
+- text: Negative core finding. We show that auxiliary spatial supervision does not
+    improve VLA collision avoidance under any of 12 configurations tested. A $2{2$
+    factorial (gradient flow $$ normalization) sho
+  type: quantitative
+  location:
+    section: introduction
+    context: result_statement
+  id: C032
+  evidence: []
+  deprecated: false
+- text: We show that auxiliary spatial supervision does not improve VLA collision
+    avoidance under any of 12 configurations tested. A $2{2$ factorial (gradient
+  type: methodological
+  location:
+    section: introduction
+    context: finding_statement
+  id: C033
+  evidence: []
+  deprecated: false
+- text: We introduce the first systematic factorial comparison of how auxiliary head
+    design choices interact during VLA fine-tuning. This design can detect interactions
+    th
+  type: methodological
+  location:
+    section: introduction
+    context: finding_statement
+  id: C034
+  evidence: []
+  deprecated: false
+- text: Cutoff@\{15K, 25K, 35K, 45K\
+  type: quantitative
+  location:
+    section: method
+    context: bold
+  id: C035
+  evidence: []
+  deprecated: false
+- text: BEV occupancy head. The head (1.2M parameters) maps the 256 patch tokens from
+    the current observation frame to a $64{64$ binary occupancy grid. A linear projection
+    ($2176{256$) is reshaped to $16{16$,
+  type: quantitative
+  location:
+    section: method
+    context: result_statement
+  id: C036
+  evidence: []
+  deprecated: false
+- text: our finding that auxiliary spatial gradients remain orthogonal to action gradients
+    yet gradient flow still degrades safety is consistent with this generalization-
+  type: methodological
+  location:
+    section: related_work
+    context: finding_statement
+  id: C037
+  evidence: []
+  deprecated: false
+- text: 'Table~tab:main_results summarizes TSR and CAR across conditions (50 rollouts
+    $$ 10 tasks per seed). $$CAR is computed against the matched-codebase Vanilla
+    baseline (v2: 0.768 for factorial conditions '
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C038
+  evidence: []
+  deprecated: false
+- text: 'Interaction pattern between gradient flow and normalization. The four conditions
+    crossing normalization type (BN/LN) with gradient flow (ON/OFF) show a pattern
+    consistent with an ordinal interaction: '
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C039
+  evidence: []
+  deprecated: false
+- text: The four conditions crossing normalization type (BN/LN) with gradient flow
+    (ON/OFF) form a $2{2$ factorial (Table~tab:factorial, Figure~fig:factorial). Within
+    the fully v2 BN cells, gradient flow degr
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C040
+  evidence: []
+  deprecated: false
+- text: 'Mechanism remains open. The observed effect pattern cannot be explained by
+    gradient conflict (orthogonality rules it out) or gradient amplification (norms
+    are comparable). The detrimental effect '
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C041
+  evidence: []
+  deprecated: false
+- id: C042
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: BN simple effect Cohen's d=-0.94 (large), permutation p=0.286
+  type: quantitative
+  evidence:
+  - exp_id: mvp_occ_s0,s1,s2
+    metric: CAR
+    value: 0.725±0.064
+  - exp_id: ablation_occ_detach_s0,s1,s2,s3
+    metric: CAR
+    value: 0.767±0.024
+  decisions: []
+  deprecated: false
+- id: C043
+  location:
+    section: main
+    paragraph: 0
+    sentence: 0
+  text: 'Ordinal interaction between gradient flow and normalization type: BN-specific
+    harm (d=-0.94 large), LN benign (d=+1.11 large), main effect p=0.396 n.s.'
+  type: quantitative
+  evidence:
+  - exp_id: mvp_occ_s0,s1,s2
+    metric: CAR
+    value: '0.725'
+  - exp_id: ablation_occ_detach_s0,s1,s2,s3
+    metric: CAR
+    value: '0.767'
+  - exp_id: full_occ_ln_v2_s0d,s1c,s2
+    metric: CAR
+    value: '0.777'
+  - exp_id: vanilla_v2_s0,s1,s2
+    metric: CAR
+    value: '0.745'
+  decisions: []
+  deprecated: false
+- id: C044
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: BN below LN by 5.2pp under gradient flow, Cohen's d=1.03 (large)
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C045
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: BN below LN by 5.9pp without gradient flow (Cell 4 preliminary)
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C046
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Full OCC+LN (0.777) exceeds Vanilla (0.745), converting BN safety deficit
+    into gain
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C047
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'Normalization simple effect under gradient flow: Cohen''s d=-1.03 (BN-LN,
+    large)'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C048
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: ANOVA interaction contrast F=0.02, p=0.89, η²=0.003 — negligible interaction
+  type: quantitative
+  evidence:
+  - type: statistical_test
+    source: Director-provided ANOVA results
+  decisions: []
+  deprecated: false
+- id: C049
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: Gradient flow main effect d=-0.60, Hedges' g=0.55, p=0.388 (perm)
+  type: quantitative
+  evidence:
+  - type: statistical_test
+    source: Director-provided ANOVA results
+  decisions: []
+  deprecated: false
+- id: C050
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: Normalization main effect d=0.93, Hedges' g=0.85, p=0.172 (perm), bootstrap
+    95% CI [-0.003, +0.085]
+  type: quantitative
+  evidence:
+  - type: statistical_test
+    source: Director-provided ANOVA results
+  decisions: []
+  deprecated: false
+- id: C051
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: 'Constrained tasks amplify both main effects by ~3x: normalization Δ up to
+    18.1pp vs overall 5.2-5.9pp'
+  type: quantitative
+  evidence:
+  - type: statistical_test
+    source: Director-provided per-task factorial analysis
+  decisions: []
+  deprecated: false
+- id: C052
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: T5 best OCC vs Vanilla d=2.65, largest per-task effect
+  type: quantitative
+  evidence:
+  - type: statistical_test
+    source: Director-provided per-task factorial analysis
+  decisions: []
+  deprecated: false
+- id: C053
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: T5 gradient flow reversed d=+1.25 ON>OFF, near-floor CAR 0.04-0.19
+  type: quantitative
+  evidence:
+  - type: statistical_test
+    source: Director-provided per-task factorial analysis
+  decisions: []
+  deprecated: false
+tables:
+- caption: Per-task mean CAR across seeds (50 rollouts per seed, v1 code). This table
+    reports v1 codebase results retained for completeness; all main analyses use v2
+    data (Table~\ref{tab:main_results
+  label: tab:per_task
+  location:
+    section: appendix
+  cells: []
+  id: T001
+  deprecated: false
+- caption: Training hyperparameters.
+  label: ''
+  location:
+    section: appendix
+  cells: []
+  id: T002
+  deprecated: false
+- caption: 'Ablation design: each comparison isolates one factor.'
+  label: tab:ablation_design
+  location:
+    section: method
+  cells: []
+  id: T003
+  deprecated: false
+- caption: Overall results on SafeLIBERO Level~I (10 tasks). Mean $\pm$ SD across
+    seeds; 95\% CIs via bootstrap. $^\dagger$1 seed; $^\ddagger$2 seeds; $^\star$v1
+    code. Factorial conditions (above midrule) use v2 code; supplementary conditions
+    (below midrule) use v1 code.
+  label: tab:main_results
+  location:
+    section: results
+  cells: []
+  id: T004
+  deprecated: false
+- caption: $2{\times
+  label: tab:factorial
+  location:
+    section: results
+  cells: []
+  id: T005
+  deprecated: false
+figures:
+- caption: 'Gradient dynamics during VLA fine-tuning (preliminary analysis using v1
+    codebase checkpoint; seed 42, 200 batches at 50K checkpoint). (a)~Action loss
+    gradient norms per encoder layer: Vanilla, Full OCC, and Random OCC are comparable,
+    while Detach shows substantially reduced norms. (b)~Auxiliary loss gradient norms
+    in the shared encoder (Detach excluded; no auxiliary gradients by design). (c)~Action--auxiliary
+    gradient cosine similarity per layer (near zero for both Full OCC and Random OCC,
+    confirming orthogonality). (d)~Gradient norm ratio (Detach / Vanilla) per layer.
+    V2 validation is ongoing; directional conclusions should be interpreted with caution.'
+  label: fig:gradient_analysis
+  source_path: figures/gradient_analysis_combined.pdf
+  location:
+    section: appendix
+  type: result
+  id: F001
+  deprecated: false
+- caption: 'Per-layer gradient analysis decomposed into amplitude and direction (v1
+    codebase checkpoint, seed 42, 200 batches; v2 validation pending). \textbf{Top
+    (a--b):'
+  label: fig:per_layer_combined
+  source_path: figures/per_layer_combined.pdf
+  location:
+    section: appendix
+  type: result
+  id: F002
+  deprecated: false
+- caption: 'Dose-response: CAR vs.\ OCC gradient flow duration (v1 codebase, all conditions).
+    Filled circles: early-cutoff conditions with all 3 seeds completed; open circles:
+    conditions with $\leq$2 seeds (counts annotated as $n$). Diamond ($\diamond$):
+    Reverse Cutoff (gradient flow restricted to the last 15K steps). Dashed line:
+    Vanilla 3-seed mean (v1); shaded band: $\pm\,$1\,SE. The ``+0.2\%'''' annotation
+    marks the Cutoff@15K--Vanilla gap. Intermediate cutoff conditions cluster near
+    Vanilla, while Cutoff@25K and Reverse Cutoff fall substantially below.'
+  label: fig:dose_response
+  source_path: figures/dose_response.pdf
+  location:
+    section: appendix
+  type: result
+  id: F003
+  deprecated: false
+- caption: \textbf{Auxiliary spatial supervision does not improve VLA collision avoidance.
+  label: fig:overview
+  source_path: figures/fig1_overview.pdf
+  location:
+    section: introduction
+  type: result
+  id: F004
+  deprecated: false
+- caption: $2{\times
+  label: fig:factorial
+  source_path: figures/factorial_2x2.pdf
+  location:
+    section: results
+  type: result
+  id: F005
+  deprecated: false
+_completeness:
+  coverage: 8/58
+  claims: 53
+  tables: 5
+  figures: 5
+  tier_counts:
+    tier1: 0
+    tier2: 8
+    tier3: 50
+    tierX: 0
+  last_checked: '2026-05-27T22:42:54.592954+00:00'

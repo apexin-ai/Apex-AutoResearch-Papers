@@ -1,0 +1,74 @@
+# investigate cka s1 s2 verification
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_investigate_cka_s1_s2_verification_20260525T115944_result.json`
+- **Structured JSON:** [`ab34347cc51590b7a80e.json`](../../sessions/ab/ab34347cc51590b7a80e.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+全部调查完成。以下是完整报告：
+
+---
+
+## 调查结果：Detach OCC CKA 验证
+
+### 1. Checkpoint 状态
+
+| Checkpoint | 位置 | 状态 |
+|---|---|---|
+| `ablation_occ_detach_s0` (原始) | 已删除 | 原始 CKA 数据来源，不可复现 |
+| `ablation_occ_detach_s0_retrain` | westd-10894, 50k checkpoint 存在 | **已在 `cka_same_seed` 中分析** |
+| `ablation_occ_detach_s1` | **已清理** | 训练日志和 eval 结果仍在，checkpoint 不存在 |
+| `ablation_occ_detach_s2` | **已清理** | 训练日志和 eval 结果仍在，checkpoint 不存在 |
+| `ablation_occ_detach_s3` | westd-10894, 正在训练 | step 2726/50005 (~5.5%), ~1.08 it/s |
+
+**s1/s2 的 checkpoint 已被删除，无法执行 CKA 分析。**
+
+### 2. 已有 CKA 数据汇总
+
+**`cka_same_seed` (May 25, 使用 s0_retrain 50k checkpoint):**
+
+| Condition | DINOv2 mean | DINOv2 min | SigLIP mean | SigLIP min |
+|---|---|---|---|---|
+| Vanilla | 0.968 | 0.899 | 0.953 | 0.843 |
+| Full OCC (BN) | 0.959 | 0.842 | 0.959 | 0.880 |
+| **Detach+BN** | **0.964** | **0.890** | **0.953** | **0.829** |
+| Full OCC (LN) | 0.640 | 0.256 | 0.950 | 0.848 |
+
+**原始声明 (原 s0, 已删除):**
+| Condition | DINOv2 mean | SigLIP mean |
+|---|---|---|
+| Detach+BN | **0.539** | **0.312** |
+
+### 3. 关键发现
+
+- **s1/s2 训练确认使用了 `occ_head`**（1,213,313 trainable params），从 pretrained `/root/autodl-tmp/models/openvla-7b` 从头训练
+- **s1/s2 训练日志中没有 `occ_norm` 参数**，说明使用默认的 BatchNorm（与 Detach+BN 配置一致）
+- **s0_retrain 是从 20k checkpoint resume 训练到 50k 的**，注意与原始 s0（从头训练到 50k）有路径差异
+- 0.539/0.312 这两个数字在服务器上的分析目录中没有任何 JSON 匹配——只存在于本地项目的 paper/decisions 文档中
+
+### 4. 可行选项
+
+1. **等 s3 完成**：10k checkpoint 约 1.9 小时后可用，50k 约 12.3 小时后可用。10k 步的 CKA 分析有意义但不如 50k 步有说服力
+2. **重新训练 s1 或 s2**：需要约 13 小时 GPU 时间
+3. **接受 s0_retrain 的结果**：承认原始 0.539/0.312 数据不可复现，转向 representation-behavior dissociation 叙事（D047 路径 2）
+
+### 5. s0_retrain vs 原 s0 的关键差异
+
+s0_retrain 是从 20k checkpoint **resume** 到 50k 的，而非从 pretrained 从头训练。这可能（也可能不是）导致 CKA 差异的原因——resume 的初始化状态不同于原始训练。但 s1/s2 都是从头训练的，如果它们的 checkpoint 还在，才能真正验证原始发现。
+
+---

@@ -1,0 +1,16 @@
+{
+  "exp_id": "reverse_cutoff_s0",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T05:23:24.963Z",
+    "updated_at": "2026-05-23T05:25:53.169Z",
+    "hypothesis": "Reverse cutoff (no occ_loss first 35K steps, then enable occ_loss from 35K to 50K) tests whether late-stage gradient flow alone is sufficient for collision avoidance. Combined with standard cutoff (occ_loss first 35K only), forms a 2x2 temporal design isolating when gradient flow matters most.",
+    "parent": "cutoff_s0"
+  },
+  "timestamp": "2026-05-23T05:25:53.278799+00:00",
+  "trigger": "update_registry"
+}

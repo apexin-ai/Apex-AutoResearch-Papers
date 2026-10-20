@@ -1,0 +1,101 @@
+{
+  "exp_id": "mvp_occ_s2",
+  "project": "occsafe_vla",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 2,
+    "created_at": "2026-05-20T08:41:52.610Z",
+    "updated_at": "2026-05-21T08:08:00.142Z",
+    "hypothesis": "Adding BEV occupancy auxiliary supervision (with gradient flow to vision encoder via occ_detach=false) during OpenVLA-OFT fine-tuning on LIBERO-Spatial will significantly improve collision avoidance rate (CAR) on SafeLIBERO Level I compared to vanilla baseline, by forcing the vision encoder to develop spatial awareness of 3D object boundaries",
+    "reproduce": {
+      "finished_at": "2026-05-21T05:02:03.992Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-20T16:44:08.466Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T16:44:10.205397+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T05:02:06.798812+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "Resume from 42500_chkpt after disk-full crash (retry 2). PID 73770 (python), cuda:2, ~1.05 it/s (加速中). 剩余 7505 步, ETA ~06:50 UTC。参数验证: num_images_in_input=2, use_proprio=True, occ_detach=false ✓"
+      }
+    },
+    "notes": "训练完成。50000_chkpt 不完整（rotation 删了 42500_chkpt 导致写入异常）。改用 47500_chkpt eval。Eval PID 92050, GPU 2, 20 rollouts × 10 tasks。结果 → occ_s2_final.json。checkpoint: /root/autodl-tmp/checkpoints/occ_s2/...-47500_chkpt",
+    "spec": {
+      "server": "westd-34685",
+      "gpu": "cuda:2",
+      "command": "torchrun finetune.py --vla_path 42500_chkpt --occ_detach false --seed 44 (eval on 47500_chkpt)",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": "~25000 episodes",
+      "model_name": "openvla-7b (weights from 42500_chkpt)",
+      "seed": 44,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/occ_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--47500_chkpt",
+      "log_path": "/root/runs/occsafe_vla/occ_s2_resume2.log"
+    },
+    "pid": 78171,
+    "metrics": {
+      "TSR": 0.915,
+      "CAR": 0.765,
+      "collisions": 47,
+      "total_episodes": 200,
+      "checkpoint_step": 47500,
+      "per_task": {
+        "T0": {
+          "TSR": 1,
+          "CAR": 0.95
+        },
+        "T1": {
+          "TSR": 0.9,
+          "CAR": 1
+        },
+        "T2": {
+          "TSR": 1,
+          "CAR": 0.9
+        },
+        "T3": {
+          "TSR": 1,
+          "CAR": 0.35
+        },
+        "T4": {
+          "TSR": 1,
+          "CAR": 1
+        },
+        "T5": {
+          "TSR": 0.4,
+          "CAR": 0.1
+        },
+        "T6": {
+          "TSR": 0.95,
+          "CAR": 0.35
+        },
+        "T7": {
+          "TSR": 1,
+          "CAR": 1
+        },
+        "T8": {
+          "TSR": 0.9,
+          "CAR": 1
+        },
+        "T9": {
+          "TSR": 1,
+          "CAR": 1
+        }
+      }
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-21T08:08:00.180919+00:00",
+  "trigger": "update_registry"
+}

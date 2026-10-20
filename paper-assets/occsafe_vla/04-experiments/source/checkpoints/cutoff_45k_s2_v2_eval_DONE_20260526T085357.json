@@ -1,0 +1,29 @@
+{
+  "exp_id": "cutoff_45k_s2_v2_eval",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T08:03:04.140Z",
+    "updated_at": "2026-05-26T08:53:57.563Z",
+    "parent": "cutoff_45k_s2_v2",
+    "hypothesis": "50-rollout SafeLIBERO eval of cutoff_45k_s2_v2 (OCC gradient cutoff at 45K, seed 44, v2 code). 2nd seed for dose-response 45K time point. s0 CAR=0.764.",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/cutoff_45k_s2_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--cutoff_45k_s2_v2--50000_chkpt",
+      "log_path": "~/runs/occsafe_vla/cutoff_45k_s2_v2_eval.log",
+      "result_json": "/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260526_160219.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "TSR": 0.9,
+      "CAR": 0.756,
+      "total_episodes": 500,
+      "total_collisions": 122
+    },
+    "completed_at": "2026-05-26T08:53:57.563Z"
+  },
+  "timestamp": "2026-05-26T08:53:57.829710+00:00",
+  "trigger": "update_registry"
+}

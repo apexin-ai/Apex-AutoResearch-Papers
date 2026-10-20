@@ -1,0 +1,414 @@
+\begin{thebibliography}{54}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Brohan et~al.(2023)Brohan, Brown, Carbajal, et~al.]{brohan2023rt2}
+A.~Brohan, N.~Brown, J.~Carbajal, et~al.
+\newblock {RT-2}: Vision-language-action models transfer web knowledge to
+  robotic control.
+\newblock In \emph{Conference on Robot Learning (CoRL)}, 2023.
+\newblock arXiv:2307.15818.
+
+\bibitem[Kim et~al.(2024)Kim, Pertsch, Karamcheti, Xiao, Balakrishna, Nair,
+  Rafailov, Foster, Lam, Sanketi, Vuong, Kollar, Burchfiel, Tedrake, Sadigh,
+  Levine, Liang, and Finn]{kim2024openvla}
+M.~J. Kim, K.~Pertsch, S.~Karamcheti, T.~Xiao, A.~Balakrishna, S.~Nair,
+  R.~Rafailov, E.~Foster, G.~Lam, P.~Sanketi, Q.~Vuong, T.~Kollar,
+  B.~Burchfiel, R.~Tedrake, D.~Sadigh, S.~Levine, P.~Liang, and C.~Finn.
+\newblock {OpenVLA}: An open-source vision-language-action model.
+\newblock \emph{arXiv preprint arXiv:2406.09246}, 2024.
+\newblock arXiv:2406.09246.
+
+\bibitem[Kim et~al.(2025)]{kim2025oft}
+M.~J. Kim et~al.
+\newblock Fine-tuning vision-language-action models: Optimizing speed and
+  success.
+\newblock \emph{arXiv preprint arXiv:2502.19645}, 2025.
+\newblock arXiv:2502.19645.
+
+\bibitem[Hu et~al.(2025)Hu, Liu, Liu, Cen, Meng, and He]{hu2025vlsa}
+S.~Hu, Z.~Liu, S.~Liu, J.~Cen, Z.~Meng, and X.~He.
+\newblock {VLSA}: Vision-language-action models with plug-and-play safety
+  constraint layer.
+\newblock \emph{arXiv preprint arXiv:2512.11891}, 2025.
+\newblock arXiv:2512.11891.
+
+\bibitem[Li et~al.(2026)]{li2026spatialforcing}
+F.~Li et~al.
+\newblock Spatial forcing: Implicit spatial representation alignment for
+  vision-language-action model.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2026.
+\newblock arXiv:2510.12276.
+
+\bibitem[Yuan et~al.(2025)]{yuan2025depthvla}
+T.~Yuan et~al.
+\newblock {DepthVLA}: Enhancing vision-language-action models with depth-aware
+  spatial reasoning.
+\newblock \emph{arXiv preprint arXiv:2510.13375}, 2025.
+\newblock arXiv:2510.13375.
+
+\bibitem[Qu et~al.(2025)]{wu2025spatialvla}
+D.~Qu et~al.
+\newblock {SpatialVLA}: Exploring spatial representations for
+  visual-language-action model.
+\newblock In \emph{Robotics: Science and Systems (RSS)}, 2025.
+\newblock arXiv:2501.15830.
+
+\bibitem[Liu et~al.(2025)]{liu2025occvla}
+R.~Liu et~al.
+\newblock {OccVLA}: Vision-language-action model with implicit 3d occupancy
+  supervision.
+\newblock \emph{arXiv preprint arXiv:2509.05578}, 2025.
+\newblock arXiv:2509.05578.
+
+\bibitem[Wu et~al.(2026)]{wu2026stvla}
+Y.~Wu et~al.
+\newblock {ST-VLA}: Enabling 4d-aware spatiotemporal understanding for general
+  robot manipulation.
+\newblock \emph{arXiv preprint arXiv:2603.13788}, 2026.
+\newblock arXiv:2603.13788.
+
+\bibitem[Sarowar et~al.(2026)]{chen2026gstvla}
+M.~S. Sarowar et~al.
+\newblock {GST-VLA}: Structured {Gaussian} spatial tokens for 3d depth-aware
+  vision-language-action models.
+\newblock \emph{arXiv preprint arXiv:2603.09079}, 2026.
+\newblock arXiv:2603.09079.
+
+\bibitem[Tu et~al.(2026)]{tu2026sgvla}
+R.~Tu et~al.
+\newblock {SG-VLA}: Learning spatially-grounded vision-language-action models
+  for mobile manipulation.
+\newblock \emph{arXiv preprint arXiv:2603.22760}, 2026.
+\newblock arXiv:2603.22760.
+
+\bibitem[Xiao et~al.(2026)]{xiao2026stemvla}
+J.~Xiao et~al.
+\newblock {StemVLA}: An open-source vision-language-action model with future 3d
+  spatial geometry knowledge and 4d historical representation.
+\newblock \emph{arXiv preprint arXiv:2602.23721}, 2026.
+\newblock arXiv:2602.23721.
+
+\bibitem[Li et~al.(2025)]{li2025pointvla}
+C.~Li et~al.
+\newblock {PointVLA}: Injecting the 3d world into vision-language-action
+  models.
+\newblock \emph{arXiv preprint arXiv:2503.07511}, 2025.
+\newblock arXiv:2503.07511.
+
+\bibitem[Sun et~al.(2025)]{sun2025geovla}
+L.~Sun et~al.
+\newblock {GeoVLA}: Empowering 3d representations in vision-language-action
+  models.
+\newblock \emph{arXiv preprint arXiv:2508.09071}, 2025.
+\newblock arXiv:2508.09071.
+
+\bibitem[Bhat et~al.(2025)]{bhat20253dcavla}
+V.~Bhat et~al.
+\newblock {3D CAVLA}: Leveraging depth and 3d context to generalize vision
+  language action models for unseen tasks.
+\newblock \emph{arXiv preprint arXiv:2505.05800}, 2025.
+\newblock arXiv:2505.05800.
+
+\bibitem[Li et~al.(2025)]{li2025qdepthvla}
+Y.~Li et~al.
+\newblock {QDepth-VLA}: Quantized depth prediction as auxiliary supervision for
+  vision-language-action models.
+\newblock \emph{arXiv preprint arXiv:2510.14836}, 2025.
+\newblock arXiv:2510.14836.
+
+\bibitem[Abouzeid et~al.(2025)]{abouzeid2025geoaware}
+A.~Abouzeid et~al.
+\newblock {GeoAware-VLA}: Implicit geometry aware vision-language-action model.
+\newblock \emph{arXiv preprint arXiv:2509.14117}, 2025.
+\newblock arXiv:2509.14117.
+
+\bibitem[Rao et~al.(2026)]{rao2026augvla3d}
+Z.~Rao et~al.
+\newblock {AugVLA-3D}: Depth-driven feature augmentation for
+  vision-language-action models.
+\newblock \emph{arXiv preprint arXiv:2602.10698}, 2026.
+\newblock arXiv:2602.10698.
+
+\bibitem[Li et~al.(2026)]{li2026corridorvla}
+D.~Li et~al.
+\newblock {CorridorVLA}: Explicit spatial constraints for generative action
+  heads via sparse anchors.
+\newblock \emph{arXiv preprint arXiv:2604.21241}, 2026.
+\newblock arXiv:2604.21241.
+
+\bibitem[Zhai et~al.(2026)]{zhai2026cofreevla}
+X.~Zhai et~al.
+\newblock {CoFreeVLA}: Collision-free dual-arm manipulation via
+  vision-language-action model and risk estimation.
+\newblock \emph{arXiv preprint arXiv:2601.21712}, 2026.
+\newblock arXiv:2601.21712.
+
+\bibitem[Raja et~al.(2024)Raja, M{\"o}kk{\"o}nen, and
+  Ghabcheloo]{raja2024ogmcbf}
+G.~Raja, T.~M{\"o}kk{\"o}nen, and R.~Ghabcheloo.
+\newblock Safe robot control using occupancy grid map-based control barrier
+  function ({OGM-CBF}).
+\newblock \emph{arXiv preprint arXiv:2405.10703}, 2024.
+\newblock arXiv:2405.10703.
+
+\bibitem[Zhang et~al.(2025)]{zhang2025safevla}
+B.~Zhang et~al.
+\newblock {SafeVLA}: Towards safety alignment of vision-language-action model
+  via constrained learning.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2025.
+\newblock Spotlight. arXiv:2503.03480.
+
+\bibitem[Li et~al.(2026)]{li2026vlasafety}
+Q.~Li et~al.
+\newblock Vision-language-action safety: Threats, challenges, evaluations, and
+  mechanisms.
+\newblock \emph{arXiv preprint arXiv:2604.23775}, 2026.
+\newblock arXiv:2604.23775.
+
+\bibitem[Hu et~al.(2022)Hu, Shen, Wallis, Allen-Zhu, Li, Wang, Wang, and
+  Chen]{hu2022lora}
+E.~J. Hu, Y.~Shen, P.~Wallis, Z.~Allen-Zhu, Y.~Li, S.~Wang, L.~Wang, and
+  W.~Chen.
+\newblock {LoRA}: Low-rank adaptation of large language models.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2022.
+\newblock arXiv:2106.09685.
+
+\bibitem[Black et~al.(2024)Black, Brown, Driess, Esmail, Equi, Finn, Fusai,
+  Gould, Hausman, Ichter, Levine, Li, Mothukuri, Nair, Pertsch, Shi, Tanner,
+  Vuong, Walling, Wang, and Zhilinsky]{black2024pi0}
+K.~Black, N.~Brown, D.~Driess, A.~Esmail, M.~Equi, C.~Finn, N.~Fusai, L.~Gould,
+  K.~Hausman, B.~Ichter, S.~Levine, A.~Li, M.~Mothukuri, S.~Nair, K.~Pertsch,
+  L.~X. Shi, J.~Tanner, Q.~Vuong, A.~Walling, H.~Wang, and U.~Zhilinsky.
+\newblock $\pi_0$: A vision-language-action flow model for general robot
+  control.
+\newblock \emph{arXiv preprint arXiv:2410.24164}, 2024.
+\newblock arXiv:2410.24164.
+
+\bibitem[{Octo Model Team} et~al.(2024){Octo Model Team}, Ghosh, Walke,
+  Pertsch, Black, Mees, Dasari, Hejna, Kreiman, Xu, Luo, Tan, Sanketi, Vuong,
+  Xiao, Sadigh, Finn, and Levine]{team2024octo}
+{Octo Model Team}, D.~Ghosh, H.~Walke, K.~Pertsch, K.~Black, O.~Mees,
+  S.~Dasari, J.~Hejna, T.~Kreiman, C.~Xu, J.~Luo, Y.~L. Tan, P.~Sanketi,
+  Q.~Vuong, T.~Xiao, D.~Sadigh, C.~Finn, and S.~Levine.
+\newblock Octo: An open-source generalist robot policy.
+\newblock In \emph{Robotics: Science and Systems (RSS)}, 2024.
+\newblock arXiv:2405.12213.
+
+\bibitem[Yang et~al.(2024)Yang, Kang, Huang, Xu, Feng, and
+  Zhao]{yang2024depthanything}
+L.~Yang, B.~Kang, Z.~Huang, X.~Xu, J.~Feng, and H.~Zhao.
+\newblock Depth anything: Unleashing the power of large-scale unlabeled data.
+\newblock In \emph{IEEE/CVF Conference on Computer Vision and Pattern
+  Recognition (CVPR)}, 2024.
+\newblock arXiv:2401.10891.
+
+\bibitem[Li et~al.(2022)Li, Wang, Li, Xie, Sima, Lu, Qiao, and
+  Dai]{li2022bevformer}
+Z.~Li, W.~Wang, H.~Li, E.~Xie, C.~Sima, T.~Lu, Y.~Qiao, and J.~Dai.
+\newblock {BEVFormer}: Learning bird's-eye-view representation from
+  multi-camera images via spatiotemporal transformers.
+\newblock In \emph{European Conference on Computer Vision (ECCV)}, 2022.
+\newblock arXiv:2203.17270.
+
+\bibitem[Sima et~al.(2023)Sima, Tong, Wang, Chen, Wu, Deng, Gu, Lu, Luo, Lin,
+  and Li]{sima2023occnet}
+C.~Sima, W.~Tong, T.~Wang, L.~Chen, S.~Wu, H.~Deng, Y.~Gu, L.~Lu, P.~Luo,
+  D.~Lin, and H.~Li.
+\newblock Scene as occupancy.
+\newblock In \emph{IEEE/CVF International Conference on Computer Vision
+  (ICCV)}, 2023.
+\newblock arXiv:2306.02851.
+
+\bibitem[Tian et~al.(2023)Tian, Jiang, Yun, Mao, Yang, Wang, Wang, and
+  Zhao]{tian2023occ3d}
+X.~Tian, T.~Jiang, L.~Yun, Y.~Mao, H.~Yang, Y.~Wang, Y.~Wang, and H.~Zhao.
+\newblock {Occ3D}: A large-scale 3d occupancy prediction benchmark for
+  autonomous driving.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2023.
+\newblock arXiv:2304.14365.
+
+\bibitem[Caruana(1997)]{caruana1997multitask}
+R.~Caruana.
+\newblock Multitask learning.
+\newblock \emph{Machine Learning}, 28\penalty0 (1):\penalty0 41--75, 1997.
+
+\bibitem[Ruder(2017)]{ruder2017overview}
+S.~Ruder.
+\newblock An overview of multi-task learning in deep neural networks.
+\newblock \emph{arXiv preprint arXiv:1706.05098}, 2017.
+\newblock arXiv:1706.05098.
+
+\bibitem[Bilen and Vedaldi(2017)]{bilen2017universal}
+H.~Bilen and A.~Vedaldi.
+\newblock Universal representations: The missing link between faces, text,
+  planktons and cat breeds.
+\newblock \emph{arXiv preprint arXiv:1701.07275}, 2017.
+\newblock arXiv:1701.07275.
+
+\bibitem[Maninis et~al.(2019)Maninis, Radosavovic, and
+  Kokkinos]{maninis2019astmt}
+K.-K. Maninis, I.~Radosavovic, and I.~Kokkinos.
+\newblock Attentive single-tasking of multiple tasks.
+\newblock In \emph{IEEE/CVF Conference on Computer Vision and Pattern
+  Recognition (CVPR)}, pages 1851--1860, 2019.
+\newblock arXiv:1904.08918.
+
+\bibitem[Rebuffi et~al.(2018)Rebuffi, Bilen, and Vedaldi]{rebuffi2018adapters}
+S.-A. Rebuffi, H.~Bilen, and A.~Vedaldi.
+\newblock Efficient parametrization of multi-domain deep neural networks.
+\newblock In \emph{IEEE/CVF Conference on Computer Vision and Pattern
+  Recognition (CVPR)}, 2018.
+\newblock arXiv:1803.10082.
+
+\bibitem[Chen et~al.(2018)Chen, Badrinarayanan, Lee, and
+  Rabinovich]{chen2018gradnorm}
+Z.~Chen, V.~Badrinarayanan, C.-Y. Lee, and A.~Rabinovich.
+\newblock {GradNorm}: Gradient normalization for adaptive loss balancing in
+  deep multitask networks.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, 2018.
+\newblock arXiv:1711.02257.
+
+\bibitem[Yu et~al.(2020)Yu, Kumar, Gupta, Levine, Hausman, and
+  Finn]{yu2020pcgrad}
+T.~Yu, S.~Kumar, A.~Gupta, S.~Levine, K.~Hausman, and C.~Finn.
+\newblock Gradient surgery for multi-task learning.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2020.
+\newblock arXiv:2001.06782.
+
+\bibitem[Liu et~al.(2021)Liu, Liu, Jin, Stone, and Liu]{liu2021cagrad}
+B.~Liu, X.~Liu, X.~Jin, P.~Stone, and Q.~Liu.
+\newblock Conflict-averse gradient descent for multi-task learning.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2021.
+\newblock arXiv:2110.14048.
+
+\bibitem[Navon et~al.(2022)Navon, Shamsian, Achituve, Maron, Kawaguchi,
+  Chechik, and Fetaya]{navon2022nashmtl}
+A.~Navon, A.~Shamsian, I.~Achituve, H.~Maron, K.~Kawaguchi, G.~Chechik, and
+  E.~Fetaya.
+\newblock Multi-task learning as a bargaining game.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, 2022.
+\newblock arXiv:2202.01017.
+
+\bibitem[Jiang et~al.(2023)Jiang, Chen, Pan, Wang, Liu, Jiang, and
+  Long]{jiang2023forkmerge}
+J.~Jiang, B.~Chen, J.~Pan, X.~Wang, D.~Liu, J.~Jiang, and M.~Long.
+\newblock {ForkMerge}: Mitigating negative transfer in auxiliary-task learning.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2023.
+\newblock arXiv:2301.12618.
+
+\bibitem[Ioffe and Szegedy(2015)]{ioffe2015batchnorm}
+S.~Ioffe and C.~Szegedy.
+\newblock Batch normalization: Accelerating deep network training by reducing
+  internal covariate shift.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, 2015.
+\newblock arXiv:1502.03167.
+
+\bibitem[Ioffe(2017)]{ioffe2017renorm}
+S.~Ioffe.
+\newblock Batch renormalization: Towards reducing minibatch dependence in
+  batch-normalized models.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2017.
+\newblock arXiv:1702.03275.
+
+\bibitem[Schneider et~al.(2020)Schneider, Rusak, Eck, Bringmann, Brendel, and
+  Bethge]{schneider2020bn}
+S.~Schneider, E.~Rusak, L.~Eck, O.~Bringmann, W.~Brendel, and M.~Bethge.
+\newblock Improving robustness against common corruptions by covariate shift
+  adaptation.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2020.
+
+\bibitem[Li et~al.(2017)Li, Wang, Shi, Liu, and Hou]{li2017adabn}
+Y.~Li, N.~Wang, J.~Shi, J.~Liu, and X.~Hou.
+\newblock Revisiting batch normalization for practical domain adaptation.
+\newblock In \emph{International Conference on Learning Representations
+  Workshop (ICLR Workshop)}, 2017.
+\newblock arXiv:1603.04779.
+
+\bibitem[Ba et~al.(2016)Ba, Kiros, and Hinton]{ba2016layernorm}
+J.~L. Ba, J.~R. Kiros, and G.~E. Hinton.
+\newblock Layer normalization.
+\newblock \emph{arXiv preprint arXiv:1607.06450}, 2016.
+\newblock arXiv:1607.06450.
+
+\bibitem[Oquab et~al.(2024)Oquab, Darcet, Moutakanni, Vo, Szafraniec, Khalidov,
+  Fernandez, Haziza, Massa, El-Nouby, Assran, Ballas, Galuba, Howes, Huang, Li,
+  Misra, Rabbat, Sharma, Synnaeve, Xu, J\'{e}gou, Mairal, Labatut, Joulin, and
+  Bojanowski]{oquab2024dinov2}
+M.~Oquab, T.~Darcet, T.~Moutakanni, H.~Vo, M.~Szafraniec, V.~Khalidov,
+  P.~Fernandez, D.~Haziza, F.~Massa, A.~El-Nouby, M.~Assran, N.~Ballas,
+  W.~Galuba, R.~Howes, P.-Y. Huang, S.-W. Li, I.~Misra, M.~Rabbat, V.~Sharma,
+  G.~Synnaeve, H.~Xu, H.~J\'{e}gou, J.~Mairal, P.~Labatut, A.~Joulin, and
+  P.~Bojanowski.
+\newblock {DINOv2}: Learning robust visual features without supervision.
+\newblock \emph{Transactions on Machine Learning Research (TMLR)}, 2024.
+\newblock arXiv:2304.07193.
+
+\bibitem[Zhai et~al.(2023)Zhai, Mustafa, Kolesnikov, and Beyer]{zhai2023siglip}
+X.~Zhai, B.~Mustafa, A.~Kolesnikov, and L.~Beyer.
+\newblock Sigmoid loss for language image pre-training.
+\newblock In \emph{IEEE/CVF International Conference on Computer Vision
+  (ICCV)}, 2023.
+\newblock arXiv:2303.15343.
+
+\bibitem[Lin et~al.(2017)Lin, Goyal, Girshick, He, and
+  Doll\'{a}r]{lin2017focal}
+T.-Y. Lin, P.~Goyal, R.~Girshick, K.~He, and P.~Doll\'{a}r.
+\newblock Focal loss for dense object detection.
+\newblock In \emph{IEEE/CVF International Conference on Computer Vision
+  (ICCV)}, 2017.
+\newblock arXiv:1708.02002.
+
+\bibitem[Liu et~al.(2023)Liu, Zhu, Gao, Feng, Liu, Zhu, and
+  Stone]{liu2023libero}
+B.~Liu, Y.~Zhu, C.~Gao, Y.~Feng, Q.~Liu, Y.~Zhu, and P.~Stone.
+\newblock {LIBERO}: Benchmarking knowledge transfer for lifelong robot
+  learning.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2023.
+\newblock arXiv:2306.03310.
+
+\bibitem[Kornblith et~al.(2019)Kornblith, Norouzi, Lee, and
+  Hinton]{kornblith2019similarity}
+S.~Kornblith, M.~Norouzi, H.~Lee, and G.~Hinton.
+\newblock Similarity of neural network representations revisited.
+\newblock In \emph{Proceedings of the 36th International Conference on Machine
+  Learning (ICML)}, pages 3519--3529, 2019.
+
+\bibitem[Kendall et~al.(2018)Kendall, Gal, and Cipolla]{kendall2018uncertainty}
+A.~Kendall, Y.~Gal, and R.~Cipolla.
+\newblock Multi-task learning using uncertainty to weigh losses for scene
+  geometry and semantics.
+\newblock In \emph{IEEE/CVF Conference on Computer Vision and Pattern
+  Recognition (CVPR)}, pages 7482--7491, 2018.
+\newblock arXiv:1705.07115.
+
+\bibitem[Anderson(2001)]{anderson2001permanova}
+M.~J. Anderson.
+\newblock A new method for non-parametric multivariate analysis of variance.
+\newblock \emph{Austral Ecology}, 26\penalty0 (1):\penalty0 32--46, 2001.
+
+\bibitem[Montgomery(2017)]{montgomery2017doe}
+D.~C. Montgomery.
+\newblock \emph{Design and Analysis of Experiments}.
+\newblock John Wiley \& Sons, 9th edition, 2017.
+
+\bibitem[Wagenmakers(2007)]{wagenmakers2007practical}
+E.-J. Wagenmakers.
+\newblock A practical solution to the pervasive problems of p values.
+\newblock \emph{Psychonomic Bulletin \& Review}, 14\penalty0 (5):\penalty0
+  779--804, 2007.
+
+\end{thebibliography}

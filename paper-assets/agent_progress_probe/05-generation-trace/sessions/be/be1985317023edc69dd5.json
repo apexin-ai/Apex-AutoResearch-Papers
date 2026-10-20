@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be1985317023edc69dd5",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis cross label eval",
+  "task_key": "worker_analysis_cross-label-eval_20260514T140245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross-label-eval_20260514T140245_result.json",
+    "occurrence": 1,
+    "bytes": 1068,
+    "sha256": "ee0d659e7d96ab2381645a69c0fe419e734c18c2d0f87958aaa3c15203d14659"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n### 结果\n\n**关键发现：OB = coverage-valuable + vote-consistent**\n\n1. **标签完全一致**：3-LF 和 2-LF 在所有 43,402 个有标签的 window 上 100% agreement，0 disagreement。OB 从不与另外两个 LF 矛盾。\n\n2. **OB 提供 33.5% 额外 coverage**：\n   - 3-LF conf≥2: 15,401 windows (28.1%)\n   - 2-LF conf≥2: 10,243 windows (18.7%)\n   - OB 贡献 5,158 个额外高置信标签\n\n3. **0.9510 vs 0.9055 不可直接比较**：\n   - 发现两个模型使用了不同的 instance split（过滤改变了 unique instance 集→shuffle 结果不同）\n   - 交叉评估存在严重数据泄漏（206/297 和 203/344 instances 重叠）\n   - 需要共享 split 重新训练才能公平比较\n\n4. **without-OB 模型在完整分布上退化严重**：在原始 split 全部 8101 test windows 上仅 F1=0.7019，因为只见过 2-LF conf≥2 的\"简单\"样本\n\n5. **产出**：`cross_label_eval.py` + `cross_label_eval_results.json` 已保存在服务器，registry 已更新为 DONE(success)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-label-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1d5d6844241a22481d3",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "diag ssh gpu check",
+  "task_key": "worker_diag_ssh-gpu-check_20260514T134001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_ssh-gpu-check_20260514T134001_result.json",
+    "occurrence": 1,
+    "bytes": 750,
+    "sha256": "ac1f978e94d3a75b904c7a17949accae619f8ff22f0a3ca6ddae43f341616900"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，报告已写入 `artifacts/ssh_diag_20260514.md`。汇总：\n\n| 项目 | 状态 |\n|------|------|\n| SSH 连通性 | 正常 |\n| GPU (2x 32GB) | 空闲，0% 利用率 |\n| data-volume-control (PID 51861) | 已结束 |\n| baseline-llm-judge (PID 27424) | **运行中**，1610/1824 (88%)，macro_f1=0.6665，~$10.28，0 fails |\n| e5-large embeddings | 正常，54809 样本 |\n| bge-m3 embeddings | 正常，54809 样本 |\n| **gte-large embeddings** | **严重异常**：仅 10 个样本（2 个 trajectory），生成过程提前终止，需重跑 |\n\ngte-large 的 embedding 格式正确（dim=1024，sliding window），但只跑了前 2 个 trajectory 就停了。模型已在本地，重跑不需重新下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-ssh-gpu-check.md"
+}

@@ -1,0 +1,22 @@
+{
+  "exp_id": "cutoff_15k_s0",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T16:59:22.781Z",
+    "updated_at": "2026-05-24T10:25:40.668Z",
+    "hypothesis": "Cutoff at 15K steps tests the minimum duration of auxiliary gradient flow needed for collision avoidance. If CAR degrades significantly vs cutoff@25K and cutoff@35K, the encoder requires sustained gradient flow well beyond 15K steps. Combined with 25K/35K/45K/reverse, maps the dose-response curve of gradient flow duration.",
+    "parent": "cutoff_s0",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/cutoff_15k_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+      "log_path": "~/runs/occsafe_vla/cutoff_15k_s0.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-24T10:25:40.668Z"
+  },
+  "timestamp": "2026-05-24T10:25:40.811119+00:00",
+  "trigger": "update_registry"
+}

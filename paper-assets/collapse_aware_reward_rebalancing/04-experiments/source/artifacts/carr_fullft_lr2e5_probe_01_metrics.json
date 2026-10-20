@@ -1,0 +1,51 @@
+{
+  "experiment": "carr_fullft_lr2e5_probe_01",
+  "config": {
+    "model": "Qwen3-0.6B",
+    "mode": "full_ft",
+    "learning_rate": 2e-5,
+    "epochs": 3,
+    "num_generations": 3,
+    "num_prompts": 2000,
+    "eval_prompts": 200,
+    "k_candidates": 4,
+    "selection": "ArmoRM top-1-of-4"
+  },
+  "gen0": {
+    "mean_quality": 0.11303200721740722,
+    "vendi_score": 107.8078384399414,
+    "self_bleu": 0.004563764827163563,
+    "perplexity": 9.571707394354624,
+    "mean_nn_distance": 0.7078630924224854,
+    "complexity_mean": 2.8903854060728698
+  },
+  "gen1": {
+    "mean_quality": 0.11539432525634766,
+    "vendi_score": 108.03472900390625,
+    "self_bleu": 0.0038528335054744556,
+    "perplexity": 10.34444894037459,
+    "mean_nn_distance": 0.7107195854187012,
+    "complexity_mean": 2.867539239981669
+  },
+  "gen2": {
+    "mean_quality": 0.11239631175994873,
+    "vendi_score": 108.53852844238281,
+    "self_bleu": 0.0040229062056416,
+    "perplexity": 8.816758959652331,
+    "mean_nn_distance": 0.7100034356117249,
+    "complexity_mean": 2.845724326629809
+  },
+  "vendi_decline_pct": 0.68,
+  "verdict": "NEGATIVE - Vendi increased +0.68%, no collapse observed",
+  "training_loss_per_gen": [0.3800, 0.2123, 0.1404],
+  "checkpoint_path": "/root/autodl-tmp/carr/outputs_fullft_lr2e5/gen_2/condition_0/merged",
+  "errors": "none",
+  "wall_clock_seconds": 13357.71,
+  "comparison": {
+    "baseline_nocuration_vendi_change_pct": 1.38,
+    "fullft_lr5e6_vendi_change_pct": 0.91,
+    "this_experiment_vendi_change_pct": 0.68,
+    "pass_criterion": "Vendi decline >= 5%",
+    "result": "FAIL - no collapse even with 4x higher LR"
+  }
+}

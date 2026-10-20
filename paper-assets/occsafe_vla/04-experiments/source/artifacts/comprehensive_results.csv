@@ -1,0 +1,42 @@
+condition,seed,checkpoint_step,TSR,CAR,collisions,total_episodes,checkpoint_path,exp_id
+Vanilla,42,50000,0.900,0.788,106,500,,mvp_vanilla_s0
+Vanilla,43,50000,0.918,0.766,117,500,,mvp_vanilla_s1
+Vanilla,44,50000,0.904,0.786,107,500,,mvp_vanilla_s2
+Vanilla (retrain),42,50000,0.882,0.768,116,500,,vanilla_retrain_s0
+Full OCC,42,50000,0.904,0.832,84,500,,mvp_occ_s0
+Full OCC,43,50000,0.765,0.685,63,200,,mvp_occ_s1
+Full OCC,44,50000,0.840,0.770,115,500,,mvp_occ_s2
+Full OCC (fresh),43,47500,0.966,0.802,99,500,,occ_s1_fresh (47500)
+Full OCC (fresh),43,50000,0.938,0.788,106,500,,occ_s1_fresh
+Full OCC (retrain),42,50000,0.802,0.746,127,500,,full_occ_retrain_s0
+Full OCC+LN,42,50000,0.93,0.766,117,500,,full_occ_ln_s0
+Full OCC+LN,43,50000,0.894,0.718,141,500,,full_occ_ln_s1
+Full OCC+LN,44,50000,0.866,0.744,128,500,,full_occ_ln_s2
+Detach+BN (retrain),42,50000,0.944,0.754,,500,,ablation_occ_detach_s0_retrain
+Detach+BN,42,50000,0.914,0.746,127,500,,ablation_occ_detach_s0
+Detach+BN,43,50000,0.898,0.744,128,500,,ablation_occ_detach_s1
+Detach+BN,44,50000,0.624,0.748,126,500,,ablation_occ_detach_s2
+Detach+LN,42,50000,0.914,0.792,104,500,,detach_ln_s0
+Detach+LN,43,50000,0.906,0.756,122,500,,detach_ln_s1
+Detach+LN,44,50000,0.884,0.748,126,500,,detach_ln_s2
+Random OCC,42,50000,0.856,0.814,93,500,,ablation_random_occ_s0
+Random OCC,43,50000,0.902,0.798,101,500,,ablation_random_occ_s1
+Random OCC,44,50000,0.848,0.754,123,500,,ablation_random_occ_s2
+Depth,42,50000,0.94,0.736,132,500,,depth_s0
+Depth,43,50000,0.906,0.818,91,500,,depth_s1
+Depth,44,50000,0.86,0.758,121,500,,depth_s2
+Depth,45,50000,0.848,0.806,97,500,,depth_s3
+Cutoff@15K,42,50000,0.912,0.804,98,500,,cutoff_15k_s0
+Cutoff@15K,43,50000,0.854,0.76,120,500,,cutoff_15k_s1
+Cutoff@15K,44,,training,training,,,,cutoff_15k_s2
+Cutoff@25K,42,50000,0.844,0.688,156,500,,cutoff_25k_s0
+Cutoff@25K,43,50000,0.93,0.76,120,500,,cutoff_25k_s1
+Cutoff@25K,44,,training,training,,,,cutoff_25k_s2
+Cutoff@35K,42,50000,0.912,0.768,116,500,,cutoff_s0
+Cutoff@35K,43,50000,0.918,0.798,101,500,,cutoff_s1
+Cutoff@35K,44,50000,0.97,0.77,,500,,cutoff_s2_v2
+Cutoff@45K,42,50000,0.896,0.764,118,500,,cutoff_45k_s0
+Cutoff@45K,43,,training,training,,,,cutoff_45k_s1
+Reverse Cutoff,42,50000,0.788,0.7,150,500,,reverse_cutoff_s0
+Reverse Cutoff,43,50000,0.89,0.736,132,500,,reverse_cutoff_s1
+Reverse Cutoff,44,,training,training,,,,reverse_cutoff_s2

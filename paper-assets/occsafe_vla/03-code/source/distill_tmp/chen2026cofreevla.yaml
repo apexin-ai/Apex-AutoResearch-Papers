@@ -1,0 +1,84 @@
+paper_key: "chen2026cofreevla"
+title: "CoFreeVLA: Collision-Free Dual-Arm Manipulation via VLA Model and Risk Estimation"
+venue: "arXiv preprint 2026"
+full_text_available: true
+
+research:
+  baselines:
+    - "RDT-1B (diffusion foundation model for bimanual manipulation)"
+    - "APEX (ambidextrous dual-arm manipulation using collision-free generative diffusion models)"
+  metrics:
+    - {name: "collision rate", direction: "lower_better"}
+    - {name: "task success rate", direction: "higher_better"}
+  datasets:
+    - {name: "custom dual-arm demonstrations on Piper-style bimanual mobile manipulator", size: "not specified"}
+  ablation_dimensions:
+    - "risk estimation (stop/gate mechanism)"
+    - "recovery to safe states"
+    - "policy refinement with risk-aware objective"
+    - "pre-training vs post-training of risk estimator"
+  training_recipe:
+    optimizer: "not specified"
+    lr: "not specified"
+    hardware: "AgileX-based dual-arm platform (Piper-style bimanual mobile manipulator)"
+    vla_freq: "10 Hz"
+    low_level_freq: "30 Hz"
+    risk_estimator_latency: "sub-5 ms"
+    horizon: "H=5~10"
+  method_family: "VLA + learned safety filter (risk estimation + gating/recovery)"
+
+positioning:
+  core_claim: "将显式的短时域自碰撞风险推理嵌入VLA决策循环，通过风险估计器门控、恢复和策略优化三条路径实现双臂无碰撞操作"
+  key_results: "Pouring Beans任务碰撞率：RDT 8/10→2/10, APEX 6/10→2/10；精细任务上当前校准仍有过高碰撞（4/10, 3/10, 2/10, 5/10）"
+  limitations:
+    - "精细操作任务上保守阈值导致碰撞率反而高于baseline"
+    - "近接触转换处假阴性问题"
+    - "恢复控制器偶尔产生振荡"
+    - "需要后训练校准和阈值/时域调优"
+    - "训练细节（优化器、学习率、数据量）未公开"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "VLA模型在单臂操作上表现出色，但扩展到双臂系统时自碰撞安全问题是部署的根本障碍"
+  tension: "现有方法主要聚焦环境碰撞回避（经典轨迹优化），双臂间及臂与被抓物体间的自碰撞在端到端VLA设置中被严重忽视"
+  key_insight: "自碰撞风险可通过轻量级估计器从视觉嵌入+本体感知+动作序列实时预测，并以门控(stop)、恢复(recovery)、策略优化(refinement)三种互补方式融入控制循环"
+  argument_chain: "VLA双臂部署不安全 → 自碰撞是核心未解问题 → 设计短时域风险估计器 → 三种集成方式(gate/recover/refine) → 两阶段训练(预训练+后训练) → 在5个双臂任务上验证碰撞降低"
+  contribution_framing: "三条贡献：(1)提出框架解决被忽视的问题 (2)设计风险估计器并三路集成 (3)广泛实验验证。措辞强调'overlooked problem'和'extensive experiments'"
+  intro_structure: "3段：P1-VLA的成功与双臂挑战; P2-CoFreeVLA方法概述(风险估计器+三种集成); P3-评估概述(任务/训练策略/基线)"
+  notable_technique: "方法描述的数学严谨性很高——完整定义了问题形式化、损失函数、优化目标，但实验部分相对单薄（仅bar chart无表格），形成理论重实验轻的结构"
+
+figures:
+  figure_count: 2
+  figure1:
+    type: "method_overview"
+    description: "四部分组合图：(a)风险估计器架构（cross-attention + 三预测头r/d/τ）(b)数据收集流程 (c)数据集构建 (d)运行时CoFreeVLA系统——连续估计风险，超阈值时阻断策略并恢复到安全配置后继续任务"
+    narrative_role: "同时呈现方法全貌和运行时安全机制，一图讲清整个系统"
+    design_elements: ["多子图组合(a-d)", "流程箭头", "风险阈值可视化", "真实机器人场景"]
+    visual_style: "四象限布局，左上为网络架构图，右上为数据收集，下方为运行时系统流程；使用彩色标注区分不同模块"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "bar_chart"
+      what_compared: "三种方法(RDT-1B, APEX, CoFreeVLA)在5个双臂任务上的碰撞率和成功率"
+      how_gain_highlighted: "并排bar chart对比，10次试验中的碰撞/成功计数"
+      design_note: "简洁的分组bar chart，但缺少误差条和统计检验；结果以x/10形式在文本中报告而非图中标注"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1(方法全貌) → Figure 2(实验结果)，极度精简的两图叙事"
+
+tables:
+  table_count: 0
+  main_result_table:
+    table_id: "N/A"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "结果以x/10形式在正文中报告，无均值±标准差"
+    num_baselines: 2
+    design_note: "论文完全没有结果表格，所有定量结果嵌入正文和Figure 2 bar chart中——这在正式发表的论文中很不寻常，可能是预印本阶段的初步结果"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: false
+    content: "无附录"
+    reason: "N/A"

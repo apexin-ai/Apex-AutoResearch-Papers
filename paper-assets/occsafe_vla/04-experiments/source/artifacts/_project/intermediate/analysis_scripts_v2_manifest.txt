@@ -1,0 +1,15 @@
+Analysis Scripts v2 — westd-34685:/root/occsafe_vla/openvla-oft/analysis/
+
+Files:
+- eval_utils.py: shared data loading, bootstrap CI, diff test
+- per_task_comparison.py: multi-condition per-task TSR/CAR bar charts + CI
+- seed_instability.py: cross-seed variance heatmap + Levene test
+- ablation_diagnostic.py: 4-condition diagnosis + Case A/B/C/D classification
+
+Key findings during creation:
+- Eval JSON actual path: /root/occsafe_vla/eval_results/ (NOT /root/eval_logs/)
+- CAR field is already safety rate (car), no 1-collision_rate conversion needed
+- vanilla_s2 JSON missing from eval_results (only s0, s1 present)
+- OCC available: occ_s0_50000.json, occ_s2_50000.json
+
+Dry-run: all 3 scripts passed, 19 output files (PDF+PNG+JSON) generated.

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cc018d823d723954920",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis confidence gradient",
+  "task_key": "worker_analysis_confidence_gradient_20260514T170529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_confidence_gradient_20260514T170529_result.json",
+    "occurrence": 1,
+    "bytes": 1340,
+    "sha256": "4d83d920bf91be03c29cc3b26c12cf0caa940f40b2171bfdceeddcd118aca440"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n## Confidence Gradient: Probe vs LF Disagreement\n\n| conf | n | disagree% | P→prog, LF→stag | P→stag, LF→prog |\n|------|-------|-----------|-------------------|-------------------|\n| 1 | 39,408 | **23.61%** | 1,430 (3.63%) | 7,876 (19.99%) |\n| 2 | 14,609 | **3.82%** | 231 (1.58%) | 327 (2.24%) |\n| 3 | 792 | **0.88%** | 2 (0.25%) | 5 (0.63%) |\n| ALL | 54,809 | **18.01%** | 1,663 (3.03%) | 8,208 (14.98%) |\n\n**Label distribution per confidence:**\n\n| conf | n | progress | stagnation | prog% |\n|------|-------|----------|------------|-------|\n| 1 | 39,408 | 29,654 | 9,754 | 75.2% |\n| 2 | 14,609 | 9,276 | 5,333 | 63.5% |\n| 3 | 792 | 279 | 513 | 35.2% |\n\n关键发现：\n\n1. **Disagreement 随 confidence 单调递减**：conf=1 时 23.6%，conf=2 降至 3.8%，conf=3 仅 0.88%。Probe 在高共识样本上几乎完全同意 LF。\n2. **不对称性**：disagreement 主要来自 **probe→stagnation 但 LF→progress**（占总体 15.0%），集中在 conf=1 窗口（20.0%）。Probe 比 LF 更倾向于判断 stagnation。\n3. **conf=1 占比 72%**（39,408/54,809），是 noise 的主要来源。这些窗口 3 个 LF 中只有 1 个投了多数方向（有 abstain 或分裂），LF label 本身可信度低。\n\nJSON 已保存到 `artifacts/confidence_gradient.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-confidence-gradient.md"
+}

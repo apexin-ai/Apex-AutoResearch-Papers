@@ -1,0 +1,29 @@
+{
+  "exp_id": "occ_s1_fresh_eval_50000",
+  "project": "occsafe_vla",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:06:23.914Z",
+    "updated_at": "2026-05-22T04:08:21.927Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=3 CUDA_VISIBLE_DEVICES=3 python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/occ_s1_fresh/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --num_rollouts 50 --seed 42\"",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "18468",
+      "log_path": "~/runs/occsafe_vla/occ_s1_fresh_eval_50000.log",
+      "submitted_at": "2026-05-22T04:06:23.827Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "50r evaluation of occ_s1_fresh at 50000_chkpt. Previous seeds showed divergent 47500→50000 behavior (s0: +8.2pp CAR, s2: -1.8pp CAR). s1_fresh result determines whether 50K overtraining is seed-dependent and provides 3-seed 50K aggregate.",
+    "parent": "occ_s1_fresh"
+  },
+  "timestamp": "2026-05-22T04:08:21.991798+00:00",
+  "trigger": "update_registry"
+}

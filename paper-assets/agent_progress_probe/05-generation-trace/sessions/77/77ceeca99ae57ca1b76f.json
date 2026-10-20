@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "77ceeca99ae57ca1b76f",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "analysis f1 stag breakdown",
+  "task_key": "worker_analysis_f1-stag-breakdown_20260514T151440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_f1-stag-breakdown_20260514T151440.log",
+    "occurrence": 1,
+    "bytes": 710632,
+    "sha256": "b2feb327d4a7ebd7ef4a8f085eae981204ac5425d11cd3bdd806e4bcb6d2faae"
+  },
+  "statistics": {
+    "messages": 262,
+    "user_turns": 0,
+    "tool_calls": 96,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 65,
+      "tool_call": 96,
+      "tool_result": 96,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 262,
+      "chunks": [
+        {
+          "path": "77ceeca99ae57ca1b76f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "77ceeca99ae57ca1b76f-part-0002.json",
+          "message_count": 82
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-f1-stag-breakdown-copy-3.md"
+}

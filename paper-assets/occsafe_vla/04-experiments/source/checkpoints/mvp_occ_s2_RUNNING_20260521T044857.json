@@ -1,0 +1,43 @@
+{
+  "exp_id": "mvp_occ_s2",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 2,
+    "created_at": "2026-05-20T08:41:52.610Z",
+    "updated_at": "2026-05-21T04:48:57.595Z",
+    "hypothesis": "Adding BEV occupancy auxiliary supervision (with gradient flow to vision encoder via occ_detach=false) during OpenVLA-OFT fine-tuning on LIBERO-Spatial will significantly improve collision avoidance rate (CAR) on SafeLIBERO Level I compared to vanilla baseline, by forcing the vision encoder to develop spatial awareness of 3D object boundaries",
+    "reproduce": {
+      "finished_at": "2026-05-20T16:44:08.302Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-20T16:44:08.466Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T16:44:10.205397+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "磁盘满崩溃 @ step 45000 (retry 1)。已清理 284G，从 42500_chkpt resume。"
+      }
+    },
+    "notes": "磁盘满崩溃 @ step 45000 (retry 1)。已清理 284G，从 42500_chkpt resume。",
+    "spec": {
+      "server": "westd-34685",
+      "gpu": "cuda:2",
+      "command": "WANDB_MODE=disabled CUDA_VISIBLE_DEVICES=2 MUJOCO_GL=egl torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/checkpoints/occ_s2/...-42500_chkpt --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --use_diffusion False --use_film False --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 --save_freq 2500 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --run_root_dir /root/autodl-tmp/checkpoints/occ_s2 --seed 44 --resume True --resume_step 42500",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": "~25000 episodes",
+      "model_name": "openvla-7b (resumed from 42500_chkpt)",
+      "seed": 44
+    }
+  },
+  "timestamp": "2026-05-21T04:48:57.629334+00:00",
+  "trigger": "update_registry"
+}

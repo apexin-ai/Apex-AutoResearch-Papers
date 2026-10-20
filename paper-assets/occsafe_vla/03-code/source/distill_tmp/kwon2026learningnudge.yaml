@@ -1,0 +1,37 @@
+paper_key: "kwon2026learningnudge"
+title: "Learning to Nudge: A Scalable Barrier Function Framework for Safe Robot Interaction in Dense Clutter"
+venue: "arXiv preprint 2026"
+full_text_available: false
+
+research:
+  baselines:
+    - "Do Nothing (direct goal movement)"
+    - "Back-stepping (reactive retreat policy)"
+    - "Artificial Potential Fields (APF)"
+    - "Initial CBF Model (before refinement)"
+  metrics:
+    - {name: "Safe Rate", direction: "higher_better"}
+    - {name: "Average Final Distance to Goal", direction: "lower_better"}
+  datasets:
+    - {name: "IsaacLab simulation (Franka Panda + cylindrical bottles)", size: "960K data pairs from 1200 trajectories, densities of 4/10/20/40 objects"}
+  ablation_dimensions:
+    - "Robustness margin (sigma=0.01 vs sigma=0.02)"
+    - "Initial vs refined model"
+    - "Object density scaling (4 to 40 objects)"
+    - "Iterative refinement steps (47 batches, 4 steps each)"
+  training_recipe:
+    optimizer: "not specified"
+    lr: "not specified"
+    hardware: "IsaacLab simulation"
+    data: "960K pairs, trained on 4-bottle scenarios, tested up to 40"
+  method_family: "Learned Barrier Functions (Dense Contact Barrier Functions / DCBF)"
+
+positioning:
+  core_claim: "Object-centric composable barrier functions that train on few objects offline and compose to arbitrary clutter densities at runtime without retraining"
+  key_results: "Scales from 4 training objects to 40 test objects; enables collision-free navigation with contact-rich interaction"
+  limitations: ["abstract-only, details not fully extracted"]
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

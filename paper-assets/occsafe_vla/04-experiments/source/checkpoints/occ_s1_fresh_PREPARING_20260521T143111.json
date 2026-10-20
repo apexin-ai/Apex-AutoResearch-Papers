@@ -1,0 +1,14 @@
+{
+  "exp_id": "occ_s1_fresh",
+  "project": "occsafe_vla",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T14:31:11.815Z",
+    "updated_at": "2026-05-21T14:31:11.815Z"
+  },
+  "timestamp": "2026-05-21T14:31:11.862134+00:00",
+  "trigger": "update_registry"
+}

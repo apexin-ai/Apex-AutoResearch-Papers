@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbb948db18c5e20f1ca3",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "code d072 waste audit",
+  "task_key": "worker_code_d072-waste-audit_20260515T143232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d072-waste-audit_20260515T143232_result.json",
+    "occurrence": 1,
+    "bytes": 683,
+    "sha256": "47f24f317380726e53082c42b2d7fbe73c582c5ebd25a7d1b4f40e3eeeef6cc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output matches the spec. Results:\n\n- **5,000 SWE-Agent trajectories** analyzed\n- **863 (17.3%)** have a stagnation tail (all remaining conf≥2 windows are stagnation from some point onward)\n- **Mean tail ratio: 38.5%**, median: 22.0% — among trajectories with stagnation tails, a substantial fraction of compute is wasted\n- Distribution is bimodal: most tails are short (10-20% of trajectory) but there's a second peak at 80-100%\n- OH data was not available locally; the script will pick it up when run on the server with `--oh_dir /root/autodl-tmp/openhands_data`\n\nScript is at `compute_waste_audit.py`, output at `artifacts/d072/compute_waste_audit.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d072-waste-audit.md"
+}

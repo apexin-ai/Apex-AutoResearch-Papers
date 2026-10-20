@@ -1,0 +1,94 @@
+paper_key: "hu2025aegis"
+title: "VLSA: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer"
+venue: "arXiv preprint 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "OpenVLA-OFT (transformer-based VLA, online fine-tuning)"
+    - "π0.5 (flow-matching VLA)"
+  metrics:
+    - {name: "Collision Avoidance Rate (CAR)", direction: "higher_better"}
+    - {name: "Task Success Rate (TSR)", direction: "higher_better"}
+    - {name: "Execution Time Steps (ETS)", direction: "lower_better"}
+  datasets:
+    - {name: "SafeLIBERO", size: "4 suites × 4 tasks × 2 levels × 50 episodes = 1600 episodes, derived from LIBERO"}
+  ablation_dimensions: []  # 无正式消融实验
+  training_recipe:
+    optimizer: "N/A (training-free, plug-and-play)"
+    lr: "N/A"
+    hardware: "dual NVIDIA RTX 4090 + Intel Xeon CPU"
+    method: "CBF-QP solver at inference time, 0.356ms overhead (1.86% of total latency)"
+    simulation: "Robosuite with Franka Emika Panda, OSC_POSE interface at 20Hz"
+    vlm: "GLM-4.5V (Zhipu AI) for obstacle identification"
+    detector: "GroundingDINO for spatial localization"
+  method_family: "Control Barrier Function (CBF) based safety filter / plug-and-play inference-time safety layer"
+
+positioning:
+  core_claim: "首个将 CBF 集成到 VLA 推理流程中的 plug-and-play 安全约束层，无需重训练即可为任意 VLA 模型添加数学证明的硬安全保障"
+  key_results: "CAR 从 18.69%(π0.5) 提升至 77.85%（+59.16%）；TSR 从 50.88% 提升至 68.13%（+17.25%）；安全层仅增加 0.356ms 延迟（总延迟的 1.86%）"
+  limitations:
+    - "感知管线误差（VLM 误识别、GroundingDINO 定位不准、点云过滤过激）导致 CAR 未达 100%"
+    - "安全约束可能将机器人推入 OOD 状态（distribution shift），导致 VLA 策略行为退化"
+    - "当前实验限制为平移运动（锁定末端执行器朝向），未验证完整 6-DoF"
+    - "仅处理单个最关键障碍物，未考虑多障碍物场景"
+    - "未处理高度动态障碍物"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "VLA 模型语义理解强大但安全保障缺失——碰撞可能导致硬件损坏、人员伤害、财产损失"
+  tension: "现有安全方法（如 SafeVLA）需要昂贵的重训练且安全仅作为软目标（奖励惩罚），缺乏推理时的硬安全保障；传统运动规划（A*、RRT*、APF）会覆盖 VLA 的语义意图且缺乏理论安全保证"
+  key_insight: "将安全从训练时的软目标转变为推理时的硬约束——用 CBF-QP 作为安全滤波器，仅在检测到碰撞风险时最小修正 VLA 动作，保留原始任务意图的同时提供数学证明的安全保障"
+  argument_chain: "VLA 安全缺失 → 重训练方法代价高且仅软约束 → 提出 VLSA 架构（VLA + SC layer）→ AEGIS 实现：VLM 语义识别障碍物 + GroundingDINO 空间定位 + 3D 点云 + MVEE 拟合 + CBF-QP 求解 → SafeLIBERO benchmark → CAR 4倍提升 + TSR 17.25%提升 → 理论安全保证（Theorem 1）"
+  contribution_framing: "三个贡献严格对齐：(1) 首个 CBF+VLA 集成框架（方法新颖性）；(2) VLM 安全评估 + CBF-QP 控制双模块（技术设计）；(3) SafeLIBERO benchmark + 实证验证（评估贡献）。措辞用 'the first approach'，语气自信"
+  intro_structure: "3段：P1 VLA 成就与安全缺失 → P2 现有安全方法的局限（重训练+软约束 vs 运动规划覆盖意图）→ P3 VLSA/AEGIS 方案概述（VLM+CBF-QP 的 plug-and-play 安全层）"
+  notable_technique: "反直觉论点'Safety Enables Success'——安全约束不仅不降低任务成功率反而提升 17.25%，因为碰撞会导致级联失败（撞倒的障碍物遮挡目标物），这将安全从'代价'重新定义为'前提'"
+
+figures:
+  figure_count: 14
+  figure1:
+    type: "problem_illustration"
+    description: "左右对比：(a) VLA 模型直接执行任务导致潜在碰撞的轨迹；(b) VLSA 模型通过安全约束层调整后的无碰撞轨迹。展示机械臂在桌面环境中操作时的行为差异"
+    narrative_role: "一图建立核心问题（VLA 不安全）和解决方案（VLSA 安全）的对比，读者瞬间理解论文目标"
+    design_elements: ["左右对比布局", "轨迹可视化", "碰撞 vs 无碰撞标注", "真实仿真渲染"]
+    visual_style: "两面板并列，左侧标注 Potential Collision 右侧标注 Collision-Free，使用仿真环境的照片级渲染"
+  result_figures:
+    - figure_id: "Figure 7"
+      viz_type: "grouped_bar"
+      what_compared: "三种方法（OpenVLA-OFT, π0.5, AEGIS）在 CAR/TSR/ETS 上的表现，按总体平均和四个子套件分别展示"
+      how_gain_highlighted: "AEGIS 柱子显著高于 baseline，5 个子图分别展示不同维度的优势"
+      design_note: "5 子图（1 总体 + 4 子套件）× 3 指标的全面展示，让读者看到跨任务的一致优势"
+    - figure_id: "Figure 8"
+      viz_type: "qualitative_comparison"
+      what_compared: "π0.5 baseline vs AEGIS 在四个代表性任务上的执行过程（时间序列帧）"
+      how_gain_highlighted: "上下行对比：上行 baseline 碰撞失败，下行 AEGIS 无碰撞成功；每行多帧展示完整轨迹"
+      design_note: "四任务×两方法×多时间帧的网格布局，直观展示安全行为差异，配合 Success/Failure × Collision/Collision-free 标注"
+  ablation_figures:
+    - figure_id: "Figure 9"
+      viz_type: "line_plot"
+      dimensions_varied: ["CBF value h(x) temporal evolution across different task suites"]
+      design_note: "四子图展示 h(x) 时间演化，黑色虚线标注安全边界 h=0，所有曲线保持非负——直接可视化理论安全保证的实践验证"
+    - figure_id: "Figure 10"
+      viz_type: "bar_chart"
+      dimensions_varied: ["computation time breakdown (VLA inference vs SC layer)"]
+      design_note: "展示安全层仅占总延迟 1.86% 的计算开销分析，回应'安全约束是否影响实时性'的潜在质疑"
+  figure_narrative_role: "Fig1(VLA vs VLSA 问题对比) → Fig2(VLA/VLSA 架构对比) → Fig3(AEGIS 完整工作流) → Fig4(安全评估模块细节) → Fig5(MVEE 拟合可视化) → Fig6(SafeLIBERO benchmark 任务展示) → Fig7(定量性能对比) → Fig8(定性轨迹对比) → Fig9(CBF 值演化验证安全保证) → Fig10(计算开销分析) → Fig11-14(逐套件详细性能)"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "suites (Spatial, Goal, Object, Long, Average) × metrics (CAR, TSR, ETS)"
+    row_organization: "flat"  # 仅 3 个方法，无分组
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best, arrows indicate improvement direction (↑/↓)"
+    statistical_reporting: "百分比值，无 mean ± std"
+    num_baselines: 2
+    design_note: "3 方法 × 4 套件 × 3 指标的紧凑表格，用箭头标注指标方向（↑/↓），bold 标注最佳值；baseline 数量少（仅 2 个）是论文弱点"
+  ablation_tables: []  # 无消融表
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 2-5 为四个子套件的逐任务逐 Level 详细结果（每个任务有 Level I 和 Level II 两个难度）"
+    reason: "主表展示套件级聚合结果，附录表提供任务级细粒度分析，避免主文表格过于庞大"

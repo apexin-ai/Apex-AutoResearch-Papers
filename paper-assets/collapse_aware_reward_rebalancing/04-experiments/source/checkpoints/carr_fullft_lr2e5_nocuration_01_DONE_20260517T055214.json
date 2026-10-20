@@ -1,0 +1,45 @@
+{
+  "exp_id": "carr_fullft_lr2e5_nocuration_01",
+  "project": "collapse_aware_reward_rebalancing",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T23:41:21.750Z",
+    "updated_at": "2026-05-17T05:52:14.383Z",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/carr/outputs_fullft_lr2e5_nocuration/gen_2/condition_0/merged",
+      "log_path": "~/runs/collapse_aware_reward_rebalancing/carr_fullft_lr2e5_nocuration_01.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T03:28:39.850Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T03:28:41.089453+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "gen0": {
+        "vendi_score": 107.81
+      },
+      "gen1": {
+        "vendi_score": 107.83
+      },
+      "gen2": {
+        "vendi_score": 107.86
+      },
+      "vendi_decline_pct": 0.047
+    },
+    "hypothesis": "Full-FT LR=2e-5 no-curation baseline: random 1-of-4 selection at aggressive learning rate shows diversity trajectory unaffected by reward signal, isolating curation's causal effect on C4",
+    "completed_at": "2026-05-17T05:52:14.383Z"
+  },
+  "timestamp": "2026-05-17T05:52:14.414082+00:00",
+  "trigger": "update_registry"
+}

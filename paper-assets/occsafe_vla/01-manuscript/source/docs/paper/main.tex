@@ -1,0 +1,48 @@
+\documentclass{article}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{corl_2026}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{subcaption}
+
+
+\title{Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer?\\ A Factorial Analysis}
+
+\author{
+Anonymous Author(s)
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Fine-tuned Vision-Language-Action (VLA) models achieve high task success yet remain collision-prone. We ask whether auxiliary spatial supervision during fine-tuning can improve collision avoidance, and conduct a systematic $2{\times}2$ factorial study crossing gradient flow with normalization type, supplemented by ablations of label content, reference frame, and temporal extent (twelve conditions in total). The answer depends critically on \emph{how} the auxiliary head is attached. The best configuration, detached gradients with LayerNorm, reliably outperforms the no-auxiliary baseline, raising Collision Avoidance Rate from $0.745$ to $0.802$ with a large effect size. The naive default, BatchNorm with full gradient flow, is associated with reduced safety relative to baseline. A factorial analysis disentangles two additive factors: gradient flow through BatchNorm reduces safety, possibly mediated by running-statistics corruption during auxiliary forward passes; LayerNorm, which normalizes per-token without shared batch statistics, provides a consistent safety advantage regardless of gradient flow. Surprisingly, the spatial content of the labels (ground-truth occupancy, random noise, or depth) has no detectable effect under the original codebase; the gradient pathway, not spatial information, appears to determine the outcome. These safety effects are invisible to standard task-success benchmarks (TSR ANOVA all $p{>}0.27$), explaining why fifteen prior spatial VLA methods did not detect them. The auxiliary head is discarded at inference, adding zero deployment cost.
+\end{abstract}
+
+\keywords{Vision-Language-Action Models, Robot Safety, Auxiliary Supervision, Collision Avoidance}
+
+\input{introduction}
+
+\input{related_work}
+
+\input{method}
+
+\input{results}
+
+\input{discussion}
+
+\input{conclusion}
+
+\input{limitations}
+
+\bibliography{references}
+
+\clearpage
+\appendix
+\input{appendix}
+
+\end{document}

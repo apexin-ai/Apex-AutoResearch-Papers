@@ -1,0 +1,29 @@
+{
+  "exp_id": "cutoff_25k_s2_v3",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T04:38:48.910Z",
+    "updated_at": "2026-05-25T17:26:18.120Z",
+    "hypothesis": "Seed 44 replication of cutoff_25k (OCC gradient cutoff at 25K steps). Fresh start from pretrained weights — C002 prohibits resume for cutoff experiments. 2-seed results show high instability (0.688-0.760). 3rd seed for withdrawal pattern confirmation.",
+    "parent": "cutoff_25k_s1",
+    "spec": {
+      "pid": "11510",
+      "gpu": [
+        "cuda:0"
+      ]
+    },
+    "server": "westd-34685",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "finished_at": "2026-05-25T17:26:16.615Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-25T17:26:18.447406+00:00",
+  "trigger": "update_registry"
+}

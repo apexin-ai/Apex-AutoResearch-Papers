@@ -1,0 +1,102 @@
+{
+  "Full_OCC_s0": {
+    "early": {
+      "conflict_rate": 0.49733,
+      "cosine_sim": 0.006597,
+      "num_layers": 17,
+      "layers": "dino_0..siglip_8"
+    },
+    "mid": {
+      "conflict_rate": 0.496959,
+      "cosine_sim": 0.003292,
+      "num_layers": 17,
+      "layers": "dino_8..siglip_17"
+    },
+    "late": {
+      "conflict_rate": 0.370709,
+      "cosine_sim": 0.001161,
+      "num_layers": 15,
+      "layers": "dino_16..siglip_25"
+    },
+    "dino_early": {
+      "conflict_rate": 0.498176,
+      "cosine_sim": 0.005805,
+      "num_layers": 8
+    },
+    "dino_mid": {
+      "conflict_rate": 0.498564,
+      "cosine_sim": 0.003257,
+      "num_layers": 8
+    },
+    "dino_late": {
+      "conflict_rate": 0.499486,
+      "cosine_sim": 0.001358,
+      "num_layers": 7
+    },
+    "siglip_early": {
+      "conflict_rate": 0.496579,
+      "cosine_sim": 0.0073,
+      "num_layers": 9
+    },
+    "siglip_mid": {
+      "conflict_rate": 0.495532,
+      "cosine_sim": 0.003324,
+      "num_layers": 9
+    },
+    "siglip_late": {
+      "conflict_rate": 0.25803,
+      "cosine_sim": 0.000988,
+      "num_layers": 8
+    }
+  },
+  "Random_s2": {
+    "early": {
+      "conflict_rate": 0.496666,
+      "cosine_sim": 0.008757,
+      "num_layers": 17,
+      "layers": "dino_0..siglip_8"
+    },
+    "mid": {
+      "conflict_rate": 0.495884,
+      "cosine_sim": 0.005706,
+      "num_layers": 17,
+      "layers": "dino_8..siglip_17"
+    },
+    "late": {
+      "conflict_rate": 0.36785,
+      "cosine_sim": 0.00101,
+      "num_layers": 15,
+      "layers": "dino_16..siglip_25"
+    },
+    "dino_early": {
+      "conflict_rate": 0.495889,
+      "cosine_sim": 0.013367,
+      "num_layers": 8
+    },
+    "dino_mid": {
+      "conflict_rate": 0.496855,
+      "cosine_sim": 0.010625,
+      "num_layers": 8
+    },
+    "dino_late": {
+      "conflict_rate": 0.499249,
+      "cosine_sim": 0.003032,
+      "num_layers": 7
+    },
+    "siglip_early": {
+      "conflict_rate": 0.497356,
+      "cosine_sim": 0.00466,
+      "num_layers": 9
+    },
+    "siglip_mid": {
+      "conflict_rate": 0.49502,
+      "cosine_sim": 0.001333,
+      "num_layers": 9
+    },
+    "siglip_late": {
+      "conflict_rate": 0.252876,
+      "cosine_sim": -0.000759,
+      "num_layers": 8
+    }
+  }
+}

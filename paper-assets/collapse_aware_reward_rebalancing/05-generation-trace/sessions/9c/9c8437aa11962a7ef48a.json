@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c8437aa11962a7ef48a",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "analysis carr fullft nocuration 01",
+  "task_key": "worker_analysis_carr_fullft_nocuration_01_20260516T233611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_carr_fullft_nocuration_01_20260516T233611_result.json",
+    "occurrence": 1,
+    "bytes": 874,
+    "sha256": "9390e1ceb4a3905ae1d10b200ae991446070a4a0b7da4125ebf1b5bb2fb99ce6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE，memory 已写入。结果汇总：\n\n**实验 carr_fullft_nocuration_01 结果：**\n\n| Gen | mean_quality | vendi_score | self_bleu | perplexity | mean_nn_distance | complexity_mean |\n|-----|-------------|-------------|-----------|-----------|-----------------|----------------|\n| 0 | 0.1126 | 107.17 | 0.0045 | 8.77 | 0.7061 | 2.847 |\n| 1 | 0.1111 | 107.87 | 0.0047 | 8.70 | 0.7094 | 2.793 |\n| 2 | 0.1117 | 108.64 | 0.0065 | 8.82 | 0.7114 | 2.820 |\n\n- **vendi_decline_pct**: +1.38% (diversity 上升，无 collapse)\n- **checkpoint**: `/root/autodl-tmp/carr/outputs_fullft_nocuration/gen_2/condition_0/merged`\n- **结论**: success (baseline 正常完成，符合预期：no_curation 不产生 collapse)\n\n与 LoRA no-curation baseline 对比：LoRA +3.13% vs Full-FT +1.38%，Full-FT 增长更温和但趋势一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-carr-fullft-nocuration-01.md"
+}

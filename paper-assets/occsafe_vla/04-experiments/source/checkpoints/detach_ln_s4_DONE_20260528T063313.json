@@ -1,0 +1,35 @@
+{
+  "exp_id": "detach_ln_s4",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T11:14:47.123Z",
+    "updated_at": "2026-05-28T06:33:12.888Z",
+    "hypothesis": "n=5 统计扩展 Cell 4 (Detach LN, seed 46): 增加第 5 个种子提升 gradient_flow × norm_type 交互效应的统计检验力，增强效应量估计可靠性",
+    "parent": "detach_ln_s0",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/detach_ln_s4/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_ln_s4",
+      "log_path": "~/runs/occsafe_vla/detach_ln_s4.log"
+    },
+    "server": "westd-34685",
+    "reproduce": {
+      "finished_at": "2026-05-27T13:18:27.400Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T13:18:32.389533+00:00"
+        }
+      ]
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-28T06:33:12.888Z"
+  },
+  "timestamp": "2026-05-28T06:33:13.251989+00:00",
+  "trigger": "update_registry"
+}

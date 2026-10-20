@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11de1ee54e3b5d395c4b",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis oh lf temporal",
+  "task_key": "worker_analysis_oh-lf-temporal_20260514T174011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_oh-lf-temporal_20260514T174011_result.json",
+    "occurrence": 1,
+    "bytes": 1505,
+    "sha256": "158de466e554a222b60d53a9307dbe9e8e21909f81357895a79cf39d8128c609"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果摘要：\n\n## 跨域 Temporal Dynamics 验证结果\n\n| LF | SWE-Agent | OpenHands | 角色一致? |\n|---|---|---|---|\n| **file_diff_delta** | leading (mean=-1.20, n=914) | **leading** (mean=-4.90, n=4428) | **YES** |\n| **command_repetition** | leading (mean=-1.87, n=913) | **lagging** (mean=+3.32, n=2914) | **NO** |\n| **outcome_backpropagation** | lagging (mean=+6.70, n=1837) | **lagging** (mean=+18.07, n=2449) | **YES** |\n\n**Temporal ordering:**\n- SWE-Agent: cmd_rep → file_diff → outcome_bp\n- OpenHands: file_diff → cmd_rep → outcome_bp\n\n**结论：MIXED。** 2/3 LF 的 temporal roles 跨域一致：\n- **file_diff_delta** 在两个域都是 leading indicator（OH 上甚至更强，-4.9 vs -1.2）\n- **outcome_bp** 在两个域都是 lagging indicator（OH 上更滞后，+18.1 vs +6.7）\n- **cmd_rep 角色翻转**：SWE-Agent 上 leading，OH 上 lagging。这与已知的 OH 71% false positive rate 一致——cmd_rep 在 OH 上过早误触发（非 stagnation 窗口也标记 stagnation），导致\"首次 stagnation 投票\"失去时序信号\n\n所有跨域差异均统计显著（Welch's t-test, p < 10⁻⁷⁰）。OH 内部所有 pairwise 差异也显著（Wilcoxon, Bonferroni 校正后 p < 10⁻¹⁴⁸）。\n\n论文角度：file_diff 和 outcome_bp 的跨域一致性支持 Claim 1 的部分泛化；cmd_rep 的角色翻转可作为 LF domain-specificity 的讨论点，进一步论证 why domain adaptation matters。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-oh-lf-temporal.md"
+}

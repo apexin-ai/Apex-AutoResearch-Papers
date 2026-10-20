@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbf649f86143b45181bb",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "diag cleanup duplicate probes",
+  "task_key": "worker_diag_cleanup-duplicate-probes_20260514T134731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_cleanup-duplicate-probes_20260514T134731_result.json",
+    "occurrence": 1,
+    "bytes": 1089,
+    "sha256": "19b00b7d485eddddd8e7dd6e1654eb9364c6d9aba0642b8735aea32f4db57f9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**无重复进程，无需清理。**\n\n实际情况：\n\n| 批次 | 编码器 | GPU | 状态 |\n|------|--------|-----|------|\n| 第一批 (PID 53503/53646) | e5-large / bge-m3 | cuda:0 / cuda:1 | **已完成** (EXIT_CODE=0, 13:43 UTC) |\n| 第二批 (PID 54537/54618) | e5-large / bge-m3 | cuda:0 / cuda:1 | **正在运行** |\n\n**第一批已正常结束**（e5-large early stop epoch 9, best F1=0.9596; bge-m3 early stop epoch 10, best F1=0.9579），结果已保存到 `checkpoints_ablation_e5large` 和 `checkpoints_ablation_bgem3`。\n\n**当前运行状态（第二批，无冲突）：**\n- GPU 0: PID 54537 — `train_probe.py --data_dir data_e5 --output_dir checkpoints_ablation_e5` (718 MiB)\n- GPU 1: PID 54618 — `train_probe.py --data_dir data_bge --output_dir checkpoints_ablation_bge` (718 MiB)\n\n两个 GPU 各跑一个进程，无重复，无需 kill。注意第二批输出目录（`checkpoints_ablation_e5` / `checkpoints_ablation_bge`）与第一批不同（`checkpoints_ablation_e5large` / `checkpoints_ablation_bgem3`），不会互相覆盖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-cleanup-duplicate-probes.md"
+}

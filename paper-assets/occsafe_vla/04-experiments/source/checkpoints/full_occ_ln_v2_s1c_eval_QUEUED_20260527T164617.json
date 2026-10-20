@@ -1,0 +1,29 @@
+{
+  "exp_id": "full_occ_ln_v2_s1c_eval",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T15:49:34.521Z",
+    "updated_at": "2026-05-27T16:46:17.004Z",
+    "hypothesis": "Full occupancy loss with LayerNorm v2 (gradient ON + LN) at seed 43 should maintain high TSR while improving collision avoidance (CAR) compared to baseline, demonstrating that occupancy-aware training with proper normalization enhances safety without sacrificing task performance.",
+    "parent": "full_occ_ln_v2_s1c",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 MUJOCO_GL=egl python3 vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/full_occ_ln_v2_s1c/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_v2_s1c--50000_chkpt --task_suite_name libero_spatial --num_rollouts 50 --seed 42\"",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "599628",
+      "log_path": "~/runs/occsafe_vla/full_occ_ln_v2_s1c_eval.log",
+      "submitted_at": "2026-05-27T15:52:00.510Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-27T16:46:17.667766+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64838f9befc60ec463f1",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "history",
+  "title": "agent / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3.md",
+    "occurrence": 1,
+    "bytes": 3475,
+    "sha256": "3117be46d417375ba172b8294a09eae94c3470311619da68ffd9a540ff61005d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-17T08:47:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 bjb2-23165 的 cuda:0 和 cuda:1（2× RTX 5090 32GB）\n- RTX 5090 必须用 bf16=True，不能用 fp16（GradScaler 会崩，carr_fullft_k4_probe_01 已验证）\n- 训练命令必须带 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`（服务器网络受限）\n- Full-FT 训练必须 gradient_checkpointing=True + per_device_train_batch_size=1 + grad_accum=8（否则 OOM）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb2-23165，工作目录 `/root/autodl-tmp/carr/`\n- Python：`/root/miniconda3/bin/python`，conda env=base\n- 模型：Qwen3-0.6B（HF cache 已离线缓存）\n- 数据集：openbmb/UltraFeedback（已离线缓存，2200 prompts）\n- 输出目录模式：`/root/autodl-tmp/carr/outputs_*/{gen_N}/condition_0/merged`\n- 活跃进程：carr_fullft_lr2e5_k16_probe_01（PID 534061，cuda:1，K=16 极端筛选实验）\n- 磁盘：充裕（/autodl-pub 4.4T/14T 可用）\n\n### 3. 📊 当前状态\n**刚做完**：收到 `carr_fullft_lr2e5_nocuration_01` 完成回调，已 spawn Worker（worker_analysis_carr_fullft_lr2e5_nocuration_01_20260517T032939）去 SSH 提取指标，**尚未回调**。同时将 `carr_fullft_lr2e5_probe_01` 从 ANALYZING 推到 DONE(negative)。\n\n**Registry 摘要**：\n- RUNNING 1：`carr_fullft_lr2e5_k16_probe_01`（cuda:1，K=16 极端筛选，预计 8-12h）\n- ANALYZING 1：`carr_fullft_lr2e5_nocuration_01`（cuda:0 已释放，等 Worker 提取指标后推 DONE）\n- DONE 11：success 2 / negative 3 / failed 4 / killed 1\n\n**等待中**：\n1. Worker 回调：analysis_carr_fullft_lr2e5_nocuration_01（提取指标）\n2. Cron：carr_fullft_lr2e5_k16_probe_01（K=16 实验完成回调）\n3. cuda:0 当前空闲——nocuration 分析完成后应立即铺下一个任务或向 Director 汇报\n\n### 4. 📋 待办\n- Worker 回调到达 → 提取 metrics → update_registry(metrics+conclusion) → 推 DONE → 与 curation 版(lr2e5_probe_01)对比 → 汇报 Director\n- K=16 cron 回调到达 → spawn Worker 提取指标 → 这是最关键的数据点：collapse 概率约 20%，成功则论文有 boundary finding，失败则全 negative\n- cuda:0 空闲 → 向 Director 汇报空闲状态，建议铺论文准备 CPU 任务（outline、Table 1 数据整理、literature_map 补全）\n- 所有 P1 实验完成后 → 整理完整实验数据表格（论文 Table 1）→ 启动 Paper Agent\n\n### 5. 🎯 战略上下文\n- **核心结论**：5/5 配置 curation 均不导致 diversity collapse，项目已从\"验证 collapse 存在\"pivot 到\"Direction D: Negative Result Empirical Study\"\n- **论文 framing**：EMNLP 2026 ARR（DDL 2026-05-25，还剩 8 天），\"Does reward-based curation cause diversity collapse? Systematic evidence of surprising resilience.\"\n- **决策链**：D004(P1 FAIL) → D007(K=8 也 FAIL，LoRA=artifact) → D008(Full-FT FAIL) → D009(5/5 全 FAIL) → D011(Direction C FAIL，正式切 Direction D)\n- **K=16 是最后一个实验数据点**：collapse → boundary finding 大幅加强论文；no collapse → 全 negative，需要更强的 framing 和 actionable takeaway\n- **易错**：LoRA 实验的 3pp Vendi gap 是 LoRA capacity artifact（D007 已确认），不是 curation 因果效应——论文叙事中必须区分\n- **已验证无效的路**：Direction C（CARR multi-reward rebalancing）干跑 99.3% overlap，proxy scores 太相关，路不通\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3.md"
+}

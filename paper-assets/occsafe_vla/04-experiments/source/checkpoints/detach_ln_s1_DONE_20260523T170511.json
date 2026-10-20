@@ -1,0 +1,43 @@
+{
+  "exp_id": "detach_ln_s1",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T05:23:22.129Z",
+    "updated_at": "2026-05-23T17:05:11.272Z",
+    "hypothesis": "Seed 43 replication of Detach+LayerNorm. If Detach OCC's CAR degradation is caused by BatchNorm's forward-pass interference rather than gradient flow absence, replacing BN with LN should restore CAR to Vanilla level (~0.780).",
+    "parent": "ablation_occ_detach_s1",
+    "spec": {
+      "command": "torchrun finetune.py --resume True --resume_step 20000",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": 439399,
+      "log_path": "~/runs/occsafe_vla/detach_ln_s1.log",
+      "submitted_at": "2026-05-23T05:27:23.673Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 25000,
+      "model_name": "openvla-7b",
+      "seed": 43,
+      "checkpoint_source": "openvla-7b (from scratch)",
+      "eval_data": "N/A (training)",
+      "wall_clock_seconds": 41866.5,
+      "gpu_hours": 11.63
+    },
+    "conclusion": "failed",
+    "reproduce": {
+      "finished_at": "2026-05-23T17:05:08.346Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-23T17:05:10.166Z"
+  },
+  "timestamp": "2026-05-23T17:05:11.524585+00:00",
+  "trigger": "update_registry"
+}

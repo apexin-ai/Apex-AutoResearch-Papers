@@ -1,0 +1,38 @@
+{
+  "exp_id": "full_occ_ln_s3_v2_eval",
+  "project": "occsafe_vla",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T11:10:58.958Z",
+    "updated_at": "2026-05-26T11:58:59.282Z",
+    "hypothesis": "50-rollout SafeLIBERO eval of full_occ_ln_s3_v2 (Full OCC LN, seed 45, v2 code). First v2 data point for Cell 2 of 2×2 factorial ANOVA. Cell 2 has only v1 data (n=3, mean=0.743).",
+    "parent": "full_occ_ln_s3_v2",
+    "spec": {
+      "command": "MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=2 python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/full_occ_ln_s3_v2/...--50000_chkpt --num_rollouts 50 --seed 42",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "186832",
+      "log_path": "~/runs/occsafe_vla/full_occ_ln_s3_v2_eval.log",
+      "submitted_at": "2026-05-26T11:11:25.789Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_spatial",
+      "data_count": 500,
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_source": "full_occ_ln_s3_v2",
+      "eval_data": "libero_spatial_50rollouts"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-26T11:58:58.566Z"
+    }
+  },
+  "timestamp": "2026-05-26T11:58:59.589419+00:00",
+  "trigger": "update_registry"
+}

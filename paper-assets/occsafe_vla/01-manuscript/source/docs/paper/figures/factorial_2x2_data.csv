@@ -1,0 +1,5 @@
+normalization,gradient_flow,car_mean,car_std,n_seeds
+BN,OFF,0.767,0.024,4
+BN,ON,0.725,0.064,3
+LN,OFF,0.802,0.024,3
+LN,ON,0.773,0.027,4

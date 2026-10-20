@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "c3db789d111d38e4fa17",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "train oh cmdrep ablation",
+  "task_key": "worker_train_oh-cmdrep-ablation_20260514T150300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_oh-cmdrep-ablation_20260514T150300.log",
+    "occurrence": 1,
+    "bytes": 1258892,
+    "sha256": "0bfa0c090bf1030ae24b1c6825a86374d24e8e6b2a16c1eb73eedba89a717fb9"
+  },
+  "statistics": {
+    "messages": 672,
+    "user_turns": 2,
+    "tool_calls": 269,
+    "roles": {
+      "log": 1,
+      "system": 18,
+      "record": 2,
+      "assistant": 110,
+      "tool_call": 269,
+      "tool_result": 269,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 124,
+      "chunks": [
+        {
+          "path": "c3db789d111d38e4fa17-part-0001.json",
+          "message_count": 124
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 412,
+      "chunks": [
+        {
+          "path": "c3db789d111d38e4fa17-part-0001.json",
+          "message_count": 56
+        },
+        {
+          "path": "c3db789d111d38e4fa17-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c3db789d111d38e4fa17-part-0003.json",
+          "message_count": 176
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 136,
+      "chunks": [
+        {
+          "path": "c3db789d111d38e4fa17-part-0003.json",
+          "message_count": 4
+        },
+        {
+          "path": "c3db789d111d38e4fa17-part-0004.json",
+          "message_count": 132
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-oh-cmdrep-ablation.md"
+}

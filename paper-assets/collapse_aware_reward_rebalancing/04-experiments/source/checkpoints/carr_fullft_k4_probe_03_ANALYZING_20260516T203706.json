@@ -1,0 +1,84 @@
+{
+  "exp_id": "carr_fullft_k4_probe_03",
+  "project": "collapse_aware_reward_rebalancing",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T17:01:20.476Z",
+    "updated_at": "2026-05-16T20:37:06.009Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/carr && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 python3 run_quick_probe_fullft.py",
+      "server": "bjb2-23165",
+      "gpu": "cuda:1",
+      "pid": 514978,
+      "log_path": "~/runs/collapse_aware_reward_rebalancing/carr_fullft_k4_probe_03.log",
+      "submitted_at": "2026-05-16T17:01:20.459Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "Full-FT (无LoRA约束) K=4在3代内导致Vendi Score可观测下降(≥5%)，验证LoRA是否是collapse约束因素",
+      "condition": "single_reward (ArmoRM top-1-of-4) Full-FT bf16+grad_ckpt",
+      "generations": 3,
+      "prompts": 2000,
+      "eval_prompts": 200,
+      "model_name": "Qwen3-0.6B",
+      "k_candidates": 4,
+      "gen_batch_size": 16,
+      "lr": 5e-06,
+      "per_device_train_batch_size": 1,
+      "gradient_accumulation_steps": 8,
+      "gradient_checkpointing": true,
+      "use_lora": false,
+      "data_path": "openbmb/UltraFeedback",
+      "data_count": 2200,
+      "seed": 42,
+      "output_dir": "/root/autodl-tmp/carr/outputs_fullft_k4/",
+      "fix": "bf16 + gradient_checkpointing + batch=1 + grad_accum=8"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T20:35:20.184Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T20:35:20.904508+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "gen0": {
+        "mean_quality": 0.1145,
+        "vendi_score": 107.1,
+        "self_bleu": 0.0038,
+        "perplexity": 9.1,
+        "mean_nn_distance": 0.7073,
+        "complexity_mean": 2.858
+      },
+      "gen1": {
+        "mean_quality": 0.1141,
+        "vendi_score": 107.61,
+        "self_bleu": 0.006,
+        "perplexity": 8.66,
+        "mean_nn_distance": 0.7091,
+        "complexity_mean": 2.853
+      },
+      "gen2": {
+        "mean_quality": 0.1131,
+        "vendi_score": 108.07,
+        "self_bleu": 0.0044,
+        "perplexity": 9.21,
+        "mean_nn_distance": 0.7108,
+        "complexity_mean": 2.813
+      },
+      "vendi_decline_pct": 0.91,
+      "p1_pass": false
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-16T20:37:06.043377+00:00",
+  "trigger": "update_registry"
+}

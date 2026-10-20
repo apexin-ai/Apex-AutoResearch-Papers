@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8682d6de8aae0d9bf44",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "experiment gold set eval",
+  "task_key": "worker_experiment_gold-set-eval_20260515T070647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_gold-set-eval_20260515T070647_result.json",
+    "occurrence": 1,
+    "bytes": 731,
+    "sha256": "18e69e273247c776a2fb95ef777519678d0dce28d3632111b896efc45a869358"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**标注文件 `annotation_unknown_2026-05-15.csv` 未找到。**\n\n已搜索以下位置：\n- 本地项目目录及 artifacts 全路径（`find` 递归搜索）\n- 服务器 `bjb2-23165` 上 `/root/autodl-tmp/agent_progress_probe/` 全路径\n- 服务器 artifacts 目录\n\n均无此文件。\n\n现有相关文件：\n- `annotation_assignment.csv` — 650 条标注任务分配（含 annotator_A/B/C 列，非最终 gold set 格式）\n- `annotation_sample_650.csv` — 原始采样数据\n- `annotation_tool.html` — 标注工具界面\n\n**需要你提供 `annotation_unknown_2026-05-15.csv` 文件**（或告知文件存放位置）。评估脚本和转换逻辑已就绪，拿到文件后可立即执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-gold-set-eval.md"
+}

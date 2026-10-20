@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b23da507166ca6a2edfa",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis lf holdout crosseval",
+  "task_key": "worker_analysis_lf-holdout-crosseval_20260514T151438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lf-holdout-crosseval_20260514T151438_result.json",
+    "occurrence": 1,
+    "bytes": 1289,
+    "sha256": "86a52ea6c4738e43eaa8abec42ec42eff2cc62c5f0c338cb852828689853a3e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到 `lf_holdout_crosseval_results.json`。\n\n**Cross-eval 结果（3-LF test set, 1824 windows）：**\n\n| Model | macro_f1 | accuracy | f1_stag | f1_prog |\n|-------|----------|----------|---------|---------|\n| **baseline (probe_001)** | **0.8136** | 0.8448 | 0.7372 | 0.8899 |\n| no_ob | 0.7535 | 0.8087 | 0.6368 | 0.8701 |\n| no_cmd_rep | 0.7329 | 0.7758 | 0.6258 | 0.8399 |\n| no_file_diff | **0.6329** | 0.6535 | 0.5460 | 0.7199 |\n\n**关键发现：**\n- Baseline macro_f1 此处为 0.8136（低于之前报告的 0.9055，可能因评估 split 差异）\n- **file_diff_delta 是最重要的 LF**：去掉它后 macro_f1 暴跌至 0.6329（-0.1807）\n- outcome_backpropagation 次之：去掉后 macro_f1 降至 0.7535（-0.0601）\n- command_repetition 影响居中：去掉后 macro_f1 降至 0.7329（-0.0807）\n- 所有 holdout 模型在 stagnation 类上表现最差（f1_stag 最低 0.546）\n\n注意 baseline 的 0.8136 与之前报告的 0.9055 存在差距——这可能是因为原 probe_001 的 test set 定义和当前 split_info.json 中的 test_indices 不完全一致（原始评估可能对 conf 或标签有不同过滤）。所有 holdout 模型间的相对排序是可靠的，因为都在同一 test set 上评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lf-holdout-crosseval.md"
+}

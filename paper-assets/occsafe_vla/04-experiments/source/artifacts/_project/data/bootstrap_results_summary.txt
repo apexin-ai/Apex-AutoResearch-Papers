@@ -1,0 +1,22 @@
+Bootstrap CI Results (B=10000, hierarchical bootstrap, 95% percentile CI)
+
+Per-condition:
+  [Vanilla]    seeds=3  TSR=0.907±0.009  CAR=0.780±0.012  95% CI [0.759, 0.801]
+  [Full OCC]   seeds=3  TSR=0.894±0.050  CAR=0.797±0.032  95% CI [0.776, 0.817]
+  [Detach OCC] seeds=3  TSR=0.812±0.163  CAR=0.746±0.002  95% CI [0.723, 0.768]
+  [Random OCC] seeds=3  TSR=0.869±0.029  CAR=0.789±0.031  95% CI [0.767, 0.809]
+  [Depth]      seeds=4  TSR=0.888±0.042  CAR=0.780±0.039  95% CI [0.762, 0.797]
+  [Cutoff]     seeds=2  TSR=0.915±0.004  CAR=0.783±0.021  95% CI [0.757, 0.808]
+
+Significant pairwise comparisons (CI excludes 0):
+  Vanilla vs Detach OCC:    ΔCAR=+0.034  95% CI [+0.003, +0.065]
+  Full OCC vs Detach OCC:   ΔCAR=+0.051  95% CI [+0.021, +0.081]
+  Detach OCC vs Random OCC: ΔCAR=-0.043  95% CI [-0.073, -0.013]
+  Detach OCC vs Depth:      ΔCAR=-0.034  95% CI [-0.062, -0.005]
+  Detach OCC vs Cutoff:     ΔCAR=-0.037  95% CI [-0.071, -0.004]
+
+Files on westd-34685:
+  Script: /root/occsafe_vla/analysis/bootstrap_ci.py
+  Config: /root/occsafe_vla/analysis/bootstrap_config.json
+  Results JSON: /root/occsafe_vla/analysis/bootstrap_results.json
+  Manifest: /root/occsafe_vla/analysis/eval_data_manifest.json

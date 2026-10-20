@@ -1,0 +1,42 @@
+{
+  "exp_id": "cutoff_45k_s1",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T12:30:14.875Z",
+    "updated_at": "2026-05-24T21:34:21.535Z",
+    "hypothesis": "Seed 43 replication of cutoff_45k_s0. Cutoff at 45K steps (gradient flow for 90% of training, only last 5K steps without gradient flow) achieved CAR=0.764 with seed 42. Multi-seed needed to verify if near-full gradient flow is truly inferior to full 50K gradient flow (Full OCC 3-seed avg 0.797).",
+    "parent": "cutoff_45k_s0",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_loss_cutoff_step 45000 --occ_loss_cutoff_mode after --run_root_dir /root/autodl-tmp/checkpoints/cutoff_45k_s1 --seed 43 --run_id_note cutoff_45k_s1",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "882188",
+      "log_path": "~/runs/occsafe_vla/cutoff_45k_s1.log",
+      "submitted_at": "2026-05-24T12:30:45Z",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 4500,
+      "model_name": "openvla-7b",
+      "seed": 43,
+      "checkpoint_source": "openvla-7b (base model, LoRA fine-tune)",
+      "eval_data": "N/A - training experiment, not eval",
+      "wall_clock_seconds": 32616.5,
+      "gpu_hours": 9.06
+    },
+    "reproduce": {
+      "finished_at": "2026-05-24T21:34:19.900Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-24T21:34:21.535Z"
+  },
+  "timestamp": "2026-05-24T21:34:22.007374+00:00",
+  "trigger": "update_registry"
+}

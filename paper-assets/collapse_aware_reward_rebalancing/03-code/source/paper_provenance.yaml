@@ -1,0 +1,651 @@
+paper:
+  title: ''
+  version: 28
+  generated_at: '2026-05-17T10:37:20.161756+00:00'
+claims:
+- id: C001
+  location:
+    section: experimental_setup
+    paragraph: 0
+    sentence: 0
+  text: Gen 0 Vendi Scores across conditions range from 105.42 to 108.08
+  type: observation
+  evidence:
+  - exp_id: carr_baseline_no_curation_01
+    metric: gen0.vendi_score
+    value: 105.42
+  - exp_id: carr_fullft_lr2e5_probe_01
+    metric: gen0.vendi_score
+    value: 107.81
+  decisions: []
+  deprecated: false
+- id: C003
+  location:
+    section: experimental_setup
+    paragraph: 0
+    sentence: 0
+  text: LoRA updates 1.67% of parameters at rank 16
+  type: setup
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C006
+  location:
+    section: experimental_setup
+    paragraph: 0
+    sentence: 0
+  text: Temperature T=0.7 for candidate generation
+  type: setup
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C010
+  location:
+    section: experimental_setup
+    paragraph: 0
+    sentence: 0
+  text: Effective batch size 16 for LoRA (4x4), 8 for Full-FT (1x8)
+  type: setup
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C011
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: All curated conditions show Vendi Score changes within +/-1% over 3 generations
+  type: main_result
+  evidence:
+  - exp_id: carr_quick_probe_03
+    metric: vendi_decline_pct
+    value: -0.27
+  - exp_id: carr_fullft_k4_probe_03
+    metric: vendi_decline_pct
+    value: 0.91
+  decisions: []
+  deprecated: false
+- id: C013
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Curation gap reverses from -3.40pp (LoRA) to +0.63pp (Full-FT 2e-5)
+  type: main_result
+  evidence:
+  - exp_id: carr_quick_probe_03
+    metric: vendi_decline_pct
+    value: -0.27
+  - exp_id: carr_baseline_no_curation_01
+    metric: vendi_decline_pct
+    value: 3.13
+  decisions: []
+  deprecated: false
+- id: C016
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Quality changes between -0.3% and -1.3% across all conditions
+  type: observation
+  evidence:
+  - exp_id: carr_quick_probe_k8_02
+    metric: gen2.mean_quality
+    value: 0.1143
+  decisions: []
+  deprecated: false
+- id: C017
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Opening unique ratio drops from 0.701 to 0.367 under curation (C2) and from
+    0.794 to 0.513 under random baseline (C5)
+  type: quantitative
+  evidence:
+  - exp_002
+  - exp_005
+  decisions: []
+  deprecated: false
+- id: C019
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Opening entropy declines by 1.13 bits under curation versus 0.75 bits under
+    baseline
+  type: quantitative
+  evidence:
+  - exp_002
+  - exp_005
+  decisions: []
+  deprecated: false
+- id: C022
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Near-duplicate start rate rises from 50% to 84% under curation and from 38%
+    to 75% under baseline
+  type: quantitative
+  evidence:
+  - exp_002
+  - exp_005
+  decisions: []
+  deprecated: false
+- id: C026
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Per-response TTR drops by only 0.008 under curation compared to 0.023 under
+    random
+  type: quantitative
+  evidence:
+  - exp_002
+  - exp_005
+  decisions: []
+  deprecated: false
+- id: C031
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: ArmoRM score gap between top-1 and pool average is approximately 0.04
+  type: quantitative
+  evidence:
+  - exp_001
+  - exp_002
+  decisions: []
+  deprecated: false
+- id: C037
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: C1 and C2 converge to nearly identical Gen 2 Vendi Scores (107.25 for both)
+  type: quantitative
+  evidence:
+  - exp_001
+  - exp_002
+  decisions: []
+  deprecated: false
+- id: C044
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: LoRA rank-16 adapter modifies only 1.67% of model parameters
+  type: quantitative
+  evidence:
+  - exp_001
+  decisions: []
+  deprecated: false
+- id: C052
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: C1 final loss 0.166, C2 final loss 0.168, C5 final loss 0.152
+  type: quantitative
+  evidence:
+  - exp_001
+  - exp_002
+  - exp_005
+  decisions: []
+  deprecated: false
+- id: C061
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Opening entropy drops 1.13 bits while Vendi Score changes by +0.04%
+  type: quantitative
+  evidence:
+  - exp_002
+  decisions: []
+  deprecated: false
+- id: C071
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Near-dup start rate rises 34pp while Self-BLEU remains below 0.007
+  type: quantitative
+  evidence:
+  - exp_002
+  decisions: []
+  deprecated: false
+- id: C072
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: All curated conditions maintain Vendi Score within 1% of initial value (range
+    -0.27% to +0.91%)
+  type: quantitative
+  evidence:
+  - exp_001
+  - exp_002
+  - exp_003
+  - exp_004
+  decisions: []
+  deprecated: false
+- id: C074
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: At strongest selection pressure (K=8, 12.5% retention), Vendi Score shift
+    is only +0.04%
+  type: quantitative
+  evidence:
+  - exp_002
+  decisions: []
+  deprecated: false
+- id: C077
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Opening unique ratio falls from 0.701 to 0.367 under curation
+  type: quantitative
+  evidence:
+  - exp_002
+  decisions: []
+  deprecated: false
+- id: C081
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Near-duplicate start rate rises from 50% to 84% under curation
+  type: quantitative
+  evidence:
+  - exp_002
+  decisions: []
+  deprecated: false
+- id: C086
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Opening entropy drops by 1.13 bits under curation
+  type: quantitative
+  evidence:
+  - exp_002
+  decisions: []
+  deprecated: false
+- id: C092
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: LoRA curation suppresses Vendi Score by -3.40pp relative to random
+  type: quantitative
+  evidence:
+  - exp_001
+  - exp_005
+  decisions: []
+  deprecated: false
+- id: C099
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Full-FT lr=2e-5 curation promotes diversity by +0.63pp
+  type: quantitative
+  evidence:
+  - exp_004
+  - exp_007
+  decisions: []
+  deprecated: false
+- id: C100
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: No prior work systematically tested whether reward curation compounds into
+    semantic collapse across multiple generations
+  type: positioning
+  evidence:
+  - literature_review
+  decisions: []
+  deprecated: false
+- id: C102
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Diversity-preserving methods target semantic collapse which does not manifest,
+    while format collapse goes unaddressed
+  type: interpretive
+  evidence:
+  - exp_002
+  - exp_005
+  decisions: []
+  deprecated: false
+- id: C103
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Vendi Score remains within +/-1% across seven configurations and three generations
+  type: quantitative
+  evidence:
+  - exp_001
+  - exp_002
+  - exp_003
+  - exp_004
+  decisions: []
+  deprecated: false
+- id: C105
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Opening entropy drops 1.13 bits under curation, near-dup start rate rises
+    from 50% to 84%
+  type: quantitative
+  evidence:
+  - exp_002
+  decisions: []
+  deprecated: false
+- id: C108
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Score gap between top-1 and pool average is approximately 0.04
+  type: quantitative
+  evidence:
+  - exp_001
+  - exp_002
+  decisions: []
+  deprecated: false
+- id: C112
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: LoRA curation suppresses Vendi Score by 3.40pp, Full-FT reverses to +0.63pp
+  type: quantitative
+  evidence:
+  - exp_001
+  - exp_004
+  - exp_005
+  - exp_007
+  decisions: []
+  deprecated: false
+- id: C117
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Three proxy dimensions correlate at r=0.63-0.77
+  type: quantitative
+  evidence:
+  - carr_dry_run
+  decisions: []
+  deprecated: false
+- id: C118
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: Scope bounded to 0.6B scale, 3 generations, general domain, single RM
+  type: limitation
+  evidence:
+  - exp_001
+  - exp_002
+  - exp_003
+  - exp_004
+  decisions: []
+  deprecated: false
+- id: C119
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Vendi Score changes range from -0.27% to +0.91% across all curated conditions
+  type: quantitative
+  evidence:
+  - exp_001
+  - exp_002
+  - exp_003
+  - exp_004
+  decisions: []
+  deprecated: false
+- id: C121
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Opening entropy drops 1.13 bits, near-dup rate rises from 50% to 84%
+  type: quantitative
+  evidence:
+  - exp_002
+  decisions: []
+  deprecated: false
+- id: C124
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: LoRA suppression -3.40pp reverses to +0.63pp under Full-FT
+  type: quantitative
+  evidence:
+  - exp_001
+  - exp_004
+  - exp_005
+  - exp_007
+  decisions: []
+  deprecated: false
+- id: C125
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Semantic diversity remains within +/-1% across all curated conditions
+  type: quantitative
+  evidence:
+  - exp_001
+  - exp_002
+  - exp_003
+  - exp_004
+  decisions: []
+  deprecated: false
+- id: C127
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Opening unique ratio falls from 0.701 to 0.367
+  type: quantitative
+  evidence:
+  - exp_002
+  decisions: []
+  deprecated: false
+- id: C130
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Near-duplicate start rates rise from 50% to 84%
+  type: quantitative
+  evidence:
+  - exp_002
+  decisions: []
+  deprecated: false
+- id: C134
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Curation suppresses diversity under LoRA (-3.40pp) but promotes under Full-FT
+    (+0.63pp)
+  type: quantitative
+  evidence:
+  - exp_001
+  - exp_004
+  - exp_005
+  - exp_007
+  decisions: []
+  deprecated: false
+- id: C135
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: At 6.25% retention rate (K=16), Vendi Score changes by only -0.19%
+  type: quantitative
+  evidence:
+  - exp_008
+  decisions: []
+  deprecated: false
+- id: C136
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: C8 (K=16, 6.25% retention) produces Vendi Score change of only -0.19% over
+    three generations
+  type: quantitative
+  evidence:
+  - exp_008
+  decisions: []
+  deprecated: false
+- id: C137
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'C8 K=16: Self-BLEU 0.006, NND 0.709, training loss 0.097, Vendi change -0.19%'
+  type: quantitative
+  evidence:
+  - exp_008
+  decisions: []
+  deprecated: false
+tables:
+- id: tab1_conditions
+  location:
+    section: experimental_setup
+    table_number: 0
+  caption: ''
+  cells:
+  - row: C1
+    col: Adaptation
+    value: LoRA r=16
+    source:
+      exp_id: carr_quick_probe_03
+      metric: config
+  - row: C2
+    col: K
+    value: '8'
+    source:
+      exp_id: carr_quick_probe_k8_02
+      metric: config
+  - row: C3
+    col: LR
+    value: 5e-6
+    source:
+      exp_id: carr_fullft_k4_probe_03
+      metric: config
+  - row: C4
+    col: LR
+    value: 2e-5
+    source:
+      exp_id: carr_fullft_lr2e5_probe_01
+      metric: config
+  deprecated: false
+- id: tab:format_collapse
+  location:
+    section: analysis
+    table_number: 0
+  caption: ''
+  cells:
+  - row: Opening unique ratio
+    col: C2 Gen 0
+    value: '0.701'
+    source:
+      exp_id: exp_002
+      metric: opening_unique_ratio_gen0
+  - row: Opening unique ratio
+    col: C2 Gen 2
+    value: '0.367'
+    source:
+      exp_id: exp_002
+      metric: opening_unique_ratio_gen2
+  - row: Opening unique ratio
+    col: C5 Gen 0
+    value: '0.794'
+    source:
+      exp_id: exp_005
+      metric: opening_unique_ratio_gen0
+  - row: Opening unique ratio
+    col: C5 Gen 2
+    value: '0.513'
+    source:
+      exp_id: exp_005
+      metric: opening_unique_ratio_gen2
+  - row: Opening entropy
+    col: C2 Gen 0
+    value: '13.09'
+    source:
+      exp_id: exp_002
+      metric: opening_entropy_gen0
+  - row: Opening entropy
+    col: C2 Gen 2
+    value: '11.96'
+    source:
+      exp_id: exp_002
+      metric: opening_entropy_gen2
+  - row: Near-dup start rate
+    col: C2 Gen 0
+    value: '50.0'
+    source:
+      exp_id: exp_002
+      metric: near_dup_start_rate_gen0
+  - row: Near-dup start rate
+    col: C2 Gen 2
+    value: '84.0'
+    source:
+      exp_id: exp_002
+      metric: near_dup_start_rate_gen2
+  - row: Per-response TTR
+    col: C2 Gen 0
+    value: '0.684'
+    source:
+      exp_id: exp_002
+      metric: ttr_gen0
+  - row: Per-response TTR
+    col: C2 Gen 2
+    value: '0.676'
+    source:
+      exp_id: exp_002
+      metric: ttr_gen2
+  - row: Trigram repetition rate
+    col: C2 Gen 0
+    value: '0.391'
+    source:
+      exp_id: exp_002
+      metric: trigram_rep_gen0
+  - row: Trigram repetition rate
+    col: C2 Gen 2
+    value: '0.509'
+    source:
+      exp_id: exp_002
+      metric: trigram_rep_gen2
+  deprecated: false
+figures: []
+_completeness:
+  coverage: 39/42
+  claims: 42
+  tables: 2
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 39
+    tier3: 3
+    tierX: 0
+  last_checked: '2026-05-17T10:37:20.161810+00:00'

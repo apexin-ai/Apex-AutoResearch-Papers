@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa70dc11ae4baec0ce33",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "fix oh cmdrep ablation retrain",
+  "task_key": "worker_fix_oh-cmdrep-ablation-retrain_20260514T224513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_oh-cmdrep-ablation-retrain_20260514T224513_result.json",
+    "occurrence": 1,
+    "bytes": 1325,
+    "sha256": "ff42d6761e9f03b32c615ab7fe4e5028c186130e53f82b199bf9a748b3880023"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All experiments completed and registry updated. Here's the final comparison:\n\n## Results: cmdrep ablation with fixed OH data\n\n### Old (buggy labels, stag=6.56%) vs New (fixed labels, stag=21.45%)\n\n| Metric | Old Data | New Data |\n|--------|----------|----------|\n| 3-LF fine-tuned | 0.7512 | **0.9763** |\n| 2-LF fine-tuned (conf≥2) | 0.9272 | **0.9113** |\n| 2-LF fine-tuned (conf≥1) | — | **0.9238** |\n| Delta (2LF - 3LF) | **+17.6pp** | **-5.3 to -6.5pp** |\n\n### Full new results table\n\n| Condition | Windows | Stag% | ZS F1 | FT F1 | Δ vs 3-LF FT |\n|-----------|---------|-------|-------|-------|-------------|\n| 3-LF (fixed) | 143,057 | 21.5% | 0.5186 | 0.9763 | — |\n| 2-LF conf≥2 | 4,017 | 96.3% | 0.2381 | 0.9113 | -6.5pp |\n| 2-LF conf≥1 | 72,554 | 58.6% | 0.4389 | 0.9238 | -5.3pp |\n\n### Key findings\n- The old +17.6pp improvement claim was **entirely an artifact of the label bug**\n- With fixed labels, removing cmd_rep consistently **hurts** performance (-5 to -6.5pp)\n- cmd_rep false positive rate dropped from 71% (old claim) to **2.3%** on the fixed data\n- 3-LF labels now produce near-perfect probes (F1=0.9763), leaving little room for improvement\n\nBoth `oh-cmdrep-ablation` and `cross-agent-no-cmdrep` registry entries updated with conclusion=**negative**."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-oh-cmdrep-ablation-retrain.md"
+}

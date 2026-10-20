@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "8984f588e567bf644df6",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "experiment e7 probe oh gold",
+  "task_key": "worker_experiment_e7-probe-oh-gold_20260515T141437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_e7-probe-oh-gold_20260515T141437.log",
+    "occurrence": 1,
+    "bytes": 739116,
+    "sha256": "0f31f12e7e17ef037cba5891568e0810d067b56b0aa494a8d9a63d553e1d0396"
+  },
+  "statistics": {
+    "messages": 315,
+    "user_turns": 1,
+    "tool_calls": 107,
+    "roles": {
+      "log": 1,
+      "system": 52,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 107,
+      "user": 1,
+      "tool_result": 107,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "8984f588e567bf644df6-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 309,
+      "chunks": [
+        {
+          "path": "8984f588e567bf644df6-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "8984f588e567bf644df6-part-0002.json",
+          "message_count": 135
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-e7-probe-oh-gold.md"
+}

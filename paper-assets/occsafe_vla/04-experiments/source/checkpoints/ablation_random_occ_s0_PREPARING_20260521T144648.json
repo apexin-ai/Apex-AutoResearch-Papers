@@ -1,0 +1,47 @@
+{
+  "exp_id": "ablation_random_occ_s0",
+  "project": "occsafe_vla",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 2,
+    "created_at": "2026-05-21T03:43:31.481Z",
+    "updated_at": "2026-05-21T14:46:48.515Z",
+    "hypothesis": "Training with randomized (shuffled) occ labels preserves the auxiliary loss signal but destroys spatial correspondence. If CAR does not improve compared to vanilla baseline, it proves that the specific spatial content of occ labels (not just any auxiliary loss) drives the safety improvement. This validates Claim 4 (Not Any Auxiliary Loss).",
+    "server": "westd-10894",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-10894",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-21T03:44:07.957Z",
+      "command": "bash -c \"source /etc/network_turbo; source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && WANDB_MODE=disabled MUJOCO_GL=egl torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --use_diffusion False --use_film False --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 --save_freq 2500 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --random_occ True --run_root_dir /root/autodl-tmp/checkpoints/ablation_random_occ_s0 --seed 42\"",
+      "finished_at": "2026-05-21T10:46:37.096Z",
+      "training_hours": 7.04
+    },
+    "notes": "第5次重启。实际 python PID 522013, cuda:1, save_freq=10000, base model vla_path, 从头开始。11:42 UTC 确认: step 2758/50005, 1.08 it/s, ETA ~00:00 UTC May 22。无 cron 监控。磁盘 52G/250G (21%)。",
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-21T04:52:32.535Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T04:52:36.000935+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T10:46:39.236179+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "第5次重启。实际 python PID 522013, cuda:1, save_freq=10000, base model vla_path, 从头开始。11:42 UTC 确认: step 2758/50005, 1.08 it/s, ETA ~00:00 UTC May 22。无 cron 监控。磁盘 52G/250G (21%)。"
+      }
+    }
+  },
+  "timestamp": "2026-05-21T14:46:48.570345+00:00",
+  "trigger": "update_registry"
+}

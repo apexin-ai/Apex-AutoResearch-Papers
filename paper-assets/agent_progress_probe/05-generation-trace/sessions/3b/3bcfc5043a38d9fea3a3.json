@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bcfc5043a38d9fea3a3",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "debug bootstrap model check",
+  "task_key": "worker_debug_bootstrap-model-check_20260515T085542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_bootstrap-model-check_20260515T085542_result.json",
+    "occurrence": 1,
+    "bytes": 843,
+    "sha256": "ccd7e7909b2e4fc44513eabc280b19539b86fbcfd1e7299dd443b97364f0fcea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/gold_set/model_consistency_report.md`。\n\n核心结论：\n\n**0.802 vs 0.760 的根因是训练数据泄露。** `gold_bootstrap_ci.py` 没有从训练集中排除 gold windows（至少 39 个 gold windows 在训练集中），导致分数虚高。次因是 bootstrap 脚本缺少 OH trajectory 索引（63/199 gold windows 来自 OH，特征是垃圾值）。\n\n**两个数字都不是论文原始模型的结果。** 两个脚本均使用 `learning_rate=0.1`，但论文的 cross-agent GB 使用 `learning_rate=0.05`（见 `src/analysis/bootstrap_ci_crossagent.py:100`）。且不存在保存的 GB checkpoint——每次都重新训练。\n\n**论文模型在 gold set 上的正确 macro-F1 尚未得出**，需将 lr 改为 0.05 并用 leakage-fixed 的 evaluate_gold_set.py 重新跑一次。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-bootstrap-model-check.md"
+}

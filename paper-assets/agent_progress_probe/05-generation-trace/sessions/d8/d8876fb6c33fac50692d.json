@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8876fb6c33fac50692d",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "exp llm judge gold r5",
+  "task_key": "worker_exp_llm-judge-gold-r5_20260516T051736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_llm-judge-gold-r5_20260516T051736_result.json",
+    "occurrence": 1,
+    "bytes": 1036,
+    "sha256": "3365cb28995944e5540b1a70b1390b21caf1d044ff850363f2dc705871a83472"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment `llm-judge-gold-r5` registered as DONE/success. Final results:\n\n| Method | macro_F1 | f1_stag | f1_prog | accuracy | cost |\n|--------|----------|---------|---------|----------|------|\n| LLM zero-shot | 0.784 | 0.721 | 0.847 | 0.802 | $2.96 |\n| **LLM few-shot-CoT** | **0.910** | **0.871** | **0.949** | **0.927** | $11.87 |\n| Structural GB | 0.839 | — | — | — | — |\n\nKey takeaways for the rebuttal:\n- **Few-shot-CoT LLM judge achieves 0.910 macro_F1**, beating structural GB (0.839) by **+7.1pp** — this is a strong non-circular gold baseline\n- Zero-shot LLM underperforms GB by 5.5pp, showing CoT and few-shot examples are critical\n- Zero-shot has extreme recall asymmetry: stagnation recall 0.97 but precision only 0.57 (over-predicts stagnation). CoT fixes this (precision 0.81, recall 0.94)\n- 505/505 valid predictions in both modes, zero parse failures\n\nArtifacts on server: `artifacts/llm-judge-gold/{summary.json, results_zero_shot.json, results_few_shot_cot.json, prompts.json}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-llm-judge-gold-r5.md"
+}

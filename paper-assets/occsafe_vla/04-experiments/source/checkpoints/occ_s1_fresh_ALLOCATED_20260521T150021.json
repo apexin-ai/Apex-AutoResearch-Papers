@@ -1,0 +1,24 @@
+{
+  "exp_id": "occ_s1_fresh",
+  "project": "occsafe_vla",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 1,
+    "created_at": "2026-05-21T14:31:11.815Z",
+    "updated_at": "2026-05-21T15:00:21.532Z",
+    "hypothesis": "Fresh from-scratch OCC training with seed 43 (s1) to obtain clean 3-seed aggregate data. Previous occ_s1 suffered permanent damage from resume at 17500 (D013 excluded it). This replication eliminates resume confound and provides apple-to-apple comparison with s0/s2 at 47500_chkpt.",
+    "parent": "mvp_occ_s1",
+    "notes": "Worker killed process (PID 480459) and cleared checkpoint dir. Reason: restart with save_freq=2500 (was 5000). cuda:0 on westd-34685 freed. 需要重新提交。",
+    "completed_at": "2026-05-21T14:49:40.141Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed",
+        "notes": "Worker killed process (PID 480459) and cleared checkpoint dir. Reason: restart with save_freq=2500 (was 5000). cuda:0 on westd-34685 freed. 需要重新提交。"
+      }
+    }
+  },
+  "timestamp": "2026-05-21T15:00:21.575472+00:00",
+  "trigger": "update_registry"
+}

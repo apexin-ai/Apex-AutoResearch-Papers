@@ -1,0 +1,48 @@
+{
+  "exp_id": "depth_s0",
+  "project": "occsafe_vla",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 1,
+    "created_at": "2026-05-22T02:57:05.182Z",
+    "updated_at": "2026-05-22T07:34:07.020Z",
+    "hypothesis": "Monocular depth map as auxiliary supervision provides geometric regularization benefit (like random_occ's implicit regularization) without BEV occupancy's harmful spatial inductive bias. Ablation showed Random(CAR=0.806)>Vanilla(0.777)>FullOCC(0.769)>Detach(0.745), proving gradient flow helps but BEV content hurts. Depth is a more natural per-pixel geometric signal that should yield regularization without the BEV distortion. If depth_s0 CAR > vanilla avg (0.780), depth is a viable alternative auxiliary signal.",
+    "parent": "ablation_random_occ_s0",
+    "notes": "cuda:1 westd-34685, tmux session depth_s0, PID 13063. ~1.08 it/s, ETA ~13h (finish ~May 23 00:00 UTC). Step 100: depth_loss=0.2206, action_loss=0.3359. Bug fix applied: task_info['file']→task_info['depth_file'] in datasets.py. Task 9 (wooden_cabinet) missing from depth data, zero fallback. Disk: 210G available after cleanup of occ_s0/s2/occ_s1_fresh early checkpoints. save_freq=2500.",
+    "reproduce": {
+      "finished_at": "2026-05-22T07:25:54.450Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-22T07:25:55.796Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T07:25:58.008873+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "cuda:1 westd-34685, tmux session depth_s0, PID 13063. ~1.08 it/s, ETA ~13h (finish ~May 23 00:00 UTC). Step 100: depth_loss=0.2206, action_loss=0.3359. Bug fix applied: task_info['file']→task_info['depth_file'] in datasets.py. Task 9 (wooden_cabinet) missing from depth data, zero fallback. Disk: 210G available after cleanup of occ_s0/s2/occ_s1_fresh early checkpoints. save_freq=2500."
+      }
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && WANDB_MODE=disabled MUJOCO_GL=egl torchrun --standalone --nnodes 1 --nproc-per-node 1 --master_port 29501 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --use_diffusion False --use_film False --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_depth_head True --depth_data_dir /root/occsafe_vla/depth_data --run_root_dir /root/autodl-tmp/checkpoints/depth_s0 --seed 42\"",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "131535",
+      "log_path": "~/runs/occsafe_vla/depth_s0.log",
+      "submitted_at": "2026-05-22T07:33:30.594Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-22T07:34:07.110478+00:00",
+  "trigger": "update_registry"
+}

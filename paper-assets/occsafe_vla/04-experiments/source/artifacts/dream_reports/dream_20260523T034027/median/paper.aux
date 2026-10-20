@@ -1,0 +1,108 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{brohan2023rt2,kim2024openvla,team2024octo}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{brohan2023rt2,kim2024openvla,team2024octo}
+\citation{hu2022lora}
+\citation{jaderberg2017unreal,mirowski2017learning,ye2021auxiliary}
+\citation{ames2019control}
+\citation{safelibero2025}
+\citation{tong2023scene,wei2023surroundocc,tian2024occ3d}
+\citation{kim2024openvla}
+\citation{oquab2024dinov2}
+\citation{zhai2023siglip}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Vision-Language-Action Models.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Auxiliary Tasks in Robot Learning.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Safety in Robotic Manipulation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Occupancy Prediction.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}VLA Architecture}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Auxiliary Head Design}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Occupancy Head (OccHead).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Depth Head (DepthHead).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Experimental Conditions}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:conditions}{{3.3}{3}{Experimental Conditions}{subsection.3.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Factorial design of experimental conditions. ``Grad Flow'' indicates whether auxiliary head gradients propagate through the shared encoder.}}{3}{table.caption.7}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:conditions}{{1}{3}{Factorial design of experimental conditions. ``Grad Flow'' indicates whether auxiliary head gradients propagate through the shared encoder}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmark.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical Testing.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:main_results}{{4.2}{4}{Main Results}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Main results on SafeLIBERO-Spatial (3--4 seeds per condition). CAR is the primary safety metric. $\Delta $ CAR is relative to Vanilla. Bold indicates statistically significant differences ($p<0.01$).}}{4}{table.caption.12}\protected@file@percent }
+\newlabel{tab:main}{{2}{4}{Main results on SafeLIBERO-Spatial (3--4 seeds per condition). CAR is the primary safety metric. $\Delta $ CAR is relative to Vanilla. Bold indicates statistically significant differences ($p<0.01$)}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Statistical Analysis}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:stats}{{4.3}{4}{Statistical Analysis}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Pairwise statistical comparisons on CAR. Glass's $\Delta $ uses Vanilla's $\sigma =0.012$ as denominator. CI: bootstrap 95\% confidence interval.}}{4}{table.caption.13}\protected@file@percent }
+\newlabel{tab:stats}{{3}{4}{Pairwise statistical comparisons on CAR. Glass's $\Delta $ uses Vanilla's $\sigma =0.012$ as denominator. CI: bootstrap 95\% confidence interval}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Per-Task Analysis}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:pertask}{{4.4}{4}{Per-Task Analysis}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Per-task CAR for the three most collision-prone tasks (3-seed averages). T3 and T5 show the strongest Detach degradation.}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:pertask}{{4}{5}{Per-task CAR for the three most collision-prone tasks (3-seed averages). T3 and T5 show the strongest Detach degradation}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cutoff Ablation: Temporal Dynamics of Gradient Flow}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:cutoff}{{4.5}{5}{Cutoff Ablation: Temporal Dynamics of Gradient Flow}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Gradient flow temporal ablation. Cutoff@$X$K enables auxiliary gradient flow for the first $X$K steps only. Cutoff@35K uses 3 seeds; other cutoff points use 1 seed. ``Grad Flow \%'' is the fraction of training with active gradient flow.}}{5}{table.caption.15}\protected@file@percent }
+\newlabel{tab:cutoff}{{5}{5}{Gradient flow temporal ablation. Cutoff@$X$K enables auxiliary gradient flow for the first $X$K steps only. Cutoff@35K uses 3 seeds; other cutoff points use 1 seed. ``Grad Flow \%'' is the fraction of training with active gradient flow}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Reverse Cutoff: Late-Stage Gradient Flow}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:reverse}{{4.6}{5}{Reverse Cutoff: Late-Stage Gradient Flow}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces $2 \times 2$ temporal design crossing early-stage (0--35K) and late-stage (35K--50K) gradient flow. All values are CAR (single seed for Reverse; 3-seed mean for others).}}{5}{table.caption.16}\protected@file@percent }
+\newlabel{tab:2x2}{{6}{5}{$2 \times 2$ temporal design crossing early-stage (0--35K) and late-stage (35K--50K) gradient flow. All values are CAR (single seed for Reverse; 3-seed mean for others)}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Detach Mechanism Discrimination}{5}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:detach_ln}{{4.7}{5}{Detach Mechanism Discrimination}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Detach mechanism discrimination (single seed). Replacing BatchNorm with LayerNorm under Detach provides minimal recovery, confirming gradient flow absence as the primary harm mechanism.}}{6}{table.caption.17}\protected@file@percent }
+\newlabel{tab:detach_ln}{{7}{6}{Detach mechanism discrimination (single seed). Replacing BatchNorm with LayerNorm under Detach provides minimal recovery, confirming gradient flow absence as the primary harm mechanism}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{6}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Gradient flow as a binary switch.}{6}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why does detaching hurt?}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Spatial content does not matter.}{6}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical guidelines.}{6}{section*.21}\protected@file@percent }
+\citation{kornblith2019similarity}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Limitations}{7}{section.6}\protected@file@percent }
+\newlabel{sec:limitations}{{6}{7}{Limitations}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Single benchmark.}{7}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Single VLA architecture.}{7}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limited mechanism depth.}{7}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical power.}{7}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{7}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{7}{Conclusion}{section.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Exploratory Analysis: Representation-Level Evidence (CKA)}{7}{appendix.A}\protected@file@percent }
+\newlabel{app:cka}{{A}{7}{Exploratory Analysis: Representation-Level Evidence (CKA)}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces CKA similarity vs.\ Vanilla across DINOv2 layer groups. Values closer to 1.0 indicate more similar representations.}}{7}{table.caption.26}\protected@file@percent }
+\newlabel{tab:cka}{{8}{7}{CKA similarity vs.\ Vanilla across DINOv2 layer groups. Values closer to 1.0 indicate more similar representations}{table.caption.26}{}}
+\bibstyle{plainnat}
+\bibcite{ames2019control}{{1}{2019}{{Ames et~al.}}{{}}}
+\bibcite{brohan2023rt2}{{2}{2023}{{Brohan et~al.}}{{}}}
+\bibcite{hu2022lora}{{3}{2022}{{Hu et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces CKA pairwise comparison matrix (spatial layers). All pairs show high similarity ($>0.88$), limiting discriminative power.}}{8}{table.caption.27}\protected@file@percent }
+\newlabel{tab:cka_pairwise}{{9}{8}{CKA pairwise comparison matrix (spatial layers). All pairs show high similarity ($>0.88$), limiting discriminative power}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Exploratory Analysis: Gradient-Level Evidence}{8}{appendix.B}\protected@file@percent }
+\newlabel{app:gradient}{{B}{8}{Exploratory Analysis: Gradient-Level Evidence}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Gradient analysis at the 50K checkpoint. Cosine similarity between action and auxiliary gradients is near zero across all conditions, providing no discriminative signal.}}{8}{table.caption.28}\protected@file@percent }
+\newlabel{tab:gradient}{{10}{8}{Gradient analysis at the 50K checkpoint. Cosine similarity between action and auxiliary gradients is near zero across all conditions, providing no discriminative signal}{table.caption.28}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Per-layer gradient cosine similarity (Full OCC, DINOv2 blocks). No consistent pattern across layer groups.}}{8}{table.caption.29}\protected@file@percent }
+\newlabel{tab:gradient_layer}{{11}{8}{Per-layer gradient cosine similarity (Full OCC, DINOv2 blocks). No consistent pattern across layer groups}{table.caption.29}{}}
+\bibcite{jaderberg2017unreal}{{4}{2017}{{Jaderberg et~al.}}{{}}}
+\bibcite{kim2024openvla}{{5}{2024}{{Kim et~al.}}{{}}}
+\bibcite{kornblith2019similarity}{{6}{2019}{{Kornblith et~al.}}{{}}}
+\bibcite{mirowski2017learning}{{7}{2017}{{Mirowski et~al.}}{{}}}
+\bibcite{oquab2024dinov2}{{8}{2024}{{Oquab et~al.}}{{}}}
+\bibcite{safelibero2025}{{9}{2025}{{SafeLIBERO}}{{}}}
+\bibcite{team2024octo}{{10}{2024}{{Team et~al.}}{{}}}
+\bibcite{tian2024occ3d}{{11}{2024}{{Tian et~al.}}{{}}}
+\bibcite{tong2023scene}{{12}{2023}{{Tong et~al.}}{{}}}
+\bibcite{wei2023surroundocc}{{13}{2023}{{Wei et~al.}}{{}}}
+\bibcite{ye2021auxiliary}{{14}{2021}{{Ye et~al.}}{{}}}
+\bibcite{zhai2023siglip}{{15}{2023}{{Zhai et~al.}}{{}}}
+\gdef \@abspage@last{9}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df430feae0f06951516b",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis probe 002",
+  "task_key": "worker_analysis_probe-002_20260514T094949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_probe-002_20260514T094949_result.json",
+    "occurrence": 1,
+    "bytes": 954,
+    "sha256": "8fe9f259efba0300c1708c1e40cb1875568a836450dd6301cc4a275a8c35823a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完成。\n\n## probe-002 分析总结\n\nprobe-002 使用全量数据（54,809 windows, min_confidence=0）训练 GRU probe，epoch 9 达到最佳 val macro-F1=0.8862，epoch 14 触发 early stopping。\n\n**测试集指标**：macro-F1=**0.8468**，accuracy=0.8785，F1(stagnation)=0.7772，F1(progress)=0.9165。相比最强 baseline Repeat-3（macro-F1=0.6104），GRU probe 提升 +0.2365（+38.7%）。\n\n**与 probe-001 对比**：全量数据 macro-F1（0.8468）较 conf≥2 子集（0.9055）**下降 0.0587**。数据量从 15,401 扩大到 54,809（+256%），但 F1 反而下降约 6.5%。\n\n**结论**：低置信度样本引入了噪声，稀释了高质量标注的信号。conf≥2 子集虽然数据量仅为全量的 28%，但标注质量更高，模型表现更优。这验证了弱监督标注中置信度过滤的必要性——在数据量和标注质量之间，质量优先的策略更有效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-probe-002.md"
+}

@@ -1,0 +1,102 @@
+paper_key: "ji2024ogmcbf"
+title: "OGM-CBF: Safe Robot Control using Occupancy Grid Map-based Control Barrier Function"
+venue: "arXiv preprint 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "BarrierNet (neural network CBF parameter optimization)"
+    - "V-CBF (vision-based barrier functions using RGB-D)"
+    - "SVM-based CBF (support vector machine classification)"
+    - "Incremental SDF training (online training with replay memory)"
+    - "Elliptical approximation (occupancy grid with bounding circles)"
+  metrics:
+    - {name: "h(x) non-negativity (safety constraint satisfaction)", direction: "higher_better"}
+    - {name: "h_dot + alpha(h) non-negativity (CBF condition)", direction: "higher_better"}
+  datasets:
+    - {name: "CARLA simulator autonomous driving scenarios", size: "not specified"}
+    - {name: "MiR100 real-world industrial mobile robot navigation", size: "not specified"}
+  ablation_dimensions:
+    - "shaping function T parameters (a, b)"
+    - "safety margin parameters (l_s, l_a)"
+    - "grid resolution (0.1m vs 0.05m)"
+    - "binarization threshold mu"
+  training_recipe:
+    optimizer: "QP solver (quadratic programming, no neural network training)"
+    lr: "N/A (optimization-based, no learning)"
+    hardware: "CARLA simulator; MiR100 + Nvidia Jetson AGX Orin + SICK S300 laser scanners"
+    controller_freq_sim: "not specified"
+    controller_freq_real: "12.498 Hz"
+    map_update_freq: "16.372 Hz"
+  method_family: "Control Barrier Function (CBF) + Occupancy Grid Map (OGM) + Signed Distance Function (SDF)"
+
+positioning:
+  core_claim: "通过OGM抽象传感器输入+SDF压缩复杂障碍物形状为实时可计算值，构造可处理任意形状障碍物的一阶CBF，仅需单个约束即可保证安全"
+  key_results: "CARLA仿真和MiR100实物实验中h(x)始终非负（安全约束持续满足）；控制器12.5Hz实时运行；支持任意形状障碍物"
+  limitations:
+    - "无定量对比实验（仅定性分析优势，无与baseline的数值比较）"
+    - "仅验证了2D简化版本，3D运动学模型的完整验证未展示"
+    - "参数(T函数/alpha函数/l_s/l_a)调优依赖经验，未提供系统性方法"
+    - "理论证明假设静态环境"
+    - "未来工作需考虑执行器动力学"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "移动机器人在未知环境中的安全控制是机器人学最大挑战之一，CBF提供强数学保证但通常假设障碍物已知"
+  tension: "现有CBF方法要么假设已知圆形障碍物集、要么依赖特定传感器模态、要么需要逐障碍物建立约束、要么缺乏环境记忆——无法应对真实未知环境中的任意形状障碍物"
+  key_insight: "OGM天然抽象传感器输入并积累时序信息，SDF将复杂占用网格压缩为可微的距离值，二者组合可构造统一的CBF——一个约束处理所有障碍物"
+  argument_chain: "CBF安全保证强但假设限制多 → 现有感知-CBF桥接方法各有缺陷 → OGM抽象传感器+积累记忆 → SDF压缩复杂形状为实时可计算值 → 组合为新型一阶CBF → 单约束QP求解 → CARLA仿真+MiR100实物验证"
+  contribution_framing: "5条贡献，层层递进：(1)OGM+SDF构造CBF的新方法 (2)传感器无关性 (3)时序记忆 (4)SDF压缩任意形状为实时值 (5)仿真+实物验证。措辞强调'novel'和'enabling'"
+  intro_structure: "多段：P1-安全控制挑战引入; P2-CBF理论背景及已有应用; P3-现有CBF在未知环境中的局限; P4-现有桥接方法的不足; P5-本文方法概述和贡献列表"
+  notable_technique: "通过逐条列举现有方法的具体缺陷（假设圆形/单传感器/无记忆/多约束），构建出一个'需求矩阵'，然后展示OGM-CBF逐条满足所有需求——这种'缺陷矩阵→全满足'的论证模式非常有说服力"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "Φ_s构造过程三步图：(a)CARLA环境俯视快照 (b)构造的占用网格地图 (c)Φ_s及其在地图坐标系中的梯度场"
+    narrative_role: "直观展示从原始环境到OGM到SDF的转换流程，建立读者对核心数据流的理解"
+    design_elements: ["三子图横排(a-b-c)", "真实场景→中间表示→最终场景的渐进", "梯度场箭头可视化"]
+    visual_style: "左→右渐进式布局；(a)仿真截图 (b)黑白占用网格 (c)彩色SDF热力图+梯度箭头叠加"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "qualitative_comparison"
+      what_compared: "CARLA仿真中自动驾驶车辆导航过程：俯视轨迹+自我中心局部OGM+Φ_s梯度场的时序快照"
+      how_gain_highlighted: "通过展示完整导航轨迹（橙色虚线）和连续的OGM/SDF更新，定性证明系统可在杂乱环境中安全导航"
+      design_note: "三行对齐的时序快照设计——上排环境俯视、中排OGM、下排SDF+梯度，形成视觉对应关系"
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "h(x), h_dot+alpha(h), 线速度, 角速度随时间变化（CARLA仿真）"
+      how_gain_highlighted: "h(x)始终非负直观证明安全约束满足；命令vs实际测量的虚实线对比"
+      design_note: "四行子图纵向排列，共享时间轴；虚线(实测)与实线(命令)对比是控制论文的经典手法"
+    - figure_id: "Figure 4"
+      viz_type: "qualitative_comparison"
+      what_compared: "MiR100实物实验：2D快照+OGM+Φ_s梯度场"
+      how_gain_highlighted: "红色梯度箭头叠加在轨迹上，直观展示安全引导方向"
+      design_note: "与Figure 2结构对应，仿真→实物的平行验证"
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "h(x), h_dot+alpha(h), 线速度, 角速度随时间变化（MiR100实物）"
+      how_gain_highlighted: "与Figure 3结构相同，证明实物实验同样满足安全约束"
+      design_note: "仿真/实物结果图的平行结构，增强说服力"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1(方法可视化) → Figure 2-3(CARLA仿真定性+定量) → Figure 4-5(MiR100实物定性+定量)，清晰的仿真→实物平行验证叙事"
+
+tables:
+  table_count: 0
+  main_result_table:
+    table_id: "N/A"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "无定量数值比较，仅通过h(x)≥0的时序图证明安全约束满足"
+    num_baselines: 0
+    design_note: "论文完全没有对比表格——定量评估仅限于本方法的安全约束满足曲线，未与任何baseline做数值对比。定性对比在讨论段落中进行(传感器无关性/空间感知/计算效率等维度)"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: false
+    content: "无附录"
+    reason: "N/A"

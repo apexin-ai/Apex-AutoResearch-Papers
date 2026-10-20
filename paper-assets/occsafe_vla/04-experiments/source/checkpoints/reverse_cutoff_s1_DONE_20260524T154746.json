@@ -1,0 +1,56 @@
+{
+  "exp_id": "reverse_cutoff_s1",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T22:31:25.494Z",
+    "updated_at": "2026-05-24T15:47:45.933Z",
+    "hypothesis": "Seed 43 replication of reverse_cutoff_s0. Reverse cutoff (no occ_loss first 35K, enable 35K-50K) tests whether late-stage gradient flow alone is sufficient for collision avoidance. 2-seed needed for temporal design statistical power.",
+    "parent": "reverse_cutoff_s0",
+    "spec": {
+      "command": "torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_loss_cutoff_step 35000 --occ_loss_cutoff_mode before --run_root_dir /root/autodl-tmp/checkpoints/reverse_cutoff_s1 --seed 43",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "673004",
+      "log_path": "~/runs/occsafe_vla/reverse_cutoff_s1.log",
+      "submitted_at": "2026-05-23T22:32:08.069Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 25000,
+      "model_name": "openvla-7b",
+      "seed": 43,
+      "checkpoint_source": "openvla-7b (from scratch)",
+      "eval_data": "N/A (training)",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/reverse_cutoff_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+      "wall_clock_seconds": 62137.9,
+      "gpu_hours": 17.26
+    },
+    "reproduce": {
+      "finished_at": "2026-05-24T14:48:56.200Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-24T14:49:02.346376+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "final_step": 50005,
+      "training_completed": true
+    },
+    "completed_at": "2026-05-24T15:47:45.933Z"
+  },
+  "timestamp": "2026-05-24T15:47:46.116209+00:00",
+  "trigger": "update_registry"
+}

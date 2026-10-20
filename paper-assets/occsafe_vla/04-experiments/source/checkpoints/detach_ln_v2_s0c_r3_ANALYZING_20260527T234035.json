@@ -1,0 +1,32 @@
+{
+  "exp_id": "detach_ln_v2_s0c_r3",
+  "project": "occsafe_vla",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T08:43:34.609Z",
+    "updated_at": "2026-05-27T23:40:34.872Z",
+    "spec": {
+      "command": "torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --run_id_note detach_ln_v2_s0c_r3",
+      "server": "westd-10894",
+      "gpu_ids": [
+        "cuda:2"
+      ],
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/",
+      "data_count": 0,
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/detach_ln_v2_s0c_r3/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_ln_v2_s0c_r3--50000_chkpt",
+      "log_path": "/root/autodl-tmp/checkpoints/detach_ln_v2_s0c_r3.log"
+    },
+    "hypothesis": "Rerun of detach_ln_v2_s0c_r2: Detach LN (gradient flow OFF, LayerNorm) v2, seed 42. Cell 4 v2 data for factorial ANOVA. From-scratch training after prior run failed due to disk full at step 20000.",
+    "parent": "detach_ln_v2_s0c_r2",
+    "server": "westd-10894",
+    "gpu": "cuda:2",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-27T23:40:35.244137+00:00",
+  "trigger": "update_registry"
+}

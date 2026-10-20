@@ -1,0 +1,38 @@
+{
+  "exp_id": "full_occ_ln_s1",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-24T09:00:18.665Z",
+    "updated_at": "2026-05-24T18:07:41.234Z",
+    "hypothesis": "Full OCC + LN seed 43, same hypothesis as full_occ_ln_s0. 2×2 factorial completion: gradient flow × normalization type interaction.",
+    "completed_at": "2026-05-24T17:50:33.849Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=2 MUJOCO_EGL_DEVICE_ID=2 WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/checkpoints/full_occ_ln_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--20000_chkpt --resume True --resume_step 20000 --max_steps 50005 --save_freq 10000 --batch_size 8 --learning_rate 5e-4 --lora_rank 32 --image_aug True --use_occ_head True --occ_detach false --occ_norm_type ln --seed 43 --run_root_dir /root/autodl-tmp/checkpoints/full_occ_ln_s1\"",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "777222",
+      "log_path": "/root/runs/occsafe_vla/full_occ_ln_s1_resume.log",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 25000,
+      "model_name": "openvla-7b",
+      "seed": 43,
+      "checkpoint_source": "20000_chkpt (resumed from step 20000)",
+      "eval_data": "N/A (training)"
+    }
+  },
+  "timestamp": "2026-05-24T18:07:41.414594+00:00",
+  "trigger": "update_registry"
+}

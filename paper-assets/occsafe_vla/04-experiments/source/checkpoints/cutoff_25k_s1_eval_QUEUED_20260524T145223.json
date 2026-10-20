@@ -1,0 +1,16 @@
+{
+  "exp_id": "cutoff_25k_s1_eval",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T14:51:39.299Z",
+    "updated_at": "2026-05-24T14:52:23.019Z",
+    "hypothesis": "50r SafeLIBERO evaluation of cutoff_25k_s1 (seed 43, OCC gradient cutoff at 25K steps). Multi-seed replication of cutoff_25k_s0_eval (CAR=0.688) to determine if severe withdrawal effect is consistent across seeds.",
+    "parent": "cutoff_25k_s1"
+  },
+  "timestamp": "2026-05-24T14:52:23.184956+00:00",
+  "trigger": "update_registry"
+}

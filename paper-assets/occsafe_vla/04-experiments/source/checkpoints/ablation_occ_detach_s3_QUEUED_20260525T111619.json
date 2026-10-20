@@ -1,0 +1,16 @@
+{
+  "exp_id": "ablation_occ_detach_s3",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T11:10:53.689Z",
+    "updated_at": "2026-05-25T11:16:19.093Z",
+    "hypothesis": "Factorial n=5 expansion: Detach BN (gradient flow OFF, BatchNorm), seed 45. 4th seed to strengthen 2×2 ANOVA from n=3 to n=5 per cell. Config identical to ablation_occ_detach_s0/s1/s2.",
+    "parent": "ablation_occ_detach_s0"
+  },
+  "timestamp": "2026-05-25T11:16:19.319131+00:00",
+  "trigger": "update_registry"
+}

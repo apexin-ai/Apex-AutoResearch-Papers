@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f9a073bf313aa20ebae",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "fix score quality robustness",
+  "task_key": "worker_fix_score-quality-robustness_20260516T104432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_score-quality-robustness_20260516T104432_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "825cc66df9112ae34d4f131db478c905e4d58b8954d77f918a5f8cf1ad15351e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Quick Probe 已正常启动，正在生成中。\n\n### 总结\n\n1. **score.py 修复内容**：\n   - 空/纯空白 response 在送 ArmoRM 前直接赋 0.0 分\n   - batch forward 外层加 `try-except (ValueError, RuntimeError)`，失败时 fallback 逐条打分\n   - 逐条打分仍失败的样本赋 0.0\n\n2. **ArmoRM tokenizer**：使用 Llama3 chat template（`<|start_header_id|>`, `<|eot_id|>` 等），gating token 依赖 `<|eot_id|>` 存在于 tokenized 序列中\n\n3. **验证通过**：空 response 得分 0.0，正常 response 得分正常（~0.07-0.10）\n\n4. **Quick Probe 已启动**：PID 497183，已加载 2000 prompts，正在生成（16/2000）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-score-quality-robustness.md"
+}

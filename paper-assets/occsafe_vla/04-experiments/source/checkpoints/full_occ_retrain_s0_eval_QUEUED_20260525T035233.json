@@ -1,0 +1,16 @@
+{
+  "exp_id": "full_occ_retrain_s0_eval",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T03:51:26.204Z",
+    "updated_at": "2026-05-25T03:52:33.472Z",
+    "hypothesis": "50r SafeLIBERO eval of full_occ_retrain_s0 (Full OCC BN, seed 42 retrain). Same-seed Full OCC BN baseline for 2×2 factorial. Original mvp_occ_s0 was 200-episode eval; this is 500-episode replication for consistency with other retrained conditions.",
+    "parent": "full_occ_retrain_s0"
+  },
+  "timestamp": "2026-05-25T03:52:33.703166+00:00",
+  "trigger": "update_registry"
+}

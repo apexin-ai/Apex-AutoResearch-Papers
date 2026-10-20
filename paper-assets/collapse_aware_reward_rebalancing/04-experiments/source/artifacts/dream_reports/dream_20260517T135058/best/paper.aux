@@ -1,0 +1,74 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{ouyang2022training}
+\citation{shumailov2024curse}
+\citation{alemohammad2024self}
+\citation{dohmatob2024tale}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{shumailov2024curse}
+\citation{alemohammad2024self}
+\citation{dohmatob2024tale}
+\citation{holtzman2020curious}
+\citation{vijayakumar2018diverse}
+\citation{ouyang2022training}
+\citation{hu2022lora}
+\citation{friedman2023vendi}
+\citation{zhu2018texygen}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model Collapse in Self-Consuming Models.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Diversity in Language Model Training.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Parameter-Efficient Fine-Tuning.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Diversity Metrics.}{2}{section*.4}\protected@file@percent }
+\citation{qwen2025qwen3}
+\citation{qwen2024qwen25}
+\citation{friedman2023vendi}
+\citation{zhu2018texygen}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Models and Training}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Iterative Self-Training Pipeline}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation Metrics}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Configuration Summary}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Semantic Diversity is Resilient Across All Configurations}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:semantic}{{4.1}{3}{Semantic Diversity is Resilient Across All Configurations}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Experimental configurations. $K$: candidates generated per prompt. Sel: selection strategy (curated = top-1 by reward, random = uniform). $G$: number of training generations.}}{4}{table.caption.5}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:configs}{{1}{4}{Experimental configurations. $K$: candidates generated per prompt. Sel: selection strategy (curated = top-1 by reward, random = uniform). $G$: number of training generations}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Semantic diversity across all configurations. $V_0$, $V_f$: Vendi Score at generation 0 and final generation. $\Delta V$: relative change (\%). $d_f$: mean NN distance at final generation. $B_f$: self-BLEU at final generation. No configuration shows meaningful semantic diversity loss.}}{4}{table.caption.6}\protected@file@percent }
+\newlabel{tab:semantic}{{2}{4}{Semantic diversity across all configurations. $V_0$, $V_f$: Vendi Score at generation 0 and final generation. $\Delta V$: relative change (\%). $d_f$: mean NN distance at final generation. $B_f$: self-BLEU at final generation. No configuration shows meaningful semantic diversity loss}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Format Collapse is Inherent to Iterative Training}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:format}{{4.2}{4}{Format Collapse is Inherent to Iterative Training}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Format diversity metrics. $H_0$, $H_f$: opening-pattern entropy (bits) at generation 0 and final generation. $D_0$, $D_f$: near-duplicate start rate. The C1 vs.\ C5 comparison (same $K$, same training, differing only in selection strategy) shows identical format degradation. Higher $K$ amplifies the effect (C2, C8). The 1.5B models (C9, C10) replicate the pattern over 5 generations.}}{5}{table.caption.7}\protected@file@percent }
+\newlabel{tab:format}{{3}{5}{Format diversity metrics. $H_0$, $H_f$: opening-pattern entropy (bits) at generation 0 and final generation. $D_0$, $D_f$: near-duplicate start rate. The C1 vs.\ C5 comparison (same $K$, same training, differing only in selection strategy) shows identical format degradation. Higher $K$ amplifies the effect (C2, C8). The 1.5B models (C9, C10) replicate the pattern over 5 generations}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Curation effect on Vendi Score across training regimes (0.6B, $K$=4). Gap = $\Delta V_{\text  {curated}} - \Delta V_{\text  {random}}$ in percentage points. Under LoRA, curation appears to suppress diversity ($-$3.38\,pp). Under FFT with high learning rate, curation mildly promotes diversity (+0.63\,pp). The 1.5B LoRA gap is compressed relative to 0.6B, consistent with a tighter capacity ceiling at lower LoRA-to-parameter ratio.}}{5}{table.caption.8}\protected@file@percent }
+\newlabel{tab:gap}{{4}{5}{Curation effect on Vendi Score across training regimes (0.6B, $K$=4). Gap = $\Delta V_{\text {curated}} - \Delta V_{\text {random}}$ in percentage points. Under LoRA, curation appears to suppress diversity ($-$3.38\,pp). Under FFT with high learning rate, curation mildly promotes diversity (+0.63\,pp). The 1.5B LoRA gap is compressed relative to 0.6B, consistent with a tighter capacity ceiling at lower LoRA-to-parameter ratio}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}LoRA Capacity Artifact and Direction Reversal}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:lora}{{4.3}{5}{LoRA Capacity Artifact and Direction Reversal}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-model comparison: Qwen3-0.6B (3 generations) vs.\ Qwen2.5-1.5B (5 generations), LoRA $K$=4. All four findings replicate across model families and scales. The 1.5B models run for 5 generations with no divergence in diversity dynamics.}}{6}{table.caption.9}\protected@file@percent }
+\newlabel{tab:crossmodel}{{5}{6}{Cross-model comparison: Qwen3-0.6B (3 generations) vs.\ Qwen2.5-1.5B (5 generations), LoRA $K$=4. All four findings replicate across model families and scales. The 1.5B models run for 5 generations with no divergence in diversity dynamics}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Measurement Blind Spot in Standard Metrics}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:measurement}{{4.4}{6}{Measurement Blind Spot in Standard Metrics}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cross-Architecture Robustness}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:crossmodel}{{4.5}{6}{Cross-Architecture Robustness}{subsection.4.5}{}}
+\citation{shumailov2024curse}
+\citation{alemohammad2024self}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical Recommendations.}{7}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Connection to Model Collapse.}{7}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reward Correlation and Adaptive Methods.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.13}\protected@file@percent }
+\bibcite{ouyang2022training}{1}
+\bibcite{shumailov2024curse}{2}
+\bibcite{alemohammad2024self}{3}
+\bibcite{dohmatob2024tale}{4}
+\bibcite{hu2022lora}{5}
+\bibcite{friedman2023vendi}{6}
+\bibcite{zhu2018texygen}{7}
+\bibcite{holtzman2020curious}{8}
+\bibcite{vijayakumar2018diverse}{9}
+\bibcite{qwen2025qwen3}{10}
+\bibcite{qwen2024qwen25}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\gdef \@abspage@last{8}

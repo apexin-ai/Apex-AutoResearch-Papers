@@ -1,0 +1,28 @@
+{
+  "exp_id": "full_occ_bn_v2_s2",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-28T04:41:31.902Z",
+    "updated_at": "2026-05-28T05:36:21.791Z",
+    "hypothesis": "Cell 1 v2 seed expansion (seed 44): Full OCC BN (gradient ON + BatchNorm). Additional seed to increase Cell 1 from n=1 to n=2 for factorial ANOVA statistical power. With gradient flow ON and BN, expect CAR similar to existing s1 (~0.654).",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --use_diffusion False --use_film False --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 --save_freq 5000 --image_aug True --lora_rank 32 --run_root_dir /root/autodl-tmp/checkpoints/full_occ_bn_v2_s2 --run_id_note full_occ_bn_v2_s2 --seed 44 --use_occ_head True --occ_detach False --occ_norm_type bn\"",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "62455",
+      "log_path": "~/runs/occsafe_vla/full_occ_bn_v2_s2.log",
+      "submitted_at": "2026-05-28T04:41:50.907Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-28T05:36:22.178305+00:00",
+  "trigger": "update_registry"
+}

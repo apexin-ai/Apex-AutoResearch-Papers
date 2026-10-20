@@ -1,0 +1,32 @@
+{
+  "exp_id": "cutoff_15k_s1",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T11:48:44.271Z",
+    "updated_at": "2026-05-25T03:09:34.199Z",
+    "hypothesis": "Seed 43 replication of cutoff_15k_s0. Cutoff at 15K steps (gradient flow only for first 30% of training) achieved CAR=0.804 with seed 42 — higher than Full OCC 3-seed avg (0.797). Multi-seed needed to verify this surprising result and determine if non-monotonic dose-response is real or seed variance.",
+    "parent": "cutoff_15k_s0",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/cutoff_15k_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+      "log_path": "/root/occsafe_vla/logs/cutoff_15k_s1.log",
+      "final_step": 50000,
+      "final_loss": {
+        "action_loss": 0.0713,
+        "occ_loss": 0.0298
+      }
+    },
+    "conclusion": "success",
+    "notes": "False positive failure: torchrun exit_code=1 from destroy_process_group() warning. Training completed normally to step 50000. Checkpoint saved and merged.",
+    "metrics": {
+      "final_action_loss": 0.0713,
+      "final_occ_loss": 0.0298
+    },
+    "completed_at": "2026-05-25T02:33:37.144Z"
+  },
+  "timestamp": "2026-05-25T03:09:34.389963+00:00",
+  "trigger": "update_registry"
+}

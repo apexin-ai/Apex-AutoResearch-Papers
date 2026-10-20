@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "578c003c4af8f779984a",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis baseline llm judge collect",
+  "task_key": "worker_analysis_baseline-llm-judge-collect_20260514T134301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_baseline-llm-judge-collect_20260514T134301_result.json",
+    "occurrence": 1,
+    "bytes": 160,
+    "sha256": "a31efbabcb7916284579dbf23fc7d660ba9f4528d8ef12660208a75b680f4cd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：1640/1824（90%），macro_f1 稳定在 ~0.668，费用 ~$10.47，0 failures。预计 15-20 分钟完成，2 分钟后再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-baseline-llm-judge-collect.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6e457d93d72a47cda664",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "analysis d073 s2 new lf design",
+  "task_key": "worker_analysis_d073-s2-new-lf-design_20260516T025932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d073-s2-new-lf-design_20260516T025932.log",
+    "occurrence": 1,
+    "bytes": 731894,
+    "sha256": "a8cb9c7b8e0a1adf5cd08b634699d3eee609b21f96b700966c62d41761132e0c"
+  },
+  "statistics": {
+    "messages": 270,
+    "user_turns": 0,
+    "tool_calls": 105,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 105,
+      "tool_result": 105,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 270,
+      "chunks": [
+        {
+          "path": "6e457d93d72a47cda664-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6e457d93d72a47cda664-part-0002.json",
+          "message_count": 90
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-d073-s2-new-lf-design.md"
+}

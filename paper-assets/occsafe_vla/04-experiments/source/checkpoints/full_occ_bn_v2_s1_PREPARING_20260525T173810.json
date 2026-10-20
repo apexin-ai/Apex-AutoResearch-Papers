@@ -1,0 +1,39 @@
+{
+  "exp_id": "full_occ_bn_v2_s1",
+  "project": "occsafe_vla",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 2,
+    "created_at": "2026-05-25T12:27:46.948Z",
+    "updated_at": "2026-05-25T17:38:10.493Z",
+    "hypothesis": "D051 v2 code rebuild: Full OCC BN (gradient flow ON, BatchNorm) with confirmed v2 code. Seed 43. V1 equivalent (occ_s1_fresh) had CAR=0.788. If v2 result ≈ v1 → confirms Full OCC BN is code-version invariant. Combined with detach_bn_v2 results enables clean 2×2 factorial under single code version.",
+    "notes": "code_version: v2 | replaces: occ_s1_fresh (v1) | D051 factorial rebuild. Paired with mvp_occ_s0 (v1→retrain v2 CAR match confirmed) and mvp_occ_s2.",
+    "server": "westd-10894",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-10894",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-25T17:28:50.685Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-25T13:41:42.797Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-25T13:41:48.029955+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "killed",
+        "notes": "code_version: v2 | replaces: occ_s1_fresh (v1) | D051 factorial rebuild. Paired with mvp_occ_s0 (v1→retrain v2 CAR match confirmed) and mvp_occ_s2."
+      }
+    }
+  },
+  "timestamp": "2026-05-25T17:38:10.739274+00:00",
+  "trigger": "update_registry"
+}

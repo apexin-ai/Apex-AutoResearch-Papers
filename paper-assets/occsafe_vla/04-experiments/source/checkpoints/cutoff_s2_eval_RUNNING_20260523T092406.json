@@ -1,0 +1,28 @@
+{
+  "exp_id": "cutoff_s2_eval",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:23:34.902Z",
+    "updated_at": "2026-05-23T09:24:06.289Z",
+    "hypothesis": "Seed 44 replication of OCC loss cutoff@35K eval. Combined with cutoff_s0_eval and cutoff_s1_eval, completes the 3-seed cutoff condition for statistical analysis. If cutoff maintains CAR comparable to Full OCC (~0.797), gradient flow duration beyond 35K steps is not necessary for safety benefits.",
+    "parent": "cutoff_s2",
+    "spec": {
+      "command": "MUJOCO_EGL_DEVICE_ID=0 CUDA_VISIBLE_DEVICES=0 python evaluate_safelibero.py --model_family openvla-oft --pretrained_checkpoint /root/occsafe_vla/runs/cutoff_s2/step-050000-checkpoint --task_suite_name safelibero_level_i --center_crop True --num_trials_per_task 50 --use_proprio False",
+      "server": "westd-10894",
+      "data_path": "SafeLIBERO Level I (10 tasks)",
+      "data_count": 500,
+      "model_name": "openvla-7b-oft-cutoff_s2",
+      "seed": 44,
+      "checkpoint_source": "cutoff_s2 step-050000",
+      "eval_data": "SafeLIBERO Level I, 50 rollouts × 10 tasks",
+      "gpu": "cuda:0",
+      "pid": 390231
+    }
+  },
+  "timestamp": "2026-05-23T09:24:06.400127+00:00",
+  "trigger": "update_registry"
+}

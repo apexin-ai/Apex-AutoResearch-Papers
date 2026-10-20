@@ -1,0 +1,16 @@
+{
+  "exp_id": "reverse_cutoff_s0_eval",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T19:48:00.017Z",
+    "updated_at": "2026-05-23T20:30:40.811Z",
+    "hypothesis": "50r SafeLIBERO evaluation of reverse_cutoff_s0 (no occ_loss first 35K, enable from 35K-50K). Tests whether late-stage gradient flow alone is sufficient for collision avoidance. Combined with standard cutoff (first 35K only), isolates when gradient flow matters most in training.",
+    "parent": "reverse_cutoff_s0"
+  },
+  "timestamp": "2026-05-23T20:30:41.093210+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0fc1cfd2318c1df93734",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "analysis error overlap and window count",
+  "task_key": "worker_analysis_error-overlap-and-window-count_20260515T032714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_error-overlap-and-window-count_20260515T032714.log",
+    "occurrence": 1,
+    "bytes": 794624,
+    "sha256": "e93f0b80388fbaf7b915ddf2add54c1e92fd3a2bd74c11fde15f6389e33c5b74"
+  },
+  "statistics": {
+    "messages": 277,
+    "user_turns": 0,
+    "tool_calls": 98,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 77,
+      "tool_call": 98,
+      "tool_result": 98,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 277,
+      "chunks": [
+        {
+          "path": "0fc1cfd2318c1df93734-part-0001.json",
+          "message_count": 155
+        },
+        {
+          "path": "0fc1cfd2318c1df93734-part-0002.json",
+          "message_count": 122
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-error-overlap-and-window-count.md"
+}

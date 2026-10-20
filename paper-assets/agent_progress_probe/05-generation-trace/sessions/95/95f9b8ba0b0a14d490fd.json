@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95f9b8ba0b0a14d490fd",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "experiment instance isolation canonical",
+  "task_key": "worker_experiment_instance-isolation-canonical_20260515T030609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_instance-isolation-canonical_20260515T030609_result.json",
+    "occurrence": 1,
+    "bytes": 1199,
+    "sha256": "5b1b43f201942a43be9e13be1a83ecac3ad85f00167fb4c0aec05f0bbc6b5963"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n```\n=== Canonical Instance Isolation ===\n\nTable 2 验证: ALL MATCH ✓\n\nFull set (与 Table 2 完全一致):\n  GB all  (N=150,652): macro_f1=0.9674 ✓\n  RF all  (N=150,652): macro_f1=0.9123 ✓\n  GB conf≥2 (N=43,376): macro_f1=0.9919 ✓\n  RF conf≥2 (N=43,376): macro_f1=0.9959 ✓\n\nUnseen-only (去掉 284 overlap instances):\n  GB all  (N=139,594): macro_f1=0.9669\n  RF all  (N=139,594): macro_f1=0.9121\n  GB conf≥2 (N=40,118): macro_f1=0.9917\n  RF conf≥2 (N=40,118): macro_f1=0.9962\n\nDelta (unseen - full):\n  GB all:    -0.05pp\n  RF all:    -0.01pp\n  GB conf≥2: -0.02pp\n  RF conf≥2: +0.03pp\n\nInstance overlap: 284 (8.3% of OH, train-only)\n```\n\n**关键差异 vs 上次实验**: 上次用 trainval (13,577 windows, 1,683 instances, 356 overlap) 导致 full set 数字不匹配 Table 2。本次用 train split only (10,634 windows, 1,386 instances, 284 overlap) 精确复现了 Table 2，delta 全部 < 0.1pp。\n\n**脚本**: `/root/autodl-tmp/agent_progress_probe/src/analysis/instance_isolation_canonical.py`  \n**结果**: `/root/autodl-tmp/agent_progress_probe/artifacts/instance-isolation-canonical/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-instance-isolation-canonical.md"
+}

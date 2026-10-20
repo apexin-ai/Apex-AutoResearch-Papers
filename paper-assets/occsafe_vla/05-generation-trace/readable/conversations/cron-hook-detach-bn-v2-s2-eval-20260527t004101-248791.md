@@ -1,0 +1,851 @@
+# cron hook detach bn v2 s2 eval 20260527T004101 248791
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 24
+- **Recorded user turns:** 2
+- **Tool calls:** 10
+- **Original source:** `logs/chats/archive/cron_hook_detach_bn_v2_s2_eval_20260527T004101_248791.jsonl`
+- **Structured JSON:** [`fea9f5e3636759c1bdfa.json`](../../sessions/fe/fea9f5e3636759c1bdfa.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+22 recorded events
+
+### User
+
+_source line 1 · 2026-05-26T08:33:52.282104+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: detach_bn_v2_s2_eval
+- project: occsafe_vla
+- server: westd-34685
+- log_path: ~/runs/occsafe_vla/detach_bn_v2_s2_eval.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-26T08:34:03.820545+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-26T08:34:03.871108+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-26T08:34:07.042805+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-26T08:34:07.043222+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-26T08:34:07.545631+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-26T08:34:07.796804+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-26T08:34:07.850179+00:00_
+
+Error: result (233,036 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla--claude-sessions-agent-00a04e62/4a468b55-452d-4b4d-b1f8-86a2d7607036/tool-results/mcp-agent-ml-research-read_registry-1779784447814.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla--claude-sessions-agent-00a04e62/4a468b55-452d-4b4d-b1f8-86a2d7607036/tool-results/mcp-agent-ml-research-read_registry-1779784447814.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla--claude-sessions-agent-00a04e62/4a468b55-452d-4b4d-b1f8-86a2d7607036/tool-results/mcp-agent-ml-research-read_registry-1779784447814.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 807
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-26T08:34:16.430823+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"mvp_occ_s3_v2\", \"success\": true, \"actions\": [\"Job still running (pid=33897)\"]}, {\"exp_id\": \"full_occ_ln_s3_v2\", \"success\": true, \"actions\": [\"Job still running (pid=34102)\"]}, {\"exp_id\": \"ablation_occ_detach_s3_v2\", \"success\": true, \"actions\": [\"Job still running (pid=34443)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 9387
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-26T08:34:16.481706+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-26T08:33:50Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 109 个实验 — ANALYZING 4, DONE 94, PREPARING 5, QUEUED 1, RUNNING 5\\n**DONE 分布**: failed 14, killed 5, negative 6, success 69\\n\\n### GPU 占用\\n- **分配**: 8 张 — westd-10894:cuda:0, westd-10894:cuda:1, westd-10894:cuda:2, westd-10894:cuda:3, westd-34685:cuda:0, westd-34685:cuda:1, westd-34685:cuda:2, westd-34685:cuda:3\\n- **实际运行**: 4 张 — westd-10894:cuda:1(mvp_occ_s3_v2), westd-10894:cuda:2(full_occ_ln_s3_v2), westd-10894:cuda:3(ablation_occ_detach_s3_v2), westd-34685:cuda:3(full_occ_bn_v2_s1_eval)\\n- **空闲（分配了没跑）**: westd-34685:cuda:0, westd-34685:cuda:1, westd-34685:cuda:2\\n\\n### 💾 磁盘余量\\n- **westd-10894**:\\n  - `/init`: 150M/150M 可用（已用 1%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 425G/879G 可用（已用 50%）\\n- **westd-34685**:\\n  - `/init`: 150M/150M 可用（已用 1%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 819G/879G 可用（已用 2%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `mvp_occ_s3_v2` | westd-10894 | cuda:1 | 33897 | `~/runs/occsafe_vla/mvp_occ_s3_v2.log` |\\n| `full_occ_ln_s3_v2` | westd-10894 | cuda:2 | 34102 | `~/runs/occsafe_vla/full_occ_ln_s3_v2.log` |\\n| `ablation_occ_detach_s3_v2` | westd-10894 | cuda:3 | 34443 | `~/runs/occsafe_vla/ablation_occ_detach_s3_v2.log` |\\n| `cutoff_45k_s2_v2_eval` | westd-10894 | ? | ? | `~/runs/occsafe_vla/cutoff_45k_s2_v2_eval.log` |\\n| `full_occ_bn_v2_s1_eval` | westd-34685 | cuda:3 | 322922 | `~/runs/occsafe_vla/full_occ_bn_v2_s1_eval.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `cutoff_45k_s2_v2` [success] — 2026-05-26T08:19:10\\n- `detach_bn_v2_s2` [success] — 2026-05-26T08:07:43 — EXIT_CODE=1 (generic error — chec
+…[truncated 4394 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 8936
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-26T08:34:16.482315+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/ROADMAP.md\", \"content\": \"# occsafe_vla — Research Dashboard\\n\\n> 最后更新: 2026-05-26 07:42 UTC | 更新原因: Eval 时长 2-3h 实测校准；D051 Detach BN 训练完成 + eval 启动；时间线全面修正\\n\\n> 核心方向详见 paper_framing.md\\n\\n## 核心方向\\nBN×gradient flow factorial study。D051 v2 rebuild 进行中。\\n交互效应存活概率 ~10-15%，Plan B 替代 framing 已准备。\\n\\n## 目标会议\\n- **CoRL 2026**: Abstract ✅, Paper May 29（~2.5 天）\\n\\n## 当前进展\\n- **D051 Detach BN s0/s1/s2 训练完成** ✅ → eval 进行中（34685:0/1/2）\\n- full_occ_bn_v2_s1: ~08:00 完成 → 34685:3 eval\\n- cutoff_45k_s2_v2: ~08:00 完成 → 10894:0 eval\\n- s3 三实验: ~10:40 完成\\n- Paper: 8 页 ✅，格式修复完成，等 v2 数据 patch\\n\\n### GPU 状态（May 26 07:50 UTC）\\n\\n| 服务器:GPU | 任务 | 完成时间 |\\n|-----------|------|---------|\\n| 34685:0 | detach_bn_v2_s0 **eval** | ~10:30-11:00 |\\n| 34685:1 | detach_bn_v2_s1 **eval** | ~10:30-11:00 |\\n| 34685:2 | detach_bn_v2_s2 **eval** | ~10:30-11:00 |\\n| 34685:3 | full_occ_bn_v2_s1 训练中 (99%) | 训练 ~08:00, eval ~11:00 |\\n| 10894:0 | cutoff_45k_s2_v2 训练中 (99%) | 训练 ~08:00, eval ~11:00 |\\n| 10894:1 | mvp_occ_s3_v2 训练中 (48%) | 训练 ~10:40, eval ~13:00 |\\n| 10894:2 | full_occ_ln_s3_v2 训练中 (48%) | 训练 ~10:40, eval ~13:00 |\\n| 10894:3 | ablation_occ_detach_s3_v2 训练中 | 训练 ~10:40, eval ~13:00 |\\n\\n## 修正时间线（eval 2-3h 实测校准）\\n- **May 26 ~08:00**: full_occ_bn_v2_s1 + cutoff_45k_s2_v2 训练完成 → eval\\n- **May 26 ~10:30-11:00**: D051 eval 完成 → 初步 ANOVA η² 信号\\n- **May 26 ~10:40**: s3 训练完成 → eval\\n- **May 26 ~11:00**: 34685 4卡释放 → dose-response 3rd seeds + detach_ln_s3\\n- **May 26 ~13:00-14:00**: 全部 eval 完成 → **确认性 ANOVA → Plan A/B 最终决策**\\n- **May 26-28**: 论文数据更新 + Paper Agent patch + 最终 review\\n- **May 29**: 提交\\n\\n## 近期任务\\n- [ ] D051 eval 完成 → 初步 ANOVA η²（~11:00）\\n- [ ] full_occ_bn_v2_s1 完成 → eval（~08:00）\\n- [ ] cutoff_45k_s2_v2 完成 → eval（~08:00）\\n- [ ] s3 eval + 确认性 ANOVA（~13:00-14:00）\\n- [ ] 34685 释放后启动 dose-response + detach_ln_s3（~11:00）\\n- [ ] 
+…[truncated 2309 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 8685
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-26T08:34:30.991844+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla--claude-sessions-agent-00a04e62/4a468b55-452d-4b4d-b1f8-86a2d7607036/tool-results/mcp-agent-ml-research-read_registry-1779784447814.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Find detach_bn_v2_s2_eval and related experiments\ntargets = ['detach_bn_v2_s2_eval', 'detach_bn_v2_s0_eval', 'detach_bn_v2_s1_eval', 'detach_bn_v2_s2', 'detach_bn_v2_s0', 'detach_bn_v2_s1', 'full_occ_bn_v2_s1_eval']\nfor exp in exps:\n    if exp.get('exp_id') in targets:\n        print(json.dumps(exp, indent=2))\n        print('---')\n\"\n",
+  "description": "Extract detach_bn_v2 eval experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla--claude-sessions-agent-00a04e62/4a468b55-452d-4b4d-b1f8-86a2d7607036/tool-results/mcp-agent-ml-research-read_registry-1779784447814.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Find detach_bn_v2_s2_eval and related experiments\ntargets = ['detach_bn_v2_s2_eval', 'detach_bn_v2_s0_eval', 'detach_bn_v2_s1_eval', 'detach_bn_v2_s2', 'detach_bn_v2_s0', 'detach_bn_v2_s1', 'full_occ_bn_v2_s1_eval']\nfor exp in exps:\n    if exp.get('exp_id') in targets:\n        print(json.dumps(exp, indent=2))\n        print('---')\n\"\n",
+    "description": "Extract detach_bn_v2 eval experiments from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-26T08:34:31.344272+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 10, in &lt;module>
+    if exp.get('exp_id') in targets:
+       ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "Bash",
+  "elapsed_ms": 352
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-26T08:34:37.622367+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla--claude-sessions-agent-00a04e62/4a468b55-452d-4b4d-b1f8-86a2d7607036/tool-results/mcp-agent-ml-research-read_registry-1779784447814.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\n# Check structure\nresult = json.loads(result_str) if isinstance(result_str, str) else result_str\nprint(type(result))\nif isinstance(result, dict):\n    print(list(result.keys())[:5])\n    d = result.get('data', result)\n    if isinstance(d, dict):\n        print(list(d.keys())[:5])\n        exps = d.get('experiments', [])\n        print(f'experiments count: {len(exps)}')\n        if exps:\n            e0 = exps[0]\n            print(type(e0))\n            if isinstance(e0, str):\n                print(e0[:200])\n            elif isinstance(e0, dict):\n                print(list(e0.keys())[:10])\n\"\n",
+  "description": "Probe registry structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla--claude-sessions-agent-00a04e62/4a468b55-452d-4b4d-b1f8-86a2d7607036/tool-results/mcp-agent-ml-research-read_registry-1779784447814.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\n# Check structure\nresult = json.loads(result_str) if isinstance(result_str, str) else result_str\nprint(type(result))\nif isinstance(result, dict):\n    print(list(result.keys())[:5])\n    d = result.get('data', result)\n    if isinstance(d, dict):\n        print(list(d.keys())[:5])\n        exps = d.get('experiments', [])\n        print(f'experiments count: {len(exps)}')\n        if exps:\n            e0 = exps[0]\n            print(type(e0))\n            if isinstance(e0, str):\n                print(e0[:200])\n            elif isinstance(e0, dict):\n                print(list(e0.keys())[:10])\n\"\n",
+    "description": "Probe registry structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-26T08:34:37.823573+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 16, in &lt;module>
+    e0 = exps[0]
+         ~~~~^^^
+KeyError: 0
+&lt;class 'dict'>
+['success', 'data', 'error', 'metadata']
+['experiments', 'count', 'total', 'baseline']
+experiments count: 109
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "Bash",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-26T08:34:42.631839+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla--claude-sessions-agent-00a04e62/4a468b55-452d-4b4d-b1f8-86a2d7607036/tool-results/mcp-agent-ml-research-read_registry-1779784447814.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# exps is a dict keyed by exp_id\ntargets = ['detach_bn_v2_s2_eval', 'detach_bn_v2_s0_eval', 'detach_bn_v2_s1_eval', 'detach_bn_v2_s2', 'detach_bn_v2_s0', 'detach_bn_v2_s1', 'full_occ_bn_v2_s1_eval']\nfor eid in targets:\n    if eid in exps:\n        print(json.dumps({eid: exps[eid]}, indent=2, ensure_ascii=False))\n        print('---')\n    else:\n        print(f'{eid}: NOT FOUND')\n        print('---')\n\"\n",
+  "description": "Extract target experiments from registry dict"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla--claude-sessions-agent-00a04e62/4a468b55-452d-4b4d-b1f8-86a2d7607036/tool-results/mcp-agent-ml-research-read_registry-1779784447814.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# exps is a dict keyed by exp_id\ntargets = ['detach_bn_v2_s2_eval', 'detach_bn_v2_s0_eval', 'detach_bn_v2_s1_eval', 'detach_bn_v2_s2', 'detach_bn_v2_s0', 'detach_bn_v2_s1', 'full_occ_bn_v2_s1_eval']\nfor eid in targets:\n    if eid in exps:\n        print(json.dumps({eid: exps[eid]}, indent=2, ensure_ascii=False))\n        print('---')\n    else:\n        print(f'{eid}: NOT FOUND')\n        print('---')\n\"\n",
+    "description": "Extract target experiments from registry dict"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-26T08:34:42.734126+00:00_
+
+{
+  "detach_bn_v2_s2_eval": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T07:38:44.080Z",
+    "updated_at": "2026-05-26T08:33:47.515Z",
+    "hypothesis": "50-rollout SafeLIBERO eval of detach_bn_v2_s2 (Detach BN, seed 44, v2 code). 3rd seed for Cell 3 of 2×2 factorial ANOVA.",
+    "parent": "detach_bn_v2_s2",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=2 python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint ...detach_bn_v2_s2--50000_chkpt --num_rollouts 50 --seed 42",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "70490",
+      "log_path": "~/runs/occsafe_vla/detach_bn_v2_s2_eval.log",
+      "submitted_at": "2026-05-26T07:39:13.411Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_spatial",
+      "data_count": 500,
+      "model_name": "openvla-7b-lora-r32-detach_bn_v2_s2",
+      "seed": 42,
+      "checkpoint_source": "detach_bn_v2_s2",
+      "eval_data": "libero_spatial_50rollouts"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-26T08:33:46.853Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-26T08:33:51.737060+00:00"
+        }
+      ]
+    }
+  }
+}
+---
+{
+  "detach_bn_v2_s0_eval": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T07:38:41.587Z",
+    "updated_at": "2026-05-26T08:34:05.136Z",
+    "hypothesis": "50-rollout SafeLIBERO eval of detach_bn_v2_s0 (Detach BN, seed 42, v2 code). Fills Cell 3 of 2×2 factorial. If CAR similar to v1 detach_bn (0.746) → v1 code was functional. If different → v2 rebuild was necessary.",
+    "parent": "detach_bn_v2_s0",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint ...detach_bn_v2_s0--500
+…[truncated 15895 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "Bash",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-26T08:34:57.313180+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-26T08:34:57.413809+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-26T08:35:17.626841+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "eval:detach_bn_v2_eval_logs",
+  "project": "occsafe_vla",
+  "task_prompt": "读取 westd-34685 上两个 eval 实验的日志，提取 metrics。\n\n## 任务\n\nSSH 到 westd-34685，读取以下两个 eval 日志的尾部（最后 150 行），提取每个实验的 metrics：\n\n1. `~/runs/occsafe_vla/detach_bn_v2_s1_eval.log`\n2. `~/runs/occsafe_vla/detach_bn_v2_s2_eval.log`\n\n## 需要提取的 metrics\n\n这些是 SafeLIBERO eval 日志，格式参考已知结果（detach_bn_v2_s0_eval）：\n- 总体 CAR (Collision Avoidance Rate)\n- 总体 TSR (Task Success Rate)  \n- total_collisions\n- 每个 task 的 tsr, car, safe (T0-T9)\n\n## 输出格式\n\n用 `update_registry` 更新每个实验：\n\n1. 先更新 metrics（格式同 detach_bn_v2_s0_eval 的 metrics 结构）：\n```json\n{\n  \"car\": &lt;float>,\n  \"tsr\": &lt;float>,\n  \"total_collisions\": &lt;int>,\n  \"per_task\": {\n    \"T0_between_plate_ramekin\": {\"tsr\": &lt;float>, \"car\": &lt;float>, \"safe\": \"&lt;n>/50\"},\n    ...\n  }\n}\n```\n\n2. 然后更新 conclusion 为 \"success\"（eval 正常完成即为 success）\n3. 更新 status 为 \"DONE\"\n4. 设置 checkpoint_path = 对应 parent 的 checkpoint_path：\n   - s1_eval → `/root/autodl-tmp/checkpoints/detach_bn_v2_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s1--50000_chkpt`\n   - s2_eval → `/root/autodl-tmp/checkpoints/detach_bn_v2_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s2--50000_chkpt`\n5. log_path 已在 spec 中\n\n同时也对 detach_bn_v2_s0_eval 做同样的状态更新（它已有 metrics 但还在 ANALYZING）：\n- conclusion = \"success\"\n- status = \"DONE\"  \n- checkpoint_path = `/root/autodl-tmp/checkpoints/detach_bn_v2_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s0--50000_chkpt`\n\n最后汇总三个 seed 的 CAR/TSR，报告：\n- 三个 seed 各自的 CAR 和 TSR\n- 均值和标准差\n- 每个 task 在三个 seed 间的变异模式（哪些 task 稳定，哪些波动大）",
+  "tool_groups": "['ssh', 'registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "eval:detach_bn_v2_eval_logs",
+    "project": "occsafe_vla",
+    "task_prompt": "读取 westd-34685 上两个 eval 实验的日志，提取 metrics。\n\n## 任务\n\nSSH 到 westd-34685，读取以下两个 eval 日志的尾部（最后 150 行），提取每个实验的 metrics：\n\n1. `~/runs/occsafe_vla/detach_bn_v2_s1_eval.log`\n2. `~/runs/occsafe_vla/detach_bn_v2_s2_eval.log`\n\n## 需要提取的 metrics\n\n这些是 SafeLIBERO eval 日志，格式参考已知结果（detach_bn_v2_s0_eval）：\n- 总体 CAR (Collision Avoidance Rate)\n- 总体 TSR (Task Success Rate)  \n- total_collisions\n- 每个 task 的 tsr, car, safe (T0-T9)\n\n## 输出格式\n\n用 `update_registry` 更新每个实验：\n\n1. 先更新 metrics（格式同 detach_bn_v2_s0_eval 的 metrics 结构）：\n```json\n{\n  \"car\": &lt;float>,\n  \"tsr\": &lt;float>,\n  \"total_collisions\": &lt;int>,\n  \"per_task\": {\n    \"T0_between_plate_ramekin\": {\"tsr\": &lt;float>, \"car\": &lt;float>, \"safe\": \"&lt;n>/50\"},\n    ...\n  }\n}\n```\n\n2. 然后更新 conclusion 为 \"success\"（eval 正常完成即为 success）\n3. 更新 status 为 \"DONE\"\n4. 设置 checkpoint_path = 对应 parent 的 checkpoint_path：\n   - s1_eval → `/root/autodl-tmp/checkpoints/detach_bn_v2_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s1--50000_chkpt`\n   - s2_eval → `/root/autodl-tmp/checkpoints/detach_bn_v2_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s2--50000_chkpt`\n5. log_path 已在 spec 中\n\n同时也对 detach_bn_v2_s0_eval 做同样的状态更新（它已有 metrics 但还在 ANALYZING）：\n- conclusion = \"success\"\n- status = \"DONE\"  \n- checkpoint_path = `/root/autodl-tmp/checkpoints/detach_bn_v2_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s0--50000_chkpt`\n\n最后汇总三个 seed 的 CAR/TSR，报告：\n- 三个 seed 各自的 CAR 和 TSR\n- 均值和标准差\n- 每个 task 在三个 seed 间的变异模式（哪些 task 稳定，哪些波动大）",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-26T08:35:20.691525+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_detach_bn_v2_eval_logs_20260526T083518\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/logs/workers/worker_eval_detach_bn_v2_eval_logs_20260526T083518.log\", \"setup_data\": {}, \"message\": \"Worker worker_eval_detach_bn_v2_eval_logs_20260526T083518 started. Use get_worker_status('worker_eval_detach_bn_v2_eval_logs_20260526T083518') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3064
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-26T08:35:54.966877+00:00_
+
+Worker 已派出读取 s1/s2 eval 日志并更新 registry。三个 D051 Detach BN eval 都已完成（比预期的 ~10:30 提前约 2 小时），westd-34685:0/1/2 已释放。等 Worker 回调后汇总 ANOVA 数据并汇报 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:detach_bn_v2_s2_eval"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 23 · 2026-05-27T00:40:13.932727+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:detach_bn_v2_s2_eval",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-27T00:41:01.247135+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-10894:cuda:0-3, westd-34685:cuda:0-3（共 8 张），用白名单外的 GPU 必须 push back Director
+- v1 代码实验数据已作废（D050/D051），所有 factorial 分析只用 v2 code 实验（exp_id 含 `_v2_`）
+- Factorial ANOVA 分析必须等 s3 确认性数据再做最终决策（D054），不可提前用 n=3 结果 claim
+- CoRL 2026 deadline = May 29，~2 天内必须完成所有实验+论文 patch
+- C002 约束：cutoff 实验禁止 resume，必须从头训练
+
+### 2. 🖥️ 基础设施快照
+- **westd-34685**：工作目录 `/root/occsafe_vla/openvla-oft`，conda env `occsafe`（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`）
+- **westd-10894**：同上路径和 conda env
+- 模型：`/root/autodl-tmp/models/openvla-7b`
+- 数据：`/root/autodl-tmp/data/modified_libero_rlds/`，OCC 数据 `/root/occsafe_vla/occ_data`
+- Checkpoint 根目录：`/root/autodl-tmp/checkpoints/&lt;exp_id>/`
+- 日志：`~/runs/occsafe_vla/&lt;exp_id>.log`
+- WANDB_MODE=disabled（所有实验）
+- 磁盘：10894 50% used (425GB free)，34685 2% used (819GB free)
+- 活跃 cron（reconcile 确认）：mvp_occ_s3_v2 (10894:1, pid 33897)、full_occ_ln_s3_v2 (10894:2, pid 34102)、ablation_occ_detach_s3_v2 (10894:3, pid 34443)
+
+### 3. 📊 当前状态
+**刚做完**：收到 `detach_bn_v2_s2_eval` 完成回调，已派 Worker (`worker_eval_detach_bn_v2_eval_logs_20260526T083518`) 读取 s1/s2 eval 日志 + 更新三个 detach_bn eval (s0/s1/s2) 的 registry 到 DONE。
+
+**RUNNING**：
+| exp_id | server:gpu | 说明 |
+|--------|-----------|------|
+| mvp_occ_s3_v2 | 10894:1 | Full OCC BN seed 45，~48% 完成，预计 ~10:40 |
+| full_occ_ln_s3_v2 | 10894:2 | Full OCC LN seed 45，~48%，预计 ~10:40 |
+| ablation_occ_detach_s3_v2 | 10894:3 | Detach BN seed 45，预计 ~10:40 |
+| full_occ_bn_v2_s1_eval | 34685:3 | Full OCC BN s1 eval，预计 ~11:00 |
+
+**ANALYZING**：detach_bn_v2_s0_eval / s1_eval / s2_eval（Worker 正在处理→DONE）
+
+**等待中**：Worker 回调（eval log 提取）；s3 三实验完成 cron 回调；full_occ_bn_v2_s1_eval cron 回调
+
+**已知部分结果**：detach_bn_v2_s0_eval CAR=0.774, TSR=0.87（s1/s2 待 Worker 提取）
+
+### 4. 📋 待办
+- Worker `eval_detach_bn_v2_eval_logs` 回调 → 汇总三个 Detach BN seed 的 CAR/TSR 均值±std，连同 detach_bn_v2_s0_eval 已知结果合并，向 Director 汇报 D051 Detach BN cell 初步结果
+- full_occ_bn_v2_s1_eval 完成 → 提取 metrics，更新 registry，与已有 Full OCC BN v2 数据合并，计算初步 2×2 ANOVA η²（Detach BN 3 seeds + Full OCC BN 2+ seeds）
+- s3 三实验（mvp_occ_s3_v2 / full_occ_ln_s3_v2 / ablation_occ_detach_s3_v2）训练完成 → 各自启动 eval（34685 释放卡后可用）
+- 全部 s3 eval 完成 → 确认性 ANOVA（14+ obs），执行 D054 Plan A/B 最终决策
+- η² > 0.14 → Plan A "crossover interaction" claim；η² < 0.06 → Plan B mechanism/cautionary
+- 34685 释放后（detach_bn eval 完成释放 cuda:0/1/2）→ 可启动 PREPARING 中的实验（detach_ln_s3/s4, ablation_occ_detach_s4 等）
+- 10894:0 当前空闲 → cutoff_45k_s2_v2_eval 应该在跑（report 显示 RUNNING 但 reconcile 没看到 cron），需确认状态
+
+### 5. 🎯 战略上下文
+- **核心问题**：2×2 factorial（gradient flow ON/OFF × BN/LN normalization）是否存在交互效应。这决定论文 framing：Plan A = "we show crossover interaction"（η² > 0.14），Plan B = mechanism/cautionary tale（η² < 0.06）
+- **D050-D054 决策链**：D050 发现 v1≠v2 代码差异 → D051 用 v2 重建 factorial → D052 确认 v1/v2 结果不同 → D053 分配 34685 全部给 D051 rebuild → D054 推迟 Plan A/B 决策到 s3 确认性 ANOVA
+- **易错点**：
+  1. 不要混用 v1 和 v2 实验数据做 ANOVA——所有 v1 数据已作废
+  2. 交互效应存活概率仅 ~10-15%，大概率走 Plan B，但 Plan B 论文 framing 已准备好
+  3. 10894:0 的 cutoff_45k_s2_v2_eval 状态需要确认——report 说 RUNNING 但 cron reconcile 没看到它
+  4. s3 训练完后 34685 会有 3 张空卡（s0/s1/s2 eval 释放），应立刻安排 s3 eval 或 n=5 expansion seeds
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:detach_bn_v2_s2_eval"
+}
+```
+
+</details>
+
+---

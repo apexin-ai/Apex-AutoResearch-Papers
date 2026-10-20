@@ -1,0 +1,25 @@
+Charts generated on westd-34685:/root/occsafe_vla/openvla-oft/analysis/output/
+
+Files:
+- per_task_tsr.pdf/png (17KB/76KB)
+- per_task_car.pdf/png (17KB/79KB)
+- hard_tasks.pdf/png (17KB/66KB)
+- seed_variance_heatmap.pdf/png (27KB/149KB)
+- variance_ratio.pdf/png (25KB/89KB)
+- comparison_stats.json (2.5KB)
+- instability_stats.json (1.4KB)
+
+Key findings from comparison_stats.json:
+- No statistically significant TSR or CAR differences (all p>0.49)
+- Directional: T6 CAR OCC +0.25 (CI [0.075, 0.42]) — largest CAR improvement signal
+- T5 TSR: OCC -0.125 — largest TSR drop
+
+Key findings from instability_stats.json:
+- T5 variance ratio = 5.0 (OCC variance much higher)
+- T1, T2 ratio = 2.5
+- Levene test not computable (N=2)
+
+Data limitations:
+- Vanilla missing s2 JSON in eval_results (only s0, s1)
+- OCC only 20r/seed (not 50r)
+- N=2 seeds per group, very low statistical power

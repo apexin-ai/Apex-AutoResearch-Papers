@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b19501cdc71ba6a24fcf",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis cross domain paired bootstrap",
+  "task_key": "worker_analysis_cross-domain-paired-bootstrap_20260514T220535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross-domain-paired-bootstrap_20260514T220535_result.json",
+    "occurrence": 1,
+    "bytes": 559,
+    "sha256": "a285144f253ceb4a0cda485152fc56c558719dfb874b0a358030f9063b0545f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。结果已存在于 `paired_bootstrap_v2.py` 的输出中，经验证方法论正确。\n\n**结果摘要：**\n\n| 指标 | 值 |\n|------|-----|\n| GB macro_f1 (OH test) | 0.6936 |\n| Probe macro_f1 (OH test) | 0.7512 |\n| Delta | -5.76pp |\n| 95% CI | [-6.87, -4.65] |\n| p-value | < 0.001 |\n\nProbe 在跨域 OH test split 上显著优于 Structural GB。GB 从全量 OH 的 0.9674 跌至 test split 的 0.6936，说明其在 instance-level test split 上泛化能力弱于 Probe。\n\nArtifact 已注册：`art_20260514_d7de6a`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-domain-paired-bootstrap.md"
+}

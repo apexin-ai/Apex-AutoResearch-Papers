@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b2e6f8b83fffc8cedab",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis d073 probe status and figures",
+  "task_key": "worker_analysis_d073-probe-status-and-figures_20260516T034350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d073-probe-status-and-figures_20260516T034350_result.json",
+    "occurrence": 1,
+    "bytes": 1385,
+    "sha256": "50a4b5d811d4ae81e41034d733535c0b7862d1ed7d6f9bb7629194563ae839dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 valid PDFs, sizes match the server exactly.\n\n---\n\n## 进度报告\n\n### Part A: Probe 状态\n\n| 实验 | 状态 | 进度 | 预计完成 |\n|------|------|------|----------|\n| **d073-probe-bge-m3** | **DONE** | 100% | 已完成 |\n| **d073-probe-e5-large** | RUNNING | Embedding 76% (114K/150K) | ~35 min embedding + ~10 min training |\n\n**BGE-M3 结果：**\n\n| 指标 | SWE In-Domain | Cross-Agent OH |\n|------|--------------|----------------|\n| Macro F1 | 0.941 | **0.666** |\n| Accuracy | 0.953 | 0.724 |\n| F1 (stagnation) | 0.915 | 0.527 |\n| F1 (progress) | 0.968 | 0.806 |\n\n- BGE-M3 cross-agent F1=0.666 vs Qwen3 cross-agent F1=0.598 → **+6.8pp**\n- Registry 已更新为 DONE/success，metrics 已写入\n\n### Part B: 论文图表\n\n4 张 PDF 全部从服务器拉到本地 `figures/` 目录：\n\n| 图 | 路径 | 大小 |\n|----|------|------|\n| Pareto Curve | `figures/pareto_curve.pdf` | 20KB |\n| SHAP Feature Importance | `figures/d073/shap_feature_importance.pdf` | 230KB |\n| Trajectory Visualization | `figures/d073/trajectory_visualization.pdf` | 26KB |\n| Reliability Diagrams | `figures/d073/reliability_diagrams.pdf` | 20KB |\n\nReliability diagram 已存在于服务器（4 个子图 + 1 个合并图），无需重新生成。校准数据确认：GB silver ECE=0.003, gold ECE=0.114; RF silver ECE=0.005, gold ECE=0.156。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d073-probe-status-and-figures.md"
+}

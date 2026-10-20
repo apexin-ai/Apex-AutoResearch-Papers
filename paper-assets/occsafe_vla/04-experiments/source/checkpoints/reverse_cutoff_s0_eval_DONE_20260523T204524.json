@@ -1,0 +1,30 @@
+{
+  "exp_id": "reverse_cutoff_s0_eval",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T19:48:00.017Z",
+    "updated_at": "2026-05-23T20:45:24.248Z",
+    "hypothesis": "50r SafeLIBERO evaluation of reverse_cutoff_s0 (no occ_loss first 35K, enable from 35K-50K). Tests whether late-stage gradient flow alone is sufficient for collision avoidance.",
+    "parent": "reverse_cutoff_s0",
+    "spec": {
+      "data_path": "SafeLIBERO Level I (LIBERO-Spatial)",
+      "data_count": "50 rollouts x 10 tasks = 500 episodes",
+      "model_name": "openvla-7b (reverse_cutoff_s0 50K checkpoint)",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/reverse_cutoff_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+      "eval_data": "SafeLIBERO libero_spatial 10 tasks",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T20:45:22.828Z"
+    },
+    "failure_reason": "EXIT_CODE=2 (shell misuse / syntax)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-23T20:45:24.248Z"
+  },
+  "timestamp": "2026-05-23T20:45:24.369054+00:00",
+  "trigger": "update_registry"
+}

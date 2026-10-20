@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77d769011b7982462afe",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "check c1 regen v2 progress",
+  "task_key": "worker_check_c1_regen_v2_progress_20260517T091000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_c1_regen_v2_progress_20260517T091000_result.json",
+    "occurrence": 1,
+    "bytes": 381,
+    "sha256": "c3e024470696b50b4fd8f44f39218342c46a9132def9ce98c1d0b899ae1d7b2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**C1 Re-gen v2 状态：**\n\n- **当前阶段：** Gen 1/2 — Step 4 Training LoRA SFT\n- **训练进度：** 227/250 steps (91%)\n- **GPU 0：** 13.3 GB / 32.6 GB (48% utilization)\n- **Gen 2 目录：** 尚未创建\n\nGen 1 的 scoring 和 curation 已完成，LoRA 训练即将结束（剩余约 23 steps，预计 ~23 秒）。训练完成后将进入 Gen 2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-c1-regen-v2-progress.md"
+}

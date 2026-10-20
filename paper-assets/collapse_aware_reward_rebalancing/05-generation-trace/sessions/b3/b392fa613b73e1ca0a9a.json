@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b392fa613b73e1ca0a9a",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "history",
+  "title": "agent / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1.md",
+    "occurrence": 1,
+    "bytes": 3866,
+    "sha256": "f9ed314a968e6bc5fb2fe1a777fed90f58ac5e3a1f4b6015b974726ba476d239"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_messages\nupdated: '2026-05-16T15:52:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 bjb2-23165 的 cuda:0 和 cuda:1（两张 RTX 5090 32GB）\n- 所有实验启动命令必须包含 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`（网络不通）\n- 改 K 值时必须同步调 `GEN_BATCH_SIZE = max(1, 64 // K_CANDIDATES)`，否则 OOM\n- 每个 K/配置变体必须有独立输出目录（outputs_k8/, outputs_fullft_k4/ 等），禁止复用 outputs/\n- config 覆盖必须在 `import pipeline` 之前设置（pipeline import 时读 config）\n- ArmoRM 需要 patch 4 处 modeling_custom.py（模型目录 + 2 个 HF cache modules）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb2-23165，工作目录 `/root/autodl-tmp/carr/`\n- Python：`/root/miniconda3/bin/python3`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/autodl-tmp/models/Qwen/Qwen3-0___6B`\n- Reward Model：`/root/autodl-tmp/models/RLHFlow/ArmoRM-Llama3-8B-v0___1`\n- Embed Model：`/root/autodl-tmp/models/sentence-transformers/all-MiniLM-L6-v2`\n- 数据集：openbmb/UltraFeedback（本地缓存，offline 模式）\n- K=4 LoRA 结果：`/root/autodl-tmp/carr/outputs/` (已完成，归档保留)\n- K=8 LoRA 输出：`/root/autodl-tmp/carr/outputs_k8/`\n- Full-FT K=4 输出：`/root/autodl-tmp/carr/outputs_fullft_k4/`\n- 活跃进程：\n  - carr_quick_probe_k8_02: PID 507603, cuda:0, cron 监控中 (300s)\n  - carr_fullft_k4_probe_01: Worker 正在创建脚本+提交, cuda:1（尚未确认 PID）\n\n### 3. 📊 当前状态\n刚完成 baseline no_curation 分析并汇报 Director。正在等两个实验:\n\n| exp_id | GPU | 状态 | 说明 |\n|--------|-----|------|------|\n| carr_quick_probe_k8_02 | cuda:0 | RUNNING | K=8 LoRA, GEN_BATCH_SIZE=8, ~4-6h |\n| carr_fullft_k4_probe_01 | cuda:1 | Worker 提交中 | Full-FT K=4, lr=5e-6, Worker `worker_run_fullft_k4_probe_20260516T155107` 尚未回调 |\n\n等待中:\n- Worker `worker_run_fullft_k4_probe_20260516T155107` 回调 → 确认 full-FT 实验启动成功，注册 cron\n- carr_quick_probe_k8_02 cron 回调 → 提取 3 代 metrics，P1 判定\n- carr_fullft_k4_probe_01 cron 回调 → 同上\n\n### 4. 📋 待办（条件触发式）\n- Worker fullft 回调到达 → 确认 PID + 注册 cron + update_registry 到 RUNNING + 汇报 Director\n- K=8 probe 完成 → spawn worker 提取 metrics → 向 Director 报 P1 pass/fail（Vendi ≥5% 下降 = pass）\n- Full-FT probe 完成 → 同上，对比 LoRA vs Full-FT Vendi 下降幅度\n- K=8 P1 pass → Director 决策用 K=8 配置跑 Full MVP（4 条件 × 5 代）\n- K=8 P1 fail + Full-FT P1 pass → LoRA 是 collapse 约束因素，用 Full-FT 配置跑 Full MVP\n- 两者都 fail → 需要向 Director 提 K=16 或 pivot 讨论\n\n### 5. 🎯 战略上下文\n- **核心问题**: P1 前提验证——能否在 3 代内产生 ≥5% Vendi Score 绝对下降\n- **已知**: K=4 LoRA 只产生 -0.28% (FAIL)。no_curation baseline 反而 +3.1%。相对差距 ~3.4pp 但绝对值不够\n- **当前诊断阶梯**: K=8 LoRA (cuda:0) + Full-FT K=4 (cuda:1) 并行跑，哪个先 pass 就用哪个配置\n- **DDL**: EMNLP 2026 ARR 2026-05-25（还剩 9 天）。如果 P1 诊断耗时 >2 天，DDL 压力极大\n- **决策链**: D001(MVP 设计) → D002(Quick Probe 先行) → D003(代码修复) → D004(P1 FAIL, 加压诊断)\n- **易错点**: \n  - outputs/ 目录千万不能被新实验覆盖（K=4 LoRA 的原始数据）\n  - train_sft.py 修改必须向后兼容（`getattr(config, 'USE_LORA', True)` 默认 LoRA）\n  - carr_quick_probe_k8_01 是 killed（数据污染），不要误读为有效结果；有效的是 k8_02\n  - 第一个 fix worker (PID 507334) 缺少 batch size fix 可能留下残留进程，如果 outputs_k8/ 有 Gen 0 数据可能是污染的（第二个 worker 已 rm -rf 重建）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1.md"
+}

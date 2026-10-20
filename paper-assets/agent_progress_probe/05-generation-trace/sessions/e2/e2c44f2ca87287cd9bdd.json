@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e2c44f2ca87287cd9bdd",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "analysis oh error analysis debug",
+  "task_key": "worker_analysis_oh-error-analysis-debug_20260515T012051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_oh-error-analysis-debug_20260515T012051.log",
+    "occurrence": 1,
+    "bytes": 759952,
+    "sha256": "83876cc75eb293fe4649f4eaba384f892107d29910437a0988adf7a5d1b46529"
+  },
+  "statistics": {
+    "messages": 336,
+    "user_turns": 0,
+    "tool_calls": 130,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 72,
+      "tool_call": 130,
+      "tool_result": 130,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 336,
+      "chunks": [
+        {
+          "path": "e2c44f2ca87287cd9bdd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e2c44f2ca87287cd9bdd-part-0002.json",
+          "message_count": 156
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-oh-error-analysis-debug.md"
+}

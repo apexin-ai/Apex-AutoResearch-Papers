@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "407d78a7c00dcedf5fe7",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "research pivot framing research",
+  "task_key": "worker_research_pivot_framing_research_20260516T210031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_pivot_framing_research_20260516T210031_result.json",
+    "occurrence": 1,
+    "bytes": 1736,
+    "sha256": "942ce959f31364e034940c3e979d371e1efba5ae5b464ce9ae7630a3c72ba1b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成，已写入 memory.md。核心结论：\n\n---\n\n**评级：B-（可行但有显著风险）**\n\n**关键发现：**\n\n1. **\"Stagnation\" 精确观察无人提出**，但相邻空间已很拥挤——DIVE（iterative self-improvement diversity loss）、DARLING（Facebook，quality-diversity co-optimization via RL）、CD-RLHF（ACL 2025，curiosity-driven diversity）都在打这个方向。\n\n2. **\"Stagnation\" 比 \"collapse\" 弱**，但有先例：DARLING/GEM 都用 positive framing（\"jointly improve\" / \"preserve\"），不需要 claim failure mode。建议 framing：**\"unlocks diversity-quality co-improvement under iterative reward curation\"**。\n\n3. **现有数据只证明问题存在，不证明 CARR 有效**。必须跑 CARR 实验并且 diversity growth ≥ baseline 的 +3%。如果 CARR 只补回 1-2pp，effect size 太小。\n\n4. **时间风险**：DDL 9 天，CARR 效果实验 + 论文撰写压力极大。\n\n**最直接竞争者需仔细区分：**\n- vs DIVE：我们是 external reward signal curation，他们是 self-play\n- vs DARLING：我们是 curation-time 权重调节（lightweight），他们是 training objective 修改\n- vs CD-RLHF：我们是 iterative multi-round，他们是 single-round intrinsic reward\n\nSources:\n- [DIVE: Diversified Iterative Self-Improvement](https://arxiv.org/abs/2501.00747)\n- [DARLING: Jointly Reinforcing Diversity and Quality](https://arxiv.org/abs/2509.02534)\n- [CD-RLHF: Curiosity-Driven RLHF](https://arxiv.org/abs/2501.11463)\n- [GEM: Preserving Diversity in Supervised Fine-Tuning](https://arxiv.org/abs/2408.16673)\n- [Kirk et al.: Understanding Effects of RLHF on Diversity](https://arxiv.org/abs/2310.06452)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-pivot-framing-research.md"
+}

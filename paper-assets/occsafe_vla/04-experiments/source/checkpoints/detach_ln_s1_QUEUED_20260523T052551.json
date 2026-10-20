@@ -1,0 +1,16 @@
+{
+  "exp_id": "detach_ln_s1",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T05:23:22.129Z",
+    "updated_at": "2026-05-23T05:25:51.391Z",
+    "hypothesis": "Seed 43 replication of Detach+LayerNorm. If Detach OCC's CAR degradation is caused by BatchNorm's forward-pass interference rather than gradient flow absence, replacing BN with LN should restore CAR to Vanilla level (~0.780).",
+    "parent": "ablation_occ_detach_s1"
+  },
+  "timestamp": "2026-05-23T05:25:51.502226+00:00",
+  "trigger": "update_registry"
+}

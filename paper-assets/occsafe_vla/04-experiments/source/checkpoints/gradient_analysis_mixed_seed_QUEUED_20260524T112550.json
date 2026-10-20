@@ -1,0 +1,28 @@
+{
+  "exp_id": "gradient_analysis_mixed_seed",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T11:25:21.656Z",
+    "updated_at": "2026-05-24T11:25:50.795Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && mkdir -p /root/occsafe_vla/artifacts/gradient_analysis_mixed_seed/ && echo '=== [1/5] Vanilla_s0 ===' && python /root/occsafe_vla/analysis/gradient_analysis.py --checkpoint_path /root/autodl-tmp/checkpoints/vanilla_retrain_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --condition_name Vanilla_s0 --condition_type vanilla --data_root /root/autodl-tmp/data/modified_libero_rlds --output_dir /root/occsafe_vla/artifacts/gradient_analysis_mixed_seed/ ; echo '=== [2/5] Full_OCC_s0 ===' && python /root/occsafe_vla/analysis/gradient_analysis.py --checkpoint_path /root/autodl-tmp/checkpoints/full_occ_retrain_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --condition_name Full_OCC_s0 --condition_type occ --occ_detach false --data_root /root/autodl-tmp/data/modified_libero_rlds --occ_data_dir /root/occsafe_vla/occ_data --output_dir /root/occsafe_vla/artifacts/gradient_analysis_mixed_seed/ ; echo '=== [3/5] Detach_LN_s0 ===' && python /root/occsafe_vla/analysis/gradient_analysis.py --checkpoint_path /root/autodl-tmp/checkpoints/detach_ln_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --condition_name Detach_LN_s0 --condition_type occ --occ_detach true --data_root /root/autodl-tmp/data/modified_libero_rlds --occ_data_dir /root/occsafe_vla/occ_data --output_dir /root/occsafe_vla/artifacts/gradient_analysis_mixed_seed/ ; echo '=== [4/5] Detach_BN_s2 ===' && python /root/occsafe_vla/analysis/gradient_analysis.py --checkpoint_path /root/autodl-tmp/checkpoints/ablation_occ_detach_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --condition_name Detach_BN_s2 --condition_type occ --occ_detach true --data_root /root/autodl-tmp/data/modified_libero_rlds --occ_data_dir /root/occsafe_vla/occ_data --output_dir /root/occsafe_vla/artifacts/gradient_analysis_mixed_seed/ ; echo '=== [5/5] Random_s2 ===' && python /root/occsafe_vla/analysis/gradient_analysis.py --checkpoint_path /root/autodl-tmp/checkpoints/ablation_random_occ_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --condition_name Random_s2 --condition_type occ --occ_detach false --data_root /root/autodl-tmp/data/modified_libero_rlds --occ_data_dir /root/occsafe_vla/occ_data --output_dir /root/occsafe_vla/artifacts/gradient_analysis_mixed_seed/ ; echo '=== ALL 5 CONDITIONS DONE ==='\"",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "821589",
+      "log_path": "~/runs/occsafe_vla/gradient_analysis_mixed_seed.log",
+      "submitted_at": "2026-05-24T11:25:21.440Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "5-condition mixed-seed gradient analysis: Vanilla_s0, Full_OCC_s0, Detach_LN_s0, Detach_BN_s2, Random_s2. Quantifies per-layer gradient norms, cosine similarity, and conflict rate to reveal how auxiliary OCC gradient flow reshapes vision encoder representations."
+  },
+  "timestamp": "2026-05-24T11:25:50.964630+00:00",
+  "trigger": "update_registry"
+}

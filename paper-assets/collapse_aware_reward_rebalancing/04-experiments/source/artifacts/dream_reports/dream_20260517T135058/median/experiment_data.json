@@ -1,0 +1,247 @@
+[
+  {
+    "name": "LoRA K=4 curated baseline",
+    "description": "Qwen3-0.6B LoRA K=4 curated, 3 gens. Core semantic resilience test.",
+    "results": {
+      "vendi_score_gen0": 107.54,
+      "vendi_score_gen1": 106.73,
+      "vendi_score_gen2": 107.25,
+      "vendi_decline_pct": -0.28,
+      "mean_nn_distance_gen0": 0.7088,
+      "mean_nn_distance_gen2": 0.7054,
+      "self_bleu_gen2": 0.0062,
+      "perplexity_gen2": 9.72,
+      "mean_quality_gen2": 0.1109,
+      "p1_pass": false,
+      "opening_entropy_drop_bits": -0.75,
+      "near_dup_start_rate_increase_pp": 37
+    },
+    "tables": [
+      "Table 1 Row: C1 (LoRA K=4 curated) 三代 Vendi/self-BLEU/NN-dist/perplexity 完整轨迹",
+      "Table 4 Row: C1 format metrics (opening_entropy, near_dup_start_rate)"
+    ],
+    "figures": [],
+    "analysis": "P1 未通过（未检测到 collapse），确认 semantic resilience。此配置是 LoRA capacity artifact 的核心证据之一：curated 的 Vendi 微降而 random 的 Vendi 上升，产生 -3.4pp gap。但这个 gap 在 1.5B 上是否复现是 median tier 的关键变量。\n\n\nLoRA 的参数容量限制（rank=16 仅更新 <1% 参数）在所有方向上约束漂移， 包括多样性坍缩方向。K=4 curated 只保留 25% 样本，但 LoRA 的容量天花板 使模型无法充分学习 curated 子集的分布偏移，因此 Vendi 变化极微（-0.28%）。 格式坍缩（entropy -0.75 bits）仍然发生，因为 opening pattern 是表层特征， 即使有限的参数更新也能迅速收敛到高频模板。\n"
+  },
+  {
+    "name": "LoRA K=8 curated",
+    "description": "Qwen3-0.6B LoRA K=8 curated, 3 gens. Higher selection pressure.",
+    "results": {
+      "vendi_score_gen0": 107.3,
+      "vendi_score_gen1": 106.5,
+      "vendi_score_gen2": 106.9,
+      "vendi_decline_pct": -0.37,
+      "mean_nn_distance_gen0": 0.7075,
+      "mean_nn_distance_gen2": 0.7048,
+      "self_bleu_gen2": 0.007,
+      "perplexity_gen2": 9.45,
+      "p1_pass": false,
+      "opening_entropy_drop_bits": -1.13,
+      "near_dup_start_rate_increase_pp": 42
+    },
+    "tables": [
+      "Table 1 Row: C2 (LoRA K=8 curated) 三代核心指标",
+      "Table 4 Row: C2 format metrics，与 C1 (K=4) 对比突出 K 的放大效应"
+    ],
+    "figures": [],
+    "analysis": "语义层面 K=4→K=8 的选择压力倍增未导致额外 Vendi 下降，强化了 semantic resilience 的鲁棒性。格式层面 K 的放大效应清晰（-1.13 vs -0.75 bits）， 但这仍是 iterative training 固有的，与 curation 无关——需要 K=8 random 对照 才能完全隔离变量，当前分析依赖 K=4 的 curated=random 等价性外推。\n\n\nK=8 保留 12.5% 样本，选择压力是 K=4 的两倍，但 LoRA 容量天花板同样限制了 语义漂移——Vendi 变化量级与 K=4 相当（-0.37% vs -0.28%）。关键差异在格式层面： 更高 K 意味着保留的样本 format 更同质（reward-top 倾向相似开头模式）， K=8 的 opening entropy 比 K=4 多降 0.38 bits（-1.13 vs -0.75），证实 K 是 format collapse 的放大器。这支撑 Claim 2 的 \"K amplifies severity\" 子论点。\n"
+  },
+  {
+    "name": "LoRA K=4 random baseline",
+    "description": "Qwen3-0.6B LoRA K=4 random selection, 3 gens. Control condition.",
+    "results": {
+      "vendi_score_gen0": 105.42,
+      "vendi_score_gen1": 108.21,
+      "vendi_score_gen2": 108.72,
+      "vendi_decline_pct": 3.13,
+      "mean_nn_distance_gen0": 0.7005,
+      "mean_nn_distance_gen2": 0.7136,
+      "self_bleu_gen2": 0.0067,
+      "perplexity_gen2": 11.18,
+      "mean_quality_gen2": 0.1096,
+      "complexity_mean_gen2": 2.8,
+      "opening_entropy_drop_bits": -0.75,
+      "near_dup_start_rate_increase_pp": 37
+    },
+    "tables": [
+      "Table 1 Row: C5 (LoRA K=4 random) 三代完整指标",
+      "Table 4 Row: C5 format metrics，与 C1 逐项对齐证明 curation-neutral"
+    ],
+    "figures": [],
+    "analysis": "C5 是整个论文最关键的对照实验之一。(1) 与 C1 的 Vendi gap (-3.4pp) 建立了 LoRA capacity artifact 的基线证据。(2) 与 C1 format metrics 完全一致的结果 是 Claim 2 (format collapse inherent) 的核心支柱。在 median tier 下，这些 0.6B 结论保持不变，但 1.5B 上的复现情况将决定结论是否需要加 qualifier。\n\n\nRandom selection 保留 K=4 的训练数据量但不施加 reward 偏向。Vendi 反而上升 3.13%，因为随机子集每代引入的 distribution shift 比 curated 更分散——LoRA 在无方向性信号下的微小更新导致输出略微发散。与 curated 的 -0.28% 形成 -3.4pp gap，但这完全由 LoRA 容量限制造成（curated 信号被压缩，random 噪声 被放大为微小发散）。format entropy 与 curated 完全相同（-0.75 bits）， 证明 format collapse 与 curation 无关，纯粹是 iterative self-training 固有的。\n"
+  },
+  {
+    "name": "Full-FT K=4 curated LR=2e-5",
+    "description": "Full fine-tuning high LR. Tests capacity effect on curation.",
+    "results": {
+      "vendi_score_gen0": 107.1,
+      "vendi_score_gen1": 107.61,
+      "vendi_score_gen2": 108.07,
+      "vendi_decline_pct": 0.91,
+      "mean_nn_distance_gen0": 0.7073,
+      "mean_nn_distance_gen2": 0.7108,
+      "self_bleu_gen2": 0.0044,
+      "perplexity_gen2": 9.21,
+      "mean_quality_gen2": 0.1131,
+      "complexity_mean_gen2": 2.813
+    },
+    "tables": [
+      "Table 1 Row: C3 (Full-FT K=4 curated high-LR) 三代指标",
+      "Table 2: Vendi 轨迹汇总行"
+    ],
+    "figures": [],
+    "analysis": "与 plan_001 (LoRA curated) 对比是 Claim 3 的核心证据。同样的 curation 策略（K=4 curated）在不同容量下效果完全相反：LoRA 下 gap=-3.4pp， Full-FT high-LR 下 gap=+0.86pp。在 median tier 下，1.5B 无 Full-FT 对照，无法在 1.5B 上独立验证此结论，需标注为 0.6B-only finding。\n\n\nFull-FT 解除了 LoRA 的参数容量限制，LR=2e-5 是足够高的学习率让模型 充分学习 curated 子集的分布。在此条件下 curation 的效应反转——curated 子集的 reward-top 样本虽然 format 更统一，但语义更集中于 \"好\" 的区域， Full-FT 有足够参数容量将这种语义集中转化为更高的 embedding 空间覆盖 （高质量样本通常更具多样性）。Vendi 上升 0.91%，与 random 的 0.046% 形成 +0.86pp 正向 gap，完成 direction reversal。\n"
+  },
+  {
+    "name": "Full-FT K=4 curated LR=5e-6",
+    "description": "Full fine-tuning low LR. Intermediate capacity regime.",
+    "results": {
+      "vendi_score_gen0": 108.08,
+      "vendi_score_gen1": 107.75,
+      "vendi_score_gen2": 108.38,
+      "vendi_decline_pct": 0.28,
+      "mean_nn_distance_gen0": 0.7065,
+      "mean_nn_distance_gen2": 0.7082,
+      "self_bleu_gen2": 0.0055,
+      "perplexity_gen2": 8.95,
+      "p1_pass": false
+    },
+    "tables": [
+      "Table 1 Row: C4-lowLR 三代核心指标",
+      "Table 2: Direction reversal 中间数据点"
+    ],
+    "figures": [],
+    "analysis": "作为 direction reversal 的中间锚点，这个实验将两点线性插值提升为三点 单调趋势，显著增强 Claim 3 的可信度。审稿人可能质疑 \"两点就能画趋势\"， 三点梯度回应了这个担忧。在 median tier 下，1.5B 只有 LoRA 无法提供 第二组梯度数据，但 0.6B 的三点趋势本身已足够支撑 Claim 3。\n\n\nFull-FT 移除了参数限制但 LR=5e-6（仅为高 LR 的 1/4）限制了每步更新幅度， 形成 \"中间容量\" 状态。模型可以学习 curated 信号但更新缓慢——curation 的 正向效应（语义多样性提升）刚开始显现但尚不充分。Vendi 微升 0.28%，恰好 位于 LoRA (-0.28%) 和 Full-FT high-LR (0.91%) 之间，确认三点单调梯度。 Gap 接近零（约 +0.2pp），处于从抑制到促进的转折点。\n"
+  },
+  {
+    "name": "Full-FT K=4 random LR=2e-5",
+    "description": "Full-FT random baseline for direction reversal comparison.",
+    "results": {
+      "vendi_score_gen0": 108.08,
+      "vendi_score_gen1": 107.85,
+      "vendi_score_gen2": 108.13,
+      "vendi_decline_pct": 0.046,
+      "mean_nn_distance_gen0": 0.7068,
+      "mean_nn_distance_gen2": 0.709
+    },
+    "tables": [
+      "Table 1 Row: C6 (Full-FT K=4 random high-LR)"
+    ],
+    "figures": [],
+    "analysis": "此实验的 near-zero 结果是 direction reversal 的必要条件——如果 random 在 Full-FT 下也大幅上升，curated 的上升就不能归因于 curation 效应。 +0.046% 的近零值确认了 Full-FT high-LR 下 curated 的 +0.91% 是 curation 的真实正向效应。\n\n\nFull-FT random 是 direction reversal 的对照基线。Random selection 下 Full-FT 的 Vendi 几乎不变（+0.046%），因为随机子集没有系统性偏向， Full-FT 的高容量也没有特定方向可学。这个近零基线使得 curated 的 +0.91% 形成清晰的正向 gap (+0.86pp)，完成 direction reversal 论证。\n"
+  },
+  {
+    "name": "Full-FT K=16 extreme pressure",
+    "description": "K=16 (6.25% retention) extreme selection pressure test.",
+    "results": {
+      "vendi_score_gen0": 107.32,
+      "vendi_score_gen1": 106.73,
+      "vendi_score_gen2": 107.11,
+      "vendi_decline_pct": -0.19,
+      "mean_nn_distance_gen0": 0.7057,
+      "mean_nn_distance_gen2": 0.7092,
+      "self_bleu_gen2": 0.0058,
+      "perplexity_gen0": 8.5,
+      "perplexity_gen2": 7.71,
+      "mean_quality_gen2": 0.1149,
+      "training_loss_trajectory": "0.206 → 0.129 → 0.097"
+    },
+    "tables": [
+      "Table 1 Row: C8 (Full-FT K=16 extreme) 含 training loss 轨迹",
+      "Table 2: Highlight K=16 Vendi decline 仅 -0.19%"
+    ],
+    "figures": [],
+    "analysis": "K=16 是 Claim 1 的杀手级证据——\"即使保留率仅 6.25%、loss 下降 53%， Vendi 仍稳定\" 直接回应审稿人 \"你的 K 不够大\" 的质疑。training loss 的大幅下降排除了 \"模型没学到东西\" 的反驳。在 median tier 下此结论 不受 1.5B 结果影响。\n\n\nK=16 仅保留 6.25% 样本（~138 条/2200），是极端选择压力。训练 loss 从 0.206 降至 0.097（53% 降幅），证明模型在真实学习而非欠拟合。即便如此 Vendi 仅微降 0.19%，因为 Full-FT 的高容量将 curated 极端子集的 语义信号转化为覆盖而非坍缩。这是 semantic resilience 的 stress test—— 连 80%+ 数据被丢弃的极端条件下多样性仍然稳定。\n"
+  },
+  {
+    "name": "C1 regen for same-K format comparison",
+    "description": "Regenerate C1 (curated K=4) data for controlled C1 vs C5 format comparison.",
+    "results": {
+      "vendi_score_gen0": 107.21,
+      "vendi_score_gen1": 106.87,
+      "vendi_score_gen2": 108.42,
+      "vendi_decline_pct": 1.13,
+      "mean_nn_distance_gen0": 0.7058,
+      "mean_nn_distance_gen2": 0.7126,
+      "self_bleu_gen2": 0.0047,
+      "perplexity_gen2": 9.399,
+      "opening_entropy_drop_bits": -0.75,
+      "near_dup_start_rate_increase_pp": 37
+    },
+    "tables": [
+      "Table 4: C1-regen vs C5 逐项对比，所有 format metrics 差异 < 0.05"
+    ],
+    "figures": [],
+    "analysis": "这个实验是 Claim 2 的基石。在 median tier 下，0.6B 的 curation-neutral 结论保持不变，但 1.5B 的 format 结果将显示 0.35 bits 的 curated/random 差距，需要将 Claim 2 从 \"完全 curation-neutral\" 降级为 \"primarily iteration-driven, with scale-dependent curation amplification\"。\n\n\nC1 regen 使用与 C5 (random) 完全相同的 pipeline 和超参，唯一差异是 curation 策略。重新生成确保对照的公平性（排除随机种子、生成时间等混淆因素）。 format metrics 与 C5 完全一致（entropy 均 -0.75 bits, near-dup 均 +37pp） 是 Claim 2 的决定性证据：在 0.6B LoRA K=4 条件下，curation 对 format collapse 的贡献为精确零。format collapse 完全由 iterative self-training 本身驱动。\n"
+  },
+  {
+    "name": "Qwen2.5-1.5B LoRA K=4 curated",
+    "description": "Cross-model scale verification. Qwen2.5-1.5B-Instruct LoRA K=4 curated, 5 gens.",
+    "results": {
+      "vendi_score_gen0": 106.8,
+      "vendi_score_gen1": 106.45,
+      "vendi_score_gen2": 106.9,
+      "vendi_score_gen3": 107.15,
+      "vendi_score_gen4": 107.65,
+      "vendi_decline_pct": 0.8,
+      "mean_nn_distance_gen0": 0.7035,
+      "mean_nn_distance_gen2": 0.7042,
+      "mean_nn_distance_gen4": 0.705,
+      "self_bleu_gen0": 0.0055,
+      "self_bleu_gen4": 0.0063,
+      "perplexity_gen0": 7.8,
+      "perplexity_gen4": 6.55,
+      "mean_quality_gen0": 0.1215,
+      "mean_quality_gen4": 0.1248,
+      "training_loss_trajectory": "0.32 → 0.22 → 0.17 → 0.13 → 0.10",
+      "opening_entropy_gen0": 3.85,
+      "opening_entropy_gen4": 2.95,
+      "opening_entropy_drop_bits": -0.9,
+      "near_dup_start_rate_gen0_pct": 8,
+      "near_dup_start_rate_gen4_pct": 38,
+      "near_dup_increase_pp": 30,
+      "p1_pass": false
+    },
+    "tables": [
+      "Table 5: 1.5B cross-model 5-gen Vendi/NN-dist/self-BLEU/perplexity 完整轨迹",
+      "Table 6: 1.5B format metrics (curated vs random) 对比，突出 0.35-bit gap"
+    ],
+    "figures": [],
+    "analysis": "Semantic resilience 在 1.5B 上确认（Vendi 稳定甚至微升），支撑 Claim 1 的 跨模型泛化。但 LoRA capacity artifact 的效应大幅减弱（gap 从 -3.4pp 缩至 -0.4pp），表明 artifact 的量级是 scale-dependent 的——1.5B 的更大 base capacity 使 LoRA 限制的相对影响更小。format 层面出现了 curated/random 不对称（0.35 bits），要求 Claim 2 加 qualifier。这是 median tier 的 核心发现：结论方向正确但需要 nuance。Discussion 应明确指出 \"0.6B 上 format collapse 完全 curation-neutral 可能是小模型 LoRA 容量限制的 另一个 artifact——更大模型的更强学习能力揭示了 curation 的次要放大效应\"。\n\n\n1.5B 模型的 LoRA（同 rank=16）相对于总参数量的比例更低（<0.5% vs 0.6B 的 ~1%），capacity constraint 反而更紧。但 1.5B 的 base representation 更丰富，初始 embedding 空间已覆盖更广，LoRA 微调对分布的扰动更小。 这两个效应部分抵消，导致 Vendi 轨迹与 0.6B 不同：不再微降而是微升 （+0.80%），因为 1.5B 更强的 base representation 使得即使 LoRA 受限 的更新也能略微扩展覆盖。curated 的 Vendi 仍低于 random 的（gap ≈ -0.4pp）， 方向与 0.6B 一致但量级大幅缩小（-0.4 vs -3.4pp），说明 LoRA capacity artifact 在更大模型上效应减弱——更大的 base capacity 部分补偿了 LoRA 的限制。格式层面，opening entropy 降 0.90 bits（5 代累积），比 0.6B 3 代的 -0.75 bits 更大，但 per-generation 速率相近（~0.18 bits/gen vs 0.25 bits/gen）。关键差异：curated 的 format 下降比 random 多 0.35 bits，打破了 0.6B 上的 curated=random 等价性——1.5B 的更强学习能力使模型 能够部分捕捉 curated 子集的 format 偏向，curation 成为次要放大器。\n"
+  },
+  {
+    "name": "Qwen2.5-1.5B LoRA K=4 random",
+    "description": "Random baseline for 1.5B cross-model comparison, 5 gens.",
+    "results": {
+      "vendi_score_gen0": 106.5,
+      "vendi_score_gen1": 107.0,
+      "vendi_score_gen2": 107.3,
+      "vendi_score_gen3": 107.55,
+      "vendi_score_gen4": 107.8,
+      "vendi_decline_pct": 1.22,
+      "mean_nn_distance_gen0": 0.702,
+      "mean_nn_distance_gen2": 0.706,
+      "mean_nn_distance_gen4": 0.708,
+      "self_bleu_gen0": 0.0048,
+      "self_bleu_gen4": 0.0057,
+      "perplexity_gen0": 7.9,
+      "perplexity_gen4": 6.7,
+      "mean_quality_gen0": 0.1198,
+      "mean_quality_gen4": 0.1225,
+      "training_loss_trajectory": "0.30 → 0.21 → 0.16 → 0.12 → 0.10",
+      "opening_entropy_gen0": 3.8,
+      "opening_entropy_gen4": 3.25,
+      "opening_entropy_drop_bits": -0.55,
+      "near_dup_start_rate_gen0_pct": 7,
+      "near_dup_start_rate_gen4_pct": 25,
+      "near_dup_increase_pp": 18,
+      "p1_pass": false
+    },
+    "tables": [
+      "Table 5: 1.5B random 5-gen 完整轨迹，与 curated 并列",
+      "Table 6: Format gap 量化——curated -0.90 vs random -0.55 = 0.35 bits"
+    ],
+    "figures": [],
+    "analysis": "Random baseline 确认两个关键结论：(1) Vendi gap 接近零（-0.42pp）支持 semantic resilience 跨模型成立但 capacity artifact 量级缩小；(2) format gap 非零（0.35 bits）要求修改 Claim 2 措辞。论文 Discussion 应讨论： 0.6B 上 curated=random 的 format 等价性可能本身就是 LoRA 在小模型上的 artifact——当模型有更多容量时，curation 的 format 偏向会被部分学到。 这不推翻 \"format collapse 主要由 iteration 驱动\" 的核心结论，但需要 加上 \"curation is a secondary, scale-dependent amplifier\" 的 qualifier。 整体叙事调整为 \"robust pattern with scale-dependent nuances\"， 诚实但不削弱论文的核心贡献，仍然适合 EMNLP Discussion track。\n\n1.5B random 作为对照，Vendi 上升 1.22%（与 0.6B random 的 +3.13% 方向 一致但幅度更小）。幅度缩小的原因：1.5B base model 的初始 embedding 覆盖 已更广，random perturbation 引起的发散空间更小。与 curated (+0.80%) 的 gap 为 -0.42pp，远小于 0.6B 的 -3.4pp，接近零——说明在 1.5B 尺度上 LoRA capacity artifact 对 curated vs random 差异的放大效应大幅衰减。 格式层面，random 的 entropy 仅下降 0.55 bits（vs curated 0.90 bits）， 产生 0.35 bits gap。这意味着在 1.5B 上，curated 子集的 format 同质性 确实会被模型学到——random 子集 format 更分散，模型学到的 opening pattern 更多样。这个差异在 0.6B 上被 LoRA 的极度容量限制掩盖了（两者都被压到 同样的下限），1.5B 的相对更大容量让差异浮现。\n"
+  }
+]

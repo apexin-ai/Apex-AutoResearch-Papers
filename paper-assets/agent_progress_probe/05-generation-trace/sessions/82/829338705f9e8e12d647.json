@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "829338705f9e8e12d647",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "experiment feature overlap ablation",
+  "task_key": "worker_experiment_feature-overlap-ablation_20260515T015411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_feature-overlap-ablation_20260515T015411.log",
+    "occurrence": 1,
+    "bytes": 994007,
+    "sha256": "261bac8601e300f8dda50f8adb2909216ccee67bdc7bbc4ce66abf18268d24df"
+  },
+  "statistics": {
+    "messages": 477,
+    "user_turns": 0,
+    "tool_calls": 216,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 40,
+      "tool_call": 216,
+      "tool_result": 216,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 477,
+      "chunks": [
+        {
+          "path": "829338705f9e8e12d647-part-0001.json",
+          "message_count": 154
+        },
+        {
+          "path": "829338705f9e8e12d647-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "829338705f9e8e12d647-part-0003.json",
+          "message_count": 143
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-feature-overlap-ablation.md"
+}

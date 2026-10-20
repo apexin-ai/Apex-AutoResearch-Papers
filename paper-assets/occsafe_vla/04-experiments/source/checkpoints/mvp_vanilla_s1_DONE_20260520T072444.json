@@ -1,0 +1,41 @@
+{
+  "exp_id": "mvp_vanilla_s1",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:08:56.682Z",
+    "updated_at": "2026-05-20T07:24:44.503Z",
+    "hypothesis": "OpenVLA-OFT fine-tuned on LIBERO-Spatial without occupancy supervision will exhibit low collision avoidance (~15% CAR) on SafeLIBERO Level I, establishing the baseline that standard VLA lacks spatial safety awareness despite high task success rate",
+    "server": "westd-10894",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-10894",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-20T07:16:11.904Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && WANDB_MODE=disabled MUJOCO_GL=egl torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path openvla/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --use_diffusion False --use_film False --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --run_root_dir /root/autodl-tmp/checkpoints/vanilla_s1 --seed 43\"",
+      "finished_at": "2026-05-20T07:24:43.832Z",
+      "training_hours": 0.14
+    },
+    "spec": {
+      "command": "torchrun finetune.py --vla_path openvla/openvla-7b --dataset_name libero_spatial_no_noops --max_steps 50005 --seed 43 --batch_size 8 --lora_rank 32 --lr 5e-4",
+      "server": "westd-10894",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 432,
+      "model_name": "openvla-7b + LoRA r=32",
+      "seed": 43,
+      "gpu_model": "RTX PRO 6000 96GB",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/vanilla_s1"
+    },
+    "pid": "49326",
+    "log_path": "~/runs/occsafe_vla/mvp_vanilla_s1.log",
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-20T07:24:44.503Z"
+  },
+  "timestamp": "2026-05-20T07:24:44.512917+00:00",
+  "trigger": "update_registry"
+}

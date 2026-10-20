@@ -1,0 +1,109 @@
+======================================================================
+2x2 FACTORIAL ANOVA: gradient_flow x norm_type on CAR (v2 data)
+Date: 2026-05-28
+======================================================================
+
+--- Cell Descriptives ---
+  Cell 1 (Full OCC BN, grad ON + BN): n=3, mean=0.7253, SD=0.0636, range=[0.654, 0.776]
+  Cell 2 (Full OCC LN, grad ON + LN): n=4, mean=0.7710, SD=0.0284, range=[0.740, 0.798]
+  Cell 3 (Detach BN, grad OFF + BN):  n=4, mean=0.7665, SD=0.0242, range=[0.736, 0.794]
+  Cell 4 (Detach LN, grad OFF + LN):  n=2, mean=0.8140, SD=0.0170, range=[0.802, 0.826]
+  Vanilla baseline:                    n=2, mean=0.7340, SD=0.0198, range=[0.720, 0.748]
+
+--- Marginal Means ---
+  Gradient ON:  mean=0.7514 (n=7)
+  Gradient OFF: mean=0.7823 (n=6)
+  BN:           mean=0.7489 (n=7)
+  LN:           mean=0.7853 (n=6)
+
+======================================================================
+2x2 FACTORIAL ANOVA (Type III Sum of Squares)
+======================================================================
+
+Source                                                SS    df        F        p     η²_p
+-------------------------------------------------------------------------------------
+  C(gradient_flow)                              0.002905     1    2.083   0.1829   0.1879
+  C(norm_type)                                  0.003008     1    2.157   0.1760   0.1933
+  C(gradient_flow):C(norm_type)                 0.000003     1    0.002   0.9670   0.0002
+  Residual                                      0.012554     9
+-------------------------------------------------------------------------------------
+Significance: *** p<.001, ** p<.01, * p<.05, † p<.10
+
+======================================================================
+WELCH'S T-TESTS: Each Cell vs Vanilla (H1: Cell < Vanilla)
+======================================================================
+
+Vanilla: mean=0.7340, SD=0.0198, n=2
+
+Cell                                             mean        t  p(1-tail)   Cohen d  Interpretation
+---------------------------------------------------------------------------------------------------------
+  Cell 1 (Full OCC BN, grad ON + BN)           0.7253   -0.221     0.4210    -0.163            n.s.
+  Cell 2 (Full OCC LN, grad ON + LN)           0.7710    1.855     0.9204     1.395            n.s.
+  Cell 3 (Detach BN, grad OFF + BN)            0.7665    1.755     0.9038     1.400            n.s.
+  Cell 4 (Detach LN, grad OFF + LN)            0.8140    4.339     0.9743     4.339  Cell > Vanilla
+
+======================================================================
+DETACH (Cell 3+4 combined) vs VANILLA
+======================================================================
+  Detach combined: mean=0.7823, SD=0.0318, n=6
+  Vanilla:         mean=0.7340, SD=0.0198, n=2
+  Welch's t = 2.531, p(two-tailed) = 0.0849
+  p(one-tailed, Detach > Vanilla) = 0.9575
+  Cohen's d = 1.604
+  --> Detach NOT significantly different from Vanilla (p=0.085, two-tailed)
+
+======================================================================
+FULL OCC (Cell 1+2 combined) vs VANILLA
+======================================================================
+  Full OCC combined: mean=0.7514, SD=0.0484, n=7
+  Vanilla:           mean=0.7340, SD=0.0198, n=2
+  Welch's t = 0.756, p(two-tailed) = 0.4840
+  p(one-tailed, Full OCC < Vanilla) = 0.7580
+  Cohen's d = 0.383
+
+======================================================================
+SIMPLE EFFECTS OF GRADIENT FLOW WITHIN EACH NORM TYPE
+======================================================================
+  Within BN:  ON (mean=0.7253) vs OFF (mean=0.7665)
+    t=-1.065, p=0.3807, Cohen's d=-0.928
+  Within LN:  ON (mean=0.7710) vs OFF (mean=0.8140)
+    t=-2.313, p=0.0915, Cohen's d=-1.653
+
+======================================================================
+CONCLUSION SUMMARY
+======================================================================
+
+A 2x2 factorial ANOVA (Type III SS) was conducted on CAR with gradient_flow
+(ON vs OFF) and norm_type (BN vs LN) as between-subjects factors (total N=13,
+unequal cell sizes: n=3,4,4,2).
+
+Main effect of gradient_flow: F(1,9)=2.083, p=.183, partial η²=.188.
+  Direction: Gradient OFF (M=0.782) > Gradient ON (M=0.751).
+  Medium-large effect size but not significant at α=.05 with current N.
+
+Main effect of norm_type: F(1,9)=2.157, p=.176, partial η²=.193.
+  Direction: LN (M=0.785) > BN (M=0.749).
+  Medium-large effect size but not significant at α=.05 with current N.
+
+Interaction (gradient_flow × norm_type): F(1,9)=0.002, p=.967, partial η²<.001.
+  No interaction — the gradient_flow effect is consistent across BN and LN.
+
+Detach combined (n=6, M=0.782) vs Vanilla (n=2, M=0.734):
+  Welch's t=2.531, p=.085 (two-tailed). Not significant at α=.05, but
+  trending. Detach is numerically HIGHER than Vanilla (not lower), consistent
+  with the claim that detaching OCC gradients restores (or slightly improves)
+  CAR relative to Vanilla.
+
+Key takeaway for the paper narrative:
+- The gradient_flow main effect shows the expected direction (OFF > ON) with
+  partial η²=.188 (medium-large), consistent with the claim that OCC gradient
+  flow through encoders reduces CAR.
+- The null interaction (p=.967) means this gradient_flow effect is uniform
+  across BN and LN — it is a clean main effect, not moderated by norm type.
+- Detach conditions recover to Vanilla level (p=.085 n.s.), supporting the
+  "gradient detachment restores safety" narrative.
+- Statistical power is limited by small N (especially Cell 4 n=2, Vanilla n=2).
+
+CAVEAT: vanilla_v2_s0_eval was not found in the registry. Vanilla baseline
+uses only n=2 (s1=0.748, s2=0.720). If a third vanilla seed becomes available,
+the analysis should be re-run.

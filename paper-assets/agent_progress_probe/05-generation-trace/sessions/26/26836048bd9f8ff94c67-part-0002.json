@@ -1,0 +1,2765 @@
+{
+  "schema_version": "1.0",
+  "session_id": "26836048bd9f8ff94c67",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-15T03:15:49.068Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YX7yodDYBgwpQZyZicHmXV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading SWE-Agent windows...\\\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\\\n  SWE train instances: 1386\\\\nLoading SWE-Agent trajectories...\\\\nExtracting SWE-Agent train features...\\\\n  Train features: (10634, 30), stag=3894, prog=6740\\\\nLoading OpenHands...\\\\n  total=154743, non_abstain=150652\\\\n\\\\n=== INSTANCE OVERLAP ===\\\\nSWE train instances: 1386\\\\nOH instances:        3409\\\\nOverlap:             284 (8.3% of OH)\\\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\\\n\\\\nLoading OH trajectories...\\\\nExtracting OH features (all non-abstain)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "bdd5a14a-cb57-4289-95d4-6f7648708149",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading SWE-Agent windows...\\\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\\\n  SWE train instances: 1386\\\\nLoading SWE-Agent trajectories...\\\\nExtracting SWE-Agent train features...\\\\n  Train features: (10634, 30), stag=3894, prog=6740\\\\nLoading OpenHands...\\\\n  total=154743, non_abstain=150652\\\\n\\\\n=== INSTANCE OVERLAP ===\\\\nSWE train instances: 1386\\\\nOH instances:        3409\\\\nOverlap:             284 (8.3% of OH)\\\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\\\n\\\\nLoading OH trajectories...\\\\nExtracting OH features (all non-abstain)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading SWE-Agent windows...\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\n  SWE train instances: 1386\\nLoading SWE-Agent trajectories...\\nExtracting SWE-Agent train features...\\n  Train features: (10634, 30), stag=3894, prog=6740\\nLoading OpenHands...\\n  total=154743, non_abstain=150652\\n\\n=== INSTANCE OVERLAP ===\\nSWE train instances: 1386\\nOH instances:        3409\\nOverlap:             284 (8.3% of OH)\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\n\\nLoading OH trajectories...\\nExtracting OH features (all non-abstain)...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BzSBp3829up61yPaVFSfLU",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "ps -p 230825 -o pid,etime"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "59e44c5f-217b-4290-a0fe-272759f19ac8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UNHL3BukUh4hTwD2dkq2uW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 412,
+                "cache_read_input_tokens": 108877,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 412
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-15T03:15:53.058Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BzSBp3829up61yPaVFSfLU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED\\\\n230825       03:34\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "8d57addd-909a-43aa-99ef-5aa7b2f43cc4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED\\\\n230825       03:34\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED\\n230825       03:34\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MJmthqaLo18qHh2v9fTFdx",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -50 /tmp/instance_isolation_canonical.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "3d2e1551-f9b8-47a7-a305-7957a1b8ac45",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019wfK4WZebtMxokMa9BaU4U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 187,
+                "cache_read_input_tokens": 109289,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 187
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-15T03:15:56.081Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MJmthqaLo18qHh2v9fTFdx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading SWE-Agent windows...\\\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\\\n  SWE train instances: 1386\\\\nLoading SWE-Agent trajectories...\\\\nExtracting SWE-Agent train features...\\\\n  Train features: (10634, 30), stag=3894, prog=6740\\\\nLoading OpenHands...\\\\n  total=154743, non_abstain=150652\\\\n\\\\n=== INSTANCE OVERLAP ===\\\\nSWE train instances: 1386\\\\nOH instances:        3409\\\\nOverlap:             284 (8.3% of OH)\\\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\\\n\\\\nLoading OH trajectories...\\\\nExtracting OH features (all non-abstain)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "f0009369-1098-4d13-8247-7bd89dec9562",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading SWE-Agent windows...\\\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\\\n  SWE train instances: 1386\\\\nLoading SWE-Agent trajectories...\\\\nExtracting SWE-Agent train features...\\\\n  Train features: (10634, 30), stag=3894, prog=6740\\\\nLoading OpenHands...\\\\n  total=154743, non_abstain=150652\\\\n\\\\n=== INSTANCE OVERLAP ===\\\\nSWE train instances: 1386\\\\nOH instances:        3409\\\\nOverlap:             284 (8.3% of OH)\\\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\\\n\\\\nLoading OH trajectories...\\\\nExtracting OH features (all non-abstain)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading SWE-Agent windows...\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\n  SWE train instances: 1386\\nLoading SWE-Agent trajectories...\\nExtracting SWE-Agent train features...\\n  Train features: (10634, 30), stag=3894, prog=6740\\nLoading OpenHands...\\n  total=154743, non_abstain=150652\\n\\n=== INSTANCE OVERLAP ===\\nSWE train instances: 1386\\nOH instances:        3409\\nOverlap:             284 (8.3% of OH)\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\n\\nLoading OH trajectories...\\nExtracting OH features (all non-abstain)...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V84AZ5z64LEWMHcYSyEUvp",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -50 /tmp/instance_isolation_canonical.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "a7dbf458-f582-492a-816a-476c30f555f3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016QNK3n69ZfxBUsqGGiYidA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 412,
+                "cache_read_input_tokens": 109476,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 412
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-15T03:15:59.706Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V84AZ5z64LEWMHcYSyEUvp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading SWE-Agent windows...\\\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\\\n  SWE train instances: 1386\\\\nLoading SWE-Agent trajectories...\\\\nExtracting SWE-Agent train features...\\\\n  Train features: (10634, 30), stag=3894, prog=6740\\\\nLoading OpenHands...\\\\n  total=154743, non_abstain=150652\\\\n\\\\n=== INSTANCE OVERLAP ===\\\\nSWE train instances: 1386\\\\nOH instances:        3409\\\\nOverlap:             284 (8.3% of OH)\\\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\\\n\\\\nLoading OH trajectories...\\\\nExtracting OH features (all non-abstain)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "8466ebaa-f57c-4aca-b523-49b7dc82ddcb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading SWE-Agent windows...\\\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\\\n  SWE train instances: 1386\\\\nLoading SWE-Agent trajectories...\\\\nExtracting SWE-Agent train features...\\\\n  Train features: (10634, 30), stag=3894, prog=6740\\\\nLoading OpenHands...\\\\n  total=154743, non_abstain=150652\\\\n\\\\n=== INSTANCE OVERLAP ===\\\\nSWE train instances: 1386\\\\nOH instances:        3409\\\\nOverlap:             284 (8.3% of OH)\\\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\\\n\\\\nLoading OH trajectories...\\\\nExtracting OH features (all non-abstain)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading SWE-Agent windows...\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\n  SWE train instances: 1386\\nLoading SWE-Agent trajectories...\\nExtracting SWE-Agent train features...\\n  Train features: (10634, 30), stag=3894, prog=6740\\nLoading OpenHands...\\n  total=154743, non_abstain=150652\\n\\n=== INSTANCE OVERLAP ===\\nSWE train instances: 1386\\nOH instances:        3409\\nOverlap:             284 (8.3% of OH)\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\n\\nLoading OH trajectories...\\nExtracting OH features (all non-abstain)...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0198qQxg8PwM5i1cuob8grWn",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -50 /tmp/instance_isolation_canonical.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "2cee51a5-2e56-4ada-a96c-174da9e8202b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012pcFh6tALJJM5b9GGcRuTf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 412,
+                "cache_read_input_tokens": 109888,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 412
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-15T03:16:02.304Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0198qQxg8PwM5i1cuob8grWn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading SWE-Agent windows...\\\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\\\n  SWE train instances: 1386\\\\nLoading SWE-Agent trajectories...\\\\nExtracting SWE-Agent train features...\\\\n  Train features: (10634, 30), stag=3894, prog=6740\\\\nLoading OpenHands...\\\\n  total=154743, non_abstain=150652\\\\n\\\\n=== INSTANCE OVERLAP ===\\\\nSWE train instances: 1386\\\\nOH instances:        3409\\\\nOverlap:             284 (8.3% of OH)\\\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\\\n\\\\nLoading OH trajectories...\\\\nExtracting OH features (all non-abstain)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "f17aa9a7-b092-435c-a5ae-0f7d3bc7b0ae",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading SWE-Agent windows...\\\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\\\n  SWE train instances: 1386\\\\nLoading SWE-Agent trajectories...\\\\nExtracting SWE-Agent train features...\\\\n  Train features: (10634, 30), stag=3894, prog=6740\\\\nLoading OpenHands...\\\\n  total=154743, non_abstain=150652\\\\n\\\\n=== INSTANCE OVERLAP ===\\\\nSWE train instances: 1386\\\\nOH instances:        3409\\\\nOverlap:             284 (8.3% of OH)\\\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\\\n\\\\nLoading OH trajectories...\\\\nExtracting OH features (all non-abstain)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading SWE-Agent windows...\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\n  SWE train instances: 1386\\nLoading SWE-Agent trajectories...\\nExtracting SWE-Agent train features...\\n  Train features: (10634, 30), stag=3894, prog=6740\\nLoading OpenHands...\\n  total=154743, non_abstain=150652\\n\\n=== INSTANCE OVERLAP ===\\nSWE train instances: 1386\\nOH instances:        3409\\nOverlap:             284 (8.3% of OH)\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\n\\nLoading OH trajectories...\\nExtracting OH features (all non-abstain)...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LpmF9rBsbtCkfwTYbzpQyj",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "ps -p 230825 -o pid,etime"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "81b6da9e-1209-4770-8721-15ef8b938d51",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YBecv4iEjPgxnbpTZb2WJG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 412,
+                "cache_read_input_tokens": 110300,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 412
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-15T03:16:05.601Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LpmF9rBsbtCkfwTYbzpQyj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED\\\\n230825       03:47\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "9ca7d6e9-9042-4336-b0c8-bd4d37ec70a0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED\\\\n230825       03:47\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED\\n230825       03:47\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NKiyyqrXgzAQ4Nujra4Sxe",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -50 /tmp/instance_isolation_canonical.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "da09c2fb-4b06-4dba-a6cf-e0e78e7ed39d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RJmsiCaxx7BngZxTr5N6hU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 187,
+                "cache_read_input_tokens": 110712,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 187
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-15T03:16:08.363Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NKiyyqrXgzAQ4Nujra4Sxe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading SWE-Agent windows...\\\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\\\n  SWE train instances: 1386\\\\nLoading SWE-Agent trajectories...\\\\nExtracting SWE-Agent train features...\\\\n  Train features: (10634, 30), stag=3894, prog=6740\\\\nLoading OpenHands...\\\\n  total=154743, non_abstain=150652\\\\n\\\\n=== INSTANCE OVERLAP ===\\\\nSWE train instances: 1386\\\\nOH instances:        3409\\\\nOverlap:             284 (8.3% of OH)\\\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\\\n\\\\nLoading OH trajectories...\\\\nExtracting OH features (all non-abstain)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "a1b2bdf4-8d65-4b7e-bafe-19971df789c3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading SWE-Agent windows...\\\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\\\n  SWE train instances: 1386\\\\nLoading SWE-Agent trajectories...\\\\nExtracting SWE-Agent train features...\\\\n  Train features: (10634, 30), stag=3894, prog=6740\\\\nLoading OpenHands...\\\\n  total=154743, non_abstain=150652\\\\n\\\\n=== INSTANCE OVERLAP ===\\\\nSWE train instances: 1386\\\\nOH instances:        3409\\\\nOverlap:             284 (8.3% of OH)\\\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\\\n\\\\nLoading OH trajectories...\\\\nExtracting OH features (all non-abstain)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading SWE-Agent windows...\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\n  SWE train instances: 1386\\nLoading SWE-Agent trajectories...\\nExtracting SWE-Agent train features...\\n  Train features: (10634, 30), stag=3894, prog=6740\\nLoading OpenHands...\\n  total=154743, non_abstain=150652\\n\\n=== INSTANCE OVERLAP ===\\nSWE train instances: 1386\\nOH instances:        3409\\nOverlap:             284 (8.3% of OH)\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\n\\nLoading OH trajectories...\\nExtracting OH features (all non-abstain)...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019mhvxTDHv453tarFnhXbAx",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -50 /tmp/instance_isolation_canonical.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "b62e0de0-cec3-4f7f-8dcf-673aef3aadf2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012QLwHsqEmwqe23psYerdDu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 412,
+                "cache_read_input_tokens": 110899,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 412
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-15T03:16:14.891Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019mhvxTDHv453tarFnhXbAx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading SWE-Agent windows...\\\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\\\n  SWE train instances: 1386\\\\nLoading SWE-Agent trajectories...\\\\nExtracting SWE-Agent train features...\\\\n  Train features: (10634, 30), stag=3894, prog=6740\\\\nLoading OpenHands...\\\\n  total=154743, non_abstain=150652\\\\n\\\\n=== INSTANCE OVERLAP ===\\\\nSWE train instances: 1386\\\\nOH instances:        3409\\\\nOverlap:             284 (8.3% of OH)\\\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\\\n\\\\nLoading OH trajectories...\\\\nExtracting OH features (all non-abstain)...\\\\n  OH features: (150652, 30)\\\\n\\\\nMask sizes: full_all=150652, unseen_all=139594, full_conf2=43376, unseen_conf2=40118\\\\n\\\\nTraining GB (n_estimators=200, lr=0.05, max_depth=5)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "c93154a3-020d-42c2-b5e7-7b662858471b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading SWE-Agent windows...\\\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\\\n  SWE train instances: 1386\\\\nLoading SWE-Agent trajectories...\\\\nExtracting SWE-Agent train features...\\\\n  Train features: (10634, 30), stag=3894, prog=6740\\\\nLoading OpenHands...\\\\n  total=154743, non_abstain=150652\\\\n\\\\n=== INSTANCE OVERLAP ===\\\\nSWE train instances: 1386\\\\nOH instances:        3409\\\\nOverlap:             284 (8.3% of OH)\\\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\\\n\\\\nLoading OH trajectories...\\\\nExtracting OH features (all non-abstain)...\\\\n  OH features: (150652, 30)\\\\n\\\\nMask sizes: full_all=150652, unseen_all=139594, full_conf2=43376, unseen_conf2=40118\\\\n\\\\nTraining GB (n_estimators=200, lr=0.05, max_depth=5)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading SWE-Agent windows...\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\n  SWE train instances: 1386\\nLoading SWE-Agent trajectories...\\nExtracting SWE-Agent train features...\\n  Train features: (10634, 30), stag=3894, prog=6740\\nLoading OpenHands...\\n  total=154743, non_abstain=150652\\n\\n=== INSTANCE OVERLAP ===\\nSWE train instances: 1386\\nOH instances:        3409\\nOverlap:             284 (8.3% of OH)\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\n\\nLoading OH trajectories...\\nExtracting OH features (all non-abstain)...\\n  OH features: (150652, 30)\\n\\nMask sizes: full_all=150652, unseen_all=139594, full_conf2=43376, unseen_conf2=40118\\n\\nTraining GB (n_estimators=200, lr=0.05, max_depth=5)...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "OH feature extraction is done. Now it's training the GB model. Let me check again for results.",
+              "signature": "EpkCClkIDRgCKkBqyQrYKowBCJzi5W0T/6hAwCbGY2RwSRBPuGDrBXmiU0R/dMHQkbNY5MdQPywCYlJb3H6UpnI0r1iz6DiWrHk0Mg9jbGF1ZGUtb3B1cy00LTY4ABIMawbJ81lAfBfrpp7eGgwo0z1z7EKIp/E4DvQiMAViBBUmSkCUsvycTIlOlDWlPWjPNxNnAQVf7GhLECVyDP8H3WHRSM+4K+WWCLs/pCpuDJh43DuQcS69JWGAXw3utQW+BH9XBLATn2SmmZNqZaSzQj6G9q3ouCCzo4m2r1yuktjHoNLQ4vysHdlesgnJJRed9JAml6ZU8gw8yeBcJSKlrfgiu3zPA2huILgdxEtSALnaCZvXCvqD9jcth0cYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "868bde56-a9f4-405a-aadc-6b89cc9e5cb8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G4X6KEMGriXFHEu9F7fTJC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 492,
+                "cache_read_input_tokens": 111311,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 492
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "OH 特征提取完成，正在训练 GB 模型。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "d7e38ea4-ae71-4c98-84c0-5fba8bc6fe21",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G4X6KEMGriXFHEu9F7fTJC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 492,
+                "cache_read_input_tokens": 111311,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 492
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GCMGcvnkCjzoDbgycb6gHs",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -50 /tmp/instance_isolation_canonical.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "d3dbb010-0c20-4213-841f-2df9a605452b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G4X6KEMGriXFHEu9F7fTJC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 492,
+                "cache_read_input_tokens": 111311,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 492
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-15T03:16:19.837Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GCMGcvnkCjzoDbgycb6gHs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading SWE-Agent windows...\\\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\\\n  SWE train instances: 1386\\\\nLoading SWE-Agent trajectories...\\\\nExtracting SWE-Agent train features...\\\\n  Train features: (10634, 30), stag=3894, prog=6740\\\\nLoading OpenHands...\\\\n  total=154743, non_abstain=150652\\\\n\\\\n=== INSTANCE OVERLAP ===\\\\nSWE train instances: 1386\\\\nOH instances:        3409\\\\nOverlap:             284 (8.3% of OH)\\\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\\\n\\\\nLoading OH trajectories...\\\\nExtracting OH features (all non-abstain)...\\\\n  OH features: (150652, 30)\\\\n\\\\nMask sizes: full_all=150652, unseen_all=139594, full_conf2=43376, unseen_conf2=40118\\\\n\\\\nTraining GB (n_estimators=200, lr=0.05, max_depth=5)...\\\\nTraining RF (n_estimators=100, max_depth=10)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "bbc9d195-d741-4d17-a75d-90bc576a15ac",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading SWE-Agent windows...\\\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\\\n  SWE train instances: 1386\\\\nLoading SWE-Agent trajectories...\\\\nExtracting SWE-Agent train features...\\\\n  Train features: (10634, 30), stag=3894, prog=6740\\\\nLoading OpenHands...\\\\n  total=154743, non_abstain=150652\\\\n\\\\n=== INSTANCE OVERLAP ===\\\\nSWE train instances: 1386\\\\nOH instances:        3409\\\\nOverlap:             284 (8.3% of OH)\\\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\\\n\\\\nLoading OH trajectories...\\\\nExtracting OH features (all non-abstain)...\\\\n  OH features: (150652, 30)\\\\n\\\\nMask sizes: full_all=150652, unseen_all=139594, full_conf2=43376, unseen_conf2=40118\\\\n\\\\nTraining GB (n_estimators=200, lr=0.05, max_depth=5)...\\\\nTraining RF (n_estimators=100, max_depth=10)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading SWE-Agent windows...\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\n  SWE train instances: 1386\\nLoading SWE-Agent trajectories...\\nExtracting SWE-Agent train features...\\n  Train features: (10634, 30), stag=3894, prog=6740\\nLoading OpenHands...\\n  total=154743, non_abstain=150652\\n\\n=== INSTANCE OVERLAP ===\\nSWE train instances: 1386\\nOH instances:        3409\\nOverlap:             284 (8.3% of OH)\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\n\\nLoading OH trajectories...\\nExtracting OH features (all non-abstain)...\\n  OH features: (150652, 30)\\n\\nMask sizes: full_all=150652, unseen_all=139594, full_conf2=43376, unseen_conf2=40118\\n\\nTraining GB (n_estimators=200, lr=0.05, max_depth=5)...\\nTraining RF (n_estimators=100, max_depth=10)...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GB 和 RF 训练已开始。检查最终结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "b3e892f0-09c2-4c5e-b0a2-17764f3a6865",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018RjrcrTtei7X8kzT39ZAqv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 741,
+                "cache_read_input_tokens": 111803,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 741
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RkxPeaNsjUKq3n3dsXerSF",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -50 /tmp/instance_isolation_canonical.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "ac894a6f-07d8-4bfe-adf7-f2635cbd5568",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018RjrcrTtei7X8kzT39ZAqv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 741,
+                "cache_read_input_tokens": 111803,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 741
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": "2026-05-15T03:16:23.262Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RkxPeaNsjUKq3n3dsXerSF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading SWE-Agent windows...\\\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\\\n  SWE train instances: 1386\\\\nLoading SWE-Agent trajectories...\\\\nExtracting SWE-Agent train features...\\\\n  Train features: (10634, 30), stag=3894, prog=6740\\\\nLoading OpenHands...\\\\n  total=154743, non_abstain=150652\\\\n\\\\n=== INSTANCE OVERLAP ===\\\\nSWE train instances: 1386\\\\nOH instances:        3409\\\\nOverlap:             284 (8.3% of OH)\\\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\\\n\\\\nLoading OH trajectories...\\\\nExtracting OH features (all non-abstain)...\\\\n  OH features: (150652, 30)\\\\n\\\\nMask sizes: full_all=150652, unseen_all=139594, full_conf2=43376, unseen_conf2=40118\\\\n\\\\nTraining GB (n_estimators=200, lr=0.05, max_depth=5)...\\\\nTraining RF (n_estimators=100, max_depth=10)...\\\\n\\\\nSetting              Model       N  macro_f1  f1_stag  f1_prog\\\\n------------------------------------------------------------\\\\nfull_all                GB  150652    0.9674   0.9479   0.9869\\\\nfull_all                RF  150652    0.9123   0.8658   0.9587\\\\nunseen_all              GB  139594    0.9669   0.9471   0.9867\\\\nunseen_all              RF  139594    0.9121   0.8656   0.9586\\\\nfull_conf2              GB   43376    0.9919   0.9869   0.9968\\\\nfull_conf2              RF   43376    0.9959   0.9935   0.9984\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "e69a53d5-f0fb-40d4-9224-b9f80653c11a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading SWE-Agent windows...\\\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\\\n  SWE train instances: 1386\\\\nLoading SWE-Agent trajectories...\\\\nExtracting SWE-Agent train features...\\\\n  Train features: (10634, 30), stag=3894, prog=6740\\\\nLoading OpenHands...\\\\n  total=154743, non_abstain=150652\\\\n\\\\n=== INSTANCE OVERLAP ===\\\\nSWE train instances: 1386\\\\nOH instances:        3409\\\\nOverlap:             284 (8.3% of OH)\\\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\\\n\\\\nLoading OH trajectories...\\\\nExtracting OH features (all non-abstain)...\\\\n  OH features: (150652, 30)\\\\n\\\\nMask sizes: full_all=150652, unseen_all=139594, full_conf2=43376, unseen_conf2=40118\\\\n\\\\nTraining GB (n_estimators=200, lr=0.05, max_depth=5)...\\\\nTraining RF (n_estimators=100, max_depth=10)...\\\\n\\\\nSetting              Model       N  macro_f1  f1_stag  f1_prog\\\\n------------------------------------------------------------\\\\nfull_all                GB  150652    0.9674   0.9479   0.9869\\\\nfull_all                RF  150652    0.9123   0.8658   0.9587\\\\nunseen_all              GB  139594    0.9669   0.9471   0.9867\\\\nunseen_all              RF  139594    0.9121   0.8656   0.9586\\\\nfull_conf2              GB   43376    0.9919   0.9869   0.9968\\\\nfull_conf2              RF   43376    0.9959   0.9935   0.9984\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading SWE-Agent windows...\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\n  SWE train instances: 1386\\nLoading SWE-Agent trajectories...\\nExtracting SWE-Agent train features...\\n  Train features: (10634, 30), stag=3894, prog=6740\\nLoading OpenHands...\\n  total=154743, non_abstain=150652\\n\\n=== INSTANCE OVERLAP ===\\nSWE train instances: 1386\\nOH instances:        3409\\nOverlap:             284 (8.3% of OH)\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\n\\nLoading OH trajectories...\\nExtracting OH features (all non-abstain)...\\n  OH features: (150652, 30)\\n\\nMask sizes: full_all=150652, unseen_all=139594, full_conf2=43376, unseen_conf2=40118\\n\\nTraining GB (n_estimators=200, lr=0.05, max_depth=5)...\\nTraining RF (n_estimators=100, max_depth=10)...\\n\\nSetting              Model       N  macro_f1  f1_stag  f1_prog\\n------------------------------------------------------------\\nfull_all                GB  150652    0.9674   0.9479   0.9869\\nfull_all                RF  150652    0.9123   0.8658   0.9587\\nunseen_all              GB  139594    0.9669   0.9471   0.9867\\nunseen_all              RF  139594    0.9121   0.8656   0.9586\\nfull_conf2              GB   43376    0.9919   0.9869   0.9968\\nfull_conf2              RF   43376    0.9959   0.9935   0.9984\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Excellent! I can see partial results already:\n- GB all: 0.9674 - MATCHES Table 2 ✓\n- RF all: 0.9123 - MATCHES Table 2 ✓\n- GB conf≥2: 0.9919 - MATCHES Table 2 ✓\n- RF conf≥2: 0.9959 - MATCHES Table 2 ✓\n\nLet me wait for the full output including unseen_conf2 and deltas.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "656f2210-7e8a-4e15-b183-d6e888076f4a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NpmwYjtQu3ZGsLx9QXoK14",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 720,
+                "cache_read_input_tokens": 112544,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 720
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Full set 数字完全匹配 Table 2！等待最终输出。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "5e537fc1-92e1-4d41-8a93-610b6344e11a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NpmwYjtQu3ZGsLx9QXoK14",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 720,
+                "cache_read_input_tokens": 112544,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 720
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017i94ssz178FtcYQnZZBZqL",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -60 /tmp/instance_isolation_canonical.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "97129862-86be-48fc-b9e6-fe93f8107f41",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NpmwYjtQu3ZGsLx9QXoK14",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 720,
+                "cache_read_input_tokens": 112544,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 720
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": "2026-05-15T03:16:30.572Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017i94ssz178FtcYQnZZBZqL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading SWE-Agent windows...\\\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\\\n  SWE train instances: 1386\\\\nLoading SWE-Agent trajectories...\\\\nExtracting SWE-Agent train features...\\\\n  Train features: (10634, 30), stag=3894, prog=6740\\\\nLoading OpenHands...\\\\n  total=154743, non_abstain=150652\\\\n\\\\n=== INSTANCE OVERLAP ===\\\\nSWE train instances: 1386\\\\nOH instances:        3409\\\\nOverlap:             284 (8.3% of OH)\\\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\\\n\\\\nLoading OH trajectories...\\\\nExtracting OH features (all non-abstain)...\\\\n  OH features: (150652, 30)\\\\n\\\\nMask sizes: full_all=150652, unseen_all=139594, full_conf2=43376, unseen_conf2=40118\\\\n\\\\nTraining GB (n_estimators=200, lr=0.05, max_depth=5)...\\\\nTraining RF (n_estimators=100, max_depth=10)...\\\\n\\\\nSetting              Model       N  macro_f1  f1_stag  f1_prog\\\\n------------------------------------------------------------\\\\nfull_all                GB  150652    0.9674   0.9479   0.9869\\\\nfull_all                RF  150652    0.9123   0.8658   0.9587\\\\nunseen_all              GB  139594    0.9669   0.9471   0.9867\\\\nunseen_all              RF  139594    0.9121   0.8656   0.9586\\\\nfull_conf2              GB   43376    0.9919   0.9869   0.9968\\\\nfull_conf2              RF   43376    0.9959   0.9935   0.9984\\\\nunseen_conf2            GB   40118    0.9917   0.9867   0.9967\\\\nunseen_conf2            RF   40118    0.9962   0.9940   0.9985\\\\n\\\\n=== TABLE 2 VERIFICATION ===\\\\n  GB_all: target=0.9674, actual=0.9674 -> MATCH\\\\n  RF_all: target=0.9123, actual=0.9123 -> MATCH\\\\n  GB_conf2: target=0.9919, actual=0.9919 -> MATCH\\\\n  RF_conf2: target=0.9959, actual=0.9959 -> MATCH\\\\n\\\\nAll Table 2 numbers match: True\\\\n\\\\n=== DELTA (unseen - full) ===\\\\n       all GB: full=0.9674, unseen=0.9669, delta=-0.05pp\\\\n       all RF: full=0.9123, unseen=0.9121, delta=-0.01pp\\\\n   conf>=2 GB: full=0.9919, unseen=0.9917, delta=-0.02pp\\\\n   conf>=2 RF: full=0.9959, unseen=0.9962, delta=+0.03pp\\\\n\\\\nSaved to /root/autodl-tmp/agent_progress_probe/artifacts/instance-isolation-canonical/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "9a9fd051-7b51-494e-a2f8-7938b6f76f43",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading SWE-Agent windows...\\\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\\\n  SWE train instances: 1386\\\\nLoading SWE-Agent trajectories...\\\\nExtracting SWE-Agent train features...\\\\n  Train features: (10634, 30), stag=3894, prog=6740\\\\nLoading OpenHands...\\\\n  total=154743, non_abstain=150652\\\\n\\\\n=== INSTANCE OVERLAP ===\\\\nSWE train instances: 1386\\\\nOH instances:        3409\\\\nOverlap:             284 (8.3% of OH)\\\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\\\n\\\\nLoading OH trajectories...\\\\nExtracting OH features (all non-abstain)...\\\\n  OH features: (150652, 30)\\\\n\\\\nMask sizes: full_all=150652, unseen_all=139594, full_conf2=43376, unseen_conf2=40118\\\\n\\\\nTraining GB (n_estimators=200, lr=0.05, max_depth=5)...\\\\nTraining RF (n_estimators=100, max_depth=10)...\\\\n\\\\nSetting              Model       N  macro_f1  f1_stag  f1_prog\\\\n------------------------------------------------------------\\\\nfull_all                GB  150652    0.9674   0.9479   0.9869\\\\nfull_all                RF  150652    0.9123   0.8658   0.9587\\\\nunseen_all              GB  139594    0.9669   0.9471   0.9867\\\\nunseen_all              RF  139594    0.9121   0.8656   0.9586\\\\nfull_conf2              GB   43376    0.9919   0.9869   0.9968\\\\nfull_conf2              RF   43376    0.9959   0.9935   0.9984\\\\nunseen_conf2            GB   40118    0.9917   0.9867   0.9967\\\\nunseen_conf2            RF   40118    0.9962   0.9940   0.9985\\\\n\\\\n=== TABLE 2 VERIFICATION ===\\\\n  GB_all: target=0.9674, actual=0.9674 -> MATCH\\\\n  RF_all: target=0.9123, actual=0.9123 -> MATCH\\\\n  GB_conf2: target=0.9919, actual=0.9919 -> MATCH\\\\n  RF_conf2: target=0.9959, actual=0.9959 -> MATCH\\\\n\\\\nAll Table 2 numbers match: True\\\\n\\\\n=== DELTA (unseen - full) ===\\\\n       all GB: full=0.9674, unseen=0.9669, delta=-0.05pp\\\\n       all RF: full=0.9123, unseen=0.9121, delta=-0.01pp\\\\n   conf>=2 GB: full=0.9919, unseen=0.9917, delta=-0.02pp\\\\n   conf>=2 RF: full=0.9959, unseen=0.9962, delta=+0.03pp\\\\n\\\\nSaved to /root/autodl-tmp/agent_progress_probe/artifacts/instance-isolation-canonical/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading SWE-Agent windows...\\n  all=59496, non_abstain=54809, conf2=15401, train=10634\\n  SWE train instances: 1386\\nLoading SWE-Agent trajectories...\\nExtracting SWE-Agent train features...\\n  Train features: (10634, 30), stag=3894, prog=6740\\nLoading OpenHands...\\n  total=154743, non_abstain=150652\\n\\n=== INSTANCE OVERLAP ===\\nSWE train instances: 1386\\nOH instances:        3409\\nOverlap:             284 (8.3% of OH)\\nOH windows overlap:  11058 (all), 3258 (conf>=2)\\nOH windows unseen:   139594 (all), 40118 (conf>=2)\\n\\nLoading OH trajectories...\\nExtracting OH features (all non-abstain)...\\n  OH features: (150652, 30)\\n\\nMask sizes: full_all=150652, unseen_all=139594, full_conf2=43376, unseen_conf2=40118\\n\\nTraining GB (n_estimators=200, lr=0.05, max_depth=5)...\\nTraining RF (n_estimators=100, max_depth=10)...\\n\\nSetting              Model       N  macro_f1  f1_stag  f1_prog\\n------------------------------------------------------------\\nfull_all                GB  150652    0.9674   0.9479   0.9869\\nfull_all                RF  150652    0.9123   0.8658   0.9587\\nunseen_all              GB  139594    0.9669   0.9471   0.9867\\nunseen_all              RF  139594    0.9121   0.8656   0.9586\\nfull_conf2              GB   43376    0.9919   0.9869   0.9968\\nfull_conf2              RF   43376    0.9959   0.9935   0.9984\\nunseen_conf2            GB   40118    0.9917   0.9867   0.9967\\nunseen_conf2            RF   40118    0.9962   0.9940   0.9985\\n\\n=== TABLE 2 VERIFICATION ===\\n  GB_all: target=0.9674, actual=0.9674 -> MATCH\\n  RF_all: target=0.9123, actual=0.9123 -> MATCH\\n  GB_conf2: target=0.9919, actual=0.9919 -> MATCH\\n  RF_conf2: target=0.9959, actual=0.9959 -> MATCH\\n\\nAll Table 2 numbers match: True\\n\\n=== DELTA (unseen - full) ===\\n       all GB: full=0.9674, unseen=0.9669, delta=-0.05pp\\n       all RF: full=0.9123, unseen=0.9121, delta=-0.01pp\\n   conf>=2 GB: full=0.9919, unseen=0.9917, delta=-0.02pp\\n   conf>=2 RF: full=0.9959, unseen=0.9962, delta=+0.03pp\\n\\nSaved to /root/autodl-tmp/agent_progress_probe/artifacts/instance-isolation-canonical/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            }
+          },
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，所有 Table 2 数字精确匹配。读取 results.json 确认保存完整。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "a2b1730a-397e-4934-892a-65e38a44ba26",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KmRkVzhsPVfoCRtSGJHdA2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1199,
+                "cache_read_input_tokens": 113264,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1199
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000204"
+        },
+        {
+          "source_line": 205,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017g3c5byZmaHLWomQJxESd9",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Write instance_isolation_canonical.py script",
+                    "status": "completed",
+                    "activeForm": "Writing instance_isolation_canonical.py script"
+                  },
+                  {
+                    "content": "Upload and run script on server",
+                    "status": "completed",
+                    "activeForm": "Running script on server"
+                  },
+                  {
+                    "content": "Verify full set matches Table 2 and report results",
+                    "status": "in_progress",
+                    "activeForm": "Verifying results against Table 2"
+                  },
+                  {
+                    "content": "Register experiment in registry",
+                    "status": "pending",
+                    "activeForm": "Registering experiment"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "82428713-c702-4cb3-a5ec-49f8e7625b42",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KmRkVzhsPVfoCRtSGJHdA2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1199,
+                "cache_read_input_tokens": 113264,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1199
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000205"
+        },
+        {
+          "source_line": 206,
+          "timestamp": "2026-05-15T03:16:38.447Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017g3c5byZmaHLWomQJxESd9",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "4337e766-00c3-48d1-ba11-add72158d677",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Write instance_isolation_canonical.py script",
+                  "status": "completed",
+                  "activeForm": "Writing instance_isolation_canonical.py script"
+                },
+                {
+                  "content": "Upload and run script on server",
+                  "status": "in_progress",
+                  "activeForm": "Running script on server"
+                },
+                {
+                  "content": "Verify full set matches Table 2 and report results",
+                  "status": "pending",
+                  "activeForm": "Verifying results against Table 2"
+                },
+                {
+                  "content": "Register experiment in registry",
+                  "status": "pending",
+                  "activeForm": "Registering experiment"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Write instance_isolation_canonical.py script",
+                  "status": "completed",
+                  "activeForm": "Writing instance_isolation_canonical.py script"
+                },
+                {
+                  "content": "Upload and run script on server",
+                  "status": "completed",
+                  "activeForm": "Running script on server"
+                },
+                {
+                  "content": "Verify full set matches Table 2 and report results",
+                  "status": "in_progress",
+                  "activeForm": "Verifying results against Table 2"
+                },
+                {
+                  "content": "Register experiment in registry",
+                  "status": "pending",
+                  "activeForm": "Registering experiment"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000206"
+        },
+        {
+          "source_line": 207,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CccqbCb2N7DLZvXya1N3Ne",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "cat /root/autodl-tmp/agent_progress_probe/artifacts/instance-isolation-canonical/results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "adec19cf-8b81-4c50-a0e0-bc6b018576d1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KjbX1agFcgBuWAM41U4TP9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 259,
+                "cache_read_input_tokens": 114463,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 259
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000207"
+        },
+        {
+          "source_line": 208,
+          "timestamp": "2026-05-15T03:16:42.728Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CccqbCb2N7DLZvXya1N3Ne",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"instance_overlap\\\\\\\": {\\\\n    \\\\\\\"swe_train_instances\\\\\\\": 1386,\\\\n    \\\\\\\"swe_all_instances\\\\\\\": 2285,\\\\n    \\\\\\\"oh_instances\\\\\\\": 3409,\\\\n    \\\\\\\"overlap_count\\\\\\\": 284,\\\\n    \\\\\\\"overlap_ratio_of_oh\\\\\\\": 0.0833,\\\\n    \\\\\\\"oh_windows_in_overlap\\\\\\\": 11058,\\\\n    \\\\\\\"oh_windows_in_unseen\\\\\\\": 139594,\\\\n    \\\\\\\"oh_conf2_in_overlap\\\\\\\": 3258,\\\\n    \\\\\\\"oh_conf2_in_unseen\\\\\\\": 40118,\\\\n    \\\\\\\"overlapping_instances\\\\\\\": [\\\\n      \\\\\\\"15five__scim2-filter-parser-13\\\\\\\",\\\\n      \\\\\\\"3YOURMIND__django-migration-linter-258\\\\\\\",\\\\n      \\\\\\\"ASFHyP3__hyp3-sdk-53\\\\\\\",\\\\n      \\\\\\\"ASFHyP3__hyp3-sdk-71\\\\\\\",\\\\n      \\\\\\\"Azure__WALinuxAgent-1318\\\\\\\",\\\\n      \\\\\\\"Azure__msrest-for-python-167\\\\\\\",\\\\n      \\\\\\\"Azure__msrest-for-python-189\\\\\\\",\\\\n      \\\\\\\"Bachmann1234__diff_cover-210\\\\\\\",\\\\n      \\\\\\\"Bachmann1234__diff_cover-277\\\\\\\",\\\\n      \\\\\\\"CODAIT__exchange-metadata-converter-38\\\\\\\",\\\\n      \\\\\\\"DataBiosphere__toil-4805\\\\\\\",\\\\n      \\\\\\\"ESSS__conda-devenv-51\\\\\\\",\\\\n      \\\\\\\"EmilStenstrom__conllu-35\\\\\\\",\\\\n      \\\\\\\"Erotemic__ubelt-64\\\\\\\",\\\\n      \\\\\\\"INM-6__python-odmltables-120\\\\\\\",\\\\n      \\\\\\\"KyleJamesWalker__yamlsettings-36\\\\\\\",\\\\n      \\\\\\\"MycroftAI__lingua-franca-23\\\\\\\",\\\\n      \\\\\\\"NCAS-CMS__cfdm-158\\\\\\\",\\\\n      \\\\\\\"NCAS-CMS__cfdm-175\\\\\\\",\\\\n      \\\\\\\"NREL__hescore-hpxml-169\\\\\\\",\\\\n      \\\\\\\"PSLmodels__microdf-219\\\\\\\",\\\\n      \\\\\\\"PyCQA__pyflakes-420\\\\\\\",\\\\n      \\\\\\\"PyCQA__pyflakes-448\\\\\\\",\\\\n      \\\\\\\"PyCQA__pyflakes-745\\\\\\\",\\\\n      \\\\\\\"Pylons__webob-309\\\\\\\",\\\\n      \\\\\\\"RDFLib__rdflib-1012\\\\\\\",\\\\n      \\\\\\\"RDFLib__rdflib-2112\\\\\\\",\\\\n      \\\\\\\"RDFLib__rdflib-2160\\\\\\\",\\\\n      \\\\\\\"RPing__influx-prompt-17\\\\\\\",\\\\n      \\\\\\\"ResearchObject__ro-crate-py-102\\\\\\\",\\\\n      \\\\\\\"ResearchObject__ro-crate-py-161\\\\\\\",\\\\n      \\\\\\\"ResearchObject__ro-crate-py-169\\\\\\\",\\\\n      \\\\\\\"ResearchObject__ro-crate-py-170\\\\\\\",\\\\n      \\\\\\\"SAP__python-pyodata-232\\\\\\\",\\\\n      \\\\\\\"Stranger6667__pyanyapi-42\\\\\\\",\\\\n      \\\\\\\"Stratoscale__skipper-164\\\\\\\",\\\\n      \\\\\\\"Textualize__textual-3334\\\\\\\",\\\\n      \\\\\\\"TheFriendlyCoder__friendlypins-77\\\\\\\",\\\\n      \\\\\\\"Tinche__cattrs-117\\\\\\\",\\\\n      \\\\\\\"UC-Davis-molecular-computing__scadnano-python-package-288\\\\\\\",\\\\n      \\\\\\\"Unidata__MetPy-2691\\\\\\\",\\\\n      \\\\\\\"Viatorus__quom-43\\\\\\\",\\\\n      \\\\\\\"VirtusLab__git-machete-330\\\\\\\",\\\\n      \\\\\\\"acorg__dark-matter-663\\\\\\\",\\\\n      \\\\\\\"adamchainz__apig-wsgi-187\\\\\\\",\\\\n      \\\\\\\"adamjstewart__fiscalyear-9\\\\\\\",\\\\n      \\\\\\\"agronholm__anyio-273\\\\\\\",\\\\n      \\\\\\\"aio-libs__aiosmtpd-106\\\\\\\",\\\\n      \\\\\\\"akolar__ogn-lib-18\\\\\\\",\\\\n      \\\\\\\"alanmcruickshank__sqlfluff-188\\\\\\\",\\\\n      \\\\\\\"alanmcruickshank__sqlfluff-262\\\\\\\",\\\\n      \\\\\\\"alephdata__followthemoney-871\\\\\\\",\\\\n      \\\\\\\"alexander-akhmetov__python-telegram-168\\\\\\\",\\\\n      \\\\\\\"allo-media__text2num-77\\\\\\\",\\\\n      \\\\\\\"allrod5__parameters-validation-6\\\\\\\",\\\\n      \\\\\\\"andialbrecht__sqlparse-764\\\\\\\",\\\\n      \\\\\\\"asottile__babi-187\\\\\\\",\\\\n      \\\\\\\"asottile__pyupgrade-133\\\\\\\",\\\\n      \\\\\\\"asottile__pyupgrade-135\\\\\\\",\\\\n      \\\\\\\"asottile__pyupgrade-191\\\\\\\",\\\\n      \\\\\\\"asottile__pyupgrade-890\\\\\\\",\\\\n      \\\\\\\"asottile__setup-cfg-fmt-48\\\\\\\",\\\\n      \\\\\\\"asottile__yesqa-41\\\\\\\",\\\\n      \\\\\\\"astarte-platform__astarte-device-sdk-python-98\\\\\\\",\\\\n      \\\\\\\"astropenguin__pandas-dataclasses-120\\\\\\\",\\\\n      \\\\\\\"astropy__sphinx-automodapi-142\\\\\\\",\\\\n      \\\\\\\"auth0__auth0-python-354\\\\\\\",\\\\n      \\\\\\\"awisu2__imagenatepy-3\\\\\\\",\\\\n      \\\\\\\"barrust__pyspellchecker-101\\\\\\\",\\\\n      \\\\\\\"beartype__beartype-88\\\\\\\",\\\\n      \\\\\\\"beetbox__beets-3805\\\\\\\",\\\\n      \\\\\\\"benmaier__binpacking-12\\\\\\\",\\\\n      \\\\\\\"benmoran56__esper-81\\\\\\\",\\\\n      \\\\\\\"bids-standard__pybids-611\\\\\\\",\\\\n      \\\\\\\"bloomberg__attrs-strict-38\\\\\\\",\\\\n      \\\\\\\"brandon-rhodes__python-sgp4-73\\\\\\\",\\\\n      \\\\\\\"bugsnag__bugsnag-python-188\\\\\\\",\\\\n      \\\\\\\"canonical__operator-823\\\\\\\",\\\\n      \\\\\\\"canonical__operator-860\\\\\\\",\\\\n      \\\\\\\"caronc__apprise-324\\\\\\\",\\\\n      \\\\\\\"cdent__gabbi-186\\\\\\\",\\\\n      \\\\\\\"cherrypy__cherrypy-1578\\\\\\\",\\\\n      \\\\\\\"chimpler__pyhocon-173\\\\\\\",\\\\n      \\\\\\\"cityofaustin__knackpy-110\\\\\\\",\\\\n      \\\\\\\"clld__clldutils-27\\\\\\\",\\\\n      \\\\\\\"construct__construct-277\\\\\\\",\\\\n      \\\\\\\"construct__construct-889\\\\\\\",\\\\n      \\\\\\\"couler-proj__couler-89\\\\\\\",\\\\n      \\\\\\\"coverahealth__dataspec-4\\\\\\\",\\\\n      \\\\\\\"coverahealth__dataspec-55\\\\\\\",\\\\n      \\\\\\\"coverahealth__dataspec-83\\\\\\\",\\\\n      \\\\\\\"crccheck__project_runpy-17\\\\\\\",\\\\n      \\\\\\\"cta-observatory__pyirf-188\\\\\\\",\\\\n      \\\\\\\"cunla__fakeredis-py-238\\\\\\\",\\\\n      \\\\\\\"datalad__datalad-next-257\\\\\\\",\\\\n      \\\\\\\"deepchem__deepchem-2802\\\\\\\",\\\\n      \\\\\\\"dhatim__python-license-check-75\\\\\\\",\\\\n      \\\\\\\"django__asgiref-211\\\\\\\",\\\\n      \\\\\\\"django__asgiref-325\\\\\\\",\\\\n      \\\\\\\"docker__docker-py-1143\\\\\\\",\\\\n      \\\\\\\"drvinceknight__nbchkr-14\\\\\\\",\\\\n      \\\\\\\"duosecurity__duo_client_python-86\\\\\\\",\\\\n      \\\\\\\"dwavesystems__dimod-331\\\\\\\",\\\\n      \\\\\\\"dwavesystems__dwave-cloud-client-289\\\\\\\",\\\\n      \\\\\\\"dwavesystems__\\\\n\\\\n... [截断: 输出过长，省略 5399 字符] ...\\\\n\\\\n \\\\\\\"tobymao__sqlglot-2499\\\\\\\",\\\\n      \\\\\\\"tobymao__sqlglot-2529\\\\\\\",\\\\n      \\\\\\\"tobymao__sqlglot-2576\\\\\\\",\\\\n      \\\\\\\"tobymao__sqlglot-2739\\\\\\\",\\\\n      \\\\\\\"tobymao__sqlglot-2800\\\\\\\",\\\\n      \\\\\\\"tylerwince__pydbg-4\\\\\\\",\\\\n      \\\\\\\"unt-libraries__edtf-validate-30\\\\\\\",\\\\n      \\\\\\\"vaidik__commentjson-46\\\\\\\",\\\\n      \\\\\\\"vitalik__django-ninja-434\\\\\\\",\\\\n      \\\\\\\"vitalik__django-ninja-838\\\\\\\",\\\\n      \\\\\\\"vogt4nick__dequindre-53\\\\\\\",\\\\n      \\\\\\\"weaveworks__grafanalib-584\\\\\\\",\\\\n      \\\\\\\"wfondrie__mokapot-65\\\\\\\",\\\\n      \\\\\\\"wireservice__agate-excel-25\\\\\\\",\\\\n      \\\\\\\"wright-group__WrightTools-938\\\\\\\",\\\\n      \\\\\\\"yukinarit__pyserde-264\\\\\\\",\\\\n      \\\\\\\"zalando-stups__senza-349\\\\\\\",\\\\n      \\\\\\\"zalando-stups__senza-372\\\\\\\",\\\\n      \\\\\\\"zopefoundation__DocumentTemplate-49\\\\\\\",\\\\n      \\\\\\\"zopefoundation__RestrictedPython-272\\\\\\\",\\\\n      \\\\\\\"zopefoundation__RestrictedPython-97\\\\\\\",\\\\n      \\\\\\\"zopefoundation__persistent-161\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"evaluation\\\\\\\": {\\\\n    \\\\\\\"full_all\\\\\\\": {\\\\n      \\\\\\\"GB\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.9674,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.979,\\\\n        \\\\\\\"precision_macro\\\\\\\": 0.9812,\\\\n        \\\\\\\"recall_macro\\\\\\\": 0.955,\\\\n        \\\\\\\"f1_stagnation\\\\\\\": 0.9479,\\\\n        \\\\\\\"f1_progress\\\\\\\": 0.9869\\\\n      },\\\\n      \\\\\\\"RF\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.9123,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9368,\\\\n        \\\\\\\"precision_macro\\\\\\\": 0.8854,\\\\n        \\\\\\\"recall_macro\\\\\\\": 0.9517,\\\\n        \\\\\\\"f1_stagnation\\\\\\\": 0.8658,\\\\n        \\\\\\\"f1_progress\\\\\\\": 0.9587\\\\n      }\\\\n    },\\\\n    \\\\\\\"unseen_all\\\\\\\": {\\\\n      \\\\\\\"GB\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.9669,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9787,\\\\n        \\\\\\\"precision_macro\\\\\\\": 0.981,\\\\n        \\\\\\\"recall_macro\\\\\\\": 0.9542,\\\\n        \\\\\\\"f1_stagnation\\\\\\\": 0.9471,\\\\n        \\\\\\\"f1_progress\\\\\\\": 0.9867\\\\n      },\\\\n      \\\\\\\"RF\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.9121,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9367,\\\\n        \\\\\\\"precision_macro\\\\\\\": 0.8854,\\\\n        \\\\\\\"recall_macro\\\\\\\": 0.9512,\\\\n        \\\\\\\"f1_stagnation\\\\\\\": 0.8656,\\\\n        \\\\\\\"f1_progress\\\\\\\": 0.9586\\\\n      }\\\\n    },\\\\n    \\\\\\\"full_conf2\\\\\\\": {\\\\n      \\\\\\\"GB\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.9919,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9949,\\\\n        \\\\\\\"precision_macro\\\\\\\": 0.996,\\\\n        \\\\\\\"recall_macro\\\\\\\": 0.9879,\\\\n        \\\\\\\"f1_stagnation\\\\\\\": 0.9869,\\\\n        \\\\\\\"f1_progress\\\\\\\": 0.9968\\\\n      },\\\\n      \\\\\\\"RF\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.9959,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9974,\\\\n        \\\\\\\"precision_macro\\\\\\\": 0.9936,\\\\n        \\\\\\\"recall_macro\\\\\\\": 0.9983,\\\\n        \\\\\\\"f1_stagnation\\\\\\\": 0.9935,\\\\n        \\\\\\\"f1_progress\\\\\\\": 0.9984\\\\n      }\\\\n    },\\\\n    \\\\\\\"unseen_conf2\\\\\\\": {\\\\n      \\\\\\\"GB\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.9917,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9947,\\\\n        \\\\\\\"precision_macro\\\\\\\": 0.9959,\\\\n        \\\\\\\"recall_macro\\\\\\\": 0.9876,\\\\n        \\\\\\\"f1_stagnation\\\\\\\": 0.9867,\\\\n        \\\\\\\"f1_progress\\\\\\\": 0.9967\\\\n      },\\\\n      \\\\\\\"RF\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.9962,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9976,\\\\n        \\\\\\\"precision_macro\\\\\\\": 0.9941,\\\\n        \\\\\\\"recall_macro\\\\\\\": 0.9984,\\\\n        \\\\\\\"f1_stagnation\\\\\\\": 0.994,\\\\n        \\\\\\\"f1_progress\\\\\\\": 0.9985\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"deltas\\\\\\\": {\\\\n    \\\\\\\"all\\\\\\\": {\\\\n      \\\\\\\"GB\\\\\\\": {\\\\n        \\\\\\\"full\\\\\\\": 0.9674,\\\\n        \\\\\\\"unseen\\\\\\\": 0.9669,\\\\n        \\\\\\\"delta_pp\\\\\\\": -0.05\\\\n      },\\\\n      \\\\\\\"RF\\\\\\\": {\\\\n        \\\\\\\"full\\\\\\\": 0.9123,\\\\n        \\\\\\\"unseen\\\\\\\": 0.9121,\\\\n        \\\\\\\"delta_pp\\\\\\\": -0.01\\\\n      }\\\\n    },\\\\n    \\\\\\\"conf>=2\\\\\\\": {\\\\n      \\\\\\\"GB\\\\\\\": {\\\\n        \\\\\\\"full\\\\\\\": 0.9919,\\\\n        \\\\\\\"unseen\\\\\\\": 0.9917,\\\\n        \\\\\\\"delta_pp\\\\\\\": -0.02\\\\n      },\\\\n      \\\\\\\"RF\\\\\\\": {\\\\n        \\\\\\\"full\\\\\\\": 0.9959,\\\\n        \\\\\\\"unseen\\\\\\\": 0.9962,\\\\n        \\\\\\\"delta_pp\\\\\\\": 0.03\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"table2_verification\\\\\\\": {\\\\n    \\\\\\\"GB_all\\\\\\\": {\\\\n      \\\\\\\"target\\\\\\\": 0.9674,\\\\n      \\\\\\\"actual\\\\\\\": 0.9674,\\\\n      \\\\\\\"match\\\\\\\": true,\\\\n      \\\\\\\"diff_bps\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"RF_all\\\\\\\": {\\\\n      \\\\\\\"target\\\\\\\": 0.9123,\\\\n      \\\\\\\"actual\\\\\\\": 0.9123,\\\\n      \\\\\\\"match\\\\\\\": true,\\\\n      \\\\\\\"diff_bps\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"GB_conf2\\\\\\\": {\\\\n      \\\\\\\"target\\\\\\\": 0.9919,\\\\n      \\\\\\\"actual\\\\\\\": 0.9919,\\\\n      \\\\\\\"match\\\\\\\": true,\\\\n      \\\\\\\"diff_bps\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"RF_conf2\\\\\\\": {\\\\n      \\\\\\\"target\\\\\\\": 0.9959,\\\\n      \\\\\\\"actual\\\\\\\": 0.9959,\\\\n      \\\\\\\"match\\\\\\\": true,\\\\n      \\\\\\\"diff_bps\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"all_table2_match\\\\\\\": true,\\\\n  \\\\\\\"data_stats\\\\\\\": {\\\\n    \\\\\\\"swe_train\\\\\\\": 10634,\\\\n    \\\\\\\"oh_nonabstain\\\\\\\": 150652,\\\\n    \\\\\\\"oh_unseen\\\\\\\": 139594,\\\\n    \\\\\\\"oh_conf2\\\\\\\": 43376,\\\\n    \\\\\\\"oh_unseen_conf2\\\\\\\": 40118\\\\n  },\\\\n  \\\\\\\"hyperparams\\\\\\\": {\\\\n    \\\\\\\"GB\\\\\\\": {\\\\n      \\\\\\\"n_estimators\\\\\\\": 200,\\\\n      \\\\\\\"learning_rate\\\\\\\": 0.05,\\\\n      \\\\\\\"max_depth\\\\\\\": 5\\\\n    },\\\\n    \\\\\\\"RF\\\\\\\": {\\\\n      \\\\\\\"n_estimators\\\\\\\": 100,\\\\n      \\\\\\\"max_depth\\\\\\\": 10\\\\n    }\\\\n  },\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"Trained on TRAIN SPLIT ONLY (not trainval) to match canonical cross_agent_structural_baseline.py\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "724cdcfd-3ae3-4f4a-8073-b9b31c289552",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"instance_overlap\\\\\\\": {\\\\n    \\\\\\\"swe_train_instances\\\\\\\": 1386,\\\\n    \\\\\\\"swe_all_instances\\\\\\\": 2285,\\\\n    \\\\\\\"oh_instances\\\\\\\": 3409,\\\\n    \\\\\\\"overlap_count\\\\\\\": 284,\\\\n    \\\\\\\"overlap_ratio_of_oh\\\\\\\": 0.0833,\\\\n    \\\\\\\"oh_windows_in_overlap\\\\\\\": 11058,\\\\n    \\\\\\\"oh_windows_in_unseen\\\\\\\": 139594,\\\\n    \\\\\\\"oh_conf2_in_overlap\\\\\\\": 3258,\\\\n    \\\\\\\"oh_conf2_in_unseen\\\\\\\": 40118,\\\\n    \\\\\\\"overlapping_instances\\\\\\\": [\\\\n      \\\\\\\"15five__scim2-filter-parser-13\\\\\\\",\\\\n      \\\\\\\"3YOURMIND__django-migration-linter-258\\\\\\\",\\\\n      \\\\\\\"ASFHyP3__hyp3-sdk-53\\\\\\\",\\\\n      \\\\\\\"ASFHyP3__hyp3-sdk-71\\\\\\\",\\\\n      \\\\\\\"Azure__WALinuxAgent-1318\\\\\\\",\\\\n      \\\\\\\"Azure__msrest-for-python-167\\\\\\\",\\\\n      \\\\\\\"Azure__msrest-for-python-189\\\\\\\",\\\\n      \\\\\\\"Bachmann1234__diff_cover-210\\\\\\\",\\\\n      \\\\\\\"Bachmann1234__diff_cover-277\\\\\\\",\\\\n      \\\\\\\"CODAIT__exchange-metadata-converter-38\\\\\\\",\\\\n      \\\\\\\"DataBiosphere__toil-4805\\\\\\\",\\\\n      \\\\\\\"ESSS__conda-devenv-51\\\\\\\",\\\\n      \\\\\\\"EmilStenstrom__conllu-35\\\\\\\",\\\\n      \\\\\\\"Erotemic__ubelt-64\\\\\\\",\\\\n      \\\\\\\"INM-6__python-odmltables-120\\\\\\\",\\\\n      \\\\\\\"KyleJamesWalker__yamlsettings-36\\\\\\\",\\\\n      \\\\\\\"MycroftAI__lingua-franca-23\\\\\\\",\\\\n      \\\\\\\"NCAS-CMS__cfdm-158\\\\\\\",\\\\n      \\\\\\\"NCAS-CMS__cfdm-175\\\\\\\",\\\\n      \\\\\\\"NREL__hescore-hpxml-169\\\\\\\",\\\\n      \\\\\\\"PSLmodels__microdf-219\\\\\\\",\\\\n      \\\\\\\"PyCQA__pyflakes-420\\\\\\\",\\\\n      \\\\\\\"PyCQA__pyflakes-448\\\\\\\",\\\\n      \\\\\\\"PyCQA__pyflakes-745\\\\\\\",\\\\n      \\\\\\\"Pylons__webob-309\\\\\\\",\\\\n      \\\\\\\"RDFLib__rdflib-1012\\\\\\\",\\\\n      \\\\\\\"RDFLib__rdflib-2112\\\\\\\",\\\\n      \\\\\\\"RDFLib__rdflib-2160\\\\\\\",\\\\n      \\\\\\\"RPing__influx-prompt-17\\\\\\\",\\\\n      \\\\\\\"ResearchObject__ro-crate-py-102\\\\\\\",\\\\n      \\\\\\\"ResearchObject__ro-crate-py-161\\\\\\\",\\\\n      \\\\\\\"ResearchObject__ro-crate-py-169\\\\\\\",\\\\n      \\\\\\\"ResearchObject__ro-crate-py-170\\\\\\\",\\\\n      \\\\\\\"SAP__python-pyodata-232\\\\\\\",\\\\n      \\\\\\\"Stranger6667__pyanyapi-42\\\\\\\",\\\\n      \\\\\\\"Stratoscale__skipper-164\\\\\\\",\\\\n      \\\\\\\"Textualize__textual-3334\\\\\\\",\\\\n      \\\\\\\"TheFriendlyCoder__friendlypins-77\\\\\\\",\\\\n      \\\\\\\"Tinche__cattrs-117\\\\\\\",\\\\n      \\\\\\\"UC-Davis-molecular-computing__scadnano-python-package-288\\\\\\\",\\\\n      \\\\\\\"Unidata__MetPy-2691\\\\\\\",\\\\n      \\\\\\\"Viatorus__quom-43\\\\\\\",\\\\n      \\\\\\\"VirtusLab__git-machete-330\\\\\\\",\\\\n      \\\\\\\"acorg__dark-matter-663\\\\\\\",\\\\n      \\\\\\\"adamchainz__apig-wsgi-187\\\\\\\",\\\\n      \\\\\\\"adamjstewart__fiscalyear-9\\\\\\\",\\\\n      \\\\\\\"agronholm__anyio-273\\\\\\\",\\\\n      \\\\\\\"aio-libs__aiosmtpd-106\\\\\\\",\\\\n      \\\\\\\"akolar__ogn-lib-18\\\\\\\",\\\\n      \\\\\\\"alanmcruickshank__sqlfluff-188\\\\\\\",\\\\n      \\\\\\\"alanmcruickshank__sqlfluff-262\\\\\\\",\\\\n      \\\\\\\"alephdata__followthemoney-871\\\\\\\",\\\\n      \\\\\\\"alexander-akhmetov__python-telegram-168\\\\\\\",\\\\n      \\\\\\\"allo-media__text2num-77\\\\\\\",\\\\n      \\\\\\\"allrod5__parameters-validation-6\\\\\\\",\\\\n      \\\\\\\"andialbrecht__sqlparse-764\\\\\\\",\\\\n      \\\\\\\"asottile__babi-187\\\\\\\",\\\\n      \\\\\\\"asottile__pyupgrade-133\\\\\\\",\\\\n      \\\\\\\"asottile__pyupgrade-135\\\\\\\",\\\\n      \\\\\\\"asottile__pyupgrade-191\\\\\\\",\\\\n      \\\\\\\"asottile__pyupgrade-890\\\\\\\",\\\\n      \\\\\\\"asottile__setup-cfg-fmt-48\\\\\\\",\\\\n      \\\\\\\"asottile__yesqa-41\\\\\\\",\\\\n      \\\\\\\"astarte-platform__astarte-device-sdk-python-98\\\\\\\",\\\\n      \\\\\\\"astropenguin__pandas-dataclasses-120\\\\\\\",\\\\n      \\\\\\\"astropy__sphinx-automodapi-142\\\\\\\",\\\\n      \\\\\\\"auth0__auth0-python-354\\\\\\\",\\\\n      \\\\\\\"awisu2__imagenatepy-3\\\\\\\",\\\\n      \\\\\\\"barrust__pyspellchecker-101\\\\\\\",\\\\n      \\\\\\\"beartype__beartype-88\\\\\\\",\\\\n      \\\\\\\"beetbox__beets-3805\\\\\\\",\\\\n      \\\\\\\"benmaier__binpacking-12\\\\\\\",\\\\n      \\\\\\\"benmoran56__esper-81\\\\\\\",\\\\n      \\\\\\\"bids-standard__pybids-611\\\\\\\",\\\\n      \\\\\\\"bloomberg__attrs-strict-38\\\\\\\",\\\\n      \\\\\\\"brandon-rhodes__python-sgp4-73\\\\\\\",\\\\n      \\\\\\\"bugsnag__bugsnag-python-188\\\\\\\",\\\\n      \\\\\\\"canonical__operator-823\\\\\\\",\\\\n      \\\\\\\"canonical__operator-860\\\\\\\",\\\\n      \\\\\\\"caronc__apprise-324\\\\\\\",\\\\n      \\\\\\\"cdent__gabbi-186\\\\\\\",\\\\n      \\\\\\\"cherrypy__cherrypy-1578\\\\\\\",\\\\n      \\\\\\\"chimpler__pyhocon-173\\\\\\\",\\\\n      \\\\\\\"cityofaustin__knackpy-110\\\\\\\",\\\\n      \\\\\\\"clld__clldutils-27\\\\\\\",\\\\n      \\\\\\\"construct__construct-277\\\\\\\",\\\\n      \\\\\\\"construct__construct-889\\\\\\\",\\\\n      \\\\\\\"couler-proj__couler-89\\\\\\\",\\\\n      \\\\\\\"coverahealth__dataspec-4\\\\\\\",\\\\n      \\\\\\\"coverahealth__dataspec-55\\\\\\\",\\\\n      \\\\\\\"coverahealth__dataspec-83\\\\\\\",\\\\n      \\\\\\\"crccheck__project_runpy-17\\\\\\\",\\\\n      \\\\\\\"cta-observatory__pyirf-188\\\\\\\",\\\\n      \\\\\\\"cunla__fakeredis-py-238\\\\\\\",\\\\n      \\\\\\\"datalad__datalad-next-257\\\\\\\",\\\\n      \\\\\\\"deepchem__deepchem-2802\\\\\\\",\\\\n      \\\\\\\"dhatim__python-license-check-75\\\\\\\",\\\\n      \\\\\\\"django__asgiref-211\\\\\\\",\\\\n      \\\\\\\"django__asgiref-325\\\\\\\",\\\\n      \\\\\\\"docker__docker-py-1143\\\\\\\",\\\\n      \\\\\\\"drvinceknight__nbchkr-14\\\\\\\",\\\\n      \\\\\\\"duosecurity__duo_client_python-86\\\\\\\",\\\\n      \\\\\\\"dwavesystems__dimod-331\\\\\\\",\\\\n      \\\\\\\"dwavesystems__dwave-cloud-client-289\\\\\\\",\\\\n      \\\\\\\"dwavesystems__\\\\n\\\\n... [截断: 输出过长，省略 5399 字符] ...\\\\n\\\\n \\\\\\\"tobymao__sqlglot-2499\\\\\\\",\\\\n      \\\\\\\"tobymao__sqlglot-2529\\\\\\\",\\\\n      \\\\\\\"tobymao__sqlglot-2576\\\\\\\",\\\\n      \\\\\\\"tobymao__sqlglot-2739\\\\\\\",\\\\n      \\\\\\\"tobymao__sqlglot-2800\\\\\\\",\\\\n      \\\\\\\"tylerwince__pydbg-4\\\\\\\",\\\\n      \\\\\\\"unt-libraries__edtf-validate-30\\\\\\\",\\\\n      \\\\\\\"vaidik__commentjson-46\\\\\\\",\\\\n      \\\\\\\"vitalik__django-ninja-434\\\\\\\",\\\\n      \\\\\\\"vitalik__django-ninja-838\\\\\\\",\\\\n      \\\\\\\"vogt4nick__dequindre-53\\\\\\\",\\\\n      \\\\\\\"weaveworks__grafanalib-584\\\\\\\",\\\\n      \\\\\\\"wfondrie__mokapot-65\\\\\\\",\\\\n      \\\\\\\"wireservice__agate-excel-25\\\\\\\",\\\\n      \\\\\\\"wright-group__WrightTools-938\\\\\\\",\\\\n      \\\\\\\"yukinarit__pyserde-264\\\\\\\",\\\\n      \\\\\\\"zalando-stups__senza-349\\\\\\\",\\\\n      \\\\\\\"zalando-stups__senza-372\\\\\\\",\\\\n      \\\\\\\"zopefoundation__DocumentTemplate-49\\\\\\\",\\\\n      \\\\\\\"zopefoundation__RestrictedPython-272\\\\\\\",\\\\n      \\\\\\\"zopefoundation__RestrictedPython-97\\\\\\\",\\\\n      \\\\\\\"zopefoundation__persistent-161\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"evaluation\\\\\\\": {\\\\n    \\\\\\\"full_all\\\\\\\": {\\\\n      \\\\\\\"GB\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.9674,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.979,\\\\n        \\\\\\\"precision_macro\\\\\\\": 0.9812,\\\\n        \\\\\\\"recall_macro\\\\\\\": 0.955,\\\\n        \\\\\\\"f1_stagnation\\\\\\\": 0.9479,\\\\n        \\\\\\\"f1_progress\\\\\\\": 0.9869\\\\n      },\\\\n      \\\\\\\"RF\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.9123,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9368,\\\\n        \\\\\\\"precision_macro\\\\\\\": 0.8854,\\\\n        \\\\\\\"recall_macro\\\\\\\": 0.9517,\\\\n        \\\\\\\"f1_stagnation\\\\\\\": 0.8658,\\\\n        \\\\\\\"f1_progress\\\\\\\": 0.9587\\\\n      }\\\\n    },\\\\n    \\\\\\\"unseen_all\\\\\\\": {\\\\n      \\\\\\\"GB\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.9669,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9787,\\\\n        \\\\\\\"precision_macro\\\\\\\": 0.981,\\\\n        \\\\\\\"recall_macro\\\\\\\": 0.9542,\\\\n        \\\\\\\"f1_stagnation\\\\\\\": 0.9471,\\\\n        \\\\\\\"f1_progress\\\\\\\": 0.9867\\\\n      },\\\\n      \\\\\\\"RF\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.9121,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9367,\\\\n        \\\\\\\"precision_macro\\\\\\\": 0.8854,\\\\n        \\\\\\\"recall_macro\\\\\\\": 0.9512,\\\\n        \\\\\\\"f1_stagnation\\\\\\\": 0.8656,\\\\n        \\\\\\\"f1_progress\\\\\\\": 0.9586\\\\n      }\\\\n    },\\\\n    \\\\\\\"full_conf2\\\\\\\": {\\\\n      \\\\\\\"GB\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.9919,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9949,\\\\n        \\\\\\\"precision_macro\\\\\\\": 0.996,\\\\n        \\\\\\\"recall_macro\\\\\\\": 0.9879,\\\\n        \\\\\\\"f1_stagnation\\\\\\\": 0.9869,\\\\n        \\\\\\\"f1_progress\\\\\\\": 0.9968\\\\n      },\\\\n      \\\\\\\"RF\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.9959,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9974,\\\\n        \\\\\\\"precision_macro\\\\\\\": 0.9936,\\\\n        \\\\\\\"recall_macro\\\\\\\": 0.9983,\\\\n        \\\\\\\"f1_stagnation\\\\\\\": 0.9935,\\\\n        \\\\\\\"f1_progress\\\\\\\": 0.9984\\\\n      }\\\\n    },\\\\n    \\\\\\\"unseen_conf2\\\\\\\": {\\\\n      \\\\\\\"GB\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.9917,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9947,\\\\n        \\\\\\\"precision_macro\\\\\\\": 0.9959,\\\\n        \\\\\\\"recall_macro\\\\\\\": 0.9876,\\\\n        \\\\\\\"f1_stagnation\\\\\\\": 0.9867,\\\\n        \\\\\\\"f1_progress\\\\\\\": 0.9967\\\\n      },\\\\n      \\\\\\\"RF\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.9962,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9976,\\\\n        \\\\\\\"precision_macro\\\\\\\": 0.9941,\\\\n        \\\\\\\"recall_macro\\\\\\\": 0.9984,\\\\n        \\\\\\\"f1_stagnation\\\\\\\": 0.994,\\\\n        \\\\\\\"f1_progress\\\\\\\": 0.9985\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"deltas\\\\\\\": {\\\\n    \\\\\\\"all\\\\\\\": {\\\\n      \\\\\\\"GB\\\\\\\": {\\\\n        \\\\\\\"full\\\\\\\": 0.9674,\\\\n        \\\\\\\"unseen\\\\\\\": 0.9669,\\\\n        \\\\\\\"delta_pp\\\\\\\": -0.05\\\\n      },\\\\n      \\\\\\\"RF\\\\\\\": {\\\\n        \\\\\\\"full\\\\\\\": 0.9123,\\\\n        \\\\\\\"unseen\\\\\\\": 0.9121,\\\\n        \\\\\\\"delta_pp\\\\\\\": -0.01\\\\n      }\\\\n    },\\\\n    \\\\\\\"conf>=2\\\\\\\": {\\\\n      \\\\\\\"GB\\\\\\\": {\\\\n        \\\\\\\"full\\\\\\\": 0.9919,\\\\n        \\\\\\\"unseen\\\\\\\": 0.9917,\\\\n        \\\\\\\"delta_pp\\\\\\\": -0.02\\\\n      },\\\\n      \\\\\\\"RF\\\\\\\": {\\\\n        \\\\\\\"full\\\\\\\": 0.9959,\\\\n        \\\\\\\"unseen\\\\\\\": 0.9962,\\\\n        \\\\\\\"delta_pp\\\\\\\": 0.03\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"table2_verification\\\\\\\": {\\\\n    \\\\\\\"GB_all\\\\\\\": {\\\\n      \\\\\\\"target\\\\\\\": 0.9674,\\\\n      \\\\\\\"actual\\\\\\\": 0.9674,\\\\n      \\\\\\\"match\\\\\\\": true,\\\\n      \\\\\\\"diff_bps\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"RF_all\\\\\\\": {\\\\n      \\\\\\\"target\\\\\\\": 0.9123,\\\\n      \\\\\\\"actual\\\\\\\": 0.9123,\\\\n      \\\\\\\"match\\\\\\\": true,\\\\n      \\\\\\\"diff_bps\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"GB_conf2\\\\\\\": {\\\\n      \\\\\\\"target\\\\\\\": 0.9919,\\\\n      \\\\\\\"actual\\\\\\\": 0.9919,\\\\n      \\\\\\\"match\\\\\\\": true,\\\\n      \\\\\\\"diff_bps\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"RF_conf2\\\\\\\": {\\\\n      \\\\\\\"target\\\\\\\": 0.9959,\\\\n      \\\\\\\"actual\\\\\\\": 0.9959,\\\\n      \\\\\\\"match\\\\\\\": true,\\\\n      \\\\\\\"diff_bps\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"all_table2_match\\\\\\\": true,\\\\n  \\\\\\\"data_stats\\\\\\\": {\\\\n    \\\\\\\"swe_train\\\\\\\": 10634,\\\\n    \\\\\\\"oh_nonabstain\\\\\\\": 150652,\\\\n    \\\\\\\"oh_unseen\\\\\\\": 139594,\\\\n    \\\\\\\"oh_conf2\\\\\\\": 43376,\\\\n    \\\\\\\"oh_unseen_conf2\\\\\\\": 40118\\\\n  },\\\\n  \\\\\\\"hyperparams\\\\\\\": {\\\\n    \\\\\\\"GB\\\\\\\": {\\\\n      \\\\\\\"n_estimators\\\\\\\": 200,\\\\n      \\\\\\\"learning_rate\\\\\\\": 0.05,\\\\n      \\\\\\\"max_depth\\\\\\\": 5\\\\n    },\\\\n    \\\\\\\"RF\\\\\\\": {\\\\n      \\\\\\\"n_estimators\\\\\\\": 100,\\\\n      \\\\\\\"max_depth\\\\\\\": 10\\\\n    }\\\\n  },\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"Trained on TRAIN SPLIT ONLY (not trainval) to match canonical cross_agent_structural_baseline.py\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"instance_overlap\\\": {\\n    \\\"swe_train_instances\\\": 1386,\\n    \\\"swe_all_instances\\\": 2285,\\n    \\\"oh_instances\\\": 3409,\\n    \\\"overlap_count\\\": 284,\\n    \\\"overlap_ratio_of_oh\\\": 0.0833,\\n    \\\"oh_windows_in_overlap\\\": 11058,\\n    \\\"oh_windows_in_unseen\\\": 139594,\\n    \\\"oh_conf2_in_overlap\\\": 3258,\\n    \\\"oh_conf2_in_unseen\\\": 40118,\\n    \\\"overlapping_instances\\\": [\\n      \\\"15five__scim2-filter-parser-13\\\",\\n      \\\"3YOURMIND__django-migration-linter-258\\\",\\n      \\\"ASFHyP3__hyp3-sdk-53\\\",\\n      \\\"ASFHyP3__hyp3-sdk-71\\\",\\n      \\\"Azure__WALinuxAgent-1318\\\",\\n      \\\"Azure__msrest-for-python-167\\\",\\n      \\\"Azure__msrest-for-python-189\\\",\\n      \\\"Bachmann1234__diff_cover-210\\\",\\n      \\\"Bachmann1234__diff_cover-277\\\",\\n      \\\"CODAIT__exchange-metadata-converter-38\\\",\\n      \\\"DataBiosphere__toil-4805\\\",\\n      \\\"ESSS__conda-devenv-51\\\",\\n      \\\"EmilStenstrom__conllu-35\\\",\\n      \\\"Erotemic__ubelt-64\\\",\\n      \\\"INM-6__python-odmltables-120\\\",\\n      \\\"KyleJamesWalker__yamlsettings-36\\\",\\n      \\\"MycroftAI__lingua-franca-23\\\",\\n      \\\"NCAS-CMS__cfdm-158\\\",\\n      \\\"NCAS-CMS__cfdm-175\\\",\\n      \\\"NREL__hescore-hpxml-169\\\",\\n      \\\"PSLmodels__microdf-219\\\",\\n      \\\"PyCQA__pyflakes-420\\\",\\n      \\\"PyCQA__pyflakes-448\\\",\\n      \\\"PyCQA__pyflakes-745\\\",\\n      \\\"Pylons__webob-309\\\",\\n      \\\"RDFLib__rdflib-1012\\\",\\n      \\\"RDFLib__rdflib-2112\\\",\\n      \\\"RDFLib__rdflib-2160\\\",\\n      \\\"RPing__influx-prompt-17\\\",\\n      \\\"ResearchObject__ro-crate-py-102\\\",\\n      \\\"ResearchObject__ro-crate-py-161\\\",\\n      \\\"ResearchObject__ro-crate-py-169\\\",\\n      \\\"ResearchObject__ro-crate-py-170\\\",\\n      \\\"SAP__python-pyodata-232\\\",\\n      \\\"Stranger6667__pyanyapi-42\\\",\\n      \\\"Stratoscale__skipper-164\\\",\\n      \\\"Textualize__textual-3334\\\",\\n      \\\"TheFriendlyCoder__friendlypins-77\\\",\\n      \\\"Tinche__cattrs-117\\\",\\n      \\\"UC-Davis-molecular-computing__scadnano-python-package-288\\\",\\n      \\\"Unidata__MetPy-2691\\\",\\n      \\\"Viatorus__quom-43\\\",\\n      \\\"VirtusLab__git-machete-330\\\",\\n      \\\"acorg__dark-matter-663\\\",\\n      \\\"adamchainz__apig-wsgi-187\\\",\\n      \\\"adamjstewart__fiscalyear-9\\\",\\n      \\\"agronholm__anyio-273\\\",\\n      \\\"aio-libs__aiosmtpd-106\\\",\\n      \\\"akolar__ogn-lib-18\\\",\\n      \\\"alanmcruickshank__sqlfluff-188\\\",\\n      \\\"alanmcruickshank__sqlfluff-262\\\",\\n      \\\"alephdata__followthemoney-871\\\",\\n      \\\"alexander-akhmetov__python-telegram-168\\\",\\n      \\\"allo-media__text2num-77\\\",\\n      \\\"allrod5__parameters-validation-6\\\",\\n      \\\"andialbrecht__sqlparse-764\\\",\\n      \\\"asottile__babi-187\\\",\\n      \\\"asottile__pyupgrade-133\\\",\\n      \\\"asottile__pyupgrade-135\\\",\\n      \\\"asottile__pyupgrade-191\\\",\\n      \\\"asottile__pyupgrade-890\\\",\\n      \\\"asottile__setup-cfg-fmt-48\\\",\\n      \\\"asottile__yesqa-41\\\",\\n      \\\"astarte-platform__astarte-device-sdk-python-98\\\",\\n      \\\"astropenguin__pandas-dataclasses-120\\\",\\n      \\\"astropy__sphinx-automodapi-142\\\",\\n      \\\"auth0__auth0-python-354\\\",\\n      \\\"awisu2__imagenatepy-3\\\",\\n      \\\"barrust__pyspellchecker-101\\\",\\n      \\\"beartype__beartype-88\\\",\\n      \\\"beetbox__beets-3805\\\",\\n      \\\"benmaier__binpacking-12\\\",\\n      \\\"benmoran56__esper-81\\\",\\n      \\\"bids-standard__pybids-611\\\",\\n      \\\"bloomberg__attrs-strict-38\\\",\\n      \\\"brandon-rhodes__python-sgp4-73\\\",\\n      \\\"bugsnag__bugsnag-python-188\\\",\\n      \\\"canonical__operator-823\\\",\\n      \\\"canonical__operator-860\\\",\\n      \\\"caronc__apprise-324\\\",\\n      \\\"cdent__gabbi-186\\\",\\n      \\\"cherrypy__cherrypy-1578\\\",\\n      \\\"chimpler__pyhocon-173\\\",\\n      \\\"cityofaustin__knackpy-110\\\",\\n      \\\"clld__clldutils-27\\\",\\n      \\\"construct__construct-277\\\",\\n      \\\"construct__construct-889\\\",\\n      \\\"couler-proj__couler-89\\\",\\n      \\\"coverahealth__dataspec-4\\\",\\n      \\\"coverahealth__dataspec-55\\\",\\n      \\\"coverahealth__dataspec-83\\\",\\n      \\\"crccheck__project_runpy-17\\\",\\n      \\\"cta-observatory__pyirf-188\\\",\\n      \\\"cunla__fakeredis-py-238\\\",\\n      \\\"datalad__datalad-next-257\\\",\\n      \\\"deepchem__deepchem-2802\\\",\\n      \\\"dhatim__python-license-check-75\\\",\\n      \\\"django__asgiref-211\\\",\\n      \\\"django__asgiref-325\\\",\\n      \\\"docker__docker-py-1143\\\",\\n      \\\"drvinceknight__nbchkr-14\\\",\\n      \\\"duosecurity__duo_client_python-86\\\",\\n      \\\"dwavesystems__dimod-331\\\",\\n      \\\"dwavesystems__dwave-cloud-client-289\\\",\\n      \\\"dwavesystems__\\n\\n... [截断: 输出过长，省略 5399 字符] ...\\n\\n \\\"tobymao__sqlglot-2499\\\",\\n      \\\"tobymao__sqlglot-2529\\\",\\n      \\\"tobymao__sqlglot-2576\\\",\\n      \\\"tobymao__sqlglot-2739\\\",\\n      \\\"tobymao__sqlglot-2800\\\",\\n      \\\"tylerwince__pydbg-4\\\",\\n      \\\"unt-libraries__edtf-validate-30\\\",\\n      \\\"vaidik__commentjson-46\\\",\\n      \\\"vitalik__django-ninja-434\\\",\\n      \\\"vitalik__django-ninja-838\\\",\\n      \\\"vogt4nick__dequindre-53\\\",\\n      \\\"weaveworks__grafanalib-584\\\",\\n      \\\"wfondrie__mokapot-65\\\",\\n      \\\"wireservice__agate-excel-25\\\",\\n      \\\"wright-group__WrightTools-938\\\",\\n      \\\"yukinarit__pyserde-264\\\",\\n      \\\"zalando-stups__senza-349\\\",\\n      \\\"zalando-stups__senza-372\\\",\\n      \\\"zopefoundation__DocumentTemplate-49\\\",\\n      \\\"zopefoundation__RestrictedPython-272\\\",\\n      \\\"zopefoundation__RestrictedPython-97\\\",\\n      \\\"zopefoundation__persistent-161\\\"\\n    ]\\n  },\\n  \\\"evaluation\\\": {\\n    \\\"full_all\\\": {\\n      \\\"GB\\\": {\\n        \\\"macro_f1\\\": 0.9674,\\n        \\\"accuracy\\\": 0.979,\\n        \\\"precision_macro\\\": 0.9812,\\n        \\\"recall_macro\\\": 0.955,\\n        \\\"f1_stagnation\\\": 0.9479,\\n        \\\"f1_progress\\\": 0.9869\\n      },\\n      \\\"RF\\\": {\\n        \\\"macro_f1\\\": 0.9123,\\n        \\\"accuracy\\\": 0.9368,\\n        \\\"precision_macro\\\": 0.8854,\\n        \\\"recall_macro\\\": 0.9517,\\n        \\\"f1_stagnation\\\": 0.8658,\\n        \\\"f1_progress\\\": 0.9587\\n      }\\n    },\\n    \\\"unseen_all\\\": {\\n      \\\"GB\\\": {\\n        \\\"macro_f1\\\": 0.9669,\\n        \\\"accuracy\\\": 0.9787,\\n        \\\"precision_macro\\\": 0.981,\\n        \\\"recall_macro\\\": 0.9542,\\n        \\\"f1_stagnation\\\": 0.9471,\\n        \\\"f1_progress\\\": 0.9867\\n      },\\n      \\\"RF\\\": {\\n        \\\"macro_f1\\\": 0.9121,\\n        \\\"accuracy\\\": 0.9367,\\n        \\\"precision_macro\\\": 0.8854,\\n        \\\"recall_macro\\\": 0.9512,\\n        \\\"f1_stagnation\\\": 0.8656,\\n        \\\"f1_progress\\\": 0.9586\\n      }\\n    },\\n    \\\"full_conf2\\\": {\\n      \\\"GB\\\": {\\n        \\\"macro_f1\\\": 0.9919,\\n        \\\"accuracy\\\": 0.9949,\\n        \\\"precision_macro\\\": 0.996,\\n        \\\"recall_macro\\\": 0.9879,\\n        \\\"f1_stagnation\\\": 0.9869,\\n        \\\"f1_progress\\\": 0.9968\\n      },\\n      \\\"RF\\\": {\\n        \\\"macro_f1\\\": 0.9959,\\n        \\\"accuracy\\\": 0.9974,\\n        \\\"precision_macro\\\": 0.9936,\\n        \\\"recall_macro\\\": 0.9983,\\n        \\\"f1_stagnation\\\": 0.9935,\\n        \\\"f1_progress\\\": 0.9984\\n      }\\n    },\\n    \\\"unseen_conf2\\\": {\\n      \\\"GB\\\": {\\n        \\\"macro_f1\\\": 0.9917,\\n        \\\"accuracy\\\": 0.9947,\\n        \\\"precision_macro\\\": 0.9959,\\n        \\\"recall_macro\\\": 0.9876,\\n        \\\"f1_stagnation\\\": 0.9867,\\n        \\\"f1_progress\\\": 0.9967\\n      },\\n      \\\"RF\\\": {\\n        \\\"macro_f1\\\": 0.9962,\\n        \\\"accuracy\\\": 0.9976,\\n        \\\"precision_macro\\\": 0.9941,\\n        \\\"recall_macro\\\": 0.9984,\\n        \\\"f1_stagnation\\\": 0.994,\\n        \\\"f1_progress\\\": 0.9985\\n      }\\n    }\\n  },\\n  \\\"deltas\\\": {\\n    \\\"all\\\": {\\n      \\\"GB\\\": {\\n        \\\"full\\\": 0.9674,\\n        \\\"unseen\\\": 0.9669,\\n        \\\"delta_pp\\\": -0.05\\n      },\\n      \\\"RF\\\": {\\n        \\\"full\\\": 0.9123,\\n        \\\"unseen\\\": 0.9121,\\n        \\\"delta_pp\\\": -0.01\\n      }\\n    },\\n    \\\"conf>=2\\\": {\\n      \\\"GB\\\": {\\n        \\\"full\\\": 0.9919,\\n        \\\"unseen\\\": 0.9917,\\n        \\\"delta_pp\\\": -0.02\\n      },\\n      \\\"RF\\\": {\\n        \\\"full\\\": 0.9959,\\n        \\\"unseen\\\": 0.9962,\\n        \\\"delta_pp\\\": 0.03\\n      }\\n    }\\n  },\\n  \\\"table2_verification\\\": {\\n    \\\"GB_all\\\": {\\n      \\\"target\\\": 0.9674,\\n      \\\"actual\\\": 0.9674,\\n      \\\"match\\\": true,\\n      \\\"diff_bps\\\": 0.0\\n    },\\n    \\\"RF_all\\\": {\\n      \\\"target\\\": 0.9123,\\n      \\\"actual\\\": 0.9123,\\n      \\\"match\\\": true,\\n      \\\"diff_bps\\\": 0.0\\n    },\\n    \\\"GB_conf2\\\": {\\n      \\\"target\\\": 0.9919,\\n      \\\"actual\\\": 0.9919,\\n      \\\"match\\\": true,\\n      \\\"diff_bps\\\": 0.0\\n    },\\n    \\\"RF_conf2\\\": {\\n      \\\"target\\\": 0.9959,\\n      \\\"actual\\\": 0.9959,\\n      \\\"match\\\": true,\\n      \\\"diff_bps\\\": 0.0\\n    }\\n  },\\n  \\\"all_table2_match\\\": true,\\n  \\\"data_stats\\\": {\\n    \\\"swe_train\\\": 10634,\\n    \\\"oh_nonabstain\\\": 150652,\\n    \\\"oh_unseen\\\": 139594,\\n    \\\"oh_conf2\\\": 43376,\\n    \\\"oh_unseen_conf2\\\": 40118\\n  },\\n  \\\"hyperparams\\\": {\\n    \\\"GB\\\": {\\n      \\\"n_estimators\\\": 200,\\n      \\\"learning_rate\\\": 0.05,\\n      \\\"max_depth\\\": 5\\n    },\\n    \\\"RF\\\": {\\n      \\\"n_estimators\\\": 100,\\n      \\\"max_depth\\\": 10\\n    }\\n  },\\n  \\\"note\\\": \\\"Trained on TRAIN SPLIT ONLY (not trainval) to match canonical cross_agent_structural_baseline.py\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000208"
+        },
+        {
+          "source_line": 209,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果保存完毕。注册实验。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "d2310d90-2678-4a52-adb0-6e2a6f824b32",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ErgFnnBHLJiS32xiD1TNYd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4850,
+                "cache_read_input_tokens": 114722,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4850
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000209"
+        },
+        {
+          "source_line": 210,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0164JyAyDZXSuMG42mdJMnp9",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Write instance_isolation_canonical.py script",
+                    "status": "completed",
+                    "activeForm": "Writing instance_isolation_canonical.py script"
+                  },
+                  {
+                    "content": "Upload and run script on server",
+                    "status": "completed",
+                    "activeForm": "Running script on server"
+                  },
+                  {
+                    "content": "Verify full set matches Table 2 and report results",
+                    "status": "completed",
+                    "activeForm": "Verifying results against Table 2"
+                  },
+                  {
+                    "content": "Register experiment in registry",
+                    "status": "in_progress",
+                    "activeForm": "Registering experiment"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "d824daca-4bc6-465e-a8f6-e4ebad7dbb9b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ErgFnnBHLJiS32xiD1TNYd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4850,
+                "cache_read_input_tokens": 114722,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4850
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000210"
+        },
+        {
+          "source_line": 211,
+          "timestamp": "2026-05-15T03:16:49.106Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0164JyAyDZXSuMG42mdJMnp9",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "0c231047-71d7-4987-8ed3-840b4656d3d5",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Write instance_isolation_canonical.py script",
+                  "status": "completed",
+                  "activeForm": "Writing instance_isolation_canonical.py script"
+                },
+                {
+                  "content": "Upload and run script on server",
+                  "status": "completed",
+                  "activeForm": "Running script on server"
+                },
+                {
+                  "content": "Verify full set matches Table 2 and report results",
+                  "status": "in_progress",
+                  "activeForm": "Verifying results against Table 2"
+                },
+                {
+                  "content": "Register experiment in registry",
+                  "status": "pending",
+                  "activeForm": "Registering experiment"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Write instance_isolation_canonical.py script",
+                  "status": "completed",
+                  "activeForm": "Writing instance_isolation_canonical.py script"
+                },
+                {
+                  "content": "Upload and run script on server",
+                  "status": "completed",
+                  "activeForm": "Running script on server"
+                },
+                {
+                  "content": "Verify full set matches Table 2 and report results",
+                  "status": "completed",
+                  "activeForm": "Verifying results against Table 2"
+                },
+                {
+                  "content": "Register experiment in registry",
+                  "status": "in_progress",
+                  "activeForm": "Registering experiment"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000211"
+        },
+        {
+          "source_line": 212,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jzh1TJZY73qzi3xKwjPAr2",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "instance-isolation-canonical",
+                "field": "status",
+                "value": "success",
+                "project": "agent_progress_probe",
+                "spec": {
+                  "command": "python src/analysis/instance_isolation_canonical.py",
+                  "server": "bjb2-23165",
+                  "data_path": "/root/autodl-tmp/agent_progress_probe/data/",
+                  "data_count": 150652,
+                  "model_name": "GradientBoosting+RandomForest",
+                  "seed": 42,
+                  "checkpoint_path": "N/A",
+                  "log_path": "/tmp/instance_isolation_canonical.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "97696951-7fb5-43c6-9e1b-9ed1f65f2243",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Mm8vWt1wH9wRHByDFyE7EQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 238,
+                "cache_read_input_tokens": 119572,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 238
+                },
+                "output_tokens": 51,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000212"
+        },
+        {
+          "source_line": 213,
+          "timestamp": "2026-05-15T03:16:56.358Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jzh1TJZY73qzi3xKwjPAr2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid state 'success'. Valid: ['ALLOCATED', 'ANALYZING', 'DEPLOYED', 'DEPLOYING', 'DONE', 'PENDING', 'PREPARING', 'QUEUED', 'RUNNING']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1744}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "51fcf1c7-f2e9-474c-808a-61c19372c1a6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid state 'success'. Valid: ['ALLOCATED', 'ANALYZING', 'DEPLOYED', 'DEPLOYING', 'DONE', 'PENDING', 'PREPARING', 'QUEUED', 'RUNNING']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1744}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid state 'success'. Valid: ['ALLOCATED', 'ANALYZING', 'DEPLOYED', 'DEPLOYING', 'DONE', 'PENDING', 'PREPARING', 'QUEUED', 'RUNNING']\", \"metadata\": {\"elapsed_seconds\": 0.1744}}"
+              }
+            }
+          },
+          "id": "event-000213"
+        },
+        {
+          "source_line": 214,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RcuYiqVjsrNubzf18VWuxX",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "instance-isolation-canonical",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "agent_progress_probe",
+                "spec": {
+                  "command": "python src/analysis/instance_isolation_canonical.py",
+                  "server": "bjb2-23165",
+                  "data_path": "/root/autodl-tmp/agent_progress_probe/data/",
+                  "data_count": 150652,
+                  "model_name": "GradientBoosting+RandomForest",
+                  "seed": 42,
+                  "checkpoint_path": "N/A",
+                  "log_path": "/tmp/instance_isolation_canonical.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "ba61364d-731a-49c6-949a-3ca6413ce387",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MQ2PvRNAh6DEnDie6x8hbM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 354,
+                "cache_read_input_tokens": 119810,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 354
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000214"
+        },
+        {
+          "source_line": 215,
+          "timestamp": "2026-05-15T03:17:02.538Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RcuYiqVjsrNubzf18VWuxX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1744}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "f2cc6a63-1cf8-4ad9-a58a-ec2905665312",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1744}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1744}}"
+              }
+            }
+          },
+          "id": "event-000215"
+        },
+        {
+          "source_line": 216,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019py9wiVTuhtu65YZpCzEoi",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "instance-isolation-canonical",
+                "field": "status",
+                "value": "QUEUED",
+                "project": "agent_progress_probe",
+                "spec": {
+                  "command": "python src/analysis/instance_isolation_canonical.py",
+                  "server": "bjb2-23165",
+                  "data_path": "/root/autodl-tmp/agent_progress_probe/data/",
+                  "data_count": 150652,
+                  "model_name": "GradientBoosting+RandomForest",
+                  "seed": 42,
+                  "checkpoint_path": "N/A",
+                  "log_path": "/tmp/instance_isolation_canonical.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "9e1436f0-9545-487a-84d5-aff1b4995953",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WAXhtGiDSArrWT8sNDBBUB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 323,
+                "cache_read_input_tokens": 120164,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 323
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000216"
+        },
+        {
+          "source_line": 217,
+          "timestamp": "2026-05-15T03:17:08.207Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019py9wiVTuhtu65YZpCzEoi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"instance-isolation-canonical\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T03:17:06.926Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:17:06.926Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/analysis/instance_isolation_canonical.py\\\", \\\"server\\\": \\\"bjb2-23165\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/agent_progress_probe/data/\\\", \\\"data_count\\\": 150652, \\\"model_name\\\": \\\"GradientBoosting+RandomForest\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/tmp/instance_isolation_canonical.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5705}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "0053d760-2819-479c-847d-c1d03cff53e7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"instance-isolation-canonical\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T03:17:06.926Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:17:06.926Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/analysis/instance_isolation_canonical.py\\\", \\\"server\\\": \\\"bjb2-23165\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/agent_progress_probe/data/\\\", \\\"data_count\\\": 150652, \\\"model_name\\\": \\\"GradientBoosting+RandomForest\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/tmp/instance_isolation_canonical.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5705}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"instance-isolation-canonical\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T03:17:06.926Z\", \"updated_at\": \"2026-05-15T03:17:06.926Z\", \"spec\": {\"command\": \"python src/analysis/instance_isolation_canonical.py\", \"server\": \"bjb2-23165\", \"data_path\": \"/root/autodl-tmp/agent_progress_probe/data/\", \"data_count\": 150652, \"model_name\": \"GradientBoosting+RandomForest\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"/tmp/instance_isolation_canonical.log\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5705}}"
+              }
+            }
+          },
+          "id": "event-000217"
+        },
+        {
+          "source_line": 218,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GhSPFG9LNbQBfffip3kPFF",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "instance-isolation-canonical",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "agent_progress_probe"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "d871a16e-7df7-4956-9f6a-c19bbb6e63e2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S85XEZeSjArA7vddtnqTsN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 516,
+                "cache_read_input_tokens": 120487,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 516
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000218"
+        },
+        {
+          "source_line": 219,
+          "timestamp": "2026-05-15T03:17:13.206Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GhSPFG9LNbQBfffip3kPFF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"instance-isolation-canonical\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T03:17:06.926Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:17:11.839Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/analysis/instance_isolation_canonical.py\\\", \\\"server\\\": \\\"bjb2-23165\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/agent_progress_probe/data/\\\", \\\"data_count\\\": 150652, \\\"model_name\\\": \\\"GradientBoosting+RandomForest\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/tmp/instance_isolation_canonical.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.715}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "5c0c99c0-8d1d-467a-8328-f2865b5cbb96",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"instance-isolation-canonical\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T03:17:06.926Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:17:11.839Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/analysis/instance_isolation_canonical.py\\\", \\\"server\\\": \\\"bjb2-23165\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/agent_progress_probe/data/\\\", \\\"data_count\\\": 150652, \\\"model_name\\\": \\\"GradientBoosting+RandomForest\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/tmp/instance_isolation_canonical.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.715}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"instance-isolation-canonical\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T03:17:06.926Z\", \"updated_at\": \"2026-05-15T03:17:11.839Z\", \"spec\": {\"command\": \"python src/analysis/instance_isolation_canonical.py\", \"server\": \"bjb2-23165\", \"data_path\": \"/root/autodl-tmp/agent_progress_probe/data/\", \"data_count\": 150652, \"model_name\": \"GradientBoosting+RandomForest\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"/tmp/instance_isolation_canonical.log\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.715}}"
+              }
+            }
+          },
+          "id": "event-000219"
+        },
+        {
+          "source_line": 220,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014f7rS5pgBvo5YqbYrbwfRt",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "instance-isolation-canonical",
+                "field": "status",
+                "value": "DONE",
+                "project": "agent_progress_probe"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "66bc58a9-8c72-44c5-a80d-6edd4b2102ca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M8sqsqxdTE1WfHmeLePCSn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 389,
+                "cache_read_input_tokens": 121003,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 389
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000220"
+        },
+        {
+          "source_line": 221,
+          "timestamp": "2026-05-15T03:17:16.315Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014f7rS5pgBvo5YqbYrbwfRt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1767}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "6520d6d5-982c-4f0a-a875-0d9ec281454a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1767}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.1767}}"
+              }
+            }
+          },
+          "id": "event-000221"
+        },
+        {
+          "source_line": 222,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K2YUUPDz1Pa5qPwHv6BmNy",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "instance-isolation-canonical",
+                "field": "conclusion",
+                "value": "All Table 2 numbers exactly reproduced. Instance isolation delta < 0.1pp across all settings, confirming no leakage from instance overlap.",
+                "project": "agent_progress_probe"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "653c963b-02f5-4559-bef9-249e7ffd380e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011Eths1F1afKJav9arvmt68",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 193,
+                "cache_read_input_tokens": 121392,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 193
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000222"
+        },
+        {
+          "source_line": 223,
+          "timestamp": "2026-05-15T03:17:21.911Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K2YUUPDz1Pa5qPwHv6BmNy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'All Table 2 numbers exactly reproduced. Instance isolation delta < 0.1pp across all settings, confirming no leakage from instance overlap.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2174}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "c5791944-0dd0-4179-86db-eea5c43e95cb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'All Table 2 numbers exactly reproduced. Instance isolation delta < 0.1pp across all settings, confirming no leakage from instance overlap.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2174}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'All Table 2 numbers exactly reproduced. Instance isolation delta < 0.1pp across all settings, confirming no leakage from instance overlap.'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.2174}}"
+              }
+            }
+          },
+          "id": "event-000223"
+        },
+        {
+          "source_line": 224,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018L35hvZn1cZkW8jyadRvur",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "instance-isolation-canonical",
+                "field": "conclusion",
+                "value": "success",
+                "project": "agent_progress_probe"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "e6680fd9-fb59-431f-ba2d-01566eeba973",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MigNQj2ovjqCo7M2JNQ1gi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 262,
+                "cache_read_input_tokens": 121585,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 262
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000224"
+        },
+        {
+          "source_line": 225,
+          "timestamp": "2026-05-15T03:17:24.854Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018L35hvZn1cZkW8jyadRvur",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"instance-isolation-canonical\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T03:17:06.926Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:17:24.731Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/analysis/instance_isolation_canonical.py\\\", \\\"server\\\": \\\"bjb2-23165\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/agent_progress_probe/data/\\\", \\\"data_count\\\": 150652, \\\"model_name\\\": \\\"GradientBoosting+RandomForest\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/tmp/instance_isolation_canonical.log\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2861}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "c354e1e3-36d9-4c48-8f35-f0aac6b5964f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"instance-isolation-canonical\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T03:17:06.926Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:17:24.731Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/analysis/instance_isolation_canonical.py\\\", \\\"server\\\": \\\"bjb2-23165\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/agent_progress_probe/data/\\\", \\\"data_count\\\": 150652, \\\"model_name\\\": \\\"GradientBoosting+RandomForest\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/tmp/instance_isolation_canonical.log\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2861}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"instance-isolation-canonical\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T03:17:06.926Z\", \"updated_at\": \"2026-05-15T03:17:24.731Z\", \"spec\": {\"command\": \"python src/analysis/instance_isolation_canonical.py\", \"server\": \"bjb2-23165\", \"data_path\": \"/root/autodl-tmp/agent_progress_probe/data/\", \"data_count\": 150652, \"model_name\": \"GradientBoosting+RandomForest\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"/tmp/instance_isolation_canonical.log\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2861}}"
+              }
+            }
+          },
+          "id": "event-000225"
+        },
+        {
+          "source_line": 226,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011MmBSY63qJjy4b9oBsNne9",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "instance-isolation-canonical",
+                "field": "status",
+                "value": "DONE",
+                "project": "agent_progress_probe"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "e0fd7347-5df3-4279-8148-77f81805745f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CPPTruKG5hagCX1f9HEK2M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 397,
+                "cache_read_input_tokens": 121847,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 397
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000226"
+        },
+        {
+          "source_line": 227,
+          "timestamp": "2026-05-15T03:17:30.513Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011MmBSY63qJjy4b9oBsNne9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"instance-isolation-canonical\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T03:17:06.926Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:17:29.883Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/analysis/instance_isolation_canonical.py\\\", \\\"server\\\": \\\"bjb2-23165\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/agent_progress_probe/data/\\\", \\\"data_count\\\": 150652, \\\"model_name\\\": \\\"GradientBoosting+RandomForest\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/tmp/instance_isolation_canonical.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T03:17:29.883Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.805}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "7813c0ac-1871-4c0e-a7cf-1d9cf7fa093d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"instance-isolation-canonical\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T03:17:06.926Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:17:29.883Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/analysis/instance_isolation_canonical.py\\\", \\\"server\\\": \\\"bjb2-23165\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/agent_progress_probe/data/\\\", \\\"data_count\\\": 150652, \\\"model_name\\\": \\\"GradientBoosting+RandomForest\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/tmp/instance_isolation_canonical.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T03:17:29.883Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.805}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"instance-isolation-canonical\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T03:17:06.926Z\", \"updated_at\": \"2026-05-15T03:17:29.883Z\", \"spec\": {\"command\": \"python src/analysis/instance_isolation_canonical.py\", \"server\": \"bjb2-23165\", \"data_path\": \"/root/autodl-tmp/agent_progress_probe/data/\", \"data_count\": 150652, \"model_name\": \"GradientBoosting+RandomForest\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"/tmp/instance_isolation_canonical.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T03:17:29.883Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.805}}"
+              }
+            }
+          },
+          "id": "event-000227"
+        },
+        {
+          "source_line": 228,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "注册 artifact。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "f15287ff-29d0-42af-b260-f7014704aaf0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UR4f8KEiAh2T1766t5HaVp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 421,
+                "cache_read_input_tokens": 122244,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 421
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000228"
+        },
+        {
+          "source_line": 229,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012oYoFTynJdK7NiGXSmtExh",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "instance-isolation-canonical-results",
+                "type": "data",
+                "description": "Canonical instance isolation results: Table 2 numbers exactly reproduced, all deltas < 0.1pp",
+                "project": "agent_progress_probe",
+                "exp_id": "instance-isolation-canonical",
+                "content_filename": "results.json",
+                "tags": [
+                  "instance-isolation",
+                  "cross-agent",
+                  "leakage",
+                  "table2-verified"
+                ],
+                "content": "{\n  \"all_table2_match\": true,\n  \"table2_verification\": {\n    \"GB_all\": {\"target\": 0.9674, \"actual\": 0.9674, \"match\": true},\n    \"RF_all\": {\"target\": 0.9123, \"actual\": 0.9123, \"match\": true},\n    \"GB_conf2\": {\"target\": 0.9919, \"actual\": 0.9919, \"match\": true},\n    \"RF_conf2\": {\"target\": 0.9959, \"actual\": 0.9959, \"match\": true}\n  },\n  \"deltas\": {\n    \"all\": {\n      \"GB\": {\"full\": 0.9674, \"unseen\": 0.9669, \"delta_pp\": -0.05},\n      \"RF\": {\"full\": 0.9123, \"unseen\": 0.9121, \"delta_pp\": -0.01}\n    },\n    \"conf>=2\": {\n      \"GB\": {\"full\": 0.9919, \"unseen\": 0.9917, \"delta_pp\": -0.02},\n      \"RF\": {\"full\": 0.9959, \"unseen\": 0.9962, \"delta_pp\": 0.03}\n    }\n  },\n  \"instance_overlap\": {\n    \"swe_train_instances\": 1386,\n    \"oh_instances\": 3409,\n    \"overlap_count\": 284,\n    \"overlap_ratio_of_oh\": 0.0833\n  },\n  \"data_stats\": {\n    \"swe_train\": 10634,\n    \"oh_nonabstain\": 150652,\n    \"oh_unseen\": 139594,\n    \"oh_conf2\": 43376,\n    \"oh_unseen_conf2\": 40118\n  }\n}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "1c9b88bc-784d-459a-88f7-4e2261691ca7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UR4f8KEiAh2T1766t5HaVp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 421,
+                "cache_read_input_tokens": 122244,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 421
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000229"
+        },
+        {
+          "source_line": 230,
+          "timestamp": "2026-05-15T03:17:42.951Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'all_table2_match': True...h_unseen_conf2': 40118}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_012oYoFTynJdK7NiGXSmtExh"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "be10489e-17e2-45c9-902c-42d98ff3e8bf",
+            "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'all_table2_match': True...h_unseen_conf2': 40118}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+          },
+          "id": "event-000230"
+        },
+        {
+          "source_line": 231,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RuCZDQXrjKH9R7bBwTKSEd",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "instance-isolation-canonical-results",
+                "type": "data",
+                "description": "Canonical instance isolation results: Table 2 numbers exactly reproduced, all deltas < 0.1pp",
+                "project": "agent_progress_probe",
+                "exp_id": "instance-isolation-canonical",
+                "content_filename": "results.json",
+                "tags": [
+                  "instance-isolation",
+                  "cross-agent",
+                  "leakage",
+                  "table2-verified"
+                ],
+                "content": "{\"all_table2_match\": true, \"table2_verification\": {\"GB_all\": {\"target\": 0.9674, \"actual\": 0.9674, \"match\": true}, \"RF_all\": {\"target\": 0.9123, \"actual\": 0.9123, \"match\": true}, \"GB_conf2\": {\"target\": 0.9919, \"actual\": 0.9919, \"match\": true}, \"RF_conf2\": {\"target\": 0.9959, \"actual\": 0.9959, \"match\": true}}, \"deltas\": {\"all\": {\"GB\": {\"full\": 0.9674, \"unseen\": 0.9669, \"delta_pp\": -0.05}, \"RF\": {\"full\": 0.9123, \"unseen\": 0.9121, \"delta_pp\": -0.01}}, \"conf>=2\": {\"GB\": {\"full\": 0.9919, \"unseen\": 0.9917, \"delta_pp\": -0.02}, \"RF\": {\"full\": 0.9959, \"unseen\": 0.9962, \"delta_pp\": 0.03}}}, \"instance_overlap\": {\"swe_train_instances\": 1386, \"oh_instances\": 3409, \"overlap_count\": 284, \"overlap_ratio_of_oh\": 0.0833}, \"data_stats\": {\"swe_train\": 10634, \"oh_nonabstain\": 150652, \"oh_unseen\": 139594, \"oh_conf2\": 43376, \"oh_unseen_conf2\": 40118}}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "cf0839ec-0546-4acd-b31b-e2f7584645ee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VWCFueMkusvEaDtxEFzP6n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 986,
+                "cache_read_input_tokens": 122665,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 986
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000231"
+        },
+        {
+          "source_line": 232,
+          "timestamp": "2026-05-15T03:17:50.009Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'all_table2_match': True...h_unseen_conf2': 40118}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01RuCZDQXrjKH9R7bBwTKSEd"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "2e627a2e-2f5d-4d29-914a-23e003813268",
+            "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'all_table2_match': True...h_unseen_conf2': 40118}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+          },
+          "id": "event-000232"
+        },
+        {
+          "source_line": 233,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JCTFMKir2tRDaj9cDkWobe",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "instance-isolation-canonical-results",
+                "type": "data",
+                "description": "Canonical instance isolation: Table 2 exactly reproduced, all deltas under 0.1pp confirming no instance leakage",
+                "project": "agent_progress_probe",
+                "exp_id": "instance-isolation-canonical"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "d151b1b7-0ba0-455d-95ed-fe4169209682",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EjvJzwa7aMopWB3vny9ig9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 738,
+                "cache_read_input_tokens": 123651,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 738
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000233"
+        },
+        {
+          "source_line": 234,
+          "timestamp": "2026-05-15T03:17:53.312Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JCTFMKir2tRDaj9cDkWobe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"One of source_path, content, or url must be provided.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "9bf836d7-7215-411e-9105-bb5b86a0f5ab",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"One of source_path, content, or url must be provided.\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"One of source_path, content, or url must be provided.\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000234"
+        },
+        {
+          "source_line": 235,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WEd57f7Nj1BLv5Rk5d9mMw",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/instance-isolation-canonical/ 2>/dev/null; ls /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/ 2>/dev/null",
+                "description": "Check local artifacts directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "a88b197d-1029-4706-abc0-339cb80e31cf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016G11mmJoL7dACVwLVRfb5S",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 228,
+                "cache_read_input_tokens": 124389,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 228
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000235"
+        },
+        {
+          "source_line": 236,
+          "timestamp": "2026-05-15T03:17:59.215Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WEd57f7Nj1BLv5Rk5d9mMw",
+              "type": "tool_result",
+              "content": "__pycache__\n_project\nablation-architecture\nablation-supcon\nablation-window-size\nannotation_guide.md\nannotation_mapping.csv\nannotation_sample_450_DEPRECATED.csv\nannotation_sample_650.csv\nannotation_tool.html\nbaseline_flyingsquid\nbaseline_llm_judge.py\nbaseline_meanpool_lr.py\nbaselines.py\nbuild_annotation_tool.py\nconfidence-gradient\ncosine-sim-crossagent\ncosinesim_analysis_report.md\ncross-agent-eval\ncross-agent-no-cmdrep\ndata\ndata-volume-control\ndata_format_report.md\ndata_loader.py\ndata_scaling.py\ndownload_5k.py\ndream_reports\nencoder-ablation-probe-bgem3\nerror_analysis_v3_report.md\nevaluate.py\nf1_stag_trajectory_length.json\nfeature-overlap-ablation\nfewshot_probe.py\nframing-reaudit\ngenerate_embeddings.py\ngpu_env_report.md\nhuman-annotation\ninstance-level-isolation\nlabel_quality_check.py\nlabel_quality_check_v2.py\nlabel_quality_report.md\nlabel_quality_report_v2.md\nlabel_statistics_report.md\nlabeling_functions.py\nlf-firing-rate-fixed\nlf-temporal-dynamics\nlf_conflict_analysis.md\nlf_conflict_analysis.py\nlf_oracle_baseline.py\nliterature_map.yaml\nllm-judge-strengthened\nmanifest.yaml\nmultiseed-gb-crossagent-fixed\nmultiseed-structural\nnon-nlp-baseline\nnon_nlp_baseline.py\noh-cmdrep-ablation\noh-crossagent-error-analysis\noh-error-analysis\noh-full-finetune\noh-lf-temporal-dynamics\noh_cmdrep_ablation.py\noh_cmdrep_ablation_fixed.py\noh_full_finetune.py\nopenhands-fewshot-probe\nopenhands_format_analysis.md\noutcome-bp-sensitivity\noutcome_bp_sensitivity_report.md\npaired_bootstrap_cross_domain.json\nphase05_disagree_investigation.md\nprevalence-matched-ablation\nprobe-002\nprobe_001\nprobe_model.py\nreport_embedding_llmjudge_status.md\nreport_label_encoding_audit.md\nresults_encoder_multiseed_e5.json\nreview_issues.yaml\nreview_reports\nssh_diag_20260514.md\nstructural-data-scaling\nstructural-on-twv\ntemporal-label-model\ntlm-comprehensive-comparison\ntlm-probe-comparison\ntrain-without-ob\ntrain_architecture_ablation.py\ntrain_probe.py\ntrain_supcon.py\ntwv-ablation\nwindow_extractor.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "72cf3577-5d34-4a53-8ee2-61a8c53527e8",
+            "tool_use_result": {
+              "stdout": "__pycache__\n_project\nablation-architecture\nablation-supcon\nablation-window-size\nannotation_guide.md\nannotation_mapping.csv\nannotation_sample_450_DEPRECATED.csv\nannotation_sample_650.csv\nannotation_tool.html\nbaseline_flyingsquid\nbaseline_llm_judge.py\nbaseline_meanpool_lr.py\nbaselines.py\nbuild_annotation_tool.py\nconfidence-gradient\ncosine-sim-crossagent\ncosinesim_analysis_report.md\ncross-agent-eval\ncross-agent-no-cmdrep\ndata\ndata-volume-control\ndata_format_report.md\ndata_loader.py\ndata_scaling.py\ndownload_5k.py\ndream_reports\nencoder-ablation-probe-bgem3\nerror_analysis_v3_report.md\nevaluate.py\nf1_stag_trajectory_length.json\nfeature-overlap-ablation\nfewshot_probe.py\nframing-reaudit\ngenerate_embeddings.py\ngpu_env_report.md\nhuman-annotation\ninstance-level-isolation\nlabel_quality_check.py\nlabel_quality_check_v2.py\nlabel_quality_report.md\nlabel_quality_report_v2.md\nlabel_statistics_report.md\nlabeling_functions.py\nlf-firing-rate-fixed\nlf-temporal-dynamics\nlf_conflict_analysis.md\nlf_conflict_analysis.py\nlf_oracle_baseline.py\nliterature_map.yaml\nllm-judge-strengthened\nmanifest.yaml\nmultiseed-gb-crossagent-fixed\nmultiseed-structural\nnon-nlp-baseline\nnon_nlp_baseline.py\noh-cmdrep-ablation\noh-crossagent-error-analysis\noh-error-analysis\noh-full-finetune\noh-lf-temporal-dynamics\noh_cmdrep_ablation.py\noh_cmdrep_ablation_fixed.py\noh_full_finetune.py\nopenhands-fewshot-probe\nopenhands_format_analysis.md\noutcome-bp-sensitivity\noutcome_bp_sensitivity_report.md\npaired_bootstrap_cross_domain.json\nphase05_disagree_investigation.md\nprevalence-matched-ablation\nprobe-002\nprobe_001\nprobe_model.py\nreport_embedding_llmjudge_status.md\nreport_label_encoding_audit.md\nresults_encoder_multiseed_e5.json\nreview_issues.yaml\nreview_reports\nssh_diag_20260514.md\nstructural-data-scaling\nstructural-on-twv\ntemporal-label-model\ntlm-comprehensive-comparison\ntlm-probe-comparison\ntrain-without-ob\ntrain_architecture_ablation.py\ntrain_probe.py\ntrain_supcon.py\ntwv-ablation\nwindow_extractor.py",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000236"
+        },
+        {
+          "source_line": 237,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A2nPS9c5HL1ZfmhbmU9Vub",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "instance-isolation-canonical-results",
+                "type": "data",
+                "description": "Canonical instance isolation: Table 2 exactly reproduced, all deltas under 0.1pp confirming no instance leakage",
+                "project": "agent_progress_probe",
+                "exp_id": "instance-isolation-canonical",
+                "url": "/root/autodl-tmp/agent_progress_probe/artifacts/instance-isolation-canonical/results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "79f1c8c0-4887-4561-92d4-636ad17cac72",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dbn9ZWkGejHmX4BivpQPZ4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 858,
+                "cache_read_input_tokens": 124617,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 858
+                },
+                "output_tokens": 54,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000237"
+        },
+        {
+          "source_line": 238,
+          "timestamp": "2026-05-15T03:18:04.669Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A2nPS9c5HL1ZfmhbmU9Vub",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_7e8af6\\\", \\\"name\\\": \\\"instance-isolation-canonical-results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Canonical instance isolation: Table 2 exactly reproduced, all deltas under 0.1pp confirming no instance leakage\\\", \\\"path\\\": null, \\\"url\\\": \\\"/root/autodl-tmp/agent_progress_probe/artifacts/instance-isolation-canonical/results.json\\\", \\\"project\\\": \\\"agent_progress_probe\\\", \\\"exp_id\\\": \\\"instance-isolation-canonical\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T03:18:04.473958+00:00\\\", \\\"tags\\\": []}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "f17a867a-2964-4e0e-bbc5-3a114c53cbc6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_7e8af6\\\", \\\"name\\\": \\\"instance-isolation-canonical-results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Canonical instance isolation: Table 2 exactly reproduced, all deltas under 0.1pp confirming no instance leakage\\\", \\\"path\\\": null, \\\"url\\\": \\\"/root/autodl-tmp/agent_progress_probe/artifacts/instance-isolation-canonical/results.json\\\", \\\"project\\\": \\\"agent_progress_probe\\\", \\\"exp_id\\\": \\\"instance-isolation-canonical\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T03:18:04.473958+00:00\\\", \\\"tags\\\": []}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_7e8af6\", \"name\": \"instance-isolation-canonical-results\", \"type\": \"data\", \"description\": \"Canonical instance isolation: Table 2 exactly reproduced, all deltas under 0.1pp confirming no instance leakage\", \"path\": null, \"url\": \"/root/autodl-tmp/agent_progress_probe/artifacts/instance-isolation-canonical/results.json\", \"project\": \"agent_progress_probe\", \"exp_id\": \"instance-isolation-canonical\", \"skill\": \"\", \"created_at\": \"2026-05-15T03:18:04.473958+00:00\", \"tags\": []}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000238"
+        },
+        {
+          "source_line": 239,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HFUeRTczk94ahK5A7jug4J",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Write instance_isolation_canonical.py script",
+                    "status": "completed",
+                    "activeForm": "Writing instance_isolation_canonical.py script"
+                  },
+                  {
+                    "content": "Upload and run script on server",
+                    "status": "completed",
+                    "activeForm": "Running script on server"
+                  },
+                  {
+                    "content": "Verify full set matches Table 2 and report results",
+                    "status": "completed",
+                    "activeForm": "Verifying results against Table 2"
+                  },
+                  {
+                    "content": "Register experiment in registry",
+                    "status": "completed",
+                    "activeForm": "Registering experiment"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "8f6c026e-6308-4782-9035-e6fef37f0a99",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017L2BJzAhMi8zyhDre1bbJ9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 478,
+                "cache_read_input_tokens": 125475,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 478
+                },
+                "output_tokens": 32,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000239"
+        },
+        {
+          "source_line": 240,
+          "timestamp": "2026-05-15T03:18:11.291Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HFUeRTczk94ahK5A7jug4J",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "7afef466-21b7-4213-9be2-844d223c22aa",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Write instance_isolation_canonical.py script",
+                  "status": "completed",
+                  "activeForm": "Writing instance_isolation_canonical.py script"
+                },
+                {
+                  "content": "Upload and run script on server",
+                  "status": "completed",
+                  "activeForm": "Running script on server"
+                },
+                {
+                  "content": "Verify full set matches Table 2 and report results",
+                  "status": "completed",
+                  "activeForm": "Verifying results against Table 2"
+                },
+                {
+                  "content": "Register experiment in registry",
+                  "status": "in_progress",
+                  "activeForm": "Registering experiment"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Write instance_isolation_canonical.py script",
+                  "status": "completed",
+                  "activeForm": "Writing instance_isolation_canonical.py script"
+                },
+                {
+                  "content": "Upload and run script on server",
+                  "status": "completed",
+                  "activeForm": "Running script on server"
+                },
+                {
+                  "content": "Verify full set matches Table 2 and report results",
+                  "status": "completed",
+                  "activeForm": "Verifying results against Table 2"
+                },
+                {
+                  "content": "Register experiment in registry",
+                  "status": "completed",
+                  "activeForm": "Registering experiment"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000240"
+        },
+        {
+          "source_line": 241,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n```\n=== Canonical Instance Isolation ===\n\nTable 2 验证: ALL MATCH ✓\n\nFull set (与 Table 2 完全一致):\n  GB all  (N=150,652): macro_f1=0.9674 ✓\n  RF all  (N=150,652): macro_f1=0.9123 ✓\n  GB conf≥2 (N=43,376): macro_f1=0.9919 ✓\n  RF conf≥2 (N=43,376): macro_f1=0.9959 ✓\n\nUnseen-only (去掉 284 overlap instances):\n  GB all  (N=139,594): macro_f1=0.9669\n  RF all  (N=139,594): macro_f1=0.9121\n  GB conf≥2 (N=40,118): macro_f1=0.9917\n  RF conf≥2 (N=40,118): macro_f1=0.9962\n\nDelta (unseen - full):\n  GB all:    -0.05pp\n  RF all:    -0.01pp\n  GB conf≥2: -0.02pp\n  RF conf≥2: +0.03pp\n\nInstance overlap: 284 (8.3% of OH, train-only)\n```\n\n**关键差异 vs 上次实验**: 上次用 trainval (13,577 windows, 1,683 instances, 356 overlap) 导致 full set 数字不匹配 Table 2。本次用 train split only (10,634 windows, 1,386 instances, 284 overlap) 精确复现了 Table 2，delta 全部 < 0.1pp。\n\n**脚本**: `/root/autodl-tmp/agent_progress_probe/src/analysis/instance_isolation_canonical.py`  \n**结果**: `/root/autodl-tmp/agent_progress_probe/artifacts/instance-isolation-canonical/results.json`"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "uuid": "5e5f9f09-8a61-47ea-b3b1-de832a49d0c2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017ocxXNCUrinWWorMLxPMWc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 222,
+                "cache_read_input_tokens": 125953,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 222
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000241"
+        },
+        {
+          "source_line": 242,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n```\n=== Canonical Instance Isolation ===\n\nTable 2 验证: ALL MATCH ✓\n\nFull set (与 Table 2 完全一致):\n  GB all  (N=150,652): macro_f1=0.9674 ✓\n  RF all  (N=150,652): macro_f1=0.9123 ✓\n  GB conf≥2 (N=43,376): macro_f1=0.9919 ✓\n  RF conf≥2 (N=43,376): macro_f1=0.9959 ✓\n\nUnseen-only (去掉 284 overlap instances):\n  GB all  (N=139,594): macro_f1=0.9669\n  RF all  (N=139,594): macro_f1=0.9121\n  GB conf≥2 (N=40,118): macro_f1=0.9917\n  RF conf≥2 (N=40,118): macro_f1=0.9962\n\nDelta (unseen - full):\n  GB all:    -0.05pp\n  RF all:    -0.01pp\n  GB conf≥2: -0.02pp\n  RF conf≥2: +0.03pp\n\nInstance overlap: 284 (8.3% of OH, train-only)\n```\n\n**关键差异 vs 上次实验**: 上次用 trainval (13,577 windows, 1,683 instances, 356 overlap) 导致 full set 数字不匹配 Table 2。本次用 train split only (10,634 windows, 1,386 instances, 284 overlap) 精确复现了 Table 2，delta 全部 < 0.1pp。\n\n**脚本**: `/root/autodl-tmp/agent_progress_probe/src/analysis/instance_isolation_canonical.py`  \n**结果**: `/root/autodl-tmp/agent_progress_probe/artifacts/instance-isolation-canonical/results.json`"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 725485,
+            "duration_api_ms": 674370,
+            "num_turns": 96,
+            "stop_reason": "end_turn",
+            "session_id": "18d6588e-553c-41e2-ba8d-7a9cc3fca8e0",
+            "total_cost_usd": 5.690590999999999,
+            "usage": {
+              "input_tokens": 94,
+              "cache_creation_input_tokens": 114334,
+              "cache_read_input_tokens": 8477753,
+              "output_tokens": 29372,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 114334,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 511,
+                  "cache_read_input_tokens": 125953,
+                  "cache_creation_input_tokens": 222,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 222
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2277,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0023569999999999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 94,
+                "outputTokens": 29372,
+                "cacheReadInputTokens": 8477753,
+                "cacheCreationInputTokens": 114334,
+                "webSearchRequests": 0,
+                "costUSD": 5.688233999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "223a96e0-8838-4c1a-9849-a67935f134c9"
+          },
+          "id": "event-000242"
+        }
+      ]
+    }
+  ]
+}

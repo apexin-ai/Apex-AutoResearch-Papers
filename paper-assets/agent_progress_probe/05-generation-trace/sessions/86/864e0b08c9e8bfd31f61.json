@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "864e0b08c9e8bfd31f61",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "code lf1 fix rerun v2",
+  "task_key": "worker_code_lf1_fix_rerun_v2_20260514T054930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_lf1_fix_rerun_v2_20260514T054930_result.json",
+    "occurrence": 1,
+    "bytes": 585,
+    "sha256": "1f652a93eb3d0acceb7a3aa2bea6b1775b2b7f331121e496c1a906407562369c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。验证结果符合预期：\n\n| 验证项 | 预期 | 实际 | 状态 |\n|--------|------|------|------|\n| 数据行数 | 5000 | 5000 | ✓ |\n| LF1 覆盖率 < 82.7% | 下降 | 57.1% | ✓ |\n| LF2 覆盖率 >> 0.3% | 大幅提升 | 65.6% | ✓ |\n| 窗口数 ~5x 旧版 12,331 | ~60K | 59,496 | ✓ |\n| 类别平衡改善 | 不再 10:1 | 1.6:1 | ✓ |\n\n修复 LF1 后最显著的变化：高置信度标签从旧版严重偏 stagnation（98:1004）翻转为偏 progress（9555:5846），类别比从 10.3:1 降至 1.6:1，数据质量大幅改善。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-lf1-fix-rerun-v2.md"
+}

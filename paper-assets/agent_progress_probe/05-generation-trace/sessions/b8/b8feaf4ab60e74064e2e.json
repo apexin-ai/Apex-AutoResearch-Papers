@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8feaf4ab60e74064e2e",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis cross domain bootstrap",
+  "task_key": "worker_analysis_cross-domain-bootstrap_20260514T220201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross-domain-bootstrap_20260514T220201_result.json",
+    "occurrence": 1,
+    "bytes": 1553,
+    "sha256": "f05e39ef681f819f29a12c28119d1d20eae9886d4975d92155df419cd221ca05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 已注册 (`art_20260514_c0a8f2`)。\n\n---\n\n## Cross-domain Bootstrap 结果\n\n**测试集**: OH test split, 20,807 windows, 512 instances\n\n### 发现了标签管线不一致问题\n\nembeddings.pt 中存储的 `majority_label` 与当前 `windows_labeled.jsonl` 的标签有 **14.9% 不一致**（3,110 / 20,807 windows）。原因是 embeddings.pt 生成后，labeling function 管线做过更新并重新生成了 `windows_labeled.jsonl`。\n\n两个标签源的 stagnation 比例差异巨大：\n- **emb labels**（Probe 训练用的）: stag 6.8% (1,417/20,807)\n- **WL labels**（当前 3-LF MV）: stag 21.4% (4,449/20,807)\n\n### 结果取决于用哪个标签作 ground truth\n\n| Ground Truth | GB macro_f1 | Probe macro_f1 | Δ | 95% CI | p-value |\n|---|---|---|---|---|---|\n| WL labels (当前 3-LF MV) | **0.9021** | 0.6443 | +25.78pp | [+24.8, +26.8] | <0.001 |\n| Emb labels (Probe 训练标签) | 0.6212 | **0.7512** | −13.00pp | [−14.1, −11.9] | <0.001 |\n\n### 解读\n\n你的任务指定用 **3-LF majority vote silver labels** 作 ground truth，对应 WL labels。按这个标准：\n\n**GB 以 25.78pp 的显著优势胜过 Probe (p<0.001)**，GB=0.9021 vs Probe=0.6443。\n\n但需注意：这个比较对 Probe **不公平**——Probe 是在 stale 的 emb labels 上训练的（stag 仅 6.8%），而当前 WL labels 的 stag 比例是 21.4%。Probe 从未见过当前标准下的正确标签。要做公平比较，需要用当前 WL labels 重新生成 embeddings 并重新训练 Probe。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-domain-bootstrap.md"
+}

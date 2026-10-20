@@ -1,0 +1,16 @@
+{
+  "exp_id": "cutoff_s1_eval",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:25:26.581Z",
+    "updated_at": "2026-05-23T00:25:29.519Z",
+    "hypothesis": "50r SafeLIBERO evaluation of cutoff_s1 (OCC loss cutoff@35K, seed 43). Tests if curriculum-style OCC training improves over full OCC (avg CAR=0.797) and vanilla (avg CAR=0.780).",
+    "parent": "cutoff_s1"
+  },
+  "timestamp": "2026-05-23T00:25:29.636453+00:00",
+  "trigger": "update_registry"
+}

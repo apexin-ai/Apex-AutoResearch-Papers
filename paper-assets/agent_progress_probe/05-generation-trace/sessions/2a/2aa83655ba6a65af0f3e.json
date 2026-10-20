@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2aa83655ba6a65af0f3e",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "train train without ob",
+  "task_key": "worker_train_train-without-ob_20260514T135043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_train-without-ob_20260514T135043_result.json",
+    "occurrence": 1,
+    "bytes": 535,
+    "sha256": "64498b2aedd20dad4f2daf56eccc499d66aede9ac88922381d28b80f3de77505"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交。\n\n- **exp_id**: `train-without-ob`\n- **PID**: 55740\n- **GPU**: cuda:0\n- **日志**: `~/runs/agent_progress_probe/train-without-ob.log`\n\n脚本逻辑：\n- 只用 `command_repetition` + `file_diff_delta` 做 majority vote（去掉 `outcome_backpropagation`）\n- conf≥2 = 两个 LF 必须一致才保留\n- 复用 probe_001 的 instance-level test split（通过 `split_by_instance` 同 seed=42 确定 instance 归属）\n- GRU 2-layer, hidden=256, lr=1e-3, batch=32, epochs=20, early stop patience=5"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-train-without-ob.md"
+}

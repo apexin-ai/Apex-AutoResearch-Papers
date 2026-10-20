@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1addbee7d6d347e04d42",
+  "project": "agent_progress_probe",
+  "kind": "history",
+  "title": "agent / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4.md",
+    "occurrence": 1,
+    "bytes": 3567,
+    "sha256": "ee2a73fc3ee76256ba06a9c673c7acdf8dd505e46f968dbbc225b623960d2f1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T21:49:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 bjb2-23165 的 cuda:0 和 cuda:1（RTX 5090 32G×2）\n- Gold set 标注是 GO/NO-GO gate——**最晚 5/16 必须启动**，否则赶不上 5/25 DDL\n- D039 pivot 已定：TLM 判死，论文 framing 是 empirical analysis paper，不要再跑 TLM 相关实验\n- 论文定位 EMNLP 2026 ARR 5/25 Findings，不是 main conference\n- gold_dryrun_v3 的 dry-run 已成功（pipeline 验证通过），等用户确认标注人力后直接跑正式版，不需要再验证 pipeline\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb2-23165，工作目录 `/root/autodl-tmp/agent_progress_probe/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 数据：`/root/autodl-tmp/agent_progress_probe/data/windows_labeled.jsonl`（15401 windows）\n- Gold set 评估脚本：`/root/autodl-tmp/agent_progress_probe/evaluate_gold_set.py`（已就绪）\n- 模型 checkpoint：`checkpoints_full/best_model.pt`（probe_001）\n- 活跃进程：无（GPU 空闲，等 gold set 标注）\n- Cron：reconcile 返回 0 active\n\n### 3. 📊 当前状态\n实验主体全部完成：40 DONE（24 success / 6 negative / 1 failed / 9 killed），0 RUNNING。10 个 PREPARING 是历史遗留（killed/superseded），不需要处理。\n\n**刚完成的关键里程碑**：\n- paired-bootstrap 显著性检验完成（3 个 in-domain 比较 p<0.001）\n- F1_stag per-class breakdown 分析完成（详见 memory.md）\n- experiment_plan.yaml 32 实验已写入（D041）\n- paper_framing.md 已更新至 D039 pivot 版本\n- dream_simulate(review_mode=\"full\") 已触发（dream_20260514T214352），等待完成\n\n**等待中**：\n- 用户确认 gold set 标注人力（650 windows）\n- dream review 完成回调\n- Paper Agent Full Draft 队列中（不依赖 gold set 的章节可先写）\n\n### 4. 📋 待办（条件触发式）\n- 用户确认标注人力 → 启动 650 窗口标注流程 → 标注完成后一条命令跑 `evaluate_gold_set.py`（pipeline 已验证）\n- dream review 回调到达 → 读取审查意见 → 修改论文对应章节 → 汇报 Director\n- 5/16 仍无标注确认 → 向 Director 升级：gold set 是 critical path，再拖就赶不上 DDL\n- Paper Agent draft 完成 → review + 迭代（不等 gold set 的章节：intro, method, LF temporal, TLM negative, related work）\n- Gold set 验证结果出来 → 补入 paper Results + Discussion → 最终 polish\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D039: TLM（TWV/HMM/lag-HMM）全面失败，从 core claim 降级为 negative finding\n- D036/D035: Structural features 跨域碾压 probe（GB 0.967 vs probe 需 few-shot 适配）\n- 论文三层贡献：(1) Structural signal discovery（主）；(2) LF temporal dynamics + cross-agent；(3) TLM negative\n\n**关键指标**：\n- Struct GB in-domain: 0.9951 macro_f1\n- Struct GB cross-agent: 0.967\n- vs LLM judge: +33.3pp\n- Probe conf≥2: f1_stag=0.8522\n\n**易踩的坑**：\n- 10 个 PREPARING 实验是历史残留（killed/superseded），不要试图恢复或提交它们\n- Gold set 是唯一非 circular 评估——所有现有实验都用 LF 弱标签训练+评估，存在 circular evaluation 风险\n- 跨域 baseline 数值引用规则见 D042：统一用 cross-agent-structural 实验结果\n- 距 DDL 仅 11 天，GPU 当前空闲是正常的（等标注），但标注一完成必须立即跑验证\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-copy-2.md"
+}

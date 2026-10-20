@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9787b8b1f3c3858d0360",
+  "project": "agent_progress_probe",
+  "kind": "history",
+  "title": "agent / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1.md",
+    "occurrence": 1,
+    "bytes": 5033,
+    "sha256": "8ce3dd6aacdb253a53184bc36769a76f38334be3f1815b454466bc930315ca92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-14T11:05:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单只有 `autodl-5090:cuda:0` 和 `autodl-5090:cuda:1`，但实际实验全在 `gpu-5090-2x-2` 上跑的（历史原因，config 未更新）。提交前必须确认 Director 是否已将 gpu-5090-2x-2 加入白名单，否则需要 push back\n- baseline-llm-judge 需要 API key（`request_secret('openrouter_api_key')`），base_url=`http://47.94.22.126/v1`，预算 $50-200。**未获 key 前不得启动**\n- 人工标注 gold set（400+ 窗口）是 temporal-label-model 的硬前置依赖，**不能跳过或用自动标签替代**——这是 Claim 1 的根基\n- EMNLP 2026 ARR deadline 5/25，只剩 **11 天**。D014 用户承诺资源管够\n- conf≥2 子集（15,401 windows）上 command_repetition 单 LF (0.9451) 超过 probe (0.9055)——论文必须透明讨论此循环性限制，不得回避\n\n### 2. 🖥️ 基础设施快照\n- **主服务器**: gpu-5090-2x-2（RTX 5090 32G × 2），account=root\n- **备用服务器**: autodl-5090（RTX 5090 × 2），密码 H6BKr9xWo+8Z，端口 23165\n- **工作目录**: `/root/autodl-tmp/agent_progress_probe`\n- **Python**: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **数据**: `data/embeddings.pt`（1.1GB, 54,809 windows, 1024-dim）, `data/windows_labeled.jsonl`（1,824 labeled windows for LLM judge pilot）\n- **Checkpoints**: `checkpoints/best_model.pt`（conf≥2, seed42）, `checkpoints_seed123/`, `checkpoints_seed456/`, `checkpoints_full/`（全量数据）\n- **活跃进程**: 无。所有 cron 已 reconcile，0 个活跃 Worker\n- **OpenHands cross-agent embedding**: ROADMAP 标记\"进行中\"但 registry 无对应条目——需要 SSH 确认实际状态\n\n### 3. 📊 当前状态\n**刚完成**: probe-multiseed 三种子验证（mean macro-F1=0.9185±0.0113），所有 seed 均满足 >0.70 且 gap >5pp 条件。\n\n**Registry 摘要**（6 条，全部 DONE 或 PREPARING）:\n| ID | Status | 关键指标 |\n|---|---|---|\n| emb_001 | DONE(success) | 54,809 windows embedded, 1024-dim |\n| probe_001 | DONE(success) | macro-F1=0.9055, gap=6.24pp vs Repeat-3 |\n| probe-002 | DONE(success) | macro-F1=0.8468 (全量, conf≥0) |\n| baseline-meanpool-lr | DONE(success) | macro-F1=0.8435, GRU gap=+6.2pp |\n| probe-multiseed | DONE(success) | mean=0.9185±0.0113, 3 seeds |\n| baseline-llm-judge | PREPARING | 等 API key |\n\n**等待中**: \n- 无 Worker 运行、无 Cron 活跃\n- baseline-llm-judge 等 API key 审批\n- human-annotation 等 Director 确认标注人力安排\n- OpenHands cross-agent embedding 状态不明（ROADMAP 说在跑但 registry 无条目）\n\n### 4. 📋 待办（条件触发式）\n- API key 到手 → 启动 baseline-llm-judge Worker（pilot 50 windows → 全量）\n- Director 确认标注人力 → 准备标注材料（采样策略 + 标注指南 + 界面），派 Worker 执行\n- OpenHands embedding 确认完成 → 跑 cross-agent 迁移评估（probe 在 OpenHands 上的 zero-shot 表现）\n- GPU 空闲 → 并行铺 cosinesim-check（CPU）+ flyingsquid-baseline（CPU）+ outcome-bp-sensitivity（1 GPU）\n- human-annotation gold set 完成 → GO/NO-GO 检查点：Fleiss κ ≥ 0.6 + LF temporal dynamics 在人工标签上验证 → GO 则启动 temporal-label-model 实现；NO-GO 则转 Plan B（empirical study 定位）\n- Re-dream 报告返回 → 分析新 framing 的审稿模拟结果，必要时调整 paper_framing.md\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D007: MVP 通过，probe 有效（0.9055, +6.24pp）\n- D009: Dream 三档 Weak Reject，novelty 不足 → framing 升级为 temporal label model（方法论贡献）\n- D010: 全量数据 F1 降至 0.8468，但 GRU vs MeanPool gap 反而扩大（4.83→12.74pp），证明时序建模在噪声数据上价值更大\n- D013: temporal-label-model 必须 gate on gold set，否则循环论证\n- D014: 回退到 EMNLP 5/25（原定 ACL 8月），用户承诺资源管够\n- D015: Cross-agent LF 适配失败，需修 LF + OpenHands 人工标注 200 窗口\n\n**最容易判断错的事**:\n1. **不要把 conf≥2 和 conf≥0 的指标混用**——conf≥2 是\"clean\"子集（0.9055），conf≥0 是全量（0.8468），论文不同 claim 用不同子集\n2. **temporal-label-model 目前零实现零证据**——这是 Claim 1 的核心，但完全依赖 gold set 验证。Plan B 已就绪但需要 Director 触发\n3. **OpenHands cross-agent 的 LF 不能直接复用**——D015 已确认 SWE-agent 的 LF 在 OpenHands 上不工作，需要适配\n4. **experiment_plan.yaml 中很多条目 registry_id 未关联**（如 probe-multiseed plan 里 status=planned 但 registry 里已 DONE）——plan 和 registry 有脱节，以 registry 为准\n5. **Worker 池当前 = 0，违反 L1 红线**（Worker 池 <2 = 失职）——但当前确实全部阻塞在 API key + 标注人力 + OpenHands 状态确认上，应立即向 Director 汇报阻塞项并请求解除\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-copy-2.md"
+}

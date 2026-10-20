@@ -1,0 +1,16 @@
+{
+  "exp_id": "random_occ_v2_s0_r4",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-28T23:11:19.398Z",
+    "updated_at": "2026-05-28T23:11:28.201Z",
+    "hypothesis": "Content irrelevance (Full OCC ≈ Random OCC) v2 replication seed 42. Corrected: --occ_data_dir + WANDB_MODE=disabled + orphan child process cleanup. occ_loss=0.1068@step0 confirmed.",
+    "parent": "random_occ_v2_s0_r3"
+  },
+  "timestamp": "2026-05-28T23:11:28.574034+00:00",
+  "trigger": "update_registry"
+}

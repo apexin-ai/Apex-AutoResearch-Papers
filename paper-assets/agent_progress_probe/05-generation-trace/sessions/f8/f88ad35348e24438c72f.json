@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f88ad35348e24438c72f",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis w1w2 investigation",
+  "task_key": "worker_analysis_w1w2-investigation_20260515T012354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w1w2-investigation_20260515T012354_result.json",
+    "occurrence": 1,
+    "bytes": 1214,
+    "sha256": "8f177182636f96aa195cab5c7e5d87a899d79b17f366b1d13a6590a2b6f010d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "排查完成。\n\n## 结果摘要\n\n### W1: Probe ZS macro_f1 (0.581 vs 0.5984)\n\n**Root cause: 评估范围不同。**\n- 0.581 = error analysis 对全部 43,366 conf≥2 windows 的 macro_f1\n- 0.5984 = cross-agent-eval / openhands-fewshot-probe 对 15% test split (~6,122 windows) 的 macro_f1\n- 同一 checkpoint (`checkpoints/best_model.pt`, probe_001)，同一 embeddings，1.74pp 差异来自子集组成不同\n- **论文使用 0.5984 是正确的**（与 few-shot 实验方法论一致）\n\n### W2: Overlap 覆盖率 28% (12,328 / 43,366)\n\n**Root cause: report.md 是 stale 的。**\n- 当前代码和 JSON 输出已正确匹配 43,366/43,366 windows（**100% 覆盖率**）\n- 12,328 来自旧脚本版本的 key 匹配 bug，已修复\n- 修正后 overlap: probe 6,005 errors, struct 57 errors, both wrong = 31, overlap rate = 0.52%\n- 核心发现不变：两个模型的错误几乎不重叠\n\n### 注意\n\n服务器上 `embeddings_fixed.pt`（May 15）和 `checkpoints/best_model.pt`（May 14）已被重建，当前运行结果 macro_f1=0.7588 与论文数据不一致。JSON 中的绝对数字不可用于论文，但 overlap 覆盖率修复（代码逻辑层面）可信。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w1w2-investigation.md"
+}

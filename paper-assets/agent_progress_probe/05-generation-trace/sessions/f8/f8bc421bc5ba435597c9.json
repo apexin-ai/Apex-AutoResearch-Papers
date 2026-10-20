@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8bc421bc5ba435597c9",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "experiment d073 a3 probe e5 large",
+  "task_key": "worker_experiment_d073-a3-probe-e5-large_20260516T022748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_d073-a3-probe-e5-large_20260516T022748_result.json",
+    "occurrence": 1,
+    "bytes": 253,
+    "sha256": "625a94e91f90f83e1007e56b2fd422ce499e67ef102d0ccf4f2e9fca7c6f4f81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D073 E5-large pipeline running on bjb2-23165 — embedding generation at ~37% (55k/150k windows), ~62 min remaining. Training and eval will follow automatically. Will check back in ~60 min when the full pipeline should be near completion."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-d073-a3-probe-e5-large.md"
+}

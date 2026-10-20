@@ -1,0 +1,26 @@
+{
+  "exp_id": "cka_random_occ",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T05:34:56.773Z",
+    "updated_at": "2026-05-24T05:35:43.085Z",
+    "hypothesis": "Random OCC (random labels, gradient flow enabled) should preserve encoder representations similar to Vanilla/Full OCC, confirming that gradient flow—not label content—prevents representational drift. If Random OCC CKA matches Detach OCC (low), then label content matters; if it matches Vanilla/Full OCC (high), gradient flow is the key factor.",
+    "parent": "cka_analysis",
+    "spec": {
+      "command": "python analysis/cka_analysis.py --condition_names 'Random OCC'",
+      "server": "westd-10894",
+      "data_path": "/root/autodl-tmp/libero_datasets/libero_spatial",
+      "data_count": 200,
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_source": "ablation_random_occ_s2 (seed 44)",
+      "eval_data": "libero_spatial (200 samples)"
+    }
+  },
+  "timestamp": "2026-05-24T05:35:43.219985+00:00",
+  "trigger": "update_registry"
+}

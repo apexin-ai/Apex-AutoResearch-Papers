@@ -1,0 +1,33 @@
+{
+  "exp_id": "depth_s3",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:47:59.606Z",
+    "updated_at": "2026-05-22T06:54:19.119Z",
+    "hypothesis": "Seed 45 (4th seed) depth replication for stronger statistical power. 4 seeds enables robust mean±std reporting for AAAI. If depth consistently outperforms vanilla (avg CAR > 0.780) across 4 seeds, the finding has strong statistical backing.",
+    "parent": "depth_s0",
+    "spec": {
+      "command": "torchrun finetune.py --use_depth_head True --seed 45 --max_steps 50005 --save_freq 10000 --master-port 29501",
+      "server": "westd-10894",
+      "gpu": "cuda:3",
+      "pid": "940106",
+      "log_path": "~/runs/occsafe_vla/depth_s3.log",
+      "submitted_at": "2026-05-22T06:53:50.038Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": "~25000 episodes (9/10 tasks with depth labels)",
+      "model_name": "openvla-7b",
+      "seed": 45,
+      "checkpoint_source": "openvla-7b (from scratch)",
+      "eval_data": "N/A (training)"
+    }
+  },
+  "timestamp": "2026-05-22T06:54:19.195418+00:00",
+  "trigger": "update_registry"
+}

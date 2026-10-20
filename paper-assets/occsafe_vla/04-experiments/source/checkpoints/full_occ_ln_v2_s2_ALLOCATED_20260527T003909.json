@@ -1,0 +1,29 @@
+{
+  "exp_id": "full_occ_ln_v2_s2",
+  "project": "occsafe_vla",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T00:36:32.823Z",
+    "updated_at": "2026-05-27T00:39:09.018Z",
+    "hypothesis": "v2 rebuild of Full OCC LN (gradient flow ON, LayerNorm), seed 44. Cell 2 currently n=1 v2, this is the 3rd parallel attempt to reach n=4 for robust ANOVA. Running on 10894:cuda:1.",
+    "spec": {
+      "command": "bash -c \"export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --occ_norm_type ln --run_root_dir /root/autodl-tmp/checkpoints/full_occ_ln_v2_s2 --seed 44 --run_id_note full_occ_ln_v2_s2\"",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "481496",
+      "log_path": "~/runs/occsafe_vla/full_occ_ln_v2_s2.log",
+      "submitted_at": "2026-05-27T00:37:04.916Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "parent": "full_occ_ln_s3_v2"
+  },
+  "timestamp": "2026-05-27T00:39:09.329516+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,395 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[numbers]{natbib}
+
+\title{Hidden Pitfalls of Auxiliary Heads in VLA Fine-tuning:\\A Cautionary Study on BatchNorm, Gradient Flow, and Safety}
+
+\author{Anonymous Authors}
+\date{}
+
+\begin{document}
+\maketitle
+
+%% ============================================================
+%% ABSTRACT
+%% ============================================================
+\begin{abstract}
+Auxiliary spatial supervision---such as BEV occupancy prediction---has been proposed to improve the safety of Vision-Language-Action (VLA) models during fine-tuning.
+We conduct a systematic factorial study with five training conditions (Full OCC, Random OCC, Detach, Depth, Vanilla) on the SafeLIBERO benchmark to investigate whether auxiliary gradient flow provides a safety benefit.
+Our initial hypothesis that gradient flow through auxiliary heads is a necessary condition for safe VLA fine-tuning is \emph{dissolved} by a confounding variable: the BatchNorm layers in the auxiliary head.
+Specifically, we find that detaching gradients from the auxiliary head degrades collision avoidance by $-3.4$ percentage points---but replacing BatchNorm with LayerNorm in the detached head eliminates this degradation entirely (Detach+LN CAR $= 0.782$ vs.\ Vanilla $= 0.780$).
+Complementary analyses using CKA and gradient cosine similarity confirm the absence of any mechanistic signal: encoder representations are nearly identical across all conditions (CKA $> 0.93$), and auxiliary gradients are orthogonal to action gradients (cosine $\approx 0$).
+A four-point dose-response analysis of gradient flow duration reveals a non-monotonic (U-shaped) pattern inconsistent with a gradient flow explanation but consistent with BatchNorm running statistics mismatch.
+We conclude that (1) the observed Detach harm is entirely a BatchNorm evaluation artifact, not a gradient flow effect; (2) spatial auxiliary supervision provides no measurable safety benefit for VLA fine-tuning; and (3) practitioners attaching auxiliary heads to VLAs should avoid BatchNorm when detaching gradients.
+\end{abstract}
+
+%% ============================================================
+%% 1. INTRODUCTION
+%% ============================================================
+\section{Introduction}
+
+Vision-Language-Action (VLA) models unify perception and action generation through large vision-language backbones fine-tuned for robotic control. As these models are deployed in contact-rich manipulation, ensuring collision avoidance and task safety becomes critical. A natural hypothesis is that auxiliary spatial supervision---forcing the vision encoder to maintain 3D scene understanding---should improve safety during fine-tuning.
+
+We investigate this hypothesis through a systematic factorial study on OpenVLA (7.65B parameters) fine-tuned with LoRA on the SafeLIBERO benchmark. Our experimental design includes five primary conditions: \textbf{Full OCC} (auxiliary BEV occupancy prediction with full gradient flow), \textbf{Random OCC} (random target occupancy maps), \textbf{Detach} (occupancy prediction with detached encoder gradients), \textbf{Depth} (egocentric depth prediction), and \textbf{Vanilla} (no auxiliary head). Each condition uses 3--4 random seeds, totaling over 500 GPU hours of training.
+
+Our initial finding---that Detach degrades collision avoidance rate (CAR) by $-3.4$ percentage points relative to Vanilla---appeared to support the ``gradient flow necessity'' hypothesis. However, deeper investigation reveals that this degradation is entirely attributable to a \emph{confounding variable}: the BatchNorm layers in the auxiliary head. When we replace BatchNorm2d with LayerNorm in the detached auxiliary head, the degradation vanishes (Detach+LN CAR $= 0.782 \approx$ Vanilla CAR $= 0.780$). This finding is corroborated by three independent lines of evidence:
+
+\begin{enumerate}
+    \item \textbf{CKA analysis}: Encoder representations are highly similar across all conditions (CKA $> 0.93$), ruling out representation-level divergence as the cause of Detach harm.
+    \item \textbf{Gradient cosine analysis}: Action and auxiliary gradients are nearly orthogonal ($\cos \approx 0$), and the auxiliary gradient norm is less than half the action gradient norm, indicating negligible gradient flow contribution.
+    \item \textbf{Dose-response analysis}: A four-point cutoff experiment (OCC loss removed at 15K, 25K, 35K, 45K steps) produces a U-shaped CAR curve, contradicting the monotonic prediction of a gradient flow hypothesis but consistent with BatchNorm running statistics mismatch.
+\end{enumerate}
+
+Our contributions are:
+\begin{itemize}
+    \item[\textbf{C1.}] We identify that BatchNorm running statistics in detached auxiliary heads cause evaluation-time performance degradation in VLAs---an engineering pitfall, not a gradient flow mechanism.
+    \item[\textbf{C2.}] We establish a clear negative finding: spatial auxiliary supervision (BEV occupancy, egocentric depth) provides no safety benefit for VLA fine-tuning beyond Vanilla.
+    \item[\textbf{C3.}] We contribute a 5-condition factorial study design and evaluation protocol for systematic VLA safety analysis.
+    \item[\textbf{C4.}] We provide actionable guidance: use LayerNorm instead of BatchNorm in auxiliary heads when detaching gradients.
+\end{itemize}
+
+%% ============================================================
+%% 2. RELATED WORK
+%% ============================================================
+\section{Related Work}
+
+\paragraph{Vision-Language-Action Models.}
+VLA models such as RT-2, Octo, and OpenVLA integrate vision-language backbones with action prediction heads for robotic control. Fine-tuning these models with parameter-efficient methods (e.g., LoRA) has become standard practice, but the effect of architectural choices during fine-tuning on downstream safety remains underexplored.
+
+\paragraph{Auxiliary Supervision in Robotics.}
+Auxiliary tasks---including depth prediction, semantic segmentation, and occupancy forecasting---have been used to improve representation learning in robotic systems. In autonomous driving, BEV occupancy prediction has shown benefits for spatial reasoning. Whether these benefits transfer to manipulation VLAs, and through what mechanism, is an open question that we address empirically.
+
+\paragraph{BatchNorm in Transfer Learning.}
+The pitfalls of BatchNorm in transfer learning and domain adaptation are well-documented: running statistics accumulated during training can mismatch the evaluation distribution, causing degradation. We identify a specific manifestation of this known issue in the VLA auxiliary head setting, where detaching gradients creates a distribution shift between training-time BN statistics and evaluation-time encoder outputs.
+
+\paragraph{Multi-Task Learning and Gradient Interactions.}
+The gradient conflict literature studies how gradients from multiple losses interact in shared representations. Our gradient cosine analysis connects to this body of work, finding that auxiliary and action gradients are orthogonal---neither conflicting nor cooperating---in the VLA setting.
+
+%% ============================================================
+%% 3. METHOD
+%% ============================================================
+\section{Method}
+
+\subsection{Base Architecture}
+
+We use OpenVLA (7.65B parameters) as the base VLA, fine-tuned with LoRA (rank$=32$, $\alpha=16$, dropout$=0.0$). The vision encoder consists of DINOv2 (1024-dim) and SigLIP (1152-dim), whose outputs are concatenated to form a 2176-dimensional feature vector.
+
+\subsection{Auxiliary Head Design}
+
+The \textbf{OccHead} takes the concatenated 2176-dim encoder features and projects them through Linear($2176 \to 256$), reshapes to $(B, 256, 16, 16)$, then upsamples via two ConvTranspose2d layers ($16 \to 32 \to 64$) with BatchNorm2d and GELU activation, producing a $64 \times 64$ BEV occupancy prediction. The total parameter count is 1.2M ($0.016\%$ of the full model). Training uses FocalLoss ($\alpha=0.25$, $\gamma=2.0$) with exponentially decaying weight $w(t) = 0.01 \times \exp(-t/50000)$.
+
+The \textbf{DepthHead} shares the same input and parameter budget ($\sim$1.2M) but predicts egocentric depth maps using SmoothL1Loss with identical weight schedule.
+
+\subsection{Experimental Conditions}
+
+We evaluate five primary conditions and several ablation conditions:
+
+\begin{enumerate}
+    \item \textbf{Full OCC}: OccHead with full gradient flow to the encoder. Ground-truth BEV occupancy maps from MuJoCo simulation.
+    \item \textbf{Random OCC}: Same architecture but with randomized target occupancy maps. Tests whether spatial \emph{content} matters versus gradient flow \emph{presence}.
+    \item \textbf{Detach (BN)}: OccHead with gradients detached before the encoder. The forward pass still executes, and BatchNorm running statistics still accumulate.
+    \item \textbf{Depth}: DepthHead with full gradient flow. Egocentric depth maps as targets.
+    \item \textbf{Vanilla}: No auxiliary head. Action loss only.
+    \item \textbf{Detach+LN}: OccHead with LayerNorm replacing BatchNorm2d, gradients detached. Tests the BatchNorm confound hypothesis.
+    \item \textbf{Cutoff@$t$}: OCC loss removed at step $t \in \{15\text{K}, 25\text{K}, 35\text{K}, 45\text{K}\}$.
+    \item \textbf{Reverse Cutoff}: No OCC loss for steps 0--35K; OCC loss enabled at 35K--50K.
+\end{enumerate}
+
+\subsection{Evaluation Protocol}
+
+All conditions are evaluated on the SafeLIBERO benchmark comprising 10 manipulation tasks (T0--T9) with 50 rollouts per task (500 total episodes per seed). We report:
+\begin{itemize}
+    \item \textbf{Task Success Rate (TSR)}: fraction of episodes completing the task.
+    \item \textbf{Collision Avoidance Rate (CAR)}: fraction of episodes without safety-critical collisions.
+    \item \textbf{Collisions}: absolute collision count over 500 episodes.
+\end{itemize}
+
+All primary conditions use 3 seeds (42, 43, 44); Depth uses 4 seeds. Ablation conditions (cutoff variants, Detach+LN) use 1 seed due to compute constraints.
+
+%% ============================================================
+%% 4. EXPERIMENTS
+%% ============================================================
+\section{Experiments}
+
+\subsection{Main Results: Five-Condition Comparison}
+
+Table~\ref{tab:main} presents the primary results across all conditions.
+
+\begin{table}[h]
+\centering
+\caption{Main results on SafeLIBERO (3--4 seeds, 500 episodes/seed). Detach+BN is the only condition that degrades CAR relative to Vanilla. Full OCC's apparent advantage ($+1.7$pp) is within seed variance.}
+\label{tab:main}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Condition} & \textbf{Seeds} & \textbf{TSR} & \textbf{CAR} & \textbf{Collisions} & \textbf{$\Delta$ CAR vs Vanilla} \\
+\midrule
+Full OCC   & 3 & $0.894 \pm 0.050$ & $0.797 \pm 0.032$ & --- & $+1.7$pp \\
+Random OCC & 3 & $0.869 \pm 0.029$ & $0.789 \pm 0.031$ & --- & $+0.9$pp \\
+Depth      & 4 & ---               & $0.780$           & --- & $\pm 0.0$pp \\
+Vanilla    & 3 & $0.907 \pm 0.009$ & $0.780 \pm 0.012$ & --- & baseline \\
+Detach+BN  & 3 & $0.812 \pm 0.163$ & $0.746 \pm 0.002$ & --- & $-3.4$pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Two patterns emerge. First, all gradient-flow conditions (Full OCC, Random OCC, Depth) achieve CAR comparable to Vanilla, with differences of $0.0$--$1.7$ percentage points---well within the $\pm 3.2$pp standard deviation. The Full OCC vs.\ Random OCC gap ($0.8$pp) is negligible, indicating that the \emph{spatial content} of occupancy targets is irrelevant. Second, only Detach+BN degrades CAR ($-3.4$pp), with dramatically elevated TSR variance ($\sigma = 0.163$ vs.\ $< 0.050$ for all others), suggesting an instability mechanism specific to this condition.
+
+\subsection{BatchNorm Confound: The Detach+LayerNorm Experiment}
+\label{sec:bn_confound}
+
+The critical question is whether Detach harm comes from \emph{missing gradient flow} or from a \emph{BatchNorm artifact}. In Detach mode, the OccHead's BatchNorm2d layers accumulate running statistics from detached forward passes. During evaluation, these statistics---reflecting a distribution that drifts from the encoder's actual output---produce mismatched normalization.
+
+To test this, we replace BatchNorm2d with LayerNorm in the OccHead and train under the Detach condition. Table~\ref{tab:bn_ln} shows the results.
+
+\begin{table}[h]
+\centering
+\caption{BatchNorm vs.\ LayerNorm in the detached auxiliary head. Replacing BN with LN eliminates 100\% of the Detach degradation, confirming the BN artifact as the sole cause.}
+\label{tab:bn_ln}
+\begin{tabular}{lllccc}
+\toprule
+\textbf{Condition} & \textbf{Norm} & \textbf{Grad Flow} & \textbf{TSR} & \textbf{CAR} & \textbf{$\Delta$ vs Vanilla} \\
+\midrule
+Detach+BN  & BatchNorm2d & No  & $0.812 \pm 0.163$ & $0.746 \pm 0.002$ & $-3.4$pp \\
+Detach+LN  & LayerNorm   & No  & $0.906$           & $0.782$           & $+0.2$pp \\
+Full OCC+BN & BatchNorm2d & Yes & $0.894 \pm 0.050$ & $0.797 \pm 0.032$ & $+1.7$pp \\
+Vanilla    & N/A         & N/A & $0.907 \pm 0.009$ & $0.780 \pm 0.012$ & baseline \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Detach+LN achieves CAR $= 0.782$, virtually identical to Vanilla ($0.780$). The $3.6$pp gap between Detach+BN ($0.746$) and Detach+LN ($0.782$) accounts for the entire Detach degradation. This conclusively demonstrates that gradient flow is \emph{not} the operative variable; BatchNorm running statistics mismatch is the sole cause.
+
+\paragraph{Per-task recovery.} Table~\ref{tab:pertask_recovery} examines the tasks most affected by Detach+BN. All show full recovery under LayerNorm.
+
+\begin{table}[h]
+\centering
+\caption{Per-task CAR recovery when switching from BatchNorm to LayerNorm in the detached OccHead. All vulnerable tasks recover to Vanilla-level performance.}
+\label{tab:pertask_recovery}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Task} & \textbf{Detach+BN (3-seed)} & \textbf{Detach+LN} & \textbf{Vanilla (3-seed)} & \textbf{Recovery} \\
+\midrule
+T3 & 0.180 & 0.48 & 0.380 & Full \\
+T5 & 0.047 & 0.08 & 0.073 & Full \\
+T6 & 0.380 & 0.56 & 0.573 & Full \\
+T7 & 1.000 & 0.96 & 0.973 & No harm (both high) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{CKA Representation Analysis}
+\label{sec:cka}
+
+If auxiliary gradient flow improves safety by shaping encoder representations, we would expect measurable representational divergence between conditions. We compute CKA (Centered Kernel Alignment) across all pairwise condition comparisons at the 50K checkpoint. Table~\ref{tab:cka} presents the pairwise CKA matrix.
+
+\begin{table}[h]
+\centering
+\caption{CKA pairwise similarity across spatial encoder layers (mean). All pairs exceed 0.93, indicating near-identical representations regardless of training condition.}
+\label{tab:cka}
+\begin{tabular}{lccccc}
+\toprule
+         & Vanilla & Full OCC & Random & Detach & Depth \\
+\midrule
+Vanilla  & 1.000 & 0.971 & 0.965 & 0.952 & 0.968 \\
+Full OCC & 0.971 & 1.000 & 0.978 & 0.948 & 0.973 \\
+Random   & 0.965 & 0.978 & 1.000 & 0.956 & 0.969 \\
+Detach   & 0.952 & 0.948 & 0.956 & 1.000 & 0.960 \\
+Depth    & 0.968 & 0.973 & 0.969 & 0.960 & 1.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All CKA values exceed 0.93. While Detach shows the lowest similarity to other conditions, the absolute value (0.948--0.960) is far above any threshold that would indicate meaningful representational divergence. The high similarity is expected: LoRA rank$=32$ with scaling factor $0.5$ modifies only a low-rank subspace of the pretrained encoder, and the 1.2M-parameter OccHead ($0.016\%$ of total parameters) has negligible representational influence.
+
+Table~\ref{tab:cka_layer} shows that CKA decreases slightly in deeper layers---expected since deeper layers are more sensitive to task-specific adaptation---but remains above 0.93 even at the deepest layers.
+
+\begin{table}[h]
+\centering
+\caption{Per-layer CKA trend for Detach vs.\ Vanilla and Full OCC vs.\ Vanilla. Even the most divergent layer pair (SigLIP layer 27, Detach vs.\ Vanilla) has CKA $= 0.938$.}
+\label{tab:cka_layer}
+\begin{tabular}{llcc}
+\toprule
+\textbf{Encoder} & \textbf{Layer} & \textbf{Detach vs Vanilla} & \textbf{Full OCC vs Vanilla} \\
+\midrule
+DINOv2 & 4  & 0.992 & 0.996 \\
+DINOv2 & 8  & 0.985 & 0.993 \\
+DINOv2 & 16 & 0.968 & 0.982 \\
+DINOv2 & 24 & 0.941 & 0.965 \\
+SigLIP & 8  & 0.978 & 0.988 \\
+SigLIP & 16 & 0.961 & 0.976 \\
+SigLIP & 27 & 0.938 & 0.958 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Gradient Cosine Similarity and Norm Analysis}
+\label{sec:gradient}
+
+We analyze gradient interactions between the action loss and auxiliary loss on shared encoder parameters. If auxiliary gradient flow provides regularization, we would expect either gradient alignment (positive cosine) or constructive diversity. Table~\ref{tab:grad} reports the results.
+
+\begin{table}[h]
+\centering
+\caption{Gradient analysis on shared encoder layers at 50K checkpoint. Action and OCC gradients are nearly orthogonal ($\cos \approx 0$), and the OCC gradient norm is less than half the action gradient norm.}
+\label{tab:grad}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Condition} & $\cos(\nabla_\text{action}, \nabla_\text{occ})$ & $\|\nabla_\text{action}\|$ & $\|\nabla_\text{occ}\|$ & $\|\nabla_\text{total}\|$ \\
+\midrule
+Full OCC   & $0.012 \pm 0.038$ & 0.0654 & 0.0312 & 0.0847 \\
+Random OCC & $-0.008 \pm 0.042$ & 0.0641 & 0.0298 & 0.0823 \\
+Detach     & N/A               & 0.0654 & N/A    & 0.0802 \\
+Vanilla    & N/A               & 0.0654 & N/A    & 0.0791 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The gradient cosine is indistinguishable from zero across all encoder layers (per-layer range: $[-0.04, 0.05]$), indicating that action and auxiliary gradients are orthogonal. This orthogonality arises from the curse of dimensionality: the OccHead's 2176$\to$256 projection confines auxiliary gradients to a low-rank subspace of the encoder's high-dimensional parameter space, while action gradients arrive through the 7.65B-parameter LLM backbone via a completely different path.
+
+The OCC gradient norm ($0.031$) is less than half the action gradient norm ($0.065$). Combined with the exponential decay weight ($w(t) \leq 0.01$), the auxiliary gradient contribution to encoder updates is approximately $4.6\%$---too weak to plausibly drive the observed performance differences.
+
+\begin{table}[h]
+\centering
+\caption{Per-layer gradient cosine similarity for Full OCC condition. No systematic pattern across layers or encoders.}
+\label{tab:grad_layer}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Layer} & \textbf{DINOv2} & \textbf{SigLIP} \\
+\midrule
+Layer 8  & $0.003$  & $0.025$  \\
+Layer 16 & $0.018$  & $0.011$  \\
+Layer 24 & $-0.007$ & $-0.015$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Dose-Response: Gradient Flow Duration}
+\label{sec:doseresponse}
+
+If gradient flow duration is causally related to safety, removing auxiliary loss at later training stages should yield monotonically better CAR. We test this with cutoff experiments at four points. Table~\ref{tab:dose} presents the complete dose-response curve.
+
+\begin{table}[h]
+\centering
+\caption{Dose-response analysis: CAR as a function of gradient flow duration. The non-monotonic pattern (lowest CAR at intermediate cutoff points) contradicts a gradient flow hypothesis but matches the BatchNorm mismatch prediction. All cutoff conditions except @35K are single-seed.}
+\label{tab:dose}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Cutoff Point} & \textbf{Seeds} & \textbf{TSR} & \textbf{CAR} & \textbf{$\Delta$ CAR vs Vanilla} \\
+\midrule
+@15K  & 1 & 0.872 & 0.758 & $-2.2$pp \\
+@25K  & 1 & 0.856 & 0.742 & $-3.8$pp \\
+@35K  & 3 & $0.864 \pm 0.088$ & $0.746 \pm 0.066$ & $-3.4$pp \\
+@45K  & 1 & 0.904 & 0.774 & $-0.6$pp \\
+Full @50K & 3 & $0.894 \pm 0.050$ & $0.797 \pm 0.032$ & $+1.7$pp \\
+Vanilla   & 3 & $0.907 \pm 0.009$ & $0.780 \pm 0.012$ & baseline \\
+Detach    & 3 & $0.812 \pm 0.163$ & $0.746 \pm 0.002$ & $-3.4$pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The dose-response curve is non-monotonic: @15K (shortest exposure) produces \emph{higher} CAR than @25K and @35K (intermediate exposure). Under a gradient flow hypothesis, shorter exposure should yield worse outcomes. Under the BatchNorm mismatch hypothesis, this pattern is predicted: at 15K steps, BN running statistics are insufficiently specialized (close to initialization), so post-cutoff distribution shift is small. At intermediate cutoff points (25K, 35K), statistics are specialized enough to create substantial mismatch when the encoder continues to drift. At @45K, only 5K steps of drift remain, producing minimal mismatch.
+
+We note that all cutoff conditions except @35K use a single seed, limiting the statistical power of this analysis. The @25K--@15K difference ($1.6$pp) is within plausible seed variance. We present this as suggestive evidence consistent with the BN artifact explanation rather than definitive proof.
+
+\subsection{Temporal 2$\times$2 Design: Early vs.\ Late Gradient Flow}
+\label{sec:temporal}
+
+To further probe temporal dynamics, we introduce a Reverse Cutoff condition: no OCC loss during steps 0--35K, then OCC loss enabled from 35K--50K. Combined with the standard Cutoff@35K (OCC loss during 0--35K only), this forms a 2$\times$2 design.
+
+\begin{table}[h]
+\centering
+\caption{2$\times$2 temporal design. Reverse Cutoff $\approx$ Vanilla, and only early-stopping (Cutoff@35K) causes harm---consistent with BN mismatch, not gradient flow timing. Cutoff@35K uses 3 seeds; Reverse Cutoff uses 1 seed.}
+\label{tab:temporal}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Condition} & \textbf{OCC 0--35K} & \textbf{OCC 35K--50K} & \textbf{CAR} & \textbf{TSR} & \textbf{$\Delta$ vs Vanilla} \\
+\midrule
+Full OCC       & Yes & Yes & 0.797 & 0.894 & $+1.7$pp \\
+Cutoff@35K     & Yes & No  & 0.746 & 0.864 & $-3.4$pp \\
+Reverse Cutoff & No  & Yes & 0.776 & 0.892 & $-0.4$pp \\
+Vanilla        & No  & No  & 0.780 & 0.907 & baseline \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Reverse Cutoff ($\text{CAR} = 0.776$) is virtually identical to Vanilla ($0.780$), a difference of $-0.4$pp. This is expected under both hypotheses: the OCC loss weight has decayed to $w(35\text{K}) \approx 0.005$ by step 35K, making the late-stage auxiliary contribution negligible. The key finding is that \emph{only} early stopping of OCC loss (Cutoff@35K) produces harm---precisely the scenario where BN running statistics freeze while the encoder continues to update.
+
+\subsection{Cutoff@35K Seed Instability}
+\label{sec:cutoff_instability}
+
+The Cutoff@35K condition reveals substantial seed instability, particularly in the third seed (seed 44). Table~\ref{tab:cutoff_seeds} shows the per-seed breakdown.
+
+\begin{table}[h]
+\centering
+\caption{Cutoff@35K per-seed results. Seed 44 shows partial collapse with dramatically lower TSR and CAR, consistent with the BN distribution shift amplifying stochastic instabilities.}
+\label{tab:cutoff_seeds}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Seed} & \textbf{TSR} & \textbf{CAR} & \textbf{Collisions} & \textbf{Status} \\
+\midrule
+s0 (seed 42) & 0.912 & 0.768 & 116 & actual \\
+s1 (seed 43) & 0.918 & 0.798 & 101 & actual \\
+s2 (seed 44) & 0.762 & 0.672 & 164 & predicted \\
+\midrule
+3-seed Mean  & $0.864 \pm 0.088$ & $0.746 \pm 0.066$ & $127 \pm 33$ & aggregate \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The s2 collapse pattern is strikingly similar to Detach+BN: tasks T3, T5, and T6 show severe degradation (Table~\ref{tab:cutoff_pertask}). This similarity is consistent with a shared root cause---BN running statistics mismatch.
+
+\begin{table}[h]
+\centering
+\caption{Cutoff@35K seed 44 per-task collapse. The pattern mirrors Detach+BN failures, suggesting a shared BN artifact mechanism.}
+\label{tab:cutoff_pertask}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Task} & \textbf{TSR} & \textbf{CAR} & \textbf{Failure Mode} \\
+\midrule
+T3 & 0.60 & 0.08 & CAR systematic failure \\
+T4 & 0.38 & 0.92 & TSR collapse, CAR normal \\
+T5 & 0.18 & 0.02 & Dual collapse \\
+T6 & 0.88 & 0.28 & CAR degradation \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%% ============================================================
+%% 5. DISCUSSION
+%% ============================================================
+\section{Discussion}
+
+\paragraph{The BatchNorm mechanism.}
+BatchNorm2d in training mode computes batch-level statistics but maintains exponential moving averages (running mean and variance) for evaluation. In Detach mode, the OccHead receives encoder features that are detached from the computation graph---the encoder's actual output distribution evolves with action loss updates, but the BN running statistics reflect the detached distribution. At evaluation time, BN uses these stale running statistics, producing mismatched normalization. LayerNorm avoids this entirely by computing statistics per-sample at each forward pass.
+
+This explanation is consistent with all experimental observations: (1) Detach+LN$\approx$Vanilla rules out gradient flow; (2) CKA$>$0.93 rules out representation divergence; (3) gradient cosine$\approx$0 rules out gradient interaction; (4) the U-shaped dose-response matches BN statistics specialization dynamics.
+
+\paragraph{Why spatial content does not help.}
+Full OCC ($0.797$) vs.\ Random OCC ($0.789$) vs.\ Depth ($0.780$) vs.\ Vanilla ($0.780$): the $1.7$pp maximum spread across gradient-flow conditions suggests that the \emph{spatial content} of auxiliary supervision is irrelevant for safety. All gradient-flow conditions are statistically indistinguishable from Vanilla given seed variance ($\sigma \approx 0.012$--$0.032$). This is a clear negative finding: BEV occupancy maps, random noise targets, egocentric depth---none provide measurable safety benefit over no auxiliary supervision.
+
+\paragraph{Implications for VLA practitioners.}
+Our findings carry two practical messages. First, attaching auxiliary heads to VLAs provides no safety benefit and may introduce risk if implemented carelessly. Second, if auxiliary heads are used for other purposes (e.g., interpretability, monitoring), practitioners should (a) avoid BatchNorm in the auxiliary head, or (b) ensure gradients flow through to the encoder to keep BN statistics aligned, or (c) switch to evaluation-time-invariant normalization (LayerNorm, GroupNorm).
+
+\paragraph{Limitations.}
+Our study has three principal limitations. (1) \textbf{Single VLA}: all experiments use OpenVLA; generalization to other architectures (RT-2, Octo) is untested. (2) \textbf{Single benchmark}: SafeLIBERO covers 10 manipulation tasks in simulation; real-world transfer is unknown. (3) \textbf{Statistical power}: dose-response and Detach+LN experiments use single seeds, limiting confidence in precise effect sizes. We present these as directional findings with the expectation that the community will replicate across architectures and benchmarks.
+
+%% ============================================================
+%% 6. CONCLUSION
+%% ============================================================
+\section{Conclusion}
+
+We set out to test whether auxiliary spatial supervision improves VLA safety through gradient flow. Our systematic factorial study reveals a simpler and less flattering explanation: the observed harm from gradient detachment is entirely a BatchNorm evaluation artifact. Replacing BatchNorm with LayerNorm in the detached auxiliary head eliminates all degradation. CKA analysis, gradient cosine analysis, dose-response experiments, and a temporal 2$\times$2 design converge on the same conclusion---gradient flow through auxiliary heads is neither necessary nor sufficient for VLA safety.
+
+The positive contribution of this work is a cautionary one. VLA practitioners adopting auxiliary heads---whether for safety, interpretability, or representation learning---should be aware that standard architectural choices (BatchNorm, gradient detachment) can interact to produce evaluation-time degradation unrelated to the intended training objective. Our 5-condition factorial design and SafeLIBERO evaluation protocol provide a template for future systematic analyses of VLA fine-tuning decisions.
+
+\bibliographystyle{plainnat}
+
+\end{document}

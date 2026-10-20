@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4c9681bfced07c72247",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "paper writing analysis",
+  "task_key": "worker_paper_writing_analysis_20260514T215456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_analysis_20260514T215456_result.json",
+    "occurrence": 1,
+    "bytes": 678,
+    "sha256": "bdbf91b37d3b68192ce9e8eb002ea4dea74e9938e30b1c1cc3c565b739e2322c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`analysis.tex` 已写入并注册。~500 词，4 个段落，所有数字追溯到 registry：\n\n| 段落 | 关键数据 | Registry 来源 |\n|------|----------|--------------|\n| Circular evaluation | structural 0.9951, OH 0.967 | `non-nlp-baseline`, `cross-agent-structural` |\n| TLM failure | TWV-MV 88.5%, flip 14.1%, downstream −2.57pp, σ narrow range | `temporal-label-model`, `tlm-probe-comparison`, `twv-ablation` |\n| Error analysis | 131 errors (7.2%), 85 FP (64.9%), prob 0.922, conflict 39.7% vs 31% | `error-analysis` |\n| OB holdout | 0.770±0.022 vs 0.847 (−7.7pp), coverage −33.5%, 100% agreement | `outcome-bp-3seed`, `train-without-ob` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-analysis-copy-2.md"
+}

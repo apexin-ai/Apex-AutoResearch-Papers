@@ -1,0 +1,31 @@
+{
+  "exp_id": "cutoff_45k_s0",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T16:59:23.591Z",
+    "updated_at": "2026-05-24T10:40:28.810Z",
+    "hypothesis": "Cutoff at 45K steps (removing gradient flow only for last 5K of 50K steps) tests whether near-full-duration gradient flow is equivalent to continuous flow. If CAR matches Full OCC (~0.797), the final 5K steps of gradient flow are dispensable. Combined with 15K/25K/35K/reverse, completes the dose-response curve.",
+    "parent": "cutoff_s0",
+    "spec": {
+      "command": "python vla-scripts/finetune.py --use_occ True --occ_loss_cutoff_step 45000 --seed 42 --num_images_in_input 2 --use_proprio True --run_id_note cutoff_45k_s0",
+      "server": "westd-34685",
+      "gpu": "cuda:0",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 25000,
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_source": "openvla-7b (base model, training from scratch)",
+      "eval_data": "N/A (training experiment, not eval)",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/cutoff_45k_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+      "log_path": "/root/runs/occsafe_vla/cutoff_45k_s0.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-24T10:40:28.810Z"
+  },
+  "timestamp": "2026-05-24T10:40:28.977317+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "785f8a09a253a2fe1fd4",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis stag rate audit",
+  "task_key": "worker_analysis_stag-rate-audit_20260514T222656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_stag-rate-audit_20260514T222656_result.json",
+    "occurrence": 1,
+    "bytes": 3265,
+    "sha256": "49737abe8fbdd14313fe18debf22be3e3c1a5c293a904c01263819510ca41cef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Audit complete. Here are the results:\n\n---\n\n## Task 1: SWE Stag Rate 溯源\n\n**验证数据（从服务器直接读取）：**\n\n| 数据源 | Stag | Total | Rate |\n|--------|------|-------|------|\n| embeddings.pt (all conf) | 15,600 | 54,809 | **28.46%** |\n| WL (excl abstain) | 15,600 | 54,809 | **28.46%** |\n| conf≥2 subset | 5,846 | 15,401 | **37.96%** |\n| conf≥3 subset | 513 | 792 | 64.77% |\n\n**36% 来源：** `cross-agent-eval` registry 中 `swe_agent_stag_ratio=0.36` 不匹配任何精确计算。最接近的是 conf≥2 rate (37.96%)，可能是粗略近似。同时在 `cross_agent_distribution_analysis.py:674` 中被硬编码为 `\"~36%\"`。\n\n**结论：** 36% 是错误数字。正确值：整体 28.5%，conf≥2 子集 38.0%。论文正文正确写了 28.5%，但 writing_plan 和 registry 错写了 36%。\n\n---\n\n## Task 2: Registry 审计\n\n| 条目 | OH 标签源 | 状态 |\n|------|-----------|------|\n| **cross-agent-eval** | embeddings.pt (6.56%) | **[INVALID]** — `openhands_stag_ratio: 0.066` 来自旧标签；`swe_agent_stag_ratio: 0.36` 也是错的 |\n| **openhands-fewshot-probe** | embeddings.pt (6.56%) | **[INVALID]** — 所有 few-shot 结果基于旧标签 |\n| **oh-full-finetune** | embeddings.pt (6.56%) | **[INVALID]** — 0.751 训练/评估均在旧标签上 |\n| **oh-cmdrep-ablation** | emb (旧) + WL (新) 混合 | **[PARTIAL]** — 2-LF 结果内部一致，但 3-LF baseline 比较跨标签集 |\n| **cross-agent-no-cmdrep** | OH eval 用旧 embeddings | **[INVALID]** — SWE 训练结果 OK，OH 跨域评估无效 |\n| **cross-agent-structural** | windows_labeled.jsonl (20.87%) | **[VALID]** — 结构特征直接从当前 WL 计算 |\n| **bootstrap-crossdomain-fix** | — | **N/A** — 未找到 |\n| **non-nlp-baseline** | SWE only | **[VALID]** — 无 OH 依赖 |\n\n**核心问题：** Table 1 中 structural cross-agent (0.967) 用的是 20.87% 标签，probe cross-agent (0.751 FT) 用的是 6.56% 标签。**两种方法在不同标签集上比较。**\n\n---\n\n## Task 3: 论文数字核对\n\n| 论文位置 | 当前数字 | 数据源 | 状态 |\n|----------|----------|--------|------|\n| Abstract/Intro | SWE 28.5% stag | emb_001 | ✅ CORRECT |\n| Abstract/Intro | OH 6.6% stag | OH emb (旧) | ❌ WRONG → 应为 20.87% |\n| Abstract | 0.751 probe OH FT | oh-full-finetune | ❌ INVALID — 旧标签 |\n| Abstract | 21.6pp struct vs probe | 混合标签集 | ⚠️ SUSPECT |\n| Abstract | 17.6pp cmd_rep removal | oh-cmdrep-ablation | ⚠️ PARTIAL |\n| Experiments Tab | OH Stag% = 6.6 | OH emb (旧) | ❌ WRONG |\n| Experiments | N=1824 (485 stag) | split_info | ⚠️ 实测 454 stag |\n| Writing plan | SWE \"36% stag\" | cross-agent-eval | ❌ WRONG → 应为 28.5% |\n| Registry | swe_agent_stag_ratio=0.36 | 未知 | ❌ WRONG → 应为 0.2846 |\n\n---\n\n**必须修复：**\n1. 重新生成 OH embeddings.pt（从当前 WL）\n2. 重跑所有 probe-based OH 实验\n3. 更新论文所有 OH 6.6% → 新 rate\n4. 修正 writing_plan 中 SWE \"36%\" → \"28.5%\"\n5. 修正 cross-agent-eval registry `swe_agent_stag_ratio`\n\n完整 JSON 已保存至 `bjb2-23165:/root/autodl-tmp/agent_progress_probe/results/stag_rate_audit.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-stag-rate-audit.md"
+}

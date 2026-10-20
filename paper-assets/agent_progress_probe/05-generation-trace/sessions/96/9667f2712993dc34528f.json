@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9667f2712993dc34528f",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "research d073 s3 non se trajectories",
+  "task_key": "worker_research_d073-s3-non-se-trajectories_20260516T025952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_d073-s3-non-se-trajectories_20260516T025952_result.json",
+    "occurrence": 1,
+    "bytes": 982,
+    "sha256": "ee23ce73959d9015c64ce62cb6c07a62ad2c982fe14cc2e0e25813dbda9bef4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pilot study complete. Report registered as `art_20260516_c216ed`.\n\n**Summary**:\n\n- **ALFWorld** (household robot): 23/30 features transfer successfully. Domain-adapted command classification maps SE edit→state-change, SE search→explore. LFs achieve 53-100% coverage on 678 windows from 300 trajectories.\n- **ToolBench**: Normalization issue — the `conversations` field mapped all messages to user role, producing degenerate 2-step trajectories. Needs format-specific fix for `{from, value}` parsing.\n- **ATBench**: Key mismatch — trajectory data is under `contents` (not in the normalizer's search list). Schema discovered; fix is trivial.\n- **Feature taxonomy**: 9 domain-general (text stats, step counts), 15 partially applicable (need domain-specific command classifier), 6 SE-specific (test outputs, file displays).\n\nThe core finding: ProgressProbe's structural stagnation detection approach is fundamentally domain-transferable, not SE-specific."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-d073-s3-non-se-trajectories.md"
+}

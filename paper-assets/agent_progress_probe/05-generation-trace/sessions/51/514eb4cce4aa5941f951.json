@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "514eb4cce4aa5941f951",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "train ablation supcon",
+  "task_key": "worker_train_ablation-supcon_20260514T161233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_ablation-supcon_20260514T161233.log",
+    "occurrence": 1,
+    "bytes": 651725,
+    "sha256": "f63a2afeb2e0428bdc44c0205a7108910e5ae14e62f98a9527eabf0033b9bfcf"
+  },
+  "statistics": {
+    "messages": 237,
+    "user_turns": 1,
+    "tool_calls": 88,
+    "roles": {
+      "log": 1,
+      "system": 22,
+      "assistant": 35,
+      "tool_call": 88,
+      "user": 1,
+      "tool_result": 88,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "514eb4cce4aa5941f951-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 231,
+      "chunks": [
+        {
+          "path": "514eb4cce4aa5941f951-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "514eb4cce4aa5941f951-part-0002.json",
+          "message_count": 57
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-ablation-supcon.md"
+}

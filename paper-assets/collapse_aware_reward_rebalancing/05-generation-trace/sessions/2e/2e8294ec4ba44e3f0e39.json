@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "2e8294ec4ba44e3f0e39",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "analysis deep text collapse signals",
+  "task_key": "worker_analysis_deep_text_collapse_signals_20260516T210013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deep_text_collapse_signals_20260516T210013_result.json",
+    "occurrence": 1,
+    "bytes": 2348922,
+    "sha256": "7c57575177ad98a2eac67def346192e01b04592383eb70edb2981ead49e84457"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2852567,
+                "serialized_sha256": "197b678d995a1e5dec9165c9957ae846f398cbca954487b85e6dcf6fc2f18099",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deep-text-collapse-signals.md"
+}

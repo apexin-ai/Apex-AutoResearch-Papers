@@ -1,0 +1,16 @@
+{
+  "exp_id": "full_occ_bn_v2_s2_r4",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-28T23:03:50.122Z",
+    "updated_at": "2026-05-28T23:03:57.588Z",
+    "hypothesis": "Expanding Cell 1 (Full OCC BN) from n=3 to n=4 with corrected --occ_data_dir and WANDB_MODE=disabled. Prior r3 crashed on wandb init, r2 had occ_loss=0.",
+    "parent": "full_occ_bn_v2_s2_r3"
+  },
+  "timestamp": "2026-05-28T23:03:57.966686+00:00",
+  "trigger": "update_registry"
+}

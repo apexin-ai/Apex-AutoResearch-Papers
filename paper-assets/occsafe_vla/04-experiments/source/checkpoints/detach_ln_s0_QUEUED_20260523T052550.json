@@ -1,0 +1,16 @@
+{
+  "exp_id": "detach_ln_s0",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T05:23:20.135Z",
+    "updated_at": "2026-05-23T05:25:50.865Z",
+    "hypothesis": "If Detach OCC's CAR degradation (-3.4pp vs Vanilla) is caused by BatchNorm's forward-pass interference on batch statistics rather than gradient flow absence, replacing BatchNorm2d with LayerNorm in OccHead should restore CAR to Vanilla level (~0.780). If CAR remains at Detach level (~0.746), gradient flow is the true mechanism and BN is not the cause.",
+    "parent": "ablation_occ_detach_s0"
+  },
+  "timestamp": "2026-05-23T05:25:50.997694+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef3b58b5c21a671d9863",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260514T212853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_20260514T212853_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "af10e0e2343fe192147c9fadaf679759a838f2de95bae40a0da90de344105be8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`method.tex` 已写入并注册。\n\n**摘要：**\n- 1293 words，符合 1300 word budget\n- 4 subsections：Problem Formulation → Weak Supervision Pipeline (LFs + aggregation) → Detection Methods (structural / ProgressProbe / LLM-as-judge) → Temporal Label Models (TWV / HMM / Lag-Aware HMM)\n- Notation 与 experiments.tex 完全一致（$T$, $w_i$, $k$, $y_i$, $\\lambda_j$, $\\sigma$, conf）\n- 5 citations 均来自 references.bib，无编造引用\n- `tab_lf_design` 有 `\\label` 和 `\\caption`；`fig_pipeline` 引用路径 `../../figures/paper/fig_pipeline.pdf`\n- 跨章节引用（`sec:cmd_rep_ablation`, `sec:lf_temporal`, `sec:main_results`）已验证存在于 experiments.tex\n- LF firing rate 数字来自 registry（cmd_rep: SWE 65.6%, OH 92.3%; file_diff OH 87% correctness），缺失值用 `---` 占位"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-method.md"
+}

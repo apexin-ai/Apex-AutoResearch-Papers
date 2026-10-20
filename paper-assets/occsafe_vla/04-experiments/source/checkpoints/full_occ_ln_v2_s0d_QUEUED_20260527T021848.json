@@ -1,0 +1,29 @@
+{
+  "exp_id": "full_occ_ln_v2_s0d",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T01:16:38.450Z",
+    "updated_at": "2026-05-27T02:18:47.684Z",
+    "hypothesis": "Cell 2 (Full OCC LN, gradient ON + LN) v2 rebuild, seed 42. 4th attempt after s0/s0b/s0c failures (10894 stall + 34685 crash). On 10894:cuda:3 now that driver issue resolved. Fills Cell 2 v2 data gap for factorial ANOVA.",
+    "parent": "full_occ_ln_v2_s0c",
+    "spec": {
+      "command": "bash -c \"export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --occ_norm_type ln --run_root_dir /root/autodl-tmp/checkpoints/full_occ_ln_v2_s0d --seed 42 --run_id_note full_occ_ln_v2_s0d\"",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "490803",
+      "log_path": "~/runs/occsafe_vla/full_occ_ln_v2_s0d.log",
+      "submitted_at": "2026-05-27T01:17:02.653Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-27T02:18:48.004326+00:00",
+  "trigger": "update_registry"
+}

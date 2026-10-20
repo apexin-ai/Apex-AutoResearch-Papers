@@ -1,0 +1,71 @@
+# ops checkpoint cleanup
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_ops_checkpoint_cleanup_20260529T102729_result.json`
+- **Structured JSON:** [`3e640046d6f11f32e02d.json`](../../sessions/3e/3e640046d6f11f32e02d.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+盘点完成。汇报清单如下：
+
+---
+
+## Phase 2: 清理计划
+
+### === westd-10894 === (250G 盘, 已用 221G, 剩 30G)
+
+| 操作 | 目录 | 删除内容 | 释放 |
+|------|------|---------|------|
+| 🔴 KEEP | `random_occ_v2_s0_r4/` | RUNNING (PID 49565) | - |
+| 🟢 DEL-ALL | `random_occ_v2_s0/` | 旧版，已被 r4 替代 | **15G** |
+| 🟢 DEL-ALL | `random_occ_v2_s0_r2/` | 旧 retry，空目录 | 0 |
+| 🟢 DEL-ALL | `random_occ_v2_s0_r3/` | 旧 retry，空目录 | 0 |
+| 🟡 DEL-MID | `detach_ln_v2_s4/` | 删 40000_chkpt，保留 45000_chkpt | **15G** |
+| 🟡 DEL-MID | `full_occ_bn_v2_s3/` | 删 15000_chkpt，保留 20000_chkpt | **15G** |
+| 🟡 DEL-MID | `vanilla_object_s1/` | 删 45000_chkpt，保留 50000_chkpt | **15G** |
+| 🟡 DEL-MID | `vanilla_object_s2/` | 删 15000_chkpt，保留 20000_chkpt | **15G** |
+| 🟢 DEL-ALL | 4 个空目录 (`detach_ln_v2_s3`, `full_occ_bn_eval_v2_s0`, `full_occ_bn_lambda001_v2_s0`, `full_occ_bn_lambda01_v2_s0`) | 空 | 0 |
+| [UNSURE] | `detach_bn_object_s0/` | 仅 5000 步，疑似 failed | 4.6G |
+| [UNSURE] | `full_occ_bn_object_s0/` | 仅 5000 步，疑似 failed | 10G |
+| KEEP | `full_occ_ln_v2_s3/` | 仅 196M，不值得删 | - |
+
+**确定可释放: ~75G** (UNSURE 额外 +14.6G)
+
+---
+
+### === westd-34685 === (350G 盘, 已用 316G, 剩 35G)
+
+| 操作 | 目录 | 删除内容 | 释放 |
+|------|------|---------|------|
+| 🔴 KEEP | `full_occ_bn_v2_s2_r5/` | RUNNING (PID 30149) | - |
+| 🟢 DEL-ALL | `full_occ_bn_v2_s2/` | 旧版，已被 r5 替代 | **45G** |
+| 🟢 DEL-ALL | `full_occ_bn_v2_s2_r2/` | 旧 retry | **15G** |
+| 🟢 DEL-ALL | `full_occ_bn_v2_s2_r3/` | 旧 retry，空 | 0 |
+| 🟢 DEL-ALL | `full_occ_bn_v2_s2_r4/` | 旧 retry，空 | 0 |
+| 🟡 DEL-MID | `detach_ln_v2_s2/` | 删 25000+25000_backup+45000，保留 50000_chkpt | **45G** |
+| 🟡 DEL-MID | `detach_ln_v2_s3/` | 删 40000+45000，保留 50000_chkpt | **30G** |
+| 🟡 DEL-MID | `full_occ_ln_v2_s3/` | 删 40000(820M)+45000(15G)，保留 50000_chkpt | **~16G** |
+| 🟡 DEL-MID | `vanilla_object_s0/` | 删 15000+20000，保留 25000_chkpt(最后一步) | **30G** |
+| 🟢 DEL-ALL | 5 个空目录 (`detach_bn_v2_s3`, `full_occ_bn_v2_s4`, `full_occ_ln_v2_s0c`, `vanilla_v2_s3`) | 空 | 0 |
+
+**确定可释放: ~181G**
+
+---
+
+确认后开始执行清理。UNSURE 的两个目录要删吗？
+
+---

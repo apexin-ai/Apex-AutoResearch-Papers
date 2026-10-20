@@ -1,0 +1,14 @@
+{
+  "exp_id": "cka_full_occ_ln_s0",
+  "project": "occsafe_vla",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T01:46:40.104Z",
+    "updated_at": "2026-05-25T01:46:40.104Z"
+  },
+  "timestamp": "2026-05-25T01:46:40.456521+00:00",
+  "trigger": "update_registry"
+}

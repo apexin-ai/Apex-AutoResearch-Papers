@@ -1,0 +1,32 @@
+{
+  "exp_id": "detach_ln_v2_s0",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-26T11:18:33.837Z",
+    "updated_at": "2026-05-26T12:13:54.012Z",
+    "hypothesis": "v2 rebuild of Detach LN (gradient flow OFF, LayerNorm), seed 42. Fills Cell 4 v2 data gap — currently only v1 data (n=3, mean=0.765). First of two v2 seeds needed to replace v1 Cell 4 data in factorial ANOVA.",
+    "reproduce": {
+      "finished_at": "2026-05-26T12:12:27.886Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-26T12:12:30.178Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-26T12:12:33.963357+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-26T12:13:54.301775+00:00",
+  "trigger": "update_registry"
+}

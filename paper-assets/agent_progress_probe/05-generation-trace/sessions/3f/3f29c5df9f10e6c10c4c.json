@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "3f29c5df9f10e6c10c4c",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "code cross agent structural baseline",
+  "task_key": "worker_code_cross-agent-structural-baseline_20260514T170555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross-agent-structural-baseline_20260514T170555.log",
+    "occurrence": 1,
+    "bytes": 711926,
+    "sha256": "15c6641e1dda15152589ec2a7cd3d40c5c72adc645385c6ab527c9e27daa179d"
+  },
+  "statistics": {
+    "messages": 383,
+    "user_turns": 0,
+    "tool_calls": 165,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 165,
+      "tool_result": 165,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 383,
+      "chunks": [
+        {
+          "path": "3f29c5df9f10e6c10c4c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3f29c5df9f10e6c10c4c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3f29c5df9f10e6c10c4c-part-0003.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-cross-agent-structural-baseline.md"
+}

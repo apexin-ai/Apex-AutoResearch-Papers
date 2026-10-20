@@ -1,0 +1,46 @@
+{
+  "exp_id": "ablation_occ_detach_s3_v2",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-25T17:35:36.141Z",
+    "updated_at": "2026-05-26T11:11:46.859Z",
+    "hypothesis": "从头训练（非resume），因旧checkpoint损坏+LR schedule重置问题。Detach BN (gradient flow OFF, BatchNorm), seed 45. 4th seed for 2×2 factorial. Config identical to ablation_occ_detach_s0/s1/s2.",
+    "parent": "ablation_occ_detach_s3",
+    "reproduce": {
+      "finished_at": "2026-05-26T11:10:03.775Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-25T20:26:16.296Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-25T20:26:22.936751+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-26T11:10:16.989594+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/ablation_occ_detach_s3_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--ablation_occ_detach_s3_v2--50000_chkpt",
+      "log_path": "~/runs/occsafe_vla/ablation_occ_detach_s3_v2.log"
+    },
+    "server": "westd-10894",
+    "gpu": "cuda:3",
+    "account": "root",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-26T11:11:47.124875+00:00",
+  "trigger": "update_registry"
+}

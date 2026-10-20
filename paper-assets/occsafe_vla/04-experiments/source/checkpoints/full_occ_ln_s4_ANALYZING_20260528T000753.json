@@ -1,0 +1,31 @@
+{
+  "exp_id": "full_occ_ln_s4",
+  "project": "occsafe_vla",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T11:14:44.927Z",
+    "updated_at": "2026-05-28T00:07:53.604Z",
+    "hypothesis": "n=5 统计扩展 Cell 2 (Full OCC LN, seed 46): 增加第 5 个种子提升 gradient_flow × norm_type 交互效应的统计检验力，增强效应量估计可靠性",
+    "parent": "full_occ_ln_s0",
+    "spec": {
+      "command": "torchrun ... --run_root_dir /root/autodl-tmp/checkpoints/full_occ_ln_s4 --seed 46",
+      "server": "westd-10894",
+      "gpu": "cuda:3",
+      "seed": 46,
+      "model_name": "openvla-7b",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 55370,
+      "checkpoint_source": "openvla-7b-pretrained",
+      "eval_data": "N/A-training",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/full_occ_ln_s4/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_s4--50000_chkpt",
+      "log_path": "~/runs/occsafe_vla/full_occ_ln_s4.log"
+    },
+    "server": "westd-10894",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-28T00:07:53.954432+00:00",
+  "trigger": "update_registry"
+}

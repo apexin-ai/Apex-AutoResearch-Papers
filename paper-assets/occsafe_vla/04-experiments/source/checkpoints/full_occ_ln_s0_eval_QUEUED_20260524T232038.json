@@ -1,0 +1,16 @@
+{
+  "exp_id": "full_occ_ln_s0_eval",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T23:19:06.553Z",
+    "updated_at": "2026-05-24T23:20:38.289Z",
+    "hypothesis": "50r SafeLIBERO evaluation of full_occ_ln_s0 (Full OCC + LayerNorm, seed 42). Completes the 2×2 factorial {gradient flow} × {norm type}. If CAR ≈ Full OCC BN (0.797) → norm type irrelevant with gradient flow. If CAR > Full OCC BN → LN superior.",
+    "parent": "full_occ_ln_s0"
+  },
+  "timestamp": "2026-05-24T23:20:38.488134+00:00",
+  "trigger": "update_registry"
+}

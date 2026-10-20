@@ -1,0 +1,15 @@
+{
+  "exp_id": "cka_full_occ_ln_s0",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T01:46:40.104Z",
+    "updated_at": "2026-05-25T01:48:26.718Z",
+    "hypothesis": "CKA analysis of Full OCC+LN (seed 42) vs pretrained. Tests whether gradient flow + LayerNorm combination preserves encoder representations similarly to gradient flow + BN (Full OCC BN CKA ~0.96). Completes the 2×2 factorial representation dimension."
+  },
+  "timestamp": "2026-05-25T01:48:26.925864+00:00",
+  "trigger": "update_registry"
+}

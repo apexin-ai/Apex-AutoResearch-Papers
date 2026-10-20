@@ -1,0 +1,28 @@
+{
+  "exp_id": "full_occ_bn_v2_s4",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-29T03:39:52.702Z",
+    "updated_at": "2026-05-29T04:18:02.363Z",
+    "hypothesis": "Cell 1 (Full OCC BN, GF ON + BN) seed 46 expansion for statistical power. Current n=2 done + 1 running; adding seed 46 targets n≥4 for robust effect size estimation.",
+    "spec": {
+      "command": "bash -c \"export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --use_diffusion False --use_film False --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --run_root_dir /root/autodl-tmp/checkpoints/full_occ_bn_v2_s4 --run_id_note full_occ_bn_v2_s4 --seed 46 --use_occ_head True --occ_detach False --occ_norm_type bn --occ_data_dir /root/occsafe_vla/occ_data\"",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "41373",
+      "log_path": "~/runs/occsafe_vla/full_occ_bn_v2_s4.log",
+      "submitted_at": "2026-05-29T03:40:20.105Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-29T04:18:02.747315+00:00",
+  "trigger": "update_registry"
+}

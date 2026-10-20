@@ -1,0 +1,56 @@
+{
+  "exp_id": "ablation_random_occ_s2",
+  "project": "occsafe_vla",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:09:28.823Z",
+    "updated_at": "2026-05-22T22:09:22.702Z",
+    "hypothesis": "Third seed (seed 44) replication of random_occ ablation for statistical power. 2-seed avg Random CAR=0.806 already exceeds Vanilla(0.780), but AAAI reviewers require ≥3 seeds. If s2 confirms Random>Vanilla, the \"gradient regularization without spatial content\" finding has sufficient statistical backing.",
+    "parent": "ablation_random_occ_s0",
+    "spec": {
+      "command": "finetune.py --use_occ_head True --random_occ True --seed 44 --save_freq 10000 --max_steps 50005",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "932619",
+      "log_path": "~/runs/occsafe_vla/ablation_random_occ_s2.log",
+      "submitted_at": "2026-05-22T06:11:55.499Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": "~25000 episodes",
+      "model_name": "openvla-7b",
+      "seed": 44,
+      "checkpoint_source": "openvla-7b (from scratch)",
+      "eval_data": "N/A (training)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T21:01:58.615Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T21:02:01.109305+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/ablation_random_occ_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+    "metrics": {
+      "TSR": 0.848,
+      "CAR": 0.754,
+      "eval_rollouts": 50,
+      "eval_seed": 42,
+      "checkpoint_step": 50000
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T22:09:22.808334+00:00",
+  "trigger": "update_registry"
+}

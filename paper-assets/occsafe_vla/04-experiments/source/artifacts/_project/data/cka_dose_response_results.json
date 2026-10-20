@@ -1,0 +1,1 @@
+{\"conditions_analyzed\": 3, \"results\": {\"Vanilla_s0\": {\"dinov2_mean_cka\": 0.968}, \"Full_OCC_s0\": {\"dinov2_mean_cka\": 0.962}, \"Cutoff_15K_s1\": {\"dinov2_mean_cka\": 0.520}}, \"remote_script\": \"/root/autodl-tmp/analysis/cka_dose_response/cka_dose_response.py\"}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "vanilla_v2_s1",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T08:45:20.825Z",
+    "updated_at": "2026-05-26T08:46:21.330Z",
+    "hypothesis": "Vanilla baseline 2nd v2 seed (seed 43). No OCC head. Needed to reach n≥2 for Vanilla baseline to support 'all OCC conditions < Vanilla' claim."
+  },
+  "timestamp": "2026-05-26T08:46:21.600875+00:00",
+  "trigger": "update_registry"
+}

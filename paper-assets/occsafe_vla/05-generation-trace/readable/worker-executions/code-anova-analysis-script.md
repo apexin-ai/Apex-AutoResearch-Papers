@@ -1,0 +1,1191 @@
+# code anova analysis script
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 18
+- **Recorded user turns:** 0
+- **Tool calls:** 4
+- **Original source:** `logs/workers/worker_code_anova-analysis-script_20260526T192341.log`
+- **Structured JSON:** [`41f36854ca33890630cb.json`](../../sessions/41/41f36854ca33890630cb.json)
+
+## Before a recorded user message
+
+18 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla",
+  "session_id": "c2d8d17e-4d20-4df2-b27e-7aaf3653235a",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__allocate_and_submit",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__approve_worker",
+    "mcp__agent-ml-research__auto_build_provenance",
+    "mcp__agent-ml-research__backup_project_to_s3",
+    "mcp__agent-ml-research__cancel_worker",
+    "mcp__agent-ml-research__check_job_status",
+    "mcp__agent-ml-research__check_paper_consistency",
+    "mcp__agent-ml-research__check_provenance_completeness",
+    "mcp__agent-ml-research__cleanup_pdf_images",
+    "mcp__agent-ml-research__compute_coverage_matrix",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__distill_papers",
+    "mcp__agent-ml-research__edit_paper_section",
+    "mcp__agent-ml-research__feishu_read_tum_pending_key",
+    "mcp__agent-ml-research__feishu_send_alert",
+    "mcp__agent-ml-research__feishu_send_approval_card",
+    "mcp__agent-ml-research__feishu_send_result_card",
+    "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+    "mcp__agent-ml-research__fetch_wandb_metrics",
+    "mcp__agent-ml-research__get_baseline_metrics",
+    "mcp__agent-ml-research__get_distill_status",
+    "mcp__agent-ml-research__get_gpu_health",
+    "mcp__agent-ml-research__get_image_info",
+    "mcp__agent-ml-research__get_matrix_value",
+    "mcp__agent-ml-research__get_project_resource_usage",
+    "mcp__agent-ml-research__get_tum_config",
+    "mcp__agent-ml-research__get_worker_status",
+    "mcp__agent-ml-research__impact_analysis",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__list_artifacts",
+    "mcp__agent-ml-research__list_available_gpus",
+    "mcp__agent-ml-research__list_constraints",
+    "mcp__agent-ml-research__list_s3_backups",
+    "mcp__agent-ml-research__list_workers",
+    "mcp__agent-ml-research__load_project_config",
+    "mcp__agent-ml-research__main_agent_post_to_director",
+    "mcp__agent-ml-research__matrix_gap_analysis",
+    "mcp__agent-ml-research__pdf_to_images",
+    "mcp__agent-ml-research__poll_cron",
+    "mcp__agent-ml-research__poll_secret_request",
+    "mcp__agent-ml-research__read_experiment_plan_with_status",
+    "mcp__agent-ml-research__read_matrix",
+    "mcp__agent-ml-research__read_mistakes",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__read_roadmap",
+    "mcp__agent-ml-research__reconcile_crons",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__register_cron",
+    "mcp__agent-ml-research__request_secret",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__send_progress",
+    "mcp__agent-ml-research__spawn_worker",
+    "mcp__agent-ml-research__submit_on_allocated",
+    "mcp__agent-ml-research__submit_training_job",
+    "mcp__agent-ml-research__sync_matrix_status",
+    "mcp__agent-ml-research__tail_training_logs",
+    "mcp__agent-ml-research__update_baseline",
+    "mcp__agent-ml-research__update_matrix",
+    "mcp__agent-ml-research__update_registry",
+    "mcp__agent-ml-research__verify_references",
+    "mcp__agent-ml-research__write_paper_section"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "a779541d-4cbf-4830-8038-a6cff09a55bc",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779838800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "bdb5d257-c445-444b-ac10-85d9f3abbc6f",
+  "session_id": "c2d8d17e-4d20-4df2-b27e-7aaf3653235a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to write a Python script for 2×2 Factorial ANOVA analysis. Let me carefully read through all the requirements and write the script.
+
+Key requirements:
+1. Input from JSON file or command line args
+2. Analyses: descriptive stats, 2-way ANOVA (Type II SS), permutation tests, effect sizes, pairwise comparisons, assumption checks
+3. Only use scipy, numpy, itertools, json, argparse (no statsmodels/pingouin)
+4. Handle empty cells gracefully
+5. Demo mode with provided data
+
+
+6. Output structured text report with significance markers
+7. Optional JSON output
+
+The main challenge is implementing Type II sums of squares manually—I need to calculate the marginal effects by fitting models with different factor combinations and comparing their residual sums of squares to isolate each factor's contribution while accounting for the other factor. I'm clarifying the Type II sum of squares approach: for each factor, I calculate the reduction in residual sum of squares when adding that factor to a model containing the other main effect, and for the interaction, I measure the reduction when adding it to the model with both main effects already included.
+
+Now I'll implement this using least squares regression by fitting five different models—one with just the intercept, separate models with each factor alone, a model with both factors, and the full model with the interaction—then compute the residual sum of squares for each to derive the Type II sums of squares.
+
+For the ANOVA table, I need to calculate degrees of freedom (1 for each main effect and interaction, N minus 4 for residuals), mean squares by dividing sums of squares by their degrees of freedom, F-statistics as the ratio of each effect's mean square to the residual mean square, and p-values using the F-distribution survival function. I'll also compute partial eta-squared to measure effect sizes.
+
+For permutation testing, I'll shuffle the factor labels and recalculate the F-statistic repeatedly to build a null distribution, then count how many permuted values exceed the observed F. For pairwise comparisons between cells, I'll run independent t-tests with Bonferroni correction applied across all comparisons. Cohen's d will measure effect sizes using the pooled standard deviation, though I need to handle the Vanilla condition carefully since it only has n=1 in the demo data, which means I can't compute standard deviation or run traditional t-tests for that group.
+
+Writing the analysis script... utation test on the 2-way ANOVA effects, I need to think about what to permute:
+- For main effect of A: Under H0 that A has no effect, we can permute the A labels (keeping B labels fixed? Or permute all labels?)
+- Actually, for a factorial permutation test, the standard approach is:
+  - For main effect A: permute observations across levels of A within each level of B (restricted permutation)
+  - For main effect B: permute observations across levels of B within each level of A
+  - For interaction: permute all observations freely (or use the interaction contrast)
+
+Actually, a simpler and commonly used approach for small samples:
+- For each effect, compute the test statistic (F or the sum of squares)
+- Under H0, permute the response values (or the factor labels)
+- For main effect A: shuffle the A labels while keeping B constant, for main effect B: shuffle the B labels while keeping A constant, and for the interaction: shuffle all labels together or just the residuals after removing main effects.
+
+The most straightforward approach in practice is to permute the response vector while keeping the design matrix fixed, which tests the omnibus null hypothesis. But for individual effects, I should use the F-statistic for each effect as the test statistic and permute the residuals from the reduced model.
+
+I'll use the Freedman-Lane procedure for a more principled approach, but given the small sample size, I'll simplify by permuting the raw observations and recomputing all F statistics. This is a valid approximate permutation test, though slightly conservative.
+
+For each permutation of the y values (keeping the design fixed), I'll recompute the ANOVA and extract the F values. The p-value for each effect is the proportion of permuted F values that are greater than or equal to the observed F.
+
+I also need to handle edge cases: skip analyses involving empty cells, skip t-tests for cells with n=1, and skip the full factorial ANOVA if fewer than 4 cells have data.
+
+Now I'm writing the code to implement this analysis.
+
+Writing analysis code... Writing the analysis script... Writing argument parser... Writing statistical functions... Writing the ANOVA computation... Building the design matrices...
+
+Calculating the sum of squares for each model configuration to determine the Type II effects, then computing the degrees of freedom and mean squares before running the F-tests to get p-values for each factor and their interaction. Writing permutation test setup... Writing statistical analysis code... Writing simple effects analysis... Writing the analysis function... Writing statistical analysis code... Writing statistical analysis code... Still writing comparison logic... Writing the report formatter... Finishing the confidence interval string and printing the formatted statistics table with mean, standard deviation, and confidence bounds for each cell type. Then moving into the assumption checks section where I'm displaying the Shapiro-Wilk normality test results with significance indicators, and starting to set up the Levene's test output for homogeneity of variance. Formatting the ANOVA results table... Writing permutation test output... Formatting the pairwise comparison rows with truncation for long comparison names, confidence intervals, and statistical significance markers, then moving into the vanilla baseline comparisons section. Formatting the comparison table output... Writing output formatting... Writing the output file and main entry point...
+
+Now I'm thinking through the demo data structure to check for edge cases—cell_2 and cell_4 are empty, so the ANOVA test would need to be skipped since it requires all four groups.
+
+For the pairwise comparisons, I can only run tests between groups that have data: cell_1 versus cell_3, cell_1 versus vanilla, and cell_3 versus vanilla. Levene's test would only work with cell_1 and cell_3 since they're the only ones with at least two observations each, and Shapiro-Wilk would apply to those same two groups since they meet the n≥3 requirement.
+
+The vanilla group with just one observation creates constraints—I can't compute a t-test, Cohen's d, or confidence intervals for comparisons involving it, though I can still calculate the mean difference. I'm also verifying that the effect coding approach I used for ANOVA is the standard method, which it is.
+
+For the permutation test, the formula I'm using that includes the observed statistic in the count is the correct approach. And since the user specified simple effects analysis only when the interaction is significant, I'll stick with that condition. The script should be ready to go.
+
+Now I'm checking edge cases like when a cell has only one observation—Levene's test needs at least two per group, Shapiro needs three, and for pairwise comparisons we skip the t-test. These are already handled. I should also make sure the mean difference formatting is clean and the report output looks polished, especially for the demo mode with limited data. There's one more case to handle where both groups have n=1, so the difference is calculable but the confidence interval isn't.
+
+Writing the script...
+
+I'm also adding a `--n-perm` flag to control the number of permutations, and adjusting the comparison column width to keep the output readable.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c2d8d17e-4d20-4df2-b27e-7aaf3653235a",
+  "uuid": "f5c3bd4e-8936-4f4f-8dbe-ca4765db62f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KM1kpm4V5hykpWA92cWjA1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13482,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13482
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+编写脚本并验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c2d8d17e-4d20-4df2-b27e-7aaf3653235a",
+  "uuid": "cf5556fc-de18-4490-b8b4-1187c340c0a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KM1kpm4V5hykpWA92cWjA1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13482,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13482
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0123oi4BA9Y4DLWhGfWnguvn`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c2d8d17e-4d20-4df2-b27e-7aaf3653235a",
+  "uuid": "597fe6be-3173-4306-8d04-ed8dcfb5c8dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KM1kpm4V5hykpWA92cWjA1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13482,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13482
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-26T19:26:43.702Z_
+
+<details><summary>↩ Tool result · `toolu_0123oi4BA9Y4DLWhGfWnguvn`</summary>
+
+```text
+10894_health_check.md
+_project
+ablation_random_occ_s0
+analyze_learning_curve_fixed.py
+anova_2x2_factorial.py
+anova_factorial_v2.py
+anova_factorial_v2_results.txt
+batch_eval.sh
+checkpoint_analysis_summary.md
+cka_analysis
+cka_analysis.py
+cka_detach_ln
+cka_detach_ln.pdf
+cka_detach_ln.png
+cka_detach_ln_results.json
+cka_dose_response.py
+cka_dose_response_results.json
+cka_full_occ_ln_s0
+cka_full_occ_ln_s1
+cka_random_occ_results.json
+cka_results.json
+cka_same_seed_4cond
+comprehensive_results.csv
+compute_statistics.py
+d051_bn_v2_failure_diagnosis.md
+detach_ln_diagnosis.md
+detach_ln_s0_eval
+detach_ln_s0_eval_analysis.md
+diag_10894_triple_failure.md
+diag_eval_failure_20260523.md
+diagnose_ablation_batch_fail.md
+diagnose_mvp_occ_s3_v2.md
+diagnose_s3_v2_failures.md
+diagnose_westd10894_batch_kill.md
+diagnose_westd34685_20260525.md
+diagnosis_disk_full_20260526.md
+diagnosis_experiment_crash_20260526.md
+dose_response_3seed_analysis.py
+dose_response_3seed_final.pdf
+dose_response_3seed_final.png
+dose_response_curve_data_car.csv
+dose_response_data.json
+dream_reports
+eval_commands.md
+eval_commands_34685.md
+eval_commands_batch3.md
+eval_completeness_audit.md
+eval_pending_checklist.md
+eval_pipeline_check_report.md
+eval_readiness_report.md
+extract_depth.py
+factorial_2x2_config.json
+factorial_data_summary.md
+fig1_overview_v2.pdf
+fig1_overview_v2.png
+fig1_overview_v2.py
+fig_dose_response_2seed.pdf
+fig_dose_response_2seed.png
+fig_factorial_2x2.pdf
+fig_factorial_2x2.png
+figures
+gen_dose_response.py
+gen_factorial_2x2.py
+gradient_aggregation_investigation.md
+gradient_analysis
+gradient_analysis_mixed_seed
+gradient_cka_summary.md
+gradient_dose_response.py
+gradient_dose_response_s0.py
+handoff_plan_tonight.md
+launch_commands_10894_batch2.md
+launch_commands_n5_expansion.md
+manifest.yaml
+occ_crash_diagnosis.md
+occ_gt_design.md
+occ_pipeline
+openvla_oft_survey.md
+paper_status_check_20260525.md
+partial_anova_v2.py
+partial_anova_v2_results.txt
+plot_dose_response.py
+plot_factorial_2x2.py
+plot_gradient_analysis_v2_paper.py
+plot_gradient_comparison.py
+run_gradient_same_seed.sh
+safelibero_survey.md
+same_seed_gradient_analysis.py
+statistical_tests.json
+training_status_20260526.md
+v2_cka_analysis.py
+v2_gradient_analysis.json
+v2_gradient_analysis.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c2d8d17e-4d20-4df2-b27e-7aaf3653235a",
+  "uuid": "2af56440-de13-4546-a496-c593bcb553df",
+  "tool_use_result": {
+    "stdout": "10894_health_check.md\n_project\nablation_random_occ_s0\nanalyze_learning_curve_fixed.py\nanova_2x2_factorial.py\nanova_factorial_v2.py\nanova_factorial_v2_results.txt\nbatch_eval.sh\ncheckpoint_analysis_summary.md\ncka_analysis\ncka_analysis.py\ncka_detach_ln\ncka_detach_ln.pdf\ncka_detach_ln.png\ncka_detach_ln_results.json\ncka_dose_response.py\ncka_dose_response_results.json\ncka_full_occ_ln_s0\ncka_full_occ_ln_s1\ncka_random_occ_results.json\ncka_results.json\ncka_same_seed_4cond\ncomprehensive_results.csv\ncompute_statistics.py\nd051_bn_v2_failure_diagnosis.md\ndetach_ln_diagnosis.md\ndetach_ln_s0_eval\ndetach_ln_s0_eval_analysis.md\ndiag_10894_triple_failure.md\ndiag_eval_failure_20260523.md\ndiagnose_ablation_batch_fail.md\ndiagnose_mvp_occ_s3_v2.md\ndiagnose_s3_v2_failures.md\ndiagnose_westd10894_batch_kill.md\ndiagnose_westd34685_20260525.md\ndiagnosis_disk_full_20260526.md\ndiagnosis_experiment_crash_20260526.md\ndose_response_3seed_analysis.py\ndose_response_3seed_final.pdf\ndose_response_3seed_final.png\ndose_response_curve_data_car.csv\ndose_response_data.json\ndream_reports\neval_commands.md\neval_commands_34685.md\neval_commands_batch3.md\neval_completeness_audit.md\neval_pending_checklist.md\neval_pipeline_check_report.md\neval_readiness_report.md\nextract_depth.py\nfactorial_2x2_config.json\nfactorial_data_summary.md\nfig1_overview_v2.pdf\nfig1_overview_v2.png\nfig1_overview_v2.py\nfig_dose_response_2seed.pdf\nfig_dose_response_2seed.png\nfig_factorial_2x2.pdf\nfig_factorial_2x2.png\nfigures\ngen_dose_response.py\ngen_factorial_2x2.py\ngradient_aggregation_investigation.md\ngradient_analysis\ngradient_analysis_mixed_seed\ngradient_cka_summary.md\ngradient_dose_response.py\ngradient_dose_response_s0.py\nhandoff_plan_tonight.md\nlaunch_commands_10894_batch2.md\nlaunch_commands_n5_expansion.md\nmanifest.yaml\nocc_crash_diagnosis.md\nocc_gt_design.md\nocc_pipeline\nopenvla_oft_survey.md\npaper_status_check_20260525.md\npartial_anova_v2.py\npartial_anova_v2_results.txt\nplot_dose_response.py\nplot_factorial_2x2.py\nplot_gradient_analysis_v2_paper.py\nplot_gradient_comparison.py\nrun_gradient_same_seed.sh\nsafelibero_survey.md\nsame_seed_gradient_analysis.py\nstatistical_tests.json\ntraining_status_20260526.md\nv2_cka_analysis.py\nv2_gradient_analysis.json\nv2_gradient_analysis.py",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01R8EaLcPfSXFQkkiusrRw7g`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/analyze_factorial_anova.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"\n2x2 Factorial ANOVA analysis for OccSafe VLA experiment.\n\nFactors:\n  A: gradient_flow (ON / OFF)\n  B: norm_type (BN / LN)\nDV: CAR (Collision Avoidance Rate), range [0, 1]\n\nCells:\n  1 = ON+BN (Full OCC BN, mvp_occ)\n  2 = ON+LN (Full OCC LN, full_occ_ln)\n  3 = OFF+BN (Detach BN, ablation_occ_detach)\n  4 = OFF+LN (Detach LN, detach_ln)\n  + Vanilla baseline (no OCC head)\n\nUsage:\n  python analyze_factorial_anova.py --demo\n  python analyze_factorial_anova.py --data-json data.json\n  python analyze_factorial_anova.py --cell1 0.746 0.654 --cell2 0.8 --cell3 0.77 --cell4 0.69 --vanilla 0.768\n  python analyze_factorial_anova.py --demo --output-json results.json\n\"\"\"\n\nimport argparse\nimport json\nimport sys\nfrom itertools import combinations\n\nimport numpy as np\nfrom scipy import stats\n\n# ── Cell definitions ──────────────────────────────────────────────────\n\nCELL_INFO = {\n    \"cell_1\": {\"name\": \"Full OCC BN\",  \"label\": \"cell_1\", \"gradient_flow\": \"ON\",  \"norm_type\": \"BN\"},\n    \"cell_2\": {\"name\": \"Full OCC LN\",  \"label\": \"cell_2\", \"gradient_flow\": \"ON\",  \"norm_type\": \"LN\"},\n    \"cell_3\": {\"name\": \"Detach BN\",    \"label\": \"cell_3\", \"gradient_flow\": \"OFF\", \"norm_type\": \"BN\"},\n    \"cell_4\": {\"name\": \"Detach LN\",    \"label\": \"cell_4\", \"gradient_flow\": \"OFF\", \"norm_type\": \"LN\"},\n}\n\nCELL_DISPLAY = {\n    \"cell_1\": \"Full OCC BN (cell_1)\",\n    \"cell_2\": \"Full OCC LN (cell_2)\",\n    \"cell_3\": \"Detach BN (cell_3)\",\n    \"cell_4\": \"Detach LN (cell_4)\",\n    \"vanilla\": \"Vanilla\",\n}\n\nDEMO_DATA = {\n    \"cell_1\": [0.746, 0.654, 0.774],\n    \"cell_2\": [],\n    \"cell_3\": [0.774, 0.736, 0.762, 0.768],\n    \"cell_4\": [],\n    \"vanilla\": [0.768],\n}\n\nALL_KEYS = [\"cell_1\", \"cell_2\", \"cell_3\", \"cell_4\", \"vanilla\"]\nCELL_KEYS = [\"cell_1\", \"cell_2\", \"cell_3\", \"cell_4\"]\n\n\n# ── Helpers ───────────────────────────────────────────────────────────\n\ndef sig_stars(p):\n    \"\"\"Return significance stars for p-value.\"\"\"\n    if p is None or np.isnan(p):\n        return \"\"\n    if p < 0.001:\n        return \" ***\"\n    if p < 0.01:\n        return \" **\"\n    if p < 0.05:\n        return \" *\"\n    return \"\"\n\n\ndef cohens_d(a, b):\n    \"\"\"Cohen's d with pooled SD. Returns None if either group has n < 2.\"\"\"\n    n1, n2 = len(a), len(b)\n    if n1 < 2 or n2 < 2:\n        return None\n    s1, s2 = np.var(a, ddof=1), np.var(b, ddof=1)\n    pooled = np.sqrt(((n1 - 1) * s1 + (n2 - 1) * s2) / (n1 + n2 - 2))\n    if pooled == 0:\n        return 0.0\n    return (np.mean(a) - np.mean(b)) / pooled\n\n\ndef mean_diff_ci(a, b, alpha=0.05):\n    \"\"\"Mean difference and Welch 95% CI. Returns (diff, ci_lo, ci_hi).\"\"\"\n    n1, n2 = len(a), len(b)\n    diff = np.mean(a) - np.mean(b)\n    if n1 < 2 or n2 < 2:\n        return diff, None, None\n    s1n = np.var(a, ddof=1) / n1\n    s2n = np.var(b, ddof=1) / n2\n    se = np.sqrt(s1n + s2n)\n    if se == 0:\n        return diff, diff, diff\n    df = (s1n + s2n) ** 2 / (s1n ** 2 / (n1 - 1) + s2n ** 2 / (n2 - 1))\n    t_crit = stats.t.ppf(1 - alpha / 2, df)\n    return diff, diff - t_crit * se, diff + t_crit * se\n\n\ndef ols_ss_resid(X, y):\n    \"\"\"Residual sum of squares from OLS fit.\"\"\"\n    beta, _, _, _ = np.linalg.lstsq(X, y, rcond=None)\n    return float(np.sum((y - X @ beta) ** 2))\n\n\ndef fmt(val, dec=4):\n    if val is None:\n        return \"N/A\"\n    return f\"{val:.{dec}f}\"\n\n\n# ── Core analyses ─────────────────────────────────────────────────────\n\ndef descriptive_stats(data):\n    \"\"\"Compute mean, std, n, 95% CI for each group.\"\"\"\n    result = {}\n    for key in ALL_KEYS:\n        vals = data.get(key, [])\n        if not vals:\n            result[key] = {\"name\": CELL_DISPLAY[key], \"n\": 0,\n                           \"mean\": None, \"std\": None, \"ci_lo\": None, \"ci_hi\": None}\n            continue\n        arr = np.array(vals, dtype=float)\n        n = len(arr)\n        mean = float(np.mean(arr))\n        if n >= 2:\n            sd = float(np.std(arr, ddof=1))\n            se = sd / np.sqrt(n)\n            tc = stats.t.ppf(0.975, n - 1)\n            ci_lo, ci_hi = mean - tc * se, mean + tc * se\n        else:\n            sd = ci_lo = ci_hi = None\n        result[key] = {\"name\": CELL_DISPLAY[key], \"n\": n,\n                       \"mean\": mean, \"std\": sd, \"ci_lo\": ci_lo, \"ci_hi\": ci_hi}\n    return result\n\n\ndef assumption_checks(data):\n    \"\"\"Shapiro-Wilk per cell (n>=3) and Levene's test across cells (n>=2).\"\"\"\n    result = {}\n\n    shapiro = {}\n    for key in ALL_KEYS:\n        vals = data.get(key, [])\n        if len(vals) >= 3:\n            w, p = stats.shapiro(vals)\n            shapiro[key] = {\"name\": CELL_DISPLAY[key], \"W\": float(w), \"p\": float(p)}\n    result[\"shapiro\"] = shapiro\n\n    groups = [np.array(data[k], dtype=float) for k in CELL_KEYS\n              if data.get(k) and len(data[k]) >= 2]\n    if len(groups) >= 2:\n        w, p = stats.levene(*groups)\n        result[\"levene\"] = {\"W\": float(w), \"p\": float(p)}\n    else:\n        result[\"levene\"] = None\n\n    return result\n\n\ndef _build_anova_arrays(data):\n    \"\"\"Build y, a, b arrays from cell data using effect coding (-1/+1).\"\"\"\n    y_list, a_list, b_list = [], [], []\n    for key in CELL_KEYS:\n        vals = data.get(key, [])\n        if not vals:\n            continue\n        info = CELL_INFO[key]\n        a_code = 1.0 if info[\"gradient_flow\"] == \"ON\" else -1.0\n        b_code = 1.0 if info[\"norm_type\"] == \"BN\" else -1.0\n        for v in vals:\n            y_list.append(v)\n            a_list.append(a_code)\n            b_list.append(b_code)\n    return np.array(y_list), np.array(a_list), np.array(b_list)\n\n\ndef _all_four_cells(data):\n    return all(data.get(k) for k in CELL_KEYS)\n\n\ndef factorial_anova_type2(data):\n    \"\"\"2-way ANOVA with Type II SS via nested model comparisons.\"\"\"\n    if not _all_four_cells(data):\n        return None\n\n    y, a, b = _build_anova_arrays(data)\n    n = len(y)\n    if n - 4 <= 0:\n        return None\n\n    ab = a * b\n    ones = np.ones(n)\n\n    ss_full = ols_ss_resid(np.column_stack([ones, a, b, ab]), y)\n    ss_ab   = ols_ss_resid(np.column_stack([ones, a, b]), y)\n    ss_a    = ols_ss_resid(np.column_stack([ones, a]), y)\n    ss_b    = ols_ss_resid(np.column_stack([ones, b]), y)\n\n    SS_A  = ss_b  - ss_ab    # R(A | B)\n    SS_B  = ss_a  - ss_ab    # R(B | A)\n    SS_AB = ss_ab - ss_full  # R(AB | A, B)\n    SS_resid = ss_full\n    SS_total = float(np.sum((y - np.mean(y)) ** 2))\n\n    df_resid = n - 4\n    MS_A  = SS_A / 1\n    MS_B  = SS_B / 1\n    MS_AB = SS_AB / 1\n    MS_resid = SS_resid / df_resid\n\n    def f_and_p(ms_eff):\n        if MS_resid == 0:\n            return float(\"inf\"), 0.0\n        f = ms_eff / MS_resid\n        return float(f), float(stats.f.sf(f, 1, df_resid))\n\n    F_A, p_A = f_and_p(MS_A)\n    F_B, p_B = f_and_p(MS_B)\n    F_AB, p_AB = f_and_p(MS_AB)\n\n    return {\n        \"gradient_flow\": {\"SS\": SS_A, \"df\": 1, \"MS\": MS_A,\n                          \"F\": F_A, \"p\": p_A,\n                          \"eta2_partial\": SS_A / (SS_A + SS_resid)},\n        \"norm_type\":     {\"SS\": SS_B, \"df\": 1, \"MS\": MS_B,\n                          \"F\": F_B, \"p\": p_B,\n                          \"eta2_partial\": SS_B / (SS_B + SS_resid)},\n        \"interaction\":   {\"SS\": SS_AB, \"df\": 1, \"MS\": MS_AB,\n                          \"F\": F_AB, \"p\": p_AB,\n                          \"eta2_partial\": SS_AB / (SS_AB + SS_resid)},\n        \"residual\":      {\"SS\": SS_resid, \"df\": df_resid, \"MS\": MS_resid},\n        \"total\":         {\"SS\": SS_total, \"df\": n - 1},\n        \"n\": n,\n    }\n\n\ndef permutation_anova(data, n_perm=10000, seed=42):\n    \"\"\"Permutation test for each ANOVA effect (permute y, recompute F).\"\"\"\n    if not _all_four_cells(data):\n        return None\n\n    y, a, b = _build_anova_arrays(data)\n    n = len(y)\n    if n - 4 <= 0:\n        return None\n\n    ab = a * b\n    ones = np.ones(n)\n    X_full = np.column_stack([ones, a, b, ab])\n    X_ab   = np.column_stack([ones, a, b])\n    X_a    = np.column_stack([ones, a])\n    X_b    = np.column_stack([ones, b])\n\n    rng = np.random.RandomState(seed)\n\n    def compute_f(yy):\n        sf = ols_ss_resid(X_full, yy)\n        ms_r = sf / (n - 4)\n        if ms_r == 0:\n            return float(\"inf\"), float(\"inf\"), float(\"inf\")\n        fa = (ols_ss_resid(X_b, yy) - ols_ss_resid(X_ab, yy)) / ms_r\n        fb = (ols_ss_resid(X_a, yy) - ols_ss_resid(X_ab, yy)) / ms_r\n        fab = (ols_ss_resid(X_ab, yy) - sf) / ms_r\n        return fa, fb, fab\n\n    obs_fa, obs_fb, obs_fab = compute_f(y)\n    cnt_a = cnt_b = cnt_ab = 0\n\n    for _ in range(n_perm):\n        yp = rng.permutation(y)\n        fa, fb, fab = compute_f(yp)\n        if fa >= obs_fa:\n            cnt_a += 1\n        if fb >= obs_fb:\n            cnt_b += 1\n        if fab >= obs_fab:\n            cnt_ab += 1\n\n    denom = n_perm + 1\n    return {\n        \"gradient_flow\": {\"F_obs\": obs_fa, \"p_perm\": (cnt_a + 1) / denom},\n        \"norm_type\":     {\"F_obs\": obs_fb, \"p_perm\": (cnt_b + 1) / denom},\n        \"interaction\":   {\"F_obs\": obs_fab, \"p_perm\": (cnt_ab + 1) / denom},\n        \"n_perm\": n_perm,\n    }\n\n\ndef simple_effects_analysis(data):\n    \"\"\"Simple effects: gradient_flow at each norm_type level and vice versa.\"\"\"\n    pairs = [\n        (\"grad_flow_at_BN\",  \"cell_1\", \"cell_3\", \"Full OCC BN\", \"Detach BN\"),\n        (\"grad_flow_at_LN\",  \"cell_2\", \"cell_4\", \"Full OCC LN\", \"Detach LN\"),\n        (\"norm_type_at_ON\",  \"cell_1\", \"cell_2\", \"Full OCC BN\", \"Full OCC LN\"),\n        (\"norm_type_at_OFF\", \"cell_3\", \"cell_4\", \"Detach BN\",   \"Detach LN\"),\n    ]\n    result = {}\n    for label, k1, k2, g1, g2 in pairs:\n        v1, v2 = data.get(k1, []), data.get(k2, [])\n        if not v1 or not v2:\n            continue\n        a1, a2 = np.array(v1), np.array(v2)\n        if len(a1) >= 2 and len(a2) >= 2:\n            t, p = stats.ttest_ind(a1, a2)\n            t, p = float(t), float(p)\n        else:\n            t = p = None\n        result[label] = {\"groups\": (g1, g2), \"t\": t, \"p\": p,\n                         \"d\": cohens_d(a1, a2)}\n    return result\n\n\ndef pairwise_comparisons(data):\n    \"\"\"All pairwise t-tests with Bonferroni correction + each cell vs Vanilla.\"\"\"\n    groups = {}\n    for key in ALL_KEYS:\n        vals = data.get(key, [])\n        if vals:\n            groups[key] = np.array(vals, dtype=float)\n\n    keys = list(groups.keys())\n    n_comp = len(list(combinations(keys, 2)))\n\n    all_pairs = []\n    for k1, k2 in combinations(keys, 2):\n        a, b_arr = groups[k1], groups[k2]\n        d = cohens_d(a, b_arr)\n        diff, ci_lo, ci_hi = mean_diff_ci(a, b_arr)\n        if len(a) >= 2 and len(b_arr) >= 2:\n            t, p = stats.ttest_ind(a, b_arr)\n            p_bonf = min(float(p) * n_comp, 1.0)\n            t, p = float(t), float(p)\n        else:\n            t = p = p_bonf = None\n        all_pairs.append({\n            \"group_1\": CELL_DISPLAY[k1], \"group_2\": CELL_DISPLAY[k2],\n            \"key_1\": k1, \"key_2\": k2,\n            \"mean_diff\": diff, \"ci_lo\": ci_lo, \"ci_hi\": ci_hi,\n            \"t\": t, \"p_raw\": p, \"p_bonferroni\": p_bonf, \"cohens_d\": d,\n        })\n\n    vs_vanilla = []\n    if \"vanilla\" in groups:\n        for key in CELL_KEYS:\n            if key not in groups:\n                continue\n            a, b_arr = groups[key], groups[\"vanilla\"]\n            d = cohens_d(a, b_arr)\n            diff, ci_lo, ci_hi = mean_diff_ci(a, b_arr)\n            if len(a) >= 2 and len(b_arr) >= 2:\n                t, p = stats.ttest_ind(a, b_arr)\n                t, p = float(t), float(p)\n            else:\n                t = p = None\n            vs_vanilla.append({\n                \"cell\": CELL_DISPLAY[key], \"key\": key,\n                \"mean_diff\": diff, \"ci_lo\": ci_lo, \"ci_hi\": ci_hi,\n                \"t\": t, \"p\": p, \"cohens_d\": d,\n            })\n\n    return {\"all_pairs\": all_pairs, \"vs_vanilla\": vs_vanilla}\n\n\n# ── Main analysis runner ──────────────────────────────────────────────\n\ndef run_analysis(data):\n    results = {}\n    results[\"descriptive\"] = descriptive_stats(data)\n    results[\"assumptions\"] = assumption_checks(data)\n    results[\"anova\"] = factorial_anova_type2(data)\n    results[\"permutation\"] = permutation_anova(data)\n\n    if results[\"anova\"] and results[\"anova\"][\"interaction\"][\"p\"] < 0.05:\n        results[\"simple_effects\"] = simple_effects_analysis(data)\n    else:\n        results[\"simple_effects\"] = None\n\n    results[\"pairwise\"] = pairwise_comparisons(data)\n    return results\n\n\n# ── Report printer ────────────────────────────────────────────────────\n\ndef print_report(results):\n    W = 76\n    print(\"=\" * W)\n    print(\"  2x2 Factorial ANOVA Report: OccSafe VLA Experiment\")\n    print(\"  Factors: gradient_flow (ON/OFF) x norm_type (BN/LN)\")\n    print(\"=\" * W)\n\n    # 1. Descriptive\n    print(\"\\n1. DESCRIPTIVE STATISTICS\")\n    print(\"-\" * W)\n    print(f\"  {'Group':<28} {'n':>3}  {'Mean':>8}  {'SD':>8}  {'95% CI':>22}\")\n    desc = results[\"descriptive\"]\n    for key in ALL_KEYS:\n        d = desc[key]\n        if d[\"n\"] == 0:\n            print(f\"  {d['name']:<28} {'0':>3}  {'--':>8}  {'--':>8}  {'(no data)':>22}\")\n        elif d[\"n\"] == 1:\n            print(f\"  {d['name']:<28} {d['n']:>3}  {fmt(d['mean']):>8}  {'--':>8}  {'(n=1)':>22}\")\n        else:\n            ci = f\"[{fmt(d['ci_lo'])}, {fmt(d['ci_hi'])}]\"\n            print(f\"  {d['name']:<28} {d['n']:>3}  {fmt(d['mean']):>8}  {fmt(d['std']):>8}  {ci:>22}\")\n\n    # 2. Assumptions\n    print(\"\\n2. ASSUMPTION CHECKS\")\n    print(\"-\" * W)\n    assump = results[\"assumptions\"]\n    print(\"  Shapiro-Wilk normality test (H0: data is normal):\")\n    if assump[\"shapiro\"]:\n        for key, sw in assump[\"shapiro\"].items():\n            print(f\"    {sw['name']:<28} W = {fmt(sw['W'])}, p = {fmt(sw['p'])}{sig_stars(sw['p'])}\")\n    else:\n        print(\"    (insufficient data, need n >= 3)\")\n    print()\n    if assump[\"levene\"]:\n        lv = assump[\"levene\"]\n        print(f\"  Levene's test (homogeneity of variance): W = {fmt(lv['W'])}, p = {fmt(lv['p'])}{sig_stars(lv['p'])}\")\n    else:\n        print(\"  Levene's test: skipped (need >= 2 groups with n >= 2)\")\n\n    # 3. ANOVA\n    print(\"\\n3. 2-WAY ANOVA (Type II SS)\")\n    print(\"-\" * W)\n    anova = results[\"anova\"]\n    if anova is None:\n        print(\"  SKIPPED: requires all 4 cells populated and total N >= 5\")\n    else:\n        hdr = f\"  {'Source':<18} {'SS':>10} {'df':>4} {'MS':>10} {'F':>8} {'p':>9} {'eta2_p':>8}\"\n        print(hdr)\n        print(f\"  {'─' * 18} {'─' * 10} {'─' * 4} {'─' * 10} {'─' * 8} {'─' * 9} {'─' * 8}\")\n        for eff in [\"gradient_flow\", \"norm_type\", \"interaction\"]:\n            e = anova[eff]\n            print(f\"  {eff:<18} {fmt(e['SS']):>10} {e['df']:>4} {fmt(e['MS']):>10} \"\n                  f\"{fmt(e['F']):>8} {fmt(e['p']):>9}{sig_stars(e['p'])} {fmt(e['eta2_partial']):>8}\")\n        r = anova[\"residual\"]\n        print(f\"  {'Residual':<18} {fmt(r['SS']):>10} {r['df']:>4} {fmt(r['MS']):>10}\")\n        t = anova[\"total\"]\n        print(f\"  {'Total':<18} {fmt(t['SS']):>10} {t['df']:>4}\")\n        print(f\"\\n  N = {anova['n']}\")\n\n        if results[\"simple_effects\"]:\n            print(\"\\n  Simple Effects (interaction p < .05):\")\n            for label, se in results[\"simple_effects\"].items():\n                g1, g2 = se[\"groups\"]\n                d_str = fmt(se[\"d\"]) if se[\"d\"] is not None else \"N/A\"\n                t_str = fmt(se[\"t\"]) if se[\"t\"] is not None else \"N/A\"\n                p_str = fmt(se[\"p\"]) if se[\"p\"] is not None else \"N/A\"\n                stars = sig_stars(se[\"p\"]) if se[\"p\"] is not None else \"\"\n                print(f\"    {label}: {g1} vs {g2}\")\n                print(f\"      t = {t_str}, p = {p_str}{stars}, d = {d_str}\")\n\n    # 4. Permutation\n    print(\"\\n4. PERMUTATION TEST (n = 10,000)\")\n    print(\"-\" * W)\n    perm = results[\"permutation\"]\n    if perm is None:\n        print(\"  SKIPPED: requires all 4 cells populated\")\n    else:\n        print(\"  (Primary inference for small-sample factorial design)\")\n        print(f\"  {'Effect':<18} {'F_obs':>10} {'p_perm':>10}\")\n        print(f\"  {'─' * 18} {'─' * 10} {'─' * 10}\")\n        for eff in [\"gradient_flow\", \"norm_type\", \"interaction\"]:\n            e = perm[eff]\n            print(f\"  {eff:<18} {fmt(e['F_obs']):>10} {fmt(e['p_perm']):>10}{sig_stars(e['p_perm'])}\")\n\n    # 5. Pairwise\n    print(\"\\n5. PAIRWISE COMPARISONS\")\n    print(\"-\" * W)\n    pw = results[\"pairwise\"]\n\n    print(\"  All pairs (Bonferroni-corrected):\")\n    hdr = f\"  {'Comparison':<48} {'dmean':>7} {'t':>7} {'p_bonf':>8} {'d':>7}\"\n    print(hdr)\n    print(f\"  {'─' * 48} {'─' * 7} {'─' * 7} {'─' * 8} {'─' * 7}\")\n    for pair in pw[\"all_pairs\"]:\n        comp = f\"{pair['group_1']} vs {pair['group_2']}\"\n        if len(comp) > 48:\n            comp = comp[:45] + \"...\"\n        print(f\"  {comp:<48} {fmt(pair['mean_diff']):>7} \"\n              f\"{fmt(pair['t']):>7} \"\n              f\"{fmt(pair['p_bonferroni']):>8}\"\n              f\"{sig_stars(pair['p_bonferroni']) if pair['p_bonferroni'] is not None else ''} \"\n              f\"{fmt(pair['cohens_d']):>7}\")\n\n    print()\n    print(\"  Each cell vs Vanilla:\")\n    if pw[\"vs_vanilla\"]:\n        print(f\"  {'Cell':<28} {'dmean':>7} {'95% CI of diff':>22} {'t':>7} {'p':>8} {'d':>7}\")\n        print(f\"  {'─' * 28} {'─' * 7} {'─' * 22} {'─' * 7} {'─' * 8} {'─' * 7}\")\n        for v in pw[\"vs_vanilla\"]:\n            if v[\"ci_lo\"] is not None:\n                ci = f\"[{v['ci_lo']:+.4f}, {v['ci_hi']:+.4f}]\"\n            else:\n                ci = \"N/A\"\n            print(f\"  {v['cell']:<28} {fmt(v['mean_diff']):>7} {ci:>22} \"\n                  f\"{fmt(v['t']):>7} {fmt(v['p']):>8}\"\n                  f\"{sig_stars(v['p']) if v['p'] is not None else ''} \"\n                  f\"{fmt(v['cohens_d']):>7}\")\n    else:\n        print(\"  (no Vanilla data)\")\n\n    # 6. Key comparison\n    print(f\"\\n6. KEY COMPARISON: Detach BN vs Vanilla\")\n    print(\"-\" * W)\n    target = None\n    for v in pw[\"vs_vanilla\"]:\n        if v[\"key\"] == \"cell_3\":\n            target = v\n            break\n    if target:\n        print(f\"  Mean difference:  {fmt(target['mean_diff'])}\")\n        if target[\"ci_lo\"] is not None:\n            print(f\"  95% CI of diff:   [{target['ci_lo']:+.4f}, {target['ci_hi']:+.4f}]\")\n        if target[\"cohens_d\"] is not None:\n            d_val = abs(target[\"cohens_d\"])\n            mag = (\"negligible\" if d_val < 0.2 else \"small\" if d_val < 0.5\n                   else \"medium\" if d_val < 0.8 else \"large\")\n            print(f\"  Cohen's d:        {target['cohens_d']:.4f} ({mag})\")\n        if target[\"t\"] is not None:\n            print(f\"  t = {target['t']:.4f}, p = {target['p']:.4f}{sig_stars(target['p'])}\")\n        else:\n            print(\"  t-test: N/A (Vanilla n=1, insufficient for parametric test)\")\n        print(\"  Interpretation: Detach BN ~ Vanilla => OCC without gradient has no effect\")\n    else:\n        print(\"  (insufficient data for this comparison)\")\n\n    print(\"\\n\" + \"=\" * W)\n    print(\"  * p < .05   ** p < .01   *** p < .001\")\n    print(\"  eta2_p = partial eta-squared;  d = Cohen's d\")\n    print(\"=\" * W)\n\n\n# ── JSON serialization ────────────────────────────────────────────────\n\ndef to_native(obj):\n    \"\"\"Convert numpy types to Python native for JSON.\"\"\"\n    if isinstance(obj, dict):\n        return {k: to_native(v) for k, v in obj.items()}\n    if isinstance(obj, (list, tuple)):\n        return [to_native(v) for v in obj]\n    if isinstance(obj, np.integer):\n        return int(obj)\n    if isinstance(obj, np.floating):\n        return float(obj)\n    if isinstance(obj, np.ndarray):\n        return obj.tolist()\n    return obj\n\n\n# ── CLI ───────────────────────────────────────────────────────────────\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"2x2 Factorial ANOVA for OccSafe VLA\")\n    p.add_argument(\"--demo\", action=\"store_true\", help=\"Run with built-in demo data\")\n    p.add_argument(\"--data-json\", type=str, help=\"Path to JSON data file\")\n    p.add_argument(\"--cell1\", nargs=\"*\", type=float, default=None)\n    p.add_argument(\"--cell2\", nargs=\"*\", type=float, default=None)\n    p.add_argument(\"--cell3\", nargs=\"*\", type=float, default=None)\n    p.add_argument(\"--cell4\", nargs=\"*\", type=float, default=None)\n    p.add_argument(\"--vanilla\", nargs=\"*\", type=float, default=None)\n    p.add_argument(\"--output-json\", type=str, help=\"Save results to JSON\")\n    p.add_argument(\"--n-perm\", type=int, default=10000, help=\"Number of permutations\")\n    return p.parse_args()\n\n\ndef load_data(args):\n    if args.demo:\n        return DEMO_DATA.copy()\n    if args.data_json:\n        with open(args.data_json) as f:\n            return json.load(f)\n    return {\n        \"cell_1\": args.cell1 or [],\n        \"cell_2\": args.cell2 or [],\n        \"cell_3\": args.cell3 or [],\n        \"cell_4\": args.cell4 or [],\n        \"vanilla\": args.vanilla or [],\n    }\n\n\ndef main():\n    args = parse_args()\n    data = load_data(args)\n\n    if not any(data.get(k) for k in CELL_KEYS):\n        print(\"ERROR: No cell data. Use --demo, --data-json, or --cell1/2/3/4.\")\n        sys.exit(1)\n\n    results = run_analysis(data)\n    print_report(results)\n\n    if args.output_json:\n        with open(args.output_json, \"w\") as f:\n            json.dump(to_native(results), f, indent=2)\n        print(f\"\\nResults saved to: {args.output_json}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c2d8d17e-4d20-4df2-b27e-7aaf3653235a",
+  "uuid": "efbc6752-ebac-4de4-9986-4b0a81177e21",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AM9Q3K59Prd27hVSW7cdua",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13154,
+      "cache_read_input_tokens": 25323,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13154
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-26T19:28:32.906Z_
+
+<details><summary>↩ Tool result · `toolu_01R8EaLcPfSXFQkkiusrRw7g`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/analyze_factorial_anova.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c2d8d17e-4d20-4df2-b27e-7aaf3653235a",
+  "uuid": "4fc03df0-1f91-4292-a8dd-7520e70abf56",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/analyze_factorial_anova.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"\n2x2 Factorial ANOVA analysis for OccSafe VLA experiment.\n\nFactors:\n  A: gradient_flow (ON / OFF)\n  B: norm_type (BN / LN)\nDV: CAR (Collision Avoidance Rate), range [0, 1]\n\nCells:\n  1 = ON+BN (Full OCC BN, mvp_occ)\n  2 = ON+LN (Full OCC LN, full_occ_ln)\n  3 = OFF+BN (Detach BN, ablation_occ_detach)\n  4 = OFF+LN (Detach LN, detach_ln)\n  + Vanilla baseline (no OCC head)\n\nUsage:\n  python analyze_factorial_anova.py --demo\n  python analyze_factorial_anova.py --data-json data.json\n  python analyze_factorial_anova.py --cell1 0.746 0.654 --cell2 0.8 --cell3 0.77 --cell4 0.69 --vanilla 0.768\n  python analyze_factorial_anova.py --demo --output-json results.json\n\"\"\"\n\nimport argparse\nimport json\nimport sys\nfrom itertools import combinations\n\nimport numpy as np\nfrom scipy import stats\n\n# ── Cell definitions ──────────────────────────────────────────────────\n\nCELL_INFO = {\n    \"cell_1\": {\"name\": \"Full OCC BN\",  \"label\": \"cell_1\", \"gradient_flow\": \"ON\",  \"norm_type\": \"BN\"},\n    \"cell_2\": {\"name\": \"Full OCC LN\",  \"label\": \"cell_2\", \"gradient_flow\": \"ON\",  \"norm_type\": \"LN\"},\n    \"cell_3\": {\"name\": \"Detach BN\",    \"label\": \"cell_3\", \"gradient_flow\": \"OFF\", \"norm_type\": \"BN\"},\n    \"cell_4\": {\"name\": \"Detach LN\",    \"label\": \"cell_4\", \"gradient_flow\": \"OFF\", \"norm_type\": \"LN\"},\n}\n\nCELL_DISPLAY = {\n    \"cell_1\": \"Full OCC BN (cell_1)\",\n    \"cell_2\": \"Full OCC LN (cell_2)\",\n    \"cell_3\": \"Detach BN (cell_3)\",\n    \"cell_4\": \"Detach LN (cell_4)\",\n    \"vanilla\": \"Vanilla\",\n}\n\nDEMO_DATA = {\n    \"cell_1\": [0.746, 0.654, 0.774],\n    \"cell_2\": [],\n    \"cell_3\": [0.774, 0.736, 0.762, 0.768],\n    \"cell_4\": [],\n    \"vanilla\": [0.768],\n}\n\nALL_KEYS = [\"cell_1\", \"cell_2\", \"cell_3\", \"cell_4\", \"vanilla\"]\nCELL_KEYS = [\"cell_1\", \"cell_2\", \"cell_3\", \"cell_4\"]\n\n\n# ── Helpers ───────────────────────────────────────────────────────────\n\ndef sig_stars(p):\n    \"\"\"Return significance stars for p-value.\"\"\"\n    if p is None or np.isnan(p):\n        return \"\"\n    if p < 0.001:\n        return \" ***\"\n    if p < 0.01:\n        return \" **\"\n    if p < 0.05:\n        return \" *\"\n    return \"\"\n\n\ndef cohens_d(a, b):\n    \"\"\"Cohen's d with pooled SD. Returns None if either group has n < 2.\"\"\"\n    n1, n2 = len(a), len(b)\n    if n1 < 2 or n2 < 2:\n        return None\n    s1, s2 = np.var(a, ddof=1), np.var(b, ddof=1)\n    pooled = np.sqrt(((n1 - 1) * s1 + (n2 - 1) * s2) / (n1 + n2 - 2))\n    if pooled == 0:\n        return 0.0\n    return (np.mean(a) - np.mean(b)) / pooled\n\n\ndef mean_diff_ci(a, b, alpha=0.05):\n    \"\"\"Mean difference and Welch 95% CI. Returns (diff, ci_lo, ci_hi).\"\"\"\n    n1, n2 = len(a), len(b)\n    diff = np.mean(a) - np.mean(b)\n    if n1 < 2 or n2 < 2:\n        return diff, None, None\n    s1n = np.var(a, ddof=1) / n1\n    s2n = np.var(b, ddof=1) / n2\n    se = np.sqrt(s1n + s2n)\n    if se == 0:\n        return diff, diff, diff\n    df = (s1n + s2n) ** 2 / (s1n ** 2 / (n1 - 1) + s2n ** 2 / (n2 - 1))\n    t_crit = stats.t.ppf(1 - alpha / 2, df)\n    return diff, diff - t_crit * se, diff + t_crit * se\n\n\ndef ols_ss_resid(X, y):\n    \"\"\"Residual sum of squares from OLS fit.\"\"\"\n    beta, _, _, _ = np.linalg.lstsq(X, y, rcond=None)\n    return float(np.sum((y - X @ beta) ** 2))\n\n\ndef fmt(val, dec=4):\n    if val is None:\n        return \"N/A\"\n    return f\"{val:.{dec}f}\"\n\n\n# ── Core analyses ─────────────────────────────────────────────────────\n\ndef descriptive_stats(data):\n    \"\"\"Compute mean, std, n, 95% CI for each group.\"\"\"\n    result = {}\n    for key in ALL_KEYS:\n        vals = data.get(key, [])\n        if not vals:\n            result[key] = {\"name\": CELL_DISPLAY[key], \"n\": 0,\n                           \"mean\": None, \"std\": None, \"ci_lo\": None, \"ci_hi\": None}\n            continue\n        arr = np.array(vals, dtype=float)\n        n = len(arr)\n        mean = float(np.mean(arr))\n        if n >= 2:\n            sd = float(np.std(arr, ddof=1))\n            se = sd / np.sqrt(n)\n            tc = stats.t.ppf(0.975, n - 1)\n            ci_lo, ci_hi = mean - tc * se, mean + tc * se\n        else:\n            sd = ci_lo = ci_hi = None\n        result[key] = {\"name\": CELL_DISPLAY[key], \"n\": n,\n                       \"mean\": mean, \"std\": sd, \"ci_lo\": ci_lo, \"ci_hi\": ci_hi}\n    return result\n\n\ndef assumption_checks(data):\n    \"\"\"Shapiro-Wilk per cell (n>=3) and Levene's test across cells (n>=2).\"\"\"\n    result = {}\n\n    shapiro = {}\n    for key in ALL_KEYS:\n        vals = data.get(key, [])\n        if len(vals) >= 3:\n            w, p = stats.shapiro(vals)\n            shapiro[key] = {\"name\": CELL_DISPLAY[key], \"W\": float(w), \"p\": float(p)}\n    result[\"shapiro\"] = shapiro\n\n    groups = [np.array(data[k], dtype=float) for k in CELL_KEYS\n              if data.get(k) and len(data[k]) >= 2]\n    if len(groups) >= 2:\n        w, p = stats.levene(*groups)\n        result[\"levene\"] = {\"W\": float(w), \"p\": float(p)}\n    else:\n        result[\"levene\"] = None\n\n    return result\n\n\ndef _build_anova_arrays(data):\n    \"\"\"Build y, a, b arrays from cell data using effect coding (-1/+1).\"\"\"\n    y_list, a_list, b_list = [], [], []\n    for key in CELL_KEYS:\n        vals = data.get(key, [])\n        if not vals:\n            continue\n        info = CELL_INFO[key]\n        a_code = 1.0 if info[\"gradient_flow\"] == \"ON\" else -1.0\n        b_code = 1.0 if info[\"norm_type\"] == \"BN\" else -1.0\n        for v in vals:\n            y_list.append(v)\n            a_list.append(a_code)\n            b_list.append(b_code)\n    return np.array(y_list), np.array(a_list), np.array(b_list)\n\n\ndef _all_four_cells(data):\n    return all(data.get(k) for k in CELL_KEYS)\n\n\ndef factorial_anova_type2(data):\n    \"\"\"2-way ANOVA with Type II SS via nested model comparisons.\"\"\"\n    if not _all_four_cells(data):\n        return None\n\n    y, a, b = _build_anova_arrays(data)\n    n = len(y)\n    if n - 4 <= 0:\n        return None\n\n    ab = a * b\n    ones = np.ones(n)\n\n    ss_full = ols_ss_resid(np.column_stack([ones, a, b, ab]), y)\n    ss_ab   = ols_ss_resid(np.column_stack([ones, a, b]), y)\n    ss_a    = ols_ss_resid(np.column_stack([ones, a]), y)\n    ss_b    = ols_ss_resid(np.column_stack([ones, b]), y)\n\n    SS_A  = ss_b  - ss_ab    # R(A | B)\n    SS_B  = ss_a  - ss_ab    # R(B | A)\n    SS_AB = ss_ab - ss_full  # R(AB | A, B)\n    SS_resid = ss_full\n    SS_total = float(np.sum((y - np.mean(y)) ** 2))\n\n    df_resid = n - 4\n    MS_A  = SS_A / 1\n    MS_B  = SS_B / 1\n    MS_AB = SS_AB / 1\n    MS_resid = SS_resid / df_resid\n\n    def f_and_p(ms_eff):\n        if MS_resid == 0:\n            return float(\"inf\"), 0.0\n        f = ms_eff / MS_resid\n        return float(f), float(stats.f.sf(f, 1, df_resid))\n\n    F_A, p_A = f_and_p(MS_A)\n    F_B, p_B = f_and_p(MS_B)\n    F_AB, p_AB = f_and_p(MS_AB)\n\n    return {\n        \"gradient_flow\": {\"SS\": SS_A, \"df\": 1, \"MS\": MS_A,\n                          \"F\": F_A, \"p\": p_A,\n                          \"eta2_partial\": SS_A / (SS_A + SS_resid)},\n        \"norm_type\":     {\"SS\": SS_B, \"df\": 1, \"MS\": MS_B,\n                          \"F\": F_B, \"p\": p_B,\n                          \"eta2_partial\": SS_B / (SS_B + SS_resid)},\n        \"interaction\":   {\"SS\": SS_AB, \"df\": 1, \"MS\": MS_AB,\n                          \"F\": F_AB, \"p\": p_AB,\n                          \"eta2_partial\": SS_AB / (SS_AB + SS_resid)},\n        \"residual\":      {\"SS\": SS_resid, \"df\": df_resid, \"MS\": MS_resid},\n        \"total\":         {\"SS\": SS_total, \"df\": n - 1},\n        \"n\": n,\n    }\n\n\ndef permutation_anova(data, n_perm=10000, seed=42):\n    \"\"\"Permutation test for each ANOVA effect (permute y, recompute F).\"\"\"\n    if not _all_four_cells(data):\n        return None\n\n    y, a, b = _build_anova_arrays(data)\n    n = len(y)\n    if n - 4 <= 0:\n        return None\n\n    ab = a * b\n    ones = np.ones(n)\n    X_full = np.column_stack([ones, a, b, ab])\n    X_ab   = np.column_stack([ones, a, b])\n    X_a    = np.column_stack([ones, a])\n    X_b    = np.column_stack([ones, b])\n\n    rng = np.random.RandomState(seed)\n\n    def compute_f(yy):\n        sf = ols_ss_resid(X_full, yy)\n        ms_r = sf / (n - 4)\n        if ms_r == 0:\n            return float(\"inf\"), float(\"inf\"), float(\"inf\")\n        fa = (ols_ss_resid(X_b, yy) - ols_ss_resid(X_ab, yy)) / ms_r\n        fb = (ols_ss_resid(X_a, yy) - ols_ss_resid(X_ab, yy)) / ms_r\n        fab = (ols_ss_resid(X_ab, yy) - sf) / ms_r\n        return fa, fb, fab\n\n    obs_fa, obs_fb, obs_fab = compute_f(y)\n    cnt_a = cnt_b = cnt_ab = 0\n\n    for _ in range(n_perm):\n        yp = rng.permutation(y)\n        fa, fb, fab = compute_f(yp)\n        if fa >= obs_fa:\n            cnt_a += 1\n        if fb >= obs_fb:\n            cnt_b += 1\n        if fab >= obs_fab:\n            cnt_ab += 1\n\n    denom = n_perm + 1\n    return {\n        \"gradient_flow\": {\"F_obs\": obs_fa, \"p_perm\": (cnt_a + 1) / denom},\n        \"norm_type\":     {\"F_obs\": obs_fb, \"p_perm\": (cnt_b + 1) / denom},\n        \"interaction\":   {\"F_obs\": obs_fab, \"p_perm\": (cnt_ab + 1) / denom},\n        \"n_perm\": n_perm,\n    }\n\n\ndef simple_effects_analysis(data):\n    \"\"\"Simple effects: gradient_flow at each norm_type level and vice versa.\"\"\"\n    pairs = [\n        (\"grad_flow_at_BN\",  \"cell_1\", \"cell_3\", \"Full OCC BN\", \"Detach BN\"),\n        (\"grad_flow_at_LN\",  \"cell_2\", \"cell_4\", \"Full OCC LN\", \"Detach LN\"),\n        (\"norm_type_at_ON\",  \"cell_1\", \"cell_2\", \"Full OCC BN\", \"Full OCC LN\"),\n        (\"norm_type_at_OFF\", \"cell_3\", \"cell_4\", \"Detach BN\",   \"Detach LN\"),\n    ]\n    result = {}\n    for label, k1, k2, g1, g2 in pairs:\n        v1, v2 = data.get(k1, []), data.get(k2, [])\n        if not v1 or not v2:\n            continue\n        a1, a2 = np.array(v1), np.array(v2)\n        if len(a1) >= 2 and len(a2) >= 2:\n            t, p = stats.ttest_ind(a1, a2)\n            t, p = float(t), float(p)\n        else:\n            t = p = None\n        result[label] = {\"groups\": (g1, g2), \"t\": t, \"p\": p,\n                         \"d\": cohens_d(a1, a2)}\n    return result\n\n\ndef pairwise_comparisons(data):\n    \"\"\"All pairwise t-tests with Bonferroni correction + each cell vs Vanilla.\"\"\"\n    groups = {}\n    for key in ALL_KEYS:\n        vals = data.get(key, [])\n        if vals:\n            groups[key] = np.array(vals, dtype=float)\n\n    keys = list(groups.keys())\n    n_comp = len(list(combinations(keys, 2)))\n\n    all_pairs = []\n    for k1, k2 in combinations(keys, 2):\n        a, b_arr = groups[k1], groups[k2]\n        d = cohens_d(a, b_arr)\n        diff, ci_lo, ci_hi = mean_diff_ci(a, b_arr)\n        if len(a) >= 2 and len(b_arr) >= 2:\n            t, p = stats.ttest_ind(a, b_arr)\n            p_bonf = min(float(p) * n_comp, 1.0)\n            t, p = float(t), float(p)\n        else:\n            t = p = p_bonf = None\n        all_pairs.append({\n            \"group_1\": CELL_DISPLAY[k1], \"group_2\": CELL_DISPLAY[k2],\n            \"key_1\": k1, \"key_2\": k2,\n            \"mean_diff\": diff, \"ci_lo\": ci_lo, \"ci_hi\": ci_hi,\n            \"t\": t, \"p_raw\": p, \"p_bonferroni\": p_bonf, \"cohens_d\": d,\n        })\n\n    vs_vanilla = []\n    if \"vanilla\" in groups:\n        for key in CELL_KEYS:\n            if key not in groups:\n                continue\n            a, b_arr = groups[key], groups[\"vanilla\"]\n            d = cohens_d(a, b_arr)\n            diff, ci_lo, ci_hi = mean_diff_ci(a, b_arr)\n            if len(a) >= 2 and len(b_arr) >= 2:\n                t, p = stats.ttest_ind(a, b_arr)\n                t, p = float(t), float(p)\n            else:\n                t = p = None\n            vs_vanilla.append({\n                \"cell\": CELL_DISPLAY[key], \"key\": key,\n                \"mean_diff\": diff, \"ci_lo\": ci_lo, \"ci_hi\": ci_hi,\n                \"t\": t, \"p\": p, \"cohens_d\": d,\n            })\n\n    return {\"all_pairs\": all_pairs, \"vs_vanilla\": vs_vanilla}\n\n\n# ── Main analysis runner ──────────────────────────────────────────────\n\ndef run_analysis(data):\n    results = {}\n    results[\"descriptive\"] = descriptive_stats(data)\n    results[\"assumptions\"] = assumption_checks(data)\n    results[\"anova\"] = factorial_anova_type2(data)\n    results[\"permutation\"] = permutation_anova(data)\n\n    if results[\"anova\"] and results[\"anova\"][\"interaction\"][\"p\"] < 0.05:\n        results[\"simple_effects\"] = simple_effects_analysis(data)\n    else:\n        results[\"simple_effects\"] = None\n\n    results[\"pairwise\"] = pairwise_comparisons(data)\n    return results\n\n\n# ── Report printer ────────────────────────────────────────────────────\n\ndef print_report(results):\n    W = 76\n    print(\"=\" * W)\n    print(\"  2x2 Factorial ANOVA Report: OccSafe VLA Experiment\")\n    print(\"  Factors: gradient_flow (ON/OFF) x norm_type (BN/LN)\")\n    print(\"=\" * W)\n\n    # 1. Descriptive\n    print(\"\\n1. DESCRIPTIVE STATISTICS\")\n    print(\"-\" * W)\n    print(f\"  {'Group':<28} {'n':>3}  {'Mean':>8}  {'SD':>8}  {'95% CI':>22}\")\n    desc = results[\"descriptive\"]\n    for key in ALL_KEYS:\n        d = desc[key]\n        if d[\"n\"] == 0:\n            print(f\"  {d['name']:<28} {'0':>3}  {'--':>8}  {'--':>8}  {'(no data)':>22}\")\n        elif d[\"n\"] == 1:\n            print(f\"  {d['name']:<28} {d['n']:>3}  {fmt(d['mean']):>8}  {'--':>8}  {'(n=1)':>22}\")\n        else:\n            ci = f\"[{fmt(d['ci_lo'])}, {fmt(d['ci_hi'])}]\"\n            print(f\"  {d['name']:<28} {d['n']:>3}  {fmt(d['mean']):>8}  {fmt(d['std']):>8}  {ci:>22}\")\n\n    # 2. Assumptions\n    print(\"\\n2. ASSUMPTION CHECKS\")\n    print(\"-\" * W)\n    assump = results[\"assumptions\"]\n    print(\"  Shapiro-Wilk normality test (H0: data is normal):\")\n    if assump[\"shapiro\"]:\n        for key, sw in assump[\"shapiro\"].items():\n            print(f\"    {sw['name']:<28} W = {fmt(sw['W'])}, p = {fmt(sw['p'])}{sig_stars(sw['p'])}\")\n    else:\n        print(\"    (insufficient data, need n >= 3)\")\n    print()\n    if assump[\"levene\"]:\n        lv = assump[\"levene\"]\n        print(f\"  Levene's test (homogeneity of variance): W = {fmt(lv['W'])}, p = {fmt(lv['p'])}{sig_stars(lv['p'])}\")\n    else:\n        print(\"  Levene's test: skipped (need >= 2 groups with n >= 2)\")\n\n    # 3. ANOVA\n    print(\"\\n3. 2-WAY ANOVA (Type II SS)\")\n    print(\"-\" * W)\n    anova = results[\"anova\"]\n    if anova is None:\n        print(\"  SKIPPED: requires all 4 cells populated and total N >= 5\")\n    else:\n        hdr = f\"  {'Source':<18} {'SS':>10} {'df':>4} {'MS':>10} {'F':>8} {'p':>9} {'eta2_p':>8}\"\n        print(hdr)\n        print(f\"  {'─' * 18} {'─' * 10} {'─' * 4} {'─' * 10} {'─' * 8} {'─' * 9} {'─' * 8}\")\n        for eff in [\"gradient_flow\", \"norm_type\", \"interaction\"]:\n            e = anova[eff]\n            print(f\"  {eff:<18} {fmt(e['SS']):>10} {e['df']:>4} {fmt(e['MS']):>10} \"\n                  f\"{fmt(e['F']):>8} {fmt(e['p']):>9}{sig_stars(e['p'])} {fmt(e['eta2_partial']):>8}\")\n        r = anova[\"residual\"]\n        print(f\"  {'Residual':<18} {fmt(r['SS']):>10} {r['df']:>4} {fmt(r['MS']):>10}\")\n        t = anova[\"total\"]\n        print(f\"  {'Total':<18} {fmt(t['SS']):>10} {t['df']:>4}\")\n        print(f\"\\n  N = {anova['n']}\")\n\n        if results[\"simple_effects\"]:\n            print(\"\\n  Simple Effects (interaction p < .05):\")\n            for label, se in results[\"simple_effects\"].items():\n                g1, g2 = se[\"groups\"]\n                d_str = fmt(se[\"d\"]) if se[\"d\"] is not None else \"N/A\"\n                t_str = fmt(se[\"t\"]) if se[\"t\"] is not None else \"N/A\"\n                p_str = fmt(se[\"p\"]) if se[\"p\"] is not None else \"N/A\"\n                stars = sig_stars(se[\"p\"]) if se[\"p\"] is not None else \"\"\n                print(f\"    {label}: {g1} vs {g2}\")\n                print(f\"      t = {t_str}, p = {p_str}{stars}, d = {d_str}\")\n\n    # 4. Permutation\n    print(\"\\n4. PERMUTATION TEST (n = 10,000)\")\n    print(\"-\" * W)\n    perm = results[\"permutation\"]\n    if perm is None:\n        print(\"  SKIPPED: requires all 4 cells populated\")\n    else:\n        print(\"  (Primary inference for small-sample factorial design)\")\n        print(f\"  {'Effect':<18} {'F_obs':>10} {'p_perm':>10}\")\n        print(f\"  {'─' * 18} {'─' * 10} {'─' * 10}\")\n        for eff in [\"gradient_flow\", \"norm_type\", \"interaction\"]:\n            e = perm[eff]\n            print(f\"  {eff:<18} {fmt(e['F_obs']):>10} {fmt(e['p_perm']):>10}{sig_stars(e['p_perm'])}\")\n\n    # 5. Pairwise\n    print(\"\\n5. PAIRWISE COMPARISONS\")\n    print(\"-\" * W)\n    pw = results[\"pairwise\"]\n\n    print(\"  All pairs (Bonferroni-corrected):\")\n    hdr = f\"  {'Comparison':<48} {'dmean':>7} {'t':>7} {'p_bonf':>8} {'d':>7}\"\n    print(hdr)\n    print(f\"  {'─' * 48} {'─' * 7} {'─' * 7} {'─' * 8} {'─' * 7}\")\n    for pair in pw[\"all_pairs\"]:\n        comp = f\"{pair['group_1']} vs {pair['group_2']}\"\n        if len(comp) > 48:\n            comp = comp[:45] + \"...\"\n        print(f\"  {comp:<48} {fmt(pair['mean_diff']):>7} \"\n              f\"{fmt(pair['t']):>7} \"\n              f\"{fmt(pair['p_bonferroni']):>8}\"\n              f\"{sig_stars(pair['p_bonferroni']) if pair['p_bonferroni'] is not None else ''} \"\n              f\"{fmt(pair['cohens_d']):>7}\")\n\n    print()\n    print(\"  Each cell vs Vanilla:\")\n    if pw[\"vs_vanilla\"]:\n        print(f\"  {'Cell':<28} {'dmean':>7} {'95% CI of diff':>22} {'t':>7} {'p':>8} {'d':>7}\")\n        print(f\"  {'─' * 28} {'─' * 7} {'─' * 22} {'─' * 7} {'─' * 8} {'─' * 7}\")\n        for v in pw[\"vs_vanilla\"]:\n            if v[\"ci_lo\"] is not None:\n                ci = f\"[{v['ci_lo']:+.4f}, {v['ci_hi']:+.4f}]\"\n            else:\n                ci = \"N/A\"\n            print(f\"  {v['cell']:<28} {fmt(v['mean_diff']):>7} {ci:>22} \"\n                  f\"{fmt(v['t']):>7} {fmt(v['p']):>8}\"\n                  f\"{sig_stars(v['p']) if v['p'] is not None else ''} \"\n                  f\"{fmt(v['cohens_d']):>7}\")\n    else:\n        print(\"  (no Vanilla data)\")\n\n    # 6. Key comparison\n    print(f\"\\n6. KEY COMPARISON: Detach BN vs Vanilla\")\n    print(\"-\" * W)\n    target = None\n    for v in pw[\"vs_vanilla\"]:\n        if v[\"key\"] == \"cell_3\":\n            target = v\n            break\n    if target:\n        print(f\"  Mean difference:  {fmt(target['mean_diff'])}\")\n        if target[\"ci_lo\"] is not None:\n            print(f\"  95% CI of diff:   [{target['ci_lo']:+.4f}, {target['ci_hi']:+.4f}]\")\n        if target[\"cohens_d\"] is not None:\n            d_val = abs(target[\"cohens_d\"])\n            mag = (\"negligible\" if d_val < 0.2 else \"small\" if d_val < 0.5\n                   else \"medium\" if d_val < 0.8 else \"large\")\n            print(f\"  Cohen's d:        {target['cohens_d']:.4f} ({mag})\")\n        if target[\"t\"] is not None:\n            print(f\"  t = {target['t']:.4f}, p = {target['p']:.4f}{sig_stars(target['p'])}\")\n        else:\n            print(\"  t-test: N/A (Vanilla n=1, insufficient for parametric test)\")\n        print(\"  Interpretation: Detach BN ~ Vanilla => OCC without gradient has no effect\")\n    else:\n        print(\"  (insufficient data for this comparison)\")\n\n    print(\"\\n\" + \"=\" * W)\n    print(\"  * p < .05   ** p < .01   *** p < .001\")\n    print(\"  eta2_p = partial eta-squared;  d = Cohen's d\")\n    print(\"=\" * W)\n\n\n# ── JSON serialization ────────────────────────────────────────────────\n\ndef to_native(obj):\n    \"\"\"Convert numpy types to Python native for JSON.\"\"\"\n    if isinstance(obj, dict):\n        return {k: to_native(v) for k, v in obj.items()}\n    if isinstance(obj, (list, tuple)):\n        return [to_native(v) for v in obj]\n    if isinstance(obj, np.integer):\n        return int(obj)\n    if isinstance(obj, np.floating):\n        return float(obj)\n    if isinstance(obj, np.ndarray):\n        return obj.tolist()\n    return obj\n\n\n# ── CLI ───────────────────────────────────────────────────────────────\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"2x2 Factorial ANOVA for OccSafe VLA\")\n    p.add_argument(\"--demo\", action=\"store_true\", help=\"Run with built-in demo data\")\n    p.add_argument(\"--data-json\", type=str, help=\"Path to JSON data file\")\n    p.add_argument(\"--cell1\", nargs=\"*\", type=float, default=None)\n    p.add_argument(\"--cell2\", nargs=\"*\", type=float, default=None)\n    p.add_argument(\"--cell3\", nargs=\"*\", type=float, default=None)\n    p.add_argument(\"--cell4\", nargs=\"*\", type=float, default=None)\n    p.add_argument(\"--vanilla\", nargs=\"*\", type=float, default=None)\n    p.add_argument(\"--output-json\", type=str, help=\"Save results to JSON\")\n    p.add_argument(\"--n-perm\", type=int, default=10000, help=\"Number of permutations\")\n    return p.parse_args()\n\n\ndef load_data(args):\n    if args.demo:\n        return DEMO_DATA.copy()\n    if args.data_json:\n        with open(args.data_json) as f:\n            return json.load(f)\n    return {\n        \"cell_1\": args.cell1 or [],\n        \"cell_2\": args.cell2 or [],\n        \"cell_3\": args.cell3 or [],\n        \"cell_4\": args.cell4 or [],\n        \"vanilla\": args.vanilla or [],\n    }\n\n\ndef main():\n    args = parse_args()\n    data = load_data(args)\n\n    if not any(data.get(k) for k in CELL_KEYS):\n        print(\"ERROR: No cell data. Use --demo, --data-json, or --cell1/2/3/4.\")\n        sys.exit(1)\n\n    results = run_analysis(data)\n    print_report(results)\n\n    if args.output_json:\n        with open(args.output_json, \"w\") as f:\n            json.dump(to_native(results), f, indent=2)\n        print(f\"\\nResults saved to: {args.output_json}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0115mKuYvM476ZvUemzu1nAL`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts && python3 analyze_factorial_anova.py --demo",
+  "description": "Run demo to validate output"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c2d8d17e-4d20-4df2-b27e-7aaf3653235a",
+  "uuid": "d1e3baa7-cf54-477b-bd64-29a52c931764",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LxNCotti2uCTZA6yQPRDov",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8463,
+      "cache_read_input_tokens": 38477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8463
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-26T19:28:37.192Z_
+
+<details><summary>↩ Tool result · `toolu_0115mKuYvM476ZvUemzu1nAL`</summary>
+
+```text
+============================================================================
+  2x2 Factorial ANOVA Report: OccSafe VLA Experiment
+  Factors: gradient_flow (ON/OFF) x norm_type (BN/LN)
+============================================================================
+
+1. DESCRIPTIVE STATISTICS
+----------------------------------------------------------------------------
+  Group                          n      Mean        SD                  95% CI
+  Full OCC BN (cell_1)           3    0.7247    0.0628        [0.5687, 0.8806]
+  Full OCC LN (cell_2)           0        --        --               (no data)
+  Detach BN (cell_3)             4    0.7600    0.0167        [0.7334, 0.7866]
+  Detach LN (cell_4)             0        --        --               (no data)
+  Vanilla                        1    0.7680        --                   (n=1)
+
+2. ASSUMPTION CHECKS
+----------------------------------------------------------------------------
+  Shapiro-Wilk normality test (H0: data is normal):
+    Full OCC BN (cell_1)         W = 0.9134, p = 0.4295
+    Detach BN (cell_3)           W = 0.8752, p = 0.3186
+
+  Levene's test (homogeneity of variance): W = 1.4699, p = 0.2795
+
+3. 2-WAY ANOVA (Type II SS)
+----------------------------------------------------------------------------
+  SKIPPED: requires all 4 cells populated and total N >= 5
+
+4. PERMUTATION TEST (n = 10,000)
+----------------------------------------------------------------------------
+  SKIPPED: requires all 4 cells populated
+
+5. PAIRWISE COMPARISONS
+----------------------------------------------------------------------------
+  All pairs (Bonferroni-corrected):
+  Comparison                                         dmean       t   p_bonf       d
+  ──────────────────────────────────────────────── ─────── ─────── ──────── ───────
+  Full OCC BN (cell_1) vs Detach BN (cell_3)       -0.0353 -1.1076   0.9553 -0.8460
+  Full OCC BN (cell_1) vs Vanilla                  -0.0433     N/A      N/A     N/A
+  Detach BN (cell_3) vs Vanilla                    -0.0080     N/A      N/A     N/A
+
+  Each cell vs Vanilla:
+  Cell                           dmean         95% CI of diff       t        p       d
+  ──────────────────────────── ─────── ────────────────────── ─────── ──────── ───────
+  Full OCC BN (cell_1)         -0.0433                    N/A     N/A      N/A     N/A
+  Detach BN (cell_3)           -0.0080                    N/A     N/A      N/A     N/A
+
+6. KEY COMPARISON: Detach BN vs Vanilla
+----------------------------------------------------------------------------
+  Mean difference:  -0.0080
+  t-test: N/A (Vanilla n=1, insufficient for parametric test)
+  Interpretation: Detach BN ~ Vanilla => OCC without gradient has no effect
+
+============================================================================
+  * p < .05   ** p < .01   *** p < .001
+  eta2_p = partial eta-squared;  d = Cohen's d
+============================================================================
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c2d8d17e-4d20-4df2-b27e-7aaf3653235a",
+  "uuid": "8b13e97a-7816-4e25-bdcb-c4489fca3fc6",
+  "tool_use_result": {
+    "stdout": "============================================================================\n  2x2 Factorial ANOVA Report: OccSafe VLA Experiment\n  Factors: gradient_flow (ON/OFF) x norm_type (BN/LN)\n============================================================================\n\n1. DESCRIPTIVE STATISTICS\n----------------------------------------------------------------------------\n  Group                          n      Mean        SD                  95% CI\n  Full OCC BN (cell_1)           3    0.7247    0.0628        [0.5687, 0.8806]\n  Full OCC LN (cell_2)           0        --        --               (no data)\n  Detach BN (cell_3)             4    0.7600    0.0167        [0.7334, 0.7866]\n  Detach LN (cell_4)             0        --        --               (no data)\n  Vanilla                        1    0.7680        --                   (n=1)\n\n2. ASSUMPTION CHECKS\n----------------------------------------------------------------------------\n  Shapiro-Wilk normality test (H0: data is normal):\n    Full OCC BN (cell_1)         W = 0.9134, p = 0.4295\n    Detach BN (cell_3)           W = 0.8752, p = 0.3186\n\n  Levene's test (homogeneity of variance): W = 1.4699, p = 0.2795\n\n3. 2-WAY ANOVA (Type II SS)\n----------------------------------------------------------------------------\n  SKIPPED: requires all 4 cells populated and total N >= 5\n\n4. PERMUTATION TEST (n = 10,000)\n----------------------------------------------------------------------------\n  SKIPPED: requires all 4 cells populated\n\n5. PAIRWISE COMPARISONS\n----------------------------------------------------------------------------\n  All pairs (Bonferroni-corrected):\n  Comparison                                         dmean       t   p_bonf       d\n  ──────────────────────────────────────────────── ─────── ─────── ──────── ───────\n  Full OCC BN (cell_1) vs Detach BN (cell_3)       -0.0353 -1.1076   0.9553 -0.8460\n  Full OCC BN (cell_1) vs Vanilla                  -0.0433     N/A      N/A     N/A\n  Detach BN (cell_3) vs Vanilla                    -0.0080     N/A      N/A     N/A\n\n  Each cell vs Vanilla:\n  Cell                           dmean         95% CI of diff       t        p       d\n  ──────────────────────────── ─────── ────────────────────── ─────── ──────── ───────\n  Full OCC BN (cell_1)         -0.0433                    N/A     N/A      N/A     N/A\n  Detach BN (cell_3)           -0.0080                    N/A     N/A      N/A     N/A\n\n6. KEY COMPARISON: Detach BN vs Vanilla\n----------------------------------------------------------------------------\n  Mean difference:  -0.0080\n  t-test: N/A (Vanilla n=1, insufficient for parametric test)\n  Interpretation: Detach BN ~ Vanilla => OCC without gradient has no effect\n\n============================================================================\n  * p < .05   ** p < .01   *** p < .001\n  eta2_p = partial eta-squared;  d = Cohen's d\n============================================================================",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+运行正常。验证一下全 4 cell 场景也工作。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c2d8d17e-4d20-4df2-b27e-7aaf3653235a",
+  "uuid": "b8d9b877-1652-4637-bfb0-5df6b65aa1dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016GzWpu9NSaZqC9grmsLNAE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 965,
+      "cache_read_input_tokens": 46940,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 965
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PsH63HFYSUP4grZaYmnvx4`</summary>
+
+```json
+{
+  "command": "python3 analyze_factorial_anova.py --cell1 0.746 0.654 0.774 --cell2 0.80 0.75 0.78 --cell3 0.774 0.736 0.762 0.768 --cell4 0.69 0.71 0.72 --vanilla 0.768 0.755 0.760",
+  "description": "Test with all 4 cells populated"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c2d8d17e-4d20-4df2-b27e-7aaf3653235a",
+  "uuid": "ae1d85ef-a26e-40a6-9255-7d0f6e8d296c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016GzWpu9NSaZqC9grmsLNAE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 965,
+      "cache_read_input_tokens": 46940,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 965
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 14_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bd9gf91yl",
+  "tool_use_id": "toolu_01PsH63HFYSUP4grZaYmnvx4",
+  "description": "Test with all 4 cells populated",
+  "task_type": "local_bash",
+  "uuid": "4a458300-f273-4fb8-a8c8-436e393002a2",
+  "session_id": "c2d8d17e-4d20-4df2-b27e-7aaf3653235a"
+}
+```
+
+---
+
+### System
+
+_source line 15_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bd9gf91yl",
+  "tool_use_id": "toolu_01PsH63HFYSUP4grZaYmnvx4",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Test with all 4 cells populated",
+  "uuid": "f274e766-635d-437a-82bf-2964db0a2c89",
+  "session_id": "c2d8d17e-4d20-4df2-b27e-7aaf3653235a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-26T19:28:49.913Z_
+
+<details><summary>↩ Tool result · `toolu_01PsH63HFYSUP4grZaYmnvx4`</summary>
+
+```text
+============================================================================
+  2x2 Factorial ANOVA Report: OccSafe VLA Experiment
+  Factors: gradient_flow (ON/OFF) x norm_type (BN/LN)
+============================================================================
+
+1. DESCRIPTIVE STATISTICS
+----------------------------------------------------------------------------
+  Group                          n      Mean        SD                  95% CI
+  Full OCC BN (cell_1)           3    0.7247    0.0628        [0.5687, 0.8806]
+  Full OCC LN (cell_2)           3    0.7767    0.0252        [0.7142, 0.8392]
+  Detach BN (cell_3)             4    0.7600    0.0167        [0.7334, 0.7866]
+  Detach LN (cell_4)             3    0.7067    0.0153        [0.6687, 0.7446]
+  Vanilla                        3    0.7610    0.0066        [0.7447, 0.7773]
+
+2. ASSUMPTION CHECKS
+----------------------------------------------------------------------------
+  Shapiro-Wilk normality test (H0: data is normal):
+    Full OCC BN (cell_1)         W = 0.9134, p = 0.4295
+    Full OCC LN (cell_2)         W = 0.9868, p = 0.7804
+    Detach BN (cell_3)           W = 0.8752, p = 0.3186
+    Detach LN (cell_4)           W = 0.9643, p = 0.6369
+    Vanilla                      W = 0.9826, p = 0.7470
+
+  Levene's test (homogeneity of variance): W = 0.9896, p = 0.4404
+
+3. 2-WAY ANOVA (Type II SS)
+----------------------------------------------------------------------------
+  Source                     SS   df         MS        F         p   eta2_p
+  ────────────────── ────────── ──── ────────── ──────── ───────── ────────
+  gradient_flow          0.0006    1     0.0006   0.5286    0.4857   0.0555
+  norm_type              0.0001    1     0.0001   0.0483    0.8310   0.0053
+  interaction            0.0089    1     0.0089   7.6401    0.0220 *   0.4591
+  Residual               0.0105    9     0.0012
+  Total                  0.0200   12
+
+  N = 13
+
+  Simple Effects (interaction p < .05):
+    grad_flow_at_BN: Full OCC BN vs Detach BN
+      t = -1.1076, p = 0.3184, d = -0.8460
+    grad_flow_at_LN: Full OCC LN vs Detach LN
+      t = 4.1184, p = 0.0146 *, d = 3.3627
+    norm_type_at_ON: Full OCC BN vs Full OCC LN
+      t = -1.3316, p = 0.2538, d = -1.0873
+    norm_type_at_OFF: Detach BN vs Detach LN
+      t = 4.3196, p = 0.0076 **, d = 3.2991
+
+4. PERMUTATION TEST (n = 10,000)
+----------------------------------------------------------------------------
+  (Primary inference for small-sample factorial design)
+  Effect                  F_obs     p_perm
+  ────────────────── ────────── ──────────
+  gradient_flow          0.5286     0.4915
+  norm_type              0.0483     0.8333
+  interaction            7.6401     0.0228 *
+
+5. PAIRWISE COMPARISONS
+----------------------------------------------------------------------------
+  All pairs (Bonferroni-corrected):
+  Comparison                                         dmean       t   p_bonf       d
+  ──────────────────────────────────────────────── ─────── ─────── ──────── ───────
+  Full OCC BN (cell_1) vs Full OCC LN (cell_2)     -0.0520 -1.3316   1.0000 -1.0873
+  Full OCC BN (cell_1) vs Detach BN (cell_3)       -0.0353 -1.1076   1.0000 -0.8460
+  Full OCC BN (cell_1) vs Detach LN (cell_4)        0.0180  0.4825   1.0000  0.3940
+  Full OCC BN (cell_1) vs Vanilla                  -0.0363 -0.9970   1.0000 -0.8140
+  Full OCC LN (cell_2) vs Detach BN (cell_3)        0.0167  1.0631   1.0000  0.8120
+  Full OCC LN (cell_2) vs Detach LN (cell_4)        0.0700  4.1184   0.1463  3.3627
+  Full OCC LN (cell_2) vs Vanilla                   0.0157  1.0434   1.0000  0.8519
+  Detach BN (cell_3) vs Detach LN (cell_4)          0.0533  4.3196   0.0757  3.2991
+  Detach BN (cell_3) vs Vanilla                    -0.0010 -0.0962   1.0000 -0.0735
+  Detach LN (cell_4) vs Vanilla                    -0.0543 -5.6612   0.0480 * -4.6224
+
+  Each cell vs Vanilla:
+  Cell                           dmean         95% CI of diff       t        p       d
+  ──────────────────────────── ─────── ────────────────────── ─────── ──────── ───────
+  Full OCC BN (cell_1)         -0.0363     [-0.1900, +0.1173] -0.9970   0.3752 -0.8140
+  Full OCC LN (cell_2)          0.0157     [-0.0421, +0.0734]  1.0434   0.3557  0.8519
+  Detach BN (cell_3)           -0.0010     [-0.0263, +0.0243] -0.0962   0.9271 -0.0735
+  Detach LN (cell_4)           -0.0543     [-0.0868, -0.0219] -5.6612   0.0048 ** -4.6224
+
+6. KEY COMPARISON: Detach BN vs Vanilla
+----------------------------------------------------------------------------
+  Mean difference:  -0.0010
+  95% CI of diff:   [-0.0263, +0.0243]
+  Cohen's d:        -0.0735 (negligible)
+  t = -0.0962, p = 0.9271
+  Interpretation: Detach BN ~ Vanilla => OCC without gradient has no effect
+
+============================================================================
+  * p < .05   ** p < .01   *** p < .001
+  eta2_p = partial eta-squared;  d = Cohen's d
+============================================================================
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c2d8d17e-4d20-4df2-b27e-7aaf3653235a",
+  "uuid": "b977257a-87ec-4f8d-a3d1-4d26545d4cc7",
+  "tool_use_result": {
+    "stdout": "============================================================================\n  2x2 Factorial ANOVA Report: OccSafe VLA Experiment\n  Factors: gradient_flow (ON/OFF) x norm_type (BN/LN)\n============================================================================\n\n1. DESCRIPTIVE STATISTICS\n----------------------------------------------------------------------------\n  Group                          n      Mean        SD                  95% CI\n  Full OCC BN (cell_1)           3    0.7247    0.0628        [0.5687, 0.8806]\n  Full OCC LN (cell_2)           3    0.7767    0.0252        [0.7142, 0.8392]\n  Detach BN (cell_3)             4    0.7600    0.0167        [0.7334, 0.7866]\n  Detach LN (cell_4)             3    0.7067    0.0153        [0.6687, 0.7446]\n  Vanilla                        3    0.7610    0.0066        [0.7447, 0.7773]\n\n2. ASSUMPTION CHECKS\n----------------------------------------------------------------------------\n  Shapiro-Wilk normality test (H0: data is normal):\n    Full OCC BN (cell_1)         W = 0.9134, p = 0.4295\n    Full OCC LN (cell_2)         W = 0.9868, p = 0.7804\n    Detach BN (cell_3)           W = 0.8752, p = 0.3186\n    Detach LN (cell_4)           W = 0.9643, p = 0.6369\n    Vanilla                      W = 0.9826, p = 0.7470\n\n  Levene's test (homogeneity of variance): W = 0.9896, p = 0.4404\n\n3. 2-WAY ANOVA (Type II SS)\n----------------------------------------------------------------------------\n  Source                     SS   df         MS        F         p   eta2_p\n  ────────────────── ────────── ──── ────────── ──────── ───────── ────────\n  gradient_flow          0.0006    1     0.0006   0.5286    0.4857   0.0555\n  norm_type              0.0001    1     0.0001   0.0483    0.8310   0.0053\n  interaction            0.0089    1     0.0089   7.6401    0.0220 *   0.4591\n  Residual               0.0105    9     0.0012\n  Total                  0.0200   12\n\n  N = 13\n\n  Simple Effects (interaction p < .05):\n    grad_flow_at_BN: Full OCC BN vs Detach BN\n      t = -1.1076, p = 0.3184, d = -0.8460\n    grad_flow_at_LN: Full OCC LN vs Detach LN\n      t = 4.1184, p = 0.0146 *, d = 3.3627\n    norm_type_at_ON: Full OCC BN vs Full OCC LN\n      t = -1.3316, p = 0.2538, d = -1.0873\n    norm_type_at_OFF: Detach BN vs Detach LN\n      t = 4.3196, p = 0.0076 **, d = 3.2991\n\n4. PERMUTATION TEST (n = 10,000)\n----------------------------------------------------------------------------\n  (Primary inference for small-sample factorial design)\n  Effect                  F_obs     p_perm\n  ────────────────── ────────── ──────────\n  gradient_flow          0.5286     0.4915\n  norm_type              0.0483     0.8333\n  interaction            7.6401     0.0228 *\n\n5. PAIRWISE COMPARISONS\n----------------------------------------------------------------------------\n  All pairs (Bonferroni-corrected):\n  Comparison                                         dmean       t   p_bonf       d\n  ──────────────────────────────────────────────── ─────── ─────── ──────── ───────\n  Full OCC BN (cell_1) vs Full OCC LN (cell_2)     -0.0520 -1.3316   1.0000 -1.0873\n  Full OCC BN (cell_1) vs Detach BN (cell_3)       -0.0353 -1.1076   1.0000 -0.8460\n  Full OCC BN (cell_1) vs Detach LN (cell_4)        0.0180  0.4825   1.0000  0.3940\n  Full OCC BN (cell_1) vs Vanilla                  -0.0363 -0.9970   1.0000 -0.8140\n  Full OCC LN (cell_2) vs Detach BN (cell_3)        0.0167  1.0631   1.0000  0.8120\n  Full OCC LN (cell_2) vs Detach LN (cell_4)        0.0700  4.1184   0.1463  3.3627\n  Full OCC LN (cell_2) vs Vanilla                   0.0157  1.0434   1.0000  0.8519\n  Detach BN (cell_3) vs Detach LN (cell_4)          0.0533  4.3196   0.0757  3.2991\n  Detach BN (cell_3) vs Vanilla                    -0.0010 -0.0962   1.0000 -0.0735\n  Detach LN (cell_4) vs Vanilla                    -0.0543 -5.6612   0.0480 * -4.6224\n\n  Each cell vs Vanilla:\n  Cell                           dmean         95% CI of diff       t        p       d\n  ──────────────────────────── ─────── ────────────────────── ─────── ──────── ───────\n  Full OCC BN (cell_1)         -0.0363     [-0.1900, +0.1173] -0.9970   0.3752 -0.8140\n  Full OCC LN (cell_2)          0.0157     [-0.0421, +0.0734]  1.0434   0.3557  0.8519\n  Detach BN (cell_3)           -0.0010     [-0.0263, +0.0243] -0.0962   0.9271 -0.0735\n  Detach LN (cell_4)           -0.0543     [-0.0868, -0.0219] -5.6612   0.0048 ** -4.6224\n\n6. KEY COMPARISON: Detach BN vs Vanilla\n----------------------------------------------------------------------------\n  Mean difference:  -0.0010\n  95% CI of diff:   [-0.0263, +0.0243]\n  Cohen's d:        -0.0735 (negligible)\n  t = -0.0962, p = 0.9271\n  Interpretation: Detach BN ~ Vanilla => OCC without gradient has no effect\n\n============================================================================\n  * p < .05   ** p < .01   *** p < .001\n  eta2_p = partial eta-squared;  d = Cohen's d\n============================================================================",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+全 4 cell 场景 ANOVA、permutation test、simple effects、pairwise 全部正常。
+
+脚本已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/analyze_factorial_anova.py`。
+
+功能覆盖：
+- 描述统计（mean/std/n/95% CI）
+- Type II SS 手动实现的 2-way ANOVA（含 η²p）
+- 10000 次 permutation test 作为小样本主推断
+- interaction 显著时自动输出 simple effects
+- 全 pairwise t-test（Bonferroni 校正）+ 每个 cell vs Vanilla
+- Cohen's d + 95% CI of mean difference
+- Shapiro-Wilk + Levene's assumption checks
+- 空 cell 优雅跳过，n=1 跳过 t-test/CI/Cohen's d
+- `--demo` / `--data-json` / `--cell1..4` 三种输入 + `--output-json` 导出
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c2d8d17e-4d20-4df2-b27e-7aaf3653235a",
+  "uuid": "f8c0884f-6186-4225-a786-ff6c9ef98463",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CWxjHeKjRCasgkdECgNANv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2042,
+      "cache_read_input_tokens": 47905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2042
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 18_
+
+全 4 cell 场景 ANOVA、permutation test、simple effects、pairwise 全部正常。
+
+脚本已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/analyze_factorial_anova.py`。
+
+功能覆盖：
+- 描述统计（mean/std/n/95% CI）
+- Type II SS 手动实现的 2-way ANOVA（含 η²p）
+- 10000 次 permutation test 作为小样本主推断
+- interaction 显著时自动输出 simple effects
+- 全 pairwise t-test（Bonferroni 校正）+ 每个 cell vs Vanilla
+- Cohen's d + 95% CI of mean difference
+- Shapiro-Wilk + Levene's assumption checks
+- 空 cell 优雅跳过，n=1 跳过 t-test/CI/Cohen's d
+- `--demo` / `--data-json` / `--cell1..4` 三种输入 + `--output-json` 导出
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 317314,
+  "duration_api_ms": 313609,
+  "num_turns": 5,
+  "stop_reason": "end_turn",
+  "session_id": "c2d8d17e-4d20-4df2-b27e-7aaf3653235a",
+  "total_cost_usd": 0.8588635,
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 38106,
+    "cache_read_input_tokens": 170486,
+    "output_tokens": 21318,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 38106,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 291,
+        "cache_read_input_tokens": 47905,
+        "cache_creation_input_tokens": 2042,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2042
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2368,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002473,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 21318,
+      "cacheReadInputTokens": 170486,
+      "cacheCreationInputTokens": 38106,
+      "webSearchRequests": 0,
+      "costUSD": 0.8563905,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "8ee61939-125e-42d4-9375-0b97adc3f2aa"
+}
+```
+
+</details>
+
+---

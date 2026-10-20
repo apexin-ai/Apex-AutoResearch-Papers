@@ -1,0 +1,35 @@
+{
+  "exp_id": "cutoff_s1",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:09:35.253Z",
+    "updated_at": "2026-05-22T06:38:00.088Z",
+    "hypothesis": "Seed 43 replication of cutoff_s0 (OCC loss cutoff at step 35000). 2-seed needed to assess variance of cutoff strategy, given OCC's demonstrated high seed sensitivity (std 2.2x vanilla).",
+    "parent": "cutoff_s0",
+    "spec": {
+      "command": "finetune.py --use_occ_head True --occ_loss_cutoff_step 35000 --seed 43 --save_freq 2500 --max_steps 50005",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "125672",
+      "log_path": "~/runs/occsafe_vla/cutoff_s1.log",
+      "submitted_at": "2026-05-22T06:32:21.603Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": "~25000 episodes",
+      "model_name": "openvla-7b",
+      "seed": 43,
+      "checkpoint_source": "openvla-7b (from scratch)",
+      "eval_data": "N/A (training)"
+    }
+  },
+  "timestamp": "2026-05-22T06:38:00.164015+00:00",
+  "trigger": "update_registry"
+}

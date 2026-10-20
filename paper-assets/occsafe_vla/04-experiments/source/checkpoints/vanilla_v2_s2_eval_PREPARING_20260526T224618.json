@@ -1,0 +1,29 @@
+{
+  "exp_id": "vanilla_v2_s2_eval",
+  "project": "occsafe_vla",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T22:44:17.170Z",
+    "updated_at": "2026-05-26T22:46:18.567Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python vla-scripts/safelibero_eval.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/vanilla_v2_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--vanilla_v2_s2--50000_chkpt --num_rollouts 50 --seed 42 --task_suite_name libero_spatial\"",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/occsafe_vla/vanilla_v2_s2_eval.log",
+      "submitted_at": "2026-05-26T22:44:16.726Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "50-rollout SafeLIBERO eval of vanilla_v2_s2 (Vanilla baseline, seed 44, v2 code). 3rd Vanilla seed for robust n=3 baseline comparison.",
+    "parent": "vanilla_v2_s2"
+  },
+  "timestamp": "2026-05-26T22:46:18.897012+00:00",
+  "trigger": "update_registry"
+}

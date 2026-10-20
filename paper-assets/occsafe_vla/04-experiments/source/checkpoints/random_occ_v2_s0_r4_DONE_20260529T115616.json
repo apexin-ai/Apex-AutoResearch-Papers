@@ -1,0 +1,34 @@
+{
+  "exp_id": "random_occ_v2_s0_r4",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-28T23:11:19.398Z",
+    "updated_at": "2026-05-29T11:56:15.254Z",
+    "hypothesis": "Content irrelevance (Full OCC ≈ Random OCC) v2 replication seed 42. Corrected: --occ_data_dir + WANDB_MODE=disabled + orphan child process cleanup. occ_loss=0.1068@step0 confirmed.",
+    "parent": "random_occ_v2_s0_r3",
+    "spec": {
+      "command": "torchrun ... --random_occ True --occ_data_dir /root/occsafe_vla/occ_data",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "49565",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 4600,
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "log_path": "/root/runs/occsafe_vla/random_occ_v2_s0_r4.log",
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "N/A (training experiment)"
+    },
+    "failure_reason": "SSH check failed 5x — last error: [Errno None] Unable to connect to port 10894 on 36.103.198.204",
+    "conclusion": "failed",
+    "completed_at": "2026-05-29T11:56:10.297Z"
+  },
+  "timestamp": "2026-05-29T11:56:16.014827+00:00",
+  "trigger": "update_registry"
+}

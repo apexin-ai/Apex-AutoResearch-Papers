@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "dd2b123464c2882036ff",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "code gold set eval pipeline v2",
+  "task_key": "worker_code_gold-set-eval-pipeline-v2_20260514T224916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gold-set-eval-pipeline-v2_20260514T224916.log",
+    "occurrence": 1,
+    "bytes": 1219016,
+    "sha256": "b10fe3e2fd934ac573bb6f84580e571c279ec5b96b7b8ae7958c5f2eb76b9ab4"
+  },
+  "statistics": {
+    "messages": 103,
+    "user_turns": 0,
+    "tool_calls": 34,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 2,
+      "assistant": 26,
+      "tool_call": 34,
+      "tool_result": 34,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 103,
+      "chunks": [
+        {
+          "path": "dd2b123464c2882036ff-part-0001.json",
+          "message_count": 41
+        },
+        {
+          "path": "dd2b123464c2882036ff-part-0002.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-gold-set-eval-pipeline-v2.md"
+}

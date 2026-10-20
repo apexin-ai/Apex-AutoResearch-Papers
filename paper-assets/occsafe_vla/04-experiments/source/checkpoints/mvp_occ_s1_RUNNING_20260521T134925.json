@@ -1,0 +1,60 @@
+{
+  "exp_id": "mvp_occ_s1",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 3,
+    "created_at": "2026-05-20T08:41:51.855Z",
+    "updated_at": "2026-05-21T13:49:25.631Z",
+    "hypothesis": "Adding BEV occupancy auxiliary supervision (with gradient flow to vision encoder via occ_detach=false) during OpenVLA-OFT fine-tuning on LIBERO-Spatial will significantly improve collision avoidance rate (CAR) on SafeLIBERO Level I compared to vanilla baseline, by forcing the vision encoder to develop spatial awareness of 3D object boundaries",
+    "reproduce": {
+      "finished_at": "2026-05-21T13:49:25.455Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-20T16:44:05.203Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T16:44:06.878154+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T01:07:07.167705+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T04:36:16.170522+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T04:52:58.084730+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "Resume from 17500_chkpt after disk-full crash (retry 3). save_freq=5000 (Director 批准)。PID 72614 (python), cuda:1, ~1.09 it/s. 剩余 32505 步, ETA ~13:15 UTC。参数验证: num_images_in_input=2, use_proprio=True, occ_detach=false ✓"
+      }
+    },
+    "notes": "训练中 PID 80898, actual step ~45000+ (tqdm ~27500+/50005), 1.07 it/s, ETA ~13:48 UTC。Learning curve eval 完成 (30K/35K/40K/45K): CAR 65.0→68.5→73.0→69.0% (40K 峰值后反转!), TSR 80.5→75.0→78.5→79.0% (持续低于 vanilla ~91%)。45K per-task: T6 CAR 从 65%暴跌到 25%, T7 TSR/CAR 均 35% (vanilla 95%+)。50K auto-eval (PID 418059, cuda:2) 等待 checkpoint。",
+    "spec": {
+      "server": "westd-34685",
+      "gpu": "cuda:1",
+      "command": "WANDB_MODE=disabled CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl torchrun ... --vla_path /root/autodl-tmp/checkpoints/occ_s1/...-17500_chkpt --occ_detach false --run_root_dir /root/autodl-tmp/checkpoints/occ_s1 --seed 43 --resume True --resume_step 17500 --save_freq 5000",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": "~25000 episodes",
+      "model_name": "openvla-7b (resumed from 17500_chkpt, correct vla_path)",
+      "seed": 43
+    },
+    "pid": 80898,
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-21T13:49:25.670331+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d33aa672ae47c64516dd",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "code checkpoint and protect",
+  "task_key": "worker_code_checkpoint-and-protect_20260516T104905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_checkpoint-and-protect_20260516T104905_result.json",
+    "occurrence": 1,
+    "bytes": 471,
+    "sha256": "9a6eff74dfdd1c74ff35b019e6da80713951373cf7a173a4578d45d99a7dee40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n1. **pipeline.py** — 添加了 `save_generation_checkpoint` / `load_generation_checkpoint`，`run_condition()` 循环中生成后保存 checkpoint，重跑时自动恢复\n2. **score.py** — `score_diversity_corpus()` 添加了空 response 过滤、embedding 失败 fallback（返回 0.5）、结果映射回原始索引\n3. **score.py** — `score_complexity()` 已有 `total == 0` 保护，无需额外修改\n4. import 验证通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-checkpoint-and-protect.md"
+}

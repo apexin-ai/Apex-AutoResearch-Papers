@@ -1,0 +1,16 @@
+{
+  "exp_id": "cutoff_s2_eval",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:23:34.902Z",
+    "updated_at": "2026-05-23T09:23:47.583Z",
+    "hypothesis": "Seed 44 replication of OCC loss cutoff@35K eval. Combined with cutoff_s0_eval and cutoff_s1_eval, completes the 3-seed cutoff condition for statistical analysis. If cutoff maintains CAR comparable to Full OCC (~0.797), gradient flow duration beyond 35K steps is not necessary for safety benefits.",
+    "parent": "cutoff_s2"
+  },
+  "timestamp": "2026-05-23T09:23:47.691611+00:00",
+  "trigger": "update_registry"
+}

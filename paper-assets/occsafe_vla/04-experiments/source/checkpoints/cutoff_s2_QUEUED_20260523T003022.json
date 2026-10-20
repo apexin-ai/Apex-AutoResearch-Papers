@@ -1,0 +1,16 @@
+{
+  "exp_id": "cutoff_s2",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:08:58.631Z",
+    "updated_at": "2026-05-23T00:30:22.099Z",
+    "hypothesis": "Third seed (seed 44) replication of cutoff strategy (OCC loss cutoff at step 35000). Expands cutoff to 3-seed for statistical consistency with other conditions (Full OCC, Random OCC, Detach OCC all have 3 seeds).",
+    "parent": "cutoff_s0"
+  },
+  "timestamp": "2026-05-23T00:30:22.236179+00:00",
+  "trigger": "update_registry"
+}

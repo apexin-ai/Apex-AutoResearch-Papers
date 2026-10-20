@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a2a2fb1a40721f2132a",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "code lf oracle baseline",
+  "task_key": "worker_code_lf_oracle_baseline_20260514T081838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_lf_oracle_baseline_20260514T081838_result.json",
+    "occurrence": 1,
+    "bytes": 1675,
+    "sha256": "98102811e26d71b142f53709d7bd3aa7315bd3c4aa7eb46624580da91c31343a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**产出**: `artifacts/lf_oracle_baseline.py`\n\n**运行方式** (在服务器上):\n```bash\npython lf_oracle_baseline.py --data_dir /root/autodl-tmp/agent_progress_probe --split_info /root/autodl-tmp/agent_progress_probe/checkpoints/split_info.json\n```\n\n**实现的 6 个 baseline 变体**:\n1. **LF Majority Vote** — 直接用 `majority_label`（abstain 时 fallback 到 prior）\n2. **LF Any-Stagnation** — 任一 LF 投 0 即判 stagnation\n3. **LF All-Agreement** — 所有非 abstain LF 一致才预测，否则用 prior\n4. **Single LF: file_diff_delta** / **command_repetition** / **outcome_backpropagation** — 各 LF 独立作为分类器\n\n**索引对齐逻辑**: 先过滤 `majority_label != -1`（与 `generate_embeddings.py` 一致），再应用 `keep_indices` 置信度过滤，最后用 `split_info` 的 train/val/test indices 取子集。\n\n**预期输出格式**:\n```\n=== LF Coverage on Test Set ===\n  file_diff_delta: X/N (xx.x%)\n  command_repetition: X/N (xx.x%)\n  ...\n\n=== Results ===\n| Method                      | Macro-F1 | Accuracy | Prec(M) | Rec(M) | F1(stag) | F1(prog) |\n|------------------------------|----------|----------|---------|--------|----------|----------|\n| GRU Probe (probe_001 ref)   | 0.9055   |    —     |    —    |    —   |    —     |    —     |\n| LF Majority Vote             | x.xxxx  | x.xxxx   | ...\n| ...\n```\n\n**注意**: LF Majority Vote 预期会接近 1.0（因为 ground truth 就是 majority_label），这是 ceiling baseline。更有意义的对比是 Any-Stagnation、All-Agreement 和 Single LF 变体——它们会低于 probe，支撑 Claim 1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-lf-oracle-baseline.md"
+}

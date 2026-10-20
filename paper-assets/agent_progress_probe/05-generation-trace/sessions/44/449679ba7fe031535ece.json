@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "449679ba7fe031535ece",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "paper research bib sync",
+  "task_key": "worker_paper_research_bib_sync_20260514T204907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_bib_sync_20260514T204907_result.json",
+    "occurrence": 1,
+    "bytes": 264,
+    "sha256": "f97d3a0d9e4e9d063f809f36903c9d6037b8d8ae8e572b8d916633f9a24912ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "38 个 `@` 条目，对应 literature_map.yaml 中全部 38 篇论文。按 5 个 category 分组（direct-competitor 8, method-component 8, evaluation 6, background 10, technique 6），venue 已映射为全称，>5 作者截断为前 3 + others。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-bib-sync.md"
+}

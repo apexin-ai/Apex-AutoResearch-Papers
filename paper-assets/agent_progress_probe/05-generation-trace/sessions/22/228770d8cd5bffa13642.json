@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "228770d8cd5bffa13642",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "experiment e9 e10 p2 stats",
+  "task_key": "worker_experiment_e9-e10-p2-stats_20260515T142705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_e9-e10-p2-stats_20260515T142705.log",
+    "occurrence": 1,
+    "bytes": 780359,
+    "sha256": "14c1a708afb62e2a91b3cc05ffed5eeccdf79446d31a0ff2219786bb7f703c2b"
+  },
+  "statistics": {
+    "messages": 148,
+    "user_turns": 0,
+    "tool_calls": 55,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 55,
+      "tool_result": 55,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 148,
+      "chunks": [
+        {
+          "path": "228770d8cd5bffa13642-part-0001.json",
+          "message_count": 121
+        },
+        {
+          "path": "228770d8cd5bffa13642-part-0002.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-e9-e10-p2-stats.md"
+}

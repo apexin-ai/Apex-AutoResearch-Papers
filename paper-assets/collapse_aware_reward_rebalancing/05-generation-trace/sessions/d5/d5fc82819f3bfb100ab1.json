@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5fc82819f3bfb100ab1",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "analysis carr fullft lr2e5 probe 01",
+  "task_key": "worker_analysis_carr_fullft_lr2e5_probe_01_20260517T002512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_carr_fullft_lr2e5_probe_01_20260517T002512_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "1ee8789ebc188eab3a7319d488fa957dfc7b4653038305a381f09451696c5252"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果摘要\n\n| Metric | Gen 0 | Gen 1 | Gen 2 | Trend |\n|--------|-------|-------|-------|-------|\n| mean_quality | 0.1130 | 0.1154 | 0.1124 | flat |\n| vendi_score | 107.81 | 108.03 | 108.54 | **+0.68%** |\n| self_bleu | 0.0046 | 0.0039 | 0.0040 | slight ↓ |\n| perplexity | 9.57 | 10.34 | 8.82 | volatile |\n| mean_nn_distance | 0.7079 | 0.7107 | 0.7100 | flat |\n| complexity_mean | 2.890 | 2.868 | 2.846 | slight ↓ |\n\n**Training loss**: 0.380 → 0.212 → 0.140 (model is fitting harder each gen)\n\n**判定: NEGATIVE**\n\n- Vendi 从 107.81 → 108.54 (+0.68%)，与 baseline (+1.38%) 和 LR=5e-6 (+0.91%) 趋势一致\n- 即使 4x 更高的 LR 使 loss 大幅下降（模型确实在更强地 overfit 选定数据），diversity 仍未下降\n- 3 代 K=4 ArmoRM top-1 的 reward curation 在 Qwen3-0.6B 上**无法诱导可测量的 collapse**\n- Checkpoint: `/root/autodl-tmp/carr/outputs_fullft_lr2e5/gen_2/condition_0/merged`\n- 耗时: ~3.7 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-carr-fullft-lr2e5-probe-01.md"
+}

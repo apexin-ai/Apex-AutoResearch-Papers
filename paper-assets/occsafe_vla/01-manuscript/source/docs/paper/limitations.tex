@@ -1,0 +1,10 @@
+
+\section{Limitations}
+
+\textbf{Simulation only.} All experiments use simulated tabletop tasks; real-robot transfer is untested. Real-world contact dynamics, sensor noise, and control latency introduce failure modes absent in simulation that may alter the relative safety ranking. Validating on physical hardware is a necessary next step.
+%
+\textbf{Single model and benchmark.} We study one architecture (OpenVLA-7B with LoRA) on one benchmark (SafeLIBERO Level~I). The factorial effects may differ for other VLA families, model scales, or collision definitions. Architectures with different normalization defaults (e.g., $\pi_0$ with GroupNorm, Octo with LayerNorm) may exhibit different sensitivity profiles. Extending to additional architectures would strengthen generalizability.
+%
+\textbf{Codebase sensitivity.} A code revision shifted CAR by up to 8.6\,pp, exceeding the largest experimental effect; conclusions may not transfer across codebases without re-verification.
+%
+\textbf{Unverified mechanism.} The BN running-statistics hypothesis is mechanistically plausible but not directly tested; a targeted BN eval-mode ablation would isolate this channel. All conditions use LoRA; effects under full fine-tuning are untested. Content ablations were conducted under the original codebase only.

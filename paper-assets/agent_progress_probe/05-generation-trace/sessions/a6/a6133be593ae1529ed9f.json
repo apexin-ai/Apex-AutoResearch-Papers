@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6133be593ae1529ed9f",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "multiseed bgem3 probe",
+  "task_key": "worker_multiseed_bgem3-probe_20260514T215558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_multiseed_bgem3-probe_20260514T215558_result.json",
+    "occurrence": 1,
+    "bytes": 911,
+    "sha256": "d80c76c0cd6e0c8af9587829faf71c7b1f2f816832e553e73163cb3252a9ee07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总 BGE-m3 Probe 3-seed 结果：\n\n| Seed | test_macro_f1 | test_f1_stag | test_f1_prog | best_epoch | test_windows |\n|------|--------------|-------------|-------------|------------|-------------|\n| 42   | 0.9413       | 0.9147      | 0.9679      | -          | -           |\n| 123  | 0.8474       | 0.8173      | 0.8775      | 2          | 2216        |\n| 456  | 0.9364       | 0.9183      | 0.9545      | 5          | 2343        |\n\n**3-seed Mean±Std:**\n| Metric | Mean±Std |\n|--------|----------|\n| macro_f1 | 0.9084 ± 0.0529 |\n| f1_stagnation | 0.8834 ± 0.0573 |\n| f1_progress | 0.9333 ± 0.0488 |\n\nSeed 123 明显低于其他两个 seed（macro_f1 低 ~9 个百分点），方差较大。这可能是 `split_by_instance` 基于不同 seed 给出了差异较大的 test 集划分——seed 123 的 test set（2216 windows）也比 seed 456（2343）少。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/multiseed-bgem3-probe.md"
+}

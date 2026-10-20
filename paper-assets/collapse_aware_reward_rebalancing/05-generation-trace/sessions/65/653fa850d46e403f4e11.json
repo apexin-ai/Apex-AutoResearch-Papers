@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "653fa850d46e403f4e11",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "diagnose quick probe exit",
+  "task_key": "worker_diagnose_quick-probe-exit_20260516T093950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_quick-probe-exit_20260516T093950_result.json",
+    "occurrence": 1,
+    "bytes": 2237,
+    "sha256": "e6475c381748a657b8b61d0755c635f8ad4652298ac57aa9845770293aef690c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Quick Probe 诊断报告\n\n### 1. 退出原因：**错误崩溃**\n\n进程在 Generation 0（第1代）的 scoring 阶段崩溃，未完成任何一代。\n\n### 2. 错误信息\n\n```\nImportError: cannot import name 'LLAMA_INPUTS_DOCSTRING' from \n'transformers.models.llama.modeling_llama'\n```\n\n**根因**：ArmoRM 模型的自定义代码（`modeling_custom.py`）依赖 `LLAMA_INPUTS_DOCSTRING`，该符号在当前安装的 transformers 版本中已被移除/重命名。这是 transformers 版本不兼容问题。\n\n### 3. 崩溃位置\n\n- 文件：`/root/autodl-tmp/carr/score.py:62` → `score_quality()` → 加载 ArmoRM-Llama3-8B-v0.1 模型时\n- 阶段：Generation 0/2, Step 2 (Scoring)\n- 生成已完成 2000/2000 prompts 的候选，但 scoring 阶段加载 reward model 失败\n\n### 4. 完成进度\n\n- Generation 0: 生成完成 ✓，评分失败 ✗\n- Generation 1: 未开始\n- Generation 2: 未开始\n- 结果文件：不存在\n\n### 5. 日志最后 20 行\n\n```\n  File \"/root/autodl-tmp/carr/run_quick_probe.py\", line 115, in <module>\n    run_quick_probe()\n  File \"/root/autodl-tmp/carr/run_quick_probe.py\", line 59, in run_quick_probe\n    metrics_list, _ = run_condition(\n  File \"/root/autodl-tmp/carr/pipeline.py\", line 54, in run_condition\n    scores = score_all(generations, device=device)\n  File \"/root/autodl-tmp/carr/score.py\", line 30, in score_all\n    quality = score_quality(generations, device)\n  File \"/root/autodl-tmp/carr/score.py\", line 62, in score_quality\n    model = AutoModelForSequenceClassification.from_pretrained(\n  File \".../transformers/dynamic_module_utils.py\", line 616, in get_class_from_dynamic_module\n    ...\n  File \".../transformers_modules/ArmoRM_.../modeling_custom.py\", line 9, in <module>\n    from transformers.models.llama.modeling_llama import LLAMA_INPUTS_DOCSTRING\nImportError: cannot import name 'LLAMA_INPUTS_DOCSTRING' from 'transformers.models.llama.modeling_llama'\n```\n\n### 修复方向\n\n需要降级 transformers 到兼容 ArmoRM 自定义代码的版本（`LLAMA_INPUTS_DOCSTRING` 在 transformers ~4.42 左右被移除），或者 patch ArmoRM 的 `modeling_custom.py` 去掉对该符号的依赖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-quick-probe-exit.md"
+}

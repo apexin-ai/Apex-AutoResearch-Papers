@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7468417c3c1d34f489ad",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "infra llm judge monitor",
+  "task_key": "worker_infra_llm-judge-monitor_20260514T115002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_llm-judge-monitor_20260514T115002_result.json",
+    "occurrence": 1,
+    "bytes": 160,
+    "sha256": "41d7c4a5e8f88f66d641d9eaf74a45cc58a98f3e6d221b97ca72af07e85bd845"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态**: 490/1824 (27%)，macro-F1 ≈ 0.7095，0 parse failures，费用 ~$2.93。预计还需约 3 小时完成。2 分钟后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-llm-judge-monitor-copy-2.md"
+}

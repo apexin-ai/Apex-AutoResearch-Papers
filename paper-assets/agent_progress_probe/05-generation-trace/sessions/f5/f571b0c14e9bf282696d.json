@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f571b0c14e9bf282696d",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "exp conf2 subset",
+  "task_key": "worker_exp_conf2-subset_20260514T184004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_conf2-subset_20260514T184004.log",
+    "occurrence": 1,
+    "bytes": 702583,
+    "sha256": "89c0b2ca4d60337dddf616c1a08066ae7fff656623c6df7fab5ddf80b449b4ee"
+  },
+  "statistics": {
+    "messages": 227,
+    "user_turns": 0,
+    "tool_calls": 92,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 92,
+      "tool_result": 92,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 227,
+      "chunks": [
+        {
+          "path": "f571b0c14e9bf282696d-part-0001.json",
+          "message_count": 176
+        },
+        {
+          "path": "f571b0c14e9bf282696d-part-0002.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-conf2-subset.md"
+}

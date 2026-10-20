@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4b415e710eef9c39a54",
+  "project": "agent_progress_probe",
+  "kind": "history",
+  "title": "agent / loop_3_1778795354.md",
+  "task_key": "loop_3_1778795354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778795354.md",
+    "occurrence": 1,
+    "bytes": 3853,
+    "sha256": "e42bb444c807a26455c643d768c5444f0289a636b8a9941d147b8f3d0acbe8e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T19:08:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 bjb2-23165 上的 cuda:0 和 cuda:1（RTX 5090 32G×2），不可用其他卡\n- 项目工作目录：`/root/autodl-tmp/agent_progress_probe`（bjb2-23165 上）\n- CosineSim baseline 已修正为 0.5606（原 0.3129 是 bug），论文中引用修正值\n- outcome-bp-sensitivity 实验因 split seed 泄漏被 INVALIDATED（D019），不可引用其 +1.2pp 数据\n- F1_stag=0.000 声明已撤回（D025/D026），实际数据为 ~0.57-0.641\n- 人工标注（650 样本）是关键路径但尚未启动，需用户确认标注人力\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb2-23165，工作目录 `/root/autodl-tmp/agent_progress_probe`\n- Python：连接后先 `detect_image` 检测是否 aml-train 镜像；如果是则 `/root/miniconda3/bin/python`，conda base 环境\n- 数据：embeddings.pt + windows_labeled.jsonl 在 `data/` 下，总 54809 窗口\n- 模型：SFR encoder（probe_001 基线 macro_f1=0.9055），checkpoints 在 `checkpoints_full/`\n- 活跃进程：oh-full-finetune 训练中（GPU），non-nlp-baseline 训练中（GPU）\n- Cron：reconcile 返回 0 条活跃 cron——需确认 oh-full-finetune 是否有 cron 监控，可能需要补注册\n\n### 3. 📊 当前状态\n**刚做完**：Session 启动初始化。修正 error-analysis 和 cosinesim-check 状态不一致（RUNNING→DONE）。处理 oh-cmdrep-ablation worker 30分钟无日志告警——确认 worker 活跃（turn 12，register_artifact），非卡死。已向 Director 汇报。\n\n**RUNNING 实验**：\n- `oh-full-finetune`：100% OH 数据微调，验证 few-shot 0.688 plateau 是 LF 天花板还是数据不足\n- `non-nlp-baseline`：非 NLP baseline 训练\n\n**等待中**：\n- oh-cmdrep-ablation worker 即将完成回调（正在写最终报告）\n- oh-full-finetune 和 non-nlp-baseline 的训练完成回调\n- **⚠️ reconcile_crons 返回 0 条**——需要确认这两个 GPU 训练任务是否有 cron 监控，如果没有需要补注册或 spawn worker 轮询\n\n### 4. 📋 待办\n- oh-cmdrep-ablation worker 回调到达 → 读产出、确认 registry 完整、更新 report.md\n- oh-full-finetune 完成 → 对比 few-shot 0.688 和 full-finetune 结果，判断 LF 天花板假设；若 full-ft ≈ 0.69 则确认天花板，若显著提升则需重新评估\n- non-nlp-baseline 完成 → 记录 metrics，与 probe_001 对比\n- **cron 为 0 需排查**：如果 oh-full-finetune 没有 cron 监控，需要 spawn worker SSH 检查进程状态或补注册 cron\n- data-scaling 路径 bug 待修复重跑（ROADMAP 标记 🔴）\n- 用户确认标注人力 → 启动 650 窗口标注（GO/NO-GO 关键路径）\n\n### 5. 🎯 战略上下文\n**核心 story**：ProgressProbe = temporal label model + 轻量 GRU probe 检测 agent stagnation。三层贡献：(1) Temporal label model 方法论 (2) Probe 实证（0.9055 F1，+24.3pp vs LLM judge）(3) 跨实现迁移 + LF 时序分析。\n\n**关键决策链**：\n- D017：Claim 3 从\"跨 agent 泛化\"reframe 为\"LF 可迁移 + probe 需 agent-specific 训练\"\n- D022：OB framing = Privileged Distant Supervision；移除后 f1_stag 降 22pp\n- D023：Dream 评审 best=4/6 WA，framing 正确，gap 在统计严谨性 + TLM 形式化\n- D028：新颖性自查通过，需在 Related Work 对标 AgentP\n\n**易错点**：\n- cross-agent-eval 是 negative 结论（probe 直接迁移 OH 只有 0.528），但已 reframe 为 Claim 3 的正面叙事\n- outcome-bp-3seed 也是 negative（移除 OB 降 7.7pp），但 reframe 为 OB 提供有价值信号\n- 不要混淆 ablation-lf-holdout-v2 的 self_eval（高）和 cross_eval（低）——cross_eval 才是正确评估\n- 距 EMNLP 5/25 只剩 11 天，人工标注是 GO/NO-GO gate 的前置条件，目前未启动\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778795354.md"
+}

@@ -1,0 +1,65 @@
+======================================================================
+2x2 FACTORIAL ANOVA: gradient_flow x norm_type on CAR (v2 data)
+Date: 2026-05-28
+======================================================================
+
+--- Cell Descriptives ---
+  Cell 1 (Full OCC BN, grad ON + BN): n=3, mean=0.7253, SD=0.0636, range=[0.654, 0.776]
+  Cell 2 (Full OCC LN, grad ON + LN): n=4, mean=0.7730, SD=0.0271, range=[0.740, 0.798]
+  Cell 3 (Detach BN, grad OFF + BN): n=4, mean=0.7665, SD=0.0242, range=[0.736, 0.794]
+  Cell 4 (Detach LN, grad OFF + LN): n=4, mean=0.7975, SD=0.0216, range=[0.778, 0.826]
+  Vanilla baseline:                    n=3, mean=0.7453, SD=0.0241, range=[0.720, 0.768]
+
+--- Marginal Means ---
+  Gradient ON:  mean=0.7526 (n=7)
+  Gradient OFF: mean=0.7820 (n=8)
+  BN:           mean=0.7489 (n=7)
+  LN:           mean=0.7853 (n=8)
+
+======================================================================
+2x2 FACTORIAL ANOVA (Type III Sum of Squares)
+======================================================================
+
+Source                                                     SS    df          F          p       η²_p
+-------------------------------------------------------------------------------------
+  C(gradient_flow)                                   0.003980     1      3.259     0.0985     0.2285
+  C(norm_type)                                       0.005712     1      4.676     0.0535     0.2983
+  C(gradient_flow)                                   0.000256     1      0.210     0.6558     0.0187
+  Residual                                           0.013437    11
+-------------------------------------------------------------------------------------
+Significance: *** p<.001, ** p<.01, * p<.05, † p<.10
+
+======================================================================
+WELCH'S T-TESTS: Each Cell vs Vanilla
+======================================================================
+
+Vanilla: mean=0.7453, SD=0.0241, n=3
+
+Cell                                                   mean        t  p(2-tail)    Cohen d
+------------------------------------------------------------------------------------------
+  Cell 1 (Full OCC BN, grad ON + BN)                 0.7253   -0.510     0.6510     -0.416
+  Cell 2 (Full OCC LN, grad ON + LN)                 0.7730    1.425     0.2164      1.067
+  Cell 3 (Detach BN, grad OFF + BN)                  0.7665    1.147     0.3091      0.875
+  Cell 4 (Detach LN, grad OFF + LN)                  0.7975    2.963     0.0398      2.307
+
+======================================================================
+SIMPLE EFFECTS: LN-BN within each gradient condition
+======================================================================
+
+  Under gradient ON:  LN-BN = 0.7730 - 0.7253 = +0.0477 (+4.8pp)
+  Under gradient OFF: LN-BN = 0.7975 - 0.7665 = +0.0310 (+3.1pp)
+
+  Cell 4 vs Vanilla: Cohen's d=2.31, t=2.963, p=0.040
+  Cell 2 vs Vanilla: Cohen's d=+1.07
+
+======================================================================
+SUMMARY
+======================================================================
+  Gradient flow: F=3.26, p=0.098, η²=0.229
+  Norm type:     F=4.68, p=0.053, η²=0.298
+  Interaction:   F=0.21, p=0.656, η²=0.019
+
+  Cell 4 vs Vanilla: Cohen's d=2.31, p=0.040
+  Cell 2 vs Vanilla: d=+1.07
+  LN-BN under gradient ON:  +4.8pp
+  LN-BN under gradient OFF: +3.1pp

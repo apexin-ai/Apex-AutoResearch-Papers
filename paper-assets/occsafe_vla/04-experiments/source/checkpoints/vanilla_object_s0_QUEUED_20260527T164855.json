@@ -1,0 +1,26 @@
+{
+  "exp_id": "vanilla_object_s0",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T16:41:30.148Z",
+    "updated_at": "2026-05-27T16:48:55.501Z",
+    "hypothesis": "Vanilla baseline on libero_object benchmark (seed 42): No OCC head, no auxiliary task. Establishes cross-benchmark baseline to test whether gradient flow × norm_type interaction generalizes beyond libero_spatial. If spatial-only results hold on object suite, strengthens generalizability claim.",
+    "spec": {
+      "command": "torchrun finetune.py --seed 42 --dataset_name libero_object_no_noops --use_occ_head False --max_steps 50005 --lora_rank 32 --batch_size 8 --lr 5e-4",
+      "server": "westd-34685",
+      "gpu_id": "cuda:1",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_object_no_noops",
+      "data_count": "454 demos",
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "run_root_dir": "/root/autodl-tmp/checkpoints/vanilla_object_s0",
+      "note": "~2s/step, ETA ~28h, DDL前可达~34K steps"
+    }
+  },
+  "timestamp": "2026-05-27T16:48:55.908188+00:00",
+  "trigger": "update_registry"
+}

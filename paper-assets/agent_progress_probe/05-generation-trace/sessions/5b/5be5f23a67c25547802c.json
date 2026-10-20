@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5be5f23a67c25547802c",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "code cosinesim check",
+  "task_key": "worker_code_cosinesim-check_20260514T111134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cosinesim-check_20260514T111134_result.json",
+    "occurrence": 1,
+    "bytes": 739,
+    "sha256": "764f9a3836af2734ef12aba73f582df514bd5a32e0cc28ade17f6c5431cb914e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。核心结果：\n\n**Test Macro-F1 = 0.5606 ✓ 已确认**（threshold=0.61, invert=True，由 val 搜索得出）\n\n分布分析要点：\n- **Stagnation 的 cosine sim 更高**（0.692 vs 0.613）——停滞时 agent 重复操作、embedding 变化小\n- Cohen's d = 0.70（中等效应量），但两类分布在 0.50-0.75 区间重叠严重\n- Val 上 separation 仅 0.014，远小于 test 的 0.079，threshold 迁移不稳定\n- Oracle best on test = 0.7439（远高于实际 0.5606），说明 val/test 分布差异是主要瓶颈\n- 将整个 embedding 序列压缩为单一标量是根本限制，GRU probe 能利用完整时序信息\n\n报告已写入 `artifacts/cosinesim_analysis_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cosinesim-check.md"
+}

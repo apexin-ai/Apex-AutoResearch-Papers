@@ -1,0 +1,52 @@
+{
+  "exp_id": "cka_same_seed_4cond",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T05:01:59.870Z",
+    "updated_at": "2026-05-25T05:03:34.116Z",
+    "hypothesis": "Same-seed (seed=42) CKA analysis of 4 conditions (Vanilla, Full OCC BN, Detach+BN, Full OCC LN) vs pretrained. Controls for seed to isolate normalization and gradient flow effects on representation preservation. Complements cross-seed CKA results.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python /root/occsafe_vla/analysis/cka_analysis.py --pretrained_path /root/autodl-tmp/models/openvla-7b --checkpoint_paths /root/autodl-tmp/checkpoints/vanilla_retrain_s0/... /root/autodl-tmp/checkpoints/full_occ_retrain_s0/... /root/autodl-tmp/checkpoints/ablation_occ_detach_s0_retrain/... /root/autodl-tmp/checkpoints/full_occ_ln_s0/... --condition_names Vanilla 'Full OCC (BN)' 'Detach+BN' 'Full OCC (LN)' --output_dir /root/autodl-tmp/analysis/cka_same_seed --gpu 0 --num_samples 200",
+      "server": "westd-10894",
+      "data_path": "/root/autodl-tmp/libero_datasets/libero_spatial",
+      "data_count": 200,
+      "model_name": "openvla-7b",
+      "seed": 42
+    },
+    "metrics": {
+      "Vanilla": {
+        "dinov2_mean_cka": 0.9676,
+        "dinov2_min_cka": 0.8993,
+        "siglip_mean_cka": 0.953,
+        "siglip_min_cka": 0.8425
+      },
+      "Full OCC (BN)": {
+        "dinov2_mean_cka": 0.9594,
+        "dinov2_min_cka": 0.8422,
+        "siglip_mean_cka": 0.9593,
+        "siglip_min_cka": 0.8799
+      },
+      "Detach+BN": {
+        "dinov2_mean_cka": 0.9635,
+        "dinov2_min_cka": 0.8895,
+        "siglip_mean_cka": 0.9532,
+        "siglip_min_cka": 0.8292
+      },
+      "Full OCC (LN)": {
+        "dinov2_mean_cka": 0.6404,
+        "dinov2_min_cka": 0.2558,
+        "siglip_mean_cka": 0.9497,
+        "siglip_min_cka": 0.8479
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/analysis/cka_same_seed",
+    "log_path": "/root/autodl-tmp/analysis/cka_same_seed/run.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-25T05:03:34.338974+00:00",
+  "trigger": "update_registry"
+}

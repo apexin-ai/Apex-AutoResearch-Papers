@@ -1,0 +1,1 @@
+See remote: /root/autodl-tmp/carr/analysis/diversity_metrics_summary.json (bjb2-23165). Key finding: all configs self-BLEU-4 low (0.01-0.016), distinct-n declining across gens for all configs. fullft_k4_lr2e5 uniquely shows decreasing self-BLEU (0.013→0.010).

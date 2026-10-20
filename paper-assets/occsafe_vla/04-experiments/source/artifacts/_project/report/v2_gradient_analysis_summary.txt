@@ -1,0 +1,18 @@
+V2 Gradient Analysis Summary
+
+| Metric | Vanilla | Full OCC | Detach |
+|---|---|---|---|
+| Action grad norm | 0.584 | 0.531 | 0.753 |
+| OCC grad norm | N/A | 0.008 | 0.005 |
+| OCC/Action ratio | N/A | 1.45% | 0.66% |
+| Cosine sim (act vs OCC) | N/A | -0.001 | 0.000 |
+| Conflict rate | N/A | 49.95% | 49.98% |
+| DINOv2/SigLIP ratio | 1.025 | 1.043 | 1.038 |
+| Projector action grad | 148.7 | 130.7 | 172.1 |
+
+V1 (D042) vs V2 Comparison:
+- Detach/Vanilla action grad ratio: v1=0.04 (4%) → v2=1.29 (129%)
+- Cosine similarity: v1≈0 → v2≈0 (preserved)
+- Conflict rate: v1≈44% → v2≈50% (closer to random)
+
+Conclusion: v2 preserves existence regularization (cosine≈0), but gradient suppression gone.

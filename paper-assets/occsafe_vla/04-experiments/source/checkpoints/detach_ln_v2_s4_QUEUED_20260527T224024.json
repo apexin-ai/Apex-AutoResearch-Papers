@@ -1,0 +1,26 @@
+{
+  "exp_id": "detach_ln_v2_s4",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T22:39:44.949Z",
+    "updated_at": "2026-05-27T22:40:24.384Z",
+    "hypothesis": "Cell 4 v2 n expansion (seed 46): Detach LN (gradient OFF + LayerNorm). Additional seed to maximize Cell 4 factorial ANOVA sample size before DDL. With gradient detached, LN norm should not impair safety — expect CAR in range 0.76-0.83 consistent with existing Cell 4 data (0.826).",
+    "parent": "detach_ln_v2_s1_35",
+    "spec": {
+      "command": "torchrun finetune.py --seed 46 --use_occ_head True --occ_detach True --occ_norm_type ln --max_steps 50005",
+      "server": "westd-10894",
+      "gpu_id": "cuda:1",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": "~4600 demos",
+      "model_name": "openvla-7b",
+      "seed": 46,
+      "run_root_dir": "/root/autodl-tmp/checkpoints/detach_ln_v2_s4"
+    }
+  },
+  "timestamp": "2026-05-27T22:40:24.741403+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65648c87e7e95e1f966b",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "infra openhands eval followup",
+  "task_key": "worker_infra_openhands_eval_followup_20260514T102609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_openhands_eval_followup_20260514T102609_result.json",
+    "occurrence": 1,
+    "bytes": 387,
+    "sha256": "b465fc562c62e9ae52e0df166a8a6d29719e6383d00b344a95586dfeca77b878"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Embedding 进程状态：\n- **PID 24709** 正在运行，双 GPU 并行处理\n- 每 GPU ~8000/71528 batches（**11%**），~15.5 it/s\n- **ETA ~68 分钟**（约 19:35 完成）\n- 输出到 `/root/autodl-tmp/openhands_data/embeddings.pt`\n- `windows_labeled.jsonl` 已就绪（154,743 行），`cross_agent_eval.py` 脚本已写好\n\n4.5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-openhands-eval-followup.md"
+}

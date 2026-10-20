@@ -1,0 +1,29 @@
+{
+  "exp_id": "detach_ln_v2_s1c",
+  "project": "occsafe_vla",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T00:36:37.812Z",
+    "updated_at": "2026-05-27T00:39:12.037Z",
+    "hypothesis": "v2 rebuild of Detach LN (gradient flow OFF, LayerNorm), seed 43. Cell 4 currently n=1 v2, this is the 3rd parallel attempt to reach n=4 for robust ANOVA. Running on 10894:cuda:3.",
+    "spec": {
+      "command": "bash -c \"export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach true --occ_norm_type ln --run_root_dir /root/autodl-tmp/checkpoints/detach_ln_v2_s1c --seed 43 --run_id_note detach_ln_v2_s1c\"",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "482192",
+      "log_path": "~/runs/occsafe_vla/detach_ln_v2_s1c.log",
+      "submitted_at": "2026-05-27T00:37:11.657Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "parent": "detach_ln_v2_s1"
+  },
+  "timestamp": "2026-05-27T00:39:12.446898+00:00",
+  "trigger": "update_registry"
+}

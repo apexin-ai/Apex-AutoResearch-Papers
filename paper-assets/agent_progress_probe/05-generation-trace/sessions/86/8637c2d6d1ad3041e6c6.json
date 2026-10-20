@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8637c2d6d1ad3041e6c6",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "eval gold dryrun v4",
+  "task_key": "worker_eval_gold-dryrun-v4_20260515T010911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gold-dryrun-v4_20260515T010911_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "1effddd8be7225fce428b59712103d071003dc9a9e5ecbf9a2224a8e69eea351"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Gold-set evaluation pipeline dry-run v4 完成。** Registry 已更新为 DONE/success。\n\n### 结果摘要\n\n| Model | N | Macro-F1 |\n|---|---|---|\n| MV Labels | 650 | 1.0000 |\n| GRU Probe | 650 | 0.9639 |\n|   └ gold_in_test | 203 | 0.9502 |\n| Structural RF | 650 | 0.9967 |\n| Structural GB | 650 | 0.9967 |\n| TWV Labels | 650 | 0.9485 |\n| TWV Probe | 650 | 0.9517 |\n\n### 验证点全部通过\n- Probe checkpoint 正确加载，无 shape mismatch\n- Structural features 正确提取（5000 trajectories indexed, 30 features）\n- TWV labels 正确加载和评估\n- MV-Gold agreement = 1.0（符合预期，pseudo gold 来自 MV labels）\n- 所有模型 n_evaluated = 650\n- 所有 macro_f1 > 0.9（circular eval 预期内）\n- Leakage-fix 正常工作：RF/GB 排除了 447/10634 gold windows from training\n- 输出 results.json 和 report.md 格式正确"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gold-dryrun-v4.md"
+}

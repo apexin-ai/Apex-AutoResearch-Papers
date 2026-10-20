@@ -1,0 +1,12 @@
+
+\section{Related Work}
+
+\subsection{VLA Safety and Spatial Representations}
+
+Generalist VLAs~\cite{black2024pi0, team2024octo} and existing safety approaches~\cite{hu2025vlsa, zhai2026cofreevla, raja2024ogmcbf, zhang2025safevla} do not examine whether spatial representations contribute to safety. A parallel line enriches VLAs with 3D structure (depth fusion, representation alignment, geometric encoding, or occupancy prediction)~\cite{yuan2025depthvla, li2025qdepthvla, rao2026augvla3d, bhat20253dcavla, abouzeid2025geoaware, yang2024depthanything, li2026spatialforcing, wu2025spatialvla, li2025pointvla, sun2025geovla, wu2026stvla, chen2026gstvla, tu2026sgvla, xiao2026stemvla, li2026corridorvla, liu2025occvla, li2022bevformer, sima2023occnet, tian2023occ3d}, yet none evaluates collision avoidance. Occupancy prediction originated in autonomous driving~\cite{li2022bevformer, sima2023occnet, tian2023occ3d}; OccVLA~\cite{liu2025occvla} adapted it to robotic VLAs. SpatialVLA~\cite{wu2025spatialvla}, DepthVLA~\cite{yuan2025depthvla}, and OccVLA report task success improvements but no safety metrics. The assumption that spatial awareness should improve safety remains untested; we address this gap.
+
+\subsection{Auxiliary Tasks and Multi-Task Gradient Dynamics}
+
+Multi-task learning exploits shared representations~\cite{caruana1997multitask, ruder2017overview}, with approaches ranging from universal representations~\cite{bilen2017universal} and task-dependent attention~\cite{maninis2019astmt} to residual adapters~\cite{rebuffi2018adapters}. However, auxiliary tasks risk negative transfer through optimization conflict or generalization failure~\cite{chen2018gradnorm, yu2020pcgrad, liu2021cagrad, navon2022nashmtl, jiang2023forkmerge}. PCGrad~\cite{yu2020pcgrad} and CAGrad~\cite{liu2021cagrad} assume gradient conflict as the primary failure mode; our analysis shows near-zero action--auxiliary cosine similarity, which points to a different mechanism.
+
+BatchNorm~\cite{ioffe2015batchnorm} couples representations to batch statistics; its sensitivity to minibatch composition~\cite{ioffe2017renorm} and covariate shift~\cite{schneider2020bn, li2017adabn} becomes consequential when auxiliary tasks alter training distributions. LayerNorm~\cite{ba2016layernorm} computes per-token statistics independently. For VLA fine-tuning with LoRA~\cite{hu2022lora}, the interaction between auxiliary losses and low-rank adapter updates has not been studied; our factorial design isolates gradient flow from spatial content.

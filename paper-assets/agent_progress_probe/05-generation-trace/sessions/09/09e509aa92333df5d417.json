@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09e509aa92333df5d417",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis d073 cycle detector oh urgent",
+  "task_key": "worker_analysis_d073-cycle-detector-oh-urgent_20260516T035618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d073-cycle-detector-oh-urgent_20260516T035618_result.json",
+    "occurrence": 1,
+    "bytes": 827,
+    "sha256": "842fa7f7ec7483c3d996e8c19348d443755b4d25e745af8778778fb3f0b80e05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\nCycle detector 在 OH 上 zero-shot cross-agent **彻底失败**：\n\n| Method | SWE Silver F1 | OH All F1 | OH Conf≥2 F1 | Δ(SWE→OH) |\n|--------|-------------|-----------|-------------|-----------|\n| **Structural GB** | 0.995 | **0.967** | **0.992** | -2.8pp |\n| Cycle 3-gram (t=0.70) | 0.721 | 0.530 | 0.592 | -19.1pp |\n| Cycle 2-gram (t=0.75) | 0.661 | 0.520 | 0.535 | -14.1pp |\n\n关键发现：\n- Cycle 3-gram 在 OH 上 F1 仅 **0.530**（all）/ **0.592**（conf≥2），f1_stag 只有 0.19/0.28，几乎无法检测 stagnation\n- **即使 oracle 调参**，OH 上 cycle detector 天花板也只有 **0.552**（all）/ **0.614**（conf≥2）\n- Structural GB 的 cross-agent 0.967 vs cycle 的 0.530，差距 **43.7pp** — cross-agent transfer 是论文的 genuine contribution"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d073-cycle-detector-oh-urgent.md"
+}

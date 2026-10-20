@@ -1,0 +1,52 @@
+{
+  "exp_id": "mvp_occ_s3",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T11:10:51.551Z",
+    "updated_at": "2026-05-25T17:25:32.002Z",
+    "hypothesis": "Factorial n=5 expansion: Full OCC BN (gradient flow ON, BatchNorm), seed 45. 4th seed to strengthen 2×2 ANOVA from n=3 to n=5 per cell. Config identical to mvp_occ_s0/s1/s2.",
+    "parent": "mvp_occ_s0",
+    "server": "westd-10894",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-10894",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-25T11:16:24.719Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=1 MUJOCO_EGL_DEVICE_ID=1 WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --run_root_dir /root/autodl-tmp/checkpoints/mvp_occ_s3 --seed 45 --run_id_note mvp_occ_s3\"",
+      "finished_at": "2026-05-25T17:25:30.047Z",
+      "training_hours": 6.15
+    },
+    "spec": {
+      "command": "torchrun finetune.py --use_occ_head True --seed 45 (Full OCC BN, identical to mvp_occ_s0/s1/s2)",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "256611",
+      "log_path": "~/runs/occsafe_vla/mvp_occ_s3.log",
+      "submitted_at": "2026-05-25T11:16:58.818Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_id": "cuda:1",
+      "seed": 45,
+      "model_name": "openvla-7b",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/",
+      "data_count": 50005,
+      "wall_clock_seconds": 22113.2,
+      "gpu_hours": 6.14
+    },
+    "pid": "256611",
+    "log_path": "~/runs/occsafe_vla/mvp_occ_s3.log",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-25T17:25:32.002Z"
+  },
+  "timestamp": "2026-05-25T17:25:32.235756+00:00",
+  "trigger": "update_registry"
+}

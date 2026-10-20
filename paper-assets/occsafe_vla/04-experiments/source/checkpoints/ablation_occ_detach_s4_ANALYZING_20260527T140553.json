@@ -1,0 +1,53 @@
+{
+  "exp_id": "ablation_occ_detach_s4",
+  "project": "occsafe_vla",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T11:14:45.981Z",
+    "updated_at": "2026-05-27T14:05:53.192Z",
+    "hypothesis": "n=5 统计扩展 Cell 3 (Detach BN, seed 46): 增加第 5 个种子提升 gradient_flow × norm_type 交互效应的统计检验力，增强效应量估计可靠性",
+    "parent": "ablation_occ_detach_s0",
+    "spec": {
+      "command": "bash -c \"export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach true --run_root_dir /root/autodl-tmp/checkpoints/ablation_occ_detach_s4 --seed 46 --run_id_note ablation_occ_detach_s4\"",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "735898",
+      "log_path": "~/runs/occsafe_vla/ablation_occ_detach_s4.log",
+      "submitted_at": "2026-05-27T00:17:48.548Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-34685",
+    "gpu": "cuda:2",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-34685",
+      "gpu": "cuda:2",
+      "started_at": "2026-05-27T00:17:44.558Z",
+      "command": "bash -c \"export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach true --run_root_dir /root/autodl-tmp/checkpoints/ablation_occ_detach_s4 --seed 46 --run_id_note ablation_occ_detach_s4\"",
+      "finished_at": "2026-05-27T14:03:08.581Z",
+      "training_hours": 13.76
+    },
+    "pid": "735898",
+    "log_path": "~/runs/occsafe_vla/ablation_occ_detach_s4.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T14:03:13.791574+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/ablation_occ_detach_s4/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--ablation_occ_detach_s4--50000_chkpt",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-27T14:05:53.568352+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab037a5e70aae92d5d11",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "code llm judge baseline",
+  "task_key": "worker_code_llm_judge_baseline_20260514T102134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llm_judge_baseline_20260514T102134_result.json",
+    "occurrence": 1,
+    "bytes": 880,
+    "sha256": "738e2967e16751bc3af21521653ea9d5710382b6827fdfd5d0416ae1809a0cc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全量 test set 评估已启动（PID=27419），1824 windows，预算 $50。按 $0.0066/window 估计约 $12，3 rps 需约 10 分钟完成 API 调用（加上数据加载约 1 分钟）。\n\n进度在 `logs/llm_judge_full.log`，结果输出到 `results/llm_judge_full_zeroshot.json`。预计 15-20 分钟完成。\n\n## 当前状态总结\n\n1. **代码** `artifacts/baseline_llm_judge.py` 已创建并部署到服务器\n2. **Pilot 完成** (50 windows): macro_f1=0.4286, $0.33 费用, 0 parse failures\n3. **全量评估已启动**: 1824 windows, zero-shot, claude-sonnet-4.6, 预估 $12, ~15min\n4. 全量 test set label 分布更平衡（pilot 前 50 个极不平衡 46:4），全量结果会更有参考价值\n\n可以稍后查看 `tail -20 /root/autodl-tmp/agent_progress_probe/logs/llm_judge_full.log` 追踪进度。完成后我来读取最终结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llm-judge-baseline.md"
+}

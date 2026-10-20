@@ -1,0 +1,233 @@
+experiments:
+- id: plan_001
+  claim: C1
+  description: Full OCC 3-seed (BEV occupancy with gradient flow)
+  priority: P0
+  registry_id: mvp_occ_s0
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_002
+  claim: C1
+  description: Full OCC 3-seed — seed 43
+  priority: P0
+  registry_id: occ_s1_fresh
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_003
+  claim: C1
+  description: Full OCC 3-seed — seed 44
+  priority: P0
+  registry_id: mvp_occ_s2
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_004
+  claim: C1
+  description: Vanilla baseline 3-seed (no auxiliary head)
+  priority: P0
+  registry_id: mvp_vanilla_s0
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_005
+  claim: C1
+  description: Vanilla baseline — seed 43
+  priority: P0
+  registry_id: mvp_vanilla_s1
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_006
+  claim: C1
+  description: Vanilla baseline — seed 44
+  priority: P0
+  registry_id: mvp_vanilla_s2
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_007
+  claim: C1
+  description: Detach OCC 3-seed (no gradient flow → harm)
+  priority: P0
+  registry_id: ablation_occ_detach_s0
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_008
+  claim: C1
+  description: Detach OCC — seed 43
+  priority: P0
+  registry_id: ablation_occ_detach_s1
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_009
+  claim: C1
+  description: Detach OCC — seed 44
+  priority: P0
+  registry_id: ablation_occ_detach_s2
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_010
+  claim: C1
+  description: Random OCC 3-seed (gradient flow with random labels)
+  priority: P0
+  registry_id: ablation_random_occ_s0
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_011
+  claim: C1
+  description: Random OCC — seed 43
+  priority: P0
+  registry_id: ablation_random_occ_s1
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_012
+  claim: C1
+  description: Random OCC — seed 44
+  priority: P0
+  registry_id: ablation_random_occ_s2
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_013
+  claim: C1
+  description: Depth 4-seed (egocentric depth, alternative spatial signal)
+  priority: P0
+  registry_id: depth_s0
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_014
+  claim: C1
+  description: Depth — seed 43
+  priority: P0
+  registry_id: depth_s1
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_015
+  claim: C1
+  description: Depth — seed 44
+  priority: P0
+  registry_id: depth_s2
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_016
+  claim: C1
+  description: Depth — seed 45
+  priority: P0
+  registry_id: depth_s3
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_017
+  claim: C1
+  description: Cutoff 3-seed (OCC loss cutoff@35K, temporal dynamics)
+  priority: P0
+  registry_id: cutoff_s0
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_018
+  claim: C1
+  description: Cutoff — seed 43
+  priority: P0
+  registry_id: cutoff_s1
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_019
+  claim: C1
+  description: Cutoff — seed 44 (3rd seed for statistical consistency)
+  priority: P0
+  registry_id: cutoff_s2
+  note: failed (CONFIG_MISMATCH), replaced by cutoff_s2_v2 (DONE/success)
+  gpu_budget_hours: 13
+  deps: []
+- id: plan_020
+  claim: C1
+  description: 'Multi-cutoff dose-response: cutoff@15K — tests minimum gradient flow
+    duration needed for protection'
+  priority: P1
+  registry_id: cutoff_15k_s0
+  gpu_budget_hours: 13
+  deps:
+  - plan_017
+- id: plan_021
+  claim: C1
+  description: 'Multi-cutoff dose-response: cutoff@25K — intermediate cutoff point'
+  priority: P1
+  registry_id: cutoff_25k_s0
+  gpu_budget_hours: 13
+  deps:
+  - plan_017
+- id: plan_022
+  claim: C1
+  description: 'Multi-cutoff dose-response: cutoff@45K — near-full training cutoff'
+  priority: P1
+  registry_id: cutoff_45k_s0
+  gpu_budget_hours: 13
+  deps:
+  - plan_017
+- id: plan_023
+  claim: C1
+  description: 'Gradient norm + cosine analysis: 1-epoch forward+backward pass on
+    existing 50K checkpoints for Full OCC/Detach/Vanilla/Random. Record per-layer
+    gradient norms and cosine similarity between action and aux head gradients. Directly
+    tests Hypothesis 3 (gradient diversity). Uses existing checkpoints, no training
+    needed.'
+  priority: P0
+  registry_id: gradient_analysis_mixed_seed
+  gpu_budget_hours: 2
+  deps: []
+- id: plan_024
+  claim: C1
+  description: 'CKA representation analysis: compare encoder intermediate layer representations
+    across Full OCC/Detach/Vanilla/Random at 50K checkpoint. Tests Hypothesis 1 (feature
+    preservation). Uses existing checkpoints, no training needed.'
+  priority: P0
+  registry_id: cka_analysis
+  gpu_budget_hours: 1
+  deps: []
+- id: plan_025
+  claim: C1
+  description: 'Reverse cutoff: start WITHOUT occ_loss, enable at step 35K — tests
+    whether late-stage gradient flow alone provides protection. Combined with cutoff@35K
+    creates 2×2 design: {early, late, both, neither}.'
+  priority: P1
+  gpu_budget_hours: 13
+  deps:
+  - plan_017
+  registry_id: reverse_cutoff_s0
+- id: plan_026
+  claim: C1
+  description: Multi-cutoff cutoff@25K — at least 1 extra point to show temporal dose-response
+    trend
+  priority: P1
+  gpu_budget_hours: 13
+  deps:
+  - plan_017
+  registry_id: cutoff_25k_s0
+- id: plan_027
+  claim: C1
+  description: 'Detach + LayerNorm OccHead: replace BatchNorm2d with LayerNorm in
+    OccHead under detach mode. Tests whether Detach harm is from gradient flow absence
+    or BatchNorm running stats artifact. If still hurts → gradient flow is the cause.
+    If doesn''t hurt → BatchNorm artifact.'
+  priority: P1
+  gpu_budget_hours: 13
+  deps:
+  - plan_007
+  registry_id: detach_ln_s2
+- id: plan_028
+  claim: C1
+  description: 'Second benchmark: SafeLIBERO LIBERO-Object or LIBERO-Goal to test
+    generalizability beyond LIBERO-Spatial'
+  priority: P2
+  gpu_budget_hours: 78
+  deps: []
+- id: plan_029
+  claim: C1
+  description: Multi-cutoff cutoff@15K seed 43 — minimum gradient flow duration needed
+  priority: P2
+  registry_id: cutoff_15k_s1
+  gpu_budget_hours: 13
+  deps:
+  - plan_017
+- id: plan_030
+  claim: C1
+  description: Multi-cutoff cutoff@45K seed 43 — near-full training
+  priority: P2
+  registry_id: cutoff_45k_s1
+  gpu_budget_hours: 13
+  deps:
+  - plan_017

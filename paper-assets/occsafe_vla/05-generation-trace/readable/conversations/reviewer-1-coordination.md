@@ -1,0 +1,5996 @@
+# Reviewer 1 coordination
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 198
+- **Recorded user turns:** 4
+- **Tool calls:** 95
+- **Original source:** `logs/chats/feishu_group_oc_faa96524df7d6444f5c8cbc48d5a616b_reviewer_1.jsonl`
+- **Structured JSON:** [`b88755dcfa7c3fe497af.json`](../../sessions/b8/b88755dcfa7c3fe497af.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+86 recorded events
+
+### User
+
+_source line 1 · 2026-05-28T10:46:26.533302+00:00_
+
+[Round 1 审稿请求]:
+你是 Reviewer 1，负责 **方法严谨性 + 实验有效性**。
+
+## Venue 信息
+- **目标会议**: CoRL 2026
+- **Deadline**: 2026-05-29
+- **页数限制**: 8 页正文 + 无限参考文献
+- **模板**: PMLR (corl_2026.sty)
+- **匿名规则**: Double-blind
+- **必须包含**: Limitations section（计入 8 页）
+
+## 论文路径
+- LaTeX: `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex`
+- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/submitted.pdf`
+
+## 审查侧重
+
+### 核心任务：验证上轮 open/in_progress issue
+
+**R1-C9 [CRITICAL, in_progress]: v1/v2 mixing — 实验使用了混合版本的模型/数据**
+- 上轮发现：核心 factorial 条件混用 v1/v2 代码，数据不可比
+- 要求的修复：重新训练消除 v1/v2 mixing
+- **请逐条检查以下并标注 [RESOLVED] 或 [STILL_OPEN] + 理由**：
+  1. Table 1 的 factorial 条件是否全部使用 v2 代码？
+  2. v1 数据是否被严格隔离到 supplementary section？
+  3. Random OCC 作为 v1 数据放在 factorial 区域是否合理？标注是否充分？
+  4. 跨 codebase 的统计比较（如 $\Delta$CAR）是否正确处理了 baseline mismatch？
+  5. 正文中是否还有 v1/v2 混用导致的不一致声明？
+
+### 方法审查
+1. Factorial 设计的完整性：12 条件 × 5 因子的组合是否遗漏关键交互？
+2. 统计方法：ANOVA 假设（正态性、方差齐性）在 n=3-4 下是否可靠？Bootstrap CI 是否合适？
+3. Effect size 解读：Cohen's d 在小样本下的偏差是否被讨论？
+4. $\lambda(t)$ 指数衰减的选择是否充分论证？未 sweep 此超参是否是 limitation？
+
+### 实验审查
+1. Seed 数量（n=3-4）是否足以支撑 "large effect" 的声明？
+2. 评估协议（50 rollouts × 10 tasks）的统计功效
+3. 碰撞检测阈值 $10^{-3}$ 的合理性和敏感性
+4. 单 GPU（RTX PRO 6000）训练的复现性
+
+请按 CoRL 标准严格评审，输出格式：Summary → Strengths → Weaknesses (逐条编号 W1, W2, ...) → Questions → Missing References。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "source": "review_reviewer_1"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-28T10:46:39.109963+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/skills/review-reviewer-session-start.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/skills/review-reviewer-session-start.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-28T10:46:39.110773+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/sessions/review_reviewer_1_7e4599ad.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-28T10:46:41.769108+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/review-reviewer-session-start*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/review-reviewer-session-start*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-28T10:46:42.021592+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Glob",
+  "elapsed_ms": 252
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-28T10:46:44.483356+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/review-reviewer-session-start*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/review-reviewer-session-start*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-28T10:46:44.635110+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/review-reviewer-session-start.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Glob",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-28T10:46:50.902791+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/review-reviewer-session-start.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/review-reviewer-session-start.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-28T10:46:51.040494+00:00_
+
+1	---
+2	name: review-reviewer-session-start
+3	description: Review Reviewer session 启动初始化——检查论文格式、编译状态、材料清单。Review Reviewer 角色 session 启动时自动使用。
+4	priority: 8
+5	scope: global
+6	tags:
+7	- workflow
+8	- review
+9	- session
+10	version: 2
+11	roles: []
+12	---
+13	
+14	# Review Reviewer Session 启动流程
+15	
+16	执行顺序：
+17	1. 读取论文文件（`projects/{project}/paper/main.tex` 或类似路径）
+18	2. 检查论文格式状态：
+19	   - 页数是否在 venue 要求内（若已知 venue）
+20	   - LaTeX 是否可编译（调用 `ssh_execute` 运行 `pdflatex` 或 `latexmk`）
+21	   - 图表是否有标题和标签
+22	3. 视觉检查：如果已有编译好的 PDF，使用 `paper-visual-review` skill 渲染关键页面（首页、图表页、参考文献页），检查排版溢出、公式渲染、图表质量等视觉问题
+23	4. 检查投稿材料清单：
+24	   - cover letter 是否存在
+25	   - 补充材料是否准备
+26	   - 参考文献格式是否正确
+27	5. 向 Review Director 汇报（`review_reviewer_post_to_director`）：
+28	   - 论文当前状态
+29	   - 发现的格式问题（如有）
+30	   - 视觉检查结果（如有）
+31	   - 缺少的材料（如有）
+32	
+33	此流程在 Review Director 分配任务后执行。
+34	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 137
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-28T10:46:55.992440+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch,mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch,WebFetch,mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-28T10:46:56.047255+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 54
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-28T10:46:59.946432+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "CoRL 2026 reviewer guidelines review form criteria"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "CoRL 2026 reviewer guidelines review form criteria"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-28T10:47:00.449116+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "CoRL conference paper review form scoring criteria dimensions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "CoRL conference paper review form scoring criteria dimensions"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-28T10:47:02.560406+00:00_
+
+called mcp__agent-ml-research__pdf_to_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/submitted.pdf",
+  "project": "occsafe_vla",
+  "pages": "1-10",
+  "dpi": "150"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "tool_args": {
+    "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/submitted.pdf",
+    "project": "occsafe_vla",
+    "pages": "1-10",
+    "dpi": "150"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-28T10:47:05.172525+00:00_
+
+Web search results for query: "CoRL conference paper review form scoring criteria dimensions"
+
+Links: [{"title":"CoRL 2024 - Instruction for Reviews","url":"https://2024.corl.org/contributions/instruction-for-reviews"},{"title":"CoRL 2023 Statistics - Paper Copilot","url":"https://papercopilot.com/statistics/corl-statistics/corl-2023-statistics/"},{"title":"Reviewer Guidelines — CoRL 2023","url":"https://www.corl2023.org/reviewer-guidelines"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"Review Form","url":"http://aclrollingreview.org/reviewform"},{"title":"Analyzing the Machine Learning Conference Review Process","url":"https://arxiv.org/pdf/2011.12919"},{"title":"Beyond Paper-to-Paper: Structured Profiling and Rubric Scoring for Paper-Reviewer Matching","url":"https://arxiv.org/pdf/2604.05866"}]
+
+Based on the search results, I found information about CoRL's review criteria. CoRL submissions are evaluated based on the significance and novelty of the results, either theoretical or empirical. 
+
+However, the search results provide limited detail on the specific scoring criteria dimensions and scale used in the CoRL paper review form. The first result mentions the general evaluation criteria but doesn't provide a detailed breakdown of scoring dimensions or numerical scales like some other conferences do.
+
+If you're looking for more specific information about:
+- The numerical scoring scale (e.g., 1-5 or 1-10)
+- Specific evaluation dimensions beyond significance and novelty
+- The exact review form structure and questions
+
+I may need to search for more recent or detailed CoRL review guidelines or the actual review form itself. Would you like me to search for any of these additional details?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebSearch",
+  "elapsed_ms": 4723
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-28T10:47:08.185774+00:00_
+
+Web search results for query: "CoRL 2026 reviewer guidelines review form criteria"
+
+Links: [{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"ICLR 2026 Reviewer Guide","url":"https://iclr.cc/Conferences/2026/ReviewerGuide"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"Reviewer Guidelines — CoRL 2023","url":"https://www.corl2023.org/reviewer-guidelines"},{"title":"CVPR 2026 Reviewer Guidelines","url":"https://cvpr.thecvf.com/Conferences/2026/ReviewerGuidelinesq"},{"title":"Which Coauthor Should I Nominate in My 99 ICLR Submissions? A Mathematical Analysis of the ICLR 2026 Reciprocal Reviewer Nomination Policy","url":"https://arxiv.org/pdf/2512.17950"},{"title":"CoRL 2024 - Instruction for Reviews","url":"https://2024.corl.org/contributions/instruction-for-reviews"}]
+
+I found some information about CoRL 2026, though the search results include details from CoRL 2024 and other conferences as well. Here's what I found:
+
+## CoRL 2026 Key Information
+
+**Reviewer Requirements:**
+All submissions must include at least one author who agrees to serve as a CoRL reviewer and is qualified if they have at least one accepted publication at a previous robotics (CoRL/ICRA/IROS/RSS) or learning conference (ICLR/NeurIPS/ICML) or equivalent journal.
+
+**Submission Focus:**
+Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. Additionally, all submissions should include a Limitations section, explicitly describing limiting assumptions, failure modes, and other limitations of the results and experiments and how these might be addressed in the future.
+
+**General Reviewer Guidance:**
+From the CoRL 2023 guidelines (which likely reflect similar standards), reviewers should evaluate whether the paper addresses a problem in robot learning, applies or improves a l
+…[truncated 475 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebSearch",
+  "elapsed_ms": 8239
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-28T10:47:09.744146+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p1.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 318.7}, {\"page\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p2.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 370.9}, {\"page\": 3, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p3.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 378.0}, {\"page\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p4.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 362.5}, {\"page\": 5, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p5.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 357.2}, {\"page\": 6, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p6.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 349.8}, {\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p7.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 262.0}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p8.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 400.7}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p9.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 328.3}, {\"page\": 10, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_v
+…[truncated 339 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "elapsed_ms": 7183
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-28T10:47:16.618986+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://2024.corl.org/contributions/instruction-for-reviews",
+  "prompt": "Extract the complete review form: all scoring dimensions, numerical scales, and criteria descriptions. Include the exact questions reviewers must answer."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://2024.corl.org/contributions/instruction-for-reviews",
+    "prompt": "Extract the complete review form: all scoring dimensions, numerical scales, and criteria descriptions. Include the exact questions reviewers must answer."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-28T10:47:17.474164+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://www.corl2023.org/reviewer-guidelines",
+  "prompt": "Extract all reviewer scoring dimensions, scales, criteria, and guidelines for evaluating papers."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://www.corl2023.org/reviewer-guidelines",
+    "prompt": "Extract all reviewer scoring dimensions, scales, criteria, and guidelines for evaluating papers."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-28T10:47:18.283395+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p1.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p1.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-28T10:47:18.845209+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p2.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p2.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-28T10:47:19.409098+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 1125
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-28T10:47:19.409541+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p3.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p3.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-28T10:47:19.719006+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 873
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-28T10:47:19.719511+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p4.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p4.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-28T10:47:20.124121+00:00_
+
+# Response
+
+I cannot provide the complete review form with scoring dimensions and specific reviewer questions, as **this information is not contained in the provided webpage content**.
+
+The page only includes:
+
+- **Review Criteria**: Papers evaluated on "significance and novelty of the results, either theoretical or empirical" and "relevance to robotic learning"
+
+- **Desk Reject Criteria**: Three grounds for rejection—formatting issues, anonymity violations, and scope concerns
+
+- **Reviewer Qualifications**: Requirement for "expertise in robotics, robot learning, machine learning" with minimum publication records
+
+The document does not present an actual review form with numerical scales, scoring questions, or detailed rating instructions that reviewers would complete when evaluating submissions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebFetch",
+  "elapsed_ms": 3505
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-28T10:47:20.128858+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 719
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-28T10:47:20.838640+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 1119
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-28T10:47:22.799200+00:00_
+
+# CoRL 2023 Reviewer Scoring Dimensions
+
+Based on the Reviewer Guidelines, CoRL 2023 evaluates papers across six primary dimensions:
+
+## Evaluation Criteria
+
+**Originality**
+"Are the problems or methods new?" Reviewers assess whether work represents novel contributions, creative combinations of existing techniques, and proper differentiation from prior work.
+
+**Quality**
+"Is the submission technically sound?" This dimension examines technical rigor, empirical support for claims, methodological appropriateness, and author honesty about strengths and weaknesses.
+
+**Clarity**
+"Is the submission clearly written?" Reviewers evaluate organization, readability, and whether sufficient detail exists for expert reproduction of results.
+
+**Significance**
+"Are the results important?" This assesses real-world impact, potential influence on researchers or practitioners, and advancement of the field.
+
+**Relevance**
+"Does the paper address a problem in robot learning?" Reviewers determine alignment with CoRL's focus on learning-based methods and whether the audience will find value.
+
+**Limitations**
+Papers require an explicit limitations section. Reviewers should "treat honestly reported limitations kindly" while critically addressing unreported shortcomings.
+
+## Key Guidance
+
+The guidelines emphasize constructive, evidence-based reviews starting with positive aspects. Reviewers should avoid common mistakes like unsupported novelty claims, arbitrary demands (datasets, theorems, real robot tests), or conflating performance metrics with knowledge advancement.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebFetch",
+  "elapsed_ms": 5325
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-28T10:47:28.946305+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p5.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p5.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-28T10:47:29.552531+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p6.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p6.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-28T10:47:29.842770+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 896
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-28T10:47:30.060937+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p7.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p7.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-28T10:47:30.576773+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 1024
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-28T10:47:30.577206+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p8.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p8.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-28T10:47:30.932212+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 871
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-28T10:47:31.888577+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 1311
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-28T10:47:40.575830+00:00_
+
+called mcp__agent-ml-research__pdf_to_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/submitted.pdf",
+  "project": "occsafe_vla",
+  "pages": "9-10",
+  "dpi": "150"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "tool_args": {
+    "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/submitted.pdf",
+    "project": "occsafe_vla",
+    "pages": "9-10",
+    "dpi": "150"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-28T10:47:41.529914+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p9.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 328.3}, {\"page\": 10, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p10.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 342.8}], \"total_pages\": 19, \"rendered_pages\": 2, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "elapsed_ms": 954
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-28T10:47:41.780863+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex",
+  "limit": "100"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex",
+    "limit": "100"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-28T10:47:41.881596+00:00_
+
+1	% OccSafe-VLA: Occupancy-Aware Safety for Vision-Language-Action Models
+2	% Target: CoRL 2026
+3	\documentclass{article}
+4	
+5	\usepackage[dvipsnames]{xcolor}
+6	\usepackage{corl_2026}
+7	
+8	\usepackage{graphicx}
+9	\usepackage{amsmath,amssymb}
+10	\usepackage{booktabs}
+11	\usepackage{enumitem}
+12	\usepackage{subcaption}
+13	\usepackage{placeins}
+14	
+15	\title{Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer?\\ An Empirical Investigation}
+16	
+17	\author{
+18	Anonymous Author(s)
+19	}
+20	
+21	\begin{document}
+22	\maketitle
+23	
+24	\begin{abstract}
+25	Fine-tuned Vision-Language-Action (VLA) models can achieve high task success yet remain behaviorally unsafe, with collision avoidance rates lagging task completion on safety-critical benchmarks.
+26	We present a factorial study of twelve conditions varying five factors (gradient flow, label content, normalization type, spatial reference frame, and temporal extent) to isolate how auxiliary spatial supervision during VLA fine-tuning affects collision avoidance.
+27	Our central finding is a \textbf{normalization-dependent gradient flow effect}. Under Batch Normalization (BN), gradient flow degrades safety: Full OCC BN achieves a 0.725 Collision Avoidance Rate versus 0.767 for Detach BN (Cohen's $d = -0.93$, large), falling below the no-auxiliary-head Vanilla baseline (0.745). Under Layer Normalization (LN), gradient flow is benign: Full OCC LN reaches 0.773, above Vanilla (Cohen's $d = +1.07$, large). Two main effects drive this pattern: (1)~gradient flow under BN reduces CAR by 4.2\,pp ($d{=}0.93$), with BN + gradient flow as the sole configuration falling below the Vanilla baseline; (2)~LN provides a consistent 3.5--4.8\,pp safety advantage over BN ($d{\approx}1.05$--$1.47$, large to very large), regardless of gradient flow. A $2{\times}2$ ANOVA confirms additive main effects with negligible interaction ($\eta^2{<}0.01$). The BN + gradient flow cell is both the worst-performing and most unstable configurat
+…[truncated 1213 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-28T10:47:46.152225+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p9.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p9.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-28T10:47:46.504104+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p10.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p10.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-28T10:47:46.760520+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 608
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-28T10:47:46.913290+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 409
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-28T10:47:53.036643+00:00_
+
+called mcp__agent-ml-research__pdf_to_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/submitted.pdf",
+  "project": "occsafe_vla",
+  "pages": "11-19",
+  "dpi": "150"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "tool_args": {
+    "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/submitted.pdf",
+    "project": "occsafe_vla",
+    "pages": "11-19",
+    "dpi": "150"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-28T10:47:53.789960+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 11, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p11.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 332.0}, {\"page\": 12, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p12.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 55.0}, {\"page\": 13, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p13.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 313.5}, {\"page\": 14, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p14.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 321.8}, {\"page\": 15, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p15.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 316.8}, {\"page\": 16, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p16.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 292.8}, {\"page\": 17, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p17.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 313.4}, {\"page\": 18, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p18.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 272.5}, {\"page\": 19, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p19.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 96.1}], \"total_pages\": 19, \"rendered_pages\": 9, \"dpi\": 150, \"output_dir\": 
+…[truncated 146 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "elapsed_ms": 753
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-28T10:47:57.326471+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p11.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p11.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-28T10:47:57.779379+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-28T10:47:57.779722+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p12.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p12.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-28T10:47:58.727510+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 947
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-28T10:47:58.758009+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p13.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p13.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-28T10:47:59.014549+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p14.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p14.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-28T10:47:59.453815+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 695
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-28T10:47:59.759395+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 744
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-28T10:48:05.566235+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p15.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p15.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-28T10:48:06.020342+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-28T10:48:06.022834+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p16.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p16.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-28T10:48:06.476839+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-28T10:48:06.527485+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p17.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p17.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-28T10:48:06.982145+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-28T10:48:06.982764+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p18.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p18.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-28T10:48:07.688595+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 705
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-28T10:48:07.689053+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p19.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p19.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-28T10:48:07.741072+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-28T10:48:16.326799+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "*.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-28T10:48:16.377390+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/references.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/experiments_old.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/results.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-28T10:48:33.726713+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-28T10:48:34.178338+00:00_
+
+1	
+2	\section{Method}
+3	
+4	We fine-tune OpenVLA-7B~\cite{kim2024openvla} with the OFT recipe~\cite{kim2025oft}, which concatenates DINOv2~\cite{oquab2024dinov2} (1024-d) and SigLIP~\cite{zhai2023siglip} (1152-d) patch features into a 2176-dimensional representation per spatial token. We apply LoRA~\cite{hu2022lora} (rank 32, $\alpha{=}16$) and augment the action prediction loss with an auxiliary spatial prediction head:
+5	\begin{equation}
+6	\mathcal{L}_\text{total} = \mathcal{L}_\text{action} + \lambda(t) \cdot \mathcal{L}_\text{aux}(h(\phi_v(o_t)), s_t^*),
+7	\quad \lambda(t) = 0.01 \cdot \exp(-t / 50000)
+8	\end{equation}
+9	where $h$ denotes the auxiliary head, $\phi_v$ the frozen-then-LoRA-adapted vision encoders, and $s_t^*$ the ground-truth spatial label at step $t$. The coefficient $\lambda(t)$ decays exponentially so that spatial gradients shape early representations without dominating late-stage action refinement. The auxiliary head is discarded at inference, incurring zero additional cost.
+10	
+11	\textbf{Bird's-eye view (BEV) occupancy head.} The head (1.2M parameters) maps the 256 patch tokens from the current observation frame to a $64{\times}64$ binary occupancy grid. A linear projection ($2176{\to}256$) is reshaped to $16{\times}16$, followed by two transposed convolutions ($256{\to}128{\to}64$, kernel 4, stride 2) each with BatchNorm2d and GELU, and a final $1{\times}1$ convolution with sigmoid activation. Ground-truth grids are rendered from MuJoCo simulator state replay by projecting object bounding boxes onto the table-plane BEV. Training uses focal loss~\cite{lin2017focal} ($\alpha{=}0.25$, $\gamma{=}2.0$) to handle class imbalance in the sparse occupancy signal. The initial auxiliary weight $\lambda_0{=}0.01$ is set to keep auxiliary gradients below 2\% of the action loss magnitude, avoiding interference with action learning.
+12	
+13	\textbf{Monocular depth head.} This head shares the same convolutional architecture but replaces the sigmoid with ReLU
+…[truncated 4181 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-28T10:48:34.178754+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/results.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-28T10:48:34.580376+00:00_
+
+1	
+2	\section{Results}
+3	\label{sec:results}
+4	
+5	\subsection{Main Results}
+6	
+7	Table~\ref{tab:main_results} summarizes TSR and CAR across conditions (50 rollouts $\times$ 10 tasks per seed). $\Delta$CAR is computed against the matched-codebase Vanilla baseline (v2: $0.745 \pm 0.024$, 3 seeds, for factorial conditions above the midrule; v1: 0.780 for supplementary conditions below). Random OCC ($^\star$) uses v1 code but is included above the midrule as a factorial control; its $\Delta$CAR is omitted due to the cross-codebase baseline mismatch. Statistical comparisons use permutation tests and Cohen's $d$ against the Vanilla baseline.
+8	
+9	\textbf{Gradient flow interacts with normalization type.} The four factorial cells reveal a normalization-dependent pattern. Under BatchNorm, gradient flow degrades safety: Full OCC (BN, gradient ON) is the worst-performing cell (CAR $0.725$, $\Delta{=}-2.0$\,pp vs.\ Vanilla) and the sole configuration falling below baseline, while Detach OCC (gradient OFF) exceeds it ($0.767$, $\Delta{=}+2.2$\,pp). Under LayerNorm, gradient flow is benign: Full OCC+LN ($0.773$, $\Delta{=}+2.8$\,pp) already exceeds Vanilla, and Detach+LN ($0.802 \pm 0.024$, $n{=}3$) yields the highest cell mean ($\Delta{=}+5.7$\,pp). Both LN cells exceed the Vanilla baseline, whereas only the gradient-OFF BN cell does so. The BN + gradient flow cell also exhibits the highest instability ($\sigma{=}0.064$, ${\geq}\,2{\times}$ all other cells). Spatial label content does not detectably affect outcomes: Full OCC (ground-truth occupancy), Random OCC (random binary labels), and Depth (egocentric depth maps) all fall within cross-seed variance ($p > 0.4$, observed under v1 codebase for Random OCC and Depth).
+10	
+11	\textbf{BN + gradient flow destabilizes training.} Full OCC (BN) exhibits the highest variance of any factorial cell ($\sigma{=}0.064$, ${\geq}\,2{\times}$ that of all other cells; $\sigma \leq 0.027$ for all other cells): individual seeds range from $0.776$
+…[truncated 7139 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 401
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-28T10:48:34.580797+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-28T10:48:34.681823+00:00_
+
+1	
+2	\section{Extended Per-Task Results}
+3	\label{app:per_task}
+4	
+5	Table~\ref{tab:per_task} reports per-task mean CAR across seeds for each condition. Seven tasks achieve CAR $\geq$ 0.92 under Vanilla, while three physically constrained tasks (T3, T5, T6) fall below 0.58. The overall CAR differences reported in the main text are dominated by these three hard tasks, which average 0.342 compared to 0.968 for the seven easy tasks.
+6	
+7	\begin{table}[h]
+8	\centering
+9	\caption{Per-task mean CAR across seeds (50 rollouts per seed, v1 code). This table reports v1 codebase results retained for completeness; all main analyses use v2 data (Table~\ref{tab:main_results}). All conditions use 3 seeds except Depth (4). Detach+LN per-task uses 2 seeds (s1, s2; s0 lacks per-task breakdown).}
+10	\label{tab:per_task}
+11	\begin{tabular}{clccccccc}
+12	\toprule
+13	 & & \multicolumn{7}{c}{Mean CAR by Condition} \\
+14	\cmidrule(lr){3-9}
+15	Task & Diff. & Vanilla & Full OCC & Random & Detach & Det+LN & Depth & Cut@35K \\
+16	\midrule
+17	T0 & Easy  & 0.98 & 0.98 & 0.99 & 0.97 & 0.97 & 0.99 & 0.98 \\
+18	T1 & Easy  & 0.92 & 0.93 & 0.99 & 0.89 & 0.78 & 0.93 & 0.95 \\
+19	T2 & Easy  & 0.92 & 0.93 & 0.94 & 0.93 & 0.90 & 0.90 & 0.94 \\
+20	T3 & Hard  & 0.38 & 0.37 & 0.31 & \textbf{0.11} & 0.44 & 0.50 & 0.55 \\
+21	T4 & Easy  & 0.98 & 0.99 & 0.95 & 0.98 & 0.96 & 0.92 & 0.97 \\
+22	T5 & Hard  & 0.07 & 0.17 & 0.23 & \textbf{0.05} & 0.12 & 0.08 & 0.04 \\
+23	T6 & Hard  & 0.57 & 0.61 & 0.55 & 0.56 & 0.36 & 0.54 & 0.38 \\
+24	T7 & Easy  & 0.97 & 0.99 & 0.95 & 0.98 & 1.00 & 0.96 & 0.98 \\
+25	T8 & Easy  & 1.00 & 1.00 & 1.00 & 0.99 & 0.99 & 0.99 & 0.99 \\
+26	T9 & Easy  & 1.00 & 0.99 & 0.99 & 1.00 & 1.00 & 1.00 & 1.00 \\
+27	\midrule
+28	\multicolumn{2}{l}{Overall} & 0.780 & 0.797 & 0.789 & 0.746 & 0.765 & 0.780 & 0.779 \\
+29	\bottomrule
+30	\end{tabular}
+31	\end{table}
+32	
+33	\textbf{Ceiling effects.} On the seven easy tasks (T0--T2, T4, T7--T9), all conditions achieve CAR $\geq$ 0.89, leaving minimal room for au
+…[truncated 19306 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-28T10:48:41.352623+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-28T10:48:42.209237+00:00_
+
+1	\section{Introduction}
+2	
+3	Vision-language-action (VLA) models map visual observations and language instructions to robot actions, and recent fine-tuning recipes achieve high task success on standard manipulation benchmarks~\cite{brohan2023rt2, kim2024openvla, kim2025oft}. Behavioral safety, however, does not follow from task completion. On SafeLIBERO Level~I~\cite{hu2025vlsa}, OpenVLA-7B fine-tuned with the OFT recipe~\cite{kim2025oft} reaches a Task Success Rate (TSR) of 87.8\% but a Collision Avoidance Rate (CAR) of only 74.5\%. On the three most constrained tasks, collision rates reach 43--93\%. These numbers expose a gap between what training objectives optimize for and what safe deployment requires: the robot completes the task but fails to avoid contact with surrounding objects. Identifying which fine-tuning design choices affect collision avoidance is a prerequisite for closing this gap.
+4	
+5	Two active research threads address related but distinct aspects of this problem. The first enriches VLA models with auxiliary spatial prediction (occupancy grids, depth maps, point clouds) to inject 3D geometric structure into vision encoders~\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}. At least fifteen such methods have appeared in the past year~\cite{wu2026stvla, chen2026gstvla, tu2026sgvla, xiao2026stemvla, li2025pointvla, sun2025geovla, bhat20253dcavla, li2025qdepthvla, abouzeid2025geoaware, rao2026augvla3d, li2026corridorvla}, all reporting improved task success. The implicit assumption in this literature is that better spatial awareness should also yield safer behavior, since the robot ``knows where things are.'' The second thread targets VLA safety directly through runtime action filtering~\cite{hu2025vlsa, zhai2026cofreevla, raja2024ogmcbf} or constrained reinforcement learning~\cite{zhang2025safevla}. These two lines of work are disconnected: no spatial method evaluates its effect on collision avoidance, and no safety meth
+…[truncated 4933 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 856
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-28T10:48:42.363864+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-28T10:48:42.364264+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-28T10:48:42.414941+00:00_
+
+1	
+2	\section{Discussion}
+3	\label{sec:discussion}
+4	
+5	BatchNorm is not inherently harmful: Detach OCC (BN, gradient OFF) matches or slightly exceeds Vanilla (0.767 vs.\ 0.745, $p{=}0.28$). The damage is BN-specific: under BatchNorm, gradient flow drops CAR below the Vanilla baseline (0.725 vs.\ 0.745, $d{=}{-}0.93$), while under LayerNorm, gradient flow is benign (0.773 vs.\ 0.745, $d{=}{+}1.07$). Both normalization rows show within-row deficits from gradient flow ($-$4.2\,pp for BN, $-$2.9\,pp for LN), but only the BN row falls below the no-auxiliary baseline. CKA analysis confirms that encoder representations remain intact under all conditions (CKA $\geq$ 0.95 for both DINOv2 and SigLIP), ruling out representational drift and localizing the effect to optimization dynamics. The BN + gradient flow cell is both the worst-performing and the most unstable configuration ($\sigma{=}0.064$, ${\geq}\,2{\times}$ all other cells). We hypothesize that BatchNorm's running statistics introduce sensitivity to distributional shifts from auxiliary gradients, a coupling absent in LayerNorm's per-token computation. The numerical advantage of Detach OCC ($+$2.2\,pp, with 3 of 4 seeds exceeding the Vanilla mean) raises the possibility that detached auxiliary heads provide a mild regularization benefit, though larger samples are needed to confirm.
+6	
+7	\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$4.8\,pp under gradient flow, $d{=}1.05$; $+$3.5\,pp without), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain, an architectural advantage, since label content does not detectably affect outcomes.
+8	
+9	\textbf{Additive protection model.} Cell~1 (BN + gradient flow) is the only factorial cell below Vanilla, confirming that safety degradation requires the joint presence of BatchNorm and gradient flow in this setting; removing ei
+…[truncated 3161 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-28T10:48:42.415440+00:00_
+
+1	
+2	\section{Conclusion}
+3	
+4	We presented a systematic factorial study of auxiliary spatial supervision during VLA fine-tuning. A $2{\times}2$ factorial reveals two large main effects: gradient flow under BatchNorm degrades collision avoidance below the Vanilla baseline ($d{=}{-}0.93$) and produces the highest training instability ($\sigma{=}0.064$); LayerNorm provides a consistent 3.5--4.8\,pp safety advantage ($d{\approx}1.05$). Only the BN + gradient flow combination harms safety; spatial label content showed no detectable effect. Practitioners should omit auxiliary spatial heads or, if required, use detached gradients with LayerNorm; avoid combining BatchNorm with gradient flow. CKA analysis localizes the degradation to optimization dynamics rather than representational capacity (CKA $\geq$ 0.95). Training-time collision avoidance may instead require approaches that directly encode safety constraints~\cite{zhang2025safevla}.
+5	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-28T10:51:53.912549+00:00_
+
+called mcp__agent-ml-research__review_reviewer_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director</summary>
+
+```json
+{
+  "text": "## Reviewer 1 审稿报告：方法严谨性 + 实验有效性\n\n**论文**: Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? An Empirical Investigation\n**Venue**: CoRL 2026\n\n---\n\n## 总体评分\n\n**Overall: 5/10 (Borderline Reject)**\n**一句话总结**: 研究问题重要、实验设计思路正确，但统计功效不足以支撑核心声明，v1/v2 混用问题部分解决但仍残留关键缺陷，内容无关性声明缺乏同代码库证据。\n\n---\n\n## 官方维度打分（基于 CoRL 2023 Reviewer Guidelines）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Originality | 3/5 | Factorial 方法学是新颖贡献，但核心发现（BN running statistics 干扰）是 multi-task learning 领域的已知现象 |\n| Quality | 2/5 | 统计功效严重不足（n=3-4，无显著结果），关键声明依赖跨代码库比较，Cohen's d 未做小样本校正 |\n| Clarity | 4/5 | 写作清晰，v1/v2 标注比预期透明，但 Table 1 的 Random OCC 位置误导 |\n| Significance | 3/5 | 实践指南有价值（\"BN+gradient flow有害\"），但泛化性受限于单一 benchmark/架构 |\n| Relevance | 5/5 | 直接关系 robot learning 安全性，完全在 CoRL 范围内 |\n| Limitations | 4/5 | Limitations section 全面坦诚，但某些 limitation 严重到影响核心声明的可信度 |\n\n---\n\n## R1-C9 验证：v1/v2 Mixing 逐项检查\n\n**1. Table 1 factorial 条件是否全部 v2？**\n**[RESOLVED]** — Table 1 的 2×2 factorial section（Full OCC, Detach OCC, Full OCC+LN, Detach+LN, Vanilla）全部使用 v2 代码，在标题中明确标注 \"v2 code\"。核心 factorial 分析数据干净。\n\n**2. v1 数据是否隔离到 supplementary？**\n**[PARTIALLY RESOLVED]** — Per-task Table 4（Appendix A）明确标注 v1。Appendix E 详细文档了 v1→v2 差异。但主文 Section 4.1 仍引用 v1 的 Random OCC 和 Depth 数据来支撑 \"content irrelevance\" 声明，这不是真正的隔离。\n\n**3. Random OCC 作为 v1 数据放在 factorial 区域是否合理？**\n**[STILL_OPEN]** — Random OCC（★v1）放在 Table 1 上半区（midrule 之上），与 v2 factorial 条件视觉上并列。虽然标注了★且 ΔCAR 被省略，但这种布局暗示可比性。Random OCC 应移至 midrule 之下的 v1 supplementary section，或用更醒目的分隔标注 v1/v2 边界。\n\n**4. 跨 codebase 的 ΔCAR 处理是否正确？**\n**[PARTIALLY RESOLVED]** — Random OCC 的 ΔCAR 正确地被省略（\"omitted due to cross-codebase baseline mismatch\"）。但正文仍做定性比较：Section 4.1 说 \"Full OCC, Random OCC, and Depth ... all fall within cross-seed variance (p > 0.4, observed under v1 codebase)\"——这里的 Full OCC 在 v1 下是 0.797，在 v2 下是 0.725（差 7.2pp），所以用 v1 的 Full OCC 和 v1 的 Random OCC 比较来声称 content irrelevance，然后将结论推广到 v2 的 factorial 框架，逻辑上有断层。\n\n**5. 正文是否还有 v1/v2 混用导致的不一致声明？**\n**[STILL_OPEN]** — 两处关键遗漏：\n- **Introduction 贡献(1)**（第16页 PDF p.2）: \"Spatial label content showed no detectable effect on outcomes (§4, Table 1, Figure 2)\" — 无 v1 caveat\n- **Conclusion**（第8页 PDF p.9）: \"spatial label content showed no detectable effect\" — 无 v1 caveat\n- 相比之下，Abstract 和 Section 4.1 正确标注了 \"observed under v1 codebase\"\n- Introduction 和 Conclusion 是读者最先和最后看到的部分，缺少 caveat 会造成 overclaiming\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 内容无关性声明缺乏同代码库证据\n- 具体位置：Abstract、Section 4.1（line 9 of results.tex）、Introduction 贡献(1)、Conclusion\n- 问题：论文三大核心声明之一——\"spatial label content shows no detectable effect\"——完全基于 v1 数据（Random OCC 和 Depth 均为 v1）。鉴于论文自身记录 v1→v2 导致 Full OCC CAR 从 0.797 骤降到 0.725（7.2pp），v1 下的 content irrelevance 无法推广到 v2。Discussion（discussion.tex line 13）承认 \"whether it persists under v2 remains open\"，但 Abstract、Introduction 贡献(1)和 Conclusion 仍将其作为确立结论呈现。\n- 为什么影响接收：这是三大贡献之一。如果 content irrelevance 仅在被废弃的 v1 代码下成立，它不能作为 contribution 列出。\n- 建议修改方向：(a) 在 v2 下重新训练 Random OCC（至少 3 seeds），提供同代码库证据；或 (b) 将 content irrelevance 降级为 preliminary observation，从 contributions 列表中移除，在正文所有出现处加 v1 caveat。\n\n**N2** [critical] 统计功效不足以支撑 \"large effect\" 的因果声明\n- 具体位置：Section 4.2（results.tex lines 47-51）、Table 6（Appendix F）\n- 问题：2×2 ANOVA 的两个主效应均未达显著水平（gradient flow p=0.104, normalization p=0.060）。所有 Bonferroni 校正的 pairwise t-test 均不显著（results.tex line 51: \"yield no significant comparisons at α=0.05\"）。论文正确指出使用 effect sizes 而非 p-values，但随后在正文中使用因果语言（\"gradient flow degrades safety\"、\"LN provides a consistent safety advantage\"），暗示因果关系超出了数据支撑范围。n=3-4 的 Cohen's d 存在约 15-20% 的正向偏差（Hedges, 1981），但全文未提及 Hedges' g 校正。\n- 为什么影响接收：CoRL 要求 \"technically sound\" 的结果。在无统计显著性、效应量可能被高估的情况下，核心声明的可信度被削弱。\n- 建议修改方向：(a) 增加 seeds 至 n≥5 per cell 以获得足够功效；(b) 至少报告 Hedges' g 校正后的效应量；(c) 将语言从因果性降级为关联性（\"associated with\" 而非 \"degrades\"）。\n\n**N3** [critical] Table 1 中 Random OCC（v1）的位置误导\n- 具体位置：Table 1（results.tex lines 14-42）\n- 问题：Random OCC 标记★(v1) 但放在 midrule 上方的 \"2×2 factorial (v2 code)\" section。虽然 ΔCAR 被省略，但视觉布局邀请读者将其 CAR (0.789) 与同区域的 v2 Full OCC (0.725) 直接比较——而这两个数字来自不同代码库。在 v1 下 Full OCC 的 CAR 是 0.797，与 Random OCC 0.789 的差异仅 0.8pp；但在当前布局下，0.789 vs 0.725 的差异(6.4pp) 会误导读者认为 content irrelevance 的证据很强。\n- 为什么影响接收：数据呈现方式影响读者对核心声明的判断。\n- 建议修改方向：将 Random OCC 移至 midrule 以下的 v1 section，或在 Table 1 中增加明确的 v1/v2 分隔行。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] Factorial 设计不完整——5 因子未充分交叉\n- 具体位置：Section 3.1（method.tex lines 15-45）、Table 1\n- 问题：论文声称 \"12 conditions × 5 factors\"，但 label content（Full OCC / Random / Depth）仅在 BN + gradient flow ON 的条件下测试（且为 v1）。没有在 LN 或 Detach 下测试不同 label content 的效果。如果 BN running statistics 是关键机制，content irrelevance 可能只在 BN 下成立。这不是 factorial 的 \"5 factors\"，而是一个 2×2 factorial + 若干单因子 ablation。\n- 建议：(a) 诚实描述为 \"2×2 factorial + supplementary ablations\" 而非 \"12 conditions × 5 factors\"；(b) 至少在 LN + gradient flow ON 下追加 Random OCC 条件。\n\n**W2** [warning] Cohen's d 小样本偏差未校正\n- 具体位置：Section 4.2、Table 7（Appendix F）\n- 问题：n=3-4 时 Cohen's d 系统性高估效应量。Hedges' g 校正因子 J = 1 - 3/(4(n₁+n₂) - 9) ≈ 0.82-0.87（对于 n=3-4），意味着报告的 d=0.93 实际约为 g≈0.76-0.81（从 \"large\" 降至 \"medium-to-large\"）。这不会改变方向性结论，但影响 \"large effect\" 的定性标签。\n- 建议：补充 Hedges' g 值，或至少在 Appendix F 讨论小样本偏差。\n\n**W3** [warning] λ(t) 指数衰减的功能形式未论证\n- 具体位置：Section 3（method.tex lines 4-9）、Appendix H Limitations\n- 问题：λ(t) = 0.01·exp(-t/50000) 的指数衰减形式是任意选择。线性衰减、step decay、cosine schedule 可能产生不同的 gradient flow 动态。Limitations 承认未 sweep λ₀，但衰减函数形式本身也是一个未探索的设计选择。如果 gradient flow 的危害取决于衰减速率，那么 \"gradient flow degrades safety\" 的声明可能只适用于特定的 λ(t) schedule。\n- 建议：至少讨论为何选择指数衰减，并在 Limitations 中明确标注衰减函数形式也是一个未探索的超参。\n\n**W4** [warning] 碰撞检测阈值 10⁻³ 的合理性和敏感性\n- 具体位置：Section 3.2（method.tex line 49）、Appendix H\n- 问题：L1 displacement > 10⁻³ 作为碰撞判定阈值，但未提供物理解释（这对应多少毫米的位移？在 MuJoCo 的物理单位下意味着什么？）。如果阈值过于敏感，可能将微小的数值噪声计为碰撞；如果过于宽松，可能遗漏实际接触。没有阈值敏感性分析。\n- 建议：(a) 报告阈值对应的物理尺度；(b) 在 Appendix 中补充 10⁻⁴ 和 10⁻² 的敏感性实验。\n\n**W5** [warning] BN running statistics 假说缺乏直接证据\n- 具体位置：Discussion（discussion.tex lines 1-6）\n- 问题：论文假设 BN 的 running statistics 引入了对 auxiliary gradients 的敏感性，但仅提供间接证据（BN 有问题而 LN 没有）。没有直接实验验证此机制，例如：(a) BN 在 eval mode（frozen running stats）下的表现；(b) Group Normalization 或 Instance Normalization 作为中间对照；(c) 训练过程中 running mean/var 的漂移量化。\n- 建议：如果无法追加实验，至少降低假说的断言程度，并将其明确标注为 speculation。\n\n**W6** [warning] 单一 benchmark + 单一架构限制泛化性\n- 具体位置：Conclusion、Abstract 的 practical guidelines\n- 问题：所有结论来自 SafeLIBERO Level I（10 tasks, MuJoCo simulation）+ OpenVLA-7B + LoRA rank 32。但 Abstract 和 Conclusion 的 practical guidelines（\"do not add auxiliary spatial heads\"、\"avoid combining BatchNorm with gradient flow\"）以无限定条件的通用形式陈述。论文自身在 discussion.tex line 17 承认 \"LoRA-specificity caveat\"，但这个 caveat 没有进入 Abstract 或 Conclusion。\n- 建议：在 Abstract 和 Conclusion 的 practical guidelines 中加入限定语（e.g., \"in our LoRA fine-tuning setting on SafeLIBERO\"）。\n\n---\n\n## 小问题（不影响接收）\n\n- Table 1 caption 中 \"$^\\star$v1 code\" 标注需要更显眼——当前用上标星号容易被忽略\n- Figure 2 的 y 轴范围(0.68-0.84) 视觉上放大了差异，建议从 0 开始或注明截断\n- Appendix D（Per-layer gradient analysis, Figure 4）中 v1 数据的 amplitude heatmap 和 v2 的 directional analysis 混在一起，应更清楚地标注\n- 引用 [21] (li2026vlasafety) 应注明是 survey 而非原始研究\n- Section 2.2 标题 \"Auxiliary Tasks and Multi-Task Gradient Dynamics\" 稍显宽泛，建议更具体\n\n---\n\n## 主要优势\n\n1. **研究问题的实际重要性**: 质疑 \"spatial supervision → safety\" 的隐含假设是有价值的，这类 negative/nuanced results 在领域中稀缺\n2. **Factorial 方法学**: 2×2 factorial 设计是对 VLA 领域单因子 ablation 文化的有益补充，能检测交互效应\n3. **v1/v2 透明度**: 论文坦诚报告了代码库变化导致的效应模式转变（Appendix E），这种级别的 reproducibility 讨论在 ML 论文中罕见且值得称赞\n4. **CKA 分析**: 用 CKA 排除 representational drift、用 gradient cosine 排除 direct conflict，系统性地缩小了机制解释空间\n5. **Limitations section 详尽**: 覆盖了大部分弱点，符合 CoRL 2026 要求\n\n---\n\n## Questions to Authors\n\nQ1: Random OCC 和 Depth 为何没有在 v2 下重新训练？考虑到 v1→v2 对 Full OCC 的影响（7.2pp shift），content irrelevance 的 v1 证据如何能推广到 v2？\n\nQ2: Cohen's d 报告值是否考虑了 Hedges' g 小样本校正？如果应用校正，哪些效应从 \"large\" 降级为 \"medium\"？\n\nQ3: 碰撞检测阈值 10⁻³ 在 MuJoCo 物理单位下对应什么物理尺度？阈值变化一个数量级后，主要结论是否稳健？\n\nQ4: 是否考虑过在 BN eval mode（frozen running stats）下运行 gradient flow 条件，以直接验证 running statistics 假说？\n\nQ5: λ(t) 的指数衰减形式是否有先验理由？如果使用恒定 λ=0.01（无衰减），gradient flow 效应是否会更强或更弱？\n\n---\n\n## Missing References\n\n- Hedges, L. V. (1981). Distribution theory for Glass's estimator of effect size and related estimators. JASA. — 小样本效应量校正的标准参考\n- Ioffe & Szegedy (2015). Batch Normalization: Accelerating Deep Network Training. — 虽然已是常识，但讨论 BN running statistics 假说时应直接引用\n- Wu & He (2018). Group Normalization. — 讨论 BN vs LN 时的自然中间对照，且与 running statistics 假说直接相关",
+  "reviewer_id": "1",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "tool_args": {
+    "text": "## Reviewer 1 审稿报告：方法严谨性 + 实验有效性\n\n**论文**: Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? An Empirical Investigation\n**Venue**: CoRL 2026\n\n---\n\n## 总体评分\n\n**Overall: 5/10 (Borderline Reject)**\n**一句话总结**: 研究问题重要、实验设计思路正确，但统计功效不足以支撑核心声明，v1/v2 混用问题部分解决但仍残留关键缺陷，内容无关性声明缺乏同代码库证据。\n\n---\n\n## 官方维度打分（基于 CoRL 2023 Reviewer Guidelines）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Originality | 3/5 | Factorial 方法学是新颖贡献，但核心发现（BN running statistics 干扰）是 multi-task learning 领域的已知现象 |\n| Quality | 2/5 | 统计功效严重不足（n=3-4，无显著结果），关键声明依赖跨代码库比较，Cohen's d 未做小样本校正 |\n| Clarity | 4/5 | 写作清晰，v1/v2 标注比预期透明，但 Table 1 的 Random OCC 位置误导 |\n| Significance | 3/5 | 实践指南有价值（\"BN+gradient flow有害\"），但泛化性受限于单一 benchmark/架构 |\n| Relevance | 5/5 | 直接关系 robot learning 安全性，完全在 CoRL 范围内 |\n| Limitations | 4/5 | Limitations section 全面坦诚，但某些 limitation 严重到影响核心声明的可信度 |\n\n---\n\n## R1-C9 验证：v1/v2 Mixing 逐项检查\n\n**1. Table 1 factorial 条件是否全部 v2？**\n**[RESOLVED]** — Table 1 的 2×2 factorial section（Full OCC, Detach OCC, Full OCC+LN, Detach+LN, Vanilla）全部使用 v2 代码，在标题中明确标注 \"v2 code\"。核心 factorial 分析数据干净。\n\n**2. v1 数据是否隔离到 supplementary？**\n**[PARTIALLY RESOLVED]** — Per-task Table 4（Appendix A）明确标注 v1。Appendix E 详细文档了 v1→v2 差异。但主文 Section 4.1 仍引用 v1 的 Random OCC 和 Depth 数据来支撑 \"content irrelevance\" 声明，这不是真正的隔离。\n\n**3. Random OCC 作为 v1 数据放在 factorial 区域是否合理？**\n**[STILL_OPEN]** — Random OCC（★v1）放在 Table 1 上半区（midrule 之上），与 v2 factorial 条件视觉上并列。虽然标注了★且 ΔCAR 被省略，但这种布局暗示可比性。Random OCC 应移至 midrule 之下的 v1 supplementary section，或用更醒目的分隔标注 v1/v2 边界。\n\n**4. 跨 codebase 的 ΔCAR 处理是否正确？**\n**[PARTIALLY RESOLVED]** — Random OCC 的 ΔCAR 正确地被省略（\"omitted due to cross-codebase baseline mismatch\"）。但正文仍做定性比较：Section 4.1 说 \"Full OCC, Random OCC, and Depth ... all fall within cross-seed variance (p > 0.4, observed under v1 codebase)\"——这里的 Full OCC 在 v1 下是 0.797，在 v2 下是 0.725（差 7.2pp），所以用 v1 的 Full OCC 和 v1 的 Random OCC 比较来声称 content irrelevance，然后将结论推广到 v2 的 factorial 框架，逻辑上有断层。\n\n**5. 正文是否还有 v1/v2 混用导致的不一致声明？**\n**[STILL_OPEN]** — 两处关键遗漏：\n- **Introduction 贡献(1)**（第16页 PDF p.2）: \"Spatial label content showed no detectable effect on outcomes (§4, Table 1, Figure 2)\" — 无 v1 caveat\n- **Conclusion**（第8页 PDF p.9）: \"spatial label content showed no detectable effect\" — 无 v1 caveat\n- 相比之下，Abstract 和 Section 4.1 正确标注了 \"observed under v1 codebase\"\n- Introduction 和 Conclusion 是读者最先和最后看到的部分，缺少 caveat 会造成 overclaiming\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 内容无关性声明缺乏同代码库证据\n- 具体位置：Abstract、Section 4.1（line 9 of results.tex）、Introduction 贡献(1)、Conclusion\n- 问题：论文三大核心声明之一——\"spatial label content shows no detectable effect\"——完全基于 v1 数据（Random OCC 和 Depth 均为 v1）。鉴于论文自身记录 v1→v2 导致 Full OCC CAR 从 0.797 骤降到 0.725（7.2pp），v1 下的 content irrelevance 无法推广到 v2。Discussion（discussion.tex line 13）承认 \"whether it persists under v2 remains open\"，但 Abstract、Introduction 贡献(1)和 Conclusion 仍将其作为确立结论呈现。\n- 为什么影响接收：这是三大贡献之一。如果 content irrelevance 仅在被废弃的 v1 代码下成立，它不能作为 contribution 列出。\n- 建议修改方向：(a) 在 v2 下重新训练 Random OCC（至少 3 seeds），提供同代码库证据；或 (b) 将 content irrelevance 降级为 preliminary observation，从 contributions 列表中移除，在正文所有出现处加 v1 caveat。\n\n**N2** [critical] 统计功效不足以支撑 \"large effect\" 的因果声明\n- 具体位置：Section 4.2（results.tex lines 47-51）、Table 6（Appendix F）\n- 问题：2×2 ANOVA 的两个主效应均未达显著水平（gradient flow p=0.104, normalization p=0.060）。所有 Bonferroni 校正的 pairwise t-test 均不显著（results.tex line 51: \"yield no significant comparisons at α=0.05\"）。论文正确指出使用 effect sizes 而非 p-values，但随后在正文中使用因果语言（\"gradient flow degrades safety\"、\"LN provides a consistent safety advantage\"），暗示因果关系超出了数据支撑范围。n=3-4 的 Cohen's d 存在约 15-20% 的正向偏差（Hedges, 1981），但全文未提及 Hedges' g 校正。\n- 为什么影响接收：CoRL 要求 \"technically sound\" 的结果。在无统计显著性、效应量可能被高估的情况下，核心声明的可信度被削弱。\n- 建议修改方向：(a) 增加 seeds 至 n≥5 per cell 以获得足够功效；(b) 至少报告 Hedges' g 校正后的效应量；(c) 将语言从因果性降级为关联性（\"associated with\" 而非 \"degrades\"）。\n\n**N3** [critical] Table 1 中 Random OCC（v1）的位置误导\n- 具体位置：Table 1（results.tex lines 14-42）\n- 问题：Random OCC 标记★(v1) 但放在 midrule 上方的 \"2×2 factorial (v2 code)\" section。虽然 ΔCAR 被省略，但视觉布局邀请读者将其 CAR (0.789) 与同区域的 v2 Full OCC (0.725) 直接比较——而这两个数字来自不同代码库。在 v1 下 Full OCC 的 CAR 是 0.797，与 Random OCC 0.789 的差异仅 0.8pp；但在当前布局下，0.789 vs 0.725 的差异(6.4pp) 会误导读者认为 content irrelevance 的证据很强。\n- 为什么影响接收：数据呈现方式影响读者对核心声明的判断。\n- 建议修改方向：将 Random OCC 移至 midrule 以下的 v1 section，或在 Table 1 中增加明确的 v1/v2 分隔行。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] Factorial 设计不完整——5 因子未充分交叉\n- 具体位置：Section 3.1（method.tex lines 15-45）、Table 1\n- 问题：论文声称 \"12 conditions × 5 factors\"，但 label content（Full OCC / Random / Depth）仅在 BN + gradient flow ON 的条件下测试（且为 v1）。没有在 LN 或 Detach 下测试不同 label content 的效果。如果 BN running statistics 是关键机制，content irrelevance 可能只在 BN 下成立。这不是 factorial 的 \"5 factors\"，而是一个 2×2 factorial + 若干单因子 ablation。\n- 建议：(a) 诚实描述为 \"2×2 factorial + supplementary ablations\" 而非 \"12 conditions × 5 factors\"；(b) 至少在 LN + gradient flow ON 下追加 Random OCC 条件。\n\n**W2** [warning] Cohen's d 小样本偏差未校正\n- 具体位置：Section 4.2、Table 7（Appendix F）\n- 问题：n=3-4 时 Cohen's d 系统性高估效应量。Hedges' g 校正因子 J = 1 - 3/(4(n₁+n₂) - 9) ≈ 0.82-0.87（对于 n=3-4），意味着报告的 d=0.93 实际约为 g≈0.76-0.81（从 \"large\" 降至 \"medium-to-large\"）。这不会改变方向性结论，但影响 \"large effect\" 的定性标签。\n- 建议：补充 Hedges' g 值，或至少在 Appendix F 讨论小样本偏差。\n\n**W3** [warning] λ(t) 指数衰减的功能形式未论证\n- 具体位置：Section 3（method.tex lines 4-9）、Appendix H Limitations\n- 问题：λ(t) = 0.01·exp(-t/50000) 的指数衰减形式是任意选择。线性衰减、step decay、cosine schedule 可能产生不同的 gradient flow 动态。Limitations 承认未 sweep λ₀，但衰减函数形式本身也是一个未探索的设计选择。如果 gradient flow 的危害取决于衰减速率，那么 \"gradient flow degrades safety\" 的声明可能只适用于特定的 λ(t) schedule。\n- 建议：至少讨论为何选择指数衰减，并在 Limitations 中明确标注衰减函数形式也是一个未探索的超参。\n\n**W4** [warning] 碰撞检测阈值 10⁻³ 的合理性和敏感性\n- 具体位置：Section 3.2（method.tex line 49）、Appendix H\n- 问题：L1 displacement > 10⁻³ 作为碰撞判定阈值，但未提供物理解释（这对应多少毫米的位移？在 MuJoCo 的物理单位下意味着什么？）。如果阈值过于敏感，可能将微小的数值噪声计为碰撞；如果过于宽松，可能遗漏实际接触。没有阈值敏感性分析。\n- 建议：(a) 报告阈值对应的物理尺度；(b) 在 Appendix 中补充 10⁻⁴ 和 10⁻² 的敏感性实验。\n\n**W5** [warning] BN running statistics 假说缺乏直接证据\n- 具体位置：Discussion（discussion.tex lines 1-6）\n- 问题：论文假设 BN 的 running statistics 引入了对 auxiliary gradients 的敏感性，但仅提供间接证据（BN 有问题而 LN 没有）。没有直接实验验证此机制，例如：(a) BN 在 eval mode（frozen running stats）下的表现；(b) Group Normalization 或 Instance Normalization 作为中间对照；(c) 训练过程中 running mean/var 的漂移量化。\n- 建议：如果无法追加实验，至少降低假说的断言程度，并将其明确标注为 speculation。\n\n**W6** [warning] 单一 benchmark + 单一架构限制泛化性\n- 具体位置：Conclusion、Abstract 的 practical guidelines\n- 问题：所有结论来自 SafeLIBERO Level I（10 tasks, MuJoCo simulation）+ OpenVLA-7B + LoRA rank 32。但 Abstract 和 Conclusion 的 practical guidelines（\"do not add auxiliary spatial heads\"、\"avoid combining BatchNorm with gradient flow\"）以无限定条件的通用形式陈述。论文自身在 discussion.tex line 17 承认 \"LoRA-specificity caveat\"，但这个 caveat 没有进入 Abstract 或 Conclusion。\n- 建议：在 Abstract 和 Conclusion 的 practical guidelines 中加入限定语（e.g., \"in our LoRA fine-tuning setting on SafeLIBERO\"）。\n\n---\n\n## 小问题（不影响接收）\n\n- Table 1 caption 中 \"$^\\star$v1 code\" 标注需要更显眼——当前用上标星号容易被忽略\n- Figure 2 的 y 轴范围(0.68-0.84) 视觉上放大了差异，建议从 0 开始或注明截断\n- Appendix D（Per-layer gradient analysis, Figure 4）中 v1 数据的 amplitude heatmap 和 v2 的 directional analysis 混在一起，应更清楚地标注\n- 引用 [21] (li2026vlasafety) 应注明是 survey 而非原始研究\n- Section 2.2 标题 \"Auxiliary Tasks and Multi-Task Gradient Dynamics\" 稍显宽泛，建议更具体\n\n---\n\n## 主要优势\n\n1. **研究问题的实际重要性**: 质疑 \"spatial supervision → safety\" 的隐含假设是有价值的，这类 negative/nuanced results 在领域中稀缺\n2. **Factorial 方法学**: 2×2 factorial 设计是对 VLA 领域单因子 ablation 文化的有益补充，能检测交互效应\n3. **v1/v2 透明度**: 论文坦诚报告了代码库变化导致的效应模式转变（Appendix E），这种级别的 reproducibility 讨论在 ML 论文中罕见且值得称赞\n4. **CKA 分析**: 用 CKA 排除 representational drift、用 gradient cosine 排除 direct conflict，系统性地缩小了机制解释空间\n5. **Limitations section 详尽**: 覆盖了大部分弱点，符合 CoRL 2026 要求\n\n---\n\n## Questions to Authors\n\nQ1: Random OCC 和 Depth 为何没有在 v2 下重新训练？考虑到 v1→v2 对 Full OCC 的影响（7.2pp shift），content irrelevance 的 v1 证据如何能推广到 v2？\n\nQ2: Cohen's d 报告值是否考虑了 Hedges' g 小样本校正？如果应用校正，哪些效应从 \"large\" 降级为 \"medium\"？\n\nQ3: 碰撞检测阈值 10⁻³ 在 MuJoCo 物理单位下对应什么物理尺度？阈值变化一个数量级后，主要结论是否稳健？\n\nQ4: 是否考虑过在 BN eval mode（frozen running stats）下运行 gradient flow 条件，以直接验证 running statistics 假说？\n\nQ5: λ(t) 的指数衰减形式是否有先验理由？如果使用恒定 λ=0.01（无衰减），gradient flow 效应是否会更强或更弱？\n\n---\n\n## Missing References\n\n- Hedges, L. V. (1981). Distribution theory for Glass's estimator of effect size and related estimators. JASA. — 小样本效应量校正的标准参考\n- Ioffe & Szegedy (2015). Batch Normalization: Accelerating Deep Network Training. — 虽然已是常识，但讨论 BN running statistics 假说时应直接引用\n- Wu & He (2018). Group Normalization. — 讨论 BN vs LN 时的自然中间对照，且与 running statistics 假说直接相关",
+    "reviewer_id": "1",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-28T10:51:58.051920+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "elapsed_ms": 4139
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-28T10:52:08.697774+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-28T10:52:08.698224+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-28T10:52:13.017933+00:00_
+
+called mcp__agent-ml-research__cleanup_pdf_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__cleanup_pdf_images</summary>
+
+```json
+{
+  "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+  "tool_args": {
+    "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-28T10:52:13.118787+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"message\": \"目录不存在，无需清理\", \"deleted\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86 · 2026-05-28T10:52:30.517150+00:00_
+
+审稿报告已提交给 Review Director。
+
+**核心判断：5/10 (Borderline Reject)**
+
+三个 Must-Fix 问题：
+1. **Content irrelevance 声明完全依赖 v1 数据**——v1→v2 导致 Full OCC CAR 偏移 7.2pp，v1 下的结论不可推广到 v2，但 Introduction/Conclusion 仍将其作为确立贡献呈现
+2. **统计功效不足**——ANOVA 两个主效应均未达显著（p=0.104, p=0.060），所有 pairwise 比较 Bonferroni 校正后不显著，Cohen's d 未做 Hedges' g 小样本校正（n=3-4 时高估约 15-20%）
+3. **Table 1 中 Random OCC (v1) 放在 v2 factorial 区域**，视觉上误导可比性
+
+R1-C9 v1/v2 mixing 状态：核心 2×2 factorial 已全部 v2（**RESOLVED**），但 Random OCC 位置和 content irrelevance 的跨代码库推断仍 **STILL_OPEN**。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+18 recorded events
+
+### User
+
+_source line 87 · 2026-05-28T10:55:41.486598+00:00_
+
+[Round 1 审稿请求]:
+## 交叉分享：Reviewer 2 的完整审稿意见
+
+以下是 Reviewer 2（新颖性 + 写作质量 + 完整性）的完整审稿报告。请逐条回应其 Must-Fix 和 Should-Fix，每条标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。
+
+---
+
+### Reviewer 2 评分：5/10 (Borderline Reject)
+
+### 上轮 Resolved Issue 抽查结果
+- R1-W5 [CONFIRMED_RESOLVED]: Table 按 v2/v1 分区，Random OCC 在 midrule 以下
+- R1-W6 [CONFIRMED_RESOLVED]: Appendix per-task table 明确标注 v1 scope
+- R1-W13 [CONFIRMED_RESOLVED]: CKA/BN 分析逻辑自洽
+- R1-W21 [CONFIRMED_RESOLVED]: 措辞准确，无 overclaim
+
+### Must-Fix
+**N1** [critical] 统计效力不足以支撑核心主张——n=3-4/cell，两个 main effect 均未显著（p=0.104, p=0.060），Cohen's d 小样本偏差未校正。建议 n≥8-10 或用 "preliminary evidence suggests" 限定语气，报告 Hedges' g。
+
+**N2** [critical] Limitations section 不在正文内，违反 CoRL 2026 格式要求——Limitations 完全放在 Appendix H，正文仅一句 "Limitations are in Appendix H"。CoRL 2026 明确要求 Limitations 计入 8 页正文。
+
+**N3** [critical] 正文超过 8 页限制——Section 6 Conclusion 溢出到 PDF 第 9 页。CoRL 限制正文（含 Limitations）≤ 8 页。
+
+### Should-Fix
+**W1** Content irrelevance 核心发现仅来自 v1 codebase，未在 v2 复现。Random OCC 和 Depth 均未在 v2 下重新训练。
+
+**W2** 单一架构/基准限制泛化性，与 title 的一般性提问不匹配。所有实验仅 OpenVLA-7B + OFT + LoRA rank 32 + SafeLIBERO Level I。建议修改 title 限定范围。
+
+**W3** Codebase sensitivity (v1→v2) 实质上削弱而非加强论文主张——一个 batch-index bug 就能改变定性结论（crossover → additive），同 seed 偏移 8.6pp。
+
+**W4** Contribution 2 "Factorial methodology for VLA auxiliary heads" 不构成独立贡献——factorial design 是标准统计方法。
+
+**W5** 机制假设未经验证——BN running statistics 假设可通过 eval mode 或 momentum=0 低成本验证，但未执行。
+
+**W6** 与 MTL gradient methods 对比不够深入——缺少 task-specific BN 文献（Bilen & Vedaldi 2017, Maninis et al. 2019）。
+
+### Missing References
+Sener & Koltun 2018 (MGDA), Bilen & Vedaldi 2017 (task-specific BN), Maninis et al. 2019 (ASTMT), Rebuffi et al. 2018 (domain-specific BN), π₀ (Black et al. 2024), Octo (Team Octo 2024)
+
+---
+
+请对以上每条 Must-Fix (N1-N3) 和 Should-Fix (W1-W6) 逐条回应 [AGREE] 或 [REBUT]。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "source": "review_reviewer_1"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-28T10:58:00.846451+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-28T10:58:01.047464+00:00_
+
+1	
+2	\section{Discussion}
+3	\label{sec:discussion}
+4	
+5	BatchNorm is not inherently harmful: Detach OCC (BN, gradient OFF) matches or slightly exceeds Vanilla (0.767 vs.\ 0.745, $p{=}0.28$). The damage is BN-specific: under BatchNorm, gradient flow drops CAR below the Vanilla baseline (0.725 vs.\ 0.745, $d{=}{-}0.93$), while under LayerNorm, gradient flow is benign (0.773 vs.\ 0.745, $d{=}{+}1.07$). Both normalization rows show within-row deficits from gradient flow ($-$4.2\,pp for BN, $-$2.9\,pp for LN), but only the BN row falls below the no-auxiliary baseline. CKA analysis confirms that encoder representations remain intact under all conditions (CKA $\geq$ 0.95 for both DINOv2 and SigLIP), ruling out representational drift and localizing the effect to optimization dynamics. The BN + gradient flow cell is both the worst-performing and the most unstable configuration ($\sigma{=}0.064$, ${\geq}\,2{\times}$ all other cells). We hypothesize that BatchNorm's running statistics introduce sensitivity to distributional shifts from auxiliary gradients, a coupling absent in LayerNorm's per-token computation. The numerical advantage of Detach OCC ($+$2.2\,pp, with 3 of 4 seeds exceeding the Vanilla mean) raises the possibility that detached auxiliary heads provide a mild regularization benefit, though larger samples are needed to confirm.
+6	
+7	\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$4.8\,pp under gradient flow, $d{=}1.05$; $+$3.5\,pp without), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain, an architectural advantage, since label content does not detectably affect outcomes.
+8	
+9	\textbf{Additive protection model.} Cell~1 (BN + gradient flow) is the only factorial cell below Vanilla, confirming that safety degradation requires the joint presence of BatchNorm and gradient flow in this setting; removing ei
+…[truncated 3161 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-28T10:58:01.099155+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-28T10:58:01.149797+00:00_
+
+1	
+2	\section{Conclusion}
+3	
+4	We presented a systematic factorial study of auxiliary spatial supervision during VLA fine-tuning. A $2{\times}2$ factorial reveals two large main effects: gradient flow under BatchNorm degrades collision avoidance below the Vanilla baseline ($d{=}{-}0.93$) and produces the highest training instability ($\sigma{=}0.064$); LayerNorm provides a consistent 3.5--4.8\,pp safety advantage ($d{\approx}1.05$). Only the BN + gradient flow combination harms safety; spatial label content showed no detectable effect. Practitioners should omit auxiliary spatial heads or, if required, use detached gradients with LayerNorm; avoid combining BatchNorm with gradient flow. CKA analysis localizes the degradation to optimization dynamics rather than representational capacity (CKA $\geq$ 0.95). Training-time collision avoidance may instead require approaches that directly encode safety constraints~\cite{zhang2025safevla}.
+5	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-28T10:58:12.753861+00:00_
+
+called mcp__agent-ml-research__pdf_to_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/submitted.pdf",
+  "project": "occsafe_vla",
+  "pages": "7-9",
+  "dpi": "150"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "tool_args": {
+    "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/submitted.pdf",
+    "project": "occsafe_vla",
+    "pages": "7-9",
+    "dpi": "150"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-28T10:58:13.356119+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p7.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 262.0}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p8.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 400.7}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p9.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 328.3}], \"total_pages\": 19, \"rendered_pages\": 3, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "elapsed_ms": 602
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-28T10:58:16.267933+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p7.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p7.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-28T10:58:16.721938+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-28T10:58:16.722370+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p8.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p8.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-28T10:58:17.274345+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p9.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images/submitted_p9.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-28T10:58:17.426328+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 703
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-28T10:58:17.631229+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 356
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-28T10:59:50.257516+00:00_
+
+called mcp__agent-ml-research__review_reviewer_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director</summary>
+
+```json
+{
+  "text": "## Reviewer 1 交叉回应 Reviewer 2 审稿意见\n\n---\n\n### 前置更正\n\n在交叉回应前，我需要更正自己 Round 1 报告中的一个错误：\n\n**我的 N3（Random OCC 位置误导）需撤回。** 我原报告称 Random OCC（★v1）位于 Table 1 midrule 之上。经重新核实 results.tex lines 32-33，Random OCC 位于 `\\midrule` 之下的 \"Controls & supplementary (v1 code)\" section，标注正确。R2 的 CONFIRMED_RESOLVED (R1-W5) 判断准确，是我误读了表格结构。\n\n---\n\n### Must-Fix 逐条回应\n\n**[AGREE] R2-N1: 统计效力不足以支撑核心主张**\n与我的 N2 完全一致。补充两点：\n1. R2 建议 n≥8-10 是合理的。按当前效应量（gradient flow η²=0.180），达到 power=0.80 需要每 cell 约 n=8（G*Power 计算，2×2 between-subjects ANOVA, α=0.05）。当前 n=3-4 的 power 估计仅 ~0.35-0.45。\n2. 除 Hedges' g 校正外，bootstrap confidence intervals for Cohen's d 也可作为替代方案，与论文已有的 bootstrap CI 方法论一致。\n\n**[AGREE] R2-N2: Limitations 不在正文内**\n已验证。discussion.tex 最后一行（line 19）仅有指针句 \"Limitations are in Appendix~\\ref{app:limitations}\"。Limitations 全文在 appendix.tex Section H（lines 190-193），约占 1 页。CoRL 2026 明确要求 Limitations 计入 8 页正文（Director 任务描述已确认此要求）。这是明确的格式违规。\n\n**[AGREE] R2-N3: 正文超过 8 页**\n已从 PDF 独立验证。PDF 第 8 页（页码 \"8\"）被 Discussion（Section 5）占满，最后一行为 \"Limitations are in Appendix\"。Section 6 Conclusion 起始于 PDF 第 9 页（页码 \"9\"），紧接 References。因此：\n1. 当前正文（Sections 1-6，不含 Limitations）已溢出至第 9 页\n2. Limitations section（Appendix H，约 1 页内容）若移入正文，总页数将达 ~10 页\n3. 作者需要显著压缩正文（至少 2 页）才能同时满足 Conclusion 收入第 8 页 + Limitations 计入 8 页的要求\n\n这是一个严重的格式问题，可能导致 desk reject。建议作者优先处理。\n\n---\n\n### Should-Fix 逐条回应\n\n**[AGREE] R2-W1: Content irrelevance 仅 v1 证据**\n与我的 N1 一致。补充：Discussion（discussion.tex line 13）正确承认 \"whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis\"——但这个间接支撑逻辑有缺陷。Gradient orthogonality 只能说明 action-auxiliary 梯度不直接冲突，无法推导出 label content 不影响 CAR。orthogonality 在 v1 下也成立，但 v1→v2 的 Full OCC CAR 仍变化了 7.2pp。所以 orthogonality 的稳定性不能担保 content irrelevance 的稳定性。\n\n**[AGREE] R2-W2: 标题与实验范围不匹配**\n与我的 W6 一致。标题 \"Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer?\" 暗示对整个 VLA 类别的通用回答，但实验仅覆盖 OpenVLA-7B + OFT + LoRA rank 32 + SafeLIBERO Level I。建议修改为类似 \"Does Auxiliary Spatial Supervision Make LoRA-Tuned VLAs Safer? A Factorial Study on SafeLIBERO\" 或在副标题中限定范围。\n\n**[AGREE] R2-W3: Codebase sensitivity 削弱论文主张**\n这是一个我第一轮没有充分展开的点。论文试图将 v1→v2 sensitivity 重新框架为 \"independent finding\"（discussion.tex line 11: \"This level of sensitivity...constitutes an independent finding\"），但这个论证是双刃剑：\n- 如果实现细节能改变定性结论（crossover → additive），那么当前 v2 结论也可能在 v3 下再次改变\n- 论文的 practical guidelines（\"avoid BN + gradient flow\"）需要在特定实现下稳健才有实际价值\n- 同 seed 偏移 8.6pp（Appendix E）接近核心效应量（gradient flow effect = 4.2pp），说明实现噪声与信号同量级\n\n我认为 R2 正确指出这一点削弱而非加强了论文。但也公平地说，论文的坦诚报告本身是值得肯定的——大多数论文会隐藏此类信息。\n\n**[AGREE with qualification] R2-W4: Factorial methodology 不构成独立贡献**\nR2 正确：factorial design 是标准统计方法，不构成方法论创新。但我部分不同意完全否定其价值——在 VLA spatial supervision 文献中（论文引用的 15+ 篇文章均为单因子 ablation），将 factorial 引入此特定子领域确实填补了方法论空白。建议作者将 Contribution 2 重新措辞为研究设计的特色而非独立贡献，例如 \"We demonstrate that factorial designs reveal combined effects invisible to the single-factor ablations standard in the VLA literature\"。\n\n**[AGREE] R2-W5: BN running statistics 假说未验证**\n与我的 W5 一致。R2 补充了具体可行的验证方案（eval mode / momentum=0），这些实验成本低：只需在已训练的 v2 模型上修改 BN mode 重新评估，无需重新训练。如果 eval mode BN（frozen running stats）恢复了 CAR，就直接验证了假说；如果没有，就排除了最直接的机制解释。这个实验应该做。\n\n**[AGREE] R2-W6: MTL gradient methods 对比不够深入**\n论文引用了 PCGrad [Yu 2020] 和 CAGrad [Liu 2021]（discussion.tex line 11），但完全忽略了 task-specific BN 的文献线：\n- Bilen & Vedaldi (2017): 提出 task-specific BN 解决 multi-task 中的 BN 统计量干扰问题——这正是本文 BN 假说的直接前驱\n- Maninis et al. (2019, ASTMT): 系统评估了 task-specific normalization 在多任务视觉中的效果\n- Rebuffi et al. (2018): domain-specific BN adapters\n\n这些文献直接讨论了 \"shared BN statistics in multi-task settings cause interference\" 的问题，与本文的核心发现高度相关。缺少这些引用使得论文看起来对 MTL-BN 交互的 prior knowledge 不够了解。\n\n---\n\n### R2 的 Resolved Issue 抽查回应\n\nR2 报告 R1-W21 [CONFIRMED_RESOLVED]: \"措辞准确，无 overclaim\"。我部分不同意：\n- Abstract 中 \"observed under v1 codebase\" caveat 是准确的 ✓\n- Section 4.1 中 \"observed under v1 codebase for Random OCC and Depth\" caveat 存在 ✓\n- **但 Introduction 贡献(1)（introduction.tex line 20）和 Conclusion（conclusion.tex line 4）均无 v1 caveat**，直接陈述 \"spatial label content showed no detectable effect\"\n\nIntroduction 和 Conclusion 是读者最先和最后看到的位置，这两处缺少 v1 caveat 构成 overclaim，与 R2 的 W1 发现矛盾。\n\n---\n\n### Missing References 回应\n\nR2 建议增加：\n- **Sener & Koltun 2018 (MGDA)**: [AGREE] — multi-objective optimization 的核心方法，与 gradient analysis 直接相关\n- **Bilen & Vedaldi 2017 (task-specific BN)**: [AGREE, 强烈] — 直接前驱，上面已展开\n- **Maninis et al. 2019 (ASTMT)**: [AGREE] — 同上\n- **Rebuffi et al. 2018 (domain-specific BN)**: [AGREE] — 相关但稍间接\n- **π₀ (Black et al. 2024)**: [AGREE] — 当前最先进的 VLA 架构之一，Related Work 应讨论\n- **Octo (Team Octo 2024)**: [AGREE] — 同上\n\n---\n\n### 综合评估\n\nR2 与我的审稿意见高度一致。核心分歧仅在于：\n1. R2 将 content irrelevance 问题列为 Should-Fix (W1)，我列为 Must-Fix (N1)——我仍认为这应是 Must-Fix，因为它是三大贡献之一，且缺乏 v2 证据\n2. R2 认为 overclaim 已 resolved (R1-W21)，我认为 Introduction 和 Conclusion 仍有 overclaim——这两处是最高可见度的位置\n\n格式问题（N2 + N3）是我第一轮未发现的重要问题。如果 CoRL 2026 严格执行页数限制，这可能直接导致 desk reject，应列为最高优先级修复项。\n\n**维持评分: 5/10 (Borderline Reject)**。统计功效不足（N1）+ 格式违规（N2/N3）+ content irrelevance 缺乏 v2 证据（W1/我的N1）是主要障碍。",
+  "reviewer_id": "1",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "tool_args": {
+    "text": "## Reviewer 1 交叉回应 Reviewer 2 审稿意见\n\n---\n\n### 前置更正\n\n在交叉回应前，我需要更正自己 Round 1 报告中的一个错误：\n\n**我的 N3（Random OCC 位置误导）需撤回。** 我原报告称 Random OCC（★v1）位于 Table 1 midrule 之上。经重新核实 results.tex lines 32-33，Random OCC 位于 `\\midrule` 之下的 \"Controls & supplementary (v1 code)\" section，标注正确。R2 的 CONFIRMED_RESOLVED (R1-W5) 判断准确，是我误读了表格结构。\n\n---\n\n### Must-Fix 逐条回应\n\n**[AGREE] R2-N1: 统计效力不足以支撑核心主张**\n与我的 N2 完全一致。补充两点：\n1. R2 建议 n≥8-10 是合理的。按当前效应量（gradient flow η²=0.180），达到 power=0.80 需要每 cell 约 n=8（G*Power 计算，2×2 between-subjects ANOVA, α=0.05）。当前 n=3-4 的 power 估计仅 ~0.35-0.45。\n2. 除 Hedges' g 校正外，bootstrap confidence intervals for Cohen's d 也可作为替代方案，与论文已有的 bootstrap CI 方法论一致。\n\n**[AGREE] R2-N2: Limitations 不在正文内**\n已验证。discussion.tex 最后一行（line 19）仅有指针句 \"Limitations are in Appendix~\\ref{app:limitations}\"。Limitations 全文在 appendix.tex Section H（lines 190-193），约占 1 页。CoRL 2026 明确要求 Limitations 计入 8 页正文（Director 任务描述已确认此要求）。这是明确的格式违规。\n\n**[AGREE] R2-N3: 正文超过 8 页**\n已从 PDF 独立验证。PDF 第 8 页（页码 \"8\"）被 Discussion（Section 5）占满，最后一行为 \"Limitations are in Appendix\"。Section 6 Conclusion 起始于 PDF 第 9 页（页码 \"9\"），紧接 References。因此：\n1. 当前正文（Sections 1-6，不含 Limitations）已溢出至第 9 页\n2. Limitations section（Appendix H，约 1 页内容）若移入正文，总页数将达 ~10 页\n3. 作者需要显著压缩正文（至少 2 页）才能同时满足 Conclusion 收入第 8 页 + Limitations 计入 8 页的要求\n\n这是一个严重的格式问题，可能导致 desk reject。建议作者优先处理。\n\n---\n\n### Should-Fix 逐条回应\n\n**[AGREE] R2-W1: Content irrelevance 仅 v1 证据**\n与我的 N1 一致。补充：Discussion（discussion.tex line 13）正确承认 \"whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis\"——但这个间接支撑逻辑有缺陷。Gradient orthogonality 只能说明 action-auxiliary 梯度不直接冲突，无法推导出 label content 不影响 CAR。orthogonality 在 v1 下也成立，但 v1→v2 的 Full OCC CAR 仍变化了 7.2pp。所以 orthogonality 的稳定性不能担保 content irrelevance 的稳定性。\n\n**[AGREE] R2-W2: 标题与实验范围不匹配**\n与我的 W6 一致。标题 \"Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer?\" 暗示对整个 VLA 类别的通用回答，但实验仅覆盖 OpenVLA-7B + OFT + LoRA rank 32 + SafeLIBERO Level I。建议修改为类似 \"Does Auxiliary Spatial Supervision Make LoRA-Tuned VLAs Safer? A Factorial Study on SafeLIBERO\" 或在副标题中限定范围。\n\n**[AGREE] R2-W3: Codebase sensitivity 削弱论文主张**\n这是一个我第一轮没有充分展开的点。论文试图将 v1→v2 sensitivity 重新框架为 \"independent finding\"（discussion.tex line 11: \"This level of sensitivity...constitutes an independent finding\"），但这个论证是双刃剑：\n- 如果实现细节能改变定性结论（crossover → additive），那么当前 v2 结论也可能在 v3 下再次改变\n- 论文的 practical guidelines（\"avoid BN + gradient flow\"）需要在特定实现下稳健才有实际价值\n- 同 seed 偏移 8.6pp（Appendix E）接近核心效应量（gradient flow effect = 4.2pp），说明实现噪声与信号同量级\n\n我认为 R2 正确指出这一点削弱而非加强了论文。但也公平地说，论文的坦诚报告本身是值得肯定的——大多数论文会隐藏此类信息。\n\n**[AGREE with qualification] R2-W4: Factorial methodology 不构成独立贡献**\nR2 正确：factorial design 是标准统计方法，不构成方法论创新。但我部分不同意完全否定其价值——在 VLA spatial supervision 文献中（论文引用的 15+ 篇文章均为单因子 ablation），将 factorial 引入此特定子领域确实填补了方法论空白。建议作者将 Contribution 2 重新措辞为研究设计的特色而非独立贡献，例如 \"We demonstrate that factorial designs reveal combined effects invisible to the single-factor ablations standard in the VLA literature\"。\n\n**[AGREE] R2-W5: BN running statistics 假说未验证**\n与我的 W5 一致。R2 补充了具体可行的验证方案（eval mode / momentum=0），这些实验成本低：只需在已训练的 v2 模型上修改 BN mode 重新评估，无需重新训练。如果 eval mode BN（frozen running stats）恢复了 CAR，就直接验证了假说；如果没有，就排除了最直接的机制解释。这个实验应该做。\n\n**[AGREE] R2-W6: MTL gradient methods 对比不够深入**\n论文引用了 PCGrad [Yu 2020] 和 CAGrad [Liu 2021]（discussion.tex line 11），但完全忽略了 task-specific BN 的文献线：\n- Bilen & Vedaldi (2017): 提出 task-specific BN 解决 multi-task 中的 BN 统计量干扰问题——这正是本文 BN 假说的直接前驱\n- Maninis et al. (2019, ASTMT): 系统评估了 task-specific normalization 在多任务视觉中的效果\n- Rebuffi et al. (2018): domain-specific BN adapters\n\n这些文献直接讨论了 \"shared BN statistics in multi-task settings cause interference\" 的问题，与本文的核心发现高度相关。缺少这些引用使得论文看起来对 MTL-BN 交互的 prior knowledge 不够了解。\n\n---\n\n### R2 的 Resolved Issue 抽查回应\n\nR2 报告 R1-W21 [CONFIRMED_RESOLVED]: \"措辞准确，无 overclaim\"。我部分不同意：\n- Abstract 中 \"observed under v1 codebase\" caveat 是准确的 ✓\n- Section 4.1 中 \"observed under v1 codebase for Random OCC and Depth\" caveat 存在 ✓\n- **但 Introduction 贡献(1)（introduction.tex line 20）和 Conclusion（conclusion.tex line 4）均无 v1 caveat**，直接陈述 \"spatial label content showed no detectable effect\"\n\nIntroduction 和 Conclusion 是读者最先和最后看到的位置，这两处缺少 v1 caveat 构成 overclaim，与 R2 的 W1 发现矛盾。\n\n---\n\n### Missing References 回应\n\nR2 建议增加：\n- **Sener & Koltun 2018 (MGDA)**: [AGREE] — multi-objective optimization 的核心方法，与 gradient analysis 直接相关\n- **Bilen & Vedaldi 2017 (task-specific BN)**: [AGREE, 强烈] — 直接前驱，上面已展开\n- **Maninis et al. 2019 (ASTMT)**: [AGREE] — 同上\n- **Rebuffi et al. 2018 (domain-specific BN)**: [AGREE] — 相关但稍间接\n- **π₀ (Black et al. 2024)**: [AGREE] — 当前最先进的 VLA 架构之一，Related Work 应讨论\n- **Octo (Team Octo 2024)**: [AGREE] — 同上\n\n---\n\n### 综合评估\n\nR2 与我的审稿意见高度一致。核心分歧仅在于：\n1. R2 将 content irrelevance 问题列为 Should-Fix (W1)，我列为 Must-Fix (N1)——我仍认为这应是 Must-Fix，因为它是三大贡献之一，且缺乏 v2 证据\n2. R2 认为 overclaim 已 resolved (R1-W21)，我认为 Introduction 和 Conclusion 仍有 overclaim——这两处是最高可见度的位置\n\n格式问题（N2 + N3）是我第一轮未发现的重要问题。如果 CoRL 2026 严格执行页数限制，这可能直接导致 desk reject，应列为最高优先级修复项。\n\n**维持评分: 5/10 (Borderline Reject)**。统计功效不足（N1）+ 格式违规（N2/N3）+ content irrelevance 缺乏 v2 证据（W1/我的N1）是主要障碍。",
+    "reviewer_id": "1",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-28T10:59:54.663618+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "elapsed_ms": 4406
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102 · 2026-05-28T11:00:01.947204+00:00_
+
+called mcp__agent-ml-research__cleanup_pdf_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__cleanup_pdf_images</summary>
+
+```json
+{
+  "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+  "tool_args": {
+    "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-28T11:00:02.098910+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"deleted\": 3, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_1/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 104 · 2026-05-28T11:00:13.579773+00:00_
+
+交叉回应已提交。总结：
+
+**R2 的 9 条意见中我同意 8 条，部分同意 1 条（W4）：**
+
+- **Must-Fix 全部 AGREE**：N1（统计功效）与我的 N2 一致；N2（Limitations 不在正文）和 N3（页数超限）是我第一轮遗漏的格式问题——已独立验证 Conclusion 确实溢出到第 9 页
+- **Should-Fix 基本 AGREE**：W1（content irrelevance 缺 v2 证据）、W2（标题过宽）、W3（codebase sensitivity 削弱主张）、W5（BN 假说未验证）、W6（MTL-BN 文献缺失）全部同意
+- **W4（Factorial 不是贡献）部分同意**：标准方法不算创新，但在此子领域首次应用有价值，建议降级为设计特色
+
+同时更正了我 Round 1 的 N3 错误——Random OCC 实际位于 midrule 之下，R2 的 resolved 判断正确。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1"
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+78 recorded events
+
+### User
+
+_source line 105 · 2026-05-28T11:34:31.506243+00:00_
+
+[Round 1 审稿请求]:
+## Round 1 审稿任务 — Reviewer 1（方法与实验严谨性）
+
+### 论文信息
+- **标题**: Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? An Empirical Investigation
+- **目标 venue**: CoRL 2026（10th Conference on Robot Learning）
+- **Deadline**: 2026-05-28
+- **页数限制**: 正文 ≤ 8 页（致谢/参考文献/附录不计入）
+- **匿名**: Double-blind
+- **必须**: Limitations section 计入正文 8 页
+- **论文路径**: projects/occsafe_vla/docs/paper/main.tex
+- **PDF**: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/submitted.pdf
+
+### 你的审查侧重：方法与实验严谨性
+
+请重点审查以下方面：
+
+1. **Factorial design 合理性**：2×2 factorial（gradient flow × normalization）设计是否合理？12 个条件是否足以支撑论文的结论？因子选择有无遗漏？
+2. **样本量与统计效力**：每个 cell 仅 n=3-4 seeds，ANOVA 的 F 检验是否有足够统计效力？论文声称 gradient flow main effect p=0.104（不显著）但报告为 "medium-to-large effect"——这种解读是否合理？
+3. **效应量与因果推断**：Cohen's d 值的解读是否恰当？从观测性 ablation 到因果结论的跳跃是否有充分依据？
+4. **ANOVA 假设检验**：2×2 ANOVA 的前提假设（正态性、方差齐性）在 n=3-4 下是否满足？非参数替代方案是否更合适？
+5. **v1/v2 codebase 问题**：论文承认 v1 和 v2 codebase 产生不同结果（同条件 CAR 偏移 8.6pp），这对结论可靠性的影响如何评估？supplementary conditions 仍用 v1 code 是否合理？
+6. **评估指标**：碰撞检测阈值（L1 displacement > 10⁻³）的敏感度如何？仅用 SafeLIBERO Level I（10 个任务）是否足够？
+7. **Baseline 完备性**：是否缺少关键的 baseline 或消融条件？
+
+请按 Strengths / Weaknesses / Questions / Missing References 格式输出审稿意见，每个 Weakness 标注严重程度（[Critical] / [Major] / [Minor]）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "source": "review_reviewer_1"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106 · 2026-05-28T11:34:40.317618+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/skills/review-reviewer-session-start.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/skills/review-reviewer-session-start.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-28T11:34:40.318131+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/sessions/review_reviewer_1_7e4599ad.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108 · 2026-05-28T11:34:41.020708+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch,mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch,WebFetch,mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-28T11:34:41.071443+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110 · 2026-05-28T11:34:45.287930+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "CoRL 2026 reviewer guidelines review form criteria"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "CoRL 2026 reviewer guidelines review form criteria"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-28T11:34:46.248131+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "CoRL 2025 2026 review form scoring rubric robot learning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "CoRL 2025 2026 review form scoring rubric robot learning"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112 · 2026-05-28T11:34:46.901751+00:00_
+
+called mcp__agent-ml-research__pdf_to_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/submitted.pdf",
+  "project": "occsafe_vla",
+  "pages": "1-10",
+  "dpi": "150"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "tool_args": {
+    "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/submitted.pdf",
+    "project": "occsafe_vla",
+    "pages": "1-10",
+    "dpi": "150"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-28T11:34:52.231259+00:00_
+
+Web search results for query: "CoRL 2025 2026 review form scoring rubric robot learning"
+
+Links: [{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks","url":"https://arxiv.org/pdf/2602.05125"},{"title":"Back to Reality for Imitation Learning","url":"https://arxiv.org/pdf/2111.12867"},{"title":"RULERS: Locked Rubrics and Evidence-Anchored Scoring for Robust LLM Evaluation","url":"https://arxiv.org/pdf/2601.08654"},{"title":"CoRL 2026 | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026"},{"title":"Safe Learning in Robotics: From Learning-Based Control to Safe   Reinforcement Learning","url":"https://arxiv.org/pdf/2108.06266"}]
+
+Based on the search results, I found information about CoRL 2026 submissions and guidelines, but the search results do not contain specific details about a review form scoring rubric document.
+
+The search results show that CoRL 2026 will be held November 9-12, 2026 in Austin, Texas, US, and provide general submission guidelines from the official CoRL website. However, the specific review form scoring rubric that reviewers use is not included in these results.
+
+To access the CoRL 2026 review form and scoring rubric, you would likely need to:
+
+1. Check the OpenReview page for CoRL 2026 directly, as that is where submissions are handled
+2. Contact the CoRL 2026 organizing committee directly
+3. Look for reviewer instructions that are typically provided to accepted reviewers after the review period begins
+
+If you need to find this document, the official OpenReview page or the main CoRL website would be your best resources for accessing the specific review form and scoring rubric used by reviewers.
+
+
+REMI
+…[truncated 96 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebSearch",
+  "elapsed_ms": 5983
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-28T11:34:52.833448+00:00_
+
+Web search results for query: "CoRL 2026 reviewer guidelines review form criteria"
+
+Links: [{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"ICLR 2026 Reviewer Guide","url":"https://iclr.cc/Conferences/2026/ReviewerGuide"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"Reviewer Guidelines — CoRL 2023","url":"https://www.corl2023.org/reviewer-guidelines"},{"title":"CVPR 2026 Reviewer Guidelines","url":"https://cvpr.thecvf.com/Conferences/2026/ReviewerGuidelinesq"},{"title":"Which Coauthor Should I Nominate in My 99 ICLR Submissions? A Mathematical Analysis of the ICLR 2026 Reciprocal Reviewer Nomination Policy","url":"https://arxiv.org/pdf/2512.17950"},{"title":"CoRL 2024 - Instruction for Reviews","url":"https://2024.corl.org/contributions/instruction-for-reviews"}]
+
+Based on the search results, I found some information about CoRL 2026, though specific reviewer guidelines for the 2026 edition aren't fully detailed. Here's what I found:
+
+## CoRL 2026 Reviewer Requirements
+
+All submissions must include at least one author who agrees to serve as a CoRL reviewer, and they are qualified if they have at least one accepted publication at a previous robotics (CoRL/ICRA/IROS/RSS) or learning conference (ICLR/NeurIPS/ICML) or equivalent journal.
+
+## Review Criteria (from CoRL 2024)
+
+While specific 2026 review form criteria weren't available, the most recent criteria from CoRL 2024 show that submissions will be evaluated based on the significance and novelty of the results, either theoretical or empirical.
+
+Additionally, reviewers assess relevance by considering whether the paper addresses a problem in robot learning, applies or improves a learning-based method or learned model, whether the method is evaluated in simulation, on real robots, or both, and whether the CoRL audience would be interested in reading the paper.
+
+CoRL papers are requ
+…[truncated 416 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebSearch",
+  "elapsed_ms": 7545
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-28T11:34:53.837647+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p1.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 319.9}, {\"page\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p2.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 370.9}, {\"page\": 3, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p3.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 380.8}, {\"page\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p4.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 362.5}, {\"page\": 5, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p5.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 357.2}, {\"page\": 6, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p6.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 349.9}, {\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p7.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 261.7}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p8.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 389.0}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p9.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 337.1}, {\"page\": 10, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_v
+…[truncated 339 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "elapsed_ms": 6935
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116 · 2026-05-28T11:34:59.858589+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://2024.corl.org/contributions/instruction-for-reviews",
+  "prompt": "Extract the complete review form criteria, scoring rubric, rating scales, and all evaluation dimensions that reviewers must use. Include the exact scale descriptions (e.g., 1-10 or 1-5) and what each score means."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://2024.corl.org/contributions/instruction-for-reviews",
+    "prompt": "Extract the complete review form criteria, scoring rubric, rating scales, and all evaluation dimensions that reviewers must use. Include the exact scale descriptions (e.g., 1-10 or 1-5) and what each score means."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-28T11:35:01.015236+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://www.corl2023.org/reviewer-guidelines",
+  "prompt": "Extract the complete review form criteria, scoring rubric, rating scales, and all evaluation dimensions for reviewers. Include the exact scale descriptions and what each score means."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://www.corl2023.org/reviewer-guidelines",
+    "prompt": "Extract the complete review form criteria, scoring rubric, rating scales, and all evaluation dimensions for reviewers. Include the exact scale descriptions and what each score means."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118 · 2026-05-28T11:35:01.625317+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p1.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p1.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-28T11:35:01.827850+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p2.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p2.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-28T11:35:02.787119+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 1161
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-28T11:35:02.789864+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 962
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 122 · 2026-05-28T11:35:02.790295+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p3.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p3.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 123 · 2026-05-28T11:35:03.245724+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 455
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 124 · 2026-05-28T11:35:03.246190+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p4.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p4.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-28T11:35:03.597681+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p5.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p5.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-28T11:35:03.652407+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 406
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-28T11:35:04.008025+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 410
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-28T11:35:05.164924+00:00_
+
+# CoRL 2024 Review Criteria - Summary
+
+Based on the provided content, **the specific review form, scoring rubric, and numerical rating scales are not detailed in this document.**
+
+## What Is Specified:
+
+**Review Evaluation Basis:**
+Reviewers assess submissions on "significance and novelty of the results, either theoretical or empirical" and judge them based on "the degree to which they have been objectively established and/or their potential for scientific and technological impact, as well as their relevance to robotic learning."
+
+**Scope Requirements:**
+All CoRL submissions must demonstrate robot learning relevance through either:
+- **Intent:** "Explicitly address a learning question for physical robots" OR
+- **Outcome:** "Test the proposed learning solution on physical robots"
+
+**Desk Rejection Criteria:**
+Papers may be desk rejected for formatting issues, anonymity violations, or scope violations (no learning component, no robotics component, or minimal robotics relevance).
+
+## Important Note:
+
+The document provides evaluation criteria and guidelines but **does not include the actual numerical rating scale, point system, or detailed scoring rubric** that reviewers would use to assign scores to submissions. That information appears to be in a separate review form not included in this webpage excerpt.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebFetch",
+  "elapsed_ms": 5306
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 129 · 2026-05-28T11:35:06.369839+00:00_
+
+# CoRL 2023 Review Criteria Summary
+
+Based on the provided document, the reviewer guidelines outline **six evaluation dimensions** but do not include a detailed scoring rubric or numerical rating scales.
+
+## Evaluation Dimensions:
+
+The guidelines specify these assessment areas:
+
+1. **Originality** — "Are the problems or methods new?" Reviewers evaluate novelty and differentiation from prior work.
+
+2. **Quality** — Technical soundness and whether "claims well supported (e.g., by theoretical analysis or experimental results)"
+
+3. **Clarity** — "Is the submission clearly written? Is it well organized?"
+
+4. **Significance** — Impact potential: "Are the results important? Are others likely to use the ideas or build on them?"
+
+5. **Relevance** — "Does the paper address a problem in robot learning?" and audience interest for CoRL.
+
+6. **Limitations** — How honestly authors report constraints; unexplained flaws should be "strongly reflected in your scores"
+
+## Notable Gaps:
+
+The document does not provide:
+- Specific numerical scales (e.g., 1-10, 1-5)
+- Defined score anchors or descriptors
+- Explicit accept/reject thresholds
+- Weighted importance of dimensions
+
+The guidelines emphasize **constructive feedback** and warn against common reviewer errors, referencing ICML and NeurIPS resources for additional guidance on evaluation standards.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebFetch",
+  "elapsed_ms": 5354
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 130 · 2026-05-28T11:35:10.540157+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p6.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p6.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 131 · 2026-05-28T11:35:10.996573+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 456
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 132 · 2026-05-28T11:35:10.997079+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p7.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p7.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 133 · 2026-05-28T11:35:11.600146+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 603
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 134 · 2026-05-28T11:35:11.650706+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p8.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p8.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 135 · 2026-05-28T11:35:12.405125+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 754
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 136 · 2026-05-28T11:35:12.505931+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p9.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p9.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-28T11:35:12.707211+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p10.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p10.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-28T11:35:12.911087+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 405
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 139 · 2026-05-28T11:35:13.215967+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 508
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 140 · 2026-05-28T11:35:17.933536+00:00_
+
+called mcp__agent-ml-research__pdf_to_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/submitted.pdf",
+  "project": "occsafe_vla",
+  "pages": "11-19",
+  "dpi": "150"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "tool_args": {
+    "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/submitted.pdf",
+    "project": "occsafe_vla",
+    "pages": "11-19",
+    "dpi": "150"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 141 · 2026-05-28T11:35:18.736686+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 11, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p11.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 339.7}, {\"page\": 12, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p12.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 55.0}, {\"page\": 13, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p13.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 313.5}, {\"page\": 14, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p14.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 321.9}, {\"page\": 15, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p15.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 316.8}, {\"page\": 16, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p16.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 292.6}, {\"page\": 17, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p17.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 314.3}, {\"page\": 18, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p18.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 272.2}, {\"page\": 19, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p19.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 96.1}], \"total_pages\": 19, \"rendered_pages\": 9, \"dpi\": 150, \"output_dir\": 
+…[truncated 146 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "elapsed_ms": 803
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 142 · 2026-05-28T11:35:22.550776+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p11.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p11.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 143 · 2026-05-28T11:35:23.205988+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 655
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 144 · 2026-05-28T11:35:23.860905+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p12.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p12.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 145 · 2026-05-28T11:35:23.912382+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 146 · 2026-05-28T11:35:24.367139+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p13.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p13.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 147 · 2026-05-28T11:35:24.771532+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p14.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p14.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 148 · 2026-05-28T11:35:24.771995+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p15.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p15.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 149 · 2026-05-28T11:35:25.131404+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 764
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 150 · 2026-05-28T11:35:26.192129+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 1420
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 151 · 2026-05-28T11:35:26.347909+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 1576
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 152 · 2026-05-28T11:35:30.910173+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p16.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p16.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 153 · 2026-05-28T11:35:31.267064+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p17.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p17.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 154 · 2026-05-28T11:35:31.771431+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 861
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 155 · 2026-05-28T11:35:31.773927+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 506
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 156 · 2026-05-28T11:35:31.774308+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p18.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p18.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 157 · 2026-05-28T11:35:32.177420+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 403
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 158 · 2026-05-28T11:35:32.177857+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p19.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p19.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 159 · 2026-05-28T11:35:32.230301+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 160 · 2026-05-28T11:35:50.250772+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "site:openreview.net CoRL 2026 review form rating scale"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "site:openreview.net CoRL 2026 review form rating scale"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 161 · 2026-05-28T11:35:50.251083+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "CoRL 2024 openreview review form \"overall recommendation\" rating 1-10 scale"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "CoRL 2024 openreview review form \"overall recommendation\" rating 1-10 scale"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 162 · 2026-05-28T11:35:54.670236+00:00_
+
+Web search results for query: "site:openreview.net CoRL 2026 review form rating scale"
+
+Links: [{"title":"CoRL 2026 | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"CoRL | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL"},{"title":"ICLR 2026 Conference | OpenReview","url":"https://openreview.net/group?id=ICLR.cc%2F2026%2FConference"},{"title":"CoRL 2025 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2025%2FConference"},{"title":"CoRL 2025 Demos | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2025%2FDemos"},{"title":"OpenReviewer: A Specialized Large Language Model for Generating Critical   Scientific Paper Reviews","url":"https://arxiv.org/pdf/2412.11948"},{"title":"What Drives Paper Acceptance? A Process-Centric Analysis of Modern Peer Review","url":"https://arxiv.org/pdf/2509.25701"}]
+
+The search results returned pages from OpenReview for CoRL 2026, but they only show welcome pages without the specific details about the review form rating scale. The search results don't contain information about the specific rating scale used in the CoRL 2026 review form. 
+
+To access the detailed review guidelines and rating scale for CoRL 2026, you would need to visit the CoRL 2026 Conference page directly on OpenReview at https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference and look for the review instructions or submission guidelines section.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebSearch",
+  "elapsed_ms": 4419
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 163 · 2026-05-28T11:36:05.668001+00:00_
+
+Web search results for query: "CoRL 2024 openreview review form "overall recommendation" rating 1-10 scale"
+
+Links: [{"title":"CoRL 2024 | OpenReview","url":"https://openreview.net/group?id=robot-learning.org/CoRL/2024"},{"title":"CoRL 2024 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2024%2FConference"},{"title":"CoRL 2024 Workshop XE | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2024%2FWorkshop%2FXE"},{"title":"CoRL 2024 Conference Submissions | OpenReview","url":"https://openreview.net/submissions?venue=robot-learning.org/CoRL/2024/Conference"},{"title":"Reviewer Guidelines — CoRL 2023","url":"https://www.corl2023.org/reviewer-guidelines"},{"title":"CoRL 2024 - Instruction for Reviews","url":"https://2024.corl.org/contributions/instruction-for-reviews"},{"title":"2024 | OpenReview","url":"https://openreview.net/group?id=corl.org%2F2024"},{"title":"CORL 2024 Statistics - Paper Copilot","url":"https://papercopilot.com/statistics/corl-statistics/corl-2024-statistics/"},{"title":"2024 reviewer index","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11742086/"}]
+
+The search results provide general information about CoRL 2024 on OpenReview but don't contain specific details about the review form's rating scale. Let me search more specifically for the review form structure.
+
+Links: [{"title":"CoRL 2024 - Instruction for Reviews","url":"https://2024.corl.org/contributions/instruction-for-reviews"},{"title":"CoRL.2024 | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/CoRL.2024"},{"title":"2024 reviewer index","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11742086/"},{"title":"Outstanding Reviewers for RSC Advances in 2024","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12138326/"},{"title":"Best Reviewers Award for 2024","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11955497/"},{"title":"Reviewers in 2024","url":"https://www.ncbi.nlm.nih.gov/pmc/
+…[truncated 3255 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebSearch",
+  "elapsed_ms": 15416
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 164 · 2026-05-28T11:36:11.773858+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2024%2FConference",
+  "prompt": "Extract the review form fields, rating scales, and scoring criteria used for CoRL 2024 reviews. Look for overall recommendation scale, soundness, significance, novelty, clarity, and any other review dimensions with their rating scales."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2024%2FConference",
+    "prompt": "Extract the review form fields, rating scales, and scoring criteria used for CoRL 2024 reviews. Look for overall recommendation scale, soundness, significance, novelty, clarity, and any other review dimensions with their rating scales."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 165 · 2026-05-28T11:36:12.426492+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "CoRL review form \"overall score\" \"soundness\" \"significance\" rating openreview 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "CoRL review form \"overall score\" \"soundness\" \"significance\" rating openreview 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 166 · 2026-05-28T11:36:14.734894+00:00_
+
+# CoRL 2024 Review Form Analysis
+
+I cannot extract the review form fields, rating scales, and scoring criteria for CoRL 2024 based on the provided content.
+
+**Why:** The webpage content provided consists only of navigation elements, footer information, and general site metadata from OpenReview.net. It does not include:
+
+- The actual review form structure
+- Rating scales for any review dimensions
+- Scoring criteria details
+- Review guidelines or instructions
+
+**To obtain this information, you would need to:**
+
+1. Visit the actual CoRL 2024 venue page on OpenReview.net
+2. Access the submission or review guidelines
+3. Navigate to sections displaying the review form template
+
+The page excerpt shows only the site's header, footer, and navigation menu, not the conference-specific review documentation.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebFetch",
+  "elapsed_ms": 2961
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 167 · 2026-05-28T11:36:18.849823+00:00_
+
+Web search results for query: "CoRL review form "overall score" "soundness" "significance" rating openreview 2024 2025"
+
+Links: [{"title":"Insights from the ICLR Peer Review and Rebuttal Process","url":"https://arxiv.org/pdf/2511.15462"},{"title":"Reviewer Guidelines — CoRL 2023","url":"https://www.corl2023.org/reviewer-guidelines"},{"title":"CoRL 2024 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2024%2FConference"},{"title":"CoRL 2025 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2025%2FConference"},{"title":"CoRL 2024 - Instruction for Reviews","url":"https://2024.corl.org/contributions/instruction-for-reviews"},{"title":"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/acguidelines"},{"title":"ARR Reviewer Guidelines","url":"http://aclrollingreview.org/reviewerguidelines"},{"title":"What Drives Paper Acceptance? A Process-Centric Analysis of Modern Peer Review","url":"https://arxiv.org/pdf/2509.25701"},{"title":"Can Small and Reasoning Large Language Models Score Journal Articles for Research Quality and Do Averaging and Few-shot Help?","url":"https://arxiv.org/pdf/2510.22389"}]
+
+Based on the search results, I found some information about CoRL's review process, though specific details about the exact rating scales were limited.
+
+CoRL's review form asks for an evaluation of originality, quality, clarity, significance, relevance and limitations. More specifically, the review form evaluates quality by asking whether the submission is technically sound.
+
+However, the search results did not contain detailed information about the specific numerical rating scales for "overall score," "soundness," and "significance" in CoRL's 2024-2025 review forms on OpenReview. The results showed information about ICLR's review process and other conferences' scoring systems, but not the 
+…[truncated 415 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebSearch",
+  "elapsed_ms": 6423
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 168 · 2026-05-28T11:36:23.065539+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "openreview.net CoRL 2024 paper review \"overall score\" \"recommendation\" example rating"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "openreview.net CoRL 2024 paper review \"overall score\" \"recommendation\" example rating"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 169 · 2026-05-28T11:36:29.047913+00:00_
+
+Web search results for query: "openreview.net CoRL 2024 paper review "overall score" "recommendation" example rating"
+
+Links: [{"title":"CoRL 2024 | OpenReview","url":"https://openreview.net/group?id=robot-learning.org/CoRL/2024"},{"title":"OpenReviewer: A Specialized Large Language Model for Generating Critical Scientific Paper Reviews","url":"https://arxiv.org/html/2412.11948v3"},{"title":"CoRL 2024 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2024%2FConference"},{"title":"CORL 2024 Statistics - Paper Copilot","url":"https://papercopilot.com/statistics/corl-statistics/corl-2024-statistics/"},{"title":"CoRL 2024 - Instruction for Reviews","url":"https://2024.corl.org/contributions/instruction-for-reviews"},{"title":"Best Reviewers Award for 2024","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11955497/"},{"title":"You Are the Best Reviewer of Your Own Papers: An Owner-Assisted Scoring Mechanism | OpenReview","url":"https://openreview.net/forum?id=xmx5rE9QP7R"},{"title":"The AI Review Lottery: Widespread AI-Assisted Peer Reviews Boost Paper   Scores and Acceptance Rates","url":"https://arxiv.org/pdf/2405.02150"}]
+
+Based on the search results, I found information about CoRL 2024 on OpenReview, though the specific search results don't contain detailed examples of individual paper review ratings with "overall score" and "recommendation" fields visible.
+
+The search results confirm that CoRL 2024 Conference has a homepage on OpenReview, and submissions are evaluated based on the significance and novelty of results, judged on the degree to which they have been objectively established and their potential for scientific and technological impact, as well as relevance to robotic learning.
+
+However, the search results don't provide specific examples of the actual review rating scales or recommendation formats used for CoRL 2024 papers. To see actual examples of paper reviews with their overall scores and recommendations, you 
+…[truncated 380 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebSearch",
+  "elapsed_ms": 5982
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 170 · 2026-05-28T11:36:33.368488+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://papercopilot.com/statistics/corl-statistics/corl-2024-statistics/",
+  "prompt": "Extract the rating scale used for CoRL 2024 reviews. What is the range of overall scores? What are the dimensions and their scales? Look for information about the review form fields and scoring rubric."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://papercopilot.com/statistics/corl-statistics/corl-2024-statistics/",
+    "prompt": "Extract the rating scale used for CoRL 2024 reviews. What is the range of overall scores? What are the dimensions and their scales? Look for information about the review form fields and scoring rubric."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 171 · 2026-05-28T11:36:37.788009+00:00_
+
+# CORL 2024 Rating Scale
+
+Based on the webpage content provided, the rating scale information for CORL 2024 is limited:
+
+**Overall Score Range:** 1.70 to 4.00
+
+The table shows that for CORL 2024, reviewer scores ranged from a minimum of 1.70 to a maximum of 4.00, with an average of 3.01.
+
+**Notable Observation:** This differs significantly from previous years. CORL 2023 and 2022 both used a 10-point scale (ranging from approximately 4.20-10.00), suggesting CORL 2024 implemented a different rating system.
+
+**Limitations:** The webpage does not provide details about specific review dimensions (such as clarity, novelty, significance) or their individual scales. The content focuses on aggregate statistics rather than the review form structure. For comprehensive information about the complete rubric and all scoring dimensions, you would need to consult the actual OpenReview submission portal or CORL 2024's official review guidelines.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebFetch",
+  "elapsed_ms": 4419
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 172 · 2026-05-28T11:36:48.172547+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://openreview.net/submissions?venue=robot-learning.org/CoRL/2024/Conference",
+  "prompt": "Find a specific paper URL with reviews visible. I need to see the review form fields and rating scales used for CoRL 2024."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://openreview.net/submissions?venue=robot-learning.org/CoRL/2024/Conference",
+    "prompt": "Find a specific paper URL with reviews visible. I need to see the review form fields and rating scales used for CoRL 2024."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 173 · 2026-05-28T11:36:52.086052+00:00_
+
+# CoRL 2024 Review Information
+
+Based on the webpage content provided, I can see this is the submissions listing page for CoRL 2024 Conference on OpenReview. However, **the specific review form fields and rating scales are not visible** in the content you've shared.
+
+To find this information, you would need to:
+
+1. **Click on an individual paper** from the list (such as "Body Transformer: Leveraging Robot Embodiment for Policy Learning")
+2. **Navigate to the reviews section** of that paper's forum page
+3. View the actual review submissions, which would display the rating scale and form structure used
+
+The current page only shows paper titles, authors, and publication dates. The review methodology details would be found within individual paper forums or in the venue's guidelines documentation, which isn't included in this excerpt.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebFetch",
+  "elapsed_ms": 3913
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 174 · 2026-05-28T11:36:55.747923+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "openreview.net CoRL 2024 forum review \"soundness\" \"overall\" \"presentation\" rating"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "openreview.net CoRL 2024 forum review \"soundness\" \"overall\" \"presentation\" rating"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 175 · 2026-05-28T11:37:01.136170+00:00_
+
+Web search results for query: "openreview.net CoRL 2024 forum review "soundness" "overall" "presentation" rating"
+
+Links: [{"title":"CoRL 2024 | OpenReview","url":"https://openreview.net/group?id=robot-learning.org/CoRL/2024"},{"title":"ICML 2024 Reviewer Instructions","url":"https://icml.cc/Conferences/2024/ReviewerInstructions"},{"title":"CoRL 2024 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2024%2FConference"},{"title":"Insights from the ICLR Peer Review and Rebuttal Process","url":"https://arxiv.org/pdf/2511.15462"},{"title":"CoRL 2024 Conference Submissions | OpenReview","url":"https://openreview.net/submissions?venue=robot-learning.org/CoRL/2024/Conference"},{"title":"CoRL 2024 Workshop | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2024%2FWorkshop"},{"title":"CoRL 2024 Workshop LFDM | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2024%2FWorkshop%2FLFDM"},{"title":"CoRL | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL"},{"title":"ICLR 2024 Conference | OpenReview","url":"https://openreview.net/group?id=ICLR.cc%2F2024%2FConference"},{"title":"Thanks to reviewers list 2024","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11749316/"}]
+
+I've performed the web search for your query. The search results show that OpenReview has pages for CoRL 2024, including the Conference submissions page, but the actual detailed review content with specific ratings for soundness, overall, and presentation is not displayed in the search results.
+
+The search returned:
+- Links to CoRL 2024 Conference submissions on OpenReview with various papers published in September 2024
+- General information about review rating systems used in other conferences (like ICML and ICLR)
+
+To access the specific reviews with ratings you're looking for, you would need to visit the OpenReview pages directly at openreview.net and navigate to individual paper sub
+…[truncated 235 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "WebSearch",
+  "elapsed_ms": 5388
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 176 · 2026-05-28T11:43:56.345976+00:00_
+
+called mcp__agent-ml-research__review_reviewer_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director</summary>
+
+```json
+{
+  "text": "\n# Reviewer 1 — Round 1 审稿意见\n\n## 论文信息\n- **标题**: Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? An Empirical Investigation\n- **目标 venue**: CoRL 2026\n- **审查侧重**: 方法与实验严谨性\n\n---\n\n## 总体评分\n\n**Overall**: 3/5（Borderline — lean reject）\n\n**一句话总结**: 研究问题重要、实验设计有原则性，但中心主张（normalization-dependent gradient flow effect）与论文自身统计分析结果存在根本性矛盾——ANOVA 交互项不显著（p=0.753）却被叙述为条件性效应，加上 v1/v2 codebase 混淆和严重不足的统计效力，当前证据不足以支撑论文的核心结论。\n\n## 官方维度打分（基于 CoRL review form: Originality, Quality, Clarity, Significance, Relevance, Limitations）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Originality | 3/5 | 研究问题（辅助空间监督是否改善安全性）新颖且重要；2×2 factorial 设计在 VLA 领域较少见；但分析框架本身是标准的 |\n| Quality | 2/5 | 统计结果与文字叙述之间存在根本矛盾（见 C1）；v1/v2 confound（见 C2）；统计效力严重不足（见 C3） |\n| Clarity | 4/5 | 论文组织清晰，2×2 设计描述明确，Figure 1 综述有效；但 additive effects 被错误框架为 conditional effects（见 C1） |\n| Significance | 3/5 | 关于辅助监督与安全性的负面结果对社区有价值，但当前发现因统计局限性太初步，难以改变实践 |\n| Relevance | 4/5 | 直接针对 robot learning 中的 VLA 安全问题，高度契合 CoRL scope |\n| Limitations | 4/5 | Appendix H 的 Limitations 部分诚实且全面，按 CoRL guidelines 对诚实报告局限性应予认可 |\n\n---\n\n## Strengths\n\n**S1. 重要且understudied的研究问题**\n论文聚焦于\"辅助空间监督是否真正改善安全性（碰撞规避）\"而非仅关注任务成功率，这是 VLA 部署中一个实际重要但缺乏系统研究的问题。大多数现有工作（如 SpatialVLA [10], DepthVLA [9]）声称空间表征有益但未隔离其安全效应。\n\n**S2. 原则性的 factorial 实验设计**\n使用 2×2 factorial（gradient flow × normalization type）比 robotics 论文中常见的 one-variable-at-a-time ablation 更有方法论优势，能同时估计主效应和交互效应。这种实验设计的选择体现了作者的方法论意识。\n\n**S3. 负面结果的呈现有 nuance**\n论文不是简单报告\"辅助监督无效\"，而是识别了具体的机制条件（normalization type、gradient flow）。即使统计上有问题（见 Weaknesses），这种分析深度本身有价值。\n\n**S4. 丰富的补充分析**\nCKA 分析（Section 4.3, Appendix D）、per-layer gradient 分析（Figure 3）、per-task breakdown（Appendix A, Table 4）、temporal dynamics（Appendix D.3）提供了超越基本 factorial 结果的分析深度。\n\n**S5. 诚实的 limitations 报告**\n论文公开讨论了 v1/v2 codebase 差异、小样本量、阈值敏感性等问题（Appendix E, H）。CoRL guidelines 明确要求 reviewers 对诚实报告 limitations 给予认可。\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**C1** [Critical] **中心主张与统计分析结果之间的根本矛盾**\n\n- **具体位置**: Abstract; Section 4.2; Appendix F (Table 6)\n- **问题**: 论文的核心叙事是 gradient flow 的效应*取决于* normalization type——\"gradient flow is harmful under BatchNorm but benign under LayerNorm\"（Section 4.2）。这在统计学上是一个**交互效应（interaction）**。然而，论文自身的 2×2 ANOVA（Appendix F, Table 6）报告交互项**完全不显著**：F(1,10)=0.10, p=0.753, η²=0.010。论文正确地承认这\"confirms additive main effects\"。\n\n  但如果效应是 additive 的，那么 gradient flow 在两种 normalization 下应该有**相同方向和相似幅度**的效应——不是\"under BN harmful, under LN benign\"。从 cell means 看：BN 下 gradient flow penalty ≈ −3.4pp（Full OCC-BN 0.727 vs. Detach-BN 0.761），LN 下 ≈ −2.9pp（Full OCC-LN 0.773 vs. Detach-LN 0.802）。这两个 penalty 幅度相近，与 ANOVA 判定的 additive pattern 一致。\n\n  论文将 LN 条件下 gradient flow 描述为\"benign\"，很可能是因为 LN 的*基线更高*（normalization 主效应），使得加了 penalty 后仍接近 Vanilla baseline——但这不是 gradient flow 在 LN 下\"无害\"，而是 LN 本身更好。这是一个**框架性错误**：additive main effects 被错误叙述为 conditional/moderated effects。\n\n  Figure 2（page 7）的交互图中两条线近似平行，视觉上也证实了 additive pattern，与文字叙述形成矛盾。\n\n- **为什么影响接收**: 这直接关系到论文的 central finding。如果正确解读是\"gradient flow 和 normalization 各自独立影响安全性\"（additive），而非\"gradient flow 的效应取决于 normalization type\"（interaction），论文的标题暗示、abstract、Section 4.2 的核心叙事都需要根本性重写。\n- **建议修改方向**: (1) 将叙事从 interaction framing 改为 additive main effects framing；(2) 明确说明 LN 下 gradient flow penalty 与 BN 下幅度相似，LN 表现更好是因为 normalization 主效应而非 gradient flow 无害；(3) 如果坚持 interaction 叙事，需要提供更强的统计证据（增加样本量或使用针对交互效应的 targeted test）。\n\n---\n\n**C2** [Critical] **v1/v2 codebase confound 破坏跨条件比较**\n\n- **具体位置**: Appendix E; Table 1; Section 4.1\n- **问题**: 论文承认（Appendix E）从 v1 到 v2 codebase 切换导致**同一条件** CAR 偏移约 8.6pp。核心 2×2 factorial 的 4 个条件使用 v2 代码，但 5 个 supplementary conditions（Random OCC、不同 spatial content 变体等）仍使用 v1 代码。Table 1 将所有 12 个条件呈现为统一设计，Section 4.1 从跨 v1/v2 条件中得出结论（如\"Spatial label content showed no detectable effect on outcomes\"——但这些 spatial content 条件是 v1，而 factorial cells 是 v2）。\n\n  8.6pp 的 codebase 效应与论文报告的最大实验效应（~5-6pp）在同一数量级甚至更大。任何跨版本的比较都可能将 codebase 差异误归因于实验操纵。\n\n- **为什么影响接收**: 这意味着论文约 40% 的条件（5/12）受到系统性 confound 的影响，涉及这些条件的所有结论（包括 spatial content 不重要的发现）的可靠性存疑。\n- **建议修改方向**: (1) 在 Table 1 中明确标注每个条件的 codebase 版本（v1/v2）；(2) 所有涉及 v1 条件的分析都加上显著的 caveat；(3) 最好将所有 supplementary conditions 用 v2 重新运行；(4) 如果无法重新运行，至少应将 v1 结论与 v2 factorial 结论明确分开呈现。\n\n---\n\n**C3** [Critical] **统计效力严重不足，效应量估计不可靠**\n\n- **具体位置**: Section 3.2; Appendix F; Abstract\n- **问题**: 每个 cell n=3-4（总共 14 observations），2×2 ANOVA 残差 df=10。对于 medium effect size（Cohen's f=0.25），在 α=0.05 下的统计功效很可能 <50%。这意味着：\n  \n  (a) **非显著结果不能解读为\"无效应\"**：gradient flow 主效应 p≈0.30（不显著）不意味着 gradient flow 没有效应，只是当前设计无力检测到。\n  \n  (b) **效应量点估计的置信区间极宽**：n=3-4 时 Cohen's d 的 95% CI 约为 ±1.0-1.5。论文 abstract 报告 d=−0.50 并标注为\"large\"——但 CI 可能覆盖从 negligible 到 very large 的全部范围，点估计本身几乎没有信息量。\n  \n  (c) **交互效应的检测更需要大样本**：交互效应通常需要主效应 4 倍的样本量才能达到同等 power。n=3-4 对交互效应的 power 可能 <20%，因此 C1 中提到的交互不显著可能也是 Type II error——但论文不能在 power 不足时同时声称\"交互不显著（confirms additive）\"又叙述交互效应。\n  \n- **为什么影响接收**: 论文的所有定量结论（包括效应量大小、显著性判断、additive vs. interaction 的判断）都受到 low power 的根本限制。当前样本量下，几乎任何合理的结论都无法以足够的统计置信度支撑。\n- **建议修改方向**: (1) 提供正式的 post-hoc power analysis（报告在观测效应量下的实际 power）；(2) 将 Cohen's d 点估计配以 95% CI；(3) 增加 seeds 至 n≥8-10 per cell；(4) 考虑使用 Bayesian analysis（报告 Bayes Factor）——在小样本下，BF 比 p-value 更适合区分\"无效应\"和\"证据不足\"。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [Major] **Cohen's d 基准标签可能系统性膨胀**\n\n- **具体位置**: Abstract; Section 4.1; Section 4.2\n- **问题**: Abstract 中将 Cohen's d = −0.50 标注为\"large\"。按照 Cohen (1988) 的标准基准（|d|=0.2 small, 0.5 medium, 0.8 large），d=0.50 应为 **medium** 而非 large。如果论文中多处使用了相同的膨胀标签，这会系统性地夸大发现的实际效应大小。\n- **建议**: 严格按照 Cohen (1988) 标准标注，或如果使用其他领域特定标准，需明确说明并引用依据。\n\n**W2** [Major] **ANOVA 前提假设在 n=3-4 下不可验证**\n\n- **具体位置**: Appendix F\n- **问题**: 2×2 ANOVA 要求正态性和方差齐性。n=3-4 下，Shapiro-Wilk 检验几乎没有统计效力（无法可靠拒绝非正态分布），Levene 检验同理。论文使用参数化 ANOVA 但未讨论这些假设是否合理，也未提供非参数替代方案（如 permutation test 或 aligned rank transform）。\n- **建议**: (1) 报告 Shapiro-Wilk 和 Levene 检验结果（即使 power 低）；(2) 补充 permutation-based ANOVA 作为 robustness check；(3) 在正文讨论为什么参数化假设在此设置下是合理的（或不合理的）。\n\n**W3** [Major] **梯度正交性发现与 gradient flow 有害的主张存在张力**\n\n- **具体位置**: Section 4.3; Appendix D.1\n- **问题**: Section 4.3 报告\"action-auxiliary gradient cosine similarity is close to zero across all layers\"，即梯度几乎正交。但如果辅助任务梯度和动作任务梯度不直接冲突，gradient flow 如何造成安全性下降？论文承认\"mechanism remains open\"，提出的解释（\"indirect effect through modification of the LoRA optimization trajectory under a dual-objective loss landscape\"）纯属猜测，无任何支撑证据。\n  \n  这里存在逻辑断裂：(a) 梯度正交 → 不应互相干扰；(b) 但论文声称有干扰。如果不能解释这个矛盾，关于 gradient flow 机制的整个叙事都是 under-specified 的。\n- **建议**: 要么提供更具体的机制证据（如分析 BN running statistics 在有/无 gradient flow 时的变化、LoRA rank utilization 的差异、loss landscape 曲率分析），要么弱化因果机制的叙述，仅保留观测性描述。\n\n**W4** [Major] **单一 benchmark 限制泛化性**\n\n- **具体位置**: Section 3.2; Section 6\n- **问题**: 仅使用 SafeLIBERO Level I（10 个任务），均为基础操作任务。Level II/III 的任务涉及更长时间跨度、更复杂的操作序列和不同的约束类型。论文的结论（\"auxiliary spatial supervision does not improve safety\"）以一般性语言撰写，但证据基础仅限于一个 benchmark 的最低难度级别。\n- **建议**: (1) 至少在若干 Level II/III 任务上验证关键发现是否 replicate；(2) 如果无法扩展，在结论中明确限定为\"SafeLIBERO Level I\"的发现。\n\n**W5** [Major] **固定损失权重 λ₀=0.01，缺乏超参数敏感度分析**\n\n- **具体位置**: Section 3.1 (Eq. 1); Appendix B; Appendix H (line 590-591)\n- **问题**: 所有条件使用固定的 λ₀=0.01 和 exponential decay。Gradient flow 效应可能高度依赖此选择——更大的 λ₀ 可能产生质性不同的结果。论文在 Limitations (Appendix H) 中承认 \"we did not sweep this hyperparameter\"，但正文结论未体现此限制。论文关于\"auxiliary spatial supervision\"的结论实际上是关于\"λ₀=0.01 的 auxiliary spatial supervision\"的结论。\n- **建议**: 至少测试 2-3 个 λ₀ 值（如 0.001, 0.01, 0.1）以验证结论的鲁棒性。\n\n---\n\n## 小问题（不影响接收）\n\n- **m1**: 碰撞检测阈值（L1 displacement > 10⁻³）的敏感度未分析。建议在 appendix 中补充 10⁻², 10⁻⁴ 下的结果。\n- **m2**: 仅测试 occupancy prediction 一种辅助任务。标题和结论泛指\"auxiliary spatial supervision\"但实际只测试了一种实例。Depth prediction、semantic segmentation 等可能行为不同。\n- **m3**: Limitations section 似乎仅在 Appendix H（page 18），主文 8 页内未见独立的 Limitations 小节。CoRL 2026 要求 Limitations 计入正文 8 页限制。建议确认格式合规。\n- **m4**: Section 4.2 中 \"Full OCC-LN reaches 0.773, above Vanilla\" 的表述需要核实——如果 Vanilla CAR=0.787，则 0.773 低于 Vanilla，非\"above\"。若数字准确，此为事实性错误。\n\n---\n\n## Questions to Authors\n\n**Q1.** ANOVA 交互项 p=0.753，论文解读为 \"confirms additive main effects\"（Appendix F），但全文主叙事是 normalization-dependent（conditional）effect。请解释如何调和这两者？如果确认为 additive effects，论文的 central finding 应如何 reframe？\n\n**Q2.** Cohen's d = −0.50 在 abstract 中标注为 \"large\"，但 Cohen (1988) 标准下 d=0.50 为 medium。请确认使用的是哪套基准？\n\n**Q3.** 是否考虑过 permutation test 作为 ANOVA 的非参数替代？在 n=3-4 时，参数化假设的可验证性极低。\n\n**Q4.** Gradient orthogonality（Section 4.3）与 gradient flow harmful（Section 4.2）之间的矛盾如何解释？正交的梯度通过什么具体机制造成安全性下降？\n\n**Q5.** 如果将 supplementary conditions 全部用 v2 codebase 重新运行，结论是否会改变？是否有计划补充这些实验？\n\n**Q6.** λ₀=0.01 是如何选定的？是否有 preliminary experiments 支持这个选择？\n\n---\n\n## Missing References\n\n1. 论文缺少关于 factorial experimental design 在 ML/robotics 领域应用的方法论参考。建议引用相关统计实验设计的基础文献（如 Montgomery, \"Design and Analysis of Experiments\"）以 ground 方法论选择。\n2. 关于小样本 ANOVA 的局限性和替代方案，建议引用 permutation test 相关文献（如 Anderson, 2001, \"Permutation tests for univariate or multivariate analysis of variance and regression\"）。\n3. 论文讨论 BN running statistics 与 distributional shift 的关系（Section 5），但未引用 BN 在 fine-tuning 场景下已知问题的文献（如 Li et al., 2016, \"Revisiting Batch Normalization For Practical Domain Adaptation\"；Ioffe, 2017, \"Batch Renormalization\"）。\n\n---\n\n## 主要优势总结\n\n1. 研究问题高度 relevant 且 understudied\n2. Factorial design 比常见 ablation 更有方法论原则性\n3. 负面结果对社区有实际参考价值\n4. Limitations 报告诚实全面\n5. 补充分析（CKA、gradient dynamics、per-task）提供了有意义的分析深度\n\n## 总结判断\n\n这篇论文问了一个好问题，用了比较好的实验设计框架，但执行层面存在三个相互关联的根本问题：(1) 中心主张（交互效应）与统计结果（additive 效应）矛盾；(2) v1/v2 codebase confound 污染了近半数条件的比较；(3) n=3-4 的样本量不足以可靠支撑任何定量结论。这三个问题不是各自独立的——低 power 使得 interaction 检测不可靠，而 codebase confound 使得即使增加 power 也无法挽救 v1 条件的结论。建议作者在 resubmission 前：统一到 v2 codebase 重新运行所有条件、增加 seeds 至 n≥8、将叙事从 interaction 改为 additive main effects（或提供更强的 interaction 证据）。\n",
+  "reviewer_id": "1",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "tool_args": {
+    "text": "\n# Reviewer 1 — Round 1 审稿意见\n\n## 论文信息\n- **标题**: Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? An Empirical Investigation\n- **目标 venue**: CoRL 2026\n- **审查侧重**: 方法与实验严谨性\n\n---\n\n## 总体评分\n\n**Overall**: 3/5（Borderline — lean reject）\n\n**一句话总结**: 研究问题重要、实验设计有原则性，但中心主张（normalization-dependent gradient flow effect）与论文自身统计分析结果存在根本性矛盾——ANOVA 交互项不显著（p=0.753）却被叙述为条件性效应，加上 v1/v2 codebase 混淆和严重不足的统计效力，当前证据不足以支撑论文的核心结论。\n\n## 官方维度打分（基于 CoRL review form: Originality, Quality, Clarity, Significance, Relevance, Limitations）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Originality | 3/5 | 研究问题（辅助空间监督是否改善安全性）新颖且重要；2×2 factorial 设计在 VLA 领域较少见；但分析框架本身是标准的 |\n| Quality | 2/5 | 统计结果与文字叙述之间存在根本矛盾（见 C1）；v1/v2 confound（见 C2）；统计效力严重不足（见 C3） |\n| Clarity | 4/5 | 论文组织清晰，2×2 设计描述明确，Figure 1 综述有效；但 additive effects 被错误框架为 conditional effects（见 C1） |\n| Significance | 3/5 | 关于辅助监督与安全性的负面结果对社区有价值，但当前发现因统计局限性太初步，难以改变实践 |\n| Relevance | 4/5 | 直接针对 robot learning 中的 VLA 安全问题，高度契合 CoRL scope |\n| Limitations | 4/5 | Appendix H 的 Limitations 部分诚实且全面，按 CoRL guidelines 对诚实报告局限性应予认可 |\n\n---\n\n## Strengths\n\n**S1. 重要且understudied的研究问题**\n论文聚焦于\"辅助空间监督是否真正改善安全性（碰撞规避）\"而非仅关注任务成功率，这是 VLA 部署中一个实际重要但缺乏系统研究的问题。大多数现有工作（如 SpatialVLA [10], DepthVLA [9]）声称空间表征有益但未隔离其安全效应。\n\n**S2. 原则性的 factorial 实验设计**\n使用 2×2 factorial（gradient flow × normalization type）比 robotics 论文中常见的 one-variable-at-a-time ablation 更有方法论优势，能同时估计主效应和交互效应。这种实验设计的选择体现了作者的方法论意识。\n\n**S3. 负面结果的呈现有 nuance**\n论文不是简单报告\"辅助监督无效\"，而是识别了具体的机制条件（normalization type、gradient flow）。即使统计上有问题（见 Weaknesses），这种分析深度本身有价值。\n\n**S4. 丰富的补充分析**\nCKA 分析（Section 4.3, Appendix D）、per-layer gradient 分析（Figure 3）、per-task breakdown（Appendix A, Table 4）、temporal dynamics（Appendix D.3）提供了超越基本 factorial 结果的分析深度。\n\n**S5. 诚实的 limitations 报告**\n论文公开讨论了 v1/v2 codebase 差异、小样本量、阈值敏感性等问题（Appendix E, H）。CoRL guidelines 明确要求 reviewers 对诚实报告 limitations 给予认可。\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**C1** [Critical] **中心主张与统计分析结果之间的根本矛盾**\n\n- **具体位置**: Abstract; Section 4.2; Appendix F (Table 6)\n- **问题**: 论文的核心叙事是 gradient flow 的效应*取决于* normalization type——\"gradient flow is harmful under BatchNorm but benign under LayerNorm\"（Section 4.2）。这在统计学上是一个**交互效应（interaction）**。然而，论文自身的 2×2 ANOVA（Appendix F, Table 6）报告交互项**完全不显著**：F(1,10)=0.10, p=0.753, η²=0.010。论文正确地承认这\"confirms additive main effects\"。\n\n  但如果效应是 additive 的，那么 gradient flow 在两种 normalization 下应该有**相同方向和相似幅度**的效应——不是\"under BN harmful, under LN benign\"。从 cell means 看：BN 下 gradient flow penalty ≈ −3.4pp（Full OCC-BN 0.727 vs. Detach-BN 0.761），LN 下 ≈ −2.9pp（Full OCC-LN 0.773 vs. Detach-LN 0.802）。这两个 penalty 幅度相近，与 ANOVA 判定的 additive pattern 一致。\n\n  论文将 LN 条件下 gradient flow 描述为\"benign\"，很可能是因为 LN 的*基线更高*（normalization 主效应），使得加了 penalty 后仍接近 Vanilla baseline——但这不是 gradient flow 在 LN 下\"无害\"，而是 LN 本身更好。这是一个**框架性错误**：additive main effects 被错误叙述为 conditional/moderated effects。\n\n  Figure 2（page 7）的交互图中两条线近似平行，视觉上也证实了 additive pattern，与文字叙述形成矛盾。\n\n- **为什么影响接收**: 这直接关系到论文的 central finding。如果正确解读是\"gradient flow 和 normalization 各自独立影响安全性\"（additive），而非\"gradient flow 的效应取决于 normalization type\"（interaction），论文的标题暗示、abstract、Section 4.2 的核心叙事都需要根本性重写。\n- **建议修改方向**: (1) 将叙事从 interaction framing 改为 additive main effects framing；(2) 明确说明 LN 下 gradient flow penalty 与 BN 下幅度相似，LN 表现更好是因为 normalization 主效应而非 gradient flow 无害；(3) 如果坚持 interaction 叙事，需要提供更强的统计证据（增加样本量或使用针对交互效应的 targeted test）。\n\n---\n\n**C2** [Critical] **v1/v2 codebase confound 破坏跨条件比较**\n\n- **具体位置**: Appendix E; Table 1; Section 4.1\n- **问题**: 论文承认（Appendix E）从 v1 到 v2 codebase 切换导致**同一条件** CAR 偏移约 8.6pp。核心 2×2 factorial 的 4 个条件使用 v2 代码，但 5 个 supplementary conditions（Random OCC、不同 spatial content 变体等）仍使用 v1 代码。Table 1 将所有 12 个条件呈现为统一设计，Section 4.1 从跨 v1/v2 条件中得出结论（如\"Spatial label content showed no detectable effect on outcomes\"——但这些 spatial content 条件是 v1，而 factorial cells 是 v2）。\n\n  8.6pp 的 codebase 效应与论文报告的最大实验效应（~5-6pp）在同一数量级甚至更大。任何跨版本的比较都可能将 codebase 差异误归因于实验操纵。\n\n- **为什么影响接收**: 这意味着论文约 40% 的条件（5/12）受到系统性 confound 的影响，涉及这些条件的所有结论（包括 spatial content 不重要的发现）的可靠性存疑。\n- **建议修改方向**: (1) 在 Table 1 中明确标注每个条件的 codebase 版本（v1/v2）；(2) 所有涉及 v1 条件的分析都加上显著的 caveat；(3) 最好将所有 supplementary conditions 用 v2 重新运行；(4) 如果无法重新运行，至少应将 v1 结论与 v2 factorial 结论明确分开呈现。\n\n---\n\n**C3** [Critical] **统计效力严重不足，效应量估计不可靠**\n\n- **具体位置**: Section 3.2; Appendix F; Abstract\n- **问题**: 每个 cell n=3-4（总共 14 observations），2×2 ANOVA 残差 df=10。对于 medium effect size（Cohen's f=0.25），在 α=0.05 下的统计功效很可能 <50%。这意味着：\n  \n  (a) **非显著结果不能解读为\"无效应\"**：gradient flow 主效应 p≈0.30（不显著）不意味着 gradient flow 没有效应，只是当前设计无力检测到。\n  \n  (b) **效应量点估计的置信区间极宽**：n=3-4 时 Cohen's d 的 95% CI 约为 ±1.0-1.5。论文 abstract 报告 d=−0.50 并标注为\"large\"——但 CI 可能覆盖从 negligible 到 very large 的全部范围，点估计本身几乎没有信息量。\n  \n  (c) **交互效应的检测更需要大样本**：交互效应通常需要主效应 4 倍的样本量才能达到同等 power。n=3-4 对交互效应的 power 可能 <20%，因此 C1 中提到的交互不显著可能也是 Type II error——但论文不能在 power 不足时同时声称\"交互不显著（confirms additive）\"又叙述交互效应。\n  \n- **为什么影响接收**: 论文的所有定量结论（包括效应量大小、显著性判断、additive vs. interaction 的判断）都受到 low power 的根本限制。当前样本量下，几乎任何合理的结论都无法以足够的统计置信度支撑。\n- **建议修改方向**: (1) 提供正式的 post-hoc power analysis（报告在观测效应量下的实际 power）；(2) 将 Cohen's d 点估计配以 95% CI；(3) 增加 seeds 至 n≥8-10 per cell；(4) 考虑使用 Bayesian analysis（报告 Bayes Factor）——在小样本下，BF 比 p-value 更适合区分\"无效应\"和\"证据不足\"。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [Major] **Cohen's d 基准标签可能系统性膨胀**\n\n- **具体位置**: Abstract; Section 4.1; Section 4.2\n- **问题**: Abstract 中将 Cohen's d = −0.50 标注为\"large\"。按照 Cohen (1988) 的标准基准（|d|=0.2 small, 0.5 medium, 0.8 large），d=0.50 应为 **medium** 而非 large。如果论文中多处使用了相同的膨胀标签，这会系统性地夸大发现的实际效应大小。\n- **建议**: 严格按照 Cohen (1988) 标准标注，或如果使用其他领域特定标准，需明确说明并引用依据。\n\n**W2** [Major] **ANOVA 前提假设在 n=3-4 下不可验证**\n\n- **具体位置**: Appendix F\n- **问题**: 2×2 ANOVA 要求正态性和方差齐性。n=3-4 下，Shapiro-Wilk 检验几乎没有统计效力（无法可靠拒绝非正态分布），Levene 检验同理。论文使用参数化 ANOVA 但未讨论这些假设是否合理，也未提供非参数替代方案（如 permutation test 或 aligned rank transform）。\n- **建议**: (1) 报告 Shapiro-Wilk 和 Levene 检验结果（即使 power 低）；(2) 补充 permutation-based ANOVA 作为 robustness check；(3) 在正文讨论为什么参数化假设在此设置下是合理的（或不合理的）。\n\n**W3** [Major] **梯度正交性发现与 gradient flow 有害的主张存在张力**\n\n- **具体位置**: Section 4.3; Appendix D.1\n- **问题**: Section 4.3 报告\"action-auxiliary gradient cosine similarity is close to zero across all layers\"，即梯度几乎正交。但如果辅助任务梯度和动作任务梯度不直接冲突，gradient flow 如何造成安全性下降？论文承认\"mechanism remains open\"，提出的解释（\"indirect effect through modification of the LoRA optimization trajectory under a dual-objective loss landscape\"）纯属猜测，无任何支撑证据。\n  \n  这里存在逻辑断裂：(a) 梯度正交 → 不应互相干扰；(b) 但论文声称有干扰。如果不能解释这个矛盾，关于 gradient flow 机制的整个叙事都是 under-specified 的。\n- **建议**: 要么提供更具体的机制证据（如分析 BN running statistics 在有/无 gradient flow 时的变化、LoRA rank utilization 的差异、loss landscape 曲率分析），要么弱化因果机制的叙述，仅保留观测性描述。\n\n**W4** [Major] **单一 benchmark 限制泛化性**\n\n- **具体位置**: Section 3.2; Section 6\n- **问题**: 仅使用 SafeLIBERO Level I（10 个任务），均为基础操作任务。Level II/III 的任务涉及更长时间跨度、更复杂的操作序列和不同的约束类型。论文的结论（\"auxiliary spatial supervision does not improve safety\"）以一般性语言撰写，但证据基础仅限于一个 benchmark 的最低难度级别。\n- **建议**: (1) 至少在若干 Level II/III 任务上验证关键发现是否 replicate；(2) 如果无法扩展，在结论中明确限定为\"SafeLIBERO Level I\"的发现。\n\n**W5** [Major] **固定损失权重 λ₀=0.01，缺乏超参数敏感度分析**\n\n- **具体位置**: Section 3.1 (Eq. 1); Appendix B; Appendix H (line 590-591)\n- **问题**: 所有条件使用固定的 λ₀=0.01 和 exponential decay。Gradient flow 效应可能高度依赖此选择——更大的 λ₀ 可能产生质性不同的结果。论文在 Limitations (Appendix H) 中承认 \"we did not sweep this hyperparameter\"，但正文结论未体现此限制。论文关于\"auxiliary spatial supervision\"的结论实际上是关于\"λ₀=0.01 的 auxiliary spatial supervision\"的结论。\n- **建议**: 至少测试 2-3 个 λ₀ 值（如 0.001, 0.01, 0.1）以验证结论的鲁棒性。\n\n---\n\n## 小问题（不影响接收）\n\n- **m1**: 碰撞检测阈值（L1 displacement > 10⁻³）的敏感度未分析。建议在 appendix 中补充 10⁻², 10⁻⁴ 下的结果。\n- **m2**: 仅测试 occupancy prediction 一种辅助任务。标题和结论泛指\"auxiliary spatial supervision\"但实际只测试了一种实例。Depth prediction、semantic segmentation 等可能行为不同。\n- **m3**: Limitations section 似乎仅在 Appendix H（page 18），主文 8 页内未见独立的 Limitations 小节。CoRL 2026 要求 Limitations 计入正文 8 页限制。建议确认格式合规。\n- **m4**: Section 4.2 中 \"Full OCC-LN reaches 0.773, above Vanilla\" 的表述需要核实——如果 Vanilla CAR=0.787，则 0.773 低于 Vanilla，非\"above\"。若数字准确，此为事实性错误。\n\n---\n\n## Questions to Authors\n\n**Q1.** ANOVA 交互项 p=0.753，论文解读为 \"confirms additive main effects\"（Appendix F），但全文主叙事是 normalization-dependent（conditional）effect。请解释如何调和这两者？如果确认为 additive effects，论文的 central finding 应如何 reframe？\n\n**Q2.** Cohen's d = −0.50 在 abstract 中标注为 \"large\"，但 Cohen (1988) 标准下 d=0.50 为 medium。请确认使用的是哪套基准？\n\n**Q3.** 是否考虑过 permutation test 作为 ANOVA 的非参数替代？在 n=3-4 时，参数化假设的可验证性极低。\n\n**Q4.** Gradient orthogonality（Section 4.3）与 gradient flow harmful（Section 4.2）之间的矛盾如何解释？正交的梯度通过什么具体机制造成安全性下降？\n\n**Q5.** 如果将 supplementary conditions 全部用 v2 codebase 重新运行，结论是否会改变？是否有计划补充这些实验？\n\n**Q6.** λ₀=0.01 是如何选定的？是否有 preliminary experiments 支持这个选择？\n\n---\n\n## Missing References\n\n1. 论文缺少关于 factorial experimental design 在 ML/robotics 领域应用的方法论参考。建议引用相关统计实验设计的基础文献（如 Montgomery, \"Design and Analysis of Experiments\"）以 ground 方法论选择。\n2. 关于小样本 ANOVA 的局限性和替代方案，建议引用 permutation test 相关文献（如 Anderson, 2001, \"Permutation tests for univariate or multivariate analysis of variance and regression\"）。\n3. 论文讨论 BN running statistics 与 distributional shift 的关系（Section 5），但未引用 BN 在 fine-tuning 场景下已知问题的文献（如 Li et al., 2016, \"Revisiting Batch Normalization For Practical Domain Adaptation\"；Ioffe, 2017, \"Batch Renormalization\"）。\n\n---\n\n## 主要优势总结\n\n1. 研究问题高度 relevant 且 understudied\n2. Factorial design 比常见 ablation 更有方法论原则性\n3. 负面结果对社区有实际参考价值\n4. Limitations 报告诚实全面\n5. 补充分析（CKA、gradient dynamics、per-task）提供了有意义的分析深度\n\n## 总结判断\n\n这篇论文问了一个好问题，用了比较好的实验设计框架，但执行层面存在三个相互关联的根本问题：(1) 中心主张（交互效应）与统计结果（additive 效应）矛盾；(2) v1/v2 codebase confound 污染了近半数条件的比较；(3) n=3-4 的样本量不足以可靠支撑任何定量结论。这三个问题不是各自独立的——低 power 使得 interaction 检测不可靠，而 codebase confound 使得即使增加 power 也无法挽救 v1 条件的结论。建议作者在 resubmission 前：统一到 v2 codebase 重新运行所有条件、增加 seeds 至 n≥8、将叙事从 interaction 改为 additive main effects（或提供更强的 interaction 证据）。\n",
+    "reviewer_id": "1",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 177 · 2026-05-28T11:44:00.163575+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "elapsed_ms": 3817
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 178 · 2026-05-28T11:44:06.655104+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 179 · 2026-05-28T11:44:06.755915+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 180 · 2026-05-28T11:44:10.419115+00:00_
+
+called mcp__agent-ml-research__cleanup_pdf_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__cleanup_pdf_images</summary>
+
+```json
+{
+  "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+  "tool_args": {
+    "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 181 · 2026-05-28T11:44:10.469746+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"message\": \"目录不存在，无需清理\", \"deleted\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 182 · 2026-05-28T11:44:20.422797+00:00_
+
+Round 1 审稿意见已完成并提交。
+
+核心发现摘要：
+
+1. **[Critical] 中心主张与统计结果矛盾** — 论文叙述 normalization-dependent（交互）效应，但 ANOVA 交互项 p=0.753 完全不显著，实际为 additive main effects。LN 下 gradient flow 看似"无害"只是因为 LN 基线更高，penalty 幅度与 BN 下相近。
+2. **[Critical] v1/v2 codebase confound** — 同条件 CAR 偏移 8.6pp，5/12 条件用 v1 代码，跨版本比较不可靠。
+3. **[Critical] 统计效力不足** — n=3-4/cell，检测 medium effect 的 power <50%，Cohen's d 的 CI 极宽，点估计几乎无信息量。
+
+Overall 评分 3/5（Borderline lean reject），建议统一 codebase、增加样本量、修正 interaction→additive 叙事后重新投稿。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1"
+}
+```
+
+</details>
+
+---
+
+## Round 4
+
+16 recorded events
+
+### User
+
+_source line 183 · 2026-05-28T11:46:08.904234+00:00_
+
+[Round 1 审稿请求]:
+## Step 2 — 交叉分享：Reviewer 2 的完整审稿意见
+
+请逐条回应 Reviewer 2 的每个 Must-Fix 和 Should-Fix 问题。对每条标注：
+- **[AGREE]** — 同意该观点，说明理由
+- **[REBUT]** — 不同意或有补充，提供证据（引用具体 Section/Table/Figure）
+
+特别关注以下你们可能有分歧或互补的点：
+1. Reviewer 2 的 N1/N2（格式问题：Limitations 位置 + 页数超限）——你在 m3 中也提到了类似问题，是否同意这是 desk rejection 级别？
+2. Reviewer 2 的 N3（"v2 verification pending"）——你在 C2 中从 codebase confound 角度分析了此问题，Reviewer 2 从可信度角度分析，两者是否一致？
+3. Reviewer 2 的 W3（novelty 问题：BN statistics corruption 是 multi-task learning 已知效应）——你的 W3 指出梯度正交与 gradient flow harmful 的矛盾，这两个观点是否互补？
+4. Reviewer 2 的 W5（Discussion/Results 重复）——你的审稿是否有类似观察？
+
+---
+
+以下是 Reviewer 2 的完整审稿意见：
+
+## Reviewer 2 审稿意见 — Round 1（贡献度与完整性）
+
+**Overall**: 4/10（倾向拒稿）
+
+**一句话总结**: 研究问题有价值、实验设计方法论较为严谨，但存在格式硬伤（Limitations 不在正文、页数超限）、核心发现的 "v2 verification pending" 严重削弱可信度，且单一模型/单一基准测试的范围过窄难以支撑其一般性声明。
+
+### Must-Fix 问题
+
+**N1** [Critical] **Limitations section 不在正文，违反 CoRL 2026 格式要求**
+CoRL 2026 Author Instructions 明确要求 Limitations section 计入正文 8 页。本文将 Limitations 完全放在 Appendix H（pp.18–19），属于格式违规，可能导致 desk rejection。
+
+**N2** [Critical] **正文页数超过 8 页**
+Sections 1–6 延伸至第 9 页（Conclusion 位于 p9 上方约 1/3），超出 CoRL 8 页限制约 0.3 页。加上若将 Limitations 移入正文，页数压力更大。
+
+**N3** [Critical] **"v2 verification pending" 严重削弱核心发现可信度**
+Abstract 和 Conclusion 中 "spatial label content showed no detectable effect on safety in preliminary v1 experiments (v2 verification pending)" 表明作者对此结论的置信度不足。对于实证论文，呈现未经验证的结果是根本性问题。
+
+### Should-Fix 问题
+
+**W1** [Major] 泛化性受限：单模型(OpenVLA-7B) × 单基准(SafeLIBERO L1) × 单训练配方(LoRA rank 32)，但 practical guidelines 以一般性口吻呈现。
+
+**W2** [Major] 样本量不足（n=3-4/cell），Cohen's d 的 95% CI 在小样本下极宽，点估计可靠性存疑。
+
+**W3** [Major] Novelty 定位问题：normalization-gradient flow 交互本质上是 multi-task learning 已知的 BN statistics corruption 效应在 VLA 场景的复现，novelty 有限。未充分区分本文发现与 PCGrad/CAGrad/ForkMerge 等已知效应的关系。
+
+**W4** [Major] Related Work 遗漏 MGDA (Sener & Koltun, 2018)、BN domain shift 专门文献（AdaBN, DSBN）等与核心发现直接相关的参考。
+
+**W5** [Major] Discussion（Section 5）与 Results（Section 4）内容重复——"Normalization independently affects safety"、"Additive protection model"、"Mechanism remains open" 在两个 section 中重复讨论，直接加剧页数超限问题。
+
+### Missing References
+1. Sener & Koltun (2018) — Multi-Task Learning as Multi-Objective Optimization (NeurIPS)
+2. Li et al. (2017/2018) — Revisiting Batch Normalization for Practical Domain Adaptation
+3. Chang et al. (2019) — Domain-Specific Batch Normalization (CVPR)
+4. 3D-CAVLA (2025) — arXiv:2505.05800
+5. Kendall et al. (2018) — Multi-Task Learning Using Uncertainty to Weigh Losses (CVPR)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "source": "review_reviewer_1"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 184 · 2026-05-28T11:46:24.873803+00:00_
+
+called mcp__agent-ml-research__pdf_to_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/submitted.pdf",
+  "project": "occsafe_vla",
+  "pages": "8-9",
+  "dpi": "150"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "tool_args": {
+    "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/submitted.pdf",
+    "project": "occsafe_vla",
+    "pages": "8-9",
+    "dpi": "150"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 185 · 2026-05-28T11:46:25.174987+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p8.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 389.0}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p9.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 337.1}], \"total_pages\": 19, \"rendered_pages\": 2, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 186 · 2026-05-28T11:46:29.795210+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p8.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p8.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 187 · 2026-05-28T11:46:29.997883+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p9.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p9.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 188 · 2026-05-28T11:46:30.251248+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 456
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 189 · 2026-05-28T11:46:30.554865+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 556
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 190 · 2026-05-28T11:46:44.466826+00:00_
+
+called mcp__agent-ml-research__pdf_to_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/submitted.pdf",
+  "project": "occsafe_vla",
+  "pages": "1-2",
+  "dpi": "165"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "tool_args": {
+    "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/submitted.pdf",
+    "project": "occsafe_vla",
+    "pages": "1-2",
+    "dpi": "165"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 191 · 2026-05-28T11:46:44.819846+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p1.png\", \"width\": 1403, \"height\": 1815, \"size_kb\": 361.9}, {\"page\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p2.png\", \"width\": 1403, \"height\": 1815, \"size_kb\": 417.0}], \"total_pages\": 19, \"rendered_pages\": 2, \"dpi\": 165, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "elapsed_ms": 353
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 192 · 2026-05-28T11:46:48.770746+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p1.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images/submitted_p1.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 193 · 2026-05-28T11:46:49.173676+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "Read",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 194 · 2026-05-28T11:49:07.540923+00:00_
+
+called mcp__agent-ml-research__review_reviewer_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director</summary>
+
+```json
+{
+  "text": "\n# Reviewer 1 — 交叉回应 Reviewer 2 审稿意见\n\n---\n\n## Must-Fix 逐条回应\n\n### [AGREE] R2-N1: Limitations section 不在正文\n\n同意这是真实的格式违规。我在 m3 中将其列为 minor issue，但经重新审视后上调严重程度。CoRL 2026 明确要求 \"Papers are limited to 8 pages, including the limitations section\"，而本文 Limitations 仅在 Appendix H（pp.18–19），正文 8 页内无独立 Limitations 小节。Section 5 (Discussion) 虽然零散讨论了一些局限性，但不构成完整的 Limitations section。\n\n**补充**：是否构成 desk rejection 级别，我的判断是\"边界情况\"。CoRL PC 对格式的执行力度因年而异；某些 PC 会给 conditional format fix 机会。但如果严格执行，N1 + N2 组合确实可能触发 desk rejection。我倾向将其定为 **hard must-fix**，但不确定是否为 automatic desk rejection。\n\n### [AGREE] R2-N2: 正文页数超限\n\n经重新核实确认：Section 6 (Conclusion) 起始于 page 9 顶部约 1/3 处，正文超出 8 页限制约 0.3 页。结合 N1（若将 Limitations 移入正文会进一步加剧页数压力），格式问题确实严峻。\n\n**补充**：Reviewer 2 的 W5（Discussion/Results 重复）直接指向了解决方案——压缩 Section 5 中与 Section 4 重复的内容可能同时解决 N2 的页数超限和为 N1 的 Limitations 移入腾出空间。三个问题（N1, N2, W5）是联动的。\n\n### [AGREE] R2-N3: \"v2 verification pending\" 削弱可信度\n\n经 165 DPI 重新阅读 abstract 确认，原文明确写道：\"Spatial label content … showed no detectable effect on safety in preliminary v1 experiments (v2 verification pending)\"。\n\n我完全同意 Reviewer 2 的判断：在一篇实证论文的 abstract 中公开标注核心结论之一为 \"verification pending\"，这是根本性的可信度问题。\n\n**与我的 C2 的关系**：Reviewer 2 从**可信度**角度分析此问题（发表未验证结果不可接受），我的 C2 从**统计有效性**角度分析（v1/v2 codebase confound 使跨版本比较无效，8.6pp 的版本效应与实验效应同量级）。两个角度**完全一致且互补**：\n- R2-N3 指出：不应发表自认为未验证的结论\n- R1-C2 指出：即使不标注 \"pending\"，v1 条件的结论在统计上也不可靠\n\n合并后的判断更强：spatial content 相关结论应要么在 v2 下重新验证后再报告，要么从 abstract/conclusion 中删除并仅在 appendix 中作为 preliminary observation 报告。\n\n---\n\n## Should-Fix 逐条回应\n\n### [AGREE] R2-W1: 泛化性受限\n\n与我的 W4 一致。单模型（OpenVLA-7B）、单基准（SafeLIBERO L1）、单训练配方（LoRA rank 32, OFT recipe）确实限制了结论的泛化性。我进一步补充：论文使用固定 λ₀=0.01（我的 W5），这是另一个未探索的超参数维度。\n\n**唯一细微分歧**：论文 Discussion (Section 5) 中确实提到了 \"LoRA×safety-specificity caveat\" 和架构范围限制，说明作者意识到了这一问题。问题不在于缺乏意识，而在于 practical guidelines 的措辞过于一般化（如 \"avoid combining BN with gradient flow\"），超出了证据所能支撑的范围。建议将 guidelines 限定为 \"on OpenVLA-7B with LoRA rank 32 and SafeLIBERO L1\"。\n\n### [AGREE] R2-W2: 样本量不足\n\n与我的 C3 一致，但我将其列为 **Critical** 而非 Major。理由：n=3-4 per cell 不仅导致 Cohen's d 的 CI 极宽（Reviewer 2 的观点），更根本地导致 (a) ANOVA 无法可靠区分 additive 和 interaction effects（我的 C1 的前提），(b) normality/homoscedasticity 假设不可验证（我的 W2）。这不是一个可以\"在 limitations 中 acknowledge 就够了\"的问题，而是影响论文所有定量结论可靠性的系统性缺陷。\n\n### [AGREE with nuance] R2-W3: Novelty 问题 — BN statistics corruption 是已知效应\n\nReviewer 2 指出 normalization-gradient flow 交互本质上是 MTL 中已知的 BN running statistics corruption 效应在 VLA 场景的复现，novelty 有限。这是一个有洞察力的观点，我在 Round 1 中未从此角度分析。\n\n**与我的 W3 的互补关系**：\n- **R2-W3**（外部视角）：这个效应在 MTL 文献中已知（PCGrad, CAGrad, ForkMerge, BN domain shift 文献均有讨论），novelty 受限\n- **R1-W3**（内部一致性视角）：论文自身的 gradient orthogonality 发现（Section 4.3, action-auxiliary cosine similarity ≈ 0）与 gradient flow harmful 的主张存在逻辑矛盾——如果梯度正交不冲突，BN statistics corruption 才是更可能的机制，但论文未充分建立这个连接\n\n两个观点合并后的推论更有力：论文声称的 \"normalization-dependent gradient flow effect\" 要么 (a) 不是真正的交互效应——ANOVA 说是 additive（我的 C1），要么 (b) 如果是交互效应，其机制（BN statistics corruption）在 MTL 中已知（R2-W3），且论文提出的替代机制（gradient interference）与自身数据矛盾（我的 W3）。\n\n**细微保留**：即使机制已知，在 VLA safety 这一特定领域的系统性实证测量仍可能有价值——前提是实验执行质量足够高。当前论文的统计问题（C1-C3）削弱了这一实证贡献的价值。\n\n### [AGREE] R2-W4: 缺失关键参考文献\n\n与我的 Missing References 部分一致。特别是：\n- **Sener & Koltun (2018) MGDA**：直接相关于 multi-objective gradient 处理\n- **Li et al. (2017) / Chang et al. (2019) BN domain shift**：我也提到了需要引用 BN fine-tuning 问题的文献\n- **Kendall et al. (2018) uncertainty weighting**：与辅助任务权重（λ₀）直接相关\n\n我补充一个 Reviewer 2 未提到的遗漏：**permutation test / nonparametric ANOVA 文献**（如 Anderson, 2001）——在 n=3-4 的设置下方法论选择需要更好的 grounding。\n\n### [AGREE] R2-W5: Discussion/Results 内容重复\n\n这是我 Round 1 中**未明确指出**的有效观察。经回顾确认：\n- \"Normalization independently affects safety\" 在 Section 4.2 和 Section 5 中均有讨论\n- \"Mechanism remains open\" 在 Section 4.3 和 Section 5 中重复出现\n- \"Additive protection model\" 的阐述在 Section 4.2 和 Section 5 中重叠\n\n这种冗余在页数未超限的情况下可以视为强调，但在当前 N2（已超限 ~0.3 页）的背景下，直接加剧了格式问题。压缩 Section 5 是同时解决 N2 和 N1 的最直接路径。\n\n---\n\n## Director 指定关注点总结\n\n| 对比点 | R1 观点 | R2 观点 | 关系 |\n|--------|---------|---------|------|\n| Limitations 位置 + 页数 | m3 (minor) → 上调为 serious format issue | N1+N2 (Critical, desk rejection) | 一致，我上调严重程度 |\n| v1/v2 问题 | C2: codebase confound (统计角度) | N3: \"pending\" credibility (可信度角度) | 互补，指向同一根本问题 |\n| Novelty / 机制 | W3: gradient orthogonality 与 harmful 矛盾 | W3: BN corruption 是 MTL 已知效应 | 互补，合并后论证更强 |\n| Discussion 重复 | 未明确指出 | W5 (Major) | 同意，补充认可 |\n\n## 总体判断是否因交叉审稿调整\n\n我的总体评分维持 **3/5 (Borderline, lean reject)**，但对以下两点的严重程度上调：\n1. 格式问题从 minor 上调为 **must-fix**（受 R2-N1/N2 影响）\n2. Novelty 维度评分从 3/5 下调为 **2.5/5**（受 R2-W3 关于 MTL 已知效应的论点影响）\n\nReviewer 2 给出 4/10（≈2/5），我给 3/5。差异主要在于：我对研究问题本身的价值给予更多认可（即使执行有问题，系统性地在 VLA 上测试这个问题本身有意义），而 Reviewer 2 更多从 novelty 和完整性角度评估。两份审稿的核心诊断一致：统计基础不足以支撑当前 claim 的强度。\n",
+  "reviewer_id": "1",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "tool_args": {
+    "text": "\n# Reviewer 1 — 交叉回应 Reviewer 2 审稿意见\n\n---\n\n## Must-Fix 逐条回应\n\n### [AGREE] R2-N1: Limitations section 不在正文\n\n同意这是真实的格式违规。我在 m3 中将其列为 minor issue，但经重新审视后上调严重程度。CoRL 2026 明确要求 \"Papers are limited to 8 pages, including the limitations section\"，而本文 Limitations 仅在 Appendix H（pp.18–19），正文 8 页内无独立 Limitations 小节。Section 5 (Discussion) 虽然零散讨论了一些局限性，但不构成完整的 Limitations section。\n\n**补充**：是否构成 desk rejection 级别，我的判断是\"边界情况\"。CoRL PC 对格式的执行力度因年而异；某些 PC 会给 conditional format fix 机会。但如果严格执行，N1 + N2 组合确实可能触发 desk rejection。我倾向将其定为 **hard must-fix**，但不确定是否为 automatic desk rejection。\n\n### [AGREE] R2-N2: 正文页数超限\n\n经重新核实确认：Section 6 (Conclusion) 起始于 page 9 顶部约 1/3 处，正文超出 8 页限制约 0.3 页。结合 N1（若将 Limitations 移入正文会进一步加剧页数压力），格式问题确实严峻。\n\n**补充**：Reviewer 2 的 W5（Discussion/Results 重复）直接指向了解决方案——压缩 Section 5 中与 Section 4 重复的内容可能同时解决 N2 的页数超限和为 N1 的 Limitations 移入腾出空间。三个问题（N1, N2, W5）是联动的。\n\n### [AGREE] R2-N3: \"v2 verification pending\" 削弱可信度\n\n经 165 DPI 重新阅读 abstract 确认，原文明确写道：\"Spatial label content … showed no detectable effect on safety in preliminary v1 experiments (v2 verification pending)\"。\n\n我完全同意 Reviewer 2 的判断：在一篇实证论文的 abstract 中公开标注核心结论之一为 \"verification pending\"，这是根本性的可信度问题。\n\n**与我的 C2 的关系**：Reviewer 2 从**可信度**角度分析此问题（发表未验证结果不可接受），我的 C2 从**统计有效性**角度分析（v1/v2 codebase confound 使跨版本比较无效，8.6pp 的版本效应与实验效应同量级）。两个角度**完全一致且互补**：\n- R2-N3 指出：不应发表自认为未验证的结论\n- R1-C2 指出：即使不标注 \"pending\"，v1 条件的结论在统计上也不可靠\n\n合并后的判断更强：spatial content 相关结论应要么在 v2 下重新验证后再报告，要么从 abstract/conclusion 中删除并仅在 appendix 中作为 preliminary observation 报告。\n\n---\n\n## Should-Fix 逐条回应\n\n### [AGREE] R2-W1: 泛化性受限\n\n与我的 W4 一致。单模型（OpenVLA-7B）、单基准（SafeLIBERO L1）、单训练配方（LoRA rank 32, OFT recipe）确实限制了结论的泛化性。我进一步补充：论文使用固定 λ₀=0.01（我的 W5），这是另一个未探索的超参数维度。\n\n**唯一细微分歧**：论文 Discussion (Section 5) 中确实提到了 \"LoRA×safety-specificity caveat\" 和架构范围限制，说明作者意识到了这一问题。问题不在于缺乏意识，而在于 practical guidelines 的措辞过于一般化（如 \"avoid combining BN with gradient flow\"），超出了证据所能支撑的范围。建议将 guidelines 限定为 \"on OpenVLA-7B with LoRA rank 32 and SafeLIBERO L1\"。\n\n### [AGREE] R2-W2: 样本量不足\n\n与我的 C3 一致，但我将其列为 **Critical** 而非 Major。理由：n=3-4 per cell 不仅导致 Cohen's d 的 CI 极宽（Reviewer 2 的观点），更根本地导致 (a) ANOVA 无法可靠区分 additive 和 interaction effects（我的 C1 的前提），(b) normality/homoscedasticity 假设不可验证（我的 W2）。这不是一个可以\"在 limitations 中 acknowledge 就够了\"的问题，而是影响论文所有定量结论可靠性的系统性缺陷。\n\n### [AGREE with nuance] R2-W3: Novelty 问题 — BN statistics corruption 是已知效应\n\nReviewer 2 指出 normalization-gradient flow 交互本质上是 MTL 中已知的 BN running statistics corruption 效应在 VLA 场景的复现，novelty 有限。这是一个有洞察力的观点，我在 Round 1 中未从此角度分析。\n\n**与我的 W3 的互补关系**：\n- **R2-W3**（外部视角）：这个效应在 MTL 文献中已知（PCGrad, CAGrad, ForkMerge, BN domain shift 文献均有讨论），novelty 受限\n- **R1-W3**（内部一致性视角）：论文自身的 gradient orthogonality 发现（Section 4.3, action-auxiliary cosine similarity ≈ 0）与 gradient flow harmful 的主张存在逻辑矛盾——如果梯度正交不冲突，BN statistics corruption 才是更可能的机制，但论文未充分建立这个连接\n\n两个观点合并后的推论更有力：论文声称的 \"normalization-dependent gradient flow effect\" 要么 (a) 不是真正的交互效应——ANOVA 说是 additive（我的 C1），要么 (b) 如果是交互效应，其机制（BN statistics corruption）在 MTL 中已知（R2-W3），且论文提出的替代机制（gradient interference）与自身数据矛盾（我的 W3）。\n\n**细微保留**：即使机制已知，在 VLA safety 这一特定领域的系统性实证测量仍可能有价值——前提是实验执行质量足够高。当前论文的统计问题（C1-C3）削弱了这一实证贡献的价值。\n\n### [AGREE] R2-W4: 缺失关键参考文献\n\n与我的 Missing References 部分一致。特别是：\n- **Sener & Koltun (2018) MGDA**：直接相关于 multi-objective gradient 处理\n- **Li et al. (2017) / Chang et al. (2019) BN domain shift**：我也提到了需要引用 BN fine-tuning 问题的文献\n- **Kendall et al. (2018) uncertainty weighting**：与辅助任务权重（λ₀）直接相关\n\n我补充一个 Reviewer 2 未提到的遗漏：**permutation test / nonparametric ANOVA 文献**（如 Anderson, 2001）——在 n=3-4 的设置下方法论选择需要更好的 grounding。\n\n### [AGREE] R2-W5: Discussion/Results 内容重复\n\n这是我 Round 1 中**未明确指出**的有效观察。经回顾确认：\n- \"Normalization independently affects safety\" 在 Section 4.2 和 Section 5 中均有讨论\n- \"Mechanism remains open\" 在 Section 4.3 和 Section 5 中重复出现\n- \"Additive protection model\" 的阐述在 Section 4.2 和 Section 5 中重叠\n\n这种冗余在页数未超限的情况下可以视为强调，但在当前 N2（已超限 ~0.3 页）的背景下，直接加剧了格式问题。压缩 Section 5 是同时解决 N2 和 N1 的最直接路径。\n\n---\n\n## Director 指定关注点总结\n\n| 对比点 | R1 观点 | R2 观点 | 关系 |\n|--------|---------|---------|------|\n| Limitations 位置 + 页数 | m3 (minor) → 上调为 serious format issue | N1+N2 (Critical, desk rejection) | 一致，我上调严重程度 |\n| v1/v2 问题 | C2: codebase confound (统计角度) | N3: \"pending\" credibility (可信度角度) | 互补，指向同一根本问题 |\n| Novelty / 机制 | W3: gradient orthogonality 与 harmful 矛盾 | W3: BN corruption 是 MTL 已知效应 | 互补，合并后论证更强 |\n| Discussion 重复 | 未明确指出 | W5 (Major) | 同意，补充认可 |\n\n## 总体判断是否因交叉审稿调整\n\n我的总体评分维持 **3/5 (Borderline, lean reject)**，但对以下两点的严重程度上调：\n1. 格式问题从 minor 上调为 **must-fix**（受 R2-N1/N2 影响）\n2. Novelty 维度评分从 3/5 下调为 **2.5/5**（受 R2-W3 关于 MTL 已知效应的论点影响）\n\nReviewer 2 给出 4/10（≈2/5），我给 3/5。差异主要在于：我对研究问题本身的价值给予更多认可（即使执行有问题，系统性地在 VLA 上测试这个问题本身有意义），而 Reviewer 2 更多从 novelty 和完整性角度评估。两份审稿的核心诊断一致：统计基础不足以支撑当前 claim 的强度。\n",
+    "reviewer_id": "1",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 195 · 2026-05-28T11:49:11.762440+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "elapsed_ms": 4221
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 196 · 2026-05-28T11:49:16.274448+00:00_
+
+called mcp__agent-ml-research__cleanup_pdf_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__cleanup_pdf_images</summary>
+
+```json
+{
+  "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+  "tool_args": {
+    "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 197 · 2026-05-28T11:49:16.425489+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"deleted\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/review_round_2/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1",
+  "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 198 · 2026-05-28T11:49:23.646626+00:00_
+
+交叉回应已提交给 Review Director。主要结论：
+
+- **N1/N2（格式）**：同意上调严重程度，从我原来的 minor 升为 must-fix。N1+N2+W5 三个问题联动，压缩 Discussion 是同时解决的最直接路径。
+- **N3（v2 pending）**：与我的 C2 完全互补——R2 从可信度角度、我从统计 confound 角度，指向同一根本问题。
+- **W3（novelty）**：与我的 W3（gradient orthogonality 矛盾）互补，合并后论证更强——论文的核心发现要么不是交互效应（我的 C1），要么是已知 MTL 效应（R2-W3）。
+- **W5（重复）**：认可这是我遗漏的有效观察。
+- 总体评分维持 3/5，但 novelty 维度下调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_faa96524df7d6444f5c8cbc48d5a616b:reviewer_1"
+}
+```
+
+</details>
+
+---

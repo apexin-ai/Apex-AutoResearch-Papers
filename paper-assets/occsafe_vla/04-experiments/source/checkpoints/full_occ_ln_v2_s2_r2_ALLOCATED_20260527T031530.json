@@ -1,0 +1,16 @@
+{
+  "exp_id": "full_occ_ln_v2_s2_r2",
+  "project": "occsafe_vla",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T03:13:57.058Z",
+    "updated_at": "2026-05-27T03:15:29.774Z",
+    "hypothesis": "Rerun of full_occ_ln_v2_s2: Full OCC LN (gradient flow ON, LayerNorm) v2 rebuild, seed 44. Cell 2 data expansion for factorial ANOVA. Process restarted on 10894:cuda:1 after prior run marked DONE prematurely.",
+    "parent": "full_occ_ln_v2_s2"
+  },
+  "timestamp": "2026-05-27T03:15:30.421731+00:00",
+  "trigger": "update_registry"
+}

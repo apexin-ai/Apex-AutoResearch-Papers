@@ -1,0 +1,94 @@
+# agent / loop_2.md
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/agent/loop_2.md`
+- **Structured JSON:** [`3a3c84990f95f3258e25.json`](../../sessions/3a/3a3c84990f95f3258e25.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 2
+reason: idle_timeout
+updated: '2026-05-22T20:25:04+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：cuda:0/1/2/3（两台服务器各 4 卡），不得使用其他编号
+- 服务器白名单：westd-10894、westd-34685，其他服务器不可用
+- westd-34685 磁盘仅 350G 总量（/root/autodl-tmp），save_freq 必须 ≥10000（checkpoint ~15G/个，2500 已导致过磁盘满事故）
+- 清理 checkpoint 时**严禁 rm -rf 整个目录**，必须先 ls 列出内容、确认保留项后逐个删（Director 明确要求，源于 05-22 磁盘满事故中误删 12500_chkpt）
+- 评估必须用 `evaluate_safelibero.py`，**不能**用 `eval_safelibero.py`（后者 ObstacleTracker line 131 缓存 self.sim 导致 CAR=100% 假阳性）
+- `MUJOCO_EGL_DEVICE_ID` 必须匹配物理 GPU 编号
+- torchrun wrapper PID 可能先于子进程退出，cron 需监控实际训练子进程 PID，不是 torchrun PID（05-22 cutoff_s0 cron 误判教训）
+
+### 2. 🖥️ 基础设施快照
+- **westd-34685**: 工作目录 `/root/occsafe_vla`，conda env `occsafe`（`source /root/miniconda3/bin/activate && conda activate occsafe`），磁盘 ~270G 可用 (24%)
+- **westd-10894**: 工作目录 `/root/occsafe_vla`，conda env `occsafe`，磁盘 ~154G 可用 (39%)，checkpoint rotation 脚本已部署运行
+- 模型：OpenVLA base（通过 LoRA rank=32 微调），batch_size=8, lr=5e-4, max_steps=50005
+- Depth 数据：9/10 tasks 已生成（450 demos, 55370 frames, 301MB, 64×64），Task 9 因 HDF5 损坏跳过
+- **活跃 cron（8 个）**：ablation_random_occ_s2, ablation_occ_detach_s2, depth_s0, depth_s1, cutoff_s1, depth_s2, depth_s3, cutoff_s0 — 全部 still running
+- **活跃进程**：
+
+| 服务器 | GPU | 实验 | PID |
+|--------|-----|------|-----|
+| westd-34685 | cuda:0 | cutoff_s0 | 137021 |
+| westd-34685 | cuda:1 | depth_s0 | 131535 |
+| westd-34685 | cuda:2 | depth_s1 | 131682 |
+| westd-34685 | cuda:3 | cutoff_s1 | 131898 |
+| westd-10894 | cuda:0 | ablation_random_occ_s2 | ablation_random_occ_s2 (tmux) |
+| westd-10894 | cuda:1 | ablation_occ_detach_s2 | ablation_occ_detach_s2 (tmux) |
+| westd-10894 | cuda:2 | depth_s2 | 942037 |
+| westd-10894 | cuda:3 | depth_s3 | 942187 |
+
+### 3. 📊 当前状态
+8/8 GPU 满载，全部 RUNNING，save_freq=10000，均有 cron 监控。所有 Worker 均已完成（最近 20 个全 done/cancelled）。
+
+**刚完成的工作**：
+- 论文初稿基本完成：Related Work / Method / Experiment Setup / Results / Discussion / Introduction / Conclusion 均有草稿，45 verified bib entries，Reviewer 审查的 1 Critical + 3 Warning 已修复，LaTeX 编译通过
+- 磁盘满事故处理完毕，两台服务器均部署了 checkpoint rotation 脚本
+- cutoff_s0 cron 误判已修正（torchrun PID vs 子进程 PID 问题）
+
+**等待中**：
+- 8 个实验的 cron 完成回调（ETA: westd-10894 ~May 23 19:00-20:00 UTC, westd-34685 ~May 23 20:00-22:00 UTC）
+- 无 pending Worker 回调，无待处理 Director 决策
+
+### 4. 📋 待办（条件触发式）
+- **ablation_random_occ_s2 或 ablation_occ_detach_s2 完成 → spawn Worker 跑 50r eval → 汇总 3-seed ablation 统计（mean±std），更新 Table 1**
+- **depth_s0/s1/s2/s3 任一完成 → spawn Worker 跑 50r eval → 与 Random(0.806)/Vanilla(0.780) 对比，判定 Path A/B/C**
+  - Path A: Depth CAR > Random(0.806) → egocentric depth 是更优空间信号，核心贡献升级
+  - Path B: Depth ≈ Random ≈ OCC(0.780-0.806) → 空间内容不重要，梯度流正则化是全部 → 分析论文
+  - Path C: Depth < Vanilla(0.780) → 不同 3D 表征差异化影响
+- **cutoff_s0/s1 完成 → 50r eval → 验证"先学 OCC 再 cutoff"能否获得正则化收益同时避免空间信号干扰**
+- **全部 8 个实验 eval 完成 → 更新 paper Results/Discussion 章节，完成 Table 1 最终版，跑统计显著性检验**
+- **westd-34685 磁盘降至 <50G 可用 → 紧急清理旧 checkpoint**
+
+### 5. 🎯 战略上下文
+**项目核心结论链**：
+- D017: OCC 3-seed@50K CAR=0.797 > Vanilla 0.780 (+1.7pp)，但 47500 checkpoint 完全持平（0.780 vs 0.780），MVP gate FAIL
+- D015/D016: Ablation 诊断 Random(0.806) > Vanilla(0.777) > FullOCC(0.769) > Detach(0.745) → **梯度流是正则化器，BEV 空间信号有害**
+- Framing: Option B 分析论文 — 不是"OCC 提升安全"的故事，而是"辅助任务机制解剖 + depth vs occ 对比"
+- 目标会议 AAAI 2027: Abstract Jul 21, Paper Jul 28（~9 周）
+
+**易错点**：
+- **不要把 47500 和 50000 checkpoint 的数字混用**——47500 是 apple-to-apple 对比点（OCC=Vanilla=0.780），50000 由 s0 异常高值驱动，不可靠
+- **OCC 放大 seed 敏感性**（std 2.2x），所以单 seed 数字不可信，必须多 seed 平均
+- Depth 结果是整个论文叙事的关键转折点：决定 Path A/B/C 走哪条。**不要在 depth eval 出来前就修改 paper framing**
+- checkpoint rotation 脚本在两台服务器后台运行，只保留最新 + 50000 final，不要手动删 checkpoint 导致冲突
+- datasets.py 中 `task_info["depth_file"]` 的 bug 已修复，如果要动数据加载代码注意不要 revert
+
+
+---

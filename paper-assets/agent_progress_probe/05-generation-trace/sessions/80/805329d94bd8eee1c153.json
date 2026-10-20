@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "805329d94bd8eee1c153",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "experiment e1 2lf crossagent",
+  "task_key": "worker_experiment_e1-2lf-crossagent_20260515T134420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_e1-2lf-crossagent_20260515T134420.log",
+    "occurrence": 1,
+    "bytes": 896763,
+    "sha256": "bf7780dccb7356a225f2e2f87eab201bc5d0ab9fb4109a8188f173a3124a6c06"
+  },
+  "statistics": {
+    "messages": 367,
+    "user_turns": 2,
+    "tool_calls": 123,
+    "roles": {
+      "log": 1,
+      "system": 70,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 123,
+      "user": 2,
+      "tool_result": 123,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "805329d94bd8eee1c153-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 91,
+      "chunks": [
+        {
+          "path": "805329d94bd8eee1c153-part-0001.json",
+          "message_count": 91
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 270,
+      "chunks": [
+        {
+          "path": "805329d94bd8eee1c153-part-0001.json",
+          "message_count": 83
+        },
+        {
+          "path": "805329d94bd8eee1c153-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "805329d94bd8eee1c153-part-0003.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-e1-2lf-crossagent.md"
+}

@@ -1,0 +1,458 @@
+# eval full occ ln s1
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 15
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/chats/worker_eval_full_occ_ln_s1_20260525T024906.jsonl`
+- **Structured JSON:** [`7c701aa3e46e0f133e81.json`](../../sessions/7c/7c701aa3e46e0f133e81.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+15 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-25T02:50:03.603236+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__register_artifact",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_full_occ_ln_s1_20260525T024906",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__register_artifact",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-25T02:50:03.603651+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_full_occ_ln_s1_20260525T024906",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-25T02:50:03.603857+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "full_occ_ln_s1_eval",
+  "field": "status",
+  "value": "PREPARING",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_full_occ_ln_s1_20260525T024906",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "full_occ_ln_s1_eval",
+    "field": "status",
+    "value": "PREPARING",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-25T02:50:03.604004+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: RUNNING → PREPARING. Allowed: ['ANALYZING', 'DONE']\", \"metadata\": {\"elapsed_seconds\": 0.4469}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_full_occ_ln_s1_20260525T024906",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-25T02:50:03.604140+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "full_occ_ln_s1_eval",
+  "field": "hypothesis",
+  "value": "50r SafeLIBERO evaluation of full_occ_ln_s1 (Full OCC + LayerNorm, seed 43). Second data point for 2×2 factorial. full_occ_ln_s0 CAR=0.766, need s1 to assess consistency.",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_full_occ_ln_s1_20260525T024906",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "full_occ_ln_s1_eval",
+    "field": "hypothesis",
+    "value": "50r SafeLIBERO evaluation of full_occ_ln_s1 (Full OCC + LayerNorm, seed 43). Second data point for 2×2 factorial. full_occ_ln_s0 CAR=0.766, need s1 to assess consistency.",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-25T02:50:03.604305+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"full_occ_ln_s1_eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T02:31:00.747Z\", \"updated_at\": \"2026-05-25T02:49:34.739Z\", \"hypothesis\": \"50r SafeLIBERO evaluation of full_occ_ln_s1 (Full OCC + LayerNorm, seed 43). Second data point for 2×2 factorial. full_occ_ln_s0 CAR=0.766, need s1 to assess consistency.\", \"parent\": \"full_occ_ln_s1\", \"server\": \"westd-10894\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-10894\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-25T02:31:42.428Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 MUJOCO_GL=egl WANDB_MODE=disabled python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/full_occ_ln_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --num_rollouts 50 --seed 42\\\"\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 MUJOCO_GL=egl WANDB_MODE=disabled python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/full_occ_ln_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --num_rollouts 50 --seed 42\\\"\", \"server\": \"westd-10894\", \"gpu\": [\"cuda:0\"], \"pid\": \"859060\", \"log_path\": \"~/runs/occsafe_vla/full_occ_ln_s1_eval.log\", \"submitted_at\": \"2026-05-25T02:31:44.259Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"859060\", \"log_path\": \"~/runs/occsafe_vla/full_occ_ln_s1_eval.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5415}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_full_occ_ln_s1_20260525T024906",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-25T02:50:03.604459+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "full_occ_ln_s1_eval",
+  "field": "parent",
+  "value": "full_occ_ln_s1",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_full_occ_ln_s1_20260525T024906",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "full_occ_ln_s1_eval",
+    "field": "parent",
+    "value": "full_occ_ln_s1",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-25T02:50:03.604616+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"full_occ_ln_s1_eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T02:31:00.747Z\", \"updated_at\": \"2026-05-25T02:49:36.061Z\", \"hypothesis\": \"50r SafeLIBERO evaluation of full_occ_ln_s1 (Full OCC + LayerNorm, seed 43). Second data point for 2×2 factorial. full_occ_ln_s0 CAR=0.766, need s1 to assess consistency.\", \"parent\": \"full_occ_ln_s1\", \"server\": \"westd-10894\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-10894\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-25T02:31:42.428Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 MUJOCO_GL=egl WANDB_MODE=disabled python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/full_occ_ln_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --num_rollouts 50 --seed 42\\\"\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 MUJOCO_GL=egl WANDB_MODE=disabled python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/full_occ_ln_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --num_rollouts 50 --seed 42\\\"\", \"server\": \"westd-10894\", \"gpu\": [\"cuda:0\"], \"pid\": \"859060\", \"log_path\": \"~/runs/occsafe_vla/full_occ_ln_s1_eval.log\", \"submitted_at\": \"2026-05-25T02:31:44.259Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"859060\", \"log_path\": \"~/runs/occsafe_vla/full_occ_ln_s1_eval.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7204}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_full_occ_ln_s1_20260525T024906",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-25T02:50:03.604782+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "ls -d /root/autodl-tmp/checkpoints/full_occ_ln_s1/*50000* 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_full_occ_ln_s1_20260525T024906",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-10894",
+    "command": "ls -d /root/autodl-tmp/checkpoints/full_occ_ln_s1/*50000* 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-25T02:50:03.604911+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_full_occ_ln_s1_20260525T024906",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-25T02:50:03.605065+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "ps -p 859060 -o pid,etime,cmd --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_full_occ_ln_s1_20260525T024906",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-10894",
+    "command": "ps -p 859060 -o pid,etime,cmd --no-headers",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-25T02:50:03.605187+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "tail -30 /root/runs/occsafe_vla/full_occ_ln_s1_eval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_full_occ_ln_s1_20260525T024906",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-10894",
+    "command": "tail -30 /root/runs/occsafe_vla/full_occ_ln_s1_eval.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-25T02:50:03.605335+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"859060       18:06 bash -c rm -f /tmp/agent-ml-exit/full_occ_ln_s1_eval.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/occsafe_vla/full_occ_ln_s1_eval.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/full_occ_ln_s1_eval.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/occsafe_vla && export CUDA_VISIBLE_DEVICES=0 && timeout 14400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 MUJOCO_GL=egl WANDB_MODE=disabled python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/full_occ_ln_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --num_rollouts 50 --seed 42\\\"'; } > ~/runs/occsafe_vla/full_occ_ln_s1_eval.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_full_occ_ln_s1_20260525T024906",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-25T02:50:03.605503+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rT4:  12%|█▏        | 6/50 [00:36<04:17,  5.86s/it]\\u001b[A\\n\\rT4:  14%|█▍        | 7/50 [00:42<04:10,  5.83s/it]\\u001b[A\\n\\rT4:  16%|█▌        | 8/50 [00:48<04:02,  5.78s/it]\\u001b[A\\n\\rT4:  18%|█▊        | 9/50 [00:53<03:53,  5.69s/it]\\u001b[A\\n\\rT4:  20%|██        | 10/50 [00:58<03:40,  5.52s/it]\\u001b[A\\n\\rT4:  22%|██▏       | 11/50 [01:04<03:36,  5.54s/it]\\u001b[A\\n\\rT4:  24%|██▍       | 12/50 [01:09<03:28,  5.49s/it]\\u001b[A\\n\\rT4:  26%|██▌       | 13/50 [01:15<03:29,  5.66s/it]\\u001b[A\\n\\rT4:  28%|██▊       | 14/50 [01:21<03:25,  5.70s/it]\\u001b[A\\n\\rT4:  30%|███       | 15/50 [01:27<03:16,  5.62s/it]\\u001b[A\\n\\rT4:  32%|███▏      | 16/50 [01:32<03:09,  5.57s/it]\\u001b[A\\n\\rT4:  34%|███▍      | 17/50 [01:37<03:01,  5.50s/it]\\u001b[A\\n\\rT4:  36%|███▌      | 18/50 [01:43<02:55,  5.50s/it]\\u001b[A\\n\\rT4:  38%|███▊      | 19/50 [01:52<03:22,  6.54s/it]\\u001b[A\\n\\rT4:  40%|████      | 20/50 [02:01<03:36,  7.22s/it]\\u001b[A\\n\\rT4:  42%|████▏     | 21/50 [02:10<03:43,  7.71s/it]\\u001b[A\\n\\rT4:  44%|████▍     | 22/50 [02:15<03:14,  6.94s/it]\\u001b[A\\n\\rT4:  46%|████▌     | 23/50 [02:20<02:54,  6.46s/it]\\u001b[A\\n\\rT4:  48%|████▊     | 24/50 [02:26<02:41,  6.21s/it]\\u001b[A\\n\\rT4:  50%|█████     | 25/50 [02:31<02:29,  5.97s/it]\\u001b[A\\n\\rT4:  52%|█████▏    | 26/50 [02:40<02:46,  6.95s/it]\\u001b[A\\n\\rT4:  54%|█████▍    | 27/50 [02:46<02:29,  6.50s/it]\\u001b[A\\n\\rT4:  56%|█████▌    | 28/50 [02:55<02:39,  7.24s/it]\\u001b[A\\n\\rT4:  58%|█████▊    | 29/50 [03:00<02:20,  6.69s/it]\\u001b[A\\n\\rT4:  60%|██████    | 30/50 [03:06<02:06,  6.34s/it]\\u001b[A\\n\\rT4:  62%|██████▏   | 31/50 [03:11<01:55,  6.08s/it]\\u001b[A\\n\\rT4:  64%|██████▍   | 32/50 [03:17<01:46,  5.90s/it]\\u001b[A\\n\\rT4:  66%|██████▌   | 33/50 [03:22<01:38,  5.77s/it]\\u001b[A\\n\\rT4:  68%|██████▊   | 34/50 [03:27<01:29,  5.62s/it]\\u001b[A\\n\\rT4:  70%|███████   | 35/50 [03:
+…[truncated 133 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_full_occ_ln_s1_20260525T024906",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-25T02:50:03.605706+00:00_
+
+实验已在运行中，无需重复提交。
+
+- **状态**: RUNNING，PID 859060，已运行 ~18 分钟
+- **GPU**: cuda:0（非任务指定的 cuda:2，但已在跑）
+- **进度**: Task 4 (T4) 正在 eval，当前 35/50 rollouts (70%)
+- **Checkpoint**: `/root/autodl-tmp/checkpoints/full_occ_ln_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt`
+
+预计再过 ~15-20 分钟完成全部 10 个 task 的评估。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_eval_full_occ_ln_s1_20260525T024906"
+}
+```
+
+</details>
+
+---

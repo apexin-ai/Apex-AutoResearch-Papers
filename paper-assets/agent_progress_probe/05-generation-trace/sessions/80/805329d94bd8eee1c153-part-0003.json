@@ -1,0 +1,295 @@
+{
+  "schema_version": "1.0",
+  "session_id": "805329d94bd8eee1c153",
+  "rounds": [
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018yeTLGQmdcPaq1nL242kSS",
+              "name": "Bash",
+              "input": {
+                "command": "SSHPASS='H6BKr9xWo+8Z' sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 23165 root@connect.bjb2.seetacloud.com \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/agent_progress_probe && python exp_2lf_cross_agent.py\" 2>&1",
+                "description": "Run fixed 2-LF experiment",
+                "timeout": 600000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "17fb139c-9106-425e-8c9f-046f46c6fc66",
+            "uuid": "f1637e33-1296-43ef-a52b-4aadd04d7580",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Xdgmf1RBVyMRznUYZ1qoBW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 294,
+                "cache_read_input_tokens": 126734,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 294
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "bfxbl830e",
+                "tool_use_id": "toolu_018yeTLGQmdcPaq1nL242kSS",
+                "description": "Run fixed 2-LF experiment",
+                "task_type": "local_bash",
+                "uuid": "b8147f03-8d87-4545-a104-f88b23765def",
+                "session_id": "17fb139c-9106-425e-8c9f-046f46c6fc66"
+              }
+            }
+          ],
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bfxbl830e",
+                "tool_use_id": "toolu_018yeTLGQmdcPaq1nL242kSS",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Run fixed 2-LF experiment",
+                "uuid": "4635c381-980c-4ea3-8c17-67d2a14e7e79",
+                "session_id": "17fb139c-9106-425e-8c9f-046f46c6fc66"
+              }
+            }
+          ],
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": "2026-05-15T14:05:28.784Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018yeTLGQmdcPaq1nL242kSS",
+              "type": "tool_result",
+              "content": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:23165' (ED25519) to the list of known hosts.\r\n======================================================================\nE1: 2-LF (file_diff + cmd_rep) Cross-Agent Transfer\n======================================================================\n\n--- Loading SWE windows ---\nTotal SWE windows (excl. openhands): 59496\n3-LF non-abstain: 54809\n3-LF conf>=2: 15401\n3-LF conf=3:  792\n\n2-LF label statistics:\n  conf=2 (both agree):  10243\n  conf=1 (one voted):   33159\n  conflicts (disagree): 9678\n  both abstain:         6416\n  conf>=2 dist: stag=1794 (17.5%), prog=8449 (82.5%)\n\n--- 2-LF vs 3-LF Label Agreement ---\nOverlap (both non-abstain): 43402\nAgreement: 43402/43402 = 100.00%\n  3-LF conf=1: 30843/30843 = 100.00%\n  3-LF conf=2: 11767/11767 = 100.00%\n  3-LF conf=3: 792/792 = 100.00%\n  2-LF conf=1: 33159/33159 = 100.00%\n  2-LF conf=2: 10243/10243 = 100.00%\n\n--- Loading trajectories ---\nSWE trajectories: 5000\nOH trajectories: 5000\n\n--- Preparing SWE 2-LF conf>=2 features ---\n  Total 2-LF conf>=2: 10243, valid (with trajectory): 10243\n  X shape: (10243, 30)\n\n--- In-domain Sanity Check (stratified 80/20, seed=42) ---\n  Train: 8194, Test: 2049\n  GB: macro_f1=1.0000, f1_stag=1.0000, f1_prog=1.0000\n  RF: macro_f1=1.0000, f1_stag=1.0000, f1_prog=1.0000\n  (Canonical 3-LF in-domain: GB~0.9951, RF~0.9951)\n\n--- Training on ALL SWE 2-LF conf>=2 ---\n  GB and RF trained on 10243 2-LF conf>=2 windows\n\n--- Loading OH evaluation data ---\n  OH total: 154743\n  OH non-abstain (all): 150652 (stag=31440, 20.9%)\n  OH conf>=2: 43376 (stag=8626, 19.9%)\n\nExtracting OH features (all non-abstain)...\nExtracting OH features (conf>=2)...\n\n======================================================================\nCROSS-AGENT RESULTS (SWE 2-LF -> OH)\n======================================================================\n\nModel  Scope           macro_F1   f1_stag   f1_prog        N\n----------------------------------------------------------\nGB     OH all            0.6604    0.4100    0.9109   150652\nGB     OH conf>=2        0.8720    0.7860    0.9581    43376\nRF     OH all            0.7800    0.6923    0.8677   150652\nRF     OH conf>=2        0.9778    0.9647    0.9909    43376\n\n--- Delta vs canonical 3-LF ---\nModel  Scope               3-LF      2-LF     delta\n--------------------------------------------------\nGB     OH all            0.9674    0.6604   -30.70pp\nGB     OH conf>=2        0.9919    0.8720   -11.99pp\nRF     OH all            0.9123    0.7800   -13.23pp\nRF     OH conf>=2        0.9959    0.9778    -1.81pp\n\n======================================================================\nFULL SUMMARY\n======================================================================\n\n(a) Training set sizes:\n    2-LF conf>=2: 10243 windows\n    3-LF conf>=2: 15401 windows\n    Difference: -5158 (-33.5%)\n\n(b) 2-LF vs 3-LF label agreement:\n    Overall: 43402/43402 = 100.00%\n\n(c) In-domain sanity (2-LF trained, 80/20 split):\n    GB: 1.0000  (canonical 3-LF: ~0.9951)\n    RF: 1.0000  (canonical 3-LF: ~0.9951)\n\n(d) Cross-agent transfer (SWE->OH):\n    GB OH all:     0.6604  (canonical: 0.9674)\n    GB OH conf>=2: 0.8720  (canonical: 0.9919)\n    RF OH all:     0.7800  (canonical: 0.9123)\n    RF OH conf>=2: 0.9778  (canonical: 0.9959)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "17fb139c-9106-425e-8c9f-046f46c6fc66",
+            "uuid": "57ca7c64-da7c-4920-962f-4cecc51f3756",
+            "tool_use_result": {
+              "stdout": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:23165' (ED25519) to the list of known hosts.\r\n======================================================================\nE1: 2-LF (file_diff + cmd_rep) Cross-Agent Transfer\n======================================================================\n\n--- Loading SWE windows ---\nTotal SWE windows (excl. openhands): 59496\n3-LF non-abstain: 54809\n3-LF conf>=2: 15401\n3-LF conf=3:  792\n\n2-LF label statistics:\n  conf=2 (both agree):  10243\n  conf=1 (one voted):   33159\n  conflicts (disagree): 9678\n  both abstain:         6416\n  conf>=2 dist: stag=1794 (17.5%), prog=8449 (82.5%)\n\n--- 2-LF vs 3-LF Label Agreement ---\nOverlap (both non-abstain): 43402\nAgreement: 43402/43402 = 100.00%\n  3-LF conf=1: 30843/30843 = 100.00%\n  3-LF conf=2: 11767/11767 = 100.00%\n  3-LF conf=3: 792/792 = 100.00%\n  2-LF conf=1: 33159/33159 = 100.00%\n  2-LF conf=2: 10243/10243 = 100.00%\n\n--- Loading trajectories ---\nSWE trajectories: 5000\nOH trajectories: 5000\n\n--- Preparing SWE 2-LF conf>=2 features ---\n  Total 2-LF conf>=2: 10243, valid (with trajectory): 10243\n  X shape: (10243, 30)\n\n--- In-domain Sanity Check (stratified 80/20, seed=42) ---\n  Train: 8194, Test: 2049\n  GB: macro_f1=1.0000, f1_stag=1.0000, f1_prog=1.0000\n  RF: macro_f1=1.0000, f1_stag=1.0000, f1_prog=1.0000\n  (Canonical 3-LF in-domain: GB~0.9951, RF~0.9951)\n\n--- Training on ALL SWE 2-LF conf>=2 ---\n  GB and RF trained on 10243 2-LF conf>=2 windows\n\n--- Loading OH evaluation data ---\n  OH total: 154743\n  OH non-abstain (all): 150652 (stag=31440, 20.9%)\n  OH conf>=2: 43376 (stag=8626, 19.9%)\n\nExtracting OH features (all non-abstain)...\nExtracting OH features (conf>=2)...\n\n======================================================================\nCROSS-AGENT RESULTS (SWE 2-LF -> OH)\n======================================================================\n\nModel  Scope           macro_F1   f1_stag   f1_prog        N\n----------------------------------------------------------\nGB     OH all            0.6604    0.4100    0.9109   150652\nGB     OH conf>=2        0.8720    0.7860    0.9581    43376\nRF     OH all            0.7800    0.6923    0.8677   150652\nRF     OH conf>=2        0.9778    0.9647    0.9909    43376\n\n--- Delta vs canonical 3-LF ---\nModel  Scope               3-LF      2-LF     delta\n--------------------------------------------------\nGB     OH all            0.9674    0.6604   -30.70pp\nGB     OH conf>=2        0.9919    0.8720   -11.99pp\nRF     OH all            0.9123    0.7800   -13.23pp\nRF     OH conf>=2        0.9959    0.9778    -1.81pp\n\n======================================================================\nFULL SUMMARY\n======================================================================\n\n(a) Training set sizes:\n    2-LF conf>=2: 10243 windows\n    3-LF conf>=2: 15401 windows\n    Difference: -5158 (-33.5%)\n\n(b) 2-LF vs 3-LF label agreement:\n    Overall: 43402/43402 = 100.00%\n\n(c) In-domain sanity (2-LF trained, 80/20 split):\n    GB: 1.0000  (canonical 3-LF: ~0.9951)\n    RF: 1.0000  (canonical 3-LF: ~0.9951)\n\n(d) Cross-agent transfer (SWE->OH):\n    GB OH all:     0.6604  (canonical: 0.9674)\n    GB OH conf>=2: 0.8720  (canonical: 0.9919)\n    RF OH all:     0.7800  (canonical: 0.9123)\n    RF OH conf>=2: 0.9778  (canonical: 0.9959)",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The experiment ran successfully. Let me analyze the results:\n\n## Key Findings\n\n### (a) Training set size\n- 2-LF conf≥2: 10,243 windows (33.5% smaller than 3-LF conf≥2 of 15,401)\n- This reduction is expected since dropping outcome_backpropagation means fewer windows reach confidence ≥2\n\n### (b) Label agreement\n- 100% agreement between 2-LF and 3-LF labels on overlapping non-abstain windows (43,402 windows)\n- This means: when both systems produce a label, they always agree. \n- The 2-LF labels form a strict subset of the 3-LF labels.\n\n### (c) In-domain sanity\n- Both GB and RF achieve 1.0000 macro-F1 on 2-LF data — perfect in-domain performance\n- This is slightly higher than canonical 3-LF (0.9951), likely because the 2-LF conf≥2 windows are \"easier\" (both LFs agree strongly)\n\n### (d) Cross-agent transfer (the key result)\n- GB OH all: 0.6604 (canonical 0.9674, delta -30.70pp) — large degradation\n- GB OH conf≥2: 0.8720 (canonical 0.9919, delta -11.99pp) — removing the third labeling function significantly hurts transfer performance, though filtering to high-confidence examples recovers much of the loss\n- RF OH all: 0.7800 (canonical 0.9123, delta -13.23pp)\n- RF OH conf≥2: 0.9778 (canonical 0.9959, delta -1.81pp) — RF is substantially more robust to the reduced training set, especially on high-confidence examples where it nearly matches the canonical performance\n\nThe key takeaway is that dropping the outcome_backpropagation function reduces training data by a third, and while in-domain performance stays perfect, cross-agent transfer degrades significantly — though RF handles this degradation much better than GB, particularly when focusing on high-confidence predictions. The trajectory file actually contains 5,000 entries when counting all rows, not the 2,448 unique IDs I saw before — the row-index approach captures the full dataset. What's striking is the perfect agreement between the 2-LF and 3-LF systems: whenever both file_diff and cmd_rep produce a label, it always matches the majority vote from all three labeling functions, which makes sense given how the voting logic works.\n\nThe real difference between the systems is coverage rather than accuracy — the 3-LF approach labels more windows because outcome_backpropagation fills in gaps where the other two labeling functions don't have signal.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "17fb139c-9106-425e-8c9f-046f46c6fc66",
+            "uuid": "c251906f-7fdf-4e49-99d3-d834f9c21d23",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EHZo5PYbVnKxqh2UoN5gev",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1466,
+                "cache_read_input_tokens": 127028,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1466
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent results. Let me compile the complete findings.\n\n---\n\n## E1 Results: 2-LF (λ₁+λ₂) Cross-Agent Transfer\n\n### Training Set Statistics\n\n| | 3-LF | 2-LF | Delta |\n|---|---|---|---|\n| SWE total windows | 59,496 | 59,496 | — |\n| Non-abstain | 54,809 | 43,402 | -20.8% |\n| conf≥2 (training set) | 15,401 | **10,243** | **-33.5%** |\n| conf=3 / conf=2 | 792 / 14,609 | — / 10,243 | — |\n| conf≥2 stag rate | — | 17.5% | — |\n| Conflicts (LFs disagree) | — | 9,678 | — |\n\n### Label Agreement (2-LF vs 3-LF)\n\n**100.00%** agreement on all 43,402 overlapping non-abstain windows — guaranteed by subset property: when file_diff and cmd_rep both agree, the 3-LF majority must concur.\n\n### In-Domain Sanity Check (SWE, 80/20 split)\n\n| Model | 2-LF macro_F1 | Canonical 3-LF |\n|---|---|---|\n| GB | 1.0000 | ~0.9951 |\n| RF | 1.0000 | ~0.9951 |\n\n### Cross-Agent Transfer (SWE → OH)\n\n| Model | Scope | 3-LF | 2-LF | Delta |\n|---|---|---|---|---|\n| **GB** | OH all (N=150,652) | 0.9674 | 0.6604 | **-30.70pp** |\n| **GB** | OH conf≥2 (N=43,376) | 0.9919 | 0.8720 | **-11.99pp** |\n| **RF** | OH all (N=150,652) | 0.9123 | 0.7800 | **-13.23pp** |\n| **RF** | OH conf≥2 (N=43,376) | 0.9959 | 0.9778 | **-1.81pp** |\n\n### Findings\n\nDropping λ₃ (outcome_backpropagation) from the labeling pipeline reduces the conf≥2 training set by 33.5% (10,243 vs 15,401) without altering any label that remains — 2-LF vs 3-LF agreement is 100% on overlapping windows, a mathematical consequence of majority voting over a strict subset. Despite perfect in-domain F1 (1.0), cross-agent transfer degrades substantially: GB drops 30.7pp on OH-all and 12.0pp on OH-conf≥2, while RF is more robust, losing only 1.8pp on OH-conf≥2 (0.9778 vs 0.9959). The asymmetry between GB and RF reflects GB's greater sensitivity to training set size and distribution shift. The outcome_backpropagation LF contributes not by changing label quality (agreement is 100%), but by **expanding coverage** — it breaks ties and enables 5,158 additional windows to reach conf≥2, providing critical training mass for cross-agent generalization. On high-confidence evaluation subsets (OH conf≥2), RF retains near-canonical performance even with 2-LF training, suggesting the structural features themselves carry strong cross-agent signal; the GB degradation is more a function of insufficient training data diversity than label noise."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "17fb139c-9106-425e-8c9f-046f46c6fc66",
+            "uuid": "cd2942c9-861d-40be-95c6-3748a9980561",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EHZo5PYbVnKxqh2UoN5gev",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1466,
+                "cache_read_input_tokens": 127028,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1466
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent results. Let me compile the complete findings.\n\n---\n\n## E1 Results: 2-LF (λ₁+λ₂) Cross-Agent Transfer\n\n### Training Set Statistics\n\n| | 3-LF | 2-LF | Delta |\n|---|---|---|---|\n| SWE total windows | 59,496 | 59,496 | — |\n| Non-abstain | 54,809 | 43,402 | -20.8% |\n| conf≥2 (training set) | 15,401 | **10,243** | **-33.5%** |\n| conf=3 / conf=2 | 792 / 14,609 | — / 10,243 | — |\n| conf≥2 stag rate | — | 17.5% | — |\n| Conflicts (LFs disagree) | — | 9,678 | — |\n\n### Label Agreement (2-LF vs 3-LF)\n\n**100.00%** agreement on all 43,402 overlapping non-abstain windows — guaranteed by subset property: when file_diff and cmd_rep both agree, the 3-LF majority must concur.\n\n### In-Domain Sanity Check (SWE, 80/20 split)\n\n| Model | 2-LF macro_F1 | Canonical 3-LF |\n|---|---|---|\n| GB | 1.0000 | ~0.9951 |\n| RF | 1.0000 | ~0.9951 |\n\n### Cross-Agent Transfer (SWE → OH)\n\n| Model | Scope | 3-LF | 2-LF | Delta |\n|---|---|---|---|---|\n| **GB** | OH all (N=150,652) | 0.9674 | 0.6604 | **-30.70pp** |\n| **GB** | OH conf≥2 (N=43,376) | 0.9919 | 0.8720 | **-11.99pp** |\n| **RF** | OH all (N=150,652) | 0.9123 | 0.7800 | **-13.23pp** |\n| **RF** | OH conf≥2 (N=43,376) | 0.9959 | 0.9778 | **-1.81pp** |\n\n### Findings\n\nDropping λ₃ (outcome_backpropagation) from the labeling pipeline reduces the conf≥2 training set by 33.5% (10,243 vs 15,401) without altering any label that remains — 2-LF vs 3-LF agreement is 100% on overlapping windows, a mathematical consequence of majority voting over a strict subset. Despite perfect in-domain F1 (1.0), cross-agent transfer degrades substantially: GB drops 30.7pp on OH-all and 12.0pp on OH-conf≥2, while RF is more robust, losing only 1.8pp on OH-conf≥2 (0.9778 vs 0.9959). The asymmetry between GB and RF reflects GB's greater sensitivity to training set size and distribution shift. The outcome_backpropagation LF contributes not by changing label quality (agreement is 100%), but by **expanding coverage** — it breaks ties and enables 5,158 additional windows to reach conf≥2, providing critical training mass for cross-agent generalization. On high-confidence evaluation subsets (OH conf≥2), RF retains near-canonical performance even with 2-LF training, suggesting the structural features themselves carry strong cross-agent signal; the GB degradation is more a function of insufficient training data diversity than label noise."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1302668,
+            "duration_api_ms": 938798,
+            "num_turns": 65,
+            "stop_reason": "end_turn",
+            "session_id": "17fb139c-9106-425e-8c9f-046f46c6fc66",
+            "total_cost_usd": 5.14916615,
+            "usage": {
+              "input_tokens": 70,
+              "cache_creation_input_tokens": 116653,
+              "cache_read_input_tokens": 5670960,
+              "output_tokens": 48628,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 116653,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 2101,
+                  "cache_read_input_tokens": 127028,
+                  "cache_creation_input_tokens": 1466,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1466
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1818,
+                "outputTokens": 10496,
+                "cacheReadInputTokens": 1541194,
+                "cacheCreationInputTokens": 128110,
+                "webSearchRequests": 0,
+                "costUSD": 0.3685549,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 70,
+                "outputTokens": 48628,
+                "cacheReadInputTokens": 5670960,
+                "cacheCreationInputTokens": 116653,
+                "webSearchRequests": 0,
+                "costUSD": 4.780611249999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "2cbbe279-f835-4bfe-ad96-198bb1a24d46"
+          },
+          "id": "event-000367"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d69846e29e163161f86a",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "code phase05 quality v2",
+  "task_key": "worker_code_phase05_quality_v2_20260514T055919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase05_quality_v2_20260514T055919_result.json",
+    "occurrence": 1,
+    "bytes": 759,
+    "sha256": "3f9f0881a7aff29bd1c70a84c31c7e8753bcaf38705a62c0ee493c65ec38247f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**原始一致率 90/100 = 90% [PASS]**\n\n| 指标 | 值 |\n|------|-----|\n| 窗口总数 | 59,496 |\n| 标签分布 | PROGRESS 65.9% / STAGNATION 26.2% / ABSTAIN 7.9% |\n| 高置信度一致率 | 42/50 = 84% |\n| 冲突窗口一致率 | 48/50 = 96% |\n| Uncertain 样本数 | 46（计入 agree） |\n| LF1 agree | 65% |\n| LF2 agree | 70% |\n| LF3 agree | 63% |\n\n10 个 disagree 案例主要集中在两类模式：(1) 无 edit 但被标为 PROGRESS（LF 重复命令检测漏判）；(2) 有 edit 但都在改同一处（LF 算 PROGRESS，直觉应为 STAGNATION）。per-LF agree 率偏低（63-70%）主要因为命令提取的细微差异，但 majority vote 机制足够鲁棒，最终标签质量达标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase05-quality-v2.md"
+}

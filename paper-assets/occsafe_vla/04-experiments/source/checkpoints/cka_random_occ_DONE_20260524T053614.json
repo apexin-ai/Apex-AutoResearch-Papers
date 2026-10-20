@@ -1,0 +1,43 @@
+{
+  "exp_id": "cka_random_occ",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T05:34:56.773Z",
+    "updated_at": "2026-05-24T05:36:14.511Z",
+    "hypothesis": "Random OCC (random labels, gradient flow enabled) should preserve encoder representations similar to Vanilla/Full OCC, confirming that gradient flow—not label content—prevents representational drift. If Random OCC CKA matches Detach OCC (low), then label content matters; if it matches Vanilla/Full OCC (high), gradient flow is the key factor.",
+    "parent": "cka_analysis",
+    "spec": {
+      "command": "python analysis/cka_analysis.py --condition_names 'Random OCC'",
+      "server": "westd-10894",
+      "data_path": "/root/autodl-tmp/libero_datasets/libero_spatial",
+      "data_count": 200,
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_source": "ablation_random_occ_s2 (seed 44)",
+      "eval_data": "libero_spatial (200 samples)",
+      "checkpoint_path": "/root/autodl-tmp/analysis/cka_random_occ/",
+      "log_path": "~/runs/occsafe_vla/cka_random_occ.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "random_occ_dinov2_mean_cka": 0.968,
+      "random_occ_siglip_mean_cka": 0.956,
+      "comparison": {
+        "vanilla_dinov2": 0.968,
+        "vanilla_siglip": 0.953,
+        "full_occ_dinov2": 0.964,
+        "full_occ_siglip": 0.96,
+        "detach_dinov2": 0.539,
+        "detach_siglip": 0.312
+      },
+      "key_finding": "Random OCC CKA matches Vanilla/Full OCC (0.956-0.968), confirming gradient flow—not label content—preserves encoder representations. Only Detach OCC shows catastrophic drift."
+    },
+    "completed_at": "2026-05-24T05:36:14.511Z"
+  },
+  "timestamp": "2026-05-24T05:36:14.644386+00:00",
+  "trigger": "update_registry"
+}

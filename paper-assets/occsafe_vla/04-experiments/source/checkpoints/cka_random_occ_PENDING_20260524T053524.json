@@ -1,0 +1,16 @@
+{
+  "exp_id": "cka_random_occ",
+  "project": "occsafe_vla",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T05:34:56.773Z",
+    "updated_at": "2026-05-24T05:35:24.751Z",
+    "hypothesis": "Random OCC (random labels, gradient flow enabled) should preserve encoder representations similar to Vanilla/Full OCC, confirming that gradient flow—not label content—prevents representational drift. If Random OCC CKA matches Detach OCC (low), then label content matters; if it matches Vanilla/Full OCC (high), gradient flow is the key factor.",
+    "parent": "cka_analysis"
+  },
+  "timestamp": "2026-05-24T05:35:24.903787+00:00",
+  "trigger": "update_registry"
+}

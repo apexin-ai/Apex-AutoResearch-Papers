@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8dd21ffd27b9875c96d3",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis gold bootstrap ci",
+  "task_key": "worker_analysis_gold-bootstrap-ci_20260515T084152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gold-bootstrap-ci_20260515T084152_result.json",
+    "occurrence": 1,
+    "bytes": 1240,
+    "sha256": "0105621b175462d63d567f1c90cbe71000cc44a2da3dbc83e32114cf86c7a600"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n| Test | Model A | Model B | N | Δ(A−B) | 95% CI | p-value | Sig? |\n|---|---|---|---|---|---|---|---|\n| GB vs MV | GB (0.802) | MV (0.718) | 195 | +0.084 | [+0.032, +0.138] | **0.0005** | **YES** |\n| GB vs GRU Probe | GB (0.785) | Probe (0.735) | 132 | +0.050 | [−0.016, +0.120] | 0.070 | NO |\n| RF vs GB | RF (0.809) | GB (0.802) | 195 | +0.007 | [0.000, +0.023] | 0.367 | NO |\n| TWV Probe vs GB | TWV (0.768) | GB (0.785) | 132 | −0.016 | [−0.067, +0.031] | 0.254 | NO |\n| TWV Probe vs GRU | TWV (0.768) | GRU (0.735) | 132 | +0.034 | [−0.029, +0.099] | 0.150 | NO |\n\n**唯一显著的差异**：GB 显著优于 MV Labels（p=0.0005）。其他所有 pairwise 比较在 α=0.05 下均不显著。\n\n**注意**：GB/RF 的绝对 macro-F1 高于此前 eval_full 报告的值（0.802/0.809 vs 0.760/0.756）。原因是 `windows_labeled.jsonl` 在 eval_full 运行后被更新，导致 `split_info.json` 中的 `keep_indices` 现在指向不同的训练窗口，模型性能因训练数据变化而不同。MV (0.718) 和 GRU Probe (0.735) 数值与此前完全一致，因为它们不依赖重新训练。pairwise 比较的 p-value 仍然有效，因为每对模型在相同窗口上评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gold-bootstrap-ci.md"
+}

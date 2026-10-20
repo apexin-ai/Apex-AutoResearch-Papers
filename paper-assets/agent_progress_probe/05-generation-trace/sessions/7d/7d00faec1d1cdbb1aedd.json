@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "7d00faec1d1cdbb1aedd",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "analysis stag rate audit",
+  "task_key": "worker_analysis_stag-rate-audit_20260514T222656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_stag-rate-audit_20260514T222656.log",
+    "occurrence": 1,
+    "bytes": 676734,
+    "sha256": "8761d54d939138c22471c5145b1e1a227efd36af3c94a3f0aa3a6768740d0574"
+  },
+  "statistics": {
+    "messages": 153,
+    "user_turns": 1,
+    "tool_calls": 53,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 34,
+      "tool_call": 53,
+      "tool_result": 53,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 102,
+      "chunks": [
+        {
+          "path": "7d00faec1d1cdbb1aedd-part-0001.json",
+          "message_count": 102
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 51,
+      "chunks": [
+        {
+          "path": "7d00faec1d1cdbb1aedd-part-0001.json",
+          "message_count": 34
+        },
+        {
+          "path": "7d00faec1d1cdbb1aedd-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-stag-rate-audit.md"
+}

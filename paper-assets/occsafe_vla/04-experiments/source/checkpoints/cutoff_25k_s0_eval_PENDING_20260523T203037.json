@@ -1,0 +1,16 @@
+{
+  "exp_id": "cutoff_25k_s0_eval",
+  "project": "occsafe_vla",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T19:48:02.064Z",
+    "updated_at": "2026-05-23T20:30:37.447Z",
+    "hypothesis": "50r SafeLIBERO evaluation of cutoff_25k_s0 (occ_loss cutoff at 25K steps). Tests whether 25K steps of auxiliary gradient flow is sufficient for collision avoidance benefit. Part of 5-point dose-response curve (15K/25K/35K/45K/reverse).",
+    "parent": "cutoff_25k_s0"
+  },
+  "timestamp": "2026-05-23T20:30:37.571951+00:00",
+  "trigger": "update_registry"
+}

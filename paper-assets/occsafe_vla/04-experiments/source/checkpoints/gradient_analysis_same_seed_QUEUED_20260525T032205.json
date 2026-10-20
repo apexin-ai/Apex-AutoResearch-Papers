@@ -1,0 +1,15 @@
+{
+  "exp_id": "gradient_analysis_same_seed",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T03:21:20.318Z",
+    "updated_at": "2026-05-25T03:22:05.405Z",
+    "hypothesis": "Same-seed (seed=42) 4-condition gradient analysis eliminates cross-seed confound. Compares Vanilla vs Full OCC vs Detach+BN vs Full OCC+LN gradient properties at 50K checkpoint. Tests whether gradient flow patterns (norm, cosine, conflict rate) are consistent with mixed-seed results."
+  },
+  "timestamp": "2026-05-25T03:22:05.667784+00:00",
+  "trigger": "update_registry"
+}

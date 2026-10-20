@@ -1,0 +1,18 @@
+{
+  "exp_id": "reverse_cutoff_s2_v2",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T04:36:28.565Z",
+    "updated_at": "2026-05-25T08:05:40.398Z",
+    "hypothesis": "Seed 44 replication of reverse_cutoff (no OCC first 35K steps, enable 35K-50K). Resume from 30K checkpoint after server reboot + batch_idx bug fix. 2-seed results show instability (0.700-0.736). 3rd seed needed to confirm late-onset gradient flow instability and T7 variance pattern.",
+    "parent": "reverse_cutoff_s1",
+    "conclusion": "killed",
+    "notes": "Replaced by reverse_cutoff_s2_v3 (fresh start). Resume version killed due to C002 constraint."
+  },
+  "timestamp": "2026-05-25T08:05:40.643693+00:00",
+  "trigger": "update_registry"
+}

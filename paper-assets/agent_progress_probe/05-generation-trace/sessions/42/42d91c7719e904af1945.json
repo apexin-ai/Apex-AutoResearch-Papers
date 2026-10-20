@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42d91c7719e904af1945",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "data annotation fix",
+  "task_key": "worker_data_annotation-fix_20260514T115316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_annotation-fix_20260514T115316_result.json",
+    "occurrence": 1,
+    "bytes": 852,
+    "sha256": "b2d3ae1db405303843dbc24cf232b6030e5a2c4829f317e0ca98443bc28bacd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。3 个文件已写到 `artifacts/` 目录：\n\n**annotation_sample_650.csv** — 650 行标注样本\n- 450 SWE-agent + 200 OpenHands\n- 列：id, trajectory_id, window_idx, confidence, agent_actions, annotator_label, source\n- `majority_label` 和 `trajectory_outcome` 已移除（修复 1）\n\n**annotation_mapping.csv** — 650 行隐藏元数据\n- 含 majority_label, trajectory_outcome, source, is_calibration, 3 个 LF 值\n- 30 个校准样本标记 `is_calibration=True`（修复 2）\n- 20 个 LF 全盲区窗口（3 个 LF 全部 abstain，majority_label=-1）（修复 3）\n- 200 个 OpenHands 窗口（c1=120, c2=60, c3=20）（修复 4）\n\n**annotation_guide.md** — 更新后的标注指南\n- 新增校准流程：独立标注 30 个校准样本 → 计算 Fleiss' κ → 讨论分歧 → 正式标注"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-annotation-fix.md"
+}

@@ -1,0 +1,49 @@
+
+\section{Method}
+
+We fine-tune OpenVLA-7B~\cite{kim2024openvla} with the OFT recipe~\cite{kim2025oft}, which concatenates DINOv2~\cite{oquab2024dinov2} (1024-d) and SigLIP~\cite{zhai2023siglip} (1152-d) patch features into a 2176-dimensional representation per spatial token. We apply LoRA~\cite{hu2022lora} (rank 32, $\alpha{=}16$) and augment the action prediction loss with an auxiliary spatial prediction head:
+\begin{equation}
+\mathcal{L}_\text{total} = \mathcal{L}_\text{action} + \lambda(t) \cdot \mathcal{L}_\text{aux}(h(\phi_v(o_t)), s_t^*),
+\quad \lambda(t) = 0.01 \cdot \exp(-t / 50000)
+\end{equation}
+where $h$ denotes the auxiliary head, $\phi_v$ the frozen-then-LoRA-adapted vision encoders, and $s_t^*$ the ground-truth spatial label at step $t$. The coefficient $\lambda(t)$ decays exponentially so that spatial gradients shape early representations without dominating late-stage action refinement. The auxiliary head is discarded at inference, incurring zero additional cost.
+
+\textbf{Bird's-eye view (BEV) occupancy head.} The head (1.2M parameters) maps the 256 patch tokens from the current observation frame to a $64{\times}64$ binary occupancy grid. A linear projection ($2176{\to}256$) is reshaped to $16{\times}16$, followed by two transposed convolutions ($256{\to}128{\to}64$, kernel 4, stride 2) each with BatchNorm2d and GELU, and a final $1{\times}1$ convolution with sigmoid activation. Ground-truth grids are rendered from MuJoCo simulator state replay by projecting object bounding boxes onto the table-plane BEV. Training uses focal loss~\cite{lin2017focal} ($\alpha{=}0.25$, $\gamma{=}2.0$) to handle class imbalance in the sparse occupancy signal. The initial auxiliary weight $\lambda_0{=}0.01$ is set to keep auxiliary gradients below 2\% of the action loss magnitude, avoiding interference with action learning.
+
+\textbf{Monocular depth head.} This head shares the BEV architecture but uses ReLU/smooth-L1 on $64{\times}64$ egocentric depth maps from MuJoCo, complementing the allocentric BEV grid.
+
+\subsection{Ablation Design}
+\label{sec:ablation}
+
+We evaluate twelve conditions organized around a $2{\times}2$ factorial core crossing gradient flow (ON/OFF) with normalization (BN/LN), supplemented by single-factor ablations along three additional dimensions (Table~\ref{tab:ablation_design}). The factorial core comprises: \textbf{Vanilla} (no auxiliary head), \textbf{Full OCC} (BEV occupancy, gradient flow, BN), \textbf{Detach OCC} (gradients blocked via \texttt{stop\_gradient}), and their LN variants (\textbf{Full OCC+LN}, \textbf{Detach+LN}). Seven supplementary conditions probe label content (\textbf{Random OCC}), reference frame (\textbf{Depth}), and temporal extent (\textbf{Cutoff@\{15K--45K\}}, \textbf{Reverse Cutoff}; Appendix~\ref{app:training}).
+
+Formally, let $\text{sg}(\cdot)$ denote the stop-gradient operator. Full conditions compute $\mathcal{L}_\text{aux}(h(\phi_v(o_t)), s_t^*)$, so auxiliary gradients flow through $\phi_v$. Detach conditions compute $\mathcal{L}_\text{aux}(h(\text{sg}(\phi_v(o_t))), s_t^*)$: the head trains on encoder features but no gradient reaches $\phi_v$. This separates bidirectional coupling (spatial and action objectives jointly shape representations) from unidirectional readout.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Ablation design: each comparison isolates one factor.}
+\label{tab:ablation_design}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Comparison & Isolated Factor \\
+\midrule
+Full OCC vs.\ Vanilla & Auxiliary spatial supervision \\
+Random vs.\ Full OCC & Spatial content vs.\ gradient flow \\
+Detach vs.\ Vanilla & Encoder gradient flow (presence/absence) \\
+Detach+LN vs.\ Detach OCC & Normalization (BN vs.\ LN) without gradient flow \\
+Full OCC+LN vs.\ Full OCC & Normalization (BN vs.\ LN) with gradient flow \\
+$2{\times}2$ factorial & Normalization $\times$ gradient flow combined effects \\
+Depth vs.\ Full OCC & Egocentric vs.\ allocentric frame \\
+Cutoff@\{15K--45K\} vs.\ Full OCC & Temporal extent of gradient flow \\
+Reverse Cutoff vs.\ Cutoff@35K & Early vs.\ late gradient flow \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Evaluation}
+
+We evaluate on SafeLIBERO Level~I~\cite{hu2025vlsa}, which places obstacles in close proximity to manipulation targets across 10 tabletop tasks drawn from LIBERO-Spatial~\cite{liu2023libero}. We report two metrics: \textbf{Task Success Rate (TSR)}, the fraction of completed episodes, and \textbf{Collision Avoidance Rate (CAR)}, where a collision is registered when the L1 displacement of any obstacle exceeds $10^{-3}$. Core factorial conditions use 3--4 independent seeds; supplementary conditions use 1--3 seeds (Table~\ref{tab:main_results}); each seed runs 50 rollouts per task (500 episodes per seed).
+
+The BN and LN factorial cells have been trained under a revised codebase (v2, 3--4 seeds each) that fixed a batch-index resume bug present in v1; both versions share identical architectures, hyperparameters, and evaluation protocols, but the bug fix shifts absolute CAR by up to 8.6\,pp for auxiliary conditions (Section~\ref{sec:discussion}). Supplementary conditions use the original codebase (v1). Training runs for 50K steps on a single NVIDIA RTX PRO 6000 GPU; full details are in Appendix~\ref{app:training}.

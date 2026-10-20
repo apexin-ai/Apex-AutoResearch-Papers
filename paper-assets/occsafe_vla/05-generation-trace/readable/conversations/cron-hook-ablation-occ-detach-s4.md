@@ -1,0 +1,463 @@
+# cron hook ablation occ detach s4
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 14
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/cron_hook_ablation_occ_detach_s4.jsonl`
+- **Structured JSON:** [`9321ef0827526d131ffd.json`](../../sessions/93/9321ef0827526d131ffd.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+14 recorded events
+
+### User
+
+_source line 1 · 2026-05-28T23:36:52.223774+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #9。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：cuda:0-3（两台服务器各 4 卡），但**当前两台均只有 cuda:0 可用**（cgroup v2 限制 1 卡），需用户在 AutoDL 控制台重启为 4 卡配置后才能提交更多实验
+- 论文已 revert 到 `paper-final-check` 版本（n=3 数据），D076 决策——**不得将第 4 seed 数据纳入论文**，等 RD2-N1 种子扩充（n≥5）完成后一次性更新
+- `save_training_checkpoint` 有 bug：会污染共享基础模型目录 `/root/autodl-tmp/models/openvla-7b/` 的 `model.safetensors.index.json`（3-shard 被覆写为 4-shard）。提交新实验前**必须验证该文件完整性**，否则所有 checkpoint save 都会 crash
+- westd-10894 系统 RAM 不足时 OOM killer 会同时杀多个实验——同时跑 3+ 实验有风险，建议最多 2-3 个并行
+- WANDB_MODE 必须设为 disabled（之前多次因 wandb init 在 AutoDL 网络下崩溃）
+
+### 2. 🖥️ 基础设施快照
+- **westd-10894**：4×RTX PRO 6000 98GB，当前仅 cuda:0 可用
+  - 工作目录：`/root/occsafe_vla`
+  - 数据：`/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`（4600 samples）
+  - OCC 数据：`/root/occsafe_vla/occ_data`
+  - 模型：`/root/autodl-tmp/models/openvla-7b/`（⚠️ index.json 可能已被污染）
+  - Checkpoints：`/root/autodl-tmp/checkpoints/`
+  - 磁盘：`/root/autodl-tmp` 250G，上次清理后 ~45% 使用率（~139G 可用）
+  - 活跃进程：`random_occ_v2_s0_r4` PID 49565, cuda:0
+- **westd-34685**：4×RTX PRO 6000 98GB，当前仅 cuda:0 可用
+  - 同样目录结构
+  - 活跃进程：`full_occ_bn_v2_s2_r5` PID 30149, cuda:0
+- **Cron 活跃**：2 个（分别监控上述两个 RUNNING 实验）
+- **Worker 池**：0 个运行中
+- **论文源码**：`projects/occsafe_vla/docs/paper/`
+
+### 3. 📊 当前状态
+两个实验正在运行（均为 retry 后的修正版本，修复了 --occ_data_dir 缺失 + WANDB_MODE=disabled + 孤儿子进程清理）：
+
+| exp_id | 服务器 | GPU | 假设 | 备注 |
+|--------|--------|-----|------|------|
+| `random_occ_v2_s0_r4` | westd-10894 | cuda:0 | Content irrelevance (Full OCC ≈ Random OCC) v2, seed 42 | 对应 RD2-N2 |
+| `full_occ_bn_v2_s2_r5` | westd-34685 | cuda:0 | Cell 1 (Full OCC BN) seed 44 expansion | 对应 RD2-N1 |
+
+这两个实验的前序版本（r1-r3）反复失败：r1 occ_loss=0（缺 occ_data_dir）、r2/r3 wandb init crash。当前版本已确认 occ_loss 非零（0.1068 / 0.1422 @step0）。
+
+写作类修复 12/17 已全部完成。剩余 5 个 issue 全部是实验类：
+- **RD2-N1**（critical）：种子扩充 n≥5/cell — `full_occ_bn_v2_s2_r5` 正在跑
+- **RD2-N2**（critical）：v2 Random OCC content irrelevance — `random_occ_v2_s0_r4` 正在跑
+- **RD2-W4**：BN eval mode 消融 — 待 GPU 解锁
+- **RD3-W3**：λ₀ sweep {0.001, 0.01, 0.1} — 待 GPU 解锁
+- **R1-C9**：v1/v2 mixing — 关联 RD2-N2
+
+**无活跃 Worker，无待处理 Director 决策。**
+
+### 4. 📋 待办（条件触发式）
+- `random_occ_v2_s0_r4` cron 回调到达 → 检查 conclusion：success 则更新 registry + report.md + 向 Director 汇报 RD2-N2 进展；failed 则诊断日志、决定是否 r5
+- `full_occ_bn_v2_s2_r5` cron 回调到达 → 同上，关联 RD2-N1 种子扩充
+- 用户确认 AutoDL 4 卡重启 → 立即并行提交 RD2-W4（BN eval mode）+ RD3-W3（λ₀ sweep）+ 更多种子扩充实验，8 卡全开
+- 两个 RUNNING 实验均 success → 更新统计分析（ANOVA/Hedges' g），检查 n 是否达到 ≥5/cell，不够则继续加种子
+- 所有 5 个实验 issue 完成 → 更新论文数据、重跑统计、提交第 4 轮审稿
+
+### 5. 🎯 战略上下文
+- **核心结论**：Auxiliary spatial supervision（OCC）不提升 VLA collision avoidance。两个独立 additive main effects：(1) BN+gradient flow 有害（Hedges' g=0.78）；(2) LN normalization 有优势（g=0.88）。ANOVA 交互项为零。
+- **Framing 经历多次调整**（D074 → D079）：从 "ordinal interaction" 到 "dual additive main effects"，最终定型为 "two additive main effects" 叙事
+- **最容易判断错的事**：这两个 RUNNING 实验已经是第 4-5 次 retry——前几次失败原因各不相同（occ_data_dir 缺失→wandb crash→孤儿进程），当前版本已修复所有已知问题。如果再次失败，不要重复相同修复，要仔细看新的错误信息
+- **磁盘是隐性杀手**：westd-10894 曾因磁盘满导致多实验连环崩溃。4 卡全开后每个实验 checkpoint ~15GB，4 个同时跑需要 ~60GB 余量。提交前必须 `check_disk_before_experiment`
+- **基础模型 index.json 污染**是跨实验传染性 bug——一个实验的 checkpoint save 会破坏后续所有实验。GPU 解锁后批量提交前**必须先修复此文件**
+
+## 可查的历史
+前 89 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:ablation_occ_detach_s4",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-28T23:37:04.235623+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:ablation_occ_detach_s4",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-28T23:37:04.286391+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:ablation_occ_detach_s4",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-28T23:37:07.548610+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "occsafe_vla",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:ablation_occ_detach_s4",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "occsafe_vla",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-28T23:37:07.599346+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:ablation_occ_detach_s4",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-28T23:37:08.201410+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"random_occ_v2_s0_r4\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-28T23:11:19.398Z\", \"updated_at\": \"2026-05-28T23:11:55.053Z\", \"hypothesis\": \"Content irrelevance (Full OCC ≈ Random OCC) v2 replication seed 42. Corrected: --occ_data_dir + WANDB_MODE=disabled + orphan child process cleanup. occ_loss=0.1068@step0 confirmed.\", \"parent\": \"random_occ_v2_s0_r3\", \"spec\": {\"command\": \"torchrun ... --random_occ True --occ_data_dir /root/occsafe_vla/occ_data\", \"server\": \"westd-10894\", \"gpu\": [\"cuda:0\"], \"pid\": \"49565\", \"data_path\": \"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\", \"data_count\": 4600, \"model_name\": \"openvla-7b\", \"seed\": 42, \"log_path\": \"/root/runs/occsafe_vla/random_occ_v2_s0_r4.log\", \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"N/A (training experiment)\"}}, \"full_occ_bn_v2_s2_r5\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-28T23:11:17.181Z\", \"updated_at\": \"2026-05-28T23:11:53.079Z\", \"hypothesis\": \"Cell 1 (Full OCC BN) seed 44 expansion. Corrected: --occ_data_dir + WANDB_MODE=disabled + orphan child process cleanup. occ_loss=0.1422@step0 confirmed.\", \"parent\": \"full_occ_bn_v2_s2_r4\", \"spec\": {\"command\": \"torchrun ... --occ_data_dir /root/occsafe_vla/occ_data\", \"server\": \"westd-34685\", \"gpu\": [\"cuda:0\"], \"pid\": \"30149\", \"data_path\": \"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\", \"data_count\": 4600, \"model_name\": \"openvla-7b\", \"seed\": 44, \"log_path\": \"/root/runs/occsafe_vla/full_occ_bn_v2_s2_r5.log\", \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"N/A (training experiment)\"}}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6099}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:ablation_occ_detach_s4",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 652
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-28T23:37:13.839704+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"full_occ_bn_v2_s2_r5\", \"success\": true, \"actions\": [\"Job still running (pid=30149)\"]}, {\"exp_id\": \"random_occ_v2_s0_r4\", \"success\": true, \"actions\": [\"Job still running (pid=49565)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:ablation_occ_detach_s4",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 6240
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-28T23:37:20.572225+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:ablation_occ_detach_s4",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-28T23:37:20.622823+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:ablation_occ_detach_s4",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-28T23:37:20.673499+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/report.md\", \"content\": \"# Handover — 2026-05-28\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| random_occ_v2_s0_r4 | Content irrelevance (Full OCC ≈ Random OCC) v2 replication seed 42. Corrected: --occ_data_dir + WANDB_MODE=disabled + orphan child process cleanup. occ_loss=0.1068@step0 confirmed. | — | — | — |\\n| full_occ_bn_v2_s2_r5 | Cell 1 (Full OCC BN) seed 44 expansion. Corrected: --occ_data_dir + WANDB_MODE=disabled + orphan child process cleanup. occ_loss=0.1422@step0 confirmed. | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **random_occ_v2_s0_r3** (failed): Content irrelevance (Full OCC ≈ Random OCC) replicates under v2, with corrected --occ_data_dir and WANDB_MODE=disabled. Prior r2 crashed on wandb init, r1 had occ_loss=0. ← 基于 random_occ_v2_s0_r2\\n- **full_occ_bn_v2_s2_r4** (failed): Expanding Cell 1 (Full OCC BN) from n=3 to n=4 with corrected --occ_data_dir and WANDB_MODE=disabled. Prior r3 crashed on wandb init, r2 had occ_loss=0. ← 基于 full_occ_bn_v2_s2_r3\\n- **random_occ_v2_s0_r2** (failed): Content irrelevance (Full OCC ≈ Random OCC) replicates under v2, with corrected --occ_data_dir. Prior r1 had occ_loss=0 due to missing occ data path (M096). ← 基于 random_occ_v2_s0\\n\\n## 趋势\\n成功 112 / 负向 6 / 失败 31 / 共 166\\nCAR: 0.784 ↑（近 3 次 success）\\nTSR: 0.902 ↓（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-10894: 无 GPU 信息\\nwestd-34685: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\n\\n## 告警\\n- cutoff_s2: 训练失败 — unknown\\n- cutoff_s2_eval: 已被终止 — unknown\\n- reverse_cutoff_s0_eval_v2: 已被终止 — unknown\\n- cutoff_25k_s0_eval_v2: 已被终止 — unknown\\n- cutoff_45k_s1: 已被终止 — unknown\\n- cutoff_25k_s2: 训练失败 — unknown\\n- reverse_cutoff_s2: 训练失败 — unknown\\n- cutoff_15k_s2: 训练失败 — unknown\\n- full_occ_retrain_s0_eval: 训练失败 — unknown\\n
+…[truncated 1583 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:ablation_occ_detach_s4",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-28T23:37:20.674049+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/ROADMAP.md\", \"content\": \"# occsafe_vla — Research Dashboard\\n\\n> 最后更新: 2026-05-28 17:51 UTC | 更新原因: Session 17 启动 — 更新到审稿修复阶段，写作类修复全部完成，4 个实验修复等 GPU\\n\\n> 核心方向详见 paper_framing.md\\n\\n## 核心方向\\nAuxiliary spatial supervision 不提升 VLA collision avoidance。两个 additive main effects：BN+gradient flow 有害（g=0.78）；LN 优势（g=0.88）。ANOVA 交互项零。\\n\\n## 目标会议\\n- **SafeRL Workshop @ RSS 2025**: 已提交（May 28），进入审稿修复阶段\\n\\n## 当前阶段：审稿修复\\n第 3 轮审稿报告：4/10 Weak Reject，17 个 issue。\\n\\n**修复进度：12/17 resolved**\\n\\n| 状态 | Issue | 类型 | 说明 |\\n|------|-------|------|------|\\n| ✅ | R1-W15, RD2-N3, RD3-W4 | format | 8 页合规 + Limitations 移入正文 |\\n| ✅ | RD3-C1 | framing | 重构为 \\\"two additive main effects\\\" |\\n| ✅ | RD2-W1, RD2-W2 | method | Factorial 描述修正 + Hedges' g |\\n| ✅ | R1-W21, RD2-W3, RD2-W5 | writing | v1 caveat + 标题范围 + guidelines 限定 |\\n| ✅ | RD2-W6, RD3-W1, RD3-W2 | writing | 补引用 + permutation ANOVA + 机制区分 |\\n| 🔴 | RD2-N1 (critical) | experiment | 加 seeds 提升统计功效（n≥5/cell） |\\n| 🔴 | RD2-N2 (critical) | experiment | v2 Random OCC 验证 content irrelevance |\\n| 🔴 | RD2-W4 | experiment | BN eval mode 消融 |\\n| 🔴 | RD3-W3 | experiment | λ₀ sweep {0.001, 0.01, 0.1} |\\n| ⏳ | R1-C9 | experiment | v1/v2 mixing（关联 RD2-N2） |\\n\\n## 基础设施\\n- 2× AutoDL 服务器（westd-34685, westd-10894），各 4×RTX PRO 6000 98GB\\n- **当前状态：GPU 不可用** — 两台均只分配 1 卡（cgroup v2 限制），需用户在 AutoDL 控制台重启为 4 卡配置\\n- 论文源码：`projects/occsafe_vla/docs/paper/`\\n\\n## 近期任务\\n- [x] 写作类修复 12 个 issue 全部完成\\n- [x] v1 caveat 7 处确认无回归\\n- [x] 编译通过（8 页主文，无 critical warnings）\\n- [ ] 等用户确认 AutoDL 4 卡重启\\n- [ ] Agent 准备 4 个 GPU 实验配置（已派任务）\\n- [ ] GPU 上线后立即提交 4 个实验（~100 GPU·h，8 卡并行 12-15h）\\n- [ ] 实验完成后提交第 4 轮审稿\\n\\n## GPU 预算\\n- 本地 8 GPU（2×4 RTX PRO 6000 98GB），当前 0/8 可用\\n- 剩余实验 GPU 需求：~100 GPU·h\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D079 | 2026-05-28 | D079: Framing 重构——Cell 
+…[truncated 1188 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:ablation_occ_detach_s4",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-28T23:37:51.020613+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 2/8 (各服务器仅 cuda:0 可用) | Worker 0 | 磁盘: westd-10894 ~55% / westd-34685 未检\n\nLoop #9 session-start 状态汇报：\n\n**RUNNING (2)**:\n- `random_occ_v2_s0_r4` (westd-10894, cuda:0, PID 49565) — RD2-N2 content irrelevance v2, seed 42\n- `full_occ_bn_v2_s2_r5` (westd-34685, cuda:0, PID 30149) — RD2-N1 种子扩充, seed 44\n\n两个实验 cron 已同步确认运行中。occ_loss 非零已验证（0.1068 / 0.1422 @step0）。\n\n**审稿修复**: 12/17 resolved。剩余 5 个均为实验类（RD2-N1, RD2-N2, RD2-W4, RD3-W3, R1-C9），需 GPU。\n\n**阻塞项**: 两台服务器均 cgroup v2 限制仅 1 卡，需用户在 AutoDL 控制台重启为 4 卡配置后才能提交 RD2-W4 + RD3-W3 + 更多种子。\n\n无新发现，等待 cron 回调。",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:ablation_occ_detach_s4",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 2/8 (各服务器仅 cuda:0 可用) | Worker 0 | 磁盘: westd-10894 ~55% / westd-34685 未检\n\nLoop #9 session-start 状态汇报：\n\n**RUNNING (2)**:\n- `random_occ_v2_s0_r4` (westd-10894, cuda:0, PID 49565) — RD2-N2 content irrelevance v2, seed 42\n- `full_occ_bn_v2_s2_r5` (westd-34685, cuda:0, PID 30149) — RD2-N1 种子扩充, seed 44\n\n两个实验 cron 已同步确认运行中。occ_loss 非零已验证（0.1068 / 0.1422 @step0）。\n\n**审稿修复**: 12/17 resolved。剩余 5 个均为实验类（RD2-N1, RD2-N2, RD2-W4, RD3-W3, R1-C9），需 GPU。\n\n**阻塞项**: 两台服务器均 cgroup v2 限制仅 1 卡，需用户在 AutoDL 控制台重启为 4 卡配置后才能提交 RD2-W4 + RD3-W3 + 更多种子。\n\n无新发现，等待 cron 回调。",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-28T23:37:54.534829+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:ablation_occ_detach_s4",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3514
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-28T23:37:58.093812+00:00_
+
+Session-start 初始化完成。
+
+**当前状态**：
+- 2 个实验正常运行中，cron 监控已同步
+- 12/17 审稿 issue 已修复，剩余 5 个等 GPU
+- 无活跃 Worker，无待处理决策
+- 等待：cron 回调（实验完成）或用户确认 AutoDL 4 卡重启
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:ablation_occ_detach_s4"
+}
+```
+
+</details>
+
+---

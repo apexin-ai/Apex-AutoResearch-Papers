@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1623b9c8efd7807ddd66",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis results compilation",
+  "task_key": "worker_analysis_results-compilation_20260514T183707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_results-compilation_20260514T183707_result.json",
+    "occurrence": 1,
+    "bytes": 856,
+    "sha256": "678b85278db08bc321d986cfebddb4fb3bbf449054e8f299aa868f145fd63002"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已输出到 `/root/autodl-tmp/agent_progress_probe/paper_results_compilation.md`（353 行）。\n\n汇编涵盖 25 个实验、6 大表 + 补充数据：\n\n| 表 | 内容 | 关键数字 |\n|---|------|---------|\n| Table 1 | 方法对比 | Structural RF 0.9951 vs Probe 0.9055 vs LLM-judge 0.6625 |\n| Table 2 | Probe 消融 (6 子表) | Encoder/窗口/SupCon/架构/数据量/多seed |\n| Table 3 | LF 时序动态 | SWE vs OH 跨 agent，cmd_rep 角色反转 |\n| Table 4 | LF hold-one-out | file_diff 最关键 (−22.3pp) |\n| Table 5 | TLM 对比 | TWV σ=2 最优但仅 +0.6pp vs MV (negative) |\n| Table 6 | 跨 agent 迁移 | Structural GB 0.9674 (OH all) vs Probe 0.532 (zero-shot) |\n\n每个数字都标注了 `exp_id` 和文件路径。所有 conf≥2 数字标注了 circular eval caveat。未找到的数字标为 \"—\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-results-compilation.md"
+}

@@ -1,0 +1,904 @@
+{
+  "schema_version": "1.0",
+  "id": "6f7b6f80b01729109433",
+  "project": "agent_progress_probe",
+  "kind": "conversation",
+  "title": "paper writing experiments",
+  "task_key": "worker_paper_writing_experiments_20260514T211641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_experiments_20260514T211641.jsonl",
+    "occurrence": 1,
+    "bytes": 49186,
+    "sha256": "334f1276c933d96fae71b1efa38b38d4db8a464933e24dea3163753831be5163"
+  },
+  "statistics": {
+    "messages": 45,
+    "user_turns": 0,
+    "tool_calls": 22,
+    "roles": {
+      "tool_call": 22,
+      "tool_result": 22,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T21:20:28.536648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md",
+              "limit": "120"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T21:20:28.537189+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 815 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T21:20:28.537372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Check paper structure",
+              "subagent_type": "Explore",
+              "prompt": "I need to understand the existing paper structure for a LaTeX paper. Please:\n1. List all files in /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/ recursively\n2. Read the main.tex file to understand how sections are included\n3. Check if references.bib exists and list the citation keys available\n4. Check if there's an existing experiments.tex file\n5. Read any existing sections (intro, method, etc.) to understand the notation and terminology used\n\nReport: file listing, how main.tex includes sections, available citation keys, and key terminology/notation from other sections."
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T21:20:28.537546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/ -type f 2>/dev/null | head -50"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T21:20:28.537726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/references.bib\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/acl_natbib.bst\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/_acl_template/formatting.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/_acl_template/.git/logs/HEAD\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/_acl_template/.git/logs/refs/heads/master\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/_acl_template/.git/logs/refs/remotes/origin/HEAD\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/_acl_template/.git/index\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/_acl_template/.git/packed-refs\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/_acl_template/.git/objects/pack/pack-318a42012d9bccf84541e32464a1b84e874c3fdb.rev\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/_acl_template/.git/objects/pack/pack-318a42012d9bccf84541e32464a1b84e874c3fdb.pack\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/_acl_template/.git/objects/pack/pack-318a42012d9bccf84541e32464a1b84e874c3fdb.idx\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/_acl_template/.git/description\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/_acl_template/.git/shallow\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/_acl_template/.git/config\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/_acl_template/.git/hooks/applypatch-msg.sample\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/pa\n…[truncated 3118 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T21:20:28.537901+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/ -maxdepth 1 -type f 2>/dev/null | sort"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T21:20:28.538025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/acl.sty\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/acl_natbib.bst\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T21:20:28.538150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T21:20:28.538271+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{inconsolata}\n11\t\\usepackage{graphicx}\n12\t\\usepackage{booktabs}\n13\t\\usepackage{amsmath}\n14\t\\usepackage{amssymb}\n15\t\\usepackage{multirow}\n16\t\\usepackage{xcolor}\n17\t\\usepackage{subcaption}\n18\t\n19\t\\newcommand{\\todo}[1]{\\textcolor{red}{[TODO: #1]}}\n20\t\\newcommand{\\goldset}[1]{\\textcolor{blue}{[GOLD\\_SET: #1]}}\n21\t\n22\t\\title{Are Stagnation Signals Structural? A Systematic Empirical Study of Progress Detection in LLM Agents via Weak Supervision}\n23\t\n24\t\\author{Anonymous}\n25\t\n26\t\\begin{document}\n27\t\\maketitle\n28\t\n29\t\\input{sections/abstract}\n30\t\\input{sections/introduction}\n31\t\\input{sections/related_work}\n32\t\\input{sections/method}\n33\t\\input{sections/experiments}\n34\t\\input{sections/analysis}\n35\t\\input{sections/conclusion}\n36\t\n37\t\\section*{Limitations}\n38\t\\input{sections/limitations}\n39\t\n40\t\\bibliography{references}\n41\t\\bibliographystyle{acl_natbib}\n42\t\n43\t\\appendix\n44\t\\input{sections/appendix}\n45\t\n46\t\\end{document}\n47\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T21:20:28.538410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/ -type f 2>/dev/null | sort"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T21:20:28.538524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T21:20:28.538643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T21:20:28.538814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% ==============================================================\n2\t% CATEGORY: direct-competitor\n3\t% ==============================================================\n4\t\n5\t@article{xi2025agentprm,\n6\t  title   = {AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress},\n7\t  author  = {Zhiheng Xi and Chenyang Liao and Guanyu Li and others},\n8\t  journal = {arXiv preprint arXiv:2511.08325},\n9\t  year    = {2025},\n10\t}\n11\t\n12\t@article{choudhury2025prm,\n13\t  title   = {Process Reward Models for LLM Agents: Practical Framework and Directions},\n14\t  author  = {Sanjiban Choudhury},\n15\t  journal = {arXiv preprint arXiv:2502.10325},\n16\t  year    = {2025},\n17\t}\n18\t\n19\t@article{li2026toolprmbench,\n20\t  title   = {ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents},\n21\t  author  = {Dawei Li and Yuguang Yao and Zhen Tan and Huan Liu and Ruocheng Guo},\n22\t  journal = {arXiv preprint arXiv:2601.12294},\n23\t  year    = {2026},\n24\t}\n25\t\n26\t@article{wang2026planrewardbench,\n27\t  title   = {Aligning Agents via Planning: A Benchmark for Trajectory-Level Reward Modeling},\n28\t  author  = {Jiaxuan Wang and Yulan Hu and Wenjin Yang and others},\n29\t  journal = {arXiv preprint arXiv:2604.08178},\n30\t  year    = {2026},\n31\t}\n32\t\n33\t@inproceedings{chen2025monitoring,\n34\t  title     = {Monitoring LLM Agents for Sequentially Contextual Harm},\n35\t  author    = {Yueh-Han Chen and Neelay Joshi and Yulin Chen and He He and Rico Angell},\n36\t  booktitle = {ICLR 2025 Workshop on Building Trust in Language Models and Applications},\n37\t  year      = {2025},\n38\t}\n39\t\n40\t@article{kale2025weaktostrong,\n41\t  title   = {Reliable Weak-to-Strong Monitoring of LLM Agents},\n42\t  author  = {Neil Kale and Chen Bo Calvin Zhang and Kevin Zhu and others},\n43\t  journal = {arXiv preprint arXiv:2508.19461},\n44\t  year    = {2025},\n45\t}\n46\t\n47\t@article{fan2026agentrm,\n48\t  title   = {Exploring Reasoning Reward Model for Agents},\n49\t  author  = {Kaixuan Fan and Kaituo Feng\n…[truncated 10271 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T21:20:28.538965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/references.bib",
+              "offset": "286"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T21:20:28.539081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (286). The file has 286 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T21:20:28.539214+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe -name \"*.tex\" -type f 2>/dev/null | grep -v \"_acl_template\" | grep -v \".git\""
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T21:20:28.539336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/dream_reports/dream_20260514T081656/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/dream_reports/dream_20260514T081656/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/dream_reports/dream_20260514T081656/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/dream_reports/dream_20260514T095527/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/dream_reports/dream_20260514T095527/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/dream_reports/dream_20260514T095527/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/dream_reports/dream_20260514T184058/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/dream_reports/dream_20260514T184058/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/dream_reports/dream_20260514T184058/best/paper.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T21:20:28.539465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/ 2>/dev/null"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T21:20:28.539582+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 92\ndrwxr-xr-x 4 ubuntu ubuntu  4096 May 14 21:11 .\ndrwxr-xr-x 4 ubuntu ubuntu  4096 May 14 05:47 ..\ndrwxr-xr-x 3 ubuntu ubuntu  4096 May 14 21:08 _acl_template\n-rw-r--r-- 1 ubuntu ubuntu 11615 May 14 21:08 acl.sty\n-rw-r--r-- 1 ubuntu ubuntu 45186 May 14 21:08 acl_natbib.bst\n-rw-r--r-- 1 ubuntu ubuntu  1000 May 14 21:09 main.tex\n-rw-r--r-- 1 ubuntu ubuntu 11235 May 14 20:52 references.bib\ndrwxr-xr-x 2 ubuntu ubuntu  4096 May 14 21:11 sections"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T21:20:28.539722+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/ 2>/dev/null"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T21:20:28.539846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 8\ndrwxr-xr-x 2 ubuntu ubuntu 4096 May 14 21:11 .\ndrwxr-xr-x 4 ubuntu ubuntu 4096 May 14 21:11 .."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T21:20:28.539965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/dream_reports/dream_20260514T184058/best/paper.tex",
+              "limit": "150"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T21:20:28.540106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt,a4paper]{article}\n2\t\\usepackage[margin=1in]{geometry}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage{graphicx}\n6\t\\usepackage{booktabs}\n7\t\\usepackage{amsmath}\n8\t\\usepackage{amssymb}\n9\t\\usepackage{multirow}\n10\t\\usepackage{xcolor}\n11\t\\usepackage{url}\n12\t\\usepackage[hidelinks]{hyperref}\n13\t\\usepackage{natbib}\n14\t\\renewcommand{\\bibsection}{\\section*{References}}\n15\t\n16\t\\title{Stagnation Signals Are Structural, Not Semantic:\\\\A Systematic Empirical Study of Progress Detection in LLM Agents}\n17\t\n18\t\\author{Anonymous}\n19\t\n20\t\\date{}\n21\t\n22\t\\begin{document}\n23\t\\maketitle\n24\t\n25\t\\begin{abstract}\n26\tLLM-based agents frequently stagnate during long-horizon tasks---executing superficially diverse but collectively ineffective action sequences.\n27\tWe present a systematic empirical study of progress stagnation detection through weak supervision, evaluating structural features, neural embedding probes, and LLM-as-judge baselines against 650 human-annotated gold windows.\n28\tOur central finding is that stagnation signals are fundamentally structural: a gradient-boosted classifier over 30 hand-crafted features (command repetition ratio, file diff frequency, etc.)\\ achieves 0.89 macro-F1 on gold labels, surpassing both GRU embedding probes (0.81) and Claude Sonnet LLM-as-judge (0.67) while incurring near-zero cost and sub-millisecond latency.\n29\tWe quantify the circular evaluation artifact inherent in weak supervision: in-domain F1 drops from 0.995 to 0.89 on gold ($\\sim$10.5\\,pp circular component), but structural dominance is preserved.\n30\tWe further discover that labeling functions exhibit systematic temporal dynamics---command repetition leads stagnation onset by $\\sim$1.6 steps while outcome signals lag by +7.2 steps---with 80\\% alignment between LF-derived and gold-validated onset boundaries.\n31\tDespite these temporal patterns motivating a temporal label model, three implementations (TWV, HMM, lag-aware HMM) all fail to improve over majority vote.\n…[truncated 8536 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T21:20:28.540250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe -maxdepth 1 -type f 2>/dev/null | sort"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T21:20:28.540365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/AGENTS.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/ROADMAP.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/ROADMAP.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/data_volume_control.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/decisions.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/decisions.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/dream_registry.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/dream_registry.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/dream_registry.yaml.bak\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/evaluate_gold_set.py\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/experiment_plan.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/experiment_plan.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/literature_map.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/memory.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/registry.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/registry.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/study_status.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/writing_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T21:20:28.540498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/paper_framing.md"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T21:20:28.540635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — agent_progress_probe\n2\t\n3\t## Target Venue\n4\t- Primary: EMNLP 2026 ARR (submission deadline: May 25, 2026; commitment: August 2, 2026)\n5\t- Format: Long paper (8 pages + appendix)\n6\t- Track: LLM Agents\n7\t- Paper type: **Empirical analysis paper**（D039 pivot: 从 method paper 转 empirical study）\n8\t- Fallback: ACL 2026 ARR August cycle (~August 15 deadline)\n9\t\n10\t## Core Claims (3 条) — D039 Pivot\n11\t\n12\t1. **Stagnation Signals Are Structural, Not Semantic (primary contribution)**: 系统性对比发现 agent stagnation 信号本质是结构性的——30 个结构特征（命令重复率、唯一命令比、文件 diff 频率等）在 in-domain (RF 0.9951) 和 cross-agent (GB 0.967) 都近完美预测停滞，全面优于 NL embedding probe (in-domain 0.906, cross-domain 0.751) 和 LLM-as-judge (+24.3pp)。Encoder-agnostic（3 个 encoder 均 >0.90）；最优窗口 k=5 (0.9309)；data scaling 10%→100% 单调递增。这揭示：(a) stagnation detection 不需要语义理解——简单结构特征已足够；(b) 结构特征天然跨 agent 迁移（不依赖 embedding domain adaptation）；(c) NL embedding 对 stagnation detection 无增量价值。**改变社区对 agent monitoring 方法选型的认知：从昂贵的表示学习转向轻量结构监控。** Gold set 验证 structural features 是否检测到真实 stagnation（非仅 circular eval artifact）是论文成立的关键。\n13\t\n14\t2. **LF Temporal Dynamics Are Systematic but Agent-Specific (analytical contribution)**: LFs 在 trajectory 上展现**系统性但 agent-specific 的**时序角色。SWE-Agent 上：cmd_rep leading (-1.87步)、file_diff concurrent (-1.2步)、OB lagging (+6.7步)。**OH 上 cmd_rep 角色反转**（从 leading 变 lagging +3.32步），而 file_diff（leading, -4.9步）和 OB（lagging, +18.1步）跨域一致。**消融验证：去掉 cmd_rep 后 OH F1 从 0.7512 飙升到 0.9272（+21.6pp）**，证明 cmd_rep 在 OH 上是噪声源而非信号。根因：cmd_rep 在 OH 上 92.3% firing rate + 71% FP，失去区分性。这揭示 LF 行为与 agent 架构之间的交互效应——为 weak supervision pipeline 在 sequential agent data 上的设计提供实证指导。同时量化 circular evaluation 问题：structural features 以 0.9951 F1 逆向工程 LF 标签，证明 LF-derived labels 上的高分不等于真实检测能力。\n15\t\n16\t3. **Temporal Label Model: A Well-Motivated Negative Finding (D039 negative result)**: 标准 data programming（majority vote）在 agent trajectory 上违反 i.i.d. 假设——LFs 产生系统性时序动态，这 motivate 了 temporal label model（TLM）的开发。然而，三种 TLM 实现**均未能超越简单 MV**：(a) *\n…[truncated 7312 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T21:20:28.540813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"^@\" /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/references.bib | wc -l"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T21:20:28.540929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "38"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T21:20:28.541051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"^@\" /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/references.bib | sed 's/@.*{\\(.*\\),/\\1/' | sort"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T21:20:28.541165+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "bahdanau2015attention\ncemri2025multiagentfail\nchen2024bgem3\nchen2025monitoring\ncho2014gru\nchoudhury2025prm\ndawid1979em\nfan2026agentrm\nfu2020flyingsquid\ngeorge2025cycledetection\nhuang2024selfcorrect\njimenez2024swebench\nkale2025weaktostrong\nkamoi2024selfcorrection\nkhosla2020supcon\nli2026toolprmbench\nliu2026trajad\nnguyen2017hmmcrowd\norlanski2026slopcodebench\npipis2025reasoningloop\nqiu2026dataprm\nratner2016dataprogramming\nratner2017snorkel\nsafranchik2020linkedhmm\nsala2019multiresolution\nshinn2023reflexion\nwang2024e5\nwang2024mint\nwang2025openhands\nwang2026planrewardbench\nxi2025agentprm\nyang2024sweagent\nyao2023tot\nzhang2021wrench\nzhang2025qwen3embedding\nzhou2024lats\nzhou2024webarena\nzhu2025agentfail"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T21:20:28.541353+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now let me compile the comprehensive report:\n\n## Paper Structure Report: agent_progress_probe\n\n### 1. FILE LISTING (Paper Directory)\n\n**Main paper directory**: `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/`\n\n**Files at root level**:\n- `main.tex` — Main entry point for the LaTeX document\n- `references.bib` — Bibliography file with 38 citations\n- `acl.sty` — ACL style file for formatting\n- `acl_natbib.bst` — Bibliographic style file (natbib-compatible)\n- `_acl_template/` — Template directory (not used in main compilation)\n\n**Sections directory**: `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/`\n- Currently **EMPTY** — all section files need to be created\n\n### 2. HOW MAIN.TEX INCLUDES SECTIONS\n\nThe `main.tex` file uses `\\input{}` commands to include 7 sections in sequence:\n\n```latex\n\\input{sections/abstract}\n\\input{sections/introduction}\n\\input{sections/related_work}\n\\input{sections/method}\n\\input{sections/experiments}\n\\input{sections/analysis}\n\\input{sections/conclusion}\n\\input{sections/limitations}  % (under \\section*{Limitations})\n\\input{sections/appendix}     % (under \\appendix)\n```\n\n**Document class**: `article` with `[review]` option using the `acl` package (11pt font)\n\n**Custom commands defined**:\n- `\\todo[1]` — Highlights TODOs in red\n- `\\goldset[1]` — Highlights gold set annotations in blue\n\n**Bibliography settings**:\n- `\\bibliography{references}` — Uses the local `references.bib` file\n- `\\bibliographystyle{acl_natbib}` — Uses the ACL natbib-compatible style\n\n### 3. AVAILABLE CITATION KEYS (38 total)\n\n**Direct Competitors (Progress Reward Models / Agent Stagnation)**:\n- `xi2025agentprm` — AgentPRM: Process Reward Models via Step-Wise Promise and Progress\n- `choudhury2025prm` — Process Reward Models for LLM Agents: Practical Framework\n- `li2026toolprmbench` — ToolPRMBench: Evaluating Process Reward Models\n- `wang2026planrewardbench` — Aligning Agents via Plan\n…[truncated 7631 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Agent",
+            "elapsed_ms": 3
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T21:20:28.541534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/",
+              "description": "Check sections directory"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T21:20:28.541673+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T21:20:28.541838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/experiments.tex",
+              "content": "\\section{Experiments}\n\\label{sec:experiments}\n\nWe evaluate stagnation detection across four axes: in-domain accuracy, cross-agent transfer, robustness to design choices, and temporal dynamics of labeling functions.\nAll reported metrics are evaluated against silver labels derived from majority vote over three labeling functions (\\S\\ref{sec:method}).\n\n\\paragraph{Circular evaluation caveat.}\nStructural features (command repetition ratios, file operation counts, edit distances) are computed from the same signals that the labeling functions use to produce silver labels.\nConsequently, the in-domain structural F1 of 0.9951 reflects an upper bound on how well these features can \\emph{reverse-engineer} the labeling functions, not detection accuracy against true ground truth.\nThe cross-agent evaluation on OpenHands (0.967 macro-F1) is non-circular: models trained on SWE-Agent LF distributions are tested on a different agent whose LF firing patterns differ substantially (\\S\\ref{sec:cmd_rep_ablation}).\nA human-annotated gold set provides the definitive non-circular evaluation (\\S\\ref{sec:gold_set}).\n\n%-------------------------------------------------------------------\n\\subsection{Experimental Setup}\n\\label{sec:setup}\n\n\\paragraph{Datasets.}\nWe extract sliding windows of $k{=}5$ consecutive actions from agent trajectories.\n\\textbf{SWE-Agent} trajectories from SWE-bench \\citep{jimenez2024swebench,yang2024sweagent} yield 54,809 windows with a stagnation ratio of 28.5\\%.\n\\textbf{OpenHands} (OH) trajectories \\citep{wang2025openhands} yield 150,652 windows with a stagnation ratio of 6.6\\%.\nSilver labels are produced by majority vote over three labeling functions; confidence equals the number of agreeing LFs (1--3).\nUnless stated otherwise, evaluation uses the conf${\\geq}$2 subset: $N{=}1{,}824$ for SWE-Agent (485 stagnation, 1,339 progress) and $N{=}43{,}376$ for OH.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llrrc}\n\\toprule\n\\textbf{Agent} & \\textbf{Source} & \\textbf{Windows} & \\textbf{Stag\\,\\%} & \\textbf{Conf${\\geq}$2} \\\\\n\\midrule\nSWE-Agent & SWE-bench & 54,809 & 28.5 & 15,401 \\\\\nOpenHands & CodeAct   & 150,652 & 6.6 & 43,376 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Dataset statistics. Stagnation ratios differ substantially across agents, reflecting different action distributions.}\n\\label{tab:dataset_stats}\n\\end{table}\n\n\\paragraph{Detection methods.}\n(1)~\\textbf{Structural features}: 30 hand-crafted features (repetition rates, file operation counts, edit distances, output entropy) fed to Logistic Regression (LR), Random Forest (RF), and Gradient Boosting (GB).\n(2)~\\textbf{ProgressProbe}: Qwen3-Embedding-0.6B \\citep{zhang2025qwen3embedding} embeddings (1024-dim) processed by a 2-layer GRU \\citep{cho2014gru} with attention \\citep{bahdanau2015attention} (hidden$=$256, dropout$=$0.3), early-stopped at epoch~3 with patience~5.\n(3)~\\textbf{Mean-pool + LR}: Mean-pooled Qwen3 embeddings with logistic regression.\n(4)~\\textbf{LLM-as-Judge}: Claude Sonnet zero-shot window-level classification (\\$11.66 API cost for the SWE test set).\n(5)~\\textbf{Cosine similarity}: Cosine distance between consecutive window embeddings with a validation-tuned threshold.\n\n\\paragraph{Metrics.}\nMacro-F1 is the primary metric. We also report per-class F1 for stagnation (F1\\textsubscript{stag}) and progress (F1\\textsubscript{prog}).\n\n%-------------------------------------------------------------------\n\\subsection{Main Results}\n\\label{sec:main_results}\n\nTable~\\ref{tab:main_results} presents in-domain results on the SWE-Agent conf${\\geq}$2 test set and cross-agent transfer to OpenHands.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\begin{tabular}{l ccc cc}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{SWE-Agent In-Domain} (conf${\\geq}$2)} & \\multicolumn{2}{c}{\\textbf{OpenHands Transfer}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-6}\n\\textbf{Method} & Macro-F1 & F1\\textsubscript{stag} & F1\\textsubscript{prog} & All & Conf${\\geq}$2 \\\\\n\\midrule\nStructural RF$^\\dagger$       & \\textbf{0.9951} & 0.9928 & 0.9974 & 0.9123 & \\textbf{0.9959} \\\\\nStructural GB$^\\dagger$       & \\textbf{0.9951} & 0.9928 & 0.9974 & \\textbf{0.9674} & \\underline{0.9919} \\\\\nStructural LR$^\\dagger$       & 0.9874 & 0.9815 & 0.9933 & 0.7801 & 0.9671 \\\\\nProgressProbe (GRU)           & \\underline{0.9055} & 0.8593 & 0.9518 & 0.5280 & --- \\\\\n\\quad + full OH fine-tune      & ---    & ---    & ---    & 0.7510 & --- \\\\\nMean-pool + LR                & 0.8435 & 0.7620 & 0.9250 & ---    & --- \\\\\nLLM-as-Judge                  & 0.6625 & 0.6055 & 0.7195 & ---    & --- \\\\\nCosine Similarity             & 0.5606 & ---    & ---    & ---    & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Stagnation detection results. In-domain evaluation on SWE-Agent conf${\\geq}$2 test set ($N{=}1{,}824$) and zero-shot cross-agent transfer to OpenHands. $^\\dagger$Structural metrics are evaluated against LF-derived labels and reflect LF-reconstructibility rather than ground-truth accuracy (see circular evaluation caveat). Best in \\textbf{bold}, second-best \\underline{underlined}.}\n\\label{tab:main_results}\n\\end{table*}\n\nIn-domain, structural RF achieves 0.9951 macro-F1, exceeding the GRU probe by 8.96 percentage points (pp) and the LLM judge by 24.3\\,pp.\nHowever, the structural--probe gap is inflated by circular evaluation: structural features reconstruct the LFs that generated the labels.\nThe more informative comparison is among non-circular methods: the GRU probe outperforms mean-pool~+~LR by 6.2\\,pp, confirming that temporal modeling within windows adds value beyond static embedding aggregation.\nThe LLM judge underperforms all learned methods despite substantially higher cost.\n\n%-------------------------------------------------------------------\n\\subsection{Cross-Agent Transfer}\n\\label{sec:cross_agent}\n\nTable~\\ref{tab:main_results} (right columns) shows models trained on SWE-Agent and evaluated on OpenHands without any OH training data.\nStructural GB transfers best, achieving 0.967 macro-F1 on all OH windows---21.6\\,pp above the probe fine-tuned on 100\\% of OH data (0.751).\nRF drops to 0.912 on all-confidence OH data despite matching GB in-domain, suggesting GB's boosted ensemble is more robust to distributional shift.\nBoth structural models recover to $>$0.99 on conf${\\geq}$2 OH windows, where label noise is lower.\n\nThe probe's zero-shot transfer (0.528) is near chance, and even full OH fine-tuning only reaches 0.751.\nThis asymmetry---structural features transfer naturally while learned embeddings do not---is a central empirical finding: stagnation manifests in action-level structure that generalizes across agents.\n\n\\paragraph{Multi-seed stability.}\nStructural RF: $0.9951{\\pm}0.0000$ in-domain (5 seeds, zero variance); GB cross-agent: $0.9678{\\pm}0.0015$.\nThe probe shows higher variance: $0.9185{\\pm}0.0113$, though all seeds exceed 0.90.\n\n%-------------------------------------------------------------------\n\\subsection{Robustness Analysis}\n\\label{sec:robustness}\n\n\\paragraph{Encoder ablation.}\nReplacing Qwen3-0.6B with BGE-M3 \\citep{chen2024bgem3} or E5-large-v2 \\citep{wang2024e5} yields probe macro-F1 of 0.9413 and 0.9363, respectively (vs.\\ 0.9055 for Qwen3).\nAll encoders exceed 0.90, indicating the probe's temporal architecture, not a specific encoder, drives performance. Full results appear in Appendix Table~\\ref{tab:encoder_ablation}.\n\n\\paragraph{Window size.}\n$k{=}5$ is optimal (0.9309 macro-F1); $k{=}3$ drops 5.9\\,pp and $k{=}7$ drops 1.8\\,pp.\nShorter windows lack sufficient context; longer windows dilute signal by spanning both progress and stagnation phases.\nDetails in Appendix Table~\\ref{tab:window_ablation}.\n\n\\paragraph{Data scaling.}\nFigure~\\ref{fig:data_scaling} shows probe performance scales monotonically from 0.8054 (10\\% training data) to 0.9055 (100\\%), with structural RF providing a ceiling at 0.9951 (dashed line).\nThe curve has not plateaued, suggesting larger trajectory corpora could further close the structural--probe gap.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{../../figures/paper/fig_data_scaling.pdf}\n\\caption{Probe macro-F1 vs.\\ training data fraction. Structural RF ceiling shown as dashed line. Performance scales monotonically but has not saturated at 100\\% data.}\n\\label{fig:data_scaling}\n\\end{figure}\n\n%-------------------------------------------------------------------\n\\subsection{Labeling Function Temporal Dynamics}\n\\label{sec:lf_temporal}\n\nWe analyze when each LF first fires relative to the onset of stagnation episodes (Table~\\ref{tab:lf_temporal}, Figure~\\ref{fig:lf_temporal}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lrrrr}\n\\toprule\n\\textbf{LF} & \\textbf{Lag} & \\textbf{Lead\\,\\%} & \\textbf{Conc.\\,\\%} & \\textbf{Lag\\,\\%} \\\\\n\\midrule\ncmd\\_rep      & $-1.87$ & 36.1 & --- & --- \\\\\nfile\\_diff    & $-1.20$ & 17.1 & --- & --- \\\\\noutcome\\_bp   & $+6.70$ & ---  & --- & 48.4 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Temporal roles of labeling functions on SWE-Agent. Lag = mean steps relative to stagnation onset (negative = leading). Kruskal-Wallis $H{=}274.3$, $p{=}2.74{\\times}10^{-60}$; all pairwise comparisons significant after Bonferroni correction.}\n\\label{tab:lf_temporal}\n\\end{table}\n\nThe three LFs occupy distinct temporal niches.\nCommand repetition leads stagnation onset by 1.87 steps on average, making it an early warning signal.\nFile diff is near-concurrent ($-1.20$ steps).\nOutcome backpropagation lags by 6.70 steps, acting as a retrospective confirmation.\n\nAll pairwise differences are significant (Kruskal-Wallis $H{=}274.3$, $p{=}2.74{\\times}10^{-60}$; Bonferroni-corrected pairwise: cmd\\_rep vs.\\ file\\_diff $p{=}1.44{\\times}10^{-26}$, cmd\\_rep vs.\\ outcome\\_bp $p{=}6.67{\\times}10^{-39}$, file\\_diff vs.\\ outcome\\_bp $p{=}3.47{\\times}10^{-47}$).\n\n\\paragraph{Cross-agent reversal.}\nOn OpenHands, cmd\\_rep shifts from leading ($-1.87$) to lagging ($+3.32$ steps).\nThis reversal explains the cmd\\_rep pathology analyzed in \\S\\ref{sec:cmd_rep_ablation}: OH's action distribution triggers cmd\\_rep on progress windows, inverting its diagnostic value.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{../../figures/paper/fig_lf_temporal.pdf}\n\\caption{Temporal roles of labeling functions relative to stagnation onset on SWE-Agent. cmd\\_rep leads ($-1.87$ steps), file\\_diff is near-concurrent ($-1.20$), outcome\\_bp lags ($+6.70$). Inset: OH reversal where cmd\\_rep becomes lagging.}\n\\label{fig:lf_temporal}\n\\end{figure}\n\n%-------------------------------------------------------------------\n\\subsection{Command Repetition Ablation}\n\\label{sec:cmd_rep_ablation}\n\nThe cmd\\_rep LF fires on 92.3\\% of OH windows (vs.\\ 65.6\\% on SWE-Agent), with a 71\\% false positive rate on OH progress windows.\nTable~\\ref{tab:cmd_rep_ablation} shows the effect of removing it.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{LF Config} & \\textbf{ZS F1} & \\textbf{FT F1} & \\textbf{FT F1\\textsubscript{s}} & \\textbf{FT F1\\textsubscript{p}} \\\\\n\\midrule\n3-LF (w/ cmd\\_rep) & 0.530 & 0.751 & 0.544 & 0.959 \\\\\n2-LF (no cmd\\_rep) & 0.607 & \\textbf{0.927} & 0.938 & 0.917 \\\\\n\\midrule\n$\\Delta$ & +7.7\\,pp & +17.6\\,pp & +39.4\\,pp & $-4.2$\\,pp \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Effect of removing cmd\\_rep on OpenHands probe performance. ZS = zero-shot transfer from SWE-Agent; FT = fine-tuned on 100\\% OH data. F1\\textsubscript{s}/F1\\textsubscript{p} = stagnation/progress F1.}\n\\label{tab:cmd_rep_ablation}\n\\end{table}\n\nRemoving cmd\\_rep improves zero-shot transfer by 7.7\\,pp and fine-tuned performance by 17.6\\,pp.\nThe gain is driven almost entirely by stagnation recall (+39.4\\,pp F1\\textsubscript{stag}), at a modest cost to progress detection ($-4.2$\\,pp F1\\textsubscript{prog}).\nThe 3-LF fine-tuned model's stagnation F1 of 0.544 reveals that cmd\\_rep corrupts silver labels so thoroughly that even full fine-tuning on OH data cannot recover.\nThis motivates agent-specific LF selection: labeling functions validated on one agent architecture may become adversarial on another.\n\n%-------------------------------------------------------------------\n\\subsection{Temporal Label Models}\n\\label{sec:temporal_label_models}\n\nWe investigate whether incorporating LF temporal dynamics into label aggregation improves over majority vote (MV).\nTable~\\ref{tab:temporal_models} compares three temporal label models \\citep{ratner2017snorkel,safranchik2020linkedhmm}.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Method} & \\textbf{Conf${\\geq}$2 F1} & \\textbf{MV Agr.} & \\textbf{Probe F1$^\\ddagger$} \\\\\n\\midrule\nMV (baseline) & 0.8946$^\\ast$ & 1.000 & 0.8468 \\\\\nTWV ($\\sigma{=}2$) & \\textbf{0.9003} & 0.885 & 0.8211 \\\\\nLag-HMM & 0.8936 & 0.820 & --- \\\\\nHMM & 0.7502 & 0.685 & 0.6564 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Temporal label model comparison. $^\\ast$MV conf${\\geq}$2 F1 is a self-evaluation baseline (MV evaluated against itself on high-confidence windows). $^\\ddagger$Downstream: probe trained on each method's labels, evaluated on SWE-Agent conf${\\geq}$2 vs.\\ MV labels.}\n\\label{tab:temporal_models}\n\\end{table}\n\nTWV achieves the highest conf${\\geq}$2 F1 (0.9003, +0.57\\,pp over MV), but this gain does not propagate downstream: a probe trained on TWV labels scores 0.8211 vs.\\ 0.8468 for MV-trained ($-2.57$\\,pp).\nTWV flips 14.1\\% of conf$=$1 labels, introducing noise that hurts probe training.\nHMM overpredicts stagnation (29,176 stagnation vs.\\ 25,633 progress windows), degrading downstream performance to 0.6564.\nLag-HMM closely tracks MV ($-0.1$\\,pp) despite explicitly modeling temporal offsets, suggesting that the temporal structure captured by individual LFs does not improve \\emph{aggregation}.\n\n\\paragraph{TWV sensitivity.}\nThe Gaussian kernel bandwidth $\\sigma$ is critical: $\\sigma{=}2$ is optimal (0.9003); $\\sigma{=}1$ drops to 0.8105 and $\\sigma{\\geq}5$ falls below 0.81.\nThis narrow operating range, combined with the downstream degradation, makes TWV impractical as a drop-in MV replacement.\n\nThese results constitute a negative finding: despite clear temporal structure in LF firing patterns (\\S\\ref{sec:lf_temporal}), temporal label models do not improve over simple majority vote for downstream stagnation detection.\n\n%-------------------------------------------------------------------\n\\subsection{Gold Set Validation}\n\\label{sec:gold_set}\n\\goldset{Human-annotated gold set (650 windows) validation pending. Results will be added upon completion (expected 2026-05-17). This provides the non-circular ground truth evaluation for all methods.}\n"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T21:20:28.542121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T21:20:28.542262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -w /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/experiments.tex",
+              "description": "Word count of experiments.tex"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T21:20:28.542379+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1652 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T21:20:28.542491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -c '\\\\cite' /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/experiments.tex",
+              "description": "Count citations"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T21:20:28.542600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T21:20:28.542764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T21:20:28.542887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T21:20:28.543005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "experiments-section-v1",
+              "type": "paper",
+              "description": "Experiments section (§5) for EMNLP 2026 paper — covers setup, main results, cross-agent transfer, robustness, LF temporal dynamics, cmd_rep ablation, temporal label models, and gold set placeholder.",
+              "project": "agent_progress_probe",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/experiments.tex",
+              "tags": "['paper', 'experiments', 'latex', 'emnlp2026']"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T21:20:28.543150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_0710d8\\\", \\\"name\\\": \\\"experiments-section-v1\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Experiments section (§5) for EMNLP 2026 paper — covers setup, main results, cross-agent transfer, robustness, LF temporal dynamics, cmd_rep ablation, temporal label models, and gold set placeholder.\\\", \\\"path\\\": \\\"projects/agent_progress_probe/artifacts/_project/paper/experiments.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"agent_progress_probe\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T21:20:16.989077+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"experiments\\\", \\\"latex\\\", \\\"emnlp2026\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T21:20:28.543327+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `docs/paper/sections/experiments.tex`，artifact 已注册。\n\n自查结果：\n- **1652 words**（含 LaTeX 标记），排版后约 2.5 pages（正文 + 5 tables + 2 figures）\n- Circular eval caveat 在 §5 开头段明确声明\n- D042 约束：in-domain RF 0.9951，cross-agent GB 0.967（rounded），multi-seed 格式 mean±std\n- 10 个 citation keys 全部来自 references.bib\n- 未使用 \"significantly\"（除有 Kruskal-Wallis p 值支撑处）和 \"state-of-the-art\"\n- 所有 table 有 `\\label` + `\\caption`，structural 指标标注 $^\\dagger$ circular caveat 脚注\n- Gold set placeholder 在末尾使用 `\\goldset{}` 命令\n- 负向结果完整报告：LLM-judge 低性能、probe 迁移失败、TLM 全部不优于 MV"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_experiments_20260514T211641"
+          },
+          "id": "event-000045"
+        }
+      ],
+      "message_count": 45
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-experiments.md"
+}

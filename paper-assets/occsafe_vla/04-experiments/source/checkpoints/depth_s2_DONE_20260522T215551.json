@@ -1,0 +1,55 @@
+{
+  "exp_id": "depth_s2",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:40:30.445Z",
+    "updated_at": "2026-05-22T21:55:51.341Z",
+    "hypothesis": "Seed 44 (3rd seed) replication of depth auxiliary supervision. depth_s0(seed42) and depth_s1(seed43) running on westd-34685. 3-seed needed for AAAI-level statistical power. If depth avg CAR > vanilla avg (0.780), depth is a viable alternative to BEV occupancy with better geometric grounding and without BEV's harmful spatial inductive bias.",
+    "parent": "depth_s0",
+    "spec": {
+      "command": "torchrun finetune.py --use_depth_head True --seed 44 --max_steps 50005 --save_freq 10000 (WANDB_MODE=disabled)",
+      "server": "westd-10894",
+      "gpu": "cuda:2",
+      "pid": "942037",
+      "log_path": "~/runs/occsafe_vla/depth_s2.log",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": "~25000 episodes (9/10 tasks with depth labels)",
+      "model_name": "openvla-7b",
+      "seed": 44,
+      "checkpoint_source": "openvla-7b (from scratch)",
+      "eval_data": "N/A (training)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T21:51:19.699Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T21:51:21.962550+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/depth_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+    "conclusion": "success",
+    "metrics": {
+      "training_steps": 50005,
+      "training_hours": 14.8,
+      "final_depth_loss": 0.0468,
+      "final_action_loss": 0.0498,
+      "final_occ_loss": 0,
+      "init_depth_loss": 0.6042,
+      "init_action_loss": 0.582,
+      "checkpoint_step": 50000,
+      "checkpoint_size_gb": 15
+    },
+    "completed_at": "2026-05-22T21:55:51.342Z"
+  },
+  "timestamp": "2026-05-22T21:55:51.425071+00:00",
+  "trigger": "update_registry"
+}

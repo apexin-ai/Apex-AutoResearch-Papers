@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "1c474d05bb8ed09c736f",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "code temporal label model",
+  "task_key": "worker_code_temporal-label-model_20260514T170841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_temporal-label-model_20260514T170841.log",
+    "occurrence": 1,
+    "bytes": 990332,
+    "sha256": "8cae537811aaae6f509784d7c442207a433750a797e5b289edc20707d61919d6"
+  },
+  "statistics": {
+    "messages": 422,
+    "user_turns": 1,
+    "tool_calls": 168,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 78,
+      "tool_call": 168,
+      "tool_result": 168,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 337,
+      "chunks": [
+        {
+          "path": "1c474d05bb8ed09c736f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1c474d05bb8ed09c736f-part-0002.json",
+          "message_count": 157
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 85,
+      "chunks": [
+        {
+          "path": "1c474d05bb8ed09c736f-part-0002.json",
+          "message_count": 23
+        },
+        {
+          "path": "1c474d05bb8ed09c736f-part-0003.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-temporal-label-model.md"
+}

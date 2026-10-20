@@ -1,0 +1,576 @@
+{
+  "schema_version": "1.0",
+  "id": "8f4f7cf7f76dc44e17c3",
+  "project": "agent_progress_probe",
+  "kind": "conversation",
+  "title": "analysis probe 002",
+  "task_key": "worker_analysis_probe-002_20260514T094949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_probe-002_20260514T094949.jsonl",
+    "occurrence": 1,
+    "bytes": 27457,
+    "sha256": "09f9d56c14ae5e02af8d46290a6b8622d65d56b735b9fb5d088665b46958b10b"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T09:51:38.916085+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T09:51:38.916345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T09:51:38.916510+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat ~/runs/agent_progress_probe/probe-002.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T09:51:38.916679+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Train: 38161 (pos=27509, neg=10652)\\\\nVal:   8547\\\\nTest:  8101\\\\npos_weight: 0.387\\\\nEpoch  1 | loss=0.1998 | val_F1=0.7862 acc=0.8194 *\\\\nEpoch  2 | loss=0.1343 | val_F1=0.8237 acc=0.8528 *\\\\nEpoch  3 | loss=0.1015 | val_F1=0.8596 acc=0.8770 *\\\\nEpoch  4 | loss=0.0817 | val_F1=0.8505 acc=0.8782\\\\nEpoch  5 | loss=0.0683 | val_F1=0.8732 acc=0.8912 *\\\\nEpoch  6 | loss=0.0561 | val_F1=0.8615 acc=0.8855\\\\nEpoch  7 | loss=0.0467 | val_F1=0.8542 acc=0.8795\\\\nEpoch  8 | loss=0.0394 | val_F1=0.8385 acc=0.8685\\\\nEpoch  9 | loss=0.0338 | val_F1=0.8862 acc=0.9013 *\\\\nEpoch 10 | loss=0.0296 | val_F1=0.8627 acc=0.8841\\\\nEpoch 11 | loss=0.0279 | val_F1=0.8241 acc=0.8563\\\\nEpoch 12 | loss=0.0259 | val_F1=0.8383 acc=0.8646\\\\nEpoch 13 | loss=0.0256 | val_F1=0.8780 acc=0.8963\\\\nEpoch 14 | loss=0.0229 | val_F1=0.8205 acc=0.8541\\\\nEarly stopping at epoch 14\\\\n\\\\nBest val macro-F1: 0.8862\\\\nOutputs saved to checkpoints_full\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T09:51:38.916823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/agent_progress_probe/checkpoints_full/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T09:51:38.916952+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 5772\\\\ndrwxr-xr-x  2 root root      92 May 14 17:47 .\\\\ndrwxr-xr-x 10 root root    4096 May 14 17:47 ..\\\\n-rw-r--r--  1 root root 5521660 May 14 17:46 best_model.pt\\\\n-rw-r--r--  1 root root  372681 May 14 17:44 split_info.json\\\\n-rw-r--r--  1 root root    4508 May 14 17:47 train_history.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T09:51:38.917069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "agent_progress_probe",
+              "filters": "{'exp_id': 'probe-002'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T09:51:38.917189+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0438}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T09:51:38.917331+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/agent_progress_probe/*.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T09:51:38.917466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/agent_progress_probe/baseline_meanpool_lr.py\\\\n/root/autodl-tmp/agent_progress_probe/baselines.py\\\\n/root/autodl-tmp/agent_progress_probe/data_loader.py\\\\n/root/autodl-tmp/agent_progress_probe/download_openhands.py\\\\n/root/autodl-tmp/agent_progress_probe/download_openhands2.py\\\\n/root/autodl-tmp/agent_progress_probe/download_openhands3.py\\\\n/root/autodl-tmp/agent_progress_probe/error_analysis.py\\\\n/root/autodl-tmp/agent_progress_probe/evaluate.py\\\\n/root/autodl-tmp/agent_progress_probe/generate_embeddings.py\\\\n/root/autodl-tmp/agent_progress_probe/labeling_functions.py\\\\n/root/autodl-tmp/agent_progress_probe/lf_oracle_baseline.py\\\\n/root/autodl-tmp/agent_progress_probe/probe_model.py\\\\n/root/autodl-tmp/agent_progress_probe/train_probe.py\\\\n/root/autodl-tmp/agent_progress_probe/window_extractor.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T09:51:38.917587+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/agent_progress_probe/checkpoints_full/train_history.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T09:51:38.917795+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"epoch\\\\\\\": 1,\\\\n    \\\\\\\"train_loss\\\\\\\": 0.19981934320434347,\\\\n    \\\\\\\"val_macro_f1\\\\\\\": 0.7862141747574325,\\\\n    \\\\\\\"val_accuracy\\\\\\\": 0.8193518193518193,\\\\n    \\\\\\\"val_precision_macro\\\\\\\": 0.7952207997698504,\\\\n    \\\\\\\"val_recall_macro\\\\\\\": 0.7792942306811077,\\\\n    \\\\\\\"val_f1_stagnation\\\\\\\": 0.702045542261675,\\\\n    \\\\\\\"val_f1_progress\\\\\\\": 0.8703828072531901\\\\n  },\\\\n  {\\\\n    \\\\\\\"epoch\\\\\\\": 2,\\\\n    \\\\\\\"train_loss\\\\\\\": 0.13426107533453946,\\\\n    \\\\\\\"val_macro_f1\\\\\\\": 0.823665059116121,\\\\n    \\\\\\\"val_accuracy\\\\\\\": 0.8528138528138528,\\\\n    \\\\\\\"val_precision_macro\\\\\\\": 0.8395780735258831,\\\\n    \\\\\\\"val_recall_macro\\\\\\\": 0.812466649776163,\\\\n    \\\\\\\"val_f1_stagnation\\\\\\\": 0.7519716088328076,\\\\n    \\\\\\\"val_f1_progress\\\\\\\": 0.8953585093994344\\\\n  },\\\\n  {\\\\n    \\\\\\\"epoch\\\\\\\": 3,\\\\n    \\\\\\\"train_loss\\\\\\\": 0.1015196584977981,\\\\n    \\\\\\\"val_macro_f1\\\\\\\": 0.8595698536056389,\\\\n    \\\\\\\"val_accuracy\\\\\\\": 0.877032877032877,\\\\n    \\\\\\\"val_precision_macro\\\\\\\": 0.8564376675644756,\\\\n    \\\\\\\"val_recall_macro\\\\\\\": 0.8630150798871593,\\\\n    \\\\\\\"val_f1_stagnation\\\\\\\": 0.8100487981203687,\\\\n    \\\\\\\"val_f1_progress\\\\\\\": 0.9090909090909091\\\\n  },\\\\n  {\\\\n    \\\\\\\"epoch\\\\\\\": 4,\\\\n    \\\\\\\"train_loss\\\\\\\": 0.08167452812085489,\\\\n    \\\\\\\"val_macro_f1\\\\\\\": 0.8505225118976069,\\\\n    \\\\\\\"val_accuracy\\\\\\\": 0.8782028782028782,\\\\n    \\\\\\\"val_precision_macro\\\\\\\": 0.882057562126957,\\\\n    \\\\\\\"val_recall_macro\\\\\\\": 0.8317677426977922,\\\\n    \\\\\\\"val_f1_stagnation\\\\\\\": 0.7861983980283426,\\\\n    \\\\\\\"val_f1_progress\\\\\\\": 0.9148466257668711\\\\n  },\\\\n  {\\\\n    \\\\\\\"epoch\\\\\\\": 5,\\\\n    \\\\\\\"train_loss\\\\\\\": 0.06833867161282109,\\\\n    \\\\\\\"val_macro_f1\\\\\\\": 0.8731785160237746,\\\\n    \\\\\\\"val_accuracy\\\\\\\": 0.8911898911898912,\\\\n    \\\\\\\"val_precision_macro\\\\\\\": 0.8776172916470828,\\\\n    \\\\\\\"val_recall_macro\\\\\\\": 0.8691724448473928,\\\\n    \\\\\\\"val_f1_stagnation\\\\\\\": 0.8253849042433345,\\\\n    \\\\\\\"val_f1_progress\\\\\\\": 0.9209721278042148\\\\n  }\n…[truncated 3622 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T09:51:38.917978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -80 /root/autodl-tmp/agent_progress_probe/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T09:51:38.918145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Evaluate the GRU probe and all baselines on the test set, output comparison table.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom torch.utils.data import DataLoader\\\\n\\\\nsys.path.insert(0, str(Path(__file__).parent))\\\\nfrom baselines import (\\\\n    ALL_BASELINES,\\\\n    CosineSimilarityBaseline,\\\\n    RandomBaseline,\\\\n    Repeat3Baseline,\\\\n    compute_metrics,\\\\n)\\\\nfrom probe_model import ProgressProbe, WindowDataset, collate_fn\\\\n\\\\n\\\\ndef parse_row_index(trajectory_id: str) -> int:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract row_index from trajectory_id 'instance_id__model_name__r{idx}'.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return int(trajectory_id.rsplit(\\\\\\\"__r\\\\\\\", 1)[1])\\\\n\\\\n\\\\ndef build_trajectory_index(traj_path: str) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Map row_index (int) -> list of step dicts.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    index = {}\\\\n    with open(traj_path) as f:\\\\n        for row_idx, line in enumerate(f):\\\\n            line = line.strip()\\\\n            if not line:\\\\n                continue\\\\n            raw = json.loads(line)\\\\n            steps = []\\\\n            for s in raw.get(\\\\\\\"trajectory\\\\\\\") or []:\\\\n                steps.append({\\\\n                    \\\\\\\"role\\\\\\\": s.get(\\\\\\\"role\\\\\\\", \\\\\\\"unknown\\\\\\\"),\\\\n                    \\\\\\\"text\\\\\\\": s.get(\\\\\\\"text\\\\\\\") or s.get(\\\\\\\"system_prompt\\\\\\\") or \\\\\\\"\\\\\\\",\\\\n                })\\\\n            index[row_idx] = steps\\\\n    return index\\\\n\\\\n\\\\ndef load_windows(path: str) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load windows and index by trajectory_id__w{window_idx}.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    index = {}\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            line = line.strip()\\\\n            if line:\\\\n                w = json.loads(line)\\\\n                wid = f\\\\\\\"{w['trajectory_id']}__w{w['window_idx']}\\\\\\\"\\\\n                index[wid] = w\\\\n    return index\\\\n\\\\n\\\\ndef build_baseline_data(\\\\n    data: di\n…[truncated 894 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T09:51:38.918288+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -100 /root/autodl-tmp/agent_progress_probe/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T09:51:38.918491+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\ndef print_table(results: list[tuple[str, dict]]):\\\\n    header = \\\\\\\"| Method | Macro-F1 | Accuracy | Precision | Recall | F1(stag) | F1(prog) |\\\\\\\"\\\\n    sep = \\\\\\\"|\\\\\\\" + \\\\\\\"|\\\\\\\".join([\\\\\\\"---\\\\\\\"] * 7) + \\\\\\\"|\\\\\\\"\\\\n    print(header)\\\\n    print(sep)\\\\n    for name, m in results:\\\\n        print(\\\\n            f\\\\\\\"| {name:20s} | {m['macro_f1']:.4f}   | {m['accuracy']:.4f}   | \\\\\\\"\\\\n            f\\\\\\\"{m['precision_macro']:.4f}    | {m['recall_macro']:.4f} | \\\\\\\"\\\\n            f\\\\\\\"{m['f1_stagnation']:.4f}   | {m['f1_progress']:.4f}   |\\\\\\\"\\\\n        )\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Evaluate probe + baselines on test set\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", required=True, help=\\\\\\\"Directory containing embeddings.pt\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--checkpoint\\\\\\\", required=True, help=\\\\\\\"Path to best_model.pt\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--split_info\\\\\\\", required=True, help=\\\\\\\"Path to split_info.json\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--trajectories\\\\\\\", required=True, help=\\\\\\\"Path to original trajectories JSONL\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=64)\\\\n    parser.add_argument(\\\\\\\"--device\\\\\\\", default=None)\\\\n    args = parser.parse_args()\\\\n\\\\n    device = args.device or (\\\\\\\"cuda\\\\\\\" if torch.cuda.is_available() else \\\\\\\"cpu\\\\\\\")\\\\n\\\\n    # Load embeddings data\\\\n    data = torch.load(Path(args.data_dir) / \\\\\\\"embeddings.pt\\\\\\\", weights_only=False)\\\\n\\\\n    # Apply same confidence filter used during training\\\\n    with open(args.split_info) as f:\\\\n        split_info = json.load(f)\\\\n\\\\n    keep_indices = split_info.get(\\\\\\\"keep_indices\\\\\\\")\\\\n    if keep_indices is not None:\\\\n        min_conf = split_info.get(\\\\\\\"min_confidence\\\\\\\", 0)\\\\n        print(f\\\\\\\"Applying confidence filter (min_confidence={min_conf}): {len(keep_indices)}/{len(data['labels'])} windows\\\\\\\")\\\\n        data = {\\\\n          \n…[truncated 2755 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T09:51:38.918685+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/agent_progress_probe/data/",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T09:51:38.918831+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"embeddings.pt\\\\nswe_agent_trajectories_5000.jsonl\\\\nwindows_labeled.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T09:51:38.918995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/agent_progress_probe && python3 evaluate.py --data_dir data --checkpoint checkpoints_full/best_model.pt --split_info checkpoints_full/split_info.json --trajectories data/swe_agent_trajectories_5000.jsonl --batch_size 64",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T09:51:38.919129+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Test set: 8101 windows\\\\nLoading trajectory data for baselines ...\\\\n\\\\n| Method | Macro-F1 | Accuracy | Precision | Recall | F1(stag) | F1(prog) |\\\\n|---|---|---|---|---|---|---|\\\\n| GRU Probe            | 0.8468   | 0.8785   | 0.8490    | 0.8447 | 0.7772   | 0.9165   |\\\\n| Random               | 0.4904   | 0.5940   | 0.4904    | 0.4905 | 0.2607   | 0.7202   |\\\\n| Majority             | 0.4202   | 0.7247   | 0.3624    | 0.5000 | 0.0000   | 0.8404   |\\\\n| CosineSim            | 0.5492   | 0.6504   | 0.5511    | 0.5482 | 0.3355   | 0.7628   |\\\\n| Repeat-3             | 0.6104   | 0.7589   | 0.7151    | 0.6033 | 0.3698   | 0.8510   |\\\\n\\\\nBest baseline: Repeat-3 (Macro-F1: 0.6104)\\\\nGRU Probe improvement: +0.2365 (+38.7%)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.63}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T09:51:38.919308+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "probe-002",
+              "field": "metrics",
+              "value": "{'test_macro_f1': 0.8468, 'test_accuracy': 0.8785, 'test_precision_macro': 0.849, 'test_recall_macro': 0.8447, 'test_f1_stagnation': 0.7772, 'test_f1_progress': 0.9165, 'val_macro_f1_best': 0.8862, 'best_epoch': 9, 'total_epochs': 14, 'early_stopping': True, 'train_windows': 38161, 'val_windows': 8547, 'test_windows': 8101, 'total_windows': 54809, 'vs_probe001_macro_f1_delta': -0.0587, 'best_baseline': 'Repeat-3', 'best_baseline_macro_f1': 0.6104, 'probe_vs_best_baseline_delta': 0.2365}",
+              "project": "agent_progress_probe",
+              "spec": "{'command': 'python3 train_probe.py --data_dir data --output_dir checkpoints_full --min_confidence 0 --lr 1e-3 --batch_size 32 --epochs 20 --seed 42', 'server': 'autodl-5090', 'data_path': '/root/autodl-tmp/agent_progress_probe/data', 'data_count': 54809, 'model_name': 'GRU ProgressProbe', 'seed': 42, 'checkpoint_path': '/root/autodl-tmp/agent_progress_probe/checkpoints_full/best_model.pt', 'log_path': '~/runs/agent_progress_probe/probe-002.log', 'min_confidence': 0}"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T09:51:38.919499+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"probe-002\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T09:20:02.485Z\\\", \\\"updated_at\\\": \\\"2026-05-14T09:51:23.280Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 train_probe.py --data_dir data --output_dir checkpoints_full --min_confidence 0 --lr 1e-3 --batch_size 32 --epochs 20 --seed 42\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"20074\\\", \\\"log_path\\\": \\\"~/runs/agent_progress_probe/probe-002.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T09:44:31.028Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/agent_progress_probe/data\\\", \\\"data_count\\\": 54809, \\\"model_name\\\": \\\"GRU ProgressProbe\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/agent_progress_probe/checkpoints_full/best_model.pt\\\", \\\"min_confidence\\\": 0}, \\\"server\\\": \\\"gpu-5090-2x-2\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"gpu-5090-2x-2\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-14T09:44:09.223Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/agent_progress_probe && python3 train_probe.py --data_dir data --output_dir checkpoints_full --min_confidence 0 --lr 1e-3 --batch_size 32 --epochs 20 --seed 42\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T09:48:43.331Z\\\", \\\"training_hours\\\": 0.08}, \\\"pid\\\": \\\"20074\\\", \\\"log_path\\\": \\\"~/runs/agent_progress_probe/probe-002.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T09:48:44.171029+00:00\\\"}]}, \\\"metrics\\\": {\\\"test_macro_f1\\\": 0.8468, \\\"test_accuracy\\\": 0.8785, \\\"test_precision_macro\\\": 0.849, \\\"test_recall_macro\\\": 0.8447, \\\"test_f1_stagnation\\\": 0.7772, \\\"test_f1_progress\\\": 0.9165, \\\"val_macro_f1_best\\\": 0.8862, \\\"best_epoch\\\": 9, \\\"total_epochs\\\": 14, \\\"early_stopping\\\": true, \\\"train_windows\\\": 38161, \\\n…[truncated 290 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T09:51:38.919650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "probe-002",
+              "field": "conclusion",
+              "value": "success",
+              "project": "agent_progress_probe"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T09:51:38.919834+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"probe-002\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T09:20:02.485Z\\\", \\\"updated_at\\\": \\\"2026-05-14T09:51:26.941Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 train_probe.py --data_dir data --output_dir checkpoints_full --min_confidence 0 --lr 1e-3 --batch_size 32 --epochs 20 --seed 42\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"20074\\\", \\\"log_path\\\": \\\"~/runs/agent_progress_probe/probe-002.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T09:44:31.028Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/agent_progress_probe/data\\\", \\\"data_count\\\": 54809, \\\"model_name\\\": \\\"GRU ProgressProbe\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/agent_progress_probe/checkpoints_full/best_model.pt\\\", \\\"min_confidence\\\": 0}, \\\"server\\\": \\\"gpu-5090-2x-2\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"gpu-5090-2x-2\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-14T09:44:09.223Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/agent_progress_probe && python3 train_probe.py --data_dir data --output_dir checkpoints_full --min_confidence 0 --lr 1e-3 --batch_size 32 --epochs 20 --seed 42\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T09:48:43.331Z\\\", \\\"training_hours\\\": 0.08}, \\\"pid\\\": \\\"20074\\\", \\\"log_path\\\": \\\"~/runs/agent_progress_probe/probe-002.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T09:48:44.171029+00:00\\\"}]}, \\\"metrics\\\": {\\\"test_macro_f1\\\": 0.8468, \\\"test_accuracy\\\": 0.8785, \\\"test_precision_macro\\\": 0.849, \\\"test_recall_macro\\\": 0.8447, \\\"test_f1_stagnation\\\": 0.7772, \\\"test_f1_progress\\\": 0.9165, \\\"val_macro_f1_best\\\": 0.8862, \\\"best_epoch\\\": 9, \\\"total_epochs\\\": 14, \\\"early_stopping\\\": true, \\\"train_windows\\\": 38161, \\\n…[truncated 318 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T09:51:38.919978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "probe-002",
+              "field": "status",
+              "value": "DONE",
+              "project": "agent_progress_probe"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T09:51:38.920167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"probe-002\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T09:20:02.485Z\\\", \\\"updated_at\\\": \\\"2026-05-14T09:51:27.535Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 train_probe.py --data_dir data --output_dir checkpoints_full --min_confidence 0 --lr 1e-3 --batch_size 32 --epochs 20 --seed 42\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"20074\\\", \\\"log_path\\\": \\\"~/runs/agent_progress_probe/probe-002.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T09:44:31.028Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/agent_progress_probe/data\\\", \\\"data_count\\\": 54809, \\\"model_name\\\": \\\"GRU ProgressProbe\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/agent_progress_probe/checkpoints_full/best_model.pt\\\", \\\"min_confidence\\\": 0, \\\"wall_clock_seconds\\\": 416.5, \\\"gpu_hours\\\": 0.12}, \\\"server\\\": \\\"gpu-5090-2x-2\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"gpu-5090-2x-2\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-14T09:44:09.223Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/agent_progress_probe && python3 train_probe.py --data_dir data --output_dir checkpoints_full --min_confidence 0 --lr 1e-3 --batch_size 32 --epochs 20 --seed 42\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T09:48:43.331Z\\\", \\\"training_hours\\\": 0.08}, \\\"pid\\\": \\\"20074\\\", \\\"log_path\\\": \\\"~/runs/agent_progress_probe/probe-002.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T09:48:44.171029+00:00\\\"}]}, \\\"metrics\\\": {\\\"test_macro_f1\\\": 0.8468, \\\"test_accuracy\\\": 0.8785, \\\"test_precision_macro\\\": 0.849, \\\"test_recall_macro\\\": 0.8447, \\\"test_f1_stagnation\\\": 0.7772, \\\"test_f1_progress\\\": 0.9165, \\\"val_macro_f1_best\\\": 0.8862, \\\"best_epoch\\\": 9, \\\"total_epochs\\\": 14, \\\"earl\n…[truncated 465 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T09:51:38.920352+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完成。\n\n## probe-002 分析总结\n\nprobe-002 使用全量数据（54,809 windows, min_confidence=0）训练 GRU probe，epoch 9 达到最佳 val macro-F1=0.8862，epoch 14 触发 early stopping。\n\n**测试集指标**：macro-F1=**0.8468**，accuracy=0.8785，F1(stagnation)=0.7772，F1(progress)=0.9165。相比最强 baseline Repeat-3（macro-F1=0.6104），GRU probe 提升 +0.2365（+38.7%）。\n\n**与 probe-001 对比**：全量数据 macro-F1（0.8468）较 conf≥2 子集（0.9055）**下降 0.0587**。数据量从 15,401 扩大到 54,809（+256%），但 F1 反而下降约 6.5%。\n\n**结论**：低置信度样本引入了噪声，稀释了高质量标注的信号。conf≥2 子集虽然数据量仅为全量的 28%，但标注质量更高，模型表现更优。这验证了弱监督标注中置信度过滤的必要性——在数据量和标注质量之间，质量优先的策略更有效。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_probe-002_20260514T094949"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-probe-002.md"
+}

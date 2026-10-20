@@ -1,0 +1,22 @@
+{
+  "exp_id": "detach_ln_v2_s1_35",
+  "project": "occsafe_vla",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T00:50:57.162Z",
+    "updated_at": "2026-05-27T00:59:24.698Z",
+    "hypothesis": "Detach LN (gradient OFF + LN) v2 rebuild seed 43 on westd-34685. Previously unregistered instance running since ~23:34 UTC, currently at step 4608/50005. Provides Cell 4 v2 data for factorial ANOVA.",
+    "spec": {
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:0"
+      ],
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-27T00:59:25.022856+00:00",
+  "trigger": "update_registry"
+}

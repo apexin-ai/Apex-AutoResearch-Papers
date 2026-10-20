@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f0cfc2e2e3cac9d32f1",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "run quick probe monitor",
+  "task_key": "worker_run_quick-probe-monitor_20260516T090532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_quick-probe-monitor_20260516T090532_result.json",
+    "occurrence": 1,
+    "bytes": 108,
+    "sha256": "f68763523c38355a2ca00757fe0320f7920da165bc52f4c74e91c4418798f319"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Quick Probe 正常运行中，GPU 0 几乎满载。将在 ~4.5 分钟后再次检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-quick-probe-monitor.md"
+}

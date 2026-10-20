@@ -1,0 +1,36 @@
+{
+  "exp_id": "ablation_occ_detach_s0_retrain",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:06:00.676Z",
+    "updated_at": "2026-05-24T17:50:32.862Z",
+    "hypothesis": "Retrain Detach OCC (BN) with seed 42 to obtain same-seed checkpoint for 4-condition gradient analysis. Enables perfect same-seed comparison: Vanilla_s0 + Full OCC_s0 + Detach+LN_s0 + Detach BN_s0. Source: D034 dual mechanism requires same-seed gradient magnitude comparison across all 4 conditions.",
+    "spec": {
+      "command": "torchrun finetune.py --use_occ_head True --occ_detach true --seed 42 (BN default)",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "746616",
+      "log_path": "~/runs/occsafe_vla/ablation_occ_detach_s0_retrain.log",
+      "submitted_at": "2026-05-24T09:06:14.866Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 25000,
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "wall_clock_seconds": 31458.0,
+      "gpu_hours": 8.74
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-24T17:50:32.862Z"
+  },
+  "timestamp": "2026-05-24T17:50:33.039873+00:00",
+  "trigger": "update_registry"
+}

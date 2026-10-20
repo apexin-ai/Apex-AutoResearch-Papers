@@ -1,0 +1,16 @@
+{
+  "exp_id": "reverse_cutoff_s2_v2_eval",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T23:59:56.196Z",
+    "updated_at": "2026-05-27T00:03:58.018Z",
+    "hypothesis": "50-rollout SafeLIBERO eval of reverse_cutoff_s2_v2 (Reverse Cutoff@35K, seed 44, v2 code). 3rd seed for reverse cutoff dose-response. Strengthens temporal dynamics claim.",
+    "parent": "reverse_cutoff_s2_v2"
+  },
+  "timestamp": "2026-05-27T00:03:58.322440+00:00",
+  "trigger": "update_registry"
+}

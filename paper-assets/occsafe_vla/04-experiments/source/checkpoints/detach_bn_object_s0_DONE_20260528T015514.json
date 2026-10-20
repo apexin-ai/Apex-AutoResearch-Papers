@@ -1,0 +1,54 @@
+{
+  "exp_id": "detach_bn_object_s0",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-28T00:09:57.598Z",
+    "updated_at": "2026-05-28T01:55:13.782Z",
+    "hypothesis": "Detach BN on libero_object benchmark (seed 42): Tests whether detaching gradient flow neutralizes OCC head damage on object suite, mirroring libero_spatial findings. If Detach BN CAR ≈ Vanilla (i.e., harmless), supports cross-benchmark generalizability of the detach mechanism. Combined with full_occ_bn_object_s0 and vanilla_object, enables factorial comparison on object suite.",
+    "spec": {
+      "command": "torchrun finetune.py --dataset_name libero_object_no_noops --seed 42 --use_occ_head True --occ_detach True --occ_norm_type bn --max_steps 45005 --resume True --resume_step 5000",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "941487",
+      "log_path": "~/runs/occsafe_vla/detach_bn_object_s0.log",
+      "submitted_at": "2026-05-28T01:44:52.364Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_id": "cuda:3",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_object_no_noops",
+      "data_count": "454 demos",
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_source": "openvla-7b-pretrained",
+      "eval_data": "N/A-training",
+      "run_root_dir": "/root/autodl-tmp/checkpoints/detach_bn_object_s0",
+      "wall_clock_seconds": 375.2,
+      "gpu_hours": 0.1
+    },
+    "conclusion": "killed",
+    "reproduce": {
+      "finished_at": "2026-05-28T01:51:02.386Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-28T01:51:07.551Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-28T01:51:14.383497+00:00"
+        }
+      ]
+    },
+    "notes": "失败原因: OSError - 5000_chkpt 目录缺少模型权重文件 (pytorch_model.bin/model.safetensors)，resume 时 from_pretrained 找不到模型 | error_type: infrastructure | 建议: 检查 checkpoint 完整性，可能需要从 step 0 重训"
+  },
+  "timestamp": "2026-05-28T01:55:14.160452+00:00",
+  "trigger": "update_registry"
+}

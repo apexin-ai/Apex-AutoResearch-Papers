@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "413410518722618211a9",
+  "project": "agent_progress_probe",
+  "kind": "history",
+  "title": "agent / loop_1_1778768856.md",
+  "task_key": "loop_1_1778768856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1778768856.md",
+    "occurrence": 1,
+    "bytes": 5430,
+    "sha256": "587565b0aece8e3314c78dff80c2cbe88886a2a601e118c2e2d9a072288b57a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-14T13:12:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `cuda:0`, `cuda:1`（`load_project_config` execution.gpu_ids）。autodl-5090 和 gpu-5090-2x-2 是**同一台机器**（D018），不要当两台用\n- outcome-bp-sensitivity 的 +1.2pp 结果已被 INVALIDATED（split seed 泄漏，D019）。不得引用该数据点，不得基于它做后续实验\n- outcome-bp-3seed 结论 negative（mean macro-F1=0.77, delta=-7.7pp）。去掉 outcome_bp LF 的\"改善\"是泄漏假象，holdout 重训反而大幅下降。**不要再尝试证明去 OB 有益**\n- cross-agent zero-shot 迁移已确认失败（macro-F1=0.53）。Claim 3 已按 D017 重构为\"LFs 选择性迁移 + Probe 需 agent-specific 适配\"，不要再走 zero-shot 路线\n- baseline-llm-judge 用外部 API（http://47.94.22.126/v1, claude-sonnet-4-6），budget $50 上限\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：autodl-5090（= gpu-5090-2x-2），2× RTX 5090 32GB\n- **工作目录**：`/root/autodl-tmp/agent_progress_probe`\n- **Python**：`/root/miniconda3/bin/python`，conda base 环境。激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **HF cache**：`/root/autodl-tmp/.hf_cache`（HF_HUB_OFFLINE=1 因为模型已下载）\n- **数据**：`data/embeddings.pt`（54809 windows, Qwen3-Embedding, 1.1GB）、`data/windows_labeled.jsonl`\n- **Checkpoints**：`checkpoints/best_model.pt`（conf≥2 probe）、`checkpoints_full/best_model.pt`（全量 probe）\n- **活跃进程**：\n  - encoder-ablation-bge-m3: PID 42952, tmux, cuda:0\n  - encoder-ablation-e5-large: PID 43033, tmux, cuda:1\n  - baseline-llm-judge: PID 27419, tmux, API-based（无 GPU）\n  - outcome-bp-3seed: PID 48710 已完成（DONE/negative）\n- **Cron**：baseline-llm-judge 有 cron 监控（reconcile 确认 still running）\n- **SSH**：密码 `H6BKr9xWo+8Z`，端口 23165（AutoDL 重启会变）\n\n### 3. 📊 当前状态\n**刚完成**：outcome-bp-3seed 3-seed holdout 实验，结论 negative。这是对 outcome-bp-sensitivity 泄漏修复后的重跑，确认去掉 OB LF 实际上使 probe 性能下降 7.7pp。Worker `worker_code_outcome-bp-3seed_20260514T124930` 仍标记 running 但实验已 DONE。\n\n**正在跑**：\n| exp_id | GPU | 状态 | 说明 |\n|--------|-----|------|------|\n| encoder-ablation-bge-m3 | cuda:0 | RUNNING | BGE-M3 encoder 嵌入生成 |\n| encoder-ablation-e5-large | cuda:1 | RUNNING | E5-large encoder 嵌入生成 |\n| baseline-llm-judge | N/A (API) | RUNNING | Claude Sonnet zero-shot 判断，370/1824 |\n\n**PREPARING（未提交）**：\n- outcome-bp-3seed-s42：已被 outcome-bp-3seed 批量实验覆盖，应清理\n- openhands-fewshot-probe：few-shot 适配实验，D017 Framing A 路线，等编码\n- encoder-ablation：父实验，子实验已在跑\n\n**待处理**：\n- outcome-bp-3seed negative 结论尚未向 Director 汇报（需产出 Framing 调整提案 + red-section 流程）\n- encoder ablation 完成后需训练 probe 并对比（验证 encoder 鲁棒性 claim）\n- report.md 需更新（当前内容滞后）\n\n### 4. 📋 待办（条件触发式）\n- encoder-ablation-bge-m3/e5-large cron 回调 → spawn worker 在各 encoder embedding 上训练 probe → 对比 macro-F1（验证 encoder robustness claim）\n- baseline-llm-judge cron 回调 → 分析 LLM judge 与 probe 的对比，写入 registry + 汇报 Director\n- **立即**：向 Director 汇报 outcome-bp-3seed negative 结论。按 red-section 产出 Framing 提案——建议方向：OB LF 确认为噪声源（75.3% 非覆盖窗口引入噪声），去掉它训练集标签质量反而下降因为 test set 仍含 OB 贡献的标签，结论是 OB 是有价值的 retrospective signal 但应在推理时降权\n- openhands-fewshot-probe 需要 Worker 实现 few-shot 适配代码（从 OH embeddings 采样少量标注数据 fine-tune），等 GPU 空出\n- 人工标注材料准备（ROADMAP 关键路径）——temporal-label-model 的前置依赖，5/16-17 GO/NO-GO 检查点\n\n### 5. 🎯 战略上下文\n**投稿目标**：EMNLP 2026 ARR 5/25 cycle（还剩 11 天）。\n\n**项目核心结论链**：\n- D007: MVP 通过，GRU probe macro-F1=0.9055 (conf≥2), 比 Repeat-3 高 6.24pp\n- D009: Dream 审稿建议升级 framing 为 temporal label model（三层贡献）\n- D010: 全量数据 probe-002 macro-F1=0.8468，噪声数据上 GRU vs MeanPool gap 扩大到 12.74pp\n- D016/D017: Cross-agent zero-shot 失败，Claim 3 重构为 selective LF transfer\n- D019: OB sensitivity 泄漏无效化\n\n**最容易判断错的事**：\n1. **不要把 outcome-bp-3seed 的 negative 当成\"OB 无用\"**——OB 在训练标签中有贡献（覆盖 24.7% 窗口），去掉它训练集标签质量下降，但在推理/泛化场景中 OB 是 post-hoc 信号确实有局限。正确 framing 是\"OB 作为训练时的 distant supervision 有效，但推理时不可用\"\n2. **conf≥2 vs 全量数据的 F1 差距（0.9055 vs 0.8468）不是 bug**——是标注质量 vs 数据量的 tradeoff，论文应讨论此现象\n3. **encoder ablation 实验用的是 HF_HUB_OFFLINE=1**——模型必须已经下载到 cache，如果换新 encoder 需要先在线下载\n4. **GO/NO-GO 检查点（5/16-17）是关键分叉**——人工标注 gold set 验证 LF temporal roles 是否在人工标签上成立。不通过则走 Plan B（降级为 empirical study）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1778768856.md"
+}

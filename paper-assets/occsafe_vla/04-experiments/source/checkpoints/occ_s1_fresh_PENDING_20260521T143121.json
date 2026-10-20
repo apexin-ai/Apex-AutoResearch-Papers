@@ -1,0 +1,16 @@
+{
+  "exp_id": "occ_s1_fresh",
+  "project": "occsafe_vla",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T14:31:11.815Z",
+    "updated_at": "2026-05-21T14:31:21.816Z",
+    "hypothesis": "Fresh from-scratch OCC training with seed 43 (s1) to obtain clean 3-seed aggregate data. Previous occ_s1 suffered permanent damage from resume at 17500 (D013 excluded it). This replication eliminates resume confound and provides apple-to-apple comparison with s0/s2 at 47500_chkpt.",
+    "parent": "mvp_occ_s1"
+  },
+  "timestamp": "2026-05-21T14:31:21.857459+00:00",
+  "trigger": "update_registry"
+}

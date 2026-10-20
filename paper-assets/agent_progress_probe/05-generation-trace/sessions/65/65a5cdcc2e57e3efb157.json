@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65a5cdcc2e57e3efb157",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "fix oh label retrain",
+  "task_key": "worker_fix_oh-label-retrain_20260514T222639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_oh-label-retrain_20260514T222639_result.json",
+    "occurrence": 1,
+    "bytes": 807,
+    "sha256": "db27ff4be1a1e33bac5d2cc2cfabce5c2a4affc28466b406f4bcc7f1f9a9a0d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact registered (`art_20260514_5d9c62`).\n\n全部 4 步已完成，结果已注册。总结：\n\n| Method | Macro-F1 | F1(stag) | F1(prog) |\n|--------|----------|----------|----------|\n| GB (structural) | 0.9984 | 0.9975 | 0.9994 |\n| Probe (scratch) | 0.9785 | 0.9654 | 0.9917 |\n| Probe (FT from SWE) | 0.9763 | 0.9617 | 0.9909 |\n| Zero-shot SWE→OH | 0.5984 | 0.3074 | 0.8895 |\n\nPaired bootstrap GB vs Probe FT: Δ=+0.0221, 95% CI [0.0173, 0.0272], p=0.0。\n\n值得注意：GB 的 0.9984 显著高于 label audit 的 0.977 上限，可能是因为 conf≥2 过滤筛掉了结构模糊的 window，留下的样本对 30 维文本特征来说几乎可分。这意味着 GB 在\"简单\"子集上的表现被高估，实际部署中（含低置信度 window）差距会缩小。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-oh-label-retrain.md"
+}

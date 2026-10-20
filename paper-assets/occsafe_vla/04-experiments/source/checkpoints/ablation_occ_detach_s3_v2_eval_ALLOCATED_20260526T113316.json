@@ -1,0 +1,29 @@
+{
+  "exp_id": "ablation_occ_detach_s3_v2_eval",
+  "project": "occsafe_vla",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T11:11:56.491Z",
+    "updated_at": "2026-05-26T11:33:16.344Z",
+    "hypothesis": "50-rollout SafeLIBERO eval of ablation_occ_detach_s3_v2 (Detach BN, seed 45, v2 code). Fills Cell 3 4th data point of 2×2 factorial ANOVA. v2 s0 CAR=0.774, s1 CAR=0.736, s2 CAR=0.762.",
+    "parent": "ablation_occ_detach_s3_v2",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=3 python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/ablation_occ_detach_s3_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--ablation_occ_detach_s3_v2--50000_chkpt --task_suite_name libero_spatial --num_rollouts 50 --seed 42\"",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "189896",
+      "log_path": "~/runs/occsafe_vla/ablation_occ_detach_s3_v2_eval.log",
+      "submitted_at": "2026-05-26T11:12:13.744Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-26T11:33:16.625973+00:00",
+  "trigger": "update_registry"
+}

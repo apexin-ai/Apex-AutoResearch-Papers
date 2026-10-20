@@ -1,0 +1,16 @@
+{
+  "exp_id": "full_occ_retrain_s0_eval_v2",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T04:31:59.987Z",
+    "updated_at": "2026-05-25T04:32:56.177Z",
+    "hypothesis": "50r SafeLIBERO eval of full_occ_retrain_s0 (Full OCC BN, seed 42 retrain). Retry after server reboot. Same-seed Full OCC BN baseline for 2×2 factorial and gradient analysis.",
+    "parent": "full_occ_retrain_s0"
+  },
+  "timestamp": "2026-05-25T04:32:56.416222+00:00",
+  "trigger": "update_registry"
+}

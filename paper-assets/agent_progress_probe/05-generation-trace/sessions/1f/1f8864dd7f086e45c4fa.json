@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "1f8864dd7f086e45c4fa",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "code twv no temporal sigma2",
+  "task_key": "worker_code_twv-no-temporal-sigma2_20260514T182530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_twv-no-temporal-sigma2_20260514T182530.log",
+    "occurrence": 1,
+    "bytes": 513968,
+    "sha256": "4b581aabab3c3d49d162b3d45bce1520986dc925f94de15f0cfd94fa6fec9173"
+  },
+  "statistics": {
+    "messages": 340,
+    "user_turns": 0,
+    "tool_calls": 144,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 144,
+      "tool_result": 144
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 340,
+      "chunks": [
+        {
+          "path": "1f8864dd7f086e45c4fa-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1f8864dd7f086e45c4fa-part-0002.json",
+          "message_count": 160
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-twv-no-temporal-sigma2.md"
+}

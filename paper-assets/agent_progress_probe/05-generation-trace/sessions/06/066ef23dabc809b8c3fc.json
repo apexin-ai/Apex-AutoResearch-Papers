@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "066ef23dabc809b8c3fc",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "experiment gold set oh fix",
+  "task_key": "worker_experiment_gold-set-oh-fix_20260515T073532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_gold-set-oh-fix_20260515T073532.log",
+    "occurrence": 1,
+    "bytes": 1217466,
+    "sha256": "fc63ca357098aabceaf0fd69103e3128e423bce3664235a728e7052e143c47ac"
+  },
+  "statistics": {
+    "messages": 452,
+    "user_turns": 2,
+    "tool_calls": 164,
+    "roles": {
+      "log": 1,
+      "system": 38,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 164,
+      "tool_result": 164,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 53,
+      "chunks": [
+        {
+          "path": "066ef23dabc809b8c3fc-part-0001.json",
+          "message_count": 53
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 363,
+      "chunks": [
+        {
+          "path": "066ef23dabc809b8c3fc-part-0001.json",
+          "message_count": 127
+        },
+        {
+          "path": "066ef23dabc809b8c3fc-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "066ef23dabc809b8c3fc-part-0003.json",
+          "message_count": 56
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 36,
+      "chunks": [
+        {
+          "path": "066ef23dabc809b8c3fc-part-0003.json",
+          "message_count": 36
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-gold-set-oh-fix.md"
+}

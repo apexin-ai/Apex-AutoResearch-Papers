@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e142025e34677429cea",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "fix k8 oom batch size",
+  "task_key": "worker_fix_k8_oom_batch_size_20260516T142455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_k8_oom_batch_size_20260516T142455_result.json",
+    "occurrence": 1,
+    "bytes": 451,
+    "sha256": "66eeb0fbfb0ded14713893c1f3efad1005f495b54746927c17113ed72799da8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程存活，正在加载模型（`torch_dtype` 警告来自 reward model 加载），无 OOM。完成：\n\n1. **修改完成**：`run_quick_probe_k8.py` 已加入 `config.GEN_BATCH_SIZE = 8`（8×8=64 序列/batch）\n2. **旧数据已清理**：`outputs_k8/` 已重建\n3. **`carr_quick_probe_k8_02` 已启动**：PID 507603，tmux session 运行中，日志在 `~/runs/collapse_aware_reward_rebalancing/carr_quick_probe_k8_02.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-k8-oom-batch-size.md"
+}

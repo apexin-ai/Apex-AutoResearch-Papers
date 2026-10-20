@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "08f20e25d61d10466932",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "experiment llm structured input",
+  "task_key": "worker_experiment_llm-structured-input_20260515T025406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_llm-structured-input_20260515T025406.log",
+    "occurrence": 1,
+    "bytes": 1172250,
+    "sha256": "274ff42e57cbefefc3bbb6b04d4241e4344e09865479579de906a1724e896dce"
+  },
+  "statistics": {
+    "messages": 603,
+    "user_turns": 2,
+    "tool_calls": 254,
+    "roles": {
+      "log": 1,
+      "system": 18,
+      "record": 2,
+      "assistant": 71,
+      "tool_call": 254,
+      "tool_result": 254,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 50,
+      "chunks": [
+        {
+          "path": "08f20e25d61d10466932-part-0001.json",
+          "message_count": 50
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 531,
+      "chunks": [
+        {
+          "path": "08f20e25d61d10466932-part-0001.json",
+          "message_count": 116
+        },
+        {
+          "path": "08f20e25d61d10466932-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "08f20e25d61d10466932-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "08f20e25d61d10466932-part-0004.json",
+          "message_count": 55
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 22,
+      "chunks": [
+        {
+          "path": "08f20e25d61d10466932-part-0004.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-llm-structured-input.md"
+}

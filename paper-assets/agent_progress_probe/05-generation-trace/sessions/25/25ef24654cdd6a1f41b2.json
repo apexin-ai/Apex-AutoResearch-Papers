@@ -1,0 +1,1174 @@
+{
+  "schema_version": "1.0",
+  "id": "25ef24654cdd6a1f41b2",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "code lf2 replacement",
+  "task_key": "worker_code_lf2_replacement_20260514T054234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_lf2_replacement_20260514T054234.log",
+    "occurrence": 1,
+    "bytes": 127285,
+    "sha256": "4f93046e4cb7737351c9b4f73edf6bb4cf510ec2770d46778d1d082258b6e15f"
+  },
+  "statistics": {
+    "messages": 24,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 8,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe",
+                "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "d579d67a-beac-442d-8477-9157433a89ae",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-agent-progress-probe/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778751600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "9dadbbd2-d870-47c1-b04e-dd08cb02195c",
+                "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the existing files to understand the current implementation."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "afa96d95-6df1-4707-bf9b-4fceac13ff29",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EbaySJRLtRFLQqCMUSjFWf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12049,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12049
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011b9RVyzAG7k1hjUnb2ujPd",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/labeling_functions.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "ff27531b-1458-4ec8-ac21-c94cb2beeebf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EbaySJRLtRFLQqCMUSjFWf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12049,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12049
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T05:42:47.153Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011b9RVyzAG7k1hjUnb2ujPd",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Labeling functions for agent progress probe.\n2\t\n3\tEach LF takes a sliding window of steps and returns:\n4\t  1 = progress, 0 = stagnation, -1 = abstain\n5\t\"\"\"\n6\t\n7\tfrom __future__ import annotations\n8\t\n9\timport re\n10\tfrom typing import TYPE_CHECKING\n11\t\n12\tif TYPE_CHECKING:\n13\t    from data_loader import Step, Trajectory\n14\t\n15\tPROGRESS = 1\n16\tSTAGNATION = 0\n17\tABSTAIN = -1\n18\t\n19\tEDIT_PATTERN = re.compile(r\"^edit\\s+\\d+\", re.MULTILINE)\n20\tSEARCH_CMDS = {\"search_dir\", \"search_file\", \"find_file\", \"find\", \"grep\"}\n21\t\n22\t\n23\tdef _extract_edited_files(steps: list[Step]) -> tuple[int, set[str]]:\n24\t    \"\"\"Count edit commands and unique files edited in a window.\"\"\"\n25\t    edit_count = 0\n26\t    files = set()\n27\t    for step in steps:\n28\t        if not step.is_action:\n29\t            continue\n30\t        cmd = step.command\n31\t        if not cmd:\n32\t            continue\n33\t        if cmd.strip().startswith(\"edit\"):\n34\t            edit_count += 1\n35\t            # Try to get the filename from the next observation\n36\t            idx = step.index\n37\t            for s in steps:\n38\t                if s.index == idx + 1 and s.is_observation:\n39\t                    match = re.search(r\"\\[File:\\s*([^\\]]+?)(?:\\s*\\(\\d+\\s*lines)\", s.text)\n40\t                    if match:\n41\t                        files.add(match.group(1).strip())\n42\t                    break\n43\t    return edit_count, files\n44\t\n45\t\n46\tdef _count_search_only(steps: list[Step]) -> int:\n47\t    \"\"\"Count consecutive search/find commands without any edit.\"\"\"\n48\t    count = 0\n49\t    for step in steps:\n50\t        if not step.is_action:\n51\t            continue\n52\t        cmd = step.command\n53\t        if not cmd:\n54\t            continue\n55\t        first_word = cmd.strip().split()[0] if cmd.strip() else \"\"\n56\t        if first_word in SEARCH_CMDS:\n57\t            count += 1\n58\t    return count\n59\t\n60\t\n61\tdef lf_file_diff_delta(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n62\t    \"\"\"LF1: Whether the agent is meaningfully modifying code in this window.\"\"\"\n63\t    edit_count, files = _extract_edited_files(window)\n64\t\n65\t    if edit_count >= 2 and len(files) >= 1:\n66\t        return PROGRESS\n67\t    if edit_count == 0:\n68\t        search_count = _count_search_only(window)\n69\t        if search_count >= 3:\n70\t            return STAGNATION\n71\t        return STAGNATION\n72\t    return ABSTAIN\n73\t\n74\t\n75\tdef _parse_test_pass_rate(text: str) -> float | None:\n76\t    \"\"\"Parse pytest output from an observation step, return pass rate or None.\"\"\"\n77\t    passed = 0\n78\t    failed = 0\n79\t\n80\t    # Try structured PASSED/FAILED lines\n81\t    passed_lines = re.findall(r\"PASSED\\s+\\S+\", text)\n82\t    failed_lines = re.findall(r\"FAILED\\s+\\S+\", text)\n83\t    passed += len(passed_lines)\n84\t    failed += len(failed_lines)\n85\t\n86\t    # Try summary line: \"X passed, Y failed\"\n87\t    summary_passed = re.search(r\"(\\d+)\\s+passed\", text)\n88\t    summary_failed = re.search(r\"(\\d+)\\s+failed\", text)\n89\t\n90\t    if summary_passed and passed == 0:\n91\t        passed = int(summary_passed.group(1))\n92\t    if summary_failed and failed == 0:\n93\t        failed = int(summary_failed.group(1))\n94\t\n95\t    total = passed + failed\n96\t    if total == 0:\n97\t        return None\n98\t    return passed / total\n99\t\n100\t\n101\tdef lf_test_pass_rate_transition(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n102\t    \"\"\"LF2: Whether test pass rate is improving within the window.\"\"\"\n103\t    test_runs = []\n104\t    for step in window:\n105\t        if not step.is_observation:\n106\t            continue\n107\t        if not step.has_test_output:\n108\t            continue\n109\t        rate = _parse_test_pass_rate(step.text)\n110\t        if rate is not None:\n111\t            test_runs.append(rate)\n112\t\n113\t    if len(test_runs) < 2:\n114\t        return ABSTAIN\n115\t\n116\t    last = test_runs[-1]\n117\t    second_last = test_runs[-2]\n118\t\n119\t    if last > second_last:\n120\t        return PROGRESS\n121\t    return STAGNATION\n122\t\n123\t\n124\tdef lf_outcome_backpropagation(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n125\t    \"\"\"LF3: Label last windows based on final trajectory outcome.\"\"\"\n126\t    total_windows = window_position[\"total_windows\"]\n127\t    window_idx = window_position[\"window_idx\"]\n128\t\n129\t    is_last_two = window_idx >= total_windows - 2\n130\t\n131\t    if trajectory.exit_status in (\"exit_context\",):\n132\t        return STAGNATION\n133\t\n134\t    if not is_last_two:\n135\t        return ABSTAIN\n136\t\n137\t    if trajectory.target:\n138\t        return PROGRESS\n139\t    else:\n140\t        return STAGNATION\n141\t\n142\t\n143\tALL_LFS = [\n144\t    (\"file_diff_delta\", lf_file_diff_delta),\n145\t    (\"test_pass_rate_transition\", lf_test_pass_rate_transition),\n146\t    (\"outcome_backpropagation\", lf_outcome_backpropagation),\n147\t]\n148\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "a94b2732-70e7-4351-98b2-d7f8ea651f5c",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/labeling_functions.py",
+                "content": "\"\"\"Labeling functions for agent progress probe.\n\nEach LF takes a sliding window of steps and returns:\n  1 = progress, 0 = stagnation, -1 = abstain\n\"\"\"\n\nfrom __future__ import annotations\n\nimport re\nfrom typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    from data_loader import Step, Trajectory\n\nPROGRESS = 1\nSTAGNATION = 0\nABSTAIN = -1\n\nEDIT_PATTERN = re.compile(r\"^edit\\s+\\d+\", re.MULTILINE)\nSEARCH_CMDS = {\"search_dir\", \"search_file\", \"find_file\", \"find\", \"grep\"}\n\n\ndef _extract_edited_files(steps: list[Step]) -> tuple[int, set[str]]:\n    \"\"\"Count edit commands and unique files edited in a window.\"\"\"\n    edit_count = 0\n    files = set()\n    for step in steps:\n        if not step.is_action:\n            continue\n        cmd = step.command\n        if not cmd:\n            continue\n        if cmd.strip().startswith(\"edit\"):\n            edit_count += 1\n            # Try to get the filename from the next observation\n            idx = step.index\n            for s in steps:\n                if s.index == idx + 1 and s.is_observation:\n                    match = re.search(r\"\\[File:\\s*([^\\]]+?)(?:\\s*\\(\\d+\\s*lines)\", s.text)\n                    if match:\n                        files.add(match.group(1).strip())\n                    break\n    return edit_count, files\n\n\ndef _count_search_only(steps: list[Step]) -> int:\n    \"\"\"Count consecutive search/find commands without any edit.\"\"\"\n    count = 0\n    for step in steps:\n        if not step.is_action:\n            continue\n        cmd = step.command\n        if not cmd:\n            continue\n        first_word = cmd.strip().split()[0] if cmd.strip() else \"\"\n        if first_word in SEARCH_CMDS:\n            count += 1\n    return count\n\n\ndef lf_file_diff_delta(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF1: Whether the agent is meaningfully modifying code in this window.\"\"\"\n    edit_count, files = _extract_edited_files(window)\n\n    if edit_count >= 2 and len(files) >= 1:\n        return PROGRESS\n    if edit_count == 0:\n        search_count = _count_search_only(window)\n        if search_count >= 3:\n            return STAGNATION\n        return STAGNATION\n    return ABSTAIN\n\n\ndef _parse_test_pass_rate(text: str) -> float | None:\n    \"\"\"Parse pytest output from an observation step, return pass rate or None.\"\"\"\n    passed = 0\n    failed = 0\n\n    # Try structured PASSED/FAILED lines\n    passed_lines = re.findall(r\"PASSED\\s+\\S+\", text)\n    failed_lines = re.findall(r\"FAILED\\s+\\S+\", text)\n    passed += len(passed_lines)\n    failed += len(failed_lines)\n\n    # Try summary line: \"X passed, Y failed\"\n    summary_passed = re.search(r\"(\\d+)\\s+passed\", text)\n    summary_failed = re.search(r\"(\\d+)\\s+failed\", text)\n\n    if summary_passed and passed == 0:\n        passed = int(summary_passed.group(1))\n    if summary_failed and failed == 0:\n        failed = int(summary_failed.group(1))\n\n    total = passed + failed\n    if total == 0:\n        return None\n    return passed / total\n\n\ndef lf_test_pass_rate_transition(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF2: Whether test pass rate is improving within the window.\"\"\"\n    test_runs = []\n    for step in window:\n        if not step.is_observation:\n            continue\n        if not step.has_test_output:\n            continue\n        rate = _parse_test_pass_rate(step.text)\n        if rate is not None:\n            test_runs.append(rate)\n\n    if len(test_runs) < 2:\n        return ABSTAIN\n\n    last = test_runs[-1]\n    second_last = test_runs[-2]\n\n    if last > second_last:\n        return PROGRESS\n    return STAGNATION\n\n\ndef lf_outcome_backpropagation(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF3: Label last windows based on final trajectory outcome.\"\"\"\n    total_windows = window_position[\"total_windows\"]\n    window_idx = window_position[\"window_idx\"]\n\n    is_last_two = window_idx >= total_windows - 2\n\n    if trajectory.exit_status in (\"exit_context\",):\n        return STAGNATION\n\n    if not is_last_two:\n        return ABSTAIN\n\n    if trajectory.target:\n        return PROGRESS\n    else:\n        return STAGNATION\n\n\nALL_LFS = [\n    (\"file_diff_delta\", lf_file_diff_delta),\n    (\"test_pass_rate_transition\", lf_test_pass_rate_transition),\n    (\"outcome_backpropagation\", lf_outcome_backpropagation),\n]\n",
+                "numLines": 148,
+                "startLine": 1,
+                "totalLines": 148
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AT5GpHUQLtbUUXhEGjpPYA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/window_extractor.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "31e507ff-e583-4f30-aea9-cc1aa0ac17f2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EbaySJRLtRFLQqCMUSjFWf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12049,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12049
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T05:42:47.610Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AT5GpHUQLtbUUXhEGjpPYA",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Sliding window extraction and labeling pipeline for agent_progress_probe.\"\"\"\n2\t\n3\tfrom __future__ import annotations\n4\t\n5\timport json\n6\timport sys\n7\tfrom collections import Counter\n8\tfrom pathlib import Path\n9\t\n10\tsys.path.insert(0, str(Path(__file__).parent))\n11\t\n12\tfrom data_loader import Step, Trajectory, load_trajectories_streaming\n13\tfrom labeling_functions import ALL_LFS, ABSTAIN\n14\t\n15\tWINDOW_SIZE_PAIRS = 5  # 5 action-observation pairs = 10 steps\n16\tSTRIDE_PAIRS = 2       # slide by 2 pairs = 4 steps\n17\tWINDOW_SIZE_STEPS = WINDOW_SIZE_PAIRS * 2  # 10\n18\tSTRIDE_STEPS = STRIDE_PAIRS * 2            # 4\n19\tMIN_STEPS_FOR_WINDOW = 12  # system + issue + at least 10 interaction steps\n20\t\n21\t\n22\tdef extract_windows(trajectory: Trajectory) -> list[dict]:\n23\t    \"\"\"Extract sliding windows from a trajectory.\n24\t\n25\t    Skips step 0 (system) and step 1 (issue description).\n26\t    Returns list of window dicts with steps and metadata.\n27\t    \"\"\"\n28\t    # Start from step 2 (first ai action after issue)\n29\t    interaction_steps = [s for s in trajectory.steps if s.index >= 2]\n30\t\n31\t    if not interaction_steps:\n32\t        return []\n33\t\n34\t    trajectory_id = f\"{trajectory.instance_id}__{trajectory.model_name}\"\n35\t    windows = []\n36\t\n37\t    if len(interaction_steps) < WINDOW_SIZE_STEPS:\n38\t        # Short trajectory: single window with all available steps\n39\t        windows.append({\n40\t            \"trajectory_id\": trajectory_id,\n41\t            \"window_idx\": 0,\n42\t            \"steps\": interaction_steps,\n43\t            \"step_indices\": [s.index for s in interaction_steps],\n44\t            \"short_trajectory\": True,\n45\t        })\n46\t    else:\n47\t        idx = 0\n48\t        while idx + WINDOW_SIZE_STEPS <= len(interaction_steps):\n49\t            w_steps = interaction_steps[idx:idx + WINDOW_SIZE_STEPS]\n50\t            windows.append({\n51\t                \"trajectory_id\": trajectory_id,\n52\t                \"window_idx\": len(windows),\n53\t                \"steps\": w_steps,\n54\t                \"step_indices\": [s.index for s in w_steps],\n55\t                \"short_trajectory\": False,\n56\t            })\n57\t            idx += STRIDE_STEPS\n58\t\n59\t        # If there are remaining steps that form a partial window at the end,\n60\t        # include them only if we haven't already covered them\n61\t        if idx < len(interaction_steps) and idx != 0:\n62\t            remaining = interaction_steps[idx:]\n63\t            if len(remaining) >= 4:  # at least 2 pairs\n64\t                windows.append({\n65\t                    \"trajectory_id\": trajectory_id,\n66\t                    \"window_idx\": len(windows),\n67\t                    \"steps\": remaining,\n68\t                    \"step_indices\": [s.index for s in remaining],\n69\t                    \"short_trajectory\": False,\n70\t                })\n71\t\n72\t    return windows\n73\t\n74\t\n75\tdef label_windows(windows: list[dict], trajectory: Trajectory) -> list[dict]:\n76\t    \"\"\"Apply all labeling functions to extracted windows.\"\"\"\n77\t    total_windows = len(windows)\n78\t\n79\t    for i, w in enumerate(windows):\n80\t        position = {\n81\t            \"window_idx\": i,\n82\t            \"total_windows\": total_windows,\n83\t            \"is_last\": i == total_windows - 1,\n84\t        }\n85\t        labels = {}\n86\t        for lf_name, lf_fn in ALL_LFS:\n87\t            labels[lf_name] = lf_fn(w[\"steps\"], trajectory, position)\n88\t\n89\t        w[\"labels\"] = labels\n90\t\n91\t        # Majority vote (excluding abstains)\n92\t        non_abstain = [v for v in labels.values() if v != ABSTAIN]\n93\t        if non_abstain:\n94\t            counts = Counter(non_abstain)\n95\t            w[\"majority_label\"] = counts.most_common(1)[0][0]\n96\t            w[\"confidence\"] = counts.most_common(1)[0][1]\n97\t        else:\n98\t            w[\"majority_label\"] = ABSTAIN\n99\t            w[\"confidence\"] = 0\n100\t\n101\t    return windows\n102\t\n103\t\n104\tdef process_trajectory(trajectory: Trajectory) -> list[dict]:\n105\t    \"\"\"Full pipeline: extract windows and apply labels.\"\"\"\n106\t    windows = extract_windows(trajectory)\n107\t    if not windows:\n108\t        return []\n109\t    return label_windows(windows, trajectory)\n110\t\n111\t\n112\tdef window_to_serializable(w: dict) -> dict:\n113\t    \"\"\"Convert a window dict to JSON-serializable format (no Step objects).\"\"\"\n114\t    return {\n115\t        \"trajectory_id\": w[\"trajectory_id\"],\n116\t        \"window_idx\": w[\"window_idx\"],\n117\t        \"step_indices\": w[\"step_indices\"],\n118\t        \"short_trajectory\": w.get(\"short_trajectory\", False),\n119\t        \"labels\": w[\"labels\"],\n120\t        \"majority_label\": w[\"majority_label\"],\n121\t        \"confidence\": w[\"confidence\"],\n122\t    }\n123\t\n124\t\n125\tdef run_pipeline(data_path: str | Path, output_path: str | Path, limit: int | None = None):\n126\t    \"\"\"Run the full pipeline on all trajectories and save results.\"\"\"\n127\t    data_path = Path(data_path)\n128\t    output_path = Path(output_path)\n129\t    output_path.parent.mkdir(parents=True, exist_ok=True)\n130\t\n131\t    # Statistics counters\n132\t    total_windows = 0\n133\t    total_trajectories = 0\n134\t    short_trajectories = 0\n135\t    resolved_windows = 0\n136\t    unresolved_windows = 0\n137\t\n138\t    lf_counts = {name: Counter() for name, _ in ALL_LFS}\n139\t    majority_counts = Counter()\n140\t    high_conf_counts = Counter()  # confidence >= 2\n141\t    agreement_total = 0\n142\t    agreement_agree = 0\n143\t\n144\t    resolved_label_counts = Counter()\n145\t    unresolved_label_counts = Counter()\n146\t\n147\t    with open(output_path, \"w\") as fout:\n148\t        for traj in load_trajectories_streaming(data_path, limit=limit):\n149\t            total_trajectories += 1\n150\t            windows = process_trajectory(traj)\n151\t\n152\t            if not windows:\n153\t                continue\n154\t\n155\t            if windows[0].get(\"short_trajectory\"):\n156\t                short_trajectories += 1\n157\t\n158\t            for w in windows:\n159\t                total_windows += 1\n160\t\n161\t                if traj.target:\n162\t                    resolved_windows += 1\n163\t                else:\n164\t                    unresolved_windows += 1\n165\t\n166\t                # Per-LF stats\n167\t                for lf_name, _ in ALL_LFS:\n168\t                    label = w[\"labels\"][lf_name]\n169\t                    lf_counts[lf_name][label] += 1\n170\t\n171\t                # Majority vote stats\n172\t                majority_counts[w[\"majority_label\"]] += 1\n173\t                if w[\"confidence\"] >= 2:\n174\t                    high_conf_counts[w[\"majority_label\"]] += 1\n175\t\n176\t                # Agreement: when >=2 LFs are non-abstain\n177\t                non_abstain_labels = [v for v in w[\"labels\"].values() if v != ABSTAIN]\n178\t                if len(non_abstain_labels) >= 2:\n179\t                    agreement_total += 1\n180\t                    if len(set(non_abstain_labels)) == 1:\n181\t                        agreement_agree += 1\n182\t\n183\t                # By resolved/unresolved\n184\t                if traj.target:\n185\t                    resolved_label_counts[w[\"majority_label\"]] += 1\n186\t                else:\n187\t                    unresolved_label_counts[w[\"majority_label\"]] += 1\n188\t\n189\t                # Write serialized window\n190\t                fout.write(json.dumps(window_to_serializable(w)) + \"\\n\")\n191\t\n192\t            if total_trajectories % 100 == 0:\n193\t                print(f\"  Processed {total_trajectories} trajectories, {total_windows} windows...\")\n194\t\n195\t    # Generate report\n196\t    stats = {\n197\t        \"total_windows\": total_windows,\n198\t        \"total_trajectories\": total_trajectories,\n199\t        \"short_trajectories\": short_trajectories,\n200\t        \"resolved_windows\": resolved_windows,\n201\t        \"unresolved_windows\": unresolved_windows,\n202\t        \"lf_counts\": {k: dict(v) for k, v in lf_counts.items()},\n203\t        \"majority_counts\": dict(majority_counts),\n204\t        \"high_conf_counts\": dict(high_conf_counts),\n205\t        \"agreement_total\": agreement_total,\n206\t        \"agreement_agree\": agreement_agree,\n207\t        \"resolved_label_counts\": dict(resolved_label_counts),\n208\t        \"unresolved_label_counts\": dict(unresolved_label_counts),\n209\t    }\n210\t\n211\t    return stats\n212\t\n213\t\n214\tdef generate_report(stats: dict, report_path: str | Path):\n215\t    \"\"\"Generate markdown statistics report.\"\"\"\n216\t    report_path = Path(report_path)\n217\t\n218\t    total = stats[\"total_windows\"]\n219\t    lines = []\n220\t    lines.append(\"# Label Statistics Report\")\n221\t    lines.append(\"\")\n222\t    lines.append(\"## 1. 窗口总数\")\n223\t    lines.append(\"\")\n224\t    lines.append(f\"| 指标 | 值 |\")\n225\t    lines.append(f\"|------|-----|\")\n226\t    lines.append(f\"| 总窗口数 | {total:,} |\")\n227\t    lines.append(f\"| 总轨迹数 | {stats['total_trajectories']:,} |\")\n228\t    lines.append(f\"| 短轨迹数 (<12 steps) | {stats['short_trajectories']:,} |\")\n229\t    lines.append(f\"| Resolved 轨迹窗口 | {stats['resolved_windows']:,} |\")\n230\t    lines.append(f\"| Unresolved 轨迹窗口 | {stats['unresolved_windows']:,} |\")\n231\t    lines.append(\"\")\n232\t\n233\t    lines.append(\"## 2. 每个 LF 的覆盖率\")\n234\t    lines.append(\"\")\n235\t    lines.append(\"| LF | 非 Abstain 数 | 覆盖率 |\")\n236\t    lines.append(\"|-----|--------------|--------|\")\n237\t    for lf_name, _ in ALL_LFS:\n238\t        counts = stats[\"lf_counts\"][lf_name]\n239\t        non_abstain = sum(v for k, v in counts.items() if k != ABSTAIN)\n240\t        coverage = non_abstain / total * 100 if total > 0 else 0\n241\t        lines.append(f\"| {lf_name} | {non_abstain:,} | {coverage:.1f}% |\")\n242\t    lines.append(\"\")\n243\t\n244\t    lines.append(\"## 3. 每个 LF 的标签分布\")\n245\t    lines.append(\"\")\n246\t    label_names = {1: \"progress\", 0: \"stagnation\", -1: \"abstain\"}\n247\t    for lf_name, _ in ALL_LFS:\n248\t        counts = stats[\"lf_counts\"][lf_name]\n249\t        lines.append(f\"### {lf_name}\")\n250\t        lines.append(\"\")\n251\t        lines.append(\"| 标签 | 数量 | 占比 |\")\n252\t        lines.append(\"|------|------|------|\")\n253\t        for label_val in [1, 0, -1]:\n254\t            c = counts.get(label_val, 0)\n255\t            pct = c / total * 100 if total > 0 else 0\n256\t            lines.append(f\"| {label_names[label_val]} | {c:,} | {pct:.1f}% |\")\n257\t        lines.append(\"\")\n258\t\n259\t    lines.append(\"## 4. LF 一致性\")\n260\t    lines.append(\"\")\n261\t    agree_total = stats[\"agreement_total\"]\n262\t    agree_agree = stats[\"agreement_agree\"]\n263\t    agree_rate = agree_agree / agree_total * 100 if agree_total > 0 else 0\n264\t    lines.append(f\"- ≥2 个 LF 都非 abstain 的窗口数：{agree_total:,}\")\n265\t    lines.append(f\"- 其中标签一致的窗口数：{agree_agree:,}\")\n266\t    lines.append(f\"- **一致率：{agree_rate:.1f}%**\")\n267\t    lines.append(\"\")\n268\t\n269\t    lines.append(\"## 5. 多数投票标签分布（高置信度，confidence ≥ 2）\")\n270\t    lines.append(\"\")\n271\t    high_conf = stats[\"high_conf_counts\"]\n272\t    high_total = sum(high_conf.values())\n273\t    lines.append(f\"高置信度窗口总数：{high_total:,}\")\n274\t    lines.append(\"\")\n275\t    lines.append(\"| 标签 | 数量 | 占比 |\")\n276\t    lines.append(\"|------|------|------|\")\n277\t    for label_val in [1, 0]:\n278\t        c = high_conf.get(label_val, 0)\n279\t        pct = c / high_total * 100 if high_total > 0 else 0\n280\t        lines.append(f\"| {label_names[label_val]} | {c:,} | {pct:.1f}% |\")\n281\t    lines.append(\"\")\n282\t\n283\t    lines.append(\"## 6. 按 Resolved/Unresolved 分组的标签分布\")\n284\t    lines.append(\"\")\n285\t    lines.append(\"### Resolved 轨迹\")\n286\t    lines.append(\"\")\n287\t    lines.append(\"| Majority Label | 数量 | 占比 |\")\n288\t    lines.append(\"|----------------|------|------|\")\n289\t    res_total = sum(stats[\"resolved_label_counts\"].values())\n290\t    for label_val in [1, 0, -1]:\n291\t        c = stats[\"resolved_label_counts\"].get(label_val, 0)\n292\t        pct = c / res_total * 100 if res_total > 0 else 0\n293\t        lines.append(f\"| {label_names[label_val]} | {c:,} | {pct:.1f}% |\")\n294\t    lines.append(\"\")\n295\t\n296\t    lines.append(\"### Unresolved 轨迹\")\n297\t    lines.append(\"\")\n298\t    lines.append(\"| Majority Label | 数量 | 占比 |\")\n299\t    lines.append(\"|----------------|------|------|\")\n300\t    unres_total = sum(stats[\"unresolved_label_counts\"].values())\n301\t    for label_val in [1, 0, -1]:\n302\t        c = stats[\"unresolved_label_counts\"].get(label_val, 0)\n303\t        pct = c / unres_total * 100 if unres_total > 0 else 0\n304\t        lines.append(f\"| {label_names[label_val]} | {c:,} | {pct:.1f}% |\")\n305\t    lines.append(\"\")\n306\t\n307\t    lines.append(\"## 7. 类别平衡评估\")\n308\t    lines.append(\"\")\n309\t    prog_high = high_conf.get(1, 0)\n310\t    stag_high = high_conf.get(0, 0)\n311\t    if high_total > 0:\n312\t        ratio = max(prog_high, stag_high) / max(min(prog_high, stag_high), 1)\n313\t        lines.append(f\"- Progress (高置信): {prog_high:,}\")\n314\t        lines.append(f\"- Stagnation (高置信): {stag_high:,}\")\n315\t        lines.append(f\"- 比例 (多/少): {ratio:.1f}:1\")\n316\t        lines.append(\"\")\n317\t        if ratio > 3:\n318\t            lines.append(\"**严重不平衡。** 建议：\")\n319\t            lines.append(\"1. 对少数类进行过采样 (SMOTE 或重复采样)\")\n320\t            lines.append(\"2. 使用 class weights 在训练时补偿\")\n321\t            lines.append(\"3. 考虑调整 LF 阈值以增加少数类覆盖\")\n322\t            lines.append(\"4. 使用 focal loss 代替 cross-entropy\")\n323\t        elif ratio > 1.5:\n324\t            lines.append(\"**中度不平衡。** 建议使用 class weights 或在评估时关注 F1 而非 accuracy。\")\n325\t        else:\n326\t            lines.append(\"**类别相对平衡。** 标准训练流程即可。\")\n327\t    else:\n328\t        lines.append(\"无高置信度窗口，无法评估类别平衡。\")\n329\t    lines.append(\"\")\n330\t\n331\t    report_path.write_text(\"\\n\".join(lines))\n332\t    print(f\"Report saved to {report_path}\")\n333\t\n334\t\n335\tif __name__ == \"__main__\":\n336\t    DATA_PATH = (\n337\t        \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/\"\n338\t        \"agent_progress_probe/artifacts/data/swe_agent_trajectories_1000.jsonl\"\n339\t    )\n340\t    OUTPUT_PATH = (\n341\t        \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/\"\n342\t        \"agent_progress_probe/artifacts/data/windows_labeled.jsonl\"\n343\t    )\n344\t    REPORT_PATH = (\n345\t        \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/\"\n346\t        \"agent_progress_probe/artifacts/label_statistics_report.md\"\n347\t    )\n348\t\n349\t    # First test with 10 trajectories\n350\t    print(\"=\" * 60)\n351\t    print(\"VALIDATION: Testing with 10 trajectories\")\n352\t    print(\"=\" * 60)\n353\t\n354\t    test_stats = run_pipeline(DATA_PATH, OUTPUT_PATH + \".test\", limit=10)\n355\t    print(f\"\\nTest results: {test_stats['total_windows']} windows from {test_stats['total_trajectories']} trajectories\")\n356\t    print(f\"LF coverage:\")\n357\t    for lf_name, _ in ALL_LFS:\n358\t        counts = test_stats[\"lf_counts\"][lf_name]\n359\t        non_abstain = sum(v for k, v in counts.items() if k != -1)\n360\t        print(f\"  {lf_name}: {non_abstain}/{test_stats['total_windows']} non-abstain\")\n361\t    print(f\"Majority vote: {test_stats['majority_counts']}\")\n362\t\n363\t    # Spot check: print a few windows with labels\n364\t    print(\"\\n\" + \"=\" * 60)\n365\t    print(\"SPOT CHECK: First 3 windows from first trajectory\")\n366\t    print(\"=\" * 60)\n367\t\n368\t    from data_loader import load_trajectories_streaming\n369\t    traj = next(load_trajectories_streaming(DATA_PATH, limit=1))\n370\t    windows = process_trajectory(traj)\n371\t    for w in windows[:3]:\n372\t        print(f\"\\nWindow {w['window_idx']}: steps {w['step_indices'][0]}-{w['step_indices'][-1]}\")\n373\t        print(f\"  Labels: {w['labels']}\")\n374\t        print(f\"  Majority: {w['majority_label']} (confidence={w['confidence']})\")\n375\t        # Show commands in window\n376\t        for s in w[\"steps\"]:\n377\t            if s.is_action and s.command:\n378\t                cmd_preview = s.command[:80].replace('\\n', ' ')\n379\t                print(f\"    Step {s.index} cmd: {cmd_preview}\")\n380\t\n381\t    # Full run\n382\t    print(\"\\n\" + \"=\" * 60)\n383\t    print(\"FULL RUN: Processing all 1000 trajectories\")\n384\t    print(\"=\" * 60)\n385\t\n386\t    stats = run_pipeline(DATA_PATH, OUTPUT_PATH)\n387\t    generate_report(stats, REPORT_PATH)\n388\t\n389\t    print(f\"\\nDone. {stats['total_windows']:,} windows labeled.\")\n390\t    print(f\"Output: {OUTPUT_PATH}\")\n391\t    print(f\"Report: {REPORT_PATH}\")\n392\t\n393\t    # Clean up test file\n394\t    Path(OUTPUT_PATH + \".test\").unlink(missing_ok=True)\n395\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "db8fcf70-5323-4988-abcd-34659bcfdfa0",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/window_extractor.py",
+                "content": "\"\"\"Sliding window extraction and labeling pipeline for agent_progress_probe.\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nimport sys\nfrom collections import Counter\nfrom pathlib import Path\n\nsys.path.insert(0, str(Path(__file__).parent))\n\nfrom data_loader import Step, Trajectory, load_trajectories_streaming\nfrom labeling_functions import ALL_LFS, ABSTAIN\n\nWINDOW_SIZE_PAIRS = 5  # 5 action-observation pairs = 10 steps\nSTRIDE_PAIRS = 2       # slide by 2 pairs = 4 steps\nWINDOW_SIZE_STEPS = WINDOW_SIZE_PAIRS * 2  # 10\nSTRIDE_STEPS = STRIDE_PAIRS * 2            # 4\nMIN_STEPS_FOR_WINDOW = 12  # system + issue + at least 10 interaction steps\n\n\ndef extract_windows(trajectory: Trajectory) -> list[dict]:\n    \"\"\"Extract sliding windows from a trajectory.\n\n    Skips step 0 (system) and step 1 (issue description).\n    Returns list of window dicts with steps and metadata.\n    \"\"\"\n    # Start from step 2 (first ai action after issue)\n    interaction_steps = [s for s in trajectory.steps if s.index >= 2]\n\n    if not interaction_steps:\n        return []\n\n    trajectory_id = f\"{trajectory.instance_id}__{trajectory.model_name}\"\n    windows = []\n\n    if len(interaction_steps) < WINDOW_SIZE_STEPS:\n        # Short trajectory: single window with all available steps\n        windows.append({\n            \"trajectory_id\": trajectory_id,\n            \"window_idx\": 0,\n            \"steps\": interaction_steps,\n            \"step_indices\": [s.index for s in interaction_steps],\n            \"short_trajectory\": True,\n        })\n    else:\n        idx = 0\n        while idx + WINDOW_SIZE_STEPS <= len(interaction_steps):\n            w_steps = interaction_steps[idx:idx + WINDOW_SIZE_STEPS]\n            windows.append({\n                \"trajectory_id\": trajectory_id,\n                \"window_idx\": len(windows),\n                \"steps\": w_steps,\n                \"step_indices\": [s.index for s in w_steps],\n                \"short_trajectory\": False,\n            })\n            idx += STRIDE_STEPS\n\n        # If there are remaining steps that form a partial window at the end,\n        # include them only if we haven't already covered them\n        if idx < len(interaction_steps) and idx != 0:\n            remaining = interaction_steps[idx:]\n            if len(remaining) >= 4:  # at least 2 pairs\n                windows.append({\n                    \"trajectory_id\": trajectory_id,\n                    \"window_idx\": len(windows),\n                    \"steps\": remaining,\n                    \"step_indices\": [s.index for s in remaining],\n                    \"short_trajectory\": False,\n                })\n\n    return windows\n\n\ndef label_windows(windows: list[dict], trajectory: Trajectory) -> list[dict]:\n    \"\"\"Apply all labeling functions to extracted windows.\"\"\"\n    total_windows = len(windows)\n\n    for i, w in enumerate(windows):\n        position = {\n            \"window_idx\": i,\n            \"total_windows\": total_windows,\n            \"is_last\": i == total_windows - 1,\n        }\n        labels = {}\n        for lf_name, lf_fn in ALL_LFS:\n            labels[lf_name] = lf_fn(w[\"steps\"], trajectory, position)\n\n        w[\"labels\"] = labels\n\n        # Majority vote (excluding abstains)\n        non_abstain = [v for v in labels.values() if v != ABSTAIN]\n        if non_abstain:\n            counts = Counter(non_abstain)\n            w[\"majority_label\"] = counts.most_common(1)[0][0]\n            w[\"confidence\"] = counts.most_common(1)[0][1]\n        else:\n            w[\"majority_label\"] = ABSTAIN\n            w[\"confidence\"] = 0\n\n    return windows\n\n\ndef process_trajectory(trajectory: Trajectory) -> list[dict]:\n    \"\"\"Full pipeline: extract windows and apply labels.\"\"\"\n    windows = extract_windows(trajectory)\n    if not windows:\n        return []\n    return label_windows(windows, trajectory)\n\n\ndef window_to_serializable(w: dict) -> dict:\n    \"\"\"Convert a window dict to JSON-serializable format (no Step objects).\"\"\"\n    return {\n        \"trajectory_id\": w[\"trajectory_id\"],\n        \"window_idx\": w[\"window_idx\"],\n        \"step_indices\": w[\"step_indices\"],\n        \"short_trajectory\": w.get(\"short_trajectory\", False),\n        \"labels\": w[\"labels\"],\n        \"majority_label\": w[\"majority_label\"],\n        \"confidence\": w[\"confidence\"],\n    }\n\n\ndef run_pipeline(data_path: str | Path, output_path: str | Path, limit: int | None = None):\n    \"\"\"Run the full pipeline on all trajectories and save results.\"\"\"\n    data_path = Path(data_path)\n    output_path = Path(output_path)\n    output_path.parent.mkdir(parents=True, exist_ok=True)\n\n    # Statistics counters\n    total_windows = 0\n    total_trajectories = 0\n    short_trajectories = 0\n    resolved_windows = 0\n    unresolved_windows = 0\n\n    lf_counts = {name: Counter() for name, _ in ALL_LFS}\n    majority_counts = Counter()\n    high_conf_counts = Counter()  # confidence >= 2\n    agreement_total = 0\n    agreement_agree = 0\n\n    resolved_label_counts = Counter()\n    unresolved_label_counts = Counter()\n\n    with open(output_path, \"w\") as fout:\n        for traj in load_trajectories_streaming(data_path, limit=limit):\n            total_trajectories += 1\n            windows = process_trajectory(traj)\n\n            if not windows:\n                continue\n\n            if windows[0].get(\"short_trajectory\"):\n                short_trajectories += 1\n\n            for w in windows:\n                total_windows += 1\n\n                if traj.target:\n                    resolved_windows += 1\n                else:\n                    unresolved_windows += 1\n\n                # Per-LF stats\n                for lf_name, _ in ALL_LFS:\n                    label = w[\"labels\"][lf_name]\n                    lf_counts[lf_name][label] += 1\n\n                # Majority vote stats\n                majority_counts[w[\"majority_label\"]] += 1\n                if w[\"confidence\"] >= 2:\n                    high_conf_counts[w[\"majority_label\"]] += 1\n\n                # Agreement: when >=2 LFs are non-abstain\n                non_abstain_labels = [v for v in w[\"labels\"].values() if v != ABSTAIN]\n                if len(non_abstain_labels) >= 2:\n                    agreement_total += 1\n                    if len(set(non_abstain_labels)) == 1:\n                        agreement_agree += 1\n\n                # By resolved/unresolved\n                if traj.target:\n                    resolved_label_counts[w[\"majority_label\"]] += 1\n                else:\n                    unresolved_label_counts[w[\"majority_label\"]] += 1\n\n                # Write serialized window\n                fout.write(json.dumps(window_to_serializable(w)) + \"\\n\")\n\n            if total_trajectories % 100 == 0:\n                print(f\"  Processed {total_trajectories} trajectories, {total_windows} windows...\")\n\n    # Generate report\n    stats = {\n        \"total_windows\": total_windows,\n        \"total_trajectories\": total_trajectories,\n        \"short_trajectories\": short_trajectories,\n        \"resolved_windows\": resolved_windows,\n        \"unresolved_windows\": unresolved_windows,\n        \"lf_counts\": {k: dict(v) for k, v in lf_counts.items()},\n        \"majority_counts\": dict(majority_counts),\n        \"high_conf_counts\": dict(high_conf_counts),\n        \"agreement_total\": agreement_total,\n        \"agreement_agree\": agreement_agree,\n        \"resolved_label_counts\": dict(resolved_label_counts),\n        \"unresolved_label_counts\": dict(unresolved_label_counts),\n    }\n\n    return stats\n\n\ndef generate_report(stats: dict, report_path: str | Path):\n    \"\"\"Generate markdown statistics report.\"\"\"\n    report_path = Path(report_path)\n\n    total = stats[\"total_windows\"]\n    lines = []\n    lines.append(\"# Label Statistics Report\")\n    lines.append(\"\")\n    lines.append(\"## 1. 窗口总数\")\n    lines.append(\"\")\n    lines.append(f\"| 指标 | 值 |\")\n    lines.append(f\"|------|-----|\")\n    lines.append(f\"| 总窗口数 | {total:,} |\")\n    lines.append(f\"| 总轨迹数 | {stats['total_trajectories']:,} |\")\n    lines.append(f\"| 短轨迹数 (<12 steps) | {stats['short_trajectories']:,} |\")\n    lines.append(f\"| Resolved 轨迹窗口 | {stats['resolved_windows']:,} |\")\n    lines.append(f\"| Unresolved 轨迹窗口 | {stats['unresolved_windows']:,} |\")\n    lines.append(\"\")\n\n    lines.append(\"## 2. 每个 LF 的覆盖率\")\n    lines.append(\"\")\n    lines.append(\"| LF | 非 Abstain 数 | 覆盖率 |\")\n    lines.append(\"|-----|--------------|--------|\")\n    for lf_name, _ in ALL_LFS:\n        counts = stats[\"lf_counts\"][lf_name]\n        non_abstain = sum(v for k, v in counts.items() if k != ABSTAIN)\n        coverage = non_abstain / total * 100 if total > 0 else 0\n        lines.append(f\"| {lf_name} | {non_abstain:,} | {coverage:.1f}% |\")\n    lines.append(\"\")\n\n    lines.append(\"## 3. 每个 LF 的标签分布\")\n    lines.append(\"\")\n    label_names = {1: \"progress\", 0: \"stagnation\", -1: \"abstain\"}\n    for lf_name, _ in ALL_LFS:\n        counts = stats[\"lf_counts\"][lf_name]\n        lines.append(f\"### {lf_name}\")\n        lines.append(\"\")\n        lines.append(\"| 标签 | 数量 | 占比 |\")\n        lines.append(\"|------|------|------|\")\n        for label_val in [1, 0, -1]:\n            c = counts.get(label_val, 0)\n            pct = c / total * 100 if total > 0 else 0\n            lines.append(f\"| {label_names[label_val]} | {c:,} | {pct:.1f}% |\")\n        lines.append(\"\")\n\n    lines.append(\"## 4. LF 一致性\")\n    lines.append(\"\")\n    agree_total = stats[\"agreement_total\"]\n    agree_agree = stats[\"agreement_agree\"]\n    agree_rate = agree_agree / agree_total * 100 if agree_total > 0 else 0\n    lines.append(f\"- ≥2 个 LF 都非 abstain 的窗口数：{agree_total:,}\")\n    lines.append(f\"- 其中标签一致的窗口数：{agree_agree:,}\")\n    lines.append(f\"- **一致率：{agree_rate:.1f}%**\")\n    lines.append(\"\")\n\n    lines.append(\"## 5. 多数投票标签分布（高置信度，confidence ≥ 2）\")\n    lines.append(\"\")\n    high_conf = stats[\"high_conf_counts\"]\n    high_total = sum(high_conf.values())\n    lines.append(f\"高置信度窗口总数：{high_total:,}\")\n    lines.append(\"\")\n    lines.append(\"| 标签 | 数量 | 占比 |\")\n    lines.append(\"|------|------|------|\")\n    for label_val in [1, 0]:\n        c = high_conf.get(label_val, 0)\n        pct = c / high_total * 100 if high_total > 0 else 0\n        lines.append(f\"| {label_names[label_val]} | {c:,} | {pct:.1f}% |\")\n    lines.append(\"\")\n\n    lines.append(\"## 6. 按 Resolved/Unresolved 分组的标签分布\")\n    lines.append(\"\")\n    lines.append(\"### Resolved 轨迹\")\n    lines.append(\"\")\n    lines.append(\"| Majority Label | 数量 | 占比 |\")\n    lines.append(\"|----------------|------|------|\")\n    res_total = sum(stats[\"resolved_label_counts\"].values())\n    for label_val in [1, 0, -1]:\n        c = stats[\"resolved_label_counts\"].get(label_val, 0)\n        pct = c / res_total * 100 if res_total > 0 else 0\n        lines.append(f\"| {label_names[label_val]} | {c:,} | {pct:.1f}% |\")\n    lines.append(\"\")\n\n    lines.append(\"### Unresolved 轨迹\")\n    lines.append(\"\")\n    lines.append(\"| Majority Label | 数量 | 占比 |\")\n    lines.append(\"|----------------|------|------|\")\n    unres_total = sum(stats[\"unresolved_label_counts\"].values())\n    for label_val in [1, 0, -1]:\n        c = stats[\"unresolved_label_counts\"].get(label_val, 0)\n        pct = c / unres_total * 100 if unres_total > 0 else 0\n        lines.append(f\"| {label_names[label_val]} | {c:,} | {pct:.1f}% |\")\n    lines.append(\"\")\n\n    lines.append(\"## 7. 类别平衡评估\")\n    lines.append(\"\")\n    prog_high = high_conf.get(1, 0)\n    stag_high = high_conf.get(0, 0)\n    if high_total > 0:\n        ratio = max(prog_high, stag_high) / max(min(prog_high, stag_high), 1)\n        lines.append(f\"- Progress (高置信): {prog_high:,}\")\n        lines.append(f\"- Stagnation (高置信): {stag_high:,}\")\n        lines.append(f\"- 比例 (多/少): {ratio:.1f}:1\")\n        lines.append(\"\")\n        if ratio > 3:\n            lines.append(\"**严重不平衡。** 建议：\")\n            lines.append(\"1. 对少数类进行过采样 (SMOTE 或重复采样)\")\n            lines.append(\"2. 使用 class weights 在训练时补偿\")\n            lines.append(\"3. 考虑调整 LF 阈值以增加少数类覆盖\")\n            lines.append(\"4. 使用 focal loss 代替 cross-entropy\")\n        elif ratio > 1.5:\n            lines.append(\"**中度不平衡。** 建议使用 class weights 或在评估时关注 F1 而非 accuracy。\")\n        else:\n            lines.append(\"**类别相对平衡。** 标准训练流程即可。\")\n    else:\n        lines.append(\"无高置信度窗口，无法评估类别平衡。\")\n    lines.append(\"\")\n\n    report_path.write_text(\"\\n\".join(lines))\n    print(f\"Report saved to {report_path}\")\n\n\nif __name__ == \"__main__\":\n    DATA_PATH = (\n        \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/\"\n        \"agent_progress_probe/artifacts/data/swe_agent_trajectories_1000.jsonl\"\n    )\n    OUTPUT_PATH = (\n        \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/\"\n        \"agent_progress_probe/artifacts/data/windows_labeled.jsonl\"\n    )\n    REPORT_PATH = (\n        \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/\"\n        \"agent_progress_probe/artifacts/label_statistics_report.md\"\n    )\n\n    # First test with 10 trajectories\n    print(\"=\" * 60)\n    print(\"VALIDATION: Testing with 10 trajectories\")\n    print(\"=\" * 60)\n\n    test_stats = run_pipeline(DATA_PATH, OUTPUT_PATH + \".test\", limit=10)\n    print(f\"\\nTest results: {test_stats['total_windows']} windows from {test_stats['total_trajectories']} trajectories\")\n    print(f\"LF coverage:\")\n    for lf_name, _ in ALL_LFS:\n        counts = test_stats[\"lf_counts\"][lf_name]\n        non_abstain = sum(v for k, v in counts.items() if k != -1)\n        print(f\"  {lf_name}: {non_abstain}/{test_stats['total_windows']} non-abstain\")\n    print(f\"Majority vote: {test_stats['majority_counts']}\")\n\n    # Spot check: print a few windows with labels\n    print(\"\\n\" + \"=\" * 60)\n    print(\"SPOT CHECK: First 3 windows from first trajectory\")\n    print(\"=\" * 60)\n\n    from data_loader import load_trajectories_streaming\n    traj = next(load_trajectories_streaming(DATA_PATH, limit=1))\n    windows = process_trajectory(traj)\n    for w in windows[:3]:\n        print(f\"\\nWindow {w['window_idx']}: steps {w['step_indices'][0]}-{w['step_indices'][-1]}\")\n        print(f\"  Labels: {w['labels']}\")\n        print(f\"  Majority: {w['majority_label']} (confidence={w['confidence']})\")\n        # Show commands in window\n        for s in w[\"steps\"]:\n            if s.is_action and s.command:\n                cmd_preview = s.command[:80].replace('\\n', ' ')\n                print(f\"    Step {s.index} cmd: {cmd_preview}\")\n\n    # Full run\n    print(\"\\n\" + \"=\" * 60)\n    print(\"FULL RUN: Processing all 1000 trajectories\")\n    print(\"=\" * 60)\n\n    stats = run_pipeline(DATA_PATH, OUTPUT_PATH)\n    generate_report(stats, REPORT_PATH)\n\n    print(f\"\\nDone. {stats['total_windows']:,} windows labeled.\")\n    print(f\"Output: {OUTPUT_PATH}\")\n    print(f\"Report: {REPORT_PATH}\")\n\n    # Clean up test file\n    Path(OUTPUT_PATH + \".test\").unlink(missing_ok=True)\n",
+                "numLines": 395,
+                "startLine": 1,
+                "totalLines": 395
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015kkracMR8Z5nphCUr2Rx9J",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/data_loader.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "fdb6559c-b69a-4cc0-a1d1-b13f11cfbfba",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EbaySJRLtRFLQqCMUSjFWf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12049,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12049
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T05:42:47.914Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015kkracMR8Z5nphCUr2Rx9J",
+              "type": "tool_result",
+              "content": "1\t# SWE-agent trajectories data loader for agent_progress_probe project.\n2\t# Loads and parses nebius/SWE-agent-trajectories JSONL data into structured objects.\n3\t\n4\tfrom __future__ import annotations\n5\t\n6\timport json\n7\timport re\n8\tfrom dataclasses import dataclass, field\n9\tfrom pathlib import Path\n10\tfrom typing import Optional\n11\t\n12\t\n13\t@dataclass\n14\tclass Step:\n15\t    \"\"\"A single step in an agent trajectory.\"\"\"\n16\t    index: int\n17\t    role: str  # \"system\", \"user\", or \"ai\"\n18\t    text: str\n19\t    mask: bool\n20\t    cutoff_date: Optional[str] = None\n21\t    system_prompt: Optional[str] = None\n22\t\n23\t    @property\n24\t    def is_action(self) -> bool:\n25\t        return self.role == \"ai\"\n26\t\n27\t    @property\n28\t    def is_observation(self) -> bool:\n29\t        return self.role == \"user\" and self.index > 0\n30\t\n31\t    @property\n32\t    def is_system(self) -> bool:\n33\t        return self.role == \"system\"\n34\t\n35\t    @property\n36\t    def command(self) -> Optional[str]:\n37\t        \"\"\"Extract the command from an AI step's code block. Returns None for non-AI steps.\"\"\"\n38\t        if self.role != \"ai\":\n39\t            return None\n40\t        match = re.search(r\"```\\n?(.*?)```\", self.text, re.DOTALL)\n41\t        if match:\n42\t            return match.group(1).strip()\n43\t        return None\n44\t\n45\t    @property\n46\t    def has_file_display(self) -> bool:\n47\t        return \"[File:\" in self.text\n48\t\n49\t    @property\n50\t    def has_error(self) -> bool:\n51\t        return \"Traceback\" in self.text or \"Error\" in self.text\n52\t\n53\t    @property\n54\t    def has_test_output(self) -> bool:\n55\t        text = self.text\n56\t        return (\"PASSED\" in text or \"FAILED\" in text) and \"test\" in text.lower()\n57\t\n58\t\n59\t@dataclass\n60\tclass TestResult:\n61\t    \"\"\"Parsed test results from eval_logs.\"\"\"\n62\t    passed: list[str] = field(default_factory=list)\n63\t    failed: list[str] = field(default_factory=list)\n64\t    errored: list[str] = field(default_factory=list)\n65\t\n66\t    @property\n67\t    def total(self) -> int:\n68\t        return len(self.passed) + len(self.failed) + len(self.errored)\n69\t\n70\t    @property\n71\t    def pass_rate(self) -> float:\n72\t        if self.total == 0:\n73\t            return 0.0\n74\t        return len(self.passed) / self.total\n75\t\n76\t\n77\t@dataclass\n78\tclass Trajectory:\n79\t    \"\"\"A complete agent trajectory for one SWE-bench instance attempt.\"\"\"\n80\t    instance_id: str\n81\t    model_name: str\n82\t    target: bool  # True = resolved, False = unresolved\n83\t    steps: list[Step]\n84\t    exit_status: str\n85\t    generated_patch: Optional[str]\n86\t    eval_logs: Optional[str]\n87\t\n88\t    @property\n89\t    def num_steps(self) -> int:\n90\t        return len(self.steps)\n91\t\n92\t    @property\n93\t    def actions(self) -> list[Step]:\n94\t        return [s for s in self.steps if s.is_action]\n95\t\n96\t    @property\n97\t    def observations(self) -> list[Step]:\n98\t        return [s for s in self.steps if s.is_observation]\n99\t\n100\t    @property\n101\t    def issue_text(self) -> Optional[str]:\n102\t        \"\"\"The issue description from step 1 (first user message).\"\"\"\n103\t        if len(self.steps) > 1 and self.steps[1].role == \"user\":\n104\t            return self.steps[1].text\n105\t        return None\n106\t\n107\t    @property\n108\t    def has_patch(self) -> bool:\n109\t        return bool(self.generated_patch and self.generated_patch.strip())\n110\t\n111\t    def parse_eval_test_results(self) -> Optional[TestResult]:\n112\t        \"\"\"Parse test results from eval_logs.\n113\t\n114\t        Returns:\n115\t            TestResult with lists of passed/failed/errored test names,\n116\t            or None if eval_logs is empty or has no test section.\n117\t        \"\"\"\n118\t        if not self.eval_logs:\n119\t            return None\n120\t        start_marker = \"___TESTS_SECTION___\"\n121\t        end_marker = \"___TESTS_SECTION_END\"\n122\t        if start_marker not in self.eval_logs:\n123\t            return None\n124\t        start = self.eval_logs.index(start_marker)\n125\t        end = self.eval_logs.index(end_marker) if end_marker in self.eval_logs else len(self.eval_logs)\n126\t        section = self.eval_logs[start:end]\n127\t\n128\t        result = TestResult()\n129\t        for line in section.splitlines():\n130\t            line = line.strip()\n131\t            if line.startswith(\"PASSED \"):\n132\t                result.passed.append(line[7:])\n133\t            elif line.startswith(\"FAILED \"):\n134\t                name = line[7:].split(\" - \")[0]\n135\t                result.failed.append(name)\n136\t            elif line.startswith(\"ERROR \"):\n137\t                result.errored.append(line[6:])\n138\t        return result\n139\t\n140\t    def extract_mid_trajectory_test_results(self) -> list[tuple[int, TestResult]]:\n141\t        \"\"\"Find pytest runs within the trajectory observations.\n142\t\n143\t        Returns:\n144\t            List of (step_index, TestResult) for steps containing pytest output.\n145\t        \"\"\"\n146\t        results = []\n147\t        for step in self.observations:\n148\t            if not step.has_test_output:\n149\t                continue\n150\t            tr = TestResult()\n151\t            for line in step.text.splitlines():\n152\t                line = line.strip()\n153\t                if line.startswith(\"PASSED \"):\n154\t                    tr.passed.append(line[7:])\n155\t                elif line.startswith(\"FAILED \"):\n156\t                    name = line[7:].split(\" - \")[0]\n157\t                    tr.failed.append(name)\n158\t                elif line.startswith(\"ERROR \"):\n159\t                    tr.errored.append(line[6:])\n160\t            summary = re.search(r\"(\\d+) passed\", step.text)\n161\t            if summary and not tr.passed:\n162\t                tr.passed = [f\"unnamed_{i}\" for i in range(int(summary.group(1)))]\n163\t            summary = re.search(r\"(\\d+) failed\", step.text)\n164\t            if summary and not tr.failed:\n165\t                tr.failed = [f\"unnamed_{i}\" for i in range(int(summary.group(1)))]\n166\t            if tr.total > 0:\n167\t                results.append((step.index, tr))\n168\t        return results\n169\t\n170\t    def get_edit_commands(self) -> list[tuple[int, str]]:\n171\t        \"\"\"Extract all edit commands from the trajectory.\n172\t\n173\t        Returns:\n174\t            List of (step_index, command_text) for steps containing edit commands.\n175\t        \"\"\"\n176\t        edits = []\n177\t        for step in self.actions:\n178\t            cmd = step.command\n179\t            if cmd and cmd.strip().startswith(\"edit\"):\n180\t                edits.append((step.index, cmd))\n181\t        return edits\n182\t\n183\t\n184\tdef parse_trajectory(raw: dict) -> Trajectory:\n185\t    \"\"\"Parse a single raw record dict into a Trajectory object.\n186\t\n187\t    Args:\n188\t        raw: A dict with keys: instance_id, model_name, target, trajectory,\n189\t             exit_status, generated_patch, eval_logs.\n190\t\n191\t    Returns:\n192\t        A Trajectory object with parsed Steps.\n193\t    \"\"\"\n194\t    steps = []\n195\t    for i, step_raw in enumerate(raw.get(\"trajectory\") or []):\n196\t        steps.append(Step(\n197\t            index=i,\n198\t            role=step_raw.get(\"role\", \"unknown\"),\n199\t            text=step_raw.get(\"text\") or \"\",\n200\t            mask=step_raw.get(\"mask\", False),\n201\t            cutoff_date=step_raw.get(\"cutoff_date\"),\n202\t            system_prompt=step_raw.get(\"system_prompt\"),\n203\t        ))\n204\t\n205\t    return Trajectory(\n206\t        instance_id=raw.get(\"instance_id\", \"\"),\n207\t        model_name=raw.get(\"model_name\", \"\"),\n208\t        target=raw.get(\"target\", False),\n209\t        steps=steps,\n210\t        exit_status=raw.get(\"exit_status\", \"\"),\n211\t        generated_patch=raw.get(\"generated_patch\"),\n212\t        eval_logs=raw.get(\"eval_logs\"),\n213\t    )\n214\t\n215\t\n216\tdef extract_steps(trajectory: Trajectory) -> list[Step]:\n217\t    \"\"\"Extract the step sequence from a trajectory, excluding the system step.\n218\t\n219\t    Args:\n220\t        trajectory: A parsed Trajectory object.\n221\t\n222\t    Returns:\n223\t        List of Steps starting from step 1 (the issue description),\n224\t        excluding the system prompt step.\n225\t    \"\"\"\n226\t    return [s for s in trajectory.steps if not s.is_system]\n227\t\n228\t\n229\tdef load_trajectories(path: str | Path) -> list[Trajectory]:\n230\t    \"\"\"Load trajectories from a JSONL file.\n231\t\n232\t    Args:\n233\t        path: Path to a .jsonl file where each line is a JSON record.\n234\t\n235\t    Returns:\n236\t        List of Trajectory objects.\n237\t    \"\"\"\n238\t    path = Path(path)\n239\t    trajectories = []\n240\t    with open(path) as f:\n241\t        for line in f:\n242\t            line = line.strip()\n243\t            if not line:\n244\t                continue\n245\t            raw = json.loads(line)\n246\t            trajectories.append(parse_trajectory(raw))\n247\t    return trajectories\n248\t\n249\t\n250\tdef load_trajectories_streaming(path: str | Path, limit: int | None = None):\n251\t    \"\"\"Lazily yield trajectories from a JSONL file.\n252\t\n253\t    Args:\n254\t        path: Path to a .jsonl file.\n255\t        limit: Maximum number of trajectories to yield. None for all.\n256\t\n257\t    Yields:\n258\t        Trajectory objects one at a time.\n259\t    \"\"\"\n260\t    path = Path(path)\n261\t    count = 0\n262\t    with open(path) as f:\n263\t        for line in f:\n264\t            line = line.strip()\n265\t            if not line:\n266\t                continue\n267\t            raw = json.loads(line)\n268\t            yield parse_trajectory(raw)\n269\t            count += 1\n270\t            if limit and count >= limit:\n271\t                break\n272\t\n273\t\n274\tif __name__ == \"__main__\":\n275\t    import sys\n276\t    data_path = sys.argv[1] if len(sys.argv) > 1 else (\n277\t        \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/\"\n278\t        \"agent_progress_probe/artifacts/data/swe_agent_trajectories_1000.jsonl\"\n279\t    )\n280\t\n281\t    print(f\"Loading from {data_path}...\")\n282\t    trajs = load_trajectories(data_path)\n283\t    print(f\"Loaded {len(trajs)} trajectories\")\n284\t\n285\t    resolved = [t for t in trajs if t.target]\n286\t    unresolved = [t for t in trajs if not t.target]\n287\t    print(f\"Resolved: {len(resolved)}, Unresolved: {len(unresolved)}\")\n288\t\n289\t    t = trajs[0]\n290\t    print(f\"\\nSample trajectory: {t.instance_id}\")\n291\t    print(f\"  Steps: {t.num_steps}, Actions: {len(t.actions)}, Observations: {len(t.observations)}\")\n292\t    print(f\"  Has patch: {t.has_patch}, Target: {t.target}\")\n293\t\n294\t    test_result = t.parse_eval_test_results()\n295\t    if test_result:\n296\t        print(f\"  Eval tests: {len(test_result.passed)} passed, {len(test_result.failed)} failed, pass_rate={test_result.pass_rate:.2f}\")\n297\t\n298\t    edits = t.get_edit_commands()\n299\t    print(f\"  Edit commands: {len(edits)}\")\n300\t\n301\t    mid_tests = t.extract_mid_trajectory_test_results()\n302\t    print(f\"  Mid-trajectory test runs: {len(mid_tests)}\")\n303\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "fa060499-9c41-4718-8f06-8c80cfdd03c7",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/data_loader.py",
+                "content": "# SWE-agent trajectories data loader for agent_progress_probe project.\n# Loads and parses nebius/SWE-agent-trajectories JSONL data into structured objects.\n\nfrom __future__ import annotations\n\nimport json\nimport re\nfrom dataclasses import dataclass, field\nfrom pathlib import Path\nfrom typing import Optional\n\n\n@dataclass\nclass Step:\n    \"\"\"A single step in an agent trajectory.\"\"\"\n    index: int\n    role: str  # \"system\", \"user\", or \"ai\"\n    text: str\n    mask: bool\n    cutoff_date: Optional[str] = None\n    system_prompt: Optional[str] = None\n\n    @property\n    def is_action(self) -> bool:\n        return self.role == \"ai\"\n\n    @property\n    def is_observation(self) -> bool:\n        return self.role == \"user\" and self.index > 0\n\n    @property\n    def is_system(self) -> bool:\n        return self.role == \"system\"\n\n    @property\n    def command(self) -> Optional[str]:\n        \"\"\"Extract the command from an AI step's code block. Returns None for non-AI steps.\"\"\"\n        if self.role != \"ai\":\n            return None\n        match = re.search(r\"```\\n?(.*?)```\", self.text, re.DOTALL)\n        if match:\n            return match.group(1).strip()\n        return None\n\n    @property\n    def has_file_display(self) -> bool:\n        return \"[File:\" in self.text\n\n    @property\n    def has_error(self) -> bool:\n        return \"Traceback\" in self.text or \"Error\" in self.text\n\n    @property\n    def has_test_output(self) -> bool:\n        text = self.text\n        return (\"PASSED\" in text or \"FAILED\" in text) and \"test\" in text.lower()\n\n\n@dataclass\nclass TestResult:\n    \"\"\"Parsed test results from eval_logs.\"\"\"\n    passed: list[str] = field(default_factory=list)\n    failed: list[str] = field(default_factory=list)\n    errored: list[str] = field(default_factory=list)\n\n    @property\n    def total(self) -> int:\n        return len(self.passed) + len(self.failed) + len(self.errored)\n\n    @property\n    def pass_rate(self) -> float:\n        if self.total == 0:\n            return 0.0\n        return len(self.passed) / self.total\n\n\n@dataclass\nclass Trajectory:\n    \"\"\"A complete agent trajectory for one SWE-bench instance attempt.\"\"\"\n    instance_id: str\n    model_name: str\n    target: bool  # True = resolved, False = unresolved\n    steps: list[Step]\n    exit_status: str\n    generated_patch: Optional[str]\n    eval_logs: Optional[str]\n\n    @property\n    def num_steps(self) -> int:\n        return len(self.steps)\n\n    @property\n    def actions(self) -> list[Step]:\n        return [s for s in self.steps if s.is_action]\n\n    @property\n    def observations(self) -> list[Step]:\n        return [s for s in self.steps if s.is_observation]\n\n    @property\n    def issue_text(self) -> Optional[str]:\n        \"\"\"The issue description from step 1 (first user message).\"\"\"\n        if len(self.steps) > 1 and self.steps[1].role == \"user\":\n            return self.steps[1].text\n        return None\n\n    @property\n    def has_patch(self) -> bool:\n        return bool(self.generated_patch and self.generated_patch.strip())\n\n    def parse_eval_test_results(self) -> Optional[TestResult]:\n        \"\"\"Parse test results from eval_logs.\n\n        Returns:\n            TestResult with lists of passed/failed/errored test names,\n            or None if eval_logs is empty or has no test section.\n        \"\"\"\n        if not self.eval_logs:\n            return None\n        start_marker = \"___TESTS_SECTION___\"\n        end_marker = \"___TESTS_SECTION_END\"\n        if start_marker not in self.eval_logs:\n            return None\n        start = self.eval_logs.index(start_marker)\n        end = self.eval_logs.index(end_marker) if end_marker in self.eval_logs else len(self.eval_logs)\n        section = self.eval_logs[start:end]\n\n        result = TestResult()\n        for line in section.splitlines():\n            line = line.strip()\n            if line.startswith(\"PASSED \"):\n                result.passed.append(line[7:])\n            elif line.startswith(\"FAILED \"):\n                name = line[7:].split(\" - \")[0]\n                result.failed.append(name)\n            elif line.startswith(\"ERROR \"):\n                result.errored.append(line[6:])\n        return result\n\n    def extract_mid_trajectory_test_results(self) -> list[tuple[int, TestResult]]:\n        \"\"\"Find pytest runs within the trajectory observations.\n\n        Returns:\n            List of (step_index, TestResult) for steps containing pytest output.\n        \"\"\"\n        results = []\n        for step in self.observations:\n            if not step.has_test_output:\n                continue\n            tr = TestResult()\n            for line in step.text.splitlines():\n                line = line.strip()\n                if line.startswith(\"PASSED \"):\n                    tr.passed.append(line[7:])\n                elif line.startswith(\"FAILED \"):\n                    name = line[7:].split(\" - \")[0]\n                    tr.failed.append(name)\n                elif line.startswith(\"ERROR \"):\n                    tr.errored.append(line[6:])\n            summary = re.search(r\"(\\d+) passed\", step.text)\n            if summary and not tr.passed:\n                tr.passed = [f\"unnamed_{i}\" for i in range(int(summary.group(1)))]\n            summary = re.search(r\"(\\d+) failed\", step.text)\n            if summary and not tr.failed:\n                tr.failed = [f\"unnamed_{i}\" for i in range(int(summary.group(1)))]\n            if tr.total > 0:\n                results.append((step.index, tr))\n        return results\n\n    def get_edit_commands(self) -> list[tuple[int, str]]:\n        \"\"\"Extract all edit commands from the trajectory.\n\n        Returns:\n            List of (step_index, command_text) for steps containing edit commands.\n        \"\"\"\n        edits = []\n        for step in self.actions:\n            cmd = step.command\n            if cmd and cmd.strip().startswith(\"edit\"):\n                edits.append((step.index, cmd))\n        return edits\n\n\ndef parse_trajectory(raw: dict) -> Trajectory:\n    \"\"\"Parse a single raw record dict into a Trajectory object.\n\n    Args:\n        raw: A dict with keys: instance_id, model_name, target, trajectory,\n             exit_status, generated_patch, eval_logs.\n\n    Returns:\n        A Trajectory object with parsed Steps.\n    \"\"\"\n    steps = []\n    for i, step_raw in enumerate(raw.get(\"trajectory\") or []):\n        steps.append(Step(\n            index=i,\n            role=step_raw.get(\"role\", \"unknown\"),\n            text=step_raw.get(\"text\") or \"\",\n            mask=step_raw.get(\"mask\", False),\n            cutoff_date=step_raw.get(\"cutoff_date\"),\n            system_prompt=step_raw.get(\"system_prompt\"),\n        ))\n\n    return Trajectory(\n        instance_id=raw.get(\"instance_id\", \"\"),\n        model_name=raw.get(\"model_name\", \"\"),\n        target=raw.get(\"target\", False),\n        steps=steps,\n        exit_status=raw.get(\"exit_status\", \"\"),\n        generated_patch=raw.get(\"generated_patch\"),\n        eval_logs=raw.get(\"eval_logs\"),\n    )\n\n\ndef extract_steps(trajectory: Trajectory) -> list[Step]:\n    \"\"\"Extract the step sequence from a trajectory, excluding the system step.\n\n    Args:\n        trajectory: A parsed Trajectory object.\n\n    Returns:\n        List of Steps starting from step 1 (the issue description),\n        excluding the system prompt step.\n    \"\"\"\n    return [s for s in trajectory.steps if not s.is_system]\n\n\ndef load_trajectories(path: str | Path) -> list[Trajectory]:\n    \"\"\"Load trajectories from a JSONL file.\n\n    Args:\n        path: Path to a .jsonl file where each line is a JSON record.\n\n    Returns:\n        List of Trajectory objects.\n    \"\"\"\n    path = Path(path)\n    trajectories = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if not line:\n                continue\n            raw = json.loads(line)\n            trajectories.append(parse_trajectory(raw))\n    return trajectories\n\n\ndef load_trajectories_streaming(path: str | Path, limit: int | None = None):\n    \"\"\"Lazily yield trajectories from a JSONL file.\n\n    Args:\n        path: Path to a .jsonl file.\n        limit: Maximum number of trajectories to yield. None for all.\n\n    Yields:\n        Trajectory objects one at a time.\n    \"\"\"\n    path = Path(path)\n    count = 0\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if not line:\n                continue\n            raw = json.loads(line)\n            yield parse_trajectory(raw)\n            count += 1\n            if limit and count >= limit:\n                break\n\n\nif __name__ == \"__main__\":\n    import sys\n    data_path = sys.argv[1] if len(sys.argv) > 1 else (\n        \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/\"\n        \"agent_progress_probe/artifacts/data/swe_agent_trajectories_1000.jsonl\"\n    )\n\n    print(f\"Loading from {data_path}...\")\n    trajs = load_trajectories(data_path)\n    print(f\"Loaded {len(trajs)} trajectories\")\n\n    resolved = [t for t in trajs if t.target]\n    unresolved = [t for t in trajs if not t.target]\n    print(f\"Resolved: {len(resolved)}, Unresolved: {len(unresolved)}\")\n\n    t = trajs[0]\n    print(f\"\\nSample trajectory: {t.instance_id}\")\n    print(f\"  Steps: {t.num_steps}, Actions: {len(t.actions)}, Observations: {len(t.observations)}\")\n    print(f\"  Has patch: {t.has_patch}, Target: {t.target}\")\n\n    test_result = t.parse_eval_test_results()\n    if test_result:\n        print(f\"  Eval tests: {len(test_result.passed)} passed, {len(test_result.failed)} failed, pass_rate={test_result.pass_rate:.2f}\")\n\n    edits = t.get_edit_commands()\n    print(f\"  Edit commands: {len(edits)}\")\n\n    mid_tests = t.extract_mid_trajectory_test_results()\n    print(f\"  Mid-trajectory test runs: {len(mid_tests)}\")\n",
+                "numLines": 303,
+                "startLine": 1,
+                "totalLines": 303
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture of the codebase. Let me implement the changes:\n\n1. Replace LF2 in `labeling_functions.py` with `lf_command_repetition`\n2. Update `ALL_LFS` list\n3. Update `window_extractor.py` if needed (it imports `ALL_LFS` from labeling_functions, so it should auto-update)\n4. Run the pipeline\n5. Generate report\n\nLet me start by implementing the new LF2.\n\nThe `Step.command` property extracts command from AI steps' code blocks. I need to:\n\n\nImplementing the labeling function now...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "071e1588-507a-45d5-be5f-907b3267164a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NbGo7VyfEVWsGCCeLCniJz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11189,
+                "cache_read_input_tokens": 23890,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11189
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Let me implement the changes."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "f9516405-a5b5-4602-9a7d-52c25dbe6e60",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NbGo7VyfEVWsGCCeLCniJz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11189,
+                "cache_read_input_tokens": 23890,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11189
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T1VNnoYtwAT9MGPt8C51rx",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/labeling_functions.py",
+                "old_string": "\"\"\"Labeling functions for agent progress probe.\n\nEach LF takes a sliding window of steps and returns:\n  1 = progress, 0 = stagnation, -1 = abstain\n\"\"\"\n\nfrom __future__ import annotations\n\nimport re\nfrom typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    from data_loader import Step, Trajectory",
+                "new_string": "\"\"\"Labeling functions for agent progress probe.\n\nEach LF takes a sliding window of steps and returns:\n  1 = progress, 0 = stagnation, -1 = abstain\n\"\"\"\n\nfrom __future__ import annotations\n\nimport re\nfrom difflib import SequenceMatcher\nfrom typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    from data_loader import Step, Trajectory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "d7ad2b99-0cb9-4980-a71f-9ed32ff4e747",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NbGo7VyfEVWsGCCeLCniJz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11189,
+                "cache_read_input_tokens": 23890,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11189
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T05:43:04.313Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T1VNnoYtwAT9MGPt8C51rx",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/labeling_functions.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "3adb277f-2364-4343-99c2-6b56fef36c9a",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/labeling_functions.py",
+              "oldString": "\"\"\"Labeling functions for agent progress probe.\n\nEach LF takes a sliding window of steps and returns:\n  1 = progress, 0 = stagnation, -1 = abstain\n\"\"\"\n\nfrom __future__ import annotations\n\nimport re\nfrom typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    from data_loader import Step, Trajectory",
+              "newString": "\"\"\"Labeling functions for agent progress probe.\n\nEach LF takes a sliding window of steps and returns:\n  1 = progress, 0 = stagnation, -1 = abstain\n\"\"\"\n\nfrom __future__ import annotations\n\nimport re\nfrom difflib import SequenceMatcher\nfrom typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    from data_loader import Step, Trajectory",
+              "originalFile": "\"\"\"Labeling functions for agent progress probe.\n\nEach LF takes a sliding window of steps and returns:\n  1 = progress, 0 = stagnation, -1 = abstain\n\"\"\"\n\nfrom __future__ import annotations\n\nimport re\nfrom typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    from data_loader import Step, Trajectory\n\nPROGRESS = 1\nSTAGNATION = 0\nABSTAIN = -1\n\nEDIT_PATTERN = re.compile(r\"^edit\\s+\\d+\", re.MULTILINE)\nSEARCH_CMDS = {\"search_dir\", \"search_file\", \"find_file\", \"find\", \"grep\"}\n\n\ndef _extract_edited_files(steps: list[Step]) -> tuple[int, set[str]]:\n    \"\"\"Count edit commands and unique files edited in a window.\"\"\"\n    edit_count = 0\n    files = set()\n    for step in steps:\n        if not step.is_action:\n            continue\n        cmd = step.command\n        if not cmd:\n            continue\n        if cmd.strip().startswith(\"edit\"):\n            edit_count += 1\n            # Try to get the filename from the next observation\n            idx = step.index\n            for s in steps:\n                if s.index == idx + 1 and s.is_observation:\n                    match = re.search(r\"\\[File:\\s*([^\\]]+?)(?:\\s*\\(\\d+\\s*lines)\", s.text)\n                    if match:\n                        files.add(match.group(1).strip())\n                    break\n    return edit_count, files\n\n\ndef _count_search_only(steps: list[Step]) -> int:\n    \"\"\"Count consecutive search/find commands without any edit.\"\"\"\n    count = 0\n    for step in steps:\n        if not step.is_action:\n            continue\n        cmd = step.command\n        if not cmd:\n            continue\n        first_word = cmd.strip().split()[0] if cmd.strip() else \"\"\n        if first_word in SEARCH_CMDS:\n            count += 1\n    return count\n\n\ndef lf_file_diff_delta(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF1: Whether the agent is meaningfully modifying code in this window.\"\"\"\n    edit_count, files = _extract_edited_files(window)\n\n    if edit_count >= 2 and len(files) >= 1:\n        return PROGRESS\n    if edit_count == 0:\n        search_count = _count_search_only(window)\n        if search_count >= 3:\n            return STAGNATION\n        return STAGNATION\n    return ABSTAIN\n\n\ndef _parse_test_pass_rate(text: str) -> float | None:\n    \"\"\"Parse pytest output from an observation step, return pass rate or None.\"\"\"\n    passed = 0\n    failed = 0\n\n    # Try structured PASSED/FAILED lines\n    passed_lines = re.findall(r\"PASSED\\s+\\S+\", text)\n    failed_lines = re.findall(r\"FAILED\\s+\\S+\", text)\n    passed += len(passed_lines)\n    failed += len(failed_lines)\n\n    # Try summary line: \"X passed, Y failed\"\n    summary_passed = re.search(r\"(\\d+)\\s+passed\", text)\n    summary_failed = re.search(r\"(\\d+)\\s+failed\", text)\n\n    if summary_passed and passed == 0:\n        passed = int(summary_passed.group(1))\n    if summary_failed and failed == 0:\n        failed = int(summary_failed.group(1))\n\n    total = passed + failed\n    if total == 0:\n        return None\n    return passed / total\n\n\ndef lf_test_pass_rate_transition(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF2: Whether test pass rate is improving within the window.\"\"\"\n    test_runs = []\n    for step in window:\n        if not step.is_observation:\n            continue\n        if not step.has_test_output:\n            continue\n        rate = _parse_test_pass_rate(step.text)\n        if rate is not None:\n            test_runs.append(rate)\n\n    if len(test_runs) < 2:\n        return ABSTAIN\n\n    last = test_runs[-1]\n    second_last = test_runs[-2]\n\n    if last > second_last:\n        return PROGRESS\n    return STAGNATION\n\n\ndef lf_outcome_backpropagation(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF3: Label last windows based on final trajectory outcome.\"\"\"\n    total_windows = window_position[\"total_windows\"]\n    window_idx = window_position[\"window_idx\"]\n\n    is_last_two = window_idx >= total_windows - 2\n\n    if trajectory.exit_status in (\"exit_context\",):\n        return STAGNATION\n\n    if not is_last_two:\n        return ABSTAIN\n\n    if trajectory.target:\n        return PROGRESS\n    else:\n        return STAGNATION\n\n\nALL_LFS = [\n    (\"file_diff_delta\", lf_file_diff_delta),\n    (\"test_pass_rate_transition\", lf_test_pass_rate_transition),\n    (\"outcome_backpropagation\", lf_outcome_backpropagation),\n]\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 7,
+                  "oldLines": 6,
+                  "newStart": 7,
+                  "newLines": 7,
+                  "lines": [
+                    " from __future__ import annotations",
+                    " ",
+                    " import re",
+                    "+from difflib import SequenceMatcher",
+                    " from typing import TYPE_CHECKING",
+                    " ",
+                    " if TYPE_CHECKING:"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now replace `lf_test_pass_rate_transition` with `lf_command_repetition` and update `ALL_LFS`:"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "8e7393f7-06c7-4283-9a79-dae450fc1cdd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BES2bUX7YhBMf2GxWEGxeX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 656,
+                "cache_read_input_tokens": 35079,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 656
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PgURr3UWJvXdFfM7qPPkjx",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/labeling_functions.py",
+                "old_string": "def _parse_test_pass_rate(text: str) -> float | None:\n    \"\"\"Parse pytest output from an observation step, return pass rate or None.\"\"\"\n    passed = 0\n    failed = 0\n\n    # Try structured PASSED/FAILED lines\n    passed_lines = re.findall(r\"PASSED\\s+\\S+\", text)\n    failed_lines = re.findall(r\"FAILED\\s+\\S+\", text)\n    passed += len(passed_lines)\n    failed += len(failed_lines)\n\n    # Try summary line: \"X passed, Y failed\"\n    summary_passed = re.search(r\"(\\d+)\\s+passed\", text)\n    summary_failed = re.search(r\"(\\d+)\\s+failed\", text)\n\n    if summary_passed and passed == 0:\n        passed = int(summary_passed.group(1))\n    if summary_failed and failed == 0:\n        failed = int(summary_failed.group(1))\n\n    total = passed + failed\n    if total == 0:\n        return None\n    return passed / total\n\n\ndef lf_test_pass_rate_transition(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF2: Whether test pass rate is improving within the window.\"\"\"\n    test_runs = []\n    for step in window:\n        if not step.is_observation:\n            continue\n        if not step.has_test_output:\n            continue\n        rate = _parse_test_pass_rate(step.text)\n        if rate is not None:\n            test_runs.append(rate)\n\n    if len(test_runs) < 2:\n        return ABSTAIN\n\n    last = test_runs[-1]\n    second_last = test_runs[-2]\n\n    if last > second_last:\n        return PROGRESS\n    return STAGNATION",
+                "new_string": "def _cmd_similarity(a: str, b: str) -> float:\n    \"\"\"Character-level similarity between two commands using SequenceMatcher.\"\"\"\n    if a == b:\n        return 1.0\n    if not a or not b:\n        return 0.0\n    return SequenceMatcher(None, a, b).ratio()\n\n\ndef _has_consecutive_similar(commands: list[str], min_run: int = 3, threshold: float = 0.9) -> bool:\n    \"\"\"Check if there are ≥min_run consecutive commands with similarity > threshold.\"\"\"\n    if len(commands) < min_run:\n        return False\n    run = 1\n    for i in range(1, len(commands)):\n        if _cmd_similarity(commands[i - 1], commands[i]) >= threshold:\n            run += 1\n            if run >= min_run:\n                return True\n        else:\n            run = 1\n    return False\n\n\ndef lf_command_repetition(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF2: Detect command repetition patterns as stagnation signal.\"\"\"\n    commands = [s.command for s in window if s.is_action and s.command is not None]\n\n    if len(commands) < 2:\n        return ABSTAIN\n\n    if _has_consecutive_similar(commands, min_run=3, threshold=1.0):\n        return STAGNATION\n\n    if _has_consecutive_similar(commands, min_run=3, threshold=0.9):\n        return STAGNATION\n\n    if len(set(commands)) == len(commands):\n        return PROGRESS\n\n    return ABSTAIN\n\n\n# --- Deprecated ---\ndef _parse_test_pass_rate(text: str) -> float | None:\n    passed = 0\n    failed = 0\n    passed_lines = re.findall(r\"PASSED\\s+\\S+\", text)\n    failed_lines = re.findall(r\"FAILED\\s+\\S+\", text)\n    passed += len(passed_lines)\n    failed += len(failed_lines)\n    summary_passed = re.search(r\"(\\d+)\\s+passed\", text)\n    summary_failed = re.search(r\"(\\d+)\\s+failed\", text)\n    if summary_passed and passed == 0:\n        passed = int(summary_passed.group(1))\n    if summary_failed and failed == 0:\n        failed = int(summary_failed.group(1))\n    total = passed + failed\n    if total == 0:\n        return None\n    return passed / total\n\n\ndef lf_test_pass_rate_transition_deprecated(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF2 (deprecated): Whether test pass rate is improving within the window.\"\"\"\n    test_runs = []\n    for step in window:\n        if not step.is_observation:\n            continue\n        if not step.has_test_output:\n            continue\n        rate = _parse_test_pass_rate(step.text)\n        if rate is not None:\n            test_runs.append(rate)\n    if len(test_runs) < 2:\n        return ABSTAIN\n    last = test_runs[-1]\n    second_last = test_runs[-2]\n    if last > second_last:\n        return PROGRESS\n    return STAGNATION"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "db619bc1-0051-4fb2-8e28-41ba4a6fe28d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BES2bUX7YhBMf2GxWEGxeX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 656,
+                "cache_read_input_tokens": 35079,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 656
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T05:43:23.748Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PgURr3UWJvXdFfM7qPPkjx",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/labeling_functions.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "08618665-d4ad-4e6a-a212-6d1c9c1fe65f",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/labeling_functions.py",
+              "oldString": "def _parse_test_pass_rate(text: str) -> float | None:\n    \"\"\"Parse pytest output from an observation step, return pass rate or None.\"\"\"\n    passed = 0\n    failed = 0\n\n    # Try structured PASSED/FAILED lines\n    passed_lines = re.findall(r\"PASSED\\s+\\S+\", text)\n    failed_lines = re.findall(r\"FAILED\\s+\\S+\", text)\n    passed += len(passed_lines)\n    failed += len(failed_lines)\n\n    # Try summary line: \"X passed, Y failed\"\n    summary_passed = re.search(r\"(\\d+)\\s+passed\", text)\n    summary_failed = re.search(r\"(\\d+)\\s+failed\", text)\n\n    if summary_passed and passed == 0:\n        passed = int(summary_passed.group(1))\n    if summary_failed and failed == 0:\n        failed = int(summary_failed.group(1))\n\n    total = passed + failed\n    if total == 0:\n        return None\n    return passed / total\n\n\ndef lf_test_pass_rate_transition(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF2: Whether test pass rate is improving within the window.\"\"\"\n    test_runs = []\n    for step in window:\n        if not step.is_observation:\n            continue\n        if not step.has_test_output:\n            continue\n        rate = _parse_test_pass_rate(step.text)\n        if rate is not None:\n            test_runs.append(rate)\n\n    if len(test_runs) < 2:\n        return ABSTAIN\n\n    last = test_runs[-1]\n    second_last = test_runs[-2]\n\n    if last > second_last:\n        return PROGRESS\n    return STAGNATION",
+              "newString": "def _cmd_similarity(a: str, b: str) -> float:\n    \"\"\"Character-level similarity between two commands using SequenceMatcher.\"\"\"\n    if a == b:\n        return 1.0\n    if not a or not b:\n        return 0.0\n    return SequenceMatcher(None, a, b).ratio()\n\n\ndef _has_consecutive_similar(commands: list[str], min_run: int = 3, threshold: float = 0.9) -> bool:\n    \"\"\"Check if there are ≥min_run consecutive commands with similarity > threshold.\"\"\"\n    if len(commands) < min_run:\n        return False\n    run = 1\n    for i in range(1, len(commands)):\n        if _cmd_similarity(commands[i - 1], commands[i]) >= threshold:\n            run += 1\n            if run >= min_run:\n                return True\n        else:\n            run = 1\n    return False\n\n\ndef lf_command_repetition(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF2: Detect command repetition patterns as stagnation signal.\"\"\"\n    commands = [s.command for s in window if s.is_action and s.command is not None]\n\n    if len(commands) < 2:\n        return ABSTAIN\n\n    if _has_consecutive_similar(commands, min_run=3, threshold=1.0):\n        return STAGNATION\n\n    if _has_consecutive_similar(commands, min_run=3, threshold=0.9):\n        return STAGNATION\n\n    if len(set(commands)) == len(commands):\n        return PROGRESS\n\n    return ABSTAIN\n\n\n# --- Deprecated ---\ndef _parse_test_pass_rate(text: str) -> float | None:\n    passed = 0\n    failed = 0\n    passed_lines = re.findall(r\"PASSED\\s+\\S+\", text)\n    failed_lines = re.findall(r\"FAILED\\s+\\S+\", text)\n    passed += len(passed_lines)\n    failed += len(failed_lines)\n    summary_passed = re.search(r\"(\\d+)\\s+passed\", text)\n    summary_failed = re.search(r\"(\\d+)\\s+failed\", text)\n    if summary_passed and passed == 0:\n        passed = int(summary_passed.group(1))\n    if summary_failed and failed == 0:\n        failed = int(summary_failed.group(1))\n    total = passed + failed\n    if total == 0:\n        return None\n    return passed / total\n\n\ndef lf_test_pass_rate_transition_deprecated(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF2 (deprecated): Whether test pass rate is improving within the window.\"\"\"\n    test_runs = []\n    for step in window:\n        if not step.is_observation:\n            continue\n        if not step.has_test_output:\n            continue\n        rate = _parse_test_pass_rate(step.text)\n        if rate is not None:\n            test_runs.append(rate)\n    if len(test_runs) < 2:\n        return ABSTAIN\n    last = test_runs[-1]\n    second_last = test_runs[-2]\n    if last > second_last:\n        return PROGRESS\n    return STAGNATION",
+              "originalFile": "\"\"\"Labeling functions for agent progress probe.\n\nEach LF takes a sliding window of steps and returns:\n  1 = progress, 0 = stagnation, -1 = abstain\n\"\"\"\n\nfrom __future__ import annotations\n\nimport re\nfrom difflib import SequenceMatcher\nfrom typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    from data_loader import Step, Trajectory\n\nPROGRESS = 1\nSTAGNATION = 0\nABSTAIN = -1\n\nEDIT_PATTERN = re.compile(r\"^edit\\s+\\d+\", re.MULTILINE)\nSEARCH_CMDS = {\"search_dir\", \"search_file\", \"find_file\", \"find\", \"grep\"}\n\n\ndef _extract_edited_files(steps: list[Step]) -> tuple[int, set[str]]:\n    \"\"\"Count edit commands and unique files edited in a window.\"\"\"\n    edit_count = 0\n    files = set()\n    for step in steps:\n        if not step.is_action:\n            continue\n        cmd = step.command\n        if not cmd:\n            continue\n        if cmd.strip().startswith(\"edit\"):\n            edit_count += 1\n            # Try to get the filename from the next observation\n            idx = step.index\n            for s in steps:\n                if s.index == idx + 1 and s.is_observation:\n                    match = re.search(r\"\\[File:\\s*([^\\]]+?)(?:\\s*\\(\\d+\\s*lines)\", s.text)\n                    if match:\n                        files.add(match.group(1).strip())\n                    break\n    return edit_count, files\n\n\ndef _count_search_only(steps: list[Step]) -> int:\n    \"\"\"Count consecutive search/find commands without any edit.\"\"\"\n    count = 0\n    for step in steps:\n        if not step.is_action:\n            continue\n        cmd = step.command\n        if not cmd:\n            continue\n        first_word = cmd.strip().split()[0] if cmd.strip() else \"\"\n        if first_word in SEARCH_CMDS:\n            count += 1\n    return count\n\n\ndef lf_file_diff_delta(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF1: Whether the agent is meaningfully modifying code in this window.\"\"\"\n    edit_count, files = _extract_edited_files(window)\n\n    if edit_count >= 2 and len(files) >= 1:\n        return PROGRESS\n    if edit_count == 0:\n        search_count = _count_search_only(window)\n        if search_count >= 3:\n            return STAGNATION\n        return STAGNATION\n    return ABSTAIN\n\n\ndef _parse_test_pass_rate(text: str) -> float | None:\n    \"\"\"Parse pytest output from an observation step, return pass rate or None.\"\"\"\n    passed = 0\n    failed = 0\n\n    # Try structured PASSED/FAILED lines\n    passed_lines = re.findall(r\"PASSED\\s+\\S+\", text)\n    failed_lines = re.findall(r\"FAILED\\s+\\S+\", text)\n    passed += len(passed_lines)\n    failed += len(failed_lines)\n\n    # Try summary line: \"X passed, Y failed\"\n    summary_passed = re.search(r\"(\\d+)\\s+passed\", text)\n    summary_failed = re.search(r\"(\\d+)\\s+failed\", text)\n\n    if summary_passed and passed == 0:\n        passed = int(summary_passed.group(1))\n    if summary_failed and failed == 0:\n        failed = int(summary_failed.group(1))\n\n    total = passed + failed\n    if total == 0:\n        return None\n    return passed / total\n\n\ndef lf_test_pass_rate_transition(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF2: Whether test pass rate is improving within the window.\"\"\"\n    test_runs = []\n    for step in window:\n        if not step.is_observation:\n            continue\n        if not step.has_test_output:\n            continue\n        rate = _parse_test_pass_rate(step.text)\n        if rate is not None:\n            test_runs.append(rate)\n\n    if len(test_runs) < 2:\n        return ABSTAIN\n\n    last = test_runs[-1]\n    second_last = test_runs[-2]\n\n    if last > second_last:\n        return PROGRESS\n    return STAGNATION\n\n\ndef lf_outcome_backpropagation(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF3: Label last windows based on final trajectory outcome.\"\"\"\n    total_windows = window_position[\"total_windows\"]\n    window_idx = window_position[\"window_idx\"]\n\n    is_last_two = window_idx >= total_windows - 2\n\n    if trajectory.exit_status in (\"exit_context\",):\n        return STAGNATION\n\n    if not is_last_two:\n        return ABSTAIN\n\n    if trajectory.target:\n        return PROGRESS\n    else:\n        return STAGNATION\n\n\nALL_LFS = [\n    (\"file_diff_delta\", lf_file_diff_delta),\n    (\"test_pass_rate_transition\", lf_test_pass_rate_transition),\n    (\"outcome_backpropagation\", lf_outcome_backpropagation),\n]\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 73,
+                  "oldLines": 34,
+                  "newStart": 73,
+                  "newLines": 71,
+                  "lines": [
+                    "     return ABSTAIN",
+                    " ",
+                    " ",
+                    "+def _cmd_similarity(a: str, b: str) -> float:",
+                    "+    \"\"\"Character-level similarity between two commands using SequenceMatcher.\"\"\"",
+                    "+    if a == b:",
+                    "+        return 1.0",
+                    "+    if not a or not b:",
+                    "+        return 0.0",
+                    "+    return SequenceMatcher(None, a, b).ratio()",
+                    "+",
+                    "+",
+                    "+def _has_consecutive_similar(commands: list[str], min_run: int = 3, threshold: float = 0.9) -> bool:",
+                    "+    \"\"\"Check if there are ≥min_run consecutive commands with similarity > threshold.\"\"\"",
+                    "+    if len(commands) < min_run:",
+                    "+        return False",
+                    "+    run = 1",
+                    "+    for i in range(1, len(commands)):",
+                    "+        if _cmd_similarity(commands[i - 1], commands[i]) >= threshold:",
+                    "+            run += 1",
+                    "+            if run >= min_run:",
+                    "+                return True",
+                    "+        else:",
+                    "+            run = 1",
+                    "+    return False",
+                    "+",
+                    "+",
+                    "+def lf_command_repetition(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:",
+                    "+    \"\"\"LF2: Detect command repetition patterns as stagnation signal.\"\"\"",
+                    "+    commands = [s.command for s in window if s.is_action and s.command is not None]",
+                    "+",
+                    "+    if len(commands) < 2:",
+                    "+        return ABSTAIN",
+                    "+",
+                    "+    if _has_consecutive_similar(commands, min_run=3, threshold=1.0):",
+                    "+        return STAGNATION",
+                    "+",
+                    "+    if _has_consecutive_similar(commands, min_run=3, threshold=0.9):",
+                    "+        return STAGNATION",
+                    "+",
+                    "+    if len(set(commands)) == len(commands):",
+                    "+        return PROGRESS",
+                    "+",
+                    "+    return ABSTAIN",
+                    "+",
+                    "+",
+                    "+# --- Deprecated ---",
+                    " def _parse_test_pass_rate(text: str) -> float | None:",
+                    "-    \"\"\"Parse pytest output from an observation step, return pass rate or None.\"\"\"",
+                    "     passed = 0",
+                    "     failed = 0",
+                    "-",
+                    "-    # Try structured PASSED/FAILED lines",
+                    "     passed_lines = re.findall(r\"PASSED\\s+\\S+\", text)",
+                    "     failed_lines = re.findall(r\"FAILED\\s+\\S+\", text)",
+                    "     passed += len(passed_lines)",
+                    "     failed += len(failed_lines)",
+                    "-",
+                    "-    # Try summary line: \"X passed, Y failed\"",
+                    "     summary_passed = re.search(r\"(\\d+)\\s+passed\", text)",
+                    "     summary_failed = re.search(r\"(\\d+)\\s+failed\", text)",
+                    "-",
+                    "     if summary_passed and passed == 0:",
+                    "         passed = int(summary_passed.group(1))",
+                    "     if summary_failed and failed == 0:",
+                    "         failed = int(summary_failed.group(1))",
+                    "-",
+                    "     total = passed + failed",
+                    "     if total == 0:",
+                    "         return None",
+                    "     return passed / total",
+                    " ",
+                    " ",
+                    "-def lf_test_pass_rate_transition(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:",
+                    "-    \"\"\"LF2: Whether test pass rate is improving within the window.\"\"\"",
+                    "+def lf_test_pass_rate_transition_deprecated(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:",
+                    "+    \"\"\"LF2 (deprecated): Whether test pass rate is improving within the window.\"\"\"",
+                    "     test_runs = []",
+                    "     for step in window:",
+                    "         if not step.is_observation:"
+                  ]
+                },
+                {
+                  "oldStart": 110,
+                  "oldLines": 13,
+                  "newStart": 147,
+                  "newLines": 10,
+                  "lines": [
+                    "         rate = _parse_test_pass_rate(step.text)",
+                    "         if rate is not None:",
+                    "             test_runs.append(rate)",
+                    "-",
+                    "     if len(test_runs) < 2:",
+                    "         return ABSTAIN",
+                    "-",
+                    "     last = test_runs[-1]",
+                    "     second_last = test_runs[-2]",
+                    "-",
+                    "     if last > second_last:",
+                    "         return PROGRESS",
+                    "     return STAGNATION"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0173KBBx4bC8dvYyDFo1jGbq",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/labeling_functions.py",
+                "old_string": "ALL_LFS = [\n    (\"file_diff_delta\", lf_file_diff_delta),\n    (\"test_pass_rate_transition\", lf_test_pass_rate_transition),\n    (\"outcome_backpropagation\", lf_outcome_backpropagation),\n]",
+                "new_string": "ALL_LFS = [\n    (\"file_diff_delta\", lf_file_diff_delta),\n    (\"command_repetition\", lf_command_repetition),\n    (\"outcome_backpropagation\", lf_outcome_backpropagation),\n]"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "b51483fa-4931-4bcd-9d36-1eac4dccbad4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YLoH8wSfW1Ws6njcxskm4V",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1504,
+                "cache_read_input_tokens": 35735,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1504
+                },
+                "output_tokens": 48,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T05:43:28.542Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0173KBBx4bC8dvYyDFo1jGbq",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/labeling_functions.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "29f95b90-412e-4f3d-9759-c7f10b0519af",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/labeling_functions.py",
+              "oldString": "ALL_LFS = [\n    (\"file_diff_delta\", lf_file_diff_delta),\n    (\"test_pass_rate_transition\", lf_test_pass_rate_transition),\n    (\"outcome_backpropagation\", lf_outcome_backpropagation),\n]",
+              "newString": "ALL_LFS = [\n    (\"file_diff_delta\", lf_file_diff_delta),\n    (\"command_repetition\", lf_command_repetition),\n    (\"outcome_backpropagation\", lf_outcome_backpropagation),\n]",
+              "originalFile": "\"\"\"Labeling functions for agent progress probe.\n\nEach LF takes a sliding window of steps and returns:\n  1 = progress, 0 = stagnation, -1 = abstain\n\"\"\"\n\nfrom __future__ import annotations\n\nimport re\nfrom difflib import SequenceMatcher\nfrom typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    from data_loader import Step, Trajectory\n\nPROGRESS = 1\nSTAGNATION = 0\nABSTAIN = -1\n\nEDIT_PATTERN = re.compile(r\"^edit\\s+\\d+\", re.MULTILINE)\nSEARCH_CMDS = {\"search_dir\", \"search_file\", \"find_file\", \"find\", \"grep\"}\n\n\ndef _extract_edited_files(steps: list[Step]) -> tuple[int, set[str]]:\n    \"\"\"Count edit commands and unique files edited in a window.\"\"\"\n    edit_count = 0\n    files = set()\n    for step in steps:\n        if not step.is_action:\n            continue\n        cmd = step.command\n        if not cmd:\n            continue\n        if cmd.strip().startswith(\"edit\"):\n            edit_count += 1\n            # Try to get the filename from the next observation\n            idx = step.index\n            for s in steps:\n                if s.index == idx + 1 and s.is_observation:\n                    match = re.search(r\"\\[File:\\s*([^\\]]+?)(?:\\s*\\(\\d+\\s*lines)\", s.text)\n                    if match:\n                        files.add(match.group(1).strip())\n                    break\n    return edit_count, files\n\n\ndef _count_search_only(steps: list[Step]) -> int:\n    \"\"\"Count consecutive search/find commands without any edit.\"\"\"\n    count = 0\n    for step in steps:\n        if not step.is_action:\n            continue\n        cmd = step.command\n        if not cmd:\n            continue\n        first_word = cmd.strip().split()[0] if cmd.strip() else \"\"\n        if first_word in SEARCH_CMDS:\n            count += 1\n    return count\n\n\ndef lf_file_diff_delta(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF1: Whether the agent is meaningfully modifying code in this window.\"\"\"\n    edit_count, files = _extract_edited_files(window)\n\n    if edit_count >= 2 and len(files) >= 1:\n        return PROGRESS\n    if edit_count == 0:\n        search_count = _count_search_only(window)\n        if search_count >= 3:\n            return STAGNATION\n        return STAGNATION\n    return ABSTAIN\n\n\ndef _cmd_similarity(a: str, b: str) -> float:\n    \"\"\"Character-level similarity between two commands using SequenceMatcher.\"\"\"\n    if a == b:\n        return 1.0\n    if not a or not b:\n        return 0.0\n    return SequenceMatcher(None, a, b).ratio()\n\n\ndef _has_consecutive_similar(commands: list[str], min_run: int = 3, threshold: float = 0.9) -> bool:\n    \"\"\"Check if there are ≥min_run consecutive commands with similarity > threshold.\"\"\"\n    if len(commands) < min_run:\n        return False\n    run = 1\n    for i in range(1, len(commands)):\n        if _cmd_similarity(commands[i - 1], commands[i]) >= threshold:\n            run += 1\n            if run >= min_run:\n                return True\n        else:\n            run = 1\n    return False\n\n\ndef lf_command_repetition(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF2: Detect command repetition patterns as stagnation signal.\"\"\"\n    commands = [s.command for s in window if s.is_action and s.command is not None]\n\n    if len(commands) < 2:\n        return ABSTAIN\n\n    if _has_consecutive_similar(commands, min_run=3, threshold=1.0):\n        return STAGNATION\n\n    if _has_consecutive_similar(commands, min_run=3, threshold=0.9):\n        return STAGNATION\n\n    if len(set(commands)) == len(commands):\n        return PROGRESS\n\n    return ABSTAIN\n\n\n# --- Deprecated ---\ndef _parse_test_pass_rate(text: str) -> float | None:\n    passed = 0\n    failed = 0\n    passed_lines = re.findall(r\"PASSED\\s+\\S+\", text)\n    failed_lines = re.findall(r\"FAILED\\s+\\S+\", text)\n    passed += len(passed_lines)\n    failed += len(failed_lines)\n    summary_passed = re.search(r\"(\\d+)\\s+passed\", text)\n    summary_failed = re.search(r\"(\\d+)\\s+failed\", text)\n    if summary_passed and passed == 0:\n        passed = int(summary_passed.group(1))\n    if summary_failed and failed == 0:\n        failed = int(summary_failed.group(1))\n    total = passed + failed\n    if total == 0:\n        return None\n    return passed / total\n\n\ndef lf_test_pass_rate_transition_deprecated(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF2 (deprecated): Whether test pass rate is improving within the window.\"\"\"\n    test_runs = []\n    for step in window:\n        if not step.is_observation:\n            continue\n        if not step.has_test_output:\n            continue\n        rate = _parse_test_pass_rate(step.text)\n        if rate is not None:\n            test_runs.append(rate)\n    if len(test_runs) < 2:\n        return ABSTAIN\n    last = test_runs[-1]\n    second_last = test_runs[-2]\n    if last > second_last:\n        return PROGRESS\n    return STAGNATION\n\n\ndef lf_outcome_backpropagation(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF3: Label last windows based on final trajectory outcome.\"\"\"\n    total_windows = window_position[\"total_windows\"]\n    window_idx = window_position[\"window_idx\"]\n\n    is_last_two = window_idx >= total_windows - 2\n\n    if trajectory.exit_status in (\"exit_context\",):\n        return STAGNATION\n\n    if not is_last_two:\n        return ABSTAIN\n\n    if trajectory.target:\n        return PROGRESS\n    else:\n        return STAGNATION\n\n\nALL_LFS = [\n    (\"file_diff_delta\", lf_file_diff_delta),\n    (\"test_pass_rate_transition\", lf_test_pass_rate_transition),\n    (\"outcome_backpropagation\", lf_outcome_backpropagation),\n]\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 177,
+                  "oldLines": 6,
+                  "newStart": 177,
+                  "newLines": 6,
+                  "lines": [
+                    " ",
+                    " ALL_LFS = [",
+                    "     (\"file_diff_delta\", lf_file_diff_delta),",
+                    "-    (\"test_pass_rate_transition\", lf_test_pass_rate_transition),",
+                    "+    (\"command_repetition\", lf_command_repetition),",
+                    "     (\"outcome_backpropagation\", lf_outcome_backpropagation),",
+                    " ]"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`window_extractor.py` imports `ALL_LFS` from `labeling_functions`, so it auto-picks up the change. No edit needed there.\n\nNow let me verify the updated file, then run the pipeline — first on 10 trajectories to validate."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "ce6483f6-fc4a-44a9-b5d8-1af1536a7892",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L4i7TeubhepgwVnAgzwHMY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 327,
+                "cache_read_input_tokens": 37239,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 327
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A8KNVky5FPNEhvpwebanmK",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/labeling_functions.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "b1962050-b2e4-4f78-96af-627a95ab72bc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L4i7TeubhepgwVnAgzwHMY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 327,
+                "cache_read_input_tokens": 37239,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 327
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T05:43:33.806Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A8KNVky5FPNEhvpwebanmK",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Labeling functions for agent progress probe.\n2\t\n3\tEach LF takes a sliding window of steps and returns:\n4\t  1 = progress, 0 = stagnation, -1 = abstain\n5\t\"\"\"\n6\t\n7\tfrom __future__ import annotations\n8\t\n9\timport re\n10\tfrom difflib import SequenceMatcher\n11\tfrom typing import TYPE_CHECKING\n12\t\n13\tif TYPE_CHECKING:\n14\t    from data_loader import Step, Trajectory\n15\t\n16\tPROGRESS = 1\n17\tSTAGNATION = 0\n18\tABSTAIN = -1\n19\t\n20\tEDIT_PATTERN = re.compile(r\"^edit\\s+\\d+\", re.MULTILINE)\n21\tSEARCH_CMDS = {\"search_dir\", \"search_file\", \"find_file\", \"find\", \"grep\"}\n22\t\n23\t\n24\tdef _extract_edited_files(steps: list[Step]) -> tuple[int, set[str]]:\n25\t    \"\"\"Count edit commands and unique files edited in a window.\"\"\"\n26\t    edit_count = 0\n27\t    files = set()\n28\t    for step in steps:\n29\t        if not step.is_action:\n30\t            continue\n31\t        cmd = step.command\n32\t        if not cmd:\n33\t            continue\n34\t        if cmd.strip().startswith(\"edit\"):\n35\t            edit_count += 1\n36\t            # Try to get the filename from the next observation\n37\t            idx = step.index\n38\t            for s in steps:\n39\t                if s.index == idx + 1 and s.is_observation:\n40\t                    match = re.search(r\"\\[File:\\s*([^\\]]+?)(?:\\s*\\(\\d+\\s*lines)\", s.text)\n41\t                    if match:\n42\t                        files.add(match.group(1).strip())\n43\t                    break\n44\t    return edit_count, files\n45\t\n46\t\n47\tdef _count_search_only(steps: list[Step]) -> int:\n48\t    \"\"\"Count consecutive search/find commands without any edit.\"\"\"\n49\t    count = 0\n50\t    for step in steps:\n51\t        if not step.is_action:\n52\t            continue\n53\t        cmd = step.command\n54\t        if not cmd:\n55\t            continue\n56\t        first_word = cmd.strip().split()[0] if cmd.strip() else \"\"\n57\t        if first_word in SEARCH_CMDS:\n58\t            count += 1\n59\t    return count\n60\t\n61\t\n62\tdef lf_file_diff_delta(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n63\t    \"\"\"LF1: Whether the agent is meaningfully modifying code in this window.\"\"\"\n64\t    edit_count, files = _extract_edited_files(window)\n65\t\n66\t    if edit_count >= 2 and len(files) >= 1:\n67\t        return PROGRESS\n68\t    if edit_count == 0:\n69\t        search_count = _count_search_only(window)\n70\t        if search_count >= 3:\n71\t            return STAGNATION\n72\t        return STAGNATION\n73\t    return ABSTAIN\n74\t\n75\t\n76\tdef _cmd_similarity(a: str, b: str) -> float:\n77\t    \"\"\"Character-level similarity between two commands using SequenceMatcher.\"\"\"\n78\t    if a == b:\n79\t        return 1.0\n80\t    if not a or not b:\n81\t        return 0.0\n82\t    return SequenceMatcher(None, a, b).ratio()\n83\t\n84\t\n85\tdef _has_consecutive_similar(commands: list[str], min_run: int = 3, threshold: float = 0.9) -> bool:\n86\t    \"\"\"Check if there are ≥min_run consecutive commands with similarity > threshold.\"\"\"\n87\t    if len(commands) < min_run:\n88\t        return False\n89\t    run = 1\n90\t    for i in range(1, len(commands)):\n91\t        if _cmd_similarity(commands[i - 1], commands[i]) >= threshold:\n92\t            run += 1\n93\t            if run >= min_run:\n94\t                return True\n95\t        else:\n96\t            run = 1\n97\t    return False\n98\t\n99\t\n100\tdef lf_command_repetition(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n101\t    \"\"\"LF2: Detect command repetition patterns as stagnation signal.\"\"\"\n102\t    commands = [s.command for s in window if s.is_action and s.command is not None]\n103\t\n104\t    if len(commands) < 2:\n105\t        return ABSTAIN\n106\t\n107\t    if _has_consecutive_similar(commands, min_run=3, threshold=1.0):\n108\t        return STAGNATION\n109\t\n110\t    if _has_consecutive_similar(commands, min_run=3, threshold=0.9):\n111\t        return STAGNATION\n112\t\n113\t    if len(set(commands)) == len(commands):\n114\t        return PROGRESS\n115\t\n116\t    return ABSTAIN\n117\t\n118\t\n119\t# --- Deprecated ---\n120\tdef _parse_test_pass_rate(text: str) -> float | None:\n121\t    passed = 0\n122\t    failed = 0\n123\t    passed_lines = re.findall(r\"PASSED\\s+\\S+\", text)\n124\t    failed_lines = re.findall(r\"FAILED\\s+\\S+\", text)\n125\t    passed += len(passed_lines)\n126\t    failed += len(failed_lines)\n127\t    summary_passed = re.search(r\"(\\d+)\\s+passed\", text)\n128\t    summary_failed = re.search(r\"(\\d+)\\s+failed\", text)\n129\t    if summary_passed and passed == 0:\n130\t        passed = int(summary_passed.group(1))\n131\t    if summary_failed and failed == 0:\n132\t        failed = int(summary_failed.group(1))\n133\t    total = passed + failed\n134\t    if total == 0:\n135\t        return None\n136\t    return passed / total\n137\t\n138\t\n139\tdef lf_test_pass_rate_transition_deprecated(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n140\t    \"\"\"LF2 (deprecated): Whether test pass rate is improving within the window.\"\"\"\n141\t    test_runs = []\n142\t    for step in window:\n143\t        if not step.is_observation:\n144\t            continue\n145\t        if not step.has_test_output:\n146\t            continue\n147\t        rate = _parse_test_pass_rate(step.text)\n148\t        if rate is not None:\n149\t            test_runs.append(rate)\n150\t    if len(test_runs) < 2:\n151\t        return ABSTAIN\n152\t    last = test_runs[-1]\n153\t    second_last = test_runs[-2]\n154\t    if last > second_last:\n155\t        return PROGRESS\n156\t    return STAGNATION\n157\t\n158\t\n159\tdef lf_outcome_backpropagation(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n160\t    \"\"\"LF3: Label last windows based on final trajectory outcome.\"\"\"\n161\t    total_windows = window_position[\"total_windows\"]\n162\t    window_idx = window_position[\"window_idx\"]\n163\t\n164\t    is_last_two = window_idx >= total_windows - 2\n165\t\n166\t    if trajectory.exit_status in (\"exit_context\",):\n167\t        return STAGNATION\n168\t\n169\t    if not is_last_two:\n170\t        return ABSTAIN\n171\t\n172\t    if trajectory.target:\n173\t        return PROGRESS\n174\t    else:\n175\t        return STAGNATION\n176\t\n177\t\n178\tALL_LFS = [\n179\t    (\"file_diff_delta\", lf_file_diff_delta),\n180\t    (\"command_repetition\", lf_command_repetition),\n181\t    (\"outcome_backpropagation\", lf_outcome_backpropagation),\n182\t]\n183\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "a4923d40-7c2c-4cdd-a33f-ce3b17fa3889",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/labeling_functions.py",
+                "content": "\"\"\"Labeling functions for agent progress probe.\n\nEach LF takes a sliding window of steps and returns:\n  1 = progress, 0 = stagnation, -1 = abstain\n\"\"\"\n\nfrom __future__ import annotations\n\nimport re\nfrom difflib import SequenceMatcher\nfrom typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    from data_loader import Step, Trajectory\n\nPROGRESS = 1\nSTAGNATION = 0\nABSTAIN = -1\n\nEDIT_PATTERN = re.compile(r\"^edit\\s+\\d+\", re.MULTILINE)\nSEARCH_CMDS = {\"search_dir\", \"search_file\", \"find_file\", \"find\", \"grep\"}\n\n\ndef _extract_edited_files(steps: list[Step]) -> tuple[int, set[str]]:\n    \"\"\"Count edit commands and unique files edited in a window.\"\"\"\n    edit_count = 0\n    files = set()\n    for step in steps:\n        if not step.is_action:\n            continue\n        cmd = step.command\n        if not cmd:\n            continue\n        if cmd.strip().startswith(\"edit\"):\n            edit_count += 1\n            # Try to get the filename from the next observation\n            idx = step.index\n            for s in steps:\n                if s.index == idx + 1 and s.is_observation:\n                    match = re.search(r\"\\[File:\\s*([^\\]]+?)(?:\\s*\\(\\d+\\s*lines)\", s.text)\n                    if match:\n                        files.add(match.group(1).strip())\n                    break\n    return edit_count, files\n\n\ndef _count_search_only(steps: list[Step]) -> int:\n    \"\"\"Count consecutive search/find commands without any edit.\"\"\"\n    count = 0\n    for step in steps:\n        if not step.is_action:\n            continue\n        cmd = step.command\n        if not cmd:\n            continue\n        first_word = cmd.strip().split()[0] if cmd.strip() else \"\"\n        if first_word in SEARCH_CMDS:\n            count += 1\n    return count\n\n\ndef lf_file_diff_delta(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF1: Whether the agent is meaningfully modifying code in this window.\"\"\"\n    edit_count, files = _extract_edited_files(window)\n\n    if edit_count >= 2 and len(files) >= 1:\n        return PROGRESS\n    if edit_count == 0:\n        search_count = _count_search_only(window)\n        if search_count >= 3:\n            return STAGNATION\n        return STAGNATION\n    return ABSTAIN\n\n\ndef _cmd_similarity(a: str, b: str) -> float:\n    \"\"\"Character-level similarity between two commands using SequenceMatcher.\"\"\"\n    if a == b:\n        return 1.0\n    if not a or not b:\n        return 0.0\n    return SequenceMatcher(None, a, b).ratio()\n\n\ndef _has_consecutive_similar(commands: list[str], min_run: int = 3, threshold: float = 0.9) -> bool:\n    \"\"\"Check if there are ≥min_run consecutive commands with similarity > threshold.\"\"\"\n    if len(commands) < min_run:\n        return False\n    run = 1\n    for i in range(1, len(commands)):\n        if _cmd_similarity(commands[i - 1], commands[i]) >= threshold:\n            run += 1\n            if run >= min_run:\n                return True\n        else:\n            run = 1\n    return False\n\n\ndef lf_command_repetition(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF2: Detect command repetition patterns as stagnation signal.\"\"\"\n    commands = [s.command for s in window if s.is_action and s.command is not None]\n\n    if len(commands) < 2:\n        return ABSTAIN\n\n    if _has_consecutive_similar(commands, min_run=3, threshold=1.0):\n        return STAGNATION\n\n    if _has_consecutive_similar(commands, min_run=3, threshold=0.9):\n        return STAGNATION\n\n    if len(set(commands)) == len(commands):\n        return PROGRESS\n\n    return ABSTAIN\n\n\n# --- Deprecated ---\ndef _parse_test_pass_rate(text: str) -> float | None:\n    passed = 0\n    failed = 0\n    passed_lines = re.findall(r\"PASSED\\s+\\S+\", text)\n    failed_lines = re.findall(r\"FAILED\\s+\\S+\", text)\n    passed += len(passed_lines)\n    failed += len(failed_lines)\n    summary_passed = re.search(r\"(\\d+)\\s+passed\", text)\n    summary_failed = re.search(r\"(\\d+)\\s+failed\", text)\n    if summary_passed and passed == 0:\n        passed = int(summary_passed.group(1))\n    if summary_failed and failed == 0:\n        failed = int(summary_failed.group(1))\n    total = passed + failed\n    if total == 0:\n        return None\n    return passed / total\n\n\ndef lf_test_pass_rate_transition_deprecated(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF2 (deprecated): Whether test pass rate is improving within the window.\"\"\"\n    test_runs = []\n    for step in window:\n        if not step.is_observation:\n            continue\n        if not step.has_test_output:\n            continue\n        rate = _parse_test_pass_rate(step.text)\n        if rate is not None:\n            test_runs.append(rate)\n    if len(test_runs) < 2:\n        return ABSTAIN\n    last = test_runs[-1]\n    second_last = test_runs[-2]\n    if last > second_last:\n        return PROGRESS\n    return STAGNATION\n\n\ndef lf_outcome_backpropagation(window: list[Step], trajectory: Trajectory, window_position: dict) -> int:\n    \"\"\"LF3: Label last windows based on final trajectory outcome.\"\"\"\n    total_windows = window_position[\"total_windows\"]\n    window_idx = window_position[\"window_idx\"]\n\n    is_last_two = window_idx >= total_windows - 2\n\n    if trajectory.exit_status in (\"exit_context\",):\n        return STAGNATION\n\n    if not is_last_two:\n        return ABSTAIN\n\n    if trajectory.target:\n        return PROGRESS\n    else:\n        return STAGNATION\n\n\nALL_LFS = [\n    (\"file_diff_delta\", lf_file_diff_delta),\n    (\"command_repetition\", lf_command_repetition),\n    (\"outcome_backpropagation\", lf_outcome_backpropagation),\n]\n",
+                "numLines": 183,
+                "startLine": 1,
+                "totalLines": 183
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good. Now let me run the pipeline. First, test on 10 trajectories."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "a556b779-45d7-4ce9-b829-4cb091a06cf6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019tATqgaUWeZmhv64xg4F5F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2373,
+                "cache_read_input_tokens": 37566,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2373
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CcqCepcmCSngUNspBomN8r",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts && python3 -c \"\nimport sys\nsys.path.insert(0, '.')\nfrom data_loader import load_trajectories_streaming\nfrom labeling_functions import ALL_LFS, lf_command_repetition, ABSTAIN\nfrom window_extractor import process_trajectory\n\nDATA_PATH = 'data/swe_agent_trajectories_1000.jsonl'\n\nprint('Testing new LF2 on 10 trajectories...')\nprint()\n\ntotal_windows = 0\nlf2_labels = {1: 0, 0: 0, -1: 0}\n\nfor i, traj in enumerate(load_trajectories_streaming(DATA_PATH, limit=10)):\n    windows = process_trajectory(traj)\n    for w in windows:\n        total_windows += 1\n        lf2_labels[w['labels']['command_repetition']] += 1\n\n    # Show details for first 2 trajectories\n    if i < 2:\n        print(f'Trajectory {i}: {traj.instance_id} ({len(windows)} windows)')\n        for w in windows[:3]:\n            cmds = [s.command for s in w['steps'] if s.is_action and s.command is not None]\n            cmd_previews = [c[:60].replace(chr(10), ' ') for c in cmds]\n            print(f'  Window {w[\\\"window_idx\\\"]}: labels={w[\\\"labels\\\"]}')\n            for cp in cmd_previews:\n                print(f'    cmd: {cp}')\n        print()\n\nprint(f'Total windows: {total_windows}')\nprint(f'LF2 (command_repetition) labels:')\nprint(f'  progress:   {lf2_labels[1]} ({lf2_labels[1]/total_windows*100:.1f}%)')\nprint(f'  stagnation: {lf2_labels[0]} ({lf2_labels[0]/total_windows*100:.1f}%)')\nprint(f'  abstain:    {lf2_labels[-1]} ({lf2_labels[-1]/total_windows*100:.1f}%)')\nnon_abstain = lf2_labels[1] + lf2_labels[0]\nprint(f'  coverage:   {non_abstain}/{total_windows} = {non_abstain/total_windows*100:.1f}%')\n\"\n",
+                "description": "Test new LF2 on 10 trajectories",
+                "timeout": 60000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c380cae-4952-406d-8bfe-04171595f2e6",
+            "uuid": "9b96aa17-1c92-4911-9464-a434b1d174cc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019tATqgaUWeZmhv64xg4F5F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2373,
+                "cache_read_input_tokens": 37566,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2373
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        }
+      ],
+      "message_count": 24
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-lf2-replacement.md"
+}

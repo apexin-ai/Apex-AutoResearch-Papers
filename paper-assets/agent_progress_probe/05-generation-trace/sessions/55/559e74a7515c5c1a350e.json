@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "559e74a7515c5c1a350e",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis q1 probe scope confirm",
+  "task_key": "worker_analysis_q1-probe-scope-confirm_20260516T051751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_q1-probe-scope-confirm_20260516T051751_result.json",
+    "occurrence": 1,
+    "bytes": 1819,
+    "sha256": "1ecae9619420ff7ccc303a7fc99eb1b8b3d2c76e14e06468842363a5fa9249bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the confirmation report:\n\n---\n\n## Q1 确认报告\n\n### 1. Probe \"All\" vs \"Conf≥2\" 为何相同 (0.598)\n\n**原因：Probe cross-agent eval 的数据文件本身就只包含 conf≥2 windows。**\n\n- Probe 评估使用的是 `embeddings_fixed_conf2.pt`（43,366 个 OH windows，全部 conf≥2）\n- 对该文件做 trajectory-level split，test split 为 N=6,122\n- Table 1 中 \"All\" 和 \"Conf≥2\" 列评估的是**完全相同的 6,122 个 windows**\n- \"All\" 并不是指全部 143K OH windows，而是 eval 文件中的全部 windows（本身已经是 conf≥2）\n\n如果真的在全部 143K OH windows 上评估 probe，macro_f1 = 0.530（来自 `cross_agent_results.json`），远低于 0.598。\n\n### 2. Probe OH test split 详情\n\n| 指标 | 值 |\n|------|-----|\n| N | 6,122 |\n| Stagnation | 1,179 (19.3%) |\n| Progress | 4,943 (80.7%) |\n| Confidence | 全部 ≥ 2 (来源文件: `embeddings_fixed_conf2.pt`) |\n| Split 方式 | Trajectory-level, seed=42 |\n\n### 3. GB Matched-Scope Metrics (同一 6,122 test split)\n\n| 指标 | GB | Probe (zero-shot) |\n|------|-----|-----|\n| macro_f1 | **0.9923** | 0.5984 |\n| f1_stag | **0.9876** | 0.3074 |\n| f1_prog | **0.9971** | 0.8895 |\n\n### 4. Gap (GB − Probe)\n\n| 指标 | Gap |\n|------|------|\n| macro_f1 | **+39.39pp** |\n| f1_stag | +68.02pp |\n| f1_prog | +10.76pp |\n\nPaired bootstrap (from `bootstrap_table2_matched.json`): delta=+39.44pp, 95% CI=[37.86, 41.04], p=0.0\n\n### 结论\n\n审稿人的怀疑是正确的：Probe \"All\" 列不是在全部 OH windows 上的评估，而是与 \"Conf≥2\" 列指向同一子集。Table 1 中 Probe 行需要修正——要么补充真正的 \"All\" 数字 (0.530)，要么在表注中说�� Probe 的 eval scope 是 conf≥2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-q1-probe-scope-confirm.md"
+}

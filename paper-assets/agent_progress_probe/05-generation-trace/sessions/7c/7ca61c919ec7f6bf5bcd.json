@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "7ca61c919ec7f6bf5bcd",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "exp r6 ranking reversal table",
+  "task_key": "worker_exp_r6-ranking-reversal-table_20260516T065723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r6-ranking-reversal-table_20260516T065723.log",
+    "occurrence": 1,
+    "bytes": 713906,
+    "sha256": "9ef842156b8479fddc97be46744bd89290a8cab800c778a759a5f371d36cbfab"
+  },
+  "statistics": {
+    "messages": 104,
+    "user_turns": 0,
+    "tool_calls": 39,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 23,
+      "tool_call": 39,
+      "tool_result": 39
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 104,
+      "chunks": [
+        {
+          "path": "7ca61c919ec7f6bf5bcd-part-0001.json",
+          "message_count": 92
+        },
+        {
+          "path": "7ca61c919ec7f6bf5bcd-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-r6-ranking-reversal-table.md"
+}

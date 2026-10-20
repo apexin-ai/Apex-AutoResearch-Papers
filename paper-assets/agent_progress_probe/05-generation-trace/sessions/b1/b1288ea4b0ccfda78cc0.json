@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1288ea4b0ccfda78cc0",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis error analysis v3",
+  "task_key": "worker_analysis_error-analysis-v3_20260514T125143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_error-analysis-v3_20260514T125143_result.json",
+    "occurrence": 1,
+    "bytes": 1096,
+    "sha256": "0111ebef838f1cdd93fdb3503028196eeda8084a03105f581968b8db0b2ca6ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。脚本 `error_analysis_v3.py` 已在服务器上运行，结果：\n\n**全量 probe (conf≥0) 在 8101 test windows 上的表现：** F1=0.9165, Acc=0.8785, 514 FP + 470 FN\n\n关键发现：\n\n| 维度 | 高错误率区域 | 错误率 |\n|------|------------|--------|\n| **Action type** | `bash_other` 19.9%, `bash_cat` 40.0%, `bash_ls` 14.9% | 杂项 bash 命令最难判 |\n| **LF pattern** | `-/-/0` (cmd_rep=stag, file_diff=stag, outcome_bp=abstain) 62.4% 全是 FP | outcome_bp abstain 时 FP 飙升 |\n| **LF pattern** | `0/+/-` (cmd_rep=abstain, file_diff=progress, outcome_bp=stag) 24.4% 全是 FN | LF 内部矛盾时 FN 集中 |\n| **Outcome** | unresolved 轨迹 12.8% vs resolved 5.3% | 失败轨迹错误率 2.4× |\n| **Confidence** | conf=1 → 13.4%, conf=2 → 9.0%, conf=3 → 3.5% | 单调递减，符合预期 |\n| **Position** | late_25% → 15.9% vs early_25% → 9.5% | 轨迹末段错误率最高 |\n\n报告已保存到本地 `artifacts/error_analysis_v3_report.md`，JSON 和 markdown 均在服务器 `artifacts/error_analysis_v3/` 目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-error-analysis-v3.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "438a514569fe03a1f3ed",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "research d073 s1 third agent trajectories",
+  "task_key": "worker_research_d073-s1-third-agent-trajectories_20260516T024704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_d073-s1-third-agent-trajectories_20260516T024704.log",
+    "occurrence": 1,
+    "bytes": 1020984,
+    "sha256": "80a5817c09d9c74ddf31d05b3ac2ae318a3decf399d124e7fe5017adf6c8daea"
+  },
+  "statistics": {
+    "messages": 474,
+    "user_turns": 0,
+    "tool_calls": 188,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 93,
+      "tool_call": 188,
+      "tool_result": 188,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 474,
+      "chunks": [
+        {
+          "path": "438a514569fe03a1f3ed-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "438a514569fe03a1f3ed-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "438a514569fe03a1f3ed-part-0003.json",
+          "message_count": 114
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-d073-s1-third-agent-trajectories.md"
+}

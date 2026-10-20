@@ -1,0 +1,69 @@
+{
+  "exp_id": "ablation_occ_detach_s1",
+  "project": "occsafe_vla",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 3,
+    "created_at": "2026-05-21T04:22:17.875Z",
+    "updated_at": "2026-05-22T01:31:37.244Z",
+    "hypothesis": "occ_detach=true cuts gradient flow from occ head to vision encoder. If CAR improvement disappears compared to full occ (occ_detach=false), it proves the benefit comes from representation learning (gradient-based encoder adaptation) rather than mere regularization effect of the auxiliary loss. This validates Claim 3 (Gradient Flow Necessity). Seed 43 replication of ablation_occ_detach_s0.",
+    "server": "westd-10894",
+    "gpu": "cuda:2",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-10894",
+      "gpu": "cuda:2",
+      "started_at": "2026-05-21T04:22:31.633Z",
+      "command": "bash -c \"source /etc/network_turbo; source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && WANDB_MODE=disabled MUJOCO_GL=egl torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --use_diffusion False --use_film False --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 --save_freq 2500 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach true --run_root_dir /root/autodl-tmp/checkpoints/ablation_occ_detach_s1 --seed 43\"",
+      "finished_at": "2026-05-22T01:31:37.094Z",
+      "training_hours": 21.15
+    },
+    "notes": "实际在跑（registry 状态 DONE/failed 为 state machine 限制）。cuda:2, westd-10894。Step ~14582/50005 (29%) at 15:15 UTC, 1.04 it/s, 10000_chkpt 已保存。ETA ~00:40 UTC May 22。Cron 已注册。",
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-21T04:52:38.975Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T04:52:41.791721+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T08:00:17.360990+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T08:07:08.734311+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T10:10:12.840452+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "统一重启（第4次）。实际 python PID 523704, cuda:2, save_freq=10000, base model vla_path, 从头开始。11:42 UTC 确认: step 2375/50005, 1.08 it/s, ETA ~00:00 UTC May 22。无 cron 监控。"
+      }
+    },
+    "spec": {
+      "command": "WANDB_MODE=disabled MUJOCO_GL=egl torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --use_diffusion False --use_film False --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach true --run_root_dir /root/autodl-tmp/checkpoints/ablation_occ_detach_s1 --seed 43",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "523704",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": "~25000 episodes",
+      "model_name": "openvla-7b",
+      "seed": 43
+    }
+  },
+  "timestamp": "2026-05-22T01:31:37.387858+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,2162 @@
+# analysis gradient results extraction
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/workers/worker_analysis_gradient_results_extraction_20260524T120927.log`
+- **Structured JSON:** [`0165be70dd827a3585d4.json`](../../sessions/01/0165be70dd827a3585d4.json)
+
+## Before a recorded user message
+
+43 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla",
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "22886be9-39a5-4413-b6c7-be02acbc8024",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779629400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "69b91a64-caaf-47f9-94c5-47a9e7b3d93f",
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by loading the necessary tools and reading the data from the remote server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "20d6322c-4034-4b41-97f2-483f8754011f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014nYH5rXabW2bMEfUMw52Ba",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12054,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12054
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CYvjVTumLxd4GNtFqPmZqx`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "97c169cc-c00a-464e-aab6-8b0dc02124f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014nYH5rXabW2bMEfUMw52Ba",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12054,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12054
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T12:09:40.479Z_
+
+<details><summary>↩ Tool result · `toolu_01CYvjVTumLxd4GNtFqPmZqx`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "8f69da22-51d1-47a9-a2b8-482323eb4c8e",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read the data from the remote server and check the registry for the experiment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "720b67d1-0fe9-4844-9f14-cd098aea0a3e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015VTkHtaBzGQr7F7f9Zwkfd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1297,
+      "cache_read_input_tokens": 23895,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1297
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01StZvzZYFYot3kzNv9kigK2`</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "ls -la /root/occsafe_vla/artifacts/gradient_analysis_mixed_seed/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "90a463e5-8214-46bc-a922-1ebdf80ccf17",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015VTkHtaBzGQr7F7f9Zwkfd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1297,
+      "cache_read_input_tokens": 23895,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1297
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01ChP4f7Pe39yvcVq2iHDAD4`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "gradient_analysis_mixed_seed"
+  },
+  "project": "occsafe_vla",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "2796b639-d6c7-4eb7-ba17-bc075780df4e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015VTkHtaBzGQr7F7f9Zwkfd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1297,
+      "cache_read_input_tokens": 23895,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1297
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-24T12:09:46.654Z_
+
+<details><summary>↩ Tool result · `toolu_01StZvzZYFYot3kzNv9kigK2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 168\\ndrwxr-xr-x 2 root root  4096 May 24 19:32 .\\ndrwxr-xr-x 4 root root  4096 May 24 19:25 ..\\n-rw-r--r-- 1 root root 17722 May 24 19:31 Detach_BN_s2_gradient_norms.pdf\\n-rw-r--r-- 1 root root  7163 May 24 19:31 Detach_BN_s2_gradient_stats.json\\n-rw-r--r-- 1 root root 25119 May 24 19:29 Full_OCC_s0_gradient_norms.pdf\\n-rw-r--r-- 1 root root 23406 May 24 19:28 Full_OCC_s0_gradient_stats.json\\n-rw-r--r-- 1 root root 25189 May 24 19:32 Random_s2_gradient_norms.pdf\\n-rw-r--r-- 1 root root 23453 May 24 19:32 Random_s2_gradient_stats.json\\n-rw-r--r-- 1 root root 17321 May 24 19:27 Vanilla_s0_gradient_norms.pdf\\n-rw-r--r-- 1 root root  7023 May 24 19:27 Vanilla_s0_gradient_stats.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "dd419a98-f135-4342-b7e2-0be274393c77",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 168\\\\ndrwxr-xr-x 2 root root  4096 May 24 19:32 .\\\\ndrwxr-xr-x 4 root root  4096 May 24 19:25 ..\\\\n-rw-r--r-- 1 root root 17722 May 24 19:31 Detach_BN_s2_gradient_norms.pdf\\\\n-rw-r--r-- 1 root root  7163 May 24 19:31 Detach_BN_s2_gradient_stats.json\\\\n-rw-r--r-- 1 root root 25119 May 24 19:29 Full_OCC_s0_gradient_norms.pdf\\\\n-rw-r--r-- 1 root root 23406 May 24 19:28 Full_OCC_s0_gradient_stats.json\\\\n-rw-r--r-- 1 root root 25189 May 24 19:32 Random_s2_gradient_norms.pdf\\\\n-rw-r--r-- 1 root root 23453 May 24 19:32 Random_s2_gradient_stats.json\\\\n-rw-r--r-- 1 root root 17321 May 24 19:27 Vanilla_s0_gradient_norms.pdf\\\\n-rw-r--r-- 1 root root  7023 May 24 19:27 Vanilla_s0_gradient_stats.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 168\\ndrwxr-xr-x 2 root root  4096 May 24 19:32 .\\ndrwxr-xr-x 4 root root  4096 May 24 19:25 ..\\n-rw-r--r-- 1 root root 17722 May 24 19:31 Detach_BN_s2_gradient_norms.pdf\\n-rw-r--r-- 1 root root  7163 May 24 19:31 Detach_BN_s2_gradient_stats.json\\n-rw-r--r-- 1 root root 25119 May 24 19:29 Full_OCC_s0_gradient_norms.pdf\\n-rw-r--r-- 1 root root 23406 May 24 19:28 Full_OCC_s0_gradient_stats.json\\n-rw-r--r-- 1 root root 25189 May 24 19:32 Random_s2_gradient_norms.pdf\\n-rw-r--r-- 1 root root 23453 May 24 19:32 Random_s2_gradient_stats.json\\n-rw-r--r-- 1 root root 17321 May 24 19:27 Vanilla_s0_gradient_norms.pdf\\n-rw-r--r-- 1 root root  7023 May 24 19:27 Vanilla_s0_gradient_stats.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-24T12:09:46.919Z_
+
+<details><summary>↩ Tool result · `toolu_01ChP4f7Pe39yvcVq2iHDAD4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2496}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "d04796f5-e257-49f7-b41d-b61140565e2e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2496}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2496}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I notice there's no Detach_LN_s0 file. Let me check more carefully. The listing shows:
+- Detach_BN_s2_gradient_stats.json
+- Full_OCC_s0_gradient_stats.json
+- Random_s2_gradient_stats.json
+- Vanilla_s0_gradient_stats.json
+
+Missing: Detach_LN_s0. Only 4 conditions, not 5. Let me read the JSON files and also check if there's a Detach_LN file elsewhere or if it failed.
+
+
+I'll proceed with reading the available JSON files and note which condition is missing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "56d26f71-d6ba-45da-9014-8d175afca7a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CoztEvcNaqoygE8AaHVrNU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 848,
+      "cache_read_input_tokens": 25192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+注意：目录中只有 4 个条件的结果，缺少 Detach_LN_s0。先读取现有数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "37e9ef60-850c-4e57-9a7c-3577dd19eb17",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CoztEvcNaqoygE8AaHVrNU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 848,
+      "cache_read_input_tokens": 25192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F2rmgFZ17P8Hj8NzWShgYu`</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "cat /root/occsafe_vla/artifacts/gradient_analysis_mixed_seed/Vanilla_s0_gradient_stats.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "1a0fc555-4161-462c-aeaf-f148da086f7c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CoztEvcNaqoygE8AaHVrNU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 848,
+      "cache_read_input_tokens": 25192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-24T12:09:57.756Z_
+
+<details><summary>↩ Tool result · `toolu_01F2rmgFZ17P8Hj8NzWShgYu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition_name\\\": \\\"Vanilla_s0\\\",\\n  \\\"condition_type\\\": \\\"vanilla\\\",\\n  \\\"occ_detach\\\": false,\\n  \\\"num_batches_completed\\\": 201,\\n  \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/vanilla_retrain_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\\\",\\n  \\\"layers\\\": {\\n    \\\"dino_0\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06864551445469261,\\n        \\\"std\\\": 0.019978038554203853\\n      }\\n    },\\n    \\\"dino_1\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.10077713502570987,\\n        \\\"std\\\": 0.028242664021771037\\n      }\\n    },\\n    \\\"dino_2\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.14863653644919395,\\n        \\\"std\\\": 0.043440135884788615\\n      }\\n    },\\n    \\\"dino_3\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08830216374248266,\\n        \\\"std\\\": 0.0249088559563541\\n      }\\n    },\\n    \\\"dino_4\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.10606770001351834,\\n        \\\"std\\\": 0.03043734582125762\\n      }\\n    },\\n    \\\"dino_5\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0966700808890164,\\n        \\\"std\\\": 0.027858740976500134\\n      }\\n    },\\n    \\\"dino_6\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.12191430252045393,\\n        \\\"std\\\": 0.034427857288787514\\n      }\\n    },\\n    \\\"dino_7\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.15455405376851558,\\n        \\\"std\\\": 0.043860777478482854\\n      }\\n    },\\n    \\\"dino_8\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.21404398612678052,\\n        \\\"std\\\": 0.05445412044790767\\n      }\\n    },\\n    \\\"dino_9\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.16513840973377228,\\n        \\\"std\\\": 0.04489755231557337\\n      }\\n    },\\n    \\\"dino_10\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.17248576905578375,\\n        \\\"std\\\": 0.046628630731034335\\n      }\\n    },\\n    \\\"dino_11\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.18765092745423317,\\n        \\\"std\\\": 0.049790088292122434\\n      }\\n    },\\n    \\\"dino_12\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.16693179566413163,\\n        \\\"std\\\": 0.04461676355236773\\n      }\\n    },\\n    \\\"dino_13\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.20994288846850395,\\n        \\\"std\\\": 0.05386733054375538\\n      }\\n    },\\n    \\\"dino_14\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.2038048665225506,\\n        \\\"std\\\": 0.05187080671066211\\n      }\\n    },\\n    \\\"dino_15\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.2059692693501711,\\n        \\\"std\\\": 0.05176863341983937\\n      }\\n    },\\n    \\\"dino_16\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.2341731261461973,\\n        \\\"std\\\": 0.05842400556674428\\n      }\\n    },\\n    \\\"dino_17\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.2617603122442961,\\n        \\\"std\\\": 0.0641024224996514\\n      }\\n    },\\n    \\\"dino_18\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.24939945638179778,\\n        \\\"std\\\": 0.059415372927042034\\n      }\\n    },\\n    \\\"dino_19\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.25633778527379036,\\n        \\\"std\\\": 0.06031974346386708\\n      }\\n    },\\n    \\\"dino_20\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.22799244657158851,\\n        \\\"std\\\": 0.053917043175719874\\n      }\\n    },\\n    \\\"dino_21\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.23965910471975804,\\n        \\\"std\\\": 0.056433669634301\\n      }\\n    },\\n    \\\"dino_22\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.34710161946713924,\\n        \\\"std\\\": 0.0825450601658659\\n      }\\n    },\\n    \\\"dino_23\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      }\\n    },\\n    \\\"siglip_0\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.09848647594451904,\\n        \\\"std\\\": 0.027576712968010147\\n      }\\n    },\\n    \\\"siglip_1\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06221667742356658,\\n        \\\"std\\\": 0.016953505513733497\\n      }\\n    },\\n    \\\"siglip_2\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.10600109919905662,\\n        \\\"std\\\": 0.02879785648463514\\n      }\\n    },\\n    \\\"siglip_3\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.097160978987813,\\n        \\\"std\\\": 0.02602039681542995\\n      }\\n    },\\n    \\\"siglip_4\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08617947537451982,\\n        \\\"std\\\": 0.02323422450998105\\n      }\\n    },\\n    \\\"siglip_5\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08812826709821821,\\n        \\\"std\\\": 0.02333711802740794\\n      }\\n    },\\n    \\\"siglip_6\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0869417068362236,\\n        \\\"std\\\": 0.022413614325359918\\n      }\\n    },\\n    \\\"siglip_7\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08956148602068424,\\n        \\\"std\\\": 0.023148519129546175\\n      }\\n    },\\n    \\\"siglip_8\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08765824159607291,\\n        \\\"std\\\": 0.022027619447324644\\n      }\\n    },\\n    \\\"siglip_9\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08846642637625336,\\n        \\\"std\\\": 0.022232295851389576\\n      }\\n    },\\n    \\\"siglip_10\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08688415478914976,\\n        \\\"std\\\": 0.021834349320727368\\n      }\\n    },\\n    \\\"siglip_11\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.07140926701948047,\\n        \\\"std\\\": 0.017477668851090217\\n      }\\n    },\\n    \\\"siglip_12\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08119482738897205,\\n        \\\"std\\\": 0.02029428603845424\\n      }\\n    },\\n    \\\"siglip_13\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08234598627313972,\\n        \\\"std\\\": 0.020132037329875844\\n      }\\n    },\\n    \\\"siglip_14\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.07784386655315757,\\n        \\\"std\\\": 0.018470849490667744\\n      }\\n    },\\n    \\\"siglip_15\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06799788666889071,\\n        \\\"std\\\": 0.016091685888351304\\n      }\\n    },\\n    \\\"siglip_16\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06631918765604496,\\n        \\\"std\\\": 0.015785074210410605\\n      }\\n    },\\n    \\\"siglip_17\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.05996317656710744,\\n        \\\"std\\\": 0.014364298993714377\\n      }\\n    },\\n    \\\"siglip_18\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06359703859314322,\\n        \\\"std\\\": 0.01471262766060608\\n      }\\n    },\\n    \\\"siglip_19\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.05483877400867641,\\n        \\\"std\\\": 0.012664720637797474\\n      }\\n    },\\n    \\\"siglip_20\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.05429095268249512,\\n        \\\"std\\\": 0.01362694448499666\\n      }\\n    },\\n    \\\"siglip_21\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.04613838722929359,\\n        \\\"std\\\": 0.011405545364953713\\n      }\\n    },\\n    \\\"siglip_22\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.04043683524243533,\\n        \\\"std\\\": 0.010103495349255117\\n      }\\n    },\\n    \\\"siglip_23\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.046716396557167174,\\n        \\\"std\\\": 0.011754737239558371\\n      }\\n    },\\n    \\\"siglip_24\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.05854520089924335,\\n        \\\"std\\\": 0.01469108993232871\\n      }\\n    },\\n    \\\"siglip_25\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.10885826528072357,\\n        \\\"std\\\": 0.025474953328326888\\n      }\\n    },\\n    \\\"siglip_26\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "283127c0-6009-4733-97ad-93518ea44d99",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition_name\\\\\\\": \\\\\\\"Vanilla_s0\\\\\\\",\\\\n  \\\\\\\"condition_type\\\\\\\": \\\\\\\"vanilla\\\\\\\",\\\\n  \\\\\\\"occ_detach\\\\\\\": false,\\\\n  \\\\\\\"num_batches_completed\\\\\\\": 201,\\\\n  \\\\\\\"checkpoint_path\\\\\\\": \\\\\\\"/root/autodl-tmp/checkpoints/vanilla_retrain_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\\\\\\\",\\\\n  \\\\\\\"layers\\\\\\\": {\\\\n    \\\\\\\"dino_0\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.06864551445469261,\\\\n        \\\\\\\"std\\\\\\\": 0.019978038554203853\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_1\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.10077713502570987,\\\\n        \\\\\\\"std\\\\\\\": 0.028242664021771037\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_2\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.14863653644919395,\\\\n        \\\\\\\"std\\\\\\\": 0.043440135884788615\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_3\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.08830216374248266,\\\\n        \\\\\\\"std\\\\\\\": 0.0249088559563541\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_4\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.10606770001351834,\\\\n        \\\\\\\"std\\\\\\\": 0.03043734582125762\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_5\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0966700808890164,\\\\n        \\\\\\\"std\\\\\\\": 0.027858740976500134\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_6\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.12191430252045393,\\\\n        \\\\\\\"std\\\\\\\": 0.034427857288787514\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_7\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.15455405376851558,\\\\n        \\\\\\\"std\\\\\\\": 0.043860777478482854\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_8\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.21404398612678052,\\\\n        \\\\\\\"std\\\\\\\": 0.05445412044790767\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_9\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.16513840973377228,\\\\n        \\\\\\\"std\\\\\\\": 0.04489755231557337\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_10\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.17248576905578375,\\\\n        \\\\\\\"std\\\\\\\": 0.046628630731034335\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_11\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.18765092745423317,\\\\n        \\\\\\\"std\\\\\\\": 0.049790088292122434\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_12\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.16693179566413163,\\\\n        \\\\\\\"std\\\\\\\": 0.04461676355236773\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_13\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.20994288846850395,\\\\n        \\\\\\\"std\\\\\\\": 0.05386733054375538\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_14\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.2038048665225506,\\\\n        \\\\\\\"std\\\\\\\": 0.05187080671066211\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_15\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.2059692693501711,\\\\n        \\\\\\\"std\\\\\\\": 0.05176863341983937\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_16\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.2341731261461973,\\\\n        \\\\\\\"std\\\\\\\": 0.05842400556674428\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_17\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.2617603122442961,\\\\n        \\\\\\\"std\\\\\\\": 0.0641024224996514\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_18\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.24939945638179778,\\\\n        \\\\\\\"std\\\\\\\": 0.059415372927042034\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_19\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.25633778527379036,\\\\n        \\\\\\\"std\\\\\\\": 0.06031974346386708\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_20\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.22799244657158851,\\\\n        \\\\\\\"std\\\\\\\": 0.053917043175719874\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_21\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.23965910471975804,\\\\n        \\\\\\\"std\\\\\\\": 0.056433669634301\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_22\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.34710161946713924,\\\\n        \\\\\\\"std\\\\\\\": 0.0825450601658659\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_23\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"std\\\\\\\": 0.0\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_0\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.09848647594451904,\\\\n        \\\\\\\"std\\\\\\\": 0.027576712968010147\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_1\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.06221667742356658,\\\\n        \\\\\\\"std\\\\\\\": 0.016953505513733497\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_2\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.10600109919905662,\\\\n        \\\\\\\"std\\\\\\\": 0.02879785648463514\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_3\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.097160978987813,\\\\n        \\\\\\\"std\\\\\\\": 0.02602039681542995\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_4\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.08617947537451982,\\\\n        \\\\\\\"std\\\\\\\": 0.02323422450998105\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_5\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.08812826709821821,\\\\n        \\\\\\\"std\\\\\\\": 0.02333711802740794\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_6\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0869417068362236,\\\\n        \\\\\\\"std\\\\\\\": 0.022413614325359918\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_7\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.08956148602068424,\\\\n        \\\\\\\"std\\\\\\\": 0.023148519129546175\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_8\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.08765824159607291,\\\\n        \\\\\\\"std\\\\\\\": 0.022027619447324644\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_9\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.08846642637625336,\\\\n        \\\\\\\"std\\\\\\\": 0.022232295851389576\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_10\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.08688415478914976,\\\\n        \\\\\\\"std\\\\\\\": 0.021834349320727368\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_11\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.07140926701948047,\\\\n        \\\\\\\"std\\\\\\\": 0.017477668851090217\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_12\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.08119482738897205,\\\\n        \\\\\\\"std\\\\\\\": 0.02029428603845424\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_13\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.08234598627313972,\\\\n        \\\\\\\"std\\\\\\\": 0.020132037329875844\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_14\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.07784386655315757,\\\\n        \\\\\\\"std\\\\\\\": 0.018470849490667744\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_15\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.06799788666889071,\\\\n        \\\\\\\"std\\\\\\\": 0.016091685888351304\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_16\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.06631918765604496,\\\\n        \\\\\\\"std\\\\\\\": 0.015785074210410605\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_17\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.05996317656710744,\\\\n        \\\\\\\"std\\\\\\\": 0.014364298993714377\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_18\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.06359703859314322,\\\\n        \\\\\\\"std\\\\\\\": 0.01471262766060608\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_19\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.05483877400867641,\\\\n        \\\\\\\"std\\\\\\\": 0.012664720637797474\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_20\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.05429095268249512,\\\\n        \\\\\\\"std\\\\\\\": 0.01362694448499666\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_21\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.04613838722929359,\\\\n        \\\\\\\"std\\\\\\\": 0.011405545364953713\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_22\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.04043683524243533,\\\\n        \\\\\\\"std\\\\\\\": 0.010103495349255117\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_23\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.046716396557167174,\\\\n        \\\\\\\"std\\\\\\\": 0.011754737239558371\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_24\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.05854520089924335,\\\\n        \\\\\\\"std\\\\\\\": 0.01469108993232871\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_25\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.10885826528072357,\\\\n        \\\\\\\"std\\\\\\\": 0.025474953328326888\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_26\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"std\\\\\\\": 0.0\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition_name\\\": \\\"Vanilla_s0\\\",\\n  \\\"condition_type\\\": \\\"vanilla\\\",\\n  \\\"occ_detach\\\": false,\\n  \\\"num_batches_completed\\\": 201,\\n  \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/vanilla_retrain_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\\\",\\n  \\\"layers\\\": {\\n    \\\"dino_0\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06864551445469261,\\n        \\\"std\\\": 0.019978038554203853\\n      }\\n    },\\n    \\\"dino_1\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.10077713502570987,\\n        \\\"std\\\": 0.028242664021771037\\n      }\\n    },\\n    \\\"dino_2\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.14863653644919395,\\n        \\\"std\\\": 0.043440135884788615\\n      }\\n    },\\n    \\\"dino_3\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08830216374248266,\\n        \\\"std\\\": 0.0249088559563541\\n      }\\n    },\\n    \\\"dino_4\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.10606770001351834,\\n        \\\"std\\\": 0.03043734582125762\\n      }\\n    },\\n    \\\"dino_5\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0966700808890164,\\n        \\\"std\\\": 0.027858740976500134\\n      }\\n    },\\n    \\\"dino_6\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.12191430252045393,\\n        \\\"std\\\": 0.034427857288787514\\n      }\\n    },\\n    \\\"dino_7\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.15455405376851558,\\n        \\\"std\\\": 0.043860777478482854\\n      }\\n    },\\n    \\\"dino_8\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.21404398612678052,\\n        \\\"std\\\": 0.05445412044790767\\n      }\\n    },\\n    \\\"dino_9\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.16513840973377228,\\n        \\\"std\\\": 0.04489755231557337\\n      }\\n    },\\n    \\\"dino_10\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.17248576905578375,\\n        \\\"std\\\": 0.046628630731034335\\n      }\\n    },\\n    \\\"dino_11\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.18765092745423317,\\n        \\\"std\\\": 0.049790088292122434\\n      }\\n    },\\n    \\\"dino_12\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.16693179566413163,\\n        \\\"std\\\": 0.04461676355236773\\n      }\\n    },\\n    \\\"dino_13\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.20994288846850395,\\n        \\\"std\\\": 0.05386733054375538\\n      }\\n    },\\n    \\\"dino_14\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.2038048665225506,\\n        \\\"std\\\": 0.05187080671066211\\n      }\\n    },\\n    \\\"dino_15\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.2059692693501711,\\n        \\\"std\\\": 0.05176863341983937\\n      }\\n    },\\n    \\\"dino_16\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.2341731261461973,\\n        \\\"std\\\": 0.05842400556674428\\n      }\\n    },\\n    \\\"dino_17\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.2617603122442961,\\n        \\\"std\\\": 0.0641024224996514\\n      }\\n    },\\n    \\\"dino_18\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.24939945638179778,\\n        \\\"std\\\": 0.059415372927042034\\n      }\\n    },\\n    \\\"dino_19\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.25633778527379036,\\n        \\\"std\\\": 0.06031974346386708\\n      }\\n    },\\n    \\\"dino_20\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.22799244657158851,\\n        \\\"std\\\": 0.053917043175719874\\n      }\\n    },\\n    \\\"dino_21\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.23965910471975804,\\n        \\\"std\\\": 0.056433669634301\\n      }\\n    },\\n    \\\"dino_22\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.34710161946713924,\\n        \\\"std\\\": 0.0825450601658659\\n      }\\n    },\\n    \\\"dino_23\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      }\\n    },\\n    \\\"siglip_0\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.09848647594451904,\\n        \\\"std\\\": 0.027576712968010147\\n      }\\n    },\\n    \\\"siglip_1\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06221667742356658,\\n        \\\"std\\\": 0.016953505513733497\\n      }\\n    },\\n    \\\"siglip_2\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.10600109919905662,\\n        \\\"std\\\": 0.02879785648463514\\n      }\\n    },\\n    \\\"siglip_3\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.097160978987813,\\n        \\\"std\\\": 0.02602039681542995\\n      }\\n    },\\n    \\\"siglip_4\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08617947537451982,\\n        \\\"std\\\": 0.02323422450998105\\n      }\\n    },\\n    \\\"siglip_5\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08812826709821821,\\n        \\\"std\\\": 0.02333711802740794\\n      }\\n    },\\n    \\\"siglip_6\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0869417068362236,\\n        \\\"std\\\": 0.022413614325359918\\n      }\\n    },\\n    \\\"siglip_7\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08956148602068424,\\n        \\\"std\\\": 0.023148519129546175\\n      }\\n    },\\n    \\\"siglip_8\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08765824159607291,\\n        \\\"std\\\": 0.022027619447324644\\n      }\\n    },\\n    \\\"siglip_9\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08846642637625336,\\n        \\\"std\\\": 0.022232295851389576\\n      }\\n    },\\n    \\\"siglip_10\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08688415478914976,\\n        \\\"std\\\": 0.021834349320727368\\n      }\\n    },\\n    \\\"siglip_11\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.07140926701948047,\\n        \\\"std\\\": 0.017477668851090217\\n      }\\n    },\\n    \\\"siglip_12\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08119482738897205,\\n        \\\"std\\\": 0.02029428603845424\\n      }\\n    },\\n    \\\"siglip_13\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08234598627313972,\\n        \\\"std\\\": 0.020132037329875844\\n      }\\n    },\\n    \\\"siglip_14\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.07784386655315757,\\n        \\\"std\\\": 0.018470849490667744\\n      }\\n    },\\n    \\\"siglip_15\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06799788666889071,\\n        \\\"std\\\": 0.016091685888351304\\n      }\\n    },\\n    \\\"siglip_16\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06631918765604496,\\n        \\\"std\\\": 0.015785074210410605\\n      }\\n    },\\n    \\\"siglip_17\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.05996317656710744,\\n        \\\"std\\\": 0.014364298993714377\\n      }\\n    },\\n    \\\"siglip_18\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06359703859314322,\\n        \\\"std\\\": 0.01471262766060608\\n      }\\n    },\\n    \\\"siglip_19\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.05483877400867641,\\n        \\\"std\\\": 0.012664720637797474\\n      }\\n    },\\n    \\\"siglip_20\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.05429095268249512,\\n        \\\"std\\\": 0.01362694448499666\\n      }\\n    },\\n    \\\"siglip_21\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.04613838722929359,\\n        \\\"std\\\": 0.011405545364953713\\n      }\\n    },\\n    \\\"siglip_22\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.04043683524243533,\\n        \\\"std\\\": 0.010103495349255117\\n      }\\n    },\\n    \\\"siglip_23\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.046716396557167174,\\n        \\\"std\\\": 0.011754737239558371\\n      }\\n    },\\n    \\\"siglip_24\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.05854520089924335,\\n        \\\"std\\\": 0.01469108993232871\\n      }\\n    },\\n    \\\"siglip_25\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.10885826528072357,\\n        \\\"std\\\": 0.025474953328326888\\n      }\\n    },\\n    \\\"siglip_26\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GTK3LPL6Kxma4DPL4Ma2PN`</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "cat /root/occsafe_vla/artifacts/gradient_analysis_mixed_seed/Full_OCC_s0_gradient_stats.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "4d0ef23b-1013-4108-aec2-7e486d441fda",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CoztEvcNaqoygE8AaHVrNU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 848,
+      "cache_read_input_tokens": 25192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-24T12:09:58.799Z_
+
+<details><summary>↩ Tool result · `toolu_01GTK3LPL6Kxma4DPL4Ma2PN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition_name\\\": \\\"Full_OCC_s0\\\",\\n  \\\"condition_type\\\": \\\"occ\\\",\\n  \\\"occ_detach\\\": false,\\n  \\\"num_batches_completed\\\": 201,\\n  \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/full_occ_retrain_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\\\",\\n  \\\"layers\\\": {\\n    \\\"dino_0\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06409140819683672,\\n        \\\"std\\\": 0.015424988396973071\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0051686557050561535,\\n        \\\"std\\\": 0.006032150418658087\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.005339394544716924,\\n        \\\"std\\\": 0.10289631569432484\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.5000242352485657,\\n        \\\"std\\\": 0.02240685900473499\\n      }\\n    },\\n    \\\"dino_1\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08802937671542167,\\n        \\\"std\\\": 0.02109869179153859\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.006858783096540719,\\n        \\\"std\\\": 0.00790716682747037\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.003506100154481828,\\n        \\\"std\\\": 0.08128088265284752\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.498371396958828,\\n        \\\"std\\\": 0.020853804625347364\\n      }\\n    },\\n    \\\"dino_2\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.13662204451858997,\\n        \\\"std\\\": 0.032417600838319426\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.010853701549349353,\\n        \\\"std\\\": 0.012597523688681651\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.006704998727655038,\\n        \\\"std\\\": 0.08522594276696539\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4976633282005787,\\n        \\\"std\\\": 0.0203566325383821\\n      }\\n    },\\n    \\\"dino_3\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08264833437278866,\\n        \\\"std\\\": 0.018862543036388388\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.00625026788096875,\\n        \\\"std\\\": 0.0075124176955165675\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.005444319536909461,\\n        \\\"std\\\": 0.06838914736896749\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4979380168020725,\\n        \\\"std\\\": 0.02033778404884828\\n      }\\n    },\\n    \\\"dino_4\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.10057308793067932,\\n        \\\"std\\\": 0.022935450312803102\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0075624872779008,\\n        \\\"std\\\": 0.0090144009759387\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.006375179766328074,\\n        \\\"std\\\": 0.07186534786639383\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4980213138461113,\\n        \\\"std\\\": 0.020232652014790794\\n      }\\n    },\\n    \\\"dino_5\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.09584315905347467,\\n        \\\"std\\\": 0.02240590067491266\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.00699424221762456,\\n        \\\"std\\\": 0.008671492216850665\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.007012935559614562,\\n        \\\"std\\\": 0.0668998985316789\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4977450700104237,\\n        \\\"std\\\": 0.01978742176057882\\n      }\\n    },\\n    \\\"dino_6\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.11671791795641184,\\n        \\\"std\\\": 0.026785869865128965\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.008574406874831766,\\n        \\\"std\\\": 0.010275501555555872\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.0069480859785107894,\\n        \\\"std\\\": 0.06940205804845921\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4977305315434933,\\n        \\\"std\\\": 0.019637029411269772\\n      }\\n    },\\n    \\\"dino_7\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.14823609143495559,\\n        \\\"std\\\": 0.03372109414677085\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.011288056467892603,\\n        \\\"std\\\": 0.013365502709755861\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.0051126846857368945,\\n        \\\"std\\\": 0.06369917630732952\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4979133503139019,\\n        \\\"std\\\": 0.018479248545156497\\n      }\\n    },\\n    \\\"dino_8\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\"\\n\\n... [截断: 输出过长，省略 15406 字符] ...\\n\\n   \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06968264680355787,\\n        \\\"std\\\": 0.015541641201967703\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.018606060263700784,\\n        \\\"std\\\": 0.026003148561908104\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.001414021773962304,\\n        \\\"std\\\": 0.017914065727233842\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4349687738716602,\\n        \\\"std\\\": 0.0034240333464730646\\n      }\\n    },\\n    \\\"siglip_19\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06362441023811698,\\n        \\\"std\\\": 0.01513583421574087\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.01754747541854158,\\n        \\\"std\\\": 0.025694576214244702\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.003597930878167972,\\n        \\\"std\\\": 0.025595228243721634\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.3205480580031872,\\n        \\\"std\\\": 0.003062543116490295\\n      }\\n    },\\n    \\\"siglip_20\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.05842694321647286,\\n        \\\"std\\\": 0.012816605464171854\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.015904293688945473,\\n        \\\"std\\\": 0.02260940741416438\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.0018967881530988961,\\n        \\\"std\\\": 0.024124236988600726\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.26142561227083205,\\n        \\\"std\\\": 0.002457457146970353\\n      }\\n    },\\n    \\\"siglip_21\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0520815746858716,\\n        \\\"std\\\": 0.01121179816141993\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0150982384593226,\\n        \\\"std\\\": 0.02267442201351419\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": -0.0011042975913733244,\\n        \\\"std\\\": 0.028924140762546877\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.21822675153613091,\\n        \\\"std\\\": 0.002188122230538121\\n      }\\n    },\\n    \\\"siglip_22\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.04441737455315888,\\n        \\\"std\\\": 0.01034034293803513\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.014107056932989508,\\n        \\\"std\\\": 0.0202532632812699\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": -9.656784008257092e-05,\\n        \\\"std\\\": 0.029361328006993013\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.19697413213551043,\\n        \\\"std\\\": 0.0018603809524249362\\n      }\\n    },\\n    \\\"siglip_23\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.04969021240249276,\\n        \\\"std\\\": 0.011439609300054054\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.017294238393660635,\\n        \\\"std\\\": 0.024994270499845043\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.001970422280719504,\\n        \\\"std\\\": 0.03393030174750644\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.19469221979379653,\\n        \\\"std\\\": 0.002064624667577555\\n      }\\n    },\\n    \\\"siglip_24\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06350705480203032,\\n        \\\"std\\\": 0.014517331344673865\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.021286727224942296,\\n        \\\"std\\\": 0.03121375784024018\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.001005883829202503,\\n        \\\"std\\\": 0.040231602777518506\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.19765014812350273,\\n        \\\"std\\\": 0.0018393957834845934\\n      }\\n    },\\n    \\\"siglip_25\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.10883899837732315,\\n        \\\"std\\\": 0.023434377198411818\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.04069216785486787,\\n        \\\"std\\\": 0.062277959862720514\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": -0.0007795469288248569,\\n        \\\"std\\\": 0.023851978106876868\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.23975193716585635,\\n        \\\"std\\\": 0.002219173562290736\\n      }\\n    },\\n    \\\"siglip_26\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "2e1e8750-461e-4382-8eb1-f5799036bb71",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition_name\\\\\\\": \\\\\\\"Full_OCC_s0\\\\\\\",\\\\n  \\\\\\\"condition_type\\\\\\\": \\\\\\\"occ\\\\\\\",\\\\n  \\\\\\\"occ_detach\\\\\\\": false,\\\\n  \\\\\\\"num_batches_completed\\\\\\\": 201,\\\\n  \\\\\\\"checkpoint_path\\\\\\\": \\\\\\\"/root/autodl-tmp/checkpoints/full_occ_retrain_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\\\\\\\",\\\\n  \\\\\\\"layers\\\\\\\": {\\\\n    \\\\\\\"dino_0\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.06409140819683672,\\\\n        \\\\\\\"std\\\\\\\": 0.015424988396973071\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0051686557050561535,\\\\n        \\\\\\\"std\\\\\\\": 0.006032150418658087\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.005339394544716924,\\\\n        \\\\\\\"std\\\\\\\": 0.10289631569432484\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5000242352485657,\\\\n        \\\\\\\"std\\\\\\\": 0.02240685900473499\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_1\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.08802937671542167,\\\\n        \\\\\\\"std\\\\\\\": 0.02109869179153859\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.006858783096540719,\\\\n        \\\\\\\"std\\\\\\\": 0.00790716682747037\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.003506100154481828,\\\\n        \\\\\\\"std\\\\\\\": 0.08128088265284752\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.498371396958828,\\\\n        \\\\\\\"std\\\\\\\": 0.020853804625347364\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_2\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.13662204451858997,\\\\n        \\\\\\\"std\\\\\\\": 0.032417600838319426\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.010853701549349353,\\\\n        \\\\\\\"std\\\\\\\": 0.012597523688681651\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.006704998727655038,\\\\n        \\\\\\\"std\\\\\\\": 0.08522594276696539\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4976633282005787,\\\\n        \\\\\\\"std\\\\\\\": 0.0203566325383821\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_3\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.08264833437278866,\\\\n        \\\\\\\"std\\\\\\\": 0.018862543036388388\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.00625026788096875,\\\\n        \\\\\\\"std\\\\\\\": 0.0075124176955165675\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.005444319536909461,\\\\n        \\\\\\\"std\\\\\\\": 0.06838914736896749\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4979380168020725,\\\\n        \\\\\\\"std\\\\\\\": 0.02033778404884828\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_4\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.10057308793067932,\\\\n        \\\\\\\"std\\\\\\\": 0.022935450312803102\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0075624872779008,\\\\n        \\\\\\\"std\\\\\\\": 0.0090144009759387\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.006375179766328074,\\\\n        \\\\\\\"std\\\\\\\": 0.07186534786639383\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4980213138461113,\\\\n        \\\\\\\"std\\\\\\\": 0.020232652014790794\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_5\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.09584315905347467,\\\\n        \\\\\\\"std\\\\\\\": 0.02240590067491266\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.00699424221762456,\\\\n        \\\\\\\"std\\\\\\\": 0.008671492216850665\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.007012935559614562,\\\\n        \\\\\\\"std\\\\\\\": 0.0668998985316789\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4977450700104237,\\\\n        \\\\\\\"std\\\\\\\": 0.01978742176057882\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_6\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.11671791795641184,\\\\n        \\\\\\\"std\\\\\\\": 0.026785869865128965\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.008574406874831766,\\\\n        \\\\\\\"std\\\\\\\": 0.010275501555555872\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0069480859785107894,\\\\n        \\\\\\\"std\\\\\\\": 0.06940205804845921\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4977305315434933,\\\\n        \\\\\\\"std\\\\\\\": 0.019637029411269772\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_7\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.14823609143495559,\\\\n        \\\\\\\"std\\\\\\\": 0.03372109414677085\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.011288056467892603,\\\\n        \\\\\\\"std\\\\\\\": 0.013365502709755861\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0051126846857368945,\\\\n        \\\\\\\"std\\\\\\\": 0.06369917630732952\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4979133503139019,\\\\n        \\\\\\\"std\\\\\\\": 0.018479248545156497\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_8\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 15406 字符] ...\\\\n\\\\n   \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.06968264680355787,\\\\n        \\\\\\\"std\\\\\\\": 0.015541641201967703\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.018606060263700784,\\\\n        \\\\\\\"std\\\\\\\": 0.026003148561908104\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.001414021773962304,\\\\n        \\\\\\\"std\\\\\\\": 0.017914065727233842\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4349687738716602,\\\\n        \\\\\\\"std\\\\\\\": 0.0034240333464730646\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_19\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.06362441023811698,\\\\n        \\\\\\\"std\\\\\\\": 0.01513583421574087\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.01754747541854158,\\\\n        \\\\\\\"std\\\\\\\": 0.025694576214244702\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.003597930878167972,\\\\n        \\\\\\\"std\\\\\\\": 0.025595228243721634\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3205480580031872,\\\\n        \\\\\\\"std\\\\\\\": 0.003062543116490295\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_20\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.05842694321647286,\\\\n        \\\\\\\"std\\\\\\\": 0.012816605464171854\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.015904293688945473,\\\\n        \\\\\\\"std\\\\\\\": 0.02260940741416438\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0018967881530988961,\\\\n        \\\\\\\"std\\\\\\\": 0.024124236988600726\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.26142561227083205,\\\\n        \\\\\\\"std\\\\\\\": 0.002457457146970353\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_21\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0520815746858716,\\\\n        \\\\\\\"std\\\\\\\": 0.01121179816141993\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0150982384593226,\\\\n        \\\\\\\"std\\\\\\\": 0.02267442201351419\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.0011042975913733244,\\\\n        \\\\\\\"std\\\\\\\": 0.028924140762546877\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.21822675153613091,\\\\n        \\\\\\\"std\\\\\\\": 0.002188122230538121\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_22\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.04441737455315888,\\\\n        \\\\\\\"std\\\\\\\": 0.01034034293803513\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.014107056932989508,\\\\n        \\\\\\\"std\\\\\\\": 0.0202532632812699\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -9.656784008257092e-05,\\\\n        \\\\\\\"std\\\\\\\": 0.029361328006993013\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.19697413213551043,\\\\n        \\\\\\\"std\\\\\\\": 0.0018603809524249362\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_23\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.04969021240249276,\\\\n        \\\\\\\"std\\\\\\\": 0.011439609300054054\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.017294238393660635,\\\\n        \\\\\\\"std\\\\\\\": 0.024994270499845043\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.001970422280719504,\\\\n        \\\\\\\"std\\\\\\\": 0.03393030174750644\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.19469221979379653,\\\\n        \\\\\\\"std\\\\\\\": 0.002064624667577555\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_24\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.06350705480203032,\\\\n        \\\\\\\"std\\\\\\\": 0.014517331344673865\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.021286727224942296,\\\\n        \\\\\\\"std\\\\\\\": 0.03121375784024018\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.001005883829202503,\\\\n        \\\\\\\"std\\\\\\\": 0.040231602777518506\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.19765014812350273,\\\\n        \\\\\\\"std\\\\\\\": 0.0018393957834845934\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_25\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.10883899837732315,\\\\n        \\\\\\\"std\\\\\\\": 0.023434377198411818\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.04069216785486787,\\\\n        \\\\\\\"std\\\\\\\": 0.062277959862720514\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.0007795469288248569,\\\\n        \\\\\\\"std\\\\\\\": 0.023851978106876868\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.23975193716585635,\\\\n        \\\\\\\"std\\\\\\\": 0.002219173562290736\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_26\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"std\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"std\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"std\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"std\\\\\\\": 0.0\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition_name\\\": \\\"Full_OCC_s0\\\",\\n  \\\"condition_type\\\": \\\"occ\\\",\\n  \\\"occ_detach\\\": false,\\n  \\\"num_batches_completed\\\": 201,\\n  \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/full_occ_retrain_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\\\",\\n  \\\"layers\\\": {\\n    \\\"dino_0\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06409140819683672,\\n        \\\"std\\\": 0.015424988396973071\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0051686557050561535,\\n        \\\"std\\\": 0.006032150418658087\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.005339394544716924,\\n        \\\"std\\\": 0.10289631569432484\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.5000242352485657,\\n        \\\"std\\\": 0.02240685900473499\\n      }\\n    },\\n    \\\"dino_1\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08802937671542167,\\n        \\\"std\\\": 0.02109869179153859\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.006858783096540719,\\n        \\\"std\\\": 0.00790716682747037\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.003506100154481828,\\n        \\\"std\\\": 0.08128088265284752\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.498371396958828,\\n        \\\"std\\\": 0.020853804625347364\\n      }\\n    },\\n    \\\"dino_2\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.13662204451858997,\\n        \\\"std\\\": 0.032417600838319426\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.010853701549349353,\\n        \\\"std\\\": 0.012597523688681651\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.006704998727655038,\\n        \\\"std\\\": 0.08522594276696539\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4976633282005787,\\n        \\\"std\\\": 0.0203566325383821\\n      }\\n    },\\n    \\\"dino_3\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08264833437278866,\\n        \\\"std\\\": 0.018862543036388388\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.00625026788096875,\\n        \\\"std\\\": 0.0075124176955165675\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.005444319536909461,\\n        \\\"std\\\": 0.06838914736896749\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4979380168020725,\\n        \\\"std\\\": 0.02033778404884828\\n      }\\n    },\\n    \\\"dino_4\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.10057308793067932,\\n        \\\"std\\\": 0.022935450312803102\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0075624872779008,\\n        \\\"std\\\": 0.0090144009759387\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.006375179766328074,\\n        \\\"std\\\": 0.07186534786639383\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4980213138461113,\\n        \\\"std\\\": 0.020232652014790794\\n      }\\n    },\\n    \\\"dino_5\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.09584315905347467,\\n        \\\"std\\\": 0.02240590067491266\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.00699424221762456,\\n        \\\"std\\\": 0.008671492216850665\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.007012935559614562,\\n        \\\"std\\\": 0.0668998985316789\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4977450700104237,\\n        \\\"std\\\": 0.01978742176057882\\n      }\\n    },\\n    \\\"dino_6\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.11671791795641184,\\n        \\\"std\\\": 0.026785869865128965\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.008574406874831766,\\n        \\\"std\\\": 0.010275501555555872\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.0069480859785107894,\\n        \\\"std\\\": 0.06940205804845921\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4977305315434933,\\n        \\\"std\\\": 0.019637029411269772\\n      }\\n    },\\n    \\\"dino_7\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.14823609143495559,\\n        \\\"std\\\": 0.03372109414677085\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.011288056467892603,\\n        \\\"std\\\": 0.013365502709755861\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.0051126846857368945,\\n        \\\"std\\\": 0.06369917630732952\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4979133503139019,\\n        \\\"std\\\": 0.018479248545156497\\n      }\\n    },\\n    \\\"dino_8\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\"\\n\\n... [截断: 输出过长，省略 15406 字符] ...\\n\\n   \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06968264680355787,\\n        \\\"std\\\": 0.015541641201967703\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.018606060263700784,\\n        \\\"std\\\": 0.026003148561908104\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.001414021773962304,\\n        \\\"std\\\": 0.017914065727233842\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4349687738716602,\\n        \\\"std\\\": 0.0034240333464730646\\n      }\\n    },\\n    \\\"siglip_19\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06362441023811698,\\n        \\\"std\\\": 0.01513583421574087\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.01754747541854158,\\n        \\\"std\\\": 0.025694576214244702\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.003597930878167972,\\n        \\\"std\\\": 0.025595228243721634\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.3205480580031872,\\n        \\\"std\\\": 0.003062543116490295\\n      }\\n    },\\n    \\\"siglip_20\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.05842694321647286,\\n        \\\"std\\\": 0.012816605464171854\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.015904293688945473,\\n        \\\"std\\\": 0.02260940741416438\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.0018967881530988961,\\n        \\\"std\\\": 0.024124236988600726\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.26142561227083205,\\n        \\\"std\\\": 0.002457457146970353\\n      }\\n    },\\n    \\\"siglip_21\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0520815746858716,\\n        \\\"std\\\": 0.01121179816141993\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0150982384593226,\\n        \\\"std\\\": 0.02267442201351419\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": -0.0011042975913733244,\\n        \\\"std\\\": 0.028924140762546877\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.21822675153613091,\\n        \\\"std\\\": 0.002188122230538121\\n      }\\n    },\\n    \\\"siglip_22\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.04441737455315888,\\n        \\\"std\\\": 0.01034034293803513\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.014107056932989508,\\n        \\\"std\\\": 0.0202532632812699\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": -9.656784008257092e-05,\\n        \\\"std\\\": 0.029361328006993013\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.19697413213551043,\\n        \\\"std\\\": 0.0018603809524249362\\n      }\\n    },\\n    \\\"siglip_23\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.04969021240249276,\\n        \\\"std\\\": 0.011439609300054054\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.017294238393660635,\\n        \\\"std\\\": 0.024994270499845043\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.001970422280719504,\\n        \\\"std\\\": 0.03393030174750644\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.19469221979379653,\\n        \\\"std\\\": 0.002064624667577555\\n      }\\n    },\\n    \\\"siglip_24\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06350705480203032,\\n        \\\"std\\\": 0.014517331344673865\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.021286727224942296,\\n        \\\"std\\\": 0.03121375784024018\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.001005883829202503,\\n        \\\"std\\\": 0.040231602777518506\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.19765014812350273,\\n        \\\"std\\\": 0.0018393957834845934\\n      }\\n    },\\n    \\\"siglip_25\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.10883899837732315,\\n        \\\"std\\\": 0.023434377198411818\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.04069216785486787,\\n        \\\"std\\\": 0.062277959862720514\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": -0.0007795469288248569,\\n        \\\"std\\\": 0.023851978106876868\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.23975193716585635,\\n        \\\"std\\\": 0.002219173562290736\\n      }\\n    },\\n    \\\"siglip_26\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01S7EVw2qPfpT2h1w4qSB7xK`</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "cat /root/occsafe_vla/artifacts/gradient_analysis_mixed_seed/Detach_BN_s2_gradient_stats.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "1f507587-5be5-49db-bf6f-8a35af1b1745",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CoztEvcNaqoygE8AaHVrNU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 848,
+      "cache_read_input_tokens": 25192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-24T12:09:59.801Z_
+
+<details><summary>↩ Tool result · `toolu_01S7EVw2qPfpT2h1w4qSB7xK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition_name\\\": \\\"Detach_BN_s2\\\",\\n  \\\"condition_type\\\": \\\"occ\\\",\\n  \\\"occ_detach\\\": true,\\n  \\\"num_batches_completed\\\": 201,\\n  \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/ablation_occ_detach_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\\\",\\n  \\\"layers\\\": {\\n    \\\"dino_0\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.005503292781650088,\\n        \\\"std\\\": 0.0031125733408212536\\n      }\\n    },\\n    \\\"dino_1\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.004205001492518932,\\n        \\\"std\\\": 0.0020554050918103906\\n      }\\n    },\\n    \\\"dino_2\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.007163146978709847,\\n        \\\"std\\\": 0.002566565301749507\\n      }\\n    },\\n    \\\"dino_3\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.005405851090326905,\\n        \\\"std\\\": 0.0014136404859653442\\n      }\\n    },\\n    \\\"dino_4\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0016228182311169804,\\n        \\\"std\\\": 0.0004114078393518863\\n      }\\n    },\\n    \\\"dino_5\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.001342883820470888,\\n        \\\"std\\\": 0.0003395695315134744\\n      }\\n    },\\n    \\\"dino_6\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0015108410260290838,\\n        \\\"std\\\": 0.00039127953346385845\\n      }\\n    },\\n    \\\"dino_7\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0015178254659986123,\\n        \\\"std\\\": 0.00039042463444910946\\n      }\\n    },\\n    \\\"dino_8\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0033831122319679706,\\n        \\\"std\\\": 0.0012322668767717148\\n      }\\n    },\\n    \\\"dino_9\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.001505641816474963,\\n        \\\"std\\\": 0.00038741000704145355\\n      }\\n    },\\n    \\\"dino_10\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0016513536751153878,\\n        \\\"std\\\": 0.0004246111509290967\\n      }\\n    },\\n    \\\"dino_11\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0022241905506234618,\\n        \\\"std\\\": 0.0005608525018431904\\n      }\\n    },\\n    \\\"dino_12\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0024803785054245964,\\n        \\\"std\\\": 0.0006418389204731937\\n      }\\n    },\\n    \\\"dino_13\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.002850525172543712,\\n        \\\"std\\\": 0.0007321663442277148\\n      }\\n    },\\n    \\\"dino_14\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0033850930933840575,\\n        \\\"std\\\": 0.0008415526511390524\\n      }\\n    },\\n    \\\"dino_15\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0041943822242319585,\\n        \\\"std\\\": 0.0010679374079113552\\n      }\\n    },\\n    \\\"dino_16\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.005402015591971576,\\n        \\\"std\\\": 0.0013834662857360538\\n      }\\n    },\\n    \\\"dino_17\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.008348681963980198,\\n        \\\"std\\\": 0.0021877333062620824\\n      }\\n    },\\n    \\\"dino_18\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.009613400716334581,\\n        \\\"std\\\": 0.0024897516126312423\\n      }\\n    },\\n    \\\"dino_19\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0103252734686248,\\n        \\\"std\\\": 0.0027698058847101053\\n      }\\n    },\\n    \\\"dino_20\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.011562422302085906,\\n        \\\"std\\\": 0.0030310445700386665\\n      }\\n    },\\n    \\\"dino_21\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.016959625149611385,\\n        \\\"std\\\": 0.004607380597359928\\n      }\\n    },\\n    \\\"dino_22\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.029548283535987138,\\n        \\\"std\\\": 0.008208455542750865\\n      }\\n    },\\n    \\\"dino_23\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      }\\n    },\\n    \\\"siglip_0\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0052154980355408045,\\n        \\\"std\\\": 0.00133730766281444\\n      }\\n    },\\n    \\\"siglip_1\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0014322892401833088,\\n        \\\"std\\\": 0.00033560912797077407\\n      }\\n    },\\n    \\\"siglip_2\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0018773520004469902,\\n        \\\"std\\\": 0.00048653683597350405\\n      }\\n    },\\n    \\\"siglip_3\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0016093422612175345,\\n        \\\"std\\\": 0.000403027101839609\\n      }\\n    },\\n    \\\"siglip_4\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.00185192786360858,\\n        \\\"std\\\": 0.000463049072740631\\n      }\\n    },\\n    \\\"siglip_5\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0016382900861208326,\\n        \\\"std\\\": 0.00042076052522740416\\n      }\\n    },\\n    \\\"siglip_6\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0019788765729754233,\\n        \\\"std\\\": 0.0005128398978588769\\n      }\\n    },\\n    \\\"siglip_7\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.001982848318875767,\\n        \\\"std\\\": 0.0005236021969308006\\n      }\\n    },\\n    \\\"siglip_8\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0029870021645911037,\\n        \\\"std\\\": 0.0007722831937997916\\n      }\\n    },\\n    \\\"siglip_9\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.002386878352263011,\\n        \\\"std\\\": 0.0006305037991893581\\n      }\\n    },\\n    \\\"siglip_10\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.002532468791469,\\n        \\\"std\\\": 0.000678843991026098\\n      }\\n    },\\n    \\\"siglip_11\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.002812019530683756,\\n        \\\"std\\\": 0.0007429140187764606\\n      }\\n    },\\n    \\\"siglip_12\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.003312248217989691,\\n        \\\"std\\\": 0.0009323706782084995\\n      }\\n    },\\n    \\\"siglip_13\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0031283021403942257,\\n        \\\"std\\\": 0.0008553394340220138\\n      }\\n    },\\n    \\\"siglip_14\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0037350622832309456,\\n        \\\"std\\\": 0.0009788023398837617\\n      }\\n    },\\n    \\\"siglip_15\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0038958730571903286,\\n        \\\"std\\\": 0.0010447129656735445\\n      }\\n    },\\n    \\\"siglip_16\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.003903180895722471,\\n        \\\"std\\\": 0.001012990896996979\\n      }\\n    },\\n    \\\"siglip_17\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.004472085403394885,\\n        \\\"std\\\": 0.0011846098114809845\\n      }\\n    },\\n    \\\"siglip_18\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0049987829523161055,\\n        \\\"std\\\": 0.001338331074531272\\n      }\\n    },\\n    \\\"siglip_19\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0043833285220898684,\\n        \\\"std\\\": 0.0011679430781201955\\n      }\\n    },\\n    \\\"siglip_20\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.004237702948739752,\\n        \\\"std\\\": 0.0011544441954792863\\n      }\\n    },\\n    \\\"siglip_21\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.00450469889678061,\\n        \\\"std\\\": 0.0012135428247364733\\n      }\\n    },\\n    \\\"siglip_22\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.004629098203731701,\\n        \\\"std\\\": 0.0011552276369785003\\n      }\\n    },\\n    \\\"siglip_23\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.00585907727945596,\\n        \\\"std\\\": 0.0016092648371959725\\n      }\\n    },\\n    \\\"siglip_24\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.006879845521179959,\\n        \\\"std\\\": 0.0017701150064425208\\n      }\\n    },\\n    \\\"siglip_25\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.01368345620110631,\\n        \\\"std\\\": 0.0035115373511602245\\n      }\\n    },\\n    \\\"siglip_26\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "5a5b9faf-e681-4ed8-a366-62a477fd1038",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition_name\\\\\\\": \\\\\\\"Detach_BN_s2\\\\\\\",\\\\n  \\\\\\\"condition_type\\\\\\\": \\\\\\\"occ\\\\\\\",\\\\n  \\\\\\\"occ_detach\\\\\\\": true,\\\\n  \\\\\\\"num_batches_completed\\\\\\\": 201,\\\\n  \\\\\\\"checkpoint_path\\\\\\\": \\\\\\\"/root/autodl-tmp/checkpoints/ablation_occ_detach_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\\\\\\\",\\\\n  \\\\\\\"layers\\\\\\\": {\\\\n    \\\\\\\"dino_0\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.005503292781650088,\\\\n        \\\\\\\"std\\\\\\\": 0.0031125733408212536\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_1\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.004205001492518932,\\\\n        \\\\\\\"std\\\\\\\": 0.0020554050918103906\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_2\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.007163146978709847,\\\\n        \\\\\\\"std\\\\\\\": 0.002566565301749507\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_3\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.005405851090326905,\\\\n        \\\\\\\"std\\\\\\\": 0.0014136404859653442\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_4\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0016228182311169804,\\\\n        \\\\\\\"std\\\\\\\": 0.0004114078393518863\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_5\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.001342883820470888,\\\\n        \\\\\\\"std\\\\\\\": 0.0003395695315134744\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_6\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0015108410260290838,\\\\n        \\\\\\\"std\\\\\\\": 0.00039127953346385845\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_7\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0015178254659986123,\\\\n        \\\\\\\"std\\\\\\\": 0.00039042463444910946\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_8\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0033831122319679706,\\\\n        \\\\\\\"std\\\\\\\": 0.0012322668767717148\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_9\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.001505641816474963,\\\\n        \\\\\\\"std\\\\\\\": 0.00038741000704145355\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_10\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0016513536751153878,\\\\n        \\\\\\\"std\\\\\\\": 0.0004246111509290967\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_11\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0022241905506234618,\\\\n        \\\\\\\"std\\\\\\\": 0.0005608525018431904\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_12\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0024803785054245964,\\\\n        \\\\\\\"std\\\\\\\": 0.0006418389204731937\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_13\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.002850525172543712,\\\\n        \\\\\\\"std\\\\\\\": 0.0007321663442277148\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_14\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0033850930933840575,\\\\n        \\\\\\\"std\\\\\\\": 0.0008415526511390524\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_15\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0041943822242319585,\\\\n        \\\\\\\"std\\\\\\\": 0.0010679374079113552\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_16\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.005402015591971576,\\\\n        \\\\\\\"std\\\\\\\": 0.0013834662857360538\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_17\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.008348681963980198,\\\\n        \\\\\\\"std\\\\\\\": 0.0021877333062620824\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_18\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.009613400716334581,\\\\n        \\\\\\\"std\\\\\\\": 0.0024897516126312423\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_19\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0103252734686248,\\\\n        \\\\\\\"std\\\\\\\": 0.0027698058847101053\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_20\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.011562422302085906,\\\\n        \\\\\\\"std\\\\\\\": 0.0030310445700386665\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_21\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.016959625149611385,\\\\n        \\\\\\\"std\\\\\\\": 0.004607380597359928\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_22\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.029548283535987138,\\\\n        \\\\\\\"std\\\\\\\": 0.008208455542750865\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_23\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"std\\\\\\\": 0.0\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_0\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0052154980355408045,\\\\n        \\\\\\\"std\\\\\\\": 0.00133730766281444\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_1\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0014322892401833088,\\\\n        \\\\\\\"std\\\\\\\": 0.00033560912797077407\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_2\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0018773520004469902,\\\\n        \\\\\\\"std\\\\\\\": 0.00048653683597350405\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_3\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0016093422612175345,\\\\n        \\\\\\\"std\\\\\\\": 0.000403027101839609\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_4\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.00185192786360858,\\\\n        \\\\\\\"std\\\\\\\": 0.000463049072740631\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_5\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0016382900861208326,\\\\n        \\\\\\\"std\\\\\\\": 0.00042076052522740416\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_6\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0019788765729754233,\\\\n        \\\\\\\"std\\\\\\\": 0.0005128398978588769\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_7\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.001982848318875767,\\\\n        \\\\\\\"std\\\\\\\": 0.0005236021969308006\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_8\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0029870021645911037,\\\\n        \\\\\\\"std\\\\\\\": 0.0007722831937997916\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_9\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.002386878352263011,\\\\n        \\\\\\\"std\\\\\\\": 0.0006305037991893581\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_10\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.002532468791469,\\\\n        \\\\\\\"std\\\\\\\": 0.000678843991026098\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_11\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.002812019530683756,\\\\n        \\\\\\\"std\\\\\\\": 0.0007429140187764606\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_12\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.003312248217989691,\\\\n        \\\\\\\"std\\\\\\\": 0.0009323706782084995\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_13\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0031283021403942257,\\\\n        \\\\\\\"std\\\\\\\": 0.0008553394340220138\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_14\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0037350622832309456,\\\\n        \\\\\\\"std\\\\\\\": 0.0009788023398837617\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_15\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0038958730571903286,\\\\n        \\\\\\\"std\\\\\\\": 0.0010447129656735445\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_16\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.003903180895722471,\\\\n        \\\\\\\"std\\\\\\\": 0.001012990896996979\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_17\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.004472085403394885,\\\\n        \\\\\\\"std\\\\\\\": 0.0011846098114809845\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_18\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0049987829523161055,\\\\n        \\\\\\\"std\\\\\\\": 0.001338331074531272\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_19\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0043833285220898684,\\\\n        \\\\\\\"std\\\\\\\": 0.0011679430781201955\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_20\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.004237702948739752,\\\\n        \\\\\\\"std\\\\\\\": 0.0011544441954792863\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_21\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.00450469889678061,\\\\n        \\\\\\\"std\\\\\\\": 0.0012135428247364733\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_22\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.004629098203731701,\\\\n        \\\\\\\"std\\\\\\\": 0.0011552276369785003\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_23\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.00585907727945596,\\\\n        \\\\\\\"std\\\\\\\": 0.0016092648371959725\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_24\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.006879845521179959,\\\\n        \\\\\\\"std\\\\\\\": 0.0017701150064425208\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_25\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.01368345620110631,\\\\n        \\\\\\\"std\\\\\\\": 0.0035115373511602245\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_26\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"std\\\\\\\": 0.0\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition_name\\\": \\\"Detach_BN_s2\\\",\\n  \\\"condition_type\\\": \\\"occ\\\",\\n  \\\"occ_detach\\\": true,\\n  \\\"num_batches_completed\\\": 201,\\n  \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/ablation_occ_detach_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\\\",\\n  \\\"layers\\\": {\\n    \\\"dino_0\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.005503292781650088,\\n        \\\"std\\\": 0.0031125733408212536\\n      }\\n    },\\n    \\\"dino_1\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.004205001492518932,\\n        \\\"std\\\": 0.0020554050918103906\\n      }\\n    },\\n    \\\"dino_2\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.007163146978709847,\\n        \\\"std\\\": 0.002566565301749507\\n      }\\n    },\\n    \\\"dino_3\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.005405851090326905,\\n        \\\"std\\\": 0.0014136404859653442\\n      }\\n    },\\n    \\\"dino_4\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0016228182311169804,\\n        \\\"std\\\": 0.0004114078393518863\\n      }\\n    },\\n    \\\"dino_5\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.001342883820470888,\\n        \\\"std\\\": 0.0003395695315134744\\n      }\\n    },\\n    \\\"dino_6\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0015108410260290838,\\n        \\\"std\\\": 0.00039127953346385845\\n      }\\n    },\\n    \\\"dino_7\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0015178254659986123,\\n        \\\"std\\\": 0.00039042463444910946\\n      }\\n    },\\n    \\\"dino_8\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0033831122319679706,\\n        \\\"std\\\": 0.0012322668767717148\\n      }\\n    },\\n    \\\"dino_9\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.001505641816474963,\\n        \\\"std\\\": 0.00038741000704145355\\n      }\\n    },\\n    \\\"dino_10\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0016513536751153878,\\n        \\\"std\\\": 0.0004246111509290967\\n      }\\n    },\\n    \\\"dino_11\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0022241905506234618,\\n        \\\"std\\\": 0.0005608525018431904\\n      }\\n    },\\n    \\\"dino_12\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0024803785054245964,\\n        \\\"std\\\": 0.0006418389204731937\\n      }\\n    },\\n    \\\"dino_13\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.002850525172543712,\\n        \\\"std\\\": 0.0007321663442277148\\n      }\\n    },\\n    \\\"dino_14\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0033850930933840575,\\n        \\\"std\\\": 0.0008415526511390524\\n      }\\n    },\\n    \\\"dino_15\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0041943822242319585,\\n        \\\"std\\\": 0.0010679374079113552\\n      }\\n    },\\n    \\\"dino_16\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.005402015591971576,\\n        \\\"std\\\": 0.0013834662857360538\\n      }\\n    },\\n    \\\"dino_17\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.008348681963980198,\\n        \\\"std\\\": 0.0021877333062620824\\n      }\\n    },\\n    \\\"dino_18\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.009613400716334581,\\n        \\\"std\\\": 0.0024897516126312423\\n      }\\n    },\\n    \\\"dino_19\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0103252734686248,\\n        \\\"std\\\": 0.0027698058847101053\\n      }\\n    },\\n    \\\"dino_20\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.011562422302085906,\\n        \\\"std\\\": 0.0030310445700386665\\n      }\\n    },\\n    \\\"dino_21\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.016959625149611385,\\n        \\\"std\\\": 0.004607380597359928\\n      }\\n    },\\n    \\\"dino_22\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.029548283535987138,\\n        \\\"std\\\": 0.008208455542750865\\n      }\\n    },\\n    \\\"dino_23\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      }\\n    },\\n    \\\"siglip_0\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0052154980355408045,\\n        \\\"std\\\": 0.00133730766281444\\n      }\\n    },\\n    \\\"siglip_1\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0014322892401833088,\\n        \\\"std\\\": 0.00033560912797077407\\n      }\\n    },\\n    \\\"siglip_2\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0018773520004469902,\\n        \\\"std\\\": 0.00048653683597350405\\n      }\\n    },\\n    \\\"siglip_3\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0016093422612175345,\\n        \\\"std\\\": 0.000403027101839609\\n      }\\n    },\\n    \\\"siglip_4\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.00185192786360858,\\n        \\\"std\\\": 0.000463049072740631\\n      }\\n    },\\n    \\\"siglip_5\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0016382900861208326,\\n        \\\"std\\\": 0.00042076052522740416\\n      }\\n    },\\n    \\\"siglip_6\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0019788765729754233,\\n        \\\"std\\\": 0.0005128398978588769\\n      }\\n    },\\n    \\\"siglip_7\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.001982848318875767,\\n        \\\"std\\\": 0.0005236021969308006\\n      }\\n    },\\n    \\\"siglip_8\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0029870021645911037,\\n        \\\"std\\\": 0.0007722831937997916\\n      }\\n    },\\n    \\\"siglip_9\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.002386878352263011,\\n        \\\"std\\\": 0.0006305037991893581\\n      }\\n    },\\n    \\\"siglip_10\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.002532468791469,\\n        \\\"std\\\": 0.000678843991026098\\n      }\\n    },\\n    \\\"siglip_11\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.002812019530683756,\\n        \\\"std\\\": 0.0007429140187764606\\n      }\\n    },\\n    \\\"siglip_12\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.003312248217989691,\\n        \\\"std\\\": 0.0009323706782084995\\n      }\\n    },\\n    \\\"siglip_13\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0031283021403942257,\\n        \\\"std\\\": 0.0008553394340220138\\n      }\\n    },\\n    \\\"siglip_14\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0037350622832309456,\\n        \\\"std\\\": 0.0009788023398837617\\n      }\\n    },\\n    \\\"siglip_15\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0038958730571903286,\\n        \\\"std\\\": 0.0010447129656735445\\n      }\\n    },\\n    \\\"siglip_16\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.003903180895722471,\\n        \\\"std\\\": 0.001012990896996979\\n      }\\n    },\\n    \\\"siglip_17\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.004472085403394885,\\n        \\\"std\\\": 0.0011846098114809845\\n      }\\n    },\\n    \\\"siglip_18\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0049987829523161055,\\n        \\\"std\\\": 0.001338331074531272\\n      }\\n    },\\n    \\\"siglip_19\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0043833285220898684,\\n        \\\"std\\\": 0.0011679430781201955\\n      }\\n    },\\n    \\\"siglip_20\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.004237702948739752,\\n        \\\"std\\\": 0.0011544441954792863\\n      }\\n    },\\n    \\\"siglip_21\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.00450469889678061,\\n        \\\"std\\\": 0.0012135428247364733\\n      }\\n    },\\n    \\\"siglip_22\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.004629098203731701,\\n        \\\"std\\\": 0.0011552276369785003\\n      }\\n    },\\n    \\\"siglip_23\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.00585907727945596,\\n        \\\"std\\\": 0.0016092648371959725\\n      }\\n    },\\n    \\\"siglip_24\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.006879845521179959,\\n        \\\"std\\\": 0.0017701150064425208\\n      }\\n    },\\n    \\\"siglip_25\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.01368345620110631,\\n        \\\"std\\\": 0.0035115373511602245\\n      }\\n    },\\n    \\\"siglip_26\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CArbeg7YBofJjzLBNDwyoH`</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "cat /root/occsafe_vla/artifacts/gradient_analysis_mixed_seed/Random_s2_gradient_stats.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "1214cff2-d2e3-4d94-8570-c4395dd8f64d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CoztEvcNaqoygE8AaHVrNU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 848,
+      "cache_read_input_tokens": 25192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-24T12:10:00.602Z_
+
+<details><summary>↩ Tool result · `toolu_01CArbeg7YBofJjzLBNDwyoH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition_name\\\": \\\"Random_s2\\\",\\n  \\\"condition_type\\\": \\\"occ\\\",\\n  \\\"occ_detach\\\": false,\\n  \\\"num_batches_completed\\\": 201,\\n  \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/ablation_random_occ_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\\\",\\n  \\\"layers\\\": {\\n    \\\"dino_0\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.07060532119125128,\\n        \\\"std\\\": 0.015962594044135744\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0024148867311305365,\\n        \\\"std\\\": 0.0022550185557014355\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.018344055712223053,\\n        \\\"std\\\": 0.08864569726145431\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4946026626229286,\\n        \\\"std\\\": 0.02089049785603263\\n      }\\n    },\\n    \\\"dino_1\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.10326532045379282,\\n        \\\"std\\\": 0.02341142719897931\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0033377113193273546,\\n        \\\"std\\\": 0.0031122282552068954\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.011132491251919419,\\n        \\\"std\\\": 0.07943928144151555\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.49579697772860526,\\n        \\\"std\\\": 0.020995575010802316\\n      }\\n    },\\n    \\\"dino_2\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.16254207998514175,\\n        \\\"std\\\": 0.03609872954964177\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.005580186541192233,\\n        \\\"std\\\": 0.005047748538003148\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.017594458325766026,\\n        \\\"std\\\": 0.08903958980565162\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.49543720975518224,\\n        \\\"std\\\": 0.019704126515141706\\n      }\\n    },\\n    \\\"dino_3\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.09730021871626376,\\n        \\\"std\\\": 0.022763116963171535\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0031170117191504686,\\n        \\\"std\\\": 0.0028019078227930426\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.012491868956713005,\\n        \\\"std\\\": 0.0679567555489828\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.49615542754530906,\\n        \\\"std\\\": 0.020365717895287953\\n      }\\n    },\\n    \\\"dino_4\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.11394140617921948,\\n        \\\"std\\\": 0.026278468169498012\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.003638088023290038,\\n        \\\"std\\\": 0.0032392686095863853\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.011041556193376892,\\n        \\\"std\\\": 0.07056566049185464\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.49629607528448105,\\n        \\\"std\\\": 0.020385432592666012\\n      }\\n    },\\n    \\\"dino_5\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.10488490089774131,\\n        \\\"std\\\": 0.025489150583555362\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.003228459857637063,\\n        \\\"std\\\": 0.0029803855973001385\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.012789640984265134,\\n        \\\"std\\\": 0.06858724375439508\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4960666690766811,\\n        \\\"std\\\": 0.019869285398802145\\n      }\\n    },\\n    \\\"dino_6\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.12883686371147632,\\n        \\\"std\\\": 0.029983879966970044\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0040214403683785345,\\n        \\\"std\\\": 0.0036237822378429618\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.011423526782309637,\\n        \\\"std\\\": 0.06775559408224688\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.49640176743268966,\\n        \\\"std\\\": 0.01954033907582546\\n      }\\n    },\\n    \\\"dino_7\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.16721754774451256,\\n        \\\"std\\\": 0.03806455355412033\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0052977501275017855,\\n        \\\"std\\\": 0.004723523790388442\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.012120577478199265,\\n        \\\"std\\\": 0.06525912962507888\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.496352396607399,\\n        \\\"std\\\": 0.018727931097071104\\n      }\\n    },\\n    \\\"dino_8\\\": {\\n      \\\"action_grad_\\n\\n... [截断: 输出过长，省略 15453 字符] ...\\n\\n\\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.060745470803231,\\n        \\\"std\\\": 0.011772340818162143\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.006011949629755691,\\n        \\\"std\\\": 0.005541726357152086\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.001333908069645986,\\n        \\\"std\\\": 0.020122888050363035\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.42519044637680053,\\n        \\\"std\\\": 0.003249726072003781\\n      }\\n    },\\n    \\\"siglip_19\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.055009250100702047,\\n        \\\"std\\\": 0.010892091446694499\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.00559074904944282,\\n        \\\"std\\\": 0.005104940376218176\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": -0.0015371434658300132,\\n        \\\"std\\\": 0.02443631715328186\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.3115307971835136,\\n        \\\"std\\\": 0.0029929332048242363\\n      }\\n    },\\n    \\\"siglip_20\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.052433317508548495,\\n        \\\"std\\\": 0.010764635305486919\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.005483490448677912,\\n        \\\"std\\\": 0.005126253843246463\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": -0.002255159205524251,\\n        \\\"std\\\": 0.0346192593554516\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.2553952760249376,\\n        \\\"std\\\": 0.002389691348993366\\n      }\\n    },\\n    \\\"siglip_21\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.046448737764731046,\\n        \\\"std\\\": 0.009503704208752238\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0053089462494244795,\\n        \\\"std\\\": 0.005304283738699083\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": -0.009300330034457148,\\n        \\\"std\\\": 0.04788211810880994\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.2148963090777397,\\n        \\\"std\\\": 0.0020791295036998014\\n      }\\n    },\\n    \\\"siglip_22\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.04190122124738991,\\n        \\\"std\\\": 0.00891025822294162\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.005014193640672602,\\n        \\\"std\\\": 0.0053249038853031535\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.0038657624798361214,\\n        \\\"std\\\": 0.05284535786739632\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.19509977750480176,\\n        \\\"std\\\": 0.002286589849297979\\n      }\\n    },\\n    \\\"siglip_23\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.04808376467786729,\\n        \\\"std\\\": 0.009561153256787764\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.006235502669005655,\\n        \\\"std\\\": 0.006440077151307017\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": -0.0031605171144474297,\\n        \\\"std\\\": 0.058549022607676825\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.19270133525133132,\\n        \\\"std\\\": 0.001974731131061099\\n      }\\n    },\\n    \\\"siglip_24\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0609285759460181,\\n        \\\"std\\\": 0.011860395763398939\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.007632199459476396,\\n        \\\"std\\\": 0.007871846540134307\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.0029525294399354606,\\n        \\\"std\\\": 0.05025585017947311\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.19514093771576882,\\n        \\\"std\\\": 0.0019926174954958105\\n      }\\n    },\\n    \\\"siglip_25\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.11826017655432225,\\n        \\\"std\\\": 0.02263116244933715\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.016450779781444,\\n        \\\"std\\\": 0.019979718935567173\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.002025001279544085,\\n        \\\"std\\\": 0.02958714490016116\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.2330519898980856,\\n        \\\"std\\\": 0.0027705342312082533\\n      }\\n    },\\n    \\\"siglip_26\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "8a0d961a-cf51-4b1e-a563-bfe22e738f40",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition_name\\\\\\\": \\\\\\\"Random_s2\\\\\\\",\\\\n  \\\\\\\"condition_type\\\\\\\": \\\\\\\"occ\\\\\\\",\\\\n  \\\\\\\"occ_detach\\\\\\\": false,\\\\n  \\\\\\\"num_batches_completed\\\\\\\": 201,\\\\n  \\\\\\\"checkpoint_path\\\\\\\": \\\\\\\"/root/autodl-tmp/checkpoints/ablation_random_occ_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\\\\\\\",\\\\n  \\\\\\\"layers\\\\\\\": {\\\\n    \\\\\\\"dino_0\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.07060532119125128,\\\\n        \\\\\\\"std\\\\\\\": 0.015962594044135744\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0024148867311305365,\\\\n        \\\\\\\"std\\\\\\\": 0.0022550185557014355\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.018344055712223053,\\\\n        \\\\\\\"std\\\\\\\": 0.08864569726145431\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4946026626229286,\\\\n        \\\\\\\"std\\\\\\\": 0.02089049785603263\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_1\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.10326532045379282,\\\\n        \\\\\\\"std\\\\\\\": 0.02341142719897931\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0033377113193273546,\\\\n        \\\\\\\"std\\\\\\\": 0.0031122282552068954\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.011132491251919419,\\\\n        \\\\\\\"std\\\\\\\": 0.07943928144151555\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.49579697772860526,\\\\n        \\\\\\\"std\\\\\\\": 0.020995575010802316\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_2\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.16254207998514175,\\\\n        \\\\\\\"std\\\\\\\": 0.03609872954964177\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.005580186541192233,\\\\n        \\\\\\\"std\\\\\\\": 0.005047748538003148\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.017594458325766026,\\\\n        \\\\\\\"std\\\\\\\": 0.08903958980565162\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.49543720975518224,\\\\n        \\\\\\\"std\\\\\\\": 0.019704126515141706\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_3\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.09730021871626376,\\\\n        \\\\\\\"std\\\\\\\": 0.022763116963171535\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0031170117191504686,\\\\n        \\\\\\\"std\\\\\\\": 0.0028019078227930426\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.012491868956713005,\\\\n        \\\\\\\"std\\\\\\\": 0.0679567555489828\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.49615542754530906,\\\\n        \\\\\\\"std\\\\\\\": 0.020365717895287953\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_4\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.11394140617921948,\\\\n        \\\\\\\"std\\\\\\\": 0.026278468169498012\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.003638088023290038,\\\\n        \\\\\\\"std\\\\\\\": 0.0032392686095863853\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.011041556193376892,\\\\n        \\\\\\\"std\\\\\\\": 0.07056566049185464\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.49629607528448105,\\\\n        \\\\\\\"std\\\\\\\": 0.020385432592666012\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_5\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.10488490089774131,\\\\n        \\\\\\\"std\\\\\\\": 0.025489150583555362\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.003228459857637063,\\\\n        \\\\\\\"std\\\\\\\": 0.0029803855973001385\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.012789640984265134,\\\\n        \\\\\\\"std\\\\\\\": 0.06858724375439508\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4960666690766811,\\\\n        \\\\\\\"std\\\\\\\": 0.019869285398802145\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_6\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.12883686371147632,\\\\n        \\\\\\\"std\\\\\\\": 0.029983879966970044\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0040214403683785345,\\\\n        \\\\\\\"std\\\\\\\": 0.0036237822378429618\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.011423526782309637,\\\\n        \\\\\\\"std\\\\\\\": 0.06775559408224688\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.49640176743268966,\\\\n        \\\\\\\"std\\\\\\\": 0.01954033907582546\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_7\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.16721754774451256,\\\\n        \\\\\\\"std\\\\\\\": 0.03806455355412033\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0052977501275017855,\\\\n        \\\\\\\"std\\\\\\\": 0.004723523790388442\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.012120577478199265,\\\\n        \\\\\\\"std\\\\\\\": 0.06525912962507888\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.496352396607399,\\\\n        \\\\\\\"std\\\\\\\": 0.018727931097071104\\\\n      }\\\\n    },\\\\n    \\\\\\\"dino_8\\\\\\\": {\\\\n      \\\\\\\"action_grad_\\\\n\\\\n... [截断: 输出过长，省略 15453 字符] ...\\\\n\\\\n\\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.060745470803231,\\\\n        \\\\\\\"std\\\\\\\": 0.011772340818162143\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.006011949629755691,\\\\n        \\\\\\\"std\\\\\\\": 0.005541726357152086\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.001333908069645986,\\\\n        \\\\\\\"std\\\\\\\": 0.020122888050363035\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.42519044637680053,\\\\n        \\\\\\\"std\\\\\\\": 0.003249726072003781\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_19\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.055009250100702047,\\\\n        \\\\\\\"std\\\\\\\": 0.010892091446694499\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.00559074904944282,\\\\n        \\\\\\\"std\\\\\\\": 0.005104940376218176\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.0015371434658300132,\\\\n        \\\\\\\"std\\\\\\\": 0.02443631715328186\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3115307971835136,\\\\n        \\\\\\\"std\\\\\\\": 0.0029929332048242363\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_20\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.052433317508548495,\\\\n        \\\\\\\"std\\\\\\\": 0.010764635305486919\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.005483490448677912,\\\\n        \\\\\\\"std\\\\\\\": 0.005126253843246463\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.002255159205524251,\\\\n        \\\\\\\"std\\\\\\\": 0.0346192593554516\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.2553952760249376,\\\\n        \\\\\\\"std\\\\\\\": 0.002389691348993366\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_21\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.046448737764731046,\\\\n        \\\\\\\"std\\\\\\\": 0.009503704208752238\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0053089462494244795,\\\\n        \\\\\\\"std\\\\\\\": 0.005304283738699083\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.009300330034457148,\\\\n        \\\\\\\"std\\\\\\\": 0.04788211810880994\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.2148963090777397,\\\\n        \\\\\\\"std\\\\\\\": 0.0020791295036998014\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_22\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.04190122124738991,\\\\n        \\\\\\\"std\\\\\\\": 0.00891025822294162\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.005014193640672602,\\\\n        \\\\\\\"std\\\\\\\": 0.0053249038853031535\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0038657624798361214,\\\\n        \\\\\\\"std\\\\\\\": 0.05284535786739632\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.19509977750480176,\\\\n        \\\\\\\"std\\\\\\\": 0.002286589849297979\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_23\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.04808376467786729,\\\\n        \\\\\\\"std\\\\\\\": 0.009561153256787764\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.006235502669005655,\\\\n        \\\\\\\"std\\\\\\\": 0.006440077151307017\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.0031605171144474297,\\\\n        \\\\\\\"std\\\\\\\": 0.058549022607676825\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.19270133525133132,\\\\n        \\\\\\\"std\\\\\\\": 0.001974731131061099\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_24\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0609285759460181,\\\\n        \\\\\\\"std\\\\\\\": 0.011860395763398939\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.007632199459476396,\\\\n        \\\\\\\"std\\\\\\\": 0.007871846540134307\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0029525294399354606,\\\\n        \\\\\\\"std\\\\\\\": 0.05025585017947311\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.19514093771576882,\\\\n        \\\\\\\"std\\\\\\\": 0.0019926174954958105\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_25\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.11826017655432225,\\\\n        \\\\\\\"std\\\\\\\": 0.02263116244933715\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.016450779781444,\\\\n        \\\\\\\"std\\\\\\\": 0.019979718935567173\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.002025001279544085,\\\\n        \\\\\\\"std\\\\\\\": 0.02958714490016116\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.2330519898980856,\\\\n        \\\\\\\"std\\\\\\\": 0.0027705342312082533\\\\n      }\\\\n    },\\\\n    \\\\\\\"siglip_26\\\\\\\": {\\\\n      \\\\\\\"action_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"std\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"aux_grad_norm\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"std\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"cosine_similarity\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"std\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"conflict_rate\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"std\\\\\\\": 0.0\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition_name\\\": \\\"Random_s2\\\",\\n  \\\"condition_type\\\": \\\"occ\\\",\\n  \\\"occ_detach\\\": false,\\n  \\\"num_batches_completed\\\": 201,\\n  \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/ablation_random_occ_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\\\",\\n  \\\"layers\\\": {\\n    \\\"dino_0\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.07060532119125128,\\n        \\\"std\\\": 0.015962594044135744\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0024148867311305365,\\n        \\\"std\\\": 0.0022550185557014355\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.018344055712223053,\\n        \\\"std\\\": 0.08864569726145431\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4946026626229286,\\n        \\\"std\\\": 0.02089049785603263\\n      }\\n    },\\n    \\\"dino_1\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.10326532045379282,\\n        \\\"std\\\": 0.02341142719897931\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0033377113193273546,\\n        \\\"std\\\": 0.0031122282552068954\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.011132491251919419,\\n        \\\"std\\\": 0.07943928144151555\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.49579697772860526,\\n        \\\"std\\\": 0.020995575010802316\\n      }\\n    },\\n    \\\"dino_2\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.16254207998514175,\\n        \\\"std\\\": 0.03609872954964177\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.005580186541192233,\\n        \\\"std\\\": 0.005047748538003148\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.017594458325766026,\\n        \\\"std\\\": 0.08903958980565162\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.49543720975518224,\\n        \\\"std\\\": 0.019704126515141706\\n      }\\n    },\\n    \\\"dino_3\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.09730021871626376,\\n        \\\"std\\\": 0.022763116963171535\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0031170117191504686,\\n        \\\"std\\\": 0.0028019078227930426\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.012491868956713005,\\n        \\\"std\\\": 0.0679567555489828\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.49615542754530906,\\n        \\\"std\\\": 0.020365717895287953\\n      }\\n    },\\n    \\\"dino_4\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.11394140617921948,\\n        \\\"std\\\": 0.026278468169498012\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.003638088023290038,\\n        \\\"std\\\": 0.0032392686095863853\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.011041556193376892,\\n        \\\"std\\\": 0.07056566049185464\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.49629607528448105,\\n        \\\"std\\\": 0.020385432592666012\\n      }\\n    },\\n    \\\"dino_5\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.10488490089774131,\\n        \\\"std\\\": 0.025489150583555362\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.003228459857637063,\\n        \\\"std\\\": 0.0029803855973001385\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.012789640984265134,\\n        \\\"std\\\": 0.06858724375439508\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4960666690766811,\\n        \\\"std\\\": 0.019869285398802145\\n      }\\n    },\\n    \\\"dino_6\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.12883686371147632,\\n        \\\"std\\\": 0.029983879966970044\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0040214403683785345,\\n        \\\"std\\\": 0.0036237822378429618\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.011423526782309637,\\n        \\\"std\\\": 0.06775559408224688\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.49640176743268966,\\n        \\\"std\\\": 0.01954033907582546\\n      }\\n    },\\n    \\\"dino_7\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.16721754774451256,\\n        \\\"std\\\": 0.03806455355412033\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0052977501275017855,\\n        \\\"std\\\": 0.004723523790388442\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.012120577478199265,\\n        \\\"std\\\": 0.06525912962507888\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.496352396607399,\\n        \\\"std\\\": 0.018727931097071104\\n      }\\n    },\\n    \\\"dino_8\\\": {\\n      \\\"action_grad_\\n\\n... [截断: 输出过长，省略 15453 字符] ...\\n\\n\\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.060745470803231,\\n        \\\"std\\\": 0.011772340818162143\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.006011949629755691,\\n        \\\"std\\\": 0.005541726357152086\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.001333908069645986,\\n        \\\"std\\\": 0.020122888050363035\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.42519044637680053,\\n        \\\"std\\\": 0.003249726072003781\\n      }\\n    },\\n    \\\"siglip_19\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.055009250100702047,\\n        \\\"std\\\": 0.010892091446694499\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.00559074904944282,\\n        \\\"std\\\": 0.005104940376218176\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": -0.0015371434658300132,\\n        \\\"std\\\": 0.02443631715328186\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.3115307971835136,\\n        \\\"std\\\": 0.0029929332048242363\\n      }\\n    },\\n    \\\"siglip_20\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.052433317508548495,\\n        \\\"std\\\": 0.010764635305486919\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.005483490448677912,\\n        \\\"std\\\": 0.005126253843246463\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": -0.002255159205524251,\\n        \\\"std\\\": 0.0346192593554516\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.2553952760249376,\\n        \\\"std\\\": 0.002389691348993366\\n      }\\n    },\\n    \\\"siglip_21\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.046448737764731046,\\n        \\\"std\\\": 0.009503704208752238\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0053089462494244795,\\n        \\\"std\\\": 0.005304283738699083\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": -0.009300330034457148,\\n        \\\"std\\\": 0.04788211810880994\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.2148963090777397,\\n        \\\"std\\\": 0.0020791295036998014\\n      }\\n    },\\n    \\\"siglip_22\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.04190122124738991,\\n        \\\"std\\\": 0.00891025822294162\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.005014193640672602,\\n        \\\"std\\\": 0.0053249038853031535\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.0038657624798361214,\\n        \\\"std\\\": 0.05284535786739632\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.19509977750480176,\\n        \\\"std\\\": 0.002286589849297979\\n      }\\n    },\\n    \\\"siglip_23\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.04808376467786729,\\n        \\\"std\\\": 0.009561153256787764\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.006235502669005655,\\n        \\\"std\\\": 0.006440077151307017\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": -0.0031605171144474297,\\n        \\\"std\\\": 0.058549022607676825\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.19270133525133132,\\n        \\\"std\\\": 0.001974731131061099\\n      }\\n    },\\n    \\\"siglip_24\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0609285759460181,\\n        \\\"std\\\": 0.011860395763398939\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.007632199459476396,\\n        \\\"std\\\": 0.007871846540134307\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.0029525294399354606,\\n        \\\"std\\\": 0.05025585017947311\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.19514093771576882,\\n        \\\"std\\\": 0.0019926174954958105\\n      }\\n    },\\n    \\\"siglip_25\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.11826017655432225,\\n        \\\"std\\\": 0.02263116244933715\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.016450779781444,\\n        \\\"std\\\": 0.019979718935567173\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.002025001279544085,\\n        \\\"std\\\": 0.02958714490016116\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.2330519898980856,\\n        \\\"std\\\": 0.0027705342312082533\\n      }\\n    },\\n    \\\"siglip_26\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.0,\\n        \\\"std\\\": 0.0\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have data for all 4 conditions. Let me note that Full_OCC_s0 and Random_s2 outputs were truncated. I need to compute the mean gradient norms across all layers for each condition. Let me use a Python command on the server to extract the summary stats I need.
+
+Actually, let me use a python -c command via ssh_read_only to compute the summary statistics since the raw data is too large.
+
+Let me compute:
+1. Mean action_grad_norm across all layers (excluding layer 23/26 which have 0)
+2. For OCC conditions: mean cosine_similarity and conflict_rate
+
+
+3. Now I'll calculate the ratios relative to Vanilla_s0 for the other conditions, keeping in mind that Full_OCC_s0 and Random_s2 had truncated outputs.
+
+Computing summary statistics...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "e7cdb71c-8545-4b22-bc5b-848552f59535",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Exk6wFKdjcD6Xdd34gCKQX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18133,
+      "cache_read_input_tokens": 26040,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+Full_OCC_s0 和 Random_s2 的输出被截断了。用 Python 脚本直接在服务器上计算汇总统计。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "3c202e67-dc5f-4542-bf72-c49c44a2d4bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Exk6wFKdjcD6Xdd34gCKQX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18133,
+      "cache_read_input_tokens": 26040,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LtxKpKitxPW867ewh1vDuz`</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "python3 -c \"\nimport json, os, glob\n\nbase = '/root/occsafe_vla/artifacts/gradient_analysis_mixed_seed'\nfiles = sorted(glob.glob(os.path.join(base, '*_gradient_stats.json')))\nprint(f'Found {len(files)} files: {[os.path.basename(f) for f in files]}')\n\nfor f in files:\n    with open(f) as fp:\n        data = json.load(fp)\n    name = data['condition_name']\n    layers = data['layers']\n    \n    action_norms = []\n    aux_norms = []\n    cosines = []\n    conflicts = []\n    \n    for lname, ldata in layers.items():\n        an = ldata['action_grad_norm']['mean']\n        if an > 0:\n            action_norms.append(an)\n        if 'aux_grad_norm' in ldata:\n            ax = ldata['aux_grad_norm']['mean']\n            if ax > 0:\n                aux_norms.append(ax)\n            cs = ldata['cosine_similarity']['mean']\n            cosines.append(cs)\n            cr = ldata['conflict_rate']['mean']\n            conflicts.append(cr)\n    \n    mean_action = sum(action_norms)/len(action_norms) if action_norms else 0\n    mean_aux = sum(aux_norms)/len(aux_norms) if aux_norms else 0\n    mean_cos = sum(cosines)/len(cosines) if cosines else 0\n    mean_conflict = sum(conflicts)/len(conflicts) if conflicts else 0\n    \n    print(f'\\n=== {name} ===')\n    print(f'  occ_detach: {data[\\\"occ_detach\\\"]}')\n    print(f'  mean_action_grad_norm: {mean_action:.6f}')\n    print(f'  mean_aux_grad_norm: {mean_aux:.6f}')\n    print(f'  mean_cosine_sim: {mean_cos:.6f}')\n    print(f'  mean_conflict_rate: {mean_conflict:.4f}')\n    print(f'  num_layers_with_grad: {len(action_norms)}')\n    \n    # per-backbone\n    dino_norms = [layers[l]['action_grad_norm']['mean'] for l in layers if l.startswith('dino') and layers[l]['action_grad_norm']['mean'] > 0]\n    siglip_norms = [layers[l]['action_grad_norm']['mean'] for l in layers if l.startswith('siglip') and layers[l]['action_grad_norm']['mean'] > 0]\n    print(f'  dino_mean: {sum(dino_norms)/len(dino_norms):.6f} ({len(dino_norms)} layers)')\n    print(f'  siglip_mean: {sum(siglip_norms)/len(siglip_norms):.6f} ({len(siglip_norms)} layers)')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "b74f6784-9bb5-49d1-a44a-ded03bcc8a88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Exk6wFKdjcD6Xdd34gCKQX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18133,
+      "cache_read_input_tokens": 26040,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-24T12:10:21.375Z_
+
+<details><summary>↩ Tool result · `toolu_01LtxKpKitxPW867ewh1vDuz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "0074b266-75e9-45f5-b11c-ccec373dd3e8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `>` in the f-string is being blocked. Let me try `python3 -c` without using `>` operator. Actually the issue is that the shell metacharacter `>` is blocked. F-strings with `>` might be causing this. Let me try without the `>` character.
+
+Actually, looking more carefully, the problem is that `>` is treated as a shell metacharacter (redirect). Even though it's inside a Python string, the tool's filter catches it. Let me use `ssh_execute` instead since this is a read-only operation but requires shell metacharacters.
+
+Actually wait - the tool says "Shell metacharacters (;, &&, |, >, $(...)) are blocked." So I can't use > even in quoted strings in ssh_read_only. I need to use ssh_execute for this.
+
+
+I'll switch to ssh_execute to handle the shell metacharacters that are being filtered out.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "22aac47e-c46a-4a85-acaa-abcb0a46de66",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cm3XnpfiBmPq9axPdJQrEF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1360,
+      "cache_read_input_tokens": 44173,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1360
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Sg6BYbqGXKfdTFygvZStLp`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "93b9f41a-0ff6-49c1-b67f-e4e9d74c0590",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cm3XnpfiBmPq9axPdJQrEF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1360,
+      "cache_read_input_tokens": 44173,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1360
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-24T12:10:31.507Z_
+
+<details><summary>↩ Tool result · `toolu_01Sg6BYbqGXKfdTFygvZStLp`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "9eb2ed5c-5061-475f-a545-5d3bfefcec80",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_017qJjtAaV8mDP4sHvr4dP7D`</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "python3 -c \"\nimport json, os, glob\n\nbase = '/root/occsafe_vla/artifacts/gradient_analysis_mixed_seed'\nfiles = sorted(glob.glob(os.path.join(base, '*_gradient_stats.json')))\nprint('Found {} files: {}'.format(len(files), [os.path.basename(f) for f in files]))\n\nresults = {}\nfor f in files:\n    with open(f) as fp:\n        data = json.load(fp)\n    name = data['condition_name']\n    layers = data['layers']\n    \n    action_norms = []\n    aux_norms = []\n    cosines = []\n    conflicts = []\n    \n    for lname, ldata in layers.items():\n        an = ldata['action_grad_norm']['mean']\n        if an != 0:\n            action_norms.append(an)\n        if 'aux_grad_norm' in ldata:\n            ax = ldata['aux_grad_norm']['mean']\n            if ax != 0:\n                aux_norms.append(ax)\n            cs = ldata['cosine_similarity']['mean']\n            cosines.append(cs)\n            cr = ldata['conflict_rate']['mean']\n            conflicts.append(cr)\n    \n    mean_action = sum(action_norms)/len(action_norms) if action_norms else 0\n    mean_aux = sum(aux_norms)/len(aux_norms) if aux_norms else 0\n    mean_cos = sum(cosines)/len(cosines) if cosines else 0\n    mean_conflict = sum(conflicts)/len(conflicts) if conflicts else 0\n    \n    dino_norms = [layers[l]['action_grad_norm']['mean'] for l in layers if l.startswith('dino') and layers[l]['action_grad_norm']['mean'] != 0]\n    siglip_norms = [layers[l]['action_grad_norm']['mean'] for l in layers if l.startswith('siglip') and layers[l]['action_grad_norm']['mean'] != 0]\n    \n    results[name] = {\n        'mean_action_grad_norm': round(mean_action, 6),\n        'mean_aux_grad_norm': round(mean_aux, 6),\n        'mean_cosine_sim': round(mean_cos, 6),\n        'mean_conflict_rate': round(mean_conflict, 4),\n        'dino_mean': round(sum(dino_norms)/len(dino_norms), 6) if dino_norms else 0,\n        'siglip_mean': round(sum(siglip_norms)/len(siglip_norms), 6) if siglip_norms else 0,\n        'num_layers': len(action_norms),\n        'occ_detach': data['occ_detach']\n    }\n\n# Print summary\nvanilla_norm = results['Vanilla_s0']['mean_action_grad_norm']\nprint('\\n{:<15} {:>12} {:>10} {:>12} {:>10} {:>10}'.format('Condition', 'MeanGradNorm', 'vsVanilla', 'CosineSim', 'Conflict', 'Detach'))\nprint('-' * 75)\nfor name in ['Vanilla_s0', 'Full_OCC_s0', 'Detach_BN_s2', 'Random_s2']:\n    r = results[name]\n    ratio = r['mean_action_grad_norm'] / vanilla_norm if vanilla_norm else 0\n    print('{:<15} {:>12.6f} {:>9.2f}x {:>12.6f} {:>10.4f} {:>10}'.format(\n        name, r['mean_action_grad_norm'], ratio, r['mean_cosine_sim'], r['mean_conflict_rate'], r['occ_detach']))\n\n# Per-backbone breakdown\nprint('\\n--- Per-backbone breakdown ---')\nprint('{:<15} {:>12} {:>12} {:>12} {:>12}'.format('Condition', 'DINO_mean', 'DINO_ratio', 'SigLIP_mean', 'SigLIP_ratio'))\nprint('-' * 65)\nvan_dino = results['Vanilla_s0']['dino_mean']\nvan_siglip = results['Vanilla_s0']['siglip_mean']\nfor name in ['Vanilla_s0', 'Full_OCC_s0', 'Detach_BN_s2', 'Random_s2']:\n    r = results[name]\n    dr = r['dino_mean']/van_dino if van_dino else 0\n    sr = r['siglip_mean']/van_siglip if van_siglip else 0\n    print('{:<15} {:>12.6f} {:>11.2f}x {:>12.6f} {:>11.2f}x'.format(name, r['dino_mean'], dr, r['siglip_mean'], sr))\n\n# Output JSON for registry\nprint('\\n--- JSON for registry ---')\nprint(json.dumps(results, indent=2))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "b9ef5b45-2c7c-48cd-8ba7-3e7535446968",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019RbNyS6yhoTAqGNnDvYVVh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 553,
+      "cache_read_input_tokens": 45533,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 553
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-24T12:10:56.584Z_
+
+<details><summary>↩ Tool result · `toolu_017qJjtAaV8mDP4sHvr4dP7D`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport json, os, glob\\\\n\\\\nbase = \\\\'/root/occsafe_vla/artifacts/gradient_analysis_mixed_seed\\\\'\\\\nfiles = sorted(glob.glob(os.path.join(base, \\\\'*_gradient_stats.json\\\\')))\\\\nprint(\\\\'Found {} files: {}\\\\'.format(len(files), [os.path.basename(f) for f in files]))\\\\n\\\\nresults = {}\\\\nfor f in files:\\\\n    with open(f) as fp:\\\\n        data = json.load(fp)\\\\n    name = data[\\\\'condition_name\\\\']\\\\n    layers = data[\\\\'layers\\\\']\\\\n    \\\\n    action_norms = []\\\\n    aux_norms = []\\\\n    cosines = []\\\\n    conflicts = []\\\\n    \\\\n    for lname, ldata in layers.items():\\\\n        an = ldata[\\\\'action_grad_norm\\\\'][\\\\'mean\\\\']\\\\n        if an != 0:\\\\n            action_norms.append(an)\\\\n        if \\\\'aux_grad_norm\\\\' in ldata:\\\\n            ax = ldata[\\\\'aux_grad_norm\\\\'][\\\\'mean\\\\']\\\\n            if ax != 0:\\\\n                aux_norms.append(ax)\\\\n            cs = ldata[\\\\'cosine_similarity\\\\'][\\\\'mean\\\\']\\\\n            cosines.append(cs)\\\\n            cr = ldata[\\\\'conflict_rate\\\\'][\\\\'mean\\\\']\\\\n            conflicts.append(cr)\\\\n    \\\\n    mean_action = sum(action_norms)/len(action_norms) if action_norms else 0\\\\n    mean_aux = sum(aux_norms)/len(aux_norms) if aux_norms else 0\\\\n    mean_cos = sum(cosines)/len(cosines) if cosines else 0\\\\n    mean_conflict = sum(conflicts)/len(conflicts) if conflicts else 0\\\\n    \\\\n    dino_norms = [layers[l][\\\\'action_grad_norm\\\\'][\\\\'mean\\\\'] for l in layers if l.startswith(\\\\'dino\\\\') and layers[l][\\\\'action_grad_norm\\\\'][\\\\'mean\\\\'] != 0]\\\\n    siglip_norms = [layers[l][\\\\'action_grad_norm\\\\'][\\\\'mean\\\\'] for l in layers if l.startswith(\\\\'siglip\\\\') and layers[l][\\\\'action_grad_norm\\\\'][\\\\'mean\\\\'] != 0]\\\\n    \\\\n    results[name] = {\\\\n        \\\\'mean_action_grad_norm\\\\': round(mean_action, 6),\\\\n        \\\\'mean_aux_grad_norm\\\\': round(mean_aux, 6),\\\\n        \\\\'mean_cosine_sim\\\\': round(mean_cos, 6),\\\\n        \\\\'mean_conflict_rate\\\\': round(mean_conflict, 4),\\\\n        \\\\'dino_mean\\\\': round(sum(dino_norms)/len(dino_norms), 6) if dino_norms else 0,\\\\n        \\\\'siglip_mean\\\\': round(sum(siglip_norms)/len(siglip_norms), 6) if siglip_norms else 0,\\\\n        \\\\'num_layers\\\\': len(action_norms),\\\\n        \\\\'occ_detach\\\\': data[\\\\'occ_detach\\\\']\\\\n    }\\\\n\\\\n# Print summary\\\\nvanilla_norm = results[\\\\'Vanilla_s0\\\\'][\\\\'mean_action_grad_norm\\\\']\\\\nprint(\\\\'\\\\\\\\n{:<15} {:>12} {:>10} {:>12} {:>10} {:>10}\\\\'.format(\\\\'Condition\\\\', \\\\'MeanGradNorm\\\\', \\\\'vsVanilla\\\\', \\\\'CosineSim\\\\', \\\\'Conflict\\\\', \\\\'Detach\\\\'))\\\\nprint(\\\\'-\\\\' * 75)\\\\nfor name in [\\\\'Vanilla_s0\\\\', \\\\'Full_OCC_s0\\\\', \\\\'Detach_BN_s2\\\\', \\\\'Random_s2\\\\']:\\\\n    r = results[name]\\\\n    ratio = r[\\\\'mean_action_grad_norm\\\\'] / vanilla_norm if vanilla_norm else 0\\\\n    print(\\\\'{:<15} {:>12.6f} {:>9.2f}x {:>12.6f} {:>10.4f} {:>10}\\\\'.format(\\\\n        name, r[\\\\'mean_action_grad_norm\\\\'], ratio, r[\\\\'mean_cosine_sim\\\\'], r[\\\\'mean_conflict_rate\\\\'], r[\\\\'occ_detach\\\\']))\\\\n\\\\n# Per-backbone breakdown\\\\nprint(\\\\'\\\\\\\\n--- Per-backbone breakdown ---\\\\')\\\\nprint(\\\\'{:<15} {:>12} {:>12} {:>12} {:>12}\\\\'.format(\\\\'Condition\\\\', \\\\'DINO_mean\\\\', \\\\'DINO_ratio\\\\', \\\\'SigLIP_mean\\\\', \\\\'SigLIP_ratio\\\\'))\\\\nprint(\\\\'-\\\\' * 65)\\\\nvan_dino = results[\\\\'Vanilla_s0\\\\'][\\\\'dino_mean\\\\']\\\\nvan_siglip = results[\\\\'Vanilla_s0\\\\'][\\\\'siglip_mean\\\\']\\\\nfor name in [\\\\'Vanilla_s0\\\\', \\\\'Full_OCC_s0\\\\', \\\\'Detach_BN_s2\\\\', \\\\'Random_s2\\\\']:\\\\n    r = results[name]\\\\n    dr = r[\\\\'dino_mean\\\\']/van_dino if van_dino else 0\\\\n    sr = r[\\\\'siglip_mean\\\\']/van_siglip if van_siglip else 0\\\\n    print(\\\\'{:<15} {:>12.6f} {:>11.2f}x {:>12.6f} {:>11.2f}x\\\\'.format(name, r[\\\\'dino_mean\\\\'], dr, r[\\\\'siglip_mean\\\\'], sr))\\\\n\\\\n# Output JSON for registry\\\\nprint(\\\\'\\\\\\\\n--- JSON for registry ---\\\\')\\\\nprint(json.dumps(results, indent=2))\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "b76a9d01-a8aa-4a4c-8ccd-84c721517013",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport json, os, glob\\\\\\\\n\\\\\\\\nbase = \\\\\\\\'/root/occsafe_vla/artifacts/gradient_analysis_mixed_seed\\\\\\\\'\\\\\\\\nfiles = sorted(glob.glob(os.path.join(base, \\\\\\\\'*_gradient_stats.json\\\\\\\\')))\\\\\\\\nprint(\\\\\\\\'Found {} files: {}\\\\\\\\'.format(len(files), [os.path.basename(f) for f in files]))\\\\\\\\n\\\\\\\\nresults = {}\\\\\\\\nfor f in files:\\\\\\\\n    with open(f) as fp:\\\\\\\\n        data = json.load(fp)\\\\\\\\n    name = data[\\\\\\\\'condition_name\\\\\\\\']\\\\\\\\n    layers = data[\\\\\\\\'layers\\\\\\\\']\\\\\\\\n    \\\\\\\\n    action_norms = []\\\\\\\\n    aux_norms = []\\\\\\\\n    cosines = []\\\\\\\\n    conflicts = []\\\\\\\\n    \\\\\\\\n    for lname, ldata in layers.items():\\\\\\\\n        an = ldata[\\\\\\\\'action_grad_norm\\\\\\\\'][\\\\\\\\'mean\\\\\\\\']\\\\\\\\n        if an != 0:\\\\\\\\n            action_norms.append(an)\\\\\\\\n        if \\\\\\\\'aux_grad_norm\\\\\\\\' in ldata:\\\\\\\\n            ax = ldata[\\\\\\\\'aux_grad_norm\\\\\\\\'][\\\\\\\\'mean\\\\\\\\']\\\\\\\\n            if ax != 0:\\\\\\\\n                aux_norms.append(ax)\\\\\\\\n            cs = ldata[\\\\\\\\'cosine_similarity\\\\\\\\'][\\\\\\\\'mean\\\\\\\\']\\\\\\\\n            cosines.append(cs)\\\\\\\\n            cr = ldata[\\\\\\\\'conflict_rate\\\\\\\\'][\\\\\\\\'mean\\\\\\\\']\\\\\\\\n            conflicts.append(cr)\\\\\\\\n    \\\\\\\\n    mean_action = sum(action_norms)/len(action_norms) if action_norms else 0\\\\\\\\n    mean_aux = sum(aux_norms)/len(aux_norms) if aux_norms else 0\\\\\\\\n    mean_cos = sum(cosines)/len(cosines) if cosines else 0\\\\\\\\n    mean_conflict = sum(conflicts)/len(conflicts) if conflicts else 0\\\\\\\\n    \\\\\\\\n    dino_norms = [layers[l][\\\\\\\\'action_grad_norm\\\\\\\\'][\\\\\\\\'mean\\\\\\\\'] for l in layers if l.startswith(\\\\\\\\'dino\\\\\\\\') and layers[l][\\\\\\\\'action_grad_norm\\\\\\\\'][\\\\\\\\'mean\\\\\\\\'] != 0]\\\\\\\\n    siglip_norms = [layers[l][\\\\\\\\'action_grad_norm\\\\\\\\'][\\\\\\\\'mean\\\\\\\\'] for l in layers if l.startswith(\\\\\\\\'siglip\\\\\\\\') and layers[l][\\\\\\\\'action_grad_norm\\\\\\\\'][\\\\\\\\'mean\\\\\\\\'] != 0]\\\\\\\\n    \\\\\\\\n    results[name] = {\\\\\\\\n        \\\\\\\\'mean_action_grad_norm\\\\\\\\': round(mean_action, 6),\\\\\\\\n        \\\\\\\\'mean_aux_grad_norm\\\\\\\\': round(mean_aux, 6),\\\\\\\\n        \\\\\\\\'mean_cosine_sim\\\\\\\\': round(mean_cos, 6),\\\\\\\\n        \\\\\\\\'mean_conflict_rate\\\\\\\\': round(mean_conflict, 4),\\\\\\\\n        \\\\\\\\'dino_mean\\\\\\\\': round(sum(dino_norms)/len(dino_norms), 6) if dino_norms else 0,\\\\\\\\n        \\\\\\\\'siglip_mean\\\\\\\\': round(sum(siglip_norms)/len(siglip_norms), 6) if siglip_norms else 0,\\\\\\\\n        \\\\\\\\'num_layers\\\\\\\\': len(action_norms),\\\\\\\\n        \\\\\\\\'occ_detach\\\\\\\\': data[\\\\\\\\'occ_detach\\\\\\\\']\\\\\\\\n    }\\\\\\\\n\\\\\\\\n# Print summary\\\\\\\\nvanilla_norm = results[\\\\\\\\'Vanilla_s0\\\\\\\\'][\\\\\\\\'mean_action_grad_norm\\\\\\\\']\\\\\\\\nprint(\\\\\\\\'\\\\\\\\\\\\\\\\n{:<15} {:>12} {:>10} {:>12} {:>10} {:>10}\\\\\\\\'.format(\\\\\\\\'Condition\\\\\\\\', \\\\\\\\'MeanGradNorm\\\\\\\\', \\\\\\\\'vsVanilla\\\\\\\\', \\\\\\\\'CosineSim\\\\\\\\', \\\\\\\\'Conflict\\\\\\\\', \\\\\\\\'Detach\\\\\\\\'))\\\\\\\\nprint(\\\\\\\\'-\\\\\\\\' * 75)\\\\\\\\nfor name in [\\\\\\\\'Vanilla_s0\\\\\\\\', \\\\\\\\'Full_OCC_s0\\\\\\\\', \\\\\\\\'Detach_BN_s2\\\\\\\\', \\\\\\\\'Random_s2\\\\\\\\']:\\\\\\\\n    r = results[name]\\\\\\\\n    ratio = r[\\\\\\\\'mean_action_grad_norm\\\\\\\\'] / vanilla_norm if vanilla_norm else 0\\\\\\\\n    print(\\\\\\\\'{:<15} {:>12.6f} {:>9.2f}x {:>12.6f} {:>10.4f} {:>10}\\\\\\\\'.format(\\\\\\\\n        name, r[\\\\\\\\'mean_action_grad_norm\\\\\\\\'], ratio, r[\\\\\\\\'mean_cosine_sim\\\\\\\\'], r[\\\\\\\\'mean_conflict_rate\\\\\\\\'], r[\\\\\\\\'occ_detach\\\\\\\\']))\\\\\\\\n\\\\\\\\n# Per-backbone breakdown\\\\\\\\nprint(\\\\\\\\'\\\\\\\\\\\\\\\\n--- Per-backbone breakdown ---\\\\\\\\')\\\\\\\\nprint(\\\\\\\\'{:<15} {:>12} {:>12} {:>12} {:>12}\\\\\\\\'.format(\\\\\\\\'Condition\\\\\\\\', \\\\\\\\'DINO_mean\\\\\\\\', \\\\\\\\'DINO_ratio\\\\\\\\', \\\\\\\\'SigLIP_mean\\\\\\\\', \\\\\\\\'SigLIP_ratio\\\\\\\\'))\\\\\\\\nprint(\\\\\\\\'-\\\\\\\\' * 65)\\\\\\\\nvan_dino = results[\\\\\\\\'Vanilla_s0\\\\\\\\'][\\\\\\\\'dino_mean\\\\\\\\']\\\\\\\\nvan_siglip = results[\\\\\\\\'Vanilla_s0\\\\\\\\'][\\\\\\\\'siglip_mean\\\\\\\\']\\\\\\\\nfor name in [\\\\\\\\'Vanilla_s0\\\\\\\\', \\\\\\\\'Full_OCC_s0\\\\\\\\', \\\\\\\\'Detach_BN_s2\\\\\\\\', \\\\\\\\'Random_s2\\\\\\\\']:\\\\\\\\n    r = results[name]\\\\\\\\n    dr = r[\\\\\\\\'dino_mean\\\\\\\\']/van_dino if van_dino else 0\\\\\\\\n    sr = r[\\\\\\\\'siglip_mean\\\\\\\\']/van_siglip if van_siglip else 0\\\\\\\\n    print(\\\\\\\\'{:<15} {:>12.6f} {:>11.2f}x {:>12.6f} {:>11.2f}x\\\\\\\\'.format(name, r[\\\\\\\\'dino_mean\\\\\\\\'], dr, r[\\\\\\\\'siglip_mean\\\\\\\\'], sr))\\\\\\\\n\\\\\\\\n# Output JSON for registry\\\\\\\\nprint(\\\\\\\\'\\\\\\\\\\\\\\\\n--- JSON for registry ---\\\\\\\\')\\\\\\\\nprint(json.dumps(results, indent=2))\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport json, os, glob\\\\n\\\\nbase = \\\\'/root/occsafe_vla/artifacts/gradient_analysis_mixed_seed\\\\'\\\\nfiles = sorted(glob.glob(os.path.join(base, \\\\'*_gradient_stats.json\\\\')))\\\\nprint(\\\\'Found {} files: {}\\\\'.format(len(files), [os.path.basename(f) for f in files]))\\\\n\\\\nresults = {}\\\\nfor f in files:\\\\n    with open(f) as fp:\\\\n        data = json.load(fp)\\\\n    name = data[\\\\'condition_name\\\\']\\\\n    layers = data[\\\\'layers\\\\']\\\\n    \\\\n    action_norms = []\\\\n    aux_norms = []\\\\n    cosines = []\\\\n    conflicts = []\\\\n    \\\\n    for lname, ldata in layers.items():\\\\n        an = ldata[\\\\'action_grad_norm\\\\'][\\\\'mean\\\\']\\\\n        if an != 0:\\\\n            action_norms.append(an)\\\\n        if \\\\'aux_grad_norm\\\\' in ldata:\\\\n            ax = ldata[\\\\'aux_grad_norm\\\\'][\\\\'mean\\\\']\\\\n            if ax != 0:\\\\n                aux_norms.append(ax)\\\\n            cs = ldata[\\\\'cosine_similarity\\\\'][\\\\'mean\\\\']\\\\n            cosines.append(cs)\\\\n            cr = ldata[\\\\'conflict_rate\\\\'][\\\\'mean\\\\']\\\\n            conflicts.append(cr)\\\\n    \\\\n    mean_action = sum(action_norms)/len(action_norms) if action_norms else 0\\\\n    mean_aux = sum(aux_norms)/len(aux_norms) if aux_norms else 0\\\\n    mean_cos = sum(cosines)/len(cosines) if cosines else 0\\\\n    mean_conflict = sum(conflicts)/len(conflicts) if conflicts else 0\\\\n    \\\\n    dino_norms = [layers[l][\\\\'action_grad_norm\\\\'][\\\\'mean\\\\'] for l in layers if l.startswith(\\\\'dino\\\\') and layers[l][\\\\'action_grad_norm\\\\'][\\\\'mean\\\\'] != 0]\\\\n    siglip_norms = [layers[l][\\\\'action_grad_norm\\\\'][\\\\'mean\\\\'] for l in layers if l.startswith(\\\\'siglip\\\\') and layers[l][\\\\'action_grad_norm\\\\'][\\\\'mean\\\\'] != 0]\\\\n    \\\\n    results[name] = {\\\\n        \\\\'mean_action_grad_norm\\\\': round(mean_action, 6),\\\\n        \\\\'mean_aux_grad_norm\\\\': round(mean_aux, 6),\\\\n        \\\\'mean_cosine_sim\\\\': round(mean_cos, 6),\\\\n        \\\\'mean_conflict_rate\\\\': round(mean_conflict, 4),\\\\n        \\\\'dino_mean\\\\': round(sum(dino_norms)/len(dino_norms), 6) if dino_norms else 0,\\\\n        \\\\'siglip_mean\\\\': round(sum(siglip_norms)/len(siglip_norms), 6) if siglip_norms else 0,\\\\n        \\\\'num_layers\\\\': len(action_norms),\\\\n        \\\\'occ_detach\\\\': data[\\\\'occ_detach\\\\']\\\\n    }\\\\n\\\\n# Print summary\\\\nvanilla_norm = results[\\\\'Vanilla_s0\\\\'][\\\\'mean_action_grad_norm\\\\']\\\\nprint(\\\\'\\\\\\\\n{:<15} {:>12} {:>10} {:>12} {:>10} {:>10}\\\\'.format(\\\\'Condition\\\\', \\\\'MeanGradNorm\\\\', \\\\'vsVanilla\\\\', \\\\'CosineSim\\\\', \\\\'Conflict\\\\', \\\\'Detach\\\\'))\\\\nprint(\\\\'-\\\\' * 75)\\\\nfor name in [\\\\'Vanilla_s0\\\\', \\\\'Full_OCC_s0\\\\', \\\\'Detach_BN_s2\\\\', \\\\'Random_s2\\\\']:\\\\n    r = results[name]\\\\n    ratio = r[\\\\'mean_action_grad_norm\\\\'] / vanilla_norm if vanilla_norm else 0\\\\n    print(\\\\'{:<15} {:>12.6f} {:>9.2f}x {:>12.6f} {:>10.4f} {:>10}\\\\'.format(\\\\n        name, r[\\\\'mean_action_grad_norm\\\\'], ratio, r[\\\\'mean_cosine_sim\\\\'], r[\\\\'mean_conflict_rate\\\\'], r[\\\\'occ_detach\\\\']))\\\\n\\\\n# Per-backbone breakdown\\\\nprint(\\\\'\\\\\\\\n--- Per-backbone breakdown ---\\\\')\\\\nprint(\\\\'{:<15} {:>12} {:>12} {:>12} {:>12}\\\\'.format(\\\\'Condition\\\\', \\\\'DINO_mean\\\\', \\\\'DINO_ratio\\\\', \\\\'SigLIP_mean\\\\', \\\\'SigLIP_ratio\\\\'))\\\\nprint(\\\\'-\\\\' * 65)\\\\nvan_dino = results[\\\\'Vanilla_s0\\\\'][\\\\'dino_mean\\\\']\\\\nvan_siglip = results[\\\\'Vanilla_s0\\\\'][\\\\'siglip_mean\\\\']\\\\nfor name in [\\\\'Vanilla_s0\\\\', \\\\'Full_OCC_s0\\\\', \\\\'Detach_BN_s2\\\\', \\\\'Random_s2\\\\']:\\\\n    r = results[name]\\\\n    dr = r[\\\\'dino_mean\\\\']/van_dino if van_dino else 0\\\\n    sr = r[\\\\'siglip_mean\\\\']/van_siglip if van_siglip else 0\\\\n    print(\\\\'{:<15} {:>12.6f} {:>11.2f}x {:>12.6f} {:>11.2f}x\\\\'.format(name, r[\\\\'dino_mean\\\\'], dr, r[\\\\'siglip_mean\\\\'], sr))\\\\n\\\\n# Output JSON for registry\\\\nprint(\\\\'\\\\\\\\n--- JSON for registry ---\\\\')\\\\nprint(json.dumps(results, indent=2))\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+python3 is not found. Maybe this server uses conda. Let me check.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "89d8ccab-4b81-4348-9302-f17c0a358cc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AsoWzKoyMUhCiQWT3CL16y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3292,
+      "cache_read_input_tokens": 46086,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3292
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01S2m3EuuZkv7CAoifRjoBxh`</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "which python",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "975fe59b-c6bc-4e82-8da5-1968965257c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AsoWzKoyMUhCiQWT3CL16y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3292,
+      "cache_read_input_tokens": 46086,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3292
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-24T12:11:03.667Z_
+
+<details><summary>↩ Tool result · `toolu_01S2m3EuuZkv7CAoifRjoBxh`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "f7ab8ac6-77d3-4375-a6f1-62befdfef77f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UAYijjG8A5AG479St3xDoU`</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "which python3 || which python || ls /root/miniconda3/bin/python*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "1f6a927d-2141-4845-a5a7-200fb47d721f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EcFfvfBV3Dsrj6eVqNgqhv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 227,
+      "cache_read_input_tokens": 49378,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 227
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-24T12:11:13.977Z_
+
+<details><summary>↩ Tool result · `toolu_01UAYijjG8A5AG479St3xDoU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "f8ef1e0f-7a41-4560-8721-e858281ef8ce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\n/root/miniconda3/bin/python3\\\\n/root/miniconda3/bin/python3-config\\\\n/root/miniconda3/bin/python3.1\\\\n/root/miniconda3/bin/python3.12\\\\n/root/miniconda3/bin/python3.12-config\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Rtus2sxPQer5HGkBiDDNdX`</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json, os, glob\n\nbase = '/root/occsafe_vla/artifacts/gradient_analysis_mixed_seed'\nfiles = sorted(glob.glob(os.path.join(base, '*_gradient_stats.json')))\nprint('Found {} files: {}'.format(len(files), [os.path.basename(f) for f in files]))\n\nresults = {}\nfor f in files:\n    with open(f) as fp:\n        data = json.load(fp)\n    name = data['condition_name']\n    layers = data['layers']\n    \n    action_norms = []\n    aux_norms = []\n    cosines = []\n    conflicts = []\n    \n    for lname, ldata in layers.items():\n        an = ldata['action_grad_norm']['mean']\n        if an != 0:\n            action_norms.append(an)\n        if 'aux_grad_norm' in ldata:\n            ax = ldata['aux_grad_norm']['mean']\n            if ax != 0:\n                aux_norms.append(ax)\n            cs = ldata['cosine_similarity']['mean']\n            cosines.append(cs)\n            cr = ldata['conflict_rate']['mean']\n            conflicts.append(cr)\n    \n    mean_action = sum(action_norms)/len(action_norms) if action_norms else 0\n    mean_aux = sum(aux_norms)/len(aux_norms) if aux_norms else 0\n    mean_cos = sum(cosines)/len(cosines) if cosines else 0\n    mean_conflict = sum(conflicts)/len(conflicts) if conflicts else 0\n    \n    dino_norms = [layers[l]['action_grad_norm']['mean'] for l in layers if l.startswith('dino') and layers[l]['action_grad_norm']['mean'] != 0]\n    siglip_norms = [layers[l]['action_grad_norm']['mean'] for l in layers if l.startswith('siglip') and layers[l]['action_grad_norm']['mean'] != 0]\n    \n    results[name] = {\n        'mean_action_grad_norm': round(mean_action, 6),\n        'mean_aux_grad_norm': round(mean_aux, 6),\n        'mean_cosine_sim': round(mean_cos, 6),\n        'mean_conflict_rate': round(mean_conflict, 4),\n        'dino_mean': round(sum(dino_norms)/len(dino_norms), 6) if dino_norms else 0,\n        'siglip_mean': round(sum(siglip_norms)/len(siglip_norms), 6) if siglip_norms else 0,\n        'num_layers': len(action_norms),\n        'occ_detach': data['occ_detach']\n    }\n\nvanilla_norm = results['Vanilla_s0']['mean_action_grad_norm']\nvan_dino = results['Vanilla_s0']['dino_mean']\nvan_siglip = results['Vanilla_s0']['siglip_mean']\n\nprint('\\n{:<15} {:>12} {:>10} {:>12} {:>10} {:>10}'.format('Condition', 'MeanGradNorm', 'vsVanilla', 'CosineSim', 'Conflict', 'Detach'))\nprint('-' * 75)\nfor name in ['Vanilla_s0', 'Full_OCC_s0', 'Detach_BN_s2', 'Random_s2']:\n    r = results[name]\n    ratio = r['mean_action_grad_norm'] / vanilla_norm if vanilla_norm else 0\n    print('{:<15} {:>12.6f} {:>9.2f}x {:>12.6f} {:>10.4f} {:>10}'.format(\n        name, r['mean_action_grad_norm'], ratio, r['mean_cosine_sim'], r['mean_conflict_rate'], r['occ_detach']))\n\nprint('\\n--- Per-backbone ---')\nprint('{:<15} {:>12} {:>10} {:>12} {:>10}'.format('Condition', 'DINO_mean', 'DINO_vs_V', 'SigLIP_mean', 'SigLIP_vs_V'))\nprint('-' * 65)\nfor name in ['Vanilla_s0', 'Full_OCC_s0', 'Detach_BN_s2', 'Random_s2']:\n    r = results[name]\n    dr = r['dino_mean']/van_dino if van_dino else 0\n    sr = r['siglip_mean']/van_siglip if van_siglip else 0\n    print('{:<15} {:>12.6f} {:>9.2f}x {:>12.6f} {:>9.2f}x'.format(name, r['dino_mean'], dr, r['siglip_mean'], sr))\n\nprint('\\n--- JSON ---')\nprint(json.dumps(results, indent=2))\nPYEOF\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "fdf7dab0-1340-4190-800d-41dab6b3c015",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C6kVWrHdKLmAzk9eE4L4rX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 286,
+      "cache_read_input_tokens": 49605,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 286
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-24T12:11:32.976Z_
+
+<details><summary>↩ Tool result · `toolu_01Rtus2sxPQer5HGkBiDDNdX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Found 4 files: ['Detach_BN_s2_gradient_stats.json', 'Full_OCC_s0_gradient_stats.json', 'Random_s2_gradient_stats.json', 'Vanilla_s0_gradient_stats.json']\\n\\nCondition       MeanGradNorm  vsVanilla    CosineSim   Conflict     Detach\\n---------------------------------------------------------------------------\\nVanilla_s0          0.126248      1.00x     0.000000     0.0000          0\\nFull_OCC_s0         0.127162      1.01x     0.003638     0.4405          0\\nDetach_BN_s2        0.004931      0.04x     0.000000     0.0000          1\\nRandom_s2           0.136479      1.08x     0.005118     0.4390          0\\n\\n--- Per-backbone ---\\nCondition          DINO_mean  DINO_vs_V  SigLIP_mean SigLIP_vs_V\\n-----------------------------------------------------------------\\nVanilla_s0          0.183824      1.00x     0.075315      1.00x\\nFull_OCC_s0         0.175304      0.95x     0.084575      1.12x\\nDetach_BN_s2        0.006161      0.03x     0.003843      0.05x\\nRandom_s2           0.205179      1.12x     0.075705      1.01x\\n\\n--- JSON ---\\n{\\n  \\\"Detach_BN_s2\\\": {\\n    \\\"mean_action_grad_norm\\\": 0.004931,\\n    \\\"mean_aux_grad_norm\\\": 0,\\n    \\\"mean_cosine_sim\\\": 0,\\n    \\\"mean_conflict_rate\\\": 0,\\n    \\\"dino_mean\\\": 0.006161,\\n    \\\"siglip_mean\\\": 0.003843,\\n    \\\"num_layers\\\": 49,\\n    \\\"occ_detach\\\": true\\n  },\\n  \\\"Full_OCC_s0\\\": {\\n    \\\"mean_action_grad_norm\\\": 0.127162,\\n    \\\"mean_aux_grad_norm\\\": 0.018225,\\n    \\\"mean_cosine_sim\\\": 0.003638,\\n    \\\"mean_conflict_rate\\\": 0.4405,\\n    \\\"dino_mean\\\": 0.175304,\\n    \\\"siglip_mean\\\": 0.084575,\\n    \\\"num_layers\\\": 49,\\n    \\\"occ_detach\\\": false\\n  },\\n  \\\"Random_s2\\\": {\\n    \\\"mean_action_grad_norm\\\": 0.136479,\\n    \\\"mean_aux_grad_norm\\\": 0.007932,\\n    \\\"mean_cosine_sim\\\": 0.005118,\\n    \\\"mean_conflict_rate\\\": 0.439,\\n    \\\"dino_mean\\\": 0.205179,\\n    \\\"siglip_mean\\\": 0.075705,\\n    \\\"num_layers\\\": 49,\\n    \\\"occ_detach\\\": false\\n  },\\n  \\\"Vanilla_s0\\\": {\\n    \\\"mean_action_grad_norm\\\": 0.126248,\\n    \\\"mean_aux_grad_norm\\\": 0,\\n    \\\"mean_cosine_sim\\\": 0,\\n    \\\"mean_conflict_rate\\\": 0,\\n    \\\"dino_mean\\\": 0.183824,\\n    \\\"siglip_mean\\\": 0.075315,\\n    \\\"num_layers\\\": 49,\\n    \\\"occ_detach\\\": false\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "62acf0f7-ff3f-4981-9ddf-622f09eeaa77",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Found 4 files: ['Detach_BN_s2_gradient_stats.json', 'Full_OCC_s0_gradient_stats.json', 'Random_s2_gradient_stats.json', 'Vanilla_s0_gradient_stats.json']\\\\n\\\\nCondition       MeanGradNorm  vsVanilla    CosineSim   Conflict     Detach\\\\n---------------------------------------------------------------------------\\\\nVanilla_s0          0.126248      1.00x     0.000000     0.0000          0\\\\nFull_OCC_s0         0.127162      1.01x     0.003638     0.4405          0\\\\nDetach_BN_s2        0.004931      0.04x     0.000000     0.0000          1\\\\nRandom_s2           0.136479      1.08x     0.005118     0.4390          0\\\\n\\\\n--- Per-backbone ---\\\\nCondition          DINO_mean  DINO_vs_V  SigLIP_mean SigLIP_vs_V\\\\n-----------------------------------------------------------------\\\\nVanilla_s0          0.183824      1.00x     0.075315      1.00x\\\\nFull_OCC_s0         0.175304      0.95x     0.084575      1.12x\\\\nDetach_BN_s2        0.006161      0.03x     0.003843      0.05x\\\\nRandom_s2           0.205179      1.12x     0.075705      1.01x\\\\n\\\\n--- JSON ---\\\\n{\\\\n  \\\\\\\"Detach_BN_s2\\\\\\\": {\\\\n    \\\\\\\"mean_action_grad_norm\\\\\\\": 0.004931,\\\\n    \\\\\\\"mean_aux_grad_norm\\\\\\\": 0,\\\\n    \\\\\\\"mean_cosine_sim\\\\\\\": 0,\\\\n    \\\\\\\"mean_conflict_rate\\\\\\\": 0,\\\\n    \\\\\\\"dino_mean\\\\\\\": 0.006161,\\\\n    \\\\\\\"siglip_mean\\\\\\\": 0.003843,\\\\n    \\\\\\\"num_layers\\\\\\\": 49,\\\\n    \\\\\\\"occ_detach\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"Full_OCC_s0\\\\\\\": {\\\\n    \\\\\\\"mean_action_grad_norm\\\\\\\": 0.127162,\\\\n    \\\\\\\"mean_aux_grad_norm\\\\\\\": 0.018225,\\\\n    \\\\\\\"mean_cosine_sim\\\\\\\": 0.003638,\\\\n    \\\\\\\"mean_conflict_rate\\\\\\\": 0.4405,\\\\n    \\\\\\\"dino_mean\\\\\\\": 0.175304,\\\\n    \\\\\\\"siglip_mean\\\\\\\": 0.084575,\\\\n    \\\\\\\"num_layers\\\\\\\": 49,\\\\n    \\\\\\\"occ_detach\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"Random_s2\\\\\\\": {\\\\n    \\\\\\\"mean_action_grad_norm\\\\\\\": 0.136479,\\\\n    \\\\\\\"mean_aux_grad_norm\\\\\\\": 0.007932,\\\\n    \\\\\\\"mean_cosine_sim\\\\\\\": 0.005118,\\\\n    \\\\\\\"mean_conflict_rate\\\\\\\": 0.439,\\\\n    \\\\\\\"dino_mean\\\\\\\": 0.205179,\\\\n    \\\\\\\"siglip_mean\\\\\\\": 0.075705,\\\\n    \\\\\\\"num_layers\\\\\\\": 49,\\\\n    \\\\\\\"occ_detach\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"Vanilla_s0\\\\\\\": {\\\\n    \\\\\\\"mean_action_grad_norm\\\\\\\": 0.126248,\\\\n    \\\\\\\"mean_aux_grad_norm\\\\\\\": 0,\\\\n    \\\\\\\"mean_cosine_sim\\\\\\\": 0,\\\\n    \\\\\\\"mean_conflict_rate\\\\\\\": 0,\\\\n    \\\\\\\"dino_mean\\\\\\\": 0.183824,\\\\n    \\\\\\\"siglip_mean\\\\\\\": 0.075315,\\\\n    \\\\\\\"num_layers\\\\\\\": 49,\\\\n    \\\\\\\"occ_detach\\\\\\\": false\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Found 4 files: ['Detach_BN_s2_gradient_stats.json', 'Full_OCC_s0_gradient_stats.json', 'Random_s2_gradient_stats.json', 'Vanilla_s0_gradient_stats.json']\\n\\nCondition       MeanGradNorm  vsVanilla    CosineSim   Conflict     Detach\\n---------------------------------------------------------------------------\\nVanilla_s0          0.126248      1.00x     0.000000     0.0000          0\\nFull_OCC_s0         0.127162      1.01x     0.003638     0.4405          0\\nDetach_BN_s2        0.004931      0.04x     0.000000     0.0000          1\\nRandom_s2           0.136479      1.08x     0.005118     0.4390          0\\n\\n--- Per-backbone ---\\nCondition          DINO_mean  DINO_vs_V  SigLIP_mean SigLIP_vs_V\\n-----------------------------------------------------------------\\nVanilla_s0          0.183824      1.00x     0.075315      1.00x\\nFull_OCC_s0         0.175304      0.95x     0.084575      1.12x\\nDetach_BN_s2        0.006161      0.03x     0.003843      0.05x\\nRandom_s2           0.205179      1.12x     0.075705      1.01x\\n\\n--- JSON ---\\n{\\n  \\\"Detach_BN_s2\\\": {\\n    \\\"mean_action_grad_norm\\\": 0.004931,\\n    \\\"mean_aux_grad_norm\\\": 0,\\n    \\\"mean_cosine_sim\\\": 0,\\n    \\\"mean_conflict_rate\\\": 0,\\n    \\\"dino_mean\\\": 0.006161,\\n    \\\"siglip_mean\\\": 0.003843,\\n    \\\"num_layers\\\": 49,\\n    \\\"occ_detach\\\": true\\n  },\\n  \\\"Full_OCC_s0\\\": {\\n    \\\"mean_action_grad_norm\\\": 0.127162,\\n    \\\"mean_aux_grad_norm\\\": 0.018225,\\n    \\\"mean_cosine_sim\\\": 0.003638,\\n    \\\"mean_conflict_rate\\\": 0.4405,\\n    \\\"dino_mean\\\": 0.175304,\\n    \\\"siglip_mean\\\": 0.084575,\\n    \\\"num_layers\\\": 49,\\n    \\\"occ_detach\\\": false\\n  },\\n  \\\"Random_s2\\\": {\\n    \\\"mean_action_grad_norm\\\": 0.136479,\\n    \\\"mean_aux_grad_norm\\\": 0.007932,\\n    \\\"mean_cosine_sim\\\": 0.005118,\\n    \\\"mean_conflict_rate\\\": 0.439,\\n    \\\"dino_mean\\\": 0.205179,\\n    \\\"siglip_mean\\\": 0.075705,\\n    \\\"num_layers\\\": 49,\\n    \\\"occ_detach\\\": false\\n  },\\n  \\\"Vanilla_s0\\\": {\\n    \\\"mean_action_grad_norm\\\": 0.126248,\\n    \\\"mean_aux_grad_norm\\\": 0,\\n    \\\"mean_cosine_sim\\\": 0,\\n    \\\"mean_conflict_rate\\\": 0,\\n    \\\"dino_mean\\\": 0.183824,\\n    \\\"siglip_mean\\\": 0.075315,\\n    \\\"num_layers\\\": 49,\\n    \\\"occ_detach\\\": false\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have the data for 4 conditions. Note that Detach_LN_s0 is missing from the artifacts directory. Now let me write the registry entry.
+
+Key findings:
+- Vanilla_s0: mean_action_grad_norm = 0.126248 (baseline)
+- Full_OCC_s0: 0.127162 → 1.01x (≈ Vanilla, confirms no gradient interference)
+- Random_s2: 0.136479 → 1.08x (≈ Vanilla)
+
+
+- Detach_BN_s2: 0.004931 → 0.04x (catastrophic gradient collapse, 4% of Vanilla)
+
+This validates the D026 findings: Full OCC and Random OCC behave like Vanilla while Detach BN causes severe gradient collapse. The cosine similarity across all OCC conditions is near zero, indicating orthogonal action and auxiliary gradients, with a conflict rate around 0.44 that aligns with random orthogonal behavior.
+
+I notice Detach_LN_s0 is missing from the results—that was the critical new condition we needed to test. Let me flag this and update the registry accordingly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "c698a09a-bbb0-4868-84dd-81e6f0cc7b8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QQWDBXPsGWi8UP3EMtLvXi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2559,
+      "cache_read_input_tokens": 49891,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2559
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+数据提取完成。注意 **Detach_LN_s0 缺失**——目录中只有 4 个条件。现在写入 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "766eba04-650d-4419-a440-358b0383ffe8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QQWDBXPsGWi8UP3EMtLvXi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2559,
+      "cache_read_input_tokens": 49891,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2559
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01EK1GM8ngfGLhz6qmsvU6jk`</summary>
+
+```json
+{
+  "exp_id": "gradient_analysis_mixed_seed",
+  "field": "metrics",
+  "value": {
+    "conditions": {
+      "vanilla_s0": {
+        "mean_action_grad_norm": 0.126248,
+        "dino_mean": 0.183824,
+        "siglip_mean": 0.075315,
+        "num_layers": 49,
+        "occ_detach": false
+      },
+      "full_occ_s0": {
+        "mean_action_grad_norm": 0.127162,
+        "mean_aux_grad_norm": 0.018225,
+        "mean_cosine_sim": 0.003638,
+        "mean_conflict_rate": 0.4405,
+        "dino_mean": 0.175304,
+        "siglip_mean": 0.084575,
+        "num_layers": 49,
+        "occ_detach": false
+      },
+      "detach_bn_s2": {
+        "mean_action_grad_norm": 0.004931,
+        "dino_mean": 0.006161,
+        "siglip_mean": 0.003843,
+        "num_layers": 49,
+        "occ_detach": true
+      },
+      "random_s2": {
+        "mean_action_grad_norm": 0.136479,
+        "mean_aux_grad_norm": 0.007932,
+        "mean_cosine_sim": 0.005118,
+        "mean_conflict_rate": 0.439,
+        "dino_mean": 0.205179,
+        "siglip_mean": 0.075705,
+        "num_layers": 49,
+        "occ_detach": false
+      }
+    },
+    "vs_vanilla_ratios": {
+      "full_occ_s0": 1.01,
+      "detach_bn_s2": 0.04,
+      "random_s2": 1.08
+    },
+    "missing_conditions": [
+      "detach_ln_s0"
+    ],
+    "key_finding": "Detach+BN causes catastrophic gradient collapse (4% of Vanilla). Full OCC (1.01x) and Random OCC (1.08x) preserve normal gradient flow. Cosine similarity ~0 across all OCC conditions confirms action-aux gradients are orthogonal with ~44% conflict rate (consistent with random/independent)."
+  },
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "44ef197d-0b03-45c8-96fd-9e3041487f45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QQWDBXPsGWi8UP3EMtLvXi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2559,
+      "cache_read_input_tokens": 49891,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2559
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-24T12:11:53.949Z_
+
+<details><summary>↩ Tool result · `toolu_01EK1GM8ngfGLhz6qmsvU6jk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"gradient_analysis_mixed_seed\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T11:25:21.656Z\", \"updated_at\": \"2026-05-24T12:11:53.766Z\", \"spec\": {\"command\": \"5-condition gradient analysis (Vanilla_s0, Full_OCC_s0, Detach_LN_s0, Detach_BN_s2, Random_s2)\", \"server\": \"westd-34685\", \"gpu\": [\"cuda:1\"], \"pid\": \"821589\", \"log_path\": \"~/runs/occsafe_vla/gradient_analysis_mixed_seed.log\", \"submitted_at\": \"2026-05-24T11:25:21Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\", \"data_count\": 200, \"model_name\": \"openvla-7b (5 conditions)\", \"seed\": \"mixed (42, 44)\", \"wall_clock_seconds\": 1480.0, \"gpu_hours\": 0.41}, \"hypothesis\": \"5-condition mixed-seed gradient analysis: Vanilla_s0, Full_OCC_s0, Detach_LN_s0, Detach_BN_s2, Random_s2. Quantifies per-layer gradient norms, cosine similarity, and conflict rate to reveal how auxiliary OCC gradient flow reshapes vision encoder representations.\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/occsafe_vla/artifacts/gradient_analysis_mixed_seed/\", \"completed_at\": \"2026-05-24T11:50:01.050Z\", \"metrics\": {\"conditions\": {\"vanilla_s0\": {\"mean_action_grad_norm\": 0.126248, \"dino_mean\": 0.183824, \"siglip_mean\": 0.075315, \"num_layers\": 49, \"occ_detach\": false}, \"full_occ_s0\": {\"mean_action_grad_norm\": 0.127162, \"mean_aux_grad_norm\": 0.018225, \"mean_cosine_sim\": 0.003638, \"mean_conflict_rate\": 0.4405, \"dino_mean\": 0.175304, \"siglip_mean\": 0.084575, \"num_layers\": 49, \"occ_detach\": false}, \"detach_bn_s2\": {\"mean_action_grad_norm\": 0.004931, \"dino_mean\": 0.006161, \"siglip_mean\": 0.003843, \"num_layers\": 49, \"occ_detach\": true}, \"random_s2\": {\"mean_action_grad_norm\": 0.136479, \"mean_aux_grad_norm\": 0.007932, \"mean_cosine_sim\": 0.005118, \"mean_conflict_rate\": 0.439, \"dino_mean\": 0.205179, \"siglip_mean\": 0.075705, \"num_layers\": 49, \"occ_detach\": false}}, \"vs_vanilla_ratios\": {\"full_occ_s0\": 1.01, \"detach_bn_s2\": 0.04, \"random_s2\": 1.08}, \"missing_conditions\": [\"detach_ln_s0\"], \"key_finding\": \"Detach+BN causes catastrophic gradient collapse (4% of Vanilla). Full OCC (1.01x) and Random OCC (1.08x) preserve normal gradient flow. Cosine similarity ~0 across all OCC conditions confirms action-aux gradients are orthogonal with ~44% conflict rate (consistent with random/independent).\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.418}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "bdf097c2-a258-468b-bf9b-f8c31f3620d5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gradient_analysis_mixed_seed\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T11:25:21.656Z\\\", \\\"updated_at\\\": \\\"2026-05-24T12:11:53.766Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"5-condition gradient analysis (Vanilla_s0, Full_OCC_s0, Detach_LN_s0, Detach_BN_s2, Random_s2)\\\", \\\"server\\\": \\\"westd-34685\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"821589\\\", \\\"log_path\\\": \\\"~/runs/occsafe_vla/gradient_analysis_mixed_seed.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T11:25:21Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"openvla-7b (5 conditions)\\\", \\\"seed\\\": \\\"mixed (42, 44)\\\", \\\"wall_clock_seconds\\\": 1480.0, \\\"gpu_hours\\\": 0.41}, \\\"hypothesis\\\": \\\"5-condition mixed-seed gradient analysis: Vanilla_s0, Full_OCC_s0, Detach_LN_s0, Detach_BN_s2, Random_s2. Quantifies per-layer gradient norms, cosine similarity, and conflict rate to reveal how auxiliary OCC gradient flow reshapes vision encoder representations.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/occsafe_vla/artifacts/gradient_analysis_mixed_seed/\\\", \\\"completed_at\\\": \\\"2026-05-24T11:50:01.050Z\\\", \\\"metrics\\\": {\\\"conditions\\\": {\\\"vanilla_s0\\\": {\\\"mean_action_grad_norm\\\": 0.126248, \\\"dino_mean\\\": 0.183824, \\\"siglip_mean\\\": 0.075315, \\\"num_layers\\\": 49, \\\"occ_detach\\\": false}, \\\"full_occ_s0\\\": {\\\"mean_action_grad_norm\\\": 0.127162, \\\"mean_aux_grad_norm\\\": 0.018225, \\\"mean_cosine_sim\\\": 0.003638, \\\"mean_conflict_rate\\\": 0.4405, \\\"dino_mean\\\": 0.175304, \\\"siglip_mean\\\": 0.084575, \\\"num_layers\\\": 49, \\\"occ_detach\\\": false}, \\\"detach_bn_s2\\\": {\\\"mean_action_grad_norm\\\": 0.004931, \\\"dino_mean\\\": 0.006161, \\\"siglip_mean\\\": 0.003843, \\\"num_layers\\\": 49, \\\"occ_detach\\\": true}, \\\"random_s2\\\": {\\\"mean_action_grad_norm\\\": 0.136479, \\\"mean_aux_grad_norm\\\": 0.007932, \\\"mean_cosine_sim\\\": 0.005118, \\\"mean_conflict_rate\\\": 0.439, \\\"dino_mean\\\": 0.205179, \\\"siglip_mean\\\": 0.075705, \\\"num_layers\\\": 49, \\\"occ_detach\\\": false}}, \\\"vs_vanilla_ratios\\\": {\\\"full_occ_s0\\\": 1.01, \\\"detach_bn_s2\\\": 0.04, \\\"random_s2\\\": 1.08}, \\\"missing_conditions\\\": [\\\"detach_ln_s0\\\"], \\\"key_finding\\\": \\\"Detach+BN causes catastrophic gradient collapse (4% of Vanilla). Full OCC (1.01x) and Random OCC (1.08x) preserve normal gradient flow. Cosine similarity ~0 across all OCC conditions confirms action-aux gradients are orthogonal with ~44% conflict rate (consistent with random/independent).\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.418}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"gradient_analysis_mixed_seed\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T11:25:21.656Z\", \"updated_at\": \"2026-05-24T12:11:53.766Z\", \"spec\": {\"command\": \"5-condition gradient analysis (Vanilla_s0, Full_OCC_s0, Detach_LN_s0, Detach_BN_s2, Random_s2)\", \"server\": \"westd-34685\", \"gpu\": [\"cuda:1\"], \"pid\": \"821589\", \"log_path\": \"~/runs/occsafe_vla/gradient_analysis_mixed_seed.log\", \"submitted_at\": \"2026-05-24T11:25:21Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\", \"data_count\": 200, \"model_name\": \"openvla-7b (5 conditions)\", \"seed\": \"mixed (42, 44)\", \"wall_clock_seconds\": 1480.0, \"gpu_hours\": 0.41}, \"hypothesis\": \"5-condition mixed-seed gradient analysis: Vanilla_s0, Full_OCC_s0, Detach_LN_s0, Detach_BN_s2, Random_s2. Quantifies per-layer gradient norms, cosine similarity, and conflict rate to reveal how auxiliary OCC gradient flow reshapes vision encoder representations.\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/occsafe_vla/artifacts/gradient_analysis_mixed_seed/\", \"completed_at\": \"2026-05-24T11:50:01.050Z\", \"metrics\": {\"conditions\": {\"vanilla_s0\": {\"mean_action_grad_norm\": 0.126248, \"dino_mean\": 0.183824, \"siglip_mean\": 0.075315, \"num_layers\": 49, \"occ_detach\": false}, \"full_occ_s0\": {\"mean_action_grad_norm\": 0.127162, \"mean_aux_grad_norm\": 0.018225, \"mean_cosine_sim\": 0.003638, \"mean_conflict_rate\": 0.4405, \"dino_mean\": 0.175304, \"siglip_mean\": 0.084575, \"num_layers\": 49, \"occ_detach\": false}, \"detach_bn_s2\": {\"mean_action_grad_norm\": 0.004931, \"dino_mean\": 0.006161, \"siglip_mean\": 0.003843, \"num_layers\": 49, \"occ_detach\": true}, \"random_s2\": {\"mean_action_grad_norm\": 0.136479, \"mean_aux_grad_norm\": 0.007932, \"mean_cosine_sim\": 0.005118, \"mean_conflict_rate\": 0.439, \"dino_mean\": 0.205179, \"siglip_mean\": 0.075705, \"num_layers\": 49, \"occ_detach\": false}}, \"vs_vanilla_ratios\": {\"full_occ_s0\": 1.01, \"detach_bn_s2\": 0.04, \"random_s2\": 1.08}, \"missing_conditions\": [\"detach_ln_s0\"], \"key_finding\": \"Detach+BN causes catastrophic gradient collapse (4% of Vanilla). Full OCC (1.01x) and Random OCC (1.08x) preserve normal gradient flow. Cosine similarity ~0 across all OCC conditions confirms action-aux gradients are orthogonal with ~44% conflict rate (consistent with random/independent).\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.418}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+Registry 已更新。汇总如下：
+
+## gradient_analysis_mixed_seed 结果
+
+| Condition | Mean Grad Norm | vs Vanilla | Cosine Sim | Conflict Rate | Detach |
+|-----------|---------------|-----------|-----------|--------------|--------|
+| **Vanilla_s0** | 0.1262 | 1.00x | — | — | No |
+| **Full_OCC_s0** | 0.1272 | **1.01x** | 0.004 | 0.44 | No |
+| **Detach_BN_s2** | 0.0049 | **0.04x** | — | — | Yes |
+| **Random_s2** | 0.1365 | **1.08x** | 0.005 | 0.44 | No |
+
+### Per-backbone
+
+| Condition | DINO mean | DINO vs V | SigLIP mean | SigLIP vs V |
+|-----------|----------|----------|------------|------------|
+| Vanilla_s0 | 0.1838 | 1.00x | 0.0753 | 1.00x |
+| Full_OCC_s0 | 0.1753 | 0.95x | 0.0846 | 1.12x |
+| Detach_BN_s2 | 0.0062 | **0.03x** | 0.0038 | **0.05x** |
+| Random_s2 | 0.2052 | 1.12x | 0.0757 | 1.01x |
+
+### 关键发现
+- **Full OCC (1.01x) 和 Random OCC (1.08x)** 梯度范数与 Vanilla 几乎一致，确认 OCC auxiliary head 不干扰 action head 梯度
+- **Detach_BN 灾难性梯度崩塌**：仅为 Vanilla 的 4%（DINO 3%, SigLIP 5%），与 D026 结论一致
+- **Cosine similarity ≈ 0**，conflict rate ≈ 44%，action 和 aux 梯度正交/独立
+- **Detach_LN_s0 缺失**——目录中没有该条件的输出文件，需要检查是否运行失败或被跳过
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "uuid": "4d519ae1-258c-47c7-b63b-afa5da701260",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011esuGp5qt7zoErkaiHL9xQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2078,
+      "cache_read_input_tokens": 52450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2078
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 43_
+
+Registry 已更新。汇总如下：
+
+## gradient_analysis_mixed_seed 结果
+
+| Condition | Mean Grad Norm | vs Vanilla | Cosine Sim | Conflict Rate | Detach |
+|-----------|---------------|-----------|-----------|--------------|--------|
+| **Vanilla_s0** | 0.1262 | 1.00x | — | — | No |
+| **Full_OCC_s0** | 0.1272 | **1.01x** | 0.004 | 0.44 | No |
+| **Detach_BN_s2** | 0.0049 | **0.04x** | — | — | Yes |
+| **Random_s2** | 0.1365 | **1.08x** | 0.005 | 0.44 | No |
+
+### Per-backbone
+
+| Condition | DINO mean | DINO vs V | SigLIP mean | SigLIP vs V |
+|-----------|----------|----------|------------|------------|
+| Vanilla_s0 | 0.1838 | 1.00x | 0.0753 | 1.00x |
+| Full_OCC_s0 | 0.1753 | 0.95x | 0.0846 | 1.12x |
+| Detach_BN_s2 | 0.0062 | **0.03x** | 0.0038 | **0.05x** |
+| Random_s2 | 0.2052 | 1.12x | 0.0757 | 1.01x |
+
+### 关键发现
+- **Full OCC (1.01x) 和 Random OCC (1.08x)** 梯度范数与 Vanilla 几乎一致，确认 OCC auxiliary head 不干扰 action head 梯度
+- **Detach_BN 灾难性梯度崩塌**：仅为 Vanilla 的 4%（DINO 3%, SigLIP 5%），与 D026 结论一致
+- **Cosine similarity ≈ 0**，conflict rate ≈ 44%，action 和 aux 梯度正交/独立
+- **Detach_LN_s0 缺失**——目录中没有该条件的输出文件，需要检查是否运行失败或被跳过
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 151060,
+  "duration_api_ms": 150144,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "545ae5b9-0a86-42e8-862f-e4d03ca495ba",
+  "total_cost_usd": 0.66423575,
+  "usage": {
+    "input_tokens": 17,
+    "cache_creation_input_tokens": 42687,
+    "cache_read_input_tokens": 424084,
+    "output_tokens": 7338,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 42687,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 615,
+        "cache_read_input_tokens": 52450,
+        "cache_creation_input_tokens": 2078,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2078
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1795,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001865,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 17,
+      "outputTokens": 7338,
+      "cacheReadInputTokens": 424084,
+      "cacheCreationInputTokens": 42687,
+      "webSearchRequests": 0,
+      "costUSD": 0.66237075,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e9573e43-8b8d-495c-9702-67d47dcc8ded"
+}
+```
+
+</details>
+
+---

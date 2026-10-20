@@ -1,0 +1,29 @@
+{
+  "exp_id": "detach_ln_v2_s0c",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T00:36:34.971Z",
+    "updated_at": "2026-05-27T00:38:58.340Z",
+    "hypothesis": "v2 rebuild of Detach LN (gradient flow OFF, LayerNorm), seed 42. Cell 4 currently n=1 v2 (CAR=0.802), needs ≥n=3. Prior attempts on 10894 died (driver stuck counter, now resolved). Running on 10894:cuda:2.",
+    "spec": {
+      "command": "bash -c \"export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach true --occ_norm_type ln --run_root_dir /root/autodl-tmp/checkpoints/detach_ln_v2_s0c --seed 42 --run_id_note detach_ln_v2_s0c\"",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "481844",
+      "log_path": "~/runs/occsafe_vla/detach_ln_v2_s0c.log",
+      "submitted_at": "2026-05-27T00:37:08.298Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "parent": "detach_ln_v2_s0b"
+  },
+  "timestamp": "2026-05-27T00:38:58.647916+00:00",
+  "trigger": "update_registry"
+}

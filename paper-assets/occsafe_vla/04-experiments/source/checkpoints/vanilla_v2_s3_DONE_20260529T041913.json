@@ -1,0 +1,38 @@
+{
+  "exp_id": "vanilla_v2_s3",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-29T03:39:54.752Z",
+    "updated_at": "2026-05-29T04:19:12.315Z",
+    "hypothesis": "Vanilla baseline seed 45 expansion for statistical power. Current n=2; targets n=3 to match factorial cell sample sizes and tighten CI on baseline CAR estimate.",
+    "spec": {
+      "command": "bash -c \"export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --use_diffusion False --use_film False --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --run_root_dir /root/autodl-tmp/checkpoints/vanilla_v2_s3 --run_id_note vanilla_v2_s3 --seed 45\"",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "41522",
+      "log_path": "~/runs/occsafe_vla/vanilla_v2_s3.log",
+      "submitted_at": "2026-05-29T03:40:23.055Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/",
+      "data_count": "libero_spatial_no_noops",
+      "model_name": "openvla-7b",
+      "seed": 45,
+      "checkpoint_path": "N/A",
+      "failure_reason": "CUDA_ERROR_NO_DEVICE: cuda:2 not visible on westd-34685 (only GPU 0 exposed)",
+      "wall_clock_seconds": 2329.3,
+      "gpu_hours": 0.65
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-29T04:19:12.315Z"
+  },
+  "timestamp": "2026-05-29T04:19:13.050474+00:00",
+  "trigger": "update_registry"
+}

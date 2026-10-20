@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1eef0760475982ea9f9c",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "infra sync v2 code data",
+  "task_key": "worker_infra_sync_v2_code_data_20260514T063519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_sync_v2_code_data_20260514T063519_result.json",
+    "occurrence": 1,
+    "bytes": 437,
+    "sha256": "a201b7c646d183bd7ddd53c6b20be9a04f90523ccf02805dcfda04222769eaee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n| 检查项 | 结果 |\n|--------|------|\n| `instance_id`, `row_index`, `majority_label` 字段存在 | `True True True` |\n| `windows_labeled.jsonl` 行数 | 59496 |\n| `generate_embeddings.py` 字段名已更新 | `majority_label` 出现 3 处 |\n| `parse_row_index('test__model__r42')` | 42 |\n\n4 个文件已同步到 `/root/autodl-tmp/agent_progress_probe/`，所有验证均符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-sync-v2-code-data.md"
+}

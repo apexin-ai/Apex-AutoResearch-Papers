@@ -1,0 +1,61 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Vision-Language-Action Models.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Auxiliary Supervision in Robotics.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{BatchNorm in Transfer Learning.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-Task Learning and Gradient Interactions.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Base Architecture}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Auxiliary Head Design}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Experimental Conditions}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Evaluation Protocol}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Main Results: Five-Condition Comparison}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main results on SafeLIBERO (3--4 seeds, 500 episodes/seed). Detach+BN is the only condition that degrades CAR relative to Vanilla. Full OCC's apparent advantage ($+1.7$pp) is within seed variance.}}{4}{table.caption.5}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main}{{1}{4}{Main results on SafeLIBERO (3--4 seeds, 500 episodes/seed). Detach+BN is the only condition that degrades CAR relative to Vanilla. Full OCC's apparent advantage ($+1.7$pp) is within seed variance}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}BatchNorm Confound: The Detach+LayerNorm Experiment}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:bn_confound}{{4.2}{4}{BatchNorm Confound: The Detach+LayerNorm Experiment}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces BatchNorm vs.\ LayerNorm in the detached auxiliary head. Replacing BN with LN eliminates 100\% of the Detach degradation, confirming the BN artifact as the sole cause.}}{4}{table.caption.6}\protected@file@percent }
+\newlabel{tab:bn_ln}{{2}{4}{BatchNorm vs.\ LayerNorm in the detached auxiliary head. Replacing BN with LN eliminates 100\% of the Detach degradation, confirming the BN artifact as the sole cause}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-task recovery.}{4}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Per-task CAR recovery when switching from BatchNorm to LayerNorm in the detached OccHead. All vulnerable tasks recover to Vanilla-level performance.}}{4}{table.caption.8}\protected@file@percent }
+\newlabel{tab:pertask_recovery}{{3}{4}{Per-task CAR recovery when switching from BatchNorm to LayerNorm in the detached OccHead. All vulnerable tasks recover to Vanilla-level performance}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}CKA Representation Analysis}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:cka}{{4.3}{4}{CKA Representation Analysis}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces CKA pairwise similarity across spatial encoder layers (mean). All pairs exceed 0.93, indicating near-identical representations regardless of training condition.}}{5}{table.caption.9}\protected@file@percent }
+\newlabel{tab:cka}{{4}{5}{CKA pairwise similarity across spatial encoder layers (mean). All pairs exceed 0.93, indicating near-identical representations regardless of training condition}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Per-layer CKA trend for Detach vs.\ Vanilla and Full OCC vs.\ Vanilla. Even the most divergent layer pair (SigLIP layer 27, Detach vs.\ Vanilla) has CKA $= 0.938$.}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:cka_layer}{{5}{5}{Per-layer CKA trend for Detach vs.\ Vanilla and Full OCC vs.\ Vanilla. Even the most divergent layer pair (SigLIP layer 27, Detach vs.\ Vanilla) has CKA $= 0.938$}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Gradient Cosine Similarity and Norm Analysis}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:gradient}{{4.4}{5}{Gradient Cosine Similarity and Norm Analysis}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Gradient analysis on shared encoder layers at 50K checkpoint. Action and OCC gradients are nearly orthogonal ($\cos \approx 0$), and the OCC gradient norm is less than half the action gradient norm.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:grad}{{6}{5}{Gradient analysis on shared encoder layers at 50K checkpoint. Action and OCC gradients are nearly orthogonal ($\cos \approx 0$), and the OCC gradient norm is less than half the action gradient norm}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Per-layer gradient cosine similarity for Full OCC condition. No systematic pattern across layers or encoders.}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:grad_layer}{{7}{6}{Per-layer gradient cosine similarity for Full OCC condition. No systematic pattern across layers or encoders}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Dose-Response: Gradient Flow Duration}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:doseresponse}{{4.5}{6}{Dose-Response: Gradient Flow Duration}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Dose-response analysis: CAR as a function of gradient flow duration. The non-monotonic pattern (lowest CAR at intermediate cutoff points) contradicts a gradient flow hypothesis but matches the BatchNorm mismatch prediction. All cutoff conditions except @35K are single-seed.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:dose}{{8}{6}{Dose-response analysis: CAR as a function of gradient flow duration. The non-monotonic pattern (lowest CAR at intermediate cutoff points) contradicts a gradient flow hypothesis but matches the BatchNorm mismatch prediction. All cutoff conditions except @35K are single-seed}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Temporal 2$\times $2 Design: Early vs.\ Late Gradient Flow}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:temporal}{{4.6}{6}{Temporal 2$\times $2 Design: Early vs.\ Late Gradient Flow}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces 2$\times $2 temporal design. Reverse Cutoff $\approx $ Vanilla, and only early-stopping (Cutoff@35K) causes harm---consistent with BN mismatch, not gradient flow timing. Cutoff@35K uses 3 seeds; Reverse Cutoff uses 1 seed.}}{7}{table.caption.14}\protected@file@percent }
+\newlabel{tab:temporal}{{9}{7}{2$\times $2 temporal design. Reverse Cutoff $\approx $ Vanilla, and only early-stopping (Cutoff@35K) causes harm---consistent with BN mismatch, not gradient flow timing. Cutoff@35K uses 3 seeds; Reverse Cutoff uses 1 seed}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Cutoff@35K Seed Instability}{7}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:cutoff_instability}{{4.7}{7}{Cutoff@35K Seed Instability}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Cutoff@35K per-seed results. Seed 44 shows partial collapse with dramatically lower TSR and CAR, consistent with the BN distribution shift amplifying stochastic instabilities.}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:cutoff_seeds}{{10}{7}{Cutoff@35K per-seed results. Seed 44 shows partial collapse with dramatically lower TSR and CAR, consistent with the BN distribution shift amplifying stochastic instabilities}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Cutoff@35K seed 44 per-task collapse. The pattern mirrors Detach+BN failures, suggesting a shared BN artifact mechanism.}}{7}{table.caption.16}\protected@file@percent }
+\newlabel{tab:cutoff_pertask}{{11}{7}{Cutoff@35K seed 44 per-task collapse. The pattern mirrors Detach+BN failures, suggesting a shared BN artifact mechanism}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The BatchNorm mechanism.}{7}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why spatial content does not help.}{7}{section*.18}\protected@file@percent }
+\bibstyle{plainnat}
+\@writefile{toc}{\contentsline {paragraph}{Implications for VLA practitioners.}{8}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\gdef \@abspage@last{8}

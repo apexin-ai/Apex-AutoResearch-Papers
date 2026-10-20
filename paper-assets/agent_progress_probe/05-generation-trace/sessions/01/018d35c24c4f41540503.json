@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "018d35c24c4f41540503",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "experiment feature overlap lf only",
+  "task_key": "worker_experiment_feature-overlap-lf-only_20260515T031743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_feature-overlap-lf-only_20260515T031743.log",
+    "occurrence": 1,
+    "bytes": 619993,
+    "sha256": "0b86d2cdf177d5d7054088d9ac7de37e04b72794f7563afdbec6e5546ffd3329"
+  },
+  "statistics": {
+    "messages": 309,
+    "user_turns": 0,
+    "tool_calls": 134,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 134,
+      "tool_result": 134,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 309,
+      "chunks": [
+        {
+          "path": "018d35c24c4f41540503-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "018d35c24c4f41540503-part-0002.json",
+          "message_count": 129
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-feature-overlap-lf-only.md"
+}

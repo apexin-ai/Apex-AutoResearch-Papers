@@ -1,0 +1,64 @@
+# director / loop_16.md
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/director/loop_16.md`
+- **Structured JSON:** [`9d69b047848d3c322bae.json`](../../sessions/9d/9d69b047848d3c322bae.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 16
+reason: max_messages
+updated: '2026-05-28T17:41:25+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 两台 AutoDL 服务器（westd-34685, westd-10894）当前均只分配了 1 张 GPU（cgroup v2 BPF 限制），需用户在 AutoDL 控制台重启为 4 卡配置才能跑新实验
+- content irrelevance 相关结论必须标注 "observed under v1 codebase"——已修 4 次回归，每次写作修改后都要 grep 确认 caveat 未被删除
+- 论文主文严格 8 页限制（SafeRL Workshop @ RSS 2025），Limitations 必须在正文内（不在 Appendix）
+- LaTeX 模板用 `\usepackage{corl_2026}`（项目历史原因），但投稿目标是 SafeRL Workshop
+
+### 2. 🖥️ 基础设施快照
+- 论文源码：`/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/`（main.tex + 7 个 \input 文件）
+- Figure 1 生成脚本：`docs/paper/figures/fig1_overview.py`（用 python3 执行，当前字号: global=15, titles=16, boxes=14）
+- Figure 3（gradient analysis）：源数据在远程服务器，当前无法重新生成——上一轮通过 LaTeX `\textwidth` 放大 workaround
+- 两台服务器各有训练好的 v2 checkpoint，但 GPU 不可用
+- 审稿 issue 跟踪：`projects/occsafe_vla/artifacts/review_issues.yaml`（17 issues）
+
+### 3. 📊 当前状态
+已完成 7/17 审稿 issue 修复（RD2-N3, R1-W15, RD3-W4, RD2-W1, RD2-W2, R1-W21, RD3-C1），review_issues.yaml 已更新标记 resolved。
+
+已派 Agent/Worker 执行第二批 5 个写作修复（RD2-W3, RD2-W5, RD2-W6, RD3-W1, RD3-W2），Worker 在 RESET 前仍在执行，尚未回报结果。
+
+Registry 无 RUNNING 实验——GPU 不可用，4 个实验 fix（RD2-N1 加 seeds、RD2-N2 v2 Random OCC、RD2-W4 BN eval mode、RD3-W3 λ₀ sweep）blocked on GPU 重启。
+
+### 4. 📋 待办
+- Worker writing fix 回调到达 → 检查编译结果 + 8 页合规 + grep "observed under v1" 未回归 → 更新 review_issues.yaml 标 resolved
+- 用户确认 AutoDL 重启为 4 卡 → 立即安排 4 个实验（RD2-N1 P0、RD2-N2 P0、RD2-W4 P1、RD3-W3 P1），8 卡并行约 12-15h 全部完成
+- 所有写作 + 实验修复完成 → submit_paper_to_review 提交第 4 轮审稿
+- 用户问 rebuttal → 基于 review_issues.yaml 生成 rebuttal letter（4/10 Weak Reject 需系统性回应）
+
+### 5. 🎯 战略上下文
+- 核心发现：auxiliary spatial supervision 不提升 VLA collision avoidance，两个 additive main effects（BN+gradient flow 有害 g=0.78；LN 优势 g=0.88），ANOVA 交互项零
+- 最致命审稿组合：RD2-N1（power 不足）+ RD3-C1（framing 矛盾）——RD3-C1 已修复，RD2-N1 需加 seeds 或进一步降级因果语言
+- 易错点 1：每次 Agent 做写作修改都可能无意删除 v1 caveat（已发生 4 次），必须 grep 验证
+- 易错点 2：v1 和 v2 数据不能直接跨条件比较（8.6pp 偏移 > 实验效应），Table 1 已用 midrule 分区
+- 易错点 3：Figure 3 无法重新生成（远程服务器 GPU 不可用），只能通过 LaTeX 参数调整大小
+- 已向用户发送完整修复计划，等待 GPU 重启确认
+
+
+---

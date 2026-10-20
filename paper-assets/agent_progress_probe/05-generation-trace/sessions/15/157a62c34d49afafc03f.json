@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "157a62c34d49afafc03f",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "paper fix experiments",
+  "task_key": "worker_paper_fix-experiments_20260515T010600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-experiments_20260515T010600_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "81212e3962e8e56dd3353d36212a3bfc27ffc9bf9c159a944aee280b706af25e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits applied correctly. Summary of changes:\n\n**§5.1** — OH stagnation ratio: 6.6% → 21.4% (text line 20 + Table 1 line 32)\n\n**§5.2 Table 2** — ProgressProbe OH Transfer: 0.530/0.528 → 0.598/0.598; fine-tune: 0.7510 → 0.9763\n\n**§5.3** — Rewrote cross-agent narrative: removed the false 21.6pp claim, reframed as stage-dependent asymmetry (zero-shot gap 36.9pp closes to 2.2pp after FT), added deployment trade-off framing\n\n**§5.5** — Complete rewrite as \"Label Quality and cmd\\_rep Coverage\":\n- Label audit discovery (stag rate 6.56%→21.45%, 21,898 labels flipped)\n- Label quality as transfer bottleneck (FT 0.751→0.9763, 5% FT now beats old 50%)\n- New Table 3: prevalence-matched ablation (3-LF 0.9763 vs 2-LF 0.6822, Δ=-29.4pp, McNemar p≈0)\n- Coverage explanation (cmd\\_rep fires 5.39%, precision 97.91%, 100% agreement on intersection, 4K→43K training data expansion)\n- WS implications paragraph on coverage vs label refinement"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-experiments.md"
+}

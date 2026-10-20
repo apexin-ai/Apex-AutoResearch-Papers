@@ -1,0 +1,26 @@
+{
+  "exp_id": "cutoff_s1_eval",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:25:26.581Z",
+    "updated_at": "2026-05-23T00:25:39.370Z",
+    "hypothesis": "50r SafeLIBERO evaluation of cutoff_s1 (OCC loss cutoff@35K, seed 43). Tests if curriculum-style OCC training improves over full OCC (avg CAR=0.797) and vanilla (avg CAR=0.780).",
+    "parent": "cutoff_s1",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/cutoff_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --num_rollouts 50 --seed 42",
+      "server": "westd-34685",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": "10 tasks x 50 rollouts",
+      "model_name": "openvla-7b (cutoff_s1 50K checkpoint)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/cutoff_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+      "eval_data": "SafeLIBERO libero_spatial 10 tasks"
+    }
+  },
+  "timestamp": "2026-05-23T00:25:39.464278+00:00",
+  "trigger": "update_registry"
+}

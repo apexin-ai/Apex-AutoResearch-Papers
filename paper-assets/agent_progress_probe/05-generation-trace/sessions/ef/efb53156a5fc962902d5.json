@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efb53156a5fc962902d5",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "experiment gold set rerun canonical",
+  "task_key": "worker_experiment_gold-set-rerun-canonical_20260515T090134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_gold-set-rerun-canonical_20260515T090134_result.json",
+    "occurrence": 1,
+    "bytes": 1991,
+    "sha256": "349cbe865101b14df4b864a1b82586675b272f1d0ae7c9a8b3bf664a69efc348"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both runs complete. Here are the corrected results:\n\n---\n\n## Gold Exclusion Impact\n\n- **39 gold windows excluded** from 10,634 training windows (both scripts confirmed)\n- `evaluate_gold_set.py` already had this fix; `gold_bootstrap_ci.py` was missing it\n\n## Corrected Eval Results (evaluate_gold_set.py)\n\n| Model | N | Macro-F1 | Accuracy |\n|---|---|---|---|\n| MV Labels | 195 | 0.7184 | 0.7487 |\n| GRU Probe | 132 | 0.7348 | 0.7348 |\n| **Structural RF** | 195 | **0.7516** | 0.7744 |\n| **Structural GB** | 195 | **0.7644** | 0.7897 |\n| TWV Labels | 136 | 0.7184 | 0.7279 |\n| TWV Probe | 132 | 0.7684 | 0.7727 |\n\n## Corrected Bootstrap Results (gold_bootstrap_ci.py)\n\nOn shared windows (with gold exclusion):\n- GB: 0.8023, RF: 0.8041 (bootstrap uses different evaluation path)\n\n| Test | Delta | 95% CI | p-value | Sig? |\n|---|---|---|---|---|\n| GB vs MV | +0.0839 | [+0.032, +0.138] | 0.0005 | **YES** |\n| GB vs GRU Probe | +0.0499 | [-0.016, +0.120] | 0.0698 | NO |\n| RF vs GB | +0.0018 | [-0.015, +0.020] | 0.4775 | NO |\n| TWV Probe vs GB | -0.0163 | [-0.067, +0.031] | 0.2536 | NO |\n| TWV Probe vs GRU | +0.0336 | [-0.029, +0.099] | 0.1499 | NO |\n\n## Comparison with Pre-Fix Numbers\n\n| Model | Before (eval) | After (eval) | Before (bootstrap) | After (bootstrap) |\n|---|---|---|---|---|\n| **GB** | 0.760 | **0.764** | 0.802 | **0.802** |\n| **RF** | 0.757 | **0.752** | — | **0.804** |\n\nKey observations:\n- GB eval F1 rose slightly 0.760→0.764 (lr 0.1→0.05 helped marginally, gold exclusion had minimal effect since evaluate_gold_set.py already had it)\n- RF eval F1 dropped slightly 0.757→0.752 (n_estimators 200→100)\n- Bootstrap GB was already 0.802 (pre-fix) and stays at 0.802 — the gold exclusion in bootstrap was the main fix, but the hyperparameter change (lr 0.05) and gold exclusion effectively cancel out\n- RF and GB are now statistically indistinguishable (p=0.48)\n- Only GB vs MV is significant (p=0.0005)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-gold-set-rerun-canonical.md"
+}

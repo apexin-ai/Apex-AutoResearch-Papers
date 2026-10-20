@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5646364f09b27d09f9a",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "infra openhands relabel and eval",
+  "task_key": "worker_infra_openhands_relabel_and_eval_20260514T111119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_openhands_relabel_and_eval_20260514T111119_result.json",
+    "occurrence": 1,
+    "bytes": 424,
+    "sha256": "3edbaf356d45feeae45fbffe84bf6883d4b1709b2866a0f337543dc30d43017c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态：**\n- **Step 1 (重新标注)**: ✅ 已完成。分布：progress 119,212 (77.1%), stagnation 31,440 (20.3%), abstain 4,091 (2.6%)\n- **Step 2 (embedding)**: 进行中，70% (50000/71528)，~23 分钟后完成\n- **Step 3 (cross-agent eval)**: 等 embedding 完成后自动运行\n- `cross_agent_eval.py` 已确认存在，默认参数匹配所有路径\n\n4.5 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-openhands-relabel-and-eval.md"
+}

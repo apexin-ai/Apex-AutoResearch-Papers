@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "866f68edef2563fab500",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "fetch gold canonical results",
+  "task_key": "worker_fetch_gold-canonical-results_20260515T091822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fetch_gold-canonical-results_20260515T091822_result.json",
+    "occurrence": 1,
+    "bytes": 946,
+    "sha256": "86cf4ced913eaca3feb4e61d52fe82940b694f3f62b1cfca76b9a9c5d7697449"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 files written locally. `model_consistency_report.md` not found on server.\n\n## 关键确认\n\n### 1. Shared window 数量：**确认为 195**\n\n`gb_vs_mv` 测试的 `n_samples = 195`。199 个 gold windows 中有 4 个不在 `non_abstain`（即这 4 个 gold window 的 MV label 是 abstain/-1，无法匹配到 windows_labeled.jsonl 的非弃权子集），所以 shared = 195。没有 gold window 被\"丢失\"——这 4 个是因为原始数据中三名标注者无多数一致而被排除。\n\n### 2. GB 训练集大小（gold exclusion 后）\n\n| 指标 | 值 |\n|------|-----|\n| 原始 train_indices | 10,634 |\n| gold windows 在 train 中 | 39 |\n| 排除后训练集 | **10,595** |\n| keep_indices (非弃权子集) | 15,401 |\n\nGB 模型在 bootstrap 脚本中重新训练时排除了 39 个 gold window（`[leakage-fix]`），用 10,595 个样本训练，然后在全部 195 个 shared gold window 上预测。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fetch-gold-canonical-results.md"
+}

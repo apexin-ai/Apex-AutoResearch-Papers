@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25869a2db612415698f8",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "diag baseline f1 discrepancy",
+  "task_key": "worker_diag_baseline-f1-discrepancy_20260514T152624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_baseline-f1-discrepancy_20260514T152624_result.json",
+    "occurrence": 1,
+    "bytes": 1513,
+    "sha256": "b6f1462d517795a199268eb299007d74722abc9a433e5138e1a20e10928795af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完美复现了两个数字。诊断报告如下：\n\n---\n\n## 诊断结果：probe_001 cross-eval F1 偏差\n\n### 根因：索引空间错位\n\n`lf_holdout_crosseval.py` 存在 bug：它把 `checkpoints/split_info.json` 中的 `test_indices` 直接用于索引全量 `embeddings.pt`（54809 windows），但这些索引实际上是 **conf≥2 过滤后数组**（15401 windows）的索引。\n\n### 机制\n\n1. **probe_001 训练**（`train_probe.py --min_confidence 2`）：先过滤出 conf≥2 的 15401 个 windows，然后在过滤后的数组上做 train/val/test split。`split_info.json` 中 `test_indices` 范围 [33, 15158]，是过滤后数组的索引。\n\n2. **cross-eval 脚本**：加载全量 54809 windows，用 `test_indices` 直接索引 → 取到的是**完全不同的 windows**。\n\n### 量化影响\n\n| | 正确 test set | 错误 test set (cross-eval) |\n|---|---|---|\n| stagnation | 485 | 454 |\n| progress | 1339 | 1370 |\n| conf 分布 | conf≥2: 1780, conf=3: 44 | **conf=1: 1318**, conf≥2: 506 |\n| **标签错配** | — | **711/1824 (39%)** |\n| **macro_f1** | **0.9055** ✓ | **0.8136** ✗ |\n\n### 结论\n\n- **0.9055 是可信的**，是 probe_001 在其正确 test set（conf≥2）上的真实性能\n- **0.8136 是错误的**，是因为 cross-eval 取错了 windows（72% 是 conf=1 的低置信度样本，模型从未见过这类数据）\n- cross-eval 脚本需要修复：使用 `keep_indices` 先还原过滤，再用 `test_indices` 索引"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-baseline-f1-discrepancy.md"
+}

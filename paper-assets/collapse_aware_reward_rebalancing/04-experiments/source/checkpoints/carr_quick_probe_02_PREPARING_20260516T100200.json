@@ -1,0 +1,30 @@
+{
+  "exp_id": "carr_quick_probe_02",
+  "project": "collapse_aware_reward_rebalancing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:02:00.105Z",
+    "updated_at": "2026-05-16T10:02:00.105Z",
+    "spec": {
+      "hypothesis": "单目标ArmoRM curation在3代iterative training内导致Vendi Score可观测下降(≥2-3%)，验证collapse可见性",
+      "condition": "single_reward (ArmoRM top-1-of-4)",
+      "generations": 3,
+      "prompts": 2000,
+      "eval_prompts": 200,
+      "model_name": "Qwen3-0.6B",
+      "server": "bjb2-23165",
+      "gpu": "cuda:0",
+      "parent": "carr_quick_probe_01",
+      "command": "cd /root/autodl-tmp/carr && CUDA_VISIBLE_DEVICES=0 python3 run_quick_probe.py",
+      "data_path": "openbmb/UltraFeedback",
+      "data_count": 2200,
+      "seed": 42,
+      "pid": 493974
+    }
+  },
+  "timestamp": "2026-05-16T10:02:00.117414+00:00",
+  "trigger": "update_registry"
+}

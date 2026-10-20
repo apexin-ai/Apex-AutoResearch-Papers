@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "eca4193ec62c55c7cc09",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "experiment bootstrap oh fix rerun",
+  "task_key": "worker_experiment_bootstrap-oh-fix-rerun_20260515T092522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_bootstrap-oh-fix-rerun_20260515T092522.log",
+    "occurrence": 1,
+    "bytes": 788361,
+    "sha256": "2f15cde665e89e022999e014fa723d54bbcf05472e7f9e87472121af7cc6fb15"
+  },
+  "statistics": {
+    "messages": 491,
+    "user_turns": 0,
+    "tool_calls": 212,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 212,
+      "tool_result": 212,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 491,
+      "chunks": [
+        {
+          "path": "eca4193ec62c55c7cc09-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "eca4193ec62c55c7cc09-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "eca4193ec62c55c7cc09-part-0003.json",
+          "message_count": 131
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-bootstrap-oh-fix-rerun.md"
+}

@@ -1,0 +1,35 @@
+{
+  "exp_id": "vanilla_retrain_s0",
+  "project": "occsafe_vla",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T03:47:45.730Z",
+    "updated_at": "2026-05-23T17:57:13.912Z",
+    "hypothesis": "Retrain Vanilla (no auxiliary head) seed 42 to restore the missing baseline checkpoint needed for gradient-level mechanism analysis. Same config as original mvp_vanilla_s0: OpenVLA-OFT, LoRA rank 32, 50K steps, no occ/depth head.",
+    "spec": {
+      "command": "torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --run_root_dir /root/autodl-tmp/checkpoints/vanilla_retrain_s0 --seed 42",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "393411",
+      "log_path": "~/runs/occsafe_vla/vanilla_retrain_s0.log",
+      "submitted_at": "2026-05-23T03:48:08.976Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 25000,
+      "model_name": "openvla-7b",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T17:57:13.641Z"
+    }
+  },
+  "timestamp": "2026-05-23T17:57:14.024352+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4b4eb9c27d027c306a9",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis bootstrap ci crossagent",
+  "task_key": "worker_analysis_bootstrap-ci-crossagent_20260515T042535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-ci-crossagent_20260515T042535_result.json",
+    "occurrence": 1,
+    "bytes": 1159,
+    "sha256": "7097c8273475bd021a925295210144d68e751410c5b7d91f0606ac0529bfb0da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Summary:\n\n```\n=== Paired Bootstrap: 11 LF-overlap vs 30 Full (OH Cross-Agent) ===\n\nAll-windows (N=150,652):\n  F1_11 = 0.977, F1_30 = 0.9674\n  Delta = +0.0096\n  95% CI: [0.0085, 0.0107]\n  p-value: <0.001 (significant)\n\nConf>=2 (N=43,376):\n  F1_11 = 0.9848, F1_30 = 0.9919\n  Delta = -0.0071\n  95% CI: [-0.0088, -0.0054]\n  p-value: 1.0 (NOT significant; direction reverses)\n```\n\nKey findings:\n- **All-windows**: 11 LF-overlap features significantly outperform 30 full features (+0.96pp, p<0.001, CI entirely positive). The pruned model generalizes better cross-agent.\n- **Conf>=2**: Direction **reverses** — full 30 features outperform 11 LF-overlap by 0.71pp. On high-confidence labels, the extra 19 residual features help.\n- HPs used: full_30 lr=0.05, lf_overlap_11 lr=0.01 (matching original ablation).\n\nOutputs:\n- JSON: `/root/autodl-tmp/agent_progress_probe/artifacts/feature-overlap-ablation/bootstrap_ci_crossagent.json`\n- Script: `/root/autodl-tmp/agent_progress_probe/src/analysis/bootstrap_ci_crossagent.py`\n- Registry: `feature-overlap-ablation` metrics updated with `bootstrap_ci_crossagent` field"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-ci-crossagent.md"
+}

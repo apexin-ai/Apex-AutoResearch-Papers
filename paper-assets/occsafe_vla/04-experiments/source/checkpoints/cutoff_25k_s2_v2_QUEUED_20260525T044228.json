@@ -1,0 +1,17 @@
+{
+  "exp_id": "cutoff_25k_s2_v2",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T04:36:34.372Z",
+    "updated_at": "2026-05-25T04:42:27.790Z",
+    "hypothesis": "Seed 44 replication of cutoff_25k (OCC gradient cutoff at 25K steps). Resume from 30K checkpoint after server reboot + batch_idx bug fix. Bug fix ensures gradient_step_idx correctly tracks cumulative steps for cutoff logic. 2-seed results show high instability (0.688-0.760). 3rd seed needed for withdrawal pattern confirmation.",
+    "parent": "cutoff_25k_s1",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-25T04:42:28.050221+00:00",
+  "trigger": "update_registry"
+}

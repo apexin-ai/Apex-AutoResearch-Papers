@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae292b5835d0482fbe48",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "paper writing appendix",
+  "task_key": "worker_paper_writing_appendix_20260514T235001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_appendix_20260514T235001_result.json",
+    "occurrence": 1,
+    "bytes": 701,
+    "sha256": "a93f4b5b7062bce422d5e661e2ad75f8399f663664289250d51bc4f60990e01c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Appendix 写入完成。4 个表格：\n\n- **Table A.1** (`tab:encoder_ablation`): 3 个 encoder 对比，BGE-M3 最优但差距仅 0.5pp\n- **Table A.2** (`tab:window_ablation`): k=3/5/7 窗口消融，k=5 最优\n- **Table A.3** (`tab:multiseed`): 5-seed 稳定性，structural 零方差，probe σ=0.011\n- **Table A.4** (`tab:cross_agent_cmdrep`): 双面板 subtable——(a) probe ZS/FT, (b) structural ZS，展示移除 cmd_rep 对两种范式的相反效果\n\n已修复原 `tab:encoder_ablation_full` → `tab:encoder_ablation` 的断引用（experiments.tex line 105 引用的是 `tab:encoder_ablation`）。`\\appendix` 由 main.tex line 44 声明，appendix.tex 不重复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-appendix-copy-2.md"
+}

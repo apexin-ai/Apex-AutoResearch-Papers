@@ -1,0 +1,16 @@
+{
+  "exp_id": "depth_s1_eval",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:25:09.128Z",
+    "updated_at": "2026-05-23T00:25:22.992Z",
+    "hypothesis": "50r SafeLIBERO evaluation of depth_s1 at 50000 checkpoint. Seed 43 replication — needed for 4-seed depth statistical analysis.",
+    "parent": "depth_s1"
+  },
+  "timestamp": "2026-05-23T00:25:23.222735+00:00",
+  "trigger": "update_registry"
+}

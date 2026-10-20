@@ -1,0 +1,42 @@
+{
+  "exp_id": "mvp_occ_s4",
+  "project": "occsafe_vla",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T11:14:43.726Z",
+    "updated_at": "2026-05-27T14:05:56.311Z",
+    "hypothesis": "Factorial n=5 expansion: Full OCC BN (gradient flow ON, BatchNorm), seed 46. 5th seed to complete 2×2 ANOVA expansion from n=3 to n=5 per cell. Config identical to mvp_occ_s0/s1/s2/s3.",
+    "parent": "mvp_occ_s0",
+    "spec": {
+      "command": "bash -c \"export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --run_root_dir /root/autodl-tmp/checkpoints/mvp_occ_s4 --seed 46 --run_id_note mvp_occ_s4\"",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "736253",
+      "log_path": "~/runs/occsafe_vla/mvp_occ_s4.log",
+      "submitted_at": "2026-05-27T00:17:56.284Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-34685",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-34685",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-27T00:17:54.068Z",
+      "command": "bash -c \"export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --run_root_dir /root/autodl-tmp/checkpoints/mvp_occ_s4 --seed 46 --run_id_note mvp_occ_s4\"",
+      "finished_at": "2026-05-27T14:05:54.036Z",
+      "training_hours": 13.8
+    },
+    "pid": "736253",
+    "log_path": "~/runs/occsafe_vla/mvp_occ_s4.log"
+  },
+  "timestamp": "2026-05-27T14:05:57.043424+00:00",
+  "trigger": "update_registry"
+}

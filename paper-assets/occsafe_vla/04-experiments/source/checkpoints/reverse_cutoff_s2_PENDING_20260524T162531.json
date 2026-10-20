@@ -1,0 +1,16 @@
+{
+  "exp_id": "reverse_cutoff_s2",
+  "project": "occsafe_vla",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T16:25:11.739Z",
+    "updated_at": "2026-05-24T16:25:30.834Z",
+    "hypothesis": "Seed 44 replication of reverse_cutoff (no OCC first 35K steps, enable 35K-50K). 2-seed results show instability (0.700-0.736, std=0.025) with T7 being primary variance source (0.30-1.0 across seeds). 3rd seed needed to confirm late-onset gradient flow instability pattern and T7 variance. Parent: reverse_cutoff_s1 (s1 CAR=0.736, T3 crashed from 0.54→0.04 across seeds).",
+    "parent": "reverse_cutoff_s1"
+  },
+  "timestamp": "2026-05-24T16:25:31.003292+00:00",
+  "trigger": "update_registry"
+}

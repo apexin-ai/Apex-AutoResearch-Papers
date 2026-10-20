@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fbef06475b1ae0018d7",
+  "project": "agent_progress_probe",
+  "kind": "history",
+  "title": "director / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_5.md",
+    "occurrence": 1,
+    "bytes": 3430,
+    "sha256": "2dcd23310ad805a2bd1886d97d9fa397e1934b2f8f5515b4e075a2374c11b581"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_messages\nupdated: '2026-05-14T21:48:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 bjb2-23165 的 cuda:0 / cuda:1（RTX 5090 32G × 2）\n- Gold set 评估必须用 `evaluate_gold_set.py`（已修复 leakage：gold windows 排除出训练集），不能手写评估脚本\n- Structural vs LLM judge 差距是 **33.3pp**（0.9951-0.6625），不是 24.3pp（那是 probe vs LLM judge）——之前两次写错被 Reviewer 打回\n- 实验计数：plan 32 / DONE 30 = **24 success + 6 negative**，不是 28+7 或 27+7\n- conf2-subset-v2 已关闭为冗余，不要再跑\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb2-23165 (connect.bjb2.seetacloud.com)，工作目录 `/root/autodl-tmp/agent_progress_probe`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- Gold set pipeline：`/root/autodl-tmp/agent_progress_probe/evaluate_gold_set.py`\n- Probe checkpoint：`checkpoints/best_model.pt`\n- 活跃进程：无（GPU 双卡空闲，等 gold set 标注）\n- Paper Agent session 活跃，队列深度 ~12\n\n### 3. 📊 当前状态\n刚完成本轮所有任务：ROADMAP 更新（Reviewer 报告的 4 个问题已修复）、dream_simulate 已触发（dream_20260514T214352, review_mode=full）、用户已被催促确认标注人力。\n\nRegistry: 0 RUNNING / 若干 PREPARING 需清理（twv-no-temporal-sigma2, encoder-ablation 系列, gold_dryrun_v1/v2 等已过时）。\n\n等待中：\n- dream_20260514T214352 完成回调\n- 用户回复 gold set 标注人力确认\n- Paper Agent 处理队列（含 LF fire rate 数据 + method.tex abstain 修正）\n\n### 4. 📋 待办\n- dream 完成回调到达 → Read `dream-report-action.skill.md` → 按协议处理三档审稿\n- 用户确认标注人力 → 立即通知 Agent 启动标注流程（材料已就绪 650 窗口）\n- 标注完成 → Agent 跑 `evaluate_gold_set.py --gold_csv <path> --output_dir gold_results --device cuda:0` → 结果转发 Paper Agent 补入论文\n- Registry 中过时 PREPARING 实验 → 派 Agent 清理标记 killed\n- paired-bootstrap 已完成（3 个 in-domain p<0.001，跨域因 eval set 不匹配已跳过）→ 结果已可用于论文\n\n### 5. 🎯 战略上下文\n**D039 Pivot 是核心决策链**：TLM（TWV/HMM/lag-HMM）全面失败 → 论文从 \"method paper\" 转向 \"empirical analysis paper\"。三层贡献：(1) Structural signal discovery 主贡献，(2) LF temporal dynamics 方法论，(3) TLM negative finding。投稿目标 EMNLP 2026 ARR 5/25（Findings track）。\n\n**最容易判断错的事**：\n- Circular eval 是本论文最大软肋——所有 \"高 F1\" 都是在 LF-derived labels 上评估的，gold set 是唯一非 circular 验证。没有 gold set 结果论文说服力大打折扣。\n- \"structural-core\" 和 \"structural-cross-agent\" 在 registry 中 conclusion=negative，但这是因为它们证明了 \"structural features 近似复现 LF 输出\"（circular eval artifact）。在论文 framing 中这反而是 **正面发现**（structural signal discovery）。不要因为 conclusion=negative 就认为实验失败。\n- OH cmd_rep 角色反转：在 SWE-Agent 上 cmd_rep 是 leading indicator，但在 OpenHands 上变成 noise source（92% fire rate, 71% false stag）。去除 cmd_rep 后 OH F1 从 0.7512 涨到 0.9272（+21.6pp）。这是 C2 的核心发现。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5.md"
+}

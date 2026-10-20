@@ -1,0 +1,1098 @@
+# paper gradient figure
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/chats/worker_paper_gradient_figure_20260523T183457.jsonl`
+- **Structured JSON:** [`2d75a6704615af664025.json`](../../sessions/2d/2d75a6704615af664025.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+37 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T18:39:23.737487+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T18:39:23.737937+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T18:39:23.738194+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "find /root/occsafe_vla/analysis/ -name \"*.json\" -o -name \"*.pkl\" -o -name \"*.npz\" -o -name \"*.csv\" -o -name \"*.pt\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "find /root/occsafe_vla/analysis/ -name \"*.json\" -o -name \"*.pkl\" -o -name \"*.npz\" -o -name \"*.csv\" -o -name \"*.pt\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-23T18:39:23.738395+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T18:39:23.738587+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "cat /root/occsafe_vla/analysis/plot_gradient_figure.py 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "cat /root/occsafe_vla/analysis/plot_gradient_figure.py 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T18:39:23.738793+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T18:39:23.738964+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "ls -la /root/occsafe_vla/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "ls -la /root/occsafe_vla/analysis/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T18:39:23.739230+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 116\\ndrwxr-xr-x  4 root root  4096 May 24 02:11 .\\ndrwxr-xr-x 16 root root  4096 May 23 11:33 ..\\n-rw-r--r--  1 root root 11178 May 23 18:22 bootstrap_ci.py\\n-rw-r--r--  1 root root  1657 May 23 14:18 bootstrap_config.json\\n-rw-r--r--  1 root root  8902 May 23 14:18 bootstrap_results.json\\n-rw-r--r--  1 root root  7262 May 23 12:00 cka_analysis.py\\n-rw-r--r--  1 root root  4212 May 23 11:54 cka_compare.py\\ndrwxr-xr-x  2 root root  4096 May 23 14:17 eval_data_from_10894\\n-rw-r--r--  1 root root  8140 May 23 14:12 eval_data_manifest.json\\n-rw-r--r--  1 root root 16533 May 23 11:55 gradient_analysis.py\\n-rw-r--r--  1 root root 12349 May 23 18:22 plot_gradient_figure.py\\ndrwxr-xr-x  5 root root  4096 May 24 02:04 results\\n-rwxr-xr-x  1 root root 11388 May 24 02:11 run_full_analysis.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T18:39:23.739422+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "find /root/occsafe_vla/analysis/results/ -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "find /root/occsafe_vla/analysis/results/ -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-23T18:39:23.739601+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "cat /root/occsafe_vla/analysis/plot_gradient_figure.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "cat /root/occsafe_vla/analysis/plot_gradient_figure.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T18:39:23.739823+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/occsafe_vla/analysis/results/depth_gradient_stats.json\\n/root/occsafe_vla/analysis/results/depth_gradient_norms.pdf\\n/root/occsafe_vla/analysis/results/depth_cka_features.npz\\n/root/occsafe_vla/analysis/results/depth_cka_meta.json\\n/root/occsafe_vla/analysis/results/invalid/full_occ_cka_features.npz\\n/root/occsafe_vla/analysis/results/invalid/full_occ_cka_meta.json\\n/root/occsafe_vla/analysis/results/invalid/full_occ_gradient_norms.pdf\\n/root/occsafe_vla/analysis/results/invalid/full_occ_gradient_stats.json\\n/root/occsafe_vla/analysis/results/invalid/cka_full_occ_vs_depth.npz\\n/root/occsafe_vla/analysis/results/invalid/cka_full_occ_vs_depth.pdf\\n/root/occsafe_vla/analysis/results/figures/gradient_analysis_combined.pdf\\n/root/occsafe_vla/analysis/results/figures/gradient_analysis_combined.png\\n/root/occsafe_vla/analysis/results/gradient/vanilla_gradient_stats.json\\n/root/occsafe_vla/analysis/results/gradient/vanilla_gradient_norms.pdf\\n/root/occsafe_vla/analysis/results/gradient/full_occ_gradient_stats.json\\n/root/occsafe_vla/analysis/results/gradient/full_occ_gradient_norms.pdf\\n/root/occsafe_vla/analysis/results/gradient/detach_gradient_stats.json\\n/root/occsafe_vla/analysis/results/gradient/detach_gradient_norms.pdf\\n/root/occsafe_vla/analysis/results/gradient/random_occ_gradient_stats.json\\n/root/occsafe_vla/analysis/results/gradient/random_occ_gradient_norms.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T18:39:23.740320+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nCombined gradient analysis figure for OccSafe-VLA paper.\\n2x2 layout: (a) action grad norms, (b) OCC grad norms,\\n(c) cosine similarity heatmap, (d) CKA cross-condition matrix.\\n\\nUsage:\\n  python plot_gradient_figure.py --mock --output-dir ./\\n  python plot_gradient_figure.py \\\\\\n    --gradient-files vanilla=stats1.json full_occ=stats2.json ... \\\\\\n    --cka-dir ./results/cka/ --output-dir ./results/figures/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport matplotlib.colors as mcolors\\nimport numpy as np\\n\\n\\nplt.rcParams.update({\\n    \\\"font.family\\\": \\\"DejaVu Sans\\\",\\n    \\\"font.size\\\": 9,\\n    \\\"axes.titlesize\\\": 10,\\n    \\\"axes.labelsize\\\": 9,\\n    \\\"xtick.labelsize\\\": 8,\\n    \\\"ytick.labelsize\\\": 8,\\n    \\\"legend.fontsize\\\": 8,\\n    \\\"figure.dpi\\\": 300,\\n    \\\"savefig.dpi\\\": 300,\\n    \\\"savefig.bbox\\\": \\\"tight\\\",\\n    \\\"savefig.pad_inches\\\": 0.05,\\n    \\\"axes.spines.top\\\": False,\\n    \\\"axes.spines.right\\\": False,\\n    \\\"lines.linewidth\\\": 1.5,\\n})\\n\\nCOLORS = {\\n    \\\"Vanilla\\\":    \\\"#888888\\\",\\n    \\\"Full OCC\\\":   \\\"#0072B2\\\",\\n    \\\"Detach\\\":     \\\"#D55E00\\\",\\n    \\\"Random OCC\\\": \\\"#E69F00\\\",\\n}\\nCONDITION_ORDER = [\\\"Vanilla\\\", \\\"Full OCC\\\", \\\"Detach\\\", \\\"Random OCC\\\"]\\nCOND_KEY_MAP = {\\n    \\\"vanilla\\\": \\\"Vanilla\\\",\\n    \\\"full_occ\\\": \\\"Full OCC\\\",\\n    \\\"detach\\\": \\\"Detach\\\",\\n    \\\"random_occ\\\": \\\"Random OCC\\\",\\n}\\n\\n\\ndef _convert_layer_name(name):\\n    if \\\"fused_featurizer\\\" in name:\\n        if \\\"blocks\\\" in name:\\n            return f\\\"siglip_{name.split('blocks.')[-1]}\\\"\\n        return \\\"siglip_stem\\\"\\n    elif \\\"featurize
+…[truncated 7473 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-23T18:39:23.740618+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "cat /root/occsafe_vla/analysis/results/gradient/vanilla_gradient_stats.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "cat /root/occsafe_vla/analysis/results/gradient/vanilla_gradient_stats.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T18:39:23.741109+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition_name\\\": \\\"vanilla\\\",\\n  \\\"condition_type\\\": \\\"vanilla\\\",\\n  \\\"occ_detach\\\": false,\\n  \\\"num_batches_completed\\\": 201,\\n  \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/vanilla_retrain_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\\\",\\n  \\\"layers\\\": {\\n    \\\"dino_0\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.06920316289179027,\\n        \\\"std\\\": 0.02143419769929429\\n      }\\n    },\\n    \\\"dino_1\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.10179684229195118,\\n        \\\"std\\\": 0.03186066663106839\\n      }\\n    },\\n    \\\"dino_2\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.15068240839987992,\\n        \\\"std\\\": 0.0453170311661793\\n      }\\n    },\\n    \\\"dino_3\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08972309328615666,\\n        \\\"std\\\": 0.028563784001203775\\n      }\\n    },\\n    \\\"dino_4\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.10733944814652205,\\n        \\\"std\\\": 0.03373498507114191\\n      }\\n    },\\n    \\\"dino_5\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.09821527959778904,\\n        \\\"std\\\": 0.031560078935627046\\n      }\\n    },\\n    \\\"dino_6\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.12364766890183092,\\n        \\\"std\\\": 0.039254338605259564\\n      }\\n    },\\n    \\\"dino_7\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.1569262045621872,\\n        \\\"std\\\": 0.049746633399508286\\n      }\\n    },\\n    \\\"dino_8\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.2210854594781995,\\n        \\\"std\\\": 0.06533840055319422\\n      }\\n    },\\n    \\\"dino_9\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"me
+…[truncated 7093 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T18:39:23.741348+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "cat /root/occsafe_vla/analysis/results/gradient/full_occ_gradient_stats.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "cat /root/occsafe_vla/analysis/results/gradient/full_occ_gradient_stats.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T18:39:23.741918+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition_name\\\": \\\"full_occ\\\",\\n  \\\"condition_type\\\": \\\"occ\\\",\\n  \\\"occ_detach\\\": false,\\n  \\\"num_batches_completed\\\": 201,\\n  \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/full_occ_retrain_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\\\",\\n  \\\"layers\\\": {\\n    \\\"dino_0\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.062466570492833856,\\n        \\\"std\\\": 0.015528168301868265\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.02329171591438353,\\n        \\\"std\\\": 0.007013466280081982\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": -0.03113223549677059,\\n        \\\"std\\\": 0.13119195097056854\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.504893458634615,\\n        \\\"std\\\": 0.02212934073293431\\n      }\\n    },\\n    \\\"dino_1\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.08689828373491765,\\n        \\\"std\\\": 0.021527679549483543\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.02927246915176511,\\n        \\\"std\\\": 0.0090111357415968\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": -0.023677144658286124,\\n        \\\"std\\\": 0.09698577284866816\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.5047940517961979,\\n        \\\"std\\\": 0.022446335858420468\\n      }\\n    },\\n    \\\"dino_2\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.13353734847158194,\\n        \\\"std\\\": 0.03278062286183337\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.046578497346490624,\\n        \\\"std\\\": 0.014554518848340704\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": -0.013775625597918405,\\n        \\\"std\\\": 0.09287698156780777\\n      },\\n      \\\"c
+…[truncated 8229 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T18:39:23.742162+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "cat /root/occsafe_vla/analysis/results/gradient/detach_gradient_stats.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "cat /root/occsafe_vla/analysis/results/gradient/detach_gradient_stats.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-23T18:39:23.742345+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "cat /root/occsafe_vla/analysis/results/gradient/random_occ_gradient_stats.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "cat /root/occsafe_vla/analysis/results/gradient/random_occ_gradient_stats.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T18:39:23.742810+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition_name\\\": \\\"detach\\\",\\n  \\\"condition_type\\\": \\\"occ\\\",\\n  \\\"occ_detach\\\": true,\\n  \\\"num_batches_completed\\\": 201,\\n  \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/ablation_occ_detach_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\\\",\\n  \\\"layers\\\": {\\n    \\\"dino_0\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.005649733298341743,\\n        \\\"std\\\": 0.0031375271896328595\\n      }\\n    },\\n    \\\"dino_1\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.004326289687305689,\\n        \\\"std\\\": 0.002045270785898465\\n      }\\n    },\\n    \\\"dino_2\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.007605842970078811,\\n        \\\"std\\\": 0.0026318240926042798\\n      }\\n    },\\n    \\\"dino_3\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.005566120132571086,\\n        \\\"std\\\": 0.0013451331536454294\\n      }\\n    },\\n    \\\"dino_4\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.001649225035798736,\\n        \\\"std\\\": 0.00038889838820331264\\n      }\\n    },\\n    \\\"dino_5\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0014040643596672452,\\n        \\\"std\\\": 0.000339307637106339\\n      }\\n    },\\n    \\\"dino_6\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0015679982502479106,\\n        \\\"std\\\": 0.00037403673582067724\\n      }\\n    },\\n    \\\"dino_7\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.0015715500584337861,\\n        \\\"std\\\": 0.0003694462854838358\\n      }\\n    },\\n    \\\"dino_8\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.003564368803054094,\\n        \\\"std\\\": 0.001198375999828258\\n      }\\n    },\\n    \\\"dino_9\\\": {\\n      \\\"action_grad_no
+…[truncated 7227 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T18:39:23.743417+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition_name\\\": \\\"random_occ\\\",\\n  \\\"condition_type\\\": \\\"occ\\\",\\n  \\\"occ_detach\\\": false,\\n  \\\"num_batches_completed\\\": 201,\\n  \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/ablation_random_occ_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\\\",\\n  \\\"layers\\\": {\\n    \\\"dino_0\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.07281224258244037,\\n        \\\"std\\\": 0.017176999036356628\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.008409932978684082,\\n        \\\"std\\\": 0.003604051597494865\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.012129705576226115,\\n        \\\"std\\\": 0.0919826780187616\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.49996137276291847,\\n        \\\"std\\\": 0.021044131338621326\\n      }\\n    },\\n    \\\"dino_1\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.106105028539896,\\n        \\\"std\\\": 0.024727290030213293\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.011529352079378441,\\n        \\\"std\\\": 0.004846408808500072\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.008316193809732794,\\n        \\\"std\\\": 0.07239486934913963\\n      },\\n      \\\"conflict_rate\\\": {\\n        \\\"mean\\\": 0.4997364430129528,\\n        \\\"std\\\": 0.020620607987537145\\n      }\\n    },\\n    \\\"dino_2\\\": {\\n      \\\"action_grad_norm\\\": {\\n        \\\"mean\\\": 0.17000719666481018,\\n        \\\"std\\\": 0.03813999475142117\\n      },\\n      \\\"aux_grad_norm\\\": {\\n        \\\"mean\\\": 0.01930704786675051,\\n        \\\"std\\\": 0.007610994512073548\\n      },\\n      \\\"cosine_similarity\\\": {\\n        \\\"mean\\\": 0.0009123795595951379,\\n        \\\"std\\\": 0.08361127330080205\\n      },\\n     
+…[truncated 8216 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T18:39:23.743927+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "mkdir -p /root/occsafe_vla/artifacts/figures && cat << 'PYEOF' > /root/occsafe_vla/analysis/plot_gradient_paper.py\n#!/usr/bin/env python3\n\"\"\"Publication-quality gradient analysis figure for OccSafe-VLA paper.\"\"\"\nimport json, os\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    \"font.family\": \"DejaVu Sans\", \"font.size\": 9,\n    \"axes.titlesize\": 10, \"axes.labelsize\": 9,\n    \"xtick.labelsize\": 8, \"ytick.labelsize\": 8,\n    \"legend.fontsize\": 7.5, \"figure.dpi\": 300,\n    \"savefig.dpi\": 300, \"savefig.bbox\": \"tight\",\n    \"savefig.pad_inches\": 0.05,\n    \"axes.spines.top\": False, \"axes.spines.right\": False,\n    \"lines.linewidth\": 1.5,\n})\n\nCOLORS = {\n    \"Vanilla\": \"#888888\",\n    \"Full OCC\": \"#0072B2\",\n    \"Random OCC\": \"#009E73\",\n    \"Detach\": \"#CC3311\",\n}\nKEY_DINO = [0, 4, 8, 12, 17, 22]\nKEY_SIGLIP = [0, 8, 16, 25]\n\ndef load(path):\n    with open(path) as f:\n        return json.load(f)\n\ndef val(data, layer, field, sub=\"mean\"):\n    return data.get(\"layers\", {}).get(layer, {}).get(field, {}).get(sub, 0.0)\n\ndef main():\n    base = \"/root/occsafe_vla/analysis/results/gradient\"\n    out = \"/root/occsafe_vla/artifacts/figures\"\n    os.makedirs(out, exist_ok=True)\n\n    D = {\n        \"Vanilla\": load(f\"{base}/vanilla_gradient_stats.json\"),\n        \"Full OCC\": load(f\"{base}/full_occ_gradient_stats.json\"),\n        \"Random OCC\": load(f\"{base}/random_occ_gradient_stats.json\"),\n        \"Detach\": load(f\"{base}/detach_gradient_stats.json\"),\n    }\n\n    layers = [f\"dino_{i}\" for i in KEY_DINO] + [f\"siglip_{i}\" for i in KEY_SIGLIP]\n    labels = [f\"D{i}\" for i in KEY_DINO] + [f\"S{i}\" for i in KEY_SIGLIP]\n    x = np.arange(len(layers))\n    sep = len(KEY_DINO) - 0.5\n    n_lay = len(layers)\n\n    fig, axes = plt.subplots(2, 2, figsize=(10.5, 7.5))\n\n    # ---- (a) Action gradient norms ----\n    ax = axes[0, 0]\n    w = 0.18\n    cond_order = [\"Vanilla\", \"Full OCC\", \"Random OCC\", \"Detach\"]\n    offsets = [-1.5, -0.5, 0.5, 1.5]\n    for cond, off in zip(cond_order, offsets):\n        m = [val(D[cond], l, \"action_grad_norm\") for l in layers]\n        s = [val(D[cond], l, \"action_grad_norm\", \"std\") for l in layers]\n        ax.bar(x + off * w, m, w, yerr=s, label=cond,\n               color=COLORS[cond], capsize=1.5, alpha=0.85,\n               edgecolor=\"white\", linewidth=0.3,\n               error_kw={\"linewidth\": 0.7})\n    ax.set_xticks(x)\n    ax.set_xticklabels(labels)\n    ax.set_ylabel(\"Gradient Norm\")\n    ax.set_title(\"(a) Action Gradient Norms per Layer\")\n    ax.legend(loc=\"upper left\", framealpha=0.85, edgecolor=\"none\")\n    ax.axvline(sep, color=\"#bbb\", ls=\":\", lw=0.7)\n    yl = ax.get_ylim()\n    ax.text(sep / 2, yl[1] * 0.93, \"DINOv2\", ha=\"center\", fontsize=7, color=\"#999\")\n    ax.text((sep + n_lay) / 2, yl[1] * 0.93, \"SigLIP\", ha=\"center\", fontsize=7, color=\"#999\")\n\n    # ---- (b) Auxiliary gradient norms ----\n    ax = axes[0, 1]\n    w2 = 0.32\n    occ_conds = [\"Full OCC\", \"Random OCC\"]\n    for i, cond in enumerate(occ_conds):\n        m = [val(D[cond], l, \"aux_grad_norm\") for l in layers]\n        s = [val(D[cond], l, \"aux_grad_norm\", \"std\") for l in layers]\n        ax.bar(x + (i - 0.5) * w2, m, w2, yerr=s, label=cond,\n               color=COLORS[cond], capsize=1.5, alpha=0.85,\n               edgecolor=\"white\", linewidth=0.3,\n               error_kw={\"linewidth\": 0.7})\n    ax.set_xticks(x)\n    ax.set_xticklabels(labels)\n    ax.set_ylabel(\"Gradient Norm\")\n    ax.set_title(\"(b) OCC Auxiliary Gradient Norms\")\n    ax.legend(loc=\"upper left\", framealpha=0.85, edgecolor=\"none\")\n    ax.axvline(sep, color=\"#bbb\", ls=\":\", lw=0.7)\n    yl2 = ax.get_ylim()\n    ax.text(sep / 2, yl2[1] * 0.93, \"DINOv2\", ha=\"center\", fontsize=7, color=\"#999\")\n    ax.text((sep + n_lay) / 2, yl2[1] * 0.93, \"SigLIP\", ha=\"center\", fontsize=7, color=\"#999\")\n\n    # ---- (c) Cosine similarity heatmap ----\n    ax = axes[1, 0]\n    cos = np.array([[val(D[c], l, \"cosine_similarity\") for l in layers]\n                     for c in occ_conds])\n    vabs = max(np.abs(cos).max(), 0.04)\n    im = ax.imshow(cos, cmap=\"RdBu_r\", vmin=-vabs, vmax=vabs, aspect=\"auto\")\n    ax.set_xticks(range(n_lay))\n    ax.set_xticklabels(labels, fontsize=7)\n    ax.set_yticks([0, 1])\n    ax.set_yticklabels(occ_conds, fontsize=8)\n    for i in range(2):\n        for j in range(n_lay):\n            v = cos[i, j]\n            c = \"white\" if abs(v) > vabs * 0.55 else \"black\"\n            ax.text(j, i, f\"{v:.3f}\", ha=\"center\", va=\"center\",\n                    fontsize=6.5, color=c, fontweight=\"medium\")\n    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)\n    cbar.set_label(\"Cosine Similarity\", fontsize=7)\n    ax.set_title(\"(c) Action–Auxiliary Gradient Cosine Similarity\")\n\n    # ---- (d) Gradient collapse ratio ----\n    ax = axes[1, 1]\n    v_norms = [val(D[\"Vanilla\"], l, \"action_grad_norm\") for l in layers]\n    d_norms = [val(D[\"Detach\"], l, \"action_grad_norm\") for l in layers]\n    ratios = [d / v if v > 1e-8 else 0 for d, v in zip(d_norms, v_norms)]\n\n    bar_colors = [COLORS[\"Detach\"] if r < 0.15 else \"#E69F00\" for r in ratios]\n    bars = ax.bar(x, ratios, color=bar_colors, alpha=0.85,\n                  edgecolor=\"white\", linewidth=0.3)\n    ax.axhline(1.0, color=\"#888\", ls=\"--\", lw=0.8, label=\"No collapse (1.0)\")\n    ax.set_xticks(x)\n    ax.set_xticklabels(labels)\n    ax.set_ylabel(\"Detach / Vanilla Ratio\")\n    ax.set_title(\"(d) Gradient Collapse (Detach vs. Vanilla)\")\n    top = max(ratios) * 1.6\n    ax.set_ylim(0, max(top, 0.15))\n    ax.legend(fontsize=7, loc=\"upper right\", framealpha=0.85, edgecolor=\"none\")\n    ax.axvline(sep, color=\"#bbb\", ls=\":\", lw=0.7)\n    for i, r in enumerate(ratios):\n        ax.text(i, r + top * 0.02, f\"{r:.2f}\", ha=\"center\", va=\"bottom\",\n                fontsize=6, color=\"#333\")\n\n    plt.tight_layout(pad=1.8)\n    for ext in (\"pdf\", \"png\"):\n        p = os.path.join(out, f\"gradient_analysis_combined.{ext}\")\n        fig.savefig(p, dpi=300, bbox_inches=\"tight\")\n        print(f\"Saved: {p}\")\n    plt.close(fig)\n    print(\"Done.\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "mkdir -p /root/occsafe_vla/artifacts/figures && cat << 'PYEOF' > /root/occsafe_vla/analysis/plot_gradient_paper.py\n#!/usr/bin/env python3\n\"\"\"Publication-quality gradient analysis figure for OccSafe-VLA paper.\"\"\"\nimport json, os\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    \"font.family\": \"DejaVu Sans\", \"font.size\": 9,\n    \"axes.titlesize\": 10, \"axes.labelsize\": 9,\n    \"xtick.labelsize\": 8, \"ytick.labelsize\": 8,\n    \"legend.fontsize\": 7.5, \"figure.dpi\": 300,\n    \"savefig.dpi\": 300, \"savefig.bbox\": \"tight\",\n    \"savefig.pad_inches\": 0.05,\n    \"axes.spines.top\": False, \"axes.spines.right\": False,\n    \"lines.linewidth\": 1.5,\n})\n\nCOLORS = {\n    \"Vanilla\": \"#888888\",\n    \"Full OCC\": \"#0072B2\",\n    \"Random OCC\": \"#009E73\",\n    \"Detach\": \"#CC3311\",\n}\nKEY_DINO = [0, 4, 8, 12, 17, 22]\nKEY_SIGLIP = [0, 8, 16, 25]\n\ndef load(path):\n    with open(path) as f:\n        return json.load(f)\n\ndef val(data, layer, field, sub=\"mean\"):\n    return data.get(\"layers\", {}).get(layer, {}).get(field, {}).get(sub, 0.0)\n\ndef main():\n    base = \"/root/occsafe_vla/analysis/results/gradient\"\n    out = \"/root/occsafe_vla/artifacts/figures\"\n    os.makedirs(out, exist_ok=True)\n\n    D = {\n        \"Vanilla\": load(f\"{base}/vanilla_gradient_stats.json\"),\n        \"Full OCC\": load(f\"{base}/full_occ_gradient_stats.json\"),\n        \"Random OCC\": load(f\"{base}/random_occ_gradient_stats.json\"),\n        \"Detach\": load(f\"{base}/detach_gradient_stats.json\"),\n    }\n\n    layers = [f\"dino_{i}\" for i in KEY_DINO] + [f\"siglip_{i}\" for i in KEY_SIGLIP]\n    labels = [f\"D{i}\" for i in KEY_DINO] + [f\"S{i}\" for i in KEY_SIGLIP]\n    x = np.arange(len(layers))\n    sep = len(KEY_DINO) - 0.5\n    n_lay = len(layers)\n\n    fig, axes = plt.subplots(2, 2, figsize=(10.5, 7.5))\n\n    # ---- (a) Action gradient norms ----\n    ax = axes[0, 0]\n    w = 0.18\n    cond_order = [\"Vanilla\", \"Full OCC\", \"Random OCC\", \"Detach\"]\n    offsets = [-1.5, -0.5, 0.5, 1.5]\n    for cond, off in zip(cond_order, offsets):\n        m = [val(D[cond], l, \"action_grad_norm\") for l in layers]\n        s = [val(D[cond], l, \"action_grad_norm\", \"std\") for l in layers]\n        ax.bar(x + off * w, m, w, yerr=s, label=cond,\n               color=COLORS[cond], capsize=1.5, alpha=0.85,\n               edgecolor=\"white\", linewidth=0.3,\n               error_kw={\"linewidth\": 0.7})\n    ax.set_xticks(x)\n    ax.set_xticklabels(labels)\n    ax.set_ylabel(\"Gradient Norm\")\n    ax.set_title(\"(a) Action Gradient Norms per Layer\")\n    ax.legend(loc=\"upper left\", framealpha=0.85, edgecolor=\"none\")\n    ax.axvline(sep, color=\"#bbb\", ls=\":\", lw=0.7)\n    yl = ax.get_ylim()\n    ax.text(sep / 2, yl[1] * 0.93, \"DINOv2\", ha=\"center\", fontsize=7, color=\"#999\")\n    ax.text((sep + n_lay) / 2, yl[1] * 0.93, \"SigLIP\", ha=\"center\", fontsize=7, color=\"#999\")\n\n    # ---- (b) Auxiliary gradient norms ----\n    ax = axes[0, 1]\n    w2 = 0.32\n    occ_conds = [\"Full OCC\", \"Random OCC\"]\n    for i, cond in enumerate(occ_conds):\n        m = [val(D[cond], l, \"aux_grad_norm\") for l in layers]\n        s = [val(D[cond], l, \"aux_grad_norm\", \"std\") for l in layers]\n        ax.bar(x + (i - 0.5) * w2, m, w2, yerr=s, label=cond,\n               color=COLORS[cond], capsize=1.5, alpha=0.85,\n               edgecolor=\"white\", linewidth=0.3,\n               error_kw={\"linewidth\": 0.7})\n    ax.set_xticks(x)\n    ax.set_xticklabels(labels)\n    ax.set_ylabel(\"Gradient Norm\")\n    ax.set_title(\"(b) OCC Auxiliary Gradient Norms\")\n    ax.legend(loc=\"upper left\", framealpha=0.85, edgecolor=\"none\")\n    ax.axvline(sep, color=\"#bbb\", ls=\":\", lw=0.7)\n    yl2 = ax.get_ylim()\n    ax.text(sep / 2, yl2[1] * 0.93, \"DINOv2\", ha=\"center\", fontsize=7, color=\"#999\")\n    ax.text((sep + n_lay) / 2, yl2[1] * 0.93, \"SigLIP\", ha=\"center\", fontsize=7, color=\"#999\")\n\n    # ---- (c) Cosine similarity heatmap ----\n    ax = axes[1, 0]\n    cos = np.array([[val(D[c], l, \"cosine_similarity\") for l in layers]\n                     for c in occ_conds])\n    vabs = max(np.abs(cos).max(), 0.04)\n    im = ax.imshow(cos, cmap=\"RdBu_r\", vmin=-vabs, vmax=vabs, aspect=\"auto\")\n    ax.set_xticks(range(n_lay))\n    ax.set_xticklabels(labels, fontsize=7)\n    ax.set_yticks([0, 1])\n    ax.set_yticklabels(occ_conds, fontsize=8)\n    for i in range(2):\n        for j in range(n_lay):\n            v = cos[i, j]\n            c = \"white\" if abs(v) > vabs * 0.55 else \"black\"\n            ax.text(j, i, f\"{v:.3f}\", ha=\"center\", va=\"center\",\n                    fontsize=6.5, color=c, fontweight=\"medium\")\n    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)\n    cbar.set_label(\"Cosine Similarity\", fontsize=7)\n    ax.set_title(\"(c) Action–Auxiliary Gradient Cosine Similarity\")\n\n    # ---- (d) Gradient collapse ratio ----\n    ax = axes[1, 1]\n    v_norms = [val(D[\"Vanilla\"], l, \"action_grad_norm\") for l in layers]\n    d_norms = [val(D[\"Detach\"], l, \"action_grad_norm\") for l in layers]\n    ratios = [d / v if v > 1e-8 else 0 for d, v in zip(d_norms, v_norms)]\n\n    bar_colors = [COLORS[\"Detach\"] if r < 0.15 else \"#E69F00\" for r in ratios]\n    bars = ax.bar(x, ratios, color=bar_colors, alpha=0.85,\n                  edgecolor=\"white\", linewidth=0.3)\n    ax.axhline(1.0, color=\"#888\", ls=\"--\", lw=0.8, label=\"No collapse (1.0)\")\n    ax.set_xticks(x)\n    ax.set_xticklabels(labels)\n    ax.set_ylabel(\"Detach / Vanilla Ratio\")\n    ax.set_title(\"(d) Gradient Collapse (Detach vs. Vanilla)\")\n    top = max(ratios) * 1.6\n    ax.set_ylim(0, max(top, 0.15))\n    ax.legend(fontsize=7, loc=\"upper right\", framealpha=0.85, edgecolor=\"none\")\n    ax.axvline(sep, color=\"#bbb\", ls=\":\", lw=0.7)\n    for i, r in enumerate(ratios):\n        ax.text(i, r + top * 0.02, f\"{r:.2f}\", ha=\"center\", va=\"bottom\",\n                fontsize=6, color=\"#333\")\n\n    plt.tight_layout(pad=1.8)\n    for ext in (\"pdf\", \"png\"):\n        p = os.path.join(out, f\"gradient_analysis_combined.{ext}\")\n        fig.savefig(p, dpi=300, bbox_inches=\"tight\")\n        print(f\"Saved: {p}\")\n    plt.close(fig)\n    print(\"Done.\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T18:39:23.744252+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-23T18:39:23.744445+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "cd /root/occsafe_vla/analysis && python plot_gradient_paper.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "cd /root/occsafe_vla/analysis && python plot_gradient_paper.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T18:39:23.744629+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/occsafe_vla/analysis && python plot_gradient_paper.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-23T18:39:23.744831+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "which python3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "which python3",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T18:39:23.745003+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-23T18:39:23.745170+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "which python3 && which python 2>/dev/null; ls /root/miniconda3/bin/python* 2>/dev/null; ls /usr/bin/python* 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "which python3 && which python 2>/dev/null; ls /root/miniconda3/bin/python* 2>/dev/null; ls /usr/bin/python* 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T18:39:23.745348+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\", \"stderr\": \"\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-23T18:39:23.745513+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/occsafe_vla/analysis && python plot_gradient_paper.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/occsafe_vla/analysis && python plot_gradient_paper.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T18:39:23.745701+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved: /root/occsafe_vla/artifacts/figures/gradient_analysis_combined.pdf\\nSaved: /root/occsafe_vla/artifacts/figures/gradient_analysis_combined.png\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-23T18:39:23.745901+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/figures/ && scp westd-34685:/root/occsafe_vla/artifacts/figures/gradient_analysis_combined.pdf /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/figures/ && scp westd-34685:/root/occsafe_vla/artifacts/figures/gradient_analysis_combined.png /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/figures/ && echo \"Download OK\"",
+  "description": "Download gradient figures from remote server"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/figures/ && scp westd-34685:/root/occsafe_vla/artifacts/figures/gradient_analysis_combined.pdf /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/figures/ && scp westd-34685:/root/occsafe_vla/artifacts/figures/gradient_analysis_combined.png /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/figures/ && echo \"Download OK\"",
+    "description": "Download gradient figures from remote server"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T18:39:23.746108+00:00_
+
+Warning: Permanently added '[connect.westd.seetacloud.com]:34685' (ED25519) to the list of known hosts.
+Warning: Permanently added '[connect.westd.seetacloud.com]:34685' (ED25519) to the list of known hosts.
+Download OK
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-23T18:39:23.746273+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/figures/gradient_analysis_combined.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/figures/gradient_analysis_combined.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T18:39:23.746759+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-23T18:39:23.747025+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "gradient_analysis_combined",
+  "type": "chart",
+  "description": "4-condition gradient analysis figure (2×2): (a) action gradient norms per layer, (b) OCC auxiliary gradient norms, (c) cosine similarity heatmap, (d) gradient collapse ratio (Detach/Vanilla). DINOv2+SigLIP key layers. PDF+PNG 300dpi.",
+  "project": "occsafe_vla",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/figures/gradient_analysis_combined.png",
+  "tags": "['gradient', 'figure', 'paper', 'ablation']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "gradient_analysis_combined",
+    "type": "chart",
+    "description": "4-condition gradient analysis figure (2×2): (a) action gradient norms per layer, (b) OCC auxiliary gradient norms, (c) cosine similarity heatmap, (d) gradient collapse ratio (Detach/Vanilla). DINOv2+SigLIP key layers. PDF+PNG 300dpi.",
+    "project": "occsafe_vla",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/figures/gradient_analysis_combined.png",
+    "tags": "['gradient', 'figure', 'paper', 'ablation']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-23T18:39:23.747251+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260523_a4b9c0\", \"name\": \"gradient_analysis_combined\", \"type\": \"chart\", \"description\": \"4-condition gradient analysis figure (2×2): (a) action gradient norms per layer, (b) OCC auxiliary gradient norms, (c) cosine similarity heatmap, (d) gradient collapse ratio (Detach/Vanilla). DINOv2+SigLIP key layers. PDF+PNG 300dpi.\", \"path\": \"projects/occsafe_vla/artifacts/_project/chart/gradient_analysis_combined.png\", \"url\": null, \"project\": \"occsafe_vla\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-23T18:39:09.519373+00:00\", \"tags\": [\"gradient\", \"figure\", \"paper\", \"ablation\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_gradient_figure_20260523T183457",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-23T18:39:23.747488+00:00_
+
+完成。生成的 2×2 论文级图表包含：
+
+- **(a) Action Gradient Norms** — Detach（红色）梯度接近零（~0.002-0.03），其余三个条件正常（0.06-0.39），证实梯度崩溃。Random OCC 略高于 Vanilla 和 Full OCC。
+- **(b) OCC Auxiliary Gradient Norms** — Full OCC 辅助梯度远大于 Random OCC（尤其 SigLIP 后层 Full OCC 达 0.23 vs Random OCC 0.07），符合预期（structured vs random targets）。
+- **(c) Cosine Similarity Heatmap** — 所有层 action-aux 梯度余弦相似度接近零（-0.031 ~ +0.013），确认两组梯度近乎正交，OCC 辅助任务不干扰 action 学习。
+- **(d) Gradient Collapse Ratio** — Detach/Vanilla 比率全部 < 0.13，DINOv2 中间层（D4-D12）低至 0.02，定量展示 stop-gradient 导致的视觉特征崩溃。
+
+产出文件：`artifacts/figures/gradient_analysis_combined.pdf` + `.png`（300 DPI），已注册为 `art_20260523_a4b9c0`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_gradient_figure_20260523T183457"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "9dcd867e3440f38da9cb",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "analysis bootstrap table2 matched",
+  "task_key": "worker_analysis_bootstrap-table2-matched_20260515T045058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-table2-matched_20260515T045058.log",
+    "occurrence": 1,
+    "bytes": 793411,
+    "sha256": "d2261100358ddc4891fa3a86bcb5d595a9fed7ff3bfb5119469c25b7d1f853ef"
+  },
+  "statistics": {
+    "messages": 264,
+    "user_turns": 0,
+    "tool_calls": 93,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 93,
+      "tool_result": 93,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 264,
+      "chunks": [
+        {
+          "path": "9dcd867e3440f38da9cb-part-0001.json",
+          "message_count": 171
+        },
+        {
+          "path": "9dcd867e3440f38da9cb-part-0002.json",
+          "message_count": 93
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-bootstrap-table2-matched.md"
+}

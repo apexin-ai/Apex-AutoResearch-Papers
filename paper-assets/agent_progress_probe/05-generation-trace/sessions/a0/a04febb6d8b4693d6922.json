@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a04febb6d8b4693d6922",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis lf firing rate fixed",
+  "task_key": "worker_analysis_lf-firing-rate-fixed_20260514T230953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lf-firing-rate-fixed_20260514T230953_result.json",
+    "occurrence": 1,
+    "bytes": 2001,
+    "sha256": "98ebeb606671ec903598a8595b5115cf668d6880ee62621cf6d13221659465d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here are the results:\n\n---\n\n## Part 1: LF Firing Rate Table (Fixed OH Labels)\n\n**OH stag rate: 20.32%** (all windows) / **21.45%** (embeddings_fixed.pt after filtering) — confirmed fixed from old 6.56%.\n\n| LF | Dataset | Fire Rate (stag vote %) | Precision | Recall | FP Rate |\n|---|---|---|---|---|---|\n| cmd_rep (λ1) | **OH** | **5.39%** | **97.91%** | **25.99%** | **0.15%** |\n| cmd_rep (λ1) | SWE | 17.36% | 69.42% | 45.96% | 8.06% |\n| file_diff (λ2) | **OH** | **17.78%** | **99.93%** | **87.46%** | **0.02%** |\n| file_diff (λ2) | SWE | 14.61% | 99.91% | 55.66% | 0.02% |\n| outcome_bp (λ3) | **OH** | **16.79%** | **20.40%** | **16.85%** | **17.35%** |\n| outcome_bp (λ3) | SWE | 21.48% | 47.78% | 39.14% | 17.02% |\n\nKey cross-agent differences:\n- **cmd_rep** fires much less on OH (5.39% vs 17.36%) but with much higher precision (97.91% vs 69.42%)\n- **file_diff** has similar precision on both but much higher recall on OH (87.46% vs 55.66%)\n- **outcome_bp** has near-random precision on OH (20.40%) — essentially useless as a standalone signal\n\n## Part 2: cmd_rep Temporal Offset\n\n| Dataset | Mean Offset | Median | Std | Leading% | Exact% | Lagging% |\n|---|---|---|---|---|---|---|\n| **OH (fixed)** | **+3.32** | **+1.0** | 8.03 | 9.8% | 32.4% | 57.7% |\n| SWE | -1.87 | 0.0 | 7.14 | 36.1% | 41.4% | 22.5% |\n\ncmd_rep on OH remains a **lagging indicator** (mean +3.32 steps, 57.7% lagging) — identical to the old value. This is expected: the label fix affected how majority_label maps to embeddings.pt training labels, but the windows_labeled.jsonl LF votes and majority_labels were already correct. The +3.32 offset is the authoritative number.\n\nOn SWE-Agent, cmd_rep is a **leading indicator** (mean -1.87 steps). This cross-agent contrast is a notable finding.\n\nResults saved to registry as `lf-firing-rate-fixed` and artifact at `/root/autodl-tmp/agent_progress_probe/artifacts/lf_firing_rate_fixed_results.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lf-firing-rate-fixed.md"
+}

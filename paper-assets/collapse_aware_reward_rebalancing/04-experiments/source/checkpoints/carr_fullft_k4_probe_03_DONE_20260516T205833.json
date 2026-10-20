@@ -1,0 +1,60 @@
+{
+  "exp_id": "carr_fullft_k4_probe_03",
+  "project": "collapse_aware_reward_rebalancing",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T17:01:20.476Z",
+    "updated_at": "2026-05-16T20:58:33.610Z",
+    "spec": {
+      "log_path": "/root/autodl-tmp/carr/outputs_fullft_k4/training.log",
+      "checkpoint_path": "/root/autodl-tmp/carr/outputs_fullft_k4/gen_2/condition_0/merged"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T20:35:20.184Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T20:35:20.904508+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "gen0": {
+        "mean_quality": 0.1145,
+        "vendi_score": 107.1,
+        "self_bleu": 0.0038,
+        "perplexity": 9.1,
+        "mean_nn_distance": 0.7073,
+        "complexity_mean": 2.858
+      },
+      "gen1": {
+        "mean_quality": 0.1141,
+        "vendi_score": 107.61,
+        "self_bleu": 0.006,
+        "perplexity": 8.66,
+        "mean_nn_distance": 0.7091,
+        "complexity_mean": 2.853
+      },
+      "gen2": {
+        "mean_quality": 0.1131,
+        "vendi_score": 108.07,
+        "self_bleu": 0.0044,
+        "perplexity": 9.21,
+        "mean_nn_distance": 0.7108,
+        "complexity_mean": 2.813
+      },
+      "vendi_decline_pct": 0.91,
+      "p1_pass": false
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-16T20:58:33.611Z"
+  },
+  "timestamp": "2026-05-16T20:58:33.635263+00:00",
+  "trigger": "update_registry"
+}

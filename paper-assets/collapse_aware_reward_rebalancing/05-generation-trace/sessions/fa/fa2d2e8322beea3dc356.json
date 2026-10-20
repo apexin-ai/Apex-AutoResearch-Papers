@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa2d2e8322beea3dc356",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "analysis c1 format diversity",
+  "task_key": "worker_analysis_c1_format_diversity_20260517T055240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c1_format_diversity_20260517T055240_result.json",
+    "occurrence": 1,
+    "bytes": 1264,
+    "sha256": "a46bf11260865b78313b7443dbf527fa3cea9d551af34fc6a12e2c3065c7fdd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "336/2000. Process running steadily at ~40 prompts/min. \n\n**Summary of current state:**\n\n1. **C5 metrics (DONE)**:\n   | Metric | Gen0 | Gen2 | Delta |\n   |--------|------|------|-------|\n   | opening_unique_ratio | 0.7532 | 0.4789 | -0.2743 |\n   | opening_entropy | 12.43 | 11.68 | -0.75 |\n   | near_duplicate_start_rate | 0.3827 | 0.7489 | +0.3662 |\n   | per_response_ttr | 0.6828 | 0.6598 | -0.0230 |\n   | trigram_repetition_rate | 0.1739 | 0.2576 | +0.0837 |\n\n2. **C1 re-run (IN PROGRESS)**: \n   - Reason: original C1 data was overwritten by C5 baseline run (both used same `outputs/condition_0/` directory)\n   - Running on GPU 0, PID 548879, currently gen_0 at 336/2000\n   - Auto-completion: watcher script (PID 549365) will compute and save C1 metrics when done\n   - ETA: ~17:00-17:30 CST\n\n3. **Output locations**:\n   - Interim report: `artifacts/c1_vs_c5_format_analysis.md`\n   - Server JSON: `/root/autodl-tmp/carr/analysis/c1_c5_format_diversity.json`\n   - C1 generation log: `/root/autodl-tmp/carr/outputs_lora_k4_curated/run.log`\n\nOnce C1 finishes, the watcher will update `c1_c5_format_diversity.json` and I can update the final report table. Want me to check back in ~3 hours, or should I continue monitoring here?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c1-format-diversity.md"
+}

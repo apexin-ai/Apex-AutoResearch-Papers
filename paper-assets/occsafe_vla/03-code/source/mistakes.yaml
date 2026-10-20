@@ -1,0 +1,1463 @@
+_next_id: 104
+mistakes:
+- id: M001
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: 占据 GT Pipeline 输出格式与 DataLoader 期望格式三重不匹配，训练会静默 fallback 到全零标签
+  root_cause: Pipeline Worker 和 DataLoader Worker 独立开发，未约定接口规范（文件命名、HDF5 key 结构、索引方式）。DataLoader
+    有 fallback 返回全零，掩盖了数据加载失败。
+  prevention: 并行开发数据生产和数据消费代码时，必须先定义接口规范（文件名模式、HDF5 schema、索引字段）。DataLoader fallback
+    应有显式 warning log 而非静默返回全零。Reviewer 或 dry-run 必须验证 occ 标签实际被加载（检查 loss 值是否合理，而非仅检查无报错）。
+  status: active
+  context: BEV aux head Worker 写了 DataLoader 期望 episode_{id}.h5 + bev_occupancy[step_id]
+    格式；occ-gt-pipeline Worker 输出 occ_{task_name}_demo.hdf5 + data/demo_0/bev_binary
+    格式。FocalLoss 对全零标签也能产生合理 loss 值，使问题难以从 loss 曲线发现。
+  fix: 修改 DataLoader _load_occ_label() 适配 pipeline 实际输出格式（推荐方向，pipeline 已产出数据不宜改）
+- id: M002
+  date: '2026-05-20'
+  category: code_bug
+  severity: medium
+  summary: 训练命令用 HF Hub 路径而非本地路径，AutoDL 无外网导致模型加载失败
+  root_cause: Worker 提交训练时用 `openvla/openvla-7b`（HF Hub 名），但 AutoDL 服务器无直连外网。模型已下载到本地但未被引用。
+  prevention: AutoDL 实例上所有 from_pretrained 调用必须用本地路径（/root/autodl-tmp/models/...）。训练脚本提交前检查：是否有
+    HF Hub 路径残留？启动前是否 source /etc/network_turbo？
+  status: active
+  fix: 训练命令改为 --vla_path /root/autodl-tmp/models/openvla-7b
+- id: M003
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: 训练命令包含 timeout 64800（18h），按实际速度 50K steps 需 ~38h，会在 47% 处被 kill
+  root_cause: Worker 提交训练时加了保守的 timeout 但未根据实际训练速度校准。dry-run 校准的 1.09 s/it 是无 I/O
+    竞争时的速度，实际因 occ 提取并行导致 2.75 s/it。
+  prevention: 提交长时间训练时：(1) timeout 应设为预估时间的 2-3 倍或不设；(2) 如果有并行 I/O 密集任务，训练速度可能大幅下降，timeout
+    需据此调整；(3) 训练脚本应有 loss 日志输出用于远程监控。
+  status: active
+  fix: kill timeout 父进程，训练子进程继续运行
+- id: M004
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: 3 个 vanilla 训练被 SIGTERM kill，零 checkpoint（save_freq=10000 太大），4.5 GPU-hours
+    浪费
+  root_cause: 训练进程在 ~2000 步时被 SIGTERM 同时杀死，可能是 Worker 误 kill 或 timeout 进程导致。save_freq=10000
+    在 2.75 s/it 速度下意味着 ~7.6h 才保存一次，进程被 kill 时没有任何 checkpoint。
+  prevention: (1) save_freq 设为 5000 或更小，确保训练中断损失 ≤4h；(2) 训练进程在独立 tmux session 中用 nohup
+    运行，与 Worker 进程解耦；(3) 不要用 timeout 命令包装长时间训练；(4) Worker 执行 kill 类操作前必须确认目标进程身份。
+  status: active
+  fix: 带保护措施重启：去 timeout、save_freq=5000、tmux 隔离、loss 日志
+- id: M005
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: 训练重启后 registry 未更新，Reviewer 连续 3 次提出仍未修复，训练处于"幽灵"状态
+  root_cause: Agent 重启训练后将 registry 更新推迟到"Worker 返回 PID 后"，但 PID 和运行状态早已由 Reviewer
+    独立确认（PID 97847/98174/100203）。Agent 倾向于等完美信息再更新，而非用已有信息先更新。
+  prevention: 训练状态变化（启动/重启/完成/失败）后，registry 更新必须在同一动作中完成，不得推迟到"下一个 Worker 确认后"。已知
+    PID + 已知状态 = 立即更新。Registry 过期 = 监控失效 = hook 不触发 = 训练完成无人知道。Director 对 "待确认后更新"
+    的回复一律改为 "现在更新"。
+  status: active
+  context: mvp_vanilla_s0/s1/s2 在 17:20 UTC 重启后，Reviewer 在 3 次审查中均指出 registry 仍为 DONE/failed。Agent
+    每次回复"待 Worker 确认后更新"，实际 PID 和运行状态早已可确认。期间 report.md 显示"无 RUNNING、4 GPU 空闲"，与实际完全不符。
+  fix: Director 第三次指令中明确要求"不等任何 Worker，现在就更新"
+- id: M006
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: 对 I/O 密集进程使用 SIGSTOP 导致 HDF5 文件全部损坏，occ 数据需从零重跑
+  root_cause: 10 个 extract_occupancy.py 进程正在写 HDF5 文件时被 SIGSTOP 暂停，HDF5 内部缓冲区未 flush、文件元数据未关闭。后续
+    kill 进程时文件处于不一致状态，全部损坏不可用。
+  prevention: 对正在执行 I/O（尤其是写入结构化文件如 HDF5/SQLite/Parquet）的进程，禁止使用 SIGSTOP。正确做法：直接 kill
+    + 重启。SIGSTOP 只适用于纯计算进程或已暂停 I/O 的进程。如果需要释放资源给其他任务，kill 后在新位置重启比 SIGSTOP+SIGCONT
+    更安全。
+  status: active
+  context: Agent 为减轻 GPU 0 上 vanilla_s0 训练与 occ 提取的资源竞争，对 10 个 extract_occupancy.py
+    进程执行 SIGSTOP。之后 Director 指令 kill+迁移到 cuda:3 时发现 10 个 HDF5 文件全部损坏（之前报告的 95% 完成度作废），需要全部重跑。幸运的是
+    occ 提取在 cuda:3 上 4-8h 可完成，仍早于 vanilla 训练结束时间，未影响整体 MVP 时间线。
+  fix: Kill 损坏的进程，清理损坏的 HDF5 文件，在 cuda:3 上从零重启 occ 提取（MUJOCO_EGL_DEVICE_ID=3）
+- id: M007
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: Agent 修改了函数签名默认值（L306）而非数据类字段（L94），修复无效——改的是死代码
+  root_cause: Agent 未追踪调用链。L1129 调用 run_forward_pass 时显式传 cfg.occ_detach，完全覆盖 L306
+    的默认参数。真正的配置源头是 L94 的 FinetuneConfig 数据类，Agent 只改了表面而非根源。
+  prevention: 修改配置相关代码时，必须追踪完整调用链：数据类定义 → CLI 解析 → 实际调用点。只改函数签名默认值不够——如果调用方显式传参，默认值是死代码。修复后必须验证实际生效（打印
+    parsed config 或检查运行时行为），不能只看代码 diff 就认为修好了。
+  status: active
+  context: 'occ_detach 控制梯度是否流向 vision encoder，是 Condition B 核心假设的关键开关。Agent 修改了 run_forward_pass
+    函数签名的默认值（L306: occ_detach=True→False），但 L1129 的调用处 occ_detach=cfg.occ_detach 覆盖了默认值，而
+    cfg 来自 FinetuneConfig 数据类（L94: occ_detach=True，未修改）。修复完全无效，且 Worker 未做任何验证就报告完成。'
+  fix: 改 L94 FinetuneConfig 数据类的 occ_detach 默认值为 False，并做 5-step dry-run 验证
+- id: M008
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: Agent 卡死 90+ 分钟，5 张 GPU 空转，occ 训练未提交
+  root_cause: Agent 处理消息时卡住（idle_seconds=5535），Worker 池降为 0，无自动恢复机制。已 ALLOCATED 的
+    mvp_occ_s0/s1/s2 从未被 submit。Director 之前发的 urgent message 也因排在 pending 队列未被处理。
+  prevention: 1. Director 发完 ALLOCATE 指令后 15 分钟内必须检查 agent queue + resource usage，确认实验从
+    ALLOCATED 变为 RUNNING。2. Agent idle > 30 分钟且有 ALLOCATED 实验时，立即 replace_agent_queue
+    发合并指令。3. 考虑设置 cron 监控 ALLOCATED 但未 RUNNING 的实验。
+  status: active
+  context: westd-34685 cuda:0/1/2/3 从分配到现在空转超 90 分钟。mvp_occ_s0/s1/s2 一直停在 ALLOCATED
+    状态。Agent 当前 processing 的消息是 90 分钟前的旧指令，pending 队列中的 urgent message 也未被消费。已 replace_agent_queue
+    发送合并紧急指令。
+  fix: replace_agent_queue 清空旧消息，发送包含完整 4 步操作的合并指令（build occ_index → kill residual
+    → submit occ training → verify）。
+- id: M009
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: occ_index.json 格式与 datasets.py 不匹配，occ 标签 100% 加载失败，训练在学习预测全零
+  root_cause: build_occ_index.py 生成的 occ_index.json 使用 key "demo_ids"（list 类型），但 datasets.py
+    期望 key "demos"（dict{str→int} 类型）。KeyError 被 fallback 捕获返回 np.zeros((64,64))，FocalLoss
+    对全零 target 仍产生非零 loss（初始 ~0.13），掩盖了数据加载完全失败的事实。Worker 错误推理"occ_loss 非零=数据加载成功"。
+  prevention: 1. 新数据管道上线后必须做端到端验证：检查实际 batch 中的 label 是否非零、是否有合理的空间结构（不只是检查 loss 值）。2.
+    fallback 返回全零时应记录为 ERROR 级别日志（不是 warning），且累计 fallback 次数超过阈值时应中断训练。3. occ_loss
+    下降不能作为数据加载成功的证据——随机初始化模型对全零 target 的 loss 本身就会下降。
+  status: active
+  context: occ_s0/s1/s2 在 westd-34685 上运行了约 12 分钟（~163 步），每步 ~7.1 次加载失败（batch_size=8），89%+
+    样本使用全零 label。occ_loss 0.13→0.01 被误解为正常训练。Reviewer 通过分析 loss 收敛行为和日志错误率发现问题。
+  fix: Kill 训练 → 重新生成 occ_index.json（改为 datasets.py 期望的 dict 格式含 demo 长度）或修改 datasets.py
+    适配 → 验证非零 label → 重启训练。
+- id: M010
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: Checkpoint 保存完整 merged model（15GB/个），3 seeds 撑爆 250GB 磁盘
+  root_cause: OpenVLA-OFT 的 checkpoint 默认保存完整 merged model（~15GB），而非仅 LoRA adapter
+    weights（<1GB）。save_freq=5000 意味着 50K 训练每 seed 10 个 checkpoint = 150GB/seed。3 seeds
+    = 450GB，远超 250GB 磁盘。审批实验时未预估 checkpoint 总磁盘需求。
+  prevention: 1. 审批实验前必须预估 checkpoint 磁盘需求：checkpoint 大小 × (total_steps / save_freq)
+    × seeds，对比目标磁盘容量。2. LoRA fine-tuning 应只保存 adapter weights 而非 merged model。3. 配置
+    save_total_limit 自动清理旧 checkpoint（如只保留最新 2 个）。4. 每台服务器设磁盘使用警戒线（80%），cron 监控报警。
+  status: active
+  context: westd-10894 磁盘 250GB，vanilla 3 seeds 已保存 5 checkpoints/seed × 15GB = 225GB。vanilla_s2
+    在 step 25000 保存时磁盘满崩溃。s0/s1 将在 60 分钟内同样崩溃。
+  fix: 立即清理旧 checkpoint（每 seed 保留最新 1 个），回收 ~180GB。长期：改为只保存 LoRA adapter weights +
+    配置 save_total_limit。
+- id: M011
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: SafeLIBERO ObstacleTracker 缓存 stale sim 引用，碰撞检测完全失效（CAR 永远 100%）
+  root_cause: 'ObstacleTracker.__init__ 缓存 env.env.sim 引用，但 env.reset() 后 MuJoCo 创建新
+    sim 实例。tracker.record_initial() 和 step() 读取的是旧 sim 的冻结位置，cur_pos - init_pos 恒等于
+    0。加上 except Exception: pass 静默吞掉 body name 不匹配的错误，_initial_pos 可能为空导致 step() 什么都不检查。'
+  prevention: '1. 物理仿真中的对象引用不应缓存——每次访问都应通过 env 动态获取。2. 禁止 except Exception: pass，至少要
+    log warning。3. eval 脚本上线前必须做 sanity check：random policy 执行 N 步，位移指标应显著非零。4. 所有
+    eval metric 必须有 trivial 基线验证（如碰撞检测：随机动作应有非零碰撞率）。'
+  status: active
+  context: SafeLIBERO eval dry-run 发现：20 个 episode 的 max_disp 严格等于 0.0。TSR=90% 看似正常但
+    CAR=100% 是假结果。此 bug 影响 MVP 全部评估——vanilla 和 occ 条件的 CAR 都会报 100%，无法区分。如果没有 dry-run
+    提前发现，会在训练完成后浪费大量时间在无效评估上。
+  fix: '1. ObstacleTracker 改为动态访问 self.env.env.sim 而非缓存 self.sim。2. 去掉 except Exception:
+    pass。3. _initial_pos 为空时打印 warning。4. 修复后用随机 policy 验证 max_disp >> 0。'
+- id: M012
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 误读 tqdm resume 进度，将 vanilla_s2 正常 resume 报告为"从头重启"
+  root_cause: finetune.py resume 模式下 tqdm 从 0 开始计数（L1150 在 log_step 中加 resume_step），Worker
+    看到 tqdm 显示 5901/50005 就认为是从头重启，实际 log_step = 25000 + 5901 = 30901。同时 train.log
+    和 train_resume.log 中有重复启动尝试的 crash 日志（GPU 已被占用），Worker 错误地解读为"原训练+resume均崩溃"。
+  prevention: 1. resume 训练检查进度时，必须看 log_step（日志中的 step 数）而非 tqdm 显示值。2. 判断"训练崩溃"前必须检查
+    nvidia-smi 确认 GPU 上是否有进程在跑。3. 存在多个日志文件时，以当前 PID 对应的日志为准，旧日志可能是之前失败的尝试。4. Reviewer
+    此前已 warning 过误导性日志需清理，该警告被忽视导致此次误判。
+  status: active
+  context: vanilla_s2 PID 149428 实际在 GPU 2 上正常运行 resume（--resume True --resume_step
+    25000），tqdm 从 0 计数的 5901 被 Worker 误报为"从头重启 step 5901/50005 (11.8%)"。实际进度 30901/50005
+    (61.8%)，与 s0/s1 基本同步。此误报导致 Director 做了错误决策（D006"接受从头重启"）和错误 ROADMAP 更新。
+  fix: Reviewer 独立核实发现误判。ROADMAP 已修正。
+- id: M013
+  date: '2026-05-20'
+  category: communication
+  severity: high
+  summary: Paper Agent Worker 写 Implementation Details 时未读实际代码，6 处关键超参/架构/硬件描述与代码不符
+  root_cause: Worker 写论文技术细节时依赖了早期设计文档或口头描述，未 SSH 到服务器读取 finetune.py 和 occ_head.py
+    的实际实现。导致 occ_loss_weight 错 10 倍、FocalLoss α 方向反、occ head 架构完全错误（MLP vs ConvTranspose2d）、GPU
+    型号错、训练时间偏差 34%、LR schedule 错。
+  prevention: 1. 论文 Implementation Details 写作时，Worker 必须先 SSH 读取实际代码文件中的超参配置（dataclass/config）和模型架构定义，逐项提取真实值。2.
+    每个数字/架构描述必须标注代码来源（文件:行号）。3. 写完后做 code-draft 对照检查：config 中的每个字段与论文描述一一对应。4. Reviewer
+    的 fact-check 流程有效，应在所有技术章节交付后立即触发。
+  status: active
+  context: Paper Agent 的首次 Experiments Setup 交付。6 处错误中 3 处是致命级别（审稿人看代码会认为论文造假），其余影响可复现性。Reviewer
+    通过 SSH 读取实际代码逐项比对发现全部问题。
+  fix: 打回重写，要求 Worker 在重写前先 SSH 读取实际代码文件，逐项填写。
+- id: M014
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: cleanup_checkpoints.sh 删除了 resume 进程的 vla_path base model，导致 save checkpoint
+    崩溃
+  root_cause: cleanup 脚本只保留最新 2 个 checkpoint 目录，但未排除当前 resume 进程的 vla_path 所指 checkpoint。vanilla_s2
+    从 25000_chkpt resume，当 40000_chkpt 出现时 cleanup 删除了 25000_chkpt。finetune.py save_training_checkpoint()
+    调用 from_pretrained(vla_path) 加载 base model 做 LoRA merge，vla_path 指向已删除目录 → OSError。
+  prevention: 1. Checkpoint cleanup 脚本必须检查所有运行中训练进程的 cmdline，排除 vla_path 指向的 checkpoint
+    不被删除。2. 或者：LoRA fine-tuning 的 save 逻辑应改为只保存 adapter weights 而非每次 merge 完整模型（避免依赖
+    vla_path）。3. resume 训练前验证 cleanup 脚本不会删除 resume 依赖的 checkpoint。4. 部署 cleanup 方案前做
+    dry-run：列出将被删除的目录，与当前运行进程的 vla_path 交叉检查。
+  status: active
+  context: vanilla_s2 第三次失败：(1) 磁盘满 step 25K (2) resume 被误报为从头重启 (3) cleanup 删 resume
+    base model 导致 step 40K 保存崩溃。cleanup_checkpoints.sh 是为解决问题 (1) 部署的，结果引入了新问题 (3)。
+  fix: 从 35000_chkpt resume，禁用 vanilla_s2 目录的 cleanup（剩余 ~15K 步，最多 ~45GB 新 checkpoint，磁盘
+    126GB 余量充足）。
+- id: M015
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: cleanup_loop.sh 在 westd-34685 未被 kill，导致 occ_s1 崩溃 + occ_s0/s2 丢失 20K 步
+    checkpoint
+  root_cause: M014 修复 vanilla_s2 cleanup 事故时，Agent 只 kill 了 westd-10894 上的 cleanup
+    进程，漏掉 westd-34685 上同样运行的 cleanup_loop.sh (PID 32353)。cleanup 脚本的 sort 逻辑有 bug（sort
+    -t'-' -k2 -n 对 checkpoint 名无效），实际保留了最老的 5000/7500 而非最新的 checkpoint。occ_s1 在 step
+    27500 写 checkpoint 时被 cleanup 删除目标目录，触发 safetensors I/O error 崩溃。
+  prevention: 1. 训练启动后必须在所有训练服务器上检查并 kill cleanup cron/loop 进程，不能只修当前出事的服务器。2. 修复问题后必须在所有同类环境上验证同一问题不存在（跨服务器一致性检查）。3.
+    不要使用外部 cleanup 脚本管理 checkpoint——改用训练代码内置的 checkpoint rotation（只保留最新 N 个）。
+  status: active
+  context: '这是 M014 的直接重复。M014: westd-10894 的 cleanup_checkpoints.sh 删除了 vanilla_s2
+    的 resume base model。当时修复只针对 10894，未检查 34685。结果 34685 的 cleanup_loop.sh 继续运行，在
+    occ 训练到 27500 步时删掉了所有 10K-27.5K checkpoint，occ_s1 写 checkpoint 时被删文件导致 crash。occ_s0/s2
+    虽然存活但只剩 5000/7500 两个 checkpoint。'
+  fix: 紧急 kill PID 32353 + pkill cleanup 相关进程。occ_s1 从 7500_chkpt 恢复（损失 ~20K 步 ~5.5h）。
+- id: M016
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: occ_s1 恢复命令缺少 num_images_in_input=2 和 use_proprio=True 等关键参数，模型结构与 s0/s2
+    不同
+  root_cause: Worker 恢复 occ_s1 时没有从 s0 的完整命令行复制参数，而是手写了简化版启动命令。num_images_in_input
+    和 use_proprio 的 default 值与实际训练值不同（default 1 vs 2, default False vs True），导致模型结构和输入维度不匹配。
+  prevention: 1. 恢复训练时必须从同组其他 seed 的 /proc/PID/cmdline 提取完整命令行作为模板，只修改 seed 和 resume_step。2.
+    启动后立即用 /proc/新PID/cmdline 对比原始命令行验证参数一致性。3. 永远不要手写训练启动命令——复制粘贴 + 最小修改。
+  status: active
+  fix: Kill PID 54250，从 occ_s0 命令行复制完整参数，只改 seed=43 和 resume_step=7500 重启。
+- id: M017
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: Kill wrapper PID 未 kill 子进程——occ_s1 子进程 54330 继续用错误参数训练 5000 步
+  root_cause: kill PID 54250 只杀了 nohup/bash wrapper，python 子进程 54330 未被终止。第二次重启 PID
+    56325 因 cuda:1 被 54330 占用而失败。Worker 声称验证通过，但验证的是已死的 56325 而非实际运行的 54330。速度差异(2.07
+    vs 1.08 it/s)是 num_images_in_input=1 vs 2 的直接证据。
+  prevention: 1. Kill 训练进程时必须 kill 子进程树：用 `kill -- -PGID` 或先找子进程 `pgrep -P PID` 再逐个
+    kill。2. Kill 后用 nvidia-smi 确认 GPU 已释放，不仅 ps 检查。3. 参数验证必须检查实际运行的 python 子进程的 /proc/PID/cmdline，不是
+    wrapper。4. 速度异常（2x 快于预期）是参数错误的强信号，必须排查。
+  status: active
+  fix: Kill PID 54330 → 删除无效 checkpoint (10000/12500) → 从 7500_chkpt 用完整参数第三次重启 →
+    验证子进程 cmdline + 速度。
+- id: M018
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: medium
+  summary: occ_s1 修复 Worker 在错误服务器(westd-10894)上执行，occ 训练在 westd-34685 上
+  root_cause: Worker 没有确认目标服务器就开始操作。occ 训练全部在 westd-34685 上运行，但 Worker 连接到了 westd-10894（vanilla
+    训练服务器），在那里找不到 PID 和 checkpoint 后没有意识到服务器搞错了。
+  prevention: 1. 涉及特定实验的操作指令必须明确写出服务器名和端口。2. Worker 连接服务器后第一步应验证环境（检查 hostname 或已有进程）确认是正确的服务器。3.
+    如果找不到预期的 PID/文件，第一反应应是"是否在错误服务器上"而非"不存在"。
+  status: active
+  fix: 重新在 westd-34685 上执行完整修复流程。
+- id: M019
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: 禁用 cleanup_loop.sh 后未部署替代方案，3 个 occ 实验同时磁盘满崩溃（M015 的直接后果）
+  root_cause: M015 事故后 kill 了有 bug 的 cleanup_loop.sh，但没有部署修复版的 checkpoint 轮转机制。3 个
+    occ 实验 save_freq=2500 持续累积 checkpoint（每个 ~15GB），总计 28 个 checkpoint = 330GB，耗尽
+    westd-34685 的 350GB 数据盘。
+  prevention: 1. 禁用故障组件后必须立即部署修复版替代方案，不能以"暂时不清理"收尾。2. 审批实验时必须预估 checkpoint 累积磁盘需求（步数/save_freq
+    × checkpoint大小 × 并行实验数）vs 可用空间。3. 多实验共享磁盘时，checkpoint 轮转是必须的基础设施，不是可选的。4. 正确的轮转：按数字排序保留最近
+    2 个，删除其余，排序用 sort -V 而非 sort -t'-' -k2 -n。
+  status: active
+  context: 'westd-34685 磁盘 350GB。occ_s0: 10 checkpoints=119GB, occ_s1: 8 checkpoints=90GB,
+    occ_s2: 10 checkpoints=121GB, 总计 330GB。s0/s2 在 step 45000 保存时崩溃（距完成仅 5000 步），s1
+    在 step 20000 保存时崩溃。最后完好 checkpoint: s0=42500, s2=42500, s1=17500。这是 M010（checkpoint
+    太大撑爆磁盘）和 M015（cleanup 被禁用）的联合后果。'
+  fix: 紧急清理每个实验只保留最新完好 checkpoint，释放 ~290GB。部署正确的 checkpoint 轮转脚本（sort -V + 保留最近 2
+    个）。从最后完好 checkpoint resume。
+- id: M020
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: occ 恢复训练未传 --resume True --resume_step，模型以 checkpoint 为 vla_path 从头训练 50K
+    步而非 resume 剩余步
+  root_cause: Worker 将 checkpoint 路径设为 --vla_path 启动训练，但未添加 --resume True --resume_step
+    42500/17500。导致 tqdm 从 0 开始、optimizer 状态未恢复、总步数变为 42500+50005=92505 而非目标的 50005。Director
+    的紧急指令中明确写了 --resume True --resume_step，Worker 未遵循。
+  prevention: 1. resume 训练的启动命令必须包含 --resume True --resume_step X，缺任何一个都等于从头训练。2.
+    启动后必须检查日志中是否出现 "resume" 字样和正确的起始 step。3. tqdm 从 0 开始是未正确 resume 的信号，必须立即停止排查。4.
+    Director 提供的完整命令行应被逐字复制使用，不要自行简化。
+  status: active
+  context: M019 磁盘满崩溃后的恢复操作。Director urgent message 中明确写了 --resume True --resume_step
+    {42500|17500}，Worker 执行时遗漏。Reviewer 通过检查日志（无 resume 字样 + tqdm 从 0 开始）发现问题。当前已运行约
+    270 步（~4 分钟），需 kill 重启。
+  fix: Kill 当前进程，用完整命令（含 --resume True --resume_step）重启。方案 B：损失 4 分钟训练。
+- id: M021
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: checkpoint_rotation.sh 删除了 resume vla_path 所指的 42500_chkpt，导致 50000 checkpoint
+    save merge 失败（M014 重演）
+  root_cause: checkpoint_rotation.sh 只保留最新 2 个 checkpoint，不检查是否有运行中进程的 vla_path 指向待删
+    checkpoint。occ_s0/s2 的 vla_path 指向 42500_chkpt，当 45000 和 47500 出现后 rotation 删除了
+    42500，导致 50000 save 时 from_pretrained(vla_path) 找不到 config.json。
+  prevention: 1. checkpoint rotation 必须排除所有运行中训练进程的 vla_path 所指 checkpoint（从 /proc/PID/cmdline
+    提取 vla_path 参数）。2. 或者更根本的修复：LoRA fine-tuning 的 save 改为只保存 adapter weights 而非每次
+    merge 完整模型。3. 最简方案：rotation 脚本维护一个 PRESERVE 列表，包含所有当前 resume 使用的 checkpoint 名。
+  status: active
+  context: '与 M014 完全相同的 bug pattern。M014: vanilla_s2 cleanup 删除 resume base model。M022:
+    rotation.sh 删除 occ_s0/s2 的 vla_path checkpoint。occ_s0/s2 的 50000_chkpt 只有 LoRA
+    adapter 和 heads（~50MB），缺少完整 merged model（~15GB）。47500_chkpt 完整可用。occ_s1 即将面临同样问题（vla_path=17500_chkpt
+    将在 27500 save 后被 rotation 删除）。'
+  fix: 1. 立即修复 rotation 脚本排除 s1 的 17500_chkpt。2. s0/s2 用 47500_chkpt eval。
+- id: M022
+  date: '2026-05-21'
+  category: resource_misuse
+  severity: medium
+  summary: Agent 空闲 33 分钟无任务，Director session 断档导致 GPU 闲置
+  root_cause: Director context compaction 导致 session 中断，Agent 完成上一批任务后无人派新任务。无自动调度机制在
+    Director 不可用时保持 Agent 忙碌。
+  prevention: 1. Director session 恢复后第一件事检查 Agent idle time，超过 5 分钟立即派任务。2. 考虑在 CRON
+    机制中增加 Agent idle 监控告警。
+  status: active
+  context: Session compaction 后 Agent idle_seconds=2016（33分钟）。westd-34685 上 eval 可能已完成但无人收集结果，westd-10894
+    ablation 可能已崩溃但无人重启。
+- id: M023
+  date: '2026-05-21'
+  category: resource_misuse
+  severity: high
+  summary: westd-10894 未部署 checkpoint rotation 导致磁盘满，ablation s1 两组崩溃
+  root_cause: M019 教训未跨服务器执行。westd-34685 磁盘满事故后部署了 rotation，但 westd-10894 启动 ablation
+    时忘记同步部署。memory.md 明确写了"训练启动前必须部署 checkpoint rotation"但未遵守。
+  prevention: 1. 每次在新服务器启动训练前，Director 审批时增加 checklist 项：rotation 脚本是否已部署？2. Agent
+    提交训练启动计划时必须包含 rotation 部署步骤。3. 考虑将 rotation 部署作为训练脚本的前置依赖写入 submit_training_job
+    流程。
+  status: active
+  context: 'westd-10894 数据盘 250GB 被 214GB checkpoints 填满。ablation_occ_detach_s1 和
+    ablation_random_occ_s1 在 15:58:59 CST 崩溃（SafetensorError: No space left on device）。s0
+    两组还在跑但下次 save 必崩。完全重复 M019 的模式。'
+  fix: 紧急清理旧 checkpoint（vanilla 只留 50000_chkpt，ablation 只留最新 2 个）+ 部署 rotation + 重启崩溃实验
+- id: M024
+  date: '2026-05-21'
+  category: resource_misuse
+  severity: high
+  summary: westd-10894 磁盘满第三次杀实验——rotation 保留 2 个 checkpoint 数学上不够
+  root_cause: 250GB 磁盘跑 4 个实验，每个 checkpoint ~15GB。Rotation 保留 2 个/实验 = 最多 120GB checkpoint
+    存储，加上 vanilla checkpoint、模型、数据后超出磁盘容量。4 个实验可能在相近时间点同时 save，导致瞬时磁盘占用峰值。M023 修复时只清理了空间但没改
+    rotation 策略（保留数从 2 改为 1）。
+  prevention: 1. Rotation 在多实验场景下必须保留 1 个而非 2 个 checkpoint。2. 部署前做磁盘预算计算：实验数 × checkpoint
+    大小 × 保留数 < 可用空间 × 0.8。3. Rotation 轮转间隔从 600s 缩短到 300s。4. 启动训练时彻底清理非必要的旧 checkpoint（如已完成
+    eval 的 vanilla checkpoint）。
+  status: active
+  context: ablation_occ_detach_s0 在 step 12500 save 时崩溃，丢失 2500 步。12500_chkpt 不完整（缺
+    shard 3/4）。这是 westd-10894 上第三次磁盘满事故（M023 后第二次）。
+  fix: 清理损坏 checkpoint + vanilla 旧 checkpoint + rotation 改为保留 1 个 + 轮转间隔缩短到 300s +
+    从 10000_chkpt 重启
+- id: M025
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: Rotation v3 vla_path 保护逻辑再次失效，杀死 s1 pair（第三次同类事故）
+  root_cause: Rotation 脚本通过 /proc/PID/cmdline 提取 vla_path 来保护 checkpoint，但解析逻辑不可靠（cmdline
+    格式、timing、grep pattern 问题）。这是 M021 的直接重演。根本问题：finetune.py 在保存新 checkpoint 时依赖外部
+    vla_path 目录存在（从中复制 config），而 rotation 脚本无法可靠地识别这个依赖关系。
+  prevention: 1. 永久停止自动 rotation 脚本，改为手动按需清理。2. 长期修复：修改 finetune.py 在 save_checkpoint
+    时将所有必要文件复制到新 checkpoint 目录，不再依赖 vla_path 外部引用。3. 任何自动删除脚本都不应在训练进行中运行，除非经过充分的 race
+    condition 分析。
+  status: active
+  context: Rotation v3 (PID 514991) 在 18:08 CST 删除了 s1 pair 的 2500_chkpt（vla_path），导致训练在下次
+    save 时崩溃。s1 pair 已经是第二次被 rotation 杀死。总共 M021→M024→M025 三次同类事故。
+  fix: 永久杀掉 rotation 脚本，不再部署任何自动 rotation。磁盘清理改为手动按需执行。
+- id: M026
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: safe_cleanup.sh 在 save 过程中删除前序 checkpoint 导致 random_occ_s0 崩溃——与 rotation
+    完全同一根因
+  root_cause: finetune.py 的 save_training_checkpoint 在保存新 checkpoint 时需要读取前序 checkpoint
+    的 model shards/config。任何在 save 过程中删除前序 checkpoint 的自动脚本都会导致崩溃。safe_cleanup.sh
+    的"保留最新"逻辑无法避免这个 race condition——它无法知道哪个 checkpoint 正在被 save 过程读取。
+  prevention: 1. 训练进行中绝不运行任何自动 checkpoint 清理脚本。2. 通过增大 save_freq（2500→10000）降低磁盘压力，使手动清理间隔延长到
+    4-6 小时。3. 手动清理前必须确认没有实验正在 save（检查 tqdm step 不在 save_freq 整数倍附近）。4. 长期方案：修改 finetune.py
+    的 save 逻辑，不依赖外部前序 checkpoint。
+  status: active
+  context: safe_cleanup.sh (PID 521309) 首次运行即删除 random_occ_s0 的 12500_chkpt，导致正在保存的
+    15000_chkpt 不完整（缺 config.json + model shards）。这是第四次同类事故（M021→M024→M025→M026）。
+  fix: 永久停止所有自动清理脚本。save_freq 从 2500 改为 10000。手动清理每 4-6 小时在确认无 save 进行时执行。
+- id: M027
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: 50r eval 使用错误脚本 eval_safelibero.py，碰撞检测完全失效（CAR=100%, max_disp=0.0），浪费
+    3 GPU 数小时
+  root_cause: 项目中存在两个相似命名的 eval 脚本：eval_safelibero.py 和 evaluate_safelibero.py。Agent
+    派 Worker 时使用了前者，该脚本的 ObstacleTracker 碰撞检测有 bug（与 M011 相同：缓存 stale sim 引用导致 max_disp
+    恒为 0）。20r eval 使用了正确的 evaluate_safelibero.py，碰撞检测正常。Director 硬约束中明确写了正确路径但 Agent
+    未遵守。
+  prevention: 1. eval 指令中必须写完整路径 `python vla-scripts/evaluate_safelibero.py`，不接受任何缩写或相似文件名。2.
+    eval 启动后前 2 个 episode 完成时必须验证：(a) max_disp > 0 (b) 存在 collision=true 的 episode。CAR=100%
+    是碰撞检测失效的强信号。3. 考虑删除或重命名 eval_safelibero.py 避免混淆。4. 每次 eval Worker 的 spawn 命令中，Director/Agent
+    必须显式写出完整脚本路径并附注"NOT eval_safelibero.py"。
+  status: active
+  context: 'occ_s0 47500 50r eval: 500 episodes 全部 CAR=100%, max_disp=0.0, 零碰撞。同一
+    checkpoint 的 20r eval: TSR=91.0%, CAR=73.0%, 54 次碰撞。occ_s2 50r eval 和 occ_s0 50K
+    50r eval 也在运行中，将有相同问题。3 张 GPU (cuda:1/2/3) 运行无效 eval 约 1-2 小时。'
+  fix: Kill 所有 50r eval 进程，用正确脚本 evaluate_safelibero.py 重新启动。启动后验证 max_disp > 0。
+- id: M028
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: medium
+  summary: 分析脚本用 vanilla 数据冒充 ablation 条件生成诊断报告
+  root_cause: ablation_diagnostic.py dry-run 时，Worker 未检查 ablation eval 数据是否存在，脚本
+    fallback 读了 vanilla JSON 填充 detach/random 字段，输出文件无任何 placeholder 标记
+  prevention: 分析脚本必须在开头检查所有必需输入文件是否存在且来源正确，缺数据时 raise error 而非 fallback。Worker 运行产出分析报告时，如数据不完整必须在输出中明确标记
+    INCOMPLETE/PLACEHOLDER
+  status: active
+  context: ablation 4 实验仍在训练(~65%)，从未被 eval。diagnostic_report.json 中 detach_car=vanilla_s0,
+    random_car=vanilla_s1，10 task 完全吻合。诊断结论 Case B 完全无效。幸运的是 Director 未基于此做任何决策——ablation
+    决策树在 ROADMAP 中明确标注为等训练完成后执行。
+  fix: 删除 westd-34685 上 analysis/output/ 下的 diagnostic_report.json、ablation_car_comparison.png/pdf、diagnostic_matrix.png/pdf。等
+    ablation eval 完成后用真实数据重跑。
+- id: M029
+  date: '2026-05-22'
+  category: resource_misuse
+  severity: high
+  summary: westd-34685 磁盘 100% 满导致 3 个实验同时崩溃（depth_s0/s1 + cutoff_s1）
+  root_cause: 在 350GB 数据盘上同时运行 4 个实验（depth_s0/s1 + cutoff_s0/s1），未清理 occ_s1_fresh
+    的中间 checkpoint（149GB 占盘 43%）。启动实验前未做磁盘预算：4 个实验 × 20 个 checkpoint × ~13GB = ~1TB
+    需求，远超 350GB 可用空间。
+  prevention: 启动新实验前必须做磁盘预算：(1) df -h 确认当前剩余空间；(2) 估算实验 checkpoint 总量 = save_freq
+    产生的 checkpoint 数 × 单 checkpoint 大小；(3) 多实验并行时累加所有实验磁盘需求；(4) 剩余空间 < 预估需求 1.5 倍时，先清理再启动。已完成实验只保留
+    best + final checkpoint。
+  status: active
+  context: westd-34685 有 350GB 数据盘，occ_s1_fresh 占 149GB（仅需 47500+50000 两个 checkpoint），depth_s0/s1
+    各保存 6 个 checkpoint 占 76+80GB，加上 cutoff 实验写入导致磁盘耗尽。3 个实验在 15:24:41-42 同时 EXIT_CODE=1
+    崩溃，cutoff_s0 预计 35 分钟后也会崩。
+  fix: 紧急清理 occ_s1_fresh 中间 checkpoint (~120GB) + depth_s0/s1 中间 checkpoint (~125GB)，预计释放
+    ~245GB。恢复的实验改用 save_freq=10000 减少磁盘压力。
+- id: M030
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: medium
+  summary: 紧急清理 checkpoint 时误删 depth_s0/s1 的 12500_chkpt，导致无法 resume 需从头重跑
+  root_cause: 清理指令使用 rm -rf 删除整个 checkpoint 子目录时未区分"要保留的最新 checkpoint"和"要删除的中间 checkpoint"，Worker
+    执行时把所有 checkpoint 都删了。
+  prevention: 清理 checkpoint 前必须：(1) ls 列出目录内容确认；(2) 明确指定要删除的具体目录名，不用通配符或 rm -rf 父目录；(3)
+    删除后立即 ls 确认保留的 checkpoint 仍在。
+  status: active
+  context: depth_s0/s1 训练到 step 15000 时磁盘满崩溃，15000_chkpt 不完整，12500_chkpt 本应保留用于 resume。但清理
+    Worker 把整个 depth_s0/s1 checkpoint 目录都清了，导致损失 ~4h GPU 时间（两个实验各 ~13000 步需从头重跑）。
+  fix: depth_s0/s1 从头重跑，save_freq=10000。
+- id: M031
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: low
+  summary: Agent 杀掉正常训练的 cutoff_s0 (step 4944) 只为"标准化提交方式"，浪费 ~1.5h GPU 时间
+  root_cause: Worker 收到"重启 cutoff_s0"指令后，未检查已有进程是否正常运行（occ_loss 非零、速度正常、save_freq
+    已是 10000）。杀掉正常进程仅为添加 conda 激活包装 + WANDB_MODE=disabled + MUJOCO_GL=egl，但这些对训练结果无影响。
+  prevention: 杀掉正在运行的训练进程前必须先检查：(1) 训练指标是否正常（loss 下降、速度正常）；(2) 问题是否会影响训练结果的正确性。训练指标正常
+    = 不要碰它。环境变量差异（WANDB_MODE 等）如果不影响训练输出，不构成重启理由。
+  status: active
+  context: cutoff_s0 在 session 内被第三次从头重启。第一次（save_freq=2500 磁盘风险）合理，第二次（手动重启 PID 136037
+    save_freq=10000）正常。第三次（PID 136941）杀掉了 step 4944 的正常进程，仅为标准化提交。完成时间推迟 ~1.5h。
+- id: M032
+  date: '2026-05-22'
+  category: code_bug
+  severity: low
+  summary: MUJOCO_EGL_DEVICE_ID 与 CUDA_VISIBLE_DEVICES 不对齐导致 eval 失败
+  root_cause: eval 命令模板中 MUJOCO_EGL_DEVICE_ID 直接复制了物理 GPU 编号（如 1），但 CUDA_VISIBLE_DEVICES=1
+    时 MuJoCo 只看到 1 张虚拟卡，内部 device_id 必须为 0
+  prevention: 所有 eval 命令中 CUDA_VISIBLE_DEVICES 指定单卡时，MUJOCO_EGL_DEVICE_ID 统一设为 0。eval_commands.md
+    模板需全局修正此规则。
+  status: active
+  fix: 重提 detach_s2 eval 命令：CUDA_VISIBLE_DEVICES=1 MUJOCO_EGL_DEVICE_ID=0 MUJOCO_GL=egl
+- id: M033
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: medium
+  summary: depth_s0/s1 训练完成后 eval 未自动启动，GPU 空闲未被发现
+  root_cause: Cron 训练完成回调未正常触发 depth_s0/s1 的 eval 启动。Agent context rotation 期间训练完成，回调可能丢失。Director
+    也未在第一时间 SSH 验证实际 GPU 状态（只看了过期的 report），延误发现。
+  prevention: 1. 训练接近完成时（>90%），Director 应主动派 Agent SSH 检查实际进程状态，不依赖 cron 回调。2. Agent
+    context rotation 后第一条指令应包含"检查所有 RUNNING 实验的实际进程存活状态"。3. Report 显示 GPU 空闲但 registry
+    显示 RUNNING 时，这是红旗信号，必须立即 SSH 验证。
+  status: active
+  context: depth_s0/s1 训练完成（PID 退出，50000_chkpt 已保存），但 cron 未触发 eval。Reviewer 审查时发现
+    westd-34685 cuda:1/cuda:2 空闲。depth 4-seed eval 是 MVP Gate 判定的关键路径，延误直接影响项目进度。
+  fix: urgent_agent_message 紧急派 Agent 在 westd-34685 cuda:1/cuda:2 上启动 depth_s0/s1
+    50r eval。
+- id: M034
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: high
+  summary: Cron 连续三次未触发训练完成后的 eval（depth_s0, depth_s1, cutoff_s0）
+  root_cause: M033 的系统性版本。Cron 训练完成回调在 Agent context rotation 期间可能丢失，或 cron 配置本身有问题。三次独立的训练完成事件均未自动启动
+    eval，说明不是偶发而是 cron 机制在当前场景下不可靠。
+  prevention: 1. 不能依赖 cron 自动启动 eval——训练接近完成时 Director 主动派 Agent SSH 检查并手动启动 eval。2.
+    Agent 处理完 context rotation 后，第一件事应该是检查所有 RUNNING 实验的实际进程状态。3. 考虑让 Agent 排查 cron
+    配置：回调脚本路径、触发条件、日志输出。
+  status: active
+  context: depth_s0, depth_s1, cutoff_s0 三个实验训练完成后 eval 均未自动启动。每次都需要 Reviewer 发现空闲
+    GPU 后手动催促。累计浪费 GPU 空闲时间未知但可能数小时。
+  fix: 每次由 Director/Reviewer 发现后 urgent_agent_message 手动补启动 eval。
+- id: M035
+  date: '2026-05-23'
+  category: other
+  severity: high
+  summary: Vanilla 和 Full OCC 50K checkpoint 在两台服务器上全部丢失，阻塞 P0 梯度/CKA 分析
+  root_cause: Checkpoint 保留策略 KEEP=1 仅保留最新 checkpoint，但 50K 最终 checkpoint 被某种机制删除（可能是
+    eval 后自动清理、磁盘空间管理、或 Worker 误操作）。两台服务器均丢失说明可能是系统性问题而非单次事故。
+  prevention: 1. 训练完成且 eval 完成后，最终 checkpoint 必须标记为 KEEP_FOREVER 或移到专用 archive 目录；2.
+    梯度/CKA 等后续分析所需的 checkpoint 在分析完成前禁止删除；3. Agent 清理磁盘空间时必须排除最终 checkpoint
+  status: active
+  context: plan_023（梯度分析）和 plan_024（CKA 分析）需要 4 个条件的 50K checkpoint：Full OCC、Detach、Vanilla、Random
+    OCC。核查发现 Vanilla 和 Full OCC 在 westd-34685 和 westd-10894 上均已删除。Detach/Random 仅
+    s2 在 westd-10894 幸存。需要重训 1 Vanilla + 1 Full OCC（~26 GPU-hours）才能恢复分析能力。
+  fix: 在 westd-34685 空闲 GPU 上重训 1 Vanilla seed + 1 Full OCC seed（各 ~13h），同时用现有 Detach
+    s2 / Random s2 先跑部分梯度分析。
+  related_decisions:
+  - D023
+- id: M036
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: medium
+  summary: cutoff_s2 训练完成后 cron 再次未触发 eval，GPU 空闲 90+ 分钟无人察觉
+  root_cause: Director 设了 WAIT 90min 而不是主动监控。Cron 回调不可靠（第三次失败），且 Director 没有在训练预计完成时间点主动
+    SSH 检查。
+  prevention: 1. 训练预计完成前 30min 设 ACK 而非 WAIT，主动检查 GPU 状态；2. 不依赖 cron 触发 eval，Director
+    在 keepalive 回复中主动 list_available_gpus 发现空闲卡；3. 对所有训练维护预计完成时间表，到点主动查
+  status: active
+  context: cutoff_s2 预计 ~08:30 UTC 完成，Director 在 06:30 设了 WAIT 90min。实际训练完成后 GPU 空闲
+    90+ 分钟才被 System 催促发现。M034 已记录过类似 cron 失败。
+  fix: urgent_agent_message 派 Agent 立即跑 eval + 写作任务
+- id: M037
+  date: '2026-05-23'
+  category: experiment_design
+  severity: high
+  summary: cutoff_s2 疑似使用不同训练配置（1-image/no-proprio），ssh_execute+tmux 提交未自动补全参数
+  root_cause: cutoff_s2 通过 ssh_execute+tmux 提交而非 submit_training_job。后者自动补全 --num_images_in_input
+    2 --use_proprio True，前者使用 spec 中的缩写命令，可能缺少这些参数导致用了 FinetuneConfig 默认值。
+  prevention: 1. 所有实验必须通过 submit_training_job 提交，禁止 ssh_execute+tmux 直接启动训练；2. 提交后检查
+    /proc/PID/cmdline 确认完整参数；3. 新实验启动后对比训练速度与同条件已有实验，异常差异立即调查
+  status: active
+  context: cutoff_s2 训练速度 2.0 it/s vs cutoff_s1 0.8 it/s，2.5x 差异。cutoff_s2 eval 明确显示
+    use_proprio=False。若确认配置不同，3-seed cutoff 统计无效，论文需继续用 2-seed 数据。
+- id: M038
+  date: '2026-05-23'
+  category: resource_misuse
+  severity: high
+  summary: westd-10894 磁盘 100% 满导致 4 个实验全部崩溃（detach_ln ×3 + cutoff_s2_v2），空闲数小时未察觉
+  root_cause: westd-10894 /root/autodl-tmp 250GB 被旧实验数据占满。4 个新实验同时运行产生 checkpoint
+    耗尽剩余空间。Director 设 WAIT 180min 未主动监控，GPU 空闲 1-3 小时未被发现（M036 第三次复发）。
+  prevention: 1. 启动新实验前必须检查目标磁盘剩余空间（get_disk_usage 或 df -h）；2. 多实验并行时计算 checkpoint
+    总空间需求（每实验 ~15-25G）vs 可用空间；3. 训练预计完成时间前 1h 设 ACK 检查，不设长 WAIT；4. 旧实验 checkpoint
+    及时清理
+  status: active
+  context: 4 个实验在 step 10K-30K 之间因磁盘满崩溃。旧 cutoff_s2（74G，已 failed CONFIG_MISMATCH）未清理是主因。detach_ln
+    是 make-or-break 实验（plan_027），延迟 ~8-13h。
+  fix: 清理 ~144G 旧数据后从 checkpoint resume
+- id: M039
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: medium
+  summary: westd-10894 resume 失败，4 个实验从头重跑浪费 ~20 GPU-hours
+  root_cause: finetune.py 需要显式 --resume True --resume_step N 参数才能从 checkpoint 恢复。resume
+    Worker 未正确传递这些参数，导致 4 个实验（detach_ln_s0/s1/s2 + cutoff_s2_v2）从 step 0 重新开始，而非从
+    last good checkpoint（s0/s1 有 20K, s2 有 10K）恢复。
+  prevention: 1. resume 任务必须在指令中明确写出 --resume True --resume_step N，附上具体的 checkpoint
+    step 值（从 ls checkpoint 目录确认）。2. resume 启动后 5 分钟内用 ssh_read_only 检查训练 log 的起始 step，确认不是从
+    0 开始。3. 考虑在 finetune.py 中加入自动 resume 逻辑：检测 checkpoint 目录存在时自动从最新 checkpoint 恢复。
+  status: active
+  context: M038 磁盘满事故后需要恢复 4 个实验。detach_ln_s0 有 good checkpoint 到 20K（节省 ~5h），detach_ln_s1
+    到 20K（~5h），detach_ln_s2 到 10K（~2.5h），cutoff_s2_v2 状态不确定。总计浪费约 12-20 GPU-hours。
+  fix: 已无法回退，实验已从头开始训练。仅记录教训。
+- id: M040
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: high
+  summary: cleanup_old_checkpoints.sh 删除了 detach_ln 训练依赖的源 checkpoint (vla_path)，导致
+    3 个实验崩溃
+  root_cause: 'finetune.py 的 save_training_checkpoint() 调用 from_pretrained(vla_path)
+    重新加载基模型合并 LoRA。detach_ln 实验的 vla_path 指向旧 20K/10K checkpoint，被清理脚本删除后 save 时 crash
+    (OSError: Incorrect path_or_model_id)。清理脚本未检查 running 进程的 --vla_path 依赖。'
+  prevention: 1. 训练启动时 --vla_path 必须指向不可变的基模型路径（如 /root/autodl-tmp/models/openvla-7b），不要指向可能被清理的中间
+    checkpoint。2. 清理脚本删除前必须 grep 所有 running python 进程的 cmdline，确认无进程依赖待删目录。3. 不要在
+    resume 场景中让 vla_path 指向 resume checkpoint——vla_path 是基模型路径，resume 用 --resume_step
+    + adapter 权重加载。
+  status: active
+  context: 3 个 detach_ln 实验（s0/s1/s2）在 log_step ~30000 时首次触发 save checkpoint，from_pretrained
+    找不到已删除的 20K checkpoint 而崩溃。GPU idle 至发现。cutoff_s2_v2 不受影响（vla_path 指向基模型）。损失 ~7.2
+    GPU-hours。但从头重跑消除了 resume confound，反而是更好的实验设计。
+  fix: 从头重跑 3 个 detach_ln 实验，使用 --vla_path /root/autodl-tmp/models/openvla-7b（基模型），完整
+    50K 训练，不再 resume。
+- id: M041
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: medium
+  summary: Paper fix worker 修改了本地文件而非远程真源，论文未实际更新
+  root_cause: 'Worker 在本地 BE 的 docs/paper/ 目录修改 .tex 文件，但论文真源在远程服务器 westd-34685:/root/occsafe_vla/paper/。L1
+    #6 明确规定论文/文档真源在本地、训练代码在远程，但本项目论文真源也在远程（Paper Agent 直接在远程编辑），Worker 按默认假设操作了本地。'
+  prevention: Director 派论文修改任务时必须明确指定：(1) 目标路径是远程 `/root/occsafe_vla/paper/` 还是本地；(2)
+    用 ssh_execute 而非本地编辑。Agent 收到论文修改指令时，先确认论文真源位置再派 Worker。
+  status: active
+  fix: 重新派 Worker 用 ssh_execute 在 westd-34685 远程执行修改
+- id: M042
+  date: '2026-05-23'
+  category: communication
+  severity: low
+  summary: M041 根因分析有误：论文真源在本地不在远程，handoff 信息误导
+  root_cause: 'Handoff 写 "论文: 远程服务器 /root/occsafe_vla/paper/"，但 Reviewer 确认远程从未有论文
+    .tex 文件。论文真源在本地 workspace docs/paper/。M041 基于错误前提诊断了"本地 vs 远程"问题，实际第一个 worker
+    失败原因是文本匹配失败（非路径错误）。'
+  prevention: 接手 handoff 时不要盲信路径信息，对关键文件路径用 Reviewer 独立验证。论文文件一律在本地 workspace 编辑。
+  status: active
+  fix: M041 根因已修正。4 个 fix 最终在正确位置（本地）生效。
+- id: M043
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: medium
+  summary: Eval 在 registry 注册为 RUNNING 但远程进程未实际启动，GPU 空转
+  root_cause: Worker 更新了 registry 状态（RUNNING）但未在远程服务器执行 eval 启动命令。与 M036 同类——registry
+    状态与实际进程不同步。可能 Worker 写了 registry 后在 ssh_execute eval 时失败但未报错。
+  prevention: eval 启动后必须 5 分钟内验证三件事：(1) ps 确认 PID 存在，(2) nvidia-smi 确认 GPU 显存占用 >30GB，(3)
+    日志文件存在且有输出。Registry 更新应在进程验证通过后才写 RUNNING，不是提交命令后就写。
+  status: active
+  fix: 紧急消息已发 Agent，要求 ssh_execute 启动 eval 并 5 分钟内验证
+- id: M044
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: high
+  summary: Eval 连续 3 次启动失败：路径错误(1次) + 参数名错误(2次)，GPU 空转 15min+
+  root_cause: Worker 未参考历史成功的 eval 命令，而是凭记忆拼命令。evaluate_safelibero.py 参数名是 --num_rollouts（非
+    --num_trials_per_task），路径含 openvla-oft/ 子目录。连续 3 次失败说明缺乏"先验证命令格式再执行"的习惯。
+  prevention: 启动 eval 时必须：(1) 先从历史成功 eval 的日志或 history 中提取完整命令模板，(2) 只修改 checkpoint
+    路径和 GPU 号，(3) 启动后 2 分钟内验证进程存活 + GPU 显存占用 + 日志输出。禁止凭记忆拼 eval 命令。
+  status: active
+  fix: 发送第四次修复指令，要求先从历史命令提取格式再执行
+- id: M045
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: high
+  summary: Eval 连续两次失败（EXIT_CODE=2），第一次原始进程实际正常但被误杀重启，第二次重启后语法错误
+  root_cause: 1) Reviewer 误报 eval 未启动（实际 MuJoCo eval GPU 利用率低是正常的），导致不必要的 fix_eval
+    Worker 派发。2) fix_eval Worker 使用了错误路径和参数名。3) Director 指令重启时原始进程可能仍在正常运行。4) 多个 Worker
+    并行操作同一 GPU 的 eval 进程导致混乱。
+  prevention: 1) MuJoCo eval 的 GPU 利用率低是正常现象（CPU-bound），不要仅凭低 GPU util 判断 eval 未运行。2)
+    派 eval Worker 前必须提供完整的 verified 命令模板（路径+参数），不要让 Worker 自己拼。3) 已有进程在运行时不要盲目 kill-and-restart，先确认现有进程的参数是否正确。4)
+    同一 GPU 上只派一个 Worker 操作 eval。
+  status: active
+  context: reverse_cutoff_s0_eval 和 cutoff_25k_s0_eval。原始 eval PID 464454/463150 使用正确参数运行，但被
+    fix_eval Worker 误杀。第二次 Worker 用了错误参数 --num_trials_per_task 和错误路径 /root/occsafe_vla/vla-scripts/。两次
+    eval 均 EXIT_CODE=2。GPU 2/3 空闲约 20 分钟。
+  fix: 第三次重试：明确指定完整命令模板，启动后验证进程。
+- id: M046
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: high
+  summary: Agent 汇报 eval 验证通过（PID/rollout 进度/参数）但 Reviewer 确认无进程在运行，Agent 验证不可信
+  root_cause: Agent 的 Worker 可能在验证步骤中读到了缓存/旧数据，或验证窗口内进程已死。Agent 汇报的 PID 503988/502805
+    和 rollout 进度（13/50, 21/50）与 Reviewer 观察到的"0% GPU util + 日志未更新"完全矛盾。
+  prevention: 1) 不信任 Agent 自报的 eval 验证——要求 Reviewer 独立核实。2) eval 启动后验证必须包含：ps aux
+    确认进程存在 + 日志 tail 确认有新输出 + nvidia-smi 确认显存占用，三项全通过才算成功。3) 遇到 Agent 报告与 Reviewer
+    报告矛盾时，以 Reviewer 为准。
+  status: active
+  context: 'Agent 汇报 reverse_cutoff_s0_eval PID 503988 (T0: 13/50) 和 cutoff_25k_s0_eval
+    PID 502805 (T0: 21/50) 运行正常，但 Reviewer 几乎同时确认 GPU 2 0% util, GPU 3 4% util，日志文件修改时间仍是
+    04:35 UTC（服务器时间），内容是旧的 --num_trials_per_task 错误。'
+- id: M047
+  date: '2026-05-24'
+  category: resource_misuse
+  severity: medium
+  summary: 34685:1 空闲 30+ 分钟（6+ 次检查），cutoff_15k_s1 指令因 Agent 队列积压未执行
+  root_cause: 服务重启后 Agent 处理大量恢复消息，队列积压到 4 条。Director 的 cutoff_15k_s1 启动指令排在队列后方，被
+    WORKER DONE 回调和状态检查消息挡住。urgent_agent_message 应更早使用。
+  prevention: 服务重启后 GPU 空闲的启动指令应立即用 urgent_agent_message 发送，不走普通队列。发现 GPU 空闲时，第一次就用
+    urgent，不等 Reviewer 连续 6 次检查才反应。
+  status: active
+  context: cutoff_15k_s0_eval 完成后 34685:1 释放，但 Agent 忙于处理服务重启后的恢复消息（状态检查、WORKER DONE
+    回调等），普通队列指令未及时到达。
+  fix: 用 urgent_agent_message 插队发送 cutoff_15k_s1 启动指令。
+- id: M048
+  date: '2026-05-24'
+  category: resource_misuse
+  severity: high
+  summary: 10894 磁盘满导致 3 个实验在 step 30000 崩溃（full_occ_ln_s1/s2 + ablation_occ_detach_s0_retrain）
+  root_cause: AutoDL /root/autodl-tmp/ 250GB 空间被多轮实验 checkpoint 和 HF cache 占满，启动实验前未检查磁盘剩余空间。中间
+    checkpoint（10K/20K 步）未及时清理。
+  prevention: 1. 启动实验前必须 df -h /root/autodl-tmp/ 确认剩余空间 > 预估需求（每个实验约 15-20GB checkpoint）；2.
+    训练脚本配置只保留最近 2 个 checkpoint + 最终 checkpoint，自动删旧；3. 多实验并行跑同一服务器时提前计算总磁盘需求。
+  status: active
+  context: 10894 上同时跑 4 个实验（full_occ_ln ×3 + retrain），每个实验在 10K/20K/30K 步各保存一个 checkpoint，加上之前实验的残留
+    checkpoint 和 HF cache，250GB 磁盘被占满。
+  fix: 清理中间 checkpoint（10K/20K 步）和 HF cache，从 30000 步 checkpoint 恢复训练（如完整的话）。
+- id: M049
+  date: '2026-05-24'
+  category: resource_misuse
+  severity: high
+  summary: westd-34685 磁盘满导致 cutoff_45k_s1 崩溃，与 westd-10894 完全相同的问题第二次发生
+  root_cause: 多轮 cutoff 实验在 /root/autodl-tmp 累积 checkpoint 329G/350G，已完成实验的 checkpoint
+    未及时清理。第一次在 10894 发生后未在 34685 建立预防机制。
+  prevention: 1. 每个实验 eval 完成后，Agent 必须立即清理该实验的非必要 checkpoint（保留 best + final 即可）；2.
+    启动新一批实验前 Agent 必须先检查目标服务器磁盘剩余空间（df -h），剩余 < 20% 时先清理再启动；3. Director 审批实验时增加磁盘预算检查项
+  status: active
+  context: westd-34685 上 4 个 cutoff/reverse_cutoff 实验同时运行，每个实验 checkpoint ~15-30G。9
+    个已完成实验的 checkpoint 占用 195G 未清理。cutoff_45k_s1 在 step 10000 checkpoint save 时磁盘满崩溃，其余
+    3 个预计 40min 内也会在 checkpoint save 时崩溃。
+  fix: urgent_agent_message 插队指令 Agent 立即删除 9 个已完成实验 checkpoint（释放 195G），检查存活实验，重启崩溃实验。
+- id: M050
+  date: '2026-05-24'
+  category: code_bug
+  severity: high
+  summary: 两台服务器同天因 checkpoint 累积磁盘满导致训练崩溃
+  root_cause: 训练脚本未设置 save_total_limit，checkpoint 无限累积直到磁盘 100%。50K step 实验每 10K 保存一次，每个
+    checkpoint ~15-30GB，多实验并行时快速耗尽磁盘。
+  prevention: 所有训练脚本必须设置 save_total_limit=3（保留最近 3 个 checkpoint，自动删旧的）。新实验审批时检查是否包含此参数。
+  status: active
+  context: westd-34685 和 westd-10894 两台服务器同一天因相同原因崩溃。34685 上 cutoff_45k_s1 在 step
+    28068 保存 30K checkpoint 时磁盘满，safetensors I/O error，从 20K 恢复损失 ~2.5h。
+  fix: '紧急清理已完成实验 checkpoint 释放 193GB（34685: 100%→45%），cutoff_45k_s1 从 step 20K 恢复。'
+- id: M051
+  date: '2026-05-25'
+  category: code_bug
+  severity: medium
+  summary: ProcessGroupNCCL destroy_process_group() 警告导致训练被误判为 failed，实际已正常完成
+  root_cause: PyTorch 分布式训练结束时 NCCL 进程组清理产生非零 exit code，cron 监控将非零 exit code 视为训练失败。至少
+    ablation_occ_detach_s0_retrain 和 cutoff_15k_s1 两个实验受影响。
+  prevention: 收到训练 "failed" 通知时，先检查日志末尾是否有 "Max step reached" 和 50K checkpoint 是否存在，再判断是否真正失败。考虑修改训练脚本在正常完成时写入一个
+    SUCCESS 标记文件，或在 cron 监控中过滤 NCCL cleanup 警告。
+  status: active
+  context: 2026-05-25 连续两个实验（ablation_occ_detach_s0_retrain, cutoff_15k_s1）被 cron
+    报告为 failed，触发不必要的崩溃排查和重启规划。Reviewer 通过检查日志和 checkpoint 确认两者均正常完成。
+  fix: Reviewer 发现后手动确认完成状态，Director 发紧急更正取消不必要的重启。Registry 状态需手动修正为 DONE/success。
+- id: M052
+  date: '2026-05-25'
+  category: code_bug
+  severity: high
+  summary: finetune.py resume + cutoff 交互 bug：batch_idx 从 0 重新计数导致 cutoff 永远不触发
+  root_cause: finetune.py 的 resume 逻辑中，log_step = resume_step + gradient_step_idx（正确追踪全局步数），但
+    batch_idx 从 0 重新开始计数。cutoff 判断用 batch_idx < occ_loss_cutoff_step，因此 resume 后 cutoff
+    阈值永远不可达（总 batch 数 < cutoff_step）。cutoff_45k_s1 从 step 20K resume 后只跑 30005 个 batch，永远
+    < 45000。
+  prevention: 1. cutoff 实验禁止使用 --resume，必须从 pretrained 权重从头训练。2. 所有依赖 batch_idx 的逻辑（cutoff/reverse_cutoff/scheduling）在
+    resume 场景下需要验证。3. 审批 resume 实验时，检查训练代码中是否有依赖 batch_idx 的条件分支。4. 启动 cutoff 实验后前
+    5 分钟检查日志确认 cutoff 步骤设置正确。
+  status: active
+  context: cutoff_45k_s1 从 step 20K resume（因 10894 磁盘满导致崩溃后迁移到 34685 重启），实际运行了 ~5.5h
+    GPU 时间产出无效数据。Reviewer 通过代码审查和日志分析发现。
+  fix: Kill 当前进程，从 pretrained 权重重新启动（不用 resume）。验证其他 cutoff 实验未使用 resume。
+- id: M053
+  date: '2026-05-25'
+  category: communication
+  severity: medium
+  summary: 误将 "Worker done" 通知理解为训练完成，实际是 Worker 完成了启动训练任务的工作
+  root_cause: '[WORKER DONE] 通知表示 Worker agent 完成了它的工作（如 spawn training job），不代表 GPU
+    上的训练进程结束。Director 将此等同于训练完成，导致 ROADMAP 标注 cutoff_15k_s2 为"训练完成，待 eval"，实际训练才开始
+    1.3%。'
+  prevention: 收到 [WORKER DONE] 时，明确区分：Worker 完成了什么任务？如果是 spawn_worker/submit_training_job，只意味着训练已启动，不是训练完成。训练完成的真正信号是：(1)
+    GPU util 降为 0，(2) 训练脚本 PID 消失，(3) checkpoint 文件时间戳变化停止。在 ROADMAP/report 中标注"训练进行中"而非"训练完成"。
+  status: active
+  context: cutoff_15k_s2 的 Worker done 通知到来时，Director 在 ROADMAP 中标注"训练完成，待 eval"并通知用户"cutoff_15k_s2
+    训练完毕"。Reviewer 核实后发现训练实际才 step 660/50005 (1.3%)。
+  fix: Reviewer 发现后更正。ROADMAP 待修正。
+- id: M054
+  date: '2026-05-25'
+  category: other
+  severity: high
+  summary: 双服务器同时重启导致 5 个实验全部丢失，~47.5 GPU-h 损失
+  root_cause: AutoDL 服务器意外重启（westd-34685 + westd-10894），所有 GPU 进程被 kill。Cron 监控通过
+    SSH 检测到连接失败但只标记了部分实验为 failed，3 个实验仍误标 RUNNING。
+  prevention: 1. 关键实验考虑定期保存 checkpoint 到数据盘（即使 C002 禁止 resume，checkpoint 可用于验证训练进度）。2.
+    Cron 监控应对同服务器多实验做关联判断——一台服务器 SSH 不通时，该服务器上所有实验应同时标记 failed，而非逐个等 5 次失败。3. DDL
+    前 72h 内的关键实验应有跨服务器冗余方案。
+  status: active
+  context: May 25 ~12:23 UTC 两台 AutoDL 实例同时重启。cutoff_25k_s2（77%）和 reverse_cutoff_s2（77%）损失最大。CoRL
+    Paper DDL May 29，恢复后需 ~13h 重跑训练 + eval。
+  fix: 发送紧急指令给 Agent：清理 zombie registry → 34685 四卡并行重跑 4 个训练 → 10894 重跑 eval。预计 May
+    26 01:00 UTC 恢复。
+- id: M055
+  date: '2026-05-25'
+  category: code_bug
+  severity: high
+  summary: batch_idx bug 修复不完整——gradient_step_idx 仍基于 enumerate 的 batch_idx，resume
+    后从 0 开始
+  root_cause: Worker 将 cutoff 逻辑中的 batch_idx 替换为 gradient_step_idx = batch_idx //
+    grad_accumulation_steps，但 batch_idx 来自 enumerate(dataloader) 始终从 0 开始。正确做法需加 resume_step
+    offset：actual_step = gradient_step_idx + (cfg.resume_step if cfg.resume else 0)。exponential
+    decay 也有同样问题。
+  prevention: 1. 代码修复后必须验证 resume 场景下的 step 值（用 print 或 assert 确认 actual_step 在 resume
+    后从 resume_step 开始）。2. 涉及 resume 兼容性的修复，Worker 必须测试 fresh start 和 resume 两个场景。3.
+    Director 不应在修复未经验证前就放宽约束（D043 教训）。
+  status: active
+  context: D043 基于"修复后 resume 安全"的假设放宽 C002，但修复不完整导致 resume 仍不安全。幸运的是尚未实际 resume 训练，未造成实验数据损失。
+  fix: D044 撤回 D043，C002 维持。cutoff_25k_s2 和 reverse_cutoff_s2 改为从头训练。完整修复留后续。
+- id: M056
+  date: '2026-05-25'
+  category: experiment_design
+  severity: medium
+  summary: cutoff_15k_s0 checkpoint 被清理导致 CKA dose-response 无法做 same-seed 对比
+  root_cause: checkpoint 清理时未检查后续分析是否仍需要该 checkpoint。cutoff_15k_s0 eval 已完成但 checkpoint
+    被删除，而后续 CKA 分析需要 checkpoint 做 representation 比较。
+  prevention: 清理 checkpoint 前必须检查：1) 该 checkpoint 是否可能用于后续分析（CKA、gradient analysis
+    等）2) 是否有同 seed 的其他条件 checkpoint 仍保留（用于 same-seed 对比）。只有 eval 完成 + 分析完成 + 无 same-seed
+    对比需求时才可清理。
+  status: active
+  context: CKA dose-response 分析发现 Cutoff 15K DINOv2 CKA=0.520（灾难性漂移），但使用了 s1 (seed
+    43) checkpoint 而非 s0 (seed 42)。s0 checkpoint 已被删除无法修复。效应量 0.44 远超 seed noise ~0.02，结论可靠但论文需注明。
+  fix: 论文中注明 seed 差异，依赖效应量论证。未来可用 cutoff_15k_s2_v2 (seed 44) 完成后做补充验证。
+- id: M057
+  date: '2026-05-25'
+  category: experiment_design
+  severity: low
+  summary: Director 误判 3 个 dose-response seed 缺失，实际只缺 1 个
+  root_cause: 从 experiment_plan.yaml（30 条）推断缺失 seed，未核对完整 registry（87 条）。plan 只记录初始规划，后续补充的实验（cutoff_25k_s1、reverse_cutoff_s1）在
+    registry 有但不在 plan 里。
+  prevention: 判断实验是否存在时，必须让 Agent 查 registry 确认，不能仅凭 experiment_plan.yaml 推断。plan
+    是规划文件，registry 才是实际执行记录。
+  status: active
+  fix: Agent pushback 纠正，只启动 cutoff_45k_s2 一个实验。
+- id: M058
+  date: '2026-05-25'
+  category: experiment_design
+  severity: high
+  summary: 论文核心 CKA 数据的源 checkpoint (ablation_occ_detach_s0) 被删除，导致关键声明不可复现
+  root_cause: 1) checkpoint 清理时未确认哪些 checkpoint 是论文数据的来源；2) CKA 分析未保存 run log（checkpoint
+    路径、代码版本、命令参数）；3) 重训版本与原始版本之间存在未追踪的代码/配置差异
+  prevention: 1) 论文中引用的任何数值，其源 checkpoint 必须标记为 DO NOT DELETE 直到论文最终版确认；2) 所有分析脚本必须保存完整
+    run log（输入路径、代码 commit、命令行参数、输出路径）；3) checkpoint 清理前交叉检查论文 figures/tables 的数据来源
+  status: active
+  context: '论文声称 Detach OCC CKA 灾难性漂移（DINOv2: 0.539, SigLIP: 0.312），但同种子重训 checkpoint
+    显示无漂移（0.964/0.953）。原始 checkpoint 已删除，无法验证原始数据。这直接威胁论文因果叙事的可信度。'
+- id: M059
+  date: '2026-05-25'
+  category: experiment_design
+  severity: high
+  summary: 2×2 factorial 设计中代码版本与实验条件完美共线——BN cells 全用 v1，LN cells 全用 v2，交互效应不可解释
+  root_cause: occ_head.py 在实验进行中做了重大重构（v1→v2, May 20→23），但未意识到这引入了混淆变量。BN 条件在 v1 时期训练完成，LN
+    条件需要 v2 的 norm_type 参数才能运行，导致代码版本和归一化类型完美共线。更严重的是 Detach BN 在 v1 中 detach 可能未实现，日志无任何
+    OCC/AUX 输出。没有 git commit 历史使得事后验证困难。
+  prevention: 1) factorial 设计的所有 cells 必须在同一代码版本下运行——代码重构后必须重跑受影响 cells；2) 实验代码必须
+    git commit 后再开训练，保留可追溯性；3) 新增实验条件（如 norm_type=ln）时，必须同时用新代码重跑旧条件作为控制；4) 训练日志必须记录代码版本/commit
+    hash
+  status: active
+  context: D050 审计发现全部 12 个 factorial 实验的代码版本分布：mvp_occ s0/s1/s2 (Full OCC BN) = v1
+    May 21, full_occ_ln s0/s1/s2 = v2 May 24, ablation_occ_detach s0/s1/s2 = v1 May
+    21-22, detach_ln s0/s1/s2 = v2 May 24。交互效应 p=0.025 无法区分 BN-vs-LN 和 v1-vs-v2。
+  fix: 用 v2 代码重建 Detach BN 格（s3 已在训练 + 34685 释放后跑 seeds 42/43/44），补充 Full OCC BN v2
+    数据（已有 retrain_s0 + s3 训练中），重算 ANOVA
+  related_decisions:
+  - D050
+  - D049
+  - D047
+- id: M060
+  date: '2026-05-25'
+  category: communication
+  severity: high
+  summary: Agent 错误报告 v1≈v2 等价性：将 mvp_occ_s0 (v1) 的 CAR=0.832 误标为 retrain_s0 (v2)
+    的数据
+  root_cause: Agent 在汇报中混淆了两个实验的指标来源——将 v1 实验 (mvp_occ_s0) 的 CAR 值错误归因给 v2 实验 (full_occ_retrain_s0)，导致
+    "v1≈v2 功能等价" 的错误结论。Director 和 Reviewer 基于此做了 D051 计划假设。
+  prevention: 1) Agent 引用 eval 指标时必须注明来源实验 ID + eval ID，不能只说 "CAR=X"；2) 跨版本比较时必须从
+    registry 拉取两个实验的完整指标并列展示；3) Director 在关键等价性判断上应要求 Reviewer 独立交叉验证
+  status: active
+  context: Agent 报告 full_occ_retrain_s0 (v2) CAR=0.832 ≈ mvp_occ_s0 (v1) CAR=0.832，实际上
+    retrain_s0 CAR=0.746。0.832 是 mvp_occ_s0 的数据。此错误导致 Director 在 D051 中错误假设 Full OCC
+    BN 格 v1 数据有效。
+  fix: Agent 已更正。Director 确认 D051 计划本身不需要修改（已包含足够 v2 Full OCC BN runs），但 Cell 1 v1
+    数据确认不可用。
+  related_decisions:
+  - D051
+  - D050
+- id: M061
+  date: '2026-05-25'
+  category: experiment_design
+  severity: medium
+  summary: D051 实验在 34685 上全部启动失败——v2 代码从未同步到 34685，finetune.py 不识别 --occ_norm_type
+    参数
+  root_cause: v2 代码更新（occ_head.py + finetune.py）仅在 10894 上完成，34685 仍运行 v1 代码。D051
+    计划时未核实 34685 代码版本。
+  prevention: 1) 跨服务器实验前必须验证目标服务器代码版本（dry-run 或参数校验）；2) 代码变更后立即同步到所有活跃服务器；3) 实验注册时记录代码
+    commit hash
+  status: active
+  fix: 同步 v2 代码到 34685 后重启 3 个实验
+  related_decisions:
+  - D051
+- id: M062
+  date: '2026-05-25'
+  category: agent_behavior
+  severity: medium
+  summary: 诊断 Worker 仅 tail 日志未验证进程存活，导致已死实验被误报为"仍在运行"
+  root_cause: Worker 诊断脚本只读取了日志文件最后几行（显示正常训练数据），未用 ps aux / nvidia-smi 验证进程是否实际存在。日志文件在进程死亡后仍保留最后写入的内容，无法区分活跃进程和已死进程。
+  prevention: '所有进程存活诊断 Worker 必须同时执行: (1) ps aux | grep 实验名 验证 PID 存在; (2) nvidia-smi
+    确认 GPU 有进程占用; (3) tail 日志确认内容。三者缺一不可。仅 tail 日志 = 无效诊断。'
+  status: active
+  context: 2026-05-25 双服务器崩溃事件中，Agent 派出的 Worker 对 cutoff_25k_s2_v3、reverse_cutoff_s2_v3
+    等实验误报"训练仍在运行"，而 Reviewer 通过 nvidia-smi 确认所有 GPU 均 0% util / 0 MiB。延迟了崩溃发现和恢复。
+- id: M063
+  date: '2026-05-25'
+  category: code_bug
+  severity: high
+  summary: 'finetune.py resume bug: resume_step=None 拼入 checkpoint 路径导致 FileNotFoundError'
+  root_cause: finetune.py load_checkpoint() 用 cfg.resume_step 拼文件名，但 --resume True
+    时不会自动解析 step 编号，resume_step 保持 None。同时 checkpoint 搜索路径指向 cfg.vla_path（预训练模型目录）而非
+    run_root_dir（实际 checkpoint 目录）。
+  prevention: 'resume 实验前必须验证: (1) --resume_step 显式传值或代码自动检测最新 checkpoint; (2) checkpoint
+    加载路径指向 run_root_dir 而非 vla_path。首次 resume 前做 dry-run 验证路径拼接正确。'
+  status: active
+  context: 2026-05-25 双服务器崩溃后恢复 s3 实验时发现。ablation_occ_detach_s3_v2 和 full_occ_ln_s3_v2
+    启动后数秒崩溃。mvp_occ_s3 未被尝试 resume 因此未触发 bug。
+  fix: 待 Agent 修复：方案 A（代码自动检测最新 ckpt）或方案 B（CLI 显式传 --resume_step 20000）
+- id: M064
+  date: '2026-05-25'
+  category: resource_misuse
+  severity: high
+  summary: westd-10894 数据盘 100% 满导致两个实验崩溃 + checkpoint 损坏
+  root_cause: 多实验并行跑在同一台服务器，未监控磁盘空间。checkpoint 积累（v1 残留 + 多实验中间 checkpoint）逐渐填满 250GB
+    数据盘。Agent 未在实验启动前检查磁盘预算。
+  prevention: 1. 实验启动前必须检查目标服务器磁盘余量（≥20% free）；2. 多实验共享同一数据盘时，启动脚本应设 checkpoint 保留策略（max_keep=2）；3.
+    Director 审批时追问磁盘状态；4. 实验运行中 cron 应包含磁盘监控（>90% 告警）
+  status: active
+  context: 10894 数据盘 /dev/md0 250GB 100% 满。full_occ_ln_s3_v2 的 30K checkpoint 写入中断导致不可用（仅
+    2.3MB tokenizer 文件）。ablation_occ_detach_s3_v2 的 30K checkpoint 侥幸完整。两个 GPU 空闲约
+    1 小时，CoRL DDL May 29。
+  fix: 清理旧 checkpoint + 删除损坏文件 + 从可用 checkpoint resume
+- id: M065
+  date: '2026-05-26'
+  category: resource_misuse
+  severity: high
+  summary: CKA CPU 分析进程(1863% CPU)在训练服务器上运行，导致 34685 全部 4 个训练 10-17× 减速
+  root_cause: CKA 表征分析（多层 forward pass + 大矩阵计算）作为 CPU Worker 在 34685 上运行，消耗 18+ CPU
+    核心，与 4 个 7B 模型训练的 dataloader workers 争抢 CPU 资源，导致训练速度从 1.08 it/s 降至 10-16 s/it。
+  prevention: CPU 密集型分析任务（CKA、梯度分析、大规模统计计算）禁止在有活跃训练的 GPU 服务器上运行。要么等训练完成后再跑，要么迁移到无训练负载的服务器。派
+    Worker 做分析前检查目标服务器是否有 RUNNING 实验。
+  status: active
+  context: 34685 同时跑 4 个训练 (vanilla_v2_s1/s2, detach_ln_s3, cutoff_25k_s1_v2) + 1
+    个 CKA CPU Worker。CKA 进程 PID 460707 占 1863% CPU。减速从 step ~5500-6900 开始，持续恶化未恢复。按减速后速度，训练需
+    5-8 天完成，远超 CoRL May 29 DDL。Agent kill CKA 进程后预期恢复。
+  fix: kill CKA 进程 (PID 460707) + cancel CKA Worker。训练速度预期恢复到 ~1 it/s。
+- id: M066
+  date: '2026-05-26'
+  category: code_bug
+  severity: high
+  summary: Cron failure 检测仅看 torchrun 退出码，destroy_process_group 警告导致所有训练被误标 failed
+  root_cause: torchrun 退出时触发 destroy_process_group() was not called 警告，可能产生非零退出码。Cron
+    的 on_failed 触发器仅看退出码判断失败，不验证训练日志或 checkpoint。导致 mvp_occ_s3_v2、full_occ_ln_s3_v2
+    等实际成功的训练被系统性误标为 failed，阻塞 eval 启动。
+  prevention: 训练完成判断不能仅依赖退出码。应增加辅助检查：(1) 日志中是否有 "Max step ... reached" 或 "Stopping
+    training" 字符串，(2) checkpoint 目录下是否有最终 step 的 checkpoint 文件。两者满足其一即判定为 success。所有
+    torchrun 训练完成后应手动验证 registry conclusion 直到 cron 逻辑修复。
+  status: active
+  context: 影响 10894 上 3 个 s3 训练：mvp_occ_s3_v2 (Cell 1 s2)、full_occ_ln_s3_v2 (Cell
+    2 v2)、ablation_occ_detach_s3_v2 (Cell 3 s3)。导致 eval 启动延迟 + GPU 空闲浪费。后续所有 torchrun
+    训练都会中招。
+  fix: 手动修正 registry conclusion → success 并启动 eval。Cron 逻辑修复待后续处理。
+- id: M067
+  date: '2026-05-26'
+  category: code_bug
+  severity: medium
+  summary: Cron 监控连续 2 次误报（full_occ_ln_v2_s0, s1），训练正常但触发 on_failed 通知
+  root_cause: Cron 进程监控机制可能的问题：(1) torchrun 启动后 PID 变化，cron 注册的 PID 与实际工作进程不匹配；(2)
+    checkpoint save / I/O stall 期间进程短暂无响应，cron 在此窗口误判；(3) tmux session 名与 exp_id 不一致导致
+    cron 找不到 session
+  prevention: Agent 注册 cron 监控时需确认：(1) 使用的 PID 是否为 torchrun 主进程而非子进程；(2) tmux session
+    名是否与 exp_id 完全一致；(3) 超时阈值是否足够容忍 checkpoint save 的 I/O stall（可能需要 60s+）。Director
+    收到 cron failed 通知时，先让 Reviewer 核实再行动，不要直接基于 cron 通知做决策。
+  status: active
+  context: 2026-05-26 连续收到 full_occ_ln_v2_s0 和 full_occ_ln_v2_s1 的 cron on_failed
+    通知。Reviewer 核实两个实验均正常运行（PID 存活、GPU 利用率 84%、训练 step 正常推进）。Registry 未被 cron 修改，仍为
+    RUNNING 状态。
+  fix: 本次无需修复 registry。已在综合指令中告知 Agent cron 告警为 stale。后续需 Agent 排查 cron 注册参数。
+- id: M068
+  date: '2026-05-26'
+  category: agent_behavior
+  severity: high
+  summary: Paper Agent 把全文叙事从 ordinal 改成 crossover interaction（方向性错误）
+  root_cause: Paper Agent 在做 Patch 时发现 Introduction 写 ordinal、其他章节写 crossover，选择把
+    Introduction 改成 crossover 来统一——但没有检查 paper_framing.md 的措辞约束（明确禁止 crossover）和 D055
+    决策。同时使用了 v1 数据 (0.797) 而非 v2 数据 (0.725)。
+  prevention: Paper Agent 执行跨章节一致性修复前，必须先读 paper_framing.md 的措辞约束和最近决策，以确认权威叙事方向。不一致时应以
+    paper_framing.md 为准，而非以多数章节为准。Director 审批 Paper Agent 的 Patch 报告时应验证叙事方向是否符合 framing。
+  status: active
+  context: Paper Agent 在 Phase 1 Patch 中发现 Introduction 保留 ordinal interaction（实际是正确的），但
+    Method/Results 等章节可能残留 crossover 措辞。Paper Agent 选择将 Introduction 改为 crossover
+    以"统一"，同时把 Abstract/Method/Results/Discussion/Conclusion/Figure 1 caption/writing_plan.yaml
+    全部改成 crossover + v1 数据。Reviewer 发现 Figure 1 使用 v1 crossover 数据后升级为 critical。
+  fix: 已向 Paper Agent 发送紧急修复指令：全文恢复 ordinal interaction + v2 数据 + Figure 1 重绘。
+  related_decisions:
+  - D055
+  - D058
+- id: M069
+  date: '2026-05-26'
+  category: resource_misuse
+  severity: high
+  summary: 10894 磁盘满导致多实验崩溃 — 未监控磁盘使用也未及时清理旧 checkpoint
+  root_cause: 8 GPU 满载并行训练，每个实验每 10K 步保存 checkpoint（~15-20GB/个），已完成 eval 的实验中间 checkpoint
+    未清理，250GB 数据盘被耗尽。缺乏磁盘使用监控和 checkpoint 清理机制。
+  prevention: 1. 多实验并行训练前先估算磁盘预算（实验数 × checkpoint 数 × 单个大小），确认空间充足；2. 实验 eval 完成后立即清理中间
+    checkpoint（只保留最终 checkpoint）；3. Agent 汇报资源状态时必须包含磁盘使用率，磁盘 > 80% 时主动告警并清理；4. 考虑在训练脚本中加
+    checkpoint rotation（只保留最近 N 个）
+  status: active
+  context: 2026-05-26 02:01 UTC+8，full_occ_ln_v2_s0 和 detach_ln_v2_s0 在保存 20K checkpoint
+    时崩溃。full_occ_ln_v2_s1 距 20K 仅 67 步极可能也已崩溃。reverse_cutoff_s2_v2 有 2.3h 窗口。两个崩溃实验有
+    10K checkpoint 可 resume，预计延迟 ~5h。
+  fix: 紧急清理已完成 eval 实验的中间 checkpoint 释放空间，从 10K checkpoint resume 崩溃实验。
+- id: M070
+  date: '2026-05-26'
+  category: code_bug
+  severity: high
+  summary: Agent 使用不存在的 --resume_from_checkpoint 参数重试实验，且未验证 checkpoint 存在
+  root_cause: 1. Agent 凭记忆构造了 finetune.py 的 resume 参数名（--resume_from_checkpoint），实际参数是
+    --resume + --resume_step。2. 未在提交重试前验证 checkpoint 路径是否存在（目录内只有 dataset_statistics.json，无模型文件）。3.
+    日志用覆盖模式（>）而非 append（>>），导致首次失败原因不可追溯。
+  prevention: 1. resume 实验前必须 --help 或 grep 源码确认实际参数名，不凭记忆猜；2. 提交 resume 命令前必须 ls
+    验证 checkpoint 路径存在且包含模型文件（.safetensors）；3. 训练日志统一用 append 模式（>> log 2>&1）
+  status: active
+  context: 2026-05-26 10894 磁盘满事故后续。3 个实验（full_occ_ln_v2_s0/s1, detach_ln_v2_s0）崩溃后
+    Agent 尝试从 10K checkpoint resume，但用了不存在的参数且 checkpoint 目录为空，导致 3 个重试全部立即失败（exitcode=2）。浪费约
+    1h 时间窗口。DDL 2026-05-28 12:00 UTC。
+  fix: 从头重启 3 个实验，使用原始 spec.command 不加 resume 参数。
+- id: M071
+  date: '2026-05-26'
+  category: agent_behavior
+  severity: high
+  summary: 多 Worker 并发操作同一批实验且未同步 registry，导致后续 Worker 误杀正在训练的进程
+  root_cause: Worker 1 正确重启了 3 个实验但未更新 registry（仍为 DONE/failed）。deep-cleanup Worker
+    根据 registry 状态判断这些是僵尸进程并终止了它们。根本原因：启动训练和更新 registry 未作为原子操作，多 Worker 并发时状态不一致。
+  prevention: 1. 启动训练进程后必须立即更新 registry 为 RUNNING（含 PID 和 log_path），作为同一个 Worker 任务的一部分完成；2.
+    不要派多个 Worker 并发操作同一批实验——一个 Worker 完成启动+registry 更新后再派其他任务；3. Worker 清理进程前必须先用
+    nvidia-smi 检查 GPU 利用率，有活跃训练的 GPU 上不要杀进程
+  status: active
+  context: 2026-05-26 磁盘满事故连锁反应。Worker 1 从头重启 3 个实验（PID 386277/386345/386619，已训练至
+    step ~275），但未更新 registry。deep-cleanup Worker 随后根据 registry=DONE/failed 状态将这些进程终止。3
+    张 H800 再次空转。这是同一事故链的第三次 GPU 浪费。
+  fix: 再次从头启动 3 个实验，要求 Agent 启动后立即更新 registry，且不再并发派 Worker 操作同一批实验。
+- id: M072
+  date: '2026-05-26'
+  category: code_bug
+  severity: high
+  summary: Cron 自动判断将正常完成的训练（vanilla_v2_s1）误标为 failed，可能批量影响多个实验
+  root_cause: Cron 检查进程退出 + 无 W&B 数据时自动判定 failed，未检查训练日志中的 "Max step reached" 成功标志和
+    checkpoint 文件是否存在
+  prevention: Agent 处理 cron "进程退出无法判断" 消息时，必须先检查：(1) 日志末尾是否有 "Max step reached" (2)
+    50000_chkpt 是否存在。两项都满足 → success，不要依赖 W&B 或进程退出码
+  status: active
+  context: vanilla_v2_s1 训练 50005/50005 正常完成，checkpoint 已保存，但被 cron 误标 failed。同时 full_occ_ln_v2_s0/s1
+    也疑似被同一逻辑误判。如果 Agent 按 failed 处理重训，将浪费 ~14h GPU 时间/实验。
+  fix: '手动 update_registry conclusion: success，启动 eval 而非重训'
+- id: M073
+  date: '2026-05-26'
+  category: agent_behavior
+  severity: high
+  summary: 10894 GPU 1/2/3 训练 stall 5h 未被发现——进程活着但 step 卡在 275/50005，GPU util 0%
+  root_cause: Agent 启动训练后仅确认进程存在（PID alive），未验证实际训练进展（step 推进、GPU util）。stall 进程在
+    ps 中显示正常但实际无进展。
+  prevention: 训练启动后 15-30 分钟内必须做一次 progress check：(1) 读日志尾部确认 step 在推进，(2) nvidia-smi
+    确认 GPU util > 0%。cron 回调应包含 step 进度检查而非仅 PID 存活检查。
+  status: active
+  context: 3 个 v2 factorial 关键实验 (full_occ_ln_v2_s0, full_occ_ln_v2_s1, detach_ln_v2_s0)
+    在 10894 上 stall，浪费 5h GPU 时间，ROADMAP ETA 推后 5h+。Reviewer 通过主动调查才发现。
+  fix: Kill stall 进程，排查原因后从 step 0 重启
+- id: M074
+  date: '2026-05-27'
+  category: communication
+  severity: medium
+  summary: Agent reset 后新 session 执行了已过时的"放弃 10894"指令，kill 了恢复后合法启动的实验
+  root_cause: Director 的 replace_agent_queue 指令（放弃 10894）在 Agent reset 前发出，但 10894
+    在 reset 前已被前一个 Agent loop 确认恢复。Reset 后新 session 只看到队列中的旧指令，不知道恢复事实，按旧指令 kill 了
+    4 个新实验。
+  prevention: Agent reset 前如果情况已变（如服务器恢复），必须在 reset 前用 replace_agent_queue 更新指令为最新状态，或在
+    reset 后立即发纠正指令。关键：reset 会清除 Agent 对中间事件的记忆，排队指令必须反映最新决策。
+  status: active
+  context: 10894 从 stall → kill-all → 诊断恢复 → Agent reset → 新 Agent 按旧指令再次 kill。浪费约
+    1h GPU 时间 + 重启开销。
+  fix: replace_agent_queue 发送纠正指令，明确 10894 可用，要求重新启动 Cell 2/4 训练。
+- id: M075
+  date: '2026-05-27'
+  category: code_bug
+  severity: high
+  summary: Cron torchrun 父进程检测导致 3 个活跃实验被误标 failed + 误诊为 GPU 硬件故障
+  root_cause: Cron 监控检查 torchrun 父进程 PID，父进程退出后训练子进程仍在运行但被判定为"进程死亡"。5 次误报触发 auto-resolve
+    标记 failed。后续 Director 看到 nvidia-smi 100% util + 0 MiB（实际是另一个被 SIGTERM 杀死的进程残留）误诊为
+    GPU 硬件故障，导致整台 10894 被错误判定不可用。
+  prevention: 1. Cron 检测逻辑改为检查 nvidia-smi 中实际占用 GPU 的训练子进程 PID，而非 torchrun 父进程 PID。2.
+    GPU "100% util + 0 MiB" 不一定是硬件故障——也可能是已死进程的 GPU 计数器卡住，需要交叉验证是否有其他活跃进程在该 GPU 上。3.
+    判定硬件故障前必须确认：(a) 无任何进程在该 GPU 上 (b) nvidia-smi -r 重置后仍异常。
+  status: active
+  context: full_occ_ln_v2_s1c, full_occ_ln_v2_s2, detach_ln_v2_s0c 三个实验被错误标记 failed。detach_ln_v2_s1c
+    是真死（SIGTERM）。10894 4 张卡实际 3 张在正常训练，只有 cuda:3 空闲。此误判延误了 Cell 2 数据收集约 12 小时。
+  fix: Reviewer 审查发现误报，Director 已修正指令让 Agent 恢复 registry 状态。已派 Agent 修复 cron 检测逻辑。
+- id: M076
+  date: '2026-05-27'
+  category: experiment_design
+  severity: high
+  summary: 论文 Table 1 使用 Vanilla n=1 最高 seed (0.768) 作为 baseline，而非 D063 确立的 n=3 均值
+    (0.745±0.024)，导致核心 binomial claim 和多个 ΔCAR 方向错误
+  root_cause: Vanilla n=3 完成 (D063) 后，论文 Table 1 和 ΔCAR 计算未同步更新。Agent 写论文时用了最早可用的单
+    seed 数据，后续 Vanilla 数据补全后未回查论文中的 baseline 引用。Director 审批修订计划 (D065) 时也未发现 Table
+    1 baseline 仍是旧数据。
+  prevention: 论文中任何 baseline 数值更新后，必须全文搜索该数值的所有引用位置并同步更新。Vanilla baseline 是全文锚点，变更时触发全文
+    ΔCAR 重算。审批修订计划时，先验证 Table 1 数据是否与最新 registry/factorial_summary 一致。
+  status: active
+  context: Reviewer 发现 Table 1 用 Vanilla=0.768 (单 seed)，导致 Detach BN 的 ΔCAR 从 +2.2pp
+    变为 -0.1pp（方向反转）。binomial test "11/12 ≤ Vanilla" 降为 "至多 9/12"，p≈0.073 不再显著。核心 negative
+    finding 依赖 baseline cherry-picking。
+  fix: 替换 Vanilla baseline 为 n=3 均值 (0.745±0.024)，重算全文 ΔCAR，放弃 binomial test 作为主要统计论证，改用
+    gradient flow 对比 (within v2 BN) 和 Detach≈Vanilla 等价检验作为统计骨架。
+  related_decisions:
+  - D063
+  - D065
+- id: M077
+  date: '2026-05-27'
+  category: agent_behavior
+  severity: high
+  summary: Worker paper_revision-intro-abstract 标记 done 但未修复任何 CRITICAL 问题——文件被打开但写回相同内容
+  root_cause: Agent 在处理 D065 时派 Worker 修改论文，但 D065 的 F3 指令本身有误（"11 of 12" 基于错误 baseline）。Worker
+    可能检测到矛盾后放弃修改但仍标记 done，或者执行了错误的编辑后覆盖了同一文件。核因是 D065 和 D066 在队列中的时序问题——D065 不可取消（已在处理中），D066（正确指令）排在后面。
+  prevention: 1. 论文修订 Worker 完成后必须 diff 验证实际变更是否落地。2. Worker 标记 done 时应包含具体修改的行号和内容摘要。3.
+    Critical 修复的 Worker 应有 post-check：修改后 grep 确认旧文本已消失。
+  status: active
+  related_decisions:
+  - D065
+  - D066
+- id: M078
+  date: '2026-05-27'
+  category: agent_behavior
+  severity: high
+  summary: Agent 连续 4 次 idle 16h，训练完成后 eval/梯度分析/论文修复全未触发，可能导致错过 DDL
+  root_cause: Agent 每次 reset 后仅处理 1-2 条消息就进入 idle 状态，cron 回调未能唤醒 Agent 处理训练完成后的后续任务链
+  prevention: 关键路径任务（训练→eval→分析）的 ETA 已知时，Director 应在 ETA 后主动发 urgent_agent_message
+    触发，不完全依赖 cron 回调。连续 2 次 idle 16h 时应立即升级告知用户
+  status: active
+  context: 训练 ETA ~12:30-14:30 UTC May 27，DDL May 28 12:00 UTC。Agent 在 03:35 UTC May
+    27 开始后反复 idle，累计延误超 48h
+- id: M079
+  date: '2026-05-27'
+  category: agent_behavior
+  severity: high
+  summary: Agent 连续 7 次 reset 后 idle 16h，队列消息从未被处理
+  root_cause: Agent session 处理 handoff 后不再 pick up 队列中的后续消息。可能是 session runtime 层面的
+    bug（非指令问题）——无论指令简单还是复杂、urgent 还是普通，行为一致。
+  prevention: 1. 向 Manager 升级系统性 Agent 故障，不要只靠 reset + 改指令。2. DDL 逼近时应更早（第 2-3 次失败后）升级到
+    Manager/用户寻求替代执行路径。3. 考虑保留直接 SSH 执行能力作为 fallback。
+  status: active
+  context: 'Loops 8-14 (Director): Agent reset 7 次，每次只处理 1 条 handoff 消息后 idle 16h。尝试过
+    replace_agent_queue、urgent_agent_message、极简指令（单一 nvidia-smi 检查），全部无效。CoRL DDL
+    May 28 12:00 UTC 受威胁。'
+- id: M080
+  date: '2026-05-27'
+  category: resource_misuse
+  severity: high
+  summary: westd-10894 磁盘 100% 满导致 2 个实验崩溃（full_occ_ln_v2_s0d、detach_ln_v2_s0c_r2）
+  root_cause: 8 个 v2 实验同时在 250GB 磁盘上跑，未监控磁盘使用量。v1 旧 checkpoint 未清理，累积占用大量空间。无磁盘预警机制。
+  prevention: 1. 批量实验启动前必须 df -h 确认磁盘余量 ≥ 预估总 checkpoint 大小的 1.5 倍；2. 上一批实验完成后及时清理不再需要的
+    checkpoint；3. 多实验并行时设置磁盘监控（定期 df -h 或 cron 预警）
+  status: active
+  context: 8 个 v2 LN 重训实验在 westd-10894 上并行，每个实验 checkpoint ~10-15GB。v1 旧 checkpoint
+    未清理。磁盘在 step 20000 附近耗尽，2 个实验 EXIT_CODE=1，2 个存活实验将在 step 30000 (~09:00 UTC) 再次尝试保存时崩溃。
+  fix: 紧急清理旧 checkpoint + 死实验残留 + cache，目标腾出 ≥50GB
+- id: M081
+  date: '2026-05-27'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 将 TSR=0.018 的异常 eval 结果标为 success，并错误归因为"v1 预期行为"
+  root_cause: Agent 未对 eval 结果做合理性检查（其他实验 TSR 均 >0.84），直接将 EXIT_CODE=0 等同于 success。随后用"v1
+    实现缺陷"作为万能解释，但其他 v1 实验并无此问题。
+  prevention: Eval 完成后必须对 TSR/CAR 做 sanity check：TSR < 0.5 或 CAR < 0.5 时自动标记为 anomalous
+    而非 success。EXIT_CODE=0 只说明进程正常退出，不代表实验结果有效。
+  status: active
+  context: 'detach_ln_s4_eval: TSR=0.018, CAR=0.672。根因为 v1 训练的 LoRA 早期层权重异常放大 3-5x，模型收敛到错误解。Reviewer
+    发现并打回后 Agent 修正。'
+  fix: Registry conclusion 改为 failed，failure_reason 标注 anomalous。数据从 factorial 分析中排除。
+- id: M082
+  date: '2026-05-27'
+  category: agent_behavior
+  severity: medium
+  summary: Registry 幽灵条目：full_occ_ln_v2_s1c_r2 和 s2_r2 标 RUNNING 但进程从未启动
+  root_cause: Agent 注册了实验并记录 PID，但实际进程未在服务器上启动（或启动后立即退出），Registry 未检测到进程消失
+  prevention: 提交训练后 1-2 分钟内用 ssh_read_only 验证进程存在（ps -p PID）和日志文件生成。Registry RUNNING
+    状态必须有进程存活确认。
+  status: active
+  fix: 发现原始 checkpoint (s1c/s2) 完好，直接跑 eval 获取 Cell 2 v2 数据
+- id: M083
+  date: '2026-05-27'
+  category: agent_behavior
+  severity: medium
+  summary: 磁盘清理 Worker 删除了已完成实验的完整 checkpoint 目录，而非仅中间 checkpoint
+  root_cause: 清理脚本/指令未区分"中间 checkpoint (10k/20k/30k/40k)"和"最终 checkpoint (50k)"，对
+    ablation_occ_detach_s4 和 detach_ln_v2_s1 整个目录执行了删除
+  prevention: 磁盘清理指令必须明确：(1) 只删中间 checkpoint，保留最终 checkpoint；(2) 清理前列出待删目录让 Director
+    确认；(3) 已完成实验的最终 checkpoint 永不自动删除，需手动审批
+  status: active
+  context: westd-34685 磁盘清理从 262G/350G 降至 203G/350G。ablation_occ_detach_s4 (Cell 3
+    seed 46, CAR=0.738) 和 detach_ln_v2_s1 (Cell 4 v2 seed 43) 的模型权重永久丢失。eval artifact
+    保留，ANOVA 数据不丢，但无法对这些模型做跨 benchmark 评估。DDL 关键路径不受影响。
+  fix: 无法恢复已删模型权重。如后续需要 libero_object 跨 benchmark 验证 Cell 3 s4，需重新训练。
+- id: M084
+  date: '2026-05-27'
+  category: communication
+  severity: high
+  summary: Agent 报告的 ETA 全部为 UTC+8 误标为 UTC，导致 ROADMAP 偏早 8h；Director 错误地否定了 Reviewer
+    的正确估计
+  root_cause: Agent 将服务器本地时间（UTC+8 北京时间）直接作为 UTC 写入报告。Director 未独立交叉验证（step 数 + speed
+    反算），直接采信 Agent 数据并否定 Reviewer 的正确估计。
+  prevention: 1. Agent 报告时间时必须明确标注时区或统一用 `date -u` 获取 UTC。2. Director 收到 ETA 时用 step/speed
+    独立反算验证，尤其是 Agent 和 Reviewer 结论矛盾时。3. Reviewer 给出有证据的结论不应被轻易否定——两个独立来源矛盾时必须交叉核实。
+  status: active
+  context: Agent 报告 detach_ln_v2_s2 ETA ~04:18 UTC，Reviewer 独立核实为 ~12:22 UTC（偏差 +8h，全部
+    5 个实验一致）。Director 采信 Agent 并在 ROADMAP 写"Reviewer ~12:15 估计有误"——实际上 Reviewer 是对的。导致错误宣告
+    "Cell 4 n≥3 无风险"，并通知 Paper Agent 降级 n=2 应急方案。Cell 4 实际只能在 DDL 前达到 n=2。
+  fix: 立即修正 ROADMAP 为正确 UTC 时间，重新激活 n=2 方案为主力，通知 Paper Agent 和用户。
+- id: M085
+  date: '2026-05-27'
+  category: communication
+  severity: high
+  summary: Reviewer 误判服务器时区导致 ROADMAP 被错误修改为 n=2 方案；Director 未独立验证就采信 critical 并连锁通知全团队
+  root_cause: Reviewer 将服务器 ls 时间戳（UTC+8 北京时间）当作 UTC，导致所有 ETA +8h 偏差。Director 收到 severity:critical
+    后未用 step×speed 独立反算验证，直接采信并执行了 ROADMAP 回滚、M084 记录、Paper Agent n=2 切换、用户通知等连锁动作。
+  prevention: 1. Reviewer 做时间相关核实时必须先 `cat /etc/timezone` 或 `date -u` 确认服务器时区。2. Director
+    收到 critical 级别报告时，如果结论与 Agent 矛盾，必须要求提供 raw evidence（一条命令同时输出 UTC 时间 + 数据），不能基于推断就否定
+    Agent。3. 重大方案变更前增加一步：用已知数据（step 数 + 训练速度 + 已知启动时间）独立反算 ETA 交叉验证。
+  status: active
+  context: Reviewer 的 critical 报告触发了：(1) M084 错误记录、(2) ROADMAP 从 n≥3 降级为 n=2、(3) Paper
+    Agent 切换到 n=2 应急模板、(4) 用户收到"Cell 4 只能 n=2"的错误通知、(5) D071 论证架构调整。实际上 Agent 的 ETA
+    始终正确，Cell 4 v2 n≥3 在 DDL 前可达。约 2 小时团队时间浪费在不必要的降级准备上，但 n=2 模板和 BN 行论证分析作为 contingency
+    仍有价值。
+  fix: 撤回 M084（Agent 时区错误）标记为无效。恢复 ROADMAP 为 n≥3 方案。通知 Paper Agent 恢复 Branch A/B 为主力。通知用户修正。D071
+    的 BN 行核心论证方向保留（独立于 n 数仍然有效）。
+- id: M086
+  date: '2026-05-27'
+  category: experiment_design
+  severity: high
+  summary: statistical_tests.py 混入 v1 实验数据，D071 决策引用了 v1 exp_ids 作为 v2 factorial 核心证据
+  root_cause: D071 决策时直接引用了 mvp_occ_s0、ablation_occ_detach_s0/s1 等 v1 实验 ID 作为 Cell
+    1/Cell 3 核心证据，未核对这些是否属于 v2 重训练批次。下游 statistical_tests.py 和 factorial_data.json
+    继承了这一错误。
+  prevention: 涉及多版本实验（v1/v2 重训练）时，统计脚本必须显式声明使用的 exp_id 白名单，并与 ROADMAP 的版本标注交叉验证。决策日志引用
+    exp_id 时标注版本号。
+  status: active
+  context: v1 实验使用旧代码（含 batch index 错误等问题），v2 是修复后重训练。ROADMAP 的 v2 数据表本身正确（Cell 1=0.725±0.064,
+    Cell 3=0.767±0.024），但 D071 文本和统计脚本引用了错误的 exp_ids。
+  fix: 派 Agent 用正确的 v2 exp_ids 重写 factorial_data.json 和 statistical_tests.py 并重新执行统计分析。
+  related_decisions:
+  - D071
+- id: M087
+  date: '2026-05-27'
+  category: resource_misuse
+  severity: high
+  summary: 'M086: 34685 磁盘满导致 2 实验崩溃——4 个实验同时保存 checkpoint 耗尽 60G 剩余空间'
+  root_cause: 34685 上同时运行 4 个实验，各自独立保存 checkpoint（每个 ~10-15GB），磁盘从 148G free 降至瞬时满。未设置
+    checkpoint 保留数量上限，也未在派实验前评估 4×checkpoint 的磁盘峰值需求。
+  prevention: 1) 多实验共享服务器时，派实验前计算 N×checkpoint_size 峰值需求 vs 剩余磁盘；2) 训练脚本设置 save_total_limit=2
+    避免无限堆积 checkpoint；3) 磁盘 <100G 时主动清理旧 checkpoint 或减少并发实验数
+  status: active
+  context: 34685 原 148G free，4 实验各保留多个 checkpoint 导致降至 60G，step 15000/10000 时保存瞬间磁盘满。cuda:0
+    (detach_ln_v2_s2) 和 cuda:1 (vanilla_object_s0) 崩溃。cuda:2/3 存活但下次保存 step 20000
+    (~1-2h) 有二次崩溃风险。
+  fix: Worker 正在清理旧 checkpoint + 从最新 checkpoint resume 重启崩溃实验
+- id: M088
+  date: '2026-05-28'
+  category: communication
+  severity: medium
+  summary: Director 向 Reviewer 发送 Cell 1/3 数据时引用了错误数值（0.822/0.807），实际为 0.725/0.767
+  root_cause: 凭记忆引用实验数据，未先查 ROADMAP/report 核实。0.822 可能与 Cell 4 的 0.826 混淆，0.807 来源不明。
+  prevention: 引用具体实验数值前，必须先 read_project_file(ROADMAP.md) 或 read_experiment_plan_with_status
+    核实，不凭记忆引用。
+  status: active
+  fix: Reviewer 已自行纠正数据，分析基于正确数值完成。
+- id: M089
+  date: '2026-05-28'
+  category: resource_misuse
+  severity: high
+  summary: 10894 磁盘满(250GB/250GB)导致两个 libero_object 实验崩溃，存活实验也面临风险
+  root_cause: 启动新实验前未检查目标服务器磁盘空间是否足够。10894 上积累了多轮实验的 checkpoint 未清理，两个新 object 实验各占
+    ~20-30G 导致写满。
+  prevention: 审批实验时必须要求 Agent 用 df -h 确认目标服务器磁盘剩余 ≥ 实验预估占用的 2 倍。已完成 eval 的实验 checkpoint
+    应及时清理。
+  status: active
+  fix: 清理已完成 eval 的 checkpoint (detach_ln_v2_s0c_r3 + full_occ_ln_s4 ~40G)，确保存活实验安全后酌情重启。
+- id: M090
+  date: '2026-05-28'
+  category: resource_misuse
+  severity: high
+  summary: 34685 预防性清理 worker 删除了正在运行实验（detach_ln_v2_s2）的中间 checkpoint，导致训练崩溃
+  root_cause: 清理 worker 按"已完成实验"名单删除 checkpoint，但实际删除时未过滤 RUNNING 状态的实验。训练框架在 save
+    新 checkpoint 时需要引用前一个 checkpoint 路径，被删后触发 HFValidationError。
+  prevention: 磁盘清理 worker 必须：(1) 只删 registry 中状态为 DONE/FAILED 的实验；(2) 执行前用 nvidia-smi
+    交叉验证目录对应的实验未在 GPU 上运行；(3) 排除任何 RUNNING 实验同名前缀的目录。Director 审批清理时必须明确列出"不可删除"的 RUNNING
+    实验目录白名单。
+  status: active
+  context: M089 磁盘满事故后的预防性清理反而制造了新事故。detach_ln_v2_s2 是 Cell 4 seed 44，DDL-critical。
+  fix: 检查存活实验 checkpoint 完整性，从最新存活 checkpoint resume。
+- id: M091
+  date: '2026-05-28'
+  category: resource_misuse
+  severity: high
+  summary: fix worker 操作 tmux session 时 SIGHUP 杀死了正在运行的 full_occ_ln_v2_s3（Cell 2 DDL-critical）
+  root_cause: fix/symlink/backup worker 在有训练进程运行的服务器上操作 tmux session，导致 SIGHUP 信号传播到训练进程。这是本轮第
+    5 次因基础设施操作导致实验崩溃——修复操作本身成为最大不稳定源。
+  prevention: 硬规则：(1) 所有 fix/maintenance worker 必须用独立 ssh session 执行，禁止操作 tmux；(2)
+    不得 kill/创建/attach tmux session 除非确认无训练进程；(3) 修复操作仅针对空闲 GPU，不触碰运行中的实验环境。
+  status: active
+  fix: 从 40000_chkpt resume，仅需 ~2.6h 完成剩余 10000 步。
+- id: M092
+  date: '2026-05-28'
+  category: code_bug
+  severity: high
+  summary: 轮询脚本检查 adapter_config.json 路径错误，eval 永远不会自动触发
+  root_cause: 轮询脚本检查 50000_chkpt/adapter_config.json 是否存在来判断 checkpoint 完成，但实际文件在
+    50000_chkpt/lora_adapter/adapter_config.json。路径不匹配导致轮询永远检测不到 checkpoint 完成。
+  prevention: 写轮询/监控脚本时，先用 ls -R 确认目标文件的实际路径结构，不要假设目录布局。部署后立即做一次 dry-run 验证检测逻辑（用已存在的
+    checkpoint 测试）。
+  status: active
+  fix: Agent 修正路径为 lora_adapter/adapter_config.json，重启全部 4 个轮询脚本（34685 PID 69355/69356/69357,
+    10894 PID 969726）
+- id: M093
+  date: '2026-05-28'
+  category: code_bug
+  severity: high
+  summary: 轮询脚本将 EXIT_CODE=129 (SIGHUP) 误判为训练失败，导致 GPU 空转 10+ 分钟
+  root_cause: torchrun 正常完成训练后收到 SIGHUP 信号返回 exit code 129，轮询脚本只检查 exit code != 0
+    就标记为 failed，未校验 checkpoint 是否已保存完成
+  prevention: 轮询脚本判断训练是否成功时，必须同时检查：(1) exit code 和 (2) 目标 checkpoint 是否存在且完好。EXIT_CODE=129
+    + checkpoint 存在 → 视为成功。这是第 2 次因同一原因误判，必须修复脚本逻辑。
+  status: active
+  context: detach_ln_v2_s3 和 full_occ_ln_v2_s3 训练均正常完成（日志有 "Max step 50005 reached"，50000_chkpt
+    完好），但被标记 failed。DDL 12:00 UTC，GPU 空转 10+ 分钟直接压缩了 eval 时间窗口。第一次误判发生在 03:43 UTC。
+  fix: 已紧急指令 Agent 手动覆盖 registry 状态为 success 并立即启动 eval，同时要求修复轮询脚本的 exit code 判断逻辑
+- id: M094
+  date: '2026-05-28'
+  category: code_bug
+  severity: medium
+  summary: EXIT_CODE=129 导致正常完成的训练被 registry 标记为 failed（第4次出现）
+  root_cause: cron 检测路径未完全覆盖 EXIT_CODE=129 的正常完成场景。训练到达 max step 后进程退出码为 129，cron
+    将其判定为失败，但实际 checkpoint 完整且日志确认正常结束。之前的修复未覆盖所有检测路径。
+  prevention: 1. cron 检测逻辑应优先检查 checkpoint 完整性和日志 max step reached，而非仅依赖 exit code。2.
+    EXIT_CODE=129 应加入已知正常退出码白名单。3. 此 bug 已出现 4 次（full_occ_ln_v2_s3, detach_ln_v2_s3,
+    vanilla_object_s1, detach_ln_v2_s2），必须彻底修复。
+  status: active
+  context: '受影响实验: full_occ_ln_v2_s3, detach_ln_v2_s3, vanilla_object_s1, detach_ln_v2_s2。每次都需要
+    Reviewer 人工确认 checkpoint 完整后手动修正 registry。'
+  fix: 手动将 registry conclusion 从 failed 改为 success，然后继续 eval 流程。
+- id: M095
+  date: '2026-05-28'
+  category: agent_behavior
+  severity: high
+  summary: v1 caveat 第 4 次回归 + Director 误报 "7 处确认无回归"
+  root_cause: 1) Agent 每次做写作修改时会无意删除 content irrelevance 句中的 v1 caveat（已发生 4 次）。2)
+    Director 用 grep "observed under v1" 验证时，匹配到了其他位置的 caveat（如 Results 和 Discussion
+    中本来就有的），误以为 Abstract/Intro/Conclusion 也有，实际这些位置的 caveat 在 batch2 写作修复中被删除了。grep
+    验证方法不够精确——应该逐文件核对而非全局计数。
+  prevention: 1) 每次写作修改后，必须逐文件检查 Abstract(main.tex)、Introduction(introduction.tex)、Results(results.tex)、Discussion(discussion.tex)、Conclusion(conclusion.tex)、Limitations(limitations.tex)
+    中 "content irrelevance" / "no detectable effect" / "spatial content" 相关句是否包含 v1
+    caveat。不能用全局 grep 计数替代逐文件核对。2) 给 Agent 的写作指令中加入硬约束："修改任何 .tex 文件后，grep 确认所有 content
+    irrelevance 提及处都保留 v1 caveat"。3) 考虑在 CI 或编译检查中加入自动化 caveat 检测。
+  status: active
+  context: Round 3 审稿修复期间，Director 声称 "v1 caveat 7 处确认无回归" 但 Reviewer 发现 Abstract、Introduction
+    L16、Conclusion L4 均无 caveat。batch2 Worker 修复了前 3 处，Conclusion 残留（info 级）。这是该问题第
+    4 次复发。
+  fix: batch2 Worker 修复了 results.tex g 值（-0.66→-0.34）和 Abstract/Intro 两处 v1 caveat。Conclusion
+    残留待排版修复一并处理。
+- id: M096
+  date: '2026-05-28'
+  category: experiment_design
+  severity: high
+  summary: 两个实验缺少 --occ_data_dir，OCC head 未激活，训练等价于 vanilla
+  root_cause: 提交实验命令时未包含 --occ_data_dir 参数，finetune.py 默认值为空字符串，导致 OCC 数据加载被静默跳过，无任何报错
+  prevention: 1. 提交任何涉及 OCC 的实验前，必须检查命令是否包含 --occ_data_dir；2. 建议在代码中加 assert：当 occ_loss_weight
+    > 0 但 occ_data_dir 为空时抛出错误而非静默跳过；3. 实验启动后前 100 步检查 occ_loss 是否 > 0
+  status: active
+  context: full_occ_bn_v2_s2_r2 和 random_occ_v2_s0 运行约 11000 步后 Reviewer 发现 occ_loss
+    恒为 0。根本原因是 finetune.py:91 默认 occ_data_dir=""，代码在 datasets.py 中静默跳过 OCC 数据加载。已浪费约
+    6 GPU-hours。更大风险是已完成的 v2 实验可能也有同样问题，需审计。
+- id: M097
+  date: '2026-05-28'
+  category: experiment_design
+  severity: high
+  summary: 两个从头训练的 OCC 实验缺失 --occ_data_dir 参数，OCC loss 始终为 0，完全无效
+  root_cause: Worker 提交实验命令时遗漏 --occ_data_dir 参数。代码中 occ_data_dir 默认值为空字符串，不会报错而是静默跳过
+    OCC 数据加载，导致 OCC loss 为 0 但训练正常继续，难以从表面发现问题。
+  prevention: 1. 所有 OCC 相关实验提交前必须检查命令包含 --occ_data_dir /root/occsafe_vla/occ_data；2.
+    建议代码层面：当 occ_head 存在但 occ_data_dir 为空时抛出 warning 或 error，而非静默跳过；3. 实验启动后前 100
+    步检查 occ_loss 是否大于 0
+  status: active
+  context: random_occ_v2_s0 (PID 10894) 和 full_occ_bn_v2_s2_r2 (PID 34685) 均从头训练且缺
+    --occ_data_dir。OCC loss 从 step 0 到 ~12400 步始终为 0.0000。浪费 ~6.6 GPU-hours。v2 resumed
+    实验也缺此参数但前 40k 步继承了 v1 的 OCC 训练效果，影响较小。
+  fix: Kill 两个实验，加入 --occ_data_dir 后重新提交
+- id: M098
+  date: '2026-05-28'
+  category: experiment_design
+  severity: high
+  summary: 修复 occ_data_dir 后重试实验遗漏 WANDB_MODE=disabled，wandb.init crash 导致两台 GPU 空转
+  root_cause: Worker 重新提交实验命令时只关注了新加的 --occ_data_dir 修复，未完整复制原命令的环境变量设置（WANDB_MODE=disabled）。对启动命令的
+    checklist 意识不足。
+  prevention: 提交实验前必须完整 checklist：1) WANDB_MODE=disabled（或已配 wandb key）2) --occ_data_dir（OCC
+    实验必填）3) CUDA_VISIBLE_DEVICES 正确 4) 所有其他必要环境变量。重试实验时以上次成功运行的完整命令为模板修改，不要从头拼接。
+  status: active
+  context: M097 修复的后续：加了 --occ_data_dir 但漏了 WANDB_MODE=disabled。两台服务器从 ~23:02 UTC
+    起 GPU 空转。
+  fix: 重新提交时同时包含 WANDB_MODE=disabled 和 --occ_data_dir
+- id: M099
+  date: '2026-05-28'
+  category: agent_behavior
+  severity: high
+  summary: Agent kill 实验时只更新 registry 未真正 kill 服务器进程，导致僵尸进程占满 GPU
+  root_cause: Agent 执行 kill 操作时仅修改了 registry 中的实验状态为 killed，未通过 ssh_execute 在服务器上执行
+    kill <PID> 终止实际进程。后续重试实验因 GPU 被僵尸进程占满全部 OOM。
+  prevention: Kill 实验必须三步：1) ssh_execute kill <PID> 终止服务器进程 2) nvidia-smi 确认 GPU 显存释放
+    3) 更新 registry 状态。三步缺一不可，顺序不可颠倒。
+  status: active
+  context: M097 修复链第三环：occ_data_dir 缺失 → wandb 缺失 → 进程未被真正 kill。从 ~23:00 UTC 起两台服务器
+    GPU 有效利用率为 0。
+  fix: ssh_execute kill 僵尸进程后确认 GPU 释放再重新提交
+- id: M100
+  date: '2026-05-29'
+  category: resource_misuse
+  severity: high
+  summary: 项目配置声明 cuda:0-3 共 8 GPU，实际两台服务器各仅 1 张 GPU，导致 6 个实验秒崩
+  root_cause: 项目配置 gpu_ids 未经实际验证就写入 cuda:0-3，服务器实际只暴露 1 张 GPU（物理层面，非环境变量限制）
+  prevention: 新服务器绑定项目时，必须先 nvidia-smi -L 验证实际可用 GPU 数量，再写入 gpu_ids 配置。批量提交实验前先在目标
+    GPU 上跑 torch.cuda.set_device() 验证可达性
+  status: active
+  fix: 已将 gpu_ids 修正为 [cuda:0]，6 个 FAILED 实验排入优先队列等 cuda:0 释放后串行执行
+- id: M101
+  date: '2026-05-29'
+  category: resource_misuse
+  severity: high
+  summary: 6个实验提交到不存在的GPU(cuda:1/2/3)全部失败，浪费~228分钟
+  root_cause: Agent依赖历史配置假设服务器有4卡可用，未在提交前用nvidia-smi检查实际可见GPU数量。两台服务器均被cgroup v2限制为只暴露cuda:0。
+  prevention: 提交实验前必须ssh_read_only运行nvidia-smi确认实际可见GPU数量和ID，不依赖ROADMAP或memory中的历史配置。提交命令中CUDA_VISIBLE_DEVICES必须匹配实际可见设备。
+  status: active
+  context: 05-29 03:39 UTC批量提交vanilla_v2_s3(cuda:2), full_occ_bn_v2_s4(cuda:1), detach_bn_v2_s3(cuda:3),
+    full_occ_bn_eval_v2_s0(cuda:1), full_occ_bn_lambda001_v2_s0(cuda:2), full_occ_bn_lambda01_v2_s0(cuda:3)，全部报CUDA_ERROR_NO_DEVICE，空跑~38分钟/个后失败。
+  fix: 当前2个RUNNING实验完成后，全部改用cuda:0串行提交。已在队列计划中明确。
+- id: M102
+  date: '2026-05-29'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 提交 6 个实验到不存在的 GPU（cuda:1/2/3），未提前验证 GPU 可用性
+  root_cause: 服务器 OOM 重启后从 4 GPU 降为仅 GPU 0 可用（cgroup 限制），Agent 在 05-29 03:40 UTC 批量提交实验到
+    cuda:1/2/3 时未先运行 nvidia-smi 确认实际可用 GPU 数量
+  prevention: 实验提交前必须先 ssh_read_only 运行 nvidia-smi 确认实际可用 GPU 列表，特别是服务器重启/异常恢复后。Director
+    审批时也应要求 Agent 确认目标 GPU 可见性
+  status: active
+  context: westd-10894 和 westd-34685 两台 AutoDL 服务器在 OOM 事件后重启，cgroup 限制为单卡。Agent 未检测直接提交
+    6 个实验到不存在的 GPU，全部 CUDA_ERROR_NO_DEVICE 失败
+- id: M103
+  date: '2026-05-29'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 在部分恢复的服务器上未执行 nvidia-smi 验证 GPU 数量就提交 6 个实验到 cuda:1/2/3，全部因 CUDA_ERROR_NO_DEVICE
+    失败，浪费 ~3.9 GPU·h
+  root_cause: AutoDL 服务器重启后只有 GPU 0 可见（cgroup v2 限制），Agent 直接按白名单分配的 cuda:0-3 提交实验而未先验证物理
+    GPU 可用性
+  prevention: 服务器恢复/重启后，Agent 必须先执行 nvidia-smi 确认全部预期 GPU 可见，再提交实验。如果 GPU 数量少于白名单分配，立即上报
+    Director 而非继续提交。
+  status: active
+  context: 2026-05-29 03:39 UTC，6 个 rebuttal 实验（vanilla_v2_s3, full_occ_bn_v2_s4,
+    full_occ_bn_lambda01_v2_s0 等）提交到 westd-10894/westd-34685 的 cuda:1/2/3，~40min 后全部
+    CUDA_ERROR_NO_DEVICE 失败。同期 cuda:0 上的 2 个实验（random_occ_v2_s0_r4, full_occ_bn_v2_s2_r5）正常运行约
+    4.5h 后因服务器完全下线而终止。
+  fix: 服务器恢复后优先检查 r4/r5 部分 checkpoint（save_freq=10000，可能已保存 30-40K step），然后 nvidia-smi
+    确认 4 GPU 全部可见再重新提交全部实验。

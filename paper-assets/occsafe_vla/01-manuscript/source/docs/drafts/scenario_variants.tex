@@ -1,0 +1,70 @@
+% ============================================================
+% Scenario A: BN artifact confirmed (Detach+LN CAR ≈ Vanilla ~0.780)
+% Probability: ~40%
+% Key implication: Detach degradation was normalization artifact, not gradient flow evidence
+% ============================================================
+
+% REPLACES: "We hypothesize..." paragraph in §6.2 (discussion.tex L30)
+% ALSO UPDATES: preceding "Gradient analysis" paragraph
+
+\begin{comment} % --- SCENARIO A START ---
+
+A discriminating test replaces the auxiliary head's BatchNorm2d layers with LayerNorm, which normalizes per-sample and does not maintain cross-batch running statistics, while keeping gradient detachment (\texttt{stop\_gradient}) unchanged. Detach+LN (3 seeds) achieves CAR of [DETACH_LN_CAR] ($\pm$ [DETACH_LN_STD]), recovering to within [DELTA]pp of Vanilla (0.780) and statistically indistinguishable from the no-auxiliary baseline. This confirms that the Detach degradation is a normalization artifact: BatchNorm's running statistics create forward-pass interference that the encoder cannot compensate for without auxiliary gradients. When this interference is removed via LayerNorm, the encoder performs comparably to Vanilla even without auxiliary gradient flow.
+
+This result refines the gradient-flow finding. Gradient flow is not inherently beneficial for collision avoidance---it is necessary specifically to compensate for the distributional perturbation that BatchNorm layers introduce in the auxiliary head. The practical implication is twofold: (1)~if practitioners use auxiliary heads with BatchNorm during VLA fine-tuning, gradient flow through the encoder is mandatory to avoid degradation; (2)~if the auxiliary head uses per-sample normalization (LayerNorm, GroupNorm), gradient detachment is safe and does not harm collision avoidance. This normalization-dependent finding explains why all gradient-flow conditions (Full OCC, Random OCC, Depth) achieve comparable CAR regardless of label content: the gradient signal compensates for the same BN artifact in all three cases.
+
+\end{comment} % --- SCENARIO A END ---
+
+
+% ============================================================
+% Scenario B: Gradient flow is genuine (Detach+LN CAR ≈ Detach ~0.746)
+% Probability: ~45%
+% Key implication: Gradient flow itself protects collision avoidance, independent of normalization
+% ============================================================
+
+% REPLACES: same paragraph in §6.2
+
+\begin{comment} % --- SCENARIO B START ---
+
+To test whether BatchNorm interference accounts for the Detach degradation, we replace the auxiliary head's BatchNorm2d layers with LayerNorm---which normalizes per-sample and does not maintain cross-batch running statistics---while keeping gradient detachment unchanged. Detach+LN (3 seeds) achieves CAR of [DETACH_LN_CAR] ($\pm$ [DETACH_LN_STD]), comparable to Detach OCC (0.746) and well below Vanilla (0.780). Replacing BatchNorm with LayerNorm does not restore collision avoidance, ruling out normalization interference as the primary mechanism. The gradient-flow effect is genuine: blocking encoder gradients from the auxiliary loss degrades collision avoidance regardless of the normalization scheme in the auxiliary head.
+
+This result strengthens the central finding. Gradient flow through the vision encoder is a necessary condition for auxiliary heads to avoid degrading collision avoidance, and this necessity is independent of architectural details in the auxiliary pathway. The three candidate mechanisms proposed in Section~\ref{sec:why_gradient}---anti-overfitting regularization, optimization landscape smoothing, and gradient diversity---all remain viable explanations, since each predicts that gradient flow matters independently of normalization. The Detach+LN control eliminates the confound that BatchNorm artifacts could have driven the Detach--Vanilla gap, establishing gradient flow absence as the operative factor.
+
+\end{comment} % --- SCENARIO B END ---
+
+
+% ============================================================
+% Scenario C: Mixed (Detach+LN CAR between Detach and Vanilla, e.g., ~0.760)
+% Probability: ~15%
+% Key implication: Both BN interference and gradient flow absence contribute
+% ============================================================
+
+% REPLACES: same paragraph in §6.2
+
+\begin{comment} % --- SCENARIO C START ---
+
+To decompose the Detach degradation into normalization and gradient-flow components, we replace the auxiliary head's BatchNorm2d layers with LayerNorm while keeping gradient detachment unchanged. Detach+LN (3 seeds) achieves CAR of [DETACH_LN_CAR] ($\pm$ [DETACH_LN_STD]), falling between Detach OCC (0.746) and Vanilla (0.780). Removing BatchNorm interference recovers approximately [BN_FRACTION]\% of the Detach--Vanilla gap, indicating that both normalization artifacts and gradient-flow absence contribute to the degradation. The remaining [GF_FRACTION]\% gap between Detach+LN and Vanilla reflects the genuine cost of blocking auxiliary gradients from the encoder, independent of normalization design.
+
+This partial recovery yields a more nuanced account than either pure mechanism alone would predict. BatchNorm's running statistics introduce forward-pass interference that accounts for roughly [BN_PP]pp of the 3.4pp Detach deficit, while gradient-flow absence accounts for the remaining [GF_PP]pp. The practical implication is that normalization choice in auxiliary heads matters---using LayerNorm instead of BatchNorm mitigates but does not eliminate the cost of gradient detachment. For maximal safety preservation, both design choices are needed: per-sample normalization to avoid batch-statistics contamination, and gradient flow to maintain the regularization benefit of multi-task training.
+
+\end{comment} % --- SCENARIO C END ---
+
+
+% ============================================================
+% Corresponding Claim 1 variants for Abstract/Introduction
+% ============================================================
+
+% SCENARIO A - C1:
+% "When using BatchNorm in auxiliary heads, gradient flow is necessary to
+%  compensate for running statistics interference; with per-sample normalization,
+%  gradient detachment is safe."
+
+% SCENARIO B - C1 (strengthened):
+% "Gradient flow through the vision encoder is a necessary condition for
+%  auxiliary heads to avoid degrading collision avoidance, independent of
+%  normalization architecture."
+
+% SCENARIO C - C1:
+% "Both gradient flow and normalization design in auxiliary heads contribute
+%  to collision avoidance preservation; gradient flow is necessary but
+%  normalization choice modulates the severity of detachment."

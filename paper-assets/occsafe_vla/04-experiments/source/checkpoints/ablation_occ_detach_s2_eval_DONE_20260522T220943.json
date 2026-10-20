@@ -1,0 +1,34 @@
+{
+  "exp_id": "ablation_occ_detach_s2_eval",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T21:05:33.747Z",
+    "updated_at": "2026-05-22T22:09:43.457Z",
+    "hypothesis": "50r evaluation of ablation_occ_detach_s2 at 50000_chkpt. Third seed (seed 44) of detach OCC ablation. 2-seed avg Detach CAR=0.745, consistently worst condition. Need s2 to confirm gradient flow necessity finding with 3-seed statistical power.",
+    "parent": "ablation_occ_detach_s2",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MUJOCO_GL=egl python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/ablation_occ_detach_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --num_rollouts 50 --seed 42\"",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "45521",
+      "log_path": "~/runs/occsafe_vla/ablation_occ_detach_s2_eval.log",
+      "submitted_at": "2026-05-22T21:05:57.155Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 3826.3,
+      "gpu_hours": 1.06
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260523_051126.json",
+    "completed_at": "2026-05-22T22:09:43.457Z"
+  },
+  "timestamp": "2026-05-22T22:09:43.541626+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b26daef8a8b4794ac54",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "check c1 regen v2 completion",
+  "task_key": "worker_check_c1_regen_v2_completion_20260517T102428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_c1_regen_v2_completion_20260517T102428_result.json",
+    "occurrence": 1,
+    "bytes": 737,
+    "sha256": "4bc61be05146cd79f5fe9d7ba59d3c8bdc991a5033c9b2e9f1374dc0e8fc4a23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**c1-regen-v2 实验成功完成。** Registry 已更新为 DONE/success。Cron 不存在（可能已被手动清除或从未创建）。\n\n## 结果摘要\n\n| Metric | Gen 0 | Gen 1 | Gen 2 | 趋势 |\n|--------|-------|-------|-------|------|\n| mean_quality | 0.1133 | 0.1132 | **0.1142** | 稳定微升 |\n| vendi_score | 107.21 | 106.87 | **108.42** | 无 collapse |\n| self_bleu | 0.00597 | 0.00623 | **0.0047** | 下降（多样性提升） |\n| perplexity | 9.854 | 8.618 | 9.399 | 稳定 |\n| mean_nn_distance | 0.7058 | 0.7026 | **0.7126** | 微升 |\n\n关键结论：3 代迭代训练后 vendi_score 不降反升（107.21→108.42），self_bleu 下降，无 mode collapse 迹象。Hypothesis 得到验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-c1-regen-v2-completion.md"
+}

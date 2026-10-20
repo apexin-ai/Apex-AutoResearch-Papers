@@ -1,0 +1,87 @@
+{
+  "exp_id": "carr_fullft_nocuration_01",
+  "project": "collapse_aware_reward_rebalancing",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:59:20.517Z",
+    "updated_at": "2026-05-16T23:37:01.758Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/carr && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 python3 run_fullft_nocuration.py",
+      "server": "bjb2-23165",
+      "gpu": "cuda:0",
+      "pid": 521921,
+      "log_path": "~/runs/collapse_aware_reward_rebalancing/carr_fullft_nocuration_01.log",
+      "submitted_at": "2026-05-16T19:59:20.497Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "Full-FT no_curation baseline: 随机选1-of-4不按reward排序，作为Full-FT curation的对照组",
+      "condition": "no_curation (random 1-of-4) Full-FT",
+      "generations": 3,
+      "prompts": 2000,
+      "eval_prompts": 200,
+      "model_name": "Qwen3-0.6B",
+      "k_candidates": 4,
+      "gen_batch_size": 16,
+      "lr": 5e-06,
+      "per_device_train_batch_size": 1,
+      "gradient_accumulation_steps": 8,
+      "gradient_checkpointing": true,
+      "use_lora": false,
+      "data_path": "openbmb/UltraFeedback",
+      "data_count": 2200,
+      "seed": 42,
+      "output_dir": "/root/autodl-tmp/carr/outputs_fullft_nocuration/",
+      "checkpoint_path": "/root/autodl-tmp/carr/outputs_fullft_nocuration/gen_2/condition_0/merged",
+      "wall_clock_seconds": 13061.3,
+      "gpu_hours": 3.63
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T23:35:13.062Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T23:35:14.346551+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "gen0": {
+        "mean_quality": 0.1126,
+        "vendi_score": 107.17,
+        "self_bleu": 0.0045,
+        "perplexity": 8.77,
+        "mean_nn_distance": 0.7061,
+        "complexity_mean": 2.847
+      },
+      "gen1": {
+        "mean_quality": 0.1111,
+        "vendi_score": 107.87,
+        "self_bleu": 0.0047,
+        "perplexity": 8.7,
+        "mean_nn_distance": 0.7094,
+        "complexity_mean": 2.793
+      },
+      "gen2": {
+        "mean_quality": 0.1117,
+        "vendi_score": 108.64,
+        "self_bleu": 0.0065,
+        "perplexity": 8.82,
+        "mean_nn_distance": 0.7114,
+        "complexity_mean": 2.82
+      },
+      "vendi_decline_pct": 1.38
+    },
+    "conclusion": "success",
+    "hypothesis": "Full-FT no_curation baseline: random 1-of-4 selection without reward sorting should show no systematic diversity decline across generations, serving as null-effect control for the curation condition",
+    "completed_at": "2026-05-16T23:37:01.758Z"
+  },
+  "timestamp": "2026-05-16T23:37:01.784337+00:00",
+  "trigger": "update_registry"
+}

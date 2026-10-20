@@ -1,0 +1,15 @@
+{
+  "exp_id": "cka_full_occ_ln_s2",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T03:14:38.139Z",
+    "updated_at": "2026-05-25T03:15:52.319Z",
+    "hypothesis": "CKA analysis of Full OCC+LN seed 44 vs pretrained. Third data point to confirm s0 DINOv2 drift (CKA=0.640) is seed-specific outlier (s1=0.965 normal)."
+  },
+  "timestamp": "2026-05-25T03:15:52.549165+00:00",
+  "trigger": "update_registry"
+}

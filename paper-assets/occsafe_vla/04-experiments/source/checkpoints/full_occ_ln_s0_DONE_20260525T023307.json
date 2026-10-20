@@ -1,0 +1,56 @@
+{
+  "exp_id": "full_occ_ln_s0",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:00:17.273Z",
+    "updated_at": "2026-05-25T02:33:07.616Z",
+    "hypothesis": "Full OCC + LN (gradient flow ON + LayerNorm) completes the 2×2 factorial. If full_occ_ln ≈ Full OCC BN → normalization type irrelevant with gradient flow. If full_occ_ln > Full OCC → LN superior (practical recommendation). Source: D034 dual mechanism decomposition requires interaction effect measurement.",
+    "spec": {
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 25000,
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_source": "openvla-7b (from scratch)",
+      "eval_data": "N/A (training)",
+      "command": "torchrun finetune.py --use_occ_head True --occ_detach false --occ_norm_type ln --seed 42",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "742741",
+      "log_path": "/root/runs/occsafe_vla/full_occ_ln_s0.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/full_occ_ln_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+      "final_step": 50005,
+      "final_loss": {
+        "action_loss": 0.0593,
+        "occ_loss": 0.0088
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-24T23:14:09.408Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-24T23:14:12.779039+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "final_action_loss": 0.0593,
+      "final_occ_loss": 0.0088,
+      "eval_car": 0.766,
+      "eval_tsr": 0.93
+    },
+    "completed_at": "2026-05-25T02:33:07.616Z"
+  },
+  "timestamp": "2026-05-25T02:33:07.812796+00:00",
+  "trigger": "update_registry"
+}

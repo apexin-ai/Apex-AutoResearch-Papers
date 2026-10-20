@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6944d760edf360e94b6b",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "audit reference verification r5",
+  "task_key": "worker_audit_reference-verification-r5_20260516T054837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_reference-verification-r5_20260516T054837_result.json",
+    "occurrence": 1,
+    "bytes": 3273,
+    "sha256": "5eede800e6541bafe116f5aac31561726f24adcff0cbd7fc172ee0c624f4d1f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果如下：\n\n---\n\n**Paper (a): Dawid & Skene 1979**\n```\nStatus: VERIFIED\nFull citation: A. P. Dawid and A. M. Skene. \"Maximum Likelihood Estimation of\n  Observer Error-Rates Using the EM Algorithm.\" Journal of the Royal\n  Statistical Society: Series C (Applied Statistics), 28(1):20–28, 1979.\nNotes: 当前 bib 条目基本正确。journal 写 \"Applied Statistics\" 是可接受的简写。\n  可补 DOI。\nBibTeX 修正建议:\n  @article{dawid1979em,\n    title   = {Maximum Likelihood Estimation of Observer Error-Rates Using the {EM} Algorithm},\n    author  = {A. P. Dawid and A. M. Skene},\n    journal = {Journal of the Royal Statistical Society: Series C (Applied Statistics)},\n    volume  = {28},\n    number  = {1},\n    pages   = {20--28},\n    year    = {1979},\n    doi     = {10.2307/2346806},\n  }\n```\n\n---\n\n**Paper (b): ProbGuard**\n```\nStatus: VERIFIED — 但 bib 条目作者名有误\nFull citation: Haoyu Wang et al. \"ProbGuard: Probabilistic Runtime Monitoring\n  for LLM Agent Safety.\" arXiv preprint arXiv:2508.00500, 2025.\nNotes: 论文真实存在。当前 bib 写 author = {Zijian Wang and others}，\n  实际第一作者是 Haoyu Wang，需修正。\nBibTeX 修正建议:\n  @article{wang2025probguard,\n    title   = {ProbGuard: Probabilistic Runtime Monitoring for {LLM} Agent Safety},\n    author  = {Haoyu Wang and others},\n    journal = {arXiv preprint arXiv:2508.00500},\n    year    = {2025},\n  }\n```\n\n---\n\n**Paper (c): Agent Drift / Quantifying Behavioral Degradation**\n```\nStatus: VERIFIED — bib 条目信息不完整\nFull citation: Abhishek Rath. \"Agent Drift: Quantifying Behavioral Degradation\n  in Multi-Agent LLM Systems Over Extended Interactions.\"\n  arXiv preprint arXiv:2601.04170, 2026.\nNotes: 论文真实存在。当前 bib 缺 arXiv ID，author 只写了 \"Rath and others\"，\n  标题也截断了（缺 \"Over Extended Interactions\"）。需补全。\nBibTeX 修正建议:\n  @article{rath2026agentdrift,\n    title   = {Agent Drift: Quantifying Behavioral Degradation in Multi-Agent {LLM} Systems Over Extended Interactions},\n    author  = {Abhishek Rath},\n    journal = {arXiv preprint arXiv:2601.04170},\n    year    = {2026},\n  }\n```\n\n---\n\n**Paper (d): Zhan et al. 2019**\n```\nStatus: VERIFIED — ICLR 2019 确认\nFull citation: Eric Zhan, Stephan Zheng, Yisong Yue, Long Sha, and Patrick Lucey.\n  \"Generating Multi-Agent Trajectories using Programmatic Weak Supervision.\"\n  ICLR, 2019.\nNotes: 当前 bib 条目完全正确，无需修改。OpenReview 确认为 ICLR 2019。\n```\n\n---\n\n**总结**: 4 篇论文全部真实存在。Paper (a) 可补全期刊全称和 DOI；Paper (b) 需修正第一作者名；Paper (c) 需补全标题和 arXiv ID。Paper (d) 无误。\n\nSources:\n- [Dawid & Skene 1979 – Wiley](https://rss.onlinelibrary.wiley.com/doi/abs/10.2307/2346806)\n- [Dawid & Skene 1979 – JSTOR](https://www.jstor.org/stable/2346806?seq=1)\n- [ProbGuard – arXiv](https://arxiv.org/abs/2508.00500)\n- [Agent Drift – arXiv](https://arxiv.org/abs/2601.04170)\n- [Zhan et al. 2019 – OpenReview (ICLR)](https://openreview.net/forum?id=rkxw-hAcFQ)\n- [Zhan et al. 2019 – arXiv](https://arxiv.org/abs/1803.07612)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-reference-verification-r5.md"
+}

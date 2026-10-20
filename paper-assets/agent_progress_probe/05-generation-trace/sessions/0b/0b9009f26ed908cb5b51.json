@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b9009f26ed908cb5b51",
+  "project": "agent_progress_probe",
+  "kind": "history",
+  "title": "agent / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6.md",
+    "occurrence": 1,
+    "bytes": 3956,
+    "sha256": "2eb2b6f0b0c52e7ac2f83465447be43920e9cbae81723c77686c32a6e710109c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-15T04:22:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 bjb2-23165 的 cuda:0 和 cuda:1（config gpu_ids 白名单）\n- Gold set 是论文成立的 GO/NO-GO gate——没有人工标注结果，circular evaluation 问题无法解决，structural features claim 可能只是 LF 逆向工程 artifact\n- OH 数据口径已锁定 D059：150,652 windows / 20.9% stag_rate（JSONL 基准），embedding subset 143,057 / 21.4%——不得用旧 6.56% 数字\n- 禁止将 conf≥2 子集的 stag_rate 37.96% 当作\"整体 stag_rate\"报告（D059 教训）\n- report.md 中 llm-judge-strengthened 是残留条目（registry 中不存在），下次更新 report 时清除\n- Paper 中 LF holdout ablation 禁止写\"去掉 X 后 F1 更高\"（test set 偏移假象），必须用覆盖率+跨集泛化框架\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb2-23165，GPU: RTX 5090 32G × 2 (cuda:0 + cuda:1)，当前均空闲\n- 工作目录：/root/autodl-tmp/agent_progress_probe\n- Python/conda 路径：需 SSH 探测确认（上轮未记录绝对路径）——可能是 miniconda 或 venv，连接后先 detect_image\n- W&B：未在 config 中看到 wandb 配置，历史实验指标主要记录在 registry\n- 活跃进程：无。0 Worker / 0 Cron / 0 RUNNING 实验\n- 模型 checkpoint：/root/autodl-tmp/agent_progress_probe/checkpoints_full/best_model.pt（probe_001）\n- 数据：embeddings_fixed.pt（OH 修复版 stag=21.45%），windows_labeled.jsonl\n\n### 3. 📊 当前状态\n**上一轮做完的事**：Feature overlap ablation (D057) 完成并回退到 11/19 split (D061)。Dream 审稿 (D053) 分析完毕，识别 6 个结构性问题。Paper Agent 正在处理 figures + FlyingSquid 报告 + related work 补缺 + contribution count 收紧。全文初稿已完成。\n\n**Registry 状态**：32 plan / 31 DONE (25 success, 6 negative) / 0 RUNNING / 1 planned (gold-set)\n\n**等待中**：\n- 用户确认标注人力 → 启动 650 窗口 gold set 人工标注（最晚 5/16，今天 5/15）\n- LLM few-shot/CoT baseline 未启动（dream 要求的 stronger baseline）\n- Instance-level cross-agent isolation 验证未启动\n- Paper Agent patches 未确认完成\n\n### 4. 📋 待办（条件触发式）\n- 用户确认标注人力 → spawn worker 生成标注任务 + 启动 650 窗口标注流程\n- Gold set 标注完成 → bootstrap CIs + McNemar's test on gold comparisons → patch 进论文\n- LLM few-shot/CoT 是 API 费用任务（无需 GPU）→ 可立即 spawn worker 执行，不等 GPU\n- Instance-level isolation 是 CPU 任务 → 可立即并行 spawn\n- Paper Agent patches 完成 → 全文 re-audit 确保 D057/D059/D061 数字一致\n- Dream re-dream 提分 → 所有补缺实验完成 + 论文修订后重新跑 dream 验证是否从 3/6 提升到 4/6\n\n### 5. 🎯 战略上下文\n**核心结论链**：D039 pivot 从 method paper 转 empirical analysis paper（TLM 全败）。三层贡献：(1) Structural signal dominance in zero-shot transfer (+36.9pp vs probe, +24.3pp vs LLM)；(2) LF temporal dynamics + label quality bottleneck；(3) TLM negative finding。Dream 审稿 best 3/6，路径到 4/6 需要 gold set + bootstrap CIs + stronger baselines + related work。\n\n**最容易判断错的事**：\n- 不要以为 structural GB 0.9951 in-domain 是真正的检测能力——这是 circular eval（structural features ≈ LF inputs, labels ≈ LF outputs）。Gold set 才是最终裁判\n- OH 标签修复是本项目最大的 data integrity 事件（D051）——旧数字全部作废，memory.md 有完整映射表\n- cmd_rep ablation 的 -29.4pp 不是\"cmd_rep 质量差\"——是 coverage 崩塌（43K→4K 训练数据），prevalence-matched 设计是关键\n- DDL 5/25 只剩 10 天，gold set 标注是最长杆——如果用户今天不确认，整条关键路径滑坡。LLM few-shot/CoT 和 instance isolation 可以立即并行推进不等 gold set\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-copy-2.md"
+}

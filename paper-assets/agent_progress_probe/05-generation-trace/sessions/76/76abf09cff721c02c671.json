@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76abf09cff721c02c671",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis oh crossagent error analysis",
+  "task_key": "worker_analysis_oh-crossagent-error-analysis_20260515T010007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_oh-crossagent-error-analysis_20260515T010007_result.json",
+    "occurrence": 1,
+    "bytes": 1390,
+    "sha256": "3359ac5537be3a8a874b3971ff46e5d150fd7cf04975ff59378f900bdcaa793b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Key findings:\n\n**Probe zero-shot on OH conf>=2 (43,366 windows):**\n- macro_f1=0.581, error_rate=19.9% (8,643 errors)\n- **80.5% of errors are FP** (stag→prog): probe has massive progress bias on OH embeddings\n- **62% of errors are high-confidence** (prob>0.9 or <0.1) — not fixable by threshold tuning\n- conf=3 windows: **70.6% error rate** — probe fails hardest where LFs are most unanimous\n- Error rate uniform across trajectory positions (~20%), confirming global distribution shift\n\n**Structural GB comparison:**\n- Structural GB: macro_f1=0.998, only 57 errors\n- **Error overlap: 2 out of 12,328 common windows** (0.08%) — completely disjoint error patterns\n- Probe-only errors (2,458) are pure embedding-distribution-shift failures that structural features avoid entirely\n\n**Root cause:** The SWE-trained probe learned embedding patterns for stagnation that don't transfer to OpenHands. OH stagnation windows \"look like\" SWE progress windows in embedding space. cmd_rep is the biggest confusion source — 88% of FN errors have cmd_rep=prog but the probe still predicts stag.\n\nAll outputs saved:\n- Script: `oh_crossagent_error_analysis.py` on server\n- Results: `results/oh_crossagent_error_analysis.json` on server\n- Report: `artifacts/oh-error-analysis/report.md` locally\n- Registry: `oh-crossagent-error-analysis` (DONE)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-oh-crossagent-error-analysis.md"
+}

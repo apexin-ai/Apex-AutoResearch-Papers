@@ -1,0 +1,40 @@
+{
+  "exp_id": "cutoff_45k_s0_eval",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T10:40:36.082Z",
+    "updated_at": "2026-05-24T11:26:41.419Z",
+    "hypothesis": "50r SafeLIBERO evaluation of cutoff_45k_s0 (OCC gradient cutoff at 45K steps). Tests dose-response: late cutoff with minimal BN-only exposure (5K steps).",
+    "parent": "cutoff_45k_s0",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/cutoff_45k_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --task_suite_name libero_spatial --num_rollouts 50 --seed 42\"",
+      "server": "westd-34685",
+      "gpu": "cuda:0",
+      "pid": "738045",
+      "log_path": "~/runs/occsafe_vla/cutoff_45k_s0_eval.log",
+      "submitted_at": "2026-05-24T10:40:47.604Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_spatial (SafeLIBERO)",
+      "data_count": 50,
+      "model_name": "openvla-7b+cutoff_45k_s0",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/cutoff_45k_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+      "eval_data": "libero_spatial SafeLIBERO 50 rollouts"
+    },
+    "metrics": {
+      "TSR": 0.896,
+      "CAR": 0.764
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/cutoff_45k_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+    "log_path": "~/runs/occsafe_vla/cutoff_45k_s0_eval.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T11:26:41.569116+00:00",
+  "trigger": "update_registry"
+}

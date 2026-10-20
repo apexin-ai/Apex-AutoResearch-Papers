@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "c8f20768e3c28b1d58c8",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "analysis multiseed structural",
+  "task_key": "worker_analysis_multiseed-structural_20260514T183904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_multiseed-structural_20260514T183904.log",
+    "occurrence": 1,
+    "bytes": 896823,
+    "sha256": "0dabce2affe58e769cadd04d2c750662d8c4c8c302bad4defce4dbddd9bb99e4"
+  },
+  "statistics": {
+    "messages": 542,
+    "user_turns": 0,
+    "tool_calls": 242,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 242,
+      "tool_result": 242,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 542,
+      "chunks": [
+        {
+          "path": "c8f20768e3c28b1d58c8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c8f20768e3c28b1d58c8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c8f20768e3c28b1d58c8-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "c8f20768e3c28b1d58c8-part-0004.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-multiseed-structural.md"
+}

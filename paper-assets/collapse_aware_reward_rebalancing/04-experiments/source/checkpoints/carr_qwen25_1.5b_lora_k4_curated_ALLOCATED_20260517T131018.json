@@ -1,0 +1,24 @@
+{
+  "exp_id": "carr_qwen25_1.5b_lora_k4_curated",
+  "project": "collapse_aware_reward_rebalancing",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:44:37.697Z",
+    "updated_at": "2026-05-17T13:10:18.481Z",
+    "hypothesis": "Semantic resilience to reward curation generalizes across model families and scales: Qwen2.5-1.5B-Instruct (2.5x larger, different architecture family) under LoRA K=4 curated top-1 ArmoRM shows Vendi Score change within ±5% over 3 generations, consistent with Qwen3-0.6B findings",
+    "server": "bjb2-23165",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb2-23165",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T13:08:41.969Z"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-17T13:10:18.514901+00:00",
+  "trigger": "update_registry"
+}

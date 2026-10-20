@@ -1,0 +1,808 @@
+# cron hook depth s0
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 24
+- **Recorded user turns:** 2
+- **Tool calls:** 10
+- **Original source:** `logs/chats/cron_hook_depth_s0.jsonl`
+- **Structured JSON:** [`4177fff644abfbc93763.json`](../../sessions/41/4177fff644abfbc93763.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+16 recorded events
+
+### User
+
+_source line 1 · 2026-05-22T23:50:14.016633+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #3。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-34685 cuda:0-3, westd-10894 cuda:0-3（共 8 张，项目分配）
+- westd-34685 数据盘仅 350G，save_freq 必须 ≥10000（之前 2500 导致磁盘满 3 实验同时崩溃）
+- occ_s1 (mvp_occ_s1) 数据已被 D013 排除（resume 污染），替代品是 occ_s1_fresh
+- 50000 checkpoint 的 OCC s0 CAR=0.832 是异常高值，不要拿它单独证明 OCC 优于 Vanilla——3-seed 47500 持平(0.780=0.780)
+- conda 环境名 `occsafe`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`，不要用 .venv
+
+### 2. 🖥️ 基础设施快照
+- **westd-34685**：训练服务器，工作目录 `/root/occsafe_vla/`，数据盘 `/root/autodl-tmp/`
+  - Python: `/root/miniconda3/envs/occsafe/bin/python`
+  - 模型: openvla-7b（HF cache 在 autodl-tmp）
+  - 数据: `/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`（~25000 episodes）
+  - Depth 数据: `/root/occsafe_vla/depth_data`（9/10 tasks）
+  - Checkpoints: `/root/autodl-tmp/checkpoints/{exp_name}/`
+  - 活跃进程:
+    - cutoff_s0: PID 137021, tmux=cutoff_s0, cuda:0
+    - depth_s0: PID 131535, tmux=depth_s0, cuda:1
+    - depth_s1: PID 131682, tmux=depth_s1, cuda:2
+    - cutoff_s1: PID 131898, tmux=cutoff_s1, cuda:3
+  - Cron 监控: depth_s0, depth_s1, cutoff_s0, cutoff_s1（4 个活跃 cron）
+- **westd-10894**：eval 服务器，同目录结构，cuda:0-3 全空闲，等待 eval 任务
+  - WANDB_MODE=disabled（所有实验均关闭 W&B）
+
+### 3. 📊 当前状态
+**刚完成**: 所有 OCC/Random/Detach/Vanilla 3-seed eval + depth_s2/s3 2-seed eval，论文 §4.1-§4.3 + Intro/Related Work/Method/Setup 已写完并通过 Reviewer 审查。
+
+**正在进行**: westd-34685 上 4 个训练即将完成（进度 92-97%，预计 30-60 min 内全部结束）:
+- depth_s0 (seed 42, cuda:1) — depth 第 3 个 seed
+- depth_s1 (seed 43, cuda:2) — depth 第 4 个 seed
+- cutoff_s0 (seed 42, cuda:0) — cutoff 策略第 1 个 seed
+- cutoff_s1 (seed 43, cuda:3) — cutoff 策略第 2 个 seed
+
+**等待中**: 0 个 Worker 运行中。Cron 会在训练完成时自动回调。无待处理的 Director 决策。
+
+### 4. 📋 待办（条件触发式）
+- depth_s0/s1 训练完成 cron 回调 → spawn Worker 在 westd-34685 或 westd-10894 启动 50r eval（优先 westd-10894 空闲 GPU）→ eval 完成后做 4-seed Depth MVP Gate 判定（阈值 TSR≥0.870，2-seed 预判 FAIL: TSR=0.854）
+- cutoff_s0/s1 训练完成 cron 回调 → spawn Worker 启动 50r eval → eval 完成后填 Table 1/3 Cutoff 行 + 写 §4.4 Cutoff 分析
+- 全部 4 个 eval 完成 → 更新 Table 1 和 Table 3 最终版 → 写 §4.5 Depth 分析 → 写 Abstract → 论文定稿 → submit_paper_to_review
+- 如 4 个训练几乎同时完成 → 并行启动 4 路 eval（westd-10894 4 GPU 或 westd-34685 腾出后也可用）
+
+### 5. 🎯 战略上下文
+**项目核心结论** (D017→D021): 辅助任务梯度流是隐式正则化器（防止损害的必要条件），空间信号内容（BEV occ 或 ego depth）不提供信号增量。排序：Random(0.789) ≈ OCC(0.797) ≈ Depth(0.782, 2-seed) ≈ Vanilla(0.780) >> Detach(0.746)。
+
+**Framing**: Option B 分析论文——辅助任务机制分析 + depth vs occ 对比。不是"OCC 提升安全性"的正向结果论文，而是"为什么辅助任务没有预期效果+什么是真正起作用的机制"的分析论文。
+
+**目标**: AAAI 2027（Abstract Jul 21, Paper Jul 28, ~9 周）
+
+**易错点**:
+1. Depth 2-seed 预判 Path B (FAIL)，但必须等 4-seed 数据才能最终判定——不要提前在论文里写死结论
+2. OCC 50K vs 47500 数据有分歧（50K CAR=0.797 vs 47500 CAR=0.780），论文用 50K 数据（D018 决策），但讨论时注意 checkpoint 敏感性
+3. 所有辅助任务条件都放大 seed 敏感性（std 2.2x Vanilla），这本身是一个 finding，写 Discussion 时不要忽略
+4. Eval 必须用 50r rollouts + eval_seed=42，保持一致
+5. 训练完成后 checkpoint 在 `/root/autodl-tmp/checkpoints/{exp_name}/...--50000_chkpt`，eval 脚本需指向正确路径
+
+## 项目硬约束 (memory.md 节选)
+
+## 决策与约束
+
+### Depth 2-seed 初步结论：Depth ≈ Vanilla，指向 Path B (2026-05-23)
+
+**depth_s2 (seed44) + depth_s3 (seed45), @50000, 50r：**
+| seed | CAR | TSR |
+|------|-----|-----|
+| s2 | 0.758 | 0.860 |
+| s3 | 0.806 | 0.848 |
+| **avg** | **0.782** | **0.854** |
+
+**Depth avg CAR=0.782 vs Vanilla avg CAR=0.780，差仅 +0.2pp，在噪声范围内。**
+
+Depth < Random (0.789)：egocentric depth 信号没有比 random noise 更好的正则化效果。这否定了"depth 作为更自然的空间信号"的假说——空间内容（无论是 BEV occ 还是 ego depth）不提供有意义的信号增量，梯度流正则化才是核心效应。
+
+**Depth seed 方差 (std=0.034) 与 OCC/Random 类似**——辅助任务普遍放大 seed 敏感性，不限于 BEV 表征。
+
+等待 depth_s0/s1 完成后做 4-seed 统计检验确认。
+
+### 3-Seed 决定性结论：OCC = Vanilla (2026-05-22)
+
+**47500 checkpoint（apple-to-apple 对比点，3 seed）：**
+| 条件 | s0 CAR | s1 CAR | s2 CAR | **avg CAR** | **avg TSR** |
+|------|--------|--------|--------|------------|------------|
+| OCC | 0.750 | 0.802 | 0.788 | **0.780** | **0.919** |
+| Vanilla | 0.788 | 0.766 | 0.786 | **0.780** | **0.907** |
+
+**OCC 47500 avg CAR = Vanilla avg CAR = 0.780**。完全持平。
+
+**50000 checkpoint（3 seed）：**
+OCC avg 0.797 vs Vanilla avg 0.780 (+1.7pp)，但主要由 s0 异常高值 (0.832) 驱动，且 47500→50000 行为 seed-dependent（s0 +8.2pp, s1 -1.4pp, s2 -1.8pp），不可靠。
+
+**OCC 放大 seed 敏感性**：OCC seed std ~0.026 vs Vanilla std ~0.012 (2.2x)。
+
+### 核心诊断结论：OCC 梯度流是隐式正则化器，BEV 空间信号有害 (2026-05-22)
+**Ablation 2-seed 50r 排序：Random(0.806) > Vanilla(0.777) > Full OCC(0.769) > Detach(0.745)**
+
+更新至 3-seed 50r：
+**Random(0.789) > OCC(0.797) > Depth(0.782, 2-seed) ≈ Vanilla(0.780) > Detach(0.746)**
+
+- Random OCC > Vanilla: 辅助任务的梯度流本身提供正向正则化效应
+- Full OCC ≈ Vanilla: BEV 空间信号的负向干扰恰好抵消了梯度正则化收益
+- Detach < Vanilla: 没有梯度流 → 没有正则化收益 → OCC head 前向计算只是额外开销
+- Depth ≈ Vanilla: egocentric depth 的空间信号同样不提供有意义的增量
+- 推论：辅助任务的空间内容（BEV 或 ego depth）对避障不提供信号增量——梯度流正则化是全部效应
+
+### Per-Task Case 诊断 (2026-05-22, 50r formal)
+**Case 统计: A=0, B=6, C=2, D=2**
+- Case B（空间信号无用）主导：T0/T2/T4/T5/T8/T9
+- Case C（BEV 有害 + gradient 也不帮忙）：T3, T6 — 这两个 hard task 上 OCC 全面有害
+- Case D（混合）：T1, T7
+- **Case A = 0**：排除了"gradient 干扰"假说
+- **T5 特殊**：FullOCC(0.20), Random(0.24) 远超 Vanilla(0.07), Detach(0.05)——gradient flow 对 T5 至关重要，正则化效应最强的 task（物理约束最强的场景）
+
+### random_s0 seed 误报 (2026-05-22)
+原始 random_s0 50r eval config 中已包含 seed=42。之前 Worker 报告"无 seed"是检查方法有误（查 /proc/cmdline 而非 config 文件）。rerun 是多余的，已 kill。
+
+### occ_s1 数据不可用 (2026-05-21)
+- mvp_occ_s1 从 17500 resume，数据受 confound 污染，被 D013 排除
+- occ_s1_fresh 替代完成，47500 和 50000 eval 均完成
+
+## 可查的历史
+前 11 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:depth_s0",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-22T23:50:27.589294+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_s0",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-22T23:50:27.639857+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_s0",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-22T23:50:30.349990+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "occsafe_vla",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_s0",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "occsafe_vla",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T23:50:30.902892+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_s0",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T23:50:30.903655+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"cutoff_s0\": {\"status\": \"RUNNING\", \"retry_count\": 2, \"created_at\": \"2026-05-22T06:09:33.632Z\", \"updated_at\": \"2026-05-22T20:10:59.779Z\", \"hypothesis\": \"Cutting off occ_loss at step 35000 allows the model to first learn occupancy awareness then focus on action prediction, improving both safety and task performance compared to training with occ_loss throughout.\", \"parent\": \"mvp_occ_s0\", \"reproduce\": {\"finished_at\": \"2026-05-22T14:00:11.580Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-22T07:57:52.891Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T07:57:55.231734+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T14:00:14.369818+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"WANDB_MODE=disabled torchrun --nproc_per_node 1 vla-scripts/finetune.py --use_occ_head True --occ_loss_cutoff_step 35000 --save_freq 10000 --max_steps 50005 --seed 42\", \"server\": \"westd-34685\", \"gpu\": \"cuda:0\", \"pid\": 137021, \"data_path\": \"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\", \"data_count\": \"~25000 episodes\", \"model_name\": \"openvla-7b\", \"seed\": 42, \"notes\": \"cron误判已修正: torchrun PID 136037退出但子进程PID 137021正常运行中. 原 registry 记录 --occ_loss_weight 0.5 有误，实际使用默认值 0.01\"}}, \"cutoff_s1\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-22T06:09:35.253Z\", \"updated_at\": \"2026-05-22T07:34:22.585Z\", \"hypothesis\": \"Seed 43 replication of cutoff_s0 (OCC loss cutoff at step 35000). 2-seed needed to assess variance of cutoff strategy, given OCC's demonstrated high seed sensitivity (std 2.2x vanilla).\", \"parent\": \"cutoff_s0\", \"reproduce\": {\"finished_at\": \"2026-05-22T07:26:30.216Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic 
+…[truncated 5951 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_s0",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 553
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T23:50:31.538018+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_s0",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-22T23:50:31.538448+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_s0",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T23:50:37.058201+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 4, \"results\": [{\"exp_id\": \"depth_s0\", \"success\": true, \"actions\": [\"Job still running (pid=131535)\"]}, {\"exp_id\": \"depth_s1\", \"success\": true, \"actions\": [\"Job still running (pid=131682)\"]}, {\"exp_id\": \"cutoff_s1\", \"success\": true, \"actions\": [\"Job still running (pid=131898)\"]}, {\"exp_id\": \"cutoff_s0\", \"success\": true, \"actions\": [\"Job still running (pid=137021)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_s0",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 6155
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T23:50:37.058729+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/report.md\", \"content\": \"# Handover — 2026-05-22\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| cutoff_s0 | Cutting off occ_loss at step 35000 allows the model to first learn occupancy awareness then focus on action prediction, improving both safety and task performance compared to training with occ_loss throughout. | — | — | — |\\n| cutoff_s1 | Seed 43 replication of cutoff_s0 (OCC loss cutoff at step 35000). 2-seed needed to assess variance of cutoff strategy, given OCC's demonstrated high seed sensitivity (std 2.2x vanilla). | — | — | — |\\n| depth_s1 | Seed 43 replication of depth_s0. Monocular depth auxiliary supervision as alternative to BEV occupancy — tests whether depth's per-pixel geometric signal provides regularization benefit without BEV's harmful spatial inductive bias. 2-seed comparison needed to assess variance (OCC showed high seed instability). | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **ablation_random_occ_s2_eval** (success): 50r evaluation of ablation_random_occ_s2 at 50000_chkpt. Third seed (seed 44) of random OCC ablation. 2-seed avg Random CAR=0.806, need s2 to confirm 3-seed statistical robustness. ← 基于 ablation_random_occ_s2\\n- **ablation_occ_detach_s2_eval** (success): 50r evaluation of ablation_occ_detach_s2 at 50000_chkpt. Third seed (seed 44) of detach OCC ablation. 2-seed avg Detach CAR=0.745, consistently worst condition. Need s2 to confirm gradient flow necessity finding with 3-seed statistical power. ← 基于 ablation_occ_detach_s2\\n- **ablation_random_occ_s2** (success): Third seed (seed 44) replication of random_occ ablation for statistical power. 2-seed avg Random CAR=0.806 already exceeds Vanilla(0.780), but AAAI reviewers require ≥3 seeds. If s2 confirms Random>Vanilla, the \\\"gradient regularization without spati
+…[truncated 401 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_s0",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 5520
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T23:50:37.109329+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/ROADMAP.md\", \"content\": \"# occsafe_vla — Research Dashboard\\n\\n> 最后更新: 2026-05-22 23:45 UTC | 更新原因: 同步 D019-D021 数据修正 + 3-seed 最终排序 + depth 2-seed 初步数据 + 论文写作进度\\n\\n## 核心方向\\n首个系统研究 VLA 辅助任务机制与安全交互的工作：5+ 条件 factorial study。\\n**核心发现 (D019 修正)**: 辅助任务梯度流是**防止损害的必要条件**（Detach -3.4pp），非提供正向收益的充分条件（OCC/Random ≈ Vanilla）。\\n**Framing**: Option B 分析论文 — 辅助任务机制分析 + depth vs occ 对比。详见 paper_framing.md。\\n\\n## 目标会议\\n- **AAAI 2027**: Abstract Jul 21, Paper Jul 28 (~9 周)\\n\\n## 当前进展\\n- **阶段**: MVP — OCC ablation 完成 + 3-seed 数据齐全, Depth/Cutoff 训练即将完成, eval 待启动\\n- **GPU**: 4/8 运行中（westd-34685 训练中，westd-10894 空闲等 eval）\\n\\n### 5 条件对比（50r, @50K, 3 seeds each, D019 修正）\\n\\n| 条件 | Seeds | TSR | CAR | vs Vanilla CAR |\\n|------|-------|-----|-----|---------------|\\n| Full OCC | 3 | 0.894±0.050 | **0.797**±0.032 | +1.7pp |\\n| Random OCC | 3 | 0.869±0.029 | **0.789**±0.031 | +0.9pp |\\n| Vanilla | 3 | 0.907±0.009 | **0.780**±0.012 | baseline |\\n| Detach OCC | 3 | 0.812±0.163 | **0.746**±0.002 | **-3.4pp** |\\n\\n**排序**: OCC(0.797) ≈ Random(0.789) ≈ Vanilla(0.780) >> Detach(0.746)\\n\\n**MVP Gate**: OCC CAR=0.797 < 0.82 (FAIL), TSR=0.894 > 0.888 (PASS)\\n\\n### Depth 初步数据（2-seed, pending s0/s1）\\n\\n| Seed | TSR | CAR |\\n|------|-----|-----|\\n| s2 (seed 44) | 0.860 | 0.758 |\\n| s3 (seed 45) | 0.848 | 0.806 |\\n| **2-seed avg** | **0.854** | **0.782** |\\n\\n**Depth MVP Gate 预判**: TSR=0.854 < 0.870 阈值，趋向 **Path B (FAIL)**。等 4-seed 最终判定。\\n\\n### 机制诊断总结（D017→D019→D020→D021）\\n1. **梯度流 = 必要保护**: Detach(0.746) < Vanilla(0.780)，-3.4pp 显著；梯度流条件 ≈ Vanilla\\n2. **空间信号边际**: Full OCC ≈ Random OCC（0.8pp，在 σ≈0.031 内）\\n3. **Detach 系统性弱点**: CAR=0.746±0.002 极稳定低，TSR σ=0.163 不稳定（s2 TSR=0.624 崩溃）\\n4. **Seed 不稳定性**: OCC 放大 seed 敏感性（std 2.2x Vanilla）\\n\\n## 实验状态\\n\\n### westd-34685（训练中，30-60 min 内完成）\\n| GPU | 实验 | 进度 | 预估剩余 |\\n|-----|------|------|---------|\\n
+…[truncated 2679 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_s0",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 5570
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-22T23:50:56.691452+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_s0",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T23:50:56.742844+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_s0",
+  "tool": "ToolSearch",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-22T23:51:12.928319+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 4/8 active (westd-34685 cuda:0-3 训练中, westd-10894 cuda:0-3 空闲等 eval) | Worker 0 (等 cron 回调)\n\nLoop #3 session-start 状态同步：\n\n**运行中 (4)**:\n- depth_s0 (seed42, cuda:1, PID 131535) — cron 存活确认 ✓\n- depth_s1 (seed43, cuda:2, PID 131682) — cron 存活确认 ✓\n- cutoff_s0 (seed42, cuda:0, PID 137021) — cron 存活确认 ✓\n- cutoff_s1 (seed43, cuda:3, PID 131898) — cron 存活确认 ✓\n\n上轮 handoff 预估进度 92-97%，训练应在近期完成。Cron 会自动回调，届时立即并行启动 4 路 50r eval（优先 westd-10894）。\n\n**无阻塞项，等回调即行动。**",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_s0",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 4/8 active (westd-34685 cuda:0-3 训练中, westd-10894 cuda:0-3 空闲等 eval) | Worker 0 (等 cron 回调)\n\nLoop #3 session-start 状态同步：\n\n**运行中 (4)**:\n- depth_s0 (seed42, cuda:1, PID 131535) — cron 存活确认 ✓\n- depth_s1 (seed43, cuda:2, PID 131682) — cron 存活确认 ✓\n- cutoff_s0 (seed42, cuda:0, PID 137021) — cron 存活确认 ✓\n- cutoff_s1 (seed43, cuda:3, PID 131898) — cron 存活确认 ✓\n\n上轮 handoff 预估进度 92-97%，训练应在近期完成。Cron 会自动回调，届时立即并行启动 4 路 50r eval（优先 westd-10894）。\n\n**无阻塞项，等回调即行动。**",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T23:51:16.390034+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_s0",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3461
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-22T23:51:21.661774+00:00_
+
+Session-start 初始化完成。
+
+**当前状态**: 4 个训练（depth_s0/s1, cutoff_s0/s1）全部在 westd-34685 运行中，cron 监控正常，进程均存活。上轮 handoff 预估进度 92-97%，应在近期完成。
+
+**等待 cron 回调**，训练完成后立即并行启动 4 路 50r eval（westd-10894 4 GPU 空闲可用）。无阻塞项。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:depth_s0"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+8 recorded events
+
+### User
+
+_source line 17 · 2026-05-23T00:21:22.392257+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: depth_s0
+- project: occsafe_vla
+- server: westd-34685
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:depth_s0",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-23T00:21:37.335612+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_s0",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T00:21:37.386488+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_s0",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-23T00:21:59.066813+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'DONE', 'conclusion': 'success'}",
+  "project": "occsafe_vla",
+  "limit": "3",
+  "fields": "['exp_id', 'spec', 'conclusion', 'metrics']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_s0",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'DONE', 'conclusion': 'success'}",
+    "project": "occsafe_vla",
+    "limit": "3",
+    "fields": "['exp_id', 'spec', 'conclusion', 'metrics']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T00:21:59.319769+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"depth_s3\": {\"spec\": {\"command\": \"torchrun finetune.py --use_depth_head True --seed 45 --max_steps 50005 --save_freq 10000 --master-port 29501 (WANDB_MODE=disabled)\", \"server\": \"westd-10894\", \"gpu\": \"cuda:3\", \"pid\": \"942187\", \"log_path\": \"~/runs/occsafe_vla/depth_s3.log\", \"data_path\": \"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\", \"data_count\": \"~25000 episodes (9/10 tasks with depth labels)\", \"model_name\": \"openvla-7b\", \"seed\": 45, \"checkpoint_source\": \"openvla-7b (from scratch)\", \"eval_data\": \"N/A (training)\"}, \"metrics\": {\"TSR\": 0.848, \"CAR\": 0.806, \"eval_rollouts\": 50, \"eval_seed\": 42, \"checkpoint_step\": 50000, \"collisions\": 97, \"per_task\": {\"T0\": {\"TSR\": 0.98, \"CAR\": 1}, \"T1\": {\"TSR\": 0.88, \"CAR\": 0.96}, \"T2\": {\"TSR\": 0.96, \"CAR\": 0.88}, \"T3\": {\"TSR\": 1, \"CAR\": 0.78}, \"T4\": {\"TSR\": 0.82, \"CAR\": 0.96}, \"T5\": {\"TSR\": 0.26, \"CAR\": 0.08}, \"T6\": {\"TSR\": 1, \"CAR\": 0.54}, \"T7\": {\"TSR\": 0.74, \"CAR\": 0.86}, \"T8\": {\"TSR\": 0.96, \"CAR\": 1}, \"T9\": {\"TSR\": 0.88, \"CAR\": 1}}}, \"conclusion\": \"success\"}, \"depth_s2\": {\"spec\": {\"command\": \"torchrun finetune.py --use_depth_head True --seed 44 --max_steps 50005 --save_freq 10000 (WANDB_MODE=disabled)\", \"server\": \"westd-10894\", \"gpu\": \"cuda:2\", \"pid\": \"942037\", \"log_path\": \"~/runs/occsafe_vla/depth_s2.log\", \"data_path\": \"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\", \"data_count\": \"~25000 episodes (9/10 tasks with depth labels)\", \"model_name\": \"openvla-7b\", \"seed\": 44, \"checkpoint_source\": \"openvla-7b (from scratch)\", \"eval_data\": \"N/A (training)\"}, \"conclusion\": \"success\", \"metrics\": {\"TSR\": 0.86, \"CAR\": 0.758, \"eval_rollouts\": 50, \"eval_seed\": 42, \"checkpoint_step\": 50000, \"collisions\": 121, \"per_task\": {\"T0\": {\"TSR\": 1, \"CAR\": 0.98},
+…[truncated 1266 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_s0",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 252
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-23T00:22:53.648872+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "eval:depth_s0_eval",
+  "project": "occsafe_vla",
+  "task_prompt": "## 任务：分析 depth_s0 训练结果 + 启动 50r eval\n\n### 背景\ndepth_s0 (seed 42) 在 westd-34685 cuda:1 上训练完成（monocular depth auxiliary task, 50000 steps）。需要确认训练成功，然后在同一 GPU 上启动 eval。\n\n### Step 1: 检查训练日志\nSSH 到 westd-34685，检查训练日志：\n```bash\ntail -50 ~/runs/occsafe_vla/depth_s0.log\n```\n确认：\n- 最终 step 是否达到 50000（或 50005，因为 max_steps=50005）\n- 是否有 error/exception\n- 最终 loss 值\n\n### Step 2: 验证 checkpoint\n```bash\nls -la /root/autodl-tmp/checkpoints/depth_s0/\n```\n找到 50000 checkpoint 的完整路径（格式类似 `openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt`）。\n\n### Step 3: 更新 registry\n用 `update_registry` 设置：\n- exp_id: depth_s0\n- status: DONE\n- conclusion: success（如果训练正常完成）\n- metrics: 记录最终 training loss\n- spec 补充: checkpoint_path 和 log_path\n\n### Step 4: 创建 eval 实验并启动\n1. 用 `update_registry` 创建 `depth_s0_eval`：\n   - status: PREPARING\n   - hypothesis: \"50r evaluation of depth_s0 (seed 42, monocular depth auxiliary) at 50000_chkpt. Third seed for depth condition, needed for 4-seed statistical analysis.\"\n   - parent: depth_s0\n\n2. 转 RUNNING 并用 `submit_training_job` 提交 eval：\n   - 服务器: westd-34685\n   - GPU: cuda:1（刚释放）\n   - 命令格式（参考已完成的 eval）：\n   ```\n   bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MUJOCO_GL=egl python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/depth_s0/{CHECKPOINT_DIR_NAME} --num_rollouts 50 --seed 42\"\n   ```\n   用 Step 2 中找到的实际 checkpoint 路径替换 `{CHECKPOINT_DIR_NAME}`。\n\n### 环境信息\n- 服务器: westd-34685\n- conda 环境: `occsafe`（激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`）\n- 工作目录: `/root/occsafe_vla/openvla-oft`\n- Python: `/root/miniconda3/envs/occsafe/bin/python`\n\n### 注意事项\n- eval 必须用 50 rollouts + seed 42\n- GPU 编号从 0 开始（cuda:1 = 分配的第一块卡，submit_training_job 会映射）\n- 不要用 nohup，必须用 submit_training_job\n- 如果 checkpoint 不存在或训练未完成，将 conclusion 设为 failed 并报告原因\n",
+  "tool_groups": "['ssh', 'registry']",
+  "tools": "['submit_training_job']",
+  "context": "conda 环境名 occsafe，激活命令 source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe。不要用 .venv。GPU 白名单：westd-34685 cuda:0-3, westd-10894 cuda:0-3。"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_s0",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "eval:depth_s0_eval",
+    "project": "occsafe_vla",
+    "task_prompt": "## 任务：分析 depth_s0 训练结果 + 启动 50r eval\n\n### 背景\ndepth_s0 (seed 42) 在 westd-34685 cuda:1 上训练完成（monocular depth auxiliary task, 50000 steps）。需要确认训练成功，然后在同一 GPU 上启动 eval。\n\n### Step 1: 检查训练日志\nSSH 到 westd-34685，检查训练日志：\n```bash\ntail -50 ~/runs/occsafe_vla/depth_s0.log\n```\n确认：\n- 最终 step 是否达到 50000（或 50005，因为 max_steps=50005）\n- 是否有 error/exception\n- 最终 loss 值\n\n### Step 2: 验证 checkpoint\n```bash\nls -la /root/autodl-tmp/checkpoints/depth_s0/\n```\n找到 50000 checkpoint 的完整路径（格式类似 `openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt`）。\n\n### Step 3: 更新 registry\n用 `update_registry` 设置：\n- exp_id: depth_s0\n- status: DONE\n- conclusion: success（如果训练正常完成）\n- metrics: 记录最终 training loss\n- spec 补充: checkpoint_path 和 log_path\n\n### Step 4: 创建 eval 实验并启动\n1. 用 `update_registry` 创建 `depth_s0_eval`：\n   - status: PREPARING\n   - hypothesis: \"50r evaluation of depth_s0 (seed 42, monocular depth auxiliary) at 50000_chkpt. Third seed for depth condition, needed for 4-seed statistical analysis.\"\n   - parent: depth_s0\n\n2. 转 RUNNING 并用 `submit_training_job` 提交 eval：\n   - 服务器: westd-34685\n   - GPU: cuda:1（刚释放）\n   - 命令格式（参考已完成的 eval）：\n   ```\n   bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MUJOCO_GL=egl python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/depth_s0/{CHECKPOINT_DIR_NAME} --num_rollouts 50 --seed 42\"\n   ```\n   用 Step 2 中找到的实际 checkpoint 路径替换 `{CHECKPOINT_DIR_NAME}`。\n\n### 环境信息\n- 服务器: westd-34685\n- conda 环境: `occsafe`（激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`）\n- 工作目录: `/root/occsafe_vla/openvla-oft`\n- Python: `/root/miniconda3/envs/occsafe/bin/python`\n\n### 注意事项\n- eval 必须用 50 rollouts + seed 42\n- GPU 编号从 0 开始（cuda:1 = 分配的第一块卡，submit_training_job 会映射）\n- 不要用 nohup，必须用 submit_training_job\n- 如果 checkpoint 不存在或训练未完成，将 conclusion 设为 failed 并报告原因\n",
+    "tool_groups": "['ssh', 'registry']",
+    "tools": "['submit_training_job']",
+    "context": "conda 环境名 occsafe，激活命令 source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe。不要用 .venv。GPU 白名单：westd-34685 cuda:0-3, westd-10894 cuda:0-3。"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T00:22:56.562842+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_depth_s0_eval_20260523T002254\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/logs/workers/worker_eval_depth_s0_eval_20260523T002254.log\", \"setup_data\": {}, \"message\": \"Worker worker_eval_depth_s0_eval_20260523T002254 started. Use get_worker_status('worker_eval_depth_s0_eval_20260523T002254') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_s0",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2913
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-23T00:23:00.264213+00:00_
+
+Worker 已启动处理 depth_s0 分析 + eval。等 cron/worker 回调继续推进。其余 3 个训练（depth_s1, cutoff_s0, cutoff_s1）仍在运行，cron 会在完成时自动回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:depth_s0"
+}
+```
+
+</details>
+
+---

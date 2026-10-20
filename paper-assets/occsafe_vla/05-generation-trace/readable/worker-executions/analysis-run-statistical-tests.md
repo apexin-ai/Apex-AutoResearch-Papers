@@ -1,0 +1,1074 @@
+# analysis run statistical tests
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 21
+- **Recorded user turns:** 0
+- **Tool calls:** 5
+- **Original source:** `logs/workers/worker_analysis_run_statistical_tests_20260527T194600.log`
+- **Structured JSON:** [`27a2a26f07eb4a2530dc.json`](../../sessions/27/27a2a26f07eb4a2530dc.json)
+
+## Before a recorded user message
+
+21 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla",
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "a6b6e6f2-bf95-4ef1-97f1-479278ee0dc6",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779926400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "e3955668-ab35-4f95-be12-4cab3ee87991",
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me execute the steps on westd-34685 to verify the statistical_tests.py script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "uuid": "a390b681-8d7e-4574-b3c9-e0263e64d43b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jnpZokDtH8ciVCQ1gXCmH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11910,
+      "cache_read_input_tokens": 11845,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11910
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Y2TpQ6Rc8o3qzLx9wSgWFg`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "uuid": "0cdb831a-0a6f-4602-a5cd-799b0f24b391",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jnpZokDtH8ciVCQ1gXCmH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11910,
+      "cache_read_input_tokens": 11845,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11910
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-27T19:46:13.763Z_
+
+<details><summary>↩ Tool result · `toolu_01Y2TpQ6Rc8o3qzLx9wSgWFg`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "uuid": "64b66b58-f60a-43ab-a5e4-566880c57a9f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+Step 1: 确认脚本存在并检查内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "uuid": "6cb72595-989e-4380-af02-0cd8987f478b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F3f9rzP12sKaFFD7Bn4egc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 708,
+      "cache_read_input_tokens": 23755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 708
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019uDfvtuCi21heqRK19V4mK`</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "ls -la /root/occsafe_vla/analysis/statistical_tests.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "uuid": "485354c9-f60f-4327-b761-ccabe9a6d1a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F3f9rzP12sKaFFD7Bn4egc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 708,
+      "cache_read_input_tokens": 23755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 708
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MDiCva3YhJu7mSoVUecMJw`</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "cat /root/occsafe_vla/analysis/statistical_tests.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "uuid": "38dfec6b-a40f-4538-bea4-ae19306e5215",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F3f9rzP12sKaFFD7Bn4egc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 708,
+      "cache_read_input_tokens": 23755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 708
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-27T19:46:18.519Z_
+
+<details><summary>↩ Tool result · `toolu_019uDfvtuCi21heqRK19V4mK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 13405 May 28 03:13 /root/occsafe_vla/analysis/statistical_tests.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "uuid": "6100e353-7587-48e0-9f5b-476ceba9d67c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 13405 May 28 03:13 /root/occsafe_vla/analysis/statistical_tests.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 13405 May 28 03:13 /root/occsafe_vla/analysis/statistical_tests.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-27T19:46:19.101Z_
+
+<details><summary>↩ Tool result · `toolu_01MDiCva3YhJu7mSoVUecMJw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nStatistical analysis for BN x gradient flow 2x2 factorial study.\\nP0: Bootstrap + Permutation tests\\nP1: Effect sizes (Cohen's d, Hedges' g, Glass's delta)\\nP2: Per-task analysis\\n\\nALL DATA: Pure v2, 50K checkpoint, 50 rollouts only.\\n\\\"\\\"\\\"\\nimport numpy as np\\nfrom itertools import combinations\\n\\n# ============ DATA (pure v2 50K 50r) ============\\n# Cell 1: Full OCC BN (Grad ON + BN)\\n# full_occ_retrain_s0=0.746, full_occ_bn_v2_s1=0.654, mvp_occ_s3_v2=0.776\\ncell1_full_occ_bn = [0.746, 0.654, 0.776]  # n=3\\n\\n# Cell 2: Full OCC LN (Grad ON + LN)\\n# full_occ_ln_s3_v2=0.740, full_occ_ln_v2_s1c=0.792, full_occ_ln_v2_s2=0.798\\ncell2_full_occ_ln = [0.740, 0.792, 0.798]  # n=3\\n\\n# Cell 3: Detach BN (Grad OFF + BN)\\n# detach_bn_v2_s0=0.774, detach_bn_v2_s1=0.736, detach_bn_v2_s2=0.762, ablation_occ_detach_s3_v2=0.794\\ncell3_detach_bn = [0.774, 0.736, 0.762, 0.794]  # n=4\\n\\n# Cell 4: Detach LN (Grad OFF + LN)\\n# detach_ln_v2_s1=0.826\\ncell4_detach_ln = [0.826]  # n=1\\n\\n# Vanilla baseline\\n# vanilla_retrain_s0=0.768, vanilla_v2_s1=0.748, vanilla_v2_s2=0.720\\nvanilla = [0.768, 0.748, 0.720]  # n=3\\n\\n# Per-task CAR data {task: {condition: [values]}}\\n# Cell 1 (n=3): full_occ_retrain_s0, full_occ_bn_v2_s1, mvp_occ_s3_v2\\n# Cell 2 (n=3): full_occ_ln_s3_v2, full_occ_ln_v2_s1c, full_occ_ln_v2_s2\\n# Cell 3 (n=4): detach_bn_v2_s0, detach_bn_v2_s1, detach_bn_v2_s2, ablation_occ_detach_s3_v2\\n# Cell 4 (n=1): detach_ln_v2_s1\\n# Vanilla (n=3): vanilla_retrain_s0, vanilla_v2_s1, vanilla_v2_s2\\nTASKS = ['T0', 'T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9']\\n\\nper_task_data = {\\n    'T0': {\\n        'cell1': [0.98, 0.96, 0.98],\\n        'cell2': [0.98, 0.98, 0.98],\\n        'cell3': [0.98, 0.98, 0.98, 0.98],\\n        'cell4': [0.98],\\n        'vanilla': [0.98, 0.98, 0.98],\\n    },\\n    'T1': {\\n        'cell1': [1.00, 0.98, 0.94],\\n        'cell2': [0.96, 0.98, 0.94],\\n        'cell3': [0.96, 1.00, 0.74, 0.96],\\n        'cell4': [0.92],\\n        'vanilla': [0.96, 0.84, 1.00],\\n    },\\n    'T2': {\\n        'cell1': [0.90, 0.86, 0.90],\\n        'cell2': [0.94, 0.94, 0.92],\\n        'cell3': [0.92, 0.92, 0.94, 0.94],\\n        'cell4': [0.94],\\n        'vanilla': [0.94, 0.94, 0.94],\\n    },\\n    'T3': {\\n        'cell1': [0.00, 0.08, 0.50],\\n        'cell2': [0.30, 0.38, 0.66],\\n        'cell3': [0.16, 0.16, 0.58, 0.54],\\n        'cell4': [0.70],\\n        'vanilla': [0.32, 0.38, 0.32],\\n    },\\n    'T4': {\\n        'cell1': [0.98, 0.98, 0.98],\\n        'cell2': [0.96, 0.94, 0.98],\\n        'cell3': [0.96, 0.96, 0.96, 0.92],\\n        'cell4': [0.96],\\n        'vanilla': [0.96, 0.98, 0.94],\\n    },\\n    'T5': {\\n        'cell1': [0.10, 0.28, 0.08],\\n        'cell2': [0.12, 0.26, 0.18],\\n        'cell3': [0.04, 0.06, 0.14, 0.08],\\n        'cell4': [0.10],\\n        'vanilla': [0.06, 0.06, 0.00],\\n    },\\n    'T6': {\\n        'cell1': [0.52, 0.10, 0.40],\\n        'cell2': [0.58, 0.52, 0.40],\\n        'cell3': [0.72, 0.28, 0.40, 0.58],\\n        'cell4': [0.68],\\n        'vanilla': [0.46, 0.32, 0.38],\\n    },\\n    'T7': {\\n        'cell1': [1.00, 0.48, 0.98],\\n        'cell2': [0.58, 0.94, 0.92],\\n        'cell3': [1.00, 1.00, 0.90, 0.96],\\n        'cell4': [1.00],\\n        'vanilla': [1.00, 0.98, 0.76],\\n    },\\n    'T8': {\\n        'cell1': [0.98, 1.00, 1.00],\\n        'cell2': [0.98, 1.00, 1.00],\\n        'cell3': [1.00, 1.00, 0.98, 1.00],\\n        'cell4': [1.00],\\n        'vanilla': [1.00, 1.00, 1.00],\\n    },\\n    'T9': {\\n        'cell1': [1.00, 0.82, 1.00],\\n        'cell2': [1.00, 0.98, 1.00],\\n        'cell3': [1.00, 1.00, 1.00, 0.98],\\n        'cell4': [0.98],\\n        'vanilla': [1.00, 1.00, 0.88],\\n    },\\n}\\n\\n\\n# ============ P0: Bootstrap + Permutation ============\\ndef bootstrap_ci(data, n_boot=10000, ci=0.95, seed=42):\\n    rng = np.random.RandomState(seed)\\n    data = np.array(data)\\n    means = [np.mean(rng.choice(data, size=len(data), replace=True)) for _ in range(n_boot)]\\n    lower = np.percentile(means, (1 - ci) / 2 * 100)\\n    upper = np.percentile(means, (1 + ci) / 2 * 100)\\n    return np.mean(data), lower, upper\\n\\n\\n\\n\\n... [截断: 输出过长，省略 5399 字符] ...\\n\\n   # --- P1: Effect Sizes ---\\n    print(\\\"\\\\n--- P1: Effect Sizes ---\\\")\\n    effect_pairs = [\\n        (\\\"Cell1 vs Cell3 (Full vs Detach, BN)\\\", cell1_full_occ_bn, cell3_detach_bn),\\n        (\\\"Cell1 vs Vanilla\\\",                     cell1_full_occ_bn, vanilla),\\n        (\\\"Cell3 vs Vanilla\\\",                     cell3_detach_bn, vanilla),\\n        (\\\"Cell2 vs Vanilla\\\",                     cell2_full_occ_ln, vanilla),\\n        (\\\"Grad ON vs Grad OFF (main effect)\\\",    grad_on, grad_off),\\n    ]\\n    for name, g1, g2 in effect_pairs:\\n        g1a, g2a = np.array(g1), np.array(g2)\\n        if len(g1) >= 2 and len(g2) >= 2:\\n            d = cohens_d(g1a, g2a)\\n            g = hedges_g(g1a, g2a)\\n            delta = glass_delta(g1a, g2a, np.array(vanilla))\\n            diff_mean, diff_lo, diff_hi = bootstrap_ci_diff(g1a, g2a)\\n            mag = \\\"large\\\" if abs(d) >= 0.8 else \\\"medium\\\" if abs(d) >= 0.5 else \\\"small\\\"\\n            print(f\\\"  {name}:\\\")\\n            print(f\\\"    Cohen's d={d:+.3f} ({mag}), Hedges' g={g:+.3f}, Glass's Delta={delta:+.3f}\\\")\\n            print(f\\\"    Bootstrap Delta: {diff_mean:+.4f} [{diff_lo:+.4f}, {diff_hi:+.4f}]\\\")\\n\\n    # --- P2: Per-task Sensitivity ---\\n    print(\\\"\\\\n--- P2: Per-task Gradient Flow Sensitivity (Detach BN - Full OCC BN) ---\\\")\\n    sensitivity = per_task_sensitivity()\\n    for task, diff in sensitivity.items():\\n        c1_mean = np.mean(per_task_data[task]['cell1'])\\n        c3_mean = np.mean(per_task_data[task]['cell3'])\\n        direction = \\\"Detach better\\\" if diff > 0 else \\\"Full OCC better\\\"\\n        print(f\\\"  {task}: Full={c1_mean:.3f}, Detach={c3_mean:.3f}, Delta={diff:+.3f} ({direction})\\\")\\n\\n    print(\\\"\\\\n--- P2: Per-task OCC vs Vanilla (Full OCC BN - Vanilla) ---\\\")\\n    occ_vs_van = per_task_occ_vs_vanilla()\\n    for task, diff in occ_vs_van.items():\\n        c1_mean = np.mean(per_task_data[task]['cell1'])\\n        van_mean = np.mean(per_task_data[task]['vanilla'])\\n        direction = \\\"OCC better\\\" if diff > 0 else \\\"Vanilla better\\\"\\n        print(f\\\"  {task}: OCC={c1_mean:.3f}, Van={van_mean:.3f}, Delta={diff:+.3f} ({direction})\\\")\\n\\n    # --- Heatmap ---\\n    print(\\\"\\\\n--- P2: Per-task x Condition Heatmap (mean CAR) ---\\\")\\n    cond_labels = [\\\"Cell1_BN+ON\\\", \\\"Cell2_LN+ON\\\", \\\"Cell3_BN+OFF\\\", \\\"Cell4_LN+OFF\\\", \\\"Vanilla\\\"]\\n    cond_keys = ['cell1', 'cell2', 'cell3', 'cell4', 'vanilla']\\n    header = \\\"Task\\\".ljust(8) + \\\"\\\".join([c.ljust(14) for c in cond_labels])\\n    print(f\\\"  {header}\\\")\\n    print(f\\\"  {'─' * 78}\\\")\\n    for task in TASKS:\\n        row = task.ljust(8)\\n        for ck in cond_keys:\\n            vals = per_task_data[task].get(ck, [])\\n            if vals:\\n                m = np.mean(vals)\\n                row += f\\\"{m:.3f}\\\".ljust(14)\\n            else:\\n                row += \\\"—\\\".ljust(14)\\n        print(f\\\"  {row}\\\")\\n\\n    # --- Interaction effect ---\\n    print(\\\"\\\\n--- Interaction Effect (Gradient x Norm) ---\\\")\\n    c1m = np.mean(cell1_full_occ_bn)\\n    c2m = np.mean(cell2_full_occ_ln)\\n    c3m = np.mean(cell3_detach_bn)\\n    c4m = np.mean(cell4_detach_ln)\\n    interaction = (c1m - c2m) - (c3m - c4m)\\n    print(f\\\"  Cell means: C1={c1m:.4f}, C2={c2m:.4f}, C3={c3m:.4f}, C4={c4m:.4f}\\\")\\n    print(f\\\"  BN-LN|Full = {c1m-c2m:+.4f}\\\")\\n    print(f\\\"  BN-LN|Detach = {c3m-c4m:+.4f}\\\")\\n    print(f\\\"  Interaction (BN-LN|Full) - (BN-LN|Detach) = {interaction:+.4f}\\\")\\n    print(f\\\"  Interpretation: {'BN advantage larger with Full OCC' if interaction > 0 else 'BN advantage larger with Detach'}\\\")\\n\\n    # --- Summary ---\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"=\\\" * 70)\\n    all_occ = cell1_full_occ_bn + cell2_full_occ_ln + cell3_detach_bn + cell4_detach_ln\\n    print(f\\\"  All OCC variants: mean={np.mean(all_occ):.4f} (n={len(all_occ)})\\\")\\n    print(f\\\"  Vanilla baseline: mean={np.mean(vanilla):.4f} (n={len(vanilla)})\\\")\\n    diff_ov, p_ov = permutation_test_exact(np.array(all_occ), np.array(vanilla))\\n    sig = \\\"***\\\" if p_ov < 0.001 else \\\"**\\\" if p_ov < 0.01 else \\\"*\\\" if p_ov < 0.05 else \\\"n.s.\\\"\\n    print(f\\\"  All OCC vs Vanilla: Delta={diff_ov:+.4f}, p={p_ov:.4f} {sig}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "uuid": "f5addd14-3fe9-4b04-9185-f629f305f473",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nStatistical analysis for BN x gradient flow 2x2 factorial study.\\\\nP0: Bootstrap + Permutation tests\\\\nP1: Effect sizes (Cohen's d, Hedges' g, Glass's delta)\\\\nP2: Per-task analysis\\\\n\\\\nALL DATA: Pure v2, 50K checkpoint, 50 rollouts only.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport numpy as np\\\\nfrom itertools import combinations\\\\n\\\\n# ============ DATA (pure v2 50K 50r) ============\\\\n# Cell 1: Full OCC BN (Grad ON + BN)\\\\n# full_occ_retrain_s0=0.746, full_occ_bn_v2_s1=0.654, mvp_occ_s3_v2=0.776\\\\ncell1_full_occ_bn = [0.746, 0.654, 0.776]  # n=3\\\\n\\\\n# Cell 2: Full OCC LN (Grad ON + LN)\\\\n# full_occ_ln_s3_v2=0.740, full_occ_ln_v2_s1c=0.792, full_occ_ln_v2_s2=0.798\\\\ncell2_full_occ_ln = [0.740, 0.792, 0.798]  # n=3\\\\n\\\\n# Cell 3: Detach BN (Grad OFF + BN)\\\\n# detach_bn_v2_s0=0.774, detach_bn_v2_s1=0.736, detach_bn_v2_s2=0.762, ablation_occ_detach_s3_v2=0.794\\\\ncell3_detach_bn = [0.774, 0.736, 0.762, 0.794]  # n=4\\\\n\\\\n# Cell 4: Detach LN (Grad OFF + LN)\\\\n# detach_ln_v2_s1=0.826\\\\ncell4_detach_ln = [0.826]  # n=1\\\\n\\\\n# Vanilla baseline\\\\n# vanilla_retrain_s0=0.768, vanilla_v2_s1=0.748, vanilla_v2_s2=0.720\\\\nvanilla = [0.768, 0.748, 0.720]  # n=3\\\\n\\\\n# Per-task CAR data {task: {condition: [values]}}\\\\n# Cell 1 (n=3): full_occ_retrain_s0, full_occ_bn_v2_s1, mvp_occ_s3_v2\\\\n# Cell 2 (n=3): full_occ_ln_s3_v2, full_occ_ln_v2_s1c, full_occ_ln_v2_s2\\\\n# Cell 3 (n=4): detach_bn_v2_s0, detach_bn_v2_s1, detach_bn_v2_s2, ablation_occ_detach_s3_v2\\\\n# Cell 4 (n=1): detach_ln_v2_s1\\\\n# Vanilla (n=3): vanilla_retrain_s0, vanilla_v2_s1, vanilla_v2_s2\\\\nTASKS = ['T0', 'T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9']\\\\n\\\\nper_task_data = {\\\\n    'T0': {\\\\n        'cell1': [0.98, 0.96, 0.98],\\\\n        'cell2': [0.98, 0.98, 0.98],\\\\n        'cell3': [0.98, 0.98, 0.98, 0.98],\\\\n        'cell4': [0.98],\\\\n        'vanilla': [0.98, 0.98, 0.98],\\\\n    },\\\\n    'T1': {\\\\n        'cell1': [1.00, 0.98, 0.94],\\\\n        'cell2': [0.96, 0.98, 0.94],\\\\n        'cell3': [0.96, 1.00, 0.74, 0.96],\\\\n        'cell4': [0.92],\\\\n        'vanilla': [0.96, 0.84, 1.00],\\\\n    },\\\\n    'T2': {\\\\n        'cell1': [0.90, 0.86, 0.90],\\\\n        'cell2': [0.94, 0.94, 0.92],\\\\n        'cell3': [0.92, 0.92, 0.94, 0.94],\\\\n        'cell4': [0.94],\\\\n        'vanilla': [0.94, 0.94, 0.94],\\\\n    },\\\\n    'T3': {\\\\n        'cell1': [0.00, 0.08, 0.50],\\\\n        'cell2': [0.30, 0.38, 0.66],\\\\n        'cell3': [0.16, 0.16, 0.58, 0.54],\\\\n        'cell4': [0.70],\\\\n        'vanilla': [0.32, 0.38, 0.32],\\\\n    },\\\\n    'T4': {\\\\n        'cell1': [0.98, 0.98, 0.98],\\\\n        'cell2': [0.96, 0.94, 0.98],\\\\n        'cell3': [0.96, 0.96, 0.96, 0.92],\\\\n        'cell4': [0.96],\\\\n        'vanilla': [0.96, 0.98, 0.94],\\\\n    },\\\\n    'T5': {\\\\n        'cell1': [0.10, 0.28, 0.08],\\\\n        'cell2': [0.12, 0.26, 0.18],\\\\n        'cell3': [0.04, 0.06, 0.14, 0.08],\\\\n        'cell4': [0.10],\\\\n        'vanilla': [0.06, 0.06, 0.00],\\\\n    },\\\\n    'T6': {\\\\n        'cell1': [0.52, 0.10, 0.40],\\\\n        'cell2': [0.58, 0.52, 0.40],\\\\n        'cell3': [0.72, 0.28, 0.40, 0.58],\\\\n        'cell4': [0.68],\\\\n        'vanilla': [0.46, 0.32, 0.38],\\\\n    },\\\\n    'T7': {\\\\n        'cell1': [1.00, 0.48, 0.98],\\\\n        'cell2': [0.58, 0.94, 0.92],\\\\n        'cell3': [1.00, 1.00, 0.90, 0.96],\\\\n        'cell4': [1.00],\\\\n        'vanilla': [1.00, 0.98, 0.76],\\\\n    },\\\\n    'T8': {\\\\n        'cell1': [0.98, 1.00, 1.00],\\\\n        'cell2': [0.98, 1.00, 1.00],\\\\n        'cell3': [1.00, 1.00, 0.98, 1.00],\\\\n        'cell4': [1.00],\\\\n        'vanilla': [1.00, 1.00, 1.00],\\\\n    },\\\\n    'T9': {\\\\n        'cell1': [1.00, 0.82, 1.00],\\\\n        'cell2': [1.00, 0.98, 1.00],\\\\n        'cell3': [1.00, 1.00, 1.00, 0.98],\\\\n        'cell4': [0.98],\\\\n        'vanilla': [1.00, 1.00, 0.88],\\\\n    },\\\\n}\\\\n\\\\n\\\\n# ============ P0: Bootstrap + Permutation ============\\\\ndef bootstrap_ci(data, n_boot=10000, ci=0.95, seed=42):\\\\n    rng = np.random.RandomState(seed)\\\\n    data = np.array(data)\\\\n    means = [np.mean(rng.choice(data, size=len(data), replace=True)) for _ in range(n_boot)]\\\\n    lower = np.percentile(means, (1 - ci) / 2 * 100)\\\\n    upper = np.percentile(means, (1 + ci) / 2 * 100)\\\\n    return np.mean(data), lower, upper\\\\n\\\\n\\\\n\\\\n\\\\n... [截断: 输出过长，省略 5399 字符] ...\\\\n\\\\n   # --- P1: Effect Sizes ---\\\\n    print(\\\\\\\"\\\\\\\\n--- P1: Effect Sizes ---\\\\\\\")\\\\n    effect_pairs = [\\\\n        (\\\\\\\"Cell1 vs Cell3 (Full vs Detach, BN)\\\\\\\", cell1_full_occ_bn, cell3_detach_bn),\\\\n        (\\\\\\\"Cell1 vs Vanilla\\\\\\\",                     cell1_full_occ_bn, vanilla),\\\\n        (\\\\\\\"Cell3 vs Vanilla\\\\\\\",                     cell3_detach_bn, vanilla),\\\\n        (\\\\\\\"Cell2 vs Vanilla\\\\\\\",                     cell2_full_occ_ln, vanilla),\\\\n        (\\\\\\\"Grad ON vs Grad OFF (main effect)\\\\\\\",    grad_on, grad_off),\\\\n    ]\\\\n    for name, g1, g2 in effect_pairs:\\\\n        g1a, g2a = np.array(g1), np.array(g2)\\\\n        if len(g1) >= 2 and len(g2) >= 2:\\\\n            d = cohens_d(g1a, g2a)\\\\n            g = hedges_g(g1a, g2a)\\\\n            delta = glass_delta(g1a, g2a, np.array(vanilla))\\\\n            diff_mean, diff_lo, diff_hi = bootstrap_ci_diff(g1a, g2a)\\\\n            mag = \\\\\\\"large\\\\\\\" if abs(d) >= 0.8 else \\\\\\\"medium\\\\\\\" if abs(d) >= 0.5 else \\\\\\\"small\\\\\\\"\\\\n            print(f\\\\\\\"  {name}:\\\\\\\")\\\\n            print(f\\\\\\\"    Cohen's d={d:+.3f} ({mag}), Hedges' g={g:+.3f}, Glass's Delta={delta:+.3f}\\\\\\\")\\\\n            print(f\\\\\\\"    Bootstrap Delta: {diff_mean:+.4f} [{diff_lo:+.4f}, {diff_hi:+.4f}]\\\\\\\")\\\\n\\\\n    # --- P2: Per-task Sensitivity ---\\\\n    print(\\\\\\\"\\\\\\\\n--- P2: Per-task Gradient Flow Sensitivity (Detach BN - Full OCC BN) ---\\\\\\\")\\\\n    sensitivity = per_task_sensitivity()\\\\n    for task, diff in sensitivity.items():\\\\n        c1_mean = np.mean(per_task_data[task]['cell1'])\\\\n        c3_mean = np.mean(per_task_data[task]['cell3'])\\\\n        direction = \\\\\\\"Detach better\\\\\\\" if diff > 0 else \\\\\\\"Full OCC better\\\\\\\"\\\\n        print(f\\\\\\\"  {task}: Full={c1_mean:.3f}, Detach={c3_mean:.3f}, Delta={diff:+.3f} ({direction})\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n--- P2: Per-task OCC vs Vanilla (Full OCC BN - Vanilla) ---\\\\\\\")\\\\n    occ_vs_van = per_task_occ_vs_vanilla()\\\\n    for task, diff in occ_vs_van.items():\\\\n        c1_mean = np.mean(per_task_data[task]['cell1'])\\\\n        van_mean = np.mean(per_task_data[task]['vanilla'])\\\\n        direction = \\\\\\\"OCC better\\\\\\\" if diff > 0 else \\\\\\\"Vanilla better\\\\\\\"\\\\n        print(f\\\\\\\"  {task}: OCC={c1_mean:.3f}, Van={van_mean:.3f}, Delta={diff:+.3f} ({direction})\\\\\\\")\\\\n\\\\n    # --- Heatmap ---\\\\n    print(\\\\\\\"\\\\\\\\n--- P2: Per-task x Condition Heatmap (mean CAR) ---\\\\\\\")\\\\n    cond_labels = [\\\\\\\"Cell1_BN+ON\\\\\\\", \\\\\\\"Cell2_LN+ON\\\\\\\", \\\\\\\"Cell3_BN+OFF\\\\\\\", \\\\\\\"Cell4_LN+OFF\\\\\\\", \\\\\\\"Vanilla\\\\\\\"]\\\\n    cond_keys = ['cell1', 'cell2', 'cell3', 'cell4', 'vanilla']\\\\n    header = \\\\\\\"Task\\\\\\\".ljust(8) + \\\\\\\"\\\\\\\".join([c.ljust(14) for c in cond_labels])\\\\n    print(f\\\\\\\"  {header}\\\\\\\")\\\\n    print(f\\\\\\\"  {'─' * 78}\\\\\\\")\\\\n    for task in TASKS:\\\\n        row = task.ljust(8)\\\\n        for ck in cond_keys:\\\\n            vals = per_task_data[task].get(ck, [])\\\\n            if vals:\\\\n                m = np.mean(vals)\\\\n                row += f\\\\\\\"{m:.3f}\\\\\\\".ljust(14)\\\\n            else:\\\\n                row += \\\\\\\"—\\\\\\\".ljust(14)\\\\n        print(f\\\\\\\"  {row}\\\\\\\")\\\\n\\\\n    # --- Interaction effect ---\\\\n    print(\\\\\\\"\\\\\\\\n--- Interaction Effect (Gradient x Norm) ---\\\\\\\")\\\\n    c1m = np.mean(cell1_full_occ_bn)\\\\n    c2m = np.mean(cell2_full_occ_ln)\\\\n    c3m = np.mean(cell3_detach_bn)\\\\n    c4m = np.mean(cell4_detach_ln)\\\\n    interaction = (c1m - c2m) - (c3m - c4m)\\\\n    print(f\\\\\\\"  Cell means: C1={c1m:.4f}, C2={c2m:.4f}, C3={c3m:.4f}, C4={c4m:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  BN-LN|Full = {c1m-c2m:+.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  BN-LN|Detach = {c3m-c4m:+.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Interaction (BN-LN|Full) - (BN-LN|Detach) = {interaction:+.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Interpretation: {'BN advantage larger with Full OCC' if interaction > 0 else 'BN advantage larger with Detach'}\\\\\\\")\\\\n\\\\n    # --- Summary ---\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"SUMMARY\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    all_occ = cell1_full_occ_bn + cell2_full_occ_ln + cell3_detach_bn + cell4_detach_ln\\\\n    print(f\\\\\\\"  All OCC variants: mean={np.mean(all_occ):.4f} (n={len(all_occ)})\\\\\\\")\\\\n    print(f\\\\\\\"  Vanilla baseline: mean={np.mean(vanilla):.4f} (n={len(vanilla)})\\\\\\\")\\\\n    diff_ov, p_ov = permutation_test_exact(np.array(all_occ), np.array(vanilla))\\\\n    sig = \\\\\\\"***\\\\\\\" if p_ov < 0.001 else \\\\\\\"**\\\\\\\" if p_ov < 0.01 else \\\\\\\"*\\\\\\\" if p_ov < 0.05 else \\\\\\\"n.s.\\\\\\\"\\\\n    print(f\\\\\\\"  All OCC vs Vanilla: Delta={diff_ov:+.4f}, p={p_ov:.4f} {sig}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nStatistical analysis for BN x gradient flow 2x2 factorial study.\\nP0: Bootstrap + Permutation tests\\nP1: Effect sizes (Cohen's d, Hedges' g, Glass's delta)\\nP2: Per-task analysis\\n\\nALL DATA: Pure v2, 50K checkpoint, 50 rollouts only.\\n\\\"\\\"\\\"\\nimport numpy as np\\nfrom itertools import combinations\\n\\n# ============ DATA (pure v2 50K 50r) ============\\n# Cell 1: Full OCC BN (Grad ON + BN)\\n# full_occ_retrain_s0=0.746, full_occ_bn_v2_s1=0.654, mvp_occ_s3_v2=0.776\\ncell1_full_occ_bn = [0.746, 0.654, 0.776]  # n=3\\n\\n# Cell 2: Full OCC LN (Grad ON + LN)\\n# full_occ_ln_s3_v2=0.740, full_occ_ln_v2_s1c=0.792, full_occ_ln_v2_s2=0.798\\ncell2_full_occ_ln = [0.740, 0.792, 0.798]  # n=3\\n\\n# Cell 3: Detach BN (Grad OFF + BN)\\n# detach_bn_v2_s0=0.774, detach_bn_v2_s1=0.736, detach_bn_v2_s2=0.762, ablation_occ_detach_s3_v2=0.794\\ncell3_detach_bn = [0.774, 0.736, 0.762, 0.794]  # n=4\\n\\n# Cell 4: Detach LN (Grad OFF + LN)\\n# detach_ln_v2_s1=0.826\\ncell4_detach_ln = [0.826]  # n=1\\n\\n# Vanilla baseline\\n# vanilla_retrain_s0=0.768, vanilla_v2_s1=0.748, vanilla_v2_s2=0.720\\nvanilla = [0.768, 0.748, 0.720]  # n=3\\n\\n# Per-task CAR data {task: {condition: [values]}}\\n# Cell 1 (n=3): full_occ_retrain_s0, full_occ_bn_v2_s1, mvp_occ_s3_v2\\n# Cell 2 (n=3): full_occ_ln_s3_v2, full_occ_ln_v2_s1c, full_occ_ln_v2_s2\\n# Cell 3 (n=4): detach_bn_v2_s0, detach_bn_v2_s1, detach_bn_v2_s2, ablation_occ_detach_s3_v2\\n# Cell 4 (n=1): detach_ln_v2_s1\\n# Vanilla (n=3): vanilla_retrain_s0, vanilla_v2_s1, vanilla_v2_s2\\nTASKS = ['T0', 'T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9']\\n\\nper_task_data = {\\n    'T0': {\\n        'cell1': [0.98, 0.96, 0.98],\\n        'cell2': [0.98, 0.98, 0.98],\\n        'cell3': [0.98, 0.98, 0.98, 0.98],\\n        'cell4': [0.98],\\n        'vanilla': [0.98, 0.98, 0.98],\\n    },\\n    'T1': {\\n        'cell1': [1.00, 0.98, 0.94],\\n        'cell2': [0.96, 0.98, 0.94],\\n        'cell3': [0.96, 1.00, 0.74, 0.96],\\n        'cell4': [0.92],\\n        'vanilla': [0.96, 0.84, 1.00],\\n    },\\n    'T2': {\\n        'cell1': [0.90, 0.86, 0.90],\\n        'cell2': [0.94, 0.94, 0.92],\\n        'cell3': [0.92, 0.92, 0.94, 0.94],\\n        'cell4': [0.94],\\n        'vanilla': [0.94, 0.94, 0.94],\\n    },\\n    'T3': {\\n        'cell1': [0.00, 0.08, 0.50],\\n        'cell2': [0.30, 0.38, 0.66],\\n        'cell3': [0.16, 0.16, 0.58, 0.54],\\n        'cell4': [0.70],\\n        'vanilla': [0.32, 0.38, 0.32],\\n    },\\n    'T4': {\\n        'cell1': [0.98, 0.98, 0.98],\\n        'cell2': [0.96, 0.94, 0.98],\\n        'cell3': [0.96, 0.96, 0.96, 0.92],\\n        'cell4': [0.96],\\n        'vanilla': [0.96, 0.98, 0.94],\\n    },\\n    'T5': {\\n        'cell1': [0.10, 0.28, 0.08],\\n        'cell2': [0.12, 0.26, 0.18],\\n        'cell3': [0.04, 0.06, 0.14, 0.08],\\n        'cell4': [0.10],\\n        'vanilla': [0.06, 0.06, 0.00],\\n    },\\n    'T6': {\\n        'cell1': [0.52, 0.10, 0.40],\\n        'cell2': [0.58, 0.52, 0.40],\\n        'cell3': [0.72, 0.28, 0.40, 0.58],\\n        'cell4': [0.68],\\n        'vanilla': [0.46, 0.32, 0.38],\\n    },\\n    'T7': {\\n        'cell1': [1.00, 0.48, 0.98],\\n        'cell2': [0.58, 0.94, 0.92],\\n        'cell3': [1.00, 1.00, 0.90, 0.96],\\n        'cell4': [1.00],\\n        'vanilla': [1.00, 0.98, 0.76],\\n    },\\n    'T8': {\\n        'cell1': [0.98, 1.00, 1.00],\\n        'cell2': [0.98, 1.00, 1.00],\\n        'cell3': [1.00, 1.00, 0.98, 1.00],\\n        'cell4': [1.00],\\n        'vanilla': [1.00, 1.00, 1.00],\\n    },\\n    'T9': {\\n        'cell1': [1.00, 0.82, 1.00],\\n        'cell2': [1.00, 0.98, 1.00],\\n        'cell3': [1.00, 1.00, 1.00, 0.98],\\n        'cell4': [0.98],\\n        'vanilla': [1.00, 1.00, 0.88],\\n    },\\n}\\n\\n\\n# ============ P0: Bootstrap + Permutation ============\\ndef bootstrap_ci(data, n_boot=10000, ci=0.95, seed=42):\\n    rng = np.random.RandomState(seed)\\n    data = np.array(data)\\n    means = [np.mean(rng.choice(data, size=len(data), replace=True)) for _ in range(n_boot)]\\n    lower = np.percentile(means, (1 - ci) / 2 * 100)\\n    upper = np.percentile(means, (1 + ci) / 2 * 100)\\n    return np.mean(data), lower, upper\\n\\n\\n\\n\\n... [截断: 输出过长，省略 5399 字符] ...\\n\\n   # --- P1: Effect Sizes ---\\n    print(\\\"\\\\n--- P1: Effect Sizes ---\\\")\\n    effect_pairs = [\\n        (\\\"Cell1 vs Cell3 (Full vs Detach, BN)\\\", cell1_full_occ_bn, cell3_detach_bn),\\n        (\\\"Cell1 vs Vanilla\\\",                     cell1_full_occ_bn, vanilla),\\n        (\\\"Cell3 vs Vanilla\\\",                     cell3_detach_bn, vanilla),\\n        (\\\"Cell2 vs Vanilla\\\",                     cell2_full_occ_ln, vanilla),\\n        (\\\"Grad ON vs Grad OFF (main effect)\\\",    grad_on, grad_off),\\n    ]\\n    for name, g1, g2 in effect_pairs:\\n        g1a, g2a = np.array(g1), np.array(g2)\\n        if len(g1) >= 2 and len(g2) >= 2:\\n            d = cohens_d(g1a, g2a)\\n            g = hedges_g(g1a, g2a)\\n            delta = glass_delta(g1a, g2a, np.array(vanilla))\\n            diff_mean, diff_lo, diff_hi = bootstrap_ci_diff(g1a, g2a)\\n            mag = \\\"large\\\" if abs(d) >= 0.8 else \\\"medium\\\" if abs(d) >= 0.5 else \\\"small\\\"\\n            print(f\\\"  {name}:\\\")\\n            print(f\\\"    Cohen's d={d:+.3f} ({mag}), Hedges' g={g:+.3f}, Glass's Delta={delta:+.3f}\\\")\\n            print(f\\\"    Bootstrap Delta: {diff_mean:+.4f} [{diff_lo:+.4f}, {diff_hi:+.4f}]\\\")\\n\\n    # --- P2: Per-task Sensitivity ---\\n    print(\\\"\\\\n--- P2: Per-task Gradient Flow Sensitivity (Detach BN - Full OCC BN) ---\\\")\\n    sensitivity = per_task_sensitivity()\\n    for task, diff in sensitivity.items():\\n        c1_mean = np.mean(per_task_data[task]['cell1'])\\n        c3_mean = np.mean(per_task_data[task]['cell3'])\\n        direction = \\\"Detach better\\\" if diff > 0 else \\\"Full OCC better\\\"\\n        print(f\\\"  {task}: Full={c1_mean:.3f}, Detach={c3_mean:.3f}, Delta={diff:+.3f} ({direction})\\\")\\n\\n    print(\\\"\\\\n--- P2: Per-task OCC vs Vanilla (Full OCC BN - Vanilla) ---\\\")\\n    occ_vs_van = per_task_occ_vs_vanilla()\\n    for task, diff in occ_vs_van.items():\\n        c1_mean = np.mean(per_task_data[task]['cell1'])\\n        van_mean = np.mean(per_task_data[task]['vanilla'])\\n        direction = \\\"OCC better\\\" if diff > 0 else \\\"Vanilla better\\\"\\n        print(f\\\"  {task}: OCC={c1_mean:.3f}, Van={van_mean:.3f}, Delta={diff:+.3f} ({direction})\\\")\\n\\n    # --- Heatmap ---\\n    print(\\\"\\\\n--- P2: Per-task x Condition Heatmap (mean CAR) ---\\\")\\n    cond_labels = [\\\"Cell1_BN+ON\\\", \\\"Cell2_LN+ON\\\", \\\"Cell3_BN+OFF\\\", \\\"Cell4_LN+OFF\\\", \\\"Vanilla\\\"]\\n    cond_keys = ['cell1', 'cell2', 'cell3', 'cell4', 'vanilla']\\n    header = \\\"Task\\\".ljust(8) + \\\"\\\".join([c.ljust(14) for c in cond_labels])\\n    print(f\\\"  {header}\\\")\\n    print(f\\\"  {'─' * 78}\\\")\\n    for task in TASKS:\\n        row = task.ljust(8)\\n        for ck in cond_keys:\\n            vals = per_task_data[task].get(ck, [])\\n            if vals:\\n                m = np.mean(vals)\\n                row += f\\\"{m:.3f}\\\".ljust(14)\\n            else:\\n                row += \\\"—\\\".ljust(14)\\n        print(f\\\"  {row}\\\")\\n\\n    # --- Interaction effect ---\\n    print(\\\"\\\\n--- Interaction Effect (Gradient x Norm) ---\\\")\\n    c1m = np.mean(cell1_full_occ_bn)\\n    c2m = np.mean(cell2_full_occ_ln)\\n    c3m = np.mean(cell3_detach_bn)\\n    c4m = np.mean(cell4_detach_ln)\\n    interaction = (c1m - c2m) - (c3m - c4m)\\n    print(f\\\"  Cell means: C1={c1m:.4f}, C2={c2m:.4f}, C3={c3m:.4f}, C4={c4m:.4f}\\\")\\n    print(f\\\"  BN-LN|Full = {c1m-c2m:+.4f}\\\")\\n    print(f\\\"  BN-LN|Detach = {c3m-c4m:+.4f}\\\")\\n    print(f\\\"  Interaction (BN-LN|Full) - (BN-LN|Detach) = {interaction:+.4f}\\\")\\n    print(f\\\"  Interpretation: {'BN advantage larger with Full OCC' if interaction > 0 else 'BN advantage larger with Detach'}\\\")\\n\\n    # --- Summary ---\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"=\\\" * 70)\\n    all_occ = cell1_full_occ_bn + cell2_full_occ_ln + cell3_detach_bn + cell4_detach_ln\\n    print(f\\\"  All OCC variants: mean={np.mean(all_occ):.4f} (n={len(all_occ)})\\\")\\n    print(f\\\"  Vanilla baseline: mean={np.mean(vanilla):.4f} (n={len(vanilla)})\\\")\\n    diff_ov, p_ov = permutation_test_exact(np.array(all_occ), np.array(vanilla))\\n    sig = \\\"***\\\" if p_ov < 0.001 else \\\"**\\\" if p_ov < 0.01 else \\\"*\\\" if p_ov < 0.05 else \\\"n.s.\\\"\\n    print(f\\\"  All OCC vs Vanilla: Delta={diff_ov:+.4f}, p={p_ov:.4f} {sig}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The script exists and looks complete. Now let me execute it on westd-34685 with the occsafe conda environment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "uuid": "c463aa1c-220d-4985-9a51-95b48aff1022",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012p3gBu82Wwd9SieT9bi88z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4693,
+      "cache_read_input_tokens": 24463,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4693
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+脚本存在，13KB，内容完整。执行脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "uuid": "0db8593e-cbd5-4977-ac7e-112a17d9371c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012p3gBu82Wwd9SieT9bi88z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4693,
+      "cache_read_input_tokens": 24463,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4693
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014UfejE249miWRAtJLhuLpy`</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/analysis && python statistical_tests.py 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "uuid": "e1062468-ef2d-4e11-bf95-915cebd39de3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012p3gBu82Wwd9SieT9bi88z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4693,
+      "cache_read_input_tokens": 24463,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4693
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-27T19:46:26.919Z_
+
+<details><summary>↩ Tool result · `toolu_014UfejE249miWRAtJLhuLpy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nBN x GRADIENT FLOW 2x2 FACTORIAL STUDY — STATISTICAL ANALYSIS\\nDATA: Pure v2, 50K checkpoint, 50 rollouts\\n======================================================================\\n\\n--- Cell Means (Bootstrap 95% CI) ---\\n  Cell 1 Full OCC BN  (Grad ON  + BN): mean=0.7253 [0.6540, 0.7760] (n=3)\\n  Cell 2 Full OCC LN  (Grad ON  + LN): mean=0.7767 [0.7400, 0.7980] (n=3)\\n  Cell 3 Detach BN    (Grad OFF + BN): mean=0.7665 [0.7455, 0.7860] (n=4)\\n  Cell 4 Detach LN    (Grad OFF + LN): mean=0.8260 (n=1, no CI)\\n  Vanilla baseline: mean=0.7453 [0.7200, 0.7680] (n=3)\\n\\n--- P0: Permutation Tests ---\\n  Gradient flow main effect: Delta=-0.0274, p=0.3961 n.s.\\n    Grad ON mean=0.7510, Grad OFF mean=0.7784\\n  Norm type main effect: Delta=-0.0401, p=0.1758 n.s.\\n\\n  Pairwise comparisons:\\n    Cell1 vs Cell2 (BN vs LN, Full): Delta=-0.0513, p=0.3000 n.s.\\n    Cell1 vs Cell3 (Full vs Detach, BN): Delta=-0.0412, p=0.2857 n.s.\\n    Cell1 vs Vanilla: Delta=-0.0200, p=0.8000 n.s.\\n    Cell2 vs Vanilla: Delta=+0.0313, p=0.3000 n.s.\\n    Cell3 vs Vanilla: Delta=+0.0212, p=0.3143 n.s.\\n    All OCC vs Vanilla: Delta=+0.0181, p=0.5110 n.s.\\n\\n--- P1: Effect Sizes ---\\n  Cell1 vs Cell3 (Full vs Detach, BN):\\n    Cohen's d=-0.928 (large), Hedges' g=-0.781, Glass's Delta=-1.707\\n    Bootstrap Delta: -0.0412 [-0.1095, +0.0140]\\n  Cell1 vs Vanilla:\\n    Cohen's d=-0.416 (small), Hedges' g=-0.333, Glass's Delta=-0.830\\n    Bootstrap Delta: -0.0204 [-0.0847, +0.0367]\\n  Cell3 vs Vanilla:\\n    Cohen's d=+0.875 (large), Hedges' g=+0.737, Glass's Delta=+0.878\\n    Bootstrap Delta: +0.0210 [-0.0093, +0.0503]\\n  Cell2 vs Vanilla:\\n    Cohen's d=+1.108 (large), Hedges' g=+0.887, Glass's Delta=+1.300\\n    Bootstrap Delta: +0.0314 [-0.0053, +0.0667]\\n  Grad ON vs Grad OFF (main effect):\\n    Cohen's d=-0.602 (medium), Hedges' g=-0.550, Glass's Delta=-1.136\\n    Bootstrap Delta: -0.0276 [-0.0771, +0.0160]\\n\\n--- P2: Per-task Gradient Flow Sensitivity (Detach BN - Full OCC BN) ---\\n  T3: Full=0.193, Detach=0.360, Delta=+0.167 (Detach better)\\n  T6: Full=0.340, Detach=0.495, Delta=+0.155 (Detach better)\\n  T7: Full=0.820, Detach=0.965, Delta=+0.145 (Detach better)\\n  T5: Full=0.153, Detach=0.080, Delta=-0.073 (Full OCC better)\\n  T1: Full=0.973, Detach=0.915, Delta=-0.058 (Full OCC better)\\n  T9: Full=0.940, Detach=0.995, Delta=+0.055 (Detach better)\\n  T2: Full=0.887, Detach=0.930, Delta=+0.043 (Detach better)\\n  T4: Full=0.980, Detach=0.950, Delta=-0.030 (Full OCC better)\\n  T0: Full=0.973, Detach=0.980, Delta=+0.007 (Detach better)\\n  T8: Full=0.993, Detach=0.995, Delta=+0.002 (Detach better)\\n\\n--- P2: Per-task OCC vs Vanilla (Full OCC BN - Vanilla) ---\\n  T3: OCC=0.193, Van=0.340, Delta=-0.147 (Vanilla better)\\n  T5: OCC=0.153, Van=0.040, Delta=+0.113 (OCC better)\\n  T7: OCC=0.820, Van=0.913, Delta=-0.093 (Vanilla better)\\n  T2: OCC=0.887, Van=0.940, Delta=-0.053 (Vanilla better)\\n  T6: OCC=0.340, Van=0.387, Delta=-0.047 (Vanilla better)\\n  T1: OCC=0.973, Van=0.933, Delta=+0.040 (OCC better)\\n  T4: OCC=0.980, Van=0.960, Delta=+0.020 (OCC better)\\n  T9: OCC=0.940, Van=0.960, Delta=-0.020 (Vanilla better)\\n  T0: OCC=0.973, Van=0.980, Delta=-0.007 (Vanilla better)\\n  T8: OCC=0.993, Van=1.000, Delta=-0.007 (Vanilla better)\\n\\n--- P2: Per-task x Condition Heatmap (mean CAR) ---\\n  Task    Cell1_BN+ON   Cell2_LN+ON   Cell3_BN+OFF  Cell4_LN+OFF  Vanilla       \\n  ──────────────────────────────────────────────────────────────────────────────\\n  T0      0.973         0.980         0.980         0.980         0.980         \\n  T1      0.973         0.960         0.915         0.920         0.933         \\n  T2      0.887         0.933         0.930         0.940         0.940         \\n  T3      0.193         0.447         0.360         0.700         0.340         \\n  T4      0.980         0.960         0.950         0.960         0.960         \\n  T5      0.153         0.187         0.080         0.100         0.040         \\n  T6      0.340         0.500         0.495         0.680         0.387         \\n  T7      0.820         0.813         0.965         1.000         0.913         \\n  T8      0.993         0.993         0.995         1.000         1.000         \\n  T9      0.940         0.993         0.995         0.980         0.960         \\n\\n--- Interaction Effect (Gradient x Norm) ---\\n  Cell means: C1=0.7253, C2=0.7767, C3=0.7665, C4=0.8260\\n  BN-LN|Full = -0.0513\\n  BN-LN|Detach = -0.0595\\n  Interaction (BN-LN|Full) - (BN-LN|Detach) = +0.0082\\n  Interpretation: BN advantage larger with Full OCC\\n\\n======================================================================\\nSUMMARY\\n======================================================================\\n  All OCC variants: mean=0.7635 (n=11)\\n  Vanilla baseline: mean=0.7453 (n=3)\\n  All OCC vs Vanilla: Delta=+0.0181, p=0.5110 n.s.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.96}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "uuid": "f79b36f7-debe-4afe-a90a-8b4d0a727f1e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\nBN x GRADIENT FLOW 2x2 FACTORIAL STUDY — STATISTICAL ANALYSIS\\\\nDATA: Pure v2, 50K checkpoint, 50 rollouts\\\\n======================================================================\\\\n\\\\n--- Cell Means (Bootstrap 95% CI) ---\\\\n  Cell 1 Full OCC BN  (Grad ON  + BN): mean=0.7253 [0.6540, 0.7760] (n=3)\\\\n  Cell 2 Full OCC LN  (Grad ON  + LN): mean=0.7767 [0.7400, 0.7980] (n=3)\\\\n  Cell 3 Detach BN    (Grad OFF + BN): mean=0.7665 [0.7455, 0.7860] (n=4)\\\\n  Cell 4 Detach LN    (Grad OFF + LN): mean=0.8260 (n=1, no CI)\\\\n  Vanilla baseline: mean=0.7453 [0.7200, 0.7680] (n=3)\\\\n\\\\n--- P0: Permutation Tests ---\\\\n  Gradient flow main effect: Delta=-0.0274, p=0.3961 n.s.\\\\n    Grad ON mean=0.7510, Grad OFF mean=0.7784\\\\n  Norm type main effect: Delta=-0.0401, p=0.1758 n.s.\\\\n\\\\n  Pairwise comparisons:\\\\n    Cell1 vs Cell2 (BN vs LN, Full): Delta=-0.0513, p=0.3000 n.s.\\\\n    Cell1 vs Cell3 (Full vs Detach, BN): Delta=-0.0412, p=0.2857 n.s.\\\\n    Cell1 vs Vanilla: Delta=-0.0200, p=0.8000 n.s.\\\\n    Cell2 vs Vanilla: Delta=+0.0313, p=0.3000 n.s.\\\\n    Cell3 vs Vanilla: Delta=+0.0212, p=0.3143 n.s.\\\\n    All OCC vs Vanilla: Delta=+0.0181, p=0.5110 n.s.\\\\n\\\\n--- P1: Effect Sizes ---\\\\n  Cell1 vs Cell3 (Full vs Detach, BN):\\\\n    Cohen's d=-0.928 (large), Hedges' g=-0.781, Glass's Delta=-1.707\\\\n    Bootstrap Delta: -0.0412 [-0.1095, +0.0140]\\\\n  Cell1 vs Vanilla:\\\\n    Cohen's d=-0.416 (small), Hedges' g=-0.333, Glass's Delta=-0.830\\\\n    Bootstrap Delta: -0.0204 [-0.0847, +0.0367]\\\\n  Cell3 vs Vanilla:\\\\n    Cohen's d=+0.875 (large), Hedges' g=+0.737, Glass's Delta=+0.878\\\\n    Bootstrap Delta: +0.0210 [-0.0093, +0.0503]\\\\n  Cell2 vs Vanilla:\\\\n    Cohen's d=+1.108 (large), Hedges' g=+0.887, Glass's Delta=+1.300\\\\n    Bootstrap Delta: +0.0314 [-0.0053, +0.0667]\\\\n  Grad ON vs Grad OFF (main effect):\\\\n    Cohen's d=-0.602 (medium), Hedges' g=-0.550, Glass's Delta=-1.136\\\\n    Bootstrap Delta: -0.0276 [-0.0771, +0.0160]\\\\n\\\\n--- P2: Per-task Gradient Flow Sensitivity (Detach BN - Full OCC BN) ---\\\\n  T3: Full=0.193, Detach=0.360, Delta=+0.167 (Detach better)\\\\n  T6: Full=0.340, Detach=0.495, Delta=+0.155 (Detach better)\\\\n  T7: Full=0.820, Detach=0.965, Delta=+0.145 (Detach better)\\\\n  T5: Full=0.153, Detach=0.080, Delta=-0.073 (Full OCC better)\\\\n  T1: Full=0.973, Detach=0.915, Delta=-0.058 (Full OCC better)\\\\n  T9: Full=0.940, Detach=0.995, Delta=+0.055 (Detach better)\\\\n  T2: Full=0.887, Detach=0.930, Delta=+0.043 (Detach better)\\\\n  T4: Full=0.980, Detach=0.950, Delta=-0.030 (Full OCC better)\\\\n  T0: Full=0.973, Detach=0.980, Delta=+0.007 (Detach better)\\\\n  T8: Full=0.993, Detach=0.995, Delta=+0.002 (Detach better)\\\\n\\\\n--- P2: Per-task OCC vs Vanilla (Full OCC BN - Vanilla) ---\\\\n  T3: OCC=0.193, Van=0.340, Delta=-0.147 (Vanilla better)\\\\n  T5: OCC=0.153, Van=0.040, Delta=+0.113 (OCC better)\\\\n  T7: OCC=0.820, Van=0.913, Delta=-0.093 (Vanilla better)\\\\n  T2: OCC=0.887, Van=0.940, Delta=-0.053 (Vanilla better)\\\\n  T6: OCC=0.340, Van=0.387, Delta=-0.047 (Vanilla better)\\\\n  T1: OCC=0.973, Van=0.933, Delta=+0.040 (OCC better)\\\\n  T4: OCC=0.980, Van=0.960, Delta=+0.020 (OCC better)\\\\n  T9: OCC=0.940, Van=0.960, Delta=-0.020 (Vanilla better)\\\\n  T0: OCC=0.973, Van=0.980, Delta=-0.007 (Vanilla better)\\\\n  T8: OCC=0.993, Van=1.000, Delta=-0.007 (Vanilla better)\\\\n\\\\n--- P2: Per-task x Condition Heatmap (mean CAR) ---\\\\n  Task    Cell1_BN+ON   Cell2_LN+ON   Cell3_BN+OFF  Cell4_LN+OFF  Vanilla       \\\\n  ──────────────────────────────────────────────────────────────────────────────\\\\n  T0      0.973         0.980         0.980         0.980         0.980         \\\\n  T1      0.973         0.960         0.915         0.920         0.933         \\\\n  T2      0.887         0.933         0.930         0.940         0.940         \\\\n  T3      0.193         0.447         0.360         0.700         0.340         \\\\n  T4      0.980         0.960         0.950         0.960         0.960         \\\\n  T5      0.153         0.187         0.080         0.100         0.040         \\\\n  T6      0.340         0.500         0.495         0.680         0.387         \\\\n  T7      0.820         0.813         0.965         1.000         0.913         \\\\n  T8      0.993         0.993         0.995         1.000         1.000         \\\\n  T9      0.940         0.993         0.995         0.980         0.960         \\\\n\\\\n--- Interaction Effect (Gradient x Norm) ---\\\\n  Cell means: C1=0.7253, C2=0.7767, C3=0.7665, C4=0.8260\\\\n  BN-LN|Full = -0.0513\\\\n  BN-LN|Detach = -0.0595\\\\n  Interaction (BN-LN|Full) - (BN-LN|Detach) = +0.0082\\\\n  Interpretation: BN advantage larger with Full OCC\\\\n\\\\n======================================================================\\\\nSUMMARY\\\\n======================================================================\\\\n  All OCC variants: mean=0.7635 (n=11)\\\\n  Vanilla baseline: mean=0.7453 (n=3)\\\\n  All OCC vs Vanilla: Delta=+0.0181, p=0.5110 n.s.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.96}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nBN x GRADIENT FLOW 2x2 FACTORIAL STUDY — STATISTICAL ANALYSIS\\nDATA: Pure v2, 50K checkpoint, 50 rollouts\\n======================================================================\\n\\n--- Cell Means (Bootstrap 95% CI) ---\\n  Cell 1 Full OCC BN  (Grad ON  + BN): mean=0.7253 [0.6540, 0.7760] (n=3)\\n  Cell 2 Full OCC LN  (Grad ON  + LN): mean=0.7767 [0.7400, 0.7980] (n=3)\\n  Cell 3 Detach BN    (Grad OFF + BN): mean=0.7665 [0.7455, 0.7860] (n=4)\\n  Cell 4 Detach LN    (Grad OFF + LN): mean=0.8260 (n=1, no CI)\\n  Vanilla baseline: mean=0.7453 [0.7200, 0.7680] (n=3)\\n\\n--- P0: Permutation Tests ---\\n  Gradient flow main effect: Delta=-0.0274, p=0.3961 n.s.\\n    Grad ON mean=0.7510, Grad OFF mean=0.7784\\n  Norm type main effect: Delta=-0.0401, p=0.1758 n.s.\\n\\n  Pairwise comparisons:\\n    Cell1 vs Cell2 (BN vs LN, Full): Delta=-0.0513, p=0.3000 n.s.\\n    Cell1 vs Cell3 (Full vs Detach, BN): Delta=-0.0412, p=0.2857 n.s.\\n    Cell1 vs Vanilla: Delta=-0.0200, p=0.8000 n.s.\\n    Cell2 vs Vanilla: Delta=+0.0313, p=0.3000 n.s.\\n    Cell3 vs Vanilla: Delta=+0.0212, p=0.3143 n.s.\\n    All OCC vs Vanilla: Delta=+0.0181, p=0.5110 n.s.\\n\\n--- P1: Effect Sizes ---\\n  Cell1 vs Cell3 (Full vs Detach, BN):\\n    Cohen's d=-0.928 (large), Hedges' g=-0.781, Glass's Delta=-1.707\\n    Bootstrap Delta: -0.0412 [-0.1095, +0.0140]\\n  Cell1 vs Vanilla:\\n    Cohen's d=-0.416 (small), Hedges' g=-0.333, Glass's Delta=-0.830\\n    Bootstrap Delta: -0.0204 [-0.0847, +0.0367]\\n  Cell3 vs Vanilla:\\n    Cohen's d=+0.875 (large), Hedges' g=+0.737, Glass's Delta=+0.878\\n    Bootstrap Delta: +0.0210 [-0.0093, +0.0503]\\n  Cell2 vs Vanilla:\\n    Cohen's d=+1.108 (large), Hedges' g=+0.887, Glass's Delta=+1.300\\n    Bootstrap Delta: +0.0314 [-0.0053, +0.0667]\\n  Grad ON vs Grad OFF (main effect):\\n    Cohen's d=-0.602 (medium), Hedges' g=-0.550, Glass's Delta=-1.136\\n    Bootstrap Delta: -0.0276 [-0.0771, +0.0160]\\n\\n--- P2: Per-task Gradient Flow Sensitivity (Detach BN - Full OCC BN) ---\\n  T3: Full=0.193, Detach=0.360, Delta=+0.167 (Detach better)\\n  T6: Full=0.340, Detach=0.495, Delta=+0.155 (Detach better)\\n  T7: Full=0.820, Detach=0.965, Delta=+0.145 (Detach better)\\n  T5: Full=0.153, Detach=0.080, Delta=-0.073 (Full OCC better)\\n  T1: Full=0.973, Detach=0.915, Delta=-0.058 (Full OCC better)\\n  T9: Full=0.940, Detach=0.995, Delta=+0.055 (Detach better)\\n  T2: Full=0.887, Detach=0.930, Delta=+0.043 (Detach better)\\n  T4: Full=0.980, Detach=0.950, Delta=-0.030 (Full OCC better)\\n  T0: Full=0.973, Detach=0.980, Delta=+0.007 (Detach better)\\n  T8: Full=0.993, Detach=0.995, Delta=+0.002 (Detach better)\\n\\n--- P2: Per-task OCC vs Vanilla (Full OCC BN - Vanilla) ---\\n  T3: OCC=0.193, Van=0.340, Delta=-0.147 (Vanilla better)\\n  T5: OCC=0.153, Van=0.040, Delta=+0.113 (OCC better)\\n  T7: OCC=0.820, Van=0.913, Delta=-0.093 (Vanilla better)\\n  T2: OCC=0.887, Van=0.940, Delta=-0.053 (Vanilla better)\\n  T6: OCC=0.340, Van=0.387, Delta=-0.047 (Vanilla better)\\n  T1: OCC=0.973, Van=0.933, Delta=+0.040 (OCC better)\\n  T4: OCC=0.980, Van=0.960, Delta=+0.020 (OCC better)\\n  T9: OCC=0.940, Van=0.960, Delta=-0.020 (Vanilla better)\\n  T0: OCC=0.973, Van=0.980, Delta=-0.007 (Vanilla better)\\n  T8: OCC=0.993, Van=1.000, Delta=-0.007 (Vanilla better)\\n\\n--- P2: Per-task x Condition Heatmap (mean CAR) ---\\n  Task    Cell1_BN+ON   Cell2_LN+ON   Cell3_BN+OFF  Cell4_LN+OFF  Vanilla       \\n  ──────────────────────────────────────────────────────────────────────────────\\n  T0      0.973         0.980         0.980         0.980         0.980         \\n  T1      0.973         0.960         0.915         0.920         0.933         \\n  T2      0.887         0.933         0.930         0.940         0.940         \\n  T3      0.193         0.447         0.360         0.700         0.340         \\n  T4      0.980         0.960         0.950         0.960         0.960         \\n  T5      0.153         0.187         0.080         0.100         0.040         \\n  T6      0.340         0.500         0.495         0.680         0.387         \\n  T7      0.820         0.813         0.965         1.000         0.913         \\n  T8      0.993         0.993         0.995         1.000         1.000         \\n  T9      0.940         0.993         0.995         0.980         0.960         \\n\\n--- Interaction Effect (Gradient x Norm) ---\\n  Cell means: C1=0.7253, C2=0.7767, C3=0.7665, C4=0.8260\\n  BN-LN|Full = -0.0513\\n  BN-LN|Detach = -0.0595\\n  Interaction (BN-LN|Full) - (BN-LN|Detach) = +0.0082\\n  Interpretation: BN advantage larger with Full OCC\\n\\n======================================================================\\nSUMMARY\\n======================================================================\\n  All OCC variants: mean=0.7635 (n=11)\\n  Vanilla baseline: mean=0.7453 (n=3)\\n  All OCC vs Vanilla: Delta=+0.0181, p=0.5110 n.s.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.96}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The script executed successfully. Now let me check if any output files were generated.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "uuid": "ca4d59eb-6aa3-46b3-b556-e2c44ea79ef3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LR3gUnqwnWjugwZmvCTWFc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2461,
+      "cache_read_input_tokens": 29156,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2461
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+执行成功。检查是否有输出文件生成。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "uuid": "797288e0-162e-4fef-86d0-1569986761b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LR3gUnqwnWjugwZmvCTWFc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2461,
+      "cache_read_input_tokens": 29156,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2461
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Vs3oVvPwqxvJSvFUT6GnxC`</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "ls -la /root/occsafe_vla/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "uuid": "a361619d-84da-4e27-b297-6726cdbe190c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LR3gUnqwnWjugwZmvCTWFc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2461,
+      "cache_read_input_tokens": 29156,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2461
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-27T19:46:31.444Z_
+
+<details><summary>↩ Tool result · `toolu_01Vs3oVvPwqxvJSvFUT6GnxC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 188\\ndrwxr-xr-x  4 root root  4096 May 28 02:58 .\\ndrwxr-xr-x 17 root root  4096 May 26 03:42 ..\\n-rw-r--r--  1 root root 11178 May 23 18:22 bootstrap_ci.py\\n-rw-r--r--  1 root root  1657 May 23 14:18 bootstrap_config.json\\n-rw-r--r--  1 root root  8902 May 23 14:18 bootstrap_results.json\\n-rw-r--r--  1 root root  9747 May 24 07:54 cka_analysis.py\\n-rw-r--r--  1 root root  4212 May 23 11:54 cka_compare.py\\ndrwxr-xr-x  2 root root  4096 May 23 14:17 eval_data_from_10894\\n-rw-r--r--  1 root root  8140 May 23 14:12 eval_data_manifest.json\\n-rw-r--r--  1 root root 10126 May 27 20:20 factorial_anova.py\\n-rw-r--r--  1 root root  1140 May 27 20:20 factorial_data.json\\n-rw-r--r--  1 root root  7402 May 25 14:22 grad_debug_test.py\\n-rw-r--r--  1 root root 16673 May 24 20:59 gradient_analysis.py\\n-rw-r--r--  1 root root 18777 May 25 14:13 gradient_dose_response.py\\n-rw-r--r--  1 root root 12349 May 23 18:22 plot_gradient_figure.py\\n-rw-r--r--  1 root root  5939 May 24 02:38 plot_gradient_paper.py\\ndrwxr-xr-x  5 root root  4096 May 24 02:04 results\\n-rwxr-xr-x  1 root root 11388 May 24 02:11 run_full_analysis.sh\\n-rw-r--r--  1 root root 13405 May 28 03:13 statistical_tests.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "uuid": "8cbd94be-9059-4b03-be5e-90f4a67e6279",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 188\\\\ndrwxr-xr-x  4 root root  4096 May 28 02:58 .\\\\ndrwxr-xr-x 17 root root  4096 May 26 03:42 ..\\\\n-rw-r--r--  1 root root 11178 May 23 18:22 bootstrap_ci.py\\\\n-rw-r--r--  1 root root  1657 May 23 14:18 bootstrap_config.json\\\\n-rw-r--r--  1 root root  8902 May 23 14:18 bootstrap_results.json\\\\n-rw-r--r--  1 root root  9747 May 24 07:54 cka_analysis.py\\\\n-rw-r--r--  1 root root  4212 May 23 11:54 cka_compare.py\\\\ndrwxr-xr-x  2 root root  4096 May 23 14:17 eval_data_from_10894\\\\n-rw-r--r--  1 root root  8140 May 23 14:12 eval_data_manifest.json\\\\n-rw-r--r--  1 root root 10126 May 27 20:20 factorial_anova.py\\\\n-rw-r--r--  1 root root  1140 May 27 20:20 factorial_data.json\\\\n-rw-r--r--  1 root root  7402 May 25 14:22 grad_debug_test.py\\\\n-rw-r--r--  1 root root 16673 May 24 20:59 gradient_analysis.py\\\\n-rw-r--r--  1 root root 18777 May 25 14:13 gradient_dose_response.py\\\\n-rw-r--r--  1 root root 12349 May 23 18:22 plot_gradient_figure.py\\\\n-rw-r--r--  1 root root  5939 May 24 02:38 plot_gradient_paper.py\\\\ndrwxr-xr-x  5 root root  4096 May 24 02:04 results\\\\n-rwxr-xr-x  1 root root 11388 May 24 02:11 run_full_analysis.sh\\\\n-rw-r--r--  1 root root 13405 May 28 03:13 statistical_tests.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 188\\ndrwxr-xr-x  4 root root  4096 May 28 02:58 .\\ndrwxr-xr-x 17 root root  4096 May 26 03:42 ..\\n-rw-r--r--  1 root root 11178 May 23 18:22 bootstrap_ci.py\\n-rw-r--r--  1 root root  1657 May 23 14:18 bootstrap_config.json\\n-rw-r--r--  1 root root  8902 May 23 14:18 bootstrap_results.json\\n-rw-r--r--  1 root root  9747 May 24 07:54 cka_analysis.py\\n-rw-r--r--  1 root root  4212 May 23 11:54 cka_compare.py\\ndrwxr-xr-x  2 root root  4096 May 23 14:17 eval_data_from_10894\\n-rw-r--r--  1 root root  8140 May 23 14:12 eval_data_manifest.json\\n-rw-r--r--  1 root root 10126 May 27 20:20 factorial_anova.py\\n-rw-r--r--  1 root root  1140 May 27 20:20 factorial_data.json\\n-rw-r--r--  1 root root  7402 May 25 14:22 grad_debug_test.py\\n-rw-r--r--  1 root root 16673 May 24 20:59 gradient_analysis.py\\n-rw-r--r--  1 root root 18777 May 25 14:13 gradient_dose_response.py\\n-rw-r--r--  1 root root 12349 May 23 18:22 plot_gradient_figure.py\\n-rw-r--r--  1 root root  5939 May 24 02:38 plot_gradient_paper.py\\ndrwxr-xr-x  5 root root  4096 May 24 02:04 results\\n-rwxr-xr-x  1 root root 11388 May 24 02:11 run_full_analysis.sh\\n-rw-r--r--  1 root root 13405 May 28 03:13 statistical_tests.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+脚本仅输出到 stdout，未生成新文件。`factorial_data.json` 是之前已存在的（May 27 20:20）。
+
+数值验证结果：
+
+```
+脚本执行: 成功（return_code=0）
+输出文件: 无新文件生成（仅 stdout 输出）
+数值验证: 全部一致
+```
+
+逐项对比：
+
+| 指标 | 预期值 | 脚本输出 | 匹配 |
+|------|--------|----------|------|
+| Cell 1 Full OCC BN mean | ~0.725 | 0.7253 | ✓ |
+| Cell 1 数据 | [0.746, 0.654, 0.776] n=3 | 同上 | ✓ |
+| Cell 2 Full OCC LN mean | ~0.777 | 0.7767 | ✓ |
+| Cell 2 数据 | [0.740, 0.792, 0.798] n=3 | 同上 | ✓ |
+| Cell 3 Detach BN mean | ~0.767 | 0.7665 | ✓ |
+| Cell 3 数据 | [0.774, 0.736, 0.762, 0.794] n=4 | 同上 | ✓ |
+| Cell 4 Detach LN mean | 0.826 | 0.8260 | ✓ |
+| Cell 4 数据 | [0.826] n=1 | 同上 | ✓ |
+| Vanilla mean | ~0.745 | 0.7453 | ✓ |
+| Vanilla 数据 | [0.768, 0.748, 0.720] n=3 | 同上 | ✓ |
+| Gradient flow main effect Δ | ≈-0.027 | -0.0274 | ✓ |
+| Gradient flow p | ≈0.396 | 0.3961 | ✓ |
+| Gradient flow Cohen's d | ≈-0.60 | -0.602 | ✓ |
+| Cell 1 vs Cell 3 Cohen's d | ≈-0.93 | -0.928 | ✓ |
+
+所有数值与预期完全一致，无差异。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "uuid": "604a9773-80df-4864-8ea0-8808af502fb2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LAR94TCDxDANhT2WApKg6j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 862,
+      "cache_read_input_tokens": 31617,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 862
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 21_
+
+脚本仅输出到 stdout，未生成新文件。`factorial_data.json` 是之前已存在的（May 27 20:20）。
+
+数值验证结果：
+
+```
+脚本执行: 成功（return_code=0）
+输出文件: 无新文件生成（仅 stdout 输出）
+数值验证: 全部一致
+```
+
+逐项对比：
+
+| 指标 | 预期值 | 脚本输出 | 匹配 |
+|------|--------|----------|------|
+| Cell 1 Full OCC BN mean | ~0.725 | 0.7253 | ✓ |
+| Cell 1 数据 | [0.746, 0.654, 0.776] n=3 | 同上 | ✓ |
+| Cell 2 Full OCC LN mean | ~0.777 | 0.7767 | ✓ |
+| Cell 2 数据 | [0.740, 0.792, 0.798] n=3 | 同上 | ✓ |
+| Cell 3 Detach BN mean | ~0.767 | 0.7665 | ✓ |
+| Cell 3 数据 | [0.774, 0.736, 0.762, 0.794] n=4 | 同上 | ✓ |
+| Cell 4 Detach LN mean | 0.826 | 0.8260 | ✓ |
+| Cell 4 数据 | [0.826] n=1 | 同上 | ✓ |
+| Vanilla mean | ~0.745 | 0.7453 | ✓ |
+| Vanilla 数据 | [0.768, 0.748, 0.720] n=3 | 同上 | ✓ |
+| Gradient flow main effect Δ | ≈-0.027 | -0.0274 | ✓ |
+| Gradient flow p | ≈0.396 | 0.3961 | ✓ |
+| Gradient flow Cohen's d | ≈-0.60 | -0.602 | ✓ |
+| Cell 1 vs Cell 3 Cohen's d | ≈-0.93 | -0.928 | ✓ |
+
+所有数值与预期完全一致，无差异。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 32704,
+  "duration_api_ms": 30567,
+  "num_turns": 6,
+  "stop_reason": "end_turn",
+  "session_id": "a1e9cfc8-2608-4d47-9d08-97ff94cda311",
+  "total_cost_usd": 0.2259505,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 20634,
+    "cache_read_input_tokens": 120836,
+    "output_tokens": 1390,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 20634,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 634,
+        "cache_read_input_tokens": 31617,
+        "cache_creation_input_tokens": 862,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 862
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1690,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001775,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 1390,
+      "cacheReadInputTokens": 120836,
+      "cacheCreationInputTokens": 20634,
+      "webSearchRequests": 0,
+      "costUSD": 0.22417550000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "21799d5e-9ed3-436d-b1c1-46e6e45985c9"
+}
+```
+
+</details>
+
+---

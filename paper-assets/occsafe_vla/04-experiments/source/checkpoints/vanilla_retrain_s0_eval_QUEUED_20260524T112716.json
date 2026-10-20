@@ -1,0 +1,29 @@
+{
+  "exp_id": "vanilla_retrain_s0_eval",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T11:26:43.623Z",
+    "updated_at": "2026-05-24T11:27:16.549Z",
+    "hypothesis": "50r SafeLIBERO eval of vanilla_retrain_s0 (seed 42). Provides same-seed Vanilla baseline for gradient analysis comparison and verifies vanilla_retrain_s0 matches original vanilla_s0 CAR.",
+    "parent": "vanilla_retrain_s0",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MUJOCO_EGL_DEVICE_ID=0 MUJOCO_GL=egl WANDB_MODE=disabled python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/vanilla_retrain_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --num_rollouts 50 --seed 42\"",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "823300",
+      "log_path": "~/runs/occsafe_vla/vanilla_retrain_s0_eval.log",
+      "submitted_at": "2026-05-24T11:27:02.169Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-24T11:27:16.708945+00:00",
+  "trigger": "update_registry"
+}

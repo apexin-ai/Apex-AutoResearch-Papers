@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d0113d7613f254a6672",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis bootstrap table2 matched",
+  "task_key": "worker_analysis_bootstrap-table2-matched_20260515T045058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-table2-matched_20260515T045058_result.json",
+    "occurrence": 1,
+    "bytes": 879,
+    "sha256": "79a7aaab83f3c7923d55bdf44824cb4dfe6faf1f0381ea1d9e22b4ad4ca531ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。3 组 paired bootstrap 结果：\n\n| Comparison | Model A | Model B | F1_A | F1_B | Δ (pp) | 95% CI | p |\n|---|---|---|---|---|---|---|---|\n| 1. In-domain SWE (N=1,824) | RF | Probe | 0.9951 | 0.9055 | +8.96 | [7.44, 10.57] | <0.001 |\n| 2. Cross-agent OH zero-shot (N=6,122) | GB | Probe-ZS | 0.9929 | 0.5984 | +39.44 | [37.86, 41.04] | <0.001 |\n| 3. Cross-agent OH fine-tuned (N=6,122) | GB | Probe-FT | 0.9929 | 0.9763 | +1.65 | [1.11, 2.23] | <0.001 |\n\n验证：\n- Comparison 1 的 F1_A=0.9951、F1_B=0.9055 与 Table 2 完全一致\n- Comparison 2 的 Probe-ZS=0.5984 与 Table 2 的 0.598 一致；GB 在 conf≥2 test split 上为 0.9929（Table 2 报告的 0.9674 是在 all 150,652 OH windows 上的值，scope 不同已注明）\n- Comparison 3 的 Probe-FT=0.9763 与 Table 2 的 0.976 一致\n- 所有 3 组差异均显著（p<0.001）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-table2-matched.md"
+}

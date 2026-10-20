@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "567a22518b74995a98aa",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "code structural on twv",
+  "task_key": "worker_code_structural-on-twv_20260514T173953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_structural-on-twv_20260514T173953_result.json",
+    "occurrence": 1,
+    "bytes": 1182,
+    "sha256": "1316908903de286b3a8b3ceeaebbc063913438df934354bcd1a914971cdfb3d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，registry 和 artifact 均已注册。结果汇总：\n\n## In-Domain (macro_f1)\n\n| Setting | LR | RF | GB |\n|---------|------|------|------|\n| MV→MV (self) | 0.9860 | 0.9944 | **0.9951** |\n| TWV→TWV (self) | 0.9292 | 0.9357 | 0.9383 |\n| TWV→MV (cross) | 0.9314 | 0.9433 | 0.9457 |\n| MV→TWV (cross) | 0.9175 | 0.9164 | 0.9186 |\n\n## Cross-Agent → OpenHands (macro_f1)\n\n| Setting | LR | RF | GB |\n|---------|------|------|------|\n| MV→OH all | 0.7527 | 0.9211 | **0.9698** |\n| TWV→OH all | 0.8190 | **0.9386** | 0.7529 |\n| MV→OH conf≥2 | 0.9626 | **0.9969** | 0.9949 |\n| TWV→OH conf≥2 | 0.9674 | **0.9786** | 0.8983 |\n\n关键发现：\n- TWV 标签对结构分类器更难（GB 0.9383 vs MV 0.9951），说明 TWV 引入了 MV 没有的细粒度区分\n- Cross-label gap 不对称：TWV→MV (0.9457) > MV→TWV (0.9186)，MV-trained 模型不能很好识别 TWV 认为的 stagnation\n- Cross-agent 上 TWV-trained 模型表现更不稳定（GB 在 OH-all 仅 0.7529），但 TWV-trained RF 在 OH-conf≥2 上 0.9786 仍然很强\n- MV-trained 模型在 cross-agent 转移上更一致，GB 在 OH-all 达到 0.9698"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-structural-on-twv.md"
+}

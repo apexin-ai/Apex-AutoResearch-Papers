@@ -1,0 +1,46 @@
+{
+  "exp_id": "cka_analysis",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T03:01:41.642Z",
+    "updated_at": "2026-05-24T00:02:43.190Z",
+    "hypothesis": "Detach OCC's encoder representations will show lower CKA similarity to the pretrained baseline compared to Full OCC and Vanilla, indicating that forward-pass interference without compensating gradients causes representational drift. Full OCC and Vanilla should maintain higher similarity to pretrained features, supporting the damage-prevention interpretation.",
+    "spec": {
+      "command": "python cka_analysis.py",
+      "server": "westd-34685",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 200,
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_source": "vanilla_retrain_s0 + full_occ_retrain_s0 + ablation_occ_detach_s0(seed44)",
+      "eval_data": "libero_spatial_no_noops (200 batches)",
+      "checkpoint_path": "westd-34685:/root/autodl-tmp/analysis/cka/cka_analysis.pdf",
+      "log_path": "westd-34685:/root/autodl-tmp/analysis/cka/cka_results.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "conditions": [
+        "Vanilla",
+        "Full OCC",
+        "Detach OCC"
+      ],
+      "vanilla_dinov2_mean_cka": 0.968,
+      "vanilla_siglip_mean_cka": 0.953,
+      "full_occ_dinov2_mean_cka": 0.964,
+      "full_occ_siglip_mean_cka": 0.96,
+      "detach_dinov2_mean_cka": 0.539,
+      "detach_siglip_mean_cka": 0.312,
+      "detach_dinov2_min_cka": 0.448,
+      "detach_siglip_min_cka": 0.223,
+      "key_finding": "Detach OCC shows catastrophic representational drift (CKA 0.31-0.54 vs 0.95-0.97 for Vanilla/Full OCC). SigLIP mid-layers (block 10-16) worst affected (CKA 0.22-0.26).",
+      "figure": "cka_analysis.pdf"
+    },
+    "completed_at": "2026-05-24T00:02:43.190Z"
+  },
+  "timestamp": "2026-05-24T00:02:43.322713+00:00",
+  "trigger": "update_registry"
+}

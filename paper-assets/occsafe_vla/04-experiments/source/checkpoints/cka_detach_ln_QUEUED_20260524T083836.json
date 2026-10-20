@@ -1,0 +1,15 @@
+{
+  "exp_id": "cka_detach_ln",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T08:38:08.127Z",
+    "updated_at": "2026-05-24T08:38:36.454Z",
+    "hypothesis": "If BN is the primary cause of representation degradation in Detach OCC, then replacing BN with LN (Detach+LN) should restore CKA similarity to pretrained levels (~0.95), rather than remaining at the degraded Detach BN level (~0.4)."
+  },
+  "timestamp": "2026-05-24T08:38:36.620535+00:00",
+  "trigger": "update_registry"
+}

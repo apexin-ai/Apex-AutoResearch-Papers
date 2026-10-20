@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5eb5116175134c22f6bc",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "paper appendix completion",
+  "task_key": "worker_paper_appendix_completion_20260517T104550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix_completion_20260517T104550_result.json",
+    "occurrence": 1,
+    "bytes": 380,
+    "sha256": "543f21259813a19df6877146058f5171878f699ff72886abcd07fcc95e1f1a15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。appendix.tex 的 Per-Generation Metrics 部分已替换为完整的 `table*` 环境，包含所有 8 个条件 (C1--C8) 的 Vendi Score、Self-BLEU、PPL、NND 三代数据。C7 缺失的三个指标用 `--` 标注，caption 中已说明原因。表格分为 Curated conditions 和 Random baselines 两组，与主文条件编号和描述格式一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-completion.md"
+}

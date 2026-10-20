@@ -1,0 +1,10 @@
+Scripts on westd-34685:
+- /root/occsafe_vla/analysis/gradient_analysis.py - Per-layer gradient norms, cosine similarity, conflict rate
+- /root/occsafe_vla/analysis/cka_analysis.py - CKA feature extraction
+- /root/occsafe_vla/analysis/cka_compare.py - CKA cross-condition comparison
+
+Results at: /root/occsafe_vla/analysis/results/
+- full_occ_gradient_stats.json, full_occ_gradient_norms.pdf
+- depth_gradient_stats.json, depth_gradient_norms.pdf
+- full_occ_cka_features.npz, depth_cka_features.npz
+- cka_full_occ_vs_depth.pdf, cka_full_occ_vs_depth.npz

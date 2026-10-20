@@ -1,0 +1,16 @@
+{
+  "exp_id": "cutoff_25k_s1_v2",
+  "project": "occsafe_vla",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T09:08:51.501Z",
+    "updated_at": "2026-05-26T09:09:01.729Z",
+    "hypothesis": "Cutoff@25K 2nd seed (seed 43, v2 code). OCC ON first 25K steps then OFF. Current dose-response 25K has only n=1 (CAR=0.688), weakest data point. 2nd seed to strengthen dose-response curve.",
+    "parent": "cutoff_25k_s0"
+  },
+  "timestamp": "2026-05-26T09:09:01.996505+00:00",
+  "trigger": "update_registry"
+}

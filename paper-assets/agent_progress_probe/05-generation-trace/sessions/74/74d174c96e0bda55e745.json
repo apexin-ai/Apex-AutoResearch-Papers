@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "74d174c96e0bda55e745",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "experiment instance level isolation",
+  "task_key": "worker_experiment_instance-level-isolation_20260515T024202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_instance-level-isolation_20260515T024202.log",
+    "occurrence": 1,
+    "bytes": 904942,
+    "sha256": "18f75a8311794e62f5a5c9e9cdbc794e90e546d3a095120af4cf973ab0b2d2ed"
+  },
+  "statistics": {
+    "messages": 526,
+    "user_turns": 0,
+    "tool_calls": 232,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 11,
+      "assistant": 48,
+      "tool_call": 232,
+      "tool_result": 232,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 526,
+      "chunks": [
+        {
+          "path": "74d174c96e0bda55e745-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "74d174c96e0bda55e745-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "74d174c96e0bda55e745-part-0003.json",
+          "message_count": 166
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-instance-level-isolation.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "acb8b56a576b7f41368e",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "analysis d073 a4 llm on oh",
+  "task_key": "worker_analysis_d073-a4-llm-on-oh_20260516T022806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d073-a4-llm-on-oh_20260516T022806.log",
+    "occurrence": 1,
+    "bytes": 954276,
+    "sha256": "f5319704bb728ba3e1f737712662db35ee297c0c58499ee007db7de9127da4ce"
+  },
+  "statistics": {
+    "messages": 209,
+    "user_turns": 1,
+    "tool_calls": 76,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 76,
+      "tool_result": 76,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 1
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 158,
+      "chunks": [
+        {
+          "path": "acb8b56a576b7f41368e-part-0001.json",
+          "message_count": 125
+        },
+        {
+          "path": "acb8b56a576b7f41368e-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 51,
+      "chunks": [
+        {
+          "path": "acb8b56a576b7f41368e-part-0002.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-d073-a4-llm-on-oh-copy-2.md"
+}

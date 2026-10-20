@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0674c7a6ba914f57819c",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis error overlap canonical",
+  "task_key": "worker_analysis_error-overlap-canonical_20260515T014801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_error-overlap-canonical_20260515T014801_result.json",
+    "occurrence": 1,
+    "bytes": 3384,
+    "sha256": "4af66d94c240cc99888d8f1036451b8cf33ef2b90735da126a0e99ea151d5b7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Let me compile the results and provide the report.\n\n## Results\n\n### Step 1: Root Cause — Initial Hypothesis is WRONG\n\nThe hypothesis that \"Worker C evaluated structural on all-windows (conf=1)\" is **incorrect**. Both scripts explicitly filter `confidence >= 2`. Verified:\n- Worker C's `oh_crossagent_error_analysis_fixed.py` → `w.get(\"confidence\", 0) >= 2`\n- Worker A/B's `oh_crossagent_error_analysis.py` → same filter\n- Both evaluate on 43,366–43,376 conf≥2 windows\n\n**Actual root cause**: The v2 result (57 structural errors) is **not reproducible**. My canonical run using the exact same code logic, hyperparameters (GB: 200 trees, lr=0.05, max_depth=5, seed=42), data paths, and feature extraction produces 1,421 structural errors — aligning with Worker C's 1,342 (the small difference explained by Worker C's different hyperparameters: 100 trees, lr=0.1).\n\nThe v2 JSON was likely generated under conditions that no longer exist on disk. The most probable explanation: the script was edited after the v2 run (either by the same or a different Worker), and the v2 result came from a script version that is no longer recoverable.\n\n### Step 2: Authoritative Numbers (Canonical Verification)\n\n| Metric | v2 claim | Canonical run | Verdict |\n|--------|----------|---------------|---------|\n| n_windows (conf≥2) | 43,366 | 43,366 | **Confirmed** |\n| Probe errors | 8,643 | 8,643 | **Confirmed** |\n| Probe CM | TN=1661, FP=6955, FN=1688, TP=33062 | identical | **Confirmed** |\n| Probe macro_f1 | 0.581 | 0.581 | **Confirmed** |\n| Struct GB errors | 57 | **1,421** | **NOT confirmed** |\n| Struct GB CM | FP=32, FN=25 | **FP=442, FN=979** | **NOT confirmed** |\n| Struct GB macro_f1 | 0.998 | **0.950** | **NOT confirmed** |\n| Both wrong | 31 | **364** | **NOT confirmed** |\n| Overlap rate | 0.36% | **4.21%** | **NOT confirmed** |\n\n**Paper impact**: Two claims need revision:\n- `analysis.tex:56` — \"only 0.4% of probe errors overlap\" → should be **~4.2%**\n- `appendix.tex:85,89` — \"structural GB (0.998 on conf≥2)\" → should be **~0.950**\n\nThe experiments table value (cross-agent 0.9674) comes from `cross_agent_structural_results.json`, a separately validated evaluation, and is not affected.\n\n### Step 3: Script and Dry-Run Output\n\n**Script**: `/root/autodl-tmp/agent_progress_probe/src/analysis/error_overlap_canonical.py`\n\n**Dry-run output** (from `/tmp/canonical_run.log`):\n```\n=== Loading probe checkpoint ===\nCheckpoint: epoch=9, embed_dim=1024, hidden=256, layers=2\n\n=== Loading OH embeddings ===\nTotal embeddings: 143057\nconf>=2: 43366 windows (stag=8616, prog=34750)\n\n=== Probe inference ===\nProbe: macro_f1=0.5810, errors=8643\n  CM: TN=1661, FP=6955, FN=1688, TP=33062\n\n=== Structural GB ===\nSWE non-abstain: 54809\nSWE features: (54809, 30)\nTraining GB on SWE data (n_estimators=200, lr=0.05)...\nOH conf>=2 for structural: 43376\nStruct GB: macro_f1=0.9498, errors=1421\n  CM: TN=8184, FP=442, FN=979, TP=33771\n\n=== Error overlap ===\nCommon windows: 43366 / probe=43366, struct=43376\nProbe errors:  8643\nStruct errors: 1421\nBoth wrong:    364\nProbe-only:    8279\nStruct-only:   1057\nOverlap rate:  364/8643 = 0.0421 (4.21%)\n\nSaved to results/error_overlap_canonical.json\n```\n\n**Output JSON**: `results/error_overlap_canonical.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-error-overlap-canonical.md"
+}

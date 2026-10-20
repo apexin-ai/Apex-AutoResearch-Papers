@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "8a8dc1a128b2bd660b5e",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "train oh full finetune",
+  "task_key": "worker_train_oh-full-finetune_20260514T150243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_oh-full-finetune_20260514T150243.log",
+    "occurrence": 1,
+    "bytes": 957072,
+    "sha256": "d0636240591b15eaef2278cb0cb420655635708943954ed46afd5243f1e99cad"
+  },
+  "statistics": {
+    "messages": 578,
+    "user_turns": 0,
+    "tool_calls": 243,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 2,
+      "assistant": 85,
+      "tool_call": 243,
+      "tool_result": 243,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 578,
+      "chunks": [
+        {
+          "path": "8a8dc1a128b2bd660b5e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8a8dc1a128b2bd660b5e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8a8dc1a128b2bd660b5e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "8a8dc1a128b2bd660b5e-part-0004.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-oh-full-finetune.md"
+}

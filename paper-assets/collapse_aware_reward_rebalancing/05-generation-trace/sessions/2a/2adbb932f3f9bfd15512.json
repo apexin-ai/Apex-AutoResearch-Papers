@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2adbb932f3f9bfd15512",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "diagnose status report",
+  "task_key": "worker_diagnose_status-report_20260516T125803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_status-report_20260516T125803_result.json",
+    "occurrence": 1,
+    "bytes": 1294,
+    "sha256": "c9f8602b00794ff62e398807e34a376b197642df2dedb29e6da6b2dac0452b68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== QUICK PROBE 03 ===\nStatus: RUNNING (PID 497183)\nCurrent phase: Gen 1, Step 5 (Evaluation) — scoring quality with ArmoRM\n\nGen 0 Metrics:\n  mean_quality (ArmoRM): 0.1123\n  vendi_score: 107.54\n  mean_nn_distance: 0.7088\n  self_bleu: 0.0059\n  perplexity: 10.60\n  batch_fallbacks: 2 (batch-level \"Token pattern not found\", fell back to per-sample scoring; no samples lost)\n\nGen 0 Training:\n  loss: 0.4805 → 0.356 (5 checkpoints), train_loss=0.4134\n\nGen 1 Training (completed):\n  loss: 0.296 → 0.186, train_loss=0.2399\n  Model saved to: outputs/gen_1/condition_0/merged\n\nGen 1 Metrics: not yet available (eval in progress — ArmoRM checkpoint loading)\n\n=== NO-CURATION BASELINE 01 ===\nStatus: RUNNING (PID 501406)\nCurrent phase: Gen 0, Step 1 (Generation) — 1216/2000 prompts\n\nNo metrics yet. Still generating candidates.\n\n=== ANALYSIS SCRIPTS ===\nanalyze_results.py: EXISTS (4293 bytes, 2026-05-16 20:26)\ncompare_conditions.py: EXISTS (5313 bytes, 2026-05-16 20:26)\n```\n\nQuick Probe 进展正常，Gen 0 完成，Gen 1 训练已结束正在做 eval scoring。Baseline 刚启动不久，Gen 0 生成阶段约 61% 进度。两个 WARN 是 ArmoRM batch 级别 token pattern 错误导致 fallback 到逐样本打分，未丢失样本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-status-report.md"
+}

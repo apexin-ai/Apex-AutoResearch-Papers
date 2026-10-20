@@ -1,0 +1,29 @@
+{
+  "exp_id": "full_occ_ln_s3_v2_eval",
+  "project": "occsafe_vla",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T11:10:58.958Z",
+    "updated_at": "2026-05-26T11:33:14.526Z",
+    "hypothesis": "50-rollout SafeLIBERO eval of full_occ_ln_s3_v2 (Full OCC LN, seed 45, v2 code). First v2 data point for Cell 2 of 2×2 factorial ANOVA. Cell 2 has only v1 data (n=3, mean=0.743).",
+    "parent": "full_occ_ln_s3_v2",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=2 python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/full_occ_ln_s3_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_s3_v2--50000_chkpt --task_suite_name libero_spatial --num_rollouts 50 --seed 42\"",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "186832",
+      "log_path": "~/runs/occsafe_vla/full_occ_ln_s3_v2_eval.log",
+      "submitted_at": "2026-05-26T11:11:25.789Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-26T11:33:15.009946+00:00",
+  "trigger": "update_registry"
+}

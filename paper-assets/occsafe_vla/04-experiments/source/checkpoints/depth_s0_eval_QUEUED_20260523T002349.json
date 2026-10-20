@@ -1,0 +1,16 @@
+{
+  "exp_id": "depth_s0_eval",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:23:34.875Z",
+    "updated_at": "2026-05-23T00:23:49.411Z",
+    "hypothesis": "50r evaluation of depth_s0 (seed 42, monocular depth auxiliary) at 50000_chkpt. Third seed for depth condition, needed for 4-seed statistical analysis.",
+    "parent": "depth_s0"
+  },
+  "timestamp": "2026-05-23T00:23:49.509211+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "cutoff_15k_s1_eval",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T02:31:04.682Z",
+    "updated_at": "2026-05-25T02:31:21.424Z",
+    "hypothesis": "Eval of cutoff_15k_s1 (seed 43, gradient flow cutoff at 15K). s0 achieved CAR=0.804 — higher than Full OCC 3-seed avg (0.797). 2nd seed to verify if non-monotonic dose-response pattern is real or seed variance.",
+    "parent": "cutoff_15k_s1"
+  },
+  "timestamp": "2026-05-25T02:31:21.612122+00:00",
+  "trigger": "update_registry"
+}

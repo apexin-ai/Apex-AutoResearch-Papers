@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fde1475f43b4bc13ae5c",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260514T194953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_20260514T194953_result.json",
+    "occurrence": 1,
+    "bytes": 647,
+    "sha256": "7158c56e4408e729042df631fc0c14ada9b1cf7456bcc2a7a3cace8aafbcf204"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "添加了 2 篇论文：\n\n1. **fan2026agentrm** — *Exploring Reasoning Reward Model for Agents* (2601.22154)：多维度 reasoning reward model，通过结构化反馈（reasoning trace + critique + score）评估 agent trajectory，12 个 benchmark 上验证。\n\n2. **qiu2026dataprm** — *Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis* (2604.24198)：发现传统 PRM 无法检测 silent errors 且误判 exploratory steps，提出 environment-aware DataPRM + ternary reward 策略。\n\n两篇均为 2026 年，有 arxiv ID，已标注 `verified: true`，已有条目未修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research.md"
+}

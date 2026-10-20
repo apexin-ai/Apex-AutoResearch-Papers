@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dceaf02709a707fb6585",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "analysis compile experiment table",
+  "task_key": "worker_analysis_compile_experiment_table_20260517T031356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_compile_experiment_table_20260517T031356_result.json",
+    "occurrence": 1,
+    "bytes": 484,
+    "sha256": "08fc0270059af6ecd138c5b43e71b52abebe13eef7b2ade5714a5d5c3ee5a13c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已写入 `artifacts/experiment_data_table.md`。\n\n汇总：\n- 6 个实验的完整 metrics 表（Table 1）、Vendi 变化率汇总（Table 2）、训练 loss 轨迹（Table 3，含 per-step 细节）均已整理完成\n- 所有 log 中都包含 train_loss，已提取每代的平均 loss 和 gen2 的逐步 loss\n- fullft_k4_probe_03 的 log 路径实际为 `~/runs/collapse_aware_reward_rebalancing/carr_fullft_k4_probe_03.log`（非原始给出的路径）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-compile-experiment-table.md"
+}

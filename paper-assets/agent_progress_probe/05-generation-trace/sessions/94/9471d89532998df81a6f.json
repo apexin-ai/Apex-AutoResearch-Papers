@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "9471d89532998df81a6f",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "experiment gold consensus eval",
+  "task_key": "worker_experiment_gold-consensus-eval_20260515T110043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_gold-consensus-eval_20260515T110043.log",
+    "occurrence": 1,
+    "bytes": 941609,
+    "sha256": "a7b61935dcb925fbf0e2c6f2b0ac52b38a99ed7daba47605b2063e064c883a97"
+  },
+  "statistics": {
+    "messages": 840,
+    "user_turns": 1,
+    "tool_calls": 278,
+    "roles": {
+      "log": 1,
+      "system": 246,
+      "record": 1,
+      "assistant": 34,
+      "tool_call": 278,
+      "tool_result": 278,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 105,
+      "chunks": [
+        {
+          "path": "9471d89532998df81a6f-part-0001.json",
+          "message_count": 105
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 735,
+      "chunks": [
+        {
+          "path": "9471d89532998df81a6f-part-0001.json",
+          "message_count": 75
+        },
+        {
+          "path": "9471d89532998df81a6f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9471d89532998df81a6f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9471d89532998df81a6f-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "9471d89532998df81a6f-part-0005.json",
+          "message_count": 120
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-gold-consensus-eval.md"
+}

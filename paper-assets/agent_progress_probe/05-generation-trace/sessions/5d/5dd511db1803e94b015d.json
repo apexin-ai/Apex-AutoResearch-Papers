@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5dd511db1803e94b015d",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "code d072 pareto curve",
+  "task_key": "worker_code_d072-pareto-curve_20260515T143314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d072-pareto-curve_20260515T143314_result.json",
+    "occurrence": 1,
+    "bytes": 297,
+    "sha256": "3b7711f17ea85df163c20cf2910d94f9c73f62427a087a792f7a362180808481"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`pareto_curve.py` 已完成，dry-run 通过。\n\n- 脚本位置: `pareto_curve.py`\n- 输出: `artifacts/d072/pareto_curve.pdf` + `pareto_curve.png`\n- 当前使用 mock 数据（`early_termination_sim.json` 尚不存在），真实数据文件就绪后直接运行即可替换。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d072-pareto-curve.md"
+}

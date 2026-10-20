@@ -1,0 +1,42 @@
+{
+  "exp_id": "reverse_cutoff_s2",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T16:25:11.739Z",
+    "updated_at": "2026-05-25T04:19:35.821Z",
+    "hypothesis": "Seed 44 replication of reverse_cutoff (no OCC first 35K steps, enable 35K-50K). 2-seed results show instability (0.700-0.736, std=0.025) with T7 being primary variance source (0.30-1.0 across seeds). 3rd seed needed to confirm late-onset gradient flow instability pattern and T7 variance. Parent: reverse_cutoff_s1 (s1 CAR=0.736, T3 crashed from 0.54→0.04 across seeds).",
+    "parent": "reverse_cutoff_s1",
+    "server": "westd-34685",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-34685",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-24T17:03:26.843Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_loss_cutoff_step 35000 --occ_loss_cutoff_mode before --run_root_dir /root/autodl-tmp/checkpoints/reverse_cutoff_s2 --seed 44 --run_id_note reverse_cutoff_s2\""
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_loss_cutoff_step 35000 --occ_loss_cutoff_mode before --run_root_dir /root/autodl-tmp/checkpoints/reverse_cutoff_s2 --seed 44 --run_id_note reverse_cutoff_s2\"",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "998624",
+      "log_path": "~/runs/occsafe_vla/reverse_cutoff_s2.log",
+      "submitted_at": "2026-05-24T17:04:58.273Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "998624",
+    "log_path": "~/runs/occsafe_vla/reverse_cutoff_s2.log",
+    "failure_reason": "SSH check failed 5x — last error: [Errno None] Unable to connect to port 34685 on 36.103.198.204",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-25T04:19:36.037881+00:00",
+  "trigger": "update_registry"
+}

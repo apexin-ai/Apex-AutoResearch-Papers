@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4dd5130a1e0f588c1ff2",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "run fullft lr2e5 probe",
+  "task_key": "worker_run_fullft_lr2e5_probe_20260516T204005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_fullft_lr2e5_probe_20260516T204005_result.json",
+    "occurrence": 1,
+    "bytes": 544,
+    "sha256": "944e17264d87e0b1df4c01ce974bf5e224c70e003098e5ae5ac0450563254e58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认启动正常：\n\n- **cuda:1** 已占用 ~21GB 显存（模型已加载，正在生成/评估）\n- 日志显示 dataset 从离线缓存加载成功\n- PID 523811 运行中\n\n**配置总结**：\n- `LR = 2e-5` (4x from 5e-6)\n- `EPOCHS = 3` (from 2)\n- `USE_LORA = False`, `BATCH_SIZE=1`, `GRAD_ACCUM=8`\n- `K=4`, `NUM_PROMPTS=2000`, `3 generations`\n- 输出目录: `outputs_fullft_lr2e5/`\n- 实验 ID: `carr_fullft_lr2e5_probe_01`\n- 日志: `~/runs/collapse_aware_reward_rebalancing/carr_fullft_lr2e5_probe_01.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-fullft-lr2e5-probe.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e243ef6ae552c5c8c1f7",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "ops llm judge check",
+  "task_key": "worker_ops_llm-judge-check_20260514T111515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llm-judge-check_20260514T111515_result.json",
+    "occurrence": 1,
+    "bytes": 699,
+    "sha256": "44666f317b648cfefac47350c80ae23ee5b4b6c9e4d03fa475ed9f90c1b97b80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估仍在运行中。当前状态：\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **160 / 1824 windows (8.8%)** |\n| 当前 macro_f1 | **0.5388** |\n| Parse failures | **0** |\n| 已用 tokens | 268,160 |\n| 已花费 | ~$1.02 |\n| 预估总花费 | ~$11.6 (远低于 $50 budget) |\n\n注意事项：\n- 新 API key 已在使用中，运行正常\n- macro_f1 从前 50 windows 的 0.44 上升到 160 windows 的 0.54，趋势在波动但整体高于 pilot 的 0.4286\n- 结果文件已有 100-window 的中间 checkpoint\n- 按 3 rps 估算，全量 1824 windows 大约还需 ~9 分钟 API 调用时间（加上处理开销会更长）\n\n进程健康运行中，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llm-judge-check.md"
+}

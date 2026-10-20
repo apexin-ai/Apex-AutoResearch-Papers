@@ -1,0 +1,39 @@
+{
+  "exp_id": "full_occ_ln_v2_s0b",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T23:54:49.754Z",
+    "updated_at": "2026-05-27T00:29:59.084Z",
+    "spec": {
+      "command": "bash -c \"export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --occ_norm_type ln --run_root_dir /root/autodl-tmp/checkpoints/full_occ_ln_v2_s0b --seed 42 --run_id_note full_occ_ln_v2_s0b\"",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "458140",
+      "log_path": "~/runs/occsafe_vla/full_occ_ln_v2_s0b.log",
+      "submitted_at": "2026-05-26T23:54:49.050Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 55370,
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_source": "pretrained:openvla-7b (fresh start)",
+      "eval_data": "N/A (training run)",
+      "wall_clock_seconds": 2110.0,
+      "gpu_hours": 0.59
+    },
+    "hypothesis": "v2 rebuild of Full OCC LN (gradient flow ON, LayerNorm), seed 42. Replacement for full_occ_ln_v2_s0 which stalled at step 275 on 10894. Fills Cell 2 v2 data gap for factorial ANOVA.",
+    "parent": "full_occ_ln_v2_s0",
+    "conclusion": "failed",
+    "completed_at": "2026-05-27T00:29:59.084Z"
+  },
+  "timestamp": "2026-05-27T00:29:59.416727+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,153 @@
+# code gradient analysis prep
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_code_gradient-analysis-prep_20260527T031824_result.json`
+- **Structured JSON:** [`45988363b1a4ff470555.json`](../../sessions/45/45988363b1a4ff470555.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+信息收集完毕。下面是汇总报告。
+
+---
+
+## V2 梯度分析准备报告
+
+### 1. 现有代码清单
+
+| 脚本 | 路径 | 用途 | V2 兼容 |
+|------|------|------|---------|
+| `run_gradient_analysis_v2.py` | `/root/occsafe_vla/scripts/` | 单条件 per-layer 梯度分析（action/occ grad norm + cosine similarity + conflict rate） | ✅ |
+| `compare_gradient_conditions.py` | `/root/occsafe_vla/scripts/` | 跨条件对比（目前硬编码 3 条件：vanilla/full_occ/detach） | ⚠️ 需扩展到 5 条件 |
+| `plot_gradient_analysis_v2.py` | `/root/occsafe_vla/scripts/` | 4-panel 可视化（action grad / occ grad / cosine sim / grad ratio） | ✅ 已有所有条件的样式 |
+| `gradient_analysis.py` | `/root/occsafe_vla/analysis/` | V1 版本，旧接口 | ❌ 不需要 |
+
+### 2. 现有结果（V1，`analysis/results/`）
+
+- `random_occ_s2_dryrun_gradient_stats.json` — 5-batch dryrun，**cosine 范围 [-0.036, +0.034]，均值 ≈ 0** ✓ 符合预期
+- `random_occ_s2_gradient_stats.json`、`detach_s2_gradient_stats.json` — 完整运行
+- `gradient_comparison.pdf/png` — V1 对比图
+
+**无 V2 梯度分析结果。**
+
+### 3. V2 兼容性评估
+
+`run_gradient_analysis_v2.py` **完全兼容 V2 代码**：
+- 使用 `vla._cached_patch_features` → 在 `modeling_prismatic.py:447` 确认存在（`self._cached_patch_features = patch_features`）
+- 动态计算 `NUM_PATCHES_TOTAL`（从 model config 获取，非硬编码）
+- 自动检测 `occ_detach` / `occ_norm` / `is_vanilla`
+- 加载 `occ_head--*.pt`、`action_head--*.pt` 从 checkpoint 目录
+
+### 4. Checkpoint 可用性（50000 step）
+
+| 条件 | Checkpoint ID | 服务器 | 50000 ckpt |
+|------|---------------|--------|------------|
+| **Vanilla** | `vanilla_v2_s1` | westd-34685 | ✅ |
+| **Cell 1: Full OCC + LN** (grad ON) | `full_occ_ln_s3_v2` | westd-10894 | ✅ |
+| **Cell 2: Full OCC + BN** (grad ON) | `full_occ_bn_v2_s1` | westd-34685 | ✅ |
+| **Cell 3: Detach + LN** (grad OFF) | `ablation_occ_detach_s3_v2` | westd-10894 | ✅ |
+| **Cell 4: Detach + BN** (grad OFF) | `detach_bn_v2_s1` | westd-34685 | ✅ |
+
+注意：Cell 3 用的是 `ablation_occ_detach_s3_v2`（无显式 LN 后缀），`auto_detect_settings` 会因 name 含 "detach" 且不含 "bn" 而默认 `occ_norm="ln"`、`occ_detach=True`。如果这个 checkpoint 实际是 BN，需要手动指定 `--occ_norm bn`。
+
+数据目录两台服务器均就绪：
+- RLDS: `/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops/` ✅
+- OCC: `/root/occsafe_vla/occ_data/` ✅
+
+### 5. 还需要做什么
+
+**无需修改 `run_gradient_analysis_v2.py`**——直接可用。
+
+需要做的：
+
+1. **确认 `ablation_occ_detach_s3_v2` 的 norm 类型**——检查其 occ_head checkpoint 或训练 config 确认是 LN 还是 BN
+2. **扩展 `compare_gradient_conditions.py`**——从 3 条件改为 5 条件（或用 `plot_gradient_analysis_v2.py` 直接读取 5 个 JSON，它本身支持任意数量条件）
+3. **运行 5 次分析**——命令见下
+
+### 6. 运行命令
+
+每条分析约需 15-30 分钟（200 batches × bs4 = 800 samples）。可在两台服务器上并行。
+
+**westd-10894**（2 条件，可分别用 cuda:0 和 cuda:1 并行）：
+
+```bash
+source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe
+
+# Cell 1: Full OCC + LN (gradient ON)
+nohup python3 /root/occsafe_vla/scripts/run_gradient_analysis_v2.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints/full_occ_ln_s3_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_s3_v2--50000_chkpt \
+  --condition_name "Full_OCC_LN_v2" --seed 42 \
+  --output_dir /root/occsafe_vla/artifacts/gradient_v2/ \
+  --gpu 0 > /tmp/grad_full_occ_ln.log 2>&1 &
+
+# Cell 3: Detach + LN (gradient OFF)
+nohup python3 /root/occsafe_vla/scripts/run_gradient_analysis_v2.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints/ablation_occ_detach_s3_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--ablation_occ_detach_s3_v2--50000_chkpt \
+  --condition_name "Detach_LN_v2" --seed 42 \
+  --output_dir /root/occsafe_vla/artifacts/gradient_v2/ \
+  --gpu 1 > /tmp/grad_detach_ln.log 2>&1 &
+```
+
+**westd-34685**（3 条件，分别用 cuda:0/1/2 并行）：
+
+```bash
+source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe
+
+# Vanilla
+nohup python3 /root/occsafe_vla/scripts/run_gradient_analysis_v2.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints/vanilla_v2_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--vanilla_v2_s1--50000_chkpt \
+  --condition_name "Vanilla_v2" --seed 42 \
+  --output_dir /root/occsafe_vla/artifacts/gradient_v2/ \
+  --gpu 0 > /tmp/grad_vanilla.log 2>&1 &
+
+# Cell 2: Full OCC + BN (gradient ON)
+nohup python3 /root/occsafe_vla/scripts/run_gradient_analysis_v2.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints/full_occ_bn_v2_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_bn_v2_s1--50000_chkpt \
+  --condition_name "Full_OCC_BN_v2" --seed 42 --occ_norm bn \
+  --output_dir /root/occsafe_vla/artifacts/gradient_v2/ \
+  --gpu 1 > /tmp/grad_full_occ_bn.log 2>&1 &
+
+# Cell 4: Detach + BN (gradient OFF)
+nohup python3 /root/occsafe_vla/scripts/run_gradient_analysis_v2.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints/detach_bn_v2_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s1--50000_chkpt \
+  --condition_name "Detach_BN_v2" --seed 42 --occ_norm bn \
+  --output_dir /root/occsafe_vla/artifacts/gradient_v2/ \
+  --gpu 2 > /tmp/grad_detach_bn.log 2>&1 &
+```
+
+**出图**（5 个 JSON 都生成后）：
+
+```bash
+python3 /root/occsafe_vla/scripts/plot_gradient_analysis_v2.py \
+  --results_dir /root/occsafe_vla/artifacts/gradient_v2/ \
+  --output /root/occsafe_vla/artifacts/gradient_v2/gradient_analysis_v2_combined.pdf
+```
+
+### 7. 预期结果
+
+- **Grad ON 条件**（Cell 1, 2）：cosine sim 应 ≈ 0（OCC 梯度与 action 梯度正交），OCC grad norm > 0
+- **Grad OFF 条件**（Cell 3, 4）：OCC grad norm = 0（detach 切断梯度），cosine 为 N/A
+- **Vanilla**：无 OCC head，OCC grad = 0，cosine 为 N/A
+- V1 dryrun 已验证 cosine ≈ 0 成立（均值范围 -0.036 ~ +0.034），V2 预期结论一致
+
+### 8. 注意事项
+
+- 运行前确认 GPU 空闲（训练占用的 GPU 不能用）
+- `ablation_occ_detach_s3_v2` 的 norm 类型需验证——如果实际是 BN，命令需加 `--occ_norm bn`
+- 两台服务器的 output_dir 路径相同（`/root/occsafe_vla/artifacts/gradient_v2/`），结果 JSON 需要手动 scp 合并到一台机器上再出图
+- `compare_gradient_conditions.py` 如果要用，需改代码支持 5 条件；但 `plot_gradient_analysis_v2.py` 已经支持任意多条件的可视化，可能不需要改
+
+---

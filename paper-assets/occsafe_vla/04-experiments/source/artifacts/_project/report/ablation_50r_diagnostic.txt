@@ -1,0 +1,1 @@
+Case counts: A=0, B=6, C=2, D=2. Aggregate CAR: Random(0.806) > Vanilla(0.777) > FullOCC(0.769) > Detach(0.745). Per-task cases: T0=B, T1=D, T2=B, T3=C, T4=B, T5=B, T6=C, T7=D, T8=B, T9=B. Charts on westd-34685: /root/occsafe_vla/openvla-oft/analysis/output/ (ablation_car_comparison.pdf, ablation_tsr_comparison.pdf, diagnostic_matrix.pdf, diagnostic_report.json)

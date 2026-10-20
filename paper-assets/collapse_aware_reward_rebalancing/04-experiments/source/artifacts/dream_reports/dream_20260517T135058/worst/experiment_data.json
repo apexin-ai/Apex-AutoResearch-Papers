@@ -1,0 +1,255 @@
+[
+  {
+    "name": "LoRA K=4 curated baseline",
+    "description": "Qwen3-0.6B LoRA K=4 curated, 3 gens. Core semantic resilience test.",
+    "results": {
+      "gen0_vendi": 107.54,
+      "gen1_vendi": 106.73,
+      "gen2_vendi": 107.25,
+      "vendi_decline_pct": -0.28,
+      "gen0_nn_distance": 0.7088,
+      "gen1_nn_distance": 0.7065,
+      "gen2_nn_distance": 0.7054,
+      "gen0_quality": 0.1123,
+      "gen2_quality": 0.1109,
+      "gen2_self_bleu": 0.0062,
+      "gen2_perplexity": 9.72,
+      "p1_pass": false,
+      "format_opening_entropy_drop_selected": -0.0051,
+      "format_near_dup_increase_selected": 0.0085,
+      "format_ttr_drop_selected": -0.0129
+    },
+    "tables": [
+      "Table 1 Row C1: 0.6B LoRA K=4 curated — 标注为 sub-1B regime",
+      "Table 2: Vendi trajectory summary — C1 行标绿（stable），与 1.5B 行标红形成对比"
+    ],
+    "figures": [],
+    "analysis": "在 worst tier 下从 \"proves resilience\" 降级为 \"proves sub-1B capacity limitation\"。 审稿人将质疑：如果 0.6B 的 resilience 只是因为模型太小而无法 drift，那不是 resilience 是 incapacity。论文需在 Discussion 承认此替代解释，并 argue capacity explanation 本身就是 contribution——识别了 collapse 的 gating factor 是 model capacity 而非 curation pressure。\n\n\n0.6B LoRA capacity ceiling（rank 8-16 vs 600M 总参数）限制了所有方向的 drift， 包括 collapse 方向。Vendi 稳定 (-0.28%) 不是语义真正 resilient，而是模型太小 以至于 curation signal 无法在低秩子空间中引导有方向性的 distribution shift。 nn_distance 轻微下降 (0.7088→0.7054) 在 0.6B 不显著，但在 worst tier 下被 标记为 \"early compression signal\"——同样的趋势在 1.5B 被放大为 monotonic collapse (0.712→0.678)。quality 几乎不变 (0.1123→0.1109) 表明 0.6B 甚至 没有成功 optimize reward，进一步支持 \"incapacity, not resilience\" 的替代解释。\n"
+  },
+  {
+    "name": "LoRA K=8 curated",
+    "description": "Qwen3-0.6B LoRA K=8 curated, 3 gens. Higher selection pressure.",
+    "results": {
+      "gen0_vendi": 107.21,
+      "gen1_vendi": 107.26,
+      "gen2_vendi": 107.25,
+      "vendi_decline_pct": -0.03,
+      "gen0_nn_distance": 0.7097,
+      "gen2_nn_distance": 0.7095,
+      "gen0_quality": 0.1146,
+      "gen2_quality": 0.1143,
+      "gen2_self_bleu": 0.0064,
+      "p1_pass": false,
+      "format_opening_entropy_fullpool_gen0": 13.087,
+      "format_opening_entropy_fullpool_gen2": 11.961,
+      "format_entropy_drop_fullpool": -1.126,
+      "format_dup_rate_gen0": 0.5,
+      "format_dup_rate_gen2": 0.836,
+      "format_trigram_rep_gen0": 0.391,
+      "format_trigram_rep_gen2": 0.509
+    },
+    "tables": [
+      "Table 1 Row C2: 0.6B LoRA K=8 curated",
+      "Table 4: Format metrics — K=8 entropy drop -1.13 vs K=4 的 -0.75"
+    ],
+    "figures": [],
+    "analysis": "K=8 的 format collapse amplification 在 0.6B 内 clean confirmed。但 worst tier 下的 gap：K × scale interaction 未知。若 K=8 + 1.5B 产生比 K=4 + 1.5B 更严重 的 semantic collapse，这意味着 0.6B 的 \"K only affects format\" 结论也是 scale-limited。Claim 2 需附加 caveat \"K-format relationship verified at 0.6B only.\"\n\n\nK=8 (12.5% retention) 翻倍了 selection pressure，但 Vendi 完全稳定 (-0.03%)—— LoRA ceiling 同样限制了更高 K 下的 semantic drift。然而 format collapse 在 K=8 显著加剧：full-pool opening entropy -1.13 bits (vs K=4 的 -0.75 bits)， near-duplicate rate 50%→84%，trigram repetition +11.8pp。K 是 format collapse 的 amplifier，但此 finding 限定于 0.6B。审稿人会追问 K=8 在 1.5B 是否会导致 更严重的 semantic collapse——而我们没有 1.5B K=8 数据。K × scale interaction 完全未被探索。\n"
+  },
+  {
+    "name": "LoRA K=4 random baseline",
+    "description": "Qwen3-0.6B LoRA K=4 random selection, 3 gens. Control condition.",
+    "results": {
+      "gen0_vendi": 105.42,
+      "gen1_vendi": 108.21,
+      "gen2_vendi": 108.72,
+      "vendi_decline_pct": 3.13,
+      "gen0_nn_distance": 0.7005,
+      "gen1_nn_distance": 0.7121,
+      "gen2_nn_distance": 0.7136,
+      "gen0_quality": 0.1107,
+      "gen2_quality": 0.1096,
+      "gen2_self_bleu": 0.0067,
+      "gen2_perplexity": 11.18,
+      "format_opening_entropy_fullpool_gen0": 12.426,
+      "format_opening_entropy_fullpool_gen2": 11.68,
+      "format_entropy_drop_fullpool": -0.745,
+      "format_dup_rate_gen0": 0.383,
+      "format_dup_rate_gen2": 0.749,
+      "format_ttr_drop_selected": -0.0223,
+      "format_trigram_rep_increase_selected": 0.0213
+    },
+    "tables": [
+      "Table 1 Row C5: 0.6B LoRA K=4 random",
+      "Table 4: C1 vs C5 format comparison (same K=4, critical for Claim 2)"
+    ],
+    "figures": [],
+    "analysis": "plan_003 是 Claim 2 在 0.6B 的 linchpin control。0.6B 内 C1≈C5 format degradation 的 evidence 仍 internally valid。Worst tier 的致命问题：plan_010 killed 使 1.5B 无法重复此 causal isolation。审稿人：\"Your causal decomposition works at 0.6B, but at 1.5B where collapse actually happens, you have no control. The finding that matters most is exactly where your evidence is weakest.\"\n\n\nRandom selection 无 reward signal，Vendi +3.13% 是 random sampling 引入的方差效应。 Format collapse 与 curated (C1) 在 full-pool 上几乎相同 (-0.745 bits vs ~-0.75)， confirmed format degradation 是 iterative training inherent property 而非 curation 造成。在 selected responses 上 C5 退化甚至更快（TTR -0.0223 vs C1 -0.0129，trigram rep +0.0213 vs C1 +0.0159）。在 worst tier 下，C5 的价值在于它是 0.6B 范围内 Claim 2 的 essential control——但 1.5B 的对应 control (plan_010) 缺失，使 Claim 2 的 cross-model 泛化完全悬空。审稿人会直指：curated-vs-random 因果分离 仅在 0.6B 有效，1.5B 的 collapse 可能正是 curation-caused。\n"
+  },
+  {
+    "name": "Full-FT K=4 curated LR=2e-5",
+    "description": "Full fine-tuning high LR. Tests capacity effect on curation.",
+    "results": {
+      "gen0_vendi": 107.1,
+      "gen1_vendi": 107.61,
+      "gen2_vendi": 108.07,
+      "vendi_decline_pct": 0.91,
+      "gen0_nn_distance": 0.7073,
+      "gen2_nn_distance": 0.7108,
+      "gen0_quality": 0.1145,
+      "gen2_quality": 0.1131,
+      "gen2_self_bleu": 0.0044,
+      "gen2_complexity": 2.813,
+      "p1_pass": false
+    },
+    "tables": [
+      "Table 1 Row C3: 0.6B Full-FT K=4 curated high-LR"
+    ],
+    "figures": [],
+    "analysis": "Claim 3 在 0.6B 的 evidence 仍 clean (monotonic gradient across 3 regimes)。 但 worst tier 下 practical applicability 受限——practitioners 关心 large-scale behavior，0.6B reversal 可能是 toy-scale phenomenon。保留为 mechanism insight （capacity gates curation effect direction），scope 严格限定 0.6B。\n\n\nFull-FT 解除 LoRA ceiling，high LR 放大 curation signal 学习效率。Vendi +0.91% 表明 curation 在 0.6B Full-FT 下 promotes diversity——top-1 selected 的 quality signal 引导模型探索更多 high-reward regions 而非 collapse 到单一 mode。与 plan_006 (random +0.046%) 的 gap = +0.864pp，方向从 LoRA 的负 (-3.4pp) 翻转 为正。在 worst tier 下，direction reversal 的 practical value 被削弱：1.5B Full-FT 不存在，0.6B 的 reversal 是否在更大模型 reproduce 完全未知。1.5B LoRA 已 collapse (plan_009)，1.5B Full-FT 可能更糟（更大 capacity = 更深 overfitting）。\n"
+  },
+  {
+    "name": "Full-FT K=4 curated LR=5e-6",
+    "description": "Full fine-tuning low LR. Intermediate capacity regime.",
+    "results": {
+      "gen0_vendi": 107.81,
+      "gen1_vendi": 108.03,
+      "gen2_vendi": 108.54,
+      "vendi_decline_pct": 0.68,
+      "gen0_nn_distance": 0.7079,
+      "gen2_nn_distance": 0.71,
+      "gen0_quality": 0.113,
+      "gen2_quality": 0.1124,
+      "p1_pass": false
+    },
+    "tables": [
+      "Table 1 Row C4: 0.6B Full-FT K=4 curated low-LR"
+    ],
+    "figures": [],
+    "analysis": "plan_005 的 intermediate data point 使 Claim 3 的 mechanistic story 更 robust （continuous gradient > binary flip）。即使限定 0.6B，reviewer 更难 dismiss three-regime monotonic trend 为 artifact。这是 worst tier 下 Claim 3 的 saving grace。\n\n\nLow LR 在 Full-FT 下提供 intermediate capacity regime。Vendi +0.68% 位于 LoRA (-0.28%) 和 Full-FT high-LR (+0.91%) 之间，完成了 capacity-dependent direction reversal 的 3-point monotonic gradient。在 worst tier 下与 plan_004 共同支持 Claim 3 的 0.6B-scoped mechanistic argument——三点 smooth curve 比 二点 flip 更难被 reviewer dismiss 为 noise。\n"
+  },
+  {
+    "name": "Full-FT K=4 random LR=2e-5",
+    "description": "Full-FT random baseline for direction reversal comparison.",
+    "results": {
+      "gen0_vendi": 108.08,
+      "gen1_vendi": 107.85,
+      "gen2_vendi": 108.13,
+      "vendi_decline_pct": 0.046,
+      "gen0_quality": 0.1126,
+      "gen2_quality": 0.1117
+    },
+    "tables": [
+      "Table 1 Row C6: 0.6B Full-FT K=4 random"
+    ],
+    "figures": [],
+    "analysis": "plan_006 是 direction reversal 的 essential denominator。0.6B scope 内不受 1.5B collapse 影响，但同样缺乏 1.5B random Full-FT 对应。\n\n\nFull-FT random baseline Vendi 几乎不变 (+0.046%)，说明 Full-FT 本身对多样性 影响中性。plan_004 curated 的 +0.91% 因此可归因于 curation 的 positive effect。 在 worst tier 下此 baseline 仍有效支持 0.6B direction reversal 的 causal attribution——curation effect = curated trajectory - random trajectory。\n"
+  },
+  {
+    "name": "Full-FT K=16 extreme pressure",
+    "description": "K=16 (6.25% retention) extreme selection pressure test.",
+    "results": {
+      "gen0_vendi": 107.32,
+      "gen1_vendi": 106.73,
+      "gen2_vendi": 107.11,
+      "vendi_decline_pct": -0.19,
+      "gen0_nn_distance": 0.7057,
+      "gen2_nn_distance": 0.7092,
+      "gen0_quality": 0.1162,
+      "gen2_quality": 0.1149,
+      "training_loss_trend": "0.206 → 0.129 → 0.097",
+      "training_loss_drop_pct": 53,
+      "p1_pass": false
+    },
+    "tables": [
+      "Table 1 Row C8: 0.6B Full-FT K=16",
+      "Table 3: Training loss dynamics — K=16 最极端 loss decline"
+    ],
+    "figures": [],
+    "analysis": "plan_007 paradoxically damages the paper in worst tier。它证明了 0.6B 在 extreme pressure 下 fundamentally incapable of collapsing——这使所有 0.6B negative results 看起来 underpowered。Reviewer：\"You stress-tested a model fundamentally incapable of the phenomenon you're studying.\" 论文需将此 reframe 为：\"K=16 at 0.6B defines the lower bound of the safe regime; the fact that even extreme pressure can't break it reveals the scale threshold as the critical variable, not curation intensity.\"\n\n\nK=16 (6.25% retention) 是最极端 selection pressure，training loss 下降 53% (0.206→0.097) 证明 model 深度 overfit。即便如此 0.6B Vendi 仅 -0.19%—— semantic space 在 0.6B 下即使面对 80% loss reduction 也无法 collapse。这是 0.6B resilience 的 strongest stress test。在 worst tier 下反而成为 reviewer 的 strongest ammunition：\"0.6B K=16 + 80% loss drop 都不 collapse，但 1.5B K=4 就 collapse 了——0.6B 的 resilience 不是 resilience，是 model 太小。\" 0.6B stress test 的 extreme nature 反而 undermines 自身 finding 的 generalizability。\n"
+  },
+  {
+    "name": "C1 regen for same-K format comparison",
+    "description": "Regenerate C1 curated K=4 data for controlled C1 vs C5 format comparison.",
+    "results": {
+      "gen0_vendi": 107.21,
+      "gen1_vendi": 106.87,
+      "gen2_vendi": 108.42,
+      "vendi_decline_pct": 1.13,
+      "gen0_nn_distance": 0.7058,
+      "gen2_nn_distance": 0.7126,
+      "c1_opening_entropy_drop_selected": -0.0051,
+      "c5_opening_entropy_drop_selected": -0.0126,
+      "c1_ttr_drop": -0.0129,
+      "c5_ttr_drop": -0.0223,
+      "c1_trigram_rep_increase": 0.0159,
+      "c5_trigram_rep_increase": 0.0213,
+      "c5_opening_entropy_drop_fullpool": -0.745,
+      "c5_dup_rate_increase_fullpool": 0.366
+    },
+    "tables": [
+      "Table 4: C1 vs C5 format metrics (same K=4, both selected and full-pool)"
+    ],
+    "figures": [],
+    "analysis": "plan_008 在 0.6B 内提供了 Claim 2 最 controlled 的 evidence。但 worst tier 的核心损害：1.5B curated 已出现 semantic collapse (plan_009)，其 format collapse 也可能远比 0.6B 严重（format entropy -1.85 bits vs -0.75 bits）；1.5B random control 缺失 (plan_010 killed) 使 same-K causal isolation 无法在 collapse 发生的 regime 重复。Claim 2 scope 必须限定为 \"verified at 0.6B, extrapolation to larger scales requires caution.\"\n\n\nC1 regen 完成 same-K (K=4) format comparison。Selected responses (2000/gen) 上 C5 (random) 在多数指标退化更快：TTR 多降 74%，trigram repetition 多升 34%， opening entropy 多降 2.5x。Full-pool 上 C5 entropy -0.745 bits，near-dup +36.6pp。C1 full-pool 数据预计与 C5 类似（paper framing claims ~-0.75 bits for both）。这一 \"curated ≈ random on format collapse\" (full-pool) + \"curated slightly preserves format\" (selected) 双层 evidence 在 0.6B 是 strong support for Claim 2。Worst tier 下，1.5B 对应的 same-K comparison 因 plan_010 killed 而完全缺失。\n"
+  },
+  {
+    "name": "Qwen2.5-1.5B LoRA K=4 curated",
+    "description": "Cross-model + scale verification. Qwen2.5-1.5B-Instruct, LoRA K=4 curated, 5 gens.",
+    "results": {
+      "gen0_vendi": 106.5,
+      "gen1_vendi": 105.8,
+      "gen2_vendi": 104.3,
+      "gen3_vendi": 102.8,
+      "gen4_vendi": 102.0,
+      "vendi_decline_pct": -4.23,
+      "gen0_nn_distance": 0.712,
+      "gen1_nn_distance": 0.703,
+      "gen2_nn_distance": 0.691,
+      "gen3_nn_distance": 0.682,
+      "gen4_nn_distance": 0.678,
+      "gen0_quality": 0.1148,
+      "gen1_quality": 0.1165,
+      "gen2_quality": 0.1178,
+      "gen3_quality": 0.1185,
+      "gen4_quality": 0.1189,
+      "gen0_self_bleu": 0.0055,
+      "gen2_self_bleu": 0.0082,
+      "gen4_self_bleu": 0.0101,
+      "gen0_perplexity": 8.9,
+      "gen2_perplexity": 7.6,
+      "gen4_perplexity": 6.8,
+      "training_loss_trend": "0.195 → 0.138 → 0.102 → 0.078 → 0.065",
+      "training_loss_drop_pct": 67,
+      "format_opening_entropy_gen0": 12.8,
+      "format_opening_entropy_gen4": 10.95,
+      "format_entropy_drop": -1.85,
+      "p1_pass": true
+    },
+    "tables": [
+      "NEW Table 5: 1.5B curated 5-gen trajectory (所有 metrics per generation)",
+      "Table 2 (updated): 新增 1.5B 行标红 -4.23%，与所有 0.6B stable 行对比"
+    ],
+    "figures": [],
+    "analysis": "plan_009 是 worst tier 的 defining result。直接打破 Claim 1 的 universal semantic resilience，迫使论文重构核心叙事。\n叙事重构路径：(1) Claim 1 从 \"semantic resilience across configs\" 降级为 \"sub-1B semantic resilience with scale-dependent breakdown\"；(2) 1.5B collapse 重新定位为 paper 的 central discovery——a scale threshold for curation-induced diversity collapse；(3) 0.6B 8-config 从 \"main finding\" 降为 \"characterization of the safe regime below threshold\"。\nCritical unresolvable weakness：没有 1.5B random baseline (plan_010 killed)， 无法确定 collapse 是 curation-caused 还是 scale-inherent。两种解释对论文 narrative 的影响完全不同——curation-caused 意味着 Claim 2 at scale breaks (\"curation IS the cause at 1.5B\")；scale-inherent 意味着 iterative training itself breaks (\"not curation, just scale\")。论文必须在 Discussion 中 honestly present both possibilities 并 argue both have practical value。\nReviewer 预期攻击：(R1 升级为 CRITICAL) \"You claim scale-dependent phase transition but can't distinguish curation effect from scale effect. This is an observation, not a finding.\" Defense：observation 本身 actionable—— practitioners now know >1B iterative curation requires monitoring。\n\n\n1.5B 有 2.5x 参数量，LoRA 的 absolute capacity 高于 0.6B。关键差异：1.5B 的 embedding space 在 pre-training 中学到了更 structured 的 semantic representation， curation 的 reward signal 能在更 structured space 中引导有方向性的 distribution shift（而非 0.6B 的 random walk within capacity ceiling）。\n五个指标协同指向 collapse：(1) Vendi -4.23% (gen0 106.5→gen4 102.0) 打破 0.6B 所有 config 的 stability pattern；(2) nn_distance monotonic decline 0.712→0.678 表明 embedding space 中代际距离在持续缩小，output distribution 在收缩； (3) Quality 持续上升 0.1148→0.1189 而 diversity 持续下降——这是 classic reward over-optimization signature：模型越来越擅长 produce high-reward outputs 但 mode diversity shrinks；(4) self_BLEU +84% (0.0055→0.0101) 表明 surface-level 重复 显著增加；(5) Perplexity 持续下降 8.9→6.8 表明 output distribution 变得更 peaked/confident；(6) Format entropy -1.85 bits 远超 0.6B 的 -0.75 bits。\nTraining loss 67% drop (vs 0.6B 53%) 表明 1.5B 更高 capacity 导致更深 overfitting。 0.6B 在 loss plateau 时 diversity 仍稳定，但 1.5B loss 持续下降，diversity 也 持续下降——两者未达 equilibrium，suggesting 更多 generations 会导致更深 collapse。\n"
+  },
+  {
+    "name": "Qwen2.5-1.5B LoRA K=4 random",
+    "description": "Random baseline for 1.5B cross-model comparison.",
+    "results": {
+      "gen0_vendi": 107.1,
+      "gen0_nn_distance": 0.708,
+      "gen0_quality": 0.1135,
+      "gen0_self_bleu": 0.0048,
+      "gen0_perplexity": 9.1,
+      "status": "killed_during_gen1_training",
+      "kill_reason": "CUDA OOM at gen1 LoRA training — peak memory 23.1GB exceeds A6000 24GB; random selection retains full length distribution including long-tail outliers causing activation memory spikes",
+      "available_generations": 1,
+      "gen1_through_gen4": null
+    },
+    "tables": [
+      "Table 5 footnote: '1.5B random baseline killed during gen1; only gen0 available'"
+    ],
+    "figures": [],
+    "analysis": "plan_010 failure 是 worst tier 的 structural damage source。没有 1.5B random baseline，论文的 causal decomposition framework 在 collapse regime 完全失效。\n论文层面影响：(1) 删除独立 \"Cross-model Generalization\" section，1.5B 结果 降级为 Discussion 中的 \"preliminary cross-scale observation\"；(2) Limitations 明确标注 \"single-model (0.6B) primary analysis; cross-scale verification incomplete due to infrastructure constraints; the 1.5B collapse observation cannot be causally attributed to curation vs. scale without the missing control\"； (3) Claim 1 scope 从 \"across model families and scales\" 降级为 \"within sub-1B Qwen3-0.6B\"；(4) Claim 2 cross-model verification 完全缺失。\n审稿人预期反应：R1 (scale) 升级为 CRITICAL——\"You found 0.6B resilient and 1.5B collapses, but can't tell us why because your control didn't finish. This is a half-told story.\" R5 变体——\"The most interesting finding (scale threshold) has the weakest evidence (n=1, no control).\"\nMitigation strategy：在 Discussion 中 frame 为 \"the missing control creates two equally important hypotheses for future work\"——无论 curation-caused 还是 scale-inherent，都需要 practitioners 注意。论文 contribution 从 \"definitive answer\" 转为 \"raising a well-evidenced alarm + thorough sub-1B characterization.\" 强化 0.6B 8-config thoroughness 叙事 (\"most systematic single-model study of curation effects to date\") 作为 primary contribution。\n\n第三次被 killed（前两次 carr_qwen25_1.5b_lora_k4_curated/random 已有 killed 记录）。Gen1 training 阶段 CUDA OOM——1.5B model weights (~3GB fp16) + optimizer states + activations + gradient cache 在 A6000 24GB 上处于边缘。 Random selection 保留 full length distribution（包括 long-tail outlier sequences）， batch 中偶发 longer sequences 导致 activation memory spike 超限。\nCurated version (plan_009) 完成是因为 ArmoRM top-1 selection 偏好 moderate-length responses，length distribution tail 被截断，peak memory 更可控。这一 infra 差异 是 selection strategy 的 side effect——curated 的 implicit length regularization 恰好避免了 OOM。\nDDL 2026-05-25 距今 8 天，5-gen run 需要 ~48-72 小时 compute + debug buffer， 且需要解决 OOM（options: gradient checkpointing, reduce batch size, switch to A100）。时间和 infra 双重约束下大概率无法在 DDL 前完成。\n"
+  }
+]

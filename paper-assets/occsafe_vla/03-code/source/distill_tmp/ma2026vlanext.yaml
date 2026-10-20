@@ -1,0 +1,58 @@
+paper_key: "ma2026vlanext"
+title: "VLANeXt: Recipes for Building Strong VLA Models"
+venue: "arXiv preprint 2026"
+full_text_available: false
+
+research:
+  baselines:
+    - "OpenVLA"
+    - "TraceVLA"
+    - "SpatialVLA"
+    - "WorldVLA"
+    - "CoT-VLA"
+    - "pi0"
+    - "pi0-Fast"
+    - "NORA"
+    - "SmolVLA"
+    - "UniVLA"
+    - "FLOWER"
+    - "OpenVLA-OFT"
+    - "Diffusion Policy"
+    - "Octo"
+    - "MDT"
+  metrics:
+    - {name: "Success Rate (%)", direction: "higher_better"}
+    - {name: "Per-perturbation Performance (robustness)", direction: "higher_better"}
+  datasets:
+    - {name: "LIBERO (4 suites: Spatial, Object, Goal, Long)", size: "500 expert demos across 10 tasks per suite"}
+    - {name: "LIBERO-plus (perturbation benchmark)", size: "10030 demonstrations with visual/physical perturbations"}
+    - {name: "DROID (pretraining)", size: "large-scale robot manipulation"}
+    - {name: "Real-world (Franka Emika single-arm + ALOHA bimanual)", size: "not specified"}
+  ablation_dimensions:
+    - "Policy module design"
+    - "Action chunking"
+    - "Learning objectives"
+    - "VLM backbone capacity"
+    - "VLM-policy connection strategies"
+    - "Temporal observation history"
+    - "Camera viewpoints"
+    - "Proprioception conditioning mechanisms"
+    - "World modeling auxiliary objectives"
+    - "Frequency-domain loss regularization"
+  training_recipe:
+    optimizer: "not specified"
+    lr: "1e-4 (<3B params), 5e-5 (>=3B params)"
+    hardware: "not specified"
+    batch_size: "256"
+    training_steps: "10K (benchmark), 20K (real-world fine-tuning)"
+  method_family: "VLA Design Space Exploration / Systematic Recipe Study"
+
+positioning:
+  core_claim: "Systematic exploration of VLA design space across foundational components, perception, and action modeling, yielding 12 practical design principles and a unified codebase"
+  key_results: "State-of-the-art on LIBERO and LIBERO-plus; robust across camera, lighting, layout perturbations"
+  limitations: ["abstract-only, details not fully extracted"]
+  relation_to_us: "competitor"
+
+narrative: N/A
+figures: N/A
+tables: N/A

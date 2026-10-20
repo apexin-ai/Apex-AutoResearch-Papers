@@ -1,0 +1,39 @@
+{
+  "exp_id": "full_occ_ln_s4_eval",
+  "project": "occsafe_vla",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T23:20:19.149Z",
+    "updated_at": "2026-05-28T00:03:23.659Z",
+    "hypothesis": "50-rollout SafeLIBERO eval of full_occ_ln_s4 (Full OCC LN, seed 46, v2). Cell 2 data expansion — currently n=3, this adds n=4.",
+    "parent": "full_occ_ln_s4",
+    "spec": {
+      "command": "evaluate_safelibero.py --pretrained_checkpoint full_occ_ln_s4--50000_chkpt --task_suite_name libero_spatial --num_rollouts 50 --seed 42",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "858898",
+      "log_path": "~/runs/occsafe_vla/full_occ_ln_s4_eval.log",
+      "submitted_at": "2026-05-27T23:20:29.658Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_id": "cuda:3",
+      "data_path": "libero_spatial",
+      "data_count": 500,
+      "model_name": "openvla-7b-full_occ_ln_s4",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/full_occ_ln_s4/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_s4--50000_chkpt",
+      "eval_data": "libero_spatial"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-28T00:03:22.722Z"
+    }
+  },
+  "timestamp": "2026-05-28T00:03:24.000455+00:00",
+  "trigger": "update_registry"
+}

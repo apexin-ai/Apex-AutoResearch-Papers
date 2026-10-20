@@ -1,0 +1,120 @@
+paper_key: "li2025spatialforcing"
+title: "Spatial Forcing: Implicit Spatial Representation Alignment for Vision-Language-Action Model"
+venue: "ICLR 2026"
+full_text_available: true
+
+research:
+  baselines:
+    - Diffusion Policy
+    - TraceVLA
+    - Octo
+    - OpenVLA
+    - Dita
+    - CoT-VLA
+    - pi_0-FAST
+    - pi_0
+    - UniVLA
+    - OpenVLA-OFT
+    - SpatialVLA
+    - GeoVLA
+    - 3D-CAVLA
+    - DP (Diffusion Policy on RoboTwin)
+    - RDT
+  metrics:
+    - {name: "Success Rate (%)", direction: "higher_better"}
+  datasets:
+    - {name: "LIBERO", size: "4 suites x 10 tasks x 500 demos each"}
+    - {name: "RoboTwin 2.0", size: "7 bimanual tasks, easy+hard settings"}
+    - {name: "Real-world (custom)", size: "40 demos single-arm, 20 demos bimanual per task"}
+  ablation_dimensions:
+    - target representation (SigLIP vs DINOv2 vs VGGT)
+    - positional embedding (with vs without)
+    - aligned layer selection (layer 1/8/16/24/32)
+    - alignment loss weight alpha (0/0.02/0.1/0.5/2.5/12.5)
+    - training iterations (2K/5K/20K/50K/150K)
+    - training data proportion (1%/5%/100%)
+  training_recipe:
+    optimizer: "not explicitly stated (likely AdamW following OpenVLA-OFT)"
+    lr: "not explicitly stated"
+    hardware: "8x NVIDIA H100 (LIBERO), 1x H100 (RoboTwin)"
+    iterations: "150K (LIBERO), 30K (RoboTwin)"
+    finetuning: "full finetune (LIBERO with OpenVLA-OFT base), LoRA (RoboTwin with pi_0 base)"
+    alpha: 0.5
+  method_family: "implicit 3D representation alignment for VLA"
+
+positioning:
+  core_claim: "通过将 VLA 中间层视觉 embedding 与预训练 3D 基础模型(VGGT)的几何表示对齐，可以隐式迫使 VLA 习得空间感知能力，无需额外 3D 传感器输入，且推理零开销"
+  key_results: "LIBERO 平均 98.5% SR (SOTA)；训练效率 3.8x 加速；数据效率 5.9x 提升；RoboTwin 所有任务 SOTA；真实世界单臂任务最高提升 47.5%"
+  limitations:
+    - "论文未明确讨论局限性"
+    - "依赖 VGGT 作为 3D 教师模型的质量——若 VGGT 在特定场景表现差，对齐效果存疑"
+    - "仅在 manipulation 场景验证，未涉及导航或自动驾驶"
+    - "真实世界实验规模较小(每任务 40 demos)，泛化性待验证"
+    - "需要训练时额外跑 VGGT 前向推理生成 target representation"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "VLA 模型在 3D 空间理解上存在根本缺陷——它们基于 2D 视觉数据训练，缺乏真正的空间意识"
+  tension: "显式 3D 输入方案(深度传感器/点云)面临传感器质量差、异构性强、大规模数据缺乏深度标注三大实际障碍；深度估计方案受限于估计器性能。两条路都走不通。"
+  key_insight: "通过 depth probing 实验发现纯 2D 训练的 VLA embedding 完全不包含有意义的空间结构——这是可验证的证据，不是假设。然后提出在中间层(而非最深层)做对齐效果最优，因为深层 embedding 已丧失视觉特异性。"
+  argument_chain: "VLA 缺乏 3D 空间理解 → 显式 3D 方案有硬件/数据瓶颈 → depth probing 实验证实 2D embedding 空间信息匮乏 → 提出隐式对齐策略 Spatial Forcing → 选择 VGGT 作为 3D 教师 → 中间层对齐 + cosine similarity loss → LIBERO/RoboTwin/真实世界全面验证 → 附赠训练效率和数据效率提升"
+  contribution_framing: "三点贡献：(1) depth probing 诊断性观察 (2) Spatial Forcing 对齐策略 (3) 实验验证含效率优势。措辞上强调 'simple yet effective'，贡献 1 是诊断性发现(不是方法)，这种 '先诊断再解决' 的框架很高级。"
+  intro_structure: "5段：P1=VLA promise + spatial deficit；P2=显式3D方案的障碍；P3=深度估计方案的局限+research question；P4=depth probing 实验发现；P5=提出 Spatial Forcing + 贡献总结"
+  notable_technique: "用 depth probing 这个可视化实验作为 motivation 的实证基础——不是靠假设或直觉来论证问题存在，而是用实验结果 (Figure 3) 直接证明 '2D embedding 真的没有空间信息'。这让后续方法的动机变得不可辩驳。"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "method_overview + teaser_result"
+    description: "三列布局：(a) Spatial Forcing 方法概览——展示机器人图像经 Image Tokenizer 到 VLA Layer 的流程，侧面分支将 Foundation 3D Model 的几何表示与中间层 embedding 对齐；(b) Performance——训练效率曲线和测试准确率柱状图；(c) Depth Probing——对齐前后的深度探测可视化对比"
+    narrative_role: "一图三用：方法概览(a)让读者快速理解做什么，性能曲线(b)用训练加速吸引关注，depth probing(c)提供视觉化的诊断证据。三者合力回答 what+why+how well。"
+    design_elements: ["三面板水平排列", "方法流程图用箭头连接", "深度图用灰度对比", "训练曲线用橙蓝双色区分 with/without alignment"]
+    visual_style: "左侧方法图用白底+模块框图风格，中间柱状图+折线图用蓝橙配色区分有无对齐，右侧深度图用灰度热力图。整体干净紧凑，信息密度高。"
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "grouped_bar_chart"
+      what_compared: "SF(Ours) vs DP/RDT/pi_0 在 RoboTwin 2.0 的 7 个任务上的 Easy/Hard 成功率"
+      how_gain_highlighted: "SF 用蓝色柱子位于最右侧，在大多数任务上明显高于其他颜色的柱子；特别是 Hard 设置下差距更大"
+      design_note: "每个任务分 Easy/Hard 两组，4 种方法用黄/橙/绿/蓝四色区分。最右侧 Average 列汇总全局。颜色选择让 Ours(蓝色)在暖色系 baseline 中视觉突出。"
+    - figure_id: "Figure 6"
+      viz_type: "qualitative_comparison + bar_chart"
+      what_compared: "真实世界单臂任务和双臂任务的成功率(w/o SF vs w/ SF)"
+      how_gain_highlighted: "每个任务下方用水平柱状图对比，蓝色(w/ SF)显著长于橙色(w/o SF)。上方展示实际操作序列照片和任务变化条件。"
+      design_note: "三行布局：Action Sequence(操作照片) → Task Variation(变化条件可视化) → SR% 柱状图。真实照片增强说服力，任务变化的可视化(如不同光照用彩色滤镜、不同物体排列)直观展示泛化挑战。"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "line_plot + scatter + t-SNE"
+      dimensions_varied: ["training iterations (训练效率)", "training data amount (数据效率)", "representation distribution (t-SNE)"]
+      design_note: "三面板：(a) 训练迭代 vs 成功率折线图标注 3.8x 加速；(b) 数据量 vs 成功率折线图标注 5.9x 效率；(c) t-SNE 散点图展示对齐后分布与 target 近似。橙蓝双色一致贯穿全文。加速倍数直接标注在图上，即时传达核心数字。"
+    - figure_id: "Figure 3"
+      viz_type: "qualitative_comparison (depth maps)"
+      dimensions_varied: ["with vs without alignment", "primary vs wrist camera", "simulation vs real-world"]
+      design_note: "4列 grid：Images → w/o Alignment → w/ Alignment → GT。左右两大块分 LIBERO Simulation 和 Real-world Robot。灰度深度图让对齐效果一目了然——without 是噪声，with 有清晰结构。"
+  figure_narrative_role: "Figure 1(teaser: what+why+result) → Figure 2(paradigm comparison: 定位差异化) → Figure 3(depth probing evidence: 证明问题存在) → Figure 4(RoboTwin results: 量化验证) → Figure 5(efficiency analysis: 额外优势) → Figure 6(real-world: 实用性验证)。从概览到诊断到验证到效率到真实世界，逐层递进。"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "LIBERO task suites (Spatial/Object/Goal/Long) + Average"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold best among methods without extra sensor inputs; gray font for methods using extra depth/point cloud"
+    statistical_reporting: "单次运行成功率百分比，无 std"
+    num_baselines: 13
+    design_note: "分类标注很巧妙：用灰色字体区分需要额外 3D 传感器的方法，让读者直观看到 SF 在公平对比(无额外传感器)中是最佳，同时在绝对数值上也与需要 3D 输入的方法持平。Average 列作为最终排序依据。"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["target representation (SigLIP/DINOv2/VGGT)", "positional embedding", "aligned layer (1/8/16/24/32)", "training iterations", "training data proportion"]
+      variation_style: "full_numbers"
+      design_note: "多个消融维度整合到一张大表中，每个子实验用小标题分隔。展示所有 4 个 LIBERO suite 的数字而非仅 average，让读者看到不同维度对不同任务类型的影响差异。"
+    - table_id: "Table 3"
+      what_varied: ["alignment loss weight alpha (0/0.02/0.1/0.5/2.5/12.5)"]
+      variation_style: "full_numbers"
+      design_note: "简洁单行表格，清晰展示 alpha 超参数敏感性。0.5 为最优值，两侧衰减平滑，说明方法对超参不过度敏感。"
+  supplementary_tables:
+    in_appendix: false
+    content: "所有表格均在主文"
+    reason: "论文消融实验集中在 Table 2，通过整合多维度到一张表减少了总表数"

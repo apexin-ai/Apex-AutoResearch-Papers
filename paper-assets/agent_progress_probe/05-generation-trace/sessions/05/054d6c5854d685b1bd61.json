@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "054d6c5854d685b1bd61",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "exp oh to swe reverse transfer",
+  "task_key": "worker_exp_oh-to-swe-reverse-transfer_20260516T044938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_oh-to-swe-reverse-transfer_20260516T044938_result.json",
+    "occurrence": 1,
+    "bytes": 791,
+    "sha256": "c346f59345076b51275f25b41e2f9000af17d122b303822a61cd42a82a31356d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，registry 和 artifact 均已更新。\n\n**总结**：\n\nOH→SWE 反向 transfer 实验成功。核心发现：\n\n1. **conf≥2 子集：transfer 完全对称**\n   - OH→SWE: GB 0.995, RF 0.995\n   - SWE→OH: GB 0.992, RF 0.996\n   - 两个方向几乎无差别\n\n2. **all non-abstain：轻微不对称**\n   - OH→SWE: GB 0.937, RF 0.953\n   - SWE→OH: GB 0.967, RF 0.912\n   - GB 在 SWE→OH 方向更强，RF 在 OH→SWE 方向更强\n\n3. **OH stag rate (~20.9%) 不是问题** — 当用 conf≥2 过滤噪声标签后，两个方向性能相当\n\n4. **对 rebuttal 的意义**：结构特征的跨 agent 迁移是对称的，不依赖于训练数据来自哪个 agent。Label confidence 过滤比训练数据的 class distribution 更重要。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-oh-to-swe-reverse-transfer.md"
+}

@@ -1,0 +1,19 @@
+_next_id: 4
+constraints:
+- id: C001
+  added: 2026-05-25 03:34 UTC
+  summary: GPU 白名单：仅 westd-10894 cuda:0-3 和 westd-34685 cuda:0-3（共 8 张），禁止使用其他服务器或
+    GPU
+  scope: all
+  reason: 项目分配的 GPU 资源边界，防止占用其他项目的 GPU
+- id: C002
+  added: 2026-05-25 03:34 UTC
+  summary: cutoff/reverse_cutoff 实验禁止使用 --resume，必须从 pretrained 权重从头训练
+  scope: worker
+  reason: 'M052: finetune.py resume 后 batch_idx 从 0 重新计数，导致 cutoff 阈值不可达。cutoff_45k_s1
+    因此浪费 5.5h GPU 时间。'
+- id: C003
+  added: 2026-05-26 15:12 UTC
+  summary: 所有实验必须在 2026-05-28 12:00 UTC (北京时间 20:00) 前完成，允许少量超时但总体不能超过
+  scope: all
+  reason: 用户硬性要求，CoRL DDL 临近

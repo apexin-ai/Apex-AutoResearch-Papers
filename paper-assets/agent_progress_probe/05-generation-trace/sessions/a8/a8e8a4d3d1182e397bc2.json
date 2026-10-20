@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8e8a4d3d1182e397bc2",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis gpu dual inference",
+  "task_key": "worker_analysis_gpu-dual-inference_20260514T221738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gpu-dual-inference_20260514T221738_result.json",
+    "occurrence": 1,
+    "bytes": 1205,
+    "sha256": "d09f1905e757fe24a5428e4b9069e2ea106cbd5dee156d1fc9b5204c19e83bb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务完成，产出已注册。\n\n## 结果摘要\n\n### Task A: 跨 Encoder 预测一致性\n\n| 指标 | 值 |\n|---|---|\n| 交集 test windows | 269 (STE:2206, E5:1824, BGE:1824) |\n| 3/3 一致 | 85.87% (231/269) |\n| 2/3 一致 | 14.13% (38/269) |\n| 完全不一致 | 0% |\n| Fleiss' Kappa | **0.6449** (substantial) |\n\n**Pairwise 相关系数：**\n| Pair | Pearson r | Spearman r |\n|---|---|---|\n| STE vs E5-large | 0.629 | 0.655 |\n| STE vs BGE-M3 | 0.700 | 0.620 |\n| E5 vs BGE-M3 | **0.874** | **0.811** |\n\n**不一致样本特征：** 38 个不一致 window 全部 conf=2，STE 平均概率 0.74（偏高），E5/BGE 平均 0.35/0.37（偏低）。位置分布 early:15 / mid:8 / late:15，early 和 late 阶段不一致更多。\n\n### Task B: Probe 校准分析\n\n| 指标 | 原始 | Temperature Scaling (T=2.06) |\n|---|---|---|\n| ECE | 0.0606 | **0.0451** |\n| Brier Score | 0.0632 | **0.0586** |\n| MCE | 0.4965 | — |\n\n模型输出高度 bimodal：64.4% 的 window 概率 >0.9，21.7% <0.1。中间区间（0.4-0.7）严重过置信——置信度 45-63%，实际准确率仅 12-23%。Temperature scaling (T=2.06, val set 拟合) 将 ECE 降低 25%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gpu-dual-inference.md"
+}

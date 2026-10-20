@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c72e8a170701a0675d5c",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "code phase1 code review",
+  "task_key": "worker_code_phase1_code_review_20260514T062729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase1_code_review_20260514T062729_result.json",
+    "occurrence": 1,
+    "bytes": 1358,
+    "sha256": "97e5d50e4f7d3eb1f50938df021121107e57c43a3bbb5df050c884e8fa68ddf8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成。最终审查结果：\n\n## 兼容性审查总结\n\n| 文件 | 状态 | 修复内容 |\n|------|------|----------|\n| `generate_embeddings.py` | **已修复** | ① `build_trajectory_index` 改为 `(steps_index, meta_index)` 双返回，按 row_index 索引，消除重复 key 覆盖 ② 添加 `parse_row_index` 从 trajectory_id 提取 row_index ③ instance_id 从 meta_index 获取而非从 window dict 读取 ④ 添加 ABSTAIN 窗口过滤 |\n| `evaluate.py` | **已修复** | ① `build_trajectory_index` 改为按 row_index 索引 ② `build_baseline_data` 不再依赖 window_index，直接从 embeddings.pt 的 `trajectory_ids` + `step_indices_list` 获取所有数据 ③ 移除已不需要的 `--windows` 参数 |\n| `probe_model.py` | **OK** | `split_by_instance` 按 instance_id 分组，instance_id 来自 embeddings.pt（由上游正确填充）。同一 issue 的不同 run 分到同一组，防止泄漏 |\n| `train_probe.py` | **OK** | 只读 `embeddings`/`labels`/`instance_ids`/`embed_dim`，均存在于新格式的 embeddings.pt |\n| `baselines.py` | **OK** | 不涉及 trajectory_id 或 instance_id |\n\n### 数据泄漏防护确认\n\n`split_by_instance` 用原始 `instance_id`（如 `django__django-12345`）分组。同一 issue 的多次 run（`__r0`, `__r1` 等）会被分到同一 split。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase1-code-review.md"
+}

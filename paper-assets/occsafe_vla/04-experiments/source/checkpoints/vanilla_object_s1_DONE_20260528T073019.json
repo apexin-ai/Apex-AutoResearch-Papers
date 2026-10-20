@@ -1,0 +1,40 @@
+{
+  "exp_id": "vanilla_object_s1",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-27T16:50:35.891Z",
+    "updated_at": "2026-05-28T07:30:19.148Z",
+    "hypothesis": "Vanilla baseline on libero_object benchmark (seed 43): Second seed for cross-benchmark generalizability. Paired with vanilla_object_s0 (seed 42) to establish reliable Vanilla baseline on object suite for comparison with OCC conditions.",
+    "completed_at": "2026-05-28T04:16:56.350Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed"
+      }
+    },
+    "spec": {
+      "command": "torchrun finetune.py --vla_path openvla-7b --dataset_name libero_object_no_noops --seed 43 --use_occ_head False --max_steps 50005",
+      "server": "westd-10894",
+      "gpu_id": "cuda:0",
+      "pid": "798980",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_object_no_noops",
+      "data_count": 454,
+      "model_name": "openvla-7b",
+      "seed": 43,
+      "log_path": "/root/runs/occsafe_vla/vanilla_object_s1.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/vanilla_object_s1/openvla-7b+libero_object_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--vanilla_object_s1--50000_chkpt"
+    },
+    "conclusion": "failed",
+    "log_path": "/root/runs/occsafe_vla/vanilla_object_s1.log",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/vanilla_object_s1/openvla-7b+libero_object_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--vanilla_object_s1--50000_chkpt",
+    "reproduce": {
+      "finished_at": "2026-05-28T07:30:15.747Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed"
+  },
+  "timestamp": "2026-05-28T07:30:19.524264+00:00",
+  "trigger": "update_registry"
+}

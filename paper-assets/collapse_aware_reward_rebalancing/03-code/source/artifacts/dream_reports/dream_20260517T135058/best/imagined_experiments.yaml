@@ -1,0 +1,120 @@
+tier: best
+narrative_guidance: 原始 framing 完全成立。四条 claim 无需调整强度。跨模型验证直接升级为 'cross-architecture
+  robustness'，正文加一段 §4.5 Cross-Model Validation，Table 1 扩展为 10 configs。R1 (scale)
+  从 HIGH RISK 降为 LOW——两个模型族、3x 参数量差距下结论一致。论文叙事从 'systematic study on 0.6B' 升级为 'consistent
+  phenomenon across model scales and architectures'。acceptance 概率显著提升。
+imagined_experiments:
+- name: Qwen2.5-1.5B LoRA K=4 curated
+  plan_id: plan_009
+  description: Qwen2.5-1.5B-Instruct LoRA rank=64 K=4 curated, 5 generations iterative
+    SFT. Cross-model family + scale verification of semantic resilience under reward-based
+    curation.
+  expected_results:
+    gen0_vendi_score: 109.83
+    gen1_vendi_score: 109.41
+    gen2_vendi_score: 110.17
+    gen3_vendi_score: 109.95
+    gen4_vendi_score: 110.52
+    vendi_decline_pct: 0.63
+    gen0_mean_nn_distance: 0.7092
+    gen1_mean_nn_distance: 0.7078
+    gen2_mean_nn_distance: 0.7101
+    gen3_mean_nn_distance: 0.7095
+    gen4_mean_nn_distance: 0.7113
+    gen0_self_bleu: 0.0051
+    gen2_self_bleu: 0.0058
+    gen4_self_bleu: 0.0054
+    gen0_perplexity: 8.21
+    gen2_perplexity: 7.48
+    gen4_perplexity: 7.02
+    gen0_opening_entropy: 4.82
+    gen2_opening_entropy: 4.23
+    gen4_opening_entropy: 4.07
+    format_entropy_drop_gen0_to_gen4: -0.75
+    near_duplicate_start_rate_gen0: 0.08
+    near_duplicate_start_rate_gen4: 0.41
+    training_loss_gen0: 0.189
+    training_loss_gen2: 0.112
+    training_loss_gen4: 0.078
+  result_rationale: 1.5B 模型容量更大但使用 LoRA 仍受 rank 限制，因此 Vendi Score 表现与 0.6B 高度一致——LoRA
+    的 capacity ceiling 限制了所有方向的漂移（包括 diversity loss 方向）。Vendi 在 5 代中保持平坦甚至微升（+0.63%），复现
+    0.6B 上的 semantic resilience pattern。mean_nn_distance 同样稳定在 0.70-0.71 区间。format
+    collapse 同样出现（entropy 从 4.82 降到 4.07，约 -0.75 bits），与 0.6B 上 C1 的 -0.75 bits drop
+    几乎完全一致，表明 format homogenization 是 iterative training 的 inherent property 而非 model-specific。training
+    loss 持续下降至 0.078 证明模型确实在学习（非 trivial training），但 semantic diversity 不受影响。5 代实验比
+    0.6B 的 3 代更长，提供更强的 compounding effect 否定证据。
+  tables:
+  - 'Table 1 扩展行: Config 9 (Qwen2.5-1.5B, LoRA, K=4, curated) — Vendi gen0-4, NN dist,
+    self-BLEU, training loss'
+  - 'Table 5 (new): Cross-model format metrics comparison — opening_entropy and near_dup_start_rate
+    across gens for 1.5B curated vs random'
+  figures_description:
+  - 'Figure 2 扩展: Vendi Score trajectory plot 新增 1.5B curated 线（虚线+三角 marker），与 0.6B
+    8 configs 共存，视觉上展示跨模型一致性'
+  - 'Figure 5 (new): 并列 bar chart — 0.6B vs 1.5B format entropy drop，显示两个 scale 下
+    curated 和 random 的 entropy degradation 幅度一致'
+  analysis: 1.5B curated 完美复现 Pattern 1（semantic resilience）和 Pattern 3（LoRA capacity
+    artifact）。Vendi 在 5 代中波动 <1%，mean_nn_distance 无单调下降趋势。LoRA ceiling 在更大模型上同样有效——rank=64
+    相对于 1.5B 的参数量比例更低（0.6B 上约 4.3%，1.5B 上约 2.7%），capacity constraint 更强，符合 artifact
+    假说。format entropy 下降幅度（-0.75 bits over 5 gens）与 0.6B 的 3 gens 相比略缓（per-gen rate
+    更低），这可能因为 1.5B 的表达能力分散到更多 token pattern 上，但最终 accumulated drop 一致。这直接回应 R1 scale
+    concern：跨 model family（Qwen3 vs Qwen2.5）、跨参数量（0.6B vs 1.5B，2.5x gap）、跨 generation
+    depth（3 vs 5 gens）三个维度的一致性构成强 robustness evidence。
+- name: Qwen2.5-1.5B LoRA K=4 random
+  plan_id: plan_010
+  description: Qwen2.5-1.5B-Instruct LoRA rank=64 K=4 random selection (no reward
+    curation), 5 generations. Control condition for 1.5B cross-model comparison.
+  expected_results:
+    gen0_vendi_score: 110.15
+    gen1_vendi_score: 110.72
+    gen2_vendi_score: 111.08
+    gen3_vendi_score: 110.89
+    gen4_vendi_score: 111.34
+    vendi_decline_pct: 1.08
+    gen0_mean_nn_distance: 0.7105
+    gen1_mean_nn_distance: 0.7098
+    gen2_mean_nn_distance: 0.7118
+    gen3_mean_nn_distance: 0.7109
+    gen4_mean_nn_distance: 0.7131
+    gen0_self_bleu: 0.0048
+    gen2_self_bleu: 0.0055
+    gen4_self_bleu: 0.0052
+    gen0_perplexity: 8.35
+    gen2_perplexity: 7.89
+    gen4_perplexity: 7.51
+    gen0_opening_entropy: 4.79
+    gen2_opening_entropy: 4.18
+    gen4_opening_entropy: 4.01
+    format_entropy_drop_gen0_to_gen4: -0.78
+    near_duplicate_start_rate_gen0: 0.07
+    near_duplicate_start_rate_gen4: 0.43
+    training_loss_gen0: 0.195
+    training_loss_gen2: 0.121
+    training_loss_gen4: 0.085
+    vendi_gap_curated_vs_random: -0.74
+  result_rationale: Random baseline 在 1.5B 上同样展示 semantic resilience（Vendi +1.08%），甚至比
+    curated 略高，复现 0.6B 上的 pattern（random 的 carr_baseline_no_curation_01 Vendi 增长 3.1%
+    vs curated -0.28%）。curated vs random 的 Vendi gap 为 -0.74pp（curated 略低），在 best
+    档指标范围 [-3.5, 0.5] 内且远小于 0.6B LoRA 上的 -3.4pp gap。这个缩小的 gap 支持 LoRA capacity artifact
+    解释——1.5B 上 LoRA 占比更低（2.7% vs 4.3%），capacity ceiling 更紧，curated/random 的差异被压缩得更小。format
+    entropy drop（-0.78 bits）与 curated 的 -0.75 bits 几乎无差异（gap = -0.03，在 [-0.15, 0.15]
+    范围内），完美复现 'format collapse is inherent, not caused by curation' 的结论。near_dup_start_rate
+    的 gen4 值（0.43）与 curated（0.41）也高度一致。
+  tables:
+  - 'Table 1 扩展行: Config 10 (Qwen2.5-1.5B, LoRA, K=4, random) — Vendi gen0-4, NN dist,
+    self-BLEU, training loss'
+  - 'Table 5: 1.5B random 行，与 curated 并列对比 format metrics'
+  figures_description:
+  - 'Figure 2 扩展: Vendi trajectory 新增 1.5B random 线（虚线+圆形 marker），与 1.5B curated 几乎平行，视觉强调
+    gap 极小'
+  - 'Figure 4 扩展/Figure 5: format collapse comparison 新增 1.5B pair，与 0.6B C1 vs C5
+    并列，强化 ''inherent to iteration'' 结论的跨模型一致性'
+  analysis: 1.5B random 完美复现 Pattern 2（format collapse inherent）和支撑 Pattern 3（LoRA
+    capacity artifact 的跨模型验证）。关键发现：(1) curated vs random 的 Vendi gap 在 1.5B 上仅 -0.74pp，远小于
+    0.6B 的 -3.4pp，这恰好符合 capacity artifact 假说的预测——LoRA 占总参数比例越低，ceiling 越紧，curated/random
+    差异越被压缩。(2) format entropy gap curated vs random = -0.03 bits（本质为零），与 0.6B 上 C1
+    vs C5 的 0.00 bits gap 一致，跨模型证实 curation 不是 format collapse 的 cause。(3) 5 代运行无
+    repetition degeneration 或其他 1.5B 特有 failure mode，排除 best 档假设中的第四条风险。整体结论：四个 pattern
+    在不同 model family、不同 scale、更长 generation depth 下完全复现，论文可以从 'systematic study on
+    Qwen3-0.6B' 升级为 'consistent phenomenon across model scales (0.6B–1.5B) and architectures
+    (Qwen3, Qwen2.5)'，R1 scale concern 被实质化解。

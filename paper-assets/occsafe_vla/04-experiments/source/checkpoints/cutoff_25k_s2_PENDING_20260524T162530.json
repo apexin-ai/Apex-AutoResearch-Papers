@@ -1,0 +1,16 @@
+{
+  "exp_id": "cutoff_25k_s2",
+  "project": "occsafe_vla",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T16:25:08.650Z",
+    "updated_at": "2026-05-24T16:25:30.022Z",
+    "hypothesis": "Seed 44 replication of cutoff_25k (OCC gradient cutoff at 25K steps). 2-seed results show high instability (0.688-0.760, std=0.051). 3rd seed needed to confirm whether withdrawal introduces instability pattern (continuity > existence) and narrow confidence interval for paper claims. Parent: cutoff_25k_s1 (s1 CAR=0.760 > Detach 0.746, but with 25× higher variance).",
+    "parent": "cutoff_25k_s1"
+  },
+  "timestamp": "2026-05-24T16:25:30.210536+00:00",
+  "trigger": "update_registry"
+}

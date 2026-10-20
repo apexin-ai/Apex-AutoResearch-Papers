@@ -1,0 +1,1865 @@
+# diagnose eval failures
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 63
+- **Recorded user turns:** 0
+- **Tool calls:** 31
+- **Original source:** `logs/chats/worker_diagnose_eval_failures_20260523T204644.jsonl`
+- **Structured JSON:** [`72246cf412f37f46ab25.json`](../../sessions/72/72246cf412f37f46ab25.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+63 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T20:51:19.394613+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T20:51:19.395079+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T20:51:19.395322+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "cat /tmp/reverse_cutoff_s0_eval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "cat /tmp/reverse_cutoff_s0_eval.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-23T20:51:19.395524+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "cat /tmp/cutoff_25k_s0_eval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "cat /tmp/cutoff_25k_s0_eval.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-23T20:51:19.395911+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/occsafe/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-24 04:44:26.007278: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\\n2026-05-24 04:44:26.047060: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered\\n2026-05-24 04:44:26.047098: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered\\n2026-05-24 04:44:26.048062: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered\\n2026-05-24 04:44:26.053284: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\\nTo enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\\n2026-05-24 04:44:26.644576: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/torch/jit/_script.py:1488: DeprecationWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.\\n  
+…[truncated 5495 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-23T20:51:19.396191+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "ls -la /tmp/aml_submit_*.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "ls -la /tmp/aml_submit_*.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-23T20:51:19.396569+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/occsafe/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-24 04:43:55.168037: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\\n2026-05-24 04:43:55.202556: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered\\n2026-05-24 04:43:55.202585: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered\\n2026-05-24 04:43:55.203389: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered\\n2026-05-24 04:43:55.208014: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\\nTo enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\\n2026-05-24 04:43:55.807788: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/torch/jit/_script.py:1488: DeprecationWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.\\n  
+…[truncated 5996 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T20:51:19.396876+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/tmp/aml_submit_*.sh': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T20:51:19.397155+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "tail -100 /tmp/reverse_cutoff_s0_eval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "tail -100 /tmp/reverse_cutoff_s0_eval.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T20:51:19.397526+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/occsafe/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-24 04:44:26.007278: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\\n2026-05-24 04:44:26.047060: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered\\n2026-05-24 04:44:26.047098: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered\\n2026-05-24 04:44:26.048062: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered\\n2026-05-24 04:44:26.053284: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\\nTo enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\\n2026-05-24 04:44:26.644576: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/torch/jit/_script.py:1488: DeprecationWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.\\n  
+…[truncated 5627 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-23T20:51:19.397834+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "tail -100 /tmp/cutoff_25k_s0_eval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "tail -100 /tmp/cutoff_25k_s0_eval.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-23T20:51:19.398064+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "tmux ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "tmux ls",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T20:51:19.398442+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/occsafe/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-24 04:43:55.168037: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\\n2026-05-24 04:43:55.202556: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered\\n2026-05-24 04:43:55.202585: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered\\n2026-05-24 04:43:55.203389: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered\\n2026-05-24 04:43:55.208014: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\\nTo enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\\n2026-05-24 04:43:55.807788: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/torch/jit/_script.py:1488: DeprecationWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.\\n  
+…[truncated 6195 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T20:51:19.398850+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T20:51:19.399187+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "wc -l /tmp/reverse_cutoff_s0_eval.log /tmp/cutoff_25k_s0_eval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "wc -l /tmp/reverse_cutoff_s0_eval.log /tmp/cutoff_25k_s0_eval.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T20:51:19.399411+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   79 /tmp/reverse_cutoff_s0_eval.log\\n   88 /tmp/cutoff_25k_s0_eval.log\\n  167 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T20:51:19.399602+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "ls -la /tmp/*eval*.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "ls -la /tmp/*eval*.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T20:51:19.399829+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root  8099 May 24 04:47 /tmp/cutoff_25k_s0_eval.log\\n-rw-r--r-- 1 root root 21508 May 22 04:58 /tmp/eval_occ_s0_50k.log\\n-rw-r--r-- 1 root root 21446 May 22 04:58 /tmp/eval_occ_s2_50k.log\\n-rw-r--r-- 1 root root 44934 May 22 04:46 /tmp/occ_s0_eval.log\\n-rw-r--r-- 1 root root  7536 May 24 04:47 /tmp/reverse_cutoff_s0_eval.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-23T20:51:19.400022+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "ls -la ~/runs/occsafe_vla/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "ls -la ~/runs/occsafe_vla/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T20:51:19.400250+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 35632\\ndrwxr-xr-x 2 root root    4096 May 24 04:33 .\\ndrwxr-xr-x 3 root root      33 May 20 23:59 ..\\n-rw-r--r-- 1 root root  459082 May 24 04:47 cutoff_15k_s0.log\\n-rw-r--r-- 1 root root 3499140 May 24 04:27 cutoff_25k_s0.log\\n-rw-r--r-- 1 root root    3958 May 24 04:35 cutoff_25k_s0_eval.log\\n-rw-r--r-- 1 root root  400528 May 24 04:47 cutoff_45k_s0.log\\n-rw-r--r-- 1 root root 3507134 May 23 08:50 cutoff_s0.log\\n-rw-r--r-- 1 root root   45033 May 23 09:38 cutoff_s0_eval.log\\n-rw-r--r-- 1 root root 3507386 May 23 08:16 cutoff_s1.log\\n-rw-r--r-- 1 root root   45021 May 23 09:04 cutoff_s1_eval.log\\n-rw-r--r-- 1 root root  116113 May 22 10:50 depth_gen.log\\n-rw-r--r-- 1 root root 3507584 May 23 08:17 depth_s0.log\\n-rw-r--r-- 1 root root   45031 May 23 09:09 depth_s0_eval.log\\n-rw-r--r-- 1 root root 3507584 May 23 08:19 depth_s1.log\\n-rw-r--r-- 1 root root   45019 May 23 09:10 depth_s1_eval.log\\n-rw-r--r-- 1 root root   45015 May 21 23:35 eval_occ_s2_50r.log\\n-rw-r--r-- 1 root root   24834 May 21 15:38 eval_s0.log\\n-rw-r--r-- 1 root root   24834 May 21 15:39 eval_s2.log\\n-rw-r--r-- 1 root root 3496380 May 24 02:01 full_occ_retrain_s0.log\\n-rw-r--r-- 1 root root   28020 May 24 02:29 gradient_analysis.log\\n-rw-r--r-- 1 root root  355164 May 21 09:15 mvp_occ_s1.log\\n-rw-r--r-- 1 root root  469087 May 21 14:56 occ_s0_resume2.log\\n-rw-r--r-- 1 root root 3510536 May 22 12:01 occ_s1_fresh.log\\n-rw-r--r-- 1 root root   45039 May 22 12:52 occ_s1_fresh_eval_47500.log\\n-rw-r--r-- 1 root root   45039 May 22 12:53 occ_s1_fresh_eval_50000.log\\n-rw-r--r-- 1 root root   31252 May 21 13:03 occ_s1_resume2.log\\n-rw-r--r-- 1 root root 2157726 May 21 21:49 occ_s1_resume3.log\\n-rw-r--r-- 1 root root  469053 May 21 14:56 occ_s2_resume2.log\\n-rw-r--r-- 1 root root 3499221 May 24 04:29 reverse_cutoff_s0.log\\n-rw-r--r-- 1 root root    3958 May 24 04:35 reverse_cutoff_s0_eval.log\\n-rw-r--r-- 1 root root 
+…[truncated 150 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T20:51:19.400541+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "cat ~/runs/occsafe_vla/reverse_cutoff_s0_eval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "cat ~/runs/occsafe_vla/reverse_cutoff_s0_eval.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T20:51:19.400820+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/occsafe/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-24 04:35:17.628863: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\\n2026-05-24 04:35:17.663311: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered\\n2026-05-24 04:35:17.663337: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered\\n2026-05-24 04:35:17.664259: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered\\n2026-05-24 04:35:17.669515: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\\nTo enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\\n2026-05-24 04:35:18.263877: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/torch/jit/_script.py:1488: DeprecationWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.\\n  
+…[truncated 2196 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-23T20:51:19.401078+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "cat ~/runs/occsafe_vla/cutoff_25k_s0_eval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "cat ~/runs/occsafe_vla/cutoff_25k_s0_eval.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-23T20:51:19.401299+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "find /tmp -name \"aml_*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "find /tmp -name \"aml_*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-23T20:51:19.401579+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/occsafe/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-24 04:35:37.332394: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\\n2026-05-24 04:35:37.371279: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered\\n2026-05-24 04:35:37.371306: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered\\n2026-05-24 04:35:37.372149: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered\\n2026-05-24 04:35:37.376834: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\\nTo enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\\n2026-05-24 04:35:38.018432: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/torch/jit/_script.py:1488: DeprecationWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.\\n  
+…[truncated 2196 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T20:51:19.401877+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.62}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-23T20:51:19.402172+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "head -50 ~/runs/occsafe_vla/cutoff_s0_eval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "head -50 ~/runs/occsafe_vla/cutoff_s0_eval.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T20:51:19.402515+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/occsafe/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-23 08:53:29.222116: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\\n2026-05-23 08:53:29.263985: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered\\n2026-05-23 08:53:29.264019: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered\\n2026-05-23 08:53:29.264969: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered\\n2026-05-23 08:53:29.270053: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\\nTo enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\\n2026-05-23 08:53:29.865230: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/torch/jit/_script.py:1488: DeprecationWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.\\n  
+…[truncated 3712 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-23T20:51:19.402844+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "grep -r \"num_trials_per_task\\|num_rollouts\" /root/occsafe_vla/experiments/robot/libero/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "grep -r \"num_trials_per_task\\|num_rollouts\" /root/occsafe_vla/experiments/robot/libero/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T20:51:19.403071+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-23T20:51:19.403277+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "grep \"python.*evaluate\" ~/runs/occsafe_vla/cutoff_s0_eval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "grep \"python.*evaluate\" ~/runs/occsafe_vla/cutoff_s0_eval.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T20:51:19.403488+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-23T20:51:19.403748+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "grep -n \"num_trials_per_task\\|num_rollouts\\|add_argument\" /root/occsafe_vla/experiments/robot/libero/evaluate_safelibero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "grep -n \"num_trials_per_task\\|num_rollouts\\|add_argument\" /root/occsafe_vla/experiments/robot/libero/evaluate_safelibero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T20:51:19.403968+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-23T20:51:19.404184+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "ls -la /root/autodl-tmp/checkpoints/reverse_cutoff_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "ls -la /root/autodl-tmp/checkpoints/reverse_cutoff_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-23T20:51:19.404446+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 15095028\\ndrwxr-xr-x 3 root root       4096 May 24 04:44 .\\ndrwxr-xr-x 6 root root       4096 May 24 04:28 ..\\n-rw-r--r-- 1 root root  302243095 May 24 04:28 action_head--50000_checkpoint.pt\\n-rw-r--r-- 1 root root         21 May 24 04:28 added_tokens.json\\n-rw-r--r-- 1 root root      60768 May 24 04:44 config.json\\n-rw-r--r-- 1 root root      60769 May 24 04:28 config.json.back.20260524_042854\\n-rw-r--r-- 1 root root      60768 May 24 04:28 config.json.back.20260524_044441\\n-rw-r--r-- 1 root root       5865 May 24 04:28 configuration_prismatic.py\\n-rw-r--r-- 1 root root       2957 May 24 04:28 dataset_statistics.json\\n-rw-r--r-- 1 root root        136 May 24 04:28 generation_config.json\\ndrwxr-xr-x 2 root root         99 May 24 04:28 lora_adapter\\n-rw-r--r-- 1 root root 4925122448 May 24 04:28 model-00001-of-00004.safetensors\\n-rw-r--r-- 1 root root 4947392496 May 24 04:28 model-00002-of-00004.safetensors\\n-rw-r--r-- 1 root root 4947417456 May 24 04:28 model-00003-of-00004.safetensors\\n-rw-r--r-- 1 root root  262668432 May 24 04:28 model-00004-of-00004.safetensors\\n-rw-r--r-- 1 root root      94764 May 24 04:28 model.safetensors.index.json\\n-rw-r--r-- 1 root root      49036 May 24 04:28 modeling_prismatic.py\\n-rw-r--r-- 1 root root    2434741 May 24 04:28 occ_head--50000_checkpoint.pt\\n-rw-r--r-- 1 root root       1650 May 24 04:28 preprocessor_config.json\\n-rw-r--r-- 1 root root      12718 May 24 04:28 processing_prismatic.py\\n-rw-r--r-- 1 root root        130 May 24 04:28 processor_config.json\\n-rw-r--r-- 1 root root   67275701 May 24 04:28 proprio_projector--50000_checkpoint.pt\\n-rw-r--r-- 1 root root        552 May 24 04:28 special_tokens_map.json\\n-rw-r--r-- 1 root root    1842976 May 24 04:28 tokenizer.json\\n-rw-r--r-- 1 root root     499723 May 24 04:28 tokenizer.model\\n-rw-r--r-- 1 root root       1192 May 24 04:28 tokenizer_config.json\\n\", \"stderr\": \"\", \"return_c
+…[truncated 72 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-23T20:51:19.404910+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "ls -la /root/autodl-tmp/checkpoints/cutoff_25k_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "ls -la /root/autodl-tmp/checkpoints/cutoff_25k_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T20:51:19.405178+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 15095028\\ndrwxr-xr-x 3 root root       4096 May 24 04:44 .\\ndrwxr-xr-x 6 root root       4096 May 24 04:25 ..\\n-rw-r--r-- 1 root root  302243095 May 24 04:25 action_head--50000_checkpoint.pt\\n-rw-r--r-- 1 root root         21 May 24 04:25 added_tokens.json\\n-rw-r--r-- 1 root root      60768 May 24 04:44 config.json\\n-rw-r--r-- 1 root root      60769 May 24 04:26 config.json.back.20260524_042802\\n-rw-r--r-- 1 root root      60768 May 24 04:28 config.json.back.20260524_044410\\n-rw-r--r-- 1 root root       5865 May 24 04:26 configuration_prismatic.py\\n-rw-r--r-- 1 root root       2957 May 24 04:25 dataset_statistics.json\\n-rw-r--r-- 1 root root        136 May 24 04:26 generation_config.json\\ndrwxr-xr-x 2 root root         99 May 24 04:25 lora_adapter\\n-rw-r--r-- 1 root root 4925122448 May 24 04:26 model-00001-of-00004.safetensors\\n-rw-r--r-- 1 root root 4947392496 May 24 04:26 model-00002-of-00004.safetensors\\n-rw-r--r-- 1 root root 4947417456 May 24 04:26 model-00003-of-00004.safetensors\\n-rw-r--r-- 1 root root  262668432 May 24 04:26 model-00004-of-00004.safetensors\\n-rw-r--r-- 1 root root      94764 May 24 04:26 model.safetensors.index.json\\n-rw-r--r-- 1 root root      49036 May 24 04:26 modeling_prismatic.py\\n-rw-r--r-- 1 root root    2434741 May 24 04:25 occ_head--50000_checkpoint.pt\\n-rw-r--r-- 1 root root       1650 May 24 04:25 preprocessor_config.json\\n-rw-r--r-- 1 root root      12718 May 24 04:25 processing_prismatic.py\\n-rw-r--r-- 1 root root        130 May 24 04:25 processor_config.json\\n-rw-r--r-- 1 root root   67275701 May 24 04:25 proprio_projector--50000_checkpoint.pt\\n-rw-r--r-- 1 root root        552 May 24 04:25 special_tokens_map.json\\n-rw-r--r-- 1 root root    1842976 May 24 04:25 tokenizer.json\\n-rw-r--r-- 1 root root     499723 May 24 04:25 tokenizer.model\\n-rw-r--r-- 1 root root       1192 May 24 04:25 tokenizer_config.json\\n\", \"stderr\": \"\", \"return_c
+…[truncated 72 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-23T20:51:19.405498+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "grep -n \"num_rollouts\\|num_trials\" /root/occsafe_vla/experiments/robot/libero/evaluate_safelibero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "grep -n \"num_rollouts\\|num_trials\" /root/occsafe_vla/experiments/robot/libero/evaluate_safelibero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-23T20:51:19.407240+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-23T20:51:19.407484+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "grep -rn \"num_trials_per_task\" /root/occsafe_vla/experiments/robot/libero/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "grep -rn \"num_trials_per_task\" /root/occsafe_vla/experiments/robot/libero/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-23T20:51:19.407721+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/occsafe_vla/experiments/robot/libero/: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-23T20:51:19.407946+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "find /root/occsafe_vla -name \"evaluate_safelibero.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "find /root/occsafe_vla -name \"evaluate_safelibero.py\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T20:51:19.408174+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/occsafe_vla/openvla-oft/vla-scripts/evaluate_safelibero.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-23T20:51:19.408395+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "grep -n \"num_rollouts\\|num_trials\" /root/occsafe_vla/openvla-oft/vla-scripts/evaluate_safelibero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "grep -n \"num_rollouts\\|num_trials\" /root/occsafe_vla/openvla-oft/vla-scripts/evaluate_safelibero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-23T20:51:19.408624+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-23T20:51:19.410347+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "grep -n \"num_rollouts\" /root/occsafe_vla/openvla-oft/vla-scripts/evaluate_safelibero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "grep -n \"num_rollouts\" /root/occsafe_vla/openvla-oft/vla-scripts/evaluate_safelibero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-23T20:51:19.410592+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"21:      --num_rollouts 20\\n26:  --num_rollouts           Number of rollouts per task (default: 20)\\n124:    num_rollouts: int = 20\\n356:                cfg.task_suite_name, num_tasks, cfg.num_rollouts, cfg.collision_threshold)\\n362:            \\\"num_rollouts\\\": cfg.num_rollouts,\\n377:        n_ep = min(cfg.num_rollouts, len(init_states))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-23T20:51:19.410847+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "grep -n \"num_trials\" /root/occsafe_vla/openvla-oft/vla-scripts/evaluate_safelibero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "grep -n \"num_trials\" /root/occsafe_vla/openvla-oft/vla-scripts/evaluate_safelibero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-23T20:51:19.411081+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-23T20:51:19.411367+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "stat /tmp/reverse_cutoff_s0_eval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "stat /tmp/reverse_cutoff_s0_eval.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-23T20:51:19.411618+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /tmp/reverse_cutoff_s0_eval.log\\n  Size: 9395      \\tBlocks: 24         IO Block: 4096   regular file\\nDevice: 83h/131d\\tInode: 5372647887  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-24 04:47:30.341885806 +0800\\nModify: 2026-05-24 04:48:44.234153451 +0800\\nChange: 2026-05-24 04:48:44.234153451 +0800\\n Birth: 2026-05-24 04:28:36.920643849 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-23T20:51:19.411872+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "stat /tmp/cutoff_25k_s0_eval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "stat /tmp/cutoff_25k_s0_eval.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-23T20:51:19.412111+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /tmp/cutoff_25k_s0_eval.log\\n  Size: 9773      \\tBlocks: 24         IO Block: 4096   regular file\\nDevice: 83h/131d\\tInode: 5372647885  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-24 04:47:29.309881857 +0800\\nModify: 2026-05-24 04:48:43.786151913 +0800\\nChange: 2026-05-24 04:48:43.786151913 +0800\\n Birth: 2026-05-24 04:27:45.099462633 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-23T20:51:19.412418+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-23T20:51:19.412648+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-23T20:51:19.412901+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "grep -n \"num_rollouts\" /root/occsafe_vla/openvla-oft/vla-scripts/evaluate_safelibero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "grep -n \"num_rollouts\" /root/occsafe_vla/openvla-oft/vla-scripts/evaluate_safelibero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-23T20:51:19.413135+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"21:      --num_rollouts 20\\n26:  --num_rollouts           Number of rollouts per task (default: 20)\\n124:    num_rollouts: int = 20\\n356:                cfg.task_suite_name, num_tasks, cfg.num_rollouts, cfg.collision_threshold)\\n362:            \\\"num_rollouts\\\": cfg.num_rollouts,\\n377:        n_ep = min(cfg.num_rollouts, len(init_states))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-23T20:51:19.413418+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-23T20:51:19.413787+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/memory.md\", \"content\": \"# Project Memory — occsafe_vla\\n\\n## 决策与约束\\n\\n### Depth 2-seed 初步结论：Depth ≈ Vanilla，指向 Path B (2026-05-23)\\n\\n**depth_s2 (seed44) + depth_s3 (seed45), @50000, 50r：**\\n| seed | CAR | TSR |\\n|------|-----|-----|\\n| s2 | 0.758 | 0.860 |\\n| s3 | 0.806 | 0.848 |\\n| **avg** | **0.782** | **0.854** |\\n\\n**Depth avg CAR=0.782 vs Vanilla avg CAR=0.780，差仅 +0.2pp，在噪声范围内。**\\n\\nDepth < Random (0.789)：egocentric depth 信号没有比 random noise 更好的正则化效果。这否定了\\\"depth 作为更自然的空间信号\\\"的假说——空间内容（无论是 BEV occ 还是 ego depth）不提供有意义的信号增量，梯度流正则化才是核心效应。\\n\\n**Depth seed 方差 (std=0.034) 与 OCC/Random 类似**——辅助任务普遍放大 seed 敏感性，不限于 BEV 表征。\\n\\n等待 depth_s0/s1 完成后做 4-seed 统计检验确认。\\n\\n### 3-Seed 决定性结论：OCC = Vanilla (2026-05-22)\\n\\n**47500 checkpoint（apple-to-apple 对比点，3 seed）：**\\n| 条件 | s0 CAR | s1 CAR | s2 CAR | **avg CAR** | **avg TSR** |\\n|------|--------|--------|--------|------------|------------|\\n| OCC | 0.750 | 0.802 | 0.788 | **0.780** | **0.919** |\\n| Vanilla | 0.788 | 0.766 | 0.786 | **0.780** | **0.907** |\\n\\n**OCC 47500 avg CAR = Vanilla avg CAR = 0.780**。完全持平。\\n\\n**50000 checkpoint（3 seed）：**\\nOCC avg 0.797 vs Vanilla avg 0.780 (+1.7pp)，但主要由 s0 异常高值 (0.832) 驱动，且 47500→50000 行为 seed-dependent（s0 +8.2pp, s1 -1.4pp, s2 -1.8pp），不可靠。\\n\\n**OCC 放大 seed 敏感性**：OCC seed std ~0.026 vs Vanilla std ~0.012 (2.2x)。\\n\\n### 核心诊断结论：OCC 梯度流是隐式正则化器，BEV 空间信号有害 (2026-05-22)\\n**Ablation 2-seed 50r 排序：Random(0.806) > Vanilla(0.777) > Full OCC(0.769) > Detach(0.745)**\\n\\n更新至 3-seed 50r：\\n**Random(0.789) > OCC(0.797) > Depth(0.782, 2-seed) ≈ Vanilla(0.780) > Detach(0.746)**\\n\\n- Random OCC > Vanilla: 辅助任务的梯度流本身提供正向正则化效应\\n- Full OCC ≈ Vanilla: BEV 空间信号的负向干扰恰好抵消了梯度正则化收益\\n- Detach < Vanilla: 没有梯度流 → 没有正则化收益 → OCC head 前向计算只是额外开销\\n- Depth ≈ Vanilla: egocentric depth 的空间信号同样不提供有意义的增量\\n- 推论：辅助任务的空间内容（BEV 或 ego depth）对避障不提供信号增量——梯度流正则化是全部效应
+…[truncated 5226 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-23T20:51:19.414190+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+````json
+{
+  "project": "occsafe_vla",
+  "file": "memory.md",
+  "content": "# Project Memory — occsafe_vla\n\n## 决策与约束\n\n### Depth 2-seed 初步结论：Depth ≈ Vanilla，指向 Path B (2026-05-23)\n\n**depth_s2 (seed44) + depth_s3 (seed45), @50000, 50r：**\n| seed | CAR | TSR |\n|------|-----|-----|\n| s2 | 0.758 | 0.860 |\n| s3 | 0.806 | 0.848 |\n| **avg** | **0.782** | **0.854** |\n\n**Depth avg CAR=0.782 vs Vanilla avg CAR=0.780，差仅 +0.2pp，在噪声范围内。**\n\nDepth < Random (0.789)：egocentric depth 信号没有比 random noise 更好的正则化效果。这否定了\"depth 作为更自然的空间信号\"的假说——空间内容（无论是 BEV occ 还是 ego depth）不提供有意义的信号增量，梯度流正则化才是核心效应。\n\n**Depth seed 方差 (std=0.034) 与 OCC/Random 类似**——辅助任务普遍放大 seed 敏感性，不限于 BEV 表征。\n\n等待 depth_s0/s1 完成后做 4-seed 统计检验确认。\n\n### 3-Seed 决定性结论：OCC = Vanilla (2026-05-22)\n\n**47500 checkpoint（apple-to-apple 对比点，3 seed）：**\n| 条件 | s0 CAR | s1 CAR | s2 CAR | **avg CAR** | **avg TSR** |\n|------|--------|--------|--------|------------|------------|\n| OCC | 0.750 | 0.802 | 0.788 | **0.780** | **0.919** |\n| Vanilla | 0.788 | 0.766 | 0.786 | **0.780** | **0.907** |\n\n**OCC 47500 avg CAR = Vanilla avg CAR = 0.780**。完全持平。\n\n**50000 checkpoint（3 seed）：**\nOCC avg 0.797 vs Vanilla avg 0.780 (+1.7pp)，但主要由 s0 异常高值 (0.832) 驱动，且 47500→50000 行为 seed-dependent（s0 +8.2pp, s1 -1.4pp, s2 -1.8pp），不可靠。\n\n**OCC 放大 seed 敏感性**：OCC seed std ~0.026 vs Vanilla std ~0.012 (2.2x)。\n\n### 核心诊断结论：OCC 梯度流是隐式正则化器，BEV 空间信号有害 (2026-05-22)\n**Ablation 2-seed 50r 排序：Random(0.806) > Vanilla(0.777) > Full OCC(0.769) > Detach(0.745)**\n\n更新至 3-seed 50r：\n**Random(0.789) > OCC(0.797) > Depth(0.782, 2-seed) ≈ Vanilla(0.780) > Detach(0.746)**\n\n- Random OCC > Vanilla: 辅助任务的梯度流本身提供正向正则化效应\n- Full OCC ≈ Vanilla: BEV 空间信号的负向干扰恰好抵消了梯度正则化收益\n- Detach < Vanilla: 没有梯度流 → 没有正则化收益 → OCC head 前向计算只是额外开销\n- Depth ≈ Vanilla: egocentric depth 的空间信号同样不提供有意义的增量\n- 推论：辅助任务的空间内容（BEV 或 ego depth）对避障不提供信号增量——梯度流正则化是全部效应\n\n### Per-Task Case 诊断 (2026-05-22, 50r formal)\n**Case 统计: A=0, B=6, C=2, D=2**\n- Case B（空间信号无用）主导：T0/T2/T4/T5/T8/T9\n- Case C（BEV 有害 + gradient 也不帮忙）：T3, T6 — 这两个 hard task 上 OCC 全面有害\n- Case D（混合）：T1, T7\n- **Case A = 0**：排除了\"gradient 干扰\"假说\n- **T5 特殊**：FullOCC(0.20), Random(0.24) 远超 Vanilla(0.07), Detach(0.05)——gradient flow 对 T5 至关重要，正则化效应最强的 task（物理约束最强的场景）\n\n### random_s0 seed 误报 (2026-05-22)\n原始 random_s0 50r eval config 中已包含 seed=42。之前 Worker 报告\"无 seed\"是检查方法有误（查 /proc/cmdline 而非 config 文件）。rerun 是多余的，已 kill。\n\n### occ_s1 数据不可用 (2026-05-21)\n- mvp_occ_s1 从 17500 resume，数据受 confound 污染，被 D013 排除\n- occ_s1_fresh 替代完成，47500 和 50000 eval 均完成\n\n## 梯度分析决策 (2026-05-23, D026)\n\n**叙事锁定：Collapse Prevention / Gradient Flow Health**\n\n4-condition 梯度分析结果：\n- Full OCC ≈ Vanilla (0.87-1.14×) → 无 amplification\n- Random OCC ≈ Vanilla (1.00-1.14×) → 语义内容不重要\n- Detach → 1-13% of Vanilla → 灾难性梯度崩塌\n- Cosine similarity ≈ 0 → 正交，无 directional guidance\n\n**重分析计划**：detach_ln_s0 完成后用 seed 42 三条件重跑（Vanilla retrain_s0 + Full OCC retrain_s0 + Detach LN s0）。Random OCC 用 seed 44 (ablation_random_occ_s2) 补充，figure caption 注明。\n\n## 待提交 eval 命令 (2026-05-23)\n\n服务器: westd-34685 | conda env: occsafe | 工作目录: /root/occsafe_vla/openvla-oft\n评估脚本: `vla-scripts/evaluate_safelibero.py`，参数 `--pretrained_checkpoint`（不是 --vla_path）\n脚本默认值已匹配训练配置（num_images_in_input=2, use_proprio=True, use_l1_regression=True, lora_rank=32），无需额外指定\n\n### reverse_cutoff_s0_eval (GPU 2)\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=2 MUJOCO_EGL_DEVICE_ID=2 MUJOCO_GL=egl WANDB_MODE=disabled python vla-scripts/evaluate_safelibero.py \\\n  --pretrained_checkpoint /root/autodl-tmp/checkpoints/reverse_cutoff_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt \\\n  --num_rollouts 50 --seed 42\n```\n\n### cutoff_25k_s0_eval (GPU 3)\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=3 MUJOCO_EGL_DEVICE_ID=3 MUJOCO_GL=egl WANDB_MODE=disabled python vla-scripts/evaluate_safelibero.py \\\n  --pretrained_checkpoint /root/autodl-tmp/checkpoints/cutoff_25k_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt \\\n  --num_rollouts 50 --seed 42\n```\n\n### vanilla_retrain_s0_eval (GPU 2, reverse_cutoff eval 完成后)\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=2 MUJOCO_EGL_DEVICE_ID=2 MUJOCO_GL=egl WANDB_MODE=disabled python vla-scripts/evaluate_safelibero.py \\\n  --pretrained_checkpoint /root/autodl-tmp/checkpoints/vanilla_retrain_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt \\\n  --num_rollouts 50 --seed 42\n```\n\n### 注意事项\n- reverse_cutoff_s0 和 cutoff_25k_s0 的 50K checkpoint 尚未生成（当前到 40K），待训练完成\n- 两个 eval 可并行（GPU 2 + GPU 3），vanilla_retrain_s0_eval 排在 reverse_cutoff 之后复用 GPU 2\n- 预计每个 eval 耗时 ~1h（参考 cutoff_s0_eval wall_clock 3427s）\n- vanilla_retrain_s0 的 50K checkpoint 已确认存在\n\n## Seed 42 (s0) Checkpoint 审计 (2026-05-23)\n\n梯度分析需要 same-round (seed 42) checkpoint。审计各条件 50K checkpoint 可用性：\n\n| 条件 | Seed | 训练服务器 | 50K Checkpoint | 状态 |\n|------|------|-----------|---------------|------|\n| vanilla_retrain_s0 | 42 | westd-34685 | `/root/autodl-tmp/checkpoints/vanilla_retrain_s0/...--50000_chkpt` | ✅ 存在 |\n| full_occ_retrain_s0 | 42 | westd-34685 | `/root/autodl-tmp/checkpoints/full_occ_retrain_s0/...--50000_chkpt` | ✅ 存在 |\n| ablation_random_occ_s0 | 42 | westd-10894 | 原路径已删除 | ❌ 需重训 |\n| ablation_occ_detach_s0 | 42 | westd-10894 | 原路径已删除 | ❌ 需重训 |\n| depth_s0 | 42 | westd-34685 | 原路径已删除 | ❌ 需重训 |\n\n**缺失分析**：\n- westd-10894 上 ablation_random_occ_s0 和 ablation_occ_detach_s0 目录已不存在（被磁盘清理删除）\n- westd-34685 上 depth_s0 目录已不存在（eval 后被清理）\n- s2 版本（seed 44）的 random_occ 和 detach checkpoint 在 westd-34685 上仍存在\n- 如需 same-round 梯度分析，需重训 random_occ_s0、detach_s0、depth_s0 三个条件\n\n## 基础设施经验\n\n### 训练命令必须显式指定所有关键参数 (2026-05-23)\n**事故**：cutoff_s2 提交时缺少 `--num_images_in_input 2 --use_proprio True`，使用了脚本默认值（1-image, no-proprio），导致模型架构不同（少 proprio_projector 16.8M 参数），训练速度 2.05 vs 1.07 it/s，结果完全不可比。训练 + eval 均作废。\n**教训**：提交任何训练实验时，必须显式写出以下参数，不依赖脚本默认值：\n```\n--num_images_in_input 2 --use_proprio True --use_l1_regression True\n--batch_size 8 --learning_rate 5e-4 --lora_rank 32 --image_aug True\n```\n**检测方法**：trainable params 总数应为 ~279,977,608（含 proprio_projector）。如果显著偏低，配置有误。训练速度应为 ~1.0-1.1 it/s，如果 >1.5 it/s 说明 input 配置不对。\n\n### westd-34685 磁盘管理教训 (2026-05-22)\n- 350G 数据盘满导致 3 个实验同时崩溃（save_freq=2500 时 checkpoint 积累过快）\n- occ_s1_fresh 残留 149G 是主要元凶\n- 从头重跑时改用 save_freq=10000 减少 checkpoint 数量\n- 教训：提交实验前检查磁盘空间，特别是多实验共用数据盘时\n\n### conda 环境 (2026-05-22)\n- 两台服务器均使用 conda env `occsafe`\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n- 不要假设 .venv 存在\n\n### eval 参数名错误导致 EXIT_CODE=2 (2026-05-23)\n**事故**：reverse_cutoff_s0_eval 和 cutoff_25k_s0_eval 两个 eval 实验在 westd-34685 上以 EXIT_CODE=2 失败。\n**根因**：提交命令使用了 `--num_trials_per_task 50`，但 `evaluate_safelibero.py` 不接受此参数。正确参数名是 `--num_rollouts`。Python argparse 对未识别参数返回 exit code 2（不是 shell 语法错误）。\n**证据**：`~/runs/occsafe_vla/reverse_cutoff_s0_eval.log` 和 `cutoff_25k_s0_eval.log` 均显示 `error: unrecognized arguments: --num_trials_per_task 50`。\n**后续重试**：/tmp/ 下的 log 显示有人用正确参数重试（04:44 启动），两个 eval 分别跑到 T0:62% 和 T0:82%，但在 04:48 同时停止写入（间隔 <1s），重试也失败——原因待查（可能是 tmux session 被 kill、GPU 被抢占或其他外部因素）。\n**两个 checkpoint 均存在**，可直接重跑。\n**教训**：eval 脚本的参数是 `--num_rollouts`（不是 `--num_trials_per_task`）。memory.md 中已记录正确命令。\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "file": "memory.md",
+    "content": "# Project Memory — occsafe_vla\n\n## 决策与约束\n\n### Depth 2-seed 初步结论：Depth ≈ Vanilla，指向 Path B (2026-05-23)\n\n**depth_s2 (seed44) + depth_s3 (seed45), @50000, 50r：**\n| seed | CAR | TSR |\n|------|-----|-----|\n| s2 | 0.758 | 0.860 |\n| s3 | 0.806 | 0.848 |\n| **avg** | **0.782** | **0.854** |\n\n**Depth avg CAR=0.782 vs Vanilla avg CAR=0.780，差仅 +0.2pp，在噪声范围内。**\n\nDepth < Random (0.789)：egocentric depth 信号没有比 random noise 更好的正则化效果。这否定了\"depth 作为更自然的空间信号\"的假说——空间内容（无论是 BEV occ 还是 ego depth）不提供有意义的信号增量，梯度流正则化才是核心效应。\n\n**Depth seed 方差 (std=0.034) 与 OCC/Random 类似**——辅助任务普遍放大 seed 敏感性，不限于 BEV 表征。\n\n等待 depth_s0/s1 完成后做 4-seed 统计检验确认。\n\n### 3-Seed 决定性结论：OCC = Vanilla (2026-05-22)\n\n**47500 checkpoint（apple-to-apple 对比点，3 seed）：**\n| 条件 | s0 CAR | s1 CAR | s2 CAR | **avg CAR** | **avg TSR** |\n|------|--------|--------|--------|------------|------------|\n| OCC | 0.750 | 0.802 | 0.788 | **0.780** | **0.919** |\n| Vanilla | 0.788 | 0.766 | 0.786 | **0.780** | **0.907** |\n\n**OCC 47500 avg CAR = Vanilla avg CAR = 0.780**。完全持平。\n\n**50000 checkpoint（3 seed）：**\nOCC avg 0.797 vs Vanilla avg 0.780 (+1.7pp)，但主要由 s0 异常高值 (0.832) 驱动，且 47500→50000 行为 seed-dependent（s0 +8.2pp, s1 -1.4pp, s2 -1.8pp），不可靠。\n\n**OCC 放大 seed 敏感性**：OCC seed std ~0.026 vs Vanilla std ~0.012 (2.2x)。\n\n### 核心诊断结论：OCC 梯度流是隐式正则化器，BEV 空间信号有害 (2026-05-22)\n**Ablation 2-seed 50r 排序：Random(0.806) > Vanilla(0.777) > Full OCC(0.769) > Detach(0.745)**\n\n更新至 3-seed 50r：\n**Random(0.789) > OCC(0.797) > Depth(0.782, 2-seed) ≈ Vanilla(0.780) > Detach(0.746)**\n\n- Random OCC > Vanilla: 辅助任务的梯度流本身提供正向正则化效应\n- Full OCC ≈ Vanilla: BEV 空间信号的负向干扰恰好抵消了梯度正则化收益\n- Detach < Vanilla: 没有梯度流 → 没有正则化收益 → OCC head 前向计算只是额外开销\n- Depth ≈ Vanilla: egocentric depth 的空间信号同样不提供有意义的增量\n- 推论：辅助任务的空间内容（BEV 或 ego depth）对避障不提供信号增量——梯度流正则化是全部效应\n\n### Per-Task Case 诊断 (2026-05-22, 50r formal)\n**Case 统计: A=0, B=6, C=2, D=2**\n- Case B（空间信号无用）主导：T0/T2/T4/T5/T8/T9\n- Case C（BEV 有害 + gradient 也不帮忙）：T3, T6 — 这两个 hard task 上 OCC 全面有害\n- Case D（混合）：T1, T7\n- **Case A = 0**：排除了\"gradient 干扰\"假说\n- **T5 特殊**：FullOCC(0.20), Random(0.24) 远超 Vanilla(0.07), Detach(0.05)——gradient flow 对 T5 至关重要，正则化效应最强的 task（物理约束最强的场景）\n\n### random_s0 seed 误报 (2026-05-22)\n原始 random_s0 50r eval config 中已包含 seed=42。之前 Worker 报告\"无 seed\"是检查方法有误（查 /proc/cmdline 而非 config 文件）。rerun 是多余的，已 kill。\n\n### occ_s1 数据不可用 (2026-05-21)\n- mvp_occ_s1 从 17500 resume，数据受 confound 污染，被 D013 排除\n- occ_s1_fresh 替代完成，47500 和 50000 eval 均完成\n\n## 梯度分析决策 (2026-05-23, D026)\n\n**叙事锁定：Collapse Prevention / Gradient Flow Health**\n\n4-condition 梯度分析结果：\n- Full OCC ≈ Vanilla (0.87-1.14×) → 无 amplification\n- Random OCC ≈ Vanilla (1.00-1.14×) → 语义内容不重要\n- Detach → 1-13% of Vanilla → 灾难性梯度崩塌\n- Cosine similarity ≈ 0 → 正交，无 directional guidance\n\n**重分析计划**：detach_ln_s0 完成后用 seed 42 三条件重跑（Vanilla retrain_s0 + Full OCC retrain_s0 + Detach LN s0）。Random OCC 用 seed 44 (ablation_random_occ_s2) 补充，figure caption 注明。\n\n## 待提交 eval 命令 (2026-05-23)\n\n服务器: westd-34685 | conda env: occsafe | 工作目录: /root/occsafe_vla/openvla-oft\n评估脚本: `vla-scripts/evaluate_safelibero.py`，参数 `--pretrained_checkpoint`（不是 --vla_path）\n脚本默认值已匹配训练配置（num_images_in_input=2, use_proprio=True, use_l1_regression=True, lora_rank=32），无需额外指定\n\n### reverse_cutoff_s0_eval (GPU 2)\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=2 MUJOCO_EGL_DEVICE_ID=2 MUJOCO_GL=egl WANDB_MODE=disabled python vla-scripts/evaluate_safelibero.py \\\n  --pretrained_checkpoint /root/autodl-tmp/checkpoints/reverse_cutoff_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt \\\n  --num_rollouts 50 --seed 42\n```\n\n### cutoff_25k_s0_eval (GPU 3)\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=3 MUJOCO_EGL_DEVICE_ID=3 MUJOCO_GL=egl WANDB_MODE=disabled python vla-scripts/evaluate_safelibero.py \\\n  --pretrained_checkpoint /root/autodl-tmp/checkpoints/cutoff_25k_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt \\\n  --num_rollouts 50 --seed 42\n```\n\n### vanilla_retrain_s0_eval (GPU 2, reverse_cutoff eval 完成后)\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=2 MUJOCO_EGL_DEVICE_ID=2 MUJOCO_GL=egl WANDB_MODE=disabled python vla-scripts/evaluate_safelibero.py \\\n  --pretrained_checkpoint /root/autodl-tmp/checkpoints/vanilla_retrain_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt \\\n  --num_rollouts 50 --seed 42\n```\n\n### 注意事项\n- reverse_cutoff_s0 和 cutoff_25k_s0 的 50K checkpoint 尚未生成（当前到 40K），待训练完成\n- 两个 eval 可并行（GPU 2 + GPU 3），vanilla_retrain_s0_eval 排在 reverse_cutoff 之后复用 GPU 2\n- 预计每个 eval 耗时 ~1h（参考 cutoff_s0_eval wall_clock 3427s）\n- vanilla_retrain_s0 的 50K checkpoint 已确认存在\n\n## Seed 42 (s0) Checkpoint 审计 (2026-05-23)\n\n梯度分析需要 same-round (seed 42) checkpoint。审计各条件 50K checkpoint 可用性：\n\n| 条件 | Seed | 训练服务器 | 50K Checkpoint | 状态 |\n|------|------|-----------|---------------|------|\n| vanilla_retrain_s0 | 42 | westd-34685 | `/root/autodl-tmp/checkpoints/vanilla_retrain_s0/...--50000_chkpt` | ✅ 存在 |\n| full_occ_retrain_s0 | 42 | westd-34685 | `/root/autodl-tmp/checkpoints/full_occ_retrain_s0/...--50000_chkpt` | ✅ 存在 |\n| ablation_random_occ_s0 | 42 | westd-10894 | 原路径已删除 | ❌ 需重训 |\n| ablation_occ_detach_s0 | 42 | westd-10894 | 原路径已删除 | ❌ 需重训 |\n| depth_s0 | 42 | westd-34685 | 原路径已删除 | ❌ 需重训 |\n\n**缺失分析**：\n- westd-10894 上 ablation_random_occ_s0 和 ablation_occ_detach_s0 目录已不存在（被磁盘清理删除）\n- westd-34685 上 depth_s0 目录已不存在（eval 后被清理）\n- s2 版本（seed 44）的 random_occ 和 detach checkpoint 在 westd-34685 上仍存在\n- 如需 same-round 梯度分析，需重训 random_occ_s0、detach_s0、depth_s0 三个条件\n\n## 基础设施经验\n\n### 训练命令必须显式指定所有关键参数 (2026-05-23)\n**事故**：cutoff_s2 提交时缺少 `--num_images_in_input 2 --use_proprio True`，使用了脚本默认值（1-image, no-proprio），导致模型架构不同（少 proprio_projector 16.8M 参数），训练速度 2.05 vs 1.07 it/s，结果完全不可比。训练 + eval 均作废。\n**教训**：提交任何训练实验时，必须显式写出以下参数，不依赖脚本默认值：\n```\n--num_images_in_input 2 --use_proprio True --use_l1_regression True\n--batch_size 8 --learning_rate 5e-4 --lora_rank 32 --image_aug True\n```\n**检测方法**：trainable params 总数应为 ~279,977,608（含 proprio_projector）。如果显著偏低，配置有误。训练速度应为 ~1.0-1.1 it/s，如果 >1.5 it/s 说明 input 配置不对。\n\n### westd-34685 磁盘管理教训 (2026-05-22)\n- 350G 数据盘满导致 3 个实验同时崩溃（save_freq=2500 时 checkpoint 积累过快）\n- occ_s1_fresh 残留 149G 是主要元凶\n- 从头重跑时改用 save_freq=10000 减少 checkpoint 数量\n- 教训：提交实验前检查磁盘空间，特别是多实验共用数据盘时\n\n### conda 环境 (2026-05-22)\n- 两台服务器均使用 conda env `occsafe`\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n- 不要假设 .venv 存在\n\n### eval 参数名错误导致 EXIT_CODE=2 (2026-05-23)\n**事故**：reverse_cutoff_s0_eval 和 cutoff_25k_s0_eval 两个 eval 实验在 westd-34685 上以 EXIT_CODE=2 失败。\n**根因**：提交命令使用了 `--num_trials_per_task 50`，但 `evaluate_safelibero.py` 不接受此参数。正确参数名是 `--num_rollouts`。Python argparse 对未识别参数返回 exit code 2（不是 shell 语法错误）。\n**证据**：`~/runs/occsafe_vla/reverse_cutoff_s0_eval.log` 和 `cutoff_25k_s0_eval.log` 均显示 `error: unrecognized arguments: --num_trials_per_task 50`。\n**后续重试**：/tmp/ 下的 log 显示有人用正确参数重试（04:44 启动），两个 eval 分别跑到 T0:62% 和 T0:82%，但在 04:48 同时停止写入（间隔 <1s），重试也失败——原因待查（可能是 tmux session 被 kill、GPU 被抢占或其他外部因素）。\n**两个 checkpoint 均存在**，可直接重跑。\n**教训**：eval 脚本的参数是 `--num_rollouts`（不是 `--num_trials_per_task`）。memory.md 中已记录正确命令。\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-23T20:51:19.414579+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_eval_failures_20260523T204644",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-23T20:51:19.414891+00:00_
+
+## 诊断结果
+
+### 根因
+提交命令使用了 **`--num_trials_per_task 50`**，但 `evaluate_safelibero.py` 不支持此参数。正确参数名是 **`--num_rollouts 50`**。
+
+Python argparse 对未识别参数返回 exit code 2 — 这不是 shell 语法错误，而是 argparse 的标准行为。
+
+### 两个实验相同原因
+`~/runs/occsafe_vla/` 下两个 log 均显示：
+```
+evaluate_safelibero.py: error: unrecognized arguments: --num_trials_per_task 50
+```
+
+### 后续重试也失败
+`/tmp/` 下的 log 显示有人用正确参数重试过（04:44 启动），两个 eval 正常跑到 T0:62%/T0:82%，但在 04:48:43-04:48:44 同时停止（<1s 间隔）。原因可能是 tmux session 被 kill 或 GPU 被抢占。
+
+### Checkpoint 状态
+两个 checkpoint 均存在且完整，可直接重跑。
+
+### 修复命令
+memory.md 中已记录的正确 eval 命令可直接使用（`--num_rollouts 50`，GPU 2/3）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diagnose_eval_failures_20260523T204644"
+}
+```
+
+</details>
+
+---

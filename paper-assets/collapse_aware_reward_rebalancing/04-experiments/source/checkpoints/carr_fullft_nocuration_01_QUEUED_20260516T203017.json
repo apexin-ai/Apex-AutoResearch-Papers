@@ -1,0 +1,27 @@
+{
+  "exp_id": "carr_fullft_nocuration_01",
+  "project": "collapse_aware_reward_rebalancing",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:59:20.517Z",
+    "updated_at": "2026-05-16T20:30:17.150Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/carr && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 python3 run_fullft_nocuration.py\"",
+      "server": "bjb2-23165",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "521921",
+      "log_path": "~/runs/collapse_aware_reward_rebalancing/carr_fullft_nocuration_01.log",
+      "submitted_at": "2026-05-16T19:59:20.497Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-16T20:30:17.171967+00:00",
+  "trigger": "update_registry"
+}

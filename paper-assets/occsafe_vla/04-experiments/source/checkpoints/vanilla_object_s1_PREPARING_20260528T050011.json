@@ -1,0 +1,21 @@
+{
+  "exp_id": "vanilla_object_s1",
+  "project": "occsafe_vla",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-27T16:50:35.891Z",
+    "updated_at": "2026-05-28T05:00:10.780Z",
+    "hypothesis": "Vanilla baseline on libero_object benchmark (seed 43): Second seed for cross-benchmark generalizability. Paired with vanilla_object_s0 (seed 42) to establish reliable Vanilla baseline on object suite for comparison with OCC conditions.",
+    "completed_at": "2026-05-28T04:16:56.350Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed"
+      }
+    }
+  },
+  "timestamp": "2026-05-28T05:00:11.392822+00:00",
+  "trigger": "update_registry"
+}

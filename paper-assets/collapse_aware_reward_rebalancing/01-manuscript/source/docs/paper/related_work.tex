@@ -1,0 +1,36 @@
+% Section 2: Related Work
+% Note: \section{} header is in main.tex
+
+\paragraph{Model Collapse and Self-Consuming Training.}
+Training generative models on their own outputs across multiple generations risks progressive quality degradation.
+\cite{placeholder_shumailov} formalized this phenomenon as \emph{model collapse} and showed that iterative retraining on unfiltered synthetic data causes tail distributions to vanish and outputs to converge toward a narrow mode.
+\cite{placeholder_alemohammad} extended this analysis to self-consuming generative models more broadly and established theoretical conditions under which the output distribution contracts with each generation.
+Building on these findings, DIVE~\cite{placeholder_dive} proposed diversity-preserving iterative self-improvement and introduced explicit diversity constraints during self-training to counteract distributional narrowing.
+A common thread in these works is that collapse arises from \emph{unfiltered} self-consumption, where all generated data is fed back without selection.
+Our setting differs fundamentally: we study \emph{reward-filtered} iterative training, where only top-scoring outputs are retained at each generation.
+The collapse dynamics under selective pressure are distinct from those under uniform resampling, and whether reward curation compounds into semantic collapse across generations had not been empirically tested prior to our work.
+
+\paragraph{Diversity in RLHF and Reward Optimization.}
+Reward optimization is known to reduce output variability in single-generation settings.
+\cite{placeholder_kirk} measured lexical and semantic diversity before and after RLHF and found significant reductions across multiple diversity metrics within a single alignment round.
+CD-RLHF~\cite{placeholder_cdrlhf} proposed curiosity-driven exploration bonuses to counteract this effect; these bonuses encourage the policy to maintain diverse behavior during reward maximization.
+These studies share a limitation: they observe diversity changes within a single training round and do not examine whether the effect compounds when the curated outputs become training data for subsequent generations.
+Our experiments span three iterative generations of reward-filtered self-training and directly test the compounding hypothesis.
+We find that semantic diversity (measured by embedding distances and Vendi Score) remains stable across generations. This result contradicts the extrapolation from single-round observations to iterative collapse.
+
+\paragraph{Diversity-Preserving Methods.}
+Several recent methods explicitly optimize for output diversity alongside reward.
+DARLING~\cite{placeholder_darling} introduces diversity-aware reward learning that penalizes reward models for assigning high scores to repetitive outputs.
+GEM~\cite{placeholder_gem} frames diversity preservation as a game-theoretic problem and trains a population of policies that are jointly rewarded for collective coverage of the output space.
+These methods share a premise: that standard reward optimization inevitably produces homogeneous outputs and that active intervention is required to maintain diversity.
+Our results challenge this premise at the semantic level.
+Under standard reward curation without any diversity-preserving mechanism, we observe no measurable semantic collapse across three generations.
+The homogenization we do observe operates at the format and template level (opening patterns, structural repetition), a dimension these methods do not explicitly target.
+This suggests that diversity-preserving methods may be optimizing against a failure mode that does not manifest in practice at the semantic layer, while the actual homogenization occurs in a dimension they leave unaddressed.
+
+\paragraph{Diversity Measurement.}
+Standard diversity metrics in text generation fall into two categories: reference-free surface metrics such as Self-BLEU~\cite{placeholder_selfbleu}, which measures n-gram overlap across generated samples, and kernel-based measures such as the Vendi Score~\cite{placeholder_vendi}, which computes an effective number of distinct modes from a similarity kernel over embeddings.
+Both approaches capture semantic or lexical variety but are blind to structural homogenization: two responses can have entirely different content (low Self-BLEU, high embedding distance) yet open with identical templates and follow the same organizational pattern.
+Our analysis reveals this blind spot empirically.
+We introduce two complementary surface metrics, opening entropy and near-duplicate start rate, that specifically measure template-level repetition invisible to embedding-based evaluation.
+These metrics expose the format collapse that standard diversity measures miss, and they explain why prior work could simultaneously report stable diversity scores and yet produce outputs that feel increasingly formulaic to human evaluators.

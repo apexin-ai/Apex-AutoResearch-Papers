@@ -1,0 +1,114 @@
+======================================================================
+2×2 Factorial ANOVA: Gradient Flow × Norm Type on CAR
+======================================================================
+
+--- Descriptive Statistics ---
+  grad_on_bn     : n=2, mean=0.7000, sd=0.0651, range=[0.654, 0.746]
+  grad_on_ln     : n=3, mean=0.7427, sd=0.0240, range=[0.718, 0.766]
+  grad_off_bn    : n=3, mean=0.7567, sd=0.0202, range=[0.744, 0.780]
+  grad_off_ln    : n=3, mean=0.7653, sd=0.0234, range=[0.748, 0.792]
+
+  Marginal means:
+    Grad ON:  0.7256   Grad OFF: 0.7610
+    BN:       0.7340   LN:       0.7540
+    Grand mean: 0.7449
+
+--- Assumption Checks ---
+  Levene's test: F=2.1332, p=0.1843
+    ✓ Homogeneity of variance assumption met
+  Shapiro-Wilk normality tests:
+    grad_on_bn: n=2, too few observations for Shapiro-Wilk
+    grad_on_ln: W=0.9977, p=0.9082 ✓
+    grad_off_bn: W=0.7915, p=0.0944 ✓
+    grad_off_ln: W=0.8811, p=0.3275 ✓
+
+  ⚠ Note: Cell 'grad_on_bn' has only n=2 observations.
+    This severely limits statistical power and assumption testing.
+    All results should be interpreted with caution.
+
+--- 2×2 ANOVA (Type III Sum of Squares) ---
+
+  Source                            SS    df          F          p
+  ------------------------------------------------------------
+  Intercept                   5.859499     1  5615.6206     0.0000
+  Gradient Flow               0.004196     1     4.0212     0.0850
+  Norm Type                   0.001757     1     1.6836     0.2356
+  Gradient × Norm             0.000771     1     0.7386     0.4186
+  Residual                    0.007304     7                      
+
+--- Effect Sizes ---
+
+  Partial η² (from ANOVA):
+    Gradient Flow            : η²_p = 0.3649
+    Norm Type                : η²_p = 0.1939
+    Gradient × Norm          : η²_p = 0.0954
+
+  Cohen's d (pairwise):
+    Grad OFF vs ON:   d = 1.0838  (positive = OFF > ON)
+    LN vs BN:         d = 0.5494  (positive = LN > BN)
+
+  Cohen's f (overall):
+    Gradient Flow            : f = 0.7579
+    Norm Type                : f = 0.4904
+    Gradient × Norm          : f = 0.3248
+
+--- Simple Effects Analysis ---
+  (Independent samples t-tests within each level of the other factor)
+
+  Gradient Flow effect within BN:
+    Grad ON+BN: mean=0.7000 (n=2)
+    Grad OFF+BN: mean=0.7567 (n=3)
+    t=-1.5129, p=0.2275, Cohen's d=1.3811
+    Mean diff = 0.0567
+
+  Gradient Flow effect within LN:
+    Grad ON+LN: mean=0.7427 (n=3)
+    Grad OFF+LN: mean=0.7653 (n=3)
+    t=-1.1696, p=0.3071, Cohen's d=0.9550
+    Mean diff = 0.0227
+
+  Norm Type effect within Grad ON:
+    BN+Grad ON: mean=0.7000 (n=2)
+    LN+Grad ON: mean=0.7427 (n=3)
+    t=-1.1030, p=0.3506, Cohen's d=1.0069
+    Mean diff = 0.0427
+
+  Norm Type effect within Grad OFF:
+    BN+Grad OFF: mean=0.7567 (n=3)
+    LN+Grad OFF: mean=0.7653 (n=3)
+    t=-0.4848, p=0.6532, Cohen's d=0.3959
+    Mean diff = 0.0087
+
+--- Bootstrap 95% CI for Cell Means (10000 resamples) ---
+
+  grad_on_bn     : mean=0.7000, 95% CI=[0.6540, 0.7460]
+  grad_on_ln     : mean=0.7427, 95% CI=[0.7180, 0.7660]
+  grad_off_bn    : mean=0.7567, 95% CI=[0.7440, 0.7800]
+  grad_off_ln    : mean=0.7653, 95% CI=[0.7480, 0.7920]
+
+--- Comparison vs Vanilla (CAR = 0.768) ---
+
+  grad_on_bn     : mean=0.7000, diff=-0.0680 (8.9% below), t=-1.4783, p=0.3786
+  grad_on_ln     : mean=0.7427, diff=-0.0253 (3.3% below), t=-1.8262, p=0.2094
+  grad_off_bn    : mean=0.7567, diff=-0.0113 (1.5% below), t=-0.9702, p=0.4343
+  grad_off_ln    : mean=0.7653, diff=-0.0027 (0.3% below), t=-0.1971, p=0.8620
+
+  Note: One-sample t-tests vs Vanilla=0.768. With n=2-3 per cell,
+  these tests have very low power. Non-significant p-values should
+  NOT be interpreted as evidence of no difference.
+
+--- Summary & Caveats ---
+  Grand mean across OCC conditions: 0.7449 vs Vanilla: 0.768
+  Difference: -0.0231
+
+  ⚠ Key limitations:
+    1. Very small sample sizes (n=2 to 3 per cell). Statistical power is extremely low.
+    2. Cell 'grad_on_bn' has only n=2, making variance estimates unreliable.
+    3. Unbalanced design requires Type III SS (used here).
+    4. With total N=11, even medium-to-large effects may not reach significance.
+    5. Bootstrap CIs for n=2 cells have limited resolution (only 3 unique resampled means).
+    6. These results are best treated as descriptive/exploratory, not confirmatory.
+
+--- Non-parametric Check (Kruskal-Wallis across 4 cells) ---
+  Kruskal-Wallis H=3.7500, p=0.2898
+  No significant overall difference across cells (non-parametric)

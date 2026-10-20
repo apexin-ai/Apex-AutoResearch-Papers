@@ -1,0 +1,82 @@
+{
+  "exp_id": "carr_quick_probe_k8_02",
+  "project": "collapse_aware_reward_rebalancing",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:25:22.509Z",
+    "updated_at": "2026-05-16T20:36:44.153Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/carr && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 python3 run_quick_probe_k8.py",
+      "server": "bjb2-23165",
+      "gpu": "cuda:0",
+      "pid": 507603,
+      "log_path": "~/runs/collapse_aware_reward_rebalancing/carr_quick_probe_k8_02.log",
+      "submitted_at": "2026-05-16T14:26:05.571Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "K=8 (12.5%保留率) 的更强选择压力在3代内导致Vendi Score可观测下降(≥5%)",
+      "condition": "single_reward (ArmoRM top-1-of-8)",
+      "generations": 3,
+      "prompts": 2000,
+      "eval_prompts": 200,
+      "model_name": "Qwen3-0.6B",
+      "k_candidates": 8,
+      "gen_batch_size": 8,
+      "data_path": "openbmb/UltraFeedback",
+      "data_count": 2200,
+      "seed": 42,
+      "metrics": {
+        "gen0": {
+          "mean_quality": 0.1146,
+          "vendi_score": 107.21,
+          "self_bleu": 0.0057,
+          "perplexity": 9.4,
+          "mean_nn_distance": 0.7097,
+          "complexity_mean": 2.8436
+        },
+        "gen1": {
+          "mean_quality": 0.1136,
+          "vendi_score": 107.26,
+          "self_bleu": 0.0024,
+          "perplexity": 9.18,
+          "mean_nn_distance": 0.7086,
+          "complexity_mean": 2.7888
+        },
+        "gen2": {
+          "mean_quality": 0.1143,
+          "vendi_score": 107.25,
+          "self_bleu": 0.0064,
+          "perplexity": 10.2,
+          "mean_nn_distance": 0.7095,
+          "complexity_mean": 2.7689
+        },
+        "vendi_decline_pct": -0.03,
+        "p1_pass": false
+      },
+      "checkpoint_path": "/root/autodl-tmp/carr/outputs_k8/gen_2/condition_10/merged",
+      "elapsed_hours": 5.5,
+      "wall_clock_seconds": 22238.6,
+      "gpu_hours": 6.18
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T19:54:30.580Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T19:54:31.660746+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-16T20:36:44.154Z"
+  },
+  "timestamp": "2026-05-16T20:36:44.227011+00:00",
+  "trigger": "update_registry"
+}

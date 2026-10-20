@@ -1,0 +1,16 @@
+{
+  "exp_id": "ablation_occ_detach_s0_retrain_eval",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T02:29:46.773Z",
+    "updated_at": "2026-05-25T02:31:03.379Z",
+    "hypothesis": "50r SafeLIBERO evaluation of ablation_occ_detach_s0_retrain (Detach+BN, seed 42 retrain). Provides same-seed Detach baseline for gradient analysis comparison. Expected CAR ~0.746 (consistent with original Detach 3-seed mean).",
+    "parent": "ablation_occ_detach_s0_retrain"
+  },
+  "timestamp": "2026-05-25T02:31:03.604012+00:00",
+  "trigger": "update_registry"
+}

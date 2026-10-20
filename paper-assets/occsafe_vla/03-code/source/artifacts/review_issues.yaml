@@ -1,0 +1,454 @@
+- id: "R1-C9"
+  summary: "v1/v2 mixing — 实验使用了混合版本的模型/数据"
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 3
+  mentions:
+    - round: 1
+      reviewers: ["Reviewer"]
+      note: "待 v2 LN 训练完成"
+    - round: 2
+      reviewers: ["R1", "R2"]
+      note: "主实验已切换 v2，但 content irrelevance 仍仅有 v1 证据"
+    - round: 3
+      reviewers: ["R1", "R2"]
+      note: "R1 深化分析：v1→v2 偏移 8.6pp > 最大实验效应 5-6pp，构成 confound。任何涉及 v1 条件的跨条件比较（包括 content irrelevance）都被污染。R2 补充：v1/v2 混合还加重 interaction framing 问题——Table 1 中 supplementary conditions（v1）与 core conditions（v2）不可直接比较"
+  action_items:
+    - round: 1
+      action: "重新训练消除 v1/v2 mixing"
+      assigned_to: "main_agent"
+      status: done
+    - round: 2
+      action: "v2 下验证 content irrelevance 或降级为 preliminary observation"
+      assigned_to: "main_agent"
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R1-W5"
+  summary: "Table 1 Random OCC placement 位置/呈现问题"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  mentions:
+    - round: 1
+      reviewers: ["Reviewer"]
+      note: "按 gradient flow 因子分组，逻辑清晰"
+    - round: 2
+      reviewers: ["R1", "R2"]
+      note: "R1 自行撤回 N3（误读表格结构），R2 确认 midrule 分区正确"
+  action_items:
+    - round: 1
+      action: "Random OCC 移到 Full OCC (BN) 之后 midrule 之前"
+      assigned_to: "main_agent"
+      status: done
+  resolution: "Round 1 已修复分区；Round 2 确认"
+  resolution_round: 1
+
+- id: "R1-W6"
+  summary: "Appendix L105 'Detach worst' 表述问题"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - round: 1
+      reviewers: ["Reviewer"]
+      note: "修复充分"
+  action_items:
+    - round: 1
+      action: "修正为 v1 scope 限定"
+      assigned_to: "main_agent"
+      status: done
+  resolution: "Reviewer 确认修复充分"
+  resolution_round: 1
+
+- id: "R1-W13"
+  summary: "Discussion 中 BN/CKA 分析存在矛盾"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - round: 1
+      reviewers: ["Reviewer"]
+      note: "amplifies 改为开放问题，CKA 定位 optimization dynamics"
+  action_items:
+    - round: 1
+      action: "修正 BN amplifies 表述"
+      assigned_to: "main_agent"
+      status: done
+  resolution: "Reviewer 确认段落自洽"
+  resolution_round: 1
+
+- id: "R1-W15"
+  summary: "Page count / 格式违规"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 3
+  mentions:
+    - round: 1
+      reviewers: ["Reviewer"]
+      note: "主文 ~7.5 页，无超页"
+    - round: 2
+      reviewers: ["R1", "R2"]
+      note: "Discussion 占满 page 8，Conclusion 起始 page 9。需压缩 ~2 页"
+    - round: 3
+      reviewers: ["R1", "R2"]
+      note: "问题持续。R1 交叉回应指出 R1-W15 + RD2-N3 + RD3-W4 三问题联动——压缩 Discussion 中与 Results 重复的内容是同时解决页数超限和 Limitations 移入的最直接路径"
+  action_items:
+    - round: 2
+      action: "将 Limitations 移入正文 + 压缩正文至 8 页以内"
+      assigned_to: "main_agent"
+      status: done
+  resolution: "Discussion 压缩 ~30%，Limitations 移入正文，主文 8 页"
+  resolution_round: 3
+
+- id: "R1-W19"
+  summary: "Fig1 Vanilla baseline 显示旧数据"
+  category: format
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - round: 1
+      reviewers: ["Reviewer"]
+      note: "PDF 视觉确认数据一致"
+  action_items:
+    - round: 1
+      action: "更新 fig1 并重新编译 PDF"
+      assigned_to: "main_agent"
+      status: done
+  resolution: "PDF 已更新确认一致"
+  resolution_round: 1
+
+- id: "R1-W21"
+  summary: "Introduction/Conclusion overclaim — content irrelevance 缺 v1 caveat"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 3
+  mentions:
+    - round: 1
+      reviewers: ["Reviewer"]
+      note: "确认修正版本无 overclaim"
+    - round: 2
+      reviewers: ["R1"]
+      note: "Introduction 贡献(1) line 20 用 'under the conditions tested' 而非 v1；Conclusion 无限定"
+    - round: 3
+      reviewers: ["R1", "R2"]
+      note: "Conclusion line 4 当前源码有 'under the v1 codebase (v2 verification pending)' caveat。但 Introduction 贡献(1) 仍用模糊措辞。需确认编译 PDF 与源码一致"
+  action_items:
+    - round: 2
+      action: "Introduction 贡献(1) 和 Conclusion 显式标注 v1"
+      assigned_to: "main_agent"
+      status: done
+  resolution: "所有位置（Abstract, Intro×2, Results, Discussion, Conclusion, Limitations）均已标注 'observed under v1 codebase'"
+  resolution_round: 3
+
+- id: "RD2-N1"
+  summary: "统计功效不足以支撑核心因果声明（n=3-4, power~0.35-0.45）"
+  category: experiment
+  severity: critical
+  status: open
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions:
+    - round: 2
+      reviewers: ["R1", "R2"]
+      note: "n=3 时 d=0.93 的 95% CI 约[-0.8, 2.7]。ANOVA p=0.104/0.060 不显著"
+    - round: 3
+      reviewers: ["R1", "R2"]
+      note: "R1 新增关键论据：交互效应 power <20%（主效应 4 倍样本量经验法则），p=0.753 非显著不能解读为 'confirms additive'。这构成 absence of evidence ≠ evidence of absence 错误，与 RD3-C1 联合构成最致命组合"
+  action_items:
+    - round: 2
+      action: "增加样本量至每 cell n≥5（理想 n≥8）；或降级因果语言"
+      assigned_to: "main_agent"
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "RD2-N2"
+  summary: "Content irrelevance 声明仅有 v1 证据，不可作为确立结论"
+  category: experiment
+  severity: critical
+  status: open
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions:
+    - round: 2
+      reviewers: ["R1", "R2"]
+      note: "v1→v2 Full OCC CAR 从 0.797→0.725，crossover 效应消失"
+    - round: 3
+      reviewers: ["R1", "R2"]
+      note: "持续。R1 补充：gradient orthogonality 作为间接支撑的逻辑有缺陷——orthogonality 在 v1 下也成立但结论仍翻转。R1 交叉回应进一步确认：R2 从可信度角度（发表未验证结论不可接受）、R1 从统计角度（v1/v2 confound），两视角完全互补"
+  action_items:
+    - round: 2
+      action: "v2 下重训 Random OCC 或降级为 preliminary observation"
+      assigned_to: "main_agent"
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "RD2-N3"
+  summary: "Limitations section 不在正文内 — CoRL 格式违规"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions:
+    - round: 2
+      reviewers: ["R1", "R2"]
+      note: "discussion.tex line 19 仅有指针句。CoRL 要求 Limitations 计入 8 页正文"
+    - round: 3
+      reviewers: ["R1", "R2"]
+      note: "持续未修复。R1 交叉回应上调严重程度（从 minor 到 must-fix），认为 N1+N2 组合为 desk reject 边界情况。R1 指出 RD2-N3 + R1-W15 + RD3-W4 联动解决路径"
+  action_items:
+    - round: 2
+      action: "将 Limitations 从 Appendix H 移入正文"
+      assigned_to: "main_agent"
+      status: done
+  resolution: "Limitations 已作为独立 section 在 Conclusion 之后、Appendix 之前，计入 8 页正文"
+  resolution_round: 3
+
+- id: "RD2-W1"
+  summary: "Factorial 设计不完整 — 非 5-factor factorial，仅 2×2 核心 + 单因子 ablation"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions:
+    - round: 2
+      reviewers: ["R1", "R2"]
+      note: "Introduction 声称 'twelve conditions varying five factors' 但仅 2×2 核心"
+    - round: 3
+      reviewers: ["R1", "R2"]
+      note: "持续。R1 额外指出 Introduction L5 声称 'single-factor ablations cannot detect interactions' 但论文自己的 factorial 也未检测到交互（与 RD3-C1 关联）"
+  action_items:
+    - round: 2
+      action: "修正措辞为 '2×2 factorial core + single-factor ablations'"
+      assigned_to: "main_agent"
+      status: done
+  resolution: "Introduction 已改为 'A core 2×2 factorial crosses gradient flow (ON/OFF) with normalization (BN/LN); seven additional single-factor ablations'"
+  resolution_round: 3
+
+- id: "RD2-W2"
+  summary: "Cohen's d 小样本偏差未校正 — 应报告 Hedges' g"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions:
+    - round: 2
+      reviewers: ["R1", "R2"]
+      note: "d=0.93→g≈0.75，从 large 边界滑入 medium-to-large"
+    - round: 3
+      reviewers: ["R1", "R2"]
+      note: "持续。R1 建议所有 d 值报告 bootstrap CI。R2 补充：n=3 时 d=0.93 的 95% CI 可能包含 medium 甚至 small 区间"
+  action_items:
+    - round: 2
+      action: "正文所有效应量报告 Hedges' g 而非 Cohen's d"
+      assigned_to: "main_agent"
+      status: done
+  resolution: "全文已替换为 Hedges' g，无残留 Cohen's d"
+  resolution_round: 3
+
+- id: "RD2-W3"
+  summary: "标题与实验范围不匹配 — 暗示整个 VLA 类别但仅测试单一架构/benchmark"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions:
+    - round: 2
+      reviewers: ["R1", "R2"]
+      note: "仅 OpenVLA-7B + SafeLIBERO Level I"
+    - round: 3
+      reviewers: ["R1", "R2"]
+      note: "持续。R1 额外指出 SafeLIBERO Level II/III 有不同约束类型，可能呈现不同模式。R1 交叉回应补充：Discussion 已提到 LoRA×safety-specificity caveat，但 practical guidelines 措辞仍过于一般化"
+  action_items:
+    - round: 2
+      action: "修改标题限定范围；Conclusion 加限定"
+      assigned_to: "main_agent"
+      status: done
+  resolution: "标题保留问句形式（'Does...?'）本身表达探索性而非确定性声明；Practical guidelines 已限定为 'For OpenVLA with LoRA fine-tuning on tabletop manipulation'；Limitations 明确 'single architecture (OpenVLA-OFT, LoRA rank 32) in MuJoCo simulation on SafeLIBERO Level I'；guidelines 结尾加 'should be verified in each specific VLA implementation'"
+  resolution_round: 3
+
+- id: "RD2-W4"
+  summary: "BN running statistics 假说缺乏直接验证"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions:
+    - round: 2
+      reviewers: ["R1", "R2"]
+      note: "eval mode 或 momentum=0 是低成本验证"
+    - round: 3
+      reviewers: ["R1", "R2"]
+      note: "持续。Discussion L5 明确承认 'hypothesize but do not directly test'。R2 补充可能机制：BN corruption 不需要梯度冲突，forward pass 即可更新 running stats。但论文既未清晰提出此机制也未验证"
+  action_items:
+    - round: 2
+      action: "在已训练 v2 模型上执行 BN eval mode 消融实验"
+      assigned_to: "main_agent"
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "RD2-W5"
+  summary: "Codebase sensitivity 削弱实际指导价值 — 实现噪声与信号同量级"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions:
+    - round: 2
+      reviewers: ["R1", "R2"]
+      note: "8.6pp 偏移 ≈ 核心效应量 4.2pp 的 2 倍"
+    - round: 3
+      reviewers: ["R1", "R2"]
+      note: "持续。论文将此框架为 'independent finding'（Discussion L11），但双刃剑：v2 结论可能在 v3 下再变"
+  action_items:
+    - round: 2
+      action: "降低 guidelines 普适性声明；明确标注适用范围"
+      assigned_to: "main_agent"
+      status: done
+  resolution: "Practical guidelines 限定为 'For OpenVLA with LoRA fine-tuning on tabletop manipulation'，结尾加 'these guidelines should be verified in each specific VLA implementation'。Limitations 明确 'our quantitative results may not transfer to other VLA implementations without controlled replication'"
+  resolution_round: 3
+
+- id: "RD2-W6"
+  summary: "缺少关键前驱文献（task-specific BN, MGDA, VLA 架构等）"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions:
+    - round: 2
+      reviewers: ["R1", "R2"]
+      note: "缺 Bilen & Vedaldi 2017, Maninis 2019, Rebuffi 2018, Sener & Koltun 2018, π₀, Octo"
+    - round: 3
+      reviewers: ["R1", "R2"]
+      note: "持续。R1 新增建议：Montgomery factorial design 教材、Anderson 2001 permutation tests、Li et al. 2016 / Ioffe 2017 BN fine-tuning。R1 交叉回应额外补充 Kendall et al. 2018 uncertainty weighting（与 λ₀ 直接相关）"
+  action_items:
+    - round: 2
+      action: "Related Work 补充 task-specific BN 文献线；Discussion 引用 MGDA；补充 π₀ 和 Octo"
+      assigned_to: "main_agent"
+      status: done
+    - round: 3
+      action: "额外补充 Montgomery, Anderson 2001, Li et al. 2016 / Ioffe 2017, Kendall et al. 2018"
+      assigned_to: "main_agent"
+      status: done
+  resolution: "Related Work 已补充 Bilen2017, Maninis2019, Rebuffi2018（task-specific BN/adapters 文献线）和 Ioffe2017（BN renorm）。Discussion 引用 Sener2018 (MGDA)、Kendall2018 (uncertainty weighting)。Appendix 引用 Anderson2001 (permutation tests)、Montgomery2017 (factorial design)。所有引用已在正文中使用"
+  resolution_round: 3
+
+- id: "RD3-C1"
+  summary: "'Normalization-dependent gradient flow effect' 框架与 ANOVA 交互项零结果根本矛盾"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  mentions:
+    - round: 3
+      reviewers: ["R1", "R2"]
+      note: "R1 首次识别。'normalization-dependent' 暗示 interaction effect，但 ANOVA interaction F(1,10)=0.10, p=0.76, η²<0.01——完全零。Figure 2 平行线确认 additive。实际是两个独立 additive main effects。'gradient flow is safe under LN' 误导——LN 下 GF 仍有 ~2.9pp penalty，只是基线高。结合 RD2-N1（power <20% for interaction），'confirms additive' 是统计推理错误。R2 初审遗漏此问题，交叉后完全认同。R1 交叉回应进一步指出：论文要么 (a) 不是交互（ANOVA 说 additive），要么 (b) 如是交互则机制在 MTL 已知（R2-W3），且论文自身 gradient orthogonality 数据与之矛盾"
+  action_items:
+    - round: 3
+      action: "将 'normalization-dependent gradient flow effect' 改为 'two independent additive main effects: gradient flow penalty and normalization advantage'；删除 'confirms additive'；修改 Contribution 1 框架"
+      assigned_to: "main_agent"
+      status: done
+  resolution: "全文已重构为 'two large additive main effects' 框架，'normalization-dependent' 和 'confirms additive' 已删除"
+  resolution_round: 3
+
+- id: "RD3-W1"
+  summary: "ANOVA 前提假设（正态性、方差齐性）在 n=3-4 下不可验证"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  mentions:
+    - round: 3
+      reviewers: ["R1", "R2"]
+      note: "Shapiro-Wilk 和 Levene's test 在 n=3-4 下几乎无功效。未提供残差分布诊断图。建议补充 permutation test（Anderson 2001）"
+  action_items:
+    - round: 3
+      action: "补充 permutation test 作为非参数替代方案；或提供残差诊断图"
+      assigned_to: "main_agent"
+      status: done
+  resolution: "Appendix 新增 permutation-based ANOVA（Anderson 2001, 10,000 permutations），引用 Montgomery 2017 factorial design。Results 主文已注明 'permutation tests and Hedges' g' 作为主要统计方法"
+  resolution_round: 3
+
+- id: "RD3-W2"
+  summary: "梯度正交性与 gradient flow harmful 的矛盾——机制解释存在核心空白"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  mentions:
+    - round: 3
+      reviewers: ["R1", "R2"]
+      note: "R1: cosine similarity ≈ 0 排除 PCGrad gradient conflict，但论文声称 GF 有害，'indirect effect through LoRA optimization trajectory' 无证据。R2 互补：BN running stats corruption 不需要 gradient conflict（forward pass 即更新 running mean/var），但论文既未清晰提出也未验证此机制。两视角共同指向机制解释空白"
+  action_items:
+    - round: 3
+      action: "在 Discussion 中明确区分 gradient conflict（已排除）和 BN forward-pass statistics corruption（假说），提供 BN running stats 漂移量测量或标注为 unverified hypothesis"
+      assigned_to: "main_agent"
+      status: done
+  resolution: "Discussion 明确区分：(1) gradient conflict 已被 cosine similarity ≈ 0 排除（引用 Sener2018/PCGrad）；(2) BN running statistics corruption 标注为假说（'We hypothesize...'）。Limitations 明确标注 'mechanistically plausible but not directly verified (e.g., via frozen statistics or train/eval mode comparison)'"
+  resolution_round: 3
+
+- id: "RD3-W3"
+  summary: "λ₀=0.01 固定，缺乏 auxiliary loss weight 敏感度分析"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 3
+  last_seen_round: 3
+  mentions:
+    - round: 3
+      reviewers: ["R1", "R2"]
+      note: "λ₀ 直接控制 auxiliary gradient 幅度。λ₀ 极小时 GF 效应可能消失，λ₀ 大时可能更强。当前结论可能高度依赖 λ₀=0.01。需至少 3 个 λ₀ 值消融"
+  action_items:
+    - round: 3
+      action: "补充 λ₀ ∈ {0.001, 0.01, 0.1} 消融实验验证发现鲁棒性"
+      assigned_to: "main_agent"
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "RD3-W4"
+  summary: "Discussion 与 Results 内容重复——加剧页数超限问题"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  mentions:
+    - round: 3
+      reviewers: ["R1", "R2"]
+      note: "R2 首次识别，R1 交叉回应认可此为自己遗漏的有效观察。'Normalization independently affects safety' 在 Section 4.2 和 Section 5 中均有讨论；'Mechanism remains open' 在 Section 4.3 和 Section 5 重复；'Additive protection model' 阐述重叠。在页数已超限（R1-W15）的背景下直接加剧格式问题。R1 指出压缩 Section 5 是同时解决 R1-W15（超页）、RD2-N3（Limitations 移入）和本问题的最直接路径"
+  action_items:
+    - round: 3
+      action: "压缩 Section 5 (Discussion) 中与 Section 4 (Results) 重复的内容，为 Limitations 移入和页数合规腾出空间"
+      assigned_to: "main_agent"
+      status: done
+  resolution: "Discussion 压缩 ~30%，去除与 Results 的重复内容"
+  resolution_round: 3

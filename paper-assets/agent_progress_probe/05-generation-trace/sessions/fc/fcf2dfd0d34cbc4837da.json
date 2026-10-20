@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcf2dfd0d34cbc4837da",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis gte large check",
+  "task_key": "worker_analysis_gte-large-check_20260514T134036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gte-large-check_20260514T134036_result.json",
+    "occurrence": 1,
+    "bytes": 878,
+    "sha256": "bab5673632feafa9635b9f69eb7b7993748556b1c86883604fb95e94bb5d28f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论明确了。\n\n## 排查结果\n\n**gte-large embedding 文件确实异常，需要重新生成。**\n\n| Encoder | 文件大小 | embeddings 数量 | embed_dim |\n|---------|---------|----------------|-----------|\n| e5-large | 2.1G | 54,809 | 1024 |\n| bge-m3 | 1.1G | 54,809 | 1024 |\n| **gte-large** | **402K** | **10** | 1024 |\n\n**原因**：gte-large 文件只包含 10 条 embedding（而非完整的 54,809 条）。文件格式正确、没有截断，但生成过程极早就中止了——只处理了第一个 batch 的数据就停了。可能是脚本报错退出或被手动中断。\n\n**模型路径**显示 gte-large 是从 ModelScope 下载的（`/root/autodl-tmp/.hf_cache/modelscope_models/gte-large/damo/...`），模型本身加载没问题，问题出在生成循环中。\n\n**需要重新运行 gte-large 的 embedding 生成。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gte-large-check.md"
+}

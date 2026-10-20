@@ -1,0 +1,29 @@
+{
+  "exp_id": "cutoff_s2_v2",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:37:53.032Z",
+    "updated_at": "2026-05-23T09:38:53.398Z",
+    "hypothesis": "Retrain of cutoff_s2 with correct config (num_images_in_input=2, use_proprio=True). Original cutoff_s2 used script defaults (1-image, no-proprio), producing incomparable results. This run uses identical config to cutoff_s0/s1 for valid 3-seed cutoff analysis.",
+    "parent": "cutoff_s0",
+    "plan_id": "plan_019",
+    "spec": {
+      "command": "torchrun finetune.py --use_occ_head True --occ_loss_cutoff_step 35000 --num_images_in_input 2 --use_proprio True --seed 44",
+      "server": "westd-10894",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 25000,
+      "model_name": "openvla-7b",
+      "seed": 44,
+      "checkpoint_source": "openvla-7b (from scratch)",
+      "eval_data": "N/A (training)",
+      "pid": 401525,
+      "log_path": "~/runs/occsafe_vla/cutoff_s2_v2.log"
+    }
+  },
+  "timestamp": "2026-05-23T09:38:53.512261+00:00",
+  "trigger": "update_registry"
+}

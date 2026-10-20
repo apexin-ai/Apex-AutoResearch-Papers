@@ -1,0 +1,16 @@
+{
+  "exp_id": "random_occ_v2_s0_r2",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-28T23:01:22.365Z",
+    "updated_at": "2026-05-28T23:01:30.465Z",
+    "hypothesis": "Content irrelevance (Full OCC ≈ Random OCC) replicates under v2, with corrected --occ_data_dir. Prior r1 had occ_loss=0 due to missing occ data path (M096).",
+    "parent": "random_occ_v2_s0"
+  },
+  "timestamp": "2026-05-28T23:01:30.862100+00:00",
+  "trigger": "update_registry"
+}

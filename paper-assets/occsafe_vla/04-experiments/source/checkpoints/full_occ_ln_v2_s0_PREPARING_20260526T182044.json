@@ -1,0 +1,39 @@
+{
+  "exp_id": "full_occ_ln_v2_s0",
+  "project": "occsafe_vla",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 2,
+    "created_at": "2026-05-26T11:18:30.371Z",
+    "updated_at": "2026-05-26T18:20:43.672Z",
+    "hypothesis": "v2 rebuild of Full OCC LN (gradient flow ON, LayerNorm), seed 42. Fills Cell 2 v2 data gap — currently only v1 data (n=3, mean=0.743). First of two v2 seeds needed to replace v1 Cell 2 data in factorial ANOVA.",
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-26T12:12:09.356Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-26T12:12:13.712083+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-26T18:01:14.083882+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "server": "westd-10894",
+    "reproduce": {
+      "finished_at": "2026-05-26T18:20:39.532Z"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-26T18:20:44.342687+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,21 @@
+
+\section{Discussion}
+\label{sec:discussion}
+
+\textbf{Excluded mechanism: gradient conflict.} Near-zero action--auxiliary cosine similarity (${\approx}$46\% conflict rate; Figure~\ref{fig:gradient_analysis}) and comparable action gradient norms (Figure~\ref{fig:gradient_analysis}) rule out PCGrad-style gradient conflict~\cite{yu2020pcgrad}.
+%
+\textbf{Hypothesis: BN forward-pass statistics corruption.} BatchNorm is not inherently harmful: Detach OCC (BN, gradient OFF) matches Vanilla ($0.767$ vs.\ $0.745$, $p{=}0.28$); the deficit requires the joint presence of BN and gradient flow. We hypothesize a \emph{forward-pass} mechanism: BN running mean/variance update during each forward pass regardless of gradient conflict, so the auxiliary head shifts the running statistics used at inference. LayerNorm, normalizing per-token without cross-batch statistics, lacks this coupling. CKA confirms intact encoder representations (CKA $\geq$ 0.95), localizing the effect to optimization dynamics rather than representational corruption (a targeted test: comparing BN in train vs.\ eval mode at inference would isolate the running-statistics channel).
+
+\textbf{Normalization independently affects safety.} LN provides a consistent $+$3.5--4.8\,pp advantage over BN ($g{=}0.88$--$1.24$). This advantage amplifies fourfold on the three physically constrained tasks ($+6.9$\,pp vs.\ $+1.7$\,pp; Appendix~\ref{app:per_task_factorial}), concentrating where safety margins are thinnest. Normalization type, typically treated as an implementation detail, has outsized consequences for safety-critical VLA fine-tuning.
+
+\textbf{Additive effects.} Detach+LN achieves the best safety (CAR $0.802$), outperforming Vanilla ($g{=}1.89$, bootstrap 95\% CI for $\Delta$: $[0.025, 0.089]$). The advantage arises from two independent effects (${\approx}$3--5\,pp each; interaction $\eta^2{=}0.005$). Only BN + gradient flow falls below Vanilla; removing either condition restores safety. Additivity is consistent with two mechanistically distinct pathways: normalization type governs forward-pass statistics computation (a data-flow property), while gradient flow governs backward-pass parameter updates (an optimization property). If these pathways are orthogonal, independent corrections are expected---each fix helps regardless of the other's state.
+
+\textbf{Codebase sensitivity.} A code revision (v2) shifts absolute CAR by up to 8.6\,pp, exceeding the largest experimental effect (${\leq}5.7$\,pp; Appendix~\ref{app:codebase}). Non-hyperparameter implementation details can dominate the signal of interest.
+
+\textbf{Content irrelevance.} Structured, random, and depth labels produce indistinguishable safety outcomes (observed under the original codebase), consistent with action--auxiliary orthogonality. No ground-truth spatial annotations are required.
+
+\textbf{Safety--success dissociation.} Full OCC (BN) maintains comparable task success (TSR $0.854$) yet exhibits the worst safety (CAR $0.725$), so standard task-success benchmarks cannot serve as safety proxies~\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}. Collision avoidance demands fine-grained trajectory control near obstacles, where small perturbations cross boundaries; task success tolerates larger deviations.
+
+\textbf{Practical guideline.} Use detached gradients with LayerNorm; the head is discarded at inference (zero overhead). Loss weighting~\cite{kendall2018uncertainty} does not address the forward-pass BN mechanism. Given codebase sensitivity, guidelines should be verified per implementation.
+
+\textbf{Generalizability.} Normalization type and gradient flow are architectural choices common to all auxiliary-head VLA pipelines. The BN running-statistics mechanism is not architecture-specific; we expect the qualitative pattern to transfer, though effect sizes may vary.

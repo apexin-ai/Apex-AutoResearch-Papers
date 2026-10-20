@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7ee2c426e62a0099ff6",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "history",
+  "title": "agent / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2.md",
+    "occurrence": 1,
+    "bytes": 3324,
+    "sha256": "2f55501daec77289f86e9e10586f5a3f9fd72d10f3a11ea7e8d058d8c29ebba4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-16T20:56:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 bjb2-23165 的 cuda:0 和 cuda:1（2× RTX 5090 32GB）\n- 所有实验启动命令必须包含 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`（网络不通）\n- Full-FT 模式必须用 `bf16=True`，不能用 `fp16=True`（GradScaler 不兼容 FP16 梯度）\n- conda 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- GPU 编号始终从 0 开始（CUDA_VISIBLE_DEVICES 映射物理 GPU）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb2-23165，工作目录 `/root/autodl-tmp/carr/`\n- Python：`/root/miniconda3/bin/python3`（conda base 环境）\n- 模型：Qwen3-0.6B 在 `/root/autodl-tmp/carr/` 下（目录名可能有转义 `Qwen3-0___6B`）\n- ArmoRM：本地已 patch（LLAMA_INPUTS_DOCSTRING + gating token 容错）\n- 数据集：openbmb/UltraFeedback（2200 条，已离线缓存）\n- 输出目录：`outputs/`（baseline/LoRA）、`outputs_k8/`（K=8）、`outputs_fullft_k4/`（Full-FT）\n- 活跃进程：carr_quick_probe_k8_02 (PID 507603, cuda:0, tmux 管理, cron 监控中)\n- Worker：`worker_fix_carr_fullft_k4_fp16_20260516T165400` 正在修复 train_sft.py 并重提交\n\n### 3. 📊 当前状态\n刚诊断完 `carr_fullft_k4_probe_01` 失败（fp16+Full-FT 不兼容），已派 Worker 修复并重提交为 `carr_fullft_k4_probe_02`。\n\nRegistry:\n- `carr_quick_probe_k8_02` — RUNNING (cuda:0)：K=8 LoRA T=3，验证更强选择压力能否触发 collapse\n- `carr_fullft_k4_probe_01` — DONE/failed：fp16 梯度错误，Worker 正在修复重跑\n- `carr_baseline_no_curation_01` — DONE/success：no-curation baseline 完成，Vendi 稳定 ~105-108\n- `carr_quick_probe_03` — DONE/negative：K=4 LoRA Vendi 仅降 0.28%，P1 FAIL\n\n等待中：\n- Worker 回调：fix worker 修完 → carr_fullft_k4_probe_02 自动提交到 cuda:1\n- Cron 回调：carr_quick_probe_k8_02 完成时触发\n\n### 4. 📋 待办\n- fix Worker 完成回调 → 确认 carr_fullft_k4_probe_02 已在 cuda:1 运行，更新 registry\n- carr_quick_probe_k8_02 完成 → 看 Vendi 下降幅度：≥5% → P1 pass，用该配置跑 Full MVP；<5% → 继续诊断阶梯（K=16 或 Full-FT）\n- carr_fullft_k4_probe_02 完成 → 同上判断逻辑，与 K=8 结果交叉对比\n- 两者都 FAIL → 向 Director 提 pivot 讨论（DDL 2026-05-25 仅剩 9 天）\n\n### 5. 🎯 战略上下文\n- 核心问题：P1 前提验证——能否在 iterative training 中观测到 diversity collapse。K=4+LoRA 已 FAIL，正在平行测试 K=8（加选择压力）和 Full-FT（去正则化约束）\n- D006 决策：P1 从绝对 Vendi 下降改为 baseline-relative gap（baseline 已完成：Vendi 105→108 缓慢上升）\n- **关键 baseline 发现**：no-curation 的 Vendi 从 105→108 上升，single_reward 维持 ~107 平稳 → curation 实际上*抑制*了 diversity 增长，但幅度不够显著\n- 易错点：不要把 \"Vendi 不下降\" 直接等同于 \"没有 collapse\"——对比 baseline 增长趋势才是正确度量（relative gap = baseline 涨了但 curation 没涨 → 存在抑制效应）\n- DDL 压力极大（5/25），如果 K=8 和 Full-FT 都不能产生 ≥5% 的信号，需要立即 pivot 而非继续加压\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2.md"
+}

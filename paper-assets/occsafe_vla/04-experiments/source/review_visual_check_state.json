@@ -1,0 +1,137 @@
+{
+  "status": "done",
+  "started_at": "2026-05-28T11:34:16.093424+00:00",
+  "completed_at": "2026-05-28T11:36:52.248556+00:00",
+  "findings": [
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页仅有 Title + Abstract，无视觉锚点。Figure 1 出现在第 2 页，延迟可接受但非最优。对于实证型论文，审稿人需要翻到第 2 页才能看到第一个 display item。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 是结果汇总图（bar chart 多面板），不是架构/概念图。对于\"Empirical Investigation\"类论文这是合理选择——直接用核心发现锚定审稿人。Caption 长且自包含，信息传达清晰。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "Title-Abstract-Figure 1 叙事一致：都围绕\"auxiliary spatial supervision 是否提升 safety\"展开，审稿人锚定效应正面。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "pages 3-4",
+      "message": "连续 2 页以纯文本为主（Related Work 全文 + Method 开头），仅 page 4 底部有一个 equation。审稿人在这个区间可能感到视觉疲劳。建议考虑将 Table 1（当前在 page 5）提前至 Method section 开头。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Discussion 全页纯文本，无 display item。Discussion 章节这是常见做法，不构成问题。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "pages 5-7",
+      "message": "相反地，pages 5-7 连续 3 页密集出现 3 个 table + 1 个 figure，视觉节奏偏重。与 pages 3-4 的纯文本形成不均匀对比。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "正文 9 页含 2 figures + 3 tables = 5 个 display items（0.56/页）。对实证型论文属于合理范围的低端。附录额外含 3 figures + 4 tables，补充材料充分。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 多面板设计信息密度高：包含 5+ 个子条件的 bar chart。每个面板传达独立 message，合并为一个 figure 是合理的。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 bar chart 文字可读，error bars 清晰，颜色区分度足够。Caption 详细自包含。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 2 (2×2 factorial comparison) 清晰简洁，颜色编码 4 个条件，可区分。Error bars 标注清晰。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 15",
+      "message": "Figure 3 (gradient dynamics) 4 面板，axis label 字号偏小但在可接受范围。多条线的颜色/线型区分合理。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 16",
+      "message": "Figure 4 (per-layer gradient analysis) 4 个子图，每个子图含多条线。axis label 和 legend 字号较小（约正文 60-65%），在打印或低分辨率屏幕上可能难以辨认。建议适当增大字号或减少每子图的线条数。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 17",
+      "message": "Figure 5 (dose-response) 线图清晰，标注了 forward/reverse cutoff 参考线，信息传达明确。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 5-6",
+      "message": "Tables 1-2 使用 booktabs 风格（toprule/midrule/bottomrule），无竖线。专业。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Table 2 最优值已加粗，± 标准差标注一致，ΔCAR 列清楚展示差异。小数位数统一。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Table 3 格式一致，粗体标注最优。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 18",
+      "message": "Tables 6-7 (ANOVA + Cohen's d) 格式规范，统计量标注完整。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "Figure/Table 位置与首次引用位置匹配良好。Figure 1 在 Introduction 引用后立即出现（page 2），Tables 1-3 在 Results section 中按序出现。无 float 漂移到远处的情况。"
+    },
+    {
+      "severity": "critical",
+      "dimension": "page 12",
+      "message": "仅有 2 条参考文献（[45]-[46]，约 6 行文字），页面剩余 ~85% 完全空白。这是审稿人最容易注意到的排版问题——翻到一整页空白会留下\"论文未完成\"或\"空间浪费\"的负面印象。建议：将附录标题移到本页开始，或调整 references 分页使其自然结束而不留大面积空白。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 19",
+      "message": "最后一页仅 ~11 行文字（Limitations 结尾），~80% 空白。作为附录末页影响较轻，但仍建议考虑整合内容减少空白。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Equation (1) 渲染正确，无乱码或缺失符号。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "无可见 overfull hbox 或 margin 溢出。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "Section headings 未出现孤悬页底的情况。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "行号已启用（投稿格式），符合匿名审稿要求。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 9-12",
+      "message": "参考文献编号 [1]-[46] 连续，无跳号或 [?] 未解析引用。格式统一。"
+    }
+  ],
+  "counts": {
+    "critical": 1,
+    "warning": 4,
+    "info": 20
+  }
+}

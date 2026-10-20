@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02b163f869c80b38c329",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "research literature compilation",
+  "task_key": "worker_research_literature-compilation_20260514T183143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-compilation_20260514T183143_result.json",
+    "occurrence": 1,
+    "bytes": 1313,
+    "sha256": "6beb959ac3985bab489ea04b7d1c2662af8ed05546833fc2d343116fe9ca72da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已就绪。完成总结：\n\n**literature_map.yaml 已创建**，包含 **30 篇论文**，覆盖 5 个类别：\n\n| 类别 | 数量 | 关键论文 |\n|------|------|----------|\n| direct-competitor | 6 | AgentPRM, PRM framework, ToolPRMBench, Plan-RewardBench, monitoring harm, weak-to-strong |\n| method-component | 9 | Data Programming, Snorkel, FlyingSquid, WRENCH, Dawid-Skene, HMM-Crowd, Linked HMM, Multi-resolution WS |\n| evaluation | 4 | SlopCodeBench, SWE-bench, SWE-agent, OpenHands |\n| background | 8 | Reflexion, LATS, ToT, 3 篇 failure taxonomy, 2 篇 cycle detection |\n| technique | 4 | GRU, Attention, SupCon, Qwen3-Embedding |\n\n**Novelty 检查结论**：Temporal Label Model 作为 general-purpose data programming extension for sequential data **是 novel 的**。最近前驱：\n- Safranchik AAAI 2020：linked HMM，但限于 NER/BIO tagging\n- Sala NeurIPS 2019：multi-resolution WS，不建模 label transitions\n- Nguyen ACL 2017：HMM-Crowd，crowdsourcing 而非 programmatic LFs\n\n没有人将 data programming + HMM-style temporal transitions 用于通用序列分类或 agent monitoring。\n\n**需注意**：AgentPRM 第一作者是 **Xi**（席）不是 Xie（谢）。Monitoring harm 论文无 arxiv ID（workshop-only, OpenReview: LC0XQ6ufbr）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-compilation.md"
+}

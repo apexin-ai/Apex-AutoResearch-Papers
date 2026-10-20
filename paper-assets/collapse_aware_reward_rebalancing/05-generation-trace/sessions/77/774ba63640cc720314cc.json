@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "774ba63640cc720314cc",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "paper writing experimental setup",
+  "task_key": "worker_paper_writing_experimental_setup_20260517T042638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experimental_setup_20260517T042638_result.json",
+    "occurrence": 1,
+    "bytes": 731,
+    "sha256": "4248f6fa3715c4c947f86206d245425e7412b3021a6e8a48674dfdec682bbc1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无 em-dash、无解释性 en-dash、无 -ing 短语结尾问题。`--` 仅用于 LaTeX 数字范围（C1--C4 等），符合规范。\n\n文件已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/collapse_aware_reward_rebalancing/docs/paper/sections/experimental_setup.tex`。\n\n内容包含：\n- **3.1 Pipeline**: 完整 4-step 循环描述，模型/数据/reward model 选择理由\n- **3.2 Conditions**: Table 1（7 configs, booktabs 格式）+ 变量隔离逻辑的预测性表述\n- **3.3 Metrics**: 语义层（Vendi Score, Self-BLEU, NND）+ 格式层（Opening Entropy, Near-Duplicate Start Rate）+ 质量/训练动态\n- **3.4 Training Details**: LoRA/Full-FT 超参、硬件、总计算量"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experimental-setup.md"
+}

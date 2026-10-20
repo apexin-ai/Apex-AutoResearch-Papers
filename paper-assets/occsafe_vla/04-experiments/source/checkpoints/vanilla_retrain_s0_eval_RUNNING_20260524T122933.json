@@ -1,0 +1,42 @@
+{
+  "exp_id": "vanilla_retrain_s0_eval",
+  "project": "occsafe_vla",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T11:26:43.623Z",
+    "updated_at": "2026-05-24T12:29:32.860Z",
+    "hypothesis": "50r SafeLIBERO eval of vanilla_retrain_s0 (seed 42). Provides same-seed Vanilla baseline for gradient analysis comparison and verifies vanilla_retrain_s0 matches original vanilla_s0 CAR.",
+    "parent": "vanilla_retrain_s0",
+    "spec": {
+      "command": "evaluate_safelibero.py --pretrained_checkpoint vanilla_retrain_s0 --num_rollouts 50 --seed 42",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "823300",
+      "log_path": "~/runs/occsafe_vla/vanilla_retrain_s0_eval.log",
+      "submitted_at": "2026-05-24T11:27:00Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_spatial (SafeLIBERO)",
+      "data_count": 50,
+      "model_name": "openvla-7b+vanilla_retrain_s0",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/vanilla_retrain_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+      "eval_data": "libero_spatial SafeLIBERO 50 rollouts"
+    },
+    "metrics": {
+      "overall_car": 0.768,
+      "overall_tsr": 0.882,
+      "total_collisions": 116,
+      "total_episodes": 500
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T12:29:33.013717+00:00",
+  "trigger": "update_registry"
+}

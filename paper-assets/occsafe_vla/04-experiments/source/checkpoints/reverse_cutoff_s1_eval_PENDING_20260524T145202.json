@@ -1,0 +1,16 @@
+{
+  "exp_id": "reverse_cutoff_s1_eval",
+  "project": "occsafe_vla",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T14:51:41.371Z",
+    "updated_at": "2026-05-24T14:52:02.583Z",
+    "hypothesis": "50r SafeLIBERO evaluation of reverse_cutoff_s1 (seed 43, no occ_loss first 35K, enable 35K-50K). Multi-seed replication of reverse_cutoff_s0_eval (CAR=0.700) to determine if late-onset gradient flow effect is consistent across seeds.",
+    "parent": "reverse_cutoff_s1"
+  },
+  "timestamp": "2026-05-24T14:52:02.750438+00:00",
+  "trigger": "update_registry"
+}

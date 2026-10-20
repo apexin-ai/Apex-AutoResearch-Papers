@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b05608bbf91f64a6d1f",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis d073 oracle bug repro",
+  "task_key": "worker_analysis_d073-oracle-bug-repro_20260516T041310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d073-oracle-bug-repro_20260516T041310_result.json",
+    "occurrence": 1,
+    "bytes": 1819,
+    "sha256": "6e824c1b70f9341a7c16406eb3763b61c09b6e1aab4cb25abcaef5cde0f52ba9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Oracle Bug Audit\n\n**无 bug。** Identical oracle F1 是 window size=5 导致的数学恒等，不是变量泄漏。\n\n### 根因分析\n\n数据特征：几乎所有 window 恰好有 **5 个 action types**（min=3, max=5, mean=5.0）。这导致 n-gram ratio 极度量化：\n\n| n-gram | 可能的 ratio 值 | 分布 |\n|--------|----------------|------|\n| 2-gram | 0, 0.50, 0.667*, 0.75, 1.0 | 5 个离散值 |\n| 3-gram | 0, 0.667, 1.0 | 3 个离散值 |\n\n*（来自极少数 length-4 window）\n\nOracle 搜索结果：\n- **2-gram oracle**: threshold=0.70 → 实际选中 ratio≥0.75 的 window（16,265 + 20,786 = **37,051** 个）\n- **3-gram oracle**: threshold=0.00 → 实际选中 ratio>0 的 window（25,183 + 11,868 = **37,051** 个）\n\n**数学恒等**：对 length-5 序列，「存在重复 3-gram」⟺「2-gram repeat ratio ≥ 0.75」。证明：\n\n- 有重复 3-gram → 前4元素全等（如 [a,a,a,a,e]）或后4全等 或 交替模式（[a,b,a,b,a]）→ 2-gram ratio ≥ 0.75 ✓\n- 2-gram ratio ≥ 0.75 → 3个连续 bigram 相同 → 必然产生重复 trigram ✓\n\n因此两个条件选中的是 **完全相同的 37,051 个 window**，所有指标自然一致。\n\n### 修正后数字\n\n原始代码结果就是正确的：\n\n```\n修正后 2-gram oracle: threshold=0.70, all_f1=0.5517, conf2_f1=0.6143\n修正后 3-gram oracle: threshold=0.00, all_f1=0.5517, conf2_f1=0.6143\n```\n\n### 论文影响\n\n分别报告 2-gram 和 3-gram oracle 是 misleading——在 window=5 的条件下它们数学等价。建议论文中：\n1. 只报 \"n-gram cycle detector (oracle)\" 一行，注明 2/3-gram 退化为等价\n2. 或添加脚注说明 window=5 导致的量化效应\n\n完整 threshold-F1 表格已在服务器 `/tmp/oracle_verify.log` 中保存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d073-oracle-bug-repro.md"
+}

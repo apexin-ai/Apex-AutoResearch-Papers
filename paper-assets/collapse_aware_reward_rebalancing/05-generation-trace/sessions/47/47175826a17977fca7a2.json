@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "47175826a17977fca7a2",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "worker",
+  "title": "analysis c1 format diversity",
+  "task_key": "worker_analysis_c1_format_diversity_20260517T055240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c1_format_diversity_20260517T055240.log",
+    "occurrence": 1,
+    "bytes": 609895,
+    "sha256": "d8b0e4d19ca08a9507052f0c42816a78912aeeaaaf83e48f3eed9076f91ecbea"
+  },
+  "statistics": {
+    "messages": 384,
+    "user_turns": 0,
+    "tool_calls": 158,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 64,
+      "tool_call": 158,
+      "tool_result": 158,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 384,
+      "chunks": [
+        {
+          "path": "47175826a17977fca7a2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "47175826a17977fca7a2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "47175826a17977fca7a2-part-0003.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-c1-format-diversity.md"
+}

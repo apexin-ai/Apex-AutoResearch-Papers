@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33d4b65e9a841d484a9b",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "experiment gold set eval v2",
+  "task_key": "worker_experiment_gold-set-eval-v2_20260515T071256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_gold-set-eval-v2_20260515T071256_result.json",
+    "occurrence": 1,
+    "bytes": 1236,
+    "sha256": "4ca8159308d91007fc2b9f696a123666b63fedf5d5f1aae987f0c461abd7feef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 deliverables complete. Summary of key results:\n\n### Coverage\n- 132/199 gold windows matched (swe-agent only; all 63 openhands windows absent from `windows_labeled.jsonl`)\n- Matched set is well-balanced: 63 stagnation / 69 progress\n\n### Model Ranking vs Gold (N=132)\n\n| Model | Macro-F1 | Accuracy |\n|-------|----------|----------|\n| Structural RF | **0.793** | **0.796** |\n| Structural GB | 0.785 | 0.788 |\n| TWV Probe | 0.768 | 0.773 |\n| GRU Probe | 0.735 | 0.735 |\n| MV Labels | 0.730 | 0.735 |\n| TWV Labels | 0.718 | 0.728 |\n\n### MV–Gold Agreement (critical result)\n- **Overall: 73.5%** (97/132)\n- **conf=1: 65.8%** — substantial noise (34.2% error)\n- **conf=2: 81.3%** — moderate noise\n- **conf=3: 100%** — perfect (but N=8)\n- **conf≥2: 83.9%**\n- MV has a **progress bias**: 23 false-progress vs 12 false-stagnation in disagreements\n\n### Key implication\nStructural RF outperforms all models on gold labels, reversing the ranking from silver-label evaluation. The GRU probe matches MV accuracy exactly (0.735) — it faithfully learned the noisy silver distribution. This validates confidence-stratified evaluation but suggests the probe may be overfitting silver label noise."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-gold-set-eval-v2.md"
+}

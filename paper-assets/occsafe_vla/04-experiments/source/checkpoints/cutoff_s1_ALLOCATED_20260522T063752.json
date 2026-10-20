@@ -1,0 +1,29 @@
+{
+  "exp_id": "cutoff_s1",
+  "project": "occsafe_vla",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:09:35.253Z",
+    "updated_at": "2026-05-22T06:37:52.245Z",
+    "hypothesis": "Seed 43 replication of cutoff_s0 (OCC loss cutoff at step 35000). 2-seed needed to assess variance of cutoff strategy, given OCC's demonstrated high seed sensitivity (std 2.2x vanilla).",
+    "parent": "cutoff_s0",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=3 WANDB_MODE=disabled MUJOCO_GL=egl torchrun --standalone --nnodes 1 --nproc-per-node 1 --master_port 29501 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --use_diffusion False --use_film False --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 --save_freq 2500 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --occ_loss_cutoff_step 35000 --run_root_dir /root/autodl-tmp/checkpoints/cutoff_s1 --seed 43\"",
+      "server": "westd-34685",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "125672",
+      "log_path": "~/runs/occsafe_vla/cutoff_s1.log",
+      "submitted_at": "2026-05-22T06:32:21.603Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-22T06:37:52.329147+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc13cc50ba39fd4ca5d5",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "code meanpool lr impl and run",
+  "task_key": "worker_code_meanpool_lr_impl_and_run_20260514T094501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_meanpool_lr_impl_and_run_20260514T094501_result.json",
+    "occurrence": 1,
+    "bytes": 1257,
+    "sha256": "34296d64ed952ece57bf37117a55c5834f1fafab54b4520897f94c72a226776e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n## 产出\n\n### 1. 代码\n`artifacts/baseline_meanpool_lr.py` — 本地 + 服务器均已部署\n\n### 2. conf≥2 结果（15401 windows, test=1824）\n\n| Method | Macro-F1 | Accuracy | F1(stag) | F1(prog) |\n|--------|----------|----------|----------|----------|\n| GRU Probe (ref) | **0.9055** | — | — | — |\n| MeanPool + LR | 0.8435 | 0.8860 | 0.7620 | 0.9250 |\n| MeanPool + MLP(256) | 0.8572 | 0.8964 | 0.7825 | 0.9320 |\n\nGRU vs best MeanPool: **+0.0483**\n\n### 3. conf≥0 全量结果（54809 windows, test=8101）\n\n| Method | Macro-F1 | Accuracy | F1(stag) | F1(prog) |\n|--------|----------|----------|----------|----------|\n| GRU Probe (ref) | **0.9055** | — | — | — |\n| MeanPool + LR | 0.7591 | 0.8211 | 0.6369 | 0.8813 |\n| MeanPool + MLP(256) | 0.7781 | 0.8417 | 0.6592 | 0.8969 |\n\nGRU vs best MeanPool: **+0.1274**\n\n### 关键发现\n- GRU 的时序建模确实比简单 mean pooling 有显著优势，尤其在全量（含低置信度）数据上差距拉大到 +12.7 个点\n- MeanPool baseline 在 stagnation 类上明显较弱（F1 只有 0.64-0.78），说明时序模式对识别停滞至关重要\n- MLP 比 LR 稳定好 1-2 个点，但两者都远不及 GRU"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-meanpool-lr-impl-and-run.md"
+}

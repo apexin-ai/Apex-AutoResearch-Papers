@@ -1,0 +1,1735 @@
+# code v2 gradient comparison script
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 34
+- **Recorded user turns:** 0
+- **Tool calls:** 11
+- **Original source:** `logs/workers/worker_code_v2-gradient-comparison-script_20260526T202845.log`
+- **Structured JSON:** [`093425ad2f2a135839a3.json`](../../sessions/09/093425ad2f2a135839a3.json)
+
+## Before a recorded user message
+
+34 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla",
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "90bc86ec-9254-4786-a154-c26111e75abd",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779838200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "ee0b6ff9-8276-4791-b9a5-d1c1b86e8174",
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by checking the existing gradient analysis script on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "6871cf62-acf0-4b70-8506-fe31ff45259f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJzRosgQ8YmxnAaxwif9Eb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12440,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12440
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01SuJUgwc7ES18n3HSMbE2Hu`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "20195776-3c47-4b91-afb8-d743b20a6129",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJzRosgQ8YmxnAaxwif9Eb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12440,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12440
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-26T20:28:57.365Z_
+
+<details><summary>↩ Tool result · `toolu_01SuJUgwc7ES18n3HSMbE2Hu`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "0565166c-e290-4ab9-a0f1-d4938a5ed6d1",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the existing script on the server first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "df2bb17e-6746-4c5b-b7cd-61e3ba9bf311",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017GYHhdwcHExXqTBnRSB1pT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 24281,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 686
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BT1yfu5MsUm78wJWd5uPqB`</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "cat /root/occsafe_vla/scripts/run_gradient_analysis_v2.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "19a71156-687e-492e-a88e-31fae7597802",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017GYHhdwcHExXqTBnRSB1pT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 24281,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 686
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-26T20:29:01.957Z_
+
+<details><summary>↩ Tool result · `toolu_01BT1yfu5MsUm78wJWd5uPqB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nV2 per-layer backbone gradient analysis for OccSafe-VLA.\\n\\nMethodology matches v1 (same_seed_gradient_analysis.py) for direct comparison.\\nAuto-detects occ_detach and occ_norm from condition name and checkpoint.\\n\\nUsage:\\n  # Vanilla v2\\n  python3 run_gradient_analysis_v2.py \\\\\\n    --checkpoint_dir /root/autodl-tmp/checkpoints/vanilla_v2_s0/.../50000_chkpt \\\\\\n    --condition_name \\\"Vanilla v2\\\" --seed 42 \\\\\\n    --output_dir /root/occsafe_vla/artifacts/gradient_v2/\\n\\n  # Full OCC LN v2\\n  python3 run_gradient_analysis_v2.py \\\\\\n    --checkpoint_dir /root/autodl-tmp/checkpoints/full_occ_ln_v2_s0/.../50000_chkpt \\\\\\n    --condition_name \\\"Full OCC LN v2\\\" --seed 42 \\\\\\n    --output_dir /root/occsafe_vla/artifacts/gradient_v2/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import OrderedDict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom torch.utils.data import DataLoader\\n\\nsys.path.insert(0, \\\"/root/occsafe_vla/openvla-oft\\\")\\n\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\nfrom prismatic.models.occ_head import BEVOccupancyHead, FocalLoss\\nfrom prismatic.models.action_heads import L1RegressionActionHead\\nfrom prismatic.models.backbones.llm.prompting import PurePromptBuilder\\nfrom prismatic.vla.action_tokenizer import ActionTokenizer\\nfrom prismatic.vla.constants import ACTION_DIM, NUM_ACTIONS_CHUNK\\nfrom prismatic.vla.datasets import RLDSBatchTransform, RLDSDataset\\nfrom prismatic.util.data_utils import PaddedCollatorForActionPrediction\\nfrom prismatic.training.train_utils import get_current_action_mask, get_next_actions_mask\\n\\n\\ndef parse_args():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"V2 per-layer backbone gradient analysis for OccSafe-VLA\\\"\\n    )\\n    parser.add_argument(\\\"--checkpoint_dir\\\", type=str, required=True,\\n                        help=\\\"Path to checkpoint directory (e.g. .../50000_chkpt)\\\")\\n    parser.add_argument(\\\"--condition_name\\\", type=str, required=True,\\n                        help=\\\"Condition label (e.g. 'Vanilla v2', 'Full OCC LN v2')\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--num_samples\\\", type=int, default=200,\\n                        help=\\\"Number of samples to analyze (converted to batches internally)\\\")\\n    parser.add_argument(\\\"--batch_size\\\", type=int, default=4)\\n    parser.add_argument(\\\"--output_dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--data_dir\\\", type=str,\\n                        default=\\\"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\\\")\\n    parser.add_argument(\\\"--occ_data_dir\\\", type=str,\\n                        default=\\\"/root/occsafe_vla/occ_data\\\")\\n    parser.add_argument(\\\"--occ_norm\\\", type=str, default=None,\\n                        help=\\\"OCC head norm type (bn/ln). Auto-detected if not set.\\\")\\n    parser.add_argument(\\\"--occ_detach\\\", type=str, default=None,\\n                        help=\\\"Detach OCC gradients (true/false). Auto-detected from condition_name.\\\")\\n    parser.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    return parser.parse_args()\\n\\n\\ndef auto_detect_settings(args):\\n    cond = args.condition_name.lower()\\n    ckpt_dir = Path(args.checkpoint_dir)\\n\\n    if args.occ_detach is not None:\\n        occ_detach = args.occ_detach.lower() in (\\\"true\\\", \\\"1\\\", \\\"yes\\\")\\n    elif \\\"vanilla\\\" in cond:\\n        occ_detach = True\\n    elif \\\"detach\\\" in cond:\\n        occ_detach = True\\n    else:\\n        occ_detach = False\\n\\n    if args.occ_norm is not None:\\n        occ_norm = args.occ_norm\\n    elif \\\"bn\\\" in cond.replace(\\\"vanilla\\\", \\\"\\\"):\\n        occ_norm = \\\"bn\\\"\\n    else:\\n        occ_norm = \\\"ln\\\"\\n\\n    has_occ_head = len(list(ckpt_dir.glob(\\\"occ_head--*.pt\\\"))) > 0\\n    is_vanilla = \\\"vanilla\\\" in cond or not has_occ_head\\n\\n    return occ_detach, occ_norm, has_occ_head, is_vanilla\\n\\n\\ndef get_layer_groups(model):\\n    groups = OrderedDict()\\n    for name, param in model.vision_backbone.named_parameters():\\n        parts = name.split(\\\".\\\")\\n        if \\\"blocks\\\" in parts:\\n            idx = parts.index(\\\"b\\n\\n... [截断: 输出过长，省略 9034 字符] ...\\n\\nem(),\\n                \\\"occ_loss\\\": occ_loss.item(),\\n            })\\n            for g in layer_names:\\n                all_action_norms[g].append(action_norms.get(g, 0))\\n                all_occ_norms[g].append(occ_norms.get(g, 0))\\n                all_cosine[g].append(cosines.get(g, float(\\\"nan\\\")))\\n\\n            if batch_idx % 10 == 0:\\n                elapsed = time.time() - t0\\n                avg_an = np.mean(list(action_norms.values()))\\n                mem = torch.cuda.max_memory_allocated(device) / 1e9\\n                print(f\\\"  [{batch_idx:>4d}/{num_batches}] \\\"\\n                      f\\\"act={action_loss.item():.4f} occ={occ_loss.item():.4f} \\\"\\n                      f\\\"avg_grad={avg_an:.6f} mem={mem:.1f}GB t={elapsed:.0f}s\\\")\\n\\n        except Exception as e:\\n            print(f\\\"  [batch {batch_idx}] ERROR: {e}\\\")\\n            import traceback; traceback.print_exc()\\n            continue\\n\\n    total_batches = len(batch_stats)\\n    total_time = time.time() - t0\\n    print(f\\\"\\\\nCompleted {total_batches} batches in {total_time:.0f}s ({total_time/60:.1f} min)\\\")\\n\\n    # ---- Aggregate ----\\n    summary = {\\n        \\\"condition\\\": args.condition_name,\\n        \\\"occ_detach\\\": occ_detach,\\n        \\\"occ_norm\\\": occ_norm,\\n        \\\"is_vanilla\\\": is_vanilla,\\n        \\\"seed\\\": args.seed,\\n        \\\"checkpoint_dir\\\": args.checkpoint_dir,\\n        \\\"num_batches\\\": total_batches,\\n        \\\"batch_size\\\": args.batch_size,\\n        \\\"num_samples\\\": total_batches * args.batch_size,\\n        \\\"avg_action_loss\\\": float(np.mean([b[\\\"action_loss\\\"] for b in batch_stats])),\\n        \\\"avg_occ_loss\\\": float(np.mean([b[\\\"occ_loss\\\"] for b in batch_stats])),\\n        \\\"total_time_sec\\\": total_time,\\n        \\\"per_layer\\\": {},\\n    }\\n\\n    for g in layer_names:\\n        an = all_action_norms[g]\\n        on = all_occ_norms[g]\\n        cs = [c for c in all_cosine[g] if not np.isnan(c)]\\n        summary[\\\"per_layer\\\"][g] = {\\n            \\\"action_grad_norm_mean\\\": float(np.mean(an)),\\n            \\\"action_grad_norm_std\\\": float(np.std(an)),\\n            \\\"occ_grad_norm_mean\\\": float(np.mean(on)),\\n            \\\"occ_grad_norm_std\\\": float(np.std(on)),\\n            \\\"cosine_sim_mean\\\": float(np.mean(cs)) if cs else None,\\n            \\\"cosine_sim_std\\\": float(np.std(cs)) if cs else None,\\n            \\\"conflict_rate\\\": float(sum(1 for c in cs if c < 0) / len(cs)) if cs else None,\\n        }\\n\\n    # ---- Save ----\\n    out_json = os.path.join(args.output_dir, f\\\"{args.condition_name}_gradient_stats.json\\\")\\n    with open(out_json, \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"Saved summary: {out_json}\\\")\\n\\n    raw_json = os.path.join(args.output_dir, f\\\"{args.condition_name}_gradient_raw.json\\\")\\n    raw = {\\n        \\\"batch_stats\\\": batch_stats,\\n        \\\"action_norms\\\": {g: v for g, v in all_action_norms.items()},\\n        \\\"occ_norms\\\": {g: v for g, v in all_occ_norms.items()},\\n        \\\"cosine_sims\\\": {g: [x if not np.isnan(x) else None for x in v]\\n                        for g, v in all_cosine.items()},\\n    }\\n    with open(raw_json, \\\"w\\\") as f:\\n        json.dump(raw, f, indent=2)\\n    print(f\\\"Saved raw data: {raw_json}\\\")\\n\\n    # ---- Summary table ----\\n    print(f\\\"\\\\n{'='*80}\\\")\\n    print(f\\\"SUMMARY: {args.condition_name} (detach={occ_detach}, norm={occ_norm}, vanilla={is_vanilla})\\\")\\n    print(f\\\"{'='*80}\\\")\\n    print(f\\\"Avg action loss: {summary['avg_action_loss']:.4f}\\\")\\n    print(f\\\"Avg occ loss:    {summary['avg_occ_loss']:.4f}\\\")\\n    print(f\\\"\\\\n{'Layer':<35s} {'ActGrad':>10s} {'OccGrad':>10s} {'Cosine':>10s} {'Conflict':>10s}\\\")\\n    print(\\\"-\\\" * 80)\\n    for g in layer_names:\\n        s = summary[\\\"per_layer\\\"][g]\\n        cos_str = f\\\"{s['cosine_sim_mean']:.4f}\\\" if s[\\\"cosine_sim_mean\\\"] is not None else \\\"N/A\\\"\\n        conf_str = f\\\"{s['conflict_rate']:.2%}\\\" if s[\\\"conflict_rate\\\"] is not None else \\\"N/A\\\"\\n        print(f\\\"{g:<35s} {s['action_grad_norm_mean']:>10.6f} {s['occ_grad_norm_mean']:>10.6f} \\\"\\n              f\\\"{cos_str:>10s} {conf_str:>10s}\\\")\\n    print(f\\\"{'='*80}\\\")\\n    print(f\\\"\\\\nDone. Results saved to {args.output_dir}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "734f589d-7f3e-4e44-adfb-1ff9a299fdd0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nV2 per-layer backbone gradient analysis for OccSafe-VLA.\\\\n\\\\nMethodology matches v1 (same_seed_gradient_analysis.py) for direct comparison.\\\\nAuto-detects occ_detach and occ_norm from condition name and checkpoint.\\\\n\\\\nUsage:\\\\n  # Vanilla v2\\\\n  python3 run_gradient_analysis_v2.py \\\\\\\\\\\\n    --checkpoint_dir /root/autodl-tmp/checkpoints/vanilla_v2_s0/.../50000_chkpt \\\\\\\\\\\\n    --condition_name \\\\\\\"Vanilla v2\\\\\\\" --seed 42 \\\\\\\\\\\\n    --output_dir /root/occsafe_vla/artifacts/gradient_v2/\\\\n\\\\n  # Full OCC LN v2\\\\n  python3 run_gradient_analysis_v2.py \\\\\\\\\\\\n    --checkpoint_dir /root/autodl-tmp/checkpoints/full_occ_ln_v2_s0/.../50000_chkpt \\\\\\\\\\\\n    --condition_name \\\\\\\"Full OCC LN v2\\\\\\\" --seed 42 \\\\\\\\\\\\n    --output_dir /root/occsafe_vla/artifacts/gradient_v2/\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom collections import OrderedDict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom torch.utils.data import DataLoader\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/occsafe_vla/openvla-oft\\\\\\\")\\\\n\\\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\\\nfrom prismatic.models.occ_head import BEVOccupancyHead, FocalLoss\\\\nfrom prismatic.models.action_heads import L1RegressionActionHead\\\\nfrom prismatic.models.backbones.llm.prompting import PurePromptBuilder\\\\nfrom prismatic.vla.action_tokenizer import ActionTokenizer\\\\nfrom prismatic.vla.constants import ACTION_DIM, NUM_ACTIONS_CHUNK\\\\nfrom prismatic.vla.datasets import RLDSBatchTransform, RLDSDataset\\\\nfrom prismatic.util.data_utils import PaddedCollatorForActionPrediction\\\\nfrom prismatic.training.train_utils import get_current_action_mask, get_next_actions_mask\\\\n\\\\n\\\\ndef parse_args():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"V2 per-layer backbone gradient analysis for OccSafe-VLA\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\\\\"--checkpoint_dir\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"Path to checkpoint directory (e.g. .../50000_chkpt)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--condition_name\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"Condition label (e.g. 'Vanilla v2', 'Full OCC LN v2')\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    parser.add_argument(\\\\\\\"--num_samples\\\\\\\", type=int, default=200,\\\\n                        help=\\\\\\\"Number of samples to analyze (converted to batches internally)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str, required=True)\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", type=str,\\\\n                        default=\\\\\\\"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--occ_data_dir\\\\\\\", type=str,\\\\n                        default=\\\\\\\"/root/occsafe_vla/occ_data\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--occ_norm\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"OCC head norm type (bn/ln). Auto-detected if not set.\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--occ_detach\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Detach OCC gradients (true/false). Auto-detected from condition_name.\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    return parser.parse_args()\\\\n\\\\n\\\\ndef auto_detect_settings(args):\\\\n    cond = args.condition_name.lower()\\\\n    ckpt_dir = Path(args.checkpoint_dir)\\\\n\\\\n    if args.occ_detach is not None:\\\\n        occ_detach = args.occ_detach.lower() in (\\\\\\\"true\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"yes\\\\\\\")\\\\n    elif \\\\\\\"vanilla\\\\\\\" in cond:\\\\n        occ_detach = True\\\\n    elif \\\\\\\"detach\\\\\\\" in cond:\\\\n        occ_detach = True\\\\n    else:\\\\n        occ_detach = False\\\\n\\\\n    if args.occ_norm is not None:\\\\n        occ_norm = args.occ_norm\\\\n    elif \\\\\\\"bn\\\\\\\" in cond.replace(\\\\\\\"vanilla\\\\\\\", \\\\\\\"\\\\\\\"):\\\\n        occ_norm = \\\\\\\"bn\\\\\\\"\\\\n    else:\\\\n        occ_norm = \\\\\\\"ln\\\\\\\"\\\\n\\\\n    has_occ_head = len(list(ckpt_dir.glob(\\\\\\\"occ_head--*.pt\\\\\\\"))) > 0\\\\n    is_vanilla = \\\\\\\"vanilla\\\\\\\" in cond or not has_occ_head\\\\n\\\\n    return occ_detach, occ_norm, has_occ_head, is_vanilla\\\\n\\\\n\\\\ndef get_layer_groups(model):\\\\n    groups = OrderedDict()\\\\n    for name, param in model.vision_backbone.named_parameters():\\\\n        parts = name.split(\\\\\\\".\\\\\\\")\\\\n        if \\\\\\\"blocks\\\\\\\" in parts:\\\\n            idx = parts.index(\\\\\\\"b\\\\n\\\\n... [截断: 输出过长，省略 9034 字符] ...\\\\n\\\\nem(),\\\\n                \\\\\\\"occ_loss\\\\\\\": occ_loss.item(),\\\\n            })\\\\n            for g in layer_names:\\\\n                all_action_norms[g].append(action_norms.get(g, 0))\\\\n                all_occ_norms[g].append(occ_norms.get(g, 0))\\\\n                all_cosine[g].append(cosines.get(g, float(\\\\\\\"nan\\\\\\\")))\\\\n\\\\n            if batch_idx % 10 == 0:\\\\n                elapsed = time.time() - t0\\\\n                avg_an = np.mean(list(action_norms.values()))\\\\n                mem = torch.cuda.max_memory_allocated(device) / 1e9\\\\n                print(f\\\\\\\"  [{batch_idx:>4d}/{num_batches}] \\\\\\\"\\\\n                      f\\\\\\\"act={action_loss.item():.4f} occ={occ_loss.item():.4f} \\\\\\\"\\\\n                      f\\\\\\\"avg_grad={avg_an:.6f} mem={mem:.1f}GB t={elapsed:.0f}s\\\\\\\")\\\\n\\\\n        except Exception as e:\\\\n            print(f\\\\\\\"  [batch {batch_idx}] ERROR: {e}\\\\\\\")\\\\n            import traceback; traceback.print_exc()\\\\n            continue\\\\n\\\\n    total_batches = len(batch_stats)\\\\n    total_time = time.time() - t0\\\\n    print(f\\\\\\\"\\\\\\\\nCompleted {total_batches} batches in {total_time:.0f}s ({total_time/60:.1f} min)\\\\\\\")\\\\n\\\\n    # ---- Aggregate ----\\\\n    summary = {\\\\n        \\\\\\\"condition\\\\\\\": args.condition_name,\\\\n        \\\\\\\"occ_detach\\\\\\\": occ_detach,\\\\n        \\\\\\\"occ_norm\\\\\\\": occ_norm,\\\\n        \\\\\\\"is_vanilla\\\\\\\": is_vanilla,\\\\n        \\\\\\\"seed\\\\\\\": args.seed,\\\\n        \\\\\\\"checkpoint_dir\\\\\\\": args.checkpoint_dir,\\\\n        \\\\\\\"num_batches\\\\\\\": total_batches,\\\\n        \\\\\\\"batch_size\\\\\\\": args.batch_size,\\\\n        \\\\\\\"num_samples\\\\\\\": total_batches * args.batch_size,\\\\n        \\\\\\\"avg_action_loss\\\\\\\": float(np.mean([b[\\\\\\\"action_loss\\\\\\\"] for b in batch_stats])),\\\\n        \\\\\\\"avg_occ_loss\\\\\\\": float(np.mean([b[\\\\\\\"occ_loss\\\\\\\"] for b in batch_stats])),\\\\n        \\\\\\\"total_time_sec\\\\\\\": total_time,\\\\n        \\\\\\\"per_layer\\\\\\\": {},\\\\n    }\\\\n\\\\n    for g in layer_names:\\\\n        an = all_action_norms[g]\\\\n        on = all_occ_norms[g]\\\\n        cs = [c for c in all_cosine[g] if not np.isnan(c)]\\\\n        summary[\\\\\\\"per_layer\\\\\\\"][g] = {\\\\n            \\\\\\\"action_grad_norm_mean\\\\\\\": float(np.mean(an)),\\\\n            \\\\\\\"action_grad_norm_std\\\\\\\": float(np.std(an)),\\\\n            \\\\\\\"occ_grad_norm_mean\\\\\\\": float(np.mean(on)),\\\\n            \\\\\\\"occ_grad_norm_std\\\\\\\": float(np.std(on)),\\\\n            \\\\\\\"cosine_sim_mean\\\\\\\": float(np.mean(cs)) if cs else None,\\\\n            \\\\\\\"cosine_sim_std\\\\\\\": float(np.std(cs)) if cs else None,\\\\n            \\\\\\\"conflict_rate\\\\\\\": float(sum(1 for c in cs if c < 0) / len(cs)) if cs else None,\\\\n        }\\\\n\\\\n    # ---- Save ----\\\\n    out_json = os.path.join(args.output_dir, f\\\\\\\"{args.condition_name}_gradient_stats.json\\\\\\\")\\\\n    with open(out_json, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    print(f\\\\\\\"Saved summary: {out_json}\\\\\\\")\\\\n\\\\n    raw_json = os.path.join(args.output_dir, f\\\\\\\"{args.condition_name}_gradient_raw.json\\\\\\\")\\\\n    raw = {\\\\n        \\\\\\\"batch_stats\\\\\\\": batch_stats,\\\\n        \\\\\\\"action_norms\\\\\\\": {g: v for g, v in all_action_norms.items()},\\\\n        \\\\\\\"occ_norms\\\\\\\": {g: v for g, v in all_occ_norms.items()},\\\\n        \\\\\\\"cosine_sims\\\\\\\": {g: [x if not np.isnan(x) else None for x in v]\\\\n                        for g, v in all_cosine.items()},\\\\n    }\\\\n    with open(raw_json, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(raw, f, indent=2)\\\\n    print(f\\\\\\\"Saved raw data: {raw_json}\\\\\\\")\\\\n\\\\n    # ---- Summary table ----\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*80}\\\\\\\")\\\\n    print(f\\\\\\\"SUMMARY: {args.condition_name} (detach={occ_detach}, norm={occ_norm}, vanilla={is_vanilla})\\\\\\\")\\\\n    print(f\\\\\\\"{'='*80}\\\\\\\")\\\\n    print(f\\\\\\\"Avg action loss: {summary['avg_action_loss']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"Avg occ loss:    {summary['avg_occ_loss']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\n{'Layer':<35s} {'ActGrad':>10s} {'OccGrad':>10s} {'Cosine':>10s} {'Conflict':>10s}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 80)\\\\n    for g in layer_names:\\\\n        s = summary[\\\\\\\"per_layer\\\\\\\"][g]\\\\n        cos_str = f\\\\\\\"{s['cosine_sim_mean']:.4f}\\\\\\\" if s[\\\\\\\"cosine_sim_mean\\\\\\\"] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        conf_str = f\\\\\\\"{s['conflict_rate']:.2%}\\\\\\\" if s[\\\\\\\"conflict_rate\\\\\\\"] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        print(f\\\\\\\"{g:<35s} {s['action_grad_norm_mean']:>10.6f} {s['occ_grad_norm_mean']:>10.6f} \\\\\\\"\\\\n              f\\\\\\\"{cos_str:>10s} {conf_str:>10s}\\\\\\\")\\\\n    print(f\\\\\\\"{'='*80}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nDone. Results saved to {args.output_dir}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nV2 per-layer backbone gradient analysis for OccSafe-VLA.\\n\\nMethodology matches v1 (same_seed_gradient_analysis.py) for direct comparison.\\nAuto-detects occ_detach and occ_norm from condition name and checkpoint.\\n\\nUsage:\\n  # Vanilla v2\\n  python3 run_gradient_analysis_v2.py \\\\\\n    --checkpoint_dir /root/autodl-tmp/checkpoints/vanilla_v2_s0/.../50000_chkpt \\\\\\n    --condition_name \\\"Vanilla v2\\\" --seed 42 \\\\\\n    --output_dir /root/occsafe_vla/artifacts/gradient_v2/\\n\\n  # Full OCC LN v2\\n  python3 run_gradient_analysis_v2.py \\\\\\n    --checkpoint_dir /root/autodl-tmp/checkpoints/full_occ_ln_v2_s0/.../50000_chkpt \\\\\\n    --condition_name \\\"Full OCC LN v2\\\" --seed 42 \\\\\\n    --output_dir /root/occsafe_vla/artifacts/gradient_v2/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport time\\nfrom collections import OrderedDict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom torch.utils.data import DataLoader\\n\\nsys.path.insert(0, \\\"/root/occsafe_vla/openvla-oft\\\")\\n\\nfrom transformers import AutoModelForVision2Seq, AutoProcessor\\nfrom prismatic.models.occ_head import BEVOccupancyHead, FocalLoss\\nfrom prismatic.models.action_heads import L1RegressionActionHead\\nfrom prismatic.models.backbones.llm.prompting import PurePromptBuilder\\nfrom prismatic.vla.action_tokenizer import ActionTokenizer\\nfrom prismatic.vla.constants import ACTION_DIM, NUM_ACTIONS_CHUNK\\nfrom prismatic.vla.datasets import RLDSBatchTransform, RLDSDataset\\nfrom prismatic.util.data_utils import PaddedCollatorForActionPrediction\\nfrom prismatic.training.train_utils import get_current_action_mask, get_next_actions_mask\\n\\n\\ndef parse_args():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"V2 per-layer backbone gradient analysis for OccSafe-VLA\\\"\\n    )\\n    parser.add_argument(\\\"--checkpoint_dir\\\", type=str, required=True,\\n                        help=\\\"Path to checkpoint directory (e.g. .../50000_chkpt)\\\")\\n    parser.add_argument(\\\"--condition_name\\\", type=str, required=True,\\n                        help=\\\"Condition label (e.g. 'Vanilla v2', 'Full OCC LN v2')\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--num_samples\\\", type=int, default=200,\\n                        help=\\\"Number of samples to analyze (converted to batches internally)\\\")\\n    parser.add_argument(\\\"--batch_size\\\", type=int, default=4)\\n    parser.add_argument(\\\"--output_dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--data_dir\\\", type=str,\\n                        default=\\\"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\\\")\\n    parser.add_argument(\\\"--occ_data_dir\\\", type=str,\\n                        default=\\\"/root/occsafe_vla/occ_data\\\")\\n    parser.add_argument(\\\"--occ_norm\\\", type=str, default=None,\\n                        help=\\\"OCC head norm type (bn/ln). Auto-detected if not set.\\\")\\n    parser.add_argument(\\\"--occ_detach\\\", type=str, default=None,\\n                        help=\\\"Detach OCC gradients (true/false). Auto-detected from condition_name.\\\")\\n    parser.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    return parser.parse_args()\\n\\n\\ndef auto_detect_settings(args):\\n    cond = args.condition_name.lower()\\n    ckpt_dir = Path(args.checkpoint_dir)\\n\\n    if args.occ_detach is not None:\\n        occ_detach = args.occ_detach.lower() in (\\\"true\\\", \\\"1\\\", \\\"yes\\\")\\n    elif \\\"vanilla\\\" in cond:\\n        occ_detach = True\\n    elif \\\"detach\\\" in cond:\\n        occ_detach = True\\n    else:\\n        occ_detach = False\\n\\n    if args.occ_norm is not None:\\n        occ_norm = args.occ_norm\\n    elif \\\"bn\\\" in cond.replace(\\\"vanilla\\\", \\\"\\\"):\\n        occ_norm = \\\"bn\\\"\\n    else:\\n        occ_norm = \\\"ln\\\"\\n\\n    has_occ_head = len(list(ckpt_dir.glob(\\\"occ_head--*.pt\\\"))) > 0\\n    is_vanilla = \\\"vanilla\\\" in cond or not has_occ_head\\n\\n    return occ_detach, occ_norm, has_occ_head, is_vanilla\\n\\n\\ndef get_layer_groups(model):\\n    groups = OrderedDict()\\n    for name, param in model.vision_backbone.named_parameters():\\n        parts = name.split(\\\".\\\")\\n        if \\\"blocks\\\" in parts:\\n            idx = parts.index(\\\"b\\n\\n... [截断: 输出过长，省略 9034 字符] ...\\n\\nem(),\\n                \\\"occ_loss\\\": occ_loss.item(),\\n            })\\n            for g in layer_names:\\n                all_action_norms[g].append(action_norms.get(g, 0))\\n                all_occ_norms[g].append(occ_norms.get(g, 0))\\n                all_cosine[g].append(cosines.get(g, float(\\\"nan\\\")))\\n\\n            if batch_idx % 10 == 0:\\n                elapsed = time.time() - t0\\n                avg_an = np.mean(list(action_norms.values()))\\n                mem = torch.cuda.max_memory_allocated(device) / 1e9\\n                print(f\\\"  [{batch_idx:>4d}/{num_batches}] \\\"\\n                      f\\\"act={action_loss.item():.4f} occ={occ_loss.item():.4f} \\\"\\n                      f\\\"avg_grad={avg_an:.6f} mem={mem:.1f}GB t={elapsed:.0f}s\\\")\\n\\n        except Exception as e:\\n            print(f\\\"  [batch {batch_idx}] ERROR: {e}\\\")\\n            import traceback; traceback.print_exc()\\n            continue\\n\\n    total_batches = len(batch_stats)\\n    total_time = time.time() - t0\\n    print(f\\\"\\\\nCompleted {total_batches} batches in {total_time:.0f}s ({total_time/60:.1f} min)\\\")\\n\\n    # ---- Aggregate ----\\n    summary = {\\n        \\\"condition\\\": args.condition_name,\\n        \\\"occ_detach\\\": occ_detach,\\n        \\\"occ_norm\\\": occ_norm,\\n        \\\"is_vanilla\\\": is_vanilla,\\n        \\\"seed\\\": args.seed,\\n        \\\"checkpoint_dir\\\": args.checkpoint_dir,\\n        \\\"num_batches\\\": total_batches,\\n        \\\"batch_size\\\": args.batch_size,\\n        \\\"num_samples\\\": total_batches * args.batch_size,\\n        \\\"avg_action_loss\\\": float(np.mean([b[\\\"action_loss\\\"] for b in batch_stats])),\\n        \\\"avg_occ_loss\\\": float(np.mean([b[\\\"occ_loss\\\"] for b in batch_stats])),\\n        \\\"total_time_sec\\\": total_time,\\n        \\\"per_layer\\\": {},\\n    }\\n\\n    for g in layer_names:\\n        an = all_action_norms[g]\\n        on = all_occ_norms[g]\\n        cs = [c for c in all_cosine[g] if not np.isnan(c)]\\n        summary[\\\"per_layer\\\"][g] = {\\n            \\\"action_grad_norm_mean\\\": float(np.mean(an)),\\n            \\\"action_grad_norm_std\\\": float(np.std(an)),\\n            \\\"occ_grad_norm_mean\\\": float(np.mean(on)),\\n            \\\"occ_grad_norm_std\\\": float(np.std(on)),\\n            \\\"cosine_sim_mean\\\": float(np.mean(cs)) if cs else None,\\n            \\\"cosine_sim_std\\\": float(np.std(cs)) if cs else None,\\n            \\\"conflict_rate\\\": float(sum(1 for c in cs if c < 0) / len(cs)) if cs else None,\\n        }\\n\\n    # ---- Save ----\\n    out_json = os.path.join(args.output_dir, f\\\"{args.condition_name}_gradient_stats.json\\\")\\n    with open(out_json, \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"Saved summary: {out_json}\\\")\\n\\n    raw_json = os.path.join(args.output_dir, f\\\"{args.condition_name}_gradient_raw.json\\\")\\n    raw = {\\n        \\\"batch_stats\\\": batch_stats,\\n        \\\"action_norms\\\": {g: v for g, v in all_action_norms.items()},\\n        \\\"occ_norms\\\": {g: v for g, v in all_occ_norms.items()},\\n        \\\"cosine_sims\\\": {g: [x if not np.isnan(x) else None for x in v]\\n                        for g, v in all_cosine.items()},\\n    }\\n    with open(raw_json, \\\"w\\\") as f:\\n        json.dump(raw, f, indent=2)\\n    print(f\\\"Saved raw data: {raw_json}\\\")\\n\\n    # ---- Summary table ----\\n    print(f\\\"\\\\n{'='*80}\\\")\\n    print(f\\\"SUMMARY: {args.condition_name} (detach={occ_detach}, norm={occ_norm}, vanilla={is_vanilla})\\\")\\n    print(f\\\"{'='*80}\\\")\\n    print(f\\\"Avg action loss: {summary['avg_action_loss']:.4f}\\\")\\n    print(f\\\"Avg occ loss:    {summary['avg_occ_loss']:.4f}\\\")\\n    print(f\\\"\\\\n{'Layer':<35s} {'ActGrad':>10s} {'OccGrad':>10s} {'Cosine':>10s} {'Conflict':>10s}\\\")\\n    print(\\\"-\\\" * 80)\\n    for g in layer_names:\\n        s = summary[\\\"per_layer\\\"][g]\\n        cos_str = f\\\"{s['cosine_sim_mean']:.4f}\\\" if s[\\\"cosine_sim_mean\\\"] is not None else \\\"N/A\\\"\\n        conf_str = f\\\"{s['conflict_rate']:.2%}\\\" if s[\\\"conflict_rate\\\"] is not None else \\\"N/A\\\"\\n        print(f\\\"{g:<35s} {s['action_grad_norm_mean']:>10.6f} {s['occ_grad_norm_mean']:>10.6f} \\\"\\n              f\\\"{cos_str:>10s} {conf_str:>10s}\\\")\\n    print(f\\\"{'='*80}\\\")\\n    print(f\\\"\\\\nDone. Results saved to {args.output_dir}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me understand the key details of the existing script:
+
+1. **CLI args**: `--checkpoint_dir`, `--condition_name`, `--seed`, `--num_samples` (default 200), `--batch_size` (default 4), `--output_dir`, `--data_dir`, `--occ_data_dir`, `--occ_norm`, `--occ_detach`, `--gpu`
+
+2. **Output format**: JSON with structure:
+   - Metadata: `condition`, `occ_detach`, `occ_norm`, `is_vanilla`, `seed`, `checkpoint_dir`, `num_batches`, `batch_size`, `num_samples`
+   - Loss metrics: `avg_action_loss`, `avg_occ_loss`, `total_time_sec`
+   - Per-layer statistics: `action_grad_norm_mean`, `action_grad_norm_std`, `occ_grad_norm_mean`, `occ_grad_norm_std`, `cosine_sim_mean`, `cosine_sim_std`, `conflict_rate`
+
+3. **Output files**: `{condition_name}_gradient_stats.json` and `{condition_name}_gradient_raw.json`
+
+4. **Layer grouping**: Organizing layers by their functional groups using the vision backbone's named parameters.
+
+Now I'm moving on to build the comparison script that will load the three gradient stats files and compute relative metrics across conditions. I need to calculate per-layer gradient norms side by side, compute the ratios between detached and vanilla conditions as well as full OCC versus vanilla, and then aggregate summary statistics like average ratios and identify which layers show the most extreme differences. The output should be both a formatted terminal table and a JSON file for further analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "83e37ced-2ccf-4bc3-bcfe-33998ea8fcb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K4LTnqoUnXzmyEMzGfAfAc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3669,
+      "cache_read_input_tokens": 24967,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3669
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+Now I have the full picture. The script outputs `{condition_name}_gradient_stats.json` with `per_layer` containing `action_grad_norm_mean`, `occ_grad_norm_mean`, `cosine_sim_mean`, `conflict_rate` per layer group. Let me check existing checkpoint path patterns too.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "f32f0075-d48f-46ca-bf33-6222b0434064",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K4LTnqoUnXzmyEMzGfAfAc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3669,
+      "cache_read_input_tokens": 24967,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3669
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012eJhLFKhpnwSYA19Hh783W`</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "ls /root/autodl-tmp/checkpoints/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "c94b3c41-7b3a-4f83-bc81-68ec9aa915c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K4LTnqoUnXzmyEMzGfAfAc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3669,
+      "cache_read_input_tokens": 24967,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3669
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-26T20:29:15.098Z_
+
+<details><summary>↩ Tool result · `toolu_012eJhLFKhpnwSYA19Hh783W`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ablation_occ_detach_s3_v2\\ncutoff_15k_s1\\ncutoff_25k_s2\\ncutoff_45k_s2_v2\\ndetach_ln_v2_s0\\nfull_occ_bn_v2_s1\\nfull_occ_ln_s0\\nfull_occ_ln_s3_v2\\nfull_occ_ln_v2_s0\\nfull_occ_ln_v2_s1\\nmvp_occ_s3_v2\\nreverse_cutoff_s2\\nreverse_cutoff_s2_v2\\nvanilla_s2_train.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "85b542bf-9778-4658-93fb-0a00177687e0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ablation_occ_detach_s3_v2\\\\ncutoff_15k_s1\\\\ncutoff_25k_s2\\\\ncutoff_45k_s2_v2\\\\ndetach_ln_v2_s0\\\\nfull_occ_bn_v2_s1\\\\nfull_occ_ln_s0\\\\nfull_occ_ln_s3_v2\\\\nfull_occ_ln_v2_s0\\\\nfull_occ_ln_v2_s1\\\\nmvp_occ_s3_v2\\\\nreverse_cutoff_s2\\\\nreverse_cutoff_s2_v2\\\\nvanilla_s2_train.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"ablation_occ_detach_s3_v2\\ncutoff_15k_s1\\ncutoff_25k_s2\\ncutoff_45k_s2_v2\\ndetach_ln_v2_s0\\nfull_occ_bn_v2_s1\\nfull_occ_ln_s0\\nfull_occ_ln_s3_v2\\nfull_occ_ln_v2_s0\\nfull_occ_ln_v2_s1\\nmvp_occ_s3_v2\\nreverse_cutoff_s2\\nreverse_cutoff_s2_v2\\nvanilla_s2_train.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LALCRqE3msTTLc2vUTykrw`</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "ls /root/autodl-tmp/checkpoints/detach_ln_v2_s0/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "a323cece-2978-426d-bee8-4c6eac229df5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BjsDDiuHhNaVAHTXz9Ao2j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 920,
+      "cache_read_input_tokens": 28636,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 920
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AP85vdwZmVf84yEAtLeCT6`</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "ls /root/autodl-tmp/checkpoints/full_occ_ln_v2_s0/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "61b5bae9-d01c-4b6d-8a96-d00bd64f53fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BjsDDiuHhNaVAHTXz9Ao2j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 920,
+      "cache_read_input_tokens": 28636,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 920
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-26T20:29:18.984Z_
+
+<details><summary>↩ Tool result · `toolu_01LALCRqE3msTTLc2vUTykrw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_ln_v2_s0\\ntrain.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "46f8c440-da6f-4671-ad4e-fc40570431c0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_ln_v2_s0\\\\ntrain.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_ln_v2_s0\\ntrain.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-26T20:29:19.518Z_
+
+<details><summary>↩ Tool result · `toolu_01AP85vdwZmVf84yEAtLeCT6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_v2_s0\\ntrain.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "eb98ab12-add7-4aef-8027-c04dce83b17a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_v2_s0\\\\ntrain.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_v2_s0\\ntrain.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QeCbe9XpzXy1DEsG8MKGU2`</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "ls /root/autodl-tmp/checkpoints/detach_ln_v2_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_ln_v2_s0/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "88b163ef-9404-48c9-b085-a8db493c4a55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WK3gkzM1sGu7QBxSqRniT5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 562,
+      "cache_read_input_tokens": 29556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 562
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-26T20:29:24.037Z_
+
+<details><summary>↩ Tool result · `toolu_01QeCbe9XpzXy1DEsG8MKGU2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"dataset_statistics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "c22d4a5c-83fe-46a9-9b1c-75c206e97b45",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"dataset_statistics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"dataset_statistics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No 50K checkpoint yet for detach_ln_v2_s0. That's fine — the task says to prepare the scripts and use variable placeholders since v2 training hasn't finished yet.
+
+Let me now create the comparison script and the commands doc. I have all the info I need:
+
+1. The existing script takes `--checkpoint_dir`, `--condition_name`, `--seed`, `--num_samples`, `--batch_size`, `--output_dir`, `--gpu`
+2. Output JSON structure: `per_layer` dict with layer names mapping to `action_grad_norm_mean`, `occ_grad_norm_mean`, etc.
+
+
+3. Output files follow the pattern `{condition_name}_gradient_stats.json`
+
+Now I'll write the comparison script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "1770751f-2e2a-497e-b025-4965c73c5763",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PM84anF9E3LxSs7MEfzxmL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 258,
+      "cache_read_input_tokens": 30118,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 258
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+No 50K checkpoints yet (training still in progress). I have all the info needed. Let me create both files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "0a4a426d-9863-4f6f-87ad-8125c076da52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PM84anF9E3LxSs7MEfzxmL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 258,
+      "cache_read_input_tokens": 30118,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 258
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Xe98b72MAtiJZnfX6WfAKJ`</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "cat > /root/occsafe_vla/scripts/compare_gradient_conditions.py << 'PYEOF'\n\"\"\"\nCompare per-layer backbone gradient statistics across 3 conditions (Vanilla v2, Full OCC LN v2, Detach LN v2).\n\nInput: Either 3 pre-computed gradient JSON files (from run_gradient_analysis_v2.py),\n       or 3 checkpoint paths (will run analysis automatically).\nOutput: Terminal comparison table + JSON summary with per-layer ratios.\n\nDependencies: numpy (only for JSON-reading mode; full deps needed for checkpoint mode).\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport subprocess\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\n\n\nCONDITION_KEYS = [\"vanilla\", \"full_occ\", \"detach\"]\nCONDITION_LABELS = {\n    \"vanilla\": \"Vanilla v2\",\n    \"full_occ\": \"Full OCC LN v2\",\n    \"detach\": \"Detach LN v2\",\n}\n\nANALYSIS_SCRIPT = Path(__file__).parent / \"run_gradient_analysis_v2.py\"\n\n\ndef parse_args():\n    parser = argparse.ArgumentParser(\n        description=\"Compare per-layer backbone gradients across 3 OccSafe-VLA conditions\"\n    )\n\n    json_group = parser.add_argument_group(\"JSON input mode (pre-computed results)\")\n    json_group.add_argument(\"--vanilla-json\", type=str, help=\"Vanilla v2 gradient_stats JSON\")\n    json_group.add_argument(\"--full-occ-json\", type=str, help=\"Full OCC LN v2 gradient_stats JSON\")\n    json_group.add_argument(\"--detach-json\", type=str, help=\"Detach LN v2 gradient_stats JSON\")\n\n    ckpt_group = parser.add_argument_group(\"Checkpoint mode (run analysis from scratch)\")\n    ckpt_group.add_argument(\"--vanilla-ckpt\", type=str, help=\"Vanilla v2 checkpoint dir\")\n    ckpt_group.add_argument(\"--full-occ-ckpt\", type=str, help=\"Full OCC LN v2 checkpoint dir\")\n    ckpt_group.add_argument(\"--detach-ckpt\", type=str, help=\"Detach LN v2 checkpoint dir\")\n    ckpt_group.add_argument(\"--num-samples\", type=int, default=200)\n    ckpt_group.add_argument(\"--batch-size\", type=int, default=4)\n    ckpt_group.add_argument(\"--gpu\", type=int, default=0)\n    ckpt_group.add_argument(\"--seed\", type=int, default=42)\n\n    parser.add_argument(\"--output-json\", type=str, default=\"comparison_results.json\",\n                        help=\"Output JSON path for comparison results\")\n    parser.add_argument(\"--output-dir\", type=str, default=None,\n                        help=\"Output dir for per-condition analysis (checkpoint mode)\")\n    return parser.parse_args()\n\n\ndef run_analysis(ckpt_dir, condition_name, output_dir, num_samples, batch_size, gpu, seed):\n    \"\"\"Run run_gradient_analysis_v2.py for a single condition.\"\"\"\n    cmd = [\n        sys.executable, str(ANALYSIS_SCRIPT),\n        \"--checkpoint_dir\", ckpt_dir,\n        \"--condition_name\", condition_name,\n        \"--seed\", str(seed),\n        \"--num_samples\", str(num_samples),\n        \"--batch_size\", str(batch_size),\n        \"--output_dir\", output_dir,\n        \"--gpu\", str(gpu),\n    ]\n    print(f\"\\n{'='*80}\")\n    print(f\"Running analysis: {condition_name}\")\n    print(f\"  Checkpoint: {ckpt_dir}\")\n    print(f\"  Command: {' '.join(cmd)}\")\n    print(f\"{'='*80}\\n\")\n\n    result = subprocess.run(cmd, capture_output=False)\n    if result.returncode != 0:\n        print(f\"ERROR: Analysis failed for {condition_name} (exit code {result.returncode})\")\n        sys.exit(1)\n\n    json_path = os.path.join(output_dir, f\"{condition_name}_gradient_stats.json\")\n    if not os.path.exists(json_path):\n        print(f\"ERROR: Expected output not found: {json_path}\")\n        sys.exit(1)\n    return json_path\n\n\ndef load_results(json_path):\n    with open(json_path) as f:\n        return json.load(f)\n\n\ndef compute_comparison(data):\n    \"\"\"Compute per-layer ratios and summary statistics.\"\"\"\n    vanilla_layers = data[\"vanilla\"][\"per_layer\"]\n    full_occ_layers = data[\"full_occ\"][\"per_layer\"]\n    detach_layers = data[\"detach\"][\"per_layer\"]\n\n    all_layers = list(vanilla_layers.keys())\n\n    per_layer = {}\n    for layer in all_layers:\n        v_action = vanilla_layers[layer][\"action_grad_norm_mean\"]\n        f_action = full_occ_layers.get(layer, {}).get(\"action_grad_norm_mean\", 0)\n        d_action = detach_layers.get(layer, {}).get(\"action_grad_norm_mean\", 0)\n\n        v_occ = vanilla_layers[layer][\"occ_grad_norm_mean\"]\n        f_occ = full_occ_layers.get(layer, {}).get(\"occ_grad_norm_mean\", 0)\n        d_occ = detach_layers.get(layer, {}).get(\"occ_grad_norm_mean\", 0)\n\n        # Total gradient norm (action + occ combined signal)\n        v_total = v_action + v_occ\n        f_total = f_action + f_occ\n        d_total = d_action + d_occ\n\n        # Ratios vs Vanilla (using action grad norm as primary metric)\n        eps = 1e-12\n        full_occ_ratio = f_action / (v_action + eps)\n        detach_ratio = d_action / (v_action + eps)\n\n        # Cosine similarity info\n        v_cos = vanilla_layers[layer].get(\"cosine_sim_mean\")\n        f_cos = full_occ_layers.get(layer, {}).get(\"cosine_sim_mean\")\n        d_cos = detach_layers.get(layer, {}).get(\"cosine_sim_mean\")\n\n        per_layer[layer] = {\n            \"vanilla_action_grad\": v_action,\n            \"full_occ_action_grad\": f_action,\n            \"detach_action_grad\": d_action,\n            \"vanilla_occ_grad\": v_occ,\n            \"full_occ_occ_grad\": f_occ,\n            \"detach_occ_grad\": d_occ,\n            \"full_occ_vs_vanilla_ratio\": full_occ_ratio,\n            \"detach_vs_vanilla_ratio\": detach_ratio,\n            \"vanilla_cosine\": v_cos,\n            \"full_occ_cosine\": f_cos,\n            \"detach_cosine\": d_cos,\n        }\n\n    # Summary statistics\n    fo_ratios = [per_layer[l][\"full_occ_vs_vanilla_ratio\"] for l in all_layers]\n    dt_ratios = [per_layer[l][\"detach_vs_vanilla_ratio\"] for l in all_layers]\n\n    fo_max_layer = all_layers[int(np.argmax(fo_ratios))]\n    fo_min_layer = all_layers[int(np.argmin(fo_ratios))]\n    dt_max_layer = all_layers[int(np.argmax(dt_ratios))]\n    dt_min_layer = all_layers[int(np.argmin(dt_ratios))]\n\n    summary = {\n        \"full_occ_vs_vanilla\": {\n            \"mean_ratio\": float(np.mean(fo_ratios)),\n            \"std_ratio\": float(np.std(fo_ratios)),\n            \"max_ratio\": float(np.max(fo_ratios)),\n            \"max_ratio_layer\": fo_max_layer,\n            \"min_ratio\": float(np.min(fo_ratios)),\n            \"min_ratio_layer\": fo_min_layer,\n        },\n        \"detach_vs_vanilla\": {\n            \"mean_ratio\": float(np.mean(dt_ratios)),\n            \"std_ratio\": float(np.std(dt_ratios)),\n            \"max_ratio\": float(np.max(dt_ratios)),\n            \"max_ratio_layer\": dt_max_layer,\n            \"min_ratio\": float(np.min(dt_ratios)),\n            \"min_ratio_layer\": dt_min_layer,\n        },\n        \"conditions\": {\n            k: {\n                \"avg_action_loss\": data[k].get(\"avg_action_loss\"),\n                \"avg_occ_loss\": data[k].get(\"avg_occ_loss\"),\n                \"num_samples\": data[k].get(\"num_samples\"),\n                \"occ_detach\": data[k].get(\"occ_detach\"),\n                \"occ_norm\": data[k].get(\"occ_norm\"),\n            }\n            for k in CONDITION_KEYS\n        },\n    }\n\n    return per_layer, summary\n\n\ndef print_table(per_layer, summary):\n    layers = list(per_layer.keys())\n\n    print(f\"\\n{'='*120}\")\n    print(\"PER-LAYER ACTION GRADIENT NORMS (3-condition comparison)\")\n    print(f\"{'='*120}\")\n    header = (f\"{'Layer':<35s} {'Vanilla':>12s} {'FullOCC_LN':>12s} {'Detach_LN':>12s} \"\n              f\"{'FO/V ratio':>12s} {'D/V ratio':>12s}\")\n    print(header)\n    print(\"-\" * 120)\n\n    for layer in layers:\n        d = per_layer[layer]\n        print(f\"{layer:<35s} \"\n              f\"{d['vanilla_action_grad']:>12.6f} \"\n              f\"{d['full_occ_action_grad']:>12.6f} \"\n              f\"{d['detach_action_grad']:>12.6f} \"\n              f\"{d['full_occ_vs_vanilla_ratio']:>12.4f} \"\n              f\"{d['detach_vs_vanilla_ratio']:>12.4f}\")\n\n    print(f\"{'='*120}\")\n\n    # OCC gradient table\n    print(f\"\\nPER-LAYER OCC GRADIENT NORMS\")\n    print(f\"{'='*90}\")\n    header2 = f\"{'Layer':<35s} {'Vanilla':>12s} {'FullOCC_LN':>12s} {'Detach_LN':>12s}\"\n    print(header2)\n    print(\"-\" * 90)\n    for layer in layers:\n        d = per_layer[layer]\n        print(f\"{layer:<35s} \"\n              f\"{d['vanilla_occ_grad']:>12.6f} \"\n              f\"{d['full_occ_occ_grad']:>12.6f} \"\n              f\"{d['detach_occ_grad']:>12.6f}\")\n    print(f\"{'='*90}\")\n\n    # Cosine similarity table\n    has_cosine = any(per_layer[l].get(\"full_occ_cosine\") is not None for l in layers)\n    if has_cosine:\n        print(f\"\\nPER-LAYER COSINE SIMILARITY (action vs occ gradients)\")\n        print(f\"{'='*90}\")\n        header3 = f\"{'Layer':<35s} {'Vanilla':>12s} {'FullOCC_LN':>12s} {'Detach_LN':>12s}\"\n        print(header3)\n        print(\"-\" * 90)\n        for layer in layers:\n            d = per_layer[layer]\n            v = f\"{d['vanilla_cosine']:.4f}\" if d['vanilla_cosine'] is not None else \"N/A\"\n            f_ = f\"{d['full_occ_cosine']:.4f}\" if d['full_occ_cosine'] is not None else \"N/A\"\n            dt = f\"{d['detach_cosine']:.4f}\" if d['detach_cosine'] is not None else \"N/A\"\n            print(f\"{layer:<35s} {v:>12s} {f_:>12s} {dt:>12s}\")\n        print(f\"{'='*90}\")\n\n    # Summary\n    fo = summary[\"full_occ_vs_vanilla\"]\n    dt = summary[\"detach_vs_vanilla\"]\n    print(f\"\\n{'='*80}\")\n    print(\"SUMMARY: Action Gradient Ratios vs Vanilla\")\n    print(f\"{'='*80}\")\n    print(f\"  Full OCC LN / Vanilla:  mean={fo['mean_ratio']:.4f} std={fo['std_ratio']:.4f}\")\n    print(f\"    max={fo['max_ratio']:.4f} @ {fo['max_ratio_layer']}\")\n    print(f\"    min={fo['min_ratio']:.4f} @ {fo['min_ratio_layer']}\")\n    print(f\"  Detach LN / Vanilla:    mean={dt['mean_ratio']:.4f} std={dt['std_ratio']:.4f}\")\n    print(f\"    max={dt['max_ratio']:.4f} @ {dt['max_ratio_layer']}\")\n    print(f\"    min={dt['min_ratio']:.4f} @ {dt['min_ratio_layer']}\")\n    print(f\"{'='*80}\")\n\n    # Condition metadata\n    print(f\"\\nCondition metadata:\")\n    for k in CONDITION_KEYS:\n        c = summary[\"conditions\"][k]\n        print(f\"  {CONDITION_LABELS[k]}: action_loss={c['avg_action_loss']:.4f}, \"\n              f\"occ_loss={c['avg_occ_loss']:.4f}, \"\n              f\"detach={c['occ_detach']}, norm={c['occ_norm']}, \"\n              f\"samples={c['num_samples']}\")\n\n\ndef main():\n    args = parse_args()\n\n    json_mode = all([args.vanilla_json, args.full_occ_json, args.detach_json])\n    ckpt_mode = all([args.vanilla_ckpt, args.full_occ_ckpt, args.detach_ckpt])\n\n    if not json_mode and not ckpt_mode:\n        print(\"ERROR: Provide either all 3 --*-json paths or all 3 --*-ckpt paths.\")\n        sys.exit(1)\n\n    if ckpt_mode:\n        output_dir = args.output_dir or os.path.dirname(os.path.abspath(args.output_json))\n        os.makedirs(output_dir, exist_ok=True)\n\n        ckpt_map = {\n            \"vanilla\": (args.vanilla_ckpt, CONDITION_LABELS[\"vanilla\"]),\n            \"full_occ\": (args.full_occ_ckpt, CONDITION_LABELS[\"full_occ\"]),\n            \"detach\": (args.detach_ckpt, CONDITION_LABELS[\"detach\"]),\n        }\n        json_paths = {}\n        for key, (ckpt, label) in ckpt_map.items():\n            json_paths[key] = run_analysis(\n                ckpt, label, output_dir,\n                args.num_samples, args.batch_size, args.gpu, args.seed,\n            )\n    else:\n        json_paths = {\n            \"vanilla\": args.vanilla_json,\n            \"full_occ\": args.full_occ_json,\n            \"detach\": args.detach_json,\n        }\n\n    # Load all results\n    data = {}\n    for key, path in json_paths.items():\n        print(f\"Loading {CONDITION_LABELS[key]}: {path}\")\n        data[key] = load_results(path)\n\n    # Compute comparison\n    per_layer, summary = compute_comparison(data)\n\n    # Print table\n    print_table(per_layer, summary)\n\n    # Save JSON\n    output = {\n        \"per_layer\": per_layer,\n        \"summary\": summary,\n        \"source_files\": {k: str(v) for k, v in json_paths.items()},\n    }\n    out_path = args.output_json\n    os.makedirs(os.path.dirname(os.path.abspath(out_path)), exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nComparison results saved to: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "cb21c8af-48f0-4df4-9166-0a583c6ae186",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PM84anF9E3LxSs7MEfzxmL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 258,
+      "cache_read_input_tokens": 30118,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 258
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-26T20:30:20.051Z_
+
+<details><summary>↩ Tool result · `toolu_01Xe98b72MAtiJZnfX6WfAKJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "689551a5-1f8e-486d-a84f-487b4e4f478e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UDK59FDZuywZrYMcq6BtKW`</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "python3 -c \"import ast; ast.parse(open('/root/occsafe_vla/scripts/compare_gradient_conditions.py').read()); print('SYNTAX OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "7f50c9e3-7ad2-41d0-b17d-01c8259a2b40",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NhHqD2zqzUxt23BbCECoNN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4762,
+      "cache_read_input_tokens": 30376,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4762
+      },
+      "output_tokens": 52,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-26T20:30:24.550Z_
+
+<details><summary>↩ Tool result · `toolu_01UDK59FDZuywZrYMcq6BtKW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "d38ee72c-7e6e-4255-aadf-c5a93e58f203",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Sy2XX2PtFno8GShrAK4iL9`</summary>
+
+```json
+{
+  "server": "westd-10894",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import ast; ast.parse(open('/root/occsafe_vla/scripts/compare_gradient_conditions.py').read()); print('SYNTAX OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "8b2a70f7-a798-45c9-b7d1-e2e3c86e017c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VdwyE52UZBjY1t9LLNDWN4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 238,
+      "cache_read_input_tokens": 35138,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 238
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-26T20:30:28.641Z_
+
+<details><summary>↩ Tool result · `toolu_01Sy2XX2PtFno8GShrAK4iL9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"SYNTAX OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "b6e0decb-75ac-4073-a40d-832018053603",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SYNTAX OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"SYNTAX OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+Syntax OK. Now creating the commands doc locally.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "69cbbe52-1fb4-4600-9636-37b8e210d4b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UVV3ivmDtpmVaeKwD7qS8z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 244,
+      "cache_read_input_tokens": 35376,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 244
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0117KiPWzvdugrT6qx4KNRuB`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "19efeecc-eafd-4881-9ccb-c02ff2c011cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UVV3ivmDtpmVaeKwD7qS8z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 244,
+      "cache_read_input_tokens": 35376,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 244
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-26T20:30:32.980Z_
+
+<details><summary>↩ Tool result · `toolu_0117KiPWzvdugrT6qx4KNRuB`</summary>
+
+```text
+10894_health_check.md
+_project
+ablation_random_occ_s0
+analyze_factorial_anova.py
+analyze_learning_curve_fixed.py
+anova_2x2_factorial.py
+anova_factorial_v2.py
+anova_factorial_v2_results.txt
+batch_eval.sh
+checkpoint_analysis_summary.md
+cka_analysis
+cka_analysis.py
+cka_detach_ln
+cka_detach_ln.pdf
+cka_detach_ln.png
+cka_detach_ln_results.json
+cka_dose_response.py
+cka_dose_response_results.json
+cka_full_occ_ln_s0
+cka_full_occ_ln_s1
+cka_random_occ_results.json
+cka_results.json
+cka_same_seed_4cond
+comprehensive_results.csv
+compute_statistics.py
+d051_bn_v2_failure_diagnosis.md
+detach_ln_diagnosis.md
+detach_ln_s0_eval
+detach_ln_s0_eval_analysis.md
+diag_10894_triple_failure.md
+diag_eval_failure_20260523.md
+diagnose_ablation_batch_fail.md
+diagnose_mvp_occ_s3_v2.md
+diagnose_s3_v2_failures.md
+diagnose_westd10894_batch_kill.md
+diagnose_westd34685_20260525.md
+diagnosis_disk_full_20260526.md
+diagnosis_experiment_crash_20260526.md
+dose_response_3seed_analysis.py
+dose_response_3seed_final.pdf
+dose_response_3seed_final.png
+dose_response_curve_data_car.csv
+dose_response_data.json
+dream_reports
+eval_commands.md
+eval_commands_34685.md
+eval_commands_batch3.md
+eval_completeness_audit.md
+eval_pending_checklist.md
+eval_pipeline_check_report.md
+eval_readiness_report.md
+extract_depth.py
+factorial_2x2_config.json
+factorial_data_summary.md
+fig1_overview_v2.pdf
+fig1_overview_v2.png
+fig1_overview_v2.py
+fig_dose_response_2seed.pdf
+fig_dose_response_2seed.png
+fig_factorial_2x2.pdf
+fig_factorial_2x2.png
+figures
+gen_dose_response.py
+gen_factorial_2x2.py
+generate_factorial_figures.py
+generate_table1.py
+gradient_aggregation_investigation.md
+gradient_analysis
+gradient_analysis_mixed_seed
+gradient_cka_summary.md
+gradient_dose_response.py
+gradient_dose_response_s0.py
+handoff_plan_tonight.md
+launch_commands_10894_batch2.md
+launch_commands_n5_expansion.md
+manifest.yaml
+occ_crash_diagnosis.md
+occ_gt_design.md
+occ_pipeline
+openvla_oft_survey.md
+paper_status_check_20260525.md
+partial_anova_v2.py
+partial_anova_v2_results.txt
+plot_dose_response.py
+plot_factorial_2x2.py
+plot_gradient_analysis_v2_paper.py
+plot_gradient_comparison.py
+reference_audit_report.md
+run_gradient_same_seed.sh
+safelibero_survey.md
+same_seed_gradient_analysis.py
+statistical_tests.json
+training_status_20260526.md
+v2_cka_analysis.py
+v2_gradient_analysis.json
+v2_gradient_analysis.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "ec42f4a4-2bbf-4627-8db5-53bbdef1b10e",
+  "tool_use_result": {
+    "stdout": "10894_health_check.md\n_project\nablation_random_occ_s0\nanalyze_factorial_anova.py\nanalyze_learning_curve_fixed.py\nanova_2x2_factorial.py\nanova_factorial_v2.py\nanova_factorial_v2_results.txt\nbatch_eval.sh\ncheckpoint_analysis_summary.md\ncka_analysis\ncka_analysis.py\ncka_detach_ln\ncka_detach_ln.pdf\ncka_detach_ln.png\ncka_detach_ln_results.json\ncka_dose_response.py\ncka_dose_response_results.json\ncka_full_occ_ln_s0\ncka_full_occ_ln_s1\ncka_random_occ_results.json\ncka_results.json\ncka_same_seed_4cond\ncomprehensive_results.csv\ncompute_statistics.py\nd051_bn_v2_failure_diagnosis.md\ndetach_ln_diagnosis.md\ndetach_ln_s0_eval\ndetach_ln_s0_eval_analysis.md\ndiag_10894_triple_failure.md\ndiag_eval_failure_20260523.md\ndiagnose_ablation_batch_fail.md\ndiagnose_mvp_occ_s3_v2.md\ndiagnose_s3_v2_failures.md\ndiagnose_westd10894_batch_kill.md\ndiagnose_westd34685_20260525.md\ndiagnosis_disk_full_20260526.md\ndiagnosis_experiment_crash_20260526.md\ndose_response_3seed_analysis.py\ndose_response_3seed_final.pdf\ndose_response_3seed_final.png\ndose_response_curve_data_car.csv\ndose_response_data.json\ndream_reports\neval_commands.md\neval_commands_34685.md\neval_commands_batch3.md\neval_completeness_audit.md\neval_pending_checklist.md\neval_pipeline_check_report.md\neval_readiness_report.md\nextract_depth.py\nfactorial_2x2_config.json\nfactorial_data_summary.md\nfig1_overview_v2.pdf\nfig1_overview_v2.png\nfig1_overview_v2.py\nfig_dose_response_2seed.pdf\nfig_dose_response_2seed.png\nfig_factorial_2x2.pdf\nfig_factorial_2x2.png\nfigures\ngen_dose_response.py\ngen_factorial_2x2.py\ngenerate_factorial_figures.py\ngenerate_table1.py\ngradient_aggregation_investigation.md\ngradient_analysis\ngradient_analysis_mixed_seed\ngradient_cka_summary.md\ngradient_dose_response.py\ngradient_dose_response_s0.py\nhandoff_plan_tonight.md\nlaunch_commands_10894_batch2.md\nlaunch_commands_n5_expansion.md\nmanifest.yaml\nocc_crash_diagnosis.md\nocc_gt_design.md\nocc_pipeline\nopenvla_oft_survey.md\npaper_status_check_20260525.md\npartial_anova_v2.py\npartial_anova_v2_results.txt\nplot_dose_response.py\nplot_factorial_2x2.py\nplot_gradient_analysis_v2_paper.py\nplot_gradient_comparison.py\nreference_audit_report.md\nrun_gradient_same_seed.sh\nsafelibero_survey.md\nsame_seed_gradient_analysis.py\nstatistical_tests.json\ntraining_status_20260526.md\nv2_cka_analysis.py\nv2_gradient_analysis.json\nv2_gradient_analysis.py",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01Eq6NbtoXCtDaq8XGrzjsev`</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/gradient_analysis_v2_commands.md",
+  "content": "# V2 Gradient Analysis Commands (50K Checkpoints)\n\n## Checkpoint Paths\n\n```bash\n# Pattern: /root/autodl-tmp/checkpoints/{exp_id}/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--{exp_id}--50000_chkpt\n\nVANILLA_CKPT=\"/root/autodl-tmp/checkpoints/vanilla_v2_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--vanilla_v2_s1--50000_chkpt\"\nFULL_OCC_CKPT=\"/root/autodl-tmp/checkpoints/full_occ_ln_v2_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_v2_s0--50000_chkpt\"\nDETACH_CKPT=\"/root/autodl-tmp/checkpoints/detach_ln_v2_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_ln_v2_s0--50000_chkpt\"\n```\n\n## Pre-requisite: SCP Vanilla v2 from 34685 to 10894\n\nVanilla v2 trains on westd-34685. Must copy the 50K checkpoint to 10894 before analysis.\n\n```bash\n# On 10894:\nmkdir -p /root/autodl-tmp/checkpoints/vanilla_v2_s1/\nscp -r westd-34685:/root/autodl-tmp/checkpoints/vanilla_v2_s1/ /root/autodl-tmp/checkpoints/vanilla_v2_s1/\n```\n\n## Step 1: Run Per-Condition Gradient Analysis\n\n```bash\ncd /root/occsafe_vla\nOUTPUT_DIR=/root/occsafe_vla/artifacts/gradient_v2_50k\n\n# Vanilla v2\npython3 scripts/run_gradient_analysis_v2.py \\\n  --checkpoint_dir \"$VANILLA_CKPT\" \\\n  --condition_name \"Vanilla v2\" \\\n  --seed 42 --num_samples 200 --batch_size 4 \\\n  --output_dir $OUTPUT_DIR --gpu 0\n\n# Full OCC LN v2\npython3 scripts/run_gradient_analysis_v2.py \\\n  --checkpoint_dir \"$FULL_OCC_CKPT\" \\\n  --condition_name \"Full OCC LN v2\" \\\n  --seed 42 --num_samples 200 --batch_size 4 \\\n  --output_dir $OUTPUT_DIR --gpu 0\n\n# Detach LN v2\npython3 scripts/run_gradient_analysis_v2.py \\\n  --checkpoint_dir \"$DETACH_CKPT\" \\\n  --condition_name \"Detach LN v2\" \\\n  --seed 42 --num_samples 200 --batch_size 4 \\\n  --output_dir $OUTPUT_DIR --gpu 0\n```\n\n## Step 2: Run Comparison\n\n### Option A: From pre-computed JSONs\n\n```bash\npython3 scripts/compare_gradient_conditions.py \\\n  --vanilla-json $OUTPUT_DIR/\"Vanilla v2_gradient_stats.json\" \\\n  --full-occ-json $OUTPUT_DIR/\"Full OCC LN v2_gradient_stats.json\" \\\n  --detach-json $OUTPUT_DIR/\"Detach LN v2_gradient_stats.json\" \\\n  --output-json $OUTPUT_DIR/comparison_results.json\n```\n\n### Option B: From checkpoints (runs all 3 analyses sequentially)\n\n```bash\npython3 scripts/compare_gradient_conditions.py \\\n  --vanilla-ckpt \"$VANILLA_CKPT\" \\\n  --full-occ-ckpt \"$FULL_OCC_CKPT\" \\\n  --detach-ckpt \"$DETACH_CKPT\" \\\n  --num-samples 200 --batch-size 4 --gpu 0 \\\n  --output-dir $OUTPUT_DIR \\\n  --output-json $OUTPUT_DIR/comparison_results.json\n```\n\n## Notes\n\n- Each condition takes ~15-20 min on a single GPU with 200 samples\n- Total wall time for all 3: ~45-60 min\n- Use `--gpu 0` (or any free GPU on 10894 cuda:0-3)\n- Output JSON contains per-layer ratios (Full OCC/Vanilla, Detach/Vanilla) for paper figures\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "28a33017-1266-4022-af1e-a8ce8e9ceae7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Sx8oyssrdi5eY8hDhzdVd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1039,
+      "cache_read_input_tokens": 35620,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1039
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-26T20:30:53.431Z_
+
+<details><summary>↩ Tool result · `toolu_01Eq6NbtoXCtDaq8XGrzjsev`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/gradient_analysis_v2_commands.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "f5a91bfb-38be-4de0-a4f4-9835297ddd43",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/gradient_analysis_v2_commands.md",
+    "content": "# V2 Gradient Analysis Commands (50K Checkpoints)\n\n## Checkpoint Paths\n\n```bash\n# Pattern: /root/autodl-tmp/checkpoints/{exp_id}/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--{exp_id}--50000_chkpt\n\nVANILLA_CKPT=\"/root/autodl-tmp/checkpoints/vanilla_v2_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--vanilla_v2_s1--50000_chkpt\"\nFULL_OCC_CKPT=\"/root/autodl-tmp/checkpoints/full_occ_ln_v2_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_v2_s0--50000_chkpt\"\nDETACH_CKPT=\"/root/autodl-tmp/checkpoints/detach_ln_v2_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_ln_v2_s0--50000_chkpt\"\n```\n\n## Pre-requisite: SCP Vanilla v2 from 34685 to 10894\n\nVanilla v2 trains on westd-34685. Must copy the 50K checkpoint to 10894 before analysis.\n\n```bash\n# On 10894:\nmkdir -p /root/autodl-tmp/checkpoints/vanilla_v2_s1/\nscp -r westd-34685:/root/autodl-tmp/checkpoints/vanilla_v2_s1/ /root/autodl-tmp/checkpoints/vanilla_v2_s1/\n```\n\n## Step 1: Run Per-Condition Gradient Analysis\n\n```bash\ncd /root/occsafe_vla\nOUTPUT_DIR=/root/occsafe_vla/artifacts/gradient_v2_50k\n\n# Vanilla v2\npython3 scripts/run_gradient_analysis_v2.py \\\n  --checkpoint_dir \"$VANILLA_CKPT\" \\\n  --condition_name \"Vanilla v2\" \\\n  --seed 42 --num_samples 200 --batch_size 4 \\\n  --output_dir $OUTPUT_DIR --gpu 0\n\n# Full OCC LN v2\npython3 scripts/run_gradient_analysis_v2.py \\\n  --checkpoint_dir \"$FULL_OCC_CKPT\" \\\n  --condition_name \"Full OCC LN v2\" \\\n  --seed 42 --num_samples 200 --batch_size 4 \\\n  --output_dir $OUTPUT_DIR --gpu 0\n\n# Detach LN v2\npython3 scripts/run_gradient_analysis_v2.py \\\n  --checkpoint_dir \"$DETACH_CKPT\" \\\n  --condition_name \"Detach LN v2\" \\\n  --seed 42 --num_samples 200 --batch_size 4 \\\n  --output_dir $OUTPUT_DIR --gpu 0\n```\n\n## Step 2: Run Comparison\n\n### Option A: From pre-computed JSONs\n\n```bash\npython3 scripts/compare_gradient_conditions.py \\\n  --vanilla-json $OUTPUT_DIR/\"Vanilla v2_gradient_stats.json\" \\\n  --full-occ-json $OUTPUT_DIR/\"Full OCC LN v2_gradient_stats.json\" \\\n  --detach-json $OUTPUT_DIR/\"Detach LN v2_gradient_stats.json\" \\\n  --output-json $OUTPUT_DIR/comparison_results.json\n```\n\n### Option B: From checkpoints (runs all 3 analyses sequentially)\n\n```bash\npython3 scripts/compare_gradient_conditions.py \\\n  --vanilla-ckpt \"$VANILLA_CKPT\" \\\n  --full-occ-ckpt \"$FULL_OCC_CKPT\" \\\n  --detach-ckpt \"$DETACH_CKPT\" \\\n  --num-samples 200 --batch-size 4 --gpu 0 \\\n  --output-dir $OUTPUT_DIR \\\n  --output-json $OUTPUT_DIR/comparison_results.json\n```\n\n## Notes\n\n- Each condition takes ~15-20 min on a single GPU with 200 samples\n- Total wall time for all 3: ~45-60 min\n- Use `--gpu 0` (or any free GPU on 10894 cuda:0-3)\n- Output JSON contains per-layer ratios (Full OCC/Vanilla, Detach/Vanilla) for paper figures\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+完成：
+
+1. **`/root/occsafe_vla/scripts/compare_gradient_conditions.py`** 已创建并通过语法检查。支持两种模式：
+   - JSON 模式：读取 3 个预计算的 `_gradient_stats.json`
+   - Checkpoint 模式：给 3 个 checkpoint 路径，自动依次调用 `run_gradient_analysis_v2.py`
+
+2. **输出内容**：
+   - 每层 action gradient norm（3 条件并排）
+   - 每层 occ gradient norm
+   - 每层 cosine similarity（如有）
+   - Full OCC LN / Vanilla ratio 和 Detach LN / Vanilla ratio
+   - 摘要统计（mean/std/max/min ratio 及对应层）
+   - 终端表格 + JSON 文件
+
+3. **`artifacts/gradient_analysis_v2_commands.md`** 已创建，含完整运行命令、checkpoint 路径变量、SCP 说明。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "uuid": "0554808e-f9f8-4dc6-bc32-6cc5761f5b13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NvqvDJznYBkd1Ze2ekY1xV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1381,
+      "cache_read_input_tokens": 36659,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1381
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 34_
+
+完成：
+
+1. **`/root/occsafe_vla/scripts/compare_gradient_conditions.py`** 已创建并通过语法检查。支持两种模式：
+   - JSON 模式：读取 3 个预计算的 `_gradient_stats.json`
+   - Checkpoint 模式：给 3 个 checkpoint 路径，自动依次调用 `run_gradient_analysis_v2.py`
+
+2. **输出内容**：
+   - 每层 action gradient norm（3 条件并排）
+   - 每层 occ gradient norm
+   - 每层 cosine similarity（如有）
+   - Full OCC LN / Vanilla ratio 和 Detach LN / Vanilla ratio
+   - 摘要统计（mean/std/max/min ratio 及对应层）
+   - 终端表格 + JSON 文件
+
+3. **`artifacts/gradient_analysis_v2_commands.md`** 已创建，含完整运行命令、checkpoint 路径变量、SCP 说明。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 127622,
+  "duration_api_ms": 125215,
+  "num_turns": 12,
+  "stop_reason": "end_turn",
+  "session_id": "9abf9e52-0be3-42ae-a474-0c7ae1e6426b",
+  "total_cost_usd": 0.52630875,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 26199,
+    "cache_read_input_tokens": 322568,
+    "output_tokens": 7956,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 26199,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 277,
+        "cache_read_input_tokens": 36659,
+        "cache_creation_input_tokens": 1381,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1381
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2216,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002306,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 7956,
+      "cacheReadInputTokens": 322568,
+      "cacheCreationInputTokens": 26199,
+      "webSearchRequests": 0,
+      "costUSD": 0.52400275,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "22d37aea-478f-4d07-bffd-f0e51ef23723"
+}
+```
+
+</details>
+
+---

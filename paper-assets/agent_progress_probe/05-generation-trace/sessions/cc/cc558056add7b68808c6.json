@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc558056add7b68808c6",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "check llm judge status v2",
+  "task_key": "worker_check_llm-judge-status-v2_20260515T042415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_llm-judge-status-v2_20260515T042415_result.json",
+    "occurrence": 1,
+    "bytes": 1153,
+    "sha256": "1e090835bbf912ea763b9bd85418eff42ad55de9412dbaf1fea36579ddaa082d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. 汇总如下：\n\n## LLM Judge 实验结果（全部完成，无运行中进程）\n\n| Config | Macro F1 | Acc | F1_stag | F1_prog | Parse Fail | Cost |\n|---|---|---|---|---|---|---|\n| Claude Sonnet 4.6 / zero-shot | 0.6625 | 0.6721 | 0.6055 | 0.7195 | 0 | $11.66 |\n| Claude Sonnet 4.6 / few-shot | 0.7514 | 0.7703 | 0.6828 | 0.8199 | 0 | $36.08 |\n| Claude Sonnet 4.6 / cot | 0.7499 | 0.7689 | 0.6808 | 0.8189 | 2 | $17.16 |\n| **Claude Sonnet 4.6 / few-shot-cot** | **0.7994** | **0.8229** | **0.7306** | **0.8681** | **0** | $40.56 |\n| GPT-5.5 / zero-shot | 0.7465 | 0.7514 | 0.7110 | 0.7819 | 408 (22.4%) | $11.62 |\n\n**总费用**: $117.08 | **最佳变体**: Claude few-shot-cot (F1=0.799)\n\n关键发现：\n- few-shot-cot 是最佳 prompting 策略，比 zero-shot 提升 +13.7pp\n- CoT 单独加无明显收益（0.750 vs 0.751 few-shot），必须与 few-shot 结合才有效\n- GPT-5.5 的 22.4% parse failure rate 是硬伤，但在有效窗口上 F1 接近 Claude few-shot\n- 最佳 LLM (F1=0.799) 仍比结构化 GB cross-agent (F1=0.967) 低 16.8pp\n\n`llm-judge-strengthened` 已标记为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-llm-judge-status-v2.md"
+}

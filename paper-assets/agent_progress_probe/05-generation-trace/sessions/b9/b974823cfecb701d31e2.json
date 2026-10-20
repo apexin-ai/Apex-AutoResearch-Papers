@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b974823cfecb701d31e2",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "code cross agent structural baseline",
+  "task_key": "worker_code_cross-agent-structural-baseline_20260514T170555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross-agent-structural-baseline_20260514T170555_result.json",
+    "occurrence": 1,
+    "bytes": 1509,
+    "sha256": "a18c13da3c48fb312d1bbb1d95097f9f287faf41d12bb53ddcba252e069b1583"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果：\n\n## Cross-Agent Structural Baseline 结果\n\n| 设置 | Model | Macro F1 | F1_stag | F1_prog |\n|------|-------|----------|---------|---------|\n| **In-domain (SWE-Agent test)** | LR | 0.9874 | 0.9815 | 0.9933 |\n| | RF | 0.9951 | 0.9928 | 0.9974 |\n| | GB | 0.9951 | 0.9928 | 0.9974 |\n| **Cross-agent OH (all, N=150652)** | LR | 0.7801 | 0.6842 | 0.8760 |\n| | RF | 0.9123 | 0.8658 | 0.9587 |\n| | GB | **0.9674** | 0.9479 | 0.9869 |\n| **Cross-agent OH (conf≥2, N=43376)** | LR | 0.9671 | 0.9477 | 0.9865 |\n| | RF | **0.9959** | 0.9935 | 0.9984 |\n| | GB | 0.9919 | 0.9869 | 0.9968 |\n\n### 对比 Probe\n\n| Method | In-domain | Cross-agent (zero-shot) |\n|--------|-----------|------------------------|\n| GRU Probe | 0.9055 | 0.5320 |\n| Probe (full-finetune) | - | 0.7510 |\n| **Struct+GB** | **0.9951** | **0.9674** (all) |\n| **Struct+RF** | **0.9951** | **0.9959** (conf≥2) |\n\n### 关键结论\n\n结构特征的跨域迁移**远优于** probe：\n- Struct+GB 在 OH 全量数据上 macro_f1=0.9674，比 probe full-finetune (0.751) 高 **+0.216**\n- Struct+RF 在 OH conf≥2 上 macro_f1=0.9959，几乎完美\n- 这说明**停滞检测任务的大部分信号存在于结构特征中**（命令重复、相似度、类型分布），而非语义内容\n- In-domain 数字完全匹配 `non_nlp_baseline_results.json`（LR=0.9874, RF/GB=0.9951）\n\nJSON 已保存到 `/root/autodl-tmp/agent_progress_probe/data/cross_agent_structural_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cross-agent-structural-baseline.md"
+}

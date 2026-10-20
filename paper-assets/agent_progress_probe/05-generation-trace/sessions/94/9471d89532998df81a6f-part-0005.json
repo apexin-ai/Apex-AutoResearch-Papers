@@ -1,0 +1,3927 @@
+{
+  "schema_version": "1.0",
+  "session_id": "9471d89532998df81a6f",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-15T11:47:50.174Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RLWsYbZee634GVeVtHSnUm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Device: cuda:1\\\\nGold labels: 601\\\\nBuilding structural features ...\\\\n  SWE trajectories: 5000\\\\n  OH trajectories: 5000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "57d3068c-61f7-4231-b9a2-b991b6363644"
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 163688,
+                  "tool_uses": 206,
+                  "duration_ms": 2395404
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "f9e3b277-0a5c-403e-8389-8784a0da96f2",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LXDxHf3E4htyyNcGGu1oML",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "wc -l /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "3b2aa716-c02d-4d1f-be29-52d2424bf700",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M3wnCa82N71Q3biFFzGuZv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 214,
+                "cache_read_input_tokens": 156502,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 214,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-15T11:47:54.507Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LXDxHf3E4htyyNcGGu1oML",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5 /tmp/bootstrap_601.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "1e650cca-8cbe-4860-9021-00e56f47fa9b"
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 163942,
+                  "tool_uses": 207,
+                  "duration_ms": 2399332
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "ead2c1d2-0de4-4a7d-bff9-28d98596d973",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MNd3JeT9AdzUe8oL5jugS3",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "wc -l /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "e9fc4062-c4e0-4540-9cf1-4587b7cb84ba",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CHm844U4RsEL5b3GF2setF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 182,
+                "cache_read_input_tokens": 156716,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 182,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": "2026-05-15T11:47:58.438Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MNd3JeT9AdzUe8oL5jugS3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5 /tmp/bootstrap_601.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "cc8ed3cb-1322-4432-88df-c6e55cc1d6b2"
+          },
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 164196,
+                  "tool_uses": 208,
+                  "duration_ms": 2403259
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "ba2495c0-0cce-419b-8bda-61dbe409570a",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Csi8k4HUP4veVTJNqfd3mX",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "wc -l /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "68be0328-360c-442e-b141-176af1c49507",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016EEHQ9zGCYC4jkSJSKqdeh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 182,
+                "cache_read_input_tokens": 156898,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 182,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": "2026-05-15T11:48:02.364Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Csi8k4HUP4veVTJNqfd3mX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5 /tmp/bootstrap_601.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "fb451ca5-e495-4352-ae8d-bc46a3c034b5"
+          },
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 164450,
+                  "tool_uses": 209,
+                  "duration_ms": 2407023
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "02e4958d-dfc9-4ade-bf6a-70f5a855a053",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DbQ1WbYyr6LqXZQP64Kd4D",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "wc -l /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "3570bc54-d48f-41c5-bb9b-6dab79b2eecb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013XTZVs3HuNMTLnKrGqWDmZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 182,
+                "cache_read_input_tokens": 157080,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 182,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": "2026-05-15T11:48:06.126Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DbQ1WbYyr6LqXZQP64Kd4D",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5 /tmp/bootstrap_601.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "42953933-62be-4c5c-a3d8-2add401fdb1c"
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 164704,
+                  "tool_uses": 210,
+                  "duration_ms": 2412011
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "ac4da8a3-36e2-41c9-8816-fa0b002143a9",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LESD5gvam8ihU5iR5CXkb5",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "cat /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "aeaedd83-d9f1-4e00-8f1d-0bb5347f935a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019yeQSFekoMu35b8KzVwrHH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 182,
+                "cache_read_input_tokens": 157262,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 182,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": "2026-05-15T11:48:11.113Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LESD5gvam8ihU5iR5CXkb5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Device: cuda:1\\\\nGold labels: 601\\\\nBuilding structural features ...\\\\n  SWE trajectories: 5000\\\\n  OH trajectories: 5000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "22c8fb3d-5334-4900-a322-6f20a01b1326"
+          },
+          "id": "event-000736"
+        },
+        {
+          "source_line": 737,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 164983,
+                  "tool_uses": 211,
+                  "duration_ms": 2416502
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_execute",
+                "uuid": "5c18916f-1cef-4b5f-9b9d-2fc129b468fd",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RAZ8exRmwn7e3e8qCCH5JS",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "ps -p 316614 -o pid,state,%cpu,%mem,etime 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "33bc0ef7-5a41-47e5-9736-2541ed0e759f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YK676WGRj8nYenYpNvKR8L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 211,
+                "cache_read_input_tokens": 157444,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 211,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": "2026-05-15T11:48:15.604Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RAZ8exRmwn7e3e8qCCH5JS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID S %CPU %MEM     ELAPSED\\\\n316614 R  106  0.5       04:20\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "ac60bef9-a145-4dc9-8e79-c3be072e2c1f"
+          },
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 165196,
+                  "tool_uses": 212,
+                  "duration_ms": 2420478
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "16e4cd6c-a762-4e5c-8833-2385560330d0",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000740"
+        },
+        {
+          "source_line": 741,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018x7FikfyhGgm1fuxXSWoyc",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "wc -l /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "a54eba5b-2534-492a-8c6e-e0c7663667c7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014NB3EgS8ssgMYjHesgAx9U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 211,
+                "cache_read_input_tokens": 157655,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 211,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000741"
+        },
+        {
+          "source_line": 742,
+          "timestamp": "2026-05-15T11:48:19.589Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018x7FikfyhGgm1fuxXSWoyc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"10 /tmp/bootstrap_601.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "7f19c47f-09f1-43a3-a359-c80afe6dc3be"
+          },
+          "id": "event-000742"
+        },
+        {
+          "source_line": 743,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 165398,
+                  "tool_uses": 213,
+                  "duration_ms": 2425129
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "1bbf370c-9adb-4e20-837d-c4414ab746f6",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000743"
+        },
+        {
+          "source_line": 744,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011iiVfdSZGaCBKeVBaNsREb",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "cat /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "e01266b3-cd6e-4881-bfa2-77e854f86f04",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019Di1L1XckA8EKNEvMSLudN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 200,
+                "cache_read_input_tokens": 157866,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 200,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000744"
+        },
+        {
+          "source_line": 745,
+          "timestamp": "2026-05-15T11:48:24.232Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011iiVfdSZGaCBKeVBaNsREb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Device: cuda:1\\\\nGold labels: 601\\\\nBuilding structural features ...\\\\n  SWE trajectories: 5000\\\\n  OH trajectories: 5000\\\\n  Feature matrix: (205461, 30) (SWE=54809, OH=150652)\\\\nCollecting MV predictions ...\\\\n  MV: N=584, macro-F1=0.6818\\\\nCollecting GB predictions ...\\\\n    [leakage-fix] excluded 126/10634 gold from training\\\\n  GB: N=584, macro-F1=0.7237\\\\nCollecting RF predictions ...\\\\n    [leakage-fix] excluded 126/10634 gold from training\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "7bc83760-a992-4f8d-9dcc-60e5d53d63e7"
+          },
+          "id": "event-000745"
+        },
+        {
+          "source_line": 746,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 165746,
+                  "tool_uses": 214,
+                  "duration_ms": 2430545
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "4a2982e5-c947-4d99-b4d5-6cdb0e2071b1",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000746"
+        },
+        {
+          "source_line": 747,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MokvD8vW7DFQDNAN8rB2pv",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -15 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "93635305-5231-41fd-9563-1b48a84de180",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UGZtnDKr8DGC7XnNKgQ8zg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 346,
+                "cache_read_input_tokens": 158066,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 346,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000747"
+        },
+        {
+          "source_line": 748,
+          "timestamp": "2026-05-15T11:48:29.649Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MokvD8vW7DFQDNAN8rB2pv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Device: cuda:1\\\\nGold labels: 601\\\\nBuilding structural features ...\\\\n  SWE trajectories: 5000\\\\n  OH trajectories: 5000\\\\n  Feature matrix: (205461, 30) (SWE=54809, OH=150652)\\\\nCollecting MV predictions ...\\\\n  MV: N=584, macro-F1=0.6818\\\\nCollecting GB predictions ...\\\\n    [leakage-fix] excluded 126/10634 gold from training\\\\n  GB: N=584, macro-F1=0.7237\\\\nCollecting RF predictions ...\\\\n    [leakage-fix] excluded 126/10634 gold from training\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "3e78c9d7-79d0-4e9a-b53a-9dc490aede27"
+          },
+          "id": "event-000748"
+        },
+        {
+          "source_line": 749,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 166173,
+                  "tool_uses": 215,
+                  "duration_ms": 2434843
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "2ab6b526-00b8-41f0-997d-e6662273d335",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000749"
+        },
+        {
+          "source_line": 750,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019y4smNN3J15WQoK1es7Vhb",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -20 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "e2a8187d-87f7-4bbf-8927-51d44a968842",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0121ebU7u5sDZjhzG75AGyKr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 361,
+                "cache_read_input_tokens": 158412,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 361,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000750"
+        },
+        {
+          "source_line": 751,
+          "timestamp": "2026-05-15T11:48:33.949Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019y4smNN3J15WQoK1es7Vhb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Device: cuda:1\\\\nGold labels: 601\\\\nBuilding structural features ...\\\\n  SWE trajectories: 5000\\\\n  OH trajectories: 5000\\\\n  Feature matrix: (205461, 30) (SWE=54809, OH=150652)\\\\nCollecting MV predictions ...\\\\n  MV: N=584, macro-F1=0.6818\\\\nCollecting GB predictions ...\\\\n    [leakage-fix] excluded 126/10634 gold from training\\\\n  GB: N=584, macro-F1=0.7237\\\\nCollecting RF predictions ...\\\\n    [leakage-fix] excluded 126/10634 gold from training\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "540c53b7-c7e9-4884-8780-59656dced843"
+          },
+          "id": "event-000751"
+        },
+        {
+          "source_line": 752,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 166578,
+                  "tool_uses": 216,
+                  "duration_ms": 2439142
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "846d6c09-5fd4-46f5-b82a-38d5e6a879d4",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000752"
+        },
+        {
+          "source_line": 753,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Af1VVL9JdCcwuMAmybSNei",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "a47bf7a5-9f51-4f4d-bf9b-4e6457b8e38b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BC6SkwZnNKi6VTBaaFR9Ze",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 339,
+                "cache_read_input_tokens": 158773,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 339,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000753"
+        },
+        {
+          "source_line": 754,
+          "timestamp": "2026-05-15T11:48:38.245Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Af1VVL9JdCcwuMAmybSNei",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    [leakage-fix] excluded 126/10634 gold from training\\\\n  RF: N=584, macro-F1=0.6973\\\\nCollecting GRU Probe predictions ...\\\\n  GRU Probe: N=386, macro-F1=0.7028\\\\nCollecting TWV Probe predictions ...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "b4ca4e3b-d909-493f-9dce-3ad51746436a"
+          },
+          "id": "event-000754"
+        },
+        {
+          "source_line": 755,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 166831,
+                  "tool_uses": 217,
+                  "duration_ms": 2443991
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "9b7d1201-bc04-4604-b090-bc8fe19d9916",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000755"
+        },
+        {
+          "source_line": 756,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019Jx8o4XkAV6omkDNQza3co",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "1a0454c6-ee23-43f1-9b19-a5a9bf3e368b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ev53ko5xpoXNiTzSkhYFBD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 251,
+                "cache_read_input_tokens": 159112,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 251,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000756"
+        },
+        {
+          "source_line": 757,
+          "timestamp": "2026-05-15T11:48:43.101Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019Jx8o4XkAV6omkDNQza3co",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- gb_vs_mv ---\\\\n  Shared windows: 584\\\\n  Structural GB macro-F1 (on shared): 0.7237\\\\n  MV Labels macro-F1 (on shared): 0.6818\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "570d1dc5-13b3-4828-989b-05bd53d17bc8"
+          },
+          "id": "event-000757"
+        },
+        {
+          "source_line": 758,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 167084,
+                  "tool_uses": 218,
+                  "duration_ms": 2448192
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "dc7afa22-dfdf-4726-b6fa-66b5f8216500",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000758"
+        },
+        {
+          "source_line": 759,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EQNiqtaVrJwedDLjZqaoYN",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -10 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "ef595977-8001-4c44-a9ca-cb157eb53f57",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uf43aBvgDgR4kDhz4HitxN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 251,
+                "cache_read_input_tokens": 159363,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 251,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000759"
+        },
+        {
+          "source_line": 760,
+          "timestamp": "2026-05-15T11:48:47.297Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EQNiqtaVrJwedDLjZqaoYN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  TWV Probe: N=386, macro-F1=0.7370\\\\n\\\\n============================================================\\\\nPaired Bootstrap Tests (N_boot=10000, seed=42)\\\\n============================================================\\\\n\\\\n--- gb_vs_mv ---\\\\n  Shared windows: 584\\\\n  Structural GB macro-F1 (on shared): 0.7237\\\\n  MV Labels macro-F1 (on shared): 0.6818\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "83199ffa-32bc-4f15-a461-580bf3aa4fd2"
+          },
+          "id": "event-000760"
+        },
+        {
+          "source_line": 761,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 167381,
+                  "tool_uses": 219,
+                  "duration_ms": 2453175
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "0ee0adeb-a832-4d40-8c5a-095bb808d63a",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000761"
+        },
+        {
+          "source_line": 762,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V5wjsUDzXuZyoDyqxAxQQ2",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -30 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "b52e0ea2-5894-41b6-baa3-701650609ecb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DzgS2hmGsQHdnkD1tDsBGT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 295,
+                "cache_read_input_tokens": 159614,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 295,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000762"
+        },
+        {
+          "source_line": 763,
+          "timestamp": "2026-05-15T11:48:52.278Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V5wjsUDzXuZyoDyqxAxQQ2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Device: cuda:1\\\\nGold labels: 601\\\\nBuilding structural features ...\\\\n  SWE trajectories: 5000\\\\n  OH trajectories: 5000\\\\n  Feature matrix: (205461, 30) (SWE=54809, OH=150652)\\\\nCollecting MV predictions ...\\\\n  MV: N=584, macro-F1=0.6818\\\\nCollecting GB predictions ...\\\\n    [leakage-fix] excluded 126/10634 gold from training\\\\n  GB: N=584, macro-F1=0.7237\\\\nCollecting RF predictions ...\\\\n    [leakage-fix] excluded 126/10634 gold from training\\\\n  RF: N=584, macro-F1=0.6973\\\\nCollecting GRU Probe predictions ...\\\\n  GRU Probe: N=386, macro-F1=0.7028\\\\nCollecting TWV Probe predictions ...\\\\n  TWV Probe: N=386, macro-F1=0.7370\\\\n\\\\n============================================================\\\\nPaired Bootstrap Tests (N_boot=10000, seed=42)\\\\n============================================================\\\\n\\\\n--- gb_vs_mv ---\\\\n  Shared windows: 584\\\\n  Structural GB macro-F1 (on shared): 0.7237\\\\n  MV Labels macro-F1 (on shared): 0.6818\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "e16b884c-4da9-42db-90f4-efd75d856bd1"
+          },
+          "id": "event-000763"
+        },
+        {
+          "source_line": 764,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 167974,
+                  "tool_uses": 220,
+                  "duration_ms": 2456818
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "ff38af62-8b20-4b97-a8e3-3399916e9e0c",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000764"
+        },
+        {
+          "source_line": 765,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BqyVW8fjf1razagq6xw8we",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "cc96c20a-87dc-402d-b187-640fd828beb2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LQnv1rAmgrP1Vk8iTvwyut",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 527,
+                "cache_read_input_tokens": 159909,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 527,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000765"
+        },
+        {
+          "source_line": 766,
+          "timestamp": "2026-05-15T11:48:55.921Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BqyVW8fjf1razagq6xw8we",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- gb_vs_mv ---\\\\n  Shared windows: 584\\\\n  Structural GB macro-F1 (on shared): 0.7237\\\\n  MV Labels macro-F1 (on shared): 0.6818\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "ceb647a9-b982-4eb2-8c24-9a49731b59da"
+          },
+          "id": "event-000766"
+        },
+        {
+          "source_line": 767,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 168276,
+                  "tool_uses": 221,
+                  "duration_ms": 2461035
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "8effcd01-bcea-40cf-b1b9-dabc312e64a4",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000767"
+        },
+        {
+          "source_line": 768,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DPt9hfPARKdD2zsB6FRtv6",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "3bd37051-5208-485f-a6db-dee5d83c3433",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014sgX1VQrmmPG7ZxJZA1ndJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 230,
+                "cache_read_input_tokens": 160436,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 230,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000768"
+        },
+        {
+          "source_line": 769,
+          "timestamp": "2026-05-15T11:49:00.137Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DPt9hfPARKdD2zsB6FRtv6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- gb_vs_gru_probe ---\\\\n  Shared windows: 386\\\\n  Structural GB macro-F1 (on shared): 0.7528\\\\n  GRU Probe macro-F1 (on shared): 0.7028\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "f583824f-7a5e-4638-8d43-c105a37c5b71"
+          },
+          "id": "event-000769"
+        },
+        {
+          "source_line": 770,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 168513,
+                  "tool_uses": 222,
+                  "duration_ms": 2465040
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "cce72a4d-0dc8-4179-9eb2-da99663c3b49",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000770"
+        },
+        {
+          "source_line": 771,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GWWoy4NWKvKF8TGgeEwhMD",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "fc1927e4-8938-4c43-9feb-be0b92308950",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HTVPEDrihKG4eegTjSFwbU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 160666,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 235,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000771"
+        },
+        {
+          "source_line": 772,
+          "timestamp": "2026-05-15T11:49:04.141Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GWWoy4NWKvKF8TGgeEwhMD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- gb_vs_gru_probe ---\\\\n  Shared windows: 386\\\\n  Structural GB macro-F1 (on shared): 0.7528\\\\n  GRU Probe macro-F1 (on shared): 0.7028\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "7e8822a9-d2db-4ebb-8aff-27a52f58921c"
+          },
+          "id": "event-000772"
+        },
+        {
+          "source_line": 773,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 168838,
+                  "tool_uses": 223,
+                  "duration_ms": 2469158
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "dcf22fac-5606-4818-9c6f-859cc167e238",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000773"
+        },
+        {
+          "source_line": 774,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015AjL8aZBiuXDUJZocH4iSs",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "35b011db-f770-49af-b34e-2e2dd7a895c0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LWHCcBuz7xHEUJiPiKHWvF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 253,
+                "cache_read_input_tokens": 160901,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 253,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000774"
+        },
+        {
+          "source_line": 775,
+          "timestamp": "2026-05-15T11:49:08.260Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015AjL8aZBiuXDUJZocH4iSs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- gb_vs_gru_probe ---\\\\n  Shared windows: 386\\\\n  Structural GB macro-F1 (on shared): 0.7528\\\\n  GRU Probe macro-F1 (on shared): 0.7028\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "2cbfb48a-ca16-45d4-bb6a-dc8993fe1361"
+          },
+          "id": "event-000775"
+        },
+        {
+          "source_line": 776,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 169145,
+                  "tool_uses": 224,
+                  "duration_ms": 2474830
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "8814be16-a0c3-4fb7-8847-473f5e864482",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000776"
+        },
+        {
+          "source_line": 777,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M3L1WfxAS9N4qHc2SW3BHg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "85ac9673-724d-4eea-9678-c3c4b578e1cf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V8dgaz4oBKTAqcmrCfjKsp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 161154,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 235,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000777"
+        },
+        {
+          "source_line": 778,
+          "timestamp": "2026-05-15T11:49:13.932Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M3L1WfxAS9N4qHc2SW3BHg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- gb_vs_gru_probe ---\\\\n  Shared windows: 386\\\\n  Structural GB macro-F1 (on shared): 0.7528\\\\n  GRU Probe macro-F1 (on shared): 0.7028\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "96179d38-58c0-4e27-8aa3-45e24e4aa09a"
+          },
+          "id": "event-000778"
+        },
+        {
+          "source_line": 779,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 169452,
+                  "tool_uses": 225,
+                  "duration_ms": 2479057
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "edb9ce23-d5e9-4dab-971e-2cf676012873",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000779"
+        },
+        {
+          "source_line": 780,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RpWB8mknEtRzS32E8wMjwb",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "fc6e405b-ea73-40ad-a61d-51f8d5b91b54",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KSug2nabgZvdBncC7PpQHE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 161389,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 235,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000780"
+        },
+        {
+          "source_line": 781,
+          "timestamp": "2026-05-15T11:49:18.159Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RpWB8mknEtRzS32E8wMjwb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- rf_vs_gb ---\\\\n  Shared windows: 584\\\\n  Structural RF macro-F1 (on shared): 0.6973\\\\n  Structural GB macro-F1 (on shared): 0.7237\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "df0e5792-0d45-44e6-961a-51509f2f5b21"
+          },
+          "id": "event-000781"
+        },
+        {
+          "source_line": 782,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 169686,
+                  "tool_uses": 226,
+                  "duration_ms": 2483647
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "9b918928-644e-42b8-bea4-be64f68c249e",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000782"
+        },
+        {
+          "source_line": 783,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QYWTbWSBt1Fquu118ECEmr",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "27401e47-7fbd-4d0d-bb10-5c14880cf57a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G8Q2V2Uihrj33sKrusAg5C",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 230,
+                "cache_read_input_tokens": 161624,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 230,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000783"
+        },
+        {
+          "source_line": 784,
+          "timestamp": "2026-05-15T11:49:22.757Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QYWTbWSBt1Fquu118ECEmr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- rf_vs_gb ---\\\\n  Shared windows: 584\\\\n  Structural RF macro-F1 (on shared): 0.6973\\\\n  Structural GB macro-F1 (on shared): 0.7237\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "b9e6a0da-2b9b-4c9a-a846-1b7e8538ef90"
+          },
+          "id": "event-000784"
+        },
+        {
+          "source_line": 785,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 170003,
+                  "tool_uses": 227,
+                  "duration_ms": 2487388
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "a45edd10-bf1b-488f-aa6d-f8c99032a111",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000785"
+        },
+        {
+          "source_line": 786,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Nv1E5LN7muEb5s8eo5URbN",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "29a0c668-410a-4cc2-b70b-16cadb96fd22",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014vw9mKZjoEJyJAN48p6jMy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 245,
+                "cache_read_input_tokens": 161854,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 245,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000786"
+        },
+        {
+          "source_line": 787,
+          "timestamp": "2026-05-15T11:49:26.491Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Nv1E5LN7muEb5s8eo5URbN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- rf_vs_gb ---\\\\n  Shared windows: 584\\\\n  Structural RF macro-F1 (on shared): 0.6973\\\\n  Structural GB macro-F1 (on shared): 0.7237\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "7d14095a-ebab-4c81-9f65-c2663afd72de"
+          },
+          "id": "event-000787"
+        },
+        {
+          "source_line": 788,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 170305,
+                  "tool_uses": 228,
+                  "duration_ms": 2491925
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "87a7e55c-838b-4c3b-90ef-724deb5930aa",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000788"
+        },
+        {
+          "source_line": 789,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XoH5RMgM43fwcsG2KMkTJ8",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "9b2a7557-588e-40e1-98d1-10dd6a6e0200",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NmHxtWb89cHKyiZWPG4ZkP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 230,
+                "cache_read_input_tokens": 162099,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 230,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000789"
+        },
+        {
+          "source_line": 790,
+          "timestamp": "2026-05-15T11:49:31.028Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XoH5RMgM43fwcsG2KMkTJ8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- rf_vs_gb ---\\\\n  Shared windows: 584\\\\n  Structural RF macro-F1 (on shared): 0.6973\\\\n  Structural GB macro-F1 (on shared): 0.7237\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "4d72c4bd-5736-4e70-b40c-b41de827debb"
+          },
+          "id": "event-000790"
+        },
+        {
+          "source_line": 791,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 170607,
+                  "tool_uses": 229,
+                  "duration_ms": 2495860
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "5743cad7-53ce-4ab7-9bd8-87824c3f5c3f",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000791"
+        },
+        {
+          "source_line": 792,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019PrGAr4jEtUtt7keVUM8Fh",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "c8c6eb25-21d7-4218-9c1d-b9188efda7ea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AfhRp3ELZi3SrUkbegMte1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 230,
+                "cache_read_input_tokens": 162329,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 230,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000792"
+        },
+        {
+          "source_line": 793,
+          "timestamp": "2026-05-15T11:49:34.961Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019PrGAr4jEtUtt7keVUM8Fh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- rf_vs_gb ---\\\\n  Shared windows: 584\\\\n  Structural RF macro-F1 (on shared): 0.6973\\\\n  Structural GB macro-F1 (on shared): 0.7237\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "7575a88a-1b58-459c-910c-43666d1fa88b"
+          },
+          "id": "event-000793"
+        },
+        {
+          "source_line": 794,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 170909,
+                  "tool_uses": 230,
+                  "duration_ms": 2499741
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "ed2d89a7-752c-41f6-baa6-2b82da2f4feb",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000794"
+        },
+        {
+          "source_line": 795,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GLmm1D4tuAHYdkzisiaEge",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "201a1865-9e4e-49e4-9ff9-cb6c46fda452",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PPWMpKj7ZCsNMSdhwwiJfi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 230,
+                "cache_read_input_tokens": 162559,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 230,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000795"
+        },
+        {
+          "source_line": 796,
+          "timestamp": "2026-05-15T11:49:38.842Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GLmm1D4tuAHYdkzisiaEge",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- twv_probe_vs_gb ---\\\\n  Shared windows: 386\\\\n  TWV Probe macro-F1 (on shared): 0.7370\\\\n  Structural GB macro-F1 (on shared): 0.7528\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "efa497b1-6d7e-4ab6-bb8e-c108ed87cd78"
+          },
+          "id": "event-000796"
+        },
+        {
+          "source_line": 797,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 171215,
+                  "tool_uses": 231,
+                  "duration_ms": 2503703
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "70f8a1d3-624e-4531-9c75-9f71945df9b4",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000797"
+        },
+        {
+          "source_line": 798,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PxjwV2zXFqTTdmASXP844M",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "bd3a7fe3-94ee-4274-b41d-3bb1da76214c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SpxDQpSoTBcy5pvQA7wini",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 234,
+                "cache_read_input_tokens": 162789,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 234,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000798"
+        },
+        {
+          "source_line": 799,
+          "timestamp": "2026-05-15T11:49:42.807Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PxjwV2zXFqTTdmASXP844M",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- twv_probe_vs_gb ---\\\\n  Shared windows: 386\\\\n  TWV Probe macro-F1 (on shared): 0.7370\\\\n  Structural GB macro-F1 (on shared): 0.7528\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "886d8c84-af2d-475c-8e9f-1c020e3c709c"
+          },
+          "id": "event-000799"
+        },
+        {
+          "source_line": 800,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 171521,
+                  "tool_uses": 232,
+                  "duration_ms": 2507988
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "6b6a6d1c-d75a-4fa2-96fd-9e26ddf0b425",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000800"
+        },
+        {
+          "source_line": 801,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016b8pKyV45JBLFqvr4mpoes",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "0b667645-a95f-48b2-a30b-22c2a7a482e9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011XhhNqDUeCCaGm9EDQD6YN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 234,
+                "cache_read_input_tokens": 163023,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 234,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000801"
+        },
+        {
+          "source_line": 802,
+          "timestamp": "2026-05-15T11:49:47.091Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016b8pKyV45JBLFqvr4mpoes",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- twv_probe_vs_gb ---\\\\n  Shared windows: 386\\\\n  TWV Probe macro-F1 (on shared): 0.7370\\\\n  Structural GB macro-F1 (on shared): 0.7528\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "60d4aa82-6214-4d26-9a32-78fdfb56c050"
+          },
+          "id": "event-000802"
+        },
+        {
+          "source_line": 803,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 171827,
+                  "tool_uses": 233,
+                  "duration_ms": 2512369
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "a42a4859-c1be-4d2a-906b-b47f57ee271c",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000803"
+        },
+        {
+          "source_line": 804,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JhxyaxEHbZp21F6wzi7uMT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "006e0912-7cc2-4a11-ac35-91c2cebe850d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NQNmbre8M4wgMzMozMiGtN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 234,
+                "cache_read_input_tokens": 163257,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 234,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000804"
+        },
+        {
+          "source_line": 805,
+          "timestamp": "2026-05-15T11:49:51.480Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JhxyaxEHbZp21F6wzi7uMT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- twv_probe_vs_gb ---\\\\n  Shared windows: 386\\\\n  TWV Probe macro-F1 (on shared): 0.7370\\\\n  Structural GB macro-F1 (on shared): 0.7528\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "98b05124-8c0d-4f06-8d7e-16a15342c6f1"
+          },
+          "id": "event-000805"
+        },
+        {
+          "source_line": 806,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 172133,
+                  "tool_uses": 234,
+                  "duration_ms": 2516114
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "3e5c2e1b-3d1d-4024-bbcb-2bad06e355f6",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000806"
+        },
+        {
+          "source_line": 807,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Rr3pfuqEUAxUDU17GLPnPu",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "99447f55-49ef-428a-b459-3acd6391be63",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019qhU6peAhmHawp65acQ3H6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 234,
+                "cache_read_input_tokens": 163491,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 234,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000807"
+        },
+        {
+          "source_line": 808,
+          "timestamp": "2026-05-15T11:49:55.218Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Rr3pfuqEUAxUDU17GLPnPu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- twv_probe_vs_gru_probe ---\\\\n  Shared windows: 386\\\\n  TWV Probe macro-F1 (on shared): 0.7370\\\\n  GRU Probe macro-F1 (on shared): 0.7028\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "25874706-7c45-4e05-9d8f-ce2646bfedc7"
+          },
+          "id": "event-000808"
+        },
+        {
+          "source_line": 809,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 172444,
+                  "tool_uses": 235,
+                  "duration_ms": 2522729
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "861cf476-03db-475d-8504-ed177be3a2af",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000809"
+        },
+        {
+          "source_line": 810,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NfXSc4bxwb3khoucfLT5Sq",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "02689ded-6b6b-48d2-b97a-07101a0e79e5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016wU2YfChHVNZ5mZWBZ23t4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 239,
+                "cache_read_input_tokens": 163725,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 239,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000810"
+        },
+        {
+          "source_line": 811,
+          "timestamp": "2026-05-15T11:50:01.836Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NfXSc4bxwb3khoucfLT5Sq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- twv_probe_vs_gru_probe ---\\\\n  Shared windows: 386\\\\n  TWV Probe macro-F1 (on shared): 0.7370\\\\n  GRU Probe macro-F1 (on shared): 0.7028\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "98ef2c26-5214-4913-ad7c-08b1d9a1c524"
+          },
+          "id": "event-000811"
+        },
+        {
+          "source_line": 812,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 172755,
+                  "tool_uses": 236,
+                  "duration_ms": 2526999
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "ce038c2f-7ecd-440e-ba5d-426907524b6e",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000812"
+        },
+        {
+          "source_line": 813,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PJiGrgBdyCdqV1PJbvvkFy",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "6da1a483-03b6-44cf-8bb9-9c84b7ddfec8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FNoEf2QUikBD35oyDpQC5P",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 239,
+                "cache_read_input_tokens": 163964,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 239,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000813"
+        },
+        {
+          "source_line": 814,
+          "timestamp": "2026-05-15T11:50:06.101Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PJiGrgBdyCdqV1PJbvvkFy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- twv_probe_vs_gru_probe ---\\\\n  Shared windows: 386\\\\n  TWV Probe macro-F1 (on shared): 0.7370\\\\n  GRU Probe macro-F1 (on shared): 0.7028\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "08261b5f-028c-4a69-b248-30636ef39440"
+          },
+          "id": "event-000814"
+        },
+        {
+          "source_line": 815,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 173066,
+                  "tool_uses": 237,
+                  "duration_ms": 2530651
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "96257874-02ea-49e6-b561-e7aa12cae89f",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000815"
+        },
+        {
+          "source_line": 816,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QYFnQpT3ohPiYakhzLd7Tg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "1cd691be-9f82-4d07-b018-33fece2fe3f5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016TG8UTFv9EobWTVSEKeczC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 239,
+                "cache_read_input_tokens": 164203,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 239,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000816"
+        },
+        {
+          "source_line": 817,
+          "timestamp": "2026-05-15T11:50:09.760Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QYFnQpT3ohPiYakhzLd7Tg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- twv_probe_vs_gru_probe ---\\\\n  Shared windows: 386\\\\n  TWV Probe macro-F1 (on shared): 0.7370\\\\n  GRU Probe macro-F1 (on shared): 0.7028\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "f04b0b0d-323a-4ebd-9d61-e3c417c60d73"
+          },
+          "id": "event-000817"
+        },
+        {
+          "source_line": 818,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 173377,
+                  "tool_uses": 238,
+                  "duration_ms": 2534282
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "e4d0ce2f-9b9f-4156-ab16-2f6945c1b710",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000818"
+        },
+        {
+          "source_line": 819,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PuMXQtZhZMnfKKMfegMjgV",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "tail -5 /tmp/bootstrap_601.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "3b55256e-d375-4a0c-a223-d3bcbacec716",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DMCfrrYgf4fEtEf7TnhdnJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 239,
+                "cache_read_input_tokens": 164442,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 239,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000819"
+        },
+        {
+          "source_line": 820,
+          "timestamp": "2026-05-15T11:50:13.389Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PuMXQtZhZMnfKKMfegMjgV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Observed delta (TWV Probe - GRU Probe): +0.0341\\\\n  95% CI: [-0.0019, +0.0696]\\\\n  p-value: 0.0321  (significant at alpha=0.05: YES)\\\\n\\\\nResults saved: artifacts/gold_set/bootstrap_ci_consensus_601.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "cba794c5-91c8-4733-a1cc-a787fceefda4"
+          },
+          "id": "event-000820"
+        },
+        {
+          "source_line": 821,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 173637,
+                  "tool_uses": 239,
+                  "duration_ms": 2538721
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "c1df3934-4677-42e6-9149-891cf3eb7211",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000821"
+        },
+        {
+          "source_line": 822,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ru5jJNfRTuFo9druXbv7ob",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "cat /root/autodl-tmp/agent_progress_probe/artifacts/gold_set/bootstrap_ci_consensus_601.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "b0894e53-b50c-4e7e-ac8d-ae36a878ab8f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GP4uMFenCDbNhQPWAHsrSJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 164681,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 258,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000822"
+        },
+        {
+          "source_line": 823,
+          "timestamp": "2026-05-15T11:50:17.825Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ru5jJNfRTuFo9druXbv7ob",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"tests\\\\\\\": {\\\\n    \\\\\\\"gb_vs_mv\\\\\\\": {\\\\n      \\\\\\\"model_a\\\\\\\": \\\\\\\"Structural GB\\\\\\\",\\\\n      \\\\\\\"model_b\\\\\\\": \\\\\\\"MV Labels\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 584,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"f1_a_on_shared\\\\\\\": 0.72366,\\\\n      \\\\\\\"f1_b_on_shared\\\\\\\": 0.681799,\\\\n      \\\\\\\"observed_delta\\\\\\\": 0.041861,\\\\n      \\\\\\\"ci_95_lo\\\\\\\": 0.020502,\\\\n      \\\\\\\"ci_95_hi\\\\\\\": 0.065185,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0,\\\\n      \\\\\\\"significant_005\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"gb_vs_gru_probe\\\\\\\": {\\\\n      \\\\\\\"model_a\\\\\\\": \\\\\\\"Structural GB\\\\\\\",\\\\n      \\\\\\\"model_b\\\\\\\": \\\\\\\"GRU Probe\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 386,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"f1_a_on_shared\\\\\\\": 0.75282,\\\\n      \\\\\\\"f1_b_on_shared\\\\\\\": 0.702848,\\\\n      \\\\\\\"observed_delta\\\\\\\": 0.049972,\\\\n      \\\\\\\"ci_95_lo\\\\\\\": 0.012033,\\\\n      \\\\\\\"ci_95_hi\\\\\\\": 0.087717,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0048,\\\\n      \\\\\\\"significant_005\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"rf_vs_gb\\\\\\\": {\\\\n      \\\\\\\"model_a\\\\\\\": \\\\\\\"Structural RF\\\\\\\",\\\\n      \\\\\\\"model_b\\\\\\\": \\\\\\\"Structural GB\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 584,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"f1_a_on_shared\\\\\\\": 0.697289,\\\\n      \\\\\\\"f1_b_on_shared\\\\\\\": 0.72366,\\\\n      \\\\\\\"observed_delta\\\\\\\": -0.026371,\\\\n      \\\\\\\"ci_95_lo\\\\\\\": -0.042918,\\\\n      \\\\\\\"ci_95_hi\\\\\\\": -0.009742,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0007,\\\\n      \\\\\\\"significant_005\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"twv_probe_vs_gb\\\\\\\": {\\\\n      \\\\\\\"model_a\\\\\\\": \\\\\\\"TWV Probe\\\\\\\",\\\\n      \\\\\\\"model_b\\\\\\\": \\\\\\\"Structural GB\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 386,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"f1_a_on_shared\\\\\\\": 0.736998,\\\\n      \\\\\\\"f1_b_on_shared\\\\\\\": 0.75282,\\\\n      \\\\\\\"observed_delta\\\\\\\": -0.015823,\\\\n      \\\\\\\"ci_95_lo\\\\\\\": -0.045018,\\\\n      \\\\\\\"ci_95_hi\\\\\\\": 0.012476,\\\\n      \\\\\\\"p_value\\\\\\\": 0.1403,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"twv_probe_vs_gru_probe\\\\\\\": {\\\\n      \\\\\\\"model_a\\\\\\\": \\\\\\\"TWV Probe\\\\\\\",\\\\n      \\\\\\\"model_b\\\\\\\": \\\\\\\"GRU Probe\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 386,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"f1_a_on_shared\\\\\\\": 0.736998,\\\\n      \\\\\\\"f1_b_on_shared\\\\\\\": 0.702848,\\\\n      \\\\\\\"observed_delta\\\\\\\": 0.034149,\\\\n      \\\\\\\"ci_95_lo\\\\\\\": -0.001918,\\\\n      \\\\\\\"ci_95_hi\\\\\\\": 0.069586,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0321,\\\\n      \\\\\\\"significant_005\\\\\\\": true\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "b8885d97-5345-4e3f-83c6-4a7e34cd3b20"
+          },
+          "id": "event-000823"
+        },
+        {
+          "source_line": 824,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 175038,
+                  "tool_uses": 240,
+                  "duration_ms": 2555310
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "d5d4d06a-68ea-4388-9833-2cab08fa050d",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000824"
+        },
+        {
+          "source_line": 825,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CFw9kRBaF34KsTGUgRNAoX",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "ls /root/autodl-tmp/agent_progress_probe/artifacts/gold_set/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "a1a56a89-940d-47a4-879c-41dad647a4f5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X3kDwdVFYMxfB7j4Fezkqs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1399,
+                "cache_read_input_tokens": 164939,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1399,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000825"
+        },
+        {
+          "source_line": 826,
+          "timestamp": "2026-05-15T11:50:34.424Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CFw9kRBaF34KsTGUgRNAoX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"annotation_full.csv\\\\nbootstrap_ci_canonical.json\\\\nbootstrap_ci_consensus_601.json\\\\nbootstrap_ci_ohfix.json\\\\nbootstrap_ci_results.json\\\\neval_canonical\\\\neval_consensus_601\\\\neval_full\\\\neval_output\\\\ngold_consensus_601.csv\\\\ngold_labels_unknown.csv\\\\noh_fix_report.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "b7a86a0d-6f8b-442f-94ef-cfb174115d52"
+          },
+          "id": "event-000826"
+        },
+        {
+          "source_line": 827,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 41839,
+                  "tool_uses": 241,
+                  "duration_ms": 2624701
+                },
+                "last_tool_name": "ToolSearch",
+                "uuid": "0be626a2-326b-4f49-b90a-ab3d7fbc8d90",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000827"
+        },
+        {
+          "source_line": 828,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KArY9dRFSDZXqQ7bo9voCm",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "2f2eabe9-b591-47b6-aa91-30c29e906df1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tdrf9A6YUC9bDCpUHC6hbf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 24194,
+                "cache_read_input_tokens": 8939,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 24194,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000828"
+        },
+        {
+          "source_line": 829,
+          "timestamp": "2026-05-15T11:51:43.490Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01KArY9dRFSDZXqQ7bo9voCm",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "679cc2cd-3b54-4dd3-8b74-97c69634166a"
+          },
+          "id": "event-000829"
+        },
+        {
+          "source_line": 830,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 42357,
+                  "tool_uses": 242,
+                  "duration_ms": 2629343
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "0ad546e1-9ae2-485e-b238-a7603efce39e",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000830"
+        },
+        {
+          "source_line": 831,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DoTo5ZsaGHcNGt5tVjxP8j",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "cat /root/autodl-tmp/agent_progress_probe/artifacts/gold_set/eval_canonical/results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "12a0efeb-581c-42c7-afe0-ae6fcb83e2f4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WzXZXRCMJXr13dx3nr7Df3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 445,
+                "cache_read_input_tokens": 33133,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 445,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000831"
+        },
+        {
+          "source_line": 832,
+          "timestamp": "2026-05-15T11:51:48.448Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DoTo5ZsaGHcNGt5tVjxP8j",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"gold_distribution\\\\\\\": {\\\\n    \\\\\\\"total\\\\\\\": 199,\\\\n    \\\\\\\"stagnation\\\\\\\": 67,\\\\n    \\\\\\\"progress\\\\\\\": 132\\\\n  },\\\\n  \\\\\\\"mv_gold_agreement\\\\\\\": {\\\\n    \\\\\\\"agreement_rate\\\\\\\": 0.7487179487179487,\\\\n    \\\\\\\"n_agree\\\\\\\": 146,\\\\n    \\\\\\\"n_disagree\\\\\\\": 49,\\\\n    \\\\\\\"n_total\\\\\\\": 195\\\\n  },\\\\n  \\\\\\\"models\\\\\\\": {\\\\n    \\\\\\\"MV Labels\\\\\\\": {\\\\n      \\\\\\\"n_evaluated\\\\\\\": 195,\\\\n      \\\\\\\"metrics\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.718383,\\\\n        \\\\\\\"f1_stag\\\\\\\": 0.625954,\\\\n        \\\\\\\"f1_prog\\\\\\\": 0.810811,\\\\n        \\\\\\\"precision_stag\\\\\\\": 0.61194,\\\\n        \\\\\\\"recall_stag\\\\\\\": 0.640625,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.748718\\\\n      }\\\\n    },\\\\n    \\\\\\\"GRU Probe\\\\\\\": {\\\\n      \\\\\\\"n_evaluated\\\\\\\": 132,\\\\n      \\\\\\\"metrics\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.734833,\\\\n        \\\\\\\"f1_stag\\\\\\\": 0.732824,\\\\n        \\\\\\\"f1_prog\\\\\\\": 0.736842,\\\\n        \\\\\\\"precision_stag\\\\\\\": 0.705882,\\\\n        \\\\\\\"recall_stag\\\\\\\": 0.761905,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.734848\\\\n      },\\\\n      \\\\\\\"gold_all\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 132,\\\\n        \\\\\\\"metrics\\\\\\\": {\\\\n          \\\\\\\"macro_f1\\\\\\\": 0.734833,\\\\n          \\\\\\\"f1_stag\\\\\\\": 0.732824,\\\\n          \\\\\\\"f1_prog\\\\\\\": 0.736842,\\\\n          \\\\\\\"precision_stag\\\\\\\": 0.705882,\\\\n          \\\\\\\"recall_stag\\\\\\\": 0.761905,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.734848\\\\n        }\\\\n      },\\\\n      \\\\\\\"gold_in_train\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 39,\\\\n        \\\\\\\"metrics\\\\\\\": {\\\\n          \\\\\\\"macro_f1\\\\\\\": 0.843583,\\\\n          \\\\\\\"f1_stag\\\\\\\": 0.863636,\\\\n          \\\\\\\"f1_prog\\\\\\\": 0.823529,\\\\n          \\\\\\\"precision_stag\\\\\\\": 0.904762,\\\\n          \\\\\\\"recall_stag\\\\\\\": 0.826087,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.846154\\\\n        }\\\\n      },\\\\n      \\\\\\\"gold_in_test\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 17,\\\\n        \\\\\\\"metrics\\\\\\\": {\\\\n          \\\\\\\"macro_f1\\\\\\\": 0.871212,\\\\n          \\\\\\\"f1_stag\\\\\\\": 0.833333,\\\\n          \\\\\\\"f1_prog\\\\\\\": 0.909091,\\\\n          \\\\\\\"precision_stag\\\\\\\": 1.0,\\\\n          \\\\\\\"recall_stag\\\\\\\": 0.714286,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.882353\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"Structural RF\\\\\\\": {\\\\n      \\\\\\\"n_evaluated\\\\\\\": 195,\\\\n      \\\\\\\"metrics\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.751621,\\\\n        \\\\\\\"f1_stag\\\\\\\": 0.676471,\\\\n        \\\\\\\"f1_prog\\\\\\\": 0.826772,\\\\n        \\\\\\\"precision_stag\\\\\\\": 0.638889,\\\\n        \\\\\\\"recall_stag\\\\\\\": 0.71875,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.774359\\\\n      }\\\\n    },\\\\n    \\\\\\\"Structural GB\\\\\\\": {\\\\n      \\\\\\\"n_evaluated\\\\\\\": 195,\\\\n      \\\\\\\"metrics\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.764361,\\\\n        \\\\\\\"f1_stag\\\\\\\": 0.687023,\\\\n        \\\\\\\"f1_prog\\\\\\\": 0.841699,\\\\n        \\\\\\\"precision_stag\\\\\\\": 0.671642,\\\\n        \\\\\\\"recall_stag\\\\\\\": 0.703125,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.789744\\\\n      }\\\\n    },\\\\n    \\\\\\\"TWV Labels\\\\\\\": {\\\\n      \\\\\\\"n_evaluated\\\\\\\": 136,\\\\n      \\\\\\\"metrics\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.718427,\\\\n        \\\\\\\"f1_stag\\\\\\\": 0.666667,\\\\n        \\\\\\\"f1_prog\\\\\\\": 0.770186,\\\\n        \\\\\\\"precision_stag\\\\\\\": 0.822222,\\\\n        \\\\\\\"recall_stag\\\\\\\": 0.560606,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.727941\\\\n      }\\\\n    },\\\\n    \\\\\\\"TWV Probe\\\\\\\": {\\\\n      \\\\\\\"n_evaluated\\\\\\\": 132,\\\\n      \\\\\\\"metrics\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.768421,\\\\n        \\\\\\\"f1_stag\\\\\\\": 0.736842,\\\\n        \\\\\\\"f1_prog\\\\\\\": 0.8,\\\\n        \\\\\\\"precision_stag\\\\\\\": 0.823529,\\\\n        \\\\\\\"recall_stag\\\\\\\": 0.666667,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.772727\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"elapsed_seconds\\\\\\\": 266.98,\\\\n  \\\\\\\"dry_run\\\\\\\": false\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "d2d3c016-db23-47a7-940d-8ab103a17d6a"
+          },
+          "id": "event-000832"
+        },
+        {
+          "source_line": 833,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "description": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 42430,
+                  "tool_uses": 243,
+                  "duration_ms": 2629931
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "03e40971-f4cd-4c4d-8427-4f912a1de99e",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000833"
+        },
+        {
+          "source_line": 834,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PopTZBiQVmUFeX1RB1cJYT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-23165",
+                "command": "cat /root/autodl-tmp/agent_progress_probe/artifacts/gold_set/bootstrap_ci_canonical.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "05268584-d5c2-4b1e-b7c2-0d45444f8c3a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WzXZXRCMJXr13dx3nr7Df3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 445,
+                "cache_read_input_tokens": 33133,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 445,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000834"
+        },
+        {
+          "source_line": 835,
+          "timestamp": "2026-05-15T11:51:49.037Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PopTZBiQVmUFeX1RB1cJYT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"tests\\\\\\\": {\\\\n    \\\\\\\"gb_vs_mv\\\\\\\": {\\\\n      \\\\\\\"model_a\\\\\\\": \\\\\\\"Structural GB\\\\\\\",\\\\n      \\\\\\\"model_b\\\\\\\": \\\\\\\"MV Labels\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 195,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"f1_a_on_shared\\\\\\\": 0.802298,\\\\n      \\\\\\\"f1_b_on_shared\\\\\\\": 0.718383,\\\\n      \\\\\\\"observed_delta\\\\\\\": 0.083916,\\\\n      \\\\\\\"ci_95_lo\\\\\\\": 0.031527,\\\\n      \\\\\\\"ci_95_hi\\\\\\\": 0.138411,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0005,\\\\n      \\\\\\\"significant_005\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"gb_vs_gru_probe\\\\\\\": {\\\\n      \\\\\\\"model_a\\\\\\\": \\\\\\\"Structural GB\\\\\\\",\\\\n      \\\\\\\"model_b\\\\\\\": \\\\\\\"GRU Probe\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 132,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"f1_a_on_shared\\\\\\\": 0.784716,\\\\n      \\\\\\\"f1_b_on_shared\\\\\\\": 0.734833,\\\\n      \\\\\\\"observed_delta\\\\\\\": 0.049882,\\\\n      \\\\\\\"ci_95_lo\\\\\\\": -0.015686,\\\\n      \\\\\\\"ci_95_hi\\\\\\\": 0.120116,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0698,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"rf_vs_gb\\\\\\\": {\\\\n      \\\\\\\"model_a\\\\\\\": \\\\\\\"Structural RF\\\\\\\",\\\\n      \\\\\\\"model_b\\\\\\\": \\\\\\\"Structural GB\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 195,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"f1_a_on_shared\\\\\\\": 0.804056,\\\\n      \\\\\\\"f1_b_on_shared\\\\\\\": 0.802298,\\\\n      \\\\\\\"observed_delta\\\\\\\": 0.001758,\\\\n      \\\\\\\"ci_95_lo\\\\\\\": -0.01487,\\\\n      \\\\\\\"ci_95_hi\\\\\\\": 0.020403,\\\\n      \\\\\\\"p_value\\\\\\\": 0.4775,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"twv_probe_vs_gb\\\\\\\": {\\\\n      \\\\\\\"model_a\\\\\\\": \\\\\\\"TWV Probe\\\\\\\",\\\\n      \\\\\\\"model_b\\\\\\\": \\\\\\\"Structural GB\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 132,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"f1_a_on_shared\\\\\\\": 0.768421,\\\\n      \\\\\\\"f1_b_on_shared\\\\\\\": 0.784716,\\\\n      \\\\\\\"observed_delta\\\\\\\": -0.016295,\\\\n      \\\\\\\"ci_95_lo\\\\\\\": -0.066553,\\\\n      \\\\\\\"ci_95_hi\\\\\\\": 0.030622,\\\\n      \\\\\\\"p_value\\\\\\\": 0.2536,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"twv_probe_vs_gru_probe\\\\\\\": {\\\\n      \\\\\\\"model_a\\\\\\\": \\\\\\\"TWV Probe\\\\\\\",\\\\n      \\\\\\\"model_b\\\\\\\": \\\\\\\"GRU Probe\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 132,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"f1_a_on_shared\\\\\\\": 0.768421,\\\\n      \\\\\\\"f1_b_on_shared\\\\\\\": 0.734833,\\\\n      \\\\\\\"observed_delta\\\\\\\": 0.033588,\\\\n      \\\\\\\"ci_95_lo\\\\\\\": -0.029252,\\\\n      \\\\\\\"ci_95_hi\\\\\\\": 0.099071,\\\\n      \\\\\\\"p_value\\\\\\\": 0.1499,\\\\n      \\\\\\\"significant_005\\\\\\\": false\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "739a850c-0400-431d-afa7-c0ef459561d3"
+          },
+          "id": "event-000835"
+        },
+        {
+          "source_line": 836,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "a075caa1343251809",
+                "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Upload CSV and run eval pipeline",
+                "usage": {
+                  "total_tokens": 45661,
+                  "tool_uses": 243,
+                  "duration_ms": 2661327
+                },
+                "uuid": "e97260a8-fdb2-486c-a0b9-48fe31a7fcf9",
+                "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350"
+              }
+            }
+          ],
+          "id": "event-000836"
+        },
+        {
+          "source_line": 837,
+          "timestamp": "2026-05-15T11:52:20.115Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012AYDhowNzq3wLtHeVogQ81",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Now I have all the data. Here is the complete Step 5 report.\n\n---\n\n## Gold Set Evaluation Report: N=601 Consensus\n\n### 1. Data Match Stats\n\n| Metric | Value |\n|--------|-------|\n| Gold total | 601 |\n| Stagnation | 183 (30.4%) |\n| Progress | 418 (69.6%) |\n| MV-gold agreement | 426/584 = 72.95% |\n| Windows not in MV | 17 (601 - 584) |\n\n### 2. Per-Model Macro-F1 Table (N=601)\n\n| Model | N Evaluated | Macro-F1 | Accuracy |\n|-------|------------|----------|----------|\n| **Structural GB** | 584 | **0.7237** | 0.7654 |\n| TWV Labels | 402 | 0.7392 | 0.7537 |\n| TWV Probe | 386 | 0.7370 | 0.7513 |\n| GRU Probe | 386 | 0.7028 | 0.7073 |\n| Structural RF | 584 | 0.6973 | 0.7346 |\n| MV Labels | 584 | 0.6818 | 0.7295 |\n\nNote: TWV Labels/Probe and GRU Probe have lower N because they require TWV/GRU predictions which don't exist for all windows.\n\nGRU Probe split: in-train macro-F1 = 0.7695 (N=126), in-test macro-F1 = 0.8692 (N=54).\n\n### 3. Bootstrap Results (10,000 iterations, seed=42, N=601)\n\n| Test | Delta | 95% CI | p-value | Significant? |\n|------|-------|--------|---------|-------------|\n| GB vs MV | +0.0419 | [+0.0205, +0.0652] | 0.0000 | **YES** |\n| GB vs GRU Probe | +0.0500 | [+0.0120, +0.0877] | 0.0048 | **YES** |\n| RF vs GB | -0.0264 | [-0.0429, -0.0097] | 0.0007 | **YES** (GB > RF) |\n| TWV Probe vs GB | -0.0158 | [-0.0450, +0.0125] | 0.1403 | NO |\n| TWV Probe vs GRU | +0.0341 | [-0.0019, +0.0696] | 0.0321 | NO (at 0.05) |\n\n### 4. Eval vs Bootstrap Consistency\n\nThe eval and bootstrap results are consistent:\n- GB has highest macro-F1 among full-coverage models (0.7237 on N=584), confirmed significantly better than MV (p<0.001) and GRU Probe (p=0.005).\n- GB significantly beats RF (p<0.001), unlike at N=195 where they were statistically tied.\n- TWV Probe vs GB remains non-significant (p=0.14), consistent with overlapping performance.\n- TWV Probe vs GRU is borderline (p=0.032), not significant at alpha=0.05 after considering multiplicity.\n\n### 5. Comparison Table: Old N=195 (Canonical) vs New N=601 (Consensus)\n\n#### Macro-F1\n\n| Model | N=195 | N=601 | Delta |\n|-------|-------|-------|-------|\n| Structural GB | 0.7644 | 0.7237 | -0.041 |\n| TWV Probe | 0.7684 | 0.7370 | -0.031 |\n| Structural RF | 0.7516 | 0.6973 | -0.054 |\n| GRU Probe | 0.7348 | 0.7028 | -0.032 |\n| TWV Labels | 0.7184 | 0.7392 | +0.021 |\n| MV Labels | 0.7184 | 0.6818 | -0.037 |\n\n#### Bootstrap: Key Pairwise Tests\n\n| Test | N=195 delta (p) | N=601 delta (p) | Change |\n|------|-----------------|-----------------|--------|\n| GB vs MV | +0.084 (p=0.0005) **SIG** | +0.042 (p=0.0000) **SIG** | Still significant; delta halved but higher power |\n| GB vs GRU | +0.050 (p=0.070) not sig | +0.050 (p=0.005) **SIG** | Now significant at 3x sample size |\n| RF vs GB | +0.002 (p=0.478) not sig | -0.026 (p=0.001) **SIG** | GB now clearly beats RF |\n| TWV Probe vs GB | -0.016 (p=0.254) not sig | -0.016 (p=0.140) not sig | Consistent: no difference |\n| TWV Probe vs GRU | +0.034 (p=0.150) not sig | +0.034 (p=0.032) not sig | Borderline; same direction |\n\n#### Key Takeaways\n\n1. **All models drop 3-5 pp macro-F1** going from N=195 to N=601, except TWV Labels (+2.1 pp). The larger gold set is harder — it includes more diverse OpenHands trajectories and edge cases.\n\n2. **Structural GB emerges as the clear best full-coverage model.** At N=195, RF and GB were statistically tied. At N=601, GB significantly beats RF by 2.6 pp (p<0.001).\n\n3. **GB vs GRU Probe becomes significant.** The delta stays ~5 pp but the tripled sample size gives enough power (p=0.005 vs former p=0.070).\n\n4. **TWV Probe vs GB remains non-significant** in both evaluations, with nearly identical delta (-1.6 pp). These two models perform equivalently on the shared evaluation subset.\n\n5. **Gold leakage exclusion**: 126 of 10,634 gold windows were excluded from training, preventing data leakage in the structural models."
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: a075caa1343251809 (use SendMessage with to: 'a075caa1343251809' to continue this agent)\n<usage>total_tokens: 38394\ntool_uses: 243\nduration_ms: 2661331</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "38b3b385-979a-4c6c-8722-e6b6df8d43c0",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "You need to complete a multi-step task on a remote server using MCP tools. Here's the full context:\n\n## Task Overview\nUpload a gold CSV file to a remote server, verify evaluation scripts, run them, and report results.\n\n## Server Info\n- Server name for MCP tools: `bjb2-23165`\n- Project path: `/root/autodl-tmp/agent_progress_probe/`\n- Python: conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\n- OH trajectories: `/root/autodl-tmp/openhands_data/openhands_trajectories.jsonl`\n\n## Step 1: Upload gold CSV\nThe local file is at: `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/gold_set/gold_consensus_601.csv`\nTarget on server: `/root/autodl-tmp/agent_progress_probe/artifacts/gold_set/gold_consensus_601.csv`\n\nThe directory `/root/autodl-tmp/agent_progress_probe/artifacts/gold_set/` already exists on the server.\nA partial transfer has been started at `/tmp/gold_b64.txt` but it's incomplete. Please start fresh.\n\nStrategy: Read the local CSV file content, base64 encode it, write the b64 to `/tmp/gold_b64.txt` on the server using multiple `ssh_execute` heredoc calls, then decode it with python.\n\nThe file has 602 lines (header + 601 data rows), format: `window_id,gold_label`\n\n## Step 2: Verify scripts\nCheck on server:\n```bash\ncd /root/autodl-tmp/agent_progress_probe\ngrep -c \"gold_noabs\" evaluate_gold_set.py\ngrep -n \"learning_rate\\|n_estimators\" evaluate_gold_set.py | head -5\ngrep -c \"gold_noabs\" gold_bootstrap_ci.py\ngrep -c \"oh_trajectories\\|openhands\" gold_bootstrap_ci.py\ngrep -n \"learning_rate\\|n_estimators\" gold_bootstrap_ci.py | head -5\n```\n\nRequired fixes if missing:\n- GB: `n_estimators=200, learning_rate=0.05, max_depth=5`\n- RF: `n_estimators=100, max_depth=10`\n- Gold exclusion: train_idx must exclude gold_noabs_set\n- OH trajectories: `--oh_trajectories` parameter + `\"__openhands__\" in trajectory_id` detection\n- evaluate_gold_set.py MUST support `--oh_trajectories` parameter (check if it does, fix if not)\n\n## Step 3: Run evaluate_gold_set.py\n```bash\ncd /root/autodl-tmp/agent_progress_probe\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython evaluate_gold_set.py \\\n  --gold_csv artifacts/gold_set/gold_consensus_601.csv \\\n  --output_dir artifacts/gold_set/eval_consensus_601 \\\n  --oh_trajectories /root/autodl-tmp/openhands_data/openhands_trajectories.jsonl \\\n  --device cuda:2 2>&1 | tee /tmp/eval_consensus_601.log\n```\n\n## Step 4: Run gold_bootstrap_ci.py\n```bash\npython gold_bootstrap_ci.py \\\n  --gold_csv artifacts/gold_set/gold_consensus_601.csv \\\n  --oh_trajectories /root/autodl-tmp/openhands_data/openhands_trajectories.jsonl \\\n  --output artifacts/gold_set/bootstrap_ci_consensus_601.json \\\n  --n_bootstrap 10000 --seed 42 \\\n  --device cuda:2 2>&1 | tee /tmp/bootstrap_consensus_601.log\n```\n\n## Step 5: Read results\n```bash\ncat artifacts/gold_set/eval_consensus_601/results.json\ncat artifacts/gold_set/bootstrap_ci_consensus_601.json\n```\n\n## Output Requirements\nReport back:\n1. **Data match stats**: How many of 601 gold windows matched, SWE vs OH counts\n2. **Per-model macro-F1 table**: GB, RF, MV, GRU Probe, TWV Probe (N and macro-F1)\n3. **Bootstrap full results**: All pairwise comparisons with delta, CI, p-value\n4. **Eval vs bootstrap consistency**: GB/RF F1 difference ≤0.5pp?\n5. **Comparison table**:\n\n| Model | Old (N=195) | New (N=601) | Δ |\n|-------|-------------|-------------|---|\n| GB    | 0.764       | ?           |   |\n| RF    | 0.752       | ?           |   |\n| MV    | 0.718       | ?           |   |\n| Probe | 0.735       | ?           |   |\n| TWV   | 0.768       | ?           |   |\n\nIMPORTANT: \n- Use `mcp__agent-ml-research__ssh_execute` for write operations and `mcp__agent-ml-research__ssh_read_only` for read operations\n- Use ToolSearch first to load the MCP tool schemas before calling them\n- The scripts may take several minutes to run. Use `nohup` + polling if timeout is a concern.\n- Capture ALL stdout output from the eval and bootstrap runs.",
+              "agentId": "a075caa1343251809",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Now I have all the data. Here is the complete Step 5 report.\n\n---\n\n## Gold Set Evaluation Report: N=601 Consensus\n\n### 1. Data Match Stats\n\n| Metric | Value |\n|--------|-------|\n| Gold total | 601 |\n| Stagnation | 183 (30.4%) |\n| Progress | 418 (69.6%) |\n| MV-gold agreement | 426/584 = 72.95% |\n| Windows not in MV | 17 (601 - 584) |\n\n### 2. Per-Model Macro-F1 Table (N=601)\n\n| Model | N Evaluated | Macro-F1 | Accuracy |\n|-------|------------|----------|----------|\n| **Structural GB** | 584 | **0.7237** | 0.7654 |\n| TWV Labels | 402 | 0.7392 | 0.7537 |\n| TWV Probe | 386 | 0.7370 | 0.7513 |\n| GRU Probe | 386 | 0.7028 | 0.7073 |\n| Structural RF | 584 | 0.6973 | 0.7346 |\n| MV Labels | 584 | 0.6818 | 0.7295 |\n\nNote: TWV Labels/Probe and GRU Probe have lower N because they require TWV/GRU predictions which don't exist for all windows.\n\nGRU Probe split: in-train macro-F1 = 0.7695 (N=126), in-test macro-F1 = 0.8692 (N=54).\n\n### 3. Bootstrap Results (10,000 iterations, seed=42, N=601)\n\n| Test | Delta | 95% CI | p-value | Significant? |\n|------|-------|--------|---------|-------------|\n| GB vs MV | +0.0419 | [+0.0205, +0.0652] | 0.0000 | **YES** |\n| GB vs GRU Probe | +0.0500 | [+0.0120, +0.0877] | 0.0048 | **YES** |\n| RF vs GB | -0.0264 | [-0.0429, -0.0097] | 0.0007 | **YES** (GB > RF) |\n| TWV Probe vs GB | -0.0158 | [-0.0450, +0.0125] | 0.1403 | NO |\n| TWV Probe vs GRU | +0.0341 | [-0.0019, +0.0696] | 0.0321 | NO (at 0.05) |\n\n### 4. Eval vs Bootstrap Consistency\n\nThe eval and bootstrap results are consistent:\n- GB has highest macro-F1 among full-coverage models (0.7237 on N=584), confirmed significantly better than MV (p<0.001) and GRU Probe (p=0.005).\n- GB significantly beats RF (p<0.001), unlike at N=195 where they were statistically tied.\n- TWV Probe vs GB remains non-significant (p=0.14), consistent with overlapping performance.\n- TWV Probe vs GRU is borderline (p=0.032), not significant at alpha=0.05 after considering multiplicity.\n\n### 5. Comparison Table: Old N=195 (Canonical) vs New N=601 (Consensus)\n\n#### Macro-F1\n\n| Model | N=195 | N=601 | Delta |\n|-------|-------|-------|-------|\n| Structural GB | 0.7644 | 0.7237 | -0.041 |\n| TWV Probe | 0.7684 | 0.7370 | -0.031 |\n| Structural RF | 0.7516 | 0.6973 | -0.054 |\n| GRU Probe | 0.7348 | 0.7028 | -0.032 |\n| TWV Labels | 0.7184 | 0.7392 | +0.021 |\n| MV Labels | 0.7184 | 0.6818 | -0.037 |\n\n#### Bootstrap: Key Pairwise Tests\n\n| Test | N=195 delta (p) | N=601 delta (p) | Change |\n|------|-----------------|-----------------|--------|\n| GB vs MV | +0.084 (p=0.0005) **SIG** | +0.042 (p=0.0000) **SIG** | Still significant; delta halved but higher power |\n| GB vs GRU | +0.050 (p=0.070) not sig | +0.050 (p=0.005) **SIG** | Now significant at 3x sample size |\n| RF vs GB | +0.002 (p=0.478) not sig | -0.026 (p=0.001) **SIG** | GB now clearly beats RF |\n| TWV Probe vs GB | -0.016 (p=0.254) not sig | -0.016 (p=0.140) not sig | Consistent: no difference |\n| TWV Probe vs GRU | +0.034 (p=0.150) not sig | +0.034 (p=0.032) not sig | Borderline; same direction |\n\n#### Key Takeaways\n\n1. **All models drop 3-5 pp macro-F1** going from N=195 to N=601, except TWV Labels (+2.1 pp). The larger gold set is harder — it includes more diverse OpenHands trajectories and edge cases.\n\n2. **Structural GB emerges as the clear best full-coverage model.** At N=195, RF and GB were statistically tied. At N=601, GB significantly beats RF by 2.6 pp (p<0.001).\n\n3. **GB vs GRU Probe becomes significant.** The delta stays ~5 pp but the tripled sample size gives enough power (p=0.005 vs former p=0.070).\n\n4. **TWV Probe vs GB remains non-significant** in both evaluations, with nearly identical delta (-1.6 pp). These two models perform equivalently on the shared evaluation subset.\n\n5. **Gold leakage exclusion**: 126 of 10,634 gold windows were excluded from training, preventing data leakage in the structural models."
+                }
+              ],
+              "totalDurationMs": 2661331,
+              "totalTokens": 38394,
+              "totalToolUseCount": 243,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3231,
+                "cache_read_input_tokens": 33578,
+                "output_tokens": 1584,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3231
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1584,
+                    "cache_read_input_tokens": 33578,
+                    "cache_creation_input_tokens": 3231,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3231,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 1,
+                "searchCount": 0,
+                "bashCount": 55,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 187
+              }
+            }
+          },
+          "id": "event-000837"
+        },
+        {
+          "source_line": 838,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The agent has completed all the steps and returned comprehensive results. Let me summarize the key findings for the user.\n\nLet me also note the key numbers:\n- 601 gold windows: 418 progress (69.6%), 183 stagnation (30.4%)\n- 584 windows matched for structural models (GB, RF, MV)\n- 402 for TWV Labels, 386 for TWV Probe and GRU Probe\n\nKey results:\n- GB macro-F1: 0.7237 (down from 0.764)\n\n\n- RF macro-F1: 0.6973 (down from 0.752)\n- MV macro-F1: 0.6818 (down from 0.718)\n- GRU Probe: 0.7028 (down from 0.735)\n- TWV Probe: 0.7370 (down from 0.768)\n- TWV Labels: 0.7392 (up from 0.718)\n\nThe bootstrap analysis shows GB significantly outperforms MV, GRU Probe, and RF, while TWV Probe performs comparably to GB. This is a clean, well-structured result set.\n\nNow I'm ready to present these findings.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "2a4c67b4-6ee0-4d5a-b0bb-6b5efb3d1707",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H3nqKjotVyecrJmMA4bSnS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3682,
+                "cache_read_input_tokens": 121549,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3682
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000838"
+        },
+        {
+          "source_line": 839,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 601-window 共识 gold set 评估完成\n\n### 1. 数据匹配统计\n\n| 指标 | 值 |\n|------|-----|\n| Gold 总数 | 601 (progress 418 / stagnation 183) |\n| 结构模型匹配 (GB/RF/MV) | 584 |\n| TWV Labels | 402 |\n| TWV/GRU Probe | 386 |\n| 未匹配 | 17 |\n\n### 2. Per-model Macro-F1\n\n| Model | N | Macro-F1 |\n|-------|---|----------|\n| TWV Labels | 402 | 0.7392 |\n| TWV Probe | 386 | 0.7370 |\n| **Structural GB** | 584 | **0.7237** |\n| GRU Probe | 386 | 0.7028 |\n| Structural RF | 584 | 0.6973 |\n| MV Labels | 584 | 0.6818 |\n\n### 3. Bootstrap 结果 (10,000 iter, seed=42)\n\n| Test | Delta | 95% CI | p-value | Sig? |\n|------|-------|--------|---------|------|\n| GB vs MV | +0.042 | [+0.021, +0.065] | 0.0000 | **YES** |\n| GB vs GRU Probe | +0.050 | [+0.012, +0.088] | 0.0048 | **YES** |\n| RF vs GB | -0.026 | [-0.043, -0.010] | 0.0007 | **YES** (GB > RF) |\n| TWV Probe vs GB | -0.016 | [-0.045, +0.013] | 0.1403 | NO |\n| TWV Probe vs GRU | +0.034 | [-0.002, +0.070] | 0.0321 | Borderline |\n\n### 4. Eval vs Bootstrap 一致性\n\n一致。GB 在 full-coverage 模型中最优，显著优于 MV/RF/GRU Probe。TWV Probe vs GB 无显著差异。\n\n### 5. 对比表：N=195 → N=601\n\n| Model | Old (N=195) | New (N=601) | Δ |\n|-------|-------------|-------------|-------|\n| GB | 0.764 | 0.724 | -0.041 |\n| RF | 0.752 | 0.697 | -0.054 |\n| MV | 0.718 | 0.682 | -0.037 |\n| GRU Probe | 0.735 | 0.703 | -0.032 |\n| TWV Probe | 0.768 | 0.737 | -0.031 |\n\n### 关键变化\n\n1. **所有模型下降 3-5 pp**（更大 gold set 更难，含更多 OH 边缘案例），TWV Labels 例外（+2.1pp）\n2. **GB 现在显著优于 RF**（p<0.001），N=195 时两者无差异\n3. **GB vs GRU Probe 现在显著**（p=0.005），N=195 时 p=0.070\n4. **TWV Probe vs GB 仍然无显著差异**（delta -1.6pp，p=0.14），两个评估一致"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "uuid": "23b46cd3-193b-49e1-82a6-655b021c6bd5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H3nqKjotVyecrJmMA4bSnS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3682,
+                "cache_read_input_tokens": 121549,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3682
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000839"
+        },
+        {
+          "source_line": 840,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 601-window 共识 gold set 评估完成\n\n### 1. 数据匹配统计\n\n| 指标 | 值 |\n|------|-----|\n| Gold 总数 | 601 (progress 418 / stagnation 183) |\n| 结构模型匹配 (GB/RF/MV) | 584 |\n| TWV Labels | 402 |\n| TWV/GRU Probe | 386 |\n| 未匹配 | 17 |\n\n### 2. Per-model Macro-F1\n\n| Model | N | Macro-F1 |\n|-------|---|----------|\n| TWV Labels | 402 | 0.7392 |\n| TWV Probe | 386 | 0.7370 |\n| **Structural GB** | 584 | **0.7237** |\n| GRU Probe | 386 | 0.7028 |\n| Structural RF | 584 | 0.6973 |\n| MV Labels | 584 | 0.6818 |\n\n### 3. Bootstrap 结果 (10,000 iter, seed=42)\n\n| Test | Delta | 95% CI | p-value | Sig? |\n|------|-------|--------|---------|------|\n| GB vs MV | +0.042 | [+0.021, +0.065] | 0.0000 | **YES** |\n| GB vs GRU Probe | +0.050 | [+0.012, +0.088] | 0.0048 | **YES** |\n| RF vs GB | -0.026 | [-0.043, -0.010] | 0.0007 | **YES** (GB > RF) |\n| TWV Probe vs GB | -0.016 | [-0.045, +0.013] | 0.1403 | NO |\n| TWV Probe vs GRU | +0.034 | [-0.002, +0.070] | 0.0321 | Borderline |\n\n### 4. Eval vs Bootstrap 一致性\n\n一致。GB 在 full-coverage 模型中最优，显著优于 MV/RF/GRU Probe。TWV Probe vs GB 无显著差异。\n\n### 5. 对比表：N=195 → N=601\n\n| Model | Old (N=195) | New (N=601) | Δ |\n|-------|-------------|-------------|-------|\n| GB | 0.764 | 0.724 | -0.041 |\n| RF | 0.752 | 0.697 | -0.054 |\n| MV | 0.718 | 0.682 | -0.037 |\n| GRU Probe | 0.735 | 0.703 | -0.032 |\n| TWV Probe | 0.768 | 0.737 | -0.031 |\n\n### 关键变化\n\n1. **所有模型下降 3-5 pp**（更大 gold set 更难，含更多 OH 边缘案例），TWV Labels 例外（+2.1pp）\n2. **GB 现在显著优于 RF**（p<0.001），N=195 时两者无差异\n3. **GB vs GRU Probe 现在显著**（p=0.005），N=195 时 p=0.070\n4. **TWV Probe vs GB 仍然无显著差异**（delta -1.6pp，p=0.14），两个评估一致"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 3110194,
+            "duration_api_ms": 2960565,
+            "num_turns": 36,
+            "stop_reason": "end_turn",
+            "session_id": "cb728efb-17c4-4962-a88d-95e1bf3e6350",
+            "total_cost_usd": 21.775350999999993,
+            "usage": {
+              "input_tokens": 32,
+              "cache_creation_input_tokens": 113390,
+              "cache_read_input_tokens": 2264112,
+              "output_tokens": 20157,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 113390,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1228,
+                  "cache_read_input_tokens": 121549,
+                  "cache_creation_input_tokens": 3682,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3682
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2092,
+                "outputTokens": 22,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002202,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 3155,
+                "outputTokens": 109672,
+                "cacheReadInputTokens": 30054548,
+                "cacheCreationInputTokens": 638128,
+                "webSearchRequests": 0,
+                "costUSD": 21.773148999999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "6cb3a27c-479f-4112-afe0-50065fdfbe19"
+          },
+          "id": "event-000840"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ce2347ef16eb77238bc",
+  "project": "collapse_aware_reward_rebalancing",
+  "kind": "result",
+  "title": "diagnose carr fullft k4 probe 02",
+  "task_key": "worker_diagnose_carr_fullft_k4_probe_02_20260516T165859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_carr_fullft_k4_probe_02_20260516T165859_result.json",
+    "occurrence": 1,
+    "bytes": 2711,
+    "sha256": "be29d33cf47a11a5875b41a7d8940d66287e2ce34f8545088725d58642002e87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 514305 已退出（确认 probe_02 已崩溃），PID 514162 仍在运行。\n\n---\n\n## 诊断报告：carr_fullft_k4_probe_02 CUDA OOM\n\n### OOM 精确阶段\n\n**生成阶段（Generation Phase）**，第一个 batch 就崩了。\n\n调用链：`run_quick_probe_fullft.py:69` → `pipeline.py:71` → `generate.py:35` → `generate.py:60 model.generate()` → Qwen3 MLP forward\n\n仅生成了 16/2000 个 prompt 就 OOM。\n\n### 根本原因：GPU 显存被另一个进程占用\n\n**PID 514162 (`python3 run_quick_probe_fullft.py`)** 已经在物理 GPU 1 上运行，占用 ~21 GiB 显存。当 probe_02（PID 514305，CUDA_VISIBLE_DEVICES=1）启动时，GPU 1 只剩 ~10 GiB 可用。\n\nOOM 时的显存分布：\n\n| 占用方 | 显存 |\n|--------|------|\n| PID 514162（另一个 fullft 实验） | 20.99 GiB |\n| PID 514305（probe_02 本身） | ~10.23 GiB（PyTorch 8.46 + reserved 1.19 + non-PyTorch） |\n| 可用 | 129.75 MiB |\n| GPU 1 总容量 | 31.36 GiB |\n\n**不是 probe_02 自身配置过大，而是 GPU 1 被两个进程同时使用。**\n\n### PID 514162 的身份\n\n`python3 run_quick_probe_fullft.py` — 一个更早启动的 fullft 实验，当前仍在运行（29854 MiB on GPU 1）。同时 GPU 0 上还有 PID 507603 (`python3 run_quick_probe_k8.py`，25036 MiB)。\n\n### 附带问题\n\n`generate.py:10` 仍使用 `torch_dtype=torch.float16` 而非 bf16。虽然不是这次 OOM 的直接原因，但与 \"已修复为 bf16\" 的说法不符。\n\n### 当前 GPU 状态\n\n| GPU | 进程 | 显存占用 | GPU利用率 |\n|-----|------|---------|----------|\n| GPU 0 | PID 507603 (run_quick_probe_k8.py) | 25036 MiB / 32607 MiB | 86% |\n| GPU 1 | PID 514162 (run_quick_probe_fullft.py) | 29863 MiB / 32607 MiB | 90% |\n\n两块 GPU 都被占满，无法再启动新实验。\n\n### 修复建议\n\n1. **立即方案**：等 PID 514162 完成（或 kill 掉），再单独在 GPU 1 上跑 probe_02。Qwen3-0.6B full-FT + gen_batch_size=16 × K=4 在 32 GiB 独占 GPU 上应该可以跑通。\n\n2. **如果独占 GPU 仍 OOM**，按优先级降低显存：\n   - `gen_batch_size`: 16 → 8（生成阶段 num_return_sequences=K 使得实际并发序列为 batch×K=64，减半到 32）\n   - 在 `generate.py` 的 `_generate_batch` 中加 `torch.cuda.empty_cache()` 每个 batch 后清理\n   - 设置 `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True` 减少碎片\n\n3. **修复 float16 → bf16**：`generate.py:10` 的 `torch_dtype=torch.float16` 改为 `torch.bfloat16`，与训练阶段一致。\n\n4. **长期方案**：加互斥机制，避免多个实验同时占用同一 GPU。或在启动前检查 `nvidia-smi` 确认目标 GPU 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-carr-fullft-k4-probe-02.md"
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "5649a5b863f4e4ebd368",
+  "project": "agent_progress_probe",
+  "kind": "worker",
+  "title": "code llm judge baseline",
+  "task_key": "worker_code_llm_judge_baseline_20260514T102134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llm_judge_baseline_20260514T102134.log",
+    "occurrence": 1,
+    "bytes": 974582,
+    "sha256": "0d336b2ccd1546eea9c83dd5e6613553e6e2d5810e5b5aba60ad8e2f5c482756"
+  },
+  "statistics": {
+    "messages": 445,
+    "user_turns": 2,
+    "tool_calls": 164,
+    "roles": {
+      "log": 1,
+      "system": 59,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 164,
+      "user": 2,
+      "tool_result": 164,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "5649a5b863f4e4ebd368-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 68,
+      "chunks": [
+        {
+          "path": "5649a5b863f4e4ebd368-part-0001.json",
+          "message_count": 68
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 370,
+      "chunks": [
+        {
+          "path": "5649a5b863f4e4ebd368-part-0001.json",
+          "message_count": 105
+        },
+        {
+          "path": "5649a5b863f4e4ebd368-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5649a5b863f4e4ebd368-part-0003.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-llm-judge-baseline.md"
+}

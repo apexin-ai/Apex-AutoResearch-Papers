@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97653885524d1d36dfdd",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "train ablation supcon",
+  "task_key": "worker_train_ablation-supcon_20260514T161233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_ablation-supcon_20260514T161233_result.json",
+    "occurrence": 1,
+    "bytes": 962,
+    "sha256": "8390263d941973233e7567677e72668fe68a13c5b5f14c64151abf2d47b66271"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## SupCon 消融实验完成\n\n| λ | macro_f1 | f1_stag | f1_prog | accuracy | sep_ratio |\n|---|----------|---------|---------|----------|-----------|\n| **0.0 (baseline)** | 0.9055 | 0.8593 | 0.9518 | 0.9282 | 2.87 |\n| 0.1 | 0.9063 | 0.8611 | 0.9516 | 0.9282 | 4.43 |\n| 0.5 | 0.9076 | 0.8624 | 0.9529 | 0.9298 | 5.01 |\n| **1.0** | **0.9326** | **0.9017** | **0.9636** | **0.9468** | **7.49** |\n\n**关键发现**：\n- λ=1.0 效果最佳：macro_f1 从 0.9055 → 0.9326 (**+2.71pp**)，f1_stag 从 0.8593 → 0.9017 (**+4.24pp**)\n- 分离度随 λ 单调递增：2.87 → 7.49（**2.6x**），SupCon 有效拉开了类间距离\n- SupCon 对少数类（stagnation）提升最大，说明 contrastive learning 帮助模型学到更判别性的表示\n- λ=0.1/0.5 对 F1 影响微小但分离度已显著提升，λ=1.0 时 F1 和分离度均有质变\n\n实验产出已保存至 `ablation-supcon/` 目录，registry 已更新为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-ablation-supcon.md"
+}

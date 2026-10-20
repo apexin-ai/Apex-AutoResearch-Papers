@@ -1,0 +1,55 @@
+{
+  "exp_id": "cutoff_s0",
+  "project": "occsafe_vla",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 2,
+    "created_at": "2026-05-22T06:09:33.632Z",
+    "updated_at": "2026-05-23T20:32:31.069Z",
+    "hypothesis": "Cutting off occ_loss at step 35000 allows the model to first learn occupancy awareness then focus on action prediction, improving both safety and task performance compared to training with occ_loss throughout.",
+    "parent": "mvp_occ_s0",
+    "reproduce": {
+      "finished_at": "2026-05-23T00:51:56.624Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-22T07:57:52.891Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T07:57:55.231734+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T14:00:14.369818+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T00:51:59.530651+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "WANDB_MODE=disabled torchrun --nproc_per_node 1 vla-scripts/finetune.py --use_occ_head True --occ_loss_cutoff_step 35000 --save_freq 10000 --max_steps 50005 --seed 42",
+      "server": "westd-34685",
+      "gpu": "cuda:0",
+      "pid": 137021,
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": "~25000 episodes",
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "notes": "cron误判已修正: torchrun PID 136037退出但子进程PID 137021正常运行中. 原 registry 记录 --occ_loss_weight 0.5 有误，实际使用默认值 0.01"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T20:32:31.191527+00:00",
+  "trigger": "update_registry"
+}

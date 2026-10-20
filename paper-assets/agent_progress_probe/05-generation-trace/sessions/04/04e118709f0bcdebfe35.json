@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04e118709f0bcdebfe35",
+  "project": "agent_progress_probe",
+  "kind": "result",
+  "title": "analysis error overlap and window count",
+  "task_key": "worker_analysis_error-overlap-and-window-count_20260515T032714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_error-overlap-and-window-count_20260515T032714_result.json",
+    "occurrence": 1,
+    "bytes": 1322,
+    "sha256": "adace407899115f0ac51b342a34e893c9c2720b692ebf45a0937ed557a6c0e9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the definitive summary:\n\n---\n\n```\n=== Part 1: Error Overlap (OH Cross-Agent, conf≥2) ===\nTest set: N=43,366 common windows (probe ∩ structural)\nProbe errors: 8,643 / 43,366 (error rate: 19.9%)\nStructural GB errors: 223 / 43,376 (error rate: 0.51%)\nBoth wrong: 192\nOverlap rate: 192 / 8,643 = 2.22%\n\nVERDICT: NEITHER 31/8,643 (0.36%) NOR 358/8,643 (4.14%) is correct.\n  - 31 came from GB trained on ALL SWE (54,809 windows), not the canonical\n    conf≥2 train split — wrong training setup, inflated F1=0.998\n  - 358 came from GB with accidentally changed hyperparams (n=100, lr=0.1)\n    in the \"fixed\" script — produced degraded F1=0.952\n  - Canonical: 192/8,643 = 2.22%, using GB(SWE conf≥2 train, n=200,\n    lr=0.05, d=5) — the same model that gives 0.9919 cross-agent F1\n    and 0.9951 in-domain F1 (both verified from scratch).\n\n=== Part 2: OH conf≥2 Window Count ===\nJSONL source: 43,376 conf≥2 windows\nEmbeddings source: 43,366 conf≥2 windows\nDifference: 10 (from 8 trajectories, lost during embedding generation)\nCanonical number for paper: 43,376\n```\n\nThe paper's §6.5 needs to be corrected: structural GB should report 223 errors (consistent with 0.51%), and the overlap should be **192/8,643 = 2.22%**, not 0.36% or 4.14%."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-error-overlap-and-window-count.md"
+}

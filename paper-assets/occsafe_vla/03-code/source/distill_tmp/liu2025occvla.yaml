@@ -1,0 +1,121 @@
+paper_key: "liu2025occvla"
+title: "OccVLA: Vision-Language-Action Model with Implicit 3D Occupancy Supervision"
+venue: "arXiv preprint 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - NMP
+    - FF
+    - ST-P3
+    - UniAD
+    - VAD
+    - DriveVLM-Dual
+    - EMMA
+    - OmniDrive
+    - OccNet
+    - OccWorld-O
+    - OccWorld-F
+    - OccLLaMA-O
+    - OccLLaMA-F
+    - Occ-LLM
+    - LLaVA
+    - LiDAR-LLM
+    - OccLLaMA (VQA)
+    - OpenDriveVLA
+  metrics:
+    - {name: "L2 distance (m) at 1s/2s/3s", direction: "lower_better"}
+    - {name: "Average L2 distance (m)", direction: "lower_better"}
+    - {name: "NuScenes-QA Accuracy (%)", direction: "higher_better"}
+    - {name: "mIoU (occupancy prediction)", direction: "higher_better"}
+    - {name: "Meta-action prediction accuracy (%)", direction: "higher_better"}
+  datasets:
+    - {name: "nuScenes", size: "700 training + 150 validation scenes"}
+    - {name: "Occ3D", size: "occupancy annotations for nuScenes, 200x200x16 grid"}
+    - {name: "NuScenes-QA", size: "460K question-answer pairs"}
+    - {name: "OmniDrive (pretraining data)", size: "not specified"}
+  ablation_dimensions:
+    - occupancy supervision (with vs without)
+    - ego trajectory (with vs without)
+  training_recipe:
+    optimizer: "AdamW"
+    lr: "separate learning rates for different modules; VQ-VAE decoder at zero lr"
+    hardware: "8x NVIDIA A800"
+    stages: "3-stage training: (1) VLM pretraining on driving data, (2) occupancy-language joint training, (3) planning head training"
+    loss: "L_text_AR + lambda * L_occ_NAR (stage 2); MSE (stage 3)"
+    backbone: "PaliGemma2-3B-224px"
+    occ_encoder: "Scene VQ-VAE initialized from OccWorld"
+  method_family: "occupancy-supervised VLM for autonomous driving"
+
+positioning:
+  core_claim: "通过将 occupancy 预测作为隐式 3D 监督信号注入 VLM，可以在仅用相机输入的情况下实现与使用 ground-truth occupancy 输入同等的规划性能，且推理时可跳过 occupancy 解码"
+  key_results: "nuScenes 规划 Avg L2=0.28m (SOTA)；NuScenes-QA 59.5% accuracy (3B 模型超越 7-8B 模型)；匹配 Occ-LLM(GT occ input) 的 0.28m 但仅用 camera"
+  limitations:
+    - "论文未明确讨论局限性"
+    - "occupancy 预测本身 mIoU 仅约 10%，对遮挡区域和缺乏时序信息的场景较弱"
+    - "消融实验较少(仅 2 个维度)，缺乏对架构设计选择的深入分析"
+    - "仅在 nuScenes 验证，未测试其他驾驶数据集(如 Waymo/KITTI)"
+    - "meta-action 分类依赖 GPT-4o 自动标注 + 20% 人工修正，标注质量是潜在瓶颈"
+    - "3-stage 训练流程较复杂"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "端到端自动驾驶系统越来越多地利用 VLM 的推理能力，但 2D 与 3D 感知之间持续存在的鸿沟是 VLM 广泛应用的主要障碍"
+  tension: "两条现有路线都有硬伤：(1) 文本化 3D 监督(坐标/bbox)需要大量人工标注且不可扩展；(2) 显式 3D 输入方案缺乏大规模预训练和精细 caption，导致细粒度空间细节丢失"
+  key_insight: "驾驶场景中 ~90% 的 3D 空间是空的，occupancy 表示天然适合编码结构化几何；将 occupancy 预测作为隐式推理过程而非显式输入，既提供了稠密 3D 监督又保留了 2D 视觉细节。推理时 occupancy 分支可跳过，零额外开销。"
+  argument_chain: "VLM 在自动驾驶中潜力大但缺 3D 理解 → 文本化 3D 监督不可扩展，显式 3D 输入损失 2D 细节 → occupancy 是理想的 3D 表示(稠密+结构化) → 将 occ 预测作为辅助任务注入 VLM 共享 backbone → cross-attention 实现 occ-visual 交互 → 推理时可跳过 occ 分支 → nuScenes 规划和 VQA 双 SOTA"
+  contribution_framing: "三点贡献精确对应方法-效率-结果：(1) OccVLA 框架本身(occ prediction 扩展 VLM 3D 能力) (2) cross-modal attention 的推理可跳过设计 (3) nuScenes 双任务 SOTA。措辞上强调 'implicit' 和 'preserving visual information'，定位在不损失 2D 的前提下增强 3D。"
+  intro_structure: "4段：P1=VLM 在自动驾驶中的 promise + 3D gap；P2=现有两条路线的硬伤(文本化 3D vs 显式 3D 输入)；P3=occupancy 作为理想 3D 表示的论证 + OccVLA 方法概述；P4=贡献列表"
+  notable_technique: "用 '90% of 3D space is empty' 这个直觉性数据来论证 occupancy 的合理性——这不是复杂的理论论证，而是一个人人都能理解的观察，让 occupancy representation 的选择看起来自然而然。"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "problem_illustration + method positioning"
+    description: "三列对比：(a) VLM(2D)——仅 2D 输入 + 文本监督，缺乏 3D grounding；(b) 3D-VLM——显式 3D 输入(Occ/LiDAR)但缺大规模预训练，丢失空间细节；(c) OccVLA(ours)——从 2D 图像预测 3D occupancy 作为输出和监督信号。每列用不同颜色的箭头/高亮区分。"
+    narrative_role: "通过三种范式的并列对比，直接定位 OccVLA 的差异化：既不是纯 2D (a)，也不是需要 3D 输入 (b)，而是从 2D 预测 3D 作为隐式监督 (c)。一图解释清楚 'why us'。"
+    design_elements: ["三列并排对比", "每列标注输入/输出类型", "绿色箭头标注 OccVLA 独特的 occupancy 监督路径", "实际驾驶场景图片增加真实感"]
+    visual_style: "白底简洁风格，模块框图用浅色填充(黄/绿/蓝)区分不同组件。绿色×标记表示缺陷，绿色箭头表示 OccVLA 的创新路径。三列宽度相等，强调公平对比。"
+  result_figures:
+    - figure_id: "Figure 5"
+      viz_type: "qualitative_comparison (3D occupancy)"
+      what_compared: "GT occupancy vs OccVLA predicted occupancy"
+      how_gain_highlighted: "展示 OccVLA 的 occ 预测在关键物体(车辆、道路)上与 GT 接近，用粉/绿/灰色编码不同语义类别"
+      design_note: "两行(GT vs OccVLA) × 多列(不同场景)的 grid 布局。3D 鸟瞰视角的 occupancy 可视化，用语义颜色编码(粉色=车辆、绿色=植被、灰色=道路)。虽然 mIoU 只有 10%，但视觉上选择了预测较好的关键类别来展示。"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1(范式对比: 定位差异化) → Figure 2(方法架构: 详细技术方案) → Figure 3(数据构造: meta-action 和 CoT 标注流程) → Figure 4(训练流程: 三阶段训练概览) → Figure 5(occupancy 可视化: 定性结果)。从定位到方法到数据到训练到结果，完整覆盖技术链条。"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "L2 distance at 1s/2s/3s + Average"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "bold best overall"
+    statistical_reporting: "单次运行 L2 距离(m)，无 std"
+    num_baselines: 8
+    design_note: "表格额外增加 Input 和 Supervision 两列，让读者一眼看出 OccVLA 的输入条件(仅 Camera)和监督类型(Occ)，与需要 LiDAR/Map/Box 等额外监督的方法形成鲜明对比。通过这种列设计暗示 OccVLA 在更简单条件下达到更好结果。"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["input modality (Occ vs Camera)", "different occupancy-based methods"]
+      variation_style: "full_numbers"
+      design_note: "专门对比 occupancy 相关方法，分为 Occ-input 组和 Camera-input 组。OccVLA(Camera) 匹配 Occ-LLM(GT Occ input)，这是核心论证：仅用相机就能达到 GT occupancy 输入的效果。"
+    - table_id: "Table 3"
+      what_varied: ["model size", "input modality", "VQA subtask types (Exist/Count/Object/Status/Comparison)"]
+      variation_style: "full_numbers"
+      design_note: "展示 3B 模型在 5 个 VQA 子类别上全面超越 7-8B 模型，用模型大小列暗示参数效率优势。子类别细分让读者看到具体哪些 3D 理解能力提升最大。"
+    - table_id: "Table 4"
+      what_varied: ["occupancy supervision (with vs without)"]
+      variation_style: "full_numbers"
+      design_note: "消融 occupancy 监督的效果，展示 Speed/Trajectory/Avg/Overall 四个维度的 meta-action 预测准确率。提升幅度约 1.5%，虽不大但一致。"
+    - table_id: "Table 5"
+      what_varied: ["ego trajectory (with vs without)"]
+      variation_style: "full_numbers"
+      design_note: "消融 ego trajectory 的效果，L2 距离从 0.48m 降至 0.28m。3s 预测改善最大(0.80→0.40)，说明时序信息对长程规划至关重要。"
+  supplementary_tables:
+    in_appendix: false
+    content: "所有表格均在主文"
+    reason: "消融实验较少(仅两个维度)，无需拆分到附录"

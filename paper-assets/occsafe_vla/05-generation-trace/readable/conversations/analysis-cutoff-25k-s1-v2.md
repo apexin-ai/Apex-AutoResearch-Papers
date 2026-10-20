@@ -1,0 +1,1355 @@
+# analysis cutoff 25k s1 v2
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/chats/worker_analysis_cutoff_25k_s1_v2_20260526T225939.jsonl`
+- **Structured JSON:** [`12453caeedd22159903a.json`](../../sessions/12/12453caeedd22159903a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+45 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-26T23:01:46.583199+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__update_registry",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__update_registry",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-26T23:01:46.583518+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-26T23:01:46.583715+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "tail -100 ~/runs/occsafe_vla/cutoff_25k_s1_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "tail -100 ~/runs/occsafe_vla/cutoff_25k_s1_v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-26T23:01:46.583859+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "ls -la /root/autodl-tmp/checkpoints/cutoff_25k_s1_v2/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "ls -la /root/autodl-tmp/checkpoints/cutoff_25k_s1_v2/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-26T23:01:46.584099+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r 84%|████████▍ | 42101/50005 [11:38:05<2:03:21,  1.07it/s]\\r 84%|████████▍ | 42102/50005 [11:38:06<2:02:52,  1.07it/s]\\r 84%|████████▍ | 42103/50005 [11:38:07<2:02:28,  1.08it/s]\\r 84%|████████▍ | 42104/50005 [11:38:08<2:02:12,  1.08it/s]\\r 84%|████████▍ | 42105/50005 [11:38:09<2:01:55,  1.08it/s]\\r 84%|████████▍ | 42106/50005 [11:38:10<2:01:45,  1.08it/s]\\r 84%|████████▍ | 42107/50005 [11:38:11<2:01:40,  1.08it/s]\\r 84%|████████▍ | 42108/50005 [11:38:12<2:01:41,  1.08it/s]\\r 84%|████████▍ | 42109/50005 [11:38:13<2:01:42,  1.08it/s]\\r 84%|████████▍ | 42110/50005 [11:38:14<2:01:44,  1.08it/s]\\r 84%|████████▍ | 42111/50005 [11:38:14<2:01:43,  1.08it/s]\\r 84%|████████▍ | 42112/50005 [11:38:15<2:01:46,  1.08it/s]\\r 84%|████████▍ | 42113/50005 [11:38:16<2:01:42,  1.08it/s]\\r 84%|████████▍ | 42114/50005 [11:38:17<2:01:35,  1.08it/s]\\r 84%|████████▍ | 42115/50005 [11:38:18<2:01:42,  1.08it/s]\\r 84%|████████▍ | 42116/50005 [11:38:19<2:01:34,  1.08it/s]\\r 84%|████████▍ | 42117/50005 [11:38:20<2:01:31,  1.08it/s]\\r 84%|████████▍ | 42118/50005 [11:38:21<2:01:25,  1.08it/s]\\r 84%|████████▍ | 42119/50005 [11:38:22<2:01:24,  1.08it/s]\\r 84%|████████▍ | 42120/50005 [11:38:23<2:01:28,  1.08it/s]\\r 84%|████████▍ | 42121/50005 [11:38:24<2:01:24,  1.08it/s]\\r 84%|████████▍ | 42122/50005 [11:38:25<2:01:23,  1.08it/s]\\r 84%|████████▍ | 42123/50005 [11:38:26<2:01:26,  1.08it/s]\\r 84%|████████▍ | 42124/50005 [11:38:26<2:01:25,  1.08it/s]\\r 84%|████████▍ | 42125/50005 [11:38:27<2:01:25,  1.08it/s]\\r 84%|████████▍ | 42126/50005 [11:38:28<2:01:22,  1.08it/s]\\r 84%|████████▍ | 42127/50005 [11:38:29<2:01:21,  1.08it/s]\\r 84%|████████▍ | 42128/50005 [11:38:30<2:01:22,  1.08it/s]\\r 84%|████████▍ | 42129/50005 [11:38:31<2:01:30,  1.08it/s]\\r 84%|████████▍ | 42130/50005 [11:38:32<2:01:42,  1.08it/s]\\r 84%|████████▍ | 42131/50005 [11:38:33<2:02:01,  1.08it/s]\\r 84%|████████▍ | 42132/50005 [11:38:34<2:02:06,  1
+…[truncated 6491 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-26T23:01:46.584284+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 20\\ndrwxr-xr-x  6 root root 4096 May 27 06:54 .\\ndrwxr-xr-x 11 root root 4096 May 27 06:33 ..\\ndrwxr-xr-x  2 root root   45 May 26 17:09 openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--cutoff_25k_s1_v2\\ndrwxr-xr-x  3 root root 4096 May 27 01:29 openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--cutoff_25k_s1_v2--30000_chkpt\\ndrwxr-xr-x  3 root root 4096 May 27 04:14 openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--cutoff_25k_s1_v2--40000_chkpt\\ndrwxr-xr-x  3 root root 4096 May 27 06:55 openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--cutoff_25k_s1_v2--50000_chkpt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-26T23:01:46.584447+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_wandb_runs",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_wandb_runs",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-26T23:01:46.584570+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-26T23:01:46.584705+00:00_
+
+called mcp__agent-ml-research__list_wandb_runs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_wandb_runs</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "filters": "{'display_name': {'$regex': 'cutoff_25k_s1_v2'}}",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__list_wandb_runs",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "filters": "{'display_name': {'$regex': 'cutoff_25k_s1_v2'}}",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-26T23:01:46.584832+00:00_
+
+Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__list_wandb_runs",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-26T23:01:46.584996+00:00_
+
+called mcp__agent-ml-research__list_wandb_runs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_wandb_runs</summary>
+
+```json
+{
+  "filters": "{'display_name': {'$regex': 'cutoff_25k_s1_v2'}}",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__list_wandb_runs",
+  "tool_args": {
+    "filters": "{'display_name': {'$regex': 'cutoff_25k_s1_v2'}}",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-26T23:01:46.585138+00:00_
+
+Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__list_wandb_runs",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-26T23:01:46.585273+00:00_
+
+called mcp__agent-ml-research__list_wandb_runs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_wandb_runs</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "filters": "{'display_name': {'$regex': 'cutoff_25k_s1_v2'}}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__list_wandb_runs",
+  "tool_args": {
+    "project": "occsafe_vla",
+    "filters": "{'display_name': {'$regex': 'cutoff_25k_s1_v2'}}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-26T23:01:46.585389+00:00_
+
+Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__list_wandb_runs",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-26T23:01:46.585522+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "grep -i \"wandb\" ~/runs/occsafe_vla/cutoff_25k_s1_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "grep -i \"wandb\" ~/runs/occsafe_vla/cutoff_25k_s1_v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-26T23:01:46.585641+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-26T23:01:46.585820+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "head -50 ~/runs/occsafe_vla/cutoff_25k_s1_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "head -50 ~/runs/occsafe_vla/cutoff_25k_s1_v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-26T23:01:46.586021+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-26 17:09:24.965649: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\\n2026-05-26 17:09:25.000162: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered\\n2026-05-26 17:09:25.000189: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered\\n2026-05-26 17:09:25.001144: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered\\n2026-05-26 17:09:25.006245: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\\nTo enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\\n2026-05-26 17:09:25.598323: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT\\nUsing LIBERO constants:\\n  NUM_ACTIONS_CHUNK = 8\\n  ACTION_DIM = 7\\n  PROPRIO_DIM = 8\\n  ACTION_PROPRIO_NORMALIZATION_TYPE = bounds_q99\\nIf needed, manually set the correct constants in `prismatic/vla/constants.py`!\\n2026-05-26 17:09:28.558545: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2256] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/
+…[truncated 3211 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-26T23:01:46.586189+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "grep \"AUX\" ~/runs/occsafe_vla/cutoff_25k_s1_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "grep \"AUX\" ~/runs/occsafe_vla/cutoff_25k_s1_v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-26T23:01:46.586415+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[AUX] step=0, occ_loss=0.1648, depth_loss=0.0000, action_loss=0.6250\\n\\r  0%|          | 2/50005 [00:07<42:57:08,  3.09s/it]\\r  0%|          | 3/50005 [00:08<29:12:40,  2.10s/it]\\r  0%|          | 4/50005 [00:08<22:46:39,  1.64s/it]\\r  0%|          | 5/50005 [00:09<19:11:59,  1.38s/it]\\r  0%|          | 6/50005 [00:10<17:01:06,  1.23s/it]\\r  0%|          | 7/50005 [00:11<15:37:59,  1.13s/it]\\r  0%|          | 8/50005 [00:12<14:43:36,  1.06s/it]\\r  0%|          | 9/50005 [00:13<14:07:04,  1.02s/it]\\r  0%|          | 10/50005 [00:14<13:42:49,  1.01it/s]\\r  0%|          | 11/50005 [00:15<13:25:14,  1.03it/s]\\r  0%|          | 12/50005 [00:16<13:13:31,  1.05it/s]\\r  0%|          | 13/50005 [00:17<13:05:36,  1.06it/s]\\r  0%|          | 14/50005 [00:18<12:59:37,  1.07it/s]\\r  0%|          | 15/50005 [00:19<12:55:22,  1.07it/s]\\r  0%|          | 16/50005 [00:19<12:52:17,  1.08it/s]\\r  0%|          | 17/50005 [00:20<12:50:15,  1.08it/s]\\r  0%|          | 18/50005 [00:21<12:50:05,  1.08it/s]\\r  0%|          | 19/50005 [00:22<12:49:57,  1.08it/s]\\r  0%|          | 20/50005 [00:23<12:53:15,  1.08it/s]\\r  0%|          | 21/50005 [00:24<12:50:42,  1.08it/s]\\r  0%|          | 22/50005 [00:25<13:01:15,  1.07it/s]\\r  0%|          | 23/50005 [00:26<13:10:40,  1.05it/s]\\r  0%|          | 24/50005 [00:27<13:05:36,  1.06it/s]\\r  0%|          | 25/50005 [00:28<13:14:07,  1.05it/s]\\r  0%|          | 26/50005 [00:29<13:27:28,  1.03it/s]\\r  0%|          | 27/50005 [00:30<13:28:20,  1.03it/s]\\r  0%|          | 28/50005 [00:31<13:17:49,  1.04it/s]\\r  0%|          | 29/50005 [00:32<13:13:45,  1.05it/s]\\r  0%|          | 30/50005 [00:33<13:33:57,  1.02it/s]\\r  0%|          | 31/50005 [00:34<13:28:36,  1.03it/s]\\r  0%|          | 32/50005 [00:35<13:18:20,  1.04it/s]\\r  0%|          | 33/50005 [00:36<13:28:52,  1.03it/s]\\r  0%|          | 34/50005 [00:37<13:15:55,  1.05it/s]\\r  0%|          | 35/50005 [00:
+…[truncated 6490 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-26T23:01:46.586610+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "find /root/occsafe_vla -name \"wandb\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "find /root/occsafe_vla -name \"wandb\" -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-26T23:01:46.586771+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/occsafe_vla/openvla-oft/wandb\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-26T23:01:46.586893+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "grep -c \"AUX\" ~/runs/occsafe_vla/cutoff_25k_s1_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "grep -c \"AUX\" ~/runs/occsafe_vla/cutoff_25k_s1_v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-26T23:01:46.587016+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"501\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-26T23:01:46.587144+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "grep \"AUX\" ~/runs/occsafe_vla/cutoff_25k_s1_v2.log | grep -E \"step=(25000|30000|40000|45000|50000),\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "grep \"AUX\" ~/runs/occsafe_vla/cutoff_25k_s1_v2.log | grep -E \"step=(25000|30000|40000|45000|50000),\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-26T23:01:46.587262+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-26T23:01:46.587377+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "ls -la /root/occsafe_vla/openvla-oft/wandb/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "ls -la /root/occsafe_vla/openvla-oft/wandb/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-26T23:01:46.587509+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  3 root root  131 May 24 19:52 .\\ndrwxr-xr-x 11 root root 4096 May 25 14:24 ..\\nlrwxrwxrwx  1 root root   60 May 24 19:52 debug-internal.log -> offline-run-20260524_195239-qoiud3gd/logs/debug-internal.log\\nlrwxrwxrwx  1 root root   51 May 24 19:52 debug.log -> offline-run-20260524_195239-qoiud3gd/logs/debug.log\\nlrwxrwxrwx  1 root root   36 May 24 19:52 latest-run -> offline-run-20260524_195239-qoiud3gd\\ndrwxr-xr-x  5 root root   88 May 24 19:52 offline-run-20260524_195239-qoiud3gd\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-26T23:01:46.587647+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "grep -E \"step=(25000|30000|40000|45000|50000),\" ~/runs/occsafe_vla/cutoff_25k_s1_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "grep -E \"step=(25000|30000|40000|45000|50000),\" ~/runs/occsafe_vla/cutoff_25k_s1_v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-26T23:01:46.587790+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-26T23:01:46.587920+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "grep \"step=25000,\" ~/runs/occsafe_vla/cutoff_25k_s1_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "grep \"step=25000,\" ~/runs/occsafe_vla/cutoff_25k_s1_v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-26T23:01:46.588110+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r 50%|████▉     | 24901/50005 [6:54:38<6:26:57,  1.08it/s]\\r 50%|████▉     | 24902/50005 [6:54:39<6:27:10,  1.08it/s]\\r 50%|████▉     | 24903/50005 [6:54:40<6:26:49,  1.08it/s]\\r 50%|████▉     | 24904/50005 [6:54:40<6:27:07,  1.08it/s]\\r 50%|████▉     | 24905/50005 [6:54:41<6:26:50,  1.08it/s]\\r 50%|████▉     | 24906/50005 [6:54:42<6:27:00,  1.08it/s]\\r 50%|████▉     | 24907/50005 [6:54:43<6:26:49,  1.08it/s]\\r 50%|████▉     | 24908/50005 [6:54:44<6:27:07,  1.08it/s]\\r 50%|████▉     | 24909/50005 [6:54:45<6:27:13,  1.08it/s]\\r 50%|████▉     | 24910/50005 [6:54:46<6:27:16,  1.08it/s]\\r 50%|████▉     | 24911/50005 [6:54:47<6:27:19,  1.08it/s]\\r 50%|████▉     | 24912/50005 [6:54:48<6:26:56,  1.08it/s]\\r 50%|████▉     | 24913/50005 [6:54:49<6:26:57,  1.08it/s]\\r 50%|████▉     | 24914/50005 [6:54:50<6:29:29,  1.07it/s]\\r 50%|████▉     | 24915/50005 [6:54:51<6:31:45,  1.07it/s]\\r 50%|████▉     | 24916/50005 [6:54:52<6:40:00,  1.05it/s]\\r 50%|████▉     | 24917/50005 [6:54:53<6:40:07,  1.04it/s]\\r 50%|████▉     | 24918/50005 [6:54:54<8:17:58,  1.19s/it]\\r 50%|████▉     | 24919/50005 [6:54:55<7:49:26,  1.12s/it]\\r 50%|████▉     | 24920/50005 [6:54:56<7:26:55,  1.07s/it]\\r 50%|████▉     | 24921/50005 [6:54:57<7:09:00,  1.03s/it]\\r 50%|████▉     | 24922/50005 [6:54:58<6:56:19,  1.00it/s]\\r 50%|████▉     | 24923/50005 [6:54:59<6:48:37,  1.02it/s]\\r 50%|████▉     | 24924/50005 [6:55:00<6:43:52,  1.04it/s]\\r 50%|████▉     | 24925/50005 [6:55:01<6:39:30,  1.05it/s]\\r 50%|████▉     | 24926/50005 [6:55:02<6:36:03,  1.06it/s]\\r 50%|████▉     | 24927/50005 [6:55:03<6:54:25,  1.01it/s]\\r 50%|████▉     | 24928/50005 [6:55:04<6:53:43,  1.01it/s]\\r 50%|████▉     | 24929/50005 [6:55:05<6:46:45,  1.03it/s]\\r 50%|████▉     | 24930/50005 [6:55:06<6:40:43,  1.04it/s]\\r 50%|████▉     | 24931/50005 [6:55:07<6:36:40,  1.05it/s]\\r 50%|████▉     | 24932/50005 [6:55:08<6:33:50,  1.06it/s]\\r 50%|████▉     | 2493
+…[truncated 4238 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-26T23:01:46.588266+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-34685",
+  "command": "grep \"step=40000,\" ~/runs/occsafe_vla/cutoff_25k_s1_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-34685",
+    "command": "grep \"step=40000,\" ~/runs/occsafe_vla/cutoff_25k_s1_v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-26T23:01:46.588455+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r 80%|███████▉  | 39901/50005 [11:01:49<2:41:00,  1.05it/s]\\r 80%|███████▉  | 39902/50005 [11:01:50<2:40:05,  1.05it/s]\\r 80%|███████▉  | 39903/50005 [11:01:51<2:39:53,  1.05it/s]\\r 80%|███████▉  | 39904/50005 [11:01:52<2:44:23,  1.02it/s]\\r 80%|███████▉  | 39905/50005 [11:01:53<2:42:48,  1.03it/s]\\r 80%|███████▉  | 39906/50005 [11:01:54<2:40:44,  1.05it/s]\\r 80%|███████▉  | 39907/50005 [11:01:55<2:38:57,  1.06it/s]\\r 80%|███████▉  | 39908/50005 [11:01:56<2:37:46,  1.07it/s]\\r 80%|███████▉  | 39909/50005 [11:01:57<2:37:08,  1.07it/s]\\r 80%|███████▉  | 39910/50005 [11:01:57<2:36:37,  1.07it/s]\\r 80%|███████▉  | 39911/50005 [11:01:58<2:36:16,  1.08it/s]\\r 80%|███████▉  | 39912/50005 [11:01:59<2:36:14,  1.08it/s]\\r 80%|███████▉  | 39913/50005 [11:02:00<2:35:34,  1.08it/s]\\r 80%|██████���▉  | 39914/50005 [11:02:01<2:35:19,  1.08it/s]\\r 80%|███████▉  | 39915/50005 [11:02:02<2:34:58,  1.09it/s]\\r 80%|███████▉  | 39916/50005 [11:02:03<2:34:33,  1.09it/s]\\r 80%|███████▉  | 39917/50005 [11:02:04<2:34:37,  1.09it/s]\\r 80%|███████▉  | 39918/50005 [11:02:05<2:34:27,  1.09it/s]\\r 80%|███████▉  | 39919/50005 [11:02:06<2:34:26,  1.09it/s]\\r 80%|███████▉  | 39920/50005 [11:02:07<2:34:26,  1.09it/s]\\r 80%|███████▉  | 39921/50005 [11:02:08<2:34:19,  1.09it/s]\\r 80%|███████▉  | 39922/50005 [11:02:08<2:34:13,  1.09it/s]\\r 80%|███████▉  | 39923/50005 [11:02:09<2:34:09,  1.09it/s]\\r 80%|███████▉  | 39924/50005 [11:02:10<2:34:07,  1.09it/s]\\r 80%|███████▉  | 39925/50005 [11:02:11<2:45:31,  1.01it/s]\\r 80%|███████▉  | 39926/50005 [11:02:12<2:42:41,  1.03it/s]\\r 80%|███████▉  | 39927/50005 [11:02:13<2:40:23,  1.05it/s]\\r 80%|███████▉  | 39928/50005 [11:02:14<2:38:54,  1.06it/s]\\r 80%|███████▉  | 39929/50005 [11:02:15<2:37:41,  1.06it/s]\\r 80%|███████▉  | 39930/50005 [11:02:16<2:36:49,  1.07it/s]\\r 80%|███████▉  | 39931/50005 [11:02:17<2:36:12,  1.07it/s]\\r 80%|███████▉  | 39932/50005 [11:02:18<2:35:48, 
+…[truncated 4339 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-26T23:01:46.588638+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "cutoff_25k_s1_v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "cutoff_25k_s1_v2",
+    "field": "status",
+    "value": "DONE",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-26T23:01:46.588796+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.4567}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-26T23:01:46.588918+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "cutoff_25k_s1_v2",
+  "field": "conclusion",
+  "value": "success",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "cutoff_25k_s1_v2",
+    "field": "conclusion",
+    "value": "success",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-26T23:01:46.589092+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"cutoff_25k_s1_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:08:51.501Z\", \"updated_at\": \"2026-05-26T23:01:24.762Z\", \"hypothesis\": \"Cutoff@25K 2nd seed (seed 43, v2 code). OCC ON first 25K steps then OFF. Current dose-response 25K has only n=1 (CAR=0.688), weakest data point. 2nd seed to strengthen dose-response curve.\", \"parent\": \"cutoff_25k_s0\", \"server\": \"westd-34685\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"spec\": {\"data_path\": \"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\", \"data_count\": 25000, \"model_name\": \"openvla-7b\", \"seed\": 43, \"checkpoint_source\": \"pretrained:openvla-7b (fresh start)\", \"eval_data\": \"N/A (training run)\"}, \"pid\": \"453581\", \"log_path\": \"~/runs/occsafe_vla/cutoff_25k_s1_v2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MUJOCO_EGL_DEVICE_ID=3 WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --occ_loss_cutoff_step 25000 --occ_loss_cutoff_mode after --run_root_dir /root/autodl-tmp/checkpoints/cutoff_25k_s1_v2 --seed 43 --run_id_note cutoff_25k_s1_v2\\\"\", \"code_commit\": \"bdaee754bfccb386cfdd277a0410314daf32f374\", \"finished_at\": \"2026-05-26T22:57:27.872Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T22:57:34.837185+00:00\"}]}, \"conclusion\": \"succ
+…[truncated 72 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-26T23:01:46.589262+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "cutoff_25k_s1_v2",
+  "field": "metrics",
+  "value": "{'final_step': 50000, 'action_loss': 0.0439, 'occ_loss': 0.0121, 'depth_loss': 0, 'action_loss_at_cutoff_25k': 0.0698, 'occ_loss_at_cutoff_25k': 0.0088}",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "cutoff_25k_s1_v2",
+    "field": "metrics",
+    "value": "{'final_step': 50000, 'action_loss': 0.0439, 'occ_loss': 0.0121, 'depth_loss': 0, 'action_loss_at_cutoff_25k': 0.0698, 'occ_loss_at_cutoff_25k': 0.0088}",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-26T23:01:46.589431+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"cutoff_25k_s1_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:08:51.501Z\", \"updated_at\": \"2026-05-26T23:01:29.154Z\", \"hypothesis\": \"Cutoff@25K 2nd seed (seed 43, v2 code). OCC ON first 25K steps then OFF. Current dose-response 25K has only n=1 (CAR=0.688), weakest data point. 2nd seed to strengthen dose-response curve.\", \"parent\": \"cutoff_25k_s0\", \"server\": \"westd-34685\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"spec\": {\"data_path\": \"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\", \"data_count\": 25000, \"model_name\": \"openvla-7b\", \"seed\": 43, \"checkpoint_source\": \"pretrained:openvla-7b (fresh start)\", \"eval_data\": \"N/A (training run)\"}, \"pid\": \"453581\", \"log_path\": \"~/runs/occsafe_vla/cutoff_25k_s1_v2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MUJOCO_EGL_DEVICE_ID=3 WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --occ_loss_cutoff_step 25000 --occ_loss_cutoff_mode after --run_root_dir /root/autodl-tmp/checkpoints/cutoff_25k_s1_v2 --seed 43 --run_id_note cutoff_25k_s1_v2\\\"\", \"code_commit\": \"bdaee754bfccb386cfdd277a0410314daf32f374\", \"finished_at\": \"2026-05-26T22:57:27.872Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T22:57:34.837185+00:00\"}]}, \"conclusion\": \"succ
+…[truncated 251 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-26T23:01:46.589581+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "cutoff_25k_s1_v2",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/checkpoints/cutoff_25k_s1_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--cutoff_25k_s1_v2--50000_chkpt",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "cutoff_25k_s1_v2",
+    "field": "checkpoint_path",
+    "value": "/root/autodl-tmp/checkpoints/cutoff_25k_s1_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--cutoff_25k_s1_v2--50000_chkpt",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-26T23:01:46.589784+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"cutoff_25k_s1_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:08:51.501Z\", \"updated_at\": \"2026-05-26T23:01:31.872Z\", \"hypothesis\": \"Cutoff@25K 2nd seed (seed 43, v2 code). OCC ON first 25K steps then OFF. Current dose-response 25K has only n=1 (CAR=0.688), weakest data point. 2nd seed to strengthen dose-response curve.\", \"parent\": \"cutoff_25k_s0\", \"server\": \"westd-34685\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"spec\": {\"data_path\": \"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\", \"data_count\": 25000, \"model_name\": \"openvla-7b\", \"seed\": 43, \"checkpoint_source\": \"pretrained:openvla-7b (fresh start)\", \"eval_data\": \"N/A (training run)\"}, \"pid\": \"453581\", \"log_path\": \"~/runs/occsafe_vla/cutoff_25k_s1_v2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MUJOCO_EGL_DEVICE_ID=3 WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --occ_loss_cutoff_step 25000 --occ_loss_cutoff_mode after --run_root_dir /root/autodl-tmp/checkpoints/cutoff_25k_s1_v2 --seed 43 --run_id_note cutoff_25k_s1_v2\\\"\", \"code_commit\": \"bdaee754bfccb386cfdd277a0410314daf32f374\", \"finished_at\": \"2026-05-26T22:57:27.872Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T22:57:34.837185+00:00\"}]}, \"conclusion\": \"succ
+…[truncated 434 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-26T23:01:46.589966+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "cutoff_25k_s1_v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "cutoff_25k_s1_v2",
+    "field": "status",
+    "value": "DONE",
+    "project": "occsafe_vla"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-26T23:01:46.590155+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"cutoff_25k_s1_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T09:08:51.501Z\", \"updated_at\": \"2026-05-26T23:01:35.708Z\", \"hypothesis\": \"Cutoff@25K 2nd seed (seed 43, v2 code). OCC ON first 25K steps then OFF. Current dose-response 25K has only n=1 (CAR=0.688), weakest data point. 2nd seed to strengthen dose-response curve.\", \"parent\": \"cutoff_25k_s0\", \"server\": \"westd-34685\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"spec\": {\"data_path\": \"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\", \"data_count\": 25000, \"model_name\": \"openvla-7b\", \"seed\": 43, \"checkpoint_source\": \"pretrained:openvla-7b (fresh start)\", \"eval_data\": \"N/A (training run)\"}, \"pid\": \"453581\", \"log_path\": \"~/runs/occsafe_vla/cutoff_25k_s1_v2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MUJOCO_EGL_DEVICE_ID=3 WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --occ_loss_cutoff_step 25000 --occ_loss_cutoff_mode after --run_root_dir /root/autodl-tmp/checkpoints/cutoff_25k_s1_v2 --seed 43 --run_id_note cutoff_25k_s1_v2\\\"\", \"code_commit\": \"bdaee754bfccb386cfdd277a0410314daf32f374\", \"finished_at\": \"2026-05-26T22:57:27.872Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-26T22:57:34.837185+00:00\"}]}, \"conclusion\": \"success\"
+…[truncated 528 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-26T23:01:46.590343+00:00_
+
+Registry updated. Summary:
+
+## cutoff_25k_s1_v2 分析结果
+
+**Conclusion: success**
+
+### Final Metrics (step 50000)
+- action_loss: **0.0439**
+- occ_loss: **0.0121**
+- depth_loss: 0.0000
+
+### Checkpoint
+`/root/autodl-tmp/checkpoints/cutoff_25k_s1_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--cutoff_25k_s1_v2--50000_chkpt`
+
+(另有 30000 和 40000 中间 checkpoint)
+
+### 与 parent (cutoff_25k_s0) 对比
+
+| Metric | s0 (seed 42) | s1_v2 (seed 43) |
+|--------|-------------|-----------------|
+| action_loss | 0.0718 | **0.0439** |
+| occ_loss | 0.0106 | 0.0121 |
+
+- action_loss 显著低于 parent（0.0439 vs 0.0718），seed 间存在较大方差
+- occ_loss 接近 parent（0.0121 vs 0.0106），说明 cutoff 行为一致
+- OCC cutoff 行为符合预期：25K 时 occ_loss=0.0088（OCC ON 阶段最低点），cutoff 后 occ_loss 回升至 0.0140 (40K)，最终稳定在 0.0121 (50K)
+
+### W&B
+未检测到此实验的 W&B run（WANDB_MODE=disabled）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_cutoff_25k_s1_v2_20260526T225939"
+}
+```
+
+</details>
+
+---

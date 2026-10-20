@@ -1,0 +1,137 @@
+paper_key: "chen2026gstvla"
+title: "GST-VLA: Structured Gaussian Spatial Tokens for 3D Depth-Aware Vision-Language-Action Models"
+venue: "arXiv preprint 2026"
+full_text_available: true
+
+research:
+  baselines:
+    - "OpenVLA"
+    - "CogACT"
+    - "SpatialVLA"
+    - "π₀VLA (DepthVLA)"
+    - "GST-VLA† (GST tokens only, no DA-CoT)"
+    - "GST-VLA‡ (DA-CoT with plain depth tokens)"
+  metrics:
+    - {name: "Success Rate (%)", direction: "higher_better"}
+    - {name: "Task Progress (%)", direction: "higher_better"}
+    - {name: "3D Centroid Localization Error (cm)", direction: "lower_better"}
+    - {name: "Grasp Contact Point Error (cm)", direction: "lower_better"}
+    - {name: "SE(3) Waypoint Position Error (cm)", direction: "lower_better"}
+  datasets:
+    - {name: "SimplerEnv (BridgeData V2 visual-matching)", size: "4 task types"}
+    - {name: "LIBERO", size: "130 tasks across Spatial/Object/Goal/Long suites"}
+    - {name: "LIBERO-Pro", size: "6 categories: pick-and-place, stacking, drawer, insertion, thin object, cluttered"}
+    - {name: "ScanNet (depth pretraining)", size: "N/A"}
+    - {name: "Hypersim (depth pretraining)", size: "N/A"}
+    - {name: "ARKitScenes (depth pretraining)", size: "N/A"}
+  ablation_dimensions:
+    - "GST components: 3D Fourier PE vs 2D learned PE"
+    - "Spatial attention pooling vs average pooling"
+    - "Opacity gating (multi-scale α vs α≡1)"
+    - "Residual mean (μ vs μ≡0)"
+    - "Number of Gaussian primitives (N_g: 64/128/256)"
+    - "DA-CoT components: c₁ 3D grounding, c₂ grasp affordance, c₃ spatial relations, c₄ SE(3) motion plan"
+    - "Training stages: S1/S2/S3 necessity"
+    - "Action expert conditioning: dual cross-attention vs single"
+    - "MoE feedforward vs dense feedforward"
+    - "Gaussian tokens vs alternatives (depth scalars, surface normals, point cloud, isotropic)"
+  training_recipe:
+    optimizer: "Adam (implied, not explicitly stated)"
+    lr: "3e-4 (S1), 1e-4 (S2), 3e-5 (S3)"
+    batch_size: "256 (S1), 128 (S2), 64 (S3)"
+    hardware: "8× A100-80GB GPUs"
+    lora_config: "r=16, α=32"
+    loss_weights: "λ_CoT=0.5, λ_depth=0.1"
+    stage1_steps: "80K"
+    stage2_steps: "40K"
+    stage3_steps: "20K"
+    flow_matching_steps: "10 Euler steps"
+    action_chunk_length: "L_act=10, 7-DoF delta poses"
+    temporal_ensemble: "δt=0.01s"
+  method_family: "Gaussian Spatial Tokenizer + Depth-Aware Chain-of-Thought VLA"
+
+positioning:
+  core_claim: "将冻结的深度和语义特征转换为各向异性 3D 高斯基元（包含残差均值、对数协方差、多尺度不透明度），并通过 Depth-Aware Chain-of-Thought 在动作解码前生成结构化的 3D 中间推理（物体定位、抓取接触几何、度量距离、SE(3) 路径点），从而将 VLA 的空间推理从隐式像素级标量提升为显式几何结构化表示"
+  key_results: "LIBERO-Pro: 83.1% (+6.3pp vs SpatialVLA, +18.8pp vs π₀); LIBERO: 96.4% (+2.0pp vs DepthVLA); SimplerEnv: 80.2% (+5.4pp vs SpatialVLA); 推理 6.2Hz on A100 (90ms/frame)"
+  limitations:
+    - "在高反光表面（金属、玻璃）和严重遮挡场景下性能退化，因深度估计不可靠导致 back-projected anchors 不准确"
+    - "不透明度机制虽能抑制不可靠区域（α<0.05），但当目标物体本身反光时，抑制反而移除了必要的基元"
+    - "c₁ centroid error > 5cm 时任务成功率 < 30%，表明对深度估计质量有强依赖"
+    - "论文自称实验仍在进行中（preliminary results）"
+    - "相比 DepthVLA (8.1Hz) 和 OpenVLA (9.4Hz) 推理速度更慢（6.2Hz），DA-CoT 生成贡献 72ms 额外开销"
+    - "无真实世界实验验证"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "标准 VLA 将观测编码为无几何结构的 2D patch tokens；即便 DepthVLA 加入深度，其像素均匀的标量值既不编码表面朝向也不提供几何置信度，且缺乏动作解码前的中间空间验证"
+  tension: "DepthVLA 式的深度集成只是标量增强——没有表面朝向信息、没有几何置信度、没有中间空间验证步骤，无法充分利用 3D 几何的结构化特性"
+  key_insight: "用各向异性 3D 高斯基元（7 维参数化：残差均值+对数协方差+不透明度）替代标量深度，同时引入结构化的 DA-CoT 在动作预测前进行显式的 3D 空间推理链（定位→接触几何→度量距离→运动规划），两个模块独立有效且协同增强"
+  argument_chain: "VLA 缺乏 3D 结构 → DepthVLA 仅提供标量深度不够 → 需要结构化 3D 表示（GST：高斯基元编码朝向+置信度） → 需要中间空间验证（DA-CoT：4 步推理链） → 三阶段训练对齐几何和语义 → LIBERO-Pro/LIBERO/SimplerEnv 全面超越 → 消融验证 GST 和 DA-CoT 独立且协同有效"
+  contribution_framing: "三条贡献：(1) GST 架构（可训练模块，4 个操作将冻结特征转换为高斯 tokens），(2) DA-CoT（4 步结构化 3D 推理），(3) 数据高效验证（模拟环境全面超越 SOTA）。措辞强调 structured、trainable module、explicit 3D geometric targets、data efficient"
+  intro_structure: "4 段（浓缩风格）：P1 标准 VLA 的 2D 局限+DepthVLA 的标量深度局限 → P2 GST 设计（高斯基元参数化） → P3 DA-CoT 设计（4 步推理链）+ 动作专家设计 → P4 训练协议和实验结果摘要"
+  notable_technique: "直接在 intro 中对标 DepthVLA 的具体不足（pixel-uniform scalar、无 surface orientation、无 geometric confidence、无中间验证），将自己定位为 DepthVLA 的结构化升级；消融设计极其细致（7 张消融表），用多维度交叉消融建立方法论可信度"
+
+figures:
+  figure_count: 2
+  figure1:
+    type: "method_overview"
+    description: "GST-VLA 完整框架图。左侧：两个冻结编码器产出语义特征和度量深度。中间：GST 通过四步操作（back-projection → 参数估计 → 3D Fourier PE → spatial attention pooling）将特征转换为 128 个各向异性高斯 tokens。右上：cross-attention projector 注入 VLM，DA-CoT 子层在生成推理链时访问原始 256 基元高斯场。右下：动作专家接收 VLM hidden states 和 DA-CoT action tokens 的双重条件化"
+    narrative_role: "一图展示整个流水线，让读者理解 GST→VLM→DA-CoT→Action Expert 的完整信息流"
+    design_elements:
+      - "冻结/可训练模块用不同视觉标记区分"
+      - "GST 四步操作逐步展开"
+      - "DA-CoT 的四个思维步骤有标注"
+      - "dual cross-attention 在动作专家中明确标注"
+    visual_style: "密集的技术架构图，多个子模块用方框+连线组织，数学符号嵌入图中辅助理解"
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "Figure 2（方法架构）为唯一核心图。论文以表格为主要结果呈现方式（7 张表），没有结果/消融可视化图。这反映了论文的技术密度优先策略——将有限的版面留给方法细节和消融分析"
+
+tables:
+  table_count: 7
+  main_result_table:
+    table_id: "Table I + Table II + Table III"
+    row_axis: "methods"
+    col_axis: "tasks (grouped by benchmark)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "单次运行结果"
+    num_baselines: 5
+    design_note: "三张主结果表分别对应三个基准（LIBERO-Pro/LIBERO/SimplerEnv）。LIBERO-Pro 表是最重要的（6 个精细任务类别展示方法在不同空间推理难度下的表现）。同时引入两个消融变体（GST-VLA†/GST-VLA‡）作为 baseline 行，在主结果表中就开始论证组件贡献"
+  ablation_tables:
+    - table_id: "Table IV"
+      what_varied:
+        - "3D Fourier PE vs 2D PE"
+        - "attention pooling vs average pooling"
+        - "opacity gating"
+        - "residual mean"
+        - "N_g 数量 (64/128/256)"
+      variation_style: "delta_from_base"
+      design_note: "GST 组件级消融，用 Δ 列直观展示每个组件贡献。紧凑的单列设计（Configuration + Avg + Δ）"
+    - table_id: "Table V"
+      what_varied:
+        - "DA-CoT overall (有/无)"
+        - "c₁ 3D object grounding"
+        - "c₂ grasp affordance"
+        - "c₃ metric spatial relations"
+        - "c₄ SE(3) motion plan"
+      variation_style: "delta_from_base"
+      design_note: "DA-CoT 组件级消融，与 Table IV 平行设计。四个思维步骤逐一去除，展示各自独立贡献"
+    - table_id: "Table VI"
+      what_varied:
+        - "训练阶段 (S1/S2/S3)"
+        - "action tokens conditioning"
+        - "MoE vs dense feedforward"
+      variation_style: "delta_from_base"
+      design_note: "训练和条件化消融，覆盖训练协议和架构选择。独立成表避免与组件消融混淆"
+    - table_id: "Table VII"
+      what_varied:
+        - "3D 表示类型：dense depth scalars / surface normals / point cloud / isotropic Gaussian / full Gaussian"
+      variation_style: "full_numbers"
+      design_note: "横向对比不同 3D 表示方案（含 DepthVLA 风格的 dense depth scalars），是论文最有说服力的消融——证明高斯表示的结构化优势不仅仅是参数量增加。按性能排序"
+  supplementary_tables:
+    in_appendix: false
+    content: "无附录表"
+    reason: "论文版面充裕（7 张表全部在主文中），消融设计已覆盖所有关键维度"

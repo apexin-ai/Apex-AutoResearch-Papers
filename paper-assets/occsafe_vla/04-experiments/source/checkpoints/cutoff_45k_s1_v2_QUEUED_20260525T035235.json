@@ -1,0 +1,16 @@
+{
+  "exp_id": "cutoff_45k_s1_v2",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T03:51:32.789Z",
+    "updated_at": "2026-05-25T03:52:35.198Z",
+    "hypothesis": "Seed 43 replication of cutoff_45k (gradient flow cutoff at 45K steps, from scratch). Previous cutoff_45k_s1 was invalid due to resume batch_idx bug — cutoff never triggered. This run starts from pretrained weights with no resume.",
+    "parent": "cutoff_45k_s0"
+  },
+  "timestamp": "2026-05-25T03:52:35.429917+00:00",
+  "trigger": "update_registry"
+}
