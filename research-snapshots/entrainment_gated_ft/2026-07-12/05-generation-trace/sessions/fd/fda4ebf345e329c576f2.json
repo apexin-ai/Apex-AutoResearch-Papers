@@ -1,0 +1,2123 @@
+{
+  "schema_version": "1.0",
+  "id": "fda4ebf345e329c576f2",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to check two specific papers to see if they compete with a paper about demo-conditioned Bayesian preference elici",
+  "task_key": "agent-a3b38a82d53ef12ed",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a3b38a82d53ef12ed.jsonl",
+    "occurrence": 1,
+    "bytes": 95370,
+    "sha256": "50116b07813d7d99a0928df86aa4d4c7380002c4070063494c6dcec2f860d2b5"
+  },
+  "statistics": {
+    "messages": 44,
+    "user_turns": 1,
+    "tool_calls": 16,
+    "roles": {
+      "user": 1,
+      "assistant": 11,
+      "tool_call": 16,
+      "tool_result": 16
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T08:00:46.907Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to check two specific papers to see if they compete with a paper about demo-conditioned Bayesian preference elicitation for LLM personalization (FABEL). FABEL combines: (1) user demonstration-conditioned Bayesian warm priors, (2) EIG-based binary hypothesis confirmation, (3) explicit disconfirmation probes, for LLM response-style personalization.\n\n1. Look up \"BAL-PM arXiv 2406.10023 NeurIPS 2024 deep Bayesian active learning preference modeling LLM\" and read the abstract carefully. Does it:\n   - Focus on user-facing interactive preference discovery? OR\n   - Focus on efficient annotation/data collection for reward model training?\n   Report the paper's title, abstract, and key contribution accurately.\n\n2. Look up \"MAPLE arXiv 2412.07207 Bayesian active learning LLM preference 2024\" and read the abstract. What problem does it solve and does it overlap with user-facing LLM personalization via hypothesis confirmation?\n\n3. Also check \"Bayesian preference learning warm start demonstration LLM 2025 2026\" for any other papers combining warm-start Bayesian priors with user demonstrations for preference elicitation.\n\n4. Fetch https://arxiv.org/abs/2406.10023 to read the abstract directly.\n\nReport what you find - specifically whether either paper applies to user-facing personalization (competing with FABEL) vs. RLHF/annotation efficiency (not competing)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "3326bc49-bb7f-42d2-bc00-b73c1ab5eb55",
+            "agentId": "a3b38a82d53ef12ed",
+            "type": "user",
+            "uuid": "a93ac825-c35a-4ec5-9856-cc70f2df83eb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T08:00:48.048Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you check these papers systematically. Let me start by fetching the arXiv papers directly and searching for the relevant information."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a93ac825-c35a-4ec5-9856-cc70f2df83eb",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY4hw2AEpV5o8F8s3zY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4a5979a2-0ba7-45cf-ad0f-028f3171c4cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KcMcbnT2p3xaYi8UY2gQWr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 775,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 775,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T08:00:48.502Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GVZtvaJeBZjfAE3UUWK2Tt",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2406.10023",
+                "prompt": "What is the title and abstract of this paper? What is the main contribution and problem it addresses?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a5979a2-0ba7-45cf-ad0f-028f3171c4cf",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY4hw2AEpV5o8F8s3zY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9005a67b-4d4e-4ac3-890a-58e1e297be70",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KcMcbnT2p3xaYi8UY2gQWr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 775,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 775,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T08:00:48.685Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XpS7kR8obHEK6LNcVCAMWD",
+              "name": "WebSearch",
+              "input": {
+                "query": "BAL-PM arXiv 2406.10023 NeurIPS 2024 Bayesian active learning preference modeling"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9005a67b-4d4e-4ac3-890a-58e1e297be70",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY4hw2AEpV5o8F8s3zY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "10761f34-9863-4b75-ac76-c30acc627d5a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KcMcbnT2p3xaYi8UY2gQWr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 775,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 775,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T08:00:48.957Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TM8w7uTygWwunG4tpFhuWr",
+              "name": "WebSearch",
+              "input": {
+                "query": "MAPLE arXiv 2412.07207 Bayesian active learning LLM preference"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "10761f34-9863-4b75-ac76-c30acc627d5a",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY4hw2AEpV5o8F8s3zY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "40c88b57-fabd-4d61-818c-ac54c51fe203",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KcMcbnT2p3xaYi8UY2gQWr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 775,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 775,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T08:00:49.014Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X8wpzzqctzRpbLDUxyUtXE",
+              "name": "WebSearch",
+              "input": {
+                "query": "Bayesian preference learning warm start demonstration LLM 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "40c88b57-fabd-4d61-818c-ac54c51fe203",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY4hw2AEpV5o8F8s3zY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "009b9518-6694-442c-80eb-453cb9a56687",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KcMcbnT2p3xaYi8UY2gQWr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 775,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 775,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T08:00:52.760Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GVZtvaJeBZjfAE3UUWK2Tt",
+              "type": "tool_result",
+              "content": "# Paper Summary\n\n**Title:** \"Deep Bayesian Active Learning for Preference Modeling in Large Language Models\"\n\n**Abstract Overview:**\nThe paper addresses the challenge of reducing annotation costs for LLM preference modeling. According to the abstract, \"selecting the most informative points for acquiring human feedback may considerably reduce the cost of preference labeling.\"\n\n**Main Contribution:**\nThe authors propose BAL-PM (Bayesian Active Learner for Preference Modeling), a novel acquisition strategy that improves upon previous Bayesian active learning approaches for this domain.\n\n**Problem Addressed:**\nThe core issue is that naive uncertainty estimation in preference modeling leads to acquiring redundant samples. The paper identifies this as why \"previous attempts to employ it for Preference Modeling did not meet such expectations.\"\n\n**Key Innovation:**\nRather than relying solely on uncertainty, BAL-PM \"not only targets points of high epistemic uncertainty according to the preference model but also seeks to maximize the entropy of the acquired prompt distribution.\"\n\n**Results:**\nExperimental results demonstrate substantial practical benefits—the method \"requires 33% to 68% fewer preference labels in two popular human preference datasets\" compared to existing approaches."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9005a67b-4d4e-4ac3-890a-58e1e297be70",
+            "isSidechain": true,
+            "promptId": "3326bc49-bb7f-42d2-bc00-b73c1ab5eb55",
+            "agentId": "a3b38a82d53ef12ed",
+            "type": "user",
+            "uuid": "08e1f417-881f-4a71-9675-146239791f52",
+            "sourceToolAssistantUUID": "9005a67b-4d4e-4ac3-890a-58e1e297be70",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T08:00:55.420Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TM8w7uTygWwunG4tpFhuWr",
+              "type": "tool_result",
+              "content": "Web search results for query: \"MAPLE arXiv 2412.07207 Bayesian active learning LLM preference\"\n\nLinks: [{\"title\":\"[2412.07207] MAPLE: A Framework for Active Preference Learning Guided by Large Language Models\",\"url\":\"https://arxiv.org/abs/2412.07207\"},{\"title\":\"MAPLE: A Framework for Active Preference Learning Guided by Large Language Models\",\"url\":\"https://arxiv.org/html/2412.07207\"},{\"title\":\"MAPLE: A Framework for Active Preference Learning Guided by Large Language Models - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/arXiv:2412.07207\"},{\"title\":\"Paper page - MAPLE: A Framework for Active Preference Learning Guided by Large Language Models\",\"url\":\"https://huggingface.co/papers/2412.07207\"},{\"title\":\"Deep Bayesian Active Learning for Preference Modeling in Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=TADTT9ughN&noteId=KUq5hng8Z3\"},{\"title\":\"Computer Science Dec 2024\",\"url\":\"https://www.arxiv.org/list/cs/2024-12?skip=3325&show=250\"},{\"title\":\"Deep Bayesian Active Learning for Preference Modeling in Large Language Models | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/deep-bayesian-active-learning-preference-modeling-large\"},{\"title\":\"Deep Bayesian Active Learning for Preference Modeling in Large Language Models\",\"url\":\"https://arxiv.org/html/2406.10023v1\"},{\"title\":\"From Selection to Generation: A Survey of LLM-based Active Learning\",\"url\":\"https://arxiv.org/html/2502.11767v1\"},{\"title\":\"Deep Bayesian Active Learning for Preference Modeling in Large Language Models\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/d5e256c988bdee59a0f4d7a9bc1dd6d9-Paper-Conference.pdf\"}]\n\nBased on the search results, here's what I found about MAPLE and arXiv 2412.07207:\n\n## MAPLE: A Framework for Active Preference Learning Guided by Large Language Models\n\nMAPLE is a framework for large language model-guided Bayesian active preference learning. MAPLE leverages LLMs to model the distribution over preference functions, conditioning it on both natural language feedback and conventional preference learning feedback, such as pairwise trajectory rankings.\n\n### Key Features\n\nMAPLE applies an active learning approach to systematically reduce uncertainty about the correct preference function. MAPLE also employs active learning to systematically reduce uncertainty in this distribution and incorporates a language-conditioned active query selection mechanism to identify informative and easy-to-answer queries, thus reducing human burden.\n\n### Problem It Addresses\n\nExisting methods often suffer from high computational burdens, taxing human supervision, and lack of interpretability. MAPLE aims to address these issues by combining LLM-guided preference learning with Bayesian active learning principles.\n\n### Paper Details\n\nThe paper was submitted to arXiv on December 10, 2024, with a revised version on December 20, 2024, and is accepted to the AAAI 2025 AI Alignment Track. The authors are Saaduddin Mahmud, Mason Nakamura, and Shlomo Zilberstein.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "40c88b57-fabd-4d61-818c-ac54c51fe203",
+            "isSidechain": true,
+            "promptId": "3326bc49-bb7f-42d2-bc00-b73c1ab5eb55",
+            "agentId": "a3b38a82d53ef12ed",
+            "type": "user",
+            "uuid": "a5f857a1-3819-46ad-8d14-d68861d3c15b",
+            "sourceToolAssistantUUID": "40c88b57-fabd-4d61-818c-ac54c51fe203",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T08:00:56.858Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X8wpzzqctzRpbLDUxyUtXE",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Bayesian preference learning warm start demonstration LLM 2025 2026\"\n\nLinks: [{\"title\":\"Unleashing LLMs in Bayesian Optimization: Preference-Guided Framework for Scientific Discovery | OpenReview\",\"url\":\"https://openreview.net/forum?id=LktUOZayG9\"},{\"title\":\"Learning to Select In-Context Demonstration Preferred by ...\",\"url\":\"https://aclanthology.org/2025.findings-acl.592.pdf\"},{\"title\":\"Deep Bayesian Active Learning for Preference Modeling in Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=TADTT9ughN&noteId=KUq5hng8Z3\"},{\"title\":\"Learning to Select In-Context Demonstration Preferred by ...\",\"url\":\"https://arxiv.org/pdf/2505.19966\"},{\"title\":\"[2503.17523] Bayesian Teaching Enables Probabilistic Reasoning in Large Language Models\",\"url\":\"https://arxiv.org/abs/2503.17523\"},{\"title\":\"Deep Bayesian Active Learning for Preference Modeling in Large Language Models\",\"url\":\"https://arxiv.org/html/2406.10023v1\"},{\"title\":\"[2406.10023] Deep Bayesian Active Learning for Preference Modeling in Large Language Models\",\"url\":\"https://arxiv.org/abs/2406.10023\"},{\"title\":\"[2403.05534] Bayesian Preference Elicitation with Language Models\",\"url\":\"https://arxiv.org/abs/2403.05534\"},{\"title\":\"Deep Bayesian Active Learning for Preference Modeling in Large Language Models\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/d5e256c988bdee59a0f4d7a9bc1dd6d9-Paper-Conference.pdf\"},{\"title\":\"Less is More: Improving LLM Alignment via Preference Data Selection\",\"url\":\"https://arxiv.org/html/2502.14560v3\"}]\n\nBased on the search results, here are the key findings related to Bayesian preference learning, warm start, and LLMs from recent research in 2025-2026:\n\n## LLM-Guided Bayesian Optimization\n\nOne significant development is LLM-Guided Bayesian Optimization (LGBO), described as the first LLM preference-guided BO framework that continuously integrates the semantic reasoning of large language models into the optimization loop. Unlike prior works that use LLMs only for warm-start initialization or candidate generation, LGBO introduces a region-lifted preference mechanism that embeds LLM-driven preferences into every iteration.\n\nIn a wet-lab optimization of Fe–Cr battery electrolytes, LGBO reached 90% of the best observed value within 6 iterations, whereas standard BO and existing LLM-augmented baselines require more than 10 iterations.\n\n## Bayesian Active Learning for Preference Modeling\n\nSelecting the most informative points for acquiring human feedback may considerably reduce the cost of preference labeling. Bayesian Active Learning provides a principled framework for addressing this challenge. The Bayesian Active Learner for Preference Modeling (BAL-PM) is a novel stochastic acquisition policy that targets points of high epistemic uncertainty and seeks to maximize the entropy of the acquired prompt distribution. Notably, BAL-PM requires 33% to 68% fewer preference labels in two popular human preference datasets.\n\n## Bayesian Preference Data Selection\n\nRecent work proposes Bayesian Aggregation for Preference data Selection (BeeS), a strict aggregation strategy that deprioritizes a preference pair if it exhibits a low reward margin from any single reward source. By using just 10% of the Ultrafeedback dataset, this approach achieves 3% to 8% improvements across various Llama, Mistral, and Qwen models on the AlpacaEval2 benchmark.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "009b9518-6694-442c-80eb-453cb9a56687",
+            "isSidechain": true,
+            "promptId": "3326bc49-bb7f-42d2-bc00-b73c1ab5eb55",
+            "agentId": "a3b38a82d53ef12ed",
+            "type": "user",
+            "uuid": "1e79285e-49de-44b8-b087-85138c811bb9",
+            "sourceToolAssistantUUID": "009b9518-6694-442c-80eb-453cb9a56687",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T08:00:59.277Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XpS7kR8obHEK6LNcVCAMWD",
+              "type": "tool_result",
+              "content": "Web search results for query: \"BAL-PM arXiv 2406.10023 NeurIPS 2024 Bayesian active learning preference modeling\"\n\nLinks: [{\"title\":\"[2406.10023] Deep Bayesian Active Learning for Preference Modeling in Large Language Models\",\"url\":\"https://arxiv.org/abs/2406.10023\"},{\"title\":\"Deep Bayesian Active Learning for Preference Modeling in Large Language Models\",\"url\":\"https://arxiv.org/html/2406.10023\"},{\"title\":\"GitHub - luckeciano/BAL-PM: Deep Bayesian Active Learning for Preference Modeling in Large Language Models (NeurIPS 2024)\",\"url\":\"https://github.com/luckeciano/bal-pm\"},{\"title\":\"Formatting Instructions For NeurIPS 2024\",\"url\":\"https://arxiv.org/html/2406.03176v1\"},{\"title\":\"Emergence of Hidden Capabilities: Exploring Learning Dynamics in Concept Space\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/99e6bcf460ea36818cf236da29311e73-Paper-Conference.pdf\"},{\"title\":\"Statistics Jun 2024\",\"url\":\"http://arxiv.org/list/stat/2024-06?skip=855&show=5\"},{\"title\":\"NeurIPS 2024 ML4CFD Competition: Results and Retrospective Analysis\",\"url\":\"https://arxiv.org/html/2506.08516v1\"},{\"title\":\"Are we making progress in unlearning? Findings from the first NeurIPS unlearning competition\",\"url\":\"https://arxiv.org/html/2406.09073v1\"},{\"title\":\"NeurIPS Proceedings\",\"url\":\"https://papers.nips.cc/\"},{\"title\":\"NeurIPS 2024 Papers\",\"url\":\"https://nips.cc/virtual/2024/papers.html\"}]\n\nBased on the search results, here's what I found about BAL-PM (arXiv 2406.10023):\n\n## Overview\nBAL-PM is from arXiv paper 2406.10023 titled \"Deep Bayesian Active Learning for Preference Modeling in Large Language Models\", and it was accepted to NeurIPS 2024.\n\n## Key Contribution\nBAL-PM (Bayesian Active Learner for Preference Modeling) is a novel stochastic acquisition policy that targets points of high epistemic uncertainty according to the preference model while also seeking to maximize the entropy of the acquired prompt distribution in the feature space spanned by the employed LLM.\n\n## Problem Being Addressed\nThe work identifies that naive epistemic uncertainty estimation leads to the acquisition of redundant samples.\n\n## Results\nBAL-PM requires 33% to 68% fewer preference labels in two popular human preference datasets and exceeds previous stochastic Bayesian acquisition policies.\n\n## Authors\nThe paper is authored by Luckeciano C. Melo, Panagiotis Tigas, Alessandro Abate, and Yarin Gal.\n\nThe paper addresses an important problem in training language models using human feedback by making the preference modeling process more sample-efficient through an improved active learning approach.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "10761f34-9863-4b75-ac76-c30acc627d5a",
+            "isSidechain": true,
+            "promptId": "3326bc49-bb7f-42d2-bc00-b73c1ab5eb55",
+            "agentId": "a3b38a82d53ef12ed",
+            "type": "user",
+            "uuid": "9e2c5512-442a-42cf-9248-3100b1b7551a",
+            "sourceToolAssistantUUID": "10761f34-9863-4b75-ac76-c30acc627d5a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T08:01:00.931Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me fetch the MAPLE paper directly to get its abstract:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e2c5512-442a-42cf-9248-3100b1b7551a",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY5cnV1q5rEtCrhZ9tB",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "864a0a2e-8bd9-466e-b8b3-fad8fef9e86e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VYdGo2pg4aHb9Fy9Y8Arot",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1821,
+                "cache_creation_input_tokens": 2158,
+                "cache_read_input_tokens": 16930,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2158,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T08:01:01.846Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KFVLC34UDCKd3UXsumfKZo",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2412.07207",
+                "prompt": "What is the title and abstract of this paper? What is the main problem it solves and does it focus on user-facing interactive preference learning or reward model training efficiency?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "864a0a2e-8bd9-466e-b8b3-fad8fef9e86e",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY5cnV1q5rEtCrhZ9tB",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "09b2bdd6-db66-49c6-8e98-12ab946b92f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VYdGo2pg4aHb9Fy9Y8Arot",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1821,
+                "cache_creation_input_tokens": 2158,
+                "cache_read_input_tokens": 16930,
+                "output_tokens": 132,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2158
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1821,
+                    "output_tokens": 132,
+                    "cache_read_input_tokens": 16930,
+                    "cache_creation_input_tokens": 2158,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2158,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T08:01:06.400Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KFVLC34UDCKd3UXsumfKZo",
+              "type": "tool_result",
+              "content": "# MAPLE: Active Preference Learning with LLMs\n\n**Title:** \"MAPLE: A Framework for Active Preference Learning Guided by Large Language Models\"\n\n**Abstract Summary:**\nThe paper introduces a framework addressing computational burden, human supervision demands, and interpretability issues in preference learning. The system leverages LLMs to model preference function distributions conditioned on natural language feedback and pairwise trajectory rankings, using active learning to reduce uncertainty while selecting informative, answerable queries.\n\n**Main Problem:**\nThe framework tackles three core challenges: high computational costs in existing methods, excessive demands on human annotators, and lack of transparency in how preferences are learned.\n\n**Focus Area:**\nMAPLE primarily emphasizes **user-facing interactive preference learning**. The design explicitly incorporates a \"language-conditioned active query selection mechanism to identify informative and easy-to-answer queries, thus reducing human burden.\" This user-centric approach—making queries more interpretable and answerable for humans—distinguishes it from purely backend reward model optimization, though the framework does improve overall preference inference quality across benchmarks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "09b2bdd6-db66-49c6-8e98-12ab946b92f3",
+            "isSidechain": true,
+            "promptId": "3326bc49-bb7f-42d2-bc00-b73c1ab5eb55",
+            "agentId": "a3b38a82d53ef12ed",
+            "type": "user",
+            "uuid": "e373ff3b-7d3b-4c20-b6a3-2585c9a896c8",
+            "sourceToolAssistantUUID": "09b2bdd6-db66-49c6-8e98-12ab946b92f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-10T08:01:07.793Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for papers specifically about demonstration-conditioned Bayesian preference elicitation to see if there are others combining warm-start priors with demonstrations:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e373ff3b-7d3b-4c20-b6a3-2585c9a896c8",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY69DpJWRRUMVJNVGWo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bb47f11c-ec6b-4283-8da4-60762c1adef0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FfgMyqfvHrYuTidBLXFixz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2189,
+                "cache_read_input_tokens": 19088,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2189,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-10T08:01:08.178Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DUygSotkM3GWSHDhrAif2c",
+              "name": "WebSearch",
+              "input": {
+                "query": "demonstration-conditioned Bayesian preference elicitation LLM personalization 2024 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bb47f11c-ec6b-4283-8da4-60762c1adef0",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY69DpJWRRUMVJNVGWo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "63b8fd6b-e6b0-41c5-a68e-7cf1544e7c3d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FfgMyqfvHrYuTidBLXFixz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2189,
+                "cache_read_input_tokens": 19088,
+                "output_tokens": 155,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2189
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 155,
+                    "cache_read_input_tokens": 19088,
+                    "cache_creation_input_tokens": 2189,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2189,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-10T08:01:08.202Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FMVMYZ1EGxh6AASiKpjymy",
+              "name": "WebSearch",
+              "input": {
+                "query": "Bayesian warm prior user demonstrations LLM preference learning confirmation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "63b8fd6b-e6b0-41c5-a68e-7cf1544e7c3d",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY69DpJWRRUMVJNVGWo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "011baaf1-3a4d-4f31-baaa-114240e9cd55",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FfgMyqfvHrYuTidBLXFixz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2189,
+                "cache_read_input_tokens": 19088,
+                "output_tokens": 155,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2189
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 155,
+                    "cache_read_input_tokens": 19088,
+                    "cache_creation_input_tokens": 2189,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2189,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-10T08:01:15.841Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DUygSotkM3GWSHDhrAif2c",
+              "type": "tool_result",
+              "content": "Web search results for query: \"demonstration-conditioned Bayesian preference elicitation LLM personalization 2024 2025\"\n\nLinks: [{\"title\":\"Bayesian Preference Elicitation with Language Models\",\"url\":\"https://arxiv.org/html/2403.05534v1\"},{\"title\":\"LLM-Prior: A Framework for Knowledge-Driven Prior Elicitation and Aggregation\",\"url\":\"https://arxiv.org/html/2508.03766v1\"},{\"title\":\"Bayesian Optimization with LLM-Based Acquisition Functions for Natural Language Preference Elicitation\",\"url\":\"https://arxiv.org/html/2405.00981\"},{\"title\":\"[2405.00981] Bayesian Optimization with LLM-Based Acquisition Functions for Natural Language Preference Elicitation\",\"url\":\"https://arxiv.org/abs/2405.00981\"},{\"title\":\"Bayesian Optimization & LLMs for Preference Elicitation\",\"url\":\"https://www.emergentmind.com/papers/2405.00981\"},{\"title\":\"Bayesian Optimization for Preference Elicitation with Large Language Models - MarkTechPost\",\"url\":\"https://www.marktechpost.com/2024/05/07/bayesian-optimization-for-preference-elicitation-with-large-language-models/\"},{\"title\":\"Bayesian Optimization with LLM-Based Acquisition Functions for Natural Language Preference Elicitation | Proceedings of the 18th ACM Conference on Recommender Systems\",\"url\":\"https://dl.acm.org/doi/10.1145/3640457.3688142\"},{\"title\":\"Bayesian Optimization with LLM-Based Acquisition Functions for Natural Language Preference Elicitation | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/bayesian-optimization-llm-based-acquisition-functions-natural\"},{\"title\":\"Bayesian Optimization with LLM-Based Acquisition Functions for\",\"url\":\"https://arxiv.org/pdf/2405.00981\"},{\"title\":\"Under review as a conference paper at ICLR 2024 BAYESIAN PREFERENCE ELICITATION\",\"url\":\"https://openreview.net/pdf?id=o1RqSVIf3c\"}]\n\nI found several highly relevant research papers on Bayesian preference elicitation with LLMs. Here's a summary of the key results:\n\n## Main Research Works\n\n**1. Bayesian Preference Elicitation with Language Models (March 2024)**\n\nThis work presented OPEN, a domain-agnostic framework for combining Bayesian Optimal Experimental Design with LMs–using BOED to guide the choice of informative questions, and the LM to extract environment-relevant features and translate abstract feature queries into real natural language questions.\n\n**2. Bayesian Optimization with LLM-Based Acquisition Functions (May 2024)**\n\nThe PEBOL framework uses Natural Language Inference (NLI) between user preference utterances and NL item descriptions to maintain Bayesian preference beliefs, and Bayesian Optimization strategies such as Thompson Sampling (TS) and Upper Confidence Bound (UCB) to steer LLM query generation. PEBOL achieved MAP@10 improvements of 131% on Yelp, 88% on MovieLens, and 55% on Recipe-MPR over monolithic LLM after just 10 turns.\n\n**3. LLM-Prior: Knowledge-Driven Prior Elicitation (August 2025)**\n\nThis framework automates and scales the elicitation and aggregation of prior distributions using Large Language Models, introducing a principled operator that translates rich, unstructured contexts such as natural language descriptions, data or figures into valid, tractable probability distributions.\n\nAll three papers address the intersection of Bayesian methods, preference learning, and LLM personalization, with publications spanning 2024-2025.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "63b8fd6b-e6b0-41c5-a68e-7cf1544e7c3d",
+            "isSidechain": true,
+            "promptId": "3326bc49-bb7f-42d2-bc00-b73c1ab5eb55",
+            "agentId": "a3b38a82d53ef12ed",
+            "type": "user",
+            "uuid": "e0c3d63b-d436-4c58-8c74-7ed48d54749c",
+            "sourceToolAssistantUUID": "63b8fd6b-e6b0-41c5-a68e-7cf1544e7c3d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-10T08:01:19.143Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FMVMYZ1EGxh6AASiKpjymy",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Bayesian warm prior user demonstrations LLM preference learning confirmation\"\n\nLinks: [{\"title\":\"Bayesian Preference Learning for Test-Time Steerable Reward Models\",\"url\":\"https://arxiv.org/pdf/2602.08819\"},{\"title\":\"APRICOT: Active Preference Learning and Constraint-Aware Task Planning with LLMs\",\"url\":\"https://portal-cornell.github.io/apricot/\"},{\"title\":\"Teaching LLMs to reason like Bayesians\",\"url\":\"https://research.google/blog/teaching-llms-to-reason-like-bayesians/\"},{\"title\":\"Bayesian Preference Elicitation with Language Models\",\"url\":\"https://arxiv.org/html/2403.05534v1\"},{\"title\":\"Deep Bayesian Active Learning for Preference Modeling in Large Language Models\",\"url\":\"https://arxiv.org/html/2406.10023v1\"},{\"title\":\"QuickLAP: Quick Language–Action Preference Learning for Autonomous Driving Agents\",\"url\":\"https://arxiv.org/html/2511.17855\"},{\"title\":\"Surprise Calibration for Better In-Context Learning\",\"url\":\"https://aclanthology.org/2025.emnlp-main.1175.pdf\"},{\"title\":\"AdaptFuse: Training-Free Sequential Preference Learning via Externalized Bayesian Inference\",\"url\":\"https://arxiv.org/html/2604.03925v1\"},{\"title\":\"LLM-Prior: A Framework for Knowledge-Driven Prior Elicitation and Aggregation\",\"url\":\"https://arxiv.org/html/2508.03766v1\"},{\"title\":\"Bayesian Optimization with LLM-Based Acquisition Functions for Natural Language Preference Elicitation\",\"url\":\"https://arxiv.org/html/2405.00981v1\"}]\n\nI found several relevant research papers on Bayesian methods for preference learning with LLMs. Here are the key findings:\n\n## Bayesian Preference Learning from User Demonstrations\n\nThe search results show several active research areas in this field:\n\n### 1. **Bayesian Preference Learning Frameworks**\n\nAPRICOT combines the generative ability of LLMs with Bayesian active preference learning to refine preferences learned from user demonstrations. This approach merges LLM-based Bayesian active preference learning with constraint-aware task planning.\n\n### 2. **Teaching LLMs Bayesian Reasoning**\n\nResearchers are teaching LLMs to reason in a Bayesian manner by training them to mimic the predictions of the Bayesian model, which defines the optimal way to reason about probabilities. Notably, mimicking the Bayesian Assistant's best guesses was hypothesized to teach the LLM to maintain uncertainty and update its beliefs more effectively than Oracle teaching, where the LLM is trained on the correct choices.\n\n### 3. **Active Preference Learning with BOED**\n\nOPEN is a domain-agnostic preference learning framework that combines LMs with Bayesian Optimal Experimental Design (BOED), using LMs to identify environment-specific features and interface with a user, while using BOED to maintain a principled approach to question-selection and decision-making.\n\n### 4. **In-Context Reward Modeling with Priors**\n\nVariational in-context reward modeling (ICRM) directly models the mean and sharpness of the Beta posterior, calibrated to how \"confident\" the model is for preference triplets given in-context preference demonstrations.\n\n### 5. **Training-Free Sequential Preference Learning**\n\nAdaptFuse is a training-free framework that externalizes probabilistic computation from the LLM: a symbolic module maintains a Bayesian posterior over a discrete hypothesis set, while a frozen LLM contributes semantic reasoning via multi-sample Dirichlet aggregation, with signals combined through entropy-adaptive fusion.\n\nThese approaches demonstrate the growing integration of Bayesian methods with LLMs for learning user preferences from demonstrations in a principled and adaptive manner.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "011baaf1-3a4d-4f31-baaa-114240e9cd55",
+            "isSidechain": true,
+            "promptId": "3326bc49-bb7f-42d2-bc00-b73c1ab5eb55",
+            "agentId": "a3b38a82d53ef12ed",
+            "type": "user",
+            "uuid": "6994efd1-95aa-49b0-a003-5d26b3d2b801",
+            "sourceToolAssistantUUID": "011baaf1-3a4d-4f31-baaa-114240e9cd55",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-10T08:01:20.410Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent. Let me now fetch the APRICOT paper to check if it's directly relevant as a competitor:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6994efd1-95aa-49b0-a003-5d26b3d2b801",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY75i1Sc7t3yRGGAcBi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3dac9966-81d9-401e-abaf-b508e553c79a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01M4LP2YhpvaCw9FDUGNov7M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 2198,
+                "cache_read_input_tokens": 21277,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2198,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-10T08:01:20.610Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B6jvGwJMFon7iBKi7J9rud",
+              "name": "WebSearch",
+              "input": {
+                "query": "APRICOT arXiv Bayesian active preference learning demonstrations constraint-aware LLM"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3dac9966-81d9-401e-abaf-b508e553c79a",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY75i1Sc7t3yRGGAcBi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4fdf16b7-9449-4c24-81a5-b5bdf00663b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01M4LP2YhpvaCw9FDUGNov7M",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 2198,
+                "cache_read_input_tokens": 21277,
+                "output_tokens": 96,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2198
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 96,
+                    "cache_read_input_tokens": 21277,
+                    "cache_creation_input_tokens": 2198,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2198,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-10T08:01:26.927Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B6jvGwJMFon7iBKi7J9rud",
+              "type": "tool_result",
+              "content": "Web search results for query: \"APRICOT arXiv Bayesian active preference learning demonstrations constraint-aware LLM\"\n\nLinks: [{\"title\":\"[2410.19656] APRICOT: Active Preference Learning and Constraint-Aware Task Planning with LLMs\",\"url\":\"https://arxiv.org/abs/2410.19656\"},{\"title\":\"APRICOT: Active Preference Learning and Constraint-Aware Task Planning with LLMs\",\"url\":\"https://portal-cornell.github.io/apricot/\"},{\"title\":\"APRICOT: Active Preference Learning and Constraint-Aware Task Planning with LLMs | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/apricot-active-preference-learning-constraint-aware-task\"},{\"title\":\"APRICOT: Active Preference Learning and Constraint-Aware Task Planning with LLMs\",\"url\":\"https://proceedings.mlr.press/v270/wang25e.html\"},{\"title\":\"APRICOT: Active Preference Learning and Constraint-Aware Task Planning with LLMs | OpenReview\",\"url\":\"https://openreview.net/forum?id=nQslM6f7dW\"},{\"title\":\"Researchers from Stanford and Cornell Introduce APRICOT: A Novel AI Approach that Merges LLM-based Bayesian Active Preference Learning with Constraint-Aware Task Planning - MarkTechPost\",\"url\":\"https://www.marktechpost.com/2024/11/07/researchers-from-stanford-and-cornell-introduce-apricot-a-novel-ai-approach-that-merges-llm-based-bayesian-active-preference-learning-with-constraint-aware-task-planning/\"},{\"title\":\"‪APRICOT: Active preference learning and constraint-aware task planning with LLMs‬\",\"url\":\"https://scholar.google.com/citations?view_op=view_citation&hl=en&user=yweLdycAAAAJ&citation_for_view=yweLdycAAAAJ:eq2jaN3J8jMC\"},{\"title\":\"(PDF) APRICOT: Active Preference Learning and Constraint-Aware Task Planning with LLMs\",\"url\":\"https://www.researchgate.net/publication/385292022_APRICOT_Active_Preference_Learning_and_Constraint-Aware_Task_Planning_with_LLMs\"},{\"title\":\"APRICOT: Active Preference Learning and Constraint-Aware Task Planning with LLMs | PromptLayer\",\"url\":\"https://www.promptlayer.com/research-papers/how-ai-learns-your-preferences-and-organizes-your-fridge\"},{\"title\":\"LLM-Based Bayesian Active Preference Learning Approach. Given a set of... | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/LLM-Based-Bayesian-Active-Preference-Learning-Approach-Given-a-set-of-language-based_fig1_385292022\"}]\n\nBased on the search results, here's what I found about APRICOT:\n\n## Overview\n\nAPRICOT is a novel approach that merges LLM-based Bayesian active preference learning with constraint-aware task planning. APRICOT (Active Preference Learning with Constraint-Aware Task Planner) was developed by researchers from Cornell University and Stanford University.\n\n## Problem Statement\n\nThe approach focuses on organization tasks within constrained spaces, such as arranging items into a refrigerator, where preferences for placement collide with physical limitations, and the robot must infer user preferences based on a small set of demonstrations. The two fundamental challenges are inherent ambiguity in interpreting user actions, as multiple preferences can often explain a single observed behavior, and that not all user preferences are practically feasible due to geometric constraints in the environment.\n\n## Technical Approach\n\nAPRICOT (1) proposes candidate preferences and corresponding candidate plans via an LLM, (2) evaluates whether to terminate based on whether the prior over preferences is sufficient, (3) selects the optimal question that maximizes information gain.\n\n## Performance Results\n\nAPRICOT achieves the highest preference accuracy of 58%, which is the percentage of outputted preferences that are equivalent to the ground-truth preference, while asking the user the smallest amount of questions (2.15 on average). In constrained environments, APRICOT maintained impressive performance with 96.0% feasible plans and 89.0% preference satisfaction rates in challenging scenarios.\n\nThe paper was published in October 2024 (arXiv preprint 2410.19656).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4fdf16b7-9449-4c24-81a5-b5bdf00663b3",
+            "isSidechain": true,
+            "promptId": "3326bc49-bb7f-42d2-bc00-b73c1ab5eb55",
+            "agentId": "a3b38a82d53ef12ed",
+            "type": "user",
+            "uuid": "983d1960-6142-4e66-bce5-541a0ca696cc",
+            "sourceToolAssistantUUID": "4fdf16b7-9449-4c24-81a5-b5bdf00663b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-10T08:01:29.292Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me fetch APRICOT's abstract directly to understand its focus better:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "983d1960-6142-4e66-bce5-541a0ca696cc",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY7ezjzBYfDDkwJFWU9",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "49b03219-a44d-4512-9743-fa1b67653eeb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TmfpBDEx3YPcbJb68MNGo1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1204,
+                "cache_read_input_tokens": 23475,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1204,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-10T08:01:30.006Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012D71663WhC2ranAfAjoMGh",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2410.19656",
+                "prompt": "What is the abstract and main contribution? Does it focus on user-facing interactive preference learning with demonstrations or robot task planning? Does it use hypothesis confirmation probes?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "49b03219-a44d-4512-9743-fa1b67653eeb",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY7ezjzBYfDDkwJFWU9",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1c81b6cd-0170-45d9-a323-1437f00fc245",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TmfpBDEx3YPcbJb68MNGo1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1204,
+                "cache_read_input_tokens": 23475,
+                "output_tokens": 132,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1204
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 132,
+                    "cache_read_input_tokens": 23475,
+                    "cache_creation_input_tokens": 1204,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1204,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-10T08:01:34.172Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012D71663WhC2ranAfAjoMGh",
+              "type": "tool_result",
+              "content": "# APRICOT Paper Summary\n\n## Abstract & Main Contribution\n\nThe paper addresses home robots performing organization tasks in constrained spaces (e.g., refrigerator arrangement). The core challenge involves balancing user preferences with environmental limitations while inferring preferences from minimal demonstrations.\n\nAPRICOT combines two key approaches: \"LLM-based Bayesian active preference learning with constraint-aware task planning.\" The system actively queries users to resolve ambiguities in preference interpretation and dynamically adapts plans to respect geometric constraints.\n\n## Focus Area\n\nThe work primarily emphasizes **interactive preference learning with demonstrations**. It explicitly tackles \"inherent ambiguity in interpreting user actions, as multiple preferences can often explain a single observed behavior,\" making user interaction central to the approach.\n\nWhile task planning is included, preference learning appears to be the primary contribution—the system uses demonstrations and active querying rather than explicit task specifications.\n\n## Hypothesis Confirmation Probes\n\nThe abstract does not mention hypothesis confirmation probes specifically. It references \"actively querying the user\" but doesn't detail the mechanism. The full paper would be needed to determine whether active learning employs hypothesis confirmation or alternative query strategies."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1c81b6cd-0170-45d9-a323-1437f00fc245",
+            "isSidechain": true,
+            "promptId": "3326bc49-bb7f-42d2-bc00-b73c1ab5eb55",
+            "agentId": "a3b38a82d53ef12ed",
+            "type": "user",
+            "uuid": "87b0221f-0859-41e5-8b7c-f5abf7e8880d",
+            "sourceToolAssistantUUID": "1c81b6cd-0170-45d9-a323-1437f00fc245",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-10T08:01:36.314Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect. Now let me search more specifically for papers on \"expectation of information gain\" or \"EIG\" combined with Bayesian preference learning to see if there are other competitors using EIG-based query selection:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87b0221f-0859-41e5-8b7c-f5abf7e8880d",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY8ByZy43K9Rrutefyb",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "56602dfc-1eb8-4e0f-945b-ffbcc83ca01a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01U8QHfWW4ZUZa4DJVSJvxSM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 391,
+                "cache_read_input_tokens": 24679,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 391,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-10T08:01:36.571Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WUhGtHRTCvgKCPzcLQMPD4",
+              "name": "WebSearch",
+              "input": {
+                "query": "EIG expectation information gain Bayesian preference learning LLM active learning"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "56602dfc-1eb8-4e0f-945b-ffbcc83ca01a",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY8ByZy43K9Rrutefyb",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "18d695ec-7658-40f1-aeac-2ca2e36a400d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01U8QHfWW4ZUZa4DJVSJvxSM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 391,
+                "cache_read_input_tokens": 24679,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 391,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-10T08:01:36.648Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EkmKVitA7BvXoghGrmcVuQ",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"hypothesis confirmation\" Bayesian preference learning LLM personalization user-facing"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18d695ec-7658-40f1-aeac-2ca2e36a400d",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY8ByZy43K9Rrutefyb",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "14582318-7d9a-4182-b0f3-ab0282259153",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01U8QHfWW4ZUZa4DJVSJvxSM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 391,
+                "cache_read_input_tokens": 24679,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 391,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-10T08:01:43.915Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WUhGtHRTCvgKCPzcLQMPD4",
+              "type": "tool_result",
+              "content": "Web search results for query: \"EIG expectation information gain Bayesian preference learning LLM active learning\"\n\nLinks: [{\"title\":\"BED-LLM: Intelligent Information Gathering with LLMs and Bayesian Experimental Design\",\"url\":\"https://arxiv.org/html/2508.21184v1\"},{\"title\":\"Prediction-Oriented Bayesian Active Learning Freddie Bickford Smith*\",\"url\":\"https://proceedings.mlr.press/v206/bickfordsmith23a/bickfordsmith23a.pdf\"},{\"title\":\"Deep Bayesian Active Learning for Preference Modeling in Large Language Models\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/d5e256c988bdee59a0f4d7a9bc1dd6d9-Paper-Conference.pdf\"},{\"title\":\"BED-LLM: Intelligent Information Gathering with LLMs and Bayesian Experimental Design | Request PDF\",\"url\":\"https://www.researchgate.net/publication/395125168_BED-LLM_Intelligent_Information_Gathering_with_LLMs_and_Bayesian_Experimental_Design\"},{\"title\":\"BED-LLM: Intelligent Information Gathering with LLMs and Bayesian Experimental Design - Apple Machine Learning Research\",\"url\":\"https://machinelearning.apple.com/research/bed-llm\"},{\"title\":\"Bayesian Preference Elicitation with Language Models\",\"url\":\"https://arxiv.org/html/2403.05534v1\"},{\"title\":\"Expected Information Gain (EIG)\",\"url\":\"https://www.emergentmind.com/topics/expected-information-gain-eig\"},{\"title\":\"Deep Bayesian Active Learning for Preference Modeling in Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=TADTT9ughN&noteId=KUq5hng8Z3\"},{\"title\":\"Deep Bayesian Active Learning for Preference Modeling in Large Language Models\",\"url\":\"https://arxiv.org/html/2406.10023v1\"},{\"title\":\"BED-LLM: Intelligent Information Gathering with LLMs and Bayesian Experimental Design [Quick Review]\",\"url\":\"https://liner.com/review/bedllm-intelligent-information-gathering-with-llms-and-bayesian-experimental-design\"}]\n\nBased on the search results, here's an overview of the key concepts and their connections:\n\n## Expected Information Gain (EIG) in Bayesian Learning and LLMs\n\nExpected Information Gain (EIG) is a fundamental criterion in Bayesian statistics, experimental design, active learning, and probabilistic reasoning that quantifies, for a candidate experiment, query, or intervention, the expected reduction in uncertainty about an unknown model parameter or latent variable—typically measured as the average decrease in Shannon entropy of the posterior relative to the prior, or as the mutual information between model parameters and hypothetical future data.\n\n### EIG in Active Learning\n\nIn the context of active learning, EIG-driven sampling selects most informative data points for labeling under uncertainty, outperforming entropy and diversity baselines, especially in imbalanced settings.\n\n### EIG in Bayesian Preference Learning with LLMs\n\nTo efficiently learn user preferences, the approach aims to select the pair of options that maximize the EIG with regards to the user's preferences at each interaction step, grounded in the Bayesian Optimal Experimental Design (BOED) framework.\n\n### BED-LLM: A Practical Application\n\nThe BED-LLM (Bayesian Experimental Design with Large Language Models) approach is based on iteratively choosing questions or queries that maximize the expected information gain (EIG) about the task of interest given the responses gathered previously. BED-LLM achieves substantial gains in performance across a wide range of tests based on the 20-questions game and using the LLM to actively infer user preferences, compared to direct prompting of the LLM and other adaptive design strategies.\n\n### Bayesian Active Learning for LLM Preference Modeling\n\nThe Bayesian Active Learner for Preference Modeling (BAL-PM) is a novel stochastic acquisition policy that not only targets points of high epistemic uncertainty according to the preference model but also seeks to maximize the entropy of the acquired prompt distribution in the feature space.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18d695ec-7658-40f1-aeac-2ca2e36a400d",
+            "isSidechain": true,
+            "promptId": "3326bc49-bb7f-42d2-bc00-b73c1ab5eb55",
+            "agentId": "a3b38a82d53ef12ed",
+            "type": "user",
+            "uuid": "3908ae1b-6881-41c3-9be4-101a3e984cf7",
+            "sourceToolAssistantUUID": "18d695ec-7658-40f1-aeac-2ca2e36a400d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-10T08:01:47.503Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EkmKVitA7BvXoghGrmcVuQ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"hypothesis confirmation\" Bayesian preference learning LLM personalization user-facing\"\n\nLinks: [{\"title\":\"AdaptFuse: Training-Free Sequential Preference Learning via Externalized Bayesian Inference\",\"url\":\"https://arxiv.org/html/2604.03925\"},{\"title\":\"Comparison-based Active Preference Learning for Multi-dimensional Personalization\",\"url\":\"https://arxiv.org/html/2411.00524\"},{\"title\":\"Bayesian Optimization with LLM-Based Acquisition Functions for Natural Language Preference Elicitation\",\"url\":\"https://arxiv.org/html/2405.00981v1\"},{\"title\":\"Bayesian Optimization with LLM-Based Acquisition Functions for Natural Language Preference Elicitation | Proceedings of the 18th ACM Conference on Recommender Systems\",\"url\":\"https://dl.acm.org/doi/10.1145/3640457.3688142\"},{\"title\":\"Bayesian Preference Elicitation with Language Models\",\"url\":\"https://arxiv.org/html/2403.05534v1\"},{\"title\":\"Bayesian Optimization with LLM-Based Acquisition Functions for Natural Language Preference Elicitation | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/bayesian-optimization-llm-based-acquisition-functions-natural\"},{\"title\":\"Bayesian Preference Learning for Test-Time Steerable Reward Models\",\"url\":\"https://arxiv.org/pdf/2602.08819\"},{\"title\":\"Bayesian Optimization & LLMs for Preference Elicitation\",\"url\":\"https://www.emergentmind.com/papers/2405.00981\"},{\"title\":\"[2403.05534] Bayesian Preference Elicitation with Language Models\",\"url\":\"https://arxiv.org/abs/2403.05534\"},{\"title\":\"Teaching LLMs to reason like Bayesians\",\"url\":\"https://research.google/blog/teaching-llms-to-reason-like-bayesians/\"}]\n\nBased on the search results, I found several relevant papers and frameworks that address hypothesis confirmation, Bayesian methods, preference learning, and LLM personalization:\n\n## Key Findings\n\n**AdaptFuse Framework**: A training-free framework that externalizes probabilistic computation entirely from the LLM, where a symbolic module maintains a Bayesian posterior over a discrete hypothesis set, while a frozen LLM contributes semantic reasoning via multi-sample Dirichlet aggregation. The two signals are combined through entropy-adaptive fusion, which automatically weights each source by its predictive confidence, shifting reliance from the LLM to the symbolic posterior as evidence accumulates.\n\n**Active Multi-dimensional Preference Learning (AMPLe)**: A system designed to address the challenge of personalizing LLM responses to users' implicit and multi-dimensional preferences. It proposes a modified Bayesian posterior update that robustly mitigates potential estimation bias and effectively tolerates possibly incorrect user feedback, significantly improving the accuracy and reliability of estimating implicit preferences.\n\n**PEBOL (Preference Elicitation with Bayesian Optimization)**: An algorithm which infers item preferences via Natural Language Inference (NLI) between dialogue utterances and item descriptions to maintain Bayesian preference beliefs, and introduces LLM-based acquisition functions, where NL query generation is guided by decision-theoretic strategies such as TS and UCB over the preference beliefs.\n\n**OPEN Framework**: A framework that uses Bayesian Optimal Experimental Design (BOED) to guide the choice of informative questions and an LM to extract features and translate abstract BOED queries into natural language questions. By combining the flexibility of LMs with the rigor of BOED, OPEN can optimize the informativity of queries while remaining adaptable to real-world domains.\n\n**Bayesian Teaching**: Teaching LLMs to reason in a Bayesian manner by training them to mimic the predictions of an optimal Bayesian model. Bayesian teaching significantly outperformed Oracle teaching, enabling models to agree with mathematical ideals 80% of the time, with fine-tuned models developing a realistic sensitivity to information.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "14582318-7d9a-4182-b0f3-ab0282259153",
+            "isSidechain": true,
+            "promptId": "3326bc49-bb7f-42d2-bc00-b73c1ab5eb55",
+            "agentId": "a3b38a82d53ef12ed",
+            "type": "user",
+            "uuid": "b977daff-bb03-4ebc-b0ad-2c6da3ed5c9c",
+            "sourceToolAssistantUUID": "14582318-7d9a-4182-b0f3-ab0282259153",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-10T08:01:49.632Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me fetch the AdaptFuse and AMPLe papers to check if they're directly relevant competitors:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b977daff-bb03-4ebc-b0ad-2c6da3ed5c9c",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY9AzovXa3yBXBJaSNe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6ba30292-bb62-4186-ba0d-fc17b74846bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01V5jMFRVrrH3bZkENAs6pqS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 2218,
+                "cache_read_input_tokens": 25070,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2218,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-10T08:01:50.182Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vu96mivSow4JGRrF4U5Mgc",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2604.03925",
+                "prompt": "What is the main contribution? Does it use user demonstrations and Bayesian hypothesis confirmation for interactive preference learning or reward model training?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ba30292-bb62-4186-ba0d-fc17b74846bb",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY9AzovXa3yBXBJaSNe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c7331dcf-8e7d-4eb0-a7be-5a2cf30c3655",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01V5jMFRVrrH3bZkENAs6pqS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 2218,
+                "cache_read_input_tokens": 25070,
+                "output_tokens": 183,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2218
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 183,
+                    "cache_read_input_tokens": 25070,
+                    "cache_creation_input_tokens": 2218,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2218,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-10T08:01:50.242Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FpKdae4Gqno2m2tLTZPz5D",
+              "name": "WebSearch",
+              "input": {
+                "query": "AMPLe arXiv multi-dimensional personalization Bayesian preference learning"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c7331dcf-8e7d-4eb0-a7be-5a2cf30c3655",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY9AzovXa3yBXBJaSNe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "23dfe880-3d2e-4c0e-9c62-50b863ac0bb0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01V5jMFRVrrH3bZkENAs6pqS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 2218,
+                "cache_read_input_tokens": 25070,
+                "output_tokens": 183,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2218
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 183,
+                    "cache_read_input_tokens": 25070,
+                    "cache_creation_input_tokens": 2218,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2218,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-10T08:01:54.499Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vu96mivSow4JGRrF4U5Mgc",
+              "type": "tool_result",
+              "content": "# AdaptFuse Main Contribution\n\n**Core Innovation:**\nAdaptFuse presents a training-free framework that combines symbolic Bayesian inference with frozen language models. As stated in the abstract: \"a symbolic module maintains a Bayesian posterior over a discrete hypothesis set, while a frozen LLM contributes semantic reasoning via multi-sample Dirichlet aggregation.\"\n\n**Regarding Your Specific Questions:**\n\nThe approach does involve **Bayesian hypothesis confirmation** through sequential preference learning. The system maintains probabilistic beliefs that update across multiple interaction rounds without requiring model fine-tuning.\n\nHowever, it **does not use user demonstrations or reward model training**. Instead of these conventional methods, the framework relies on: an externalized Bayesian posterior that evolves based on user interactions, an entropy-adaptive fusion mechanism that automatically weights the symbolic module versus the LLM based on confidence levels, and inference-time algorithms rather than training adjustments.\n\n**Key Advantage:**\nThe method avoids storing or training on sensitive user interaction data while achieving superior performance. The paper claims \"AdaptFuse consistently outperforms both prompting baselines and fine-tuned Bayesian Teaching models\" across recommendation tasks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c7331dcf-8e7d-4eb0-a7be-5a2cf30c3655",
+            "isSidechain": true,
+            "promptId": "3326bc49-bb7f-42d2-bc00-b73c1ab5eb55",
+            "agentId": "a3b38a82d53ef12ed",
+            "type": "user",
+            "uuid": "0f9ecb0b-17ad-48c8-9f7f-56cc308ab24d",
+            "sourceToolAssistantUUID": "c7331dcf-8e7d-4eb0-a7be-5a2cf30c3655",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-10T08:01:56.834Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FpKdae4Gqno2m2tLTZPz5D",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AMPLe arXiv multi-dimensional personalization Bayesian preference learning\"\n\nLinks: [{\"title\":\"Comparison-based Active Preference Learning for Multi-dimensional Personalization\",\"url\":\"https://arxiv.org/html/2411.00524\"},{\"title\":\"[2411.00524] Comparison-based Active Preference Learning for Multi-dimensional Personalization\",\"url\":\"https://arxiv.org/abs/2411.00524\"},{\"title\":\"Comparison-based Active Preference Learning for Multi-dimensional Personalization - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.acl-long.1590/\"},{\"title\":\"Active Preference-based Learning for Multi-dimensional Personalization\",\"url\":\"https://arxiv.org/html/2411.00524v1\"},{\"title\":\"GitHub - ml-postech/AMPLe: Comparison-based Active Preference Learning for Multi-dimensional Personalization\",\"url\":\"https://github.com/ml-postech/AMPLe\"},{\"title\":\"Comparison-based Active Preference Learning for Multi- ...\",\"url\":\"https://aclanthology.org/2025.acl-long.1590.pdf\"},{\"title\":\"Cost-Free Personalization via Information-Geometric Projection in Bayesian Federated Learning\",\"url\":\"https://arxiv.org/html/2509.10132\"},{\"title\":\"When Personalization Meets Reality: A Multi-Faceted Analysis of Personalized Preference Learning\",\"url\":\"https://arxiv.org/html/2502.19158\"},{\"title\":\"Comparison-based Active Preference Learning for Multi- ...\",\"url\":\"https://arxiv.org/pdf/2411.00524\"},{\"title\":\"Personalizing Reinforcement Learning from Human Feedback with Variational Preference Learning\",\"url\":\"https://arxiv.org/html/2408.10075v1\"}]\n\nBased on the search results, I found detailed information about AMPLe:\n\n## AMPLe: Active Multi-dimensional Preference Learning\n\nAMPLe (Active Multi-dimensional Preference Learning) addresses the challenge of personalizing LLM responses to users' implicit and multi-dimensional preferences.\n\n### Key Problem\nExisting approaches often suffer from estimation bias and are vulnerable to frequent noise in user feedback, besides facing inefficiencies in collecting comparative feedback from users.\n\n### Main Contributions\nAMPLe makes two primary methodological contributions. First, it proposes a modified Bayesian posterior update that robustly mitigates potential estimation bias and effectively tolerates possibly incorrect user feedback, significantly improving the accuracy and reliability of estimating implicit preferences.\n\nSecond, inspired by generalized binary search, the approach employs an active query selection strategy to minimize the number of required comparisons by a user.\n\n### Methodology\nAMPLe estimates implicit user preferences using Bayesian inference. It is designed to capture implicit user preferences from interactively collected comparative feedback.\n\n### Publication\nThe paper was accepted by ACL 2025 Main (Long) and is available on arXiv as paper 2411.00524.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23dfe880-3d2e-4c0e-9c62-50b863ac0bb0",
+            "isSidechain": true,
+            "promptId": "3326bc49-bb7f-42d2-bc00-b73c1ab5eb55",
+            "agentId": "a3b38a82d53ef12ed",
+            "type": "user",
+            "uuid": "1d742493-74ec-4c90-8ff4-e8eb9bb286b2",
+            "sourceToolAssistantUUID": "23dfe880-3d2e-4c0e-9c62-50b863ac0bb0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-10T08:01:57.926Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me fetch AMPLe's abstract to confirm it's user-facing interactive preference learning:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d742493-74ec-4c90-8ff4-e8eb9bb286b2",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY9rsg8o7KCTZfRPZn8",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9af90222-4ae5-493a-8099-2a24c119bff5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H5RrKgjCdXEcX4mATfDj2n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1325,
+                "cache_read_input_tokens": 27288,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1325,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-10T08:01:58.776Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X1D5wvSbTi1kD49XEWYyhy",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2411.00524",
+                "prompt": "What is the abstract? Is this about interactive user preference learning for LLM personalization, and does it use user demonstrations as input for Bayesian warm priors?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9af90222-4ae5-493a-8099-2a24c119bff5",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatY9rsg8o7KCTZfRPZn8",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4c27de58-9d90-474a-871e-76aa90414a68",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H5RrKgjCdXEcX4mATfDj2n",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1325,
+                "cache_read_input_tokens": 27288,
+                "output_tokens": 138,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1325
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 138,
+                    "cache_read_input_tokens": 27288,
+                    "cache_creation_input_tokens": 1325,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1325,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-10T08:02:02.558Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X1D5wvSbTi1kD49XEWYyhy",
+              "type": "tool_result",
+              "content": "# Summary of the Paper\n\n**Yes, this is about interactive preference learning for LLM personalization.**\n\nThe abstract states the work aims to \"capture implicit user preferences from interactively collected comparative feedback\" to enable \"multi-dimensional personalization\" of model responses.\n\n**Regarding Bayesian warm priors from demonstrations:**\n\nThe paper does employ Bayesian inference, as noted: \"Building on Bayesian inference, our work introduces a modified posterior update procedure to mitigate estimation bias and potential noise in comparisons.\"\n\nHowever, the abstract does not mention using user demonstrations as input for warm priors. Instead, the approach focuses on active query selection through comparative feedback—specifically inspired by \"generalized binary search\" to minimize the number of required comparisons. The emphasis is on efficiently learning preferences through strategically chosen pairwise comparisons rather than on leveraging demonstrations as prior initialization."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c27de58-9d90-474a-871e-76aa90414a68",
+            "isSidechain": true,
+            "promptId": "3326bc49-bb7f-42d2-bc00-b73c1ab5eb55",
+            "agentId": "a3b38a82d53ef12ed",
+            "type": "user",
+            "uuid": "1a115373-84de-4471-828b-dbf8a04f7989",
+            "sourceToolAssistantUUID": "4c27de58-9d90-474a-871e-76aa90414a68",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-10T08:02:03.975Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent. Now let me do one more targeted search to see if there are any other papers specifically combining demonstrations + Bayesian warm priors + LLM personalization:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a115373-84de-4471-828b-dbf8a04f7989",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatYAHJbne5nuSN3VHU7k",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0c07906f-eae3-455c-bd7a-46d96fe84139",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016o6u2srqSNsT3E9XaM1kGH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 336,
+                "cache_read_input_tokens": 28613,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 336,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-10T08:02:04.063Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NCib5nrjnUMsC5XpAa4puw",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"in-context learning\" Bayesian preference warm prior demonstrations reward model"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0c07906f-eae3-455c-bd7a-46d96fe84139",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatYAHJbne5nuSN3VHU7k",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a0fb67e9-d456-47a2-98e1-2afdcfdf3db3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016o6u2srqSNsT3E9XaM1kGH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 336,
+                "cache_read_input_tokens": 28613,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 336,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-10T08:02:11.794Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NCib5nrjnUMsC5XpAa4puw",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"in-context learning\" Bayesian preference warm prior demonstrations reward model\"\n\nLinks: [{\"title\":\"Bayesian Preference Learning for Test-Time Steerable Reward Models\",\"url\":\"https://arxiv.org/pdf/2602.08819\"},{\"title\":\"In-Context Reinforcement Learning through Bayesian Fusion of Context and Value Prior\",\"url\":\"https://arxiv.org/html/2601.03015.pdf\"},{\"title\":\"[2602.08819] Bayesian Preference Learning for Test-Time Steerable Reward Models\",\"url\":\"https://arxiv.org/abs/2602.08819\"},{\"title\":\"[1906.08928] Learning Reward Functions by Integrating Human Demonstrations and Preferences\",\"url\":\"https://ar5iv.labs.arxiv.org/html/1906.08928\"},{\"title\":\"Learning Reward Functions by Integrating Human Demonstrations and Preferences – Stanford ILIAD\",\"url\":\"https://iliad.stanford.edu/blog/2019/06/24/learning-reward-functions-by-integrating-human-demonstrations-and-preferences/\"},{\"title\":\"(PDF) In-Context Reinforcement Learning through Bayesian Fusion of Context and Value Prior\",\"url\":\"https://www.researchgate.net/publication/399522200_In-Context_Reinforcement_Learning_through_Bayesian_Fusion_of_Context_and_Value_Prior\"},{\"title\":\"IN-CONTEXT BAYESIAN REWARD MODELING\",\"url\":\"https://openreview.net/pdf/2c8f8e018a87bb357f2ff8b73c030ea342f31421.pdf\"},{\"title\":\"[2601.03015] In-Context Reinforcement Learning through Bayesian Fusion of Context and Value Prior\",\"url\":\"https://arxiv.org/abs/2601.03015\"},{\"title\":\"Safe Imitation Learning via Fast Bayesian Reward Inference from Preferences\",\"url\":\"https://arxiv.org/pdf/2002.09089\"},{\"title\":\"Active Preference-Based Learning of Reward Functions\",\"url\":\"https://people.eecs.berkeley.edu/~sastry/pubs/Pdfs%20of%202017/SadighActive2017.pdf\"}]\n\nThe search returned several highly relevant papers on Bayesian preference learning and in-context learning with reward models. Here are the key findings:\n\n## Main Results\n\n**Variational In-Context Reward Modeling (ICRM):**\nA novel Bayesian reward modeling objective that enables test-time steerability via in-context preference demonstrations. ICRM casts reward modeling as amortized variational inference over a latent preference probability under the Bradley-Terry model using a conjugate Beta prior.\n\n**Key Technical Approach:**\nICRM directly models the mean and sharpness of the Beta posterior, calibrated to how \"confident\" the model is for the preference triplet given in-context preference demonstrations. This yields multi-objective test-time steerability of the reward model for any preferences or tasks.\n\n**In-Context Reinforcement Learning with Bayesian Fusion:**\nSPICE is a Bayesian ICRL method that learns a prior over Q-values via deep ensemble and updates this prior at test-time using in-context information through Bayesian updates. The value ensemble provides calibrated uncertainty that behaves as if the prior contributed a small number of virtual samples, equipping SPICE with a strong warm start from weak data and principled posterior-UCB exploration.\n\n**Warm Prior Benefits:**\nThe theory shows O(log H) regret with only a constant warm-start penalty from prior miscalibration, demonstrating that properly calibrated warm priors enable rapid adaptation without asymptotic performance degradation.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a0fb67e9-d456-47a2-98e1-2afdcfdf3db3",
+            "isSidechain": true,
+            "promptId": "3326bc49-bb7f-42d2-bc00-b73c1ab5eb55",
+            "agentId": "a3b38a82d53ef12ed",
+            "type": "user",
+            "uuid": "700a34a0-bc9a-43be-84e2-c03d2c57d9e7",
+            "sourceToolAssistantUUID": "a0fb67e9-d456-47a2-98e1-2afdcfdf3db3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-10T08:02:13.117Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Let me fetch the Bayesian Preference Learning for Test-Time Steerable Reward Models paper to understand its exact focus:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "700a34a0-bc9a-43be-84e2-c03d2c57d9e7",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatYAxp96i5RndMnCb3bp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b1920cca-cb71-4c60-929d-799f02e0c4b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MSkQNHt3pN87ykFVqEpeKc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 994,
+                "cache_read_input_tokens": 28949,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 994,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-10T08:02:13.922Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EefDvegMRzuZea2T9KR7fz",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2602.08819",
+                "prompt": "What is the title, abstract, and main contribution? Does it focus on user-facing interactive preference learning for LLM personalization or test-time reward model adaptation?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b1920cca-cb71-4c60-929d-799f02e0c4b3",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatYAxp96i5RndMnCb3bp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "165f7bb3-c49f-4c86-a4c3-aa727eca1c53",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MSkQNHt3pN87ykFVqEpeKc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 994,
+                "cache_read_input_tokens": 28949,
+                "output_tokens": 147,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 994
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 147,
+                    "cache_read_input_tokens": 28949,
+                    "cache_creation_input_tokens": 994,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 994,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-10T08:02:17.697Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EefDvegMRzuZea2T9KR7fz",
+              "type": "tool_result",
+              "content": "# Paper Summary\n\n**Title:** \"Bayesian Preference Learning for Test-Time Steerable Reward Models\"\n\n**Abstract:** The paper proposes Variational In-Context Reward Modeling (ICRM), which \"enables test-time steerability via in-context preference demonstrations.\" It casts reward modeling as amortized variational inference using the Bradley-Terry model with a Beta prior.\n\n**Main Contribution:** This work focuses on **test-time reward model adaptation** rather than user-facing interactive personalization. The key innovation allows reward models to dynamically adjust to new preference distributions at test time through in-context demonstrations, rather than remaining static after training.\n\nThe research demonstrates practical improvements: 34% accuracy gains on SafeRLHF and 9% on RM-Bench benchmarks. It addresses multi-objective alignment and verifiable rewards, showing how models can encode complex preference distributions without retraining.\n\nThis is fundamentally about making reward models flexible and responsive at inference time, not about building interactive systems for end-user LLM personalization."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "165f7bb3-c49f-4c86-a4c3-aa727eca1c53",
+            "isSidechain": true,
+            "promptId": "3326bc49-bb7f-42d2-bc00-b73c1ab5eb55",
+            "agentId": "a3b38a82d53ef12ed",
+            "type": "user",
+            "uuid": "d402a890-a6cd-4cf6-baf8-04b33b1f6aba",
+            "sourceToolAssistantUUID": "165f7bb3-c49f-4c86-a4c3-aa727eca1c53",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-10T08:02:36.616Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect. Now let me compile my findings. Based on all the research I've gathered, here's my comprehensive report:\n\n## Summary: Competitive Analysis for FABEL\n\nI've conducted a thorough search of the recent literature on Bayesian preference learning for LLMs. Here are my findings:\n\n---\n\n### **1. BAL-PM (arXiv 2406.10023) - \"Deep Bayesian Active Learning for Preference Modeling in Large Language Models\"**\n\n**Status: NOT a direct competitor to FABEL**\n\n**Key Details:**\n- **Title:** Deep Bayesian Active Learning for Preference Modeling in Large Language Models\n- **Published:** NeurIPS 2024 (arXiv June 2024)\n- **Focus:** REWARD MODEL TRAINING EFFICIENCY, not user-facing personalization\n- **Main Problem:** Reducing annotation costs for preference labeling in reward model training\n- **Key Innovation:** BAL-PM targets points of high epistemic uncertainty while maximizing prompt distribution entropy, achieving 33-68% fewer required preference labels\n- **Core Use Case:** Training data collection efficiency for RLHF pipelines\n\n**Does NOT compete with FABEL because:** BAL-PM focuses on efficient annotation for backend reward model training, not interactive user-facing preference elicitation for LLM response personalization. It has no user demonstration conditioning or response-style customization component.\n\n---\n\n### **2. MAPLE (arXiv 2412.07207) - \"MAPLE: A Framework for Active Preference Learning Guided by Large Language Models\"**\n\n**Status: PARTIAL overlap - touches user-facing preference learning but different scope**\n\n**Key Details:**\n- **Title:** MAPLE: A Framework for Active Preference Learning Guided by Large Language Models\n- **Published:** AAAI 2025 AI Alignment Track (arXiv December 2024)\n- **Focus:** USER-FACING interactive preference learning (makes queries more interpretable and answerable)\n- **Main Problem:** High computational burden, excessive human annotation demands, lack of interpretability\n- **Key Innovation:** Uses LLM to model preference function distributions conditioned on natural language feedback + pairwise trajectory rankings; language-conditioned active query selection\n- **Core Use Case:** General preference learning for alignment, with human interpretability\n\n**Competitive Overlap with FABEL:**\n- MAPLE does address user-facing interactive preference discovery through hypothesis-space exploration\n- However, MAPLE is broader (trajectory ranking, NL feedback) rather than focused on LLM response-style personalization via demonstration-conditioned warm priors\n- MAPLE doesn't emphasize user demonstrations as Bayesian warm priors specifically for personalization\n\n**Different enough that:** MAPLE's focus on general alignment and trajectory-based preferences doesn't directly target the FABEL niche of response-style personalization via demo-conditioned warm starts.\n\n---\n\n### **3. APRICOT (arXiv 2410.19656) - \"APRICOT: Active Preference Learning and Constraint-Aware Task Planning with LLMs\"**\n\n**Status: Tangentially related - different domain (robotics)**\n\n**Key Details:**\n- **Title:** APRICOT: Active Preference Learning and Constraint-Aware Task Planning with LLMs\n- **Published:** NeurIPS 2024 (arXiv October 2024)\n- **Focus:** Interactive preference learning FROM USER DEMONSTRATIONS for constrained robotic tasks (e.g., refrigerator organization)\n- **Key Innovation:** Combines LLM-based Bayesian active preference learning with task planning; resolves ambiguity in interpreting user actions\n- **Core Use Case:** Robot task organization with geometric constraints\n\n**Does NOT directly compete with FABEL because:** While APRICOT uses user demonstrations + Bayesian active learning, its domain is robotic task planning, not LLM response-style personalization.\n\n---\n\n### **4. AMPLe (arXiv 2411.00524) - \"Comparison-based Active Preference Learning for Multi-dimensional Personalization\"**\n\n**Status: User-facing personalization, but different query mechanism**\n\n**Key Details:**\n- **Title:** Comparison-based Active Preference Learning for Multi-dimensional Personalization\n- **Published:** ACL 2025 Main (arXiv November 2024)\n- **Focus:** USER-FACING multi-dimensional LLM response personalization\n- **Main Problem:** Learning implicit user preferences efficiently with robust posterior updates\n- **Key Innovation:** Modified Bayesian posterior update to mitigate estimation bias; active query selection via generalized binary search to minimize required comparisons\n- **Core Use Case:** Personalizing LLM response styles across multiple dimensions\n\n**Competitive Overlap with FABEL:**\n- AMPLe also targets interactive LLM personalization to user preferences\n- Uses Bayesian inference for preference learning\n- Employs active query selection to minimize user burden\n\n**Key Difference:** AMPLe uses pairwise comparisons as queries; doesn't explicitly use user demonstrations as warm priors or EIG-based hypothesis confirmation probes.\n\n---\n\n### **5. AdaptFuse (arXiv 2604.03925) - \"AdaptFuse: Training-Free Sequential Preference Learning via Externalized Bayesian Inference\"**\n\n**Status: Sequential preference learning, not demonstration-conditioned**\n\n**Key Details:**\n- **Focus:** Training-free sequential preference learning via externalized Bayesian inference\n- **Key Innovation:** Symbolic module maintains Bayesian posterior over discrete hypothesis set; frozen LLM provides semantic reasoning via entropy-adaptive fusion\n- **Approach:** Maintains hypothesis confirmations through symbolic Bayesian updates (not via demonstrations)\n- **Core Use Case:** Recommendation/personalization without fine-tuning\n\n**Does NOT directly compete with FABEL because:** Doesn't use user demonstrations as warm priors; focuses on symbolic hypothesis confirmation rather than demo-conditioned Bayesian initialization.\n\n---\n\n### **6. In-Context Bayesian Reward Modeling (arXiv 2602.08819) - \"Bayesian Preference Learning for Test-Time Steerable Reward Models\"**\n\n**Status: Test-time reward model adaptation, not user-facing personalization**\n\n**Key Details:**\n- **Title:** Bayesian Preference Learning for Test-Time Steerable Reward Models\n- **Innovation:** Variational In-Context Reward Modeling (ICRM) uses in-context preference demonstrations with Beta priors for test-time reward model adaptation\n- **Uses:** In-context demonstrations to condition warm priors (technically similar to FABEL's approach!)\n- **Core Use Case:** Making reward models flexible at inference time for multi-objective alignment\n\n**Does NOT compete with FABEL because:** Focuses on reward model inference-time flexibility, not on interactive user-facing response-style personalization via preference elicitation.\n\n---\n\n### **Conclusion:**\n\n**Direct Competitors to FABEL:**\n- **MAPLE** - Partial overlap (user-facing preference learning via active queries, but broader scope)\n- **AMPLe** - Closest competitor (interactive LLM personalization with Bayesian active learning, but uses pairwise comparisons not demo-conditioned warm priors)\n\n**Not Competitors (Different Focus Areas):**\n- **BAL-PM** → RLHF/reward model training efficiency (backend, not user-facing)\n- **APRICOT** → Robotic task planning with preference learning (different domain)\n- **AdaptFuse** → Sequential symbolic hypothesis confirmation (no demonstrations)\n- **In-Context Reward Models** → Test-time reward model flexibility (not user personalization)\n\n**Unique Aspects of FABEL:**\nFABEL appears to be novel in its specific combination of: (1) user demonstrations as Bayesian warm priors, (2) EIG-based binary hypothesis confirmation, (3) explicit disconfirmation probes, applied specifically to LLM response-style personalization. While other papers address pieces of this puzzle, the particular integration for demo-conditioned interactive personalization is not clearly replicated in the literature I searched.\n\n---\n\nSources:\n- [BAL-PM: Deep Bayesian Active Learning for Preference Modeling in Large Language Models](https://arxiv.org/abs/2406.10023)\n- [MAPLE: A Framework for Active Preference Learning Guided by Large Language Models](https://arxiv.org/abs/2412.07207)\n- [APRICOT: Active Preference Learning and Constraint-Aware Task Planning with LLMs](https://arxiv.org/abs/2410.19656)\n- [AMPLe: Comparison-based Active Preference Learning for Multi-dimensional Personalization](https://arxiv.org/abs/2411.00524)\n- [AdaptFuse: Training-Free Sequential Preference Learning via Externalized Bayesian Inference](https://arxiv.org/abs/2604.03925)\n- [Bayesian Preference Learning for Test-Time Steerable Reward Models](https://arxiv.org/abs/2602.08819)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d402a890-a6cd-4cf6-baf8-04b33b1f6aba",
+            "isSidechain": true,
+            "agentId": "a3b38a82d53ef12ed",
+            "requestId": "req_011CatYBQAt4QBExGnFCQWJn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "09fd6250-1df4-4d5e-8030-b698df0bac7b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "0aa39802-5b33-414f-b371-b5311ac03ff3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CbSeUCETssaFz2xsRC3Xzh",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 0,
+                "cache_creation_input_tokens": 390,
+                "cache_read_input_tokens": 29943,
+                "output_tokens": 2074,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 390
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 0,
+                    "output_tokens": 2074,
+                    "cache_read_input_tokens": 29943,
+                    "cache_creation_input_tokens": 390,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 390,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000044"
+        }
+      ],
+      "message_count": 44
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-check-two-specific-papers-to-see-if-they-compete-with-a-paper-about.md"
+}
