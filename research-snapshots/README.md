@@ -26,5 +26,6 @@ These snapshots preserve later project exports alongside the initial workspace r
 | recursive_gen_depth_est | 2026-07-12 | No PDF in snapshot | [Assets](recursive_gen_depth_est/2026-07-12/README.md) · [Conversations](recursive_gen_depth_est/2026-07-12/05-generation-trace/readable/README.md) |
 | schema-dag-extraction | 2026-07-12 | No PDF in snapshot | [Assets](schema-dag-extraction/2026-07-12/README.md) · [Conversations](schema-dag-extraction/2026-07-12/05-generation-trace/readable/README.md) |
 | simgate-modular-routing | 2026-07-12 | No PDF in snapshot | [Assets](simgate-modular-routing/2026-07-12/README.md) · [Conversations](simgate-modular-routing/2026-07-12/05-generation-trace/readable/README.md) |
+| solver-trace-ablation | 2026-07-12 | No PDF in snapshot | [Assets](solver-trace-ablation/2026-07-12/README.md) · [Conversations](solver-trace-ablation/2026-07-12/05-generation-trace/readable/README.md) |
 | spectral_collapse_ews | 2026-07-12 | No PDF in snapshot | [Assets](spectral_collapse_ews/2026-07-12/README.md) · [Conversations](spectral_collapse_ews/2026-07-12/05-generation-trace/readable/README.md) |
 | struct_self_consist_ie | 2026-07-12 | No PDF in snapshot | [Assets](struct_self_consist_ie/2026-07-12/README.md) · [Conversations](struct_self_consist_ie/2026-07-12/05-generation-trace/readable/README.md) |

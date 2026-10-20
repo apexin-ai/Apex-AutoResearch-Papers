@@ -265,6 +265,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 1502
+        },
+        "solver-trace-ablation": {
+          "status": "uploaded",
+          "project": "solver-trace-ablation",
+          "collection": "solver-trace-ablation--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "6e0367df7daae8413ddbc1d842a83722a82e5f47a3be70c13c733796e80089e1",
+          "indexed_members": 1224,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 1219
         }
       },
       "status": "in_progress",

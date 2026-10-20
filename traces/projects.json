@@ -1341,6 +1341,19 @@
       }
     },
     {
+      "project": "solver-trace-ablation--export-20260712",
+      "title": "Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning (July export snapshot)",
+      "catalog": "../research-snapshots/solver-trace-ablation/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1219,
+        "messages": 184885,
+        "user_turns": 9434,
+        "tool_calls": 47865,
+        "unparsed_lines": 0,
+        "conversation": 1219
+      }
+    },
+    {
       "project": "spectral_collapse_ews",
       "title": "Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff",
       "catalog": "../paper-assets/spectral_collapse_ews/05-generation-trace/catalog.json",
